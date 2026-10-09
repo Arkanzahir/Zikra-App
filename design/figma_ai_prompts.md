@@ -1,14 +1,29 @@
 # 🎨 Panduan Lengkap Desain Zikra App untuk Figma AI
 
-Dokumen ini berisi **Design System Tokens** dan **Prompt Siap Pakai (Copy-Paste)** untuk fitur **Figma AI** (First Draft), **Galileo AI**, **Uizard**, atau plugin Figma UI Generator lainnya.
+Dokumen ini berisi **Design System Tokens**, **Galeri Referensi Dribbble & Pinterest**, serta **Prompt Siap Pakai (Copy-Paste)** untuk fitur **Figma AI** (First Draft), **Galileo AI**, **Uizard**, atau plugin Figma UI Generator lainnya.
 
 ---
 
-## 📐 1. Design System Tokens (Acuan Gaya)
+## 🖼️ 1. Galeri Moodboard & Referensi Visual (Dribbble & Pinterest)
+
+Berikut adalah tautan referensi visual nyata yang menjadi acuan utama setiap layar (bisa kamu buka dan tempel screenshot-nya di kanvas Figma):
+
+| Halaman | Referensi Utama | Elemen Kunci yang Ditiru |
+|---|---|---|
+| **1. Onboarding** | [Dribbble: Blend wrk E-Learning Onboarding](https://dribbble.com/shots/26522453-E-Learning-Mobile-App-Onboarding-UI-Design) & [Pinterest Onboarding](https://www.pinterest.com/search/pins/?q=mobile%20app%20onboarding%20role%20selection%20ui) | 3 layar alur bertahap: Splash orbit ➔ 2x2 kartu pilihan peran (SMP/SMA/Kuliah/Umum) ➔ Pill chips target ibadah & belajar. |
+| **2. Home Screen** | [Dribbble: Daily Planner & Timeline UI](https://dribbble.com/search/shots/popular?q=daily+planner+or+timeline+mobile+app+ui) & [Pinterest: Isha Manzoor Islamic App](https://id.pinterest.com/pin/311733605484580276/) | Hero card waktu sholat berikutnya dengan hitung mundur + garis waktu vertikal harian jam per jam yang bisa dicentang. |
+| **3. Quran Reader** | [Dribbble: Suhayel Ahmed Nasim Quran App](https://dribbble.com/shots/25482292-Quran-Mobile-App) & [Pinterest Quran Collection](https://www.pinterest.com/search/pins/?q=quran%20app%20ui%20design%20minimalist) | Segmented toggle (Arab/Terjemah/Latin), kartu ayat berjarak lega, action bar per ayat (Tanya AI, Audio, Bookmark), sticky audio player. |
+| **4. Study & Tasks** | [Dribbble: Student Schedule Timetable](https://dribbble.com/search/shots/popular?q=student+schedule+timetable+mobile+app) & [Pinterest: Habit & Task Tracker](https://id.pinterest.com/pin/152629874867602558/) | Horizontal week calendar strip, kartu jadwal pelajaran pastel warna-warni, checklist PR berdasarkan tingkat urgensi deadline. |
+| **5. Zikra AI Chat** | [Pinterest: Smart Voice & AI Chat Assistant](https://id.pinterest.com/pin/192107359061514849/) & [Dribbble: AI Homework Helper](https://dribbble.com/search/shots/popular?q=ai+homework+helper) | 3D Glowing Orb AI, gelembung pesan bersih dengan dukungan rumus & kode, tombol kamera scan PR dan mic di input bar bawah. |
+| **6. Zikra Protector** | [Dribbble: Emergency Alert Mobile UI](https://dribbble.com/search/shots/popular?q=emergency+alert+warning+mobile+app) & [Pinterest: Disaster Alert Sheet](https://www.pinterest.com/search/pins/?q=emergency%20alert%20sheet%20app%20ui) | Kartu status wilayah hijau (aman), grid data gempa BMKG, kartu doa musibah, tombol 1-klik "Kabari Orang Tua via WA", tombol SOS 112. |
+
+---
+
+## 📐 2. Design System Tokens (Acuan Gaya)
 
 Gunakan parameter ini sebagai context awal di Figma:
 
-* **Platform / Ukuran Frame:** Mobile iOS / Android (393 × 852 px — iPhone 15 / 16)
+* **Platform / Ukuran Frame:** Mobile iOS / Android (`393 × 852 px` — iPhone 15 / 16)
 * **Font Family:** Inter / Plus Jakarta Sans (Modern, bersih, ramah pelajar)
 * **Corner Radius:**
   * Kartu / Container: `16px` – `20px` (Rounded modern)
@@ -27,12 +42,15 @@ Gunakan parameter ini sebagai context awal di Figma:
 
 ---
 
-## 📋 2. Kumpulan Prompt Figma AI per Halaman
+## 📋 3. Kumpulan Prompt Figma AI per Halaman
 
 ---
 
 ### 🚀 Screen 1: Onboarding Flow (3 Layar)
-> **Prompt Figma AI:**
+> 📌 **Referensi Visual:**  
+> - 🏀 **Dribbble:** [Blend wrk E-Learning Onboarding](https://dribbble.com/shots/26522453-E-Learning-Mobile-App-Onboarding-UI-Design)  
+> - 📌 **Pinterest:** [Mobile App Onboarding UI Collection](https://www.pinterest.com/search/pins/?q=mobile%20app%20onboarding%20role%20selection%20ui)
+
 ```text
 Mobile app onboarding flow with 3 sequential screens for an Islamic student app named Zikra, 393x852px, modern clean minimalist aesthetic.
 
@@ -62,7 +80,10 @@ Screen 3 (Focus & Habit Goals):
 ---
 
 ### 🏠 Screen 2: Home Screen (The Fusion Timeline)
-> **Prompt Figma AI:**
+> 📌 **Referensi Visual:**  
+> - 🏀 **Dribbble:** [Daily Planner or Timeline Mobile App UI](https://dribbble.com/search/shots/popular?q=daily+planner+or+timeline+mobile+app+ui)  
+> - 📌 **Pinterest:** [Islamic App UI/UX Design by Isha Manzoor](https://id.pinterest.com/pin/311733605484580276/)
+
 ```text
 Mobile app Home Screen for an Islamic student companion app named Zikra, 393x852px, clean modern hybrid layout combining prayer tracker and student daily planner.
 
@@ -94,7 +115,10 @@ Bottom Navigation Bar (Floating Island):
 ---
 
 ### 📖 Screen 3: Quran Reader Screen
-> **Prompt Figma AI:**
+> 📌 **Referensi Visual:**  
+> - 🏀 **Dribbble:** [Quran Mobile App by Suhayel Ahmed Nasim](https://dribbble.com/shots/25482292-Quran-Mobile-App)  
+> - 📌 **Pinterest:** [Modern Quran App UI Collection](https://www.pinterest.com/search/pins/?q=quran%20app%20ui%20design%20minimalist)
+
 ```text
 Mobile app Quran Reader screen, 393x852px, serene Islamic reading layout with modern typography and audio controls.
 
@@ -119,7 +143,10 @@ Sticky Bottom Audio Player:
 ---
 
 ### 📚 Screen 4: Study & Tasks (Jadwal & PR)
-> **Prompt Figma AI:**
+> 📌 **Referensi Visual:**  
+> - 🏀 **Dribbble:** [Student Schedule & Timetable UI](https://dribbble.com/search/shots/popular?q=student+schedule+timetable+mobile+app)  
+> - 📌 **Pinterest:** [Light Mode Habit & Task Tracker UI](https://id.pinterest.com/pin/152629874867602558/)
+
 ```text
 Mobile app Student Task and Class Schedule planner screen, 393x852px, modern productivity interface.
 
@@ -143,7 +170,10 @@ Bottom Floating Action Button (FAB):
 ---
 
 ### 🤖 Screen 5: Zikra AI Chat Screen
-> **Prompt Figma AI:**
+> 📌 **Referensi Visual:**  
+> - 📌 **Pinterest:** [AI Assistant & Voice Smart Chat UI](https://id.pinterest.com/pin/192107359061514849/)  
+> - 🏀 **Dribbble:** [AI Homework Helper Mobile UI](https://dribbble.com/search/shots/popular?q=ai+homework+helper)
+
 ```text
 Mobile AI conversational assistant chat screen for a student companion app named Zikra AI, 393x852px.
 
@@ -168,7 +198,10 @@ Bottom Input Dock:
 ---
 
 ### 🛡️ Screen 6: Zikra Protector (Layar Siaga & Darurat Bencana)
-> **Prompt Figma AI:**
+> 📌 **Referensi Visual:**  
+> - 🏀 **Dribbble:** [Emergency Alert & Disaster Warning UI](https://dribbble.com/search/shots/popular?q=emergency+alert+warning+mobile+app)  
+> - 📌 **Pinterest:** [Disaster & Weather Alert Sheet UI](https://www.pinterest.com/search/pins/?q=emergency%20alert%20sheet%20app%20ui)
+
 ```text
 Mobile app emergency and weather safety screen named "Zikra Protector", 393x852px, serious yet calming emergency companion interface.
 
@@ -197,7 +230,9 @@ Emergency Fast Action Buttons:
 ---
 
 ### ⚠️ Screen 7: Zikra Protector Popup (Emergency Alert Modal)
-> **Prompt Figma AI:**
+> 📌 **Referensi Visual:**  
+> - 🏀 **Dribbble:** [Emergency Alert & Warning Modal](https://dribbble.com/search/shots/popular?q=warning+modal+sheet+ui)
+
 ```text
 Mobile app emergency earthquake modal sheet overlay, 393x852px, dark semi-transparent backdrop with an urgent warning bottom sheet.
 
@@ -219,7 +254,7 @@ Modal Bottom Sheet:
 
 ---
 
-## 🛠️ 3. Cara Menggunakannya di Figma
+## 🛠️ 4. Cara Menggunakannya di Figma
 
 1. **Buka Figma**, buat file baru (*New design file*).
 2. Jika menggunakan **Figma AI (Make Designs / First Draft)**:
