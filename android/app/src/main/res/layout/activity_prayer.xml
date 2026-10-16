@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='utf-8'?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/prayerRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ivory">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="110dp"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/screen_inset"
+            android:paddingBottom="18dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:gravity="center_vertical">
+                <ImageButton
+                    android:id="@+id/toolbarBack"
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    android:layout_marginStart="-10dp"
+                    android:padding="12dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_back"
+                    android:tint="@color/pine"
+                    android:contentDescription="Kembali" />
+                <TextView
+                    android:id="@+id/detailTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    android:text="Waktu Sholat"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/pine" />
+                <ImageButton
+                    android:id="@+id/prayerOpenQibla"
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_compass"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:tint="@color/sage"
+                    android:contentDescription="Buka arah kiblat" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/qibla_ic_location"
+                    android:tint="@color/sage"
+                    android:importantForAccessibility="no" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Sukolilo, Surabaya · WIB"
+                    android:textColor="#64786B"
+                    android:textSize="11sp" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/prayerDateCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textSize="10sp"
+                android:textColor="#9BA89E" />
+            <LinearLayout
+                android:id="@+id/prayerWeekDates"
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:background="@drawable/prayer_bg_tabs"
+                android:padding="3dp">
+                <TextView
+                    android:id="@+id/prayerTodayTab"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Hari ini"
+                    android:textSize="11sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/prayer_bg_green"
+                    android:clickable="true"
+                    android:focusable="true" />
+                <TextView
+                    android:id="@+id/prayerWeekTab"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Pekan ini"
+                    android:textSize="11sp"
+                    android:textColor="#7E9185"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="127dp"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/prayer_bg_hero">
+                <ImageView
+                    android:layout_width="165dp"
+                    android:layout_height="105dp"
+                    android:layout_gravity="bottom|end"
+                    android:src="@drawable/mosque_silhouette"
+                    android:alpha="0.15"
+                    android:scaleType="fitXY"
+                    android:importantForAccessibility="no" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="17dp">
+                    <TextView
+                        android:id="@+id/prayerNextLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sholat selanjutnya"
+                        android:textSize="10sp"
+                        android:textColor="#5B826E" />
+                    <TextView
+                        android:id="@+id/prayerNextName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Maghrib · 17:41"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#214E3C" />
+                    <TextView
+                        android:id="@+id/prayerCountdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="00:27:00"
+                        android:textSize="27sp"
+                        android:textColor="#386B52"
+                        android:fontFamily="sans-serif-light" />
+                </LinearLayout>
+            </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:background="@drawable/prayer_bg_tabs"
+                android:gravity="center_vertical">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_sun"
+                        android:tint="#8CAA97"
+                        android:importantForAccessibility="no" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Terbit"
+                        android:textSize="9sp"
+                        android:textColor="#92A499"
+                        android:layout_marginTop="3dp" />
+                    <TextView
+                        android:id="@+id/prayerSunrise"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="05:28"
+                        android:textSize="12sp"
+                        android:textColor="#516F5E"
+                        android:layout_marginTop="3dp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="41dp"
+                    android:background="#E0E8E1" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_sun"
+                        android:tint="#8CAA97"
+                        android:importantForAccessibility="no" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Terbenam"
+                        android:textSize="9sp"
+                        android:textColor="#92A499"
+                        android:layout_marginTop="3dp" />
+                    <TextView
+                        android:id="@+id/prayerSunset"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="17:41"
+                        android:textSize="12sp"
+                        android:textColor="#516F5E"
+                        android:layout_marginTop="3dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/prayerListTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="Jadwal hari ini"
+                android:textColor="#2B4636"
+                android:textStyle="bold"
+                android:textSize="13sp" />
+            <LinearLayout
+                android:id="@+id/prayerRows"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+            <LinearLayout
+                android:id="@+id/prayerWeekSummary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
+            <Switch
+                android:id="@+id/prayerReminderEnabled"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="6dp"
+                android:text="Preferensi pengingat"
+                android:textSize="12sp"
+                android:textColor="#4D6A58"
+                android:buttonTint="@color/sage"
+                android:thumbTint="@color/sage" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jadwal referensi prototipe untuk Sukolilo, bukan jadwal resmi harian. Cocokkan dengan masjid setempat. Ikon lonceng menyimpan preferensi; notifikasi otomatis belum diaktifkan."
+                android:textSize="10sp"
+                android:textColor="#A1ADA4"
+                android:lineSpacingExtra="4dp" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='utf-8'?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/calendarRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/warm_background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp">
+            <ImageButton
+                android:id="@+id/toolbarBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_back"
+                android:padding="13dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:tint="@color/pine"
+                android:contentDescription="Kembali" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Kalender Hijriah"
+                android:textColor="@color/pine"
+                android:textSize="21sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginStart="6dp" />
+            <ImageButton
+                android:id="@+id/calendarToday"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_tasks"
+                android:padding="13dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:tint="@color/sage_active"
+                android:contentDescription="Kembali ke hari ini" />
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="@dimen/screen_inset"
+            android:paddingBottom="118dp"
+            android:clipToPadding="false">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rencanakan hari yang bermakna."
+                    android:textColor="@color/muted"
+                    android:textSize="13sp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="22dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/calendar_card"
+                    android:padding="12dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:gravity="center_vertical">
+                        <ImageButton
+                            android:id="@+id/calendarPrev"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_back"
+                            android:padding="15dp"
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
+                            android:tint="@color/sage_active"
+                            android:contentDescription="Bulan sebelumnya" />
+                        <TextView
+                            android:id="@+id/calendarMonth"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Kalender"
+                            android:gravity="center"
+                            android:textColor="@color/sage_active"
+                            android:textSize="15sp"
+                            android:fontFamily="sans-serif-medium" />
+                        <ImageButton
+                            android:id="@+id/calendarNext"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_back"
+                            android:rotation="180"
+                            android:padding="15dp"
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
+                            android:tint="@color/sage_active"
+                            android:contentDescription="Bulan berikutnya" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/calendarGregorian"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="11sp"
+                        android:textColor="@color/muted"
+                        android:layout_marginBottom="20dp" />
+                    <LinearLayout
+                        android:id="@+id/calendarWeekdays"
+                        android:layout_width="match_parent"
+                        android:layout_height="26dp"
+                        android:orientation="horizontal" />
+                    <GridLayout
+                        android:id="@+id/calendarGrid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="7"
+                        android:alignmentMode="alignMargins"
+                        android:useDefaultMargins="false" />
+                    <TextView
+                        android:id="@+id/calendarSelection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:padding="14dp"
+                        android:background="@drawable/reading_mint_card"
+                        android:textColor="#315849"
+                        android:textSize="12sp"
+                        android:lineSpacingExtra="4dp"
+                        android:accessibilityLiveRegion="polite" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hari istimewa berikutnya"
+                    android:textColor="@color/pine"
+                    android:textSize="17sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="14dp" />
+                <LinearLayout
+                    android:id="@+id/calendarEvents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Perkiraan kalender Umm al-Qura, bukan penetapan hari raya. Awal bulan dan hari besar mengikuti keputusan otoritas setempat; tanggal dapat berbeda."
+                    android:textColor="@color/muted"
+                    android:textSize="11sp"
+                    android:lineSpacingExtra="5dp"
+                    android:padding="8dp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>

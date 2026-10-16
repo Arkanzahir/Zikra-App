@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <include layout="@layout/protector_toolbar" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="28dp"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="364dp"
+                android:background="@drawable/weather_hero_bg"
+                android:clipToOutline="true">
+                <com.zikra.app.safety.WeatherArtworkView android:layout_width="match_parent" android:layout_height="match_parent" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:id="@+id/weatherLocation"
+                        style="@style/ProtectorHeading"
+                        android:text="Keputih, Sukolilo"
+                        android:gravity="center"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:id="@+id/weatherDate"
+                        style="@style/ProtectorBody"
+                        android:text="Waktu prakiraan belum tersedia"
+                        android:gravity="center"
+                        android:layout_marginTop="6dp"
+                        android:textSize="10sp"
+                        android:textColor="#4D7887" />
+                    <TextView
+                        android:id="@+id/weatherTemperature"
+                        android:layout_width="match_parent"
+                        android:layout_height="78dp"
+                        android:gravity="center"
+                        android:text="—°C"
+                        android:includeFontPadding="false"
+                        android:textSize="58sp"
+                        android:textStyle="bold"
+                        android:textColor="#174251"
+                        android:layout_marginTop="20dp" />
+                    <TextView
+                        android:id="@+id/weatherDescription"
+                        style="@style/ProtectorHeading"
+                        android:text="Memuat prakiraan…"
+                        android:gravity="center"
+                        android:textSize="17sp"
+                        android:textColor="#174251" />
+                    <TextView
+                        android:id="@+id/weatherStatus"
+                        style="@style/ProtectorBody"
+                        android:text="Menghubungkan ke BMKG"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textColor="#4D7887"
+                        android:layout_marginTop="6dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/weather_ic_drop"
+                                android:tint="#286378"
+                                android:importantForAccessibility="no" />
+                            <TextView
+                                android:id="@+id/weatherHumidity"
+                                style="@style/ProtectorHeading"
+                                android:text="—"
+                                android:gravity="center"
+                                android:textSize="13sp"
+                                android:layout_marginTop="8dp" />
+                            <TextView
+                                style="@style/ProtectorBody"
+                                android:text="Kelembapan"
+                                android:textSize="9sp"
+                                android:gravity="center"
+                                android:textColor="#4D7887"
+                                android:layout_marginTop="3dp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/weather_ic_wind"
+                                android:tint="#286378"
+                                android:importantForAccessibility="no" />
+                            <TextView
+                                android:id="@+id/weatherWind"
+                                style="@style/ProtectorHeading"
+                                android:text="—"
+                                android:gravity="center"
+                                android:textSize="13sp"
+                                android:layout_marginTop="8dp" />
+                            <TextView
+                                style="@style/ProtectorBody"
+                                android:text="Angin · km/jam"
+                                android:textSize="9sp"
+                                android:gravity="center"
+                                android:textColor="#4D7887"
+                                android:layout_marginTop="3dp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/ic_compass"
+                                android:tint="#286378"
+                                android:importantForAccessibility="no" />
+                            <TextView
+                                android:id="@+id/weatherDirection"
+                                style="@style/ProtectorHeading"
+                                android:text="—"
+                                android:gravity="center"
+                                android:textSize="13sp"
+                                android:layout_marginTop="8dp" />
+                            <TextView
+                                style="@style/ProtectorBody"
+                                android:text="Arah angin"
+                                android:textSize="9sp"
+                                android:gravity="center"
+                                android:textColor="#4D7887"
+                                android:layout_marginTop="3dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/weather_chart_bg"
+                android:padding="14dp"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/ProtectorHeading"
+                    android:text="Temperatur"
+                    android:textSize="13sp" />
+                <TextView
+                    style="@style/ProtectorBody"
+                    android:text="Prakiraan per jam · WIB"
+                    android:textSize="10sp"
+                    android:layout_marginTop="3dp" />
+                <com.zikra.app.safety.TemperatureChartView
+                    android:id="@+id/weatherChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="146dp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+            <TextView
+                style="@style/ProtectorHeading"
+                android:text="Prakiraan cuaca"
+                android:layout_marginTop="24dp" />
+            <TextView
+                style="@style/ProtectorBody"
+                android:text="Seluruh waktu mengikuti Asia/Jakarta (WIB)"
+                android:textSize="10sp"
+                android:layout_marginTop="5dp" />
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:id="@+id/weatherForecastList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+            <TextView
+                android:id="@+id/weatherEmptyForecast"
+                style="@style/ProtectorBody"
+                android:text="Prakiraan akan muncul saat data BMKG tersedia."
+                android:layout_marginTop="14dp" />
+            <TextView
+                android:id="@+id/weatherSource"
+                style="@style/ProtectorBody"
+                android:text="Sumber: BMKG · api.bmkg.go.id ↗"
+                android:minHeight="48dp"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:layout_marginTop="18dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

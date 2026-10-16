@@ -1,0 +1,21 @@
+Made with Natural Earth. Public-domain geographic boundaries.
+
+Source: Natural Earth 1:50m cultural vectors, Admin 0 - Countries.
+Original dataset:
+https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_countries.geojson
+Project:
+https://www.naturalearthdata.com/
+License:
+https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md
+
+All versions of Natural Earth raster + vector map data found on this website
+are in the public domain. You may use the maps in any manner, including
+modifying the content and design, electronic dissemination, and offset printing.
+
+Bundled derivative protector_indonesia.geojson clips country polygon boundaries
+to longitude 94..142 degrees east and latitude -13..8 degrees, simplifies the
+coastline by at most approximately 0.022 degrees, and rounds coordinates to four
+decimal places for a small offline map. It includes Indonesia and neighboring
+countries. The map is an overview and does not represent navigation detail.
+Plate-carree projection preserves the supplied geographic positions. Earthquake
+markers are drawn only from actual BMKG coordinates supplied at runtime.

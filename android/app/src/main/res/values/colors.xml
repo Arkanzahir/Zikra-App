@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <color name="pine">#15332F</color>
+    <color name="emerald">#10B981</color>
+    <color name="background">#F4F6F8</color>
+    <color name="amber">#CF9447</color>
+    <color name="camel">#E5A853</color>
+    <color name="white">#FFFFFF</color>
+    <color name="text">#15332F</color>
+    <color name="muted">#7C8B8A</color>
+    <color name="gold_pastel">#FBF1DB</color>
+    <color name="coral_pastel">#FDECE6</color>
+    <color name="mint_pastel">#E6F5EE</color>
+    <color name="blue_pastel">#E8F1FC</color>
+    <color name="violet_pastel">#F0EAFB</color>
+    <color name="ivory">#FCFDFB</color>
+    <color name="warm_background">#F8F9F4</color>
+    <color name="sage">#659B86</color>
+    <color name="sage_active">#57927E</color>
+    <color name="assistant_text">#322C40</color>
+    <color name="assistant_accent">#8D6BB6</color>
+</resources>

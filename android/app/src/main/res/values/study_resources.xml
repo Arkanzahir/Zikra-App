@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="study_title">Study Hub</string>
+    <string name="study_tagline">Ibadah terjaga. Tugas tertata.</string>
+    <string name="study_hifz_title">Diary Hifz</string>
+    <string name="study_hifz_tagline">Jaga hafalan, satu ayat setiap hari.</string>
+    <string name="study_back">Kembali ke beranda</string>
+    <string name="study_voice">Tambah tugas dengan suara</string>
+    <string name="study_intentions">Niat baik hari ini</string>
+    <string name="study_progress_label">%1$d dari %2$d checklist ibadah dan tugas selesai</string>
+    <string name="study_percent">%1$d%% selesai</string>
+    <string name="study_all">Semua</string>
+    <string name="study_category_study">Belajar</string>
+    <string name="study_category_ibadah">Ibadah</string>
+    <string name="study_category_hifz">Hafalan</string>
+    <string name="study_empty">Belum ada tugas di kategori ini.\nMulai satu niat baik hari ini.</string>
+    <string name="study_add">+  Tambah Tugas atau Ibadah</string>
+    <string name="study_task_actions">Ubah atau hapus tugas</string>
+    <string name="study_task_name">Nama tugas atau ibadah</string>
+    <string name="study_task_hint">Contoh: Selesaikan laporan praktikum</string>
+    <string name="study_category">Kategori</string>
+    <string name="study_edit">Ubah tugas</string>
+    <string name="study_delete">Hapus tugas</string>
+    <string name="study_save">Simpan</string>
+    <string name="study_cancel">Batal</string>
+    <string name="study_new">Niat baik baru</string>
+    <string name="study_required">Nama tugas wajib diisi</string>
+    <string name="study_saved">Tugas disimpan</string>
+    <string name="study_deleted">Tugas dihapus</string>
+    <string name="study_delete_confirm">Hapus “%1$s” dari checklist hari ini?</string>
+    <string name="study_voice_prompt">Ucapkan tugas kuliah yang ingin ditambahkan</string>
+    <string name="study_voice_missing">Pengenalan suara tidak tersedia. Ketik tugas secara manual.</string>
+    <string name="study_voice_empty">Tidak ada ucapan yang dikenali. Silakan coba lagi.</string>
+    <string name="study_done">Selesai</string>
+    <string name="study_today">Hari ini</string>
+    <string name="study_daily_ibadah">Niat ibadah harian</string>
+    <string name="study_daily_study">Tugas kuliah dan belajar</string>
+    <string name="study_daily_hifz">Murojaah dan target hafalan</string>
+    <string name="study_complete_task">Tandai %1$s selesai</string>
+    <string name="study_uncomplete_task">Tandai %1$s belum selesai</string>
+    <string name="study_actions_for">Ubah atau hapus %1$s</string>
+    <string-array name="study_categories">
+        <item>Belajar</item>
+        <item>Ibadah</item>
+        <item>Hafalan</item>
+    </string-array>
+    <style name="study_Filter">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/muted</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+</resources>

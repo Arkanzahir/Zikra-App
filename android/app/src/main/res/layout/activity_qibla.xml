@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='utf-8'?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/qiblaRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ivory">
+    <ScrollView
+        android:id="@+id/qiblaScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="110dp"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingBottom="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:gravity="center_vertical">
+                <ImageButton
+                    android:id="@+id/toolbarBack"
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    android:padding="12dp"
+                    android:layout_marginStart="-10dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_back"
+                    android:tint="@color/pine"
+                    android:contentDescription="Kembali" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    android:text="Arah Kiblat"
+                    android:textColor="@color/pine"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/plus_jakarta_sans"
+                    android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_compass"
+                    android:tint="@color/sage"
+                    android:importantForAccessibility="no" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/qibla_ic_location"
+                    android:tint="@color/sage"
+                    android:importantForAccessibility="no" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:text="Sukolilo, Surabaya"
+                    android:textColor="#596962"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:text="· lokasi panduan"
+                    android:textColor="#99A59E"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <com.zikra.app.reading.QiblaCompassView
+                android:id="@+id/qiblaCompass"
+                android:layout_width="match_parent"
+                android:layout_height="282dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="Kompas kiblat 294 derajat dari utara sejati" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="294°"
+                android:textSize="38sp"
+                android:textColor="#20362D"
+                android:textStyle="bold"
+                android:fontFamily="@font/plus_jakarta_sans" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="Ka'bah berada di barat laut dari lokasimu"
+                android:textSize="11sp"
+                android:textColor="#98A39B" />
+            <Button
+                android:id="@+id/qiblaCalibrate"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/qibla_bg_green"
+                android:text="⟳  Kalibrasi kompas"
+                android:textSize="13sp"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:stateListAnimator="@null"
+                android:fontFamily="@font/plus_jakarta_sans" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/qibla_bg_instruction"
+                android:padding="12dp">
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/qibla_ic_info"
+                    android:tint="#96A39B"
+                    android:importantForAccessibility="no" />
+                <TextView
+                    android:id="@+id/qiblaSensorStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Pegang ponsel mendatar dan putar perlahan untuk menemukan arah kiblat."
+                    android:textColor="#87958B"
+                    android:textSize="10sp"
+                    android:lineSpacingExtra="3dp"
+                    android:minHeight="30dp"
+                    android:gravity="center_vertical"
+                    android:accessibilityLiveRegion="polite" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:layout_marginBottom="11dp"
+                android:text="Masjid sekitar"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#243B30" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/qibla_bg_nearby"
+                android:paddingHorizontal="12dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@drawable/qibla_ic_mosque"
+                    android:tint="@color/sage"
+                    android:background="@drawable/qibla_bg_instruction"
+                    android:importantForAccessibility="no" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="10dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Masjid Manarul Ilmi"
+                        android:textColor="#334C3F"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Kampus ITS · Sukolilo"
+                        android:textColor="#9AA99E"
+                        android:textSize="9sp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/qiblaMaps"
+                    android:layout_width="52dp"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:text="Buka ↗"
+                    android:textColor="@color/sage"
+                    android:textSize="11sp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Buka arah ke masjid di Google Maps"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Acuan 294° dari utara sejati untuk Sukolilo. Jauhkan ponsel dari logam dan magnet."
+                android:textSize="10sp"
+                android:textColor="#A0ACA4"
+                android:lineSpacingExtra="3dp" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

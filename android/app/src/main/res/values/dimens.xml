@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <dimen name="screen_inset">22dp</dimen>
+    <dimen name="touch_target">48dp</dimen>
+    <dimen name="dock_height">88dp</dimen>
+    <dimen name="dock_bottom">24dp</dimen>
+    <dimen name="dock_side">16dp</dimen>
+    <dimen name="dock_reserved">112dp</dimen>
+</resources>

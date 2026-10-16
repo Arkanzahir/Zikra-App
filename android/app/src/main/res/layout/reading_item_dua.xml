@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:orientation="vertical"
+    android:background="@drawable/reading_white_card">
+    <LinearLayout
+        android:id="@+id/duaExpand"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+        <ImageView
+            android:id="@+id/duaRowIcon"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:padding="10dp"
+            android:background="@drawable/reading_number"
+            android:src="@drawable/ic_heart"
+            android:tint="#638A72"
+            android:importantForAccessibility="no" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="13dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/duaTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pine"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/duaSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#92A19A"
+                android:textSize="9sp"
+                android:layout_marginTop="5dp"
+                android:maxLines="2" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/duaChevron"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/ic_back"
+            android:tint="#92A19A"
+            android:rotation="180"
+            android:importantForAccessibility="no" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/duaContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="20dp"
+        android:visibility="gone">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EDF1EB" />
+        <TextView
+            android:id="@+id/duaArabic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="18dp"
+            android:textDirection="rtl"
+            android:gravity="end"
+            android:textColor="@color/pine"
+            android:textSize="29sp"
+            android:lineSpacingExtra="12dp" />
+        <TextView
+            style="@style/ReadingBody"
+            android:id="@+id/duaTranslation"
+            android:textSize="12sp" />
+        <TextView
+            style="@style/ReadingBody"
+            android:id="@+id/duaSource"
+            android:textColor="#AA8856"
+            android:textSize="10sp"
+            android:layout_marginTop="12dp" />
+        <Button
+            android:id="@+id/duaListen"
+            style="@style/ReadingButton"
+            android:layout_marginTop="18dp"
+            android:text="Dengarkan doa"
+            android:enabled="false"
+            android:background="@drawable/reading_pine_card"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>

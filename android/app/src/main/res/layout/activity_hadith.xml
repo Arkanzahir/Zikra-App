@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='utf-8'?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/hadithRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/warm_background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp">
+            <ImageButton
+                android:id="@+id/toolbarBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_back"
+                android:padding="13dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:tint="@color/pine"
+                android:contentDescription="Kembali" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Hadis"
+                android:textColor="@color/pine"
+                android:textSize="23sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginStart="6dp" />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_book"
+                android:tint="@color/sage_active"
+                android:importantForAccessibility="no" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/hadithSearch"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="22dp"
+            android:paddingHorizontal="17dp"
+            android:background="@drawable/calendar_card"
+            android:hint="Cari hadis atau topik…"
+            android:singleLine="true"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:textSize="13sp"
+            android:textColor="@color/pine"
+            android:textColorHint="@color/muted"
+            android:contentDescription="Cari hadis atau topik" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:fillViewport="false"
+            android:scrollbars="none"
+            android:paddingHorizontal="18dp">
+            <LinearLayout
+                android:id="@+id/hadithTabs"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical" />
+        </HorizontalScrollView>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="@dimen/screen_inset"
+            android:paddingBottom="118dp"
+            android:clipToPadding="false">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/hadithHero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/hadith_hero"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:layout_marginBottom="20dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PESAN KEBAIKAN"
+                        android:textColor="#D5BD87"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.16" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="19dp"
+                        android:text="فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ"
+                        android:textColor="@color/white"
+                        android:textSize="28sp"
+                        android:gravity="center"
+                        android:textDirection="rtl" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="“Hendaklah ia berkata baik\natau diam.”"
+                        android:textColor="@color/white"
+                        android:textSize="19sp"
+                        android:gravity="center"
+                        android:fontFamily="serif"
+                        android:lineSpacingExtra="5dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="17dp"
+                        android:text="HR. Bukhari 6018 · Muslim 47"
+                        android:textColor="#BBCFC2"
+                        android:textSize="11sp"
+                        android:gravity="center" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/hadithCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pilihan hadis"
+                    android:textColor="@color/pine"
+                    android:textSize="17sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="6dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Koleksi ringkas offline · terjemahan makna"
+                    android:textColor="@color/muted"
+                    android:textSize="11sp"
+                    android:layout_marginBottom="14dp" />
+                <TextView
+                    android:id="@+id/hadithEmpty"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:gravity="center"
+                    android:text="Belum ada hadis yang cocok.\nCoba kata lain atau kategori Semua."
+                    android:textColor="@color/muted"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="7dp"
+                    android:visibility="gone" />
+                <LinearLayout
+                    android:id="@+id/hadithList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>

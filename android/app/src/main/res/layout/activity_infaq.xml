@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='utf-8'?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/infaqRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ivory">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="120dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="22dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center_vertical">
+                <ImageButton
+                    android:id="@+id/toolbarBack"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_back"
+                    android:tint="@color/pine"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Kembali" />
+                <TextView
+                    android:id="@+id/detailTitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Infaq Kampus"
+                    android:textColor="@color/pine"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_heart"
+                    android:tint="#C98F68"
+                    android:importantForAccessibility="no" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:padding="24dp"
+                android:orientation="vertical"
+                android:background="@drawable/reading_mint_card">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_donate"
+                    android:background="@drawable/circle_mint"
+                    android:tint="@color/sage"
+                    android:importantForAccessibility="no" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Kebaikan kecil,\nmanfaat yang besar."
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/pine" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Berbagi melalui masjid dan komunitas kampus yang kamu kenal."
+                    android:textSize="13sp"
+                    android:textColor="#6D8C7C"
+                    android:lineSpacingExtra="5dp" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:text="Mulai dari lingkungan terdekat"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/pine" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:padding="20dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Masjid Manarul Ilmi ITS"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/pine" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Sukolilo, Surabaya\nIbadah · pendidikan · kegiatan sosial"
+                    android:textSize="13sp"
+                    android:textColor="@color/muted"
+                    android:lineSpacingExtra="5dp" />
+                <Button
+                    android:id="@+id/infaqMaps"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_amber"
+                    android:backgroundTint="@color/amber"
+                    android:text="Petunjuk ke masjid"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="18dp"
+                android:background="@drawable/reading_mint_card"
+                android:text="Infaq disalurkan langsung melalui pengurus atau kanal resmi masjid. Aplikasi belum menerima pembayaran atau menampilkan rekening donasi."
+                android:textColor="#6D8C7C"
+                android:textSize="12sp"
+                android:lineSpacingExtra="5dp" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

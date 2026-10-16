@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A9CDF8"
+    android:orientation="vertical">
+    <include layout="@layout/protector_toolbar" />
+    <com.zikra.app.safety.IndonesiaMapView
+        android:id="@+id/quakeMap"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.85" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.35"
+        android:background="@drawable/quake_sheet_bg"
+        android:fillViewport="true"
+        android:elevation="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="22dp"
+            android:orientation="vertical">
+            <View
+                android:layout_width="42dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center"
+                android:background="#E1E5EC"
+                android:layout_marginBottom="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:paddingHorizontal="10dp"
+                android:gravity="center"
+                android:text="Laporan terakhir BMKG"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textColor="#3569F3"
+                android:background="@drawable/protector_tag_blue" />
+            <TextView
+                android:id="@+id/quakeArea"
+                style="@style/ProtectorHeading"
+                android:text="Memuat gempabumi terkini…"
+                android:textSize="17sp"
+                android:layout_marginTop="14dp" />
+            <TextView
+                android:id="@+id/quakeTime"
+                style="@style/ProtectorBody"
+                android:text="Waktu kejadian belum tersedia"
+                android:layout_marginTop="7dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginTop="18dp"
+                android:padding="14dp"
+                android:background="@drawable/quake_stat_bg"
+                android:gravity="center_vertical"
+                android:baselineAligned="false">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/quakeMagnitude"
+                        style="@style/ProtectorHeading"
+                        android:text="—"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
+                    <TextView
+                        style="@style/ProtectorBody"
+                        android:text="Magnitudo"
+                        android:gravity="center"
+                        android:textColor="#DCE7FF"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="36dp"
+                    android:background="#40FFFFFF" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/quakeDepth"
+                        style="@style/ProtectorHeading"
+                        android:text="—"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
+                    <TextView
+                        style="@style/ProtectorBody"
+                        android:text="Kedalaman"
+                        android:gravity="center"
+                        android:textColor="#DCE7FF"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                style="@style/ProtectorHeading"
+                android:text="Detail gempabumi"
+                android:layout_marginTop="22dp"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/quakePotential"
+                style="@style/ProtectorBody"
+                android:text="Potensi belum tersedia dari BMKG"
+                android:layout_marginTop="10dp"
+                android:textColor="#456375" />
+            <TextView
+                android:id="@+id/quakeCoordinates"
+                style="@style/ProtectorBody"
+                android:text="Koordinat episentrum belum tersedia"
+                android:layout_marginTop="8dp" />
+            <TextView
+                android:id="@+id/quakeFelt"
+                style="@style/ProtectorBody"
+                android:text="Wilayah dirasakan belum tersedia"
+                android:layout_marginTop="8dp" />
+            <TextView
+                android:id="@+id/quakeStatus"
+                style="@style/ProtectorBody"
+                android:text="Menghubungkan ke BMKG…"
+                android:layout_marginTop="14dp"
+                android:textSize="11sp" />
+            <Button
+                android:id="@+id/quakeOpenMap"
+                style="@style/ProtectorButton"
+                android:layout_marginTop="18dp"
+                android:text="Buka episentrum di Maps"
+                android:enabled="false" />
+            <TextView
+                android:id="@+id/quakeSource"
+                style="@style/ProtectorBody"
+                android:text="Sumber: BMKG · data.bmkg.go.id ↗"
+                android:minHeight="48dp"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="88dp">
+    <View
+        android:id="@+id/navSurface"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_dock"
+        android:elevation="14dp" />
+    <LinearLayout
+        android:id="@+id/navItems"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom"
+        android:paddingHorizontal="10dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:elevation="15dp" />
+    <LinearLayout
+        android:id="@+id/navAiFloating"
+        android:layout_width="68dp"
+        android:layout_height="88dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:elevation="18dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Zikra AI">
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:padding="15dp"
+            android:background="@drawable/bg_ai"
+            android:src="@drawable/ic_spark"
+            android:tint="@color/white"
+            android:elevation="8dp"
+            android:importantForAccessibility="no" />
+        <TextView
+            style="@style/DockLabel"
+            android:layout_marginTop="7dp"
+            android:text="Zikra AI"
+            android:textColor="#9376BC"
+            android:importantForAccessibility="no" />
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,384 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <include layout="@layout/protector_toolbar" />
+    <ScrollView
+        android:id="@+id/protectorScroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="20dp">
+            <FrameLayout
+                android:id="@+id/protectorWeatherCard"
+                android:layout_width="match_parent"
+                android:layout_height="202dp"
+                android:background="@drawable/protector_weather_bg"
+                android:clipToOutline="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Buka detail prakiraan cuaca Sukolilo">
+                <com.zikra.app.safety.WeatherArtworkView android:layout_width="match_parent" android:layout_height="match_parent" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+                        <ImageView
+                            android:layout_width="13dp"
+                            android:layout_height="13dp"
+                            android:src="@drawable/ic_pin"
+                            android:tint="#DCE7FF"
+                            android:importantForAccessibility="no" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="5dp"
+                            android:text="Sukolilo, Surabaya"
+                            android:textColor="@color/white"
+                            android:textSize="11sp" />
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/protector_ic_chevron"
+                            android:tint="@color/white"
+                            android:importantForAccessibility="no" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/protectorWeatherTemperature"
+                        android:layout_width="match_parent"
+                        android:layout_height="64dp"
+                        android:gravity="end|center_vertical"
+                        android:includeFontPadding="false"
+                        android:text="—°C"
+                        android:textSize="48sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white" />
+                    <TextView
+                        android:id="@+id/protectorWeatherDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Memuat prakiraan…"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/protectorWeatherTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Waktu prakiraan belum tersedia"
+                        android:textSize="10sp"
+                        android:textColor="#DCE7FF"
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:id="@+id/protectorWeatherStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sumber resmi BMKG"
+                        android:textSize="10sp"
+                        android:textColor="#DCE7FF"
+                        android:layout_marginTop="8dp" />
+                </LinearLayout>
+            </FrameLayout>
+            <LinearLayout
+                android:id="@+id/protectorWarnings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="68dp"
+                android:layout_marginTop="14dp"
+                android:padding="14dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/protector_warning"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/protector_ic_warning"
+                    android:tint="#D59739"
+                    android:importantForAccessibility="no" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="11dp"
+                    android:orientation="vertical">
+                    <TextView
+                        style="@style/ProtectorHeading"
+                        android:text="Peringatan dini cuaca"
+                        android:textColor="#B67E26"
+                        android:textSize="12sp" />
+                    <TextView
+                        style="@style/ProtectorBody"
+                        android:text="Cek peringatan resmi BMKG untuk wilayahmu"
+                        android:textSize="10sp"
+                        android:textColor="#B1956A"
+                        android:layout_marginTop="3dp" />
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/protector_ic_chevron"
+                    android:tint="#D59739"
+                    android:importantForAccessibility="no" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/protectorWeatherDetails"
+                style="@style/ProtectorBody"
+                android:layout_marginTop="10dp"
+                android:text="Prakiraan Keputih, Sukolilo · Data sedang dimuat"
+                android:textSize="10sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_vertical">
+                <TextView
+                    style="@style/ProtectorHeading"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="Gempabumi terkini" />
+                <TextView
+                    android:id="@+id/protectorQuakeOpen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:text="Lihat detail"
+                    android:textSize="11sp"
+                    android:textColor="#3569F3"
+                    android:paddingStart="12dp"
+                    android:background="?android:attr/selectableItemBackground" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/protectorQuakeCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/protector_white_card"
+                android:clipToOutline="true"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Buka detail gempabumi terakhir BMKG">
+                <FrameLayout android:layout_width="match_parent" android:layout_height="170dp">
+                    <com.zikra.app.safety.IndonesiaMapView
+                        android:id="@+id/protectorQuakeMap"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:padding="12dp"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="28dp"
+                            android:gravity="center"
+                            android:paddingHorizontal="9dp"
+                            android:text="Laporan terakhir"
+                            android:textSize="9sp"
+                            android:textStyle="bold"
+                            android:textColor="#3569F3"
+                            android:background="@drawable/protector_circle_white" />
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/protectorMagnitude"
+                            android:layout_width="wrap_content"
+                            android:layout_height="28dp"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:text="M —"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="#D16A70"
+                            android:background="@drawable/protector_circle_white" />
+                    </LinearLayout>
+                </FrameLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+                    <TextView
+                        android:id="@+id/protectorQuakeArea"
+                        style="@style/ProtectorHeading"
+                        android:text="Memuat laporan gempa…"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:id="@+id/protectorQuakeTime"
+                        style="@style/ProtectorBody"
+                        android:text="Waktu kejadian belum tersedia"
+                        android:textSize="10sp"
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:id="@+id/protectorQuakeStatus"
+                        style="@style/ProtectorBody"
+                        android:text="Data resmi BMKG · Indonesia"
+                        android:textSize="10sp"
+                        android:layout_marginTop="4dp" />
+                    <TextView
+                        android:id="@+id/protectorQuakeDetails"
+                        style="@style/ProtectorBody"
+                        android:text="Lokasi episentrum ditampilkan setelah koordinat diterima."
+                        android:textSize="11sp"
+                        android:layout_marginTop="9dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:orientation="vertical">
+                <TextView style="@style/ProtectorHeading" android:text="Tetap tenang, tetap siap" />
+                <TextView
+                    style="@style/ProtectorBody"
+                    android:layout_marginTop="6dp"
+                    android:text="Goyangkan ponsel dua kali untuk akses bantuan cepat." />
+                <Button
+                    android:id="@+id/protectorDial"
+                    style="@style/ProtectorButton"
+                    android:layout_marginTop="14dp"
+                    android:text="Panggilan darurat · 112" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <Button
+                        android:id="@+id/protectorWhatsapp"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/protector_tag_mint"
+                        android:text="WhatsApp"
+                        android:textAllCaps="false"
+                        android:textColor="#39816A"
+                        android:textSize="12sp" />
+                    <Button
+                        android:id="@+id/protectorMaps"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/protector_tag_blue"
+                        android:text="Masjid terdekat"
+                        android:textAllCaps="false"
+                        android:textColor="#3569F3"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/protectorSource"
+                style="@style/ProtectorBody"
+                android:layout_marginTop="14dp"
+                android:minHeight="48dp"
+                android:gravity="center"
+                android:text="Sumber: BMKG · Buka situs resmi ↗"
+                android:textSize="10sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground" />
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:elevation="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+        <LinearLayout
+            android:id="@+id/protectorTabHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:src="@drawable/ic_home"
+                android:tint="#3569F3"
+                android:importantForAccessibility="no" />
+            <TextView
+                style="@style/ProtectorTabLabel"
+                android:text="Beranda"
+                android:textColor="#3569F3" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/protectorTabWeather"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:src="@drawable/ic_sun"
+                android:tint="#8290A4"
+                android:importantForAccessibility="no" />
+            <TextView style="@style/ProtectorTabLabel" android:text="Cuaca" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/protectorTabQuake"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:src="@drawable/quake_ic_wave"
+                android:tint="#8290A4"
+                android:importantForAccessibility="no" />
+            <TextView style="@style/ProtectorTabLabel" android:text="Gempa" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/protectorTabHelp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:src="@drawable/ic_shield"
+                android:tint="#8290A4"
+                android:importantForAccessibility="no" />
+            <TextView style="@style/ProtectorTabLabel" android:text="Bantuan" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

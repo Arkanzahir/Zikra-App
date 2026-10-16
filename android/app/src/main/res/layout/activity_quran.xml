@@ -1,0 +1,330 @@
+<?xml version='1.0' encoding='utf-8'?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/quranPageRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/quranRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F8F9F5"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="18dp">
+            <ImageButton
+                android:id="@+id/toolbarBack"
+                android:layout_width="@dimen/touch_target"
+                android:layout_height="@dimen/touch_target"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back"
+                android:tint="@color/pine"
+                android:contentDescription="Kembali"
+                android:padding="12dp" />
+            <TextView
+                style="@style/ReadingTitle"
+                android:id="@+id/quranTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:text="Al-Quran"
+                android:textSize="21sp" />
+            <ImageButton
+                android:id="@+id/quranCatalogButton"
+                android:layout_width="@dimen/touch_target"
+                android:layout_height="@dimen/touch_target"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_book"
+                android:tint="#597E6B"
+                android:padding="12dp"
+                android:contentDescription="Daftar surah" />
+        </LinearLayout>
+        <ScrollView
+            android:id="@+id/quranScroll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:clipToPadding="false"
+            android:paddingHorizontal="24dp"
+            android:paddingBottom="112dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/quranCatalog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        style="@style/ReadingBody"
+                        android:id="@+id/quranIntro"
+                        android:text="Tenangkan hati, dekatkan diri."
+                        android:layout_marginBottom="20dp"
+                        android:textSize="12sp" />
+                    <LinearLayout
+                        android:id="@+id/quranSearchCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/reading_search"
+                        android:paddingHorizontal="15dp"
+                        android:layout_marginBottom="18dp">
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/reading_ic_search"
+                            android:importantForAccessibility="no" />
+                        <EditText
+                            android:id="@+id/quranSearch"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginStart="10dp"
+                            android:background="@null"
+                            android:singleLine="true"
+                            android:inputType="text"
+                            android:imeOptions="actionDone"
+                            android:textSize="12sp"
+                            android:textColor="@color/pine"
+                            android:textColorHint="#92A19A"
+                            android:hint="Cari surah yang tersedia…"
+                            android:importantForAutofill="no" />
+                    </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
+                        android:background="@drawable/reading_pine_card"
+                        android:layout_marginBottom="18dp">
+                        <ImageView
+                            android:layout_width="176dp"
+                            android:layout_height="176dp"
+                            android:layout_gravity="end|center_vertical"
+                            android:src="@drawable/reading_open_book"
+                            android:importantForAccessibility="no" />
+                        <LinearLayout
+                            android:layout_width="190dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical"
+                            android:paddingStart="22dp"
+                            android:paddingEnd="8dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="AL-QURAN"
+                                android:textSize="9sp"
+                                android:letterSpacing="0.15"
+                                android:textColor="#D5B779" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Baca.\nRenungkan."
+                                android:textSize="25sp"
+                                android:fontFamily="@font/plus_jakarta_sans"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+                                android:lineSpacingExtra="2dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Satu ayat, sejuta kebaikan."
+                                android:textSize="9sp"
+                                android:textColor="#C4D7C9" />
+                        </LinearLayout>
+                    </FrameLayout>
+                    <LinearLayout
+                        android:id="@+id/quranResume"
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:gravity="center_vertical"
+                        android:padding="16dp"
+                        android:background="@drawable/reading_mint_card"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginBottom="24dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/reading_ic_bookmark"
+                            android:importantForAccessibility="no" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="LANJUTKAN MEMBACA"
+                                android:textColor="#648773"
+                                android:textSize="8sp"
+                                android:letterSpacing="0.1" />
+                            <TextView
+                                android:id="@+id/lastReadLabel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/pine"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="5dp" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:rotation="180"
+                            android:src="@drawable/ic_back"
+                            android:tint="#648773"
+                            android:importantForAccessibility="no" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="14dp">
+                        <TextView
+                            android:id="@+id/quranSurahHeading"
+                            style="@style/ReadingTitle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="Daftar Surah"
+                            android:textSize="15sp" />
+                        <TextView
+                            android:id="@+id/readingAvailable"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4 surah offline"
+                            android:textSize="10sp"
+                            android:textColor="#648773" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/quranSurahList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+                    <TextView
+                        android:id="@+id/quranEmpty"
+                        style="@style/ReadingBody"
+                        android:text="Surah tidak ditemukan. Coba nama lainnya."
+                        android:paddingVertical="24dp"
+                        android:visibility="gone" />
+                    <TextView
+                        style="@style/ReadingBody"
+                        android:id="@+id/quranFootnote"
+                        android:text="Koleksi offline: Al-Fatihah, Al-Ikhlas, Al-Falaq, dan An-Nas. Lengkap dengan teks Arab dan arti bahasa Indonesia."
+                        android:textSize="10sp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="10dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/quranReader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                    <LinearLayout
+                        android:id="@+id/readingSelectionCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/reading_white_card"
+                        android:padding="12dp"
+                        android:layout_marginBottom="16dp">
+                        <TextView
+                            style="@style/ReadingBody"
+                            android:text="PILIH SURAH · KOLEKSI OFFLINE"
+                            android:textSize="9sp"
+                            android:letterSpacing="0.06"
+                            android:paddingHorizontal="4dp" />
+                        <Spinner
+                            android:id="@+id/surahSelector"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:spinnerMode="dropdown"
+                            android:contentDescription="Pilih surah" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/reading_pine_card"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="بِسْمِ اللَّهِ"
+                            android:gravity="center"
+                            android:textColor="#D5B779"
+                            android:textSize="17sp" />
+                        <TextView
+                            android:id="@+id/surahArabicTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textDirection="rtl"
+                            android:textColor="@color/white"
+                            android:textSize="30sp"
+                            android:layout_marginTop="10dp" />
+                        <TextView
+                            android:id="@+id/surahMetadata"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="#B9D0C7"
+                            android:textSize="11sp"
+                            android:layout_marginTop="10dp" />
+                        <TextView
+                            android:id="@+id/surahBismillah"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textDirection="rtl"
+                            android:textColor="@color/white"
+                            android:textSize="23sp"
+                            android:layout_marginTop="18dp"
+                            android:text="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingVertical="14dp">
+                        <Switch
+                            android:id="@+id/readingNightSwitch"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:text="Mode baca malam"
+                            android:textColor="@color/pine"
+                            android:textSize="12sp"
+                            android:showText="false" />
+                        <TextView
+                            style="@style/ReadingBody"
+                            android:id="@+id/lightSensorStatus"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ayahContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+                    <Button
+                        android:id="@+id/quranBackToCatalog"
+                        style="@style/ReadingButton"
+                        android:text="Kembali ke daftar surah"
+                        android:background="@drawable/reading_mint_card"
+                        android:textColor="@color/pine"
+                        android:layout_marginTop="8dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>

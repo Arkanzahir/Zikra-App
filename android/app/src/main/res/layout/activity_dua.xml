@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='utf-8'?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/duaRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9F5">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="18dp">
+            <ImageButton
+                android:id="@+id/toolbarBack"
+                android:layout_width="@dimen/touch_target"
+                android:layout_height="@dimen/touch_target"
+                android:padding="12dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back"
+                android:tint="@color/pine"
+                android:contentDescription="Kembali" />
+            <TextView
+                style="@style/ReadingTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Doa Harian"
+                android:textSize="21sp"
+                android:layout_marginStart="6dp" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_heart"
+                android:tint="#638A72"
+                android:importantForAccessibility="no"
+                android:layout_marginEnd="10dp" />
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingHorizontal="24dp"
+            android:paddingBottom="112dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/ReadingBody"
+                    android:text="Temukan tenang dalam setiap doa."
+                    android:textSize="12sp"
+                    android:layout_marginBottom="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/reading_search"
+                    android:paddingHorizontal="15dp"
+                    android:layout_marginBottom="17dp">
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/reading_ic_search"
+                        android:importantForAccessibility="no" />
+                    <EditText
+                        android:id="@+id/duaSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:imeOptions="actionDone"
+                        android:textSize="12sp"
+                        android:textColor="@color/pine"
+                        android:textColorHint="#92A19A"
+                        android:hint="Cari doa atau kata kunci…"
+                        android:importantForAutofill="no" />
+                </LinearLayout>
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:scrollbars="none"
+                    android:layout_marginBottom="18dp">
+                    <LinearLayout
+                        android:id="@+id/duaCategories"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical" />
+                </HorizontalScrollView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="105dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="20dp"
+                    android:background="@drawable/reading_dua_banner"
+                    android:layout_marginBottom="22dp">
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:src="@drawable/ic_heart"
+                        android:tint="#AA8856"
+                        android:importantForAccessibility="no" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mulai dengan doa."
+                            android:textColor="@color/pine"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Untuk hati yang tenang,\ndan langkah yang terjaga."
+                            android:textColor="#968A76"
+                            android:textSize="10sp"
+                            android:lineSpacingExtra="4dp"
+                            android:layout_marginTop="7dp" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="14dp">
+                    <TextView
+                        style="@style/ReadingTitle"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="Kumpulan Doa"
+                        android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/duaCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#648773"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/duaContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+                <TextView
+                    android:id="@+id/duaEmpty"
+                    style="@style/ReadingBody"
+                    android:text="Belum ada doa yang sesuai. Coba kategori atau kata lainnya."
+                    android:paddingVertical="24dp"
+                    android:visibility="gone" />
+                <TextView
+                    style="@style/ReadingBody"
+                    android:id="@+id/duaVoiceStatus"
+                    android:text="Menyiapkan suara bahasa Arab…"
+                    android:textSize="10sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="12dp"
+                    android:accessibilityLiveRegion="polite" />
+                <Button
+                    android:id="@+id/duaInstallVoice"
+                    style="@style/ReadingButton"
+                    android:text="Pasang suara bahasa Arab"
+                    android:visibility="gone"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/reading_mint_card"
+                    android:textColor="@color/pine" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>
