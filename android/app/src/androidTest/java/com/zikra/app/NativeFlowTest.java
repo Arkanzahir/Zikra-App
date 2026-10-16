@@ -43,7 +43,7 @@ public final class NativeFlowTest extends InstrumentationTestCase {
       R.id.shortcutAi,
       R.id.shortcutProtector,
       R.id.shortcutStudy,
-      R.id.shortcutInfaq
+      R.id.shortcutHadith
     };
     for (int id : shortcuts) assertNotNull(home.findViewById(id));
     assertNotNull(home.findViewById(R.id.homeProgressTicks));

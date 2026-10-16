@@ -7,6 +7,8 @@ import android.os.Looper;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.zikra.app.data.ZikraDbHelper;
 import com.zikra.app.ui.SegmentedProgressView;
@@ -20,13 +22,18 @@ import java.util.Locale;
 public final class HomeActivity extends BaseActivity {
   private ZikraDbHelper db;
   private java.time.LocalDate progressDate;
+  private int activePrayer = -1;
+  private static final int[] PRAYER_SLOTS = {
+    R.id.prayerSlot0, R.id.prayerSlot1, R.id.prayerSlot2,
+    R.id.prayerSlot3, R.id.prayerSlot4, R.id.prayerSlot5
+  };
   private final Handler timer = new Handler(Looper.getMainLooper());
   private final Runnable tick =
       new Runnable() {
         @Override
         public void run() {
           updateClock();
-          timer.postDelayed(this, 1000);
+          timer.postDelayed(this, 60000 - System.currentTimeMillis() % 60000);
         }
       };
 
@@ -49,11 +56,15 @@ public final class HomeActivity extends BaseActivity {
     findViewById(R.id.shortcutAi).setOnClickListener(v -> open(AiActivity.class));
     findViewById(R.id.shortcutProtector).setOnClickListener(v -> open(ProtectorActivity.class));
     findViewById(R.id.shortcutStudy).setOnClickListener(v -> open(StudyActivity.class));
-    findViewById(R.id.shortcutInfaq).setOnClickListener(v -> open(InfaqActivity.class));
+    findViewById(R.id.shortcutHadith).setOnClickListener(v -> open(HadithActivity.class));
     findViewById(R.id.homeChecklist).setOnClickListener(v -> open(StudyActivity.class));
-    findViewById(R.id.homeEmergency).setOnClickListener(v -> showEmergencyActions());
-    findViewById(R.id.homeProfile).setOnClickListener(v -> open(ProfileActivity.class));
-    findViewById(R.id.homeLastRead).setOnClickListener(v -> open(QuranActivity.class));
+    findViewById(R.id.homeReminders).setOnClickListener(v -> open(PrayerActivity.class));
+    findViewById(R.id.homeSearch).setOnClickListener(v -> open(QuranActivity.class));
+    findViewById(R.id.homeHijri).setOnClickListener(v -> open(CalendarActivity.class));
+    findViewById(R.id.homeContinueReading).setOnClickListener(v -> open(QuranActivity.class));
+    findViewById(R.id.homeLocation)
+        .setOnClickListener(
+            v -> external(android.content.Intent.ACTION_VIEW, "geo:0,0?q=Sukolilo,Surabaya"));
     findViewById(R.id.homePrayerStrip).setOnClickListener(v -> open(PrayerActivity.class));
     findViewById(R.id.dockQuran).setOnClickListener(v -> open(QuranActivity.class));
     findViewById(R.id.dockAi).setOnClickListener(v -> open(AiActivity.class));
@@ -71,11 +82,10 @@ public final class HomeActivity extends BaseActivity {
     updateProgress();
     SharedPreferences p = getSharedPreferences("zikra_preferences", MODE_PRIVATE);
     ((TextView) findViewById(R.id.homeLastRead))
-        .setText(
-            "Bacaan terakhir · "
-                + p.getString("last_surah", "Al-Fatihah")
-                + " · Ayat "
-                + p.getInt("last_ayah", 1));
+        .setText(p.getString("last_surah", "Al-Fatihah") + " · Ayat " + p.getInt("last_ayah", 1));
+    findViewById(R.id.homeContinueReading)
+        .setContentDescription(
+            "Lanjutkan bacaan " + ((TextView) findViewById(R.id.homeLastRead)).getText());
     timer.removeCallbacks(tick);
     timer.post(tick);
   }
@@ -134,16 +144,25 @@ public final class HomeActivity extends BaseActivity {
     findViewById(R.id.homeCountdown)
         .setContentDescription(
             content + ". Jadwal referensi prototipe; buka Jadwal Sholat untuk keterangan.");
-    int[] slots = {
-      R.id.prayerSlot0,
-      R.id.prayerSlot1,
-      R.id.prayerSlot2,
-      R.id.prayerSlot3,
-      R.id.prayerSlot4,
-      R.id.prayerSlot5
-    };
-    for (int i = 0; i < slots.length; i++)
-      findViewById(slots[i]).setBackgroundResource(i == next ? R.drawable.bg_prayer_active : 0);
+    if (activePrayer != next) {
+      activePrayer = next;
+      for (int i = 0; i < PRAYER_SLOTS.length; i++) {
+        LinearLayout slot = findViewById(PRAYER_SLOTS[i]);
+        boolean active = i == next;
+        slot.setBackgroundResource(active ? R.drawable.bg_prayer_active : 0);
+        ((ImageView) slot.getChildAt(0))
+            .setColorFilter(getColor(active ? R.color.camel : R.color.home_prayer_text));
+        ((TextView) slot.getChildAt(1))
+            .setTextColor(getColor(active ? R.color.camel : R.color.home_prayer_text));
+        ((TextView) slot.getChildAt(2))
+            .setTextColor(getColor(active ? R.color.camel : R.color.white));
+        slot.setContentDescription(
+            PrayerSchedule.NAMES[i]
+                + " "
+                + PrayerSchedule.TIMES[i]
+                + (active ? ", sholat berikutnya" : ""));
+      }
+    }
   }
 
   @Override

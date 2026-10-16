@@ -34,7 +34,6 @@ Jalur Java berikut berada di `app/src/main/java/com/zikra/app/`; layout di `app/
 | Onboarding | `OnboardingActivity.java`, `activity_onboarding.xml`: sambutan orbit native, pilih peran dan minat, pilihan disimpan; tampil pada peluncuran pertama |
 | Hadis | `HadithActivity.java`, `activity_hadith.xml`: tujuh kutipan pilihan bersumber, pencarian, kategori Bukhari/Muslim dan bookmark |
 | Kalender Hijriah | `CalendarActivity.java`, `activity_calendar.xml`, `discovery/HijriCalendarModel.java`: bulan sebelumnya/berikutnya, pilih tanggal, konversi Gregorian dan hari istimewa |
-| Infaq Kampus | `InfaqActivity.java`, `activity_infaq.xml`: panduan kanal resmi masjid dan petunjuk ke Masjid Manarul Ilmi ITS |
 | Navigasi | `NavDock.java`: dock XML utama dan dock ibadah; Activity menggunakan explicit Intent |
 
 Warna dasar Deep Pine `#15332F`, Emerald `#10B981`, background `#F4F6F8`, kartu putih dan CTA `#CF9447`. BMKG menambahkan warna biru/cyan sesuai referensi; halaman ibadah memakai sage dan ivory. Kesamaan setiap piksel di semua perangkat belum diklaim.
@@ -59,7 +58,7 @@ Warna dasar Deep Pine `#15332F`, Emerald `#10B981`, background `#F4F6F8`, kartu 
 - Zikra AI saat ini **pendamping offline berbasis aturan/template**, belum tersambung ke AI generatif online. Input suara tergantung layanan pengenal ucapan perangkat.
 - Jadwal sholat memakai **referensi prototipe**, belum perhitungan astronomi atau layanan jadwal harian. Preferensi pengingat tersimpan; alarm/notifikasi otomatis belum dijadwalkan.
 - Kalender memakai **Umm al-Qura**; awal bulan/hari raya mengikuti otoritas setempat dan dapat berbeda. Tidak mengklaim penetapan rukyat.
-- Profil lokal tanpa login/sinkronisasi. Infaq belum menerima pembayaran atau menyediakan rekening donasi.
+- Profil lokal tanpa login/sinkronisasi. Infaq dikeluarkan dari shortcut Home; kode halaman lama masih tersimpan sebagai arsip implementasi.
 - Sensor, haptik, pelafalan Arab serta aplikasi tujuan Intent perlu diuji pada ponsel yang mendukungnya; emulator tidak membuktikan akurasi sensor fisik.
 
 ## Validasi dan screenshot
@@ -73,3 +72,14 @@ Lihat [VALIDATION.md](VALIDATION.md). Screenshot aplikasi native berada di folde
 - Composer AI terpisah dari area scroll percakapan. Dock disembunyikan saat keyboard terbuka, lalu ditampilkan lagi setelah keyboard ditutup.
 - Pilihan tanggal dan tab hari/pekan pada Waktu Sholat disimpan melalui `onSaveInstanceState`.
 - Header profil mengikuti peran onboarding yang tersimpan, dan dialog profil dibersihkan ketika Activity ditutup.
+
+## Penyempurnaan Home — 17 Oktober 2026
+
+- Komposisi mengikuti referensi Home ringkas: lokasi, pencarian Quran, akses jadwal/pengingat, tanggal Hijriah, jam 70sp, countdown dan strip sholat. Status bar dan hero memakai warna Pine yang sama.
+- Siluet masjid vector digambar ulang dengan kubah, menara dan lengkungan pintu; ditempatkan di bawah jam agar angka tetap jelas.
+- Grid tetap 2×4 dengan ikon garis: Al-Qur’an, Doa Harian, Kiblat, Jadwal Sholat, Zikra AI, Protector BMKG, Study Hub dan Hadis.
+- Kartu target tetap memakai 24 segmen dan persentase SQLite. Kartu lanjut bacaan menampilkan surah/ayat terakhir, dengan area scroll di atas dock.
+- Dimensi memakai varian layar pendek dan tinggi (`values/` dan `values-h740dp/`) agar tombol checklist mendapat ruang di atas dock. Tinggi hero mengikuti ukuran teks.
+- Tanggal Hijriah membuka Kalender. Tombol bel membuka Jadwal Sholat dan preferensi pengingat; layanan darurat tetap tersedia melalui Protector dan gestur goyangan.
+- Jam diperbarui pada pergantian menit; indikator sholat hanya diperbarui saat sholat berikutnya berubah.
+- Perubahan tahap ini berfokus pada Home. Tampilan halaman lainnya dan keterbatasan data di atas masih berlaku.

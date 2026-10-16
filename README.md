@@ -14,7 +14,7 @@ Source aplikasi native **Java + layout XML** tersedia di [`android/`](./android/
 - [Hasil pengujian](./android/VALIDATION.md)
 - [Screenshot aplikasi](./android/validation/screens/)
 
-Implementasi awal dipindahkan dari `Arkanzahir/prototype_zikra` pada commit `606dfb634db7839860ade25873c22e14ebd08c87`. Tampilannya masih perlu disesuaikan dengan referensi. Quran saat ini memuat empat surah, AI memakai respons lokal, dan notifikasi pengingat sholat belum dijadwalkan. Menu Infaq masih ada pada versi ini; penggantian menjadi Hadis belum diterapkan.
+Implementasi awal dipindahkan dari `Arkanzahir/prototype_zikra` pada commit `606dfb634db7839860ade25873c22e14ebd08c87`. Home diperbarui dengan header ringkas, siluet masjid vector, delapan shortcut (Hadis menggantikan Infaq), dan kartu target harian. Tanggal Hijriah membuka Kalender. Penyempurnaan halaman lain masih bertahap; Quran saat ini memuat empat surah, AI memakai respons lokal, dan notifikasi pengingat sholat belum dijadwalkan.
 
 Daftar fitur berikut merupakan target produk dan belum seluruhnya tersedia dalam aplikasi.
 

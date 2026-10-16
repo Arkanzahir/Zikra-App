@@ -1,54 +1,31 @@
-<?xml version='1.0' encoding='utf-8'?>
-<vector
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="480dp"
-    android:height="210dp"
+    android:height="220dp"
     android:viewportWidth="480"
-    android:viewportHeight="210">
-    <path
-        android:fillColor="#A7D0C5"
-        android:fillAlpha="0.055"
-        android:pathData="M58,164 L422,164 L422,205 L58,205 Z" />
-    <path
-        android:fillColor="#A7D0C5"
-        android:fillAlpha="0.10"
-        android:pathData="M62,158 C62,142 79,132 93,119 C107,132 124,142 124,158 Z M68,158 L118,158 L118,205 L68,205 Z M356,158 C356,142 373,132 387,119 C401,132 418,142 418,158 Z M362,158 L412,158 L412,205 L362,205 Z" />
-    <path
-        android:fillColor="#A7D0C5"
-        android:fillAlpha="0.11"
-        android:pathData="M91,120 L91,112 L95,112 L95,120 Z M385,120 L385,112 L389,112 L389,120 Z" />
-    <path
-        android:fillColor="#A7D0C5"
-        android:fillAlpha="0.105"
-        android:pathData="M16,205 L16,67 L30,67 L30,205 Z M13,67 L33,67 L33,59 L13,59 Z M14,57 C15,47 20,42 23,31 C26,42 31,47 32,57 Z M21,32 L21,20 L25,20 L25,32 Z M450,205 L450,67 L464,67 L464,205 Z M447,67 L467,67 L467,59 L447,59 Z M448,57 C449,47 454,42 457,31 C460,42 465,47 466,57 Z M455,32 L455,20 L459,20 L459,32 Z" />
-    <path
-        android:fillColor="#00000000"
-        android:strokeColor="#D4E8DF"
-        android:strokeAlpha="0.07"
-        android:strokeWidth="1"
-        android:pathData="M18,75 L28,75 M18,81 L28,81 M452,75 L462,75 M452,81 L462,81 M23,89 L23,199 M457,89 L457,199" />
-    <path
-        android:fillColor="#A7D0C5"
-        android:fillAlpha="0.135"
-        android:pathData="M128,168 C128,141 170,129 199,113 C217,103 231,98 240,90 C249,98 263,103 281,113 C310,129 352,141 352,168 Z" />
-    <path
-        android:fillColor="#A7D0C5"
-        android:fillAlpha="0.11"
-        android:pathData="M132,168 L348,168 L348,205 L132,205 Z M238,90 L238,82 L242,82 L242,90 Z" />
-    <path
-        android:fillColor="#00000000"
-        android:strokeColor="#D4E8DF"
-        android:strokeAlpha="0.065"
-        android:strokeWidth="1.2"
-        android:pathData="M139,167 C142,145 187,128 216,112 M341,167 C338,145 293,128 264,112 M132,168 L348,168" />
-    <path
-        android:fillColor="@color/pine"
-        android:fillAlpha="0.48"
-        android:pathData="M225,205 L225,185 C225,176 235,169 240,166 C245,169 255,176 255,185 L255,205 Z M166,205 L166,188 C166,181 173,176 178,173 C183,176 190,181 190,188 L190,205 Z M290,205 L290,188 C290,181 297,176 302,173 C307,176 314,181 314,188 L314,205 Z M85,205 L85,181 C85,177 90,173 93,171 C96,173 101,177 101,181 L101,205 Z M379,205 L379,181 C379,177 384,173 387,171 C390,173 395,177 395,181 L395,205 Z" />
-    <path
-        android:fillColor="#00000000"
-        android:strokeColor="#A7D0C5"
-        android:strokeAlpha="0.09"
-        android:strokeWidth="1"
-        android:pathData="M8,205 L472,205" />
+    android:viewportHeight="220">
+    <!-- Distant side domes; all geometry remains sharp at any screen density. -->
+    <path android:fillColor="#B7D6C9" android:fillAlpha="0.065"
+        android:pathData="M40,181 L40,155 C40,138 61,126 74,112 C87,126 108,138 108,155 L108,181 Z M372,181 L372,155 C372,138 393,126 406,112 C419,126 440,138 440,155 L440,181 Z" />
+    <!-- Slender minarets with balconies and pointed caps. -->
+    <path android:fillColor="#B7D6C9" android:fillAlpha="0.115"
+        android:pathData="M20,207 L20,85 L34,85 L34,207 Z M16,85 L38,85 L38,78 L16,78 Z M18,76 C18,65 24,58 27,47 C30,58 36,65 36,76 Z M25.5,48 L25.5,35 L28.5,35 L28.5,48 Z M446,207 L446,85 L460,85 L460,207 Z M442,85 L464,85 L464,78 L442,78 Z M444,76 C444,65 450,58 453,47 C456,58 462,65 462,76 Z M451.5,48 L451.5,35 L454.5,35 L454.5,48 Z" />
+    <path android:fillColor="#00000000" android:strokeColor="#D2E6DB"
+        android:strokeAlpha="0.09" android:strokeWidth="1"
+        android:pathData="M22,94 L32,94 M22,99 L32,99 M448,94 L458,94 M448,99 L458,99" />
+    <!-- Three onion domes and their finials. -->
+    <path android:fillColor="#B7D6C9" android:fillAlpha="0.12"
+        android:pathData="M64,160 C62,142 81,131 105,110 C129,131 148,142 146,160 Z M334,160 C332,142 351,131 375,110 C399,131 418,142 416,160 Z M103,111 L103,101 L107,101 L107,111 Z M373,111 L373,101 L377,101 L377,111 Z" />
+    <path android:fillColor="#B7D6C9" android:fillAlpha="0.14"
+        android:pathData="M143,157 C139,134 157,118 181,105 C208,90 229,78 240,63 C251,78 272,90 299,105 C323,118 341,134 337,157 Z M150,157 L330,157 L330,207 L150,207 Z M70,160 L140,160 L140,207 L70,207 Z M340,160 L410,160 L410,207 L340,207 Z" />
+    <path android:fillColor="#BDDCCF" android:fillAlpha="0.19"
+        android:pathData="M238.5,64 L238.5,50 L241.5,50 L241.5,64 Z M246,39 C239,42 236,35 239,30 C230,34 231,45 239,46 C243,46 246,43 246,39 Z" />
+    <!-- Recessed pointed arches. -->
+    <path android:fillColor="@color/pine" android:fillAlpha="0.70"
+        android:pathData="M223,207 L223,179 C223,170 234,161 240,157 C246,161 257,170 257,179 L257,207 Z M165,207 L165,183 C165,176 174,169 179,165 C184,169 193,176 193,183 L193,207 Z M287,207 L287,183 C287,176 296,169 301,165 C306,169 315,176 315,183 L315,207 Z M96,207 L96,181 C96,175 102,170 105,168 C108,170 114,175 114,181 L114,207 Z M366,207 L366,181 C366,175 372,170 375,168 C378,170 384,175 384,181 L384,207 Z" />
+    <path android:fillColor="#B7D6C9" android:fillAlpha="0.07"
+        android:pathData="M0,207 L480,207 L480,217 L0,217 Z" />
+    <path android:fillColor="#00000000" android:strokeColor="#D2E6DB"
+        android:strokeAlpha="0.075" android:strokeWidth="1"
+        android:pathData="M144,157 L336,157 M70,160 L140,160 M340,160 L410,160 M0,207 L480,207" />
 </vector>

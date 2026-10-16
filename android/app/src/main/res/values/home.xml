@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="home_hero_text">#D6E7DF</color>
+    <color name="home_prayer_text">#BDD5CB</color>
+    <color name="home_gold">#B38335</color>
+    <color name="home_violet">#9466CF</color>
+    <color name="home_emerald">#159777</color>
+    <color name="home_blue">#548EAD</color>
+    <color name="home_coral">#D47865</color>
+</resources>

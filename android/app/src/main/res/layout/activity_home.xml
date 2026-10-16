@@ -1,6 +1,5 @@
-<?xml version='1.0' encoding='utf-8'?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/homeRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,130 +9,103 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="116dp"
+        android:paddingBottom="120dp"
         android:fillViewport="true"
         android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clipChildren="false"
             android:orientation="vertical">
             <FrameLayout
+                android:id="@+id/homeHero"
                 android:layout_width="match_parent"
-                android:layout_height="340dp"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/home_hero_height"
                 android:background="@drawable/bg_home_hero">
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
+                    android:layout_height="144dp"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="22dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/mosque_silhouette"
-                    android:scaleType="fitCenter"
                     android:importantForAccessibility="no" />
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingLeft="24dp"
-                    android:paddingRight="24dp"
-                    android:paddingTop="8dp">
+                    android:paddingBottom="@dimen/home_hero_bottom_padding"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="@dimen/home_hero_top_padding">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:gravity="center_vertical">
-                        <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:src="@drawable/brandmark_white"
-                            android:importantForAccessibility="no" />
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="7dp"
-                            android:text="zikra."
-                            android:textSize="27sp"
-                            android:textStyle="bold"
-                            android:letterSpacing="-0.06"
-                            android:textColor="@color/white" />
-                        <TextView
-                            android:id="@+id/homeProfile"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:gravity="center"
-                            android:background="@drawable/circle_glass"
-                            android:text="A"
-                            android:textColor="#D9EAE4"
-                            android:textSize="18sp"
-                            android:contentDescription="Buka profil"
-                            android:clickable="true"
-                            android:focusable="true" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="24dp"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="1dp">
-                        <ImageView
-                            android:layout_width="13dp"
-                            android:layout_height="13dp"
-                            android:src="@drawable/ic_pin"
-                            android:tint="#BDD4CB"
-                            android:importantForAccessibility="no" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:text="Sukolilo, Surabaya"
-                            android:textColor="#BDD4CB"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp"
+                        android:layout_height="48dp"
                         android:gravity="center_vertical">
                         <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:id="@+id/homeLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:paddingEnd="14dp"
+                            android:gravity="center_vertical"
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:contentDescription="Buka lokasi Sukolilo, Surabaya di peta">
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:padding="8dp"
+                                android:background="@drawable/circle_glass"
+                                android:src="@drawable/ic_pin"
+                                android:tint="@color/home_hero_text"
+                                android:importantForAccessibility="no" />
                             <TextView
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Assalamualaikum, Arkan"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                android:textColor="@color/white" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Ibadah terjaga. Tugas tertata."
-                                android:textColor="#9DBDB1"
-                                android:textSize="10sp" />
+                                android:layout_marginStart="8dp"
+                                android:text="Sukolilo, Surabaya"
+                                android:textSize="10sp"
+                                android:textColor="@color/home_hero_text" />
                         </LinearLayout>
+                        <Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
                         <ImageButton
-                            android:id="@+id/homeEmergency"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:padding="11dp"
-                            android:background="@drawable/circle_glass"
+                            android:id="@+id/homeSearch"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:padding="15dp"
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/reading_ic_search"
+                            android:tint="@color/home_hero_text"
+                            android:contentDescription="Cari surah Al-Qur’an" />
+                        <ImageButton
+                            android:id="@+id/homeReminders"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:padding="15dp"
+                            android:background="?android:attr/selectableItemBackgroundBorderless"
                             android:src="@drawable/ic_bell"
-                            android:tint="#D9EAE4"
-                            android:contentDescription="Bantuan cepat dan darurat" />
+                            android:tint="@color/home_hero_text"
+                            android:contentDescription="Jadwal dan pengaturan pengingat sholat" />
                     </LinearLayout>
                     <TextView
                         android:id="@+id/homeHijri"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_height="@dimen/home_date_height"
+                        android:layout_marginTop="@dimen/home_date_margin"
                         android:gravity="center"
-                        android:text="15 Jumada Al-Akhira, 1447 AH"
+                        android:text="Jumadil Awal 1448 H"
                         android:textSize="11sp"
-                        android:textColor="#B8D3C8" />
+                        android:textColor="@color/home_hero_text"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true" />
                     <TextView
                         android:id="@+id/homeClock"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="wrap_content"
+                        android:minHeight="82dp"
                         android:gravity="center"
                         android:text="14:54"
                         android:textColor="@color/white"
@@ -147,44 +119,50 @@
                         android:layout_width="wrap_content"
                         android:layout_height="28dp"
                         android:layout_gravity="center_horizontal"
-                        android:paddingHorizontal="15dp"
+                        android:layout_marginTop="@dimen/home_countdown_margin"
+                        android:paddingHorizontal="14dp"
                         android:gravity="center"
                         android:background="@drawable/bg_countdown"
                         android:text="Maghrib tinggal 27 menit lagi"
-                        android:textColor="#E3F0E9"
-                        android:textSize="11sp" />
+                        android:textColor="@color/home_hero_text"
+                        android:textSize="10sp" />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:background="#1FFFFFFF" />
+                        android:layout_marginTop="@dimen/home_strip_divider_margin"
+                        android:background="#20FFFFFF" />
                     <LinearLayout
                         android:id="@+id/homePrayerStrip"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="4dp"
-                        android:gravity="center_vertical">
+                        android:layout_height="@dimen/home_strip_height"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="Buka jadwal sholat lengkap">
                         <LinearLayout
                             android:id="@+id/prayerSlot0"
                             android:layout_width="0dp"
+                            android:layout_height="@dimen/home_prayer_slot_height"
                             android:layout_weight="1"
-                            android:layout_height="57dp"
-                            android:layout_marginHorizontal="2dp"
+                            android:layout_marginHorizontal="1dp"
                             android:gravity="center"
                             android:orientation="vertical">
                             <ImageView
-                                android:layout_width="17dp"
-                                android:layout_height="17dp"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
                                 android:src="@drawable/ic_moon"
-                                android:tint="#C0D8CF"
+                                android:tint="@color/home_prayer_text"
                                 android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="4dp"
                                 android:text="Subuh"
-                                android:textColor="#C0D8CF"
-                                android:textSize="8sp" />
+                                android:textColor="@color/home_prayer_text"
+                                android:textSize="8sp"
+                                android:includeFontPadding="false" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -192,29 +170,31 @@
                                 android:text="04:12"
                                 android:textColor="@color/white"
                                 android:textSize="9sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:includeFontPadding="false" />
                         </LinearLayout>
                         <LinearLayout
                             android:id="@+id/prayerSlot1"
                             android:layout_width="0dp"
+                            android:layout_height="@dimen/home_prayer_slot_height"
                             android:layout_weight="1"
-                            android:layout_height="57dp"
-                            android:layout_marginHorizontal="2dp"
+                            android:layout_marginHorizontal="1dp"
                             android:gravity="center"
                             android:orientation="vertical">
                             <ImageView
-                                android:layout_width="17dp"
-                                android:layout_height="17dp"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
                                 android:src="@drawable/ic_sun"
-                                android:tint="#C0D8CF"
+                                android:tint="@color/home_prayer_text"
                                 android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="4dp"
                                 android:text="Terbit"
-                                android:textColor="#C0D8CF"
-                                android:textSize="8sp" />
+                                android:textColor="@color/home_prayer_text"
+                                android:textSize="8sp"
+                                android:includeFontPadding="false" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -222,29 +202,31 @@
                                 android:text="05:28"
                                 android:textColor="@color/white"
                                 android:textSize="9sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:includeFontPadding="false" />
                         </LinearLayout>
                         <LinearLayout
                             android:id="@+id/prayerSlot2"
                             android:layout_width="0dp"
+                            android:layout_height="@dimen/home_prayer_slot_height"
                             android:layout_weight="1"
-                            android:layout_height="57dp"
-                            android:layout_marginHorizontal="2dp"
+                            android:layout_marginHorizontal="1dp"
                             android:gravity="center"
                             android:orientation="vertical">
                             <ImageView
-                                android:layout_width="17dp"
-                                android:layout_height="17dp"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
                                 android:src="@drawable/ic_sun"
-                                android:tint="#C0D8CF"
+                                android:tint="@color/home_prayer_text"
                                 android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="4dp"
                                 android:text="Dzuhur"
-                                android:textColor="#C0D8CF"
-                                android:textSize="8sp" />
+                                android:textColor="@color/home_prayer_text"
+                                android:textSize="8sp"
+                                android:includeFontPadding="false" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -252,29 +234,31 @@
                                 android:text="11:35"
                                 android:textColor="@color/white"
                                 android:textSize="9sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:includeFontPadding="false" />
                         </LinearLayout>
                         <LinearLayout
                             android:id="@+id/prayerSlot3"
                             android:layout_width="0dp"
+                            android:layout_height="@dimen/home_prayer_slot_height"
                             android:layout_weight="1"
-                            android:layout_height="57dp"
-                            android:layout_marginHorizontal="2dp"
+                            android:layout_marginHorizontal="1dp"
                             android:gravity="center"
                             android:orientation="vertical">
                             <ImageView
-                                android:layout_width="17dp"
-                                android:layout_height="17dp"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
                                 android:src="@drawable/ic_sun"
-                                android:tint="#C0D8CF"
+                                android:tint="@color/home_prayer_text"
                                 android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="4dp"
                                 android:text="Ashar"
-                                android:textColor="#C0D8CF"
-                                android:textSize="8sp" />
+                                android:textColor="@color/home_prayer_text"
+                                android:textSize="8sp"
+                                android:includeFontPadding="false" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -282,29 +266,31 @@
                                 android:text="14:52"
                                 android:textColor="@color/white"
                                 android:textSize="9sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:includeFontPadding="false" />
                         </LinearLayout>
                         <LinearLayout
                             android:id="@+id/prayerSlot4"
                             android:layout_width="0dp"
+                            android:layout_height="@dimen/home_prayer_slot_height"
                             android:layout_weight="1"
-                            android:layout_height="57dp"
-                            android:layout_marginHorizontal="2dp"
+                            android:layout_marginHorizontal="1dp"
                             android:gravity="center"
                             android:orientation="vertical">
                             <ImageView
-                                android:layout_width="17dp"
-                                android:layout_height="17dp"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
                                 android:src="@drawable/ic_sun"
-                                android:tint="#C0D8CF"
+                                android:tint="@color/home_prayer_text"
                                 android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="4dp"
                                 android:text="Maghrib"
-                                android:textColor="#C0D8CF"
-                                android:textSize="8sp" />
+                                android:textColor="@color/home_prayer_text"
+                                android:textSize="8sp"
+                                android:includeFontPadding="false" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -312,29 +298,31 @@
                                 android:text="17:41"
                                 android:textColor="@color/white"
                                 android:textSize="9sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:includeFontPadding="false" />
                         </LinearLayout>
                         <LinearLayout
                             android:id="@+id/prayerSlot5"
                             android:layout_width="0dp"
+                            android:layout_height="@dimen/home_prayer_slot_height"
                             android:layout_weight="1"
-                            android:layout_height="57dp"
-                            android:layout_marginHorizontal="2dp"
+                            android:layout_marginHorizontal="1dp"
                             android:gravity="center"
                             android:orientation="vertical">
                             <ImageView
-                                android:layout_width="17dp"
-                                android:layout_height="17dp"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
                                 android:src="@drawable/ic_moon"
-                                android:tint="#C0D8CF"
+                                android:tint="@color/home_prayer_text"
                                 android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="4dp"
                                 android:text="Isya"
-                                android:textColor="#C0D8CF"
-                                android:textSize="8sp" />
+                                android:textColor="@color/home_prayer_text"
+                                android:textSize="8sp"
+                                android:includeFontPadding="false" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -342,220 +330,304 @@
                                 android:text="18:50"
                                 android:textColor="@color/white"
                                 android:textSize="9sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:includeFontPadding="false" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </FrameLayout>
             <LinearLayout
+                android:id="@+id/homeShortcuts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="-20dp"
+                android:layout_marginHorizontal="18dp"
+                android:layout_marginTop="-22dp"
                 android:orientation="vertical"
-                android:padding="12dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="@dimen/home_shortcuts_padding"
                 android:background="@drawable/bg_card"
                 android:elevation="6dp">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="76dp"
+                    android:layout_height="@dimen/home_shortcut_row_height"
                     android:gravity="center_vertical">
                     <LinearLayout
                         android:id="@+id/shortcutQuran"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:background="@drawable/home_shortcut_ripple"
                         android:clickable="true"
                         android:focusable="true"
-                        android:contentDescription="Al-Qur'an">
+                        android:contentDescription="Al-Qur’an">
                         <ImageView
-                            style="@style/ShortcutIcon"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:padding="2dp"
                             android:src="@drawable/ic_book"
-                            android:tint="#B38335" />
+                            android:tint="@color/home_gold"
+                            android:importantForAccessibility="no" />
                         <TextView
-                            style="@style/ShortcutLabel"
-                            android:text="Al-Qur'an"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="24dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
+                            android:text="Al-Qur’an"
+                            android:textSize="9sp"
+                            android:textColor="@color/pine"
+                            android:maxLines="2"
                             android:importantForAccessibility="no" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/shortcutDua"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:background="@drawable/home_shortcut_ripple"
                         android:clickable="true"
                         android:focusable="true"
                         android:contentDescription="Doa Harian">
                         <ImageView
-                            style="@style/ShortcutIcon"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:padding="2dp"
                             android:src="@drawable/ic_heart"
-                            android:tint="#B38335" />
+                            android:tint="@color/home_gold"
+                            android:importantForAccessibility="no" />
                         <TextView
-                            style="@style/ShortcutLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="24dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
                             android:text="Doa Harian"
+                            android:textSize="9sp"
+                            android:textColor="@color/pine"
+                            android:maxLines="2"
                             android:importantForAccessibility="no" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/shortcutQibla"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:background="@drawable/home_shortcut_ripple"
                         android:clickable="true"
                         android:focusable="true"
                         android:contentDescription="Kiblat">
                         <ImageView
-                            style="@style/ShortcutIcon"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:padding="2dp"
                             android:src="@drawable/ic_compass"
-                            android:tint="#B38335" />
+                            android:tint="@color/home_gold"
+                            android:importantForAccessibility="no" />
                         <TextView
-                            style="@style/ShortcutLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="24dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
                             android:text="Kiblat"
+                            android:textSize="9sp"
+                            android:textColor="@color/pine"
+                            android:maxLines="2"
                             android:importantForAccessibility="no" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/shortcutPrayer"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:background="@drawable/home_shortcut_ripple"
                         android:clickable="true"
                         android:focusable="true"
                         android:contentDescription="Jadwal Sholat">
                         <ImageView
-                            style="@style/ShortcutIcon"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:padding="2dp"
                             android:src="@drawable/ic_sun"
-                            android:tint="#B38335" />
+                            android:tint="@color/home_gold"
+                            android:importantForAccessibility="no" />
                         <TextView
-                            style="@style/ShortcutLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="24dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
                             android:text="Jadwal Sholat"
+                            android:textSize="9sp"
+                            android:textColor="@color/pine"
+                            android:maxLines="2"
                             android:importantForAccessibility="no" />
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="76dp"
+                    android:layout_height="@dimen/home_shortcut_row_height"
                     android:gravity="center_vertical">
                     <LinearLayout
                         android:id="@+id/shortcutAi"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:background="@drawable/home_shortcut_ripple"
                         android:clickable="true"
                         android:focusable="true"
                         android:contentDescription="Zikra AI">
                         <ImageView
-                            style="@style/ShortcutIcon"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:padding="2dp"
                             android:src="@drawable/ic_spark"
-                            android:tint="#9466CF" />
+                            android:tint="@color/home_violet"
+                            android:importantForAccessibility="no" />
                         <TextView
-                            style="@style/ShortcutLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="24dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
                             android:text="Zikra AI"
+                            android:textSize="9sp"
+                            android:textColor="@color/pine"
+                            android:maxLines="2"
                             android:importantForAccessibility="no" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/shortcutProtector"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:background="@drawable/home_shortcut_ripple"
                         android:clickable="true"
                         android:focusable="true"
                         android:contentDescription="Protector BMKG">
                         <ImageView
-                            style="@style/ShortcutIcon"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:padding="2dp"
                             android:src="@drawable/ic_shield"
-                            android:tint="#159777" />
+                            android:tint="@color/home_emerald"
+                            android:importantForAccessibility="no" />
                         <TextView
-                            style="@style/ShortcutLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="24dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
                             android:text="Protector BMKG"
+                            android:textSize="9sp"
+                            android:textColor="@color/pine"
+                            android:maxLines="2"
                             android:importantForAccessibility="no" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/shortcutStudy"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:background="@drawable/home_shortcut_ripple"
                         android:clickable="true"
                         android:focusable="true"
                         android:contentDescription="Study Hub">
                         <ImageView
-                            style="@style/ShortcutIcon"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:padding="2dp"
                             android:src="@drawable/ic_tasks"
-                            android:tint="#548EAD" />
+                            android:tint="@color/home_blue"
+                            android:importantForAccessibility="no" />
                         <TextView
-                            style="@style/ShortcutLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="24dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
                             android:text="Study Hub"
+                            android:textSize="9sp"
+                            android:textColor="@color/pine"
+                            android:maxLines="2"
                             android:importantForAccessibility="no" />
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@+id/shortcutInfaq"
+                        android:id="@+id/shortcutHadith"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:background="@drawable/home_shortcut_ripple"
                         android:clickable="true"
                         android:focusable="true"
-                        android:contentDescription="Infaq Kampus">
+                        android:contentDescription="Hadis">
                         <ImageView
-                            style="@style/ShortcutIcon"
-                            android:src="@drawable/ic_heart"
-                            android:tint="#D47865" />
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:padding="2dp"
+                            android:src="@drawable/home_ic_hadith"
+                            android:tint="@color/home_coral"
+                            android:importantForAccessibility="no" />
                         <TextView
-                            style="@style/ShortcutLabel"
-                            android:text="Infaq Kampus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="24dp"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center"
+                            android:text="Hadis"
+                            android:textSize="9sp"
+                            android:textColor="@color/pine"
+                            android:maxLines="2"
                             android:importantForAccessibility="no" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/homeTargetCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="18dp"
+                android:layout_marginTop="@dimen/home_target_spacing"
                 android:orientation="vertical"
-                android:padding="20dp"
+                android:padding="@dimen/home_target_padding"
                 android:background="@drawable/bg_card"
-                android:elevation="2dp">
+                android:elevation="1dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical">
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Target Ibadah &amp; Belajar Hari Ini"
-                        android:textColor="@color/text"
-                        android:textSize="14sp"
+                        android:textColor="@color/pine"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
                     <TextView
                         android:id="@+id/homeProgressPercent"
-                        android:layout_width="42dp"
+                        android:layout_width="40dp"
                         android:layout_height="24dp"
                         android:layout_marginStart="8dp"
                         android:gravity="center"
                         android:background="@drawable/bg_pine"
-                        android:text="33%"
+                        android:text="0%"
                         android:textColor="@color/white"
                         android:textSize="10sp"
                         android:textStyle="bold" />
@@ -564,23 +636,23 @@
                     android:id="@+id/homeProgressSubtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Selesaikan 8 dari 24 checklist harian"
+                    android:layout_marginTop="8dp"
+                    android:text="Selesaikan checklist harianmu"
                     android:textColor="@color/muted"
                     android:textSize="10sp" />
                 <com.zikra.app.ui.SegmentedProgressView
                     android:id="@+id/homeProgressTicks"
                     android:layout_width="match_parent"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_height="@dimen/home_tick_height"
+                    android:layout_marginTop="@dimen/home_target_spacing"
                     android:importantForAccessibility="yes" />
                 <Button
                     android:id="@+id/homeChecklist"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/bg_amber"
-                    android:backgroundTint="@color/amber"
+                    android:layout_marginTop="@dimen/home_target_spacing"
+                    android:background="@drawable/home_cta"
+                    android:backgroundTint="@null"
                     android:text="Buka Checklist Ibadah"
                     android:textAllCaps="false"
                     android:textSize="12sp"
@@ -588,27 +660,53 @@
                     android:textColor="@color/white"
                     android:stateListAnimator="@null" />
             </LinearLayout>
-            <TextView
-                android:id="@+id/homeLastRead"
+            <LinearLayout
+                android:id="@+id/homeContinueReading"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="18dp"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="12dp"
                 android:gravity="center_vertical"
-                android:textColor="@color/muted"
-                android:textSize="11sp"
-                android:drawableStart="@drawable/ic_book"
-                android:drawablePadding="12dp"
+                android:background="@drawable/home_shortcut_ripple"
                 android:clickable="true"
-                android:focusable="true" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="18dp"
-                android:text="zikra.  •  Small steps. Meaningful days."
-                android:textSize="10sp"
-                android:textColor="@color/muted" />
+                android:focusable="true">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:padding="9dp"
+                    android:background="@drawable/circle_mint"
+                    android:src="@drawable/ic_book"
+                    android:tint="@color/pine"
+                    android:importantForAccessibility="no" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lanjutkan bacaan"
+                        android:textColor="@color/pine"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/homeLastRead"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@color/muted"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/home_ic_chevron"
+                    android:tint="@color/muted"
+                    android:importantForAccessibility="no" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
     <LinearLayout
@@ -703,7 +801,7 @@
             android:orientation="vertical"
             android:clickable="true"
             android:focusable="true"
-            android:contentDescription="Profile"
+            android:contentDescription="Profil"
             android:background="?android:attr/selectableItemBackgroundBorderless">
             <ImageView
                 android:layout_width="20dp"
@@ -713,7 +811,7 @@
                 android:importantForAccessibility="no" />
             <TextView
                 style="@style/DockLabel"
-                android:text="Profile"
+                android:text="Profil"
                 android:textColor="#8A9BA9"
                 android:importantForAccessibility="no" />
         </LinearLayout>

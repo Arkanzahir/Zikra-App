@@ -1,0 +1,11 @@
+INSTRUMENTATION_STATUS: class=com.zikra.app.HomeNavigationTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stream=
+com.zikra.app.HomeNavigationTest:
+INSTRUMENTATION_STATUS: test=testHadithShortcutOpensSearchableHadithPage
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_RESULT: longMsg=Input dispatching timed out (beae9c8 com.zikra.app/com.zikra.app.HomeActivity (server) is not responding. Waited 5011ms for FocusEvent(hasFocus=false)).
+INSTRUMENTATION_RESULT: shortMsg=keyDispatchingTimedOut
+INSTRUMENTATION_CODE: 0

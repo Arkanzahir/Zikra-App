@@ -23,3 +23,13 @@ Screenshot yang sudah diperiksa: [Protector BMKG](validation/screens/ProtectorAc
 - Build APK, lint, dan 14 unit test dijalankan ulang dan lulus.
 - Putaran 13 tes UI menemukan satu masalah deteksi keyboard; 12 skenario lain lulus. Setelah perbaikan, ketiga tes regresi (keyboard/composer, rekreasi Waktu Sholat, peran profil) diulang dan seluruhnya lulus. Dengan demikian 13 skenario UI unik telah lulus; suite data/BMKG sebelumnya tidak diulang karena logikanya tidak berubah.
 - Log putaran awal dan uji ulang tersedia di `validation/polish-initial-tests.txt` dan `validation/polish-regression-tests.txt`.
+
+## Penyempurnaan Home — 17 Oktober 2026
+
+- `assembleDebug`, `assembleDebugAndroidTest`, dan `lintDebug` lulus setelah pembaruan layout dan resource ukuran layar. APK debug juga lulus verifikasi tanda tangan `apksigner`.
+- `testDebugUnitTest`: 14 tes JVM lulus setelah perubahan logika Home; tidak ada kegagalan/error.
+- Dua tes `HomeNavigationTest` lulus: shortcut Hadis membuka halaman pencarian hadis, dan tanggal Hijriah membuka kalender yang dapat dinavigasi.
+- Putaran navigasi awal berhenti dengan timeout input/fokus jendela. Runner diperbaiki agar menunggu fokus sebelum berinteraksi dan sebelum menutup halaman; putaran ulang lulus. Log awal disimpan di `validation/home-navigation-initial.txt`, hasil ulang di `validation/home-navigation-tests.txt`.
+- Smoke Home memeriksa delapan shortcut dan progres database pada emulator API 35: lulus pada 540×1170px/210dpi (sekitar 411dp) dan 480×1040px/213dpi (sekitar 360dp). Kedua screenshot diperiksa untuk memastikan tombol checklist terlihat penuh di atas dock.
+- Screenshot Home terbaru: [layar standar](validation/screens/HomeActivity.png) dan [layar 360dp](validation/screens/HomeActivity360.png). Log: `validation/home-build.txt`, `validation/home-standard-screen-tests.txt`, `validation/home-small-screen-tests.txt`.
+- Ini validasi khusus pembaruan Home. Suite seluruh halaman tidak dijalankan ulang; keterbatasan data, sensor fisik, AI dan pengingat pada README masih berlaku.
