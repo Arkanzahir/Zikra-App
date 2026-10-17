@@ -54,9 +54,9 @@
             <LinearLayout
                 android:id="@+id/onboardWelcome"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:gravity="center">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -66,19 +66,21 @@
                     android:letterSpacing="0.16"
                     android:textColor="#C6AB78" />
                 <com.zikra.app.discovery.LearningOrbitView
+                    android:id="@+id/onboardOrbit"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/onboard_orbit_size"
-                    android:layout_marginTop="12dp"
-                    android:contentDescription="Orbit Quran, belajar, ibadah, dan keseimbangan" />
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:contentDescription="Orbit interaktif ilmu dan ibadah" />
                 <TextView
                     style="@style/OnboardTitle"
                     android:text="Ilmu bertumbuh.\nIman terjaga."
-                    android:textSize="32sp"
+                    android:textSize="30sp"
                     android:lineSpacingExtra="4dp"
                     android:textColor="@color/white" />
                 <TextView
                     style="@style/OnboardBody"
-                    android:text="Ruang untuk ibadah, belajar, dan\nlangkah kecilmu setiap hari."
+                    android:text="Ibadah lebih terarah. Belajar lebih tenang.\nMulai dari satu langkah kecil."
                     android:textColor="#C4D8D0" />
             </LinearLayout>
             <LinearLayout

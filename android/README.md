@@ -126,3 +126,6 @@ Lihat [VALIDATION.md](VALIDATION.md). Screenshot aplikasi native berada di folde
 ### Onboarding — 17 Oktober 2026
 
 Tiga layar native: hero orbit, jenjang SMP/SMA/SMK/Mahasiswa, dan maksimal tiga minat dari delapan pilihan. Onboarding hanya diwajibkan saat penggunaan pertama dan dapat diedit lewat Profil. Tanpa login; pilihan tersimpan lokal. Screenshot dan hasil dua tes perangkat tersedia pada `VALIDATION.md`.
+
+
+Onboarding kini memiliki parallax sentuh/tilt, ikon mengambang dan transisi langkah native. Gerak berhenti ketika halaman tidak aktif dan mengikuti pengaturan animasi sistem. Preview: `validation/screens/OnboardingParallax.gif`.

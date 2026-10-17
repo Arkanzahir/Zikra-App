@@ -1,5 +1,6 @@
 package com.zikra.app;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -10,6 +11,7 @@ import android.widget.GridLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.zikra.app.discovery.DiscoveryUi;
+import com.zikra.app.discovery.LearningOrbitView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,6 +25,8 @@ public final class OnboardingActivity extends BaseActivity {
     R.id.onboardLevelSmp, R.id.onboardLevelSma, R.id.onboardLevelUniversity
   };
   private int step;
+  private int renderedStep = -1;
+  private LearningOrbitView orbit;
   private String level = "";
   private final Set<String> interests = new HashSet<>();
   private final ArrayList<Button> interestButtons = new ArrayList<>();
@@ -50,6 +54,7 @@ public final class OnboardingActivity extends BaseActivity {
     interests.addAll(valid);
     setContentView(R.layout.activity_onboarding);
     setupScreen("Selamat datang di Zikra");
+    orbit = findViewById(R.id.onboardOrbit);
     findViewById(R.id.onboardBack).setOnClickListener(v -> back());
     findViewById(R.id.onboardSkip).setOnClickListener(v -> complete());
     findViewById(R.id.onboardContinue)
@@ -90,6 +95,13 @@ public final class OnboardingActivity extends BaseActivity {
 
   private void render() {
     boolean welcome = step == 0;
+    int[] pages = {R.id.onboardWelcome, R.id.onboardIdentity, R.id.onboardTopics};
+    for (int id : pages) {
+      View page = findViewById(id);
+      page.animate().cancel();
+      page.setAlpha(1f);
+      page.setTranslationX(0f);
+    }
     int foreground = Color.parseColor(welcome ? "#C4D8D0" : "#587668");
     int background = getColor(welcome ? R.color.pine : R.color.ivory);
     findViewById(R.id.onboardRoot).setBackgroundColor(background);
@@ -119,6 +131,31 @@ public final class OnboardingActivity extends BaseActivity {
     renderLevels();
     renderInterests();
     ((ScrollView) findViewById(R.id.onboardScroll)).scrollTo(0, 0);
+    if (renderedStep >= 0 && renderedStep != step && ValueAnimator.areAnimatorsEnabled()) {
+      View incoming = findViewById(pages[step]);
+      incoming.setAlpha(0f);
+      incoming.setTranslationX(dp(step > renderedStep ? 24 : -24));
+      incoming
+          .animate()
+          .alpha(1f)
+          .translationX(0f)
+          .setDuration(260)
+          .setInterpolator(new android.view.animation.DecelerateInterpolator())
+          .start();
+    }
+    renderedStep = step;
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if (orbit != null) orbit.setForeground(true);
+  }
+
+  @Override
+  protected void onPause() {
+    if (orbit != null) orbit.setForeground(false);
+    super.onPause();
   }
 
   private void renderLevels() {

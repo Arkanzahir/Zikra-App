@@ -97,3 +97,12 @@ Tiga langkah native Java/XML mengikuti struktur referensi Blend wrk dengan warna
 Satu putaran validasi: `assembleDebug`, `lintDebug`, `assembleDebugAndroidTest` lulus. Dua tes perangkat lulus pada emulator Android 9/API 28: penyimpanan jenjang/minat, batas tiga minat, mengganti pilihan, kembali antar langkah, selesai dari mode edit, serta kompatibilitas peran profil lama. Log: `validation/onboarding-build.txt` dan `validation/onboarding-device-tests.txt`. Tidak ada pengujian ulang suite seluruh aplikasi. Rekreasi Activity dan jalur Lewati ke Home tidak diuji secara terpisah pada tahap ini.
 
 Screenshot diperiksa: [Welcome](validation/screens/OnboardingWelcome.png), [Jenjang](validation/screens/OnboardingEducation.png), [Minat](validation/screens/OnboardingInterests.png). Pilihan SMA/SMK dan minat pada gambar adalah hasil interaksi tes. Mode Mushaf Quran belum diimplementasikan pada tahap onboarding ini.
+
+
+## Parallax onboarding — 17 Oktober 2026
+
+Hero memakai tiga lapisan kedalaman, orbit elips, medali bulan sabit, kartu ikon pastel dengan gradien/bayangan, gerak mengambang, dan respons drag serta sensor gravitasi (fallback akselerometer). Frame dibatasi sekitar 30 fps. Callback frame dan listener sensor dihentikan saat halaman tersembunyi, kehilangan fokus, Activity pause, atau view dilepas. Animasi mengikuti `ValueAnimator.areAnimatorsEnabled()`. Perpindahan langkah memakai fade/slide 260 ms; hero dipusatkan agar ruang kosong lebih seimbang.
+
+`assembleDebug`, `assembleDebugAndroidTest`, dan `lintDebug` lulus. Satu putaran berisi dua tes perangkat lulus pada API 28: gambar orbit berubah saat animasi aktif dan berhenti ketika meninggalkan welcome; pilihan jenjang/minat tetap tersimpan dan dibatasi tiga. Pemeriksaan visual menemukan alpha paint terbawa ke gradien; reset alpha diperbaiki, lalu hanya build/lint diulang. Suite perangkat tidak diulang karena perubahan terakhir hanya reset paint sebelum shader. Log tersedia pada `validation/onboarding-parallax-build.txt`, `validation/onboarding-parallax-final-build.txt`, dan `validation/onboarding-parallax-tests.txt`.
+
+[Preview gerak native](validation/screens/OnboardingParallax.gif) direkam dari emulator dengan gesture drag; [screenshot](validation/screens/OnboardingWelcome.png). Pengaturan animator emulator dikembalikan setelah rekaman. Tilt pada ponsel fisik dan reduced-motion tidak diuji secara terpisah pada tahap ini.

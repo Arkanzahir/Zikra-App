@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="onboard_orbit_size">270dp</dimen>
+    <dimen name="onboard_orbit_size">300dp</dimen>
     <style name="OnboardTitle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
