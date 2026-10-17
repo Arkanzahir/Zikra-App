@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="home_hero_height">280dp</dimen>
+    <dimen name="home_ornament_top_margin">56dp</dimen>
+    <dimen name="home_mosque_bottom_margin">22dp</dimen>
     <dimen name="home_hero_top_padding">2dp</dimen>
     <dimen name="home_hero_bottom_padding">38dp</dimen>
     <dimen name="home_date_height">32dp</dimen>

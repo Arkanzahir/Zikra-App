@@ -27,12 +27,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="144dp"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="22dp"
+                    android:layout_marginBottom="@dimen/home_mosque_bottom_margin"
                     android:scaleType="fitCenter"
                     android:src="@drawable/home_mosque_silhouette"
                     android:tint="#A6C4B8"
-                    android:alpha="0.13"
+                    android:alpha="0.15"
                     android:importantForAccessibility="no" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="112dp"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="@dimen/home_ornament_top_margin"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/home_hero_ornaments"
+                    android:alpha="0.18"
+                    android:importantForAccessibility="no"
+                    android:clickable="false"
+                    android:focusable="false" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

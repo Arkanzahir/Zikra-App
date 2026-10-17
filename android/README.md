@@ -94,5 +94,11 @@ Lihat [VALIDATION.md](VALIDATION.md). Screenshot aplikasi native berada di folde
 
 - Pembungkus shortcut memakai `ui/CurvedShortcutLayout.java`, sebuah `LinearLayout` native dengan path putih yang turun 8dp di tengah tepi atas, mengikuti lengkungan pada referensi. Grid tetap didefinisikan dalam XML.
 - Kontur yang sama membatasi ripple anak. Outline elevasi memakai bentuk convex yang kompatibel dengan Android 8, sementara permukaan kartu mempertahankan lengkungan cekung.
-- Aset `res/drawable-nodpi/home_mosque_silhouette.png` dibuat dari acuan siluet yang diberikan pengguna, dengan latar dan bukaan jendela transparan serta bidang bawah yang dipangkas. Tint teal dan alpha 0,13 diterapkan melalui XML.
+- Aset `res/drawable-nodpi/home_mosque_silhouette.png` dibuat dari acuan siluet yang diberikan pengguna, dengan latar dan bukaan jendela transparan serta bidang bawah yang dipangkas. Tint teal dan alpha 0,15 diterapkan melalui XML.
 - Aset asli hasil pemrosesan disimpan tanpa modifikasi piksel tambahan. Penempatan memakai `fitCenter` agar proporsi kubah dan menara tetap terjaga.
+
+### Aksen lentera pada hero
+
+- `home_hero_ornaments.xml` menambahkan dua lentera outline dengan ukuran berbeda dan tiga bintang kecil di sisi kiri/kanan. Ornamen vector emas berada di bawah bar lokasi dan di luar area teks tanggal/jam.
+- Ornamen memakai alpha 0,18, tidak menerima klik atau fokus, dan tidak dibacakan sebagai elemen aksesibilitas. Layout dan alur navigasi tetap sama.
+- Siluet masjid tetap selebar hero dengan proporsi asli. Opasitasnya diperjelas menjadi 0,15 dan posisinya dinaikkan 4dp pada layar tinggi; posisi layar pendek dipertahankan agar tidak bertabrakan dengan jam.

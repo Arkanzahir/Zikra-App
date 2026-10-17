@@ -49,3 +49,11 @@ Screenshot yang sudah diperiksa: [Protector BMKG](validation/screens/ProtectorAc
 - Kontur atas turun 8dp di tengah, sementara ukuran grid dan elevasi dipertahankan. Screenshot Home standar dan 360dp diperbarui untuk menilai lengkungan, siluet, jarak strip dan keterlihatan CTA.
 - Validasi berfokus pada Home; data dan layanan fitur lain tidak diubah.
 - Smoke Home dan pemeriksaan jarak lulus pada lebar sekitar 411dp serta 360dp. Kedua screenshot diperiksa setelah render. Log: `validation/home-curved-build.txt`, `validation/home-curved-standard-tests.txt`, dan `validation/home-curved-small-tests.txt`.
+
+### Ornamen lentera dan penegasan siluet
+
+- Build debug, APK instrumentasi dan lint lulus setelah ornamen vector ditambahkan.
+- Dua lentera outline dan tiga bintang ditempatkan di sisi hero, di bawah bar lokasi; tanggal, jam, kontrol header serta tinggi konten dipertahankan. Ornamen tidak menerima klik/fokus dan dikecualikan dari aksesibilitas.
+- Siluet masjid menggunakan alpha 0,15. Pada varian layar tinggi, margin bawah naik 4dp untuk menaikkan gambar tanpa mengubah skalanya; varian layar pendek mempertahankan posisi sebelumnya.
+- Screenshot Home pada folder `validation/screens/` diperbarui untuk pemeriksaan keseimbangan dekorasi serta keterlihatan teks dan CTA.
+- Smoke Home serta pemeriksaan jarak strip/kartu lulus pada sekitar 411dp dan 360dp. Screenshot kedua ukuran diperiksa; tanda tangan APK juga diverifikasi. Log: `validation/home-lantern-build.txt`, `validation/home-lantern-standard-tests.txt`, `validation/home-lantern-small-tests.txt`.
