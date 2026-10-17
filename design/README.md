@@ -48,6 +48,10 @@ Acuan tiga layar biru/cyan yang diperlihatkan pengguna: dashboard cuaca, detail 
 - [Pillars](https://pillars.app) untuk pengalaman ibadah dan [Tarteel](https://tarteel.ai) untuk arah interaksi Quran. Ini benchmark yang disebut pengguna, bukan permintaan menyalin seluruh fiturnya.
 - [Pinterest pin 1110911433096315275](https://id.pinterest.com/pin/1110911433096315275/) adalah referensi video tambahan. File MP4/GIF/rekaman layar dari pin tersebut **belum tersedia di repo ini dan belum dilihat pada sesi ini**. Jangan menebak isi atau gerakannya. Tambahkan file beserta sumbernya ketika pengguna menyediakannya.
 
+## Logo utama dipertahankan
+
+Desain logo utama dipulihkan dan disimpan terpisah di [branding/](branding/README.md). Logo ini adalah identitas Zikra; mockup halaman dan alternatif logo lama tetap dihapus.
+
 ## Hasil aplikasi bukan referensi target
 
 Screenshot dan rekaman implementasi tetap ada di [`android/validation/screens/`](../android/validation/screens/) sebagai bukti hasil pekerjaan. Itu tidak berarti seluruh desainnya sudah disetujui. Khusus onboarding, pengguna sudah meminta redesign; gambar implementasi lama tidak boleh dijadikan standar visual baru.

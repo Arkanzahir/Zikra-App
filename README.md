@@ -62,6 +62,8 @@ Selesaikan satu tahap menjadi hasil yang dapat dicoba sebelum memperluas pekerja
 
 ### Peta referensi desain
 
+**Logo utama Zikra tetap tersedia:** [desain logo dan ikon aplikasi](./design/branding/README.md). Pertahankan identitas bulan sabit, buku dan spark.
+
 **[Buka galeri gambar lengkap di GitHub](./design/README.md).** Folder referensi sudah dibersihkan: hanya gambar yang cocok dengan acuan pengguna di chat yang dipertahankan. Mockup Zikra, logo alternatif dan prompt desain lama sudah dihapus; jangan menggunakannya kembali. Referensi nama/link tanpa file baru ditandai terpisah.
 
 | Bagian / inspirasi pengguna | Aset yang harus dibuka |
