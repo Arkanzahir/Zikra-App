@@ -113,3 +113,11 @@ Lihat [VALIDATION.md](VALIDATION.md). Screenshot aplikasi native berada di folde
 - `QuranActivity.EXTRA_RESUME_READING` membuka reader langsung pada surah/ayat tersimpan. Posisi gulir dipulihkan setelah layout siap; binding surah awal tidak diulang oleh callback Spinner.
 - `PrayerSchedule` menyediakan snapshot harian immutable dan waktu sholat berikutnya lintas tanggal/zona waktu. Home, daftar harian/pekan dan alarm menggunakan perhitungan yang sama.
 - `reminders/PrayerReminders`, `PrayerAlarmReceiver`, dan `PrayerRescheduleReceiver` mengelola channel, izin notifikasi, lima alarm, penerimaan reminder, dan penjadwalan ulang. Kejadian masa depan, kejadian yang terlambat lebih dari 30 menit, dan duplikat tidak diposting sebagai notifikasi baru.
+
+## Penyempurnaan desain Protector — 17 Oktober 2026
+
+- Dashboard mengikuti proporsi referensi Info BMKG: suhu dan ilustrasi berdampingan pada hero biru yang lebih ringkas, kartu peringatan amber, peta Indonesia dan ringkasan laporan gempa, serta bagian bantuan dengan tombol native.
+- Detail cuaca memakai hero cyan, ikon berdasarkan deskripsi yang diterima, tiga metrik cuaca, grafik suhu, dan deretan prakiraan bertanggal. Kartu prakiraan didefinisikan dalam `weather_forecast_item.xml`; Java hanya mengikat data dan warna keadaan terpilih.
+- Detail gempa memakai peta dengan panel putih bersudut atas membulat. Kartu biru menampilkan waktu WIB, magnitudo dan kedalaman; koordinat menggunakan LS/LU serta BT/BB. Tombol Maps tampil nonaktif saat belum ada koordinat.
+- `ProtectorChrome` menyatukan system bar ketiga layar. Warna dan ukuran khusus Protector berada di resource; Home yang sudah disetujui tetap dipertahankan.
+- Ini pembaruan desain dengan sumber BMKG yang sudah ada. Migrasi cuaca ke Open-Meteo dan integrasi provider baru pada `API_PLAN.md` belum dilakukan pada tahap ini.

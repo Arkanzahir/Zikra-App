@@ -33,11 +33,8 @@ public final class WeatherArtworkView extends View {
     wave.close();
     paint.setColor(Color.argb(25, 255, 255, 255));
     canvas.drawPath(wave, paint);
-    cloud(canvas, w * .15f, h * .29f, w * .14f, Color.argb(224, 255, 255, 255));
-    cloud(canvas, w * .84f, h * .58f, w * .10f, Color.argb(75, 255, 255, 255));
-    paint.setColor(Color.rgb(255, 215, 109));
-    canvas.drawCircle(w * .19f, h * .19f, w * .052f, paint);
-    cloud(canvas, w * .14f, h * .27f, w * .13f, Color.WHITE);
+    cloud(canvas, w * .94f, h * .61f, w * .17f, Color.argb(35, 255, 255, 255));
+    cloud(canvas, w * .04f, h * .48f, w * .10f, Color.argb(28, 255, 255, 255));
   }
 
   private void cloud(Canvas c, float x, float y, float width, int color) {

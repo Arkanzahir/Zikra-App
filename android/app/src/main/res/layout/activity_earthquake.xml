@@ -1,149 +1,319 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A9CDF8"
-    android:orientation="vertical">
-    <include layout="@layout/protector_toolbar" />
-    <com.zikra.app.safety.IndonesiaMapView
-        android:id="@+id/quakeMap"
+    android:orientation="vertical"
+    android:background="#BBD8F7">
+    <include
+        layout="@layout/protector_toolbar" />
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.85" />
+        android:layout_height="@dimen/protector_detail_map_height"
+        android:layout_marginBottom="-18dp">
+        <com.zikra.app.safety.IndonesiaMapView
+            android:id="@+id/quakeMap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            style="@style/ProtectorEyebrow"
+            android:text="INDONESIA · BMKG"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_margin="14dp"
+            android:gravity="center"
+            android:paddingHorizontal="11dp"
+            android:textColor="@color/protector_blue"
+            android:background="@drawable/protector_circle_white" />
+    </FrameLayout>
     <ScrollView
+        android:id="@+id/quakeSheet"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.35"
+        android:layout_weight="1"
         android:background="@drawable/quake_sheet_bg"
         android:fillViewport="true"
-        android:elevation="8dp">
+        android:scrollbars="none"
+        android:clipToOutline="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="22dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/protector_screen_padding"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp">
             <View
-                android:layout_width="42dp"
+                android:layout_width="36dp"
                 android:layout_height="4dp"
                 android:layout_gravity="center"
-                android:background="#E1E5EC"
-                android:layout_marginBottom="20dp" />
+                android:background="#DFE6F0"
+                android:layout_marginBottom="16dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    style="@style/ProtectorEyebrow"
+                    android:text="LAPORAN TERAKHIR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="9dp"
+                    android:textSize="9sp"
+                    android:textColor="@color/protector_blue"
+                    android:background="@drawable/protector_tag_blue" />
+                <TextView
+                    style="@style/ProtectorBody"
+                    android:text="Sumber: BMKG"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textSize="10sp" />
+            </LinearLayout>
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="28dp"
-                android:paddingHorizontal="10dp"
-                android:gravity="center"
-                android:text="Laporan terakhir BMKG"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                android:textColor="#3569F3"
-                android:background="@drawable/protector_tag_blue" />
-            <TextView
-                android:id="@+id/quakeArea"
                 style="@style/ProtectorHeading"
                 android:text="Memuat gempabumi terkini…"
+                android:id="@+id/quakeArea"
                 android:textSize="17sp"
-                android:layout_marginTop="14dp" />
+                android:lineSpacingExtra="3dp"
+                android:layout_marginTop="13dp" />
             <TextView
-                android:id="@+id/quakeTime"
                 style="@style/ProtectorBody"
                 android:text="Waktu kejadian belum tersedia"
+                android:id="@+id/quakeTime"
+                android:textSize="10sp"
                 android:layout_marginTop="7dp" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:layout_marginTop="18dp"
-                android:padding="14dp"
-                android:background="@drawable/quake_stat_bg"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:baselineAligned="false">
+                android:baselineAligned="false"
+                android:paddingVertical="15dp"
+                android:paddingHorizontal="8dp"
+                android:minHeight="98dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/quake_stat_bg">
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="vertical"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="3dp">
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:src="@drawable/protector_ic_clock"
+                        android:importantForAccessibility="no"
+                        android:tint="#E5EDFF" />
                     <TextView
-                        android:id="@+id/quakeMagnitude"
-                        style="@style/ProtectorHeading"
+                        style="@style/ProtectorMetric"
                         android:text="—"
-                        android:gravity="center"
+                        android:id="@+id/quakeClock"
+                        android:textSize="13sp"
                         android:textColor="@color/white"
-                        android:textSize="22sp" />
-                    <TextView
-                        style="@style/ProtectorBody"
-                        android:text="Magnitudo"
+                        android:minHeight="28dp"
                         android:gravity="center"
-                        android:textColor="#DCE7FF"
-                        android:textSize="10sp" />
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        style="@style/ProtectorMetricCaption"
+                        android:text="Waktu · WIB"
+                        android:textSize="9sp"
+                        android:textColor="#E0E9FF"
+                        android:layout_marginTop="3dp" />
                 </LinearLayout>
                 <View
                     android:layout_width="1dp"
-                    android:layout_height="36dp"
-                    android:background="#40FFFFFF" />
+                    android:layout_height="42dp"
+                    android:background="#30FFFFFF" />
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="vertical"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="3dp">
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:src="@drawable/quake_ic_wave"
+                        android:importantForAccessibility="no"
+                        android:tint="#E5EDFF" />
                     <TextView
-                        android:id="@+id/quakeDepth"
-                        style="@style/ProtectorHeading"
+                        style="@style/ProtectorMetric"
                         android:text="—"
-                        android:gravity="center"
+                        android:id="@+id/quakeMagnitude"
+                        android:textSize="22sp"
                         android:textColor="@color/white"
-                        android:textSize="22sp" />
-                    <TextView
-                        style="@style/ProtectorBody"
-                        android:text="Kedalaman"
+                        android:minHeight="28dp"
                         android:gravity="center"
-                        android:textColor="#DCE7FF"
-                        android:textSize="10sp" />
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        style="@style/ProtectorMetricCaption"
+                        android:text="Magnitudo"
+                        android:textSize="9sp"
+                        android:textColor="#E0E9FF"
+                        android:layout_marginTop="3dp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="42dp"
+                    android:background="#30FFFFFF" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:paddingHorizontal="3dp">
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:src="@drawable/ic_pin"
+                        android:importantForAccessibility="no"
+                        android:tint="#E5EDFF" />
+                    <TextView
+                        style="@style/ProtectorMetric"
+                        android:text="—"
+                        android:id="@+id/quakeDepth"
+                        android:textSize="13sp"
+                        android:textColor="@color/white"
+                        android:minHeight="28dp"
+                        android:gravity="center"
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        style="@style/ProtectorMetricCaption"
+                        android:text="Kedalaman"
+                        android:textSize="9sp"
+                        android:textColor="#E0E9FF"
+                        android:layout_marginTop="3dp" />
                 </LinearLayout>
             </LinearLayout>
             <TextView
                 style="@style/ProtectorHeading"
                 android:text="Detail gempabumi"
-                android:layout_marginTop="22dp"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_marginTop="20dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:gravity="top">
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:src="@drawable/protector_ic_warning"
+                    android:importantForAccessibility="no"
+                    android:tint="#6C8BBB"
+                    android:layout_marginTop="2dp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginStart="11dp">
+                    <TextView
+                        style="@style/ProtectorHeading"
+                        android:text="Potensi tsunami"
+                        android:textSize="11sp"
+                        android:textColor="#526A8C" />
+                    <TextView
+                        style="@style/ProtectorBody"
+                        android:text="Informasi menunggu data BMKG"
+                        android:id="@+id/quakePotential"
+                        android:textSize="11sp"
+                        android:layout_marginTop="5dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:gravity="top">
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:src="@drawable/ic_pin"
+                    android:importantForAccessibility="no"
+                    android:tint="#6C8BBB"
+                    android:layout_marginTop="2dp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginStart="11dp">
+                    <TextView
+                        style="@style/ProtectorHeading"
+                        android:text="Koordinat episentrum"
+                        android:textSize="11sp"
+                        android:textColor="#526A8C" />
+                    <TextView
+                        style="@style/ProtectorBody"
+                        android:text="Koordinat belum tersedia"
+                        android:id="@+id/quakeCoordinates"
+                        android:textSize="11sp"
+                        android:layout_marginTop="5dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:gravity="top">
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:src="@drawable/quake_ic_wave"
+                    android:importantForAccessibility="no"
+                    android:tint="#6C8BBB"
+                    android:layout_marginTop="2dp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginStart="11dp">
+                    <TextView
+                        style="@style/ProtectorHeading"
+                        android:text="Wilayah dirasakan"
+                        android:textSize="11sp"
+                        android:textColor="#526A8C" />
+                    <TextView
+                        style="@style/ProtectorBody"
+                        android:text="Wilayah belum tersedia"
+                        android:id="@+id/quakeFelt"
+                        android:textSize="11sp"
+                        android:layout_marginTop="5dp" />
+                </LinearLayout>
+            </LinearLayout>
             <TextView
-                android:id="@+id/quakePotential"
-                style="@style/ProtectorBody"
-                android:text="Potensi belum tersedia dari BMKG"
-                android:layout_marginTop="10dp"
-                android:textColor="#456375" />
-            <TextView
-                android:id="@+id/quakeCoordinates"
-                style="@style/ProtectorBody"
-                android:text="Koordinat episentrum belum tersedia"
-                android:layout_marginTop="8dp" />
-            <TextView
-                android:id="@+id/quakeFelt"
-                style="@style/ProtectorBody"
-                android:text="Wilayah dirasakan belum tersedia"
-                android:layout_marginTop="8dp" />
-            <TextView
-                android:id="@+id/quakeStatus"
                 style="@style/ProtectorBody"
                 android:text="Menghubungkan ke BMKG…"
-                android:layout_marginTop="14dp"
-                android:textSize="11sp" />
-            <Button
-                android:id="@+id/quakeOpenMap"
-                style="@style/ProtectorButton"
+                android:id="@+id/quakeStatus"
+                android:textSize="10sp"
+                android:padding="12dp"
                 android:layout_marginTop="18dp"
+                android:background="@drawable/protector_soft_card" />
+            <Button
+                style="@style/ProtectorButton"
+                android:id="@+id/quakeOpenMap"
                 android:text="Buka episentrum di Maps"
-                android:enabled="false" />
+                android:enabled="false"
+                android:layout_marginTop="16dp" />
             <TextView
-                android:id="@+id/quakeSource"
                 style="@style/ProtectorBody"
-                android:text="Sumber: BMKG · data.bmkg.go.id ↗"
+                android:text="Sumber laporan: BMKG ↗"
+                android:id="@+id/quakeSource"
+                android:textSize="10sp"
                 android:minHeight="48dp"
                 android:gravity="center"
-                android:textSize="10sp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:background="?android:attr/selectableItemBackground" />

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:orientation="horizontal"
+    android:background="@drawable/protector_nav_bg"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp"
+    android:baselineAligned="false">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/protectorTabHome"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground">
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_home"
+            android:importantForAccessibility="no"
+            android:padding="3dp"
+            android:tint="@color/protector_blue" />
+        <TextView
+            style="@style/ProtectorTabLabel"
+            android:text="Beranda"
+            android:textColor="@color/protector_blue"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/protectorTabWeather"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground">
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_sun"
+            android:importantForAccessibility="no"
+            android:padding="3dp"
+            android:tint="#8492A6" />
+        <TextView
+            style="@style/ProtectorTabLabel"
+            android:text="Cuaca"
+            android:textColor="#8492A6"
+            android:textStyle="normal" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/protectorTabQuake"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground">
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/quake_ic_wave"
+            android:importantForAccessibility="no"
+            android:padding="3dp"
+            android:tint="#8492A6" />
+        <TextView
+            style="@style/ProtectorTabLabel"
+            android:text="Gempa"
+            android:textColor="#8492A6"
+            android:textStyle="normal" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/protectorTabHelp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground">
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_shield"
+            android:importantForAccessibility="no"
+            android:padding="3dp"
+            android:tint="#8492A6" />
+        <TextView
+            style="@style/ProtectorTabLabel"
+            android:text="Bantuan"
+            android:textColor="#8492A6"
+            android:textStyle="normal" />
+    </LinearLayout>
+</LinearLayout>

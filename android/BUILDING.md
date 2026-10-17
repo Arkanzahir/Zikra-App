@@ -45,11 +45,15 @@ SDK terpasang di `/workspace/android-sdk`; lokasi tersebut hanya dicatat di `loc
 export GRADLE_USER_HOME=/workspace/gradle-cache
 export ANDROID_USER_HOME=/workspace/android-user
 export ANDROID_HOME=/workspace/android-sdk
-export JAVA_HOME=/workspace/java/jdk-17.0.20.1+1
+export JAVA_HOME=/workspace/java/jdk-17.0.12+7
 ./gradlew assembleDebug testDebugUnitTest lintDebug
 ```
 
 Proxy HTTPS cloud, bila diperlukan, dikonfigurasi pada `GRADLE_USER_HOME/gradle.properties` lokal, bukan pada repository. Jangan menyalin kredensial atau konfigurasi proxy cloud ke project yang dibagikan.
+
+Gunakan JDK lengkap dengan `javac` dan `jlink`; JRE saja tidak cukup untuk transformasi SDK Android. Pada lingkungan ini emulator menyimpan konfigurasinya di `ANDROID_EMULATOR_HOME=/workspace/android-user` dan AVD di `ANDROID_AVD_HOME=/workspace/android-user/avd`. ADB memakai lokasi standar `~/.android`, yang pada instance ini diarahkan ke direktori writable `/workspace/android-user/adb`. Nilai `HOME` tidak diubah.
+
+AVD yang berhasil dipakai untuk pembaruan BMKG adalah `Zikra_Design_API28` (Android 9), software rendering tanpa KVM, port 5556. Build aplikasi tetap menggunakan SDK 35; hasil uji perangkat terbaru dicatat terpisah pada `VALIDATION.md`.
 
 Sensor rotasi, cahaya, akselerometer, getaran, aplikasi WhatsApp/Maps, pengenal suara, dan mesin TTS perlu diverifikasi juga pada perangkat fisik yang mendukungnya. Hasil build tidak menjamin ketersediaan sensor atau aplikasi pihak ketiga pada setiap perangkat.
 

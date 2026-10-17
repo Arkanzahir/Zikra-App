@@ -44,6 +44,8 @@ public class ForecastSelectorTest {
     assertEquals(expected, ForecastSelector.parseTimestamp("2026-10-15 06:00:00", false));
     assertEquals(expected, ForecastSelector.parseTimestamp("2026-10-15 13:00:00", true));
     assertEquals(expected, ForecastSelector.parseTimestamp("2026-10-15T06:00:00Z", false));
+    assertEquals(expected, ForecastSelector.parseTimestamp("2026-10-15T06:00:00+00:00", false));
+    assertEquals(expected, ForecastSelector.parseTimestamp("2026-10-15T13:00:00+07:00", true));
     assertNull(ForecastSelector.parseTimestamp("not-a-date", false));
     assertNull(ForecastSelector.parseTimestamp("", false));
   }

@@ -1,13 +1,12 @@
 package com.zikra.app;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import com.zikra.app.safety.BmkgClient;
 import com.zikra.app.safety.BmkgParser;
 import com.zikra.app.safety.IndonesiaMapView;
+import com.zikra.app.safety.ProtectorChrome;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -22,14 +21,7 @@ public final class EarthquakeActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_earthquake);
     setupScreen("Gempabumi BMKG");
-    getWindow().setStatusBarColor(Color.WHITE);
-    getWindow().setNavigationBarColor(Color.WHITE);
-    getWindow()
-        .getDecorView()
-        .setSystemUiVisibility(
-            getWindow().getDecorView().getSystemUiVisibility()
-                | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+    ProtectorChrome.apply(this);
     text(R.id.protectorToolbarTitle, "Gempabumi");
     text(R.id.protectorToolbarSubtitle, "Info BMKG · Laporan terakhir Indonesia");
     bmkg = new BmkgClient(this);
@@ -59,6 +51,7 @@ public final class EarthquakeActivity extends BaseActivity {
     text(R.id.quakeArea, "Memuat gempabumi terkini…");
     text(R.id.quakeTime, "Waktu kejadian belum tersedia");
     text(R.id.quakeMagnitude, "—");
+    text(R.id.quakeClock, "—");
     text(R.id.quakeDepth, "—");
     text(R.id.quakeStatus, "Menghubungkan ke BMKG…");
     text(R.id.quakePotential, "Potensi belum tersedia dari BMKG");
@@ -91,17 +84,28 @@ public final class EarthquakeActivity extends BaseActivity {
                 .withZone(ZoneId.of("Asia/Jakarta"))
                 .format(q.time));
     text(R.id.quakeMagnitude, q.magnitude);
+    text(
+        R.id.quakeClock,
+        q.time == null
+            ? "—"
+            : DateTimeFormatter.ofPattern("HH:mm")
+                .withZone(ZoneId.of("Asia/Jakarta"))
+                .format(q.time));
     text(R.id.quakeDepth, available(q.depth));
     text(R.id.quakePotential, available(q.potential));
     text(
         R.id.quakeCoordinates,
         q.hasCoordinates()
-            ? String.format(Locale.US, "Episentrum: %.3f, %.3f", q.latitude, q.longitude)
+            ? String.format(
+                new Locale("id", "ID"),
+                "%.3f° %s · %.3f° %s",
+                Math.abs(q.latitude),
+                q.latitude < 0 ? "LS" : "LU",
+                Math.abs(q.longitude),
+                q.longitude < 0 ? "BB" : "BT")
             : "Koordinat episentrum belum tersedia dari BMKG");
     text(
-        R.id.quakeFelt,
-        "Dirasakan: "
-            + (q.felt.isEmpty() || "-".equals(q.felt) ? "Tidak dicantumkan BMKG" : q.felt));
+        R.id.quakeFelt, q.felt.isEmpty() || "-".equals(q.felt) ? "Tidak dicantumkan BMKG" : q.felt);
     text(
         R.id.quakeStatus,
         "Laporan terakhir BMKG untuk Indonesia. Periksa waktu kejadian pada laporan.");

@@ -1,14 +1,15 @@
 package com.zikra.app;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.zikra.app.safety.BmkgClient;
 import com.zikra.app.safety.BmkgParser;
 import com.zikra.app.safety.IndonesiaMapView;
+import com.zikra.app.safety.ProtectorChrome;
+import com.zikra.app.safety.WeatherSymbols;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +28,7 @@ public final class ProtectorActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_protector);
     setupScreen("Zikra Protector");
-    lightChrome();
+    ProtectorChrome.apply(this);
     text(
         R.id.protectorToolbarSubtitle,
         DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy", ID)
@@ -70,20 +71,11 @@ public final class ProtectorActivity extends BaseActivity {
     refresh();
   }
 
-  private void lightChrome() {
-    getWindow().setStatusBarColor(Color.WHITE);
-    getWindow().setNavigationBarColor(Color.WHITE);
-    getWindow()
-        .getDecorView()
-        .setSystemUiVisibility(
-            getWindow().getDecorView().getSystemUiVisibility()
-                | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-  }
-
   private void refresh() {
     bmkg.reset();
     text(R.id.protectorWeatherTemperature, "—°C");
+    ((ImageView) findViewById(R.id.protectorWeatherIcon))
+        .setImageResource(WeatherSymbols.forDescription(null));
     text(R.id.protectorWeatherDescription, "Memuat prakiraan…");
     text(R.id.protectorWeatherTime, "Waktu prakiraan belum tersedia");
     text(R.id.protectorWeatherStatus, "Menghubungkan ke BMKG");
@@ -125,6 +117,8 @@ public final class ProtectorActivity extends BaseActivity {
   }
 
   private void showWeather(BmkgParser.Weather w) {
+    ((ImageView) findViewById(R.id.protectorWeatherIcon))
+        .setImageResource(WeatherSymbols.forDescription(w.description));
     text(R.id.protectorWeatherTemperature, w.temperature.isEmpty() ? "—°C" : w.temperature + "°C");
     text(R.id.protectorWeatherDescription, available(w.description));
     text(R.id.protectorWeatherTime, "Prakiraan " + TIME.format(w.time));

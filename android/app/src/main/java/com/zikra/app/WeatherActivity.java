@@ -9,7 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.zikra.app.safety.BmkgClient;
 import com.zikra.app.safety.BmkgParser;
+import com.zikra.app.safety.ProtectorChrome;
 import com.zikra.app.safety.TemperatureChartView;
+import com.zikra.app.safety.WeatherSymbols;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -28,14 +30,7 @@ public final class WeatherActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_weather);
     setupScreen("Cuaca Sukolilo");
-    getWindow().setStatusBarColor(Color.WHITE);
-    getWindow().setNavigationBarColor(Color.WHITE);
-    getWindow()
-        .getDecorView()
-        .setSystemUiVisibility(
-            getWindow().getDecorView().getSystemUiVisibility()
-                | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+    ProtectorChrome.apply(this);
     text(R.id.protectorToolbarTitle, "Cuaca");
     text(R.id.protectorToolbarSubtitle, "Info BMKG · Sukolilo, Surabaya");
     bmkg = new BmkgClient(this);
@@ -52,6 +47,8 @@ public final class WeatherActivity extends BaseActivity {
   private void refresh() {
     bmkg.reset();
     text(R.id.weatherTemperature, "—°C");
+    ((ImageView) findViewById(R.id.weatherHeroIcon))
+        .setImageResource(WeatherSymbols.forDescription(null));
     text(R.id.weatherDescription, "Memuat prakiraan…");
     text(R.id.weatherStatus, "Menghubungkan ke BMKG");
     text(R.id.weatherDate, "Waktu prakiraan belum tersedia");
@@ -80,6 +77,8 @@ public final class WeatherActivity extends BaseActivity {
 
   private void show(BmkgParser.Forecast forecast) {
     BmkgParser.Weather current = forecast.current;
+    ((ImageView) findViewById(R.id.weatherHeroIcon))
+        .setImageResource(WeatherSymbols.forDescription(current.description));
     text(R.id.weatherLocation, current.village + ", " + current.district);
     text(
         R.id.weatherDate,
@@ -105,66 +104,37 @@ public final class WeatherActivity extends BaseActivity {
     LinearLayout list = findViewById(R.id.weatherForecastList);
     list.removeAllViews();
     for (int i = 0; i < Math.min(24, relevant.size()); i++)
-      list.addView(forecastCard(relevant.get(i), i == 0));
+      list.addView(forecastCard(list, relevant.get(i), i == 0));
     findViewById(R.id.weatherEmptyForecast).setVisibility(View.GONE);
   }
 
-  private View forecastCard(BmkgParser.Weather slot, boolean selected) {
-    LinearLayout card = new LinearLayout(this);
-    card.setOrientation(LinearLayout.VERTICAL);
-    card.setGravity(android.view.Gravity.CENTER);
-    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dp(88), dp(163));
-    params.setMarginEnd(dp(9));
-    card.setLayoutParams(params);
-    card.setPadding(dp(7), dp(13), dp(7), dp(12));
+  private View forecastCard(LinearLayout parent, BmkgParser.Weather slot, boolean selected) {
+    View card = getLayoutInflater().inflate(R.layout.weather_forecast_item, parent, false);
     card.setBackgroundResource(
         selected ? R.drawable.protector_action_blue : R.drawable.protector_forecast_card);
     int primary = Color.parseColor(selected ? "#FFFFFF" : "#254363"),
         secondary = Color.parseColor(selected ? "#DCE7FF" : "#8290A4");
-    TextView date =
-        label(
-            DateTimeFormatter.ofPattern("EEE, dd MMM", locale).withZone(wib).format(slot.time),
-            10,
-            secondary);
-    card.addView(date);
-    TextView hour =
-        label(
-            DateTimeFormatter.ofPattern("HH:mm", locale).withZone(wib).format(slot.time),
-            12,
-            primary);
-    hour.setTypeface(null, android.graphics.Typeface.BOLD);
-    card.addView(hour);
-    ImageView icon = new ImageView(this);
-    String desc = slot.description.toLowerCase(locale);
-    icon.setImageResource(
-        desc.contains("cerah") && !desc.contains("berawan")
-            ? R.drawable.ic_sun
-            : R.drawable.weather_ic_cloud);
-    icon.setColorFilter(primary);
-    LinearLayout.LayoutParams ip = new LinearLayout.LayoutParams(dp(27), dp(27));
-    ip.topMargin = dp(12);
-    ip.bottomMargin = dp(8);
-    card.addView(icon, ip);
-    icon.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-    TextView temp = label(unit(slot.temperature, "°C"), 16, primary);
-    temp.setTypeface(null, android.graphics.Typeface.BOLD);
-    card.addView(temp);
-    TextView description = label(available(slot.description), 9, secondary);
-    description.setMaxLines(2);
-    description.setGravity(android.view.Gravity.CENTER);
-    description.setPadding(0, dp(5), 0, 0);
-    card.addView(description);
+    bindCard(
+        card,
+        R.id.forecastDate,
+        DateTimeFormatter.ofPattern("EEE, dd MMM", locale).withZone(wib).format(slot.time),
+        secondary);
+    bindCard(
+        card,
+        R.id.forecastHour,
+        DateTimeFormatter.ofPattern("HH:mm", locale).withZone(wib).format(slot.time),
+        primary);
+    ((ImageView) card.findViewById(R.id.forecastIcon))
+        .setImageResource(WeatherSymbols.forDescription(slot.description));
+    bindCard(card, R.id.forecastTemperature, unit(slot.temperature, "°C"), primary);
+    bindCard(card, R.id.forecastDescription, available(slot.description), secondary);
     return card;
   }
 
-  private TextView label(String value, int size, int color) {
-    TextView label = new TextView(this);
+  private void bindCard(View card, int id, String value, int color) {
+    TextView label = card.findViewById(id);
     label.setText(value);
-    label.setTextSize(size);
     label.setTextColor(color);
-    label.setGravity(android.view.Gravity.CENTER);
-    label.setFontFeatureSettings("tnum");
-    return label;
   }
 
   private String available(String value) {

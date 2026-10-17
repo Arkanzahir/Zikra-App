@@ -2,6 +2,7 @@ package com.zikra.app.safety;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -19,11 +20,16 @@ public final class ForecastSelector {
       return Instant.parse(normalized);
     } catch (DateTimeParseException ignored) {
       try {
-        return LocalDateTime.parse(normalized, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-            .atZone(local ? ZoneId.of("Asia/Jakarta") : ZoneOffset.UTC)
-            .toInstant();
-      } catch (DateTimeParseException invalid) {
-        return null;
+        // Older Android java.time implementations accept only Z in Instant.parse().
+        return OffsetDateTime.parse(normalized, DateTimeFormatter.ISO_OFFSET_DATE_TIME).toInstant();
+      } catch (DateTimeParseException noOffset) {
+        try {
+          return LocalDateTime.parse(normalized, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+              .atZone(local ? ZoneId.of("Asia/Jakarta") : ZoneOffset.UTC)
+              .toInstant();
+        } catch (DateTimeParseException invalid) {
+          return null;
+        }
       }
     }
   }

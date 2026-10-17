@@ -1,5 +1,14 @@
 # Validasi pembaruan referensi — 16 Oktober 2026
 
+## Hasil terbaru: desain BMKG — 17 Oktober 2026
+
+- Build `assembleDebug`, APK instrumentasi dan `lintDebug` lulus; 18 unit test lulus. Log: `validation/bmkg-design-verified-build.txt` dan `validation/bmkg-design-layout-final-build.txt`.
+- 15 tes perangkat BMKG lulus pada Android 9/API 28: binding data ketiga layar, navigasi detail, kondisi peta tanpa koordinat, parser respons, dan smoke dashboard. Log: `validation/bmkg-design-regression-tests.txt`.
+- Tiga tes binding/render diulang pada konfigurasi sekitar 360dp dan lulus. Smoke screenshot dashboard juga lulus. Log: `validation/bmkg-design-small-tests.txt` dan `validation/bmkg-design-actual-screen-tests.txt`.
+- Uji awal API 35 terhenti karena emulator tidak memberikan fokus jendela dan menampilkan layar hitam; pengujian dipindah ke API 28. Compile/target SDK aplikasi tetap 35. Putaran API 28 pertama menemukan timestamp `+00:00` tidak terbaca pada implementasi lama `Instant.parse`; fallback `OffsetDateTime` memperbaikinya dan seluruh tes ulang lulus. Log awal dipertahankan pada `validation/bmkg-design-initial-tests.txt` serta `validation/bmkg-design-fixture-retry-tests.txt`.
+- Screenshot data contoh diberi label **DATA UJI · BUKAN DATA LIVE**: [dashboard](validation/screens/ProtectorDesignFixture.png), [cuaca](validation/screens/WeatherDesignFixture.png), [gempa](validation/screens/EarthquakeDesignFixture.png). Screenshot versi 360dp memakai akhiran `360`; PNG menangkap display fisik 540×1170 yang menampilkan viewport logis 480×1040/213dpi. Helper memakai `screencap` agar Android lama tidak memotong tangkapan pada batas logis.
+- Tampilan loading tanpa data contoh juga dicatat pada `ProtectorActivity.png`, `WeatherActivity.png` dan `EarthquakeActivity.png`. Akses data live BMKG belum diklaim terverifikasi. Integrasi API baru, sensor fisik, Kiblat dan Quran tidak termasuk pembaruan tahap ini.
+
 Build memakai Java 17, AGP 8.7.3, Gradle 8.9, compile/target SDK 35, min SDK 26.
 
 - `assembleDebug`: lulus, APK dihasilkan.

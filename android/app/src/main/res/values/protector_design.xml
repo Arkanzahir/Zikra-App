@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <color name="protector_blue">#3569F3</color>
+    <color name="protector_ink">#1A2B45</color>
+    <color name="protector_muted">#718198</color>
+    <color name="protector_surface">#F5F8FC</color>
+    <color name="protector_border">#E8EEF6</color>
+    <color name="protector_cyan_ink">#205467</color>
+    <dimen name="protector_screen_padding">18dp</dimen>
+    <dimen name="protector_map_height">150dp</dimen>
+    <dimen name="protector_detail_map_height">210dp</dimen>
+    <style
+        name="ProtectorEyebrow"
+        parent="ProtectorBody">
+        <item name="android:textSize">10sp</item>
+        <item name="android:letterSpacing">0.09</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style
+        name="ProtectorMetric"
+        parent="ProtectorHeading">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFeatureSettings">tnum</item>
+    </style>
+    <style
+        name="ProtectorMetricCaption"
+        parent="ProtectorBody">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+</resources>

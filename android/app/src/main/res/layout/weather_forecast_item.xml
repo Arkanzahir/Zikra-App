@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="78dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:minHeight="146dp"
+    android:layout_marginEnd="8dp"
+    android:paddingHorizontal="7dp"
+    android:paddingVertical="12dp"
+    android:gravity="center_horizontal"
+    android:background="@drawable/protector_forecast_card">
+    <TextView
+        style="@style/ProtectorMetricCaption"
+        android:text=""
+        android:id="@+id/forecastDate"
+        android:textSize="9sp" />
+    <TextView
+        style="@style/ProtectorMetric"
+        android:text=""
+        android:id="@+id/forecastHour"
+        android:textSize="11sp"
+        android:layout_marginTop="5dp" />
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/weather_symbol_cloud"
+        android:importantForAccessibility="no"
+        android:id="@+id/forecastIcon"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="6dp" />
+    <TextView
+        style="@style/ProtectorMetric"
+        android:text=""
+        android:id="@+id/forecastTemperature"
+        android:textSize="17sp" />
+    <TextView
+        style="@style/ProtectorMetricCaption"
+        android:text=""
+        android:id="@+id/forecastDescription"
+        android:textSize="9sp"
+        android:maxLines="3"
+        android:layout_marginTop="6dp" />
+</LinearLayout>
