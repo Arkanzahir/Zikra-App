@@ -83,3 +83,9 @@ Lihat [VALIDATION.md](VALIDATION.md). Screenshot aplikasi native berada di folde
 - Tanggal Hijriah membuka Kalender. Tombol bel membuka Jadwal Sholat dan preferensi pengingat; layanan darurat tetap tersedia melalui Protector dan gestur goyangan.
 - Jam diperbarui pada pergantian menit; indikator sholat hanya diperbarui saat sholat berikutnya berubah.
 - Perubahan tahap ini berfokus pada Home. Tampilan halaman lainnya dan keterbatasan data di atas masih berlaku.
+
+### Koreksi tata letak dan ikon sesuai referensi
+
+- Strip sholat dinaikkan, dengan ruang 16dp sebelum kartu shortcut. Urutan setiap kolom menjadi nama waktu, ikon, lalu jam; outline lingkaran aktif dihapus, dan ikon waktu berikutnya diberi aksen amber.
+- Ikon waktu dibedakan antara bulan/bintang, terbit, matahari, berawan dan terbenam. Shortcut memakai gaya garis tipis emas yang konsisten; ikon Doa berupa tangan berdoa, Quran berupa buku terbuka dan Jadwal berupa jam alarm.
+- Delapan nama dan tujuan shortcut tetap mengikuti Zikra. Pergeseran strip mempertahankan tinggi keseluruhan konten agar tombol checklist tetap mendapat ruang pada layar pendek.

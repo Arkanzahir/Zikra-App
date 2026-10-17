@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M2,18 L22,18 M4,21 L20,21 M7,17 A5,5 0,0 1,17 17 M12,3 L12,8 M9.5,5.5 L12,8 L14.5,5.5 M3,9 L5,11 M1,14 L4,14 M19,11 L21,9 M20,14 L23,14"
+        android:fillColor="#00000000"
+        android:strokeColor="@color/home_prayer_text"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

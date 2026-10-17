@@ -2,11 +2,11 @@
 <resources>
     <dimen name="home_hero_height">324dp</dimen>
     <dimen name="home_hero_top_padding">8dp</dimen>
-    <dimen name="home_hero_bottom_padding">20dp</dimen>
+    <dimen name="home_hero_bottom_padding">38dp</dimen>
     <dimen name="home_date_height">40dp</dimen>
     <dimen name="home_date_margin">8dp</dimen>
     <dimen name="home_countdown_margin">4dp</dimen>
-    <dimen name="home_strip_divider_margin">16dp</dimen>
+    <dimen name="home_strip_divider_margin">6dp</dimen>
     <dimen name="home_strip_height">64dp</dimen>
     <dimen name="home_prayer_slot_height">62dp</dimen>
     <dimen name="home_shortcuts_padding">10dp</dimen>

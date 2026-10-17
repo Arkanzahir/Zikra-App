@@ -46,6 +46,14 @@ public final class NativeFlowTest extends InstrumentationTestCase {
       R.id.shortcutHadith
     };
     for (int id : shortcuts) assertNotNull(home.findViewById(id));
+    int[] stripPosition = new int[2], cardPosition = new int[2];
+    home.findViewById(R.id.homePrayerStrip).getLocationOnScreen(stripPosition);
+    home.findViewById(R.id.homeShortcuts).getLocationOnScreen(cardPosition);
+    int stripBottom = stripPosition[1] + home.findViewById(R.id.homePrayerStrip).getHeight();
+    int minimumGap = Math.round(12 * home.getResources().getDisplayMetrics().density);
+    assertTrue(
+        "Prayer strip must have clear space above shortcut card",
+        stripBottom + minimumGap <= cardPosition[1]);
     assertNotNull(home.findViewById(R.id.homeProgressTicks));
     assertTrue(
         ((TextView) home.findViewById(R.id.homeProgressPercent))

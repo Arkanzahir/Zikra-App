@@ -117,7 +117,7 @@
                     <TextView
                         android:id="@+id/homeCountdown"
                         android:layout_width="wrap_content"
-                        android:layout_height="28dp"
+                        android:layout_height="24dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/home_countdown_margin"
                         android:paddingHorizontal="14dp"
@@ -135,7 +135,7 @@
                         android:id="@+id/homePrayerStrip"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/home_strip_height"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="1dp"
                         android:gravity="center_vertical"
                         android:background="?android:attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
@@ -149,20 +149,20 @@
                             android:layout_marginHorizontal="1dp"
                             android:gravity="center"
                             android:orientation="vertical">
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:src="@drawable/ic_moon"
-                                android:tint="@color/home_prayer_text"
-                                android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
                                 android:text="Subuh"
                                 android:textColor="@color/home_prayer_text"
                                 android:textSize="8sp"
                                 android:includeFontPadding="false" />
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/home_prayer_moon"
+                                android:tint="@color/home_prayer_text"
+                                android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -181,20 +181,20 @@
                             android:layout_marginHorizontal="1dp"
                             android:gravity="center"
                             android:orientation="vertical">
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:src="@drawable/ic_sun"
-                                android:tint="@color/home_prayer_text"
-                                android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
                                 android:text="Terbit"
                                 android:textColor="@color/home_prayer_text"
                                 android:textSize="8sp"
                                 android:includeFontPadding="false" />
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/home_prayer_sunrise"
+                                android:tint="@color/home_prayer_text"
+                                android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -213,20 +213,20 @@
                             android:layout_marginHorizontal="1dp"
                             android:gravity="center"
                             android:orientation="vertical">
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:src="@drawable/ic_sun"
-                                android:tint="@color/home_prayer_text"
-                                android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
                                 android:text="Dzuhur"
                                 android:textColor="@color/home_prayer_text"
                                 android:textSize="8sp"
                                 android:includeFontPadding="false" />
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/home_prayer_sun"
+                                android:tint="@color/home_prayer_text"
+                                android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -245,20 +245,20 @@
                             android:layout_marginHorizontal="1dp"
                             android:gravity="center"
                             android:orientation="vertical">
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:src="@drawable/ic_sun"
-                                android:tint="@color/home_prayer_text"
-                                android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
                                 android:text="Ashar"
                                 android:textColor="@color/home_prayer_text"
                                 android:textSize="8sp"
                                 android:includeFontPadding="false" />
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/home_prayer_afternoon"
+                                android:tint="@color/home_prayer_text"
+                                android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -277,20 +277,20 @@
                             android:layout_marginHorizontal="1dp"
                             android:gravity="center"
                             android:orientation="vertical">
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:src="@drawable/ic_sun"
-                                android:tint="@color/home_prayer_text"
-                                android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
                                 android:text="Maghrib"
                                 android:textColor="@color/home_prayer_text"
                                 android:textSize="8sp"
                                 android:includeFontPadding="false" />
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/home_prayer_sunset"
+                                android:tint="@color/home_prayer_text"
+                                android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -309,20 +309,20 @@
                             android:layout_marginHorizontal="1dp"
                             android:gravity="center"
                             android:orientation="vertical">
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:src="@drawable/ic_moon"
-                                android:tint="@color/home_prayer_text"
-                                android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
                                 android:text="Isya"
                                 android:textColor="@color/home_prayer_text"
                                 android:textSize="8sp"
                                 android:includeFontPadding="false" />
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_marginTop="6dp"
+                                android:src="@drawable/home_prayer_moon"
+                                android:tint="@color/home_prayer_text"
+                                android:importantForAccessibility="no" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -363,10 +363,10 @@
                         android:focusable="true"
                         android:contentDescription="Al-Qur’an">
                         <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:padding="2dp"
-                            android:src="@drawable/ic_book"
+                            android:src="@drawable/home_ic_quran"
                             android:tint="@color/home_gold"
                             android:importantForAccessibility="no" />
                         <TextView
@@ -393,10 +393,10 @@
                         android:focusable="true"
                         android:contentDescription="Doa Harian">
                         <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:padding="2dp"
-                            android:src="@drawable/ic_heart"
+                            android:src="@drawable/home_ic_dua"
                             android:tint="@color/home_gold"
                             android:importantForAccessibility="no" />
                         <TextView
@@ -423,10 +423,10 @@
                         android:focusable="true"
                         android:contentDescription="Kiblat">
                         <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:padding="2dp"
-                            android:src="@drawable/ic_compass"
+                            android:src="@drawable/home_ic_qibla"
                             android:tint="@color/home_gold"
                             android:importantForAccessibility="no" />
                         <TextView
@@ -453,10 +453,10 @@
                         android:focusable="true"
                         android:contentDescription="Jadwal Sholat">
                         <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:padding="2dp"
-                            android:src="@drawable/ic_sun"
+                            android:src="@drawable/home_ic_prayer"
                             android:tint="@color/home_gold"
                             android:importantForAccessibility="no" />
                         <TextView
@@ -488,11 +488,11 @@
                         android:focusable="true"
                         android:contentDescription="Zikra AI">
                         <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:padding="2dp"
-                            android:src="@drawable/ic_spark"
-                            android:tint="@color/home_violet"
+                            android:src="@drawable/home_ic_ai"
+                            android:tint="@color/home_gold"
                             android:importantForAccessibility="no" />
                         <TextView
                             android:layout_width="match_parent"
@@ -518,11 +518,11 @@
                         android:focusable="true"
                         android:contentDescription="Protector BMKG">
                         <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:padding="2dp"
-                            android:src="@drawable/ic_shield"
-                            android:tint="@color/home_emerald"
+                            android:src="@drawable/home_ic_protector"
+                            android:tint="@color/home_gold"
                             android:importantForAccessibility="no" />
                         <TextView
                             android:layout_width="match_parent"
@@ -548,11 +548,11 @@
                         android:focusable="true"
                         android:contentDescription="Study Hub">
                         <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:padding="2dp"
-                            android:src="@drawable/ic_tasks"
-                            android:tint="@color/home_blue"
+                            android:src="@drawable/home_ic_study"
+                            android:tint="@color/home_gold"
                             android:importantForAccessibility="no" />
                         <TextView
                             android:layout_width="match_parent"
@@ -578,11 +578,11 @@
                         android:focusable="true"
                         android:contentDescription="Hadis">
                         <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:padding="2dp"
                             android:src="@drawable/home_ic_hadith"
-                            android:tint="@color/home_coral"
+                            android:tint="@color/home_gold"
                             android:importantForAccessibility="no" />
                         <TextView
                             android:layout_width="match_parent"

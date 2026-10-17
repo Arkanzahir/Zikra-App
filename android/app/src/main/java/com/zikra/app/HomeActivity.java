@@ -149,13 +149,10 @@ public final class HomeActivity extends BaseActivity {
       for (int i = 0; i < PRAYER_SLOTS.length; i++) {
         LinearLayout slot = findViewById(PRAYER_SLOTS[i]);
         boolean active = i == next;
-        slot.setBackgroundResource(active ? R.drawable.bg_prayer_active : 0);
-        ((ImageView) slot.getChildAt(0))
+        ((ImageView) slot.getChildAt(1))
             .setColorFilter(getColor(active ? R.color.camel : R.color.home_prayer_text));
-        ((TextView) slot.getChildAt(1))
-            .setTextColor(getColor(active ? R.color.camel : R.color.home_prayer_text));
-        ((TextView) slot.getChildAt(2))
-            .setTextColor(getColor(active ? R.color.camel : R.color.white));
+        ((TextView) slot.getChildAt(0)).setTextColor(getColor(R.color.home_prayer_text));
+        ((TextView) slot.getChildAt(2)).setTextColor(getColor(R.color.white));
         slot.setContentDescription(
             PrayerSchedule.NAMES[i]
                 + " "

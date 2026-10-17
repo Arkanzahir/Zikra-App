@@ -33,3 +33,11 @@ Screenshot yang sudah diperiksa: [Protector BMKG](validation/screens/ProtectorAc
 - Smoke Home memeriksa delapan shortcut dan progres database pada emulator API 35: lulus pada 540×1170px/210dpi (sekitar 411dp) dan 480×1040px/213dpi (sekitar 360dp). Kedua screenshot diperiksa untuk memastikan tombol checklist terlihat penuh di atas dock.
 - Screenshot Home terbaru: [layar standar](validation/screens/HomeActivity.png) dan [layar 360dp](validation/screens/HomeActivity360.png). Log: `validation/home-build.txt`, `validation/home-standard-screen-tests.txt`, `validation/home-small-screen-tests.txt`.
 - Ini validasi khusus pembaruan Home. Suite seluruh halaman tidak dijalankan ulang; keterbatasan data, sensor fisik, AI dan pengingat pada README masih berlaku.
+
+### Koreksi jarak strip dan ikon Home
+
+- `assembleDebug`, `assembleDebugAndroidTest`, dan `lintDebug` lulus setelah susunan strip serta ikon diperbarui. Tanda tangan APK diverifikasi kembali.
+- Smoke Home menambahkan pemeriksaan bahwa bagian bawah strip sholat berjarak sekurangnya 12dp dari bagian atas kartu shortcut. Desain menyediakan ruang minimal 16dp, dengan toleransi pemeriksaan pengukuran view.
+- Urutan kolom strip menjadi nama waktu → ikon → jam; warna aktif diterapkan ke ikon tanpa outline besar. Ikon shortcut memakai satu gaya emas, termasuk ikon tangan berdoa.
+- Screenshot standar dan 360dp pada folder `validation/screens/` diperbarui untuk versi ini. Pengujian ini berfokus pada Home; suite halaman lain tidak diulang.
+- Smoke dengan pemeriksaan jarak lulus pada kedua ukuran layar. Log versi ini: `validation/home-spacing-build.txt`, `validation/home-spacing-standard-tests.txt`, dan `validation/home-spacing-small-tests.txt`.
