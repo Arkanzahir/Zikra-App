@@ -2,6 +2,10 @@
 
 Project Android Studio mandiri, aplikasi native Java dengan layout XML. Tanpa Kotlin, Compose, Flutter, React Native, atau WebView. Referensi desain tersedia di [`../design/`](../design/). Implementasi awal dipindahkan dari repositori `Arkanzahir/prototype_zikra`, commit `606dfb634db7839860ade25873c22e14ebd08c87`.
 
+## Melanjutkan dari chat baru
+
+Baca [status implementasi, prioritas pekerjaan, aturan proyek, dan referensi di README utama](../README.md#mulai-di-sini-untuk-sesi-chat-baru). Prioritas berikutnya adalah Quran lengkap dengan dua mode **Mushaf / Terjemahan**. Mode Mushaf belum tersedia; jangan menganggap empat surah offline atau reader kartu ayat sebagai implementasi mushaf per halaman. Home, BMKG, Kiblat dan onboarding sudah dikerjakan bertahap; lanjutkan dari kode yang ada.
+
 ## Buka dan jalankan
 
 Buka folder `android` melalui Android Studio → Open. Gunakan JDK 17 atau 21, Android SDK 35, Build Tools 35.0.0, dan perangkat Android 8.0/API 26 atau lebih baru. Rincian lingkungan tersedia di [BUILDING.md](BUILDING.md).
@@ -33,7 +37,7 @@ Jalur Java berikut berada di `app/src/main/java/com/zikra/app/`; layout di `app/
 | Study Hub/Diary Hifz | `StudyActivity.java`, `activity_study.xml`, `data/ZikraDbHelper.java`: CRUD tugas/ibadah, mode hafalan dengan progres kategori sendiri, dan voice-to-task |
 | Zikra AI | `AiActivity.java`, `activity_ai.xml`, `assistant/`: tampilan lavender, topik belajar/ibadah/hafalan, percakapan lokal dan input suara Android |
 | Profil | `ProfileActivity.java`, `activity_profile.xml`: progres SQLite, bacaan terakhir, Hadis, Kalender, preferensi belajar, pengingat dan bantuan |
-| Onboarding | `OnboardingActivity.java`, `activity_onboarding.xml`: sambutan orbit native, pilih peran dan minat, pilihan disimpan; tampil pada peluncuran pertama |
+| Onboarding | `OnboardingActivity.java`, `activity_onboarding.xml`: orbit parallax sentuh/tilt, pilih SMP/SMA-SMK/Mahasiswa, maksimal tiga minat, SharedPreferences; tampil pada peluncuran pertama |
 | Hadis | `HadithActivity.java`, `activity_hadith.xml`: tujuh kutipan pilihan bersumber, pencarian, kategori Bukhari/Muslim dan bookmark |
 | Kalender Hijriah | `CalendarActivity.java`, `activity_calendar.xml`, `discovery/HijriCalendarModel.java`: bulan sebelumnya/berikutnya, pilih tanggal, konversi Gregorian dan hari istimewa |
 | Navigasi | `NavDock.java`: dock XML utama dan dock ibadah; Activity menggunakan explicit Intent |
@@ -43,7 +47,7 @@ Warna dasar Deep Pine `#15332F`, Emerald `#10B981`, background `#F4F6F8`, kartu 
 ## Implementasi Pemrograman Mobile
 
 - **SQLiteOpenHelper:** `ZikraDbHelper` menangani CRUD, transaksi inisialisasi harian dan kalkulasi progres. Hari pertama memuat 24 contoh dengan 8 selesai: 33%, bukan angka 35% yang dipatok. Hari berikutnya memulai 24 default belum selesai; riwayat tetap tersimpan. Tanggal checklist mengikuti zona lokal perangkat.
-- **SharedPreferences:** `zikra_preferences` menyimpan surah/ayat terakhir, bookmark hadis, peran/minat onboarding, percakapan lokal, pengingat dan preferensi goyangan.
+- **SharedPreferences:** `zikra_preferences` menyimpan surah/ayat terakhir, bookmark hadis, jenjang (`education_level`)/minat onboarding serta peran lama, percakapan lokal, pengingat dan preferensi goyangan.
 - **Akselerometer:** dua goyangan membuka pilihan bantuan; listener hanya aktif di foreground. Tombol manual tetap tersedia.
 - **Cahaya:** reader Quran menjadi gelap di bawah 10 lux dan terang di atas 15 lux, dengan kontrol manual dan fallback perangkat tanpa sensor.
 - **Rotasi:** kompas mengoreksi rotasi layar dan deklinasi magnetik untuk Sukolilo; haptik saat sejajar. Pembaruan dibatasi dan nilai stabil tidak menggambar ulang terus-menerus.
@@ -74,7 +78,7 @@ Lihat [VALIDATION.md](VALIDATION.md). Screenshot aplikasi native berada di folde
 - Layout XML diformat konsisten, dengan area sentuh tombol header minimal 48dp. Source Java menggunakan format yang sama agar mudah ditelusuri.
 - Composer AI terpisah dari area scroll percakapan. Dock disembunyikan saat keyboard terbuka, lalu ditampilkan lagi setelah keyboard ditutup.
 - Pilihan tanggal dan tab hari/pekan pada Waktu Sholat disimpan melalui `onSaveInstanceState`.
-- Header profil mengikuti peran onboarding yang tersimpan, dan dialog profil dibersihkan ketika Activity ditutup.
+- Header profil mengikuti jenjang/peran onboarding yang tersimpan, dan dialog profil dibersihkan ketika Activity ditutup.
 
 ## Penyempurnaan Home — 17 Oktober 2026
 
