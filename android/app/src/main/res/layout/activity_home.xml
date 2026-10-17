@@ -28,8 +28,10 @@
                     android:layout_height="144dp"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="22dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/mosque_silhouette"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/home_mosque_silhouette"
+                    android:tint="#A6C4B8"
+                    android:alpha="0.13"
                     android:importantForAccessibility="no" />
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -336,7 +338,7 @@
                     </LinearLayout>
                 </LinearLayout>
             </FrameLayout>
-            <LinearLayout
+            <com.zikra.app.ui.CurvedShortcutLayout
                 android:id="@+id/homeShortcuts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -345,7 +347,6 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="@dimen/home_shortcuts_padding"
-                android:background="@drawable/bg_card"
                 android:elevation="6dp">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -597,7 +598,7 @@
                             android:importantForAccessibility="no" />
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+            </com.zikra.app.ui.CurvedShortcutLayout>
             <LinearLayout
                 android:id="@+id/homeTargetCard"
                 android:layout_width="match_parent"

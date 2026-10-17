@@ -76,7 +76,7 @@ Lihat [VALIDATION.md](VALIDATION.md). Screenshot aplikasi native berada di folde
 ## Penyempurnaan Home — 17 Oktober 2026
 
 - Komposisi mengikuti referensi Home ringkas: lokasi, pencarian Quran, akses jadwal/pengingat, tanggal Hijriah, jam 70sp, countdown dan strip sholat. Status bar dan hero memakai warna Pine yang sama.
-- Siluet masjid vector digambar ulang dengan kubah, menara dan lengkungan pintu; ditempatkan di bawah jam agar angka tetap jelas.
+- Siluet masjid ditempatkan di bawah jam agar angka tetap jelas; versi terbaru menggunakan aset transparan berdasarkan acuan pengguna.
 - Grid tetap 2×4 dengan ikon garis: Al-Qur’an, Doa Harian, Kiblat, Jadwal Sholat, Zikra AI, Protector BMKG, Study Hub dan Hadis.
 - Kartu target tetap memakai 24 segmen dan persentase SQLite. Kartu lanjut bacaan menampilkan surah/ayat terakhir, dengan area scroll di atas dock.
 - Dimensi memakai varian layar pendek dan tinggi (`values/` dan `values-h740dp/`) agar tombol checklist mendapat ruang di atas dock. Tinggi hero mengikuti ukuran teks.
@@ -89,3 +89,10 @@ Lihat [VALIDATION.md](VALIDATION.md). Screenshot aplikasi native berada di folde
 - Strip sholat dinaikkan, dengan ruang 16dp sebelum kartu shortcut. Urutan setiap kolom menjadi nama waktu, ikon, lalu jam; outline lingkaran aktif dihapus, dan ikon waktu berikutnya diberi aksen amber.
 - Ikon waktu dibedakan antara bulan/bintang, terbit, matahari, berawan dan terbenam. Shortcut memakai gaya garis tipis emas yang konsisten; ikon Doa berupa tangan berdoa, Quran berupa buku terbuka dan Jadwal berupa jam alarm.
 - Delapan nama dan tujuan shortcut tetap mengikuti Zikra. Pergeseran strip mempertahankan tinggi keseluruhan konten agar tombol checklist tetap mendapat ruang pada layar pendek.
+
+### Kartu shortcut melengkung dan siluet transparan
+
+- Pembungkus shortcut memakai `ui/CurvedShortcutLayout.java`, sebuah `LinearLayout` native dengan path putih yang turun 8dp di tengah tepi atas, mengikuti lengkungan pada referensi. Grid tetap didefinisikan dalam XML.
+- Kontur yang sama membatasi ripple anak. Outline elevasi memakai bentuk convex yang kompatibel dengan Android 8, sementara permukaan kartu mempertahankan lengkungan cekung.
+- Aset `res/drawable-nodpi/home_mosque_silhouette.png` dibuat dari acuan siluet yang diberikan pengguna, dengan latar dan bukaan jendela transparan serta bidang bawah yang dipangkas. Tint teal dan alpha 0,13 diterapkan melalui XML.
+- Aset asli hasil pemrosesan disimpan tanpa modifikasi piksel tambahan. Penempatan memakai `fitCenter` agar proporsi kubah dan menara tetap terjaga.

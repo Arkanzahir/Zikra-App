@@ -41,3 +41,11 @@ Screenshot yang sudah diperiksa: [Protector BMKG](validation/screens/ProtectorAc
 - Urutan kolom strip menjadi nama waktu → ikon → jam; warna aktif diterapkan ke ikon tanpa outline besar. Ikon shortcut memakai satu gaya emas, termasuk ikon tangan berdoa.
 - Screenshot standar dan 360dp pada folder `validation/screens/` diperbarui untuk versi ini. Pengujian ini berfokus pada Home; suite halaman lain tidak diulang.
 - Smoke dengan pemeriksaan jarak lulus pada kedua ukuran layar. Log versi ini: `validation/home-spacing-build.txt`, `validation/home-spacing-standard-tests.txt`, dan `validation/home-spacing-small-tests.txt`.
+
+### Pembungkus shortcut melengkung dan aset masjid transparan
+
+- Build APK, APK instrumentasi dan lint lulus setelah `CurvedShortcutLayout` ditambahkan. Tanda tangan APK diverifikasi.
+- Aset masjid PNG 2172×724 memiliki mode RGBA dengan piksel latar ber-alpha 0; aset hasil pemrosesan disalin tanpa pengeditan piksel tambahan. Tint dan transparansi tampilan diatur oleh XML.
+- Kontur atas turun 8dp di tengah, sementara ukuran grid dan elevasi dipertahankan. Screenshot Home standar dan 360dp diperbarui untuk menilai lengkungan, siluet, jarak strip dan keterlihatan CTA.
+- Validasi berfokus pada Home; data dan layanan fitur lain tidak diubah.
+- Smoke Home dan pemeriksaan jarak lulus pada lebar sekitar 411dp serta 360dp. Kedua screenshot diperiksa setelah render. Log: `validation/home-curved-build.txt`, `validation/home-curved-standard-tests.txt`, dan `validation/home-curved-small-tests.txt`.
