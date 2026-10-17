@@ -25,10 +25,10 @@ Jalur Java berikut berada di `app/src/main/java/com/zikra/app/`; layout di `app/
 | Detail cuaca | `WeatherActivity.java`, `activity_weather.xml`: hero cyan, kelembapan/angin/jarak pandang, grafik suhu Canvas, slot prakiraan bertanggal |
 | Detail gempa | `EarthquakeActivity.java`, `activity_earthquake.xml`: peta, koordinat episentrum, kedalaman/magnitudo/waktu, buka lokasi di aplikasi peta |
 | Kiblat | `QiblaActivity.java`, `activity_qibla.xml`, `reading/QiblaCompassView.java`: kompas roset sage, Ka'bah, 294° Sukolilo, kalibrasi dan masjid kampus |
-| Waktu sholat | `PrayerActivity.java`, `activity_prayer.xml`: tanggal pekanan, tab hari/pekan, countdown dan preferensi pengingat per sholat |
+| Waktu sholat | `PrayerActivity.java`, `PrayerSchedule.java`, `reminders/`: perhitungan harian Sukolilo, tab hari/pekan, countdown, alarm dan notifikasi per sholat |
 | Quran | `QuranActivity.java`, `activity_quran.xml`: katalog/search surah, hero buku native, reader, bookmark ayat, mode malam sensor/manual |
 | Doa | `DuaActivity.java`, `activity_dua.xml`: pencarian, kategori, kartu doa, teks Arab/arti, pelafalan TTS Android |
-| Study Hub/Hafalan | `StudyActivity.java`, `activity_study.xml`, `data/ZikraDbHelper.java`: CRUD tugas/ibadah, kategori Hafalan, progres harian dan voice-to-task |
+| Study Hub/Diary Hifz | `StudyActivity.java`, `activity_study.xml`, `data/ZikraDbHelper.java`: CRUD tugas/ibadah, mode hafalan dengan progres kategori sendiri, dan voice-to-task |
 | Zikra AI | `AiActivity.java`, `activity_ai.xml`, `assistant/`: tampilan lavender, topik belajar/ibadah/hafalan, percakapan lokal dan input suara Android |
 | Profil | `ProfileActivity.java`, `activity_profile.xml`: progres SQLite, bacaan terakhir, Hadis, Kalender, preferensi belajar, pengingat dan bantuan |
 | Onboarding | `OnboardingActivity.java`, `activity_onboarding.xml`: sambutan orbit native, pilih peran dan minat, pilihan disimpan; tampil pada peluncuran pertama |
@@ -56,7 +56,8 @@ Warna dasar Deep Pine `#15332F`, Emerald `#10B981`, background `#F4F6F8`, kartu 
 - Peta native memakai batas negara **Natural Earth, public domain**, dengan atribusi di `res/raw/protector_map_attribution.txt`. Titik episentrum hanya muncul jika koordinat resmi tersedia dan valid. Peta ringkas bukan navigasi turn-by-turn.
 - Quran offline memuat **4 surah lengkap**: Al-Fatihah, Al-Ikhlas, Al-Falaq, An-Nas. Koleksi hadis berisi **7 kutipan pilihan**, bukan seluruh kitab.
 - Zikra AI saat ini **pendamping offline berbasis aturan/template**, belum tersambung ke AI generatif online. Input suara tergantung layanan pengenal ucapan perangkat.
-- Jadwal sholat memakai **referensi prototipe**, belum perhitungan astronomi atau layanan jadwal harian. Preferensi pengingat tersimpan; alarm/notifikasi otomatis belum dijadwalkan.
+- Jadwal sholat memakai **perhitungan matahari harian**, bukan jadwal resmi Kemenag atau feed jadwal online. Lokasi tetap Sukolilo (-7,280; 112,790), zona Asia/Jakarta, asumsi permukaan laut. Metode: Subuh -20°, Isya -18°, Ashar bayangan 1×, matahari terbit/terbenam -0,833°, pembulatan ke atas dan ihtiyati 2 menit untuk sholat (terbit tanpa ihtiyati). Algoritme posisi matahari mengikuti persamaan NOAA; nilai diuji terhadap Astral 3.2 pada empat musim dengan selisih maksimal 1 menit setelah pembulatan/ihtiyati. Cocokkan jadwal dengan masjid setempat.
+- Pengingat memakai lima alarm satu kali yang dihitung ulang setelah alarm terkirim, perubahan preferensi, reboot atau perubahan jam. Android 13+ meminta izin notifikasi saat pengguna menyalakan pengingat. Android 12+ menyediakan akses alarm tepat waktu melalui tombol pengaturan; jika akses tidak diberikan, alarm memakai penjadwalan yang dapat ditunda sistem. Bunyi mengikuti channel notifikasi Android, bukan audio adzan. Pengingat awalnya nonaktif sampai pengguna mengaktifkannya.
 - Kalender memakai **Umm al-Qura**; awal bulan/hari raya mengikuti otoritas setempat dan dapat berbeda. Tidak mengklaim penetapan rukyat.
 - Profil lokal tanpa login/sinkronisasi. Infaq dikeluarkan dari shortcut Home; kode halaman lama masih tersimpan sebagai arsip implementasi.
 - Sensor, haptik, pelafalan Arab serta aplikasi tujuan Intent perlu diuji pada ponsel yang mendukungnya; emulator tidak membuktikan akurasi sensor fisik.
@@ -77,7 +78,7 @@ Lihat [VALIDATION.md](VALIDATION.md). Screenshot aplikasi native berada di folde
 
 - Komposisi mengikuti referensi Home ringkas: lokasi, pencarian Quran, akses jadwal/pengingat, tanggal Hijriah, jam 70sp, countdown dan strip sholat. Status bar dan hero memakai warna Pine yang sama.
 - Siluet masjid ditempatkan di bawah jam agar angka tetap jelas; versi terbaru menggunakan aset transparan berdasarkan acuan pengguna.
-- Grid tetap 2×4 dengan ikon garis: Al-Qur’an, Doa Harian, Kiblat, Jadwal Sholat, Zikra AI, Protector BMKG, Study Hub dan Hadis.
+- Grid tetap 2×4 dengan ikon garis: Al-Qur’an, Doa Harian, Kiblat, Diary Hifz, Zikra AI, Protector BMKG, Study Hub dan Hadis.
 - Kartu target tetap memakai 24 segmen dan persentase SQLite. Kartu lanjut bacaan menampilkan surah/ayat terakhir, dengan area scroll di atas dock.
 - Dimensi memakai varian layar pendek dan tinggi (`values/` dan `values-h740dp/`) agar tombol checklist mendapat ruang di atas dock. Tinggi hero mengikuti ukuran teks.
 - Tanggal Hijriah membuka Kalender. Tombol bel membuka Jadwal Sholat dan preferensi pengingat; layanan darurat tetap tersedia melalui Protector dan gestur goyangan.
@@ -87,7 +88,7 @@ Lihat [VALIDATION.md](VALIDATION.md). Screenshot aplikasi native berada di folde
 ### Koreksi tata letak dan ikon sesuai referensi
 
 - Strip sholat dinaikkan, dengan ruang 16dp sebelum kartu shortcut. Urutan setiap kolom menjadi nama waktu, ikon, lalu jam; outline lingkaran aktif dihapus, dan ikon waktu berikutnya diberi aksen amber.
-- Ikon waktu dibedakan antara bulan/bintang, terbit, matahari, berawan dan terbenam. Shortcut memakai gaya garis tipis emas yang konsisten; ikon Doa berupa tangan berdoa, Quran berupa buku terbuka dan Jadwal berupa jam alarm.
+- Ikon waktu dibedakan antara bulan/bintang, terbit, matahari, berawan dan terbenam. Shortcut memakai gaya garis tipis emas yang konsisten; ikon Doa berupa tangan berdoa, Quran berupa buku terbuka dan Diary Hifz berupa topi wisuda.
 - Delapan nama dan tujuan shortcut tetap mengikuti Zikra. Pergeseran strip mempertahankan tinggi keseluruhan konten agar tombol checklist tetap mendapat ruang pada layar pendek.
 
 ### Kartu shortcut melengkung dan siluet transparan
@@ -102,3 +103,11 @@ Lihat [VALIDATION.md](VALIDATION.md). Screenshot aplikasi native berada di folde
 - `home_hero_ornaments.xml` menambahkan dua lentera outline dengan ukuran berbeda dan tiga bintang kecil di sisi kiri/kanan. Ornamen vector emas berada di bawah bar lokasi dan di luar area teks tanggal/jam.
 - Ornamen memakai alpha 0,18, tidak menerima klik atau fokus, dan tidak dibacakan sebagai elemen aksesibilitas. Layout dan alur navigasi tetap sama.
 - Siluet masjid tetap selebar hero dengan proporsi asli. Opasitasnya diperjelas menjadi 0,15 dan posisinya dinaikkan 4dp pada layar tinggi; posisi layar pendek dipertahankan agar tidak bertabrakan dengan jam.
+
+## Penyempurnaan fungsi harian
+
+- Home menampilkan jumlah checklist yang **selesai**, termasuk kondisi tanpa checklist. Diary Hifz menggantikan shortcut Jadwal Sholat; strip waktu dan tombol bel tetap membuka jadwal lengkap.
+- Diary Hifz adalah mode target hafalan harian pada SQLite yang sama: tambah/edit/hapus dan centang target, progres khusus hafalan, serta input suara. Ini belum jurnal evaluasi hafalan atau analisis bacaan AI.
+- `QuranActivity.EXTRA_RESUME_READING` membuka reader langsung pada surah/ayat tersimpan. Posisi gulir dipulihkan setelah layout siap; binding surah awal tidak diulang oleh callback Spinner.
+- `PrayerSchedule` menyediakan snapshot harian immutable dan waktu sholat berikutnya lintas tanggal/zona waktu. Home, daftar harian/pekan dan alarm menggunakan perhitungan yang sama.
+- `reminders/PrayerReminders`, `PrayerAlarmReceiver`, dan `PrayerRescheduleReceiver` mengelola channel, izin notifikasi, lima alarm, penerimaan reminder, dan penjadwalan ulang. Kejadian masa depan, kejadian yang terlambat lebih dari 30 menit, dan duplikat tidak diposting sebagai notifikasi baru.

@@ -1,10 +1,17 @@
 package com.zikra.app;
 
+import android.Manifest;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -12,20 +19,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import com.zikra.app.reminders.PrayerReminders;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.chrono.HijrahDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Locale;
 
-/**
- * Native reference timetable and persisted reminder preferences, without background alarm claims.
- */
+/** Daily native timetable with per-prayer Android notification reminders. */
 public final class PrayerActivity extends BaseActivity {
   private static final ZoneId WIB = ZoneId.of("Asia/Jakarta");
   private static final Locale ID = Locale.forLanguageTag("id-ID");
@@ -54,6 +59,8 @@ public final class PrayerActivity extends BaseActivity {
   private LocalDate lastClockDate;
   private boolean weekMode;
   private int previousNext = -1;
+  private boolean applyingMaster;
+  private static final int REQUEST_NOTIFICATIONS = 401;
 
   @Override
   protected void onCreate(Bundle state) {
@@ -80,8 +87,7 @@ public final class PrayerActivity extends BaseActivity {
     weekSummary = findViewById(R.id.prayerWeekSummary);
     todayTab = findViewById(R.id.prayerTodayTab);
     weekTab = findViewById(R.id.prayerWeekTab);
-    ((TextView) findViewById(R.id.prayerSunrise)).setText(PrayerSchedule.TIMES[1]);
-    ((TextView) findViewById(R.id.prayerSunset)).setText(PrayerSchedule.TIMES[4]);
+
     todayTab.setOnClickListener(
         view -> {
           selectedDate = LocalDate.now(WIB);
@@ -90,12 +96,26 @@ public final class PrayerActivity extends BaseActivity {
     weekTab.setOnClickListener(view -> selectMode(true));
     findViewById(R.id.prayerOpenQibla).setOnClickListener(view -> open(QiblaActivity.class));
     Switch master = findViewById(R.id.prayerReminderEnabled);
-    master.setChecked(preferences.getBoolean("reminder_enabled", true));
     master.setOnCheckedChangeListener(
         (view, enabled) -> {
+          if (applyingMaster) return;
+          if (enabled
+              && Build.VERSION.SDK_INT >= 33
+              && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)
+                  != PackageManager.PERMISSION_GRANTED) {
+            applyingMaster = true;
+            master.setChecked(false);
+            applyingMaster = false;
+            requestPermissions(
+                new String[] {Manifest.permission.POST_NOTIFICATIONS}, REQUEST_NOTIFICATIONS);
+            return;
+          }
           preferences.edit().putBoolean("reminder_enabled", enabled).apply();
+          PrayerReminders.sync(this);
           renderRows();
+          updateReminderUi();
         });
+    findViewById(R.id.prayerAlarmSettings).setOnClickListener(view -> openReminderSettings());
     selectMode(weekMode);
     NavDock.attach(this, (FrameLayout) findViewById(R.id.prayerRoot), "prayer");
   }
@@ -103,8 +123,8 @@ public final class PrayerActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    ((Switch) findViewById(R.id.prayerReminderEnabled))
-        .setChecked(preferences.getBoolean("reminder_enabled", true));
+    PrayerReminders.sync(this);
+    updateReminderUi();
     renderRows();
     clock.removeCallbacks(updateClock);
     clock.post(updateClock);
@@ -175,7 +195,7 @@ public final class PrayerActivity extends BaseActivity {
     ((TextView) findViewById(R.id.prayerListTitle))
         .setText(
             weekMode
-                ? "Jadwal pekan ini · referensi"
+                ? "Jadwal pekan ini"
                 : selectedDate.equals(LocalDate.now(WIB))
                     ? "Jadwal hari ini"
                     : selectedDate.format(DateTimeFormatter.ofPattern("EEEE, d MMMM", ID)));
@@ -183,19 +203,25 @@ public final class PrayerActivity extends BaseActivity {
 
   private void renderRows() {
     rows.removeAllViews();
-    LocalTime now = LocalTime.now(WIB);
-    int next = PrayerSchedule.nextPrayerIndex(now);
+    ZonedDateTime now = ZonedDateTime.now(WIB);
+    PrayerSchedule.NextPrayer upcoming = PrayerSchedule.nextAfter(now);
+    int next = upcoming.index;
+    PrayerSchedule.Day timetable = PrayerSchedule.forDate(selectedDate);
+    ((TextView) findViewById(R.id.prayerSunrise)).setText(timetable.time(1));
+    ((TextView) findViewById(R.id.prayerSunset)).setText(timetable.time(4));
     boolean today = selectedDate.equals(LocalDate.now(WIB));
-    boolean master = preferences.getBoolean("reminder_enabled", true);
+    boolean master = preferences.getBoolean("reminder_enabled", false);
     for (int item = 0; item < PRAYER_INDEXES.length; item++) {
       final String key = "reminder_" + PRAYER_KEYS[item];
       final int index = PRAYER_INDEXES[item];
       LinearLayout row =
           (LinearLayout) getLayoutInflater().inflate(R.layout.prayer_item, rows, false);
       row.setBackgroundResource(
-          today && next == index ? R.drawable.prayer_bg_active : R.drawable.prayer_bg_row);
+          today && upcoming.time.toLocalDate().equals(selectedDate) && next == index
+              ? R.drawable.prayer_bg_active
+              : R.drawable.prayer_bg_row);
       ((TextView) row.findViewById(R.id.prayerRowName)).setText(PrayerSchedule.NAMES[index]);
-      ((TextView) row.findViewById(R.id.prayerRowTime)).setText(PrayerSchedule.TIMES[index]);
+      ((TextView) row.findViewById(R.id.prayerRowTime)).setText(timetable.time(index));
       ((ImageView) row.findViewById(R.id.prayerRowIcon))
           .setImageResource(index == 0 || index == 5 ? R.drawable.ic_moon : R.drawable.ic_sun);
       ImageButton bell = row.findViewById(R.id.prayerRowBell);
@@ -211,12 +237,15 @@ public final class PrayerActivity extends BaseActivity {
             boolean enabledNow = !preferences.getBoolean(key, true);
             preferences.edit().putBoolean(key, enabledNow).apply();
             renderRows();
+            PrayerReminders.sync(this);
+            updateReminderUi();
             toast(
-                "Preferensi "
+                "Pilihan "
                     + PrayerSchedule.NAMES[index]
-                    + " "
-                    + (enabledNow ? "diaktifkan" : "dinonaktifkan")
-                    + ". Notifikasi otomatis belum diaktifkan.");
+                    + " disimpan"
+                    + (PrayerReminders.enabled(this)
+                        ? "."
+                        : ". Aktifkan pengingat untuk menerima notifikasi."));
           });
       rows.addView(row);
     }
@@ -224,30 +253,94 @@ public final class PrayerActivity extends BaseActivity {
   }
 
   private void renderCountdown() {
-    LocalDateTime now = LocalDateTime.now(WIB);
+    ZonedDateTime now = ZonedDateTime.now(WIB);
     boolean today = selectedDate.equals(now.toLocalDate());
-    int next = today ? PrayerSchedule.nextPrayerIndex(now.toLocalTime()) : 0;
-    if (today && previousNext != next) renderRows();
+    PrayerSchedule.NextPrayer next = PrayerSchedule.nextAfter(now);
+    PrayerSchedule.Day selected = PrayerSchedule.forDate(selectedDate);
+    if (today && previousNext != next.index) renderRows();
     ((TextView) findViewById(R.id.prayerNextLabel))
         .setText(
             today
-                ? "Sholat selanjutnya · jadwal referensi"
-                : selectedDate.format(DateTimeFormatter.ofPattern("EEEE, d MMMM", ID))
-                    + " · jadwal referensi");
+                ? "Sholat selanjutnya"
+                    + (next.time.toLocalDate().isAfter(now.toLocalDate()) ? " · besok" : "")
+                : selectedDate.format(DateTimeFormatter.ofPattern("EEEE, d MMMM", ID)));
     ((TextView) findViewById(R.id.prayerNextName))
-        .setText(PrayerSchedule.NAMES[next] + " · " + PrayerSchedule.TIMES[next]);
+        .setText(
+            today
+                ? PrayerSchedule.NAMES[next.index]
+                    + " · "
+                    + next.time.format(DateTimeFormatter.ofPattern("HH:mm"))
+                : PrayerSchedule.NAMES[0] + " · " + selected.time(0));
     TextView countdown = findViewById(R.id.prayerCountdown);
     if (!today) {
       countdown.setText("Sukolilo · WIB");
       countdown.setTextSize(21);
       return;
     }
-    LocalDateTime target = now.toLocalDate().atTime(LocalTime.parse(PrayerSchedule.TIMES[next]));
-    if (!target.isAfter(now)) target = target.plusDays(1);
-    long seconds = Duration.between(now, target).getSeconds();
+    long seconds = Duration.between(now, next.time).getSeconds();
     countdown.setText(
         String.format(ID, "%02d:%02d:%02d", seconds / 3600, seconds / 60 % 60, seconds % 60));
     countdown.setTextSize(27);
+  }
+
+  private void updateReminderUi() {
+    applyingMaster = true;
+    ((Switch) findViewById(R.id.prayerReminderEnabled)).setChecked(PrayerReminders.enabled(this));
+    applyingMaster = false;
+    boolean allowed = PrayerReminders.canNotify(this);
+    ((TextView) findViewById(R.id.prayerReminderStatus))
+        .setText(
+            !PrayerReminders.enabled(this)
+                ? "Aktifkan untuk menerima notifikasi waktu sholat."
+                : !allowed
+                    ? "Notifikasi belum diizinkan di pengaturan perangkat."
+                    : PrayerReminders.exactAllowed(this)
+                        ? "Pengingat aktif sesuai jadwal."
+                        : "Pengingat aktif; ketepatan waktu mengikuti pengaturan perangkat.");
+    ((TextView) findViewById(R.id.prayerAlarmSettings))
+        .setText(
+            !allowed
+                ? "Atur izin notifikasi"
+                : !PrayerReminders.exactAllowed(this)
+                    ? "Atur ketepatan pengingat"
+                    : "Pengaturan notifikasi");
+  }
+
+  private void openReminderSettings() {
+    Intent intent;
+    if (PrayerReminders.canNotify(this)
+        && !PrayerReminders.exactAllowed(this)
+        && Build.VERSION.SDK_INT >= 31) {
+      intent =
+          new Intent(
+              Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,
+              Uri.parse("package:" + getPackageName()));
+    } else {
+      intent =
+          new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+              .putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+    }
+    try {
+      startActivity(intent);
+    } catch (ActivityNotFoundException unavailable) {
+      toast("Pengaturan tidak tersedia pada perangkat ini.");
+    }
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int request, String[] permissions, int[] grants) {
+    super.onRequestPermissionsResult(request, permissions, grants);
+    if (request == REQUEST_NOTIFICATIONS) {
+      preferences
+          .edit()
+          .putBoolean(
+              "reminder_enabled",
+              grants.length > 0 && grants[0] == PackageManager.PERMISSION_GRANTED)
+          .apply();
+      PrayerReminders.sync(this);
+      updateReminderUi();
+      renderRows();
+    }
   }
 
   private void renderWeek() {
@@ -255,19 +348,20 @@ public final class PrayerActivity extends BaseActivity {
     LocalDate monday = selectedDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
     for (int day = 0; day < 7; day++) {
       LocalDate date = monday.plusDays(day);
+      PrayerSchedule.Day timetable = PrayerSchedule.forDate(date);
       TextView item = new TextView(this);
       item.setText(
           date.format(DateTimeFormatter.ofPattern("EEEE, d MMM", ID))
               + "\nSubuh  "
-              + PrayerSchedule.TIMES[0]
+              + timetable.time(0)
               + "    Dzuhur  "
-              + PrayerSchedule.TIMES[2]
+              + timetable.time(2)
               + "    Ashar  "
-              + PrayerSchedule.TIMES[3]
+              + timetable.time(3)
               + "\nMaghrib  "
-              + PrayerSchedule.TIMES[4]
+              + timetable.time(4)
               + "    Isya  "
-              + PrayerSchedule.TIMES[5]);
+              + timetable.time(5));
       item.setTextSize(11);
       item.setTextColor(Color.parseColor("#526F5C"));
       item.setLineSpacing(dp(5), 1);

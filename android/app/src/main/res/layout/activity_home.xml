@@ -454,7 +454,7 @@
                             android:importantForAccessibility="no" />
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@+id/shortcutPrayer"
+                        android:id="@+id/shortcutHifz"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -463,12 +463,12 @@
                         android:background="@drawable/home_shortcut_ripple"
                         android:clickable="true"
                         android:focusable="true"
-                        android:contentDescription="Jadwal Sholat">
+                        android:contentDescription="Diary Hifz">
                         <ImageView
                             android:layout_width="26dp"
                             android:layout_height="26dp"
                             android:padding="2dp"
-                            android:src="@drawable/home_ic_prayer"
+                            android:src="@drawable/home_ic_hifz"
                             android:tint="@color/home_gold"
                             android:importantForAccessibility="no" />
                         <TextView
@@ -477,7 +477,7 @@
                             android:minHeight="24dp"
                             android:layout_marginTop="6dp"
                             android:gravity="center"
-                            android:text="Jadwal Sholat"
+                            android:text="Diary Hifz"
                             android:textSize="9sp"
                             android:textColor="@color/pine"
                             android:maxLines="2"

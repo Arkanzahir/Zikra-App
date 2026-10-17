@@ -27,6 +27,7 @@ import com.zikra.app.reading.SurahData;
 import java.util.Locale;
 
 public class QuranActivity extends BaseActivity implements SensorEventListener {
+  public static final String EXTRA_RESUME_READING = "resume_reading";
   private SensorManager sensorManager;
   private Sensor lightSensor;
   private SharedPreferences preferences;
@@ -42,6 +43,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   private int selectedIndex;
   private boolean readingOpen;
   private LinearLayout surahList;
+  private android.view.ViewTreeObserver.OnGlobalLayoutListener pendingBookmarkLayout;
   private final int[] secondaryLabels = {
     R.id.quranIntro,
     R.id.readingAvailable,
@@ -64,7 +66,10 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     lightStatus = findViewById(R.id.lightSensorStatus);
     surahSelector = findViewById(R.id.surahSelector);
     surahList = findViewById(R.id.quranSurahList);
-    readingOpen = savedInstanceState != null && savedInstanceState.getBoolean("reading_open");
+    readingOpen =
+        savedInstanceState != null
+            ? savedInstanceState.getBoolean("reading_open")
+            : getIntent().getBooleanExtra(EXTRA_RESUME_READING, false);
     nightMode = savedInstanceState != null && savedInstanceState.getBoolean("night_mode");
     manualOverride = savedInstanceState != null && savedInstanceState.getBoolean("manual_override");
     String lastSurah = preferences.getString("last_surah", "Al-Fatihah");
@@ -125,6 +130,8 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             boolean initial = firstSelection && position == initialIndex;
             selectedIndex = position;
+            firstSelection = false;
+            if (initial) return; // The initial surah is already bound below during onCreate.
             if (!initial) {
               preferences
                   .edit()
@@ -134,7 +141,6 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
               showReader();
             }
             renderSurah(initial);
-            firstSelection = false;
           }
 
           @Override
@@ -157,8 +163,8 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
         });
     applyNightMode(nightMode);
     updateSensorLabel();
-    renderSurah(true);
     renderCatalog("");
+    renderSurah(true);
     if (readingOpen) showReader();
   }
 
@@ -225,6 +231,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   }
 
   private void renderSurah(boolean restoreBookmark) {
+    clearBookmarkLayout();
     SurahData surah = SurahData.ALL[selectedIndex];
     ((TextView) findViewById(R.id.surahArabicTitle)).setText(surah.arabicName);
     ((TextView) findViewById(R.id.surahMetadata))
@@ -254,14 +261,40 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     refreshBookmarkLabels();
     applyNightMode(nightMode);
     if (restoreBookmark && lastAyah > 1) {
-      final View bookmark = ayahContainer.getChildAt(lastAyah - 1);
-      ((ScrollView) findViewById(R.id.quranScroll))
-          .post(
-              () -> {
-                ScrollView scroll = findViewById(R.id.quranScroll);
-                scroll.smoothScrollTo(0, ayahContainer.getTop() + bookmark.getTop());
-              });
+      scrollToBookmark(ayahContainer.getChildAt(lastAyah - 1));
     }
+  }
+
+  private void scrollToBookmark(View bookmark) {
+    clearBookmarkLayout();
+    ScrollView scroll = findViewById(R.id.quranScroll);
+    pendingBookmarkLayout =
+        () -> {
+          if (!readingOpen || bookmark.getHeight() == 0 || scroll.getHeight() == 0) return;
+          clearBookmarkLayout();
+          int[] versePosition = new int[2], scrollPosition = new int[2];
+          bookmark.getLocationInWindow(versePosition);
+          scroll.getLocationInWindow(scrollPosition);
+          scroll.scrollTo(
+              0, Math.max(0, versePosition[1] - scrollPosition[1] + scroll.getScrollY() - dp(12)));
+        };
+    ayahContainer.getViewTreeObserver().addOnGlobalLayoutListener(pendingBookmarkLayout);
+    ayahContainer.requestLayout();
+  }
+
+  private void clearBookmarkLayout() {
+    if (pendingBookmarkLayout != null
+        && ayahContainer != null
+        && ayahContainer.getViewTreeObserver().isAlive()) {
+      ayahContainer.getViewTreeObserver().removeOnGlobalLayoutListener(pendingBookmarkLayout);
+      pendingBookmarkLayout = null;
+    }
+  }
+
+  @Override
+  protected void onDestroy() {
+    clearBookmarkLayout();
+    super.onDestroy();
   }
 
   private void refreshBookmarkLabels() {

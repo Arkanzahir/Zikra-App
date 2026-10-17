@@ -68,6 +68,14 @@ public final class StudyActivity extends BaseActivity {
     }
     db = new ZikraDbHelper(this);
     if (state != null) filter = state.getString(STATE_FILTER, "All");
+    if (diaryMode) {
+      filter = ZikraDbHelper.CATEGORY_HIFZ;
+      for (int id :
+          new int[] {R.id.study_filter_all, R.id.study_filter_study, R.id.study_filter_ibadah})
+        findViewById(id).setVisibility(View.GONE);
+      ((TextView) findViewById(R.id.study_add)).setText(R.string.study_hifz_add);
+      ((TextView) findViewById(R.id.study_empty)).setText(R.string.study_hifz_empty);
+    }
     adapter = new TaskAdapter();
     ListView list = findViewById(R.id.study_tasks);
     list.setAdapter(adapter);
@@ -158,11 +166,22 @@ public final class StudyActivity extends BaseActivity {
     adapter.items = filtered;
     adapter.notifyDataSetChanged();
     ZikraDbHelper.Progress progress = db.getProgress();
+    int completed = progress.completed, total = progress.total, percent = progress.percent;
+    if (diaryMode) {
+      total = filtered.size();
+      completed = 0;
+      for (Task task : filtered) if (task.completed) completed++;
+      percent = total == 0 ? 0 : Math.round(100f * completed / total);
+    }
     ((TextView) findViewById(R.id.study_percent))
-        .setText(getString(R.string.study_percent, progress.percent));
+        .setText(getString(R.string.study_percent, percent));
     ((TextView) findViewById(R.id.study_progress_label))
-        .setText(getString(R.string.study_progress_label, progress.completed, progress.total));
-    ((ProgressBar) findViewById(R.id.study_progress)).setProgress(progress.percent, true);
+        .setText(
+            getString(
+                diaryMode ? R.string.study_hifz_progress_label : R.string.study_progress_label,
+                completed,
+                total));
+    ((ProgressBar) findViewById(R.id.study_progress)).setProgress(percent, true);
     styleFilter(R.id.study_filter_all, "All");
     styleFilter(R.id.study_filter_study, ZikraDbHelper.CATEGORY_STUDY);
     styleFilter(R.id.study_filter_ibadah, ZikraDbHelper.CATEGORY_IBADAH);
@@ -193,9 +212,17 @@ public final class StudyActivity extends BaseActivity {
                   "All".equals(filter) && diaryMode ? ZikraDbHelper.CATEGORY_HIFZ : filter));
     }
     title.setSelection(title.length());
+    if (diaryMode) {
+      title.setHint(R.string.study_hifz_hint);
+      category.setSelection(categoryPosition(ZikraDbHelper.CATEGORY_HIFZ));
+      category.setEnabled(false);
+    }
     AlertDialog dialog =
         new AlertDialog.Builder(this)
-            .setTitle(task == null ? R.string.study_new : R.string.study_edit)
+            .setTitle(
+                diaryMode
+                    ? (task == null ? R.string.study_hifz_new : R.string.study_hifz_edit)
+                    : (task == null ? R.string.study_new : R.string.study_edit))
             .setView(editor)
             .setNegativeButton(R.string.study_cancel, null)
             .setPositiveButton(R.string.study_save, null)

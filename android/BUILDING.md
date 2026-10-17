@@ -52,3 +52,9 @@ export JAVA_HOME=/workspace/java/jdk-17.0.20.1+1
 Proxy HTTPS cloud, bila diperlukan, dikonfigurasi pada `GRADLE_USER_HOME/gradle.properties` lokal, bukan pada repository. Jangan menyalin kredensial atau konfigurasi proxy cloud ke project yang dibagikan.
 
 Sensor rotasi, cahaya, akselerometer, getaran, aplikasi WhatsApp/Maps, pengenal suara, dan mesin TTS perlu diverifikasi juga pada perangkat fisik yang mendukungnya. Hasil build tidak menjamin ketersediaan sensor atau aplikasi pihak ketiga pada setiap perangkat.
+
+## Pengingat sholat
+
+Buka Jadwal Sholat melalui strip waktu atau tombol bel Home, lalu aktifkan **Pengingat sholat**. Android 13+ menampilkan permintaan izin notifikasi. Untuk Android 12+, tombol **Atur ketepatan pengingat** membuka akses alarm tepat waktu; jika tidak diizinkan, aplikasi tetap memakai alarm yang ketepatannya dapat dipengaruhi penghematan daya sistem. Pilihan per sholat diatur lewat ikon bel pada baris jadwal.
+
+`PrayerRemindersTest` memakai layanan alarm/notifikasi perangkat sungguhan dan memberikan izin notifikasi melalui UiAutomation pada perangkat uji jika dibutuhkan. Tes memverifikasi jadwal aktif/nonaktif dan receiver notifikasi dengan broadcast uji, bukan menunggu waktu sholat sebenarnya.

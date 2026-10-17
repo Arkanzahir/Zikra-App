@@ -252,15 +252,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginTop="6dp"
-                android:text="Preferensi pengingat"
+                android:text="Pengingat sholat"
                 android:textSize="12sp"
                 android:textColor="#4D6A58"
                 android:buttonTint="@color/sage"
                 android:thumbTint="@color/sage" />
             <TextView
+                android:id="@+id/prayerReminderStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Jadwal referensi prototipe untuk Sukolilo, bukan jadwal resmi harian. Cocokkan dengan masjid setempat. Ikon lonceng menyimpan preferensi; notifikasi otomatis belum diaktifkan."
+                android:layout_marginBottom="8dp"
+                android:textSize="11sp"
+                android:textColor="@color/muted" />
+            <TextView
+                android:id="@+id/prayerAlarmSettings"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
+                android:background="@drawable/prayer_bg_row"
+                android:text="Pengaturan notifikasi"
+                android:textColor="@color/sage_active"
+                android:textSize="12sp"
+                android:clickable="true"
+                android:focusable="true" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Perhitungan Sukolilo · WIB. Subuh 20°, Isya 18°, Ashar bayangan 1×; ihtiyati 2 menit (terbit tanpa ihtiyati). Asumsi dekat permukaan laut. Ini hasil perhitungan, bukan jadwal resmi Kemenag; cocokkan dengan masjid setempat."
                 android:textSize="10sp"
                 android:textColor="#A1ADA4"
                 android:lineSpacingExtra="4dp" />

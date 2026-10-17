@@ -3,8 +3,12 @@ package com.zikra.app;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.test.InstrumentationTestCase;
+import android.view.View;
+import android.widget.TextView;
+import com.zikra.app.data.ZikraDbHelper;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /** Verifies that the replacement shortcut and the Hijri date open working native pages. */
@@ -12,10 +16,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public final class HomeNavigationTest extends InstrumentationTestCase {
   private HomeActivity home;
   private Activity destination;
+  private String oldSurah;
+  private int oldAyah;
 
   @Override
   protected void setUp() throws Exception {
     super.setUp();
+    SharedPreferences saved =
+        getInstrumentation().getTargetContext().getSharedPreferences("zikra_preferences", 0);
+    oldSurah = saved.getString("last_surah", "Al-Fatihah");
+    oldAyah = saved.getInt("last_ayah", 1);
+    saved.edit().putString("last_surah", "Al-Falaq").putInt("last_ayah", 4).commit();
     getInstrumentation()
         .getTargetContext()
         .getSharedPreferences("zikra_preferences", 0)
@@ -42,6 +53,52 @@ public final class HomeNavigationTest extends InstrumentationTestCase {
     openFromHome(R.id.homeHijri, CalendarActivity.class);
     assertNotNull(destination.findViewById(R.id.calendarMonth));
     assertTrue(destination.findViewById(R.id.calendarNext).isEnabled());
+  }
+
+  public void testDiaryShortcutOpensHifzMode() {
+    openFromHome(R.id.shortcutHifz, StudyActivity.class);
+    assertEquals(
+        "Diary Hifz",
+        ((TextView) destination.findViewById(R.id.study_screen_title)).getText().toString());
+    assertEquals(ZikraDbHelper.CATEGORY_HIFZ, destination.getIntent().getStringExtra("category"));
+    assertEquals(View.GONE, destination.findViewById(R.id.study_filter_study).getVisibility());
+    assertTrue(
+        ((TextView) destination.findViewById(R.id.study_progress_label))
+            .getText()
+            .toString()
+            .contains("target hafalan"));
+    UiEvidence.capture(getInstrumentation(), "DiaryHifz");
+  }
+
+  public void testContinueReadingOpensSavedSurahAndAyah() {
+    openFromHome(R.id.homeContinueReading, QuranActivity.class);
+    assertEquals(View.VISIBLE, destination.findViewById(R.id.quranReader).getVisibility());
+    assertEquals(View.GONE, destination.findViewById(R.id.quranCatalog).getVisibility());
+    assertTrue(
+        ((TextView) destination.findViewById(R.id.surahMetadata))
+            .getText()
+            .toString()
+            .contains("Al-Falaq"));
+    android.widget.LinearLayout verses = destination.findViewById(R.id.ayahContainer);
+    assertEquals(
+        "✓ Bacaan terakhir",
+        ((TextView) verses.getChildAt(3).findViewById(R.id.ayahBookmark)).getText().toString());
+    assertEquals(
+        4, destination.getSharedPreferences("zikra_preferences", 0).getInt("last_ayah", 0));
+    assertTrue(
+        "Resume should scroll to the saved verse",
+        ((android.widget.ScrollView) destination.findViewById(R.id.quranScroll)).getScrollY() > 0);
+    UiEvidence.capture(getInstrumentation(), "QuranResume");
+  }
+
+  public void testPrayerStripOpensDailyCalculatedTimes() {
+    openFromHome(R.id.homePrayerStrip, PrayerActivity.class);
+    android.widget.LinearLayout rows = destination.findViewById(R.id.prayerRows);
+    assertEquals(
+        PrayerSchedule.forDate(java.time.LocalDate.now(PrayerSchedule.ZONE)).time(0),
+        ((TextView) rows.getChildAt(0).findViewById(R.id.prayerRowTime)).getText().toString());
+    assertNotNull(destination.findViewById(R.id.prayerAlarmSettings));
+    UiEvidence.capture(getInstrumentation(), "PrayerActivity");
   }
 
   private void openFromHome(int id, Class<? extends Activity> target) {
@@ -78,6 +135,13 @@ public final class HomeNavigationTest extends InstrumentationTestCase {
     }
     if (home != null) getInstrumentation().runOnMainSync(home::finish);
     getInstrumentation().waitForIdleSync();
+    getInstrumentation()
+        .getTargetContext()
+        .getSharedPreferences("zikra_preferences", 0)
+        .edit()
+        .putString("last_surah", oldSurah)
+        .putInt("last_ayah", oldAyah)
+        .commit();
     super.tearDown();
   }
 }

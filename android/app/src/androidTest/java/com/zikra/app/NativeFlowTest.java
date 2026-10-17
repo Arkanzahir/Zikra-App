@@ -39,7 +39,7 @@ public final class NativeFlowTest extends InstrumentationTestCase {
       R.id.shortcutQuran,
       R.id.shortcutDua,
       R.id.shortcutQibla,
-      R.id.shortcutPrayer,
+      R.id.shortcutHifz,
       R.id.shortcutAi,
       R.id.shortcutProtector,
       R.id.shortcutStudy,

@@ -1,0 +1,40 @@
+INSTRUMENTATION_STATUS: class=com.zikra.app.reminders.PrayerRemindersTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+com.zikra.app.reminders.PrayerRemindersTest:
+INSTRUMENTATION_STATUS: test=testFiveAlarmsRespectPerPrayerAndMasterSwitches
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.reminders.PrayerRemindersTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testFiveAlarmsRespectPerPrayerAndMasterSwitches
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.reminders.PrayerRemindersTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testReceiverPostsRealNotificationAndIgnoresDuplicateAndFutureEvents
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.reminders.PrayerRemindersTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testReceiverPostsRealNotificationAndIgnoresDuplicateAndFutureEvents
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.HomeNavigationTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+com.zikra.app.HomeNavigationTest:
+INSTRUMENTATION_STATUS: test=testContinueReadingOpensSavedSurahAndAyah
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_RESULT: longMsg=Input dispatching timed out (86e265 com.zikra.app/com.zikra.app.HomeActivity (server) is not responding. Waited 5002ms for FocusEvent(hasFocus=false)).
+INSTRUMENTATION_RESULT: shortMsg=keyDispatchingTimedOut
+INSTRUMENTATION_CODE: 0

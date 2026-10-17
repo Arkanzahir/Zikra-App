@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="study_hifz_add">Tambah target hafalan</string>
+    <string name="study_hifz_empty">Belum ada target hafalan hari ini. Mulai dari beberapa ayat.</string>
+    <string name="study_hifz_progress_label">%1$d dari %2$d target hafalan selesai</string>
+    <string name="study_hifz_hint">Contoh: Murajaah Al-Mulk ayat 1–5</string>
+    <string name="study_hifz_new">Target hafalan baru</string>
+    <string name="study_hifz_edit">Edit target hafalan</string>
+</resources>
