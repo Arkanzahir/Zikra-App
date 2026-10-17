@@ -101,7 +101,10 @@ public final class ProfileActivity extends BaseActivity {
 
   private String roleLabel() {
     String role = preferences.getString("user_role", "Student");
-    return "Teacher".equals(role) ? "Pengajar" : "Parents".equals(role) ? "Orang tua" : "Pelajar";
+    if ("Teacher".equals(role)) return "Pengajar";
+    if ("Parents".equals(role)) return "Orang tua";
+    String level = preferences.getString("education_level", "");
+    return level.isEmpty() ? "Pelajar" : level;
   }
 
   private void row(String title, String subtitle, int icon, Runnable action) {

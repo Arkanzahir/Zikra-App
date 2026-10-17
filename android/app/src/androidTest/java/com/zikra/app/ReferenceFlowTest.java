@@ -60,22 +60,70 @@ public final class ReferenceFlowTest extends InstrumentationTestCase {
     assertTrue(((LinearLayout) hadith.findViewById(R.id.hadithList)).getChildCount() > 0);
   }
 
-  public void testOnboardingSavesRoleAndReturnsFromEditMode() {
-    OnboardingActivity onboarding = launch(OnboardingActivity.class);
-    getInstrumentation()
-        .runOnMainSync(
-            () -> {
-              onboarding.findViewById(R.id.onboardRoleTeacher).performClick();
-              onboarding.findViewById(R.id.onboardContinue).performClick();
-              onboarding.findViewById(R.id.onboardContinue).performClick();
-            });
-    getInstrumentation().waitForIdleSync();
-    assertEquals(
-        "Teacher",
-        getInstrumentation()
-            .getTargetContext()
-            .getSharedPreferences("zikra_preferences", 0)
-            .getString("user_role", ""));
-    assertTrue(onboarding.isFinishing());
+  public void testOnboardingSavesLevelAndLimitsInterestsInEditMode() {
+    android.content.SharedPreferences prefs =
+        getInstrumentation().getTargetContext().getSharedPreferences("zikra_preferences", 0);
+    String oldLevel = prefs.getString("education_level", null);
+    String oldRole = prefs.getString("user_role", null);
+    java.util.Set<String> oldInterests = prefs.getStringSet("learning_interests", null);
+    try {
+      prefs.edit().remove("education_level").remove("learning_interests").commit();
+      OnboardingActivity onboarding = launch(OnboardingActivity.class);
+      assertFalse(onboarding.findViewById(R.id.onboardContinue).isEnabled());
+      getInstrumentation()
+          .runOnMainSync(() -> onboarding.findViewById(R.id.onboardBack).performClick());
+      UiEvidence.capture(getInstrumentation(), "OnboardingWelcome");
+      getInstrumentation()
+          .runOnMainSync(
+              () -> {
+                onboarding.findViewById(R.id.onboardContinue).performClick();
+                onboarding.findViewById(R.id.onboardLevelSma).performClick();
+              });
+      UiEvidence.capture(getInstrumentation(), "OnboardingEducation");
+      assertTrue(onboarding.findViewById(R.id.onboardLevelSma).isSelected());
+      getInstrumentation()
+          .runOnMainSync(() -> onboarding.findViewById(R.id.onboardContinue).performClick());
+      android.widget.GridLayout grid = onboarding.findViewById(R.id.onboardInterests);
+      getInstrumentation()
+          .runOnMainSync(
+              () -> {
+                for (int i = 0; i < 4; i++) grid.getChildAt(i).performClick();
+              });
+      assertFalse("A fourth interest must not be selected", grid.getChildAt(3).isSelected());
+      assertEquals(
+          "3 dari 3 minat dipilih",
+          ((TextView) onboarding.findViewById(R.id.onboardInterestCount)).getText().toString());
+      getInstrumentation()
+          .runOnMainSync(
+              () -> {
+                grid.getChildAt(0).performClick();
+                grid.getChildAt(3).performClick();
+                onboarding.findViewById(R.id.onboardBack).performClick();
+              });
+      assertTrue(
+          "Education survives moving back",
+          onboarding.findViewById(R.id.onboardLevelSma).isSelected());
+      getInstrumentation()
+          .runOnMainSync(() -> onboarding.findViewById(R.id.onboardContinue).performClick());
+      UiEvidence.capture(getInstrumentation(), "OnboardingInterests");
+      getInstrumentation()
+          .runOnMainSync(() -> onboarding.findViewById(R.id.onboardContinue).performClick());
+      getInstrumentation().waitForIdleSync();
+      assertEquals("SMA / SMK", prefs.getString("education_level", ""));
+      assertEquals("Student", prefs.getString("user_role", ""));
+      java.util.Set<String> saved =
+          prefs.getStringSet("learning_interests", java.util.Collections.emptySet());
+      assertEquals(3, saved.size());
+      assertFalse(saved.contains(OnboardingActivity.INTERESTS[0]));
+      assertTrue(saved.contains(OnboardingActivity.INTERESTS[3]));
+      assertTrue(onboarding.isFinishing());
+    } finally {
+      prefs
+          .edit()
+          .putString("education_level", oldLevel)
+          .putString("user_role", oldRole)
+          .putStringSet("learning_interests", oldInterests)
+          .commit();
+    }
   }
 }

@@ -88,3 +88,12 @@ Dial dipadatkan sesuai referensi dengan rosette sage, penanda derajat, indeks ar
 Validasi satu putaran: `assembleDebug`, `lintDebug`, `assembleDebugAndroidTest`, dan 4 `CompassMathTest` lulus. Smoke test `NativeFlowTest#testQiblaInflatesWithoutPhysicalSensor` lulus (1 tes, emulator Android 9/API 28). Screenshot diperiksa sekali: [QiblaActivity.png](validation/screens/QiblaActivity.png). Sensor dan getaran pada ponsel fisik belum diuji. Build memakai compile/target SDK 35.
 
 Log: `validation/qibla-build.txt` dan `validation/qibla-device-test.txt`.
+
+
+## Onboarding — 17 Oktober 2026
+
+Tiga langkah native Java/XML mengikuti struktur referensi Blend wrk dengan warna Zikra: hero orbit vektor dan bulan sabit, pilihan SMP/SMA/SMK/Mahasiswa, lalu delapan chip minat (maksimal tiga). Tidak membutuhkan login. Pilihan jenjang disimpan sebagai `education_level`, minat sebagai `learning_interests`; profil menampilkan jenjang baru dan tetap mendukung peran lama. Tombol lanjut pada langkah jenjang aktif setelah memilih; Lewati tetap tersedia. Pilihan yang belum selesai dipertahankan melalui `onSaveInstanceState`.
+
+Satu putaran validasi: `assembleDebug`, `lintDebug`, `assembleDebugAndroidTest` lulus. Dua tes perangkat lulus pada emulator Android 9/API 28: penyimpanan jenjang/minat, batas tiga minat, mengganti pilihan, kembali antar langkah, selesai dari mode edit, serta kompatibilitas peran profil lama. Log: `validation/onboarding-build.txt` dan `validation/onboarding-device-tests.txt`. Tidak ada pengujian ulang suite seluruh aplikasi. Rekreasi Activity dan jalur Lewati ke Home tidak diuji secara terpisah pada tahap ini.
+
+Screenshot diperiksa: [Welcome](validation/screens/OnboardingWelcome.png), [Jenjang](validation/screens/OnboardingEducation.png), [Minat](validation/screens/OnboardingInterests.png). Pilihan SMA/SMK dan minat pada gambar adalah hasil interaksi tes. Mode Mushaf Quran belum diimplementasikan pada tahap onboarding ini.

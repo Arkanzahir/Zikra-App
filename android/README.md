@@ -121,3 +121,8 @@ Lihat [VALIDATION.md](VALIDATION.md). Screenshot aplikasi native berada di folde
 - Detail gempa memakai peta dengan panel putih bersudut atas membulat. Kartu biru menampilkan waktu WIB, magnitudo dan kedalaman; koordinat menggunakan LS/LU serta BT/BB. Tombol Maps tampil nonaktif saat belum ada koordinat.
 - `ProtectorChrome` menyatukan system bar ketiga layar. Warna dan ukuran khusus Protector berada di resource; Home yang sudah disetujui tetap dipertahankan.
 - Ini pembaruan desain dengan sumber BMKG yang sudah ada. Migrasi cuaca ke Open-Meteo dan integrasi provider baru pada `API_PLAN.md` belum dilakukan pada tahap ini.
+
+
+### Onboarding — 17 Oktober 2026
+
+Tiga layar native: hero orbit, jenjang SMP/SMA/SMK/Mahasiswa, dan maksimal tiga minat dari delapan pilihan. Onboarding hanya diwajibkan saat penggunaan pertama dan dapat diedit lewat Profil. Tanpa login; pilihan tersimpan lokal. Screenshot dan hasil dua tes perangkat tersedia pada `VALIDATION.md`.
