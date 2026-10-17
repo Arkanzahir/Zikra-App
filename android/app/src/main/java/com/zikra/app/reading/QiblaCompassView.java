@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -34,64 +35,84 @@ public class QiblaCompassView extends View {
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    float scale = Math.min(getWidth(), getHeight()) / 328f;
+    float scale = Math.min(getWidth(), getHeight()) / 344f;
     canvas.save();
     canvas.translate(getWidth() / 2f, getHeight() / 2f);
     canvas.scale(scale, scale);
+    // Fixed top index represents the phone; the dial rotates beneath it.
+    color("#E8F2EC");
+    canvas.drawCircle(0, 0, 151, paint);
     canvas.save();
     canvas.rotate(-heading);
     Path rosette = new Path();
-    for (int i = 0; i < 40; i++) {
-      double angle = Math.toRadians(i * 9 - 90);
-      float radius = i % 2 == 0 ? 155f : 138f;
+    for (int i = 0; i < 48; i++) {
+      double angle = Math.toRadians(i * 7.5 - 90);
+      float radius = i % 2 == 0 ? 151f : 139f;
       float x = (float) Math.cos(angle) * radius;
       float y = (float) Math.sin(angle) * radius;
       if (i == 0) rosette.moveTo(x, y);
       else rosette.lineTo(x, y);
     }
     rosette.close();
-    color("#659B86");
+    color("#57927E");
     canvas.drawPath(rosette, paint);
     color("#FCFDFB");
-    canvas.drawCircle(0, 0, 136, paint);
-    color("#659B86");
+    canvas.drawCircle(0, 0, 135, paint);
+    color("#8EB4A2");
     paint.setStyle(Paint.Style.STROKE);
-    paint.setStrokeWidth(1.2f);
-    canvas.drawCircle(0, 0, 128, paint);
+    paint.setStrokeWidth(1f);
+    canvas.drawCircle(0, 0, 130, paint);
     for (int i = 0; i < 72; i++) {
       canvas.save();
       canvas.rotate(i * 5);
-      paint.setStrokeWidth(i % 6 == 0 ? 1.7f : 1f);
-      canvas.drawLine(0, -127, 0, i % 6 == 0 ? -115 : -120, paint);
+      paint.setStrokeWidth(i % 6 == 0 ? 1.8f : 0.9f);
+      canvas.drawLine(0, -126, 0, i % 6 == 0 ? -115 : -121, paint);
       canvas.restore();
     }
-    color("#FCFDFB");
-    canvas.drawCircle(0, 0, 109, paint);
-    color("#99B9A4");
+    color("#DAE8DF");
     paint.setStyle(Paint.Style.STROKE);
-    paint.setStrokeWidth(1.3f);
-    canvas.drawCircle(0, 0, 109, paint);
-    color("#659B86");
-    paint.setTextSize(15);
+    paint.setStrokeWidth(1f);
+    canvas.drawCircle(0, 0, 106, paint);
     paint.setTextAlign(Paint.Align.CENTER);
-    canvas.drawText("N", 0, -84, paint);
-    canvas.drawText("E", 91, 5, paint);
-    canvas.drawText("S", 0, 96, paint);
-    canvas.drawText("W", -91, 5, paint);
+    paint.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
+    paint.setTextSize(9);
+    for (int degrees = 30; degrees < 360; degrees += 30) {
+      if (degrees % 90 == 0) continue;
+      canvas.save();
+      canvas.rotate(degrees);
+      color("#8BA497");
+      canvas.drawText(String.valueOf(degrees), 0, -96, paint);
+      canvas.restore();
+    }
+    color("#57927E");
+    paint.setTextSize(15);
+    canvas.drawText("N", 0, -82, paint);
+    canvas.drawText("E", 87, 5, paint);
+    canvas.drawText("S", 0, 93, paint);
+    canvas.drawText("W", -87, 5, paint);
     canvas.restore();
+    color("#15332F");
+    Path index = new Path();
+    index.moveTo(0, -158);
+    index.lineTo(-4, -166);
+    index.lineTo(4, -166);
+    index.close();
+    canvas.drawPath(index, paint);
     canvas.save();
     canvas.rotate(294f - heading);
     Path pointer = new Path();
-    pointer.moveTo(0, -119);
-    pointer.lineTo(-10, -89);
-    pointer.lineTo(0, -95);
-    pointer.lineTo(10, -89);
+    pointer.moveTo(0, -118);
+    pointer.lineTo(-8, -87);
+    pointer.lineTo(0, -94);
+    pointer.lineTo(8, -87);
     pointer.close();
-    color(aligned ? "#10B981" : "#659B86");
+    color(aligned ? "#10B981" : "#57927E");
     canvas.drawPath(pointer, paint);
-    paint.setStrokeWidth(2);
-    canvas.drawLine(0, -87, 0, -54, paint);
+    paint.setStrokeWidth(1.5f);
+    canvas.drawLine(0, -85, 0, -57, paint);
     canvas.restore();
+    color(aligned ? "#E0F5EA" : "#EFF5F0");
+    canvas.drawCircle(0, 0, 45, paint);
     canvas.save();
     canvas.translate(0, -2);
     canvas.scale(0.7f, 0.7f);

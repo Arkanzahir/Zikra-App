@@ -79,3 +79,12 @@ Screenshot yang sudah diperiksa: [Protector BMKG](validation/screens/ProtectorAc
 - Smoke Home dan pemeriksaan jarak strip/kartu juga lulus pada lebar sekitar 360dp. Screenshot [layar 360dp](validation/screens/HomeActivity360.png) diperiksa; CTA terlihat penuh di atas dock. Log: `validation/daily-small-screen-tests.txt`.
 - Screenshot Home diambil setelah frame siap; pengambilan otomatis awal yang hanya menampilkan background diganti. Palet dan ornamen Home dipertahankan. Screenshot [Home standar](validation/screens/HomeActivity.png) dan [jadwal](validation/screens/PrayerActivity.png) diperiksa. APK lulus verifikasi tanda tangan `apksigner`.
 - Jadwal merupakan hasil perhitungan lokasi tetap Sukolilo, **bukan feed resmi Kemenag**. Ini validasi perubahan fungsi harian; suite semua halaman, sensor fisik dan koneksi BMKG tidak diulang.
+
+
+## Kiblat — 17 Oktober 2026
+
+Dial dipadatkan sesuai referensi dengan rosette sage, penanda derajat, indeks arah ponsel, dan Ka’bah di tengah. Tata letak menggunakan XML dengan ukuran dial adaptif tinggi layar. Tombol membuka panduan kalibrasi, bukan mengklaim mengkalibrasi sensor secara otomatis. Status direset ketika halaman dibuka kembali; indikator sejajar dan haptik hanya aktif pada akurasi sensor minimal medium.
+
+Validasi satu putaran: `assembleDebug`, `lintDebug`, `assembleDebugAndroidTest`, dan 4 `CompassMathTest` lulus. Smoke test `NativeFlowTest#testQiblaInflatesWithoutPhysicalSensor` lulus (1 tes, emulator Android 9/API 28). Screenshot diperiksa sekali: [QiblaActivity.png](validation/screens/QiblaActivity.png). Sensor dan getaran pada ponsel fisik belum diuji. Build memakai compile/target SDK 35.
+
+Log: `validation/qibla-build.txt` dan `validation/qibla-device-test.txt`.

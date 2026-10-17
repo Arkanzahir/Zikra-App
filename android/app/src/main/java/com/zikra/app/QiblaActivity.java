@@ -45,7 +45,8 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
     super.onCreate(state);
     setContentView(R.layout.activity_qibla);
     setupScreen("Arah Kiblat");
-    getWindow().setStatusBarColor(android.graphics.Color.parseColor("#FCFDFB"));
+    getWindow().setStatusBarColor(getColor(R.color.ivory));
+    getWindow().setNavigationBarColor(getColor(R.color.ivory));
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(
@@ -96,6 +97,12 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
     receivedHeading = false;
     aligned = false;
     lastSensorRender = 0;
+    lastStatus = 0;
+    lastStatusText = "";
+    compass.setHeading(0, false);
+    sensorAccuracy = SensorManager.SENSOR_STATUS_UNRELIABLE;
+    if (rotationSensor != null)
+      sensorStatus.setText("Menunggu sensor · pegang ponsel mendatar.");
     if (rotationSensor != null && !sensorManager.registerListener(this, rotationSensor, 100_000)) {
       rotationSensor = null;
       showMissingSensor();
@@ -136,7 +143,8 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
     receivedHeading = true;
     float distance = Math.abs(CompassMath.delta(QIBLA_BEARING, heading));
     boolean nextAligned =
-        sensorAccuracy != SensorManager.SENSOR_STATUS_UNRELIABLE && distance <= (aligned ? 8f : 5f);
+        sensorAccuracy >= SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM
+            && distance <= (aligned ? 8f : 5f);
     if (nextAligned && !aligned && now - lastHaptic >= 2000) {
       Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
       if (vibrator != null && vibrator.hasVibrator())
@@ -148,7 +156,7 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
     compass.setHeading(heading, aligned);
     if (stateChanged || now - lastStatus > 350) {
       String text;
-      if (sensorAccuracy == SensorManager.SENSOR_STATUS_UNRELIABLE)
+      if (sensorAccuracy < SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM)
         text = "Akurasi sensor rendah · kalibrasi kompas terlebih dahulu";
       else if (aligned) text = "✓ Sejajar dengan arah kiblat · 294°";
       else
@@ -161,6 +169,7 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
                 CompassMath.delta(QIBLA_BEARING, heading) >= 0 ? "ke kanan" : "ke kiri");
       if (!text.equals(lastStatusText)) {
         sensorStatus.setText(text);
+        sensorStatus.setTextColor(getColor(aligned ? R.color.sage_active : R.color.pine));
         lastStatusText = text;
       }
       lastStatus = now;
