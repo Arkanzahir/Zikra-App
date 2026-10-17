@@ -1,108 +1,55 @@
-# Galeri referensi desain Zikra
+# Referensi desain dari pengguna
 
-Gambar referensi **sudah disimpan sebagai file gambar di repositori ini**, sehingga sesi baru tidak harus membuka Pinterest atau Figma untuk acuan yang ada di bawah. Klik gambar untuk ukuran asli. Referensi pihak ketiga tetap mengikuti kredit pembuatnya; gambar adalah acuan desain, bukan screenshot hasil aplikasi.
+Folder ini sekarang hanya memuat **gambar acuan yang cocok dengan gambar yang diberikan pengguna dalam percakapan**. Mockup Zikra lama, alternatif logo lama, prompt desain lama, duplikat dan acuan tambahan yang tidak terkonfirmasi sudah dikeluarkan dari versi aktif repositori. Jangan mengembalikannya dari riwayat Git atau menjadikannya target desain.
 
-**Prioritas terbaru pengguna: redesign onboarding dahulu.** Versi orbit/parallax yang sudah dibuat masih dianggap kurang bagus; Quran dilanjutkan setelah tahap ini. Baca juga [roadmap dan aturan proyek](../README.md#mulai-di-sini-untuk-sesi-chat-baru).
+**Prioritas: redesign onboarding.** Implementasi orbit/parallax sebelumnya masih belum memenuhi harapan visual pengguna. Quran menyusul. Baca [roadmap dan aturan proyek](../README.md#mulai-di-sini-untuk-sesi-chat-baru).
 
 ## Wajib dilihat sebelum mengubah onboarding
 
-Buka file gambarnya dengan alat penampil gambar, bukan hanya membaca nama file atau teks README. Bandingkan komposisi, ukuran ilustrasi, hierarki teks, kartu pilihan dan chip. Tetap implementasikan dengan Java/XML dan komponen native.
+Buka gambar aslinya dengan alat penampil gambar, bukan hanya membaca README. Gambar berikut adalah acuan utama onboarding yang diberikan pengguna: karya **Blend wrk**, tiga layar dengan hero orbit, kartu pilihan pengguna dan chip minat. Adaptasikan pilihan menjadi SMP, SMA/SMK dan Mahasiswa, pertahankan identitas warna Zikra, dan tingkatkan kualitas komposisi/ilustrasi serta kedalaman parallax.
 
-### Referensi utama — Blend wrk
+[![Referensi onboarding pengguna — Blend wrk](references/onboarding-blend-wrk.png)](references/onboarding-blend-wrk.png)
 
-Struktur tiga layar: ilustrasi orbit → pilihan pengguna → minat. Untuk Zikra, pilihan pengguna menjadi **SMP, SMA/SMK, Mahasiswa**. Gunakan ini sebagai dasar komposisi; pengguna meminta hasil yang lebih modern dengan kedalaman parallax, ilustrasi kuat dan ruang kosong yang seimbang.
+Pengguna meminta perbaikan desain yang terlihat pada ketiga layar, bukan sekadar menambah gerakan pada ilustrasi lama. Implementasi tetap Java/XML native. Pertahankan penyimpanan pilihan, batas tiga minat, Lewati, kembali dan edit melalui Profil.
 
-[![Referensi onboarding tiga layar Blend wrk](ref_onboarding_blendwrk.png)](ref_onboarding_blendwrk.png)
+## Home dan Quran — Suhayel Ahmed Nasim
 
-### Tampilan referensi dalam moodboard awal
+Hero teal, jam besar, strip waktu, kartu target, katalog surah serta reader Arab/terjemahan. Screenshot acuan ini sesuai gambar yang dibagikan pengguna.
 
-[![Referensi e-learning onboarding](ref4_dribbble_elearning_onboarding.png)](ref4_dribbble_elearning_onboarding.png)
+[![Home dan Quran dari referensi pengguna](references/home-quran-suhayel.png)](references/home-quran-suhayel.png)
 
-### Mockup identitas Zikra
+Detail Home dari acuan yang sama:
 
-Ini mockup arah visual, bukan bukti bahwa semua fungsi pada gambar sudah tersedia.
+[![Detail Home referensi Suhayel](references/home-target-suhayel.png)](references/home-target-suhayel.png)
 
-[![Mockup onboarding Zikra](zikra_onboarding_1789529321717.jpg)](zikra_onboarding_1789529321717.jpg)
+**Mode Mushaf merupakan kebutuhan fungsi tambahan**, dengan susunan halaman yang benar; bukan bergantung pada mockup reader elite lama yang sudah dihapus. Lihat [persyaratan mode Mushaf](../README.md#persyaratan-mode-mushaf).
 
-### Implementasi sekarang — perlu redesign
+## Doa, Hadis, Kalender dan Profil — Isha Manzoor
 
-GIF berikut adalah hasil aplikasi native saat ini, **bukan target akhir yang sudah disetujui pengguna**. Parallax dan alur sudah ada; pengguna masih meminta peningkatan kualitas desain. Jangan menganggap tugas selesai hanya dengan mempertahankan tampilan ini.
+[![Referensi Islamic app yang dibagikan pengguna](references/ibadah-isha-manzoor.png)](references/ibadah-isha-manzoor.png)
 
-[![Preview implementasi parallax sekarang](../android/validation/screens/OnboardingParallax.gif)](../android/validation/screens/OnboardingParallax.gif)
+## Zikra AI — voice, orb holografik dan chat
 
-Screenshot langkah saat ini: [Welcome](../android/validation/screens/OnboardingWelcome.png), [Jenjang](../android/validation/screens/OnboardingEducation.png), [Minat](../android/validation/screens/OnboardingInterests.png). Screenshot Jenjang/Minat berasal dari tahap sebelum pembaruan parallax; bukan satu rekaman baru untuk semua layar.
+[![Referensi AI voice dari pengguna](references/ai-voice-reference.png)](references/ai-voice-reference.png)
 
-## Referensi halaman lain
+## Protector BMKG
 
-<details>
-<summary>Home dan katalog Quran — Suhayel Ahmed Nasim</summary>
+Acuan tiga layar biru/cyan yang diperlihatkan pengguna: dashboard cuaca, detail cuaca dan peta/detail gempa. Screenshot sumber menampilkan karya Naufal Fathkhul pada Dribbble; gunakan tampilan gambar yang diberikan pengguna sebagai acuan utama, bukan mockup Protector lama.
 
-Hero teal, jam besar, strip sholat, kartu target dan katalog surah.
+[![Referensi BMKG dari pengguna](references/bmkg-user-reference.png)](references/bmkg-user-reference.png)
 
-[![Quran app Suhayel](ref2_dribbble_quran_app.png)](ref2_dribbble_quran_app.png)
+## Kiblat — Rayhan Raju
 
-[![Acuan Home ringkas](ref_suhayel_home_target.png)](ref_suhayel_home_target.png)
+[![Referensi kompas pengguna](references/qibla-rayhan-raju.png)](references/qibla-rayhan-raju.png)
 
-</details>
+## Referensi berbentuk nama/link tanpa file baru
 
-<details>
-<summary>Reader Quran dan pilihan Mushaf / Terjemahan</summary>
+- Study/Habit Tracker — Thao Lee; timeline [Structured](https://structured.app). Pengguna menyebutkannya sebagai inspirasi; screenshot lama dari repo sudah dihapus dan tidak boleh diasumsikan sebagai gambar pilihan terbaru.
+- [Pillars](https://pillars.app) untuk pengalaman ibadah dan [Tarteel](https://tarteel.ai) untuk arah interaksi Quran. Ini benchmark yang disebut pengguna, bukan permintaan menyalin seluruh fiturnya.
+- [Pinterest pin 1110911433096315275](https://id.pinterest.com/pin/1110911433096315275/) adalah referensi video tambahan. File MP4/GIF/rekaman layar dari pin tersebut **belum tersedia di repo ini dan belum dilihat pada sesi ini**. Jangan menebak isi atau gerakannya. Tambahkan file beserta sumbernya ketika pengguna menyediakannya.
 
-Header Arab, ayat/terjemahan, bookmark dan kontrol audio. Mode Mushaf harus menggunakan susunan halaman yang benar; lihat [persyaratannya](../README.md#persyaratan-mode-mushaf).
+## Hasil aplikasi bukan referensi target
 
-[![Referensi reader Quran](ref_quran_elite.jpg)](ref_quran_elite.jpg)
+Screenshot dan rekaman implementasi tetap ada di [`android/validation/screens/`](../android/validation/screens/) sebagai bukti hasil pekerjaan. Itu tidak berarti seluruh desainnya sudah disetujui. Khusus onboarding, pengguna sudah meminta redesign; gambar implementasi lama tidak boleh dijadikan standar visual baru.
 
-[![Mockup reader Zikra](zikra_quran_screen_1789529356744.jpg)](zikra_quran_screen_1789529356744.jpg)
-
-</details>
-
-<details>
-<summary>Doa, Hadis, Kalender dan Profil — referensi Isha Manzoor</summary>
-
-[![Referensi Islamic app](ref1_pinterest_islamic_app.png)](ref1_pinterest_islamic_app.png)
-
-[![Mockup ibadah dan profil Zikra](zikra_ibadah_profile_1789529427700.jpg)](zikra_ibadah_profile_1789529427700.jpg)
-
-</details>
-
-<details>
-<summary>Study Hub, habit tracker dan fokus — referensi Thao Lee</summary>
-
-Kalender pekanan, streak, timer melingkar, kartu pastel dan checklist.
-
-[![Habit tracker](ref5_pinterest_habit_tracker_lightmode.png)](ref5_pinterest_habit_tracker_lightmode.png)
-
-[![Mockup Study Zikra](zikra_study_tasks_1789529378583.jpg)](zikra_study_tasks_1789529378583.jpg)
-
-</details>
-
-<details>
-<summary>Zikra AI — orb, voice dan chat</summary>
-
-[![Referensi AI voice assistant](ref3_pinterest_ai_voice_assistant.png)](ref3_pinterest_ai_voice_assistant.png)
-
-[![Mockup chat AI Zikra](zikra_ai_chat_1789529366764.jpg)](zikra_ai_chat_1789529366764.jpg)
-
-</details>
-
-<details>
-<summary>Protector BMKG — referensi Naufal / Fajar</summary>
-
-[![BMKG Naufal](ref6_dribbble_bmkg_naufal.png)](ref6_dribbble_bmkg_naufal.png)
-
-[![BMKG Fajar](ref7_dribbble_bmkg_fajar.png)](ref7_dribbble_bmkg_fajar.png)
-
-[![Mockup Protector](ref_protector_elite.jpg)](ref_protector_elite.jpg)
-
-</details>
-
-<details>
-<summary>Kiblat — Rayhan Raju</summary>
-
-[![Referensi kompas Kiblat](ref8_dribbble_qibla_rayhan.png)](ref8_dribbble_qibla_rayhan.png)
-
-</details>
-
-## Referensi Pinterest terbaru yang belum tersimpan
-
-[Pin 1110911433096315275](https://id.pinterest.com/pin/1110911433096315275/) adalah referensi video tambahan. File video maupun gambar dari pin ini **belum tersedia di repositori ini dan isinya belum diverifikasi pada sesi ini**. Gambar di atas bukan hasil unduhan pin tersebut. Jangan menebak gerakan atau mengaku sudah menontonnya. Jika pengguna menyediakan MP4/GIF/rekaman layar, tambahkan file dan atribusinya ke galeri ini.
+Gambar referensi tetap dikreditkan kepada pembuatnya. Pemindahan file ke `references/` tidak mengubah piksel gambar.

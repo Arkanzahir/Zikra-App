@@ -11,7 +11,7 @@
 
 Baca dan **buka gambar di [galeri referensi visual](./design/README.md)** terlebih dahulu; sesi baru perlu melihat file gambarnya, bukan hanya membaca label referensi.
 
-Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./android/API_PLAN.md), [cara build](./android/BUILDING.md), lalu [validasi terakhir](./android/VALIDATION.md). PRD dan mockup adalah target produk; kondisi implementasi aktual dan urutan pekerjaan di bawah menjadi acuan melanjutkan sesi.
+Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./android/API_PLAN.md), [cara build](./android/BUILDING.md), lalu [validasi terakhir](./android/VALIDATION.md). PRD memuat target produk; kondisi implementasi aktual dan urutan pekerjaan di bawah menjadi acuan melanjutkan sesi.
 
 ### Aturan proyek dan cara bekerja
 
@@ -44,7 +44,7 @@ Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./and
 **Perubahan prioritas terbaru:** pengguna meminta fokus memperbaiki onboarding karena desain sekarang masih kurang bagus. Ini menggantikan urutan Quran-dahulu pada handoff sebelumnya.
 
 1. **Redesign onboarding — tahap aktif sekarang.** Buka [galeri onboarding](./design/README.md#wajib-dilihat-sebelum-mengubah-onboarding) dan file Blend wrk asli. Perbaiki kualitas ilustrasi, komposisi tiga layar, hierarki teks, proporsi hero/CTA, kartu jenjang dan chip minat. Tingkatkan kedalaman parallax dan transisi dengan tetap menghormati lifecycle/reduced-motion. Pertahankan alur tanpa login, batas tiga minat, SharedPreferences, Lewati, kembali dan edit lewat Profil. Hasilkan screenshot ketiga layar serta preview gerak nyata. Jangan hanya menambahkan ornamen pada desain yang masih belum disetujui.
-2. **Quran — sesudah tahap onboarding.** Buka acuan Suhayel dan reader elite terlebih dahulu. Rapikan daftar surah, search, header Arab, tipografi, ayat dan terjemahan. Integrasikan katalog 114 surah dan reader lengkap menggunakan API pilihan setelah endpoint, autentikasi, lisensi dan resource terjemahan/audio diverifikasi. Pertahankan empat surah offline sebagai fallback yang jelas. Simpan surah/ayat terakhir dan bookmark dengan nomor yang stabil; cache unduhan agar tetap bisa dibaca offline. Tangani loading, gagal jaringan dan pagination di background. Tambahkan navigasi Surah/Juz/Halaman/Hizb hanya ketika data dan tujuannya benar-benar tersedia.
+2. **Quran — sesudah tahap onboarding.** Buka acuan Home/Quran Suhayel dari pengguna terlebih dahulu; mockup reader elite lama sudah dihapus. Rapikan daftar surah, search, header Arab, tipografi, ayat dan terjemahan. Integrasikan katalog 114 surah dan reader lengkap menggunakan API pilihan setelah endpoint, autentikasi, lisensi dan resource terjemahan/audio diverifikasi. Pertahankan empat surah offline sebagai fallback yang jelas. Simpan surah/ayat terakhir dan bookmark dengan nomor yang stabil; cache unduhan agar tetap bisa dibaca offline. Tangani loading, gagal jaringan dan pagination di background. Tambahkan navigasi Surah/Juz/Halaman/Hizb hanya ketika data dan tujuannya benar-benar tersedia.
 3. **Mode Mushaf dan audio Quran.** Pengguna secara eksplisit meminta dua pilihan: **Mushaf / Terjemahan**. Rincian wajib ada di bawah; mode Mushaf belum diimplementasikan. Tambahkan murottal Mishary, play/pause, progres audio dan opsi auto-scroll yang sesuai bacaan setelah sumber audio siap.
 4. **Study Hub dan Diary Hifz.** Ikuti kalender pekanan, streak, kartu pastel dan circular focus timer dari referensi Habit Tracker; gunakan timeline ala Structured. Hubungkan jadwal belajar, tugas dan waktu sholat tanpa bentrok. Kembangkan target hafalan dengan progres yang tersimpan; jangan menyebutnya pemeriksa hafalan AI sebelum fitur tersebut tersedia.
 5. **Doa, Hadis, Kalender, Waktu Sholat dan Profil.** Terapkan bahasa visual referensi Isha Manzoor: kartu doa/kutipan, kategori dan pencarian, bel pengingat, kalender yang terbaca dan profil ringkas. Tambah konten hanya dengan sumber/atribusi. Integrasikan Aladhan memakai jadwal tanggal/lokasi/metode yang sama untuk Home, halaman jadwal dan alarm. Lokasi GPS adalah pengembangan berikutnya, bukan kemampuan yang sudah ada.
@@ -62,18 +62,17 @@ Selesaikan satu tahap menjadi hasil yang dapat dicoba sebelum memperluas pekerja
 
 ### Peta referensi desain
 
-**[Buka galeri gambar lengkap di GitHub](./design/README.md).** Semua acuan lokal berikut sudah menjadi file di repositori; Pinterest tidak diperlukan untuk membukanya. Referensi video baru tetap ditandai terpisah bila belum tersedia.
+**[Buka galeri gambar lengkap di GitHub](./design/README.md).** Folder referensi sudah dibersihkan: hanya gambar yang cocok dengan acuan pengguna di chat yang dipertahankan. Mockup Zikra, logo alternatif dan prompt desain lama sudah dihapus; jangan menggunakannya kembali. Referensi nama/link tanpa file baru ditandai terpisah.
 
 | Bagian / inspirasi pengguna | Aset yang harus dibuka |
 | --- | --- |
-| Onboarding Blend wrk: orbit, kartu jenjang, chip minat; pengguna kemudian meminta parallax lebih modern | [Blend wrk](./design/ref_onboarding_blendwrk.png), [E-learning](./design/ref4_dribbble_elearning_onboarding.png), [preview implementasi bergerak](./android/validation/screens/OnboardingParallax.gif) |
-| Home dan Quran Suhayel Ahmed Nasim: hero teal, jam besar, strip sholat, kartu target, katalog surah | [Quran app](./design/ref2_dribbble_quran_app.png), [Home target](./design/ref_suhayel_home_target.png) |
-| Reader Quran: header kaligrafi, Mushaf/Terjemahan, tindakan ayat, audio/auto-scroll | [Reader elite](./design/ref_quran_elite.jpg), [Mockup Quran Zikra](./design/zikra_quran_screen_1789529356744.jpg) |
-| Ibadah/Doa/Hadis/Kalender/Profil — Isha Manzoor | [Islamic app](./design/ref1_pinterest_islamic_app.png), [Ibadah dan profil](./design/zikra_ibadah_profile_1789529427700.jpg) |
-| Study / habit tracker — Thao Lee; timeline Structured | [Habit tracker](./design/ref5_pinterest_habit_tracker_lightmode.png), [Study Zikra](./design/zikra_study_tasks_1789529378583.jpg), [Structured](https://structured.app) |
-| Zikra AI: orb holografik, voice, chat bersih | [AI voice](./design/ref3_pinterest_ai_voice_assistant.png), [Chat Zikra](./design/zikra_ai_chat_1789529366764.jpg) |
-| BMKG — Naufal/Fajar | [Naufal](./design/ref6_dribbble_bmkg_naufal.png), [Fajar](./design/ref7_dribbble_bmkg_fajar.png), [Protector elite](./design/ref_protector_elite.jpg) |
-| Kiblat — Rayhan Raju | [Kompas](./design/ref8_dribbble_qibla_rayhan.png) |
+| Onboarding Blend wrk: orbit, kartu jenjang dan chip minat; pengguna meminta redesign yang lebih modern | [Referensi pengguna](./design/references/onboarding-blend-wrk.png) |
+| Home dan Quran Suhayel: hero teal, jam, strip sholat, kartu target, katalog dan reader | [Home/Quran](./design/references/home-quran-suhayel.png), [Detail Home](./design/references/home-target-suhayel.png) |
+| Ibadah/Doa/Hadis/Kalender/Profil — Isha Manzoor | [Referensi pengguna](./design/references/ibadah-isha-manzoor.png) |
+| Zikra AI: orb holografik, voice dan chat | [Referensi pengguna](./design/references/ai-voice-reference.png) |
+| Protector BMKG: dashboard, detail cuaca dan gempa biru/cyan | [Referensi tiga layar pengguna](./design/references/bmkg-user-reference.png) |
+| Kiblat — Rayhan Raju | [Referensi pengguna](./design/references/qibla-rayhan-raju.png) |
+| Study/Habit Tracker — Thao Lee; timeline Structured | Pengguna memberi nama inspirasi; belum ada file gambar pengganti yang terkonfirmasi. Lihat [catatan referensi](./design/README.md#referensi-berbentuk-namalink-tanpa-file-baru) |
 
 Benchmark tambahan pengguna: [Pillars](https://pillars.app) untuk pengalaman ibadah dan [Tarteel](https://tarteel.ai) untuk arah interaksi Quran. Acuan ini bukan permintaan menyalin seluruh fitur benchmark.
 
@@ -102,7 +101,8 @@ android/README.md, API_PLAN.md, BUILDING.md dan VALIDATION.md lebih dahulu.
 Checkpoint implementasi: 65666c2; gunakan HEAD terbaru untuk dokumentasi/perubahan berikutnya.
 Home, BMKG, Kiblat, dan versi awal onboarding parallax sudah dikerjakan.
 PRIORITAS SEKARANG: redesign onboarding; pengguna belum puas dengan visualnya.
-Buka design/README.md dan lihat langsung gambar Blend wrk serta mockup lokal.
+Buka design/README.md dan lihat langsung gambar pengguna di design/references/.
+Jangan memakai mockup/prompt lama yang sudah dihapus.
 Sesudah onboarding, lanjutkan Quran: katalog/reader, 114 surah, mode
 Mushaf/Terjemahan, bookmark, cache dan murottal sesuai roadmap README.
 Tetap Java + XML, tanpa login/Infaq dahulu. Jangan mengarang isi pin Pinterest
@@ -153,17 +153,18 @@ Daftar fitur berikut merupakan target produk dan belum seluruhnya tersedia dalam
 
 ---
 
-## Desain & Mockup UI
+## Referensi Desain
 
-Dokumentasi lengkap desain UI/UX dan filosofi identitas branding:
-- 📄 [Dokumentasi Mockup Desain](./design/design_mockup.md)
+Referensi visual pengguna dan kebutuhan produk:
+- 📄 [Galeri referensi pengguna](./design/README.md)
 - 📋 [Product Requirement Document (PRD)](./ZIKRA_PRD.md)
 
 ---
 
 ## 🚀 Status Proyek
 - [x] Product Requirement Document (PRD)
-- [x] UI/UX Mockups & Brand Identity
+- [x] Referensi gambar pengguna dipusatkan di `design/references/`
+- [ ] Redesign onboarding sesuai harapan visual pengguna
 - [x] Implementasi awal Android native Java/XML
 - [ ] Penyempurnaan tampilan dan kelengkapan fitur Android
 - [ ] Backend & AI Integration
