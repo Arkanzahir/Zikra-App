@@ -14,6 +14,8 @@ Buka folder `android` melalui Android Studio → Open. Gunakan JDK 17 atau 21, A
 
 APK: `app/build/outputs/apk/debug/app-debug.apk`.
 
+Pilihan provider untuk tahap berikutnya dan kondisi integrasinya dicatat di [API_PLAN.md](API_PLAN.md): Featherless, Gemini, Aladhan, Quran.com, BMKG, Open-Meteo dan Android Intent. Daftar tersebut adalah rencana integrasi; fitur yang sudah tersedia dijelaskan di bawah.
+
 ## Halaman dan fitur
 
 Jalur Java berikut berada di `app/src/main/java/com/zikra/app/`; layout di `app/src/main/res/layout/`.
