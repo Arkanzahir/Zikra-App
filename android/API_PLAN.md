@@ -57,7 +57,7 @@ Pilihan pengguna, 17 Oktober 2026. Dokumen ini menetapkan arah integrasi; daftar
 
 ## Hubungan dengan pekerjaan desain
 
-Pilihan API tidak mengganti acuan visual pengguna. Dashboard/detail Protector, dial Kiblat dan onboarding parallax sudah dikerjakan. **Prioritas berikutnya adalah Quran:** katalog/reader, 114 surah, mode Mushaf/Terjemahan, bookmark/cache dan murottal. Sesudahnya Study Hub/Hifz, halaman ibadah/Profil, serta kelengkapan layanan Protector dan AI secara bertahap. Urutan dan kriteria lengkap terdapat di [README utama](../README.md#urutan-pekerjaan-berikutnya). Home yang sudah disetujui dipertahankan; Infaq tidak ditampilkan pada shortcut.
+Pilihan API tidak mengganti acuan visual pengguna. Dashboard/detail Protector, dial Kiblat dan onboarding parallax sudah dikerjakan. **Prioritas terbaru: redesign onboarding** mengikuti [galeri referensi](../design/README.md), karena pengguna masih belum puas dengan kualitas visualnya. Sesudahnya lanjutkan Quran: katalog/reader, 114 surah, mode Mushaf/Terjemahan, bookmark/cache dan murottal. Sesudahnya Study Hub/Hifz, halaman ibadah/Profil, serta kelengkapan layanan Protector dan AI secara bertahap. Urutan dan kriteria lengkap terdapat di [README utama](../README.md#urutan-pekerjaan-berikutnya). Home yang sudah disetujui dipertahankan; Infaq tidak ditampilkan pada shortcut.
 
 Mode Mushaf harus mengikuti edisi dan metadata susunan halaman/baris yang konsisten dengan font/aset berlisensi. Menyembunyikan terjemahan pada daftar ayat belum memenuhi mode Mushaf. Verifikasi ketersediaan resource layout/halaman di provider sebelum memilih implementasi. Pertahankan pemetaan surah/ayat/halaman saat berpindah mode; ketentuan lengkap ada di [persyaratan mode Mushaf](../README.md#persyaratan-mode-mushaf).
 

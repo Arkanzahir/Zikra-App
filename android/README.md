@@ -4,7 +4,7 @@ Project Android Studio mandiri, aplikasi native Java dengan layout XML. Tanpa Ko
 
 ## Melanjutkan dari chat baru
 
-Baca [status implementasi, prioritas pekerjaan, aturan proyek, dan referensi di README utama](../README.md#mulai-di-sini-untuk-sesi-chat-baru). Prioritas berikutnya adalah Quran lengkap dengan dua mode **Mushaf / Terjemahan**. Mode Mushaf belum tersedia; jangan menganggap empat surah offline atau reader kartu ayat sebagai implementasi mushaf per halaman. Home, BMKG, Kiblat dan onboarding sudah dikerjakan bertahap; lanjutkan dari kode yang ada.
+Baca [status implementasi, prioritas pekerjaan, aturan proyek, dan referensi di README utama](../README.md#mulai-di-sini-untuk-sesi-chat-baru). Prioritas terbaru adalah **redesign onboarding**; lihat langsung [galeri gambar](../design/README.md). Versi orbit/parallax yang ada belum memenuhi harapan visual pengguna. Sesudahnya lanjutkan Quran lengkap dengan dua mode **Mushaf / Terjemahan**. Mode Mushaf belum tersedia; jangan menganggap empat surah offline atau reader kartu ayat sebagai implementasi mushaf per halaman. Home, BMKG, Kiblat dan onboarding sudah dikerjakan bertahap; lanjutkan dari kode yang ada.
 
 ## Buka dan jalankan
 

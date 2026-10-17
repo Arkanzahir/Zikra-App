@@ -9,6 +9,8 @@
 
 **Pembaruan: 17 Oktober 2026.** Repositori aplikasi utama adalah **[Arkanzahir/Zikra-App](https://github.com/Arkanzahir/Zikra-App)**, project Android Studio di **`android/`**. `Arkanzahir/prototype_zikra` adalah referensi prototipe web lama; jangan memindahkan pengembangan kembali ke React. Checkpoint kode sebelum pembaruan dokumentasi ini: **`65666c2`** (onboarding parallax).
 
+Baca dan **buka gambar di [galeri referensi visual](./design/README.md)** terlebih dahulu; sesi baru perlu melihat file gambarnya, bukan hanya membaca label referensi.
+
 Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./android/API_PLAN.md), [cara build](./android/BUILDING.md), lalu [validasi terakhir](./android/VALIDATION.md). PRD dan mockup adalah target produk; kondisi implementasi aktual dan urutan pekerjaan di bawah menjadi acuan melanjutkan sesi.
 
 ### Aturan proyek dan cara bekerja
@@ -29,8 +31,8 @@ Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./and
 | Home | Hero jam/Hijriah/countdown, siluet transparan, lentera, kartu melengkung 2×4, dock, progres 24 tick dari SQLite, lanjut bacaan | Pertahankan komposisi; hubungkan sumber Quran/jadwal online saat integrasinya siap |
 | Protector BMKG | Dashboard biru, detail cuaca cyan, detail gempa, peta native, parsing BMKG background, loading/error dan bantuan Intent | Validasi data live dari jaringan yang mengizinkan; integrasi Open-Meteo, cache data dan pengingat cuaca belum selesai |
 | Kiblat | Dial roset, Ka'bah, penanda derajat, acuan 294° Sukolilo, rotasi sensor, panduan kalibrasi, haptik bersyarat akurasi | Uji arah/getaran pada ponsel fisik; lokasi masih tetap Sukolilo |
-| Onboarding | Tiga layar: hero orbit parallax sentuh/tilt, SMP/SMA-SMK/Mahasiswa, maksimal 3 dari 8 minat; SharedPreferences dan edit lewat Profil | Uji tilt serta reduced-motion pada perangkat fisik; belum mempersonalisasi rekomendasi konten secara otomatis |
-| Quran | Search/katalog, 4 surah offline lengkap, teks Arab/arti, bookmark/lanjut ayat, auto-dark sensor/manual | **Prioritas berikutnya:** desain katalog/reader, 114 surah, mode Mushaf asli, audio dan cache |
+| Onboarding | Tiga layar: hero orbit parallax sentuh/tilt, SMP/SMA-SMK/Mahasiswa, maksimal 3 dari 8 minat; SharedPreferences dan edit lewat Profil | **Redesign menjadi prioritas sekarang:** pengguna belum puas dengan kualitas visual orbit/parallax. Uji tilt/reduced-motion fisik masih diperlukan; rekomendasi otomatis belum ada |
+| Quran | Search/katalog, 4 surah offline lengkap, teks Arab/arti, bookmark/lanjut ayat, auto-dark sensor/manual | Setelah redesign onboarding: katalog/reader, 114 surah, mode Mushaf asli, audio dan cache |
 | Study Hub / Diary Hifz | CRUD checklist tugas/ibadah SQLite, progres harian, kategori hafalan dan voice-to-task | Kalender pekanan, timeline, deadline/prioritas, timer fokus dan statistik; Hifz belum evaluasi bacaan AI |
 | Waktu sholat | Kalkulasi matahari harian Sukolilo, daftar hari/pekan, countdown, preferensi dan notifikasi/alarm | Integrasi Aladhan; belum audio adzan; validasi izin dan ketepatan alarm pada HP |
 | Doa / Hadis / Kalender | Pencarian doa dan TTS, 7 kutipan hadis bersumber/bookmark, navigasi kalender Umm al-Qura | Rapikan desain dan tambah konten terverifikasi bertahap; bukan koleksi hadis lengkap |
@@ -39,11 +41,14 @@ Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./and
 
 ### Urutan pekerjaan berikutnya
 
-1. **Quran — tahap aktif berikutnya.** Buka acuan Suhayel dan reader elite terlebih dahulu. Rapikan daftar surah, search, header Arab, tipografi, ayat dan terjemahan. Integrasikan katalog 114 surah dan reader lengkap menggunakan API pilihan setelah endpoint, autentikasi, lisensi dan resource terjemahan/audio diverifikasi. Pertahankan empat surah offline sebagai fallback yang jelas. Simpan surah/ayat terakhir dan bookmark dengan nomor yang stabil; cache unduhan agar tetap bisa dibaca offline. Tangani loading, gagal jaringan dan pagination di background. Tambahkan navigasi Surah/Juz/Halaman/Hizb hanya ketika data dan tujuannya benar-benar tersedia.
-2. **Mode Mushaf dan audio Quran.** Pengguna secara eksplisit meminta dua pilihan: **Mushaf / Terjemahan**. Rincian wajib ada di bawah; mode Mushaf belum diimplementasikan. Tambahkan murottal Mishary, play/pause, progres audio dan opsi auto-scroll yang sesuai bacaan setelah sumber audio siap.
-3. **Study Hub dan Diary Hifz.** Ikuti kalender pekanan, streak, kartu pastel dan circular focus timer dari referensi Habit Tracker; gunakan timeline ala Structured. Hubungkan jadwal belajar, tugas dan waktu sholat tanpa bentrok. Kembangkan target hafalan dengan progres yang tersimpan; jangan menyebutnya pemeriksa hafalan AI sebelum fitur tersebut tersedia.
-4. **Doa, Hadis, Kalender, Waktu Sholat dan Profil.** Terapkan bahasa visual referensi Isha Manzoor: kartu doa/kutipan, kategori dan pencarian, bel pengingat, kalender yang terbaca dan profil ringkas. Tambah konten hanya dengan sumber/atribusi. Integrasikan Aladhan memakai jadwal tanggal/lokasi/metode yang sama untuk Home, halaman jadwal dan alarm. Lokasi GPS adalah pengembangan berikutnya, bukan kemampuan yang sudah ada.
-5. **Lengkapi layanan Protector dan Zikra AI.** Untuk Protector: Open-Meteo, cache bertimestamp, kondisi offline dan ambang pengingat prakiraan yang jelas. Untuk AI: desain orb holografik dan chat/voice mengikuti referensi, lalu backend Java untuk Featherless dan Gemini vision. API key tidak boleh berada di aplikasi/APK/Git. Scan soal memakai alur kamera/pilih gambar dan respons pembimbing belajar setelah backend tersedia.
+**Perubahan prioritas terbaru:** pengguna meminta fokus memperbaiki onboarding karena desain sekarang masih kurang bagus. Ini menggantikan urutan Quran-dahulu pada handoff sebelumnya.
+
+1. **Redesign onboarding — tahap aktif sekarang.** Buka [galeri onboarding](./design/README.md#wajib-dilihat-sebelum-mengubah-onboarding) dan file Blend wrk asli. Perbaiki kualitas ilustrasi, komposisi tiga layar, hierarki teks, proporsi hero/CTA, kartu jenjang dan chip minat. Tingkatkan kedalaman parallax dan transisi dengan tetap menghormati lifecycle/reduced-motion. Pertahankan alur tanpa login, batas tiga minat, SharedPreferences, Lewati, kembali dan edit lewat Profil. Hasilkan screenshot ketiga layar serta preview gerak nyata. Jangan hanya menambahkan ornamen pada desain yang masih belum disetujui.
+2. **Quran — sesudah tahap onboarding.** Buka acuan Suhayel dan reader elite terlebih dahulu. Rapikan daftar surah, search, header Arab, tipografi, ayat dan terjemahan. Integrasikan katalog 114 surah dan reader lengkap menggunakan API pilihan setelah endpoint, autentikasi, lisensi dan resource terjemahan/audio diverifikasi. Pertahankan empat surah offline sebagai fallback yang jelas. Simpan surah/ayat terakhir dan bookmark dengan nomor yang stabil; cache unduhan agar tetap bisa dibaca offline. Tangani loading, gagal jaringan dan pagination di background. Tambahkan navigasi Surah/Juz/Halaman/Hizb hanya ketika data dan tujuannya benar-benar tersedia.
+3. **Mode Mushaf dan audio Quran.** Pengguna secara eksplisit meminta dua pilihan: **Mushaf / Terjemahan**. Rincian wajib ada di bawah; mode Mushaf belum diimplementasikan. Tambahkan murottal Mishary, play/pause, progres audio dan opsi auto-scroll yang sesuai bacaan setelah sumber audio siap.
+4. **Study Hub dan Diary Hifz.** Ikuti kalender pekanan, streak, kartu pastel dan circular focus timer dari referensi Habit Tracker; gunakan timeline ala Structured. Hubungkan jadwal belajar, tugas dan waktu sholat tanpa bentrok. Kembangkan target hafalan dengan progres yang tersimpan; jangan menyebutnya pemeriksa hafalan AI sebelum fitur tersebut tersedia.
+5. **Doa, Hadis, Kalender, Waktu Sholat dan Profil.** Terapkan bahasa visual referensi Isha Manzoor: kartu doa/kutipan, kategori dan pencarian, bel pengingat, kalender yang terbaca dan profil ringkas. Tambah konten hanya dengan sumber/atribusi. Integrasikan Aladhan memakai jadwal tanggal/lokasi/metode yang sama untuk Home, halaman jadwal dan alarm. Lokasi GPS adalah pengembangan berikutnya, bukan kemampuan yang sudah ada.
+6. **Lengkapi layanan Protector dan Zikra AI.** Untuk Protector: Open-Meteo, cache bertimestamp, kondisi offline dan ambang pengingat prakiraan yang jelas. Untuk AI: desain orb holografik dan chat/voice mengikuti referensi, lalu backend Java untuk Featherless dan Gemini vision. API key tidak boleh berada di aplikasi/APK/Git. Scan soal memakai alur kamera/pilih gambar dan respons pembimbing belajar setelah backend tersedia.
 
 Selesaikan satu tahap menjadi hasil yang dapat dicoba sebelum memperluas pekerjaan. Jangan memulai ulang Home, BMKG, Kiblat atau onboarding dari nol hanya karena berpindah chat. Masukan desain baru dari pengguna tetap dapat mengubah prioritas.
 
@@ -56,6 +61,8 @@ Selesaikan satu tahap menjadi hasil yang dapat dicoba sebelum memperluas pekerja
 - Murottal berasal dari rekaman reciter yang sah. TTS doa yang sudah ada tidak menggantikan audio Quran.
 
 ### Peta referensi desain
+
+**[Buka galeri gambar lengkap di GitHub](./design/README.md).** Semua acuan lokal berikut sudah menjadi file di repositori; Pinterest tidak diperlukan untuk membukanya. Referensi video baru tetap ditandai terpisah bila belum tersedia.
 
 | Bagian / inspirasi pengguna | Aset yang harus dibuka |
 | --- | --- |
@@ -93,9 +100,11 @@ APK berada di `android/app/build/outputs/apk/debug/app-debug.apk`. Bukti pemerik
 Lanjutkan Arkanzahir/Zikra-App, project Android di android/. Baca README root,
 android/README.md, API_PLAN.md, BUILDING.md dan VALIDATION.md lebih dahulu.
 Checkpoint implementasi: 65666c2; gunakan HEAD terbaru untuk dokumentasi/perubahan berikutnya.
-Home, BMKG, Kiblat, dan onboarding parallax sudah dikerjakan. Berikutnya Quran:
-katalog/reader sesuai referensi lokal, 114 surah, dua mode Mushaf/Terjemahan,
-bookmark/lanjut baca, cache dan murottal sesuai roadmap README.
+Home, BMKG, Kiblat, dan versi awal onboarding parallax sudah dikerjakan.
+PRIORITAS SEKARANG: redesign onboarding; pengguna belum puas dengan visualnya.
+Buka design/README.md dan lihat langsung gambar Blend wrk serta mockup lokal.
+Sesudah onboarding, lanjutkan Quran: katalog/reader, 114 surah, mode
+Mushaf/Terjemahan, bookmark, cache dan murottal sesuai roadmap README.
 Tetap Java + XML, tanpa login/Infaq dahulu. Jangan mengarang isi pin Pinterest
 yang belum terbuka. Kerjakan bertahap, cepat dan rapi; cukup satu putaran uji
 relevan lalu ulang hanya bila ada masalah. Jawab singkat dalam bahasa Indonesia.
