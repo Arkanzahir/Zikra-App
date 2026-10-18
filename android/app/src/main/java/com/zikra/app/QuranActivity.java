@@ -27,6 +27,8 @@ import com.zikra.app.reading.SurahData;
 import java.util.Locale;
 
 public class QuranActivity extends BaseActivity implements SensorEventListener {
+  public static final String EXTRA_TARGET_CHAPTER = "target_chapter";
+  public static final String EXTRA_TARGET_VERSE = "target_verse";
   public static final String EXTRA_RESUME_READING = "resume_reading";
   private SensorManager sensorManager;
   private Sensor lightSensor;
@@ -73,6 +75,20 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     nightMode = savedInstanceState != null && savedInstanceState.getBoolean("night_mode");
     manualOverride = savedInstanceState != null && savedInstanceState.getBoolean("manual_override");
     String lastSurah = preferences.getString("last_surah", "Al-Fatihah");
+    if (savedInstanceState == null) {
+      int targetId = getIntent().getIntExtra(EXTRA_TARGET_CHAPTER, 0);
+      for (SurahData surah : SurahData.ALL)
+        if (surah.number == targetId) {
+          int verse =
+              Math.min(
+                  surah.arabic.length, Math.max(1, getIntent().getIntExtra(EXTRA_TARGET_VERSE, 1)));
+          lastSurah = surah.name;
+          readingOpen = true;
+          preferences.edit().putString("last_surah", surah.name).putInt("last_ayah", verse).apply();
+          break;
+        }
+    }
+
     findViewById(R.id.quranCatalogButton).setOnClickListener(view -> showCatalog());
     findViewById(R.id.quranBackToCatalog).setOnClickListener(view -> showCatalog());
     findViewById(R.id.toolbarBack)

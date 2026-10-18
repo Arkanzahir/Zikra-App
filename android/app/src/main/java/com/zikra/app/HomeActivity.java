@@ -49,6 +49,7 @@ public final class HomeActivity extends BaseActivity {
       return;
     }
     setContentView(R.layout.activity_home);
+    NavDock.attach(this, findViewById(R.id.homeRoot), "home");
     setupScreen("Zikra");
     db = new ZikraDbHelper(this);
     findViewById(R.id.shortcutQuran).setOnClickListener(v -> open(QuranActivity.class));
@@ -78,13 +79,6 @@ public final class HomeActivity extends BaseActivity {
         .setOnClickListener(
             v -> external(android.content.Intent.ACTION_VIEW, "geo:0,0?q=Sukolilo,Surabaya"));
     findViewById(R.id.homePrayerStrip).setOnClickListener(v -> open(PrayerActivity.class));
-    findViewById(R.id.dockQuran).setOnClickListener(v -> open(QuranActivity.class));
-    findViewById(R.id.dockAi).setOnClickListener(v -> open(AiActivity.class));
-    findViewById(R.id.dockStudy).setOnClickListener(v -> open(StudyActivity.class));
-    findViewById(R.id.dockProfile).setOnClickListener(v -> open(ProfileActivity.class));
-    findViewById(R.id.dockHome)
-        .setOnClickListener(
-            v -> ((android.widget.ScrollView) findViewById(R.id.homeScroll)).smoothScrollTo(0, 0));
   }
 
   @Override

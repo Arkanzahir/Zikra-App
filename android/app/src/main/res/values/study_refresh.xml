@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="study_warm">#F8F7F2</color>
+    <color name="study_secondary">#52645E</color>
+    <color name="study_line">#E1E5DD</color>
+    <string name="study_refresh_heading">Rencana hari ini</string>
+    <string name="study_refresh_hifz_heading">Murajaah hari ini</string>
+    <string name="study_refresh_date">%1$s</string>
+    <string name="study_refresh_checklist">Checklist</string>
+    <string name="hifz_section">Target murajaah</string>
+    <string name="study_refresh_add">Tambah kegiatan</string>
+    <string name="study_refresh_new">Tambah kegiatan</string>
+    <string name="study_refresh_description">Satu kegiatan yang ingin kamu tuntaskan hari ini.</string>
+    <string name="hifz_description">Pilih surah dan rentang ayat yang ingin kamu ulang.</string>
+    <string name="hifz_kind">TARGET MURAJAAH</string>
+    <string name="hifz_legacy">LENGKAPI TARGET</string>
+    <string name="hifz_no_range">Surah dan rentang ayat belum dipilih</string>
+    <string name="hifz_range">Ayat %1$d–%2$d · %3$d ayat</string>
+    <string name="hifz_planned">%1$d ayat terencana</string>
+    <string name="hifz_plan_hint">Lengkapi targetmu dengan surah dan rentang ayat.</string>
+    <string name="hifz_surah">Surah</string>
+    <string name="hifz_choose">Pilih surah ▾</string>
+    <string name="hifz_first">Ayat awal</string>
+    <string name="hifz_last">Ayat akhir</string>
+    <string name="hifz_catalog_loading">Memuat katalog Quran.com…</string>
+    <string name="hifz_catalog_ready">114 surah · Quran.com</string>
+    <string name="hifz_catalog_offline">Empat surah bawaan tersedia. Katalog online belum dimuat.</string>
+    <string name="hifz_reload">Muat 114 surah</string>
+    <string name="hifz_required">Pilih surah untuk target ini.</string>
+    <string name="hifz_invalid">Gunakan ayat 1–%1$d; ayat akhir harus sama atau sesudah ayat awal.</string>
+    <string name="hifz_range_hint">Tentukan rentang ayat untuk targetmu.</string>
+    <string name="hifz_note">Catatan (opsional)</string>
+    <string name="hifz_note_hint">Misalnya: ulangi setelah Subuh</string>
+    <string name="hifz_note_add">Tambahkan catatan</string>
+    <string name="hifz_note_hide">Sembunyikan catatan</string>
+    <string name="study_dictate">Dikte judul</string>
+    <string name="hifz_dictate">Dikte catatan</string>
+    <string name="study_dictate_hint">Ucapan menjadi teks. Tinjau dulu sebelum menyimpan.</string>
+    <string name="hifz_dictate_hint">Ucapan mengisi catatan. Surah dan ayat dipilih di atas.</string>
+    <string name="hifz_voice_prompt">Ucapkan catatan untuk target murajaah ini</string>
+    <string name="study_close">Tutup tanpa menyimpan</string>
+    <string name="hifz_save">Simpan target</string>
+    <string name="study_save_activity">Simpan kegiatan</string>
+    <string name="hifz_pending">Belum selesai</string>
+    <string name="hifz_done">Selesai hari ini</string>
+    <string name="hifz_read">Buka bacaan</string>
+    <string name="hifz_read_online">Quran.com ↗</string>
+    <string name="hifz_configure">Atur ayat ↗</string>
+    <style name="StudyLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/pine</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="StudyChoice">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/study_choice</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/pine</item>
+    </style>
+    <style name="StudyInput">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:padding">14dp</item>
+        <item name="android:background">@drawable/study_input</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/pine</item>
+        <item name="android:textColorHint">#65786F</item>
+    </style>
+    <style
+        name="HifzInput"
+        parent="StudyInput">
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">3</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="StudyButton">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+    <style
+        name="StudySheet.Base"
+        parent="android:style/Theme.Material.Light.Dialog.NoActionBar">
+        <item name="android:fontFamily">@font/plus_jakarta_sans</item>
+        <item name="android:colorAccent">@color/pine</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.32</item>
+        <item name="android:navigationBarColor">@color/white</item>
+    </style>
+    <style
+        name="StudySheet"
+        parent="StudySheet.Base" />
+</resources>

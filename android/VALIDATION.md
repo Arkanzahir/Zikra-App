@@ -1,3 +1,5 @@
+> **Status terbaru — 18 Oktober 2026:** instance diganti; perubahan lokal sesi sebelumnya tidak tersedia. Pemulihan tahap ini mencakup Study/Hifz, target surah/ayat, editor dan navigasi bersama. Reader native masih 4 surah; target lain membuka Quran.com eksternal. Baca [RECOVERY.md](../RECOVERY.md) dan [validasi terbaru](validation/recovery/README.md) sebelum catatan historis di bawah. Setup baru: [tools/cloud](../tools/cloud/README.md).
+
 # Validasi pembaruan referensi — 16 Oktober 2026
 
 ## Hasil terbaru: desain BMKG — 17 Oktober 2026

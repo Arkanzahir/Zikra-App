@@ -1,3 +1,5 @@
+> **Status terbaru — 18 Oktober 2026:** instance diganti; perubahan lokal sesi sebelumnya tidak tersedia. Pemulihan tahap ini mencakup Study/Hifz, target surah/ayat, editor dan navigasi bersama. Reader native masih 4 surah; target lain membuka Quran.com eksternal. Baca [RECOVERY.md](RECOVERY.md) dan [validasi terbaru](android/validation/recovery/README.md) sebelum catatan historis di bawah. Setup baru: [tools/cloud](tools/cloud/README.md).
+
 # Zikra Smart Islamic Student Companion
 
 > **"Harmonisasi Ibadah, Waktu Belajar, dan Kecerdasan Buatan"**  
@@ -39,18 +41,11 @@ Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./and
 | Zikra AI | Chat lokal berbasis aturan, input suara, tampilan awal lavender | Orb holografik/voice UI, backend Featherless, Gemini untuk scan soal; belum AI generatif atau vision |
 | Profil | Data lokal, progres, bacaan terakhir, jenjang/minat, pengingat dan pengaturan | Rapikan susunan halaman dan kontrol preferensi sesuai fitur baru; belum akun/cloud sync |
 
-### Urutan pekerjaan berikutnya
+### Urutan pekerjaan berikutnya — setelah pemulihan 18 Oktober
 
-**Perubahan prioritas terbaru:** pengguna meminta fokus memperbaiki onboarding karena desain sekarang masih kurang bagus. Ini menggantikan urutan Quran-dahulu pada handoff sebelumnya.
+Study/Hifz sudah diperbaiki pada branch pemulihan; lihat `RECOVERY.md` untuk status nyata. Langkah berikutnya: pulihkan reader Quran native 114 surah sebelum Mushaf/audio; lalu branding satu master dan onboarding cerita tanpa jenjang/minat, serta Home siang/malam/parallax. Cuaca Open-Meteo/cache dan header fitur lain perlu dipulihkan terpisah. Kode baseline untuk bagian itu belum mewakili hasil yang disebut pada percakapan lama.
 
-1. **Redesign onboarding — tahap aktif sekarang.** Buka [galeri onboarding](./design/README.md#wajib-dilihat-sebelum-mengubah-onboarding) dan file Blend wrk asli. Perbaiki kualitas ilustrasi, komposisi tiga layar, hierarki teks, proporsi hero/CTA, kartu jenjang dan chip minat. Tingkatkan kedalaman parallax dan transisi dengan tetap menghormati lifecycle/reduced-motion. Pertahankan alur tanpa login, batas tiga minat, SharedPreferences, Lewati, kembali dan edit lewat Profil. Hasilkan screenshot ketiga layar serta preview gerak nyata. Jangan hanya menambahkan ornamen pada desain yang masih belum disetujui.
-2. **Quran — sesudah tahap onboarding.** Buka acuan Home/Quran Suhayel dari pengguna terlebih dahulu; mockup reader elite lama sudah dihapus. Rapikan daftar surah, search, header Arab, tipografi, ayat dan terjemahan. Integrasikan katalog 114 surah dan reader lengkap menggunakan API pilihan setelah endpoint, autentikasi, lisensi dan resource terjemahan/audio diverifikasi. Pertahankan empat surah offline sebagai fallback yang jelas. Simpan surah/ayat terakhir dan bookmark dengan nomor yang stabil; cache unduhan agar tetap bisa dibaca offline. Tangani loading, gagal jaringan dan pagination di background. Tambahkan navigasi Surah/Juz/Halaman/Hizb hanya ketika data dan tujuannya benar-benar tersedia.
-3. **Mode Mushaf dan audio Quran.** Pengguna secara eksplisit meminta dua pilihan: **Mushaf / Terjemahan**. Rincian wajib ada di bawah; mode Mushaf belum diimplementasikan. Tambahkan murottal Mishary, play/pause, progres audio dan opsi auto-scroll yang sesuai bacaan setelah sumber audio siap.
-4. **Study Hub dan Diary Hifz.** Ikuti kalender pekanan, streak, kartu pastel dan circular focus timer dari referensi Habit Tracker; gunakan timeline ala Structured. Hubungkan jadwal belajar, tugas dan waktu sholat tanpa bentrok. Kembangkan target hafalan dengan progres yang tersimpan; jangan menyebutnya pemeriksa hafalan AI sebelum fitur tersebut tersedia.
-5. **Doa, Hadis, Kalender, Waktu Sholat dan Profil.** Terapkan bahasa visual referensi Isha Manzoor: kartu doa/kutipan, kategori dan pencarian, bel pengingat, kalender yang terbaca dan profil ringkas. Tambah konten hanya dengan sumber/atribusi. Integrasikan Aladhan memakai jadwal tanggal/lokasi/metode yang sama untuk Home, halaman jadwal dan alarm. Lokasi GPS adalah pengembangan berikutnya, bukan kemampuan yang sudah ada.
-6. **Lengkapi layanan Protector dan Zikra AI.** Untuk Protector: Open-Meteo, cache bertimestamp, kondisi offline dan ambang pengingat prakiraan yang jelas. Untuk AI: desain orb holografik dan chat/voice mengikuti referensi, lalu backend Java untuk Featherless dan Gemini vision. API key tidak boleh berada di aplikasi/APK/Git. Scan soal memakai alur kamera/pilih gambar dan respons pembimbing belajar setelah backend tersedia.
-
-Selesaikan satu tahap menjadi hasil yang dapat dicoba sebelum memperluas pekerjaan. Jangan memulai ulang Home, BMKG, Kiblat atau onboarding dari nol hanya karena berpindah chat. Masukan desain baru dari pengguna tetap dapat mengubah prioritas.
+Ikuti arahan terbaru pengguna dan kerjakan satu tahap yang dapat dicoba sebelum memperluas pekerjaan. Jangan menganggap semua fitur sudah aman. Catatan status di atas adalah baseline publik historis, bukan daftar fitur lama yang berhasil dipulihkan.
 
 ### Persyaratan mode Mushaf
 

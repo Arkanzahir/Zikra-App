@@ -17,7 +17,7 @@ import java.util.List;
  * incomplete. Previous days are kept.
  */
 public final class ZikraDbHelper extends SQLiteOpenHelper {
-  private static final int VERSION = 1;
+  private static final int VERSION = 2;
   public static final String CATEGORY_STUDY = "Study";
   public static final String CATEGORY_IBADAH = "Ibadah";
   public static final String CATEGORY_HIFZ = "Hifz";
@@ -70,13 +70,25 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
             + "CHECK(category IN ('Study','Ibadah','Hifz')), completed INTEGER NOT NULL DEFAULT 0 "
             + "CHECK(completed IN (0,1)))");
     db.execSQL("CREATE INDEX tasks_date ON tasks(task_date, id)");
+    addHifzColumns(db);
   }
 
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    // Version 1 has no migration. Future versions must migrate without deleting history.
+    if (oldVersion == 1 && newVersion == 2) {
+      addHifzColumns(db);
+      return;
+    }
     throw new IllegalStateException(
         "Unsupported database migration: " + oldVersion + " to " + newVersion);
+  }
+
+  private static void addHifzColumns(SQLiteDatabase db) {
+    db.execSQL("ALTER TABLE tasks ADD COLUMN hifz_chapter INTEGER");
+    db.execSQL("ALTER TABLE tasks ADD COLUMN hifz_name TEXT");
+    db.execSQL("ALTER TABLE tasks ADD COLUMN hifz_count INTEGER");
+    db.execSQL("ALTER TABLE tasks ADD COLUMN hifz_first INTEGER");
+    db.execSQL("ALTER TABLE tasks ADD COLUMN hifz_last INTEGER");
   }
 
   public List<Task> getTasks() {
@@ -86,7 +98,17 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
     try (Cursor cursor =
         db.query(
             "tasks",
-            new String[] {"id", "title", "category", "completed"},
+            new String[] {
+              "id",
+              "title",
+              "category",
+              "completed",
+              "hifz_chapter",
+              "hifz_name",
+              "hifz_count",
+              "hifz_first",
+              "hifz_last"
+            },
             "task_date = ?",
             new String[] {day},
             null,
@@ -98,7 +120,8 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
                 cursor.getLong(0),
                 cursor.getString(1),
                 cursor.getString(2),
-                cursor.getInt(3) == 1));
+                cursor.getInt(3) == 1,
+                readTarget(cursor)));
       }
     }
     return tasks;
@@ -115,12 +138,75 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
 
   public void updateTask(long id, String title, String category) {
     String day = today();
+    ContentValues values = taskValues(title, category);
+    if (!CATEGORY_HIFZ.equals(category)) clearTarget(values);
     databaseForDay(day)
-        .update(
-            "tasks",
-            taskValues(title, category),
-            "id = ? AND task_date = ?",
-            new String[] {Long.toString(id), day});
+        .update("tasks", values, "id = ? AND task_date = ?", new String[] {Long.toString(id), day});
+  }
+
+  public long addHifzTask(String title, HifzTarget target) {
+    if (target == null) throw new IllegalArgumentException("Target wajib diisi");
+    ContentValues values = taskValues(title, CATEGORY_HIFZ);
+    putTarget(values, target);
+    String day = today();
+    SQLiteDatabase database = databaseForDay(day);
+    values.put("task_date", day);
+    values.put("completed", 0);
+    return database.insertOrThrow("tasks", null, values);
+  }
+
+  public void updateHifzTask(long id, String title, HifzTarget target) {
+    if (target == null) throw new IllegalArgumentException("Target wajib diisi");
+    ContentValues values = taskValues(title, CATEGORY_HIFZ);
+    putTarget(values, target);
+    String day = today();
+    SQLiteDatabase database = databaseForDay(day);
+    database.beginTransaction();
+    try {
+      try (Cursor old =
+          database.rawQuery(
+              "SELECT hifz_chapter,hifz_first,hifz_last FROM tasks WHERE id=? AND task_date=?",
+              new String[] {Long.toString(id), day})) {
+        if (!old.moveToFirst()) return;
+        if (old.isNull(0)
+            || old.getInt(0) != target.chapterId
+            || old.getInt(1) != target.firstVerse
+            || old.getInt(2) != target.lastVerse) values.put("completed", 0);
+      }
+      database.update(
+          "tasks", values, "id=? AND task_date=?", new String[] {Long.toString(id), day});
+      database.setTransactionSuccessful();
+    } finally {
+      database.endTransaction();
+    }
+  }
+
+  private static void putTarget(ContentValues values, HifzTarget target) {
+    values.put("hifz_chapter", target.chapterId);
+    values.put("hifz_name", target.chapterName);
+    values.put("hifz_count", target.versesCount);
+    values.put("hifz_first", target.firstVerse);
+    values.put("hifz_last", target.lastVerse);
+  }
+
+  private static void clearTarget(ContentValues values) {
+    for (String key :
+        new String[] {"hifz_chapter", "hifz_name", "hifz_count", "hifz_first", "hifz_last"})
+      values.putNull(key);
+  }
+
+  private static HifzTarget readTarget(Cursor cursor) {
+    if (cursor.isNull(4) || !CATEGORY_HIFZ.equals(cursor.getString(2))) return null;
+    try {
+      return new HifzTarget(
+          cursor.getInt(4),
+          cursor.getString(5),
+          cursor.getInt(6),
+          cursor.getInt(7),
+          cursor.getInt(8));
+    } catch (IllegalArgumentException invalid) {
+      return null;
+    }
   }
 
   public void setCompleted(long id, boolean completed) {

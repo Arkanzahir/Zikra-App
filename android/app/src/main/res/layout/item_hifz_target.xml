@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/study_row"
+    android:padding="14dp"
+    android:descendantFocusability="blocksDescendants">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/hifz_number"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/hifz_number"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="#72562B" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/study_task_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="9sp"
+                android:letterSpacing="0.08"
+                android:textColor="#5D6C60" />
+            <TextView
+                android:id="@+id/study_task_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/pine" />
+        </LinearLayout>
+        <ImageButton
+            android:id="@+id/study_task_more"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:padding="14dp"
+            android:src="@drawable/study_ic_more"
+            android:tint="@color/pine"
+            android:focusable="false"
+            android:contentDescription="@string/study_task_actions" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/hifz_range"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="52dp"
+        android:textSize="13sp"
+        android:textColor="@color/study_secondary" />
+    <TextView
+        android:id="@+id/hifz_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="12sp"
+        android:textColor="@color/study_secondary" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#EDF0E9" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+        <CheckBox
+            android:id="@+id/study_task_checkbox"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:buttonTint="@color/pine"
+            android:focusable="false" />
+        <TextView
+            android:id="@+id/study_task_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="11sp"
+            android:textColor="@color/study_secondary" />
+        <Button
+            android:id="@+id/hifz_read"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingHorizontal="8dp"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/pine"
+            android:focusable="false" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,3 +1,5 @@
+> **Status terbaru — 18 Oktober 2026:** instance diganti; perubahan lokal sesi sebelumnya tidak tersedia. Pemulihan tahap ini mencakup Study/Hifz, target surah/ayat, editor dan navigasi bersama. Reader native masih 4 surah; target lain membuka Quran.com eksternal. Baca [RECOVERY.md](../RECOVERY.md) dan [validasi terbaru](validation/recovery/README.md) sebelum catatan historis di bawah. Setup baru: [tools/cloud](../tools/cloud/README.md).
+
 # Zikra Android — Java dan XML
 
 Project Android Studio mandiri, aplikasi native Java dengan layout XML. Tanpa Kotlin, Compose, Flutter, React Native, atau WebView. Referensi desain tersedia di [`../design/`](../design/). Implementasi awal dipindahkan dari repositori `Arkanzahir/prototype_zikra`, commit `606dfb634db7839860ade25873c22e14ebd08c87`.

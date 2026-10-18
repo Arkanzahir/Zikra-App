@@ -1,45 +1,259 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/study_editor_panel"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="24dp">
-    <TextView
+    android:background="@drawable/study_sheet"
+    android:paddingTop="12dp">
+    <View
+        android:layout_width="32dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/study_tabs_bg"
+        android:importantForAccessibility="no" />
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:labelFor="@id/study_editor_title"
-        android:text="@string/study_task_name"
-        android:textColor="@color/pine"
-        android:textSize="13sp" />
-    <EditText
-        android:id="@+id/study_editor_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bg_input"
-        android:gravity="top|start"
-        android:hint="@string/study_task_hint"
-        android:inputType="textCapSentences|textMultiLine"
-        android:maxLength="200"
-        android:maxLines="4"
-        android:minHeight="56dp"
-        android:padding="14dp"
-        android:textColor="@color/pine"
-        android:textColorHint="@color/muted"
-        android:textSize="14sp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:labelFor="@id/study_editor_category"
-        android:text="@string/study_category"
-        android:textColor="@color/pine"
-        android:textSize="13sp" />
-    <Spinner
-        android:id="@+id/study_editor_category"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:entries="@array/study_categories"
-        android:spinnerMode="dropdown" />
+        android:fillViewport="true"
+        android:clipToPadding="false">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp"
+            android:focusableInTouchMode="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/study_editor_context"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/study_refresh_heading"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.1"
+                    android:textColor="@color/study_secondary"
+                    android:textStyle="bold" />
+                <ImageButton
+                    android:id="@+id/study_editor_close"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:padding="14dp"
+                    android:src="@drawable/study_close"
+                    android:contentDescription="@string/study_close" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/study_editor_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/study_refresh_new"
+                android:textSize="25sp"
+                android:letterSpacing="-0.025"
+                android:textStyle="bold"
+                android:textColor="@color/pine" />
+            <TextView
+                android:id="@+id/study_editor_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/study_refresh_description"
+                android:textSize="13sp"
+                android:textColor="@color/study_secondary"
+                android:lineSpacingExtra="3dp" />
+            <LinearLayout
+                android:id="@+id/hifz_editor_fields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <TextView
+                    style="@style/StudyLabel"
+                    android:text="@string/hifz_surah"
+                    android:labelFor="@id/hifz_surah" />
+                <Spinner
+                    android:id="@+id/hifz_surah"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/study_input"
+                    android:spinnerMode="dropdown"
+                    android:dropDownWidth="match_parent"
+                    android:paddingHorizontal="12dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:id="@+id/hifz_catalog_status"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="11sp"
+                        android:textColor="@color/study_secondary" />
+                    <Button
+                        android:id="@+id/hifz_catalog_reload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:text="@string/hifz_reload"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/pine" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            style="@style/StudyLabel"
+                            android:text="@string/hifz_first"
+                            android:labelFor="@id/hifz_first" />
+                        <EditText
+                            android:id="@+id/hifz_first"
+                            style="@style/HifzInput"
+                            android:hint="1" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
+                        <TextView
+                            style="@style/StudyLabel"
+                            android:text="@string/hifz_last"
+                            android:labelFor="@id/hifz_last" />
+                        <EditText
+                            android:id="@+id/hifz_last"
+                            style="@style/HifzInput"
+                            android:hint="1" />
+                    </LinearLayout>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/hifz_range_preview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="12sp"
+                    android:textColor="#72562B" />
+                <TextView
+                    android:id="@+id/hifz_validation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12sp"
+                    android:textColor="#A1392E"
+                    android:accessibilityLiveRegion="polite"
+                    android:visibility="gone" />
+            </LinearLayout>
+            <Button
+                android:id="@+id/hifz_note_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="@string/hifz_note_add"
+                android:textAllCaps="false"
+                android:textSize="13sp"
+                android:textColor="@color/pine"
+                android:visibility="gone" />
+            <TextView
+                android:id="@+id/study_editor_title_label"
+                style="@style/StudyLabel"
+                android:layout_marginTop="20dp"
+                android:text="@string/study_task_name"
+                android:labelFor="@id/study_editor_title" />
+            <EditText
+                android:id="@+id/study_editor_title"
+                style="@style/StudyInput"
+                android:hint="@string/study_task_hint"
+                android:inputType="textCapSentences|textMultiLine"
+                android:minLines="2"
+                android:maxLines="4"
+                android:maxLength="200"
+                android:gravity="top|start" />
+            <TextView
+                android:id="@+id/study_editor_category_label"
+                style="@style/StudyLabel"
+                android:layout_marginTop="20dp"
+                android:text="@string/study_category" />
+            <RadioGroup
+                android:id="@+id/study_editor_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/study_editor_study"
+                    style="@style/StudyChoice"
+                    android:text="@string/study_category_study" />
+                <RadioButton
+                    android:id="@+id/study_editor_ibadah"
+                    style="@style/StudyChoice"
+                    android:layout_marginHorizontal="8dp"
+                    android:text="@string/study_category_ibadah" />
+                <RadioButton
+                    android:id="@+id/study_editor_hifz"
+                    style="@style/StudyChoice"
+                    android:text="@string/study_category_hifz" />
+            </RadioGroup>
+            <Button
+                android:id="@+id/study_editor_voice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_marginTop="12dp"
+                android:paddingHorizontal="8dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableStart="@drawable/ic_mic"
+                android:drawableTint="@color/pine"
+                android:drawablePadding="8dp"
+                android:text="@string/study_dictate"
+                android:textAllCaps="false"
+                android:textSize="13sp"
+                android:textColor="@color/pine" />
+            <TextView
+                android:id="@+id/study_editor_voice_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/study_dictate_hint"
+                android:textSize="11sp"
+                android:textColor="@color/study_secondary" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp">
+                <Button
+                    android:id="@+id/study_editor_cancel"
+                    style="@style/StudyButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/study_row"
+                    android:textColor="@color/pine"
+                    android:text="@string/study_cancel" />
+                <Button
+                    android:id="@+id/study_editor_save"
+                    style="@style/StudyButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/bg_pine"
+                    android:textColor="@color/white"
+                    android:text="@string/study_save_activity" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

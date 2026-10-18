@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item
+        name="dockHome"
+        type="id" />
+    <item
+        name="dockQuran"
+        type="id" />
+    <item
+        name="dockAi"
+        type="id" />
+    <item
+        name="dockStudy"
+        type="id" />
+    <item
+        name="dockProfile"
+        type="id" />
+</resources>

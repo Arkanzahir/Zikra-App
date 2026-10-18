@@ -1,0 +1,6 @@
+adbd is already running as root
+/usr/local/share/ca-certificates/environment-proxy-ca.crt: 1 file pushed, 0 skipped. 15.1 MB/s (1309 bytes in 0.000s)
+Performing Streamed Install
+Success
+Starting: Intent { cmp=com.zikra.app/.HomeActivity }
+    mResumedActivity: ActivityRecord{c17d38d u0 com.zikra.app/.HomeActivity t9}

@@ -1,12 +1,12 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_card"
+    android:background="@drawable/study_row"
     android:descendantFocusability="blocksDescendants"
     android:gravity="center_vertical"
-    android:minHeight="96dp"
+    android:minHeight="88dp"
     android:orientation="horizontal"
     android:paddingHorizontal="10dp"
     android:paddingVertical="13dp">
@@ -14,7 +14,7 @@
         android:id="@+id/study_task_checkbox"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:buttonTint="@color/emerald"
+        android:buttonTint="@color/pine"
         android:focusable="false"
         android:gravity="center" />
     <LinearLayout
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/pine"
-            android:textSize="13sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
         <TextView
             android:id="@+id/study_task_detail"
