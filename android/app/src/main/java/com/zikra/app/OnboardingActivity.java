@@ -1,36 +1,36 @@
 package com.zikra.app;
 
-import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import com.zikra.app.discovery.GardenSceneView;
 
-/** Three stories, without requesting an education level or interests. */
+/** Three static illustrated stories. No animation player, sensor or education/interests form. */
 public final class OnboardingActivity extends BaseActivity {
   private static final String[] TITLES = {
-    "Belajar lebih\nterarah.", "Ibadah tetap\nterjaga.", "Dekat, ayat\ndemi ayat."
+    "Belajar lebih terarah.", "Ibadah tetap terjaga.", "Dekat, ayat demi ayat."
   };
   private static final String[] CAPTIONS = {
     "Tata tugas dan target belajarmu, satu per satu.",
     "Temukan jadwal sholat di sela kesibukanmu.",
     "Lanjutkan bacaan dan jaga target hafalanmu."
   };
-  private static final String[] EYEBROWS = {
-    "RUANG UNTUK BELAJAR", "JEDA YANG BERARTI", "TEMANI BACAANMU"
-  };
   private static final String[] SCENES = {
-    "Karakter membuka buku. Ketuk untuk mengulang animasi.",
-    "Karakter bersiap sholat. Ketuk untuk mengulang animasi.",
-    "Karakter membaca Quran. Ketuk untuk mengulang animasi."
+    "Pelajar berkacamata menulis di meja belajar.",
+    "Perempuan bermukena duduk di atas sajadah.",
+    "Laki-laki berpeci membaca Quran dengan rehal."
   };
-  private static final int[] BACKGROUNDS = {0xFFF4E5CB, 0xFFDCE9E1, 0xFFF1EDE1};
+  private static final int[] ARTWORK = {
+    R.drawable.onboarding_study_static,
+    R.drawable.onboarding_prayer_static,
+    R.drawable.onboarding_quran_static
+  };
   private int step;
   private float downX, downY;
-  private GardenSceneView garden;
 
   @Override
   protected void onCreate(Bundle state) {
@@ -38,11 +38,12 @@ public final class OnboardingActivity extends BaseActivity {
     step = state == null ? 0 : Math.max(0, Math.min(2, state.getInt("step")));
     setContentView(R.layout.activity_onboarding);
     setupScreen("Selamat datang di Zikra");
+    getWindow().setStatusBarColor(getColor(R.color.onboarding_paper));
+    getWindow().setNavigationBarColor(getColor(R.color.onboarding_paper));
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-    garden = findViewById(R.id.onboardGarden);
     findViewById(R.id.onboardContinue)
         .setOnClickListener(
             v -> {
@@ -51,50 +52,51 @@ public final class OnboardingActivity extends BaseActivity {
             });
     findViewById(R.id.onboardBack).setOnClickListener(v -> move(-1));
     findViewById(R.id.onboardSkip).setOnClickListener(v -> complete());
-    render(false);
+    render();
   }
 
   private void move(int delta) {
     int target = Math.max(0, Math.min(2, step + delta));
-    if (target != step) {
-      step = target;
-      render(true);
-    }
+    if (target == step) return;
+    step = target;
+    render();
+    findViewById(R.id.onboardStory).announceForAccessibility(TITLES[step]);
   }
 
-  private void render(boolean animate) {
-    findViewById(R.id.onboardRoot).setBackgroundColor(BACKGROUNDS[step]);
-    getWindow().setStatusBarColor(BACKGROUNDS[step]);
-    getWindow().setNavigationBarColor(BACKGROUNDS[step]);
+  private void render() {
     ((TextView) findViewById(R.id.onboardTitle)).setText(TITLES[step]);
-    ((TextView) findViewById(R.id.onboardEyebrow)).setText(EYEBROWS[step]);
     ((TextView) findViewById(R.id.onboardDescription)).setText(CAPTIONS[step]);
     ((TextView) findViewById(R.id.onboardStep)).setText("Langkah " + (step + 1) + " dari 3");
     ((TextView) findViewById(R.id.onboardContinue)).setText(step == 2 ? "Mulai harimu" : "Lanjut");
-    findViewById(R.id.onboardBack).setVisibility(step == 0 ? View.GONE : View.VISIBLE);
+    // Keep indicators in the same position across all three stories.
+    findViewById(R.id.onboardBack).setVisibility(step == 0 ? View.INVISIBLE : View.VISIBLE);
     int[] dots = {R.id.onboardDot0, R.id.onboardDot1, R.id.onboardDot2};
-    for (int i = 0; i < 3; i++)
-      findViewById(dots[i]).setBackgroundColor(i == step ? getColor(R.color.pine) : 0xFF91A397);
-    garden.setContentDescription(SCENES[step]);
-    garden.setStory(step);
-    ((ScrollView) findViewById(R.id.onboardScroll)).scrollTo(0, 0);
-    View story = findViewById(R.id.onboardStory);
-    story.animate().cancel();
-    story.setAlpha(1);
-    story.setTranslationY(0);
-    if (animate && ValueAnimator.areAnimatorsEnabled()) {
-      story.setAlpha(.35f);
-      story.setTranslationY(dp(10));
-      story.animate().alpha(1).translationY(0).setDuration(280).start();
-      story.announceForAccessibility(TITLES[step].replace('\n', ' '));
+    for (int i = 0; i < 3; i++) {
+      View dot = findViewById(dots[i]);
+      dot.setBackgroundColor(i == step ? getColor(R.color.pine) : 0xFFBDC8BD);
+      dot.setSelected(i == step);
     }
+    ImageView artwork = findViewById(R.id.onboardIllustration);
+    artwork.setContentDescription(SCENES[step]);
+    // Decode the current illustration only, at the resolution needed by this display.
+    // Keep all details in the image; ImageView fitCenter handles the responsive viewport.
+    BitmapFactory.Options options = new BitmapFactory.Options();
+    options.inJustDecodeBounds = true;
+    BitmapFactory.decodeResource(getResources(), ARTWORK[step], options);
+    int wanted = Math.max(1, getResources().getDisplayMetrics().widthPixels - dp(48));
+    options.inSampleSize = 1;
+    while (options.outWidth / (options.inSampleSize * 2) >= wanted) options.inSampleSize *= 2;
+    options.inJustDecodeBounds = false;
+    options.inScaled = false;
+    artwork.setImageBitmap(BitmapFactory.decodeResource(getResources(), ARTWORK[step], options));
+    ((ScrollView) findViewById(R.id.onboardScroll)).scrollTo(0, 0);
   }
 
   private void complete() {
     getSharedPreferences("zikra_preferences", MODE_PRIVATE)
         .edit()
         .putBoolean("onboarding_complete", true)
-        .putInt("onboarding_story_version", 3)
+        .putInt("onboarding_story_version", 4)
         .apply();
     startActivity(
         new Intent(this, HomeActivity.class)
@@ -103,32 +105,28 @@ public final class OnboardingActivity extends BaseActivity {
   }
 
   @Override
-  public boolean dispatchTouchEvent(MotionEvent e) {
-    if (e.getActionMasked() == MotionEvent.ACTION_DOWN) {
-      downX = e.getX();
-      downY = e.getY();
-    } else if (e.getActionMasked() == MotionEvent.ACTION_UP) {
-      float dx = e.getX() - downX, dy = e.getY() - downY;
-      if (Math.abs(dx) > dp(72) && Math.abs(dx) > Math.abs(dy) * 1.5f) move(dx < 0 ? 1 : -1);
+  public boolean dispatchTouchEvent(MotionEvent event) {
+    if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
+      downX = event.getX();
+      downY = event.getY();
+    } else if (event.getActionMasked() == MotionEvent.ACTION_UP) {
+      float dx = event.getX() - downX, dy = event.getY() - downY;
+      if (Math.abs(dx) > dp(72) && Math.abs(dx) > Math.abs(dy) * 1.5f) {
+        // Consume the swipe so a wide Continue button cannot also advance a second step.
+        MotionEvent cancel = MotionEvent.obtain(event);
+        cancel.setAction(MotionEvent.ACTION_CANCEL);
+        super.dispatchTouchEvent(cancel);
+        cancel.recycle();
+        move(dx < 0 ? 1 : -1);
+        return true;
+      }
     }
-    return super.dispatchTouchEvent(e);
+    return super.dispatchTouchEvent(event);
   }
 
   @Override
   protected boolean usesShakeShortcut() {
     return false;
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    if (garden != null) garden.setRunning(true);
-  }
-
-  @Override
-  protected void onPause() {
-    if (garden != null) garden.setRunning(false);
-    super.onPause();
   }
 
   @Override

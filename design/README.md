@@ -1,4 +1,4 @@
-> **Arah terbaru (18 Oktober 2026):** onboarding mengikuti referensi kartun 3D yang dibagikan dalam chat: satu karakter pelajar, tiga kegiatan (belajar, bersiap sholat, membaca Quran), latar pastel dan copy singkat. Model/animasi asli: [sumber](../tools/animation/README.md). Quran mengikuti katalog dan reader terang pada referensi Suhayel di bawah, dengan mode malam sebagai pilihan. Study Hub khusus akademik; checklist ibadah berada pada Waktu Sholat. [Screenshot APK](../android/validation/character-refresh/README.md).
+> **Arah terbaru (18 Oktober 2026):** onboarding menggunakan tiga ilustrasi 2D **statis**, dipilih dari kolase terbaru pengguna: pelajar berkacamata di meja, perempuan bermukena di sajadah, serta laki-laki berpeci membaca dengan rehal. Logo master tetap kiri atas; copy singkat dan warna ivory/Pine. Tidak ada animasi karakter atau parallax onboarding. [Aturan/aset ilustrasi](illustrations/onboarding/README.md) · [Screenshot APK](../android/validation/static-onboarding/README.md). Referensi 3D sebelumnya bukan arah aktif.
 
 # Referensi desain dari pengguna
 

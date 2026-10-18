@@ -1,3 +1,5 @@
+> **ARSIP:** percobaan 3D ini telah diganti oleh onboarding 2D statis. Script tidak dijalankan oleh setup/build. Aset 3D dan pemain animasi dihapus dari resource aplikasi; sumber di sini hanya riwayat desain.
+
 # Karakter onboarding Zikra
 
 Karakter dan properti dimodelkan dari bentuk dasar dalam `render_onboarding.py`.

@@ -1,3 +1,5 @@
+> **Checkpoint historis:** desain onboarding 3D pada laporan ini telah diganti. [Buka onboarding 2D statis terbaru](../static-onboarding/README.md). Pemeriksaan Study/Quran di bawah tetap catatan tahap sebelumnya.
+
 # Onboarding karakter, Study akademik dan Quran ringkas
 
 Pembaruan 18 Oktober 2026 pada branch `recovery/study-hifz-refresh`, Java/XML native.

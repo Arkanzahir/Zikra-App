@@ -1,4 +1,4 @@
-> **Status 18 Oktober 2026:** branch `recovery/study-hifz-refresh` kini memakai onboarding karakter 3D bergerak dalam tiga adegan, Study Hub khusus akademik, checklist ibadah dari Waktu Sholat, serta katalog/reader Quran terang sesuai referensi. Logo master dan Home astronomi tetap tersedia. Lihat [validasi/screenshot terbaru](validation/character-refresh/README.md) dan [RECOVERY.md](../RECOVERY.md). Catatan lama di bawah bersifat historis.
+> **Status 18 Oktober 2026:** onboarding terbaru memakai tiga ilustrasi 2D statis; animasi, parallax dan aset 3D onboarding telah dihapus dari APK. Logo master, copy, navigasi, preferensi lama dan fitur lainnya dipertahankan. [Screenshot/validasi terbaru](validation/static-onboarding/README.md) · [RECOVERY.md](../RECOVERY.md). Catatan lama di bawah bersifat historis.
 
 # Validasi pembaruan referensi — 16 Oktober 2026
 

@@ -1,0 +1,32 @@
+[
+  {
+    "scene": "study",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "bytes": 1457166,
+    "sha256": "3542d5c7e358885ea29ff0bb409e71bde4136838cb276a4b28b2a6073660fdb5",
+    "encoding": "WebP lossless; decoded RGBA matches edited PNG exactly"
+  },
+  {
+    "scene": "prayer",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "bytes": 1496238,
+    "sha256": "6a04b6203e598ab1604665e8784fd6e29984c55839e6b4703c8604d1be8ed4f7",
+    "encoding": "WebP lossless; decoded RGBA matches edited PNG exactly"
+  },
+  {
+    "scene": "quran",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "bytes": 1346516,
+    "sha256": "76a4748763886a197e2e9b601550daba1b61a47fd0c38cc6a903e21dc1702f72",
+    "encoding": "WebP lossless; decoded RGBA matches edited PNG exactly"
+  }
+]

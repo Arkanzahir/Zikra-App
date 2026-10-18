@@ -1,4 +1,4 @@
-> **Status 18 Oktober 2026:** branch `recovery/study-hifz-refresh` kini memakai onboarding karakter 3D bergerak dalam tiga adegan, Study Hub khusus akademik, checklist ibadah dari Waktu Sholat, serta katalog/reader Quran terang sesuai referensi. Logo master dan Home astronomi tetap tersedia. Lihat [validasi/screenshot terbaru](validation/character-refresh/README.md) dan [RECOVERY.md](../RECOVERY.md). Catatan lama di bawah bersifat historis.
+> **Status 18 Oktober 2026:** onboarding terbaru memakai tiga ilustrasi 2D statis; animasi, parallax dan aset 3D onboarding telah dihapus dari APK. Logo master, copy, navigasi, preferensi lama dan fitur lainnya dipertahankan. [Screenshot/validasi terbaru](validation/static-onboarding/README.md) · [RECOVERY.md](../RECOVERY.md). Catatan lama di bawah bersifat historis.
 
 # Build Android native
 
@@ -14,7 +14,7 @@ git clone --branch recovery/study-hifz-refresh https://github.com/Arkanzahir/Zik
 
 Alternatif: buka branch tersebut di GitHub, pilih **Code → Download ZIP**, lalu ekstrak. Di Android Studio buka **`Zikra-App/android`** (folder yang berisi `settings.gradle`), bukan folder `prototype_zikra`. Saat memakai ZIP GitHub, nama folder luarnya dapat berbeda; tetap pilih subfolder `android`.
 
-Versi ini memuat agenda Study/Hifz, logo master, onboarding karakter 3D/parallax, Home siang/malam dengan astronomi harian, reader Quran native dan prakiraan Open-Meteo. Semua dibangun ulang sesuai referensi chat. Sumber kode asli versi lokal lama belum ditemukan; jangan menganggap implementasi baru identik piksel/kode dengan versi tersebut. Bukti APK dan batas uji ada di [validasi terbaru](validation/character-refresh/README.md).
+Versi ini memuat agenda Study/Hifz, logo master, onboarding ilustrasi 2D statis, Home siang/malam dengan astronomi harian, reader Quran native dan prakiraan Open-Meteo. Semua dibangun ulang sesuai referensi chat. Sumber kode asli versi lokal lama belum ditemukan; jangan menganggap implementasi baru identik piksel/kode dengan versi tersebut. Bukti APK dan batas uji ada di [validasi terbaru](validation/static-onboarding/README.md).
 
 1. Buka folder `android` dengan **Open**, lalu tunggu Gradle Sync selesai.
 2. Gunakan **JDK 17** di **Settings → Build, Execution, Deployment → Build Tools → Gradle → Gradle JDK**. Pilih/unduh JDK 17 bila JDK bawaan Android Studio berbeda.

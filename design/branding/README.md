@@ -18,14 +18,14 @@ Keduanya memakai **mask alpha identik**, kanvas1024×1024 yang sama, dan posisi/
 | Tempat | Aturan |
 | --- | --- |
 | Splash | Komponen lengkap putih pada Pine; Android12+ juga memakai simbol yang sama pada system splash |
-| Onboarding | Komponen lengkap Pine di kiri atas pada ivory/sage; varian putih bila latar gelap |
+| Onboarding | Komponen lengkap Pine di kiri atas pada ivory; varian putih bila latar gelap |
 | Home | Komponen lengkap putih ringkas; lokasi pada baris di bawahnya |
 | Tentang | Komponen lengkap Pine pada dialog terang |
 | Ikon aplikasi | Simbol putih saja, latar Pine; adaptive icon memakai master yang sama, tanpa wordmark |
 | Halaman fitur | Judul dan tombol kembali; ikon tindakan boleh sesuai fungsinya |
 | Profil | Avatar/initial pengguna, tidak diganti logo aplikasi |
 
-Karakter onboarding adalah ilustrasi adegan, bukan logo atau pengganti master.
-Tiga adegan memakai model karakter yang sama dan sumber prosedural di
-[`tools/animation`](../../tools/animation/README.md). Logo tetap memakai XML bersama dan mask dari master.
-Aset taman pada checkpoint lama dipertahankan sebagai riwayat; tidak dipakai pada onboarding aktif.
+Ilustrasi onboarding terpisah dari branding. Tiga gambar 2D statis tersedia di resource Android;
+lihat [aturan ilustrasi](../illustrations/onboarding/README.md). Karakter berbeda menggambarkan
+beragam pengguna. Logo tetap memakai XML bersama dan mask dari satu master.
+Percobaan taman/3D tersedia di riwayat Git; aset/pemutarnya tidak termasuk onboarding aktif.

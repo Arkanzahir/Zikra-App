@@ -1,4 +1,4 @@
-> **Status terbaru — 18 Oktober 2026:** branch `recovery/study-hifz-refresh` memakai onboarding karakter kartun 3D dalam tiga adegan (belajar, bersiap sholat, membaca Quran), animasi pendek native dan parallax. Study Hub khusus akademik; checklist ibadah tersedia dari Waktu Sholat tanpa menghapus data lama. Quran mengikuti katalog/reader terang yang lebih ringkas dari referensi Suhayel, dengan mode malam opsional. Home astronomi dan branding master tetap tersedia. Lihat [screenshot dan validasi terbaru](android/validation/character-refresh/README.md), [cara Android Studio](android/BUILDING.md), dan [RECOVERY.md](RECOVERY.md).
+> **Status terbaru — 18 Oktober 2026:** onboarding kini memakai **tiga ilustrasi 2D statis** dari pilihan referensi pengguna: belajar di meja, perempuan bermukena di sajadah, dan membaca Quran dengan rehal. Tidak ada animasi karakter, parallax atau transisi isi onboarding. Logo master kiri atas, tiga judul/deskripsi, navigasi dan preferensi lama dipertahankan. Study Hub khusus akademik, checklist ibadah dari Waktu Sholat, serta desain Quran ringkas tetap tersedia. [Screenshot dan validasi terbaru](android/validation/static-onboarding/README.md) · [Android Studio](android/BUILDING.md) · [RECOVERY.md](RECOVERY.md).
 
 # Zikra Smart Islamic Student Companion
 
@@ -33,7 +33,7 @@ Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./and
 | Home | Jam/Hijriah/jadwal Sukolilo, branding master kiri atas, langit siang/malam, USNO/fallback berlabel, parallax dan animasi masuk, delapan shortcut, progres SQLite/dock | Uji kelancaran/baterai di HP; pilihan lokasi masih backlog |
 | Protector BMKG | Open-Meteo untuk prakiraan/cache 10 menit–6 jam, BMKG untuk gempa/peringatan, loading/error/sumber, header Pine bersama Study/Hifz | Lokasi masih Sukolilo; belum notifikasi cuaca otomatis |
 | Kiblat | Dial roset, Ka'bah, penanda derajat, acuan 294° Sukolilo, rotasi sensor, panduan kalibrasi, haptik bersyarat akurasi | Uji arah/getaran pada ponsel fisik; lokasi masih tetap Sukolilo |
-| Onboarding | Karakter 3D membuka buku, bersiap sholat dan membaca Quran; animasi dua detik/ketuk ulang, parallax, logo master kiri atas, reduced-motion; tanpa jenjang/minat | Cocokkan visual di HP; preferensi lama tetap disimpan |
+| Onboarding | Tiga ilustrasi 2D statis, copy singkat, logo master Pine kiri atas, tinggi gambar responsif, tanpa jenjang/minat | Cocokkan visual pada HP; preferensi lama tetap disimpan |
 | Quran | Katalog ringkas dan reader terang sesuai referensi, malam opsional; native 114 surah public v4, Utsmani/arti resource 33, pagination 50 ayat, bookmark/resume, cache delapan bagian dan empat surah bawaan | Mushaf halaman, audio dan offline penuh belum tersedia |
 | Study Hub / Diary Hifz | Study khusus tugas akademik; ibadah melalui Waktu Sholat; Diary Hifz khusus hafalan. CRUD/SQLite v2, target 114 surah/rentang, draft editor/dikte dan reader native | Belum timer fokus/deadline/statistik atau evaluasi bacaan AI |
 | Waktu sholat | Kalkulasi matahari harian Sukolilo, daftar hari/pekan, countdown, preferensi dan notifikasi/alarm | Integrasi Aladhan; belum audio adzan; validasi izin dan ketepatan alarm pada HP |
@@ -43,7 +43,7 @@ Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./and
 
 ### Urutan pekerjaan berikutnya — setelah pemulihan 18 Oktober
 
-Study/Hifz, branding master, onboarding taman, langit Home, reader native dan Open-Meteo sudah dibangun ulang. Lihat [RECOVERY.md](RECOVERY.md) dan [validasi terbaru](android/validation/rebuilt/README.md). Berikutnya uji pada HP fisik dan cocokkan hasil visual dengan pengguna sebelum memperluas fitur. Mushaf halaman, murottal, pilihan lokasi dan AI generatif tetap backlog tersendiri. Jangan menyebut semua fitur optimal atau kode lama telah ditemukan.
+Study/Hifz, branding master, langit Home, reader native dan Open-Meteo tersedia; onboarding telah diganti menjadi ilustrasi 2D statis sesuai arahan terakhir. Lihat [RECOVERY.md](RECOVERY.md) dan [validasi terbaru](android/validation/static-onboarding/README.md). Berikutnya uji pada HP fisik dan cocokkan hasil visual dengan pengguna sebelum memperluas fitur. Mushaf halaman, murottal, pilihan lokasi dan AI generatif tetap backlog tersendiri. Jangan menyebut semua fitur optimal atau kode lama telah ditemukan.
 
 ### Persyaratan mode Mushaf
 

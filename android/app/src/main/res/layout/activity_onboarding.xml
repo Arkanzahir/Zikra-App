@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/onboardRoot" android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:background="#F4E5CB" android:paddingHorizontal="24dp"
+    android:orientation="vertical" android:background="@color/onboarding_paper" android:paddingHorizontal="24dp"
     android:theme="@style/ZikraBrandLight">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="64dp" android:gravity="center_vertical">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:gravity="center_vertical">
         <include layout="@layout/view_zikra_brand" />
         <Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
         <Button android:id="@+id/onboardSkip" android:layout_width="64dp" android:layout_height="48dp"
@@ -12,35 +12,34 @@
     <ScrollView android:id="@+id/onboardScroll" android:layout_width="match_parent" android:layout_height="0dp"
         android:layout_weight="1" android:fillViewport="true" android:scrollbars="none">
         <LinearLayout android:id="@+id/onboardStory" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="vertical" android:gravity="center_vertical" android:paddingVertical="12dp">
-            <com.zikra.app.discovery.GardenSceneView android:id="@+id/onboardGarden"
-                android:layout_width="match_parent" android:layout_height="286dp"
-                android:contentDescription="Karakter membuka buku. Ketuk untuk mengulang animasi." />
-            <TextView android:id="@+id/onboardEyebrow" android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="20dp" android:text="RUANG UNTUK BELAJAR" android:textSize="10sp"
-                android:letterSpacing="0.08" android:textColor="#52665C" />
+            android:orientation="vertical" android:gravity="center_vertical" android:paddingVertical="8dp">
+            <ImageView android:id="@+id/onboardIllustration"
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:maxHeight="@dimen/onboard_static_art_height"
+                android:scaleType="fitCenter" android:adjustViewBounds="true"
+                android:contentDescription="Pelajar berkacamata menulis di meja belajar." />
             <TextView android:id="@+id/onboardTitle" android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="12dp" android:text="Belajar lebih\nterarah."
-                android:textSize="32sp" android:letterSpacing="-0.025" android:textStyle="bold" android:textColor="@color/pine" />
+                android:layout_marginTop="24dp" android:text="Belajar lebih terarah."
+                android:textSize="28sp" android:letterSpacing="-0.02" android:textStyle="bold" android:textColor="@color/pine" />
             <TextView android:id="@+id/onboardDescription" android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="12dp" android:textSize="14sp" android:lineSpacingExtra="5dp"
-                android:textColor="#52665C" android:text="Tata tugas dan target belajarmu, satu per satu." />
+                android:layout_marginTop="10dp" android:textSize="14sp" android:lineSpacingExtra="4dp"
+                android:textColor="#53655D" android:text="Tata tugas dan target belajarmu, satu per satu." />
         </LinearLayout>
     </ScrollView>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:gravity="center_vertical">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:gravity="center_vertical">
         <ImageButton android:id="@+id/onboardBack" android:layout_width="48dp" android:layout_height="48dp"
             android:src="@drawable/ic_back" android:tint="@color/pine" android:padding="14dp"
             android:background="?android:attr/selectableItemBackgroundBorderless" android:contentDescription="Langkah sebelumnya" />
-        <View android:id="@+id/onboardDot0" android:layout_width="24dp" android:layout_height="3dp" android:background="@color/pine" />
-        <View android:id="@+id/onboardDot1" android:layout_width="16dp" android:layout_height="3dp" android:layout_marginStart="6dp" android:background="#91A397" />
-        <View android:id="@+id/onboardDot2" android:layout_width="16dp" android:layout_height="3dp" android:layout_marginStart="6dp" android:background="#91A397" />
+        <View android:id="@+id/onboardDot0" android:layout_width="24dp" android:layout_height="3dp" android:background="@color/pine" android:importantForAccessibility="no" />
+        <View android:id="@+id/onboardDot1" android:layout_width="24dp" android:layout_height="3dp" android:layout_marginStart="6dp" android:background="#BDC8BD" android:importantForAccessibility="no" />
+        <View android:id="@+id/onboardDot2" android:layout_width="24dp" android:layout_height="3dp" android:layout_marginStart="6dp" android:background="#BDC8BD" android:importantForAccessibility="no" />
         <Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
         <TextView android:id="@+id/onboardStep" android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="Langkah 1 dari 3" android:textSize="10sp" android:textColor="#52665C" />
+            android:text="Langkah 1 dari 3" android:textSize="11sp" android:textColor="#53655D" android:accessibilityLiveRegion="polite" />
     </LinearLayout>
     <Button android:id="@+id/onboardContinue" android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:minHeight="54dp" android:paddingVertical="12dp" android:background="@drawable/bg_pine"
+        android:minHeight="52dp" android:paddingVertical="12dp" android:background="@drawable/bg_pine"
+        android:stateListAnimator="@null" android:elevation="0dp"
         android:text="Lanjut" android:textAllCaps="false" android:textSize="14sp" android:textStyle="bold" android:textColor="@color/white" />
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center"
-        android:paddingVertical="14dp" android:text="Tanpa akun. Mulai dengan caramu." android:textSize="10sp" android:textColor="#52665C" />
+        android:paddingVertical="12dp" android:text="Tanpa akun. Mulai dengan caramu." android:textSize="11sp" android:textColor="#53655D" />
 </LinearLayout>
