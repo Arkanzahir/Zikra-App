@@ -4,13 +4,27 @@
     "stream_groups": [],
     "streams": [
       {
-        "avg_frame_rate": "720000/890839",
-        "nb_frames": "8"
+        "avg_frame_rate": "45000/102149",
+        "nb_frames": "4"
       }
     ],
     "format": {
-      "duration": "9.898211",
-      "size": "26960"
+      "duration": "9.079911",
+      "size": "38638"
+    }
+  },
+  "CharacterAssetPreview.mp4": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "avg_frame_rate": "24/1",
+        "nb_frames": "198"
+      }
+    ],
+    "format": {
+      "duration": "8.250000",
+      "size": "81086"
     }
   }
 }

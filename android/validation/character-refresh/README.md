@@ -12,7 +12,7 @@ JDK17/SDK35, emulator API28 AOSP dengan software rendering. [Build/unit/lint](bu
 
 Putaran perangkat awal menjalankan 13 metode: 12 lulus, satu menemukan lompatan parallax pada transisi frame akhir ke poster ([log lengkap](device-initial.txt)). Reset offset kini hanya dilakukan saat gerak dinonaktifkan; offset sentuh/tilt tetap stabil pada akhir playback dan perubahan sensor kecil diabaikan. [Empat pemeriksaan terfokus](device-focused.txt) kemudian lulus: gerak/diam/pause, reduced-motion, reader terang/pengaturan malam/recreation, dan pemisahan data akademik/ibadah. Total **14 skenario unik telah lulus** melalui putaran tersebut; bukan satu full-suite 14 sekaligus.
 
-Skenario lain mencakup tiga cerita/recreation/skip/preservasi preferensi, katalog 114 surah dan pencarian, validasi respons, Al-Mulk/bookmark/cache, Al-Baqarah bagian terakhir/sebelumnya, editor/dikte/validasi/draft Hifz, completion/recreation dan routing target ke reader native. Tes memulihkan preferensi/data sementara. Screenshot label bookmark dan progres adalah contoh tes, bukan data pribadi yang dipulihkan.
+Skenario lain mencakup tiga cerita/recreation/skip/preservasi preferensi, katalog 114 surah dan pencarian, validasi respons, Al-Mulk/bookmark/cache, Al-Baqarah bagian terakhir/sebelumnya, editor/dikte/validasi/draft Hifz, completion/recreation dan routing target ke reader native. Tes memulihkan preferensi/data sementara. Screenshot label bookmark dan progres adalah contoh tes, bukan data pribadi yang dipulihkan. Alur tiga cerita juga diputar ulang untuk pengambilan media; [log capture](capture-flow.txt).
 
 ## Screenshot APK
 
@@ -30,11 +30,11 @@ Skenario lain mencakup tiga cerita/recreation/skip/preservasi preferensi, katalo
 
 [Diary Hifz](screens/DiaryHifz.png) · [Al-Baqarah ayat 280](screens/RebuiltQuranBaqarah280.png) · [Ikon master aktual](screens/RebuiltAppIcon.png).
 
-[Galeri mandiri](preview.html) · [PDF](preview.pdf) · [Rekaman APK](CharacterOnboarding.mp4). Gambar asli tertanam sehingga tidak bergantung pada path cloud lama. Preview Home/cuaca pada galeri berasal dari checkpoint pemeriksaan sebelumnya dan diberi keterangan; Home siang/malam skenario tetap berlabel DATA UJI. Tidak mengklaim data pada gambar sebagai data terbaru saat dilihat nanti.
+[Galeri mandiri](preview.html) · [PDF](preview.pdf) · [Preview aset 24 fps](CharacterAssetPreview.mp4) · [Rekaman APK, FPS rendah](CharacterOnboarding.mp4). Gambar asli tertanam sehingga tidak bergantung pada path cloud lama. Video aset 24 fps adalah render dari frame model asli, bukan rekaman APK; rekaman emulator terpisah hanya 4 frame/sekitar 9 detik, sehingga tidak layak menilai gerak atau performa. Rekaman diganti setelah pemeriksaan awal menemukan launcher Android terekam sebelum aplikasi selesai tampil. Capture akhir menunggu jendela dan screenshot onboarding terkonfirmasi. Preview Home/cuaca pada galeri berasal dari checkpoint pemeriksaan sebelumnya dan diberi keterangan; Home siang/malam skenario tetap berlabel DATA UJI. Tidak mengklaim data pada gambar sebagai data terbaru saat dilihat nanti.
 
 ## Batas
 
-Atlas aktif terdekode sekitar 14,1 MiB ditambah poster; tiga atlas tidak dimuat bersamaan sebagai aset aktif. Angka 24 fps adalah laju playback yang ditargetkan, bukan hasil pengukuran HP. Emulator sekitar 1–2 fps saat direkam; kelancaran/baterai dan sensor fisik belum diukur. Runtime API35 juga belum diuji.
+Atlas aktif terdekode sekitar 14,1 MiB ditambah poster; tiga atlas tidak dimuat bersamaan sebagai aset aktif. Angka 24 fps adalah laju playback yang ditargetkan, bukan hasil pengukuran HP. FPS rekaman emulator rendah (lihat [metadata](motion-metadata.json)); kelancaran/baterai dan sensor fisik belum diukur. Runtime API35 juga belum diuji.
 
 Quran tetap public v4 dengan 50 ayat per bagian, cache terbatas delapan bagian dan empat surah bawaan. Belum ada Mushaf sesuai edisi, audio atau offline penuh; akses production Content Sync belum dimiliki. Home/lokasi Sukolilo, cuaca dan fitur lain di luar perubahan ini belum diuji ulang menyeluruh. Tidak ada klaim seluruh aplikasi sudah optimal.
 
