@@ -4,7 +4,9 @@
 
 ## Sumber dan batas pemulihan
 
-Instance cloud pengganti hanya berisi `prototype_zikra`. Checkout utama diklon ulang dari `Arkanzahir/Zikra-App`, commit publik `d19e95bb9eef80afba6d6c2b02291d56716a76fa`. Pengguna mengonfirmasi **belum ada salinan lain**. Perubahan lokal dari percakapan sebelumnya tidak ditemukan di branch remote; kode itu tidak dapat diklaim pulih. `prototype_zikra` dipertahankan tanpa perubahan sebagai referensi lama.
+Saat pemeriksaan filesystem aktif, checkout utama belum tersedia dan kemudian diklon dari `Arkanzahir/Zikra-App`, commit publik `d19e95bb9eef80afba6d6c2b02291d56716a76fa`. Pengguna mengonfirmasi **belum ada salinan lain**, lalu menunjukkan riwayat pekerjaan di environment yang sama dan path `/workspace/Zikra-App/android/validation/screens/onboarding-garden/preview.html`. Path tersebut belum ditemukan di filesystem yang saat ini dapat diakses. Ini membatasi status pada **belum ditemukan**, bukan bukti bahwa pekerjaan hilang permanen atau environment pasti berganti.
+
+Parallax orbit lama memang ada di Git (`65666c2`), termasuk `LearningOrbitView` dan GIF validasi. Versi diorama taman serta langit Home yang diperlihatkan pengguna belum ditemukan pada kedua checkout, reflog/objek Git yang tersedia, arsip kerja atau APK yang dapat diakses. Kode itu belum dapat diklaim pulih maupun termasuk dalam push terbaru. `prototype_zikra` tetap referensi lama tanpa perubahan. Petunjuk menjalankan sumber yang tersedia ada di [BUILDING.md](android/BUILDING.md).
 
 Pekerjaan baru ada pada branch `recovery/study-hifz-refresh`. Snapshot sumber dan Git bundle dibuat terpisah agar pekerjaan tidak hanya bergantung pada instance ini. Jangan reset ke main atau menimpa branch pengguna. Build APK tidak mencadangkan data pribadi di perangkat.
 

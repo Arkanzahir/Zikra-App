@@ -1,4 +1,4 @@
-> **Status terbaru — 18 Oktober 2026:** instance diganti; perubahan lokal sesi sebelumnya tidak tersedia. Pemulihan tahap ini mencakup Study/Hifz, target surah/ayat, editor dan navigasi bersama. Reader native masih 4 surah; target lain membuka Quran.com eksternal. Baca [RECOVERY.md](../RECOVERY.md) dan [validasi terbaru](validation/agenda/README.md) sebelum catatan historis di bawah. Setup baru: [tools/cloud](../tools/cloud/README.md).
+> **Status terbaru — 18 Oktober 2026:** checkout aktif belum memuat seluruh perubahan lokal yang pernah dibahas; versi diorama/Home belum ditemukan. Pemulihan tahap ini mencakup Study/Hifz, target surah/ayat, editor dan navigasi bersama. Reader native masih 4 surah; target lain membuka Quran.com eksternal. Baca [RECOVERY.md](../RECOVERY.md) dan [validasi terbaru](validation/agenda/README.md) sebelum catatan historis di bawah. Setup baru: [tools/cloud](../tools/cloud/README.md).
 
 # Build Android native
 
@@ -6,10 +6,22 @@ Folder `android` adalah project Android Studio mandiri. Semua source aplikasi me
 
 ## Android Studio
 
+Untuk mencoba pembaruan Study/Hifz terbaru, gunakan branch **`recovery/study-hifz-refresh`**, yang belum digabung ke `main`:
+
+```sh
+git clone --branch recovery/study-hifz-refresh https://github.com/Arkanzahir/Zikra-App.git
+```
+
+Alternatif: buka branch tersebut di GitHub, pilih **Code → Download ZIP**, lalu ekstrak. Di Android Studio buka **`Zikra-App/android`** (folder yang berisi `settings.gradle`), bukan folder `prototype_zikra`. Saat memakai ZIP GitHub, nama folder luarnya dapat berbeda; tetap pilih subfolder `android`.
+
+Versi yang tersedia memuat desain agenda Study/Hifz terbaru dan onboarding orbit yang sudah ada di Git. Versi diorama taman, branding turunan dan animasi langit Home yang pernah dibahas **belum ditemukan dalam checkout aktif**. Path lama `android/validation/screens/onboarding-garden/preview.html` juga belum tersedia di sini. Jangan menganggap ZIP/branch ini sudah memuat semua perubahan percakapan lama. Daftar status ada di `RECOVERY.md`.
+
 1. Buka folder `android` dengan **Open**, lalu tunggu Gradle Sync selesai.
-2. Gunakan JDK 17 atau 21 di **Settings → Build Tools → Gradle → Gradle JDK**. Android Studio menyediakan JDK yang kompatibel.
+2. Gunakan **JDK 17** di **Settings → Build, Execution, Deployment → Build Tools → Gradle → Gradle JDK**. Pilih/unduh JDK 17 bila JDK bawaan Android Studio berbeda.
 3. Instal **Android SDK Platform 35**, **Build Tools 35.0.0**, dan **Platform Tools** melalui SDK Manager. Android Studio membuat `local.properties` sesuai lokasi SDK lokal.
 4. Pilih emulator/perangkat Android 8.0 (API 26) atau lebih baru, lalu tekan **Run**.
+
+Jangan menyalin `/workspace/android-sdk`, `JAVA_HOME` cloud, konfigurasi proxy cloud atau `local.properties` dari environment ini ke Windows. Android Studio memakai SDK/JDK lokal dan membuat `local.properties` sendiri. Gradle Sync awal memerlukan Internet untuk mengambil dependensi; backend/API key tidak diperlukan untuk memasang debug APK. Input suara/sensor tetap bergantung pada layanan perangkat.
 
 Versi build dipatok: Android Gradle Plugin **8.7.3**, Gradle **8.9**, `compileSdk`/`targetSdk` **35**, Java source/target **17**. Gradle Wrapper disertakan, termasuk SHA-256 distribusi pada `gradle-wrapper.properties`.
 
