@@ -1,4 +1,4 @@
-> **Status terbaru — 18 Oktober 2026:** checkout aktif belum memuat seluruh perubahan lokal yang pernah dibahas; versi diorama/Home belum ditemukan. Pemulihan tahap ini mencakup Study/Hifz, target surah/ayat, editor dan navigasi bersama. Reader native masih 4 surah; target lain membuka Quran.com eksternal. Baca [RECOVERY.md](RECOVERY.md) dan [validasi terbaru](android/validation/agenda/README.md) sebelum catatan historis di bawah. Setup baru: [tools/cloud](tools/cloud/README.md).
+> **Status terbaru — 18 Oktober 2026:** Study/Hifz sudah tersedia pada branch `recovery/study-hifz-refresh`. Branding satu master dan onboarding taman tiga cerita tanpa jenjang/minat kini **dibangun ulang dari referensi chat**, dengan parallax native. Build/lint dan tiga tes terkait lulus. Home siang/malam, reader 114 surah dan cuaca masih tahap berikutnya. Sumber asli versi lokal lama belum ditemukan. Baca [catatan pembangunan ulang](android/validation/rebuilt/README.md) dan [RECOVERY.md](RECOVERY.md).
 
 # Zikra Smart Islamic Student Companion
 

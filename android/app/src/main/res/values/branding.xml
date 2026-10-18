@@ -1,0 +1,17 @@
+<resources>
+    <attr name="zikraSymbol" format="reference" />
+    <attr name="zikraInk" format="color" />
+    <style name="ZikraBrandLight">
+        <item name="zikraSymbol">@drawable/zikra_symbol_pine</item>
+        <item name="zikraInk">@color/pine</item>
+    </style>
+    <style name="ZikraBrandDark">
+        <item name="zikraSymbol">@drawable/zikra_symbol_white</item>
+        <item name="zikraInk">@color/white</item>
+    </style>
+    <style name="Theme.Zikra.Launch" parent="Theme.Zikra">
+        <item name="android:windowBackground">@color/pine</item>
+        <item name="android:statusBarColor">@color/pine</item>
+        <item name="android:navigationBarColor">@color/pine</item>
+    </style>
+</resources>

@@ -54,33 +54,15 @@
                     android:paddingTop="@dimen/home_hero_top_padding">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
+                        android:layout_height="64dp"
                         android:gravity="center_vertical">
-                        <LinearLayout
-                            android:id="@+id/homeLocation"
-                            android:layout_width="wrap_content"
-                            android:layout_height="48dp"
-                            android:paddingEnd="14dp"
-                            android:gravity="center_vertical"
-                            android:background="?android:attr/selectableItemBackgroundBorderless"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:contentDescription="Buka lokasi Sukolilo, Surabaya di peta">
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="8dp"
-                                android:background="@drawable/circle_glass"
-                                android:src="@drawable/ic_pin"
-                                android:tint="@color/home_hero_text"
-                                android:importantForAccessibility="no" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:text="Sukolilo, Surabaya"
-                                android:textSize="10sp"
-                                android:textColor="@color/home_hero_text" />
+                        <LinearLayout android:id="@+id/homeLocation" android:layout_width="wrap_content"
+                            android:layout_height="64dp" android:orientation="vertical" android:gravity="center_vertical"
+                            android:theme="@style/ZikraBrandDark" android:clickable="true" android:focusable="true"
+                            android:background="?android:attr/selectableItemBackground" android:contentDescription="Lokasi Sukolilo, Surabaya. Buka peta">
+                            <include layout="@layout/view_zikra_brand" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:layout_marginStart="11dp" android:text="Sukolilo, Surabaya" android:textSize="10sp" android:textColor="#BFD2C8" />
                         </LinearLayout>
                         <Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
                         <ImageButton

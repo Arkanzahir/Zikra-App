@@ -1,0 +1,12 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:orientation="horizontal" android:gravity="center_vertical"
+    android:tag="zikraBrand" android:contentDescription="Zikra" android:importantForAccessibility="yes">
+    <ImageView android:layout_width="38dp" android:layout_height="44dp"
+        android:src="?attr/zikraSymbol" android:scaleType="fitCenter"
+        android:importantForAccessibility="no" />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="1dp" android:text="zikra." android:textSize="22sp"
+        android:textStyle="bold" android:textColor="?attr/zikraInk"
+        android:importantForAccessibility="no" />
+</LinearLayout>

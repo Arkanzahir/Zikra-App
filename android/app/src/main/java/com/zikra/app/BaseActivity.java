@@ -64,11 +64,12 @@ public abstract class BaseActivity extends Activity {
   @Override
   protected void onResume() {
     super.onResume();
-    if (motion != null
+    if (usesShakeShortcut()
+        && motion != null
         && acceleration != null
         && getSharedPreferences("zikra_preferences", MODE_PRIVATE)
             .getBoolean("shake_enabled", true))
-      motion.registerListener(shakeListener, acceleration, SensorManager.SENSOR_DELAY_GAME);
+      motion.registerListener(shakeListener, acceleration, SensorManager.SENSOR_DELAY_UI);
   }
 
   @Override
@@ -77,6 +78,10 @@ public abstract class BaseActivity extends Activity {
     peaks = 0;
     if (emergency != null) emergency.dismiss();
     super.onPause();
+  }
+
+  protected boolean usesShakeShortcut() {
+    return true;
   }
 
   protected void open(Class<? extends Activity> activity) {

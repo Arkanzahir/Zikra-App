@@ -12,8 +12,6 @@ import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import com.zikra.app.data.ZikraDbHelper;
-import java.util.Collections;
-import java.util.Set;
 
 /** Local profile and entry points to faith, learning and device preferences. */
 public final class ProfileActivity extends BaseActivity {
@@ -47,8 +45,7 @@ public final class ProfileActivity extends BaseActivity {
     ((ProgressBar) findViewById(R.id.profileProgress)).setProgress(progress.percent);
     ((TextView) findViewById(R.id.profileProgressCaption))
         .setText(progress.completed + " dari " + progress.total + " checklist selesai");
-    ((TextView) findViewById(R.id.profileRoleCaption))
-        .setText(roleLabel() + " · Sukolilo, Surabaya");
+    ((TextView) findViewById(R.id.profileRoleCaption)).setText("Profil lokal · Sukolilo, Surabaya");
     rows.removeAllViews();
     row(
         "Bacaan terakhir",
@@ -68,8 +65,8 @@ public final class ProfileActivity extends BaseActivity {
         R.drawable.ic_moon,
         () -> open(CalendarActivity.class));
     row(
-        "Preferensi belajar",
-        roleLabel() + " · minat pribadi",
+        "Kenali Zikra",
+        "Belajar, ibadah dan hafalan sehari-hari",
         R.drawable.ic_graduation,
         () -> startActivity(new Intent(this, OnboardingActivity.class).putExtra("edit", true)));
     row(
@@ -90,11 +87,7 @@ public final class ProfileActivity extends BaseActivity {
         () ->
             profileDialog =
                 new AlertDialog.Builder(this)
-                    .setTitle("Zikra")
-                    .setMessage(
-                        "Aplikasi native Java + XML untuk ibadah dan belajar. Profil, checklist,"
-                            + " bookmark, dan preferensi tersimpan di perangkat. Tidak ada akun"
-                            + " atau sinkronisasi cloud.")
+                    .setView(getLayoutInflater().inflate(R.layout.dialog_about_zikra, null))
                     .setPositiveButton("Mengerti", null)
                     .show());
   }
@@ -163,13 +156,6 @@ public final class ProfileActivity extends BaseActivity {
     explanation.setTextSize(12);
     explanation.setPadding(0, dp(16), 0, 0);
     content.addView(explanation);
-    Set<String> interests = preferences.getStringSet("learning_interests", Collections.emptySet());
-    TextView interestsView = new TextView(this);
-    interestsView.setText(
-        "Minat: " + (interests.isEmpty() ? "belum dipilih" : String.join(", ", interests)));
-    interestsView.setTextSize(12);
-    interestsView.setPadding(0, dp(16), 0, 0);
-    content.addView(interestsView);
     profileDialog =
         new AlertDialog.Builder(this)
             .setTitle("Pengaturan")

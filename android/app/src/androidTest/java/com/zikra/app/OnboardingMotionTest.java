@@ -6,46 +6,50 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.SystemClock;
 import android.test.InstrumentationTestCase;
-import com.zikra.app.discovery.LearningOrbitView;
+import com.zikra.app.discovery.GardenSceneView;
 
 @SuppressWarnings("deprecation")
 public final class OnboardingMotionTest extends InstrumentationTestCase {
   private Activity activity;
 
-  public void testOrbitMovesAndStopsWhenLeavingWelcome() throws Exception {
+  public void testGardenMovesAndPausesWithoutChangingBrand() throws Exception {
     activity =
         getInstrumentation()
             .startActivitySync(
                 new Intent(getInstrumentation().getTargetContext(), OnboardingActivity.class)
-                    .putExtra("edit", true)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     getInstrumentation().waitForIdleSync();
-    getInstrumentation()
-        .runOnMainSync(() -> activity.findViewById(R.id.onboardBack).performClick());
-    SystemClock.sleep(350);
-    LearningOrbitView orbit = activity.findViewById(R.id.onboardOrbit);
-    assertTrue("Motion-enabled welcome must animate", orbit.isMotionRunning());
-    Bitmap before = snapshot(orbit);
-    SystemClock.sleep(350);
-    Bitmap after = snapshot(orbit);
-    assertFalse("The orbit must change over time", before.sameAs(after));
-    before.recycle();
-    after.recycle();
-    getInstrumentation()
-        .runOnMainSync(() -> activity.findViewById(R.id.onboardContinue).performClick());
-    assertFalse("Hidden artwork must stop frame and sensor work", orbit.isMotionRunning());
+    long end = SystemClock.uptimeMillis() + 15000;
+    while (!activity.hasWindowFocus() && SystemClock.uptimeMillis() < end) SystemClock.sleep(100);
+    GardenSceneView scene = activity.findViewById(R.id.onboardGarden);
+    assertTrue(
+        "Foreground garden must animate when system motion is enabled", scene.isMotionRunning());
+    Bitmap first = snapshot(scene);
+    SystemClock.sleep(500);
+    Bitmap next = snapshot(scene);
+    assertFalse("Floating scenery changes pixels over time", first.sameAs(next));
+    first.recycle();
+    next.recycle();
+    getInstrumentation().runOnMainSync(() -> scene.setRunning(false));
+    assertFalse(scene.isMotionRunning());
+    Bitmap stopped = snapshot(scene);
+    SystemClock.sleep(300);
+    Bitmap still = snapshot(scene);
+    assertTrue("Paused garden does not advance decorative motion", stopped.sameAs(still));
+    stopped.recycle();
+    still.recycle();
   }
 
-  private Bitmap snapshot(LearningOrbitView view) {
-    Bitmap[] result = new Bitmap[1];
+  private Bitmap snapshot(GardenSceneView scene) {
+    Bitmap[] image = new Bitmap[1];
     getInstrumentation()
         .runOnMainSync(
             () -> {
-              result[0] =
-                  Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-              view.draw(new Canvas(result[0]));
+              image[0] =
+                  Bitmap.createBitmap(scene.getWidth(), scene.getHeight(), Bitmap.Config.ARGB_8888);
+              scene.draw(new Canvas(image[0]));
             });
-    return result[0];
+    return image[0];
   }
 
   @Override

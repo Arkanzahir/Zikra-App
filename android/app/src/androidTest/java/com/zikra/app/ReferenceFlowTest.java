@@ -60,70 +60,50 @@ public final class ReferenceFlowTest extends InstrumentationTestCase {
     assertTrue(((LinearLayout) hadith.findViewById(R.id.hadithList)).getChildCount() > 0);
   }
 
-  public void testOnboardingSavesLevelAndLimitsInterestsInEditMode() {
+  public void testOnboardingStoryDoesNotRequestOrOverwriteInterests() {
     android.content.SharedPreferences prefs =
         getInstrumentation().getTargetContext().getSharedPreferences("zikra_preferences", 0);
-    String oldLevel = prefs.getString("education_level", null);
-    String oldRole = prefs.getString("user_role", null);
-    java.util.Set<String> oldInterests = prefs.getStringSet("learning_interests", null);
+    java.util.Map<String, ?> original = new java.util.HashMap<>(prefs.getAll());
     try {
-      prefs.edit().remove("education_level").remove("learning_interests").commit();
-      OnboardingActivity onboarding = launch(OnboardingActivity.class);
-      assertFalse(onboarding.findViewById(R.id.onboardContinue).isEnabled());
-      getInstrumentation()
-          .runOnMainSync(() -> onboarding.findViewById(R.id.onboardBack).performClick());
-      UiEvidence.capture(getInstrumentation(), "OnboardingWelcome");
-      getInstrumentation()
-          .runOnMainSync(
-              () -> {
-                onboarding.findViewById(R.id.onboardContinue).performClick();
-                onboarding.findViewById(R.id.onboardLevelSma).performClick();
-              });
-      UiEvidence.capture(getInstrumentation(), "OnboardingEducation");
-      assertTrue(onboarding.findViewById(R.id.onboardLevelSma).isSelected());
-      getInstrumentation()
-          .runOnMainSync(() -> onboarding.findViewById(R.id.onboardContinue).performClick());
-      android.widget.GridLayout grid = onboarding.findViewById(R.id.onboardInterests);
-      getInstrumentation()
-          .runOnMainSync(
-              () -> {
-                for (int i = 0; i < 4; i++) grid.getChildAt(i).performClick();
-              });
-      assertFalse("A fourth interest must not be selected", grid.getChildAt(3).isSelected());
-      assertEquals(
-          "3 dari 3 minat dipilih",
-          ((TextView) onboarding.findViewById(R.id.onboardInterestCount)).getText().toString());
-      getInstrumentation()
-          .runOnMainSync(
-              () -> {
-                grid.getChildAt(0).performClick();
-                grid.getChildAt(3).performClick();
-                onboarding.findViewById(R.id.onboardBack).performClick();
-              });
-      assertTrue(
-          "Education survives moving back",
-          onboarding.findViewById(R.id.onboardLevelSma).isSelected());
-      getInstrumentation()
-          .runOnMainSync(() -> onboarding.findViewById(R.id.onboardContinue).performClick());
-      UiEvidence.capture(getInstrumentation(), "OnboardingInterests");
-      getInstrumentation()
-          .runOnMainSync(() -> onboarding.findViewById(R.id.onboardContinue).performClick());
-      getInstrumentation().waitForIdleSync();
-      assertEquals("SMA / SMK", prefs.getString("education_level", ""));
-      assertEquals("Student", prefs.getString("user_role", ""));
-      java.util.Set<String> saved =
-          prefs.getStringSet("learning_interests", java.util.Collections.emptySet());
-      assertEquals(3, saved.size());
-      assertFalse(saved.contains(OnboardingActivity.INTERESTS[0]));
-      assertTrue(saved.contains(OnboardingActivity.INTERESTS[3]));
-      assertTrue(onboarding.isFinishing());
-    } finally {
       prefs
           .edit()
-          .putString("education_level", oldLevel)
-          .putString("user_role", oldRole)
-          .putStringSet("learning_interests", oldInterests)
+          .putString("education_level", "SMA / SMK")
+          .putStringSet(
+              "learning_interests", new java.util.HashSet<>(java.util.Arrays.asList("Sains")))
           .commit();
+      OnboardingActivity onboarding = launch(OnboardingActivity.class);
+      assertTrue(onboarding.findViewById(R.id.onboardContinue).isEnabled());
+      assertEquals(
+          "Langkah 1 dari 3",
+          ((TextView) onboarding.findViewById(R.id.onboardStep)).getText().toString());
+      getInstrumentation()
+          .runOnMainSync(() -> onboarding.findViewById(R.id.onboardContinue).performClick());
+      assertEquals(
+          "Langkah 2 dari 3",
+          ((TextView) onboarding.findViewById(R.id.onboardStep)).getText().toString());
+      getInstrumentation()
+          .runOnMainSync(() -> onboarding.findViewById(R.id.onboardSkip).performClick());
+      getInstrumentation().waitForIdleSync();
+      assertTrue(prefs.getBoolean("onboarding_complete", false));
+      assertEquals("SMA / SMK", prefs.getString("education_level", ""));
+      assertTrue(
+          prefs
+              .getStringSet("learning_interests", java.util.Collections.emptySet())
+              .contains("Sains"));
+    } finally {
+      android.content.SharedPreferences.Editor e = prefs.edit().clear();
+      for (java.util.Map.Entry<String, ?> item : original.entrySet()) {
+        Object v = item.getValue();
+        String k = item.getKey();
+        if (v instanceof String) e.putString(k, (String) v);
+        else if (v instanceof Boolean) e.putBoolean(k, (Boolean) v);
+        else if (v instanceof Integer) e.putInt(k, (Integer) v);
+        else if (v instanceof Long) e.putLong(k, (Long) v);
+        else if (v instanceof Float) e.putFloat(k, (Float) v);
+        else if (v instanceof java.util.Set)
+          e.putStringSet(k, new java.util.HashSet<>((java.util.Set<String>) v));
+      }
+      e.commit();
     }
   }
 }
