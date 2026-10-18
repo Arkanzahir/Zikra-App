@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/agenda_completed_toggle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="56dp"
+    android:paddingVertical="12dp"
+    android:gravity="start|center_vertical"
+    android:paddingHorizontal="0dp"
+    android:textColor="@color/study_secondary"
+    android:textStyle="bold"
+    android:textSize="13sp"
+    android:textAllCaps="false"
+    android:background="?android:attr/selectableItemBackground" />

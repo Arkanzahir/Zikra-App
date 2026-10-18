@@ -1,5 +1,7 @@
 # Pemulihan Study/Hifz — 18 Oktober 2026
 
+**Penyempurnaan terbaru:** Study/Hifz kini memakai susunan agenda: judul ivory/Pine, progres kecil per kategori, satu kegiatan belum selesai yang ditonjolkan, daftar ringan dan bagian Selesai yang bisa dilipat. Header XML dipakai bersama; konten utama bisa digulir untuk layar kecil/teks besar. Lihat [validasi dan preview agenda](android/validation/agenda/README.md). Bagian pemulihan di bawah mencatat keadaan sebelum penyempurnaan ini; fitur lokal lama lainnya tetap belum pulih.
+
 ## Sumber dan batas pemulihan
 
 Instance cloud pengganti hanya berisi `prototype_zikra`. Checkout utama diklon ulang dari `Arkanzahir/Zikra-App`, commit publik `d19e95bb9eef80afba6d6c2b02291d56716a76fa`. Pengguna mengonfirmasi **belum ada salinan lain**. Perubahan lokal dari percakapan sebelumnya tidak ditemukan di branch remote; kode itu tidak dapat diklaim pulih. `prototype_zikra` dipertahankan tanpa perubahan sebagai referensi lama.

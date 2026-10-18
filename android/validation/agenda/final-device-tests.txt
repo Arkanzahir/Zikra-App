@@ -1,0 +1,148 @@
+INSTRUMENTATION_STATUS: class=com.zikra.app.StudyRecoveryTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=5
+INSTRUMENTATION_STATUS: stream=
+com.zikra.app.StudyRecoveryTest:
+INSTRUMENTATION_STATUS: test=testAgendaCompletionFilterAndRecreation
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.StudyRecoveryTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=5
+INSTRUMENTATION_STATUS: stack=junit.framework.AssertionFailedError
+	at com.zikra.app.StudyRecoveryTest.testAgendaCompletionFilterAndRecreation(StudyRecoveryTest.java:283)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:564)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2145)
+
+INSTRUMENTATION_STATUS: stream=
+Failure in testAgendaCompletionFilterAndRecreation:
+junit.framework.AssertionFailedError
+	at com.zikra.app.StudyRecoveryTest.testAgendaCompletionFilterAndRecreation(StudyRecoveryTest.java:283)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:564)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2145)
+
+INSTRUMENTATION_STATUS: test=testAgendaCompletionFilterAndRecreation
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.zikra.app.StudyRecoveryTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=5
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testCatalogLiveRangeValidationDraftAndCancelledRecognition
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.StudyRecoveryTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=5
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testCatalogLiveRangeValidationDraftAndCancelledRecognition
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.StudyRecoveryTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=5
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testCatalogRejectsIncompleteAndMisorderedMetadata
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.StudyRecoveryTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=5
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testCatalogRejectsIncompleteAndMisorderedMetadata
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.StudyRecoveryTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=5
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testDateAndStudyEditorValidationDictationAndSave
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.StudyRecoveryTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=5
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testDateAndStudyEditorValidationDictationAndSave
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.StudyRecoveryTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=5
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testTargetCardsCompletionAndLocalReaderRoute
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.StudyRecoveryTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=5
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: junit.framework.AssertionFailedError: Missing agenda row 42
+	at com.zikra.app.StudyRecoveryTest.onMain(StudyRecoveryTest.java:409)
+	at com.zikra.app.StudyRecoveryTest.scrollTo(StudyRecoveryTest.java:345)
+	at com.zikra.app.StudyRecoveryTest.testTargetCardsCompletionAndLocalReaderRoute(StudyRecoveryTest.java:202)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:564)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2145)
+Caused by: junit.framework.AssertionFailedError: Missing agenda row 42
+	at com.zikra.app.StudyRecoveryTest.lambda$scrollTo$26(StudyRecoveryTest.java:353)
+	at com.zikra.app.StudyRecoveryTest.$r8$lambda$LmljsyR7r4EvfMlrqYVaDFIHIL4(Unknown Source:0)
+	at com.zikra.app.StudyRecoveryTest$$ExternalSyntheticLambda25.run(D8$$SyntheticClass:0)
+	at com.zikra.app.StudyRecoveryTest.lambda$onMain$27(StudyRecoveryTest.java:404)
+	at com.zikra.app.StudyRecoveryTest$$ExternalSyntheticLambda26.run(D8$$SyntheticClass:0)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2163)
+	at android.os.Handler.handleCallback(Handler.java:873)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:193)
+	at android.app.ActivityThread.main(ActivityThread.java:6669)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:858)
+
+INSTRUMENTATION_STATUS: stream=
+Error in testTargetCardsCompletionAndLocalReaderRoute:
+java.lang.AssertionError: junit.framework.AssertionFailedError: Missing agenda row 42
+	at com.zikra.app.StudyRecoveryTest.onMain(StudyRecoveryTest.java:409)
+	at com.zikra.app.StudyRecoveryTest.scrollTo(StudyRecoveryTest.java:345)
+	at com.zikra.app.StudyRecoveryTest.testTargetCardsCompletionAndLocalReaderRoute(StudyRecoveryTest.java:202)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:564)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2145)
+Caused by: junit.framework.AssertionFailedError: Missing agenda row 42
+	at com.zikra.app.StudyRecoveryTest.lambda$scrollTo$26(StudyRecoveryTest.java:353)
+	at com.zikra.app.StudyRecoveryTest.$r8$lambda$LmljsyR7r4EvfMlrqYVaDFIHIL4(Unknown Source:0)
+	at com.zikra.app.StudyRecoveryTest$$ExternalSyntheticLambda25.run(D8$$SyntheticClass:0)
+	at com.zikra.app.StudyRecoveryTest.lambda$onMain$27(StudyRecoveryTest.java:404)
+	at com.zikra.app.StudyRecoveryTest$$ExternalSyntheticLambda26.run(D8$$SyntheticClass:0)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2163)
+	at android.os.Handler.handleCallback(Handler.java:873)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:193)
+	at android.app.ActivityThread.main(ActivityThread.java:6669)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:858)
+
+INSTRUMENTATION_STATUS: test=testTargetCardsCompletionAndLocalReaderRoute
+INSTRUMENTATION_STATUS_CODE: -1
+INSTRUMENTATION_RESULT: stream=
+Test results for InstrumentationTestRunner=.F....E
+Time: 94.696
+
+FAILURES!!!
+Tests run: 5,  Failures: 1,  Errors: 1
+
+
+INSTRUMENTATION_CODE: -1

@@ -43,6 +43,7 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
   private String oldName;
   private int oldAyah;
   private boolean hadName, hadAyah;
+  private final java.util.Map<Long, Boolean> changed = new java.util.HashMap<>();
 
   @Override
   protected void setUp() throws Exception {
@@ -178,6 +179,11 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
       created.add(task.id);
       assertEquals(67, task.hifz.chapterId);
       assertEquals(5, task.hifz.count());
+      assertTrue(
+          ((TextView) page.findViewById(R.id.agenda_feature_detail))
+              .getText()
+              .toString()
+              .contains("ZZ_RECOVERY_HIFZ"));
     } finally {
       getInstrumentation().removeMonitor(monitor);
     }
@@ -189,10 +195,18 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
     long ikhlas = db.addHifzTask("Al-Ikhlas · Ayat 2–4", new HifzTarget(112, "Al-Ikhlas", 4, 2, 4));
     created.add(ikhlas);
     launch(true);
+    scrollTo(ikhlas);
     await(() -> row(ikhlas) != null, 15000);
     onMain(() -> ((CheckBox) row(ikhlas).findViewById(R.id.study_task_checkbox)).performClick());
     assertTrue(find(ikhlas).completed);
+    onMain(() -> ((ListView) page.findViewById(R.id.study_tasks)).setSelection(0));
     capture("hifz");
+    scrollTo(Long.MIN_VALUE);
+    await(() -> page.findViewById(R.id.agenda_completed_toggle) != null, 15000);
+    tapCompleted();
+    await(() -> adapterContains(ikhlas), 10000);
+    scrollTo(ikhlas);
+    await(() -> row(ikhlas) != null, 15000);
     Intent online = StudyActivity.readingIntent(page, new HifzTarget(67, "Al-Mulk", 30, 3, 7));
     assertEquals(Intent.ACTION_VIEW, online.getAction());
     assertEquals("https://quran.com/67/3", online.getDataString());
@@ -238,6 +252,119 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
     }
   }
 
+  public void testAgendaCompletionFilterAndRecreation() {
+    created.add(db.addTask("Lanjutkan rangkuman kuliah", ZikraDbHelper.CATEGORY_STUDY));
+    created.add(db.addTask("Baca ulang materi besok", ZikraDbHelper.CATEGORY_STUDY));
+    long done = db.addTask("Susun catatan pekan ini", ZikraDbHelper.CATEGORY_STUDY);
+    created.add(done);
+    db.setCompleted(done, true);
+    launch(false);
+    onMain(() -> page.findViewById(R.id.study_filter_study).performClick());
+    List<Task> pending = new ArrayList<>();
+    int completed = 0, total = 0;
+    for (Task t : db.getTasks())
+      if (t.category.equals(ZikraDbHelper.CATEGORY_STUDY)) {
+        total++;
+        if (t.completed) completed++;
+        else pending.add(t);
+      }
+    Task first = pending.get(0), next = pending.get(1);
+    assertEquals(
+        first.title,
+        ((TextView) page.findViewById(R.id.agenda_feature_title)).getText().toString());
+    assertEquals(
+        page.getString(R.string.agenda_progress, completed, total),
+        ((TextView) page.findViewById(R.id.study_progress_label)).getText().toString());
+    assertFalse(adapterContains(done));
+    capture("study-focus");
+    changed.put(first.id, first.completed);
+    onMain(() -> ((CheckBox) page.findViewById(R.id.agenda_feature_check)).performClick());
+    assertTrue(find(first.id).completed);
+    assertEquals(
+        next.title, ((TextView) page.findViewById(R.id.agenda_feature_title)).getText().toString());
+    assertFalse(adapterContains(first.id));
+    scrollTo(Long.MIN_VALUE);
+    await(() -> page.findViewById(R.id.agenda_completed_toggle) != null, 15000);
+    tapCompleted();
+    await(() -> adapterContains(first.id), 10000);
+    assertTrue(adapterContains(first.id));
+    assertTrue(adapterContains(done));
+    scrollTo(first.id);
+    capture("study-completed");
+    Instrumentation.ActivityMonitor monitor =
+        getInstrumentation().addMonitor(StudyActivity.class.getName(), null, false);
+    try {
+      onMain(page::recreate);
+      page = (StudyActivity) getInstrumentation().waitForMonitorWithTimeout(monitor, 30000);
+      assertNotNull(page);
+      await(() -> page.hasWindowFocus(), 15000);
+      assertTrue(adapterContains(first.id));
+      assertTrue(adapterContains(done));
+      // Completion controls are below the introduction; the whole agenda scrolls together.
+      scrollTo(Long.MIN_VALUE);
+      await(() -> page.findViewById(R.id.agenda_completed_toggle) != null, 15000);
+      tapCompleted();
+      await(() -> !adapterContains(first.id), 10000);
+      assertFalse(adapterContains(first.id));
+      assertTrue(find(first.id).completed);
+    } finally {
+      getInstrumentation().removeMonitor(monitor);
+    }
+  }
+
+  private void tapCompleted() {
+    android.graphics.Rect bounds = new android.graphics.Rect();
+    onMain(
+        () -> {
+          View toggle = page.findViewById(R.id.agenda_completed_toggle);
+          assertNotNull(toggle);
+          assertTrue("Completed control must accept real touch input", toggle.isEnabled());
+          assertTrue(toggle.getGlobalVisibleRect(bounds));
+        });
+    long now = SystemClock.uptimeMillis();
+    android.view.MotionEvent down =
+        android.view.MotionEvent.obtain(
+            now, now, android.view.MotionEvent.ACTION_DOWN, bounds.centerX(), bounds.centerY(), 0);
+    android.view.MotionEvent up =
+        android.view.MotionEvent.obtain(
+            now,
+            now + 60,
+            android.view.MotionEvent.ACTION_UP,
+            bounds.centerX(),
+            bounds.centerY(),
+            0);
+    down.setSource(android.view.InputDevice.SOURCE_TOUCHSCREEN);
+    up.setSource(android.view.InputDevice.SOURCE_TOUCHSCREEN);
+    try {
+      assertTrue(getInstrumentation().getUiAutomation().injectInputEvent(down, true));
+      assertTrue(getInstrumentation().getUiAutomation().injectInputEvent(up, true));
+    } finally {
+      down.recycle();
+      up.recycle();
+    }
+    getInstrumentation().waitForIdleSync();
+  }
+
+  private boolean adapterContains(long id) {
+    android.widget.ListAdapter a = ((ListView) page.findViewById(R.id.study_tasks)).getAdapter();
+    for (int i = 0; i < a.getCount(); i++) if (a.getItemId(i) == id) return true;
+    return false;
+  }
+
+  private void scrollTo(long id) {
+    onMain(
+        () -> {
+          ListView list = page.findViewById(R.id.study_tasks);
+          for (int i = 0; i < list.getAdapter().getCount(); i++)
+            if (list.getAdapter().getItemId(i) == id) {
+              list.setSelection(i);
+              return;
+            }
+          fail("Missing agenda row " + id);
+        });
+    getInstrumentation().waitForIdleSync();
+  }
+
   private Task named(String name) {
     for (Task t : db.getTasks()) if (t.title.equals(name)) return t;
     return null;
@@ -262,7 +389,7 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
       getInstrumentation().getUiAutomation().waitForIdle(750, 10000);
       SystemClock.sleep(1800);
       File dir =
-          new File(getInstrumentation().getTargetContext().getExternalFilesDir(null), "recovery");
+          new File(getInstrumentation().getTargetContext().getExternalFilesDir(null), "agenda");
       if (!dir.exists() && !dir.mkdirs())
         throw new IllegalStateException("No screenshot directory");
       try (ParcelFileDescriptor fd =
@@ -313,6 +440,8 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
         if (task.title.startsWith("ZZ_RECOVERY_") && !created.contains(task.id))
           created.add(task.id);
       for (long id : created) db.deleteTask(id);
+      for (java.util.Map.Entry<Long, Boolean> e : changed.entrySet())
+        db.setCompleted(e.getKey(), e.getValue());
       db.close();
     } finally {
       SharedPreferences.Editor e = prefs.edit();

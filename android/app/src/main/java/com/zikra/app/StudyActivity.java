@@ -48,7 +48,9 @@ public final class StudyActivity extends BaseActivity {
   private final Handler handler = new Handler(Looper.getMainLooper());
   private ZikraDbHelper db;
   private TaskAdapter adapter;
-  private boolean diaryMode, catalogLoading;
+  private boolean diaryMode, catalogLoading, completedExpanded;
+  private Task featuredTask;
+  private View agendaHeader;
   private String filter = "All";
   private LocalDate displayedDay;
   private Dialog editorDialog;
@@ -74,6 +76,10 @@ public final class StudyActivity extends BaseActivity {
     super.onCreate(state);
     setContentView(R.layout.activity_study);
     NavDock.attach(this, findViewById(R.id.studyPageRoot), "study");
+    ListView agenda = findViewById(R.id.study_tasks);
+    agendaHeader = getLayoutInflater().inflate(R.layout.study_agenda_header, agenda, false);
+    agenda.addHeaderView(agendaHeader, null, false);
+    completedExpanded = state != null && state.getBoolean("completed_expanded", false);
     diaryMode = ZikraDbHelper.CATEGORY_HIFZ.equals(getIntent().getStringExtra("category"));
     setupScreen(getString(diaryMode ? R.string.study_hifz_title : R.string.study_title));
     getWindow().setStatusBarColor(getColor(R.color.white));
@@ -87,33 +93,25 @@ public final class StudyActivity extends BaseActivity {
       filter = ZikraDbHelper.CATEGORY_HIFZ;
       text(R.id.study_screen_title, R.string.study_hifz_title);
       text(R.id.study_screen_tagline, R.string.study_hifz_tagline);
-      text(R.id.study_heading, R.string.study_refresh_hifz_heading);
-      text(R.id.study_section, R.string.hifz_section);
+      text(R.id.study_heading, R.string.agenda_hifz_heading);
+      text(R.id.study_section, R.string.agenda_hifz_remaining);
       text(R.id.study_add, R.string.study_hifz_add);
       text(R.id.study_empty, R.string.study_hifz_empty);
-      findViewById(R.id.study_filters).setVisibility(View.GONE);
+      agendaHeader.findViewById(R.id.study_filters).setVisibility(View.GONE);
       for (int id :
           new int[] {R.id.study_filter_all, R.id.study_filter_study, R.id.study_filter_ibadah})
-        findViewById(id).setVisibility(View.GONE);
-      findViewById(R.id.studyPageRoot).setBackgroundColor(getColor(R.color.study_warm));
-      findViewById(R.id.study_summary).setBackgroundResource(R.drawable.hifz_summary);
-      for (int id : new int[] {R.id.study_heading, R.id.study_percent})
-        ((TextView) findViewById(id)).setTextColor(getColor(R.color.white));
-      ((TextView) findViewById(R.id.study_progress_label)).setTextColor(0xFFD3E0D8);
-      ((ProgressBar) findViewById(R.id.study_progress))
-          .setProgressTintList(ColorStateList.valueOf(getColor(R.color.camel)));
-      ((ProgressBar) findViewById(R.id.study_progress))
-          .setProgressBackgroundTintList(ColorStateList.valueOf(0xFF3D5950));
-      findViewById(R.id.hifz_planned).setVisibility(View.VISIBLE);
+        agendaHeader.findViewById(id).setVisibility(View.GONE);
       catalog = new SurahCatalog();
       loadCatalog();
     }
     adapter = new TaskAdapter();
     ListView list = findViewById(R.id.study_tasks);
     list.setAdapter(adapter);
-    list.setEmptyView(findViewById(R.id.study_empty));
     list.setOnItemClickListener(
-        (parent, view, position, id) -> showEditor(adapter.getItem(position), null));
+        (parent, view, position, id) -> {
+          Object item = parent.getItemAtPosition(position);
+          if (item instanceof Task) showEditor((Task) item, null);
+        });
     findViewById(R.id.study_back)
         .setOnClickListener(
             view -> {
@@ -137,7 +135,8 @@ public final class StudyActivity extends BaseActivity {
     };
     for (int i = 0; i < ids.length; i++) {
       final String category = categories[i];
-      findViewById(ids[i])
+      agendaHeader
+          .findViewById(ids[i])
           .setOnClickListener(
               v -> {
                 filter = category;
@@ -159,7 +158,9 @@ public final class StudyActivity extends BaseActivity {
   }
 
   private void text(int id, int value) {
-    ((TextView) findViewById(id)).setText(value);
+    TextView view = findViewById(id);
+    if (view == null) view = agendaHeader.findViewById(id);
+    view.setText(value);
   }
 
   @Override
@@ -180,6 +181,7 @@ public final class StudyActivity extends BaseActivity {
   @Override
   protected void onSaveInstanceState(Bundle state) {
     state.putString("study_filter", filter);
+    state.putBoolean("completed_expanded", completedExpanded);
     if (editorDialog != null && editorDialog.isShowing()) {
       state.putBoolean("editor_open", true);
       state.putLong("editor_task_id", editorTask == null ? -1 : editorTask.id);
@@ -204,7 +206,7 @@ public final class StudyActivity extends BaseActivity {
   private void renderDate() {
     displayedDay = LocalDate.now();
     String date = displayedDay.format(DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy", ID));
-    ((TextView) findViewById(R.id.study_date))
+    ((TextView) agendaHeader.findViewById(R.id.study_date))
         .setText(date.substring(0, 1).toUpperCase(ID) + date.substring(1));
   }
 
@@ -212,34 +214,38 @@ public final class StudyActivity extends BaseActivity {
     List<Task> filtered = new ArrayList<>();
     for (Task task : db.getTasks())
       if ("All".equals(filter) || task.category.equals(filter)) filtered.add(task);
+    // Keep user insertion order within each group; structured Hifz targets precede legacy notes.
     if (diaryMode) filtered.sort(Comparator.comparing(task -> task.hifz == null));
-    adapter.items = filtered;
-    adapter.notifyDataSetChanged();
-    ZikraDbHelper.Progress progress = db.getProgress();
-    int completed = progress.completed, total = progress.total;
-    if (diaryMode) {
-      total = filtered.size();
-      completed = 0;
-      int ayahs = 0;
-      for (Task task : filtered) {
-        if (task.completed) completed++;
-        if (task.hifz != null) ayahs += task.hifz.count();
-      }
-      ((TextView) findViewById(R.id.hifz_planned))
-          .setText(ayahs == 0 ? "" : getString(R.string.hifz_planned, ayahs));
+    List<Task> pending = new ArrayList<>(), done = new ArrayList<>();
+    for (Task task : filtered) (task.completed ? done : pending).add(task);
+    featuredTask = pending.isEmpty() ? null : pending.remove(0);
+    List<Task> rows = new ArrayList<>(pending);
+    if (!done.isEmpty()) {
+      rows.add(null); // Section control is a distinct adapter view type, never a task.
+      if (completedExpanded) rows.addAll(done);
     }
-    ((TextView) findViewById(R.id.study_percent))
-        .setText(
-            getString(
-                R.string.study_percent, total == 0 ? 0 : Math.round(100f * completed / total)));
-    ((TextView) findViewById(R.id.study_progress_label))
-        .setText(
-            getString(
-                diaryMode ? R.string.study_hifz_progress_label : R.string.study_progress_label,
-                completed,
-                total));
-    ((ProgressBar) findViewById(R.id.study_progress))
-        .setProgress(total == 0 ? 0 : Math.round(100f * completed / total));
+    adapter.completedCount = done.size();
+    adapter.items = rows;
+    adapter.notifyDataSetChanged();
+    bindFeatured();
+    int completed = done.size(), total = filtered.size();
+    int percent = total == 0 ? 0 : Math.round(100f * completed / total);
+    ((TextView) agendaHeader.findViewById(R.id.study_percent))
+        .setText(getString(R.string.agenda_percent, percent));
+    ((TextView) agendaHeader.findViewById(R.id.study_progress_label))
+        .setText(getString(R.string.agenda_progress, completed, total));
+    ((ProgressBar) agendaHeader.findViewById(R.id.study_progress)).setProgress(percent);
+    ((TextView) agendaHeader.findViewById(R.id.hifz_planned))
+        .setText(getString(R.string.agenda_pending, pending.size()));
+    agendaHeader
+        .findViewById(R.id.agenda_section)
+        .setVisibility(pending.isEmpty() ? View.GONE : View.VISIBLE);
+    TextView empty = agendaHeader.findViewById(R.id.study_empty);
+    empty.setVisibility(featuredTask == null ? View.VISIBLE : View.GONE);
+    empty.setText(
+        total > 0
+            ? (diaryMode ? R.string.agenda_hifz_all_done : R.string.agenda_all_done)
+            : (diaryMode ? R.string.study_hifz_empty : R.string.study_empty));
     int[] ids = {
       R.id.study_filter_all,
       R.id.study_filter_study,
@@ -253,12 +259,80 @@ public final class StudyActivity extends BaseActivity {
       ZikraDbHelper.CATEGORY_HIFZ
     };
     for (int i = 0; i < ids.length; i++) {
-      TextView tab = findViewById(ids[i]);
+      TextView tab = agendaHeader.findViewById(ids[i]);
       boolean selected = categories[i].equals(filter);
       tab.setSelected(selected);
       tab.setBackgroundResource(selected ? R.drawable.bg_card : android.R.color.transparent);
       tab.setTextColor(getColor(selected ? R.color.pine : R.color.study_secondary));
     }
+  }
+
+  private int categoryLabel(Task task) {
+    return ZikraDbHelper.CATEGORY_HIFZ.equals(task.category)
+        ? R.string.study_category_hifz
+        : ZikraDbHelper.CATEGORY_IBADAH.equals(task.category)
+            ? R.string.study_category_ibadah
+            : R.string.study_category_study;
+  }
+
+  private void bindFeatured() {
+    View feature = agendaHeader.findViewById(R.id.agenda_feature);
+    feature.setVisibility(featuredTask == null ? View.GONE : View.VISIBLE);
+    if (featuredTask == null) return;
+    // Capture the currently rendered task so rapid taps cannot complete its successor.
+    Task task = featuredTask;
+    TextView title = agendaHeader.findViewById(R.id.agenda_feature_title);
+    TextView detail = agendaHeader.findViewById(R.id.agenda_feature_detail);
+    TextView category = agendaHeader.findViewById(R.id.agenda_feature_category);
+    TextView action = agendaHeader.findViewById(R.id.agenda_feature_action);
+    category.setText(categoryLabel(task));
+    title.setText(diaryMode && task.hifz != null ? task.hifz.chapterName : task.title);
+    detail.setText(
+        diaryMode
+            ? (task.hifz == null
+                ? getString(R.string.hifz_no_range)
+                : getString(
+                    R.string.hifz_range,
+                    task.hifz.firstVerse,
+                    task.hifz.lastVerse,
+                    task.hifz.count()))
+            : getString(
+                ZikraDbHelper.CATEGORY_IBADAH.equals(task.category)
+                    ? R.string.study_daily_ibadah
+                    : ZikraDbHelper.CATEGORY_HIFZ.equals(task.category)
+                        ? R.string.study_daily_hifz
+                        : R.string.study_daily_study));
+    if (diaryMode && task.hifz != null && !task.title.equals(canonical(task.hifz))) {
+      detail.append("\n" + task.title);
+    }
+    action.setText(
+        diaryMode
+            ? (task.hifz == null
+                ? R.string.hifz_configure
+                : readingIntent(this, task.hifz).getComponent() == null
+                    ? R.string.hifz_read_online
+                    : R.string.hifz_read)
+            : R.string.agenda_edit);
+    action.setContentDescription(action.getText() + " " + title.getText());
+    action.setOnClickListener(
+        v -> {
+          if (diaryMode && task.hifz != null) openReading(task.hifz);
+          else showEditor(task, null);
+        });
+    View more = agendaHeader.findViewById(R.id.agenda_feature_more);
+    more.setContentDescription(getString(R.string.study_actions_for, task.title));
+    more.setOnClickListener(v -> showTaskMenu(v, task));
+    CheckBox check = agendaHeader.findViewById(R.id.agenda_feature_check);
+    check.setOnCheckedChangeListener(null);
+    check.setChecked(false);
+    check.setContentDescription(getString(R.string.study_complete_task, task.title));
+    check.setOnCheckedChangeListener(
+        (button, checked) -> {
+          if (checked) {
+            db.setCompleted(task.id, true);
+            refreshTasks();
+          }
+        });
   }
 
   private void loadCatalog() {
@@ -505,6 +579,7 @@ public final class StudyActivity extends BaseActivity {
 
   private final class TaskAdapter extends BaseAdapter {
     private List<Task> items = new ArrayList<>();
+    private int completedCount;
 
     @Override
     public int getCount() {
@@ -518,7 +593,8 @@ public final class StudyActivity extends BaseActivity {
 
     @Override
     public long getItemId(int position) {
-      return getItem(position).id;
+      Task item = getItem(position);
+      return item == null ? Long.MIN_VALUE : item.id;
     }
 
     @Override
@@ -527,7 +603,52 @@ public final class StudyActivity extends BaseActivity {
     }
 
     @Override
+    public int getViewTypeCount() {
+      return 2;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+      return getItem(position) == null ? 1 : 0;
+    }
+
+    @Override
+    public boolean areAllItemsEnabled() {
+      return true;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+      return true;
+    }
+
+    @Override
     public View getView(int position, View reusable, ViewGroup parent) {
+      if (getItem(position) == null) {
+        TextView toggle =
+            (TextView)
+                (reusable == null
+                    ? getLayoutInflater().inflate(R.layout.agenda_completed, parent, false)
+                    : reusable);
+        toggle.setText(
+            getString(
+                completedExpanded
+                    ? R.string.agenda_completed_open
+                    : R.string.agenda_completed_closed,
+                completedCount));
+        toggle.setContentDescription(
+            getString(
+                completedExpanded
+                    ? R.string.agenda_completed_collapse
+                    : R.string.agenda_completed_expand,
+                completedCount));
+        toggle.setOnClickListener(
+            v -> {
+              completedExpanded = !completedExpanded;
+              refreshTasks();
+            });
+        return toggle;
+      }
       View row =
           reusable == null
               ? getLayoutInflater()
@@ -552,6 +673,13 @@ public final class StudyActivity extends BaseActivity {
               : task.category.equals(ZikraDbHelper.CATEGORY_IBADAH)
                   ? R.string.study_daily_ibadah
                   : R.string.study_daily_study);
+      int accent =
+          ZikraDbHelper.CATEGORY_HIFZ.equals(task.category)
+              ? 0xFF8B622F
+              : ZikraDbHelper.CATEGORY_IBADAH.equals(task.category) ? 0xFF42715D : 0xFF15332F;
+      tag.setTextColor(accent);
+      View marker = row.findViewById(R.id.agenda_category_marker);
+      if (marker != null) marker.setBackgroundTintList(ColorStateList.valueOf(accent));
       tag.setText(
           task.category.equals(ZikraDbHelper.CATEGORY_HIFZ)
               ? R.string.study_category_hifz

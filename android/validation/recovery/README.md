@@ -1,5 +1,7 @@
 # Verifikasi pemulihan Study/Hifz — 18 Oktober 2026
 
+Hasil di bawah adalah checkpoint pemulihan awal, sebelum perubahan susunan agenda. Untuk desain dan pengujian UI terbaru baca [agenda](../agenda/README.md); screenshot lama tetap dipertahankan sebagai riwayat.
+
 Toolchain: Temurin JDK 17, Gradle wrapper 8.9, AGP 8.7.3, compile/target SDK 35, min 26. Device: AOSP API 28, x86_64 software rendering, emulator-5558, 540×1170/210dpi. Bukan hasil HP fisik.
 
 - **Build APK, APK tes dan lint:** lulus. [Log build](build.txt). Percobaan awal menemukan lima `MissingInflatedId` pada listener dock Home lama; listener duplikat dihapus karena komponen `NavDock` sudah menangani klik. Hasil akhir tidak memiliki error lint; peringatan nonfatal masih ada.

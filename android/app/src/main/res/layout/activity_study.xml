@@ -4,13 +4,13 @@
     android:id="@+id/studyPageRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/study_warm">
     <LinearLayout
         android:id="@+id/study_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingBottom="80dp">
+        android:paddingBottom="64dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,6 +44,7 @@
                     android:textColor="@color/pine" />
                 <TextView
                     android:id="@+id/study_screen_tagline"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
@@ -52,153 +53,17 @@
                     android:textColor="@color/study_secondary" />
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical">
-            <TextView
-                android:id="@+id/study_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/study_secondary"
-                android:textSize="12sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/study_today"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                android:textColor="@color/pine"
-                android:background="@drawable/study_tag_bg"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="6dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/study_summary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="12dp"
-            android:padding="18dp"
-            android:background="@drawable/study_summary"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
-                <TextView
-                    android:id="@+id/study_heading"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/study_refresh_heading"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/pine" />
-                <TextView
-                    android:id="@+id/study_percent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/pine" />
-            </LinearLayout>
-            <TextView
-                android:id="@+id/study_progress_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textSize="12sp"
-                android:textColor="@color/study_secondary" />
-            <ProgressBar
-                android:id="@+id/study_progress"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_marginTop="14dp"
-                android:max="100"
-                android:progressBackgroundTint="#CDDCD2"
-                android:progressTint="@color/pine" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="22dp"
-            android:gravity="center_vertical">
-            <TextView
-                android:id="@+id/study_section"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/study_refresh_checklist"
-                android:textColor="@color/pine"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/hifz_planned"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textSize="11sp"
-                android:textColor="#72562B"
-                android:visibility="gone" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/study_filters"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/study_tabs_bg"
-            android:orientation="horizontal"
-            android:padding="3dp">
-            <TextView
-                android:id="@+id/study_filter_all"
-                style="@style/study_Filter"
-                android:text="@string/study_all" />
-            <TextView
-                android:id="@+id/study_filter_study"
-                style="@style/study_Filter"
-                android:text="@string/study_category_study" />
-            <TextView
-                android:id="@+id/study_filter_ibadah"
-                style="@style/study_Filter"
-                android:text="@string/study_category_ibadah" />
-            <TextView
-                android:id="@+id/study_filter_hifz"
-                style="@style/study_Filter"
-                android:text="@string/study_category_hifz" />
-        </LinearLayout>
-        <FrameLayout
+        <ListView
+            android:id="@+id/study_tasks"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="10dp">
-            <ListView
-                android:id="@+id/study_tasks"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="10dp"
-                android:paddingHorizontal="20dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="12dp" />
-            <TextView
-                android:id="@+id/study_empty"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:padding="28dp"
-                android:text="@string/study_empty"
-                android:textColor="@color/study_secondary"
-                android:textSize="14sp" />
-        </FrameLayout>
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="16dp"
+            android:scrollbars="none" />
         <Button
             android:id="@+id/study_add"
             style="@style/StudyButton"
