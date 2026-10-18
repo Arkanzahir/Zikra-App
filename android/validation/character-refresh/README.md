@@ -30,7 +30,7 @@ Skenario lain mencakup tiga cerita/recreation/skip/preservasi preferensi, katalo
 
 [Diary Hifz](screens/DiaryHifz.png) · [Al-Baqarah ayat 280](screens/RebuiltQuranBaqarah280.png) · [Ikon master aktual](screens/RebuiltAppIcon.png).
 
-[Galeri mandiri](preview.html) · [PDF](preview.pdf). Gambar asli tertanam sehingga tidak bergantung pada path cloud lama. Preview Home/cuaca pada galeri berasal dari checkpoint pemeriksaan sebelumnya dan diberi keterangan; Home siang/malam skenario tetap berlabel DATA UJI. Tidak mengklaim data pada gambar sebagai data terbaru saat dilihat nanti.
+[Galeri mandiri](preview.html) · [PDF](preview.pdf) · [Rekaman APK](CharacterOnboarding.mp4). Gambar asli tertanam sehingga tidak bergantung pada path cloud lama. Preview Home/cuaca pada galeri berasal dari checkpoint pemeriksaan sebelumnya dan diberi keterangan; Home siang/malam skenario tetap berlabel DATA UJI. Tidak mengklaim data pada gambar sebagai data terbaru saat dilihat nanti.
 
 ## Batas
 
