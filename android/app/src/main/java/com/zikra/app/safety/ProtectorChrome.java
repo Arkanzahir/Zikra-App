@@ -9,6 +9,15 @@ public final class ProtectorChrome {
   private ProtectorChrome() {}
 
   public static void apply(Activity activity) {
+    ((com.zikra.app.ui.FeatureHeader) activity.findViewById(com.zikra.app.R.id.sharedFeatureHeader))
+        .bindIds(
+            com.zikra.app.R.id.toolbarBack,
+            com.zikra.app.R.id.protectorToolbarTitle,
+            com.zikra.app.R.id.protectorToolbarSubtitle,
+            com.zikra.app.R.id.protectorRefresh);
+    activity
+        .findViewById(com.zikra.app.R.id.toolbarBack)
+        .setOnClickListener(v -> activity.finish());
     activity.getWindow().setStatusBarColor(Color.WHITE);
     activity.getWindow().setNavigationBarColor(Color.WHITE);
     View decor = activity.getWindow().getDecorView();

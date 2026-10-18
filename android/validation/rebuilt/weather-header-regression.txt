@@ -1,0 +1,6 @@
+
+com.zikra.app.RebuiltWeatherTest:.
+Test results for InstrumentationTestRunner=.
+Time: 26.813
+
+OK (1 test)

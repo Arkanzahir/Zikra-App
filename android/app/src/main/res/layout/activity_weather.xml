@@ -95,7 +95,7 @@
                         android:layout_marginTop="5dp" />
                     <TextView
                         style="@style/ProtectorBody"
-                        android:text="Menghubungkan ke BMKG"
+                        android:text="Menghubungkan ke Open-Meteo"
                         android:id="@+id/weatherStatus"
                         android:gravity="center"
                         android:textSize="10sp"
@@ -239,7 +239,7 @@
             </HorizontalScrollView>
             <TextView
                 style="@style/ProtectorBody"
-                android:text="Prakiraan akan muncul saat data BMKG tersedia."
+                android:text="Prakiraan akan muncul saat data prakiraan tersedia."
                 android:id="@+id/weatherEmptyForecast"
                 android:layout_marginTop="12dp"
                 android:textSize="11sp"
@@ -247,7 +247,7 @@
                 android:padding="14dp" />
             <TextView
                 style="@style/ProtectorBody"
-                android:text="Sumber prakiraan: BMKG ↗"
+                android:text="Prakiraan model: Open-Meteo · CC BY 4.0 ↗"
                 android:id="@+id/weatherSource"
                 android:textSize="10sp"
                 android:minHeight="48dp"

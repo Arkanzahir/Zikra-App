@@ -120,14 +120,14 @@
                         android:background="#26FFFFFF" />
                     <TextView
                         style="@style/ProtectorBody"
-                        android:text="Menghubungkan ke BMKG"
+                        android:text="Menghubungkan ke Open-Meteo"
                         android:id="@+id/protectorWeatherStatus"
                         android:textColor="#EEF3FF"
                         android:textSize="10sp"
                         android:layout_marginTop="9dp" />
                     <TextView
                         style="@style/ProtectorBody"
-                        android:text="Prakiraan Keputih, Sukolilo"
+                        android:text="Prakiraan Sukolilo, Surabaya"
                         android:id="@+id/protectorWeatherDetails"
                         android:textColor="#DAE6FF"
                         android:textSize="10sp"
@@ -344,7 +344,7 @@
             </LinearLayout>
             <TextView
                 style="@style/ProtectorBody"
-                android:text="Sumber: BMKG · Buka situs resmi ↗"
+                android:text="Gempa dan peringatan: BMKG · Situs resmi ↗"
                 android:id="@+id/protectorSource"
                 android:textSize="10sp"
                 android:minHeight="48dp"

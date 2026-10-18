@@ -1,0 +1,5 @@
+Starting: Intent { cmp=com.zikra.app/.HomeActivity }
+Status: timeout
+Activity: com.zikra.app/.HomeActivity
+WaitTime: 19745
+Complete

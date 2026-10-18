@@ -168,8 +168,25 @@ public final class BmkgParser {
   public static final class Forecast {
     public final Weather current;
     public final List<Weather> slots;
+    public final String source;
+    public final Instant fetchedAt;
+    public final boolean stored, stale;
 
     public Forecast(Weather current, List<Weather> slots) {
+      this(current, slots, "BMKG", Instant.now(), false, false);
+    }
+
+    public Forecast(
+        Weather current,
+        List<Weather> slots,
+        String source,
+        Instant fetchedAt,
+        boolean stored,
+        boolean stale) {
+      this.source = source;
+      this.fetchedAt = fetchedAt;
+      this.stored = stored;
+      this.stale = stale;
       this.current = current;
       this.slots = Collections.unmodifiableList(new ArrayList<>(slots));
     }

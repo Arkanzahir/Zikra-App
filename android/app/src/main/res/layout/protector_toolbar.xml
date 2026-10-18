@@ -1,48 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal"
-        android:paddingHorizontal="10dp"
-        android:gravity="center_vertical"
-        android:background="@color/white">
-        <ImageButton
-            android:id="@+id/toolbarBack"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_back"
-            android:tint="@color/protector_ink"
-            android:padding="13dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Kembali" />
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:paddingStart="4dp">
-            <TextView
-                style="@style/ProtectorHeading"
-                android:text="Zikra Protector"
-                android:id="@+id/protectorToolbarTitle"
-                android:textSize="18sp" />
-            <TextView
-                style="@style/ProtectorBody"
-                android:text="Info BMKG · Sukolilo, Surabaya"
-                android:id="@+id/protectorToolbarSubtitle"
-                android:textSize="10sp"
-                android:layout_marginTop="4dp" />
-        </LinearLayout>
-        <ImageButton
-            android:id="@+id/protectorRefresh"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/protector_ic_refresh"
-            android:tint="@color/protector_blue"
-            android:padding="14dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Muat ulang data BMKG" />
-    </LinearLayout>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.zikra.app.ui.FeatureHeader android:id="@+id/sharedFeatureHeader"
+        android:layout_width="match_parent" android:layout_height="wrap_content" />
 </merge>

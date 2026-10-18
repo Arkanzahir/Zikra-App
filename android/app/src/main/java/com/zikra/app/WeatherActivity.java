@@ -24,6 +24,16 @@ public final class WeatherActivity extends BaseActivity {
   private final Locale locale = new Locale("id", "ID");
   private final ZoneId wib = ZoneId.of("Asia/Jakarta");
   private BmkgClient bmkg;
+  private final android.os.Handler refreshTimer =
+      new android.os.Handler(android.os.Looper.getMainLooper());
+  private final Runnable refreshTick =
+      new Runnable() {
+        @Override
+        public void run() {
+          refresh();
+          refreshTimer.postDelayed(this, com.zikra.app.safety.OpenMeteoClient.FRESH_MS);
+        }
+      };
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +42,24 @@ public final class WeatherActivity extends BaseActivity {
     setupScreen("Cuaca Sukolilo");
     ProtectorChrome.apply(this);
     text(R.id.protectorToolbarTitle, "Cuaca");
-    text(R.id.protectorToolbarSubtitle, "Info BMKG · Sukolilo, Surabaya");
+    text(R.id.protectorToolbarSubtitle, "Open-Meteo · Sukolilo, Surabaya");
     bmkg = new BmkgClient(this);
     findViewById(R.id.protectorRefresh).setOnClickListener(v -> refresh());
     findViewById(R.id.weatherSource)
-        .setOnClickListener(
-            v ->
-                external(
-                    Intent.ACTION_VIEW,
-                    "https://www.bmkg.go.id/cuaca/prakiraan-cuaca/35.78.09.1001"));
-    refresh();
+        .setOnClickListener(v -> external(Intent.ACTION_VIEW, "https://open-meteo.com/"));
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    refreshTimer.post(refreshTick);
+  }
+
+  @Override
+  protected void onPause() {
+    refreshTimer.removeCallbacks(refreshTick);
+    if (bmkg != null) bmkg.reset();
+    super.onPause();
   }
 
   private void refresh() {
@@ -50,7 +68,7 @@ public final class WeatherActivity extends BaseActivity {
     ((ImageView) findViewById(R.id.weatherHeroIcon))
         .setImageResource(WeatherSymbols.forDescription(null));
     text(R.id.weatherDescription, "Memuat prakiraan…");
-    text(R.id.weatherStatus, "Menghubungkan ke BMKG");
+    text(R.id.weatherStatus, "Menghubungkan ke Open-Meteo");
     text(R.id.weatherDate, "Waktu prakiraan belum tersedia");
     text(R.id.weatherHumidity, "—");
     text(R.id.weatherWind, "—");
@@ -58,7 +76,7 @@ public final class WeatherActivity extends BaseActivity {
     ((TemperatureChartView) findViewById(R.id.weatherChart)).setForecast(Collections.emptyList());
     ((LinearLayout) findViewById(R.id.weatherForecastList)).removeAllViews();
     findViewById(R.id.weatherEmptyForecast).setVisibility(View.VISIBLE);
-    text(R.id.weatherEmptyForecast, "Prakiraan akan muncul saat data BMKG tersedia.");
+    text(R.id.weatherEmptyForecast, "Prakiraan akan muncul saat data prakiraan tersedia.");
     bmkg.weather(
         new BmkgClient.Result<BmkgParser.Forecast>() {
           @Override
@@ -89,13 +107,9 @@ public final class WeatherActivity extends BaseActivity {
         R.id.weatherTemperature,
         current.temperature.isEmpty() ? "—°C" : current.temperature + "°C");
     text(R.id.weatherDescription, available(current.description));
-    text(
-        R.id.weatherStatus,
-        current.expired
-            ? "Prakiraan terakhir sudah lewat · muat ulang"
-            : "Prakiraan BMKG · " + current.city);
+    text(R.id.weatherStatus, com.zikra.app.safety.OpenMeteoClient.status(forecast));
     text(R.id.weatherHumidity, unit(current.humidity, "%"));
-    text(R.id.weatherWind, available(current.wind));
+    text(R.id.weatherWind, unit(current.wind, " km/jam"));
     text(R.id.weatherDirection, available(current.windDirection));
     List<BmkgParser.Weather> relevant = new ArrayList<>();
     for (BmkgParser.Weather slot : forecast.slots)

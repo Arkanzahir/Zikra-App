@@ -10,7 +10,8 @@ public final class WeatherSymbols {
   public static int forDescription(String description) {
     String value = description == null ? "" : description.toLowerCase(Locale.ROOT);
     if (value.contains("petir")) return R.drawable.weather_symbol_storm;
-    if (value.contains("hujan")) return R.drawable.weather_symbol_rain;
+    if ((value.contains("hujan") || value.contains("gerimis")))
+      return R.drawable.weather_symbol_rain;
     if (value.contains("cerah")) return R.drawable.weather_symbol_fair;
     return R.drawable.weather_symbol_cloud;
   }

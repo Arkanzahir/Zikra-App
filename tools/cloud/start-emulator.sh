@@ -54,5 +54,14 @@ if [ -f "$zikra_ca" ]; then
 fi
 adb -s "$zikra_device" shell wm dismiss-keyguard
 adb -s "$zikra_device" install -r "$zikra_repo/android/app/build/outputs/apk/debug/app-debug.apk"
-adb -s "$zikra_device" shell am start -n com.zikra.app/.HomeActivity
-adb -s "$zikra_device" shell dumpsys activity activities | rg 'mResumedActivity'
+adb -s "$zikra_device" shell am start -n com.zikra.app/.SplashActivity
+for zikra_ready in $(seq 1 60); do
+  zikra_foreground=$(adb -s "$zikra_device" shell dumpsys activity activities | rg 'mResumedActivity' || true)
+  if [[ "$zikra_foreground" == *com.zikra.app/.HomeActivity* || "$zikra_foreground" == *com.zikra.app/.OnboardingActivity* ]]; then
+    printf '%s\n' "$zikra_foreground"
+    exit 0
+  fi
+  sleep 1
+done
+echo 'Zikra did not leave splash; inspect Activity/logcat before retry.' >&2
+exit 1

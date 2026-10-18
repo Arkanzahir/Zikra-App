@@ -1,4 +1,7 @@
-> **Status terbaru — 18 Oktober 2026:** checkout aktif belum memuat seluruh perubahan lokal yang pernah dibahas; versi diorama/Home belum ditemukan. Pemulihan tahap ini mencakup Study/Hifz, target surah/ayat, editor dan navigasi bersama. Reader native masih 4 surah; target lain membuka Quran.com eksternal. Baca [RECOVERY.md](../RECOVERY.md) dan [validasi terbaru](validation/agenda/README.md) sebelum catatan historis di bawah. Setup baru: [tools/cloud](../tools/cloud/README.md).
+> **Status 18 Oktober 2026:** branding master, onboarding taman, langit Home, reader Quran native 114 surah serta cuaca Open-Meteo dibangun ulang dari referensi chat pada branch `recovery/study-hifz-refresh`. Ini implementasi baru; kode asli lokal lama belum ditemukan. Lihat [status dan batas pemeriksaan](validation/rebuilt/README.md) serta [RECOVERY.md](../RECOVERY.md). Catatan validasi lama di bawah bersifat historis.
+
+Provider yang sudah dihubungkan pada pembangunan ulang: Quran.com public v4; USNO `aa.usno.navy.mil/api/rstt/oneday` harian untuk Sukolilo; Open-Meteo `api.open-meteo.com/v1/forecast` untuk prakiraan model; BMKG `data.bmkg.go.id/DataMKG/TEWS/autogempa.json` untuk laporan gempa. Aplikasi tidak membutuhkan secret untuk jalur publik ini. Cache cuaca disegarkan setelah 10 menit dan fallback tersimpan paling lama enam jam dengan timestamp; tidak ditampilkan sebagai pengamatan BMKG. USNO punya fallback perkiraan lokal yang ditandai. Akses production Content Sync belum dimiliki pengguna; jangan mengklaim tersedia.
+
 
 # Penyedia API pilihan Zikra
 
@@ -11,7 +14,7 @@ Pilihan pengguna, 17 Oktober 2026. Dokumen ini menetapkan arah integrasi; daftar
 | Chat AI | Featherless AI | `https://api.featherless.ai/v1/chat/completions` | Belum terintegrasi; `OfflineAssistant` masih menjawab secara lokal |
 | Analisis foto soal | Google Gemini API | `https://generativelanguage.googleapis.com/v1beta/` | Belum ada integrasi vision |
 | Jadwal sholat online | Aladhan | `https://api.aladhan.com/v1/timingsByCity` atau `/v1/timings/{timestamp}` untuk koordinat | Masih memakai kalkulasi harian lokal `PrayerSchedule` |
-| Quran lengkap | Quran.com / Quran Foundation | `https://api.quran.com/api/v4/` sebagai endpoint yang diajukan | Reader masih memuat empat surah offline |
+| Quran Arab/terjemahan | Quran.com / Quran Foundation | Public v4 chapters, verses/by_chapter, resource 33 | Reader native 114 surah; metadata dibundel; cache maksimal 8 bagian × 50 ayat. Bukan Content Sync/Mushaf/audio |
 | Gempa | BMKG Open Data | `https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json` | Request background, parser, peta dan halaman detail sudah ada |
 | Prakiraan cuaca | Open-Meteo | `https://api.open-meteo.com/v1/forecast` | Belum terintegrasi; cuaca yang ada masih memakai API BMKG Keputih |
 | Bantuan darurat | Android Intent | `tel:112`, `https://wa.me/`, `geo:` / Google Maps | Membuka dialer, WhatsApp dan Maps sudah tersedia |

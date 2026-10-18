@@ -108,6 +108,22 @@ public final class RebuiltOnboardingTest extends InstrumentationTestCase {
     }
     assertNotNull(home.getWindow().getDecorView().findViewWithTag("zikraBrand"));
     capture("RebuiltHomeBrand");
+    if ("true"
+        .equals(
+            ((android.test.InstrumentationTestRunner) getInstrumentation())
+                .getArguments()
+                .getString("record_motion"))) {
+      try (android.os.ParcelFileDescriptor descriptor =
+              getInstrumentation()
+                  .getUiAutomation()
+                  .executeShellCommand(
+                      "screenrecord --bit-rate 1200000 --time-limit 8"
+                          + " /sdcard/RebuiltHomeMotion.mp4");
+          InputStream in = new android.os.ParcelFileDescriptor.AutoCloseInputStream(descriptor)) {
+        byte[] buffer = new byte[4096];
+        while (in.read(buffer) != -1) {}
+      }
+    }
     Bitmap icon = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_8888);
     getInstrumentation()
         .runOnMainSync(

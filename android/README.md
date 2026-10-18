@@ -1,4 +1,4 @@
-> **Status terbaru — 18 Oktober 2026:** checkout aktif belum memuat seluruh perubahan lokal yang pernah dibahas; versi diorama/Home belum ditemukan. Pemulihan tahap ini mencakup Study/Hifz, target surah/ayat, editor dan navigasi bersama. Reader native masih 4 surah; target lain membuka Quran.com eksternal. Baca [RECOVERY.md](../RECOVERY.md) dan [validasi terbaru](validation/agenda/README.md) sebelum catatan historis di bawah. Setup baru: [tools/cloud](../tools/cloud/README.md).
+> **Status 18 Oktober 2026:** branding master, onboarding taman, langit Home, reader Quran native 114 surah serta cuaca Open-Meteo dibangun ulang dari referensi chat pada branch `recovery/study-hifz-refresh`. Ini implementasi baru; kode asli lokal lama belum ditemukan. Lihat [status dan batas pemeriksaan](validation/rebuilt/README.md) serta [RECOVERY.md](../RECOVERY.md). Catatan validasi lama di bawah bersifat historis.
 
 # Zikra Android — Java dan XML
 
@@ -6,7 +6,8 @@ Project Android Studio mandiri, aplikasi native Java dengan layout XML. Tanpa Ko
 
 ## Melanjutkan dari chat baru
 
-Baca [status implementasi, prioritas pekerjaan, aturan proyek, dan referensi di README utama](../README.md#mulai-di-sini-untuk-sesi-chat-baru). Prioritas terbaru adalah **redesign onboarding**; lihat langsung [galeri gambar](../design/README.md). Versi orbit/parallax yang ada belum memenuhi harapan visual pengguna. Sesudahnya lanjutkan Quran lengkap dengan dua mode **Mushaf / Terjemahan**. Mode Mushaf belum tersedia; jangan menganggap empat surah offline atau reader kartu ayat sebagai implementasi mushaf per halaman. Home, BMKG, Kiblat dan onboarding sudah dikerjakan bertahap; lanjutkan dari kode yang ada.
+Baca [status terbaru](validation/rebuilt/README.md) sebelum inventaris historis di bawah. Onboarding sudah memakai taman tiga cerita tanpa jenjang/minat. Reader terjemahan mencakup 114 surah melalui public v4 API, empat surah bawaan dan cache delapan bagian. Mushaf halaman, murottal dan offline penuh belum tersedia. Home memakai USNO/fallback berlabel; cuaca memakai Open-Meteo, gempa/peringatan tetap BMKG.
+
 
 ## Buka dan jalankan
 

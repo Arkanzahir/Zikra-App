@@ -11,48 +11,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingBottom="64dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="64dp"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="8dp"
-            android:gravity="center_vertical"
-            android:background="@color/white">
-            <ImageButton
-                android:id="@+id/study_back"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:padding="13dp"
-                android:src="@drawable/ic_back"
-                android:tint="@color/pine"
-                android:contentDescription="@string/study_back" />
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingHorizontal="8dp">
-                <TextView
-                    android:id="@+id/study_screen_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/study_title"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/pine" />
-                <TextView
-                    android:id="@+id/study_screen_tagline"
-                    android:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:text="@string/study_tagline"
-                    android:textSize="11sp"
-                    android:textColor="@color/study_secondary" />
-            </LinearLayout>
-        </LinearLayout>
+        <com.zikra.app.ui.FeatureHeader android:id="@+id/sharedFeatureHeader"
+            android:layout_width="match_parent" android:layout_height="wrap_content" />
         <ListView
             android:id="@+id/study_tasks"
             android:layout_width="match_parent"

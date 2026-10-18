@@ -1,4 +1,4 @@
-> **Status terbaru — 18 Oktober 2026:** checkout aktif belum memuat seluruh perubahan lokal yang pernah dibahas; versi diorama/Home belum ditemukan. Pemulihan tahap ini mencakup Study/Hifz, target surah/ayat, editor dan navigasi bersama. Reader native masih 4 surah; target lain membuka Quran.com eksternal. Baca [RECOVERY.md](../RECOVERY.md) dan [validasi terbaru](validation/agenda/README.md) sebelum catatan historis di bawah. Setup baru: [tools/cloud](../tools/cloud/README.md).
+> **Status 18 Oktober 2026:** branding master, onboarding taman, langit Home, reader Quran native 114 surah serta cuaca Open-Meteo dibangun ulang dari referensi chat pada branch `recovery/study-hifz-refresh`. Ini implementasi baru; kode asli lokal lama belum ditemukan. Lihat [status dan batas pemeriksaan](validation/rebuilt/README.md) serta [RECOVERY.md](../RECOVERY.md). Catatan validasi lama di bawah bersifat historis.
 
 # Validasi pembaruan referensi — 16 Oktober 2026
 

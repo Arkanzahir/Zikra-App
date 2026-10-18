@@ -78,6 +78,8 @@ public final class StudyActivity extends BaseActivity {
       bundled.add(new Chapter(c.id, c.name, c.count));
     chapters = java.util.Collections.unmodifiableList(bundled);
     setContentView(R.layout.activity_study);
+    ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.sharedFeatureHeader))
+        .bindIds(R.id.study_back, R.id.study_screen_title, R.id.study_screen_tagline, 0);
     NavDock.attach(this, findViewById(R.id.studyPageRoot), "study");
     ListView agenda = findViewById(R.id.study_tasks);
     agendaHeader = getLayoutInflater().inflate(R.layout.study_agenda_header, agenda, false);
@@ -92,6 +94,7 @@ public final class StudyActivity extends BaseActivity {
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     db = new ZikraDbHelper(this);
     filter = state == null ? "All" : state.getString("study_filter", "All");
+    text(R.id.study_screen_title, diaryMode ? R.string.study_hifz_title : R.string.study_title);
     if (diaryMode) {
       filter = ZikraDbHelper.CATEGORY_HIFZ;
       text(R.id.study_screen_title, R.string.study_hifz_title);
@@ -115,7 +118,8 @@ public final class StudyActivity extends BaseActivity {
           Object item = parent.getItemAtPosition(position);
           if (item instanceof Task) showEditor((Task) item, null);
         });
-    findViewById(R.id.study_back)
+    ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.sharedFeatureHeader))
+        .back()
         .setOnClickListener(
             view -> {
               startActivity(

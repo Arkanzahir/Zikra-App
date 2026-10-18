@@ -1,0 +1,8 @@
+<resources>
+    <item type="id" name="study_back" />
+    <item type="id" name="study_screen_title" />
+    <item type="id" name="study_screen_tagline" />
+    <item type="id" name="protectorToolbarTitle" />
+    <item type="id" name="protectorToolbarSubtitle" />
+    <item type="id" name="protectorRefresh" />
+</resources>

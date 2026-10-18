@@ -22,6 +22,16 @@ public final class ProtectorActivity extends BaseActivity {
       DateTimeFormatter.ofPattern("dd MMM yyyy · HH:mm 'WIB'", ID)
           .withZone(ZoneId.of("Asia/Jakarta"));
   private BmkgClient bmkg;
+  private final android.os.Handler refreshTimer =
+      new android.os.Handler(android.os.Looper.getMainLooper());
+  private final Runnable refreshTick =
+      new Runnable() {
+        @Override
+        public void run() {
+          refresh();
+          refreshTimer.postDelayed(this, com.zikra.app.safety.OpenMeteoClient.FRESH_MS);
+        }
+      };
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +78,19 @@ public final class ProtectorActivity extends BaseActivity {
     findViewById(R.id.protectorTabWeather).setOnClickListener(v -> open(WeatherActivity.class));
     findViewById(R.id.protectorTabQuake).setOnClickListener(v -> open(EarthquakeActivity.class));
     findViewById(R.id.protectorTabHelp).setOnClickListener(v -> showEmergencyActions());
-    refresh();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    refreshTimer.post(refreshTick);
+  }
+
+  @Override
+  protected void onPause() {
+    refreshTimer.removeCallbacks(refreshTick);
+    if (bmkg != null) bmkg.reset();
+    super.onPause();
   }
 
   private void refresh() {
@@ -78,7 +100,7 @@ public final class ProtectorActivity extends BaseActivity {
         .setImageResource(WeatherSymbols.forDescription(null));
     text(R.id.protectorWeatherDescription, "Memuat prakiraan…");
     text(R.id.protectorWeatherTime, "Waktu prakiraan belum tersedia");
-    text(R.id.protectorWeatherStatus, "Menghubungkan ke BMKG");
+    text(R.id.protectorWeatherStatus, "Menghubungkan ke Open-Meteo");
     text(R.id.protectorWeatherDetails, "Prakiraan Keputih, Sukolilo · Data sedang dimuat");
     text(R.id.protectorMagnitude, "M —");
     text(R.id.protectorQuakeArea, "Memuat laporan gempa…");
@@ -90,7 +112,7 @@ public final class ProtectorActivity extends BaseActivity {
         new BmkgClient.Result<BmkgParser.Forecast>() {
           @Override
           public void success(BmkgParser.Forecast value) {
-            showWeather(value.current);
+            showWeather(value);
           }
 
           @Override
@@ -116,17 +138,14 @@ public final class ProtectorActivity extends BaseActivity {
         });
   }
 
-  private void showWeather(BmkgParser.Weather w) {
+  private void showWeather(BmkgParser.Forecast forecast) {
+    BmkgParser.Weather w = forecast.current;
     ((ImageView) findViewById(R.id.protectorWeatherIcon))
         .setImageResource(WeatherSymbols.forDescription(w.description));
     text(R.id.protectorWeatherTemperature, w.temperature.isEmpty() ? "—°C" : w.temperature + "°C");
     text(R.id.protectorWeatherDescription, available(w.description));
     text(R.id.protectorWeatherTime, "Prakiraan " + TIME.format(w.time));
-    text(
-        R.id.protectorWeatherStatus,
-        w.expired
-            ? "Prakiraan terakhir sudah lewat · muat ulang"
-            : "BMKG · " + w.village + ", " + w.district);
+    text(R.id.protectorWeatherStatus, com.zikra.app.safety.OpenMeteoClient.status(forecast));
     text(
         R.id.protectorWeatherDetails,
         "Kelembapan "

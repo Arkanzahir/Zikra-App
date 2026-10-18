@@ -47,3 +47,28 @@ Screenshot berasal dari APK yang dijalankan, bukan mockup:
 | Katalog | Al-Mulk, ayat 3 | Al-Baqarah, ayat 280 |
 | --- | --- | --- |
 | ![Katalog](screens/RebuiltQuranCatalog.png) | ![Al-Mulk](screens/RebuiltQuranMulk.png) | ![Al-Baqarah](screens/RebuiltQuranBaqarah280.png) |
+
+## Checkpoint 4: cuaca, header dan optimasi grafik
+
+- Prakiraan model Open-Meteo untuk koordinat Sukolilo/WIB, 72 slot per jam. Data, unit, zona, lokasi, kode WMO dan urutan waktu diverifikasi. Ini prakiraan model, bukan observasi/peringatan BMKG. Tautan/atribusi Open-Meteo CC BY 4.0 ada di halaman Cuaca.
+- Cache bersama antarlayar: segar hingga 10 menit; lalu diperbarui. Saat jaringan gagal, data tersimpan maksimal enam jam tetap berlabel tersimpan/pembaruan belum tersedia dan waktu pengambilan. Cache lebih tua atau timestamp masa depan tidak dipakai. Halaman aktif menyegarkan per 10 menit; pause membatalkan request/timer.
+- Gempa dan tautan peringatan tetap sumber BMKG. Dashboard memisahkan sumber cuaca dan laporan gempa; tidak membuat peringatan bencana dari kode cuaca model.
+- Satu XML header dipakai Study, Hifz, Cuaca, Gempa dan Protector: Pine/putih, judul 18sp, kontrol 48dp. Alias ID mempertahankan navigasi/tes lama. Grafik menyimpan path/posisi/label saat data/ukuran berubah, sehingga tidak mengalokasikan daftar/path baru per frame.
+- Build/lint dan 24 unit test lulus. Tiga tes perangkat cuaca/parser/cache/header/gempa live lulus, lalu regresi header setelah perbaikan judul dan satu pemeriksaan piksel ikon kembali lulus. Screenshot akhir diperiksa langsung; judul Study dan ikon kembali sudah terlihat. Lint awal menemukan ID runtime header yang tidak dikenali statis; akses getter komponen memperbaikinya tanpa menonaktifkan lint.
+- [Build akhir](weather-header-final-build.txt), [tiga tes](weather-device-tests.txt), [regresi header](weather-header-regression.txt), [ikon header](weather-header-pixels-test.txt). Batas usia cache diuji pada batas tepat 10 menit/enam jam dan clock rollback; tidak ada klaim uji fisik baterai atau seluruh skenario putus jaringan.
+
+| Cuaca live | Protector live | Study akhir |
+| --- | --- | --- |
+| ![Cuaca](screens/RebuiltWeatherLive.png) | ![Protector](screens/RebuiltProtectorLive.png) | ![Study](screens/RebuiltStudySharedHeader.png) |
+
+[Gempa live](screens/RebuiltEarthquakeLive.png). Angka prakiraan/laporan adalah hasil pengambilan saat pemeriksaan, bukan janji data terkini ketika gambar dibuka nanti. Progres 8/24 Study merupakan contoh baseline, bukan data pribadi yang dipulihkan.
+
+## Preview dan menjalankan
+
+Galeri HTML/PDF menanam gambar APK asli agar tidak bergantung pada path file lama. Video direkam dari emulator, sekitar 1–2 fps karena software rendering; jangan gunakan rekaman itu sebagai pengukuran performa HP. Gerak vs pause diverifikasi terpisah melalui perubahan piksel pada tes.
+
+- [Galeri mandiri](preview.html) · [PDF](preview.pdf)
+- [Gerak taman](RebuiltGardenMotion.mp4) · [Gerak Home](RebuiltHomeMotion.mp4)
+- [Petunjuk Android Studio](../../BUILDING.md)
+
+Startup cloud memakai entry launcher Splash, menunggu Home/onboarding menjadi foreground dan telah dijalankan ulang. [Log startup](startup-final.txt). Pinterest pin pengguna mengembalikan HTTP 200/judul HTML; playback video belum diverifikasi ([bukti](pinterest-access.json)). Tidak ada perubahan pada prototype web lama.

@@ -1,0 +1,6 @@
+
+com.zikra.app.RebuiltOnboardingTest:.
+Test results for InstrumentationTestRunner=.
+Time: 41.268
+
+OK (1 test)

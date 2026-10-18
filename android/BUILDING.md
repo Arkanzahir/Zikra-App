@@ -1,4 +1,4 @@
-> **Status terbaru — 18 Oktober 2026:** checkout aktif belum memuat seluruh perubahan lokal yang pernah dibahas; versi diorama/Home belum ditemukan. Pemulihan tahap ini mencakup Study/Hifz, target surah/ayat, editor dan navigasi bersama. Reader native masih 4 surah; target lain membuka Quran.com eksternal. Baca [RECOVERY.md](../RECOVERY.md) dan [validasi terbaru](validation/agenda/README.md) sebelum catatan historis di bawah. Setup baru: [tools/cloud](../tools/cloud/README.md).
+> **Status 18 Oktober 2026:** branding master, onboarding taman, langit Home, reader Quran native 114 surah serta cuaca Open-Meteo dibangun ulang dari referensi chat pada branch `recovery/study-hifz-refresh`. Ini implementasi baru; kode asli lokal lama belum ditemukan. Lihat [status dan batas pemeriksaan](validation/rebuilt/README.md) serta [RECOVERY.md](../RECOVERY.md). Catatan validasi lama di bawah bersifat historis.
 
 # Build Android native
 
@@ -6,7 +6,7 @@ Folder `android` adalah project Android Studio mandiri. Semua source aplikasi me
 
 ## Android Studio
 
-Untuk mencoba pembaruan Study/Hifz terbaru, gunakan branch **`recovery/study-hifz-refresh`**, yang belum digabung ke `main`:
+Untuk mencoba pembaruan terbaru, gunakan branch **`recovery/study-hifz-refresh`**, yang belum digabung ke `main`:
 
 ```sh
 git clone --branch recovery/study-hifz-refresh https://github.com/Arkanzahir/Zikra-App.git
@@ -14,7 +14,7 @@ git clone --branch recovery/study-hifz-refresh https://github.com/Arkanzahir/Zik
 
 Alternatif: buka branch tersebut di GitHub, pilih **Code → Download ZIP**, lalu ekstrak. Di Android Studio buka **`Zikra-App/android`** (folder yang berisi `settings.gradle`), bukan folder `prototype_zikra`. Saat memakai ZIP GitHub, nama folder luarnya dapat berbeda; tetap pilih subfolder `android`.
 
-Versi yang tersedia memuat desain agenda Study/Hifz terbaru dan onboarding orbit yang sudah ada di Git. Versi diorama taman, branding turunan dan animasi langit Home yang pernah dibahas **belum ditemukan dalam checkout aktif**. Path lama `android/validation/screens/onboarding-garden/preview.html` juga belum tersedia di sini. Jangan menganggap ZIP/branch ini sudah memuat semua perubahan percakapan lama. Daftar status ada di `RECOVERY.md`.
+Versi ini memuat agenda Study/Hifz, logo master, onboarding taman/parallax, Home siang/malam dengan astronomi harian, reader Quran native dan prakiraan Open-Meteo. Semua dibangun ulang sesuai referensi chat. Sumber kode asli versi lokal lama belum ditemukan; jangan menganggap implementasi baru identik piksel/kode dengan versi tersebut. Bukti APK dan batas uji ada di [validasi terbaru](validation/rebuilt/README.md).
 
 1. Buka folder `android` dengan **Open**, lalu tunggu Gradle Sync selesai.
 2. Gunakan **JDK 17** di **Settings → Build, Execution, Deployment → Build Tools → Gradle → Gradle JDK**. Pilih/unduh JDK 17 bila JDK bawaan Android Studio berbeda.
@@ -43,10 +43,12 @@ gradlew.bat assembleDebug testDebugUnitTest lintDebug
 
 APK: `app/build/outputs/apk/debug/app-debug.apk`.
 
-Uji instrumentasi membutuhkan emulator/perangkat yang terhubung:
+Uji instrumentasi terarah membutuhkan APK debug dan APK tes yang dipasang pada emulator/perangkat terhubung. Contoh suite reader (memerlukan jaringan untuk skenario live):
 
 ```sh
-./gradlew connectedDebugAndroidTest
+./gradlew assembleDebugAndroidTest
+adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+adb shell am instrument -w -e class com.zikra.app.RebuiltQuranTest com.zikra.app.test/android.test.InstrumentationTestRunner
 ```
 
 Runner instrumentasi memakai `android.test.InstrumentationTestRunner` bawaan platform agar dependensi aplikasi tetap Java. Unit test memakai JUnit 4.13.2. OkHttp 3.14.9 dan Okio 1.17.2 merupakan dependensi runtime Java; Kotlin runtime tidak diperlukan.
@@ -56,10 +58,7 @@ Runner instrumentasi memakai `android.test.InstrumentationTestRunner` bawaan pla
 SDK terpasang di `/workspace/android-sdk`; lokasi tersebut hanya dicatat di `local.properties` yang diabaikan Git. Cache memakai direktori writable terpisah:
 
 ```sh
-export GRADLE_USER_HOME=/workspace/gradle-cache
-export ANDROID_USER_HOME=/workspace/android-user
-export ANDROID_HOME=/workspace/android-sdk
-export JAVA_HOME=/workspace/java/jdk-17.0.12+7
+source /workspace/setup-zikra/env.sh
 ./gradlew assembleDebug testDebugUnitTest lintDebug
 ```
 

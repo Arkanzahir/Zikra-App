@@ -2,7 +2,6 @@ package com.zikra.app.safety;
 
 import android.app.Activity;
 import java.io.IOException;
-import java.time.Instant;
 import java.util.concurrent.TimeUnit;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -17,6 +16,8 @@ public final class BmkgClient implements AutoCloseable {
   public static final String QUAKE_URL = "https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json";
   public static final String WEATHER_URL =
       "https://api.bmkg.go.id/publik/prakiraan-cuaca?adm4=" + BmkgParser.KEPUTIH_CODE;
+  private static final java.util.concurrent.ExecutorService CLEANUP =
+      java.util.concurrent.Executors.newSingleThreadExecutor();
   private final Activity activity;
   private final OkHttpClient client =
       new OkHttpClient.Builder()
@@ -24,6 +25,7 @@ public final class BmkgClient implements AutoCloseable {
           .readTimeout(18, TimeUnit.SECONDS)
           .callTimeout(25, TimeUnit.SECONDS)
           .build();
+  private final OpenMeteoClient weather;
   private volatile boolean closed;
   private int generation;
 
@@ -39,15 +41,17 @@ public final class BmkgClient implements AutoCloseable {
 
   public BmkgClient(Activity activity) {
     this.activity = activity;
+    weather = new OpenMeteoClient(activity);
   }
 
   public void reset() {
     generation++;
+    weather.reset();
     client.dispatcher().cancelAll();
   }
 
   public void weather(Result<BmkgParser.Forecast> result) {
-    fetch(WEATHER_URL, json -> BmkgParser.forecast(json, Instant.now()), result);
+    weather.load(result);
   }
 
   public void earthquake(Result<BmkgParser.Earthquake> result) {
@@ -117,6 +121,8 @@ public final class BmkgClient implements AutoCloseable {
     closed = true;
     generation++;
     client.dispatcher().cancelAll();
-    client.connectionPool().evictAll();
+    weather.close();
+    // TLS shutdown may perform socket IO; keep it off the Activity main thread.
+    CLEANUP.execute(() -> client.connectionPool().evictAll());
   }
 }
