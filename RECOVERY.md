@@ -1,5 +1,7 @@
 # Pemulihan Zikra — 18 Oktober 2026
 
+**Checkpoint Home:** langit siang/malam, matahari harian, fase bulan USNO/fallback berlabel, parallax dan animasi masuk sudah dibangun ulang dan diverifikasi. Build/lint, tiga unit test astronomi dan dua tes perangkat terkait lulus. Kode asli lama tetap belum ditemukan; ini implementasi baru dari referensi chat. Quran online dan Open-Meteo berikutnya.
+
 **Checkpoint pembangunan ulang:** branding master dan onboarding taman selesai dibangun ulang berdasarkan riwayat chat dan screenshot pengguna. Ini implementasi baru, bukan klaim menemukan kode asli. Parallax berjalan di foreground, berhenti saat pause/reduced motion/hemat daya. Pilihan jenjang/minat tidak lagi ditanyakan; preferensi lama tetap disimpan. Lihat [bukti dan batas pemeriksaan](android/validation/rebuilt/README.md). Home siang/malam, Quran online dan Open-Meteo masih berikutnya; bagian historis di bawah mencatat kondisi sebelum checkpoint ini.
 
 **Penyempurnaan terbaru:** Study/Hifz kini memakai susunan agenda: judul ivory/Pine, progres kecil per kategori, satu kegiatan belum selesai yang ditonjolkan, daftar ringan dan bagian Selesai yang bisa dilipat. Header XML dipakai bersama; konten utama bisa digulir untuk layar kecil/teks besar. Lihat [validasi dan preview agenda](android/validation/agenda/README.md). Bagian pemulihan di bawah mencatat keadaan sebelum penyempurnaan ini; fitur lokal lama lainnya tetap belum pulih.

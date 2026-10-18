@@ -22,6 +22,20 @@ import java.util.Locale;
 
 public final class HomeActivity extends BaseActivity {
   private ZikraDbHelper db;
+  private com.zikra.app.sky.HomeSkyView sky;
+  private com.zikra.app.sky.SkyRepository skyRepository;
+  private com.zikra.app.sky.SkyDay skyDay;
+  private java.time.LocalDate requestedSkyDate;
+  private com.zikra.app.ui.AmbientMotionPolicy entrancePolicy;
+  private boolean entrancePlayed;
+  private static final int[] ENTRANCE_IDS = {
+    R.id.homeLocation,
+    R.id.homeClock,
+    R.id.homePrayerStrip,
+    R.id.homeShortcuts,
+    R.id.homeTargetCard,
+    R.id.homeContinueReading
+  };
   private java.time.LocalDate progressDate;
   private int activePrayer = -1;
   private java.time.LocalDate prayerDisplayDate;
@@ -52,6 +66,40 @@ public final class HomeActivity extends BaseActivity {
     NavDock.attach(this, findViewById(R.id.homeRoot), "home");
     setupScreen("Zikra");
     db = new ZikraDbHelper(this);
+    sky = findViewById(R.id.homeSky);
+    skyRepository = new com.zikra.app.sky.SkyRepository(this);
+    entrancePlayed = state != null && state.getBoolean("entrance_played", false);
+    entrancePolicy =
+        new com.zikra.app.ui.AmbientMotionPolicy(
+            this,
+            () -> {
+              if (!entrancePolicy.enabled()) finishEntrance();
+            });
+    findViewById(R.id.homeSkySource)
+        .setOnClickListener(
+            v -> {
+              if (skyDay == null) return;
+              new android.app.AlertDialog.Builder(this)
+                  .setTitle("Langit Sukolilo")
+                  .setMessage(
+                      (skyDay.usno ? "USNO, data harian " : "Perkiraan lokal, ")
+                          + skyDay.date
+                          + "\nTerbit "
+                          + skyDay.rise
+                          + " · transit "
+                          + skyDay.noon
+                          + " · terbenam "
+                          + skyDay.set
+                          + "\nBulan diterangi "
+                          + Math.round(skyDay.illumination * 100)
+                          + "%.\n\n"
+                          + "Posisi matahari mengikuti waktu setempat. Bentuk bulan menggambarkan"
+                          + " fraksi terang harian; arah dan penempatannya ilustratif. Bukan"
+                          + " penetapan awal bulan Hijriah.")
+                  .setPositiveButton("Tutup", null)
+                  .setNeutralButton("Perbarui", (d, w) -> loadSky(true))
+                  .show();
+            });
     findViewById(R.id.shortcutQuran).setOnClickListener(v -> open(QuranActivity.class));
     findViewById(R.id.shortcutDua).setOnClickListener(v -> open(DuaActivity.class));
     findViewById(R.id.shortcutQibla).setOnClickListener(v -> open(QiblaActivity.class));
@@ -85,6 +133,19 @@ public final class HomeActivity extends BaseActivity {
   protected void onResume() {
     super.onResume();
     if (db == null) return;
+    sky.setRunning(true);
+    entrancePolicy.start();
+    if (!entrancePlayed) {
+      entrancePlayed = true;
+      if (entrancePolicy.enabled()) {
+        for (int i = 0; i < ENTRANCE_IDS.length; i++) {
+          android.view.View v = findViewById(ENTRANCE_IDS[i]);
+          v.setAlpha(0);
+          v.setTranslationY(10 * getResources().getDisplayMetrics().density);
+          v.animate().alpha(1).translationY(0).setStartDelay(i * 45L).setDuration(400).start();
+        }
+      }
+    }
     updateProgress();
     PrayerReminders.sync(this);
     SharedPreferences p = getSharedPreferences("zikra_preferences", MODE_PRIVATE);
@@ -113,6 +174,8 @@ public final class HomeActivity extends BaseActivity {
   private void updateClock() {
     if (!java.time.LocalDate.now().equals(progressDate)) updateProgress();
     ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Jakarta"));
+    loadSky(false);
+    if (skyDay != null) sky.setSky(skyDay, now.toLocalTime());
     ((TextView) findViewById(R.id.homeClock))
         .setText(now.format(DateTimeFormatter.ofPattern("HH:mm", Locale.ROOT)));
     HijrahDate date = HijrahDate.from(now.toLocalDate());
@@ -184,14 +247,56 @@ public final class HomeActivity extends BaseActivity {
     }
   }
 
+  private void loadSky(boolean force) {
+    java.time.LocalDate date = java.time.LocalDate.now(PrayerSchedule.ZONE);
+    if (!force && date.equals(requestedSkyDate)) return;
+    requestedSkyDate = date;
+    skyRepository.load(
+        date,
+        force,
+        day -> {
+          skyDay = day;
+          sky.setSky(day, java.time.LocalTime.now(PrayerSchedule.ZONE));
+          ((TextView) findViewById(R.id.homeSkySource))
+              .setText("Langit · " + (day.usno ? "USNO" : "perkiraan lokal"));
+        });
+  }
+
+  private void finishEntrance() {
+    for (int id : ENTRANCE_IDS) {
+      android.view.View v = findViewById(id);
+      v.animate().cancel();
+      v.setAlpha(1);
+      v.setTranslationY(0);
+    }
+  }
+
+  @Override
+  public boolean dispatchTouchEvent(android.view.MotionEvent e) {
+    if (sky != null) sky.observeTouch(e);
+    return super.dispatchTouchEvent(e);
+  }
+
+  @Override
+  protected void onSaveInstanceState(Bundle out) {
+    out.putBoolean("entrance_played", entrancePlayed);
+    super.onSaveInstanceState(out);
+  }
+
   @Override
   protected void onPause() {
     timer.removeCallbacks(tick);
+    if (sky != null) {
+      sky.setRunning(false);
+      finishEntrance();
+      entrancePolicy.stop();
+    }
     super.onPause();
   }
 
   @Override
   protected void onDestroy() {
+    if (skyRepository != null) skyRepository.close();
     if (db != null) db.close();
     super.onDestroy();
   }

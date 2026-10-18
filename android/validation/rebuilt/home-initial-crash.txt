@@ -1,0 +1,36 @@
+--------- beginning of system
+--------- beginning of main
+10-18 11:00:28.573  5045  5045 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+10-18 11:00:29.495  5045  5045 D AndroidRuntime: Calling main entry com.android.commands.am.Am
+10-18 11:01:06.945  5058  5058 D AndroidRuntime: Shutting down VM
+--------- beginning of crash
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: FATAL EXCEPTION: main
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: Process: com.zikra.app, PID: 5058
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: java.lang.RuntimeException: Unable to destroy activity {com.zikra.app/com.zikra.app.HomeActivity}: android.os.NetworkOnMainThreadException
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.ActivityThread.performDestroyActivity(ActivityThread.java:4458)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.ActivityThread.handleDestroyActivity(ActivityThread.java:4476)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.servertransaction.DestroyActivityItem.execute(DestroyActivityItem.java:39)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.servertransaction.TransactionExecutor.executeLifecycleState(TransactionExecutor.java:145)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:70)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1808)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:106)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:193)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:6669)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:858)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: Caused by: android.os.NetworkOnMainThreadException
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.os.StrictMode$AndroidBlockGuardPolicy.onNetwork(StrictMode.java:1513)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.android.org.conscrypt.Platform.blockGuardOnNetwork(Platform.java:415)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.android.org.conscrypt.ConscryptFileDescriptorSocket.shutdownAndFreeSslNative(ConscryptFileDescriptorSocket.java:1005)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.android.org.conscrypt.ConscryptFileDescriptorSocket.close(ConscryptFileDescriptorSocket.java:1000)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at okhttp3.internal.Util.closeQuietly(Util.java:154)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at okhttp3.internal.connection.RealConnectionPool.evictAll(RealConnectionPool.java:154)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at okhttp3.ConnectionPool.evictAll(ConnectionPool.java:55)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.zikra.app.sky.SkyRepository.close(SkyRepository.java:137)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.zikra.app.HomeActivity.onDestroy(HomeActivity.java:299)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.Activity.performDestroy(Activity.java:7395)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.Instrumentation.callActivityOnDestroy(Instrumentation.java:1306)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.ActivityThread.performDestroyActivity(ActivityThread.java:4443)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	... 11 more
+10-18 11:01:07.715  5045  5045 D AndroidRuntime: Shutting down VM

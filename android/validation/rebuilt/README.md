@@ -21,3 +21,16 @@ Screenshot berasal dari APK yang dijalankan, bukan mockup:
 | ![Cerita 1](screens/RebuiltOnboarding1.png) | ![Home](screens/RebuiltHomeBrand.png) | ![Ikon](screens/RebuiltAppIcon.png) |
 
 [Cerita 2](screens/RebuiltOnboarding2.png) · [Cerita 3](screens/RebuiltOnboarding3.png).
+
+## Checkpoint 2: Home dan langit astronomi
+
+- Logo/lokasi kiri atas dari komponen master. Lentera diganti langit siang/malam yang mengikuti waktu Sukolilo/WIB. Matahari bergerak pada busur terbit–transit–terbenam harian; transit lokal bukan jam 13:00 yang diasumsikan.
+- USNO `api/rstt/oneday` menyediakan waktu matahari dan fraksi terang/fase bulan harian. Tanggal, zona dan koordinat diverifikasi; cache berlaku pada tanggal lokal yang sama. Jika gagal, kalkulasi matahari lokal dan pendekatan periode sinodik diberi label **perkiraan lokal**. Ketuk label Langit untuk sumber dan pembaruan.
+- Bentuk bulan mengikuti fraksi terang, bukan nomor hari Hijriah. Posisi/orientasi bulan dan awan ilustratif, bukan peta langit atau data cuaca/rukyat.
+- Awan/bintang berlapis dan parallax sentuh/tilt native, maksimum 30fps. Animasi masuk enam kelompok selesai sekitar 625ms; tidak diputar kembali saat kembali dari fitur lain. Lifecycle, animator scale dan hemat daya menghentikan animasi.
+- Build/lint/unit test lulus; tiga unit test astronomi dan dua tes perangkat terkait lulus. Satu kegagalan awal menemukan penutupan TLS di main thread saat Activity dihancurkan; diperbaiki dengan pool HTTP bersama dan pembatalan request milik halaman. Tes ulang lulus, termasuk menutup Activity. [Build akhir](home-final-build.txt), [tes perangkat](home-device-tests.txt), [kegagalan awal](home-initial-crash.txt).
+- [Home live](screens/RebuiltHomeLive.png) benar-benar menampilkan sumber USNO dari APK. Dua preview di bawah memakai jam/fraksi terang skenario uji dan diberi label DATA UJI; countdown/jadwal tetap aplikasi asli. FPS/baterai/akurasi tilt HP fisik belum diukur.
+
+| Ilustrasi siang | Ilustrasi malam |
+| --- | --- |
+| ![Siang](screens/RebuiltHomeDayIllustration.png) | ![Malam](screens/RebuiltHomeNightIllustration.png) |
