@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
+    android:layout_marginBottom="0dp"
     android:orientation="vertical"
-    android:background="@drawable/reading_white_card"
-    android:padding="18dp">
+    android:paddingTop="6dp"
+    android:paddingBottom="0dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,10 +15,10 @@
             android:id="@+id/ayahNumber"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:background="@drawable/reading_number"
+            android:background="@null"
             android:textColor="@color/pine"
             android:gravity="center"
-            android:textSize="12sp" />
+            android:textSize="11sp" />
         <Button
             android:id="@+id/ayahBookmark"
             android:layout_width="0dp"
@@ -43,7 +43,11 @@
         android:layout_marginTop="14dp"
         android:layout_marginBottom="14dp" />
     <TextView
+        android:textSize="14sp"
+        android:lineSpacingExtra="5dp"
         style="@style/ReadingBody"
         android:id="@+id/ayahTranslation"
         android:textColor="#637570" />
+    <View android:id="@+id/ayahDivider" android:layout_width="match_parent" android:layout_height="1dp"
+        android:layout_marginTop="20dp" android:background="#E3E8E2" />
 </LinearLayout>

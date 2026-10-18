@@ -34,3 +34,16 @@ Screenshot berasal dari APK yang dijalankan, bukan mockup:
 | Ilustrasi siang | Ilustrasi malam |
 | --- | --- |
 | ![Siang](screens/RebuiltHomeDayIllustration.png) | ![Malam](screens/RebuiltHomeNightIllustration.png) |
+
+## Checkpoint 3: reader Quran native 114 surah
+
+- Metadata publik Quran.com 114 surah/6.236 ayat dibundel agar katalog dan pemilihan target Hifz tidak bergantung jaringan. Empat surah bawaan tetap tersedia.
+- Ayat Utsmani dan terjemahan Indonesia resource 33 (Indonesian Islamic Affairs Ministry) dimuat sesuai kebutuhan melalui public v4 API. Respons divalidasi terhadap ID surah/ayat, jumlah, urutan dan pagination. Tiap bagian maksimal 50 ayat, tersedia sebelumnya/berikutnya dan lompat langsung dari target Hifz.
+- Hingga delapan bagian terakhir disimpan atomik pada penyimpanan privat. Cache halaman tidak sama dengan unduhan offline seluruh Quran. Sumber online/tersimpan/bawaan diberi label; error dapat dicoba ulang; request dibatalkan saat reader ditutup/pause. Tidak memakai secret atau mengklaim akses production Content Sync.
+- Bookmark memakai kunci stabil `surah:ayat`; preferensi nama/ayat lama dimigrasi tanpa dihapus. Recreation dan resume memulihkan ayat. Reader memakai baris tenang dengan pemisah, mode malam/sensor dan dock disembunyikan selama membaca. Tidak ada klaim Mushaf halaman, murottal atau penilaian hafalan AI.
+- Build/lint lulus. Empat tes perangkat lulus: metadata/validasi halaman/search; Al-Mulk native/bookmark/recreation/cache; Al-Baqarah 280/bagian terakhir/sebelumnya; target Hifz lokal dan routing native. Verifikasi HTTP live juga mengembalikan Al-Baqarah 251–286, total 286, enam bagian. Tes tidak membuka 114 surah satu per satu.
+- Tes awal mengalami balapan saat membaca jumlah child sebelum UI selesai mengisi; sinkronisasi pembacaan tes ke main thread memperbaikinya tanpa melonggarkan jumlah ayat. Salah import pada kompilasi awal tes juga diperbaiki; log awal dipertahankan. [Build akhir](quran-final-build.txt), [empat tes](quran-device-tests.txt).
+
+| Katalog | Al-Mulk, ayat 3 | Al-Baqarah, ayat 280 |
+| --- | --- | --- |
+| ![Katalog](screens/RebuiltQuranCatalog.png) | ![Al-Mulk](screens/RebuiltQuranMulk.png) | ![Al-Baqarah](screens/RebuiltQuranBaqarah280.png) |

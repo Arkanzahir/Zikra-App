@@ -8,7 +8,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -30,7 +29,6 @@ import android.widget.TextView;
 import com.zikra.app.data.HifzTarget;
 import com.zikra.app.data.Task;
 import com.zikra.app.data.ZikraDbHelper;
-import com.zikra.app.reading.SurahData;
 import com.zikra.app.study.SurahCatalog;
 import com.zikra.app.study.SurahCatalog.Chapter;
 import com.zikra.app.ui.HifzEditor;
@@ -74,6 +72,11 @@ public final class StudyActivity extends BaseActivity {
   @Override
   protected void onCreate(Bundle state) {
     super.onCreate(state);
+    java.util.List<Chapter> bundled = new java.util.ArrayList<>();
+    for (com.zikra.app.reading.QuranChapters.Chapter c :
+        com.zikra.app.reading.QuranChapters.all(this))
+      bundled.add(new Chapter(c.id, c.name, c.count));
+    chapters = java.util.Collections.unmodifiableList(bundled);
     setContentView(R.layout.activity_study);
     NavDock.attach(this, findViewById(R.id.studyPageRoot), "study");
     ListView agenda = findViewById(R.id.study_tasks);
@@ -559,14 +562,9 @@ public final class StudyActivity extends BaseActivity {
   }
 
   public static Intent readingIntent(android.content.Context context, HifzTarget target) {
-    for (SurahData surah : SurahData.ALL)
-      if (surah.number == target.chapterId)
-        return new Intent(context, QuranActivity.class)
-            .putExtra(QuranActivity.EXTRA_TARGET_CHAPTER, target.chapterId)
-            .putExtra(QuranActivity.EXTRA_TARGET_VERSE, target.firstVerse);
-    return new Intent(
-        Intent.ACTION_VIEW,
-        Uri.parse("https://quran.com/" + target.chapterId + "/" + target.firstVerse));
+    return new Intent(context, QuranActivity.class)
+        .putExtra(QuranActivity.EXTRA_TARGET_CHAPTER, target.chapterId)
+        .putExtra(QuranActivity.EXTRA_TARGET_VERSE, target.firstVerse);
   }
 
   private void openReading(HifzTarget target) {

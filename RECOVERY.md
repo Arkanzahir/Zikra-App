@@ -1,5 +1,7 @@
 # Pemulihan Zikra — 18 Oktober 2026
 
+**Checkpoint Quran:** katalog native 114 surah, reader public v4 per 50 ayat, bookmark stabil dan delapan bagian cache sudah dibangun ulang. Empat tes perangkat terkait lulus; target Hifz kini membuka reader native. Mushaf/audio/offline penuh tetap belum tersedia.
+
 **Checkpoint Home:** langit siang/malam, matahari harian, fase bulan USNO/fallback berlabel, parallax dan animasi masuk sudah dibangun ulang dan diverifikasi. Build/lint, tiga unit test astronomi dan dua tes perangkat terkait lulus. Kode asli lama tetap belum ditemukan; ini implementasi baru dari referensi chat. Quran online dan Open-Meteo berikutnya.
 
 **Checkpoint pembangunan ulang:** branding master dan onboarding taman selesai dibangun ulang berdasarkan riwayat chat dan screenshot pengguna. Ini implementasi baru, bukan klaim menemukan kode asli. Parallax berjalan di foreground, berhenti saat pause/reduced motion/hemat daya. Pilihan jenjang/minat tidak lagi ditanyakan; preferensi lama tetap disimpan. Lihat [bukti dan batas pemeriksaan](android/validation/rebuilt/README.md). Home siang/malam, Quran online dan Open-Meteo masih berikutnya; bagian historis di bawah mencatat kondisi sebelum checkpoint ini.

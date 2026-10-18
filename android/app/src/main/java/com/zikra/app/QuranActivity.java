@@ -23,7 +23,8 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import com.zikra.app.reading.SurahData;
+import com.zikra.app.reading.*;
+import java.util.List;
 import java.util.Locale;
 
 public class QuranActivity extends BaseActivity implements SensorEventListener {
@@ -41,7 +42,11 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   private boolean applyingSensor;
   private boolean manualOverride;
   private float lastAmbientLux = Float.NaN;
-  private boolean firstSelection = true;
+  private List<QuranChapters.Chapter> chapters;
+  private QuranRepository repository;
+  private QuranPage loadedPage;
+  private int pendingVerse = 1, currentPage = 1;
+  private boolean suspended, loading;
   private int selectedIndex;
   private boolean readingOpen;
   private LinearLayout surahList;
@@ -74,20 +79,31 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
             : getIntent().getBooleanExtra(EXTRA_RESUME_READING, false);
     nightMode = savedInstanceState != null && savedInstanceState.getBoolean("night_mode");
     manualOverride = savedInstanceState != null && savedInstanceState.getBoolean("manual_override");
-    String lastSurah = preferences.getString("last_surah", "Al-Fatihah");
-    if (savedInstanceState == null) {
-      int targetId = getIntent().getIntExtra(EXTRA_TARGET_CHAPTER, 0);
-      for (SurahData surah : SurahData.ALL)
-        if (surah.number == targetId) {
-          int verse =
-              Math.min(
-                  surah.arabic.length, Math.max(1, getIntent().getIntExtra(EXTRA_TARGET_VERSE, 1)));
-          lastSurah = surah.name;
-          readingOpen = true;
-          preferences.edit().putString("last_surah", surah.name).putInt("last_ayah", verse).apply();
-          break;
-        }
+    chapters = QuranChapters.all(this);
+    repository = new QuranRepository(this);
+    int lastId = preferences.getInt("last_chapter", 0);
+    if (lastId < 1 || lastId > 114) {
+      lastId = 1;
+      String old = preferences.getString("last_surah", "Al-Fatihah");
+      for (QuranChapters.Chapter c : chapters) if (c.name.equals(old)) lastId = c.id;
+      preferences.edit().putInt("last_chapter", lastId).apply();
     }
+    selectedIndex =
+        savedInstanceState != null ? savedInstanceState.getInt("chapter", lastId) - 1 : lastId - 1;
+    pendingVerse =
+        savedInstanceState != null
+            ? savedInstanceState.getInt("verse", 1)
+            : preferences.getInt("last_ayah", 1);
+    if (savedInstanceState == null) {
+      int target = getIntent().getIntExtra(EXTRA_TARGET_CHAPTER, 0);
+      if (target >= 1 && target <= 114) {
+        selectedIndex = target - 1;
+        pendingVerse = getIntent().getIntExtra(EXTRA_TARGET_VERSE, 1);
+        readingOpen = true;
+      }
+    }
+    selectedIndex = Math.max(0, Math.min(113, selectedIndex));
+    pendingVerse = Math.max(1, Math.min(chapters.get(selectedIndex).count, pendingVerse));
 
     findViewById(R.id.quranCatalogButton).setOnClickListener(view -> showCatalog());
     findViewById(R.id.quranBackToCatalog).setOnClickListener(view -> showCatalog());
@@ -99,13 +115,22 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
             });
     findViewById(R.id.quranResume)
         .setOnClickListener(
-            view -> {
-              String resume = preferences.getString("last_surah", "Al-Fatihah");
-              for (int i = 0; i < SurahData.ALL.length; i++)
-                if (SurahData.ALL[i].name.equals(resume)) {
-                  openSurah(i, true);
-                  break;
-                }
+            v -> {
+              int id = preferences.getInt("last_chapter", 1);
+              openSurah(Math.max(0, Math.min(113, id - 1)), true);
+            });
+    findViewById(R.id.quranRetry).setOnClickListener(v -> renderSurah(true));
+    findViewById(R.id.quranPreviousPage)
+        .setOnClickListener(
+            v -> {
+              pendingVerse = Math.max(1, (currentPage - 2) * QuranPage.PAGE_SIZE + 1);
+              renderSurah(true);
+            });
+    findViewById(R.id.quranNextPage)
+        .setOnClickListener(
+            v -> {
+              pendingVerse = currentPage * QuranPage.PAGE_SIZE + 1;
+              renderSurah(true);
             });
     ((EditText) findViewById(R.id.quranSearch))
         .addTextChangedListener(
@@ -121,10 +146,9 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
               @Override
               public void afterTextChanged(Editable editable) {}
             });
-    String[] labels = new String[SurahData.ALL.length];
+    String[] labels = new String[chapters.size()];
     for (int i = 0; i < labels.length; i++) {
-      labels[i] = SurahData.ALL[i].name + " · " + SurahData.ALL[i].arabic.length + " ayat";
-      if (SurahData.ALL[i].name.equals(lastSurah)) selectedIndex = i;
+      labels[i] = chapters.get(i).id + ". " + chapters.get(i).name;
     }
     ArrayAdapter<String> adapter =
         new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, labels) {
@@ -137,26 +161,14 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
           }
         };
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    final int initialIndex = selectedIndex;
     surahSelector.setAdapter(adapter);
     surahSelector.setSelection(selectedIndex);
     surahSelector.setOnItemSelectedListener(
         new AdapterView.OnItemSelectedListener() {
           @Override
           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            boolean initial = firstSelection && position == initialIndex;
-            selectedIndex = position;
-            firstSelection = false;
-            if (initial) return; // The initial surah is already bound below during onCreate.
-            if (!initial) {
-              preferences
-                  .edit()
-                  .putString("last_surah", SurahData.ALL[position].name)
-                  .putInt("last_ayah", 1)
-                  .apply();
-              showReader();
-            }
-            renderSurah(initial);
+            if (position == selectedIndex) return;
+            openSurah(position, false);
           }
 
           @Override
@@ -180,27 +192,29 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     applyNightMode(nightMode);
     updateSensorLabel();
     renderCatalog("");
-    renderSurah(true);
-    if (readingOpen) showReader();
+    if (readingOpen) {
+      showReader();
+      renderSurah(true);
+    }
   }
 
   private void renderCatalog(String query) {
     String normalized = query.trim().toLowerCase(Locale.ROOT).replace("-", "");
     surahList.removeAllViews();
-    for (int i = 0; i < SurahData.ALL.length; i++) {
+    for (int i = 0; i < chapters.size(); i++) {
       final int index = i;
-      SurahData surah = SurahData.ALL[i];
+      QuranChapters.Chapter surah = chapters.get(i);
       if (!surah.name.toLowerCase(Locale.ROOT).replace("-", "").contains(normalized)
-          && !surah.arabicName.contains(normalized)
-          && !String.valueOf(surah.number).equals(normalized)) continue;
+          && !surah.arabic.contains(normalized)
+          && !String.valueOf(surah.id).equals(normalized)) continue;
       View row = getLayoutInflater().inflate(R.layout.reading_item_surah, surahList, false);
-      ((TextView) row.findViewById(R.id.surahListNumber)).setText(String.valueOf(surah.number));
+      ((TextView) row.findViewById(R.id.surahListNumber)).setText(String.valueOf(surah.id));
       ((TextView) row.findViewById(R.id.surahListName)).setText(surah.name);
       ((TextView) row.findViewById(R.id.surahListInfo))
-          .setText(surah.arabic.length + " ayat  ·  Juz " + surah.juz);
+          .setText(surah.count + " ayat  ·  " + surah.place);
       ((TextView) row.findViewById(R.id.surahListArabic))
-          .setText(surah.arabicName.replace("سُورَةُ ", ""));
-      row.setContentDescription("Baca surah " + surah.name + ", " + surah.arabic.length + " ayat");
+          .setText(surah.arabic.replace("سُورَةُ ", ""));
+      row.setContentDescription("Baca surah " + surah.name + ", " + surah.count + " ayat");
       row.setOnClickListener(view -> openSurah(index, false));
       surahList.addView(row);
     }
@@ -210,16 +224,12 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   }
 
   private void openSurah(int index, boolean restoreBookmark) {
-    if (!restoreBookmark)
-      preferences
-          .edit()
-          .putString("last_surah", SurahData.ALL[index].name)
-          .putInt("last_ayah", 1)
-          .apply();
     selectedIndex = index;
+    pendingVerse = restoreBookmark ? preferences.getInt("last_ayah", 1) : 1;
+    pendingVerse = Math.max(1, Math.min(chapters.get(index).count, pendingVerse));
     surahSelector.setSelection(index);
     showReader();
-    renderSurah(restoreBookmark);
+    renderSurah(true);
     InputMethodManager keyboard = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
     if (keyboard != null)
       keyboard.hideSoftInputFromWindow(findViewById(R.id.quranSearch).getWindowToken(), 0);
@@ -227,6 +237,10 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
 
   private void showReader() {
     readingOpen = true;
+    findViewById(R.id.quranTitle).setVisibility(View.GONE);
+    surahSelector.setVisibility(View.VISIBLE);
+    findViewById(R.id.quranPageRoot).findViewWithTag("zikraDock").setVisibility(View.GONE);
+    findViewById(R.id.quranScroll).setPadding(dp(20), 0, dp(20), dp(24));
     findViewById(R.id.quranCatalog).setVisibility(View.GONE);
     findViewById(R.id.quranReader).setVisibility(View.VISIBLE);
     ((ScrollView) findViewById(R.id.quranScroll)).scrollTo(0, 0);
@@ -234,6 +248,13 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
 
   private void showCatalog() {
     readingOpen = false;
+    repository.cancel();
+    loading = false;
+    clearBookmarkLayout();
+    findViewById(R.id.quranTitle).setVisibility(View.VISIBLE);
+    surahSelector.setVisibility(View.GONE);
+    findViewById(R.id.quranPageRoot).findViewWithTag("zikraDock").setVisibility(View.VISIBLE);
+    findViewById(R.id.quranScroll).setPadding(dp(24), 0, dp(24), dp(96));
     findViewById(R.id.quranCatalog).setVisibility(View.VISIBLE);
     findViewById(R.id.quranReader).setVisibility(View.GONE);
     refreshBookmarkLabels();
@@ -248,37 +269,95 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
 
   private void renderSurah(boolean restoreBookmark) {
     clearBookmarkLayout();
-    SurahData surah = SurahData.ALL[selectedIndex];
-    ((TextView) findViewById(R.id.surahArabicTitle)).setText(surah.arabicName);
+    QuranChapters.Chapter surah = chapters.get(selectedIndex);
+    pendingVerse = Math.max(1, Math.min(surah.count, pendingVerse));
+    currentPage = QuranPage.pageFor(pendingVerse);
+    ((TextView) findViewById(R.id.surahArabicTitle)).setText(surah.arabic);
     ((TextView) findViewById(R.id.surahMetadata))
-        .setText(surah.name + " · " + surah.arabic.length + " ayat · Juz " + surah.juz);
-    findViewById(R.id.surahBismillah).setVisibility(surah.number == 1 ? View.GONE : View.VISIBLE);
+        .setText(surah.name + " · " + surah.count + " ayat · " + surah.place);
+    findViewById(R.id.surahBismillah)
+        .setVisibility(
+            surah.id == 1 || surah.id == 9 || currentPage > 1 ? View.GONE : View.VISIBLE);
     ayahContainer.removeAllViews();
-    int lastAyah = Math.min(surah.arabic.length, Math.max(1, preferences.getInt("last_ayah", 1)));
-    for (int i = 0; i < surah.arabic.length; i++) {
-      final int ayah = i + 1;
-      View card = getLayoutInflater().inflate(R.layout.reading_item_ayah, ayahContainer, false);
-      ((TextView) card.findViewById(R.id.ayahNumber)).setText(String.valueOf(ayah));
-      ((TextView) card.findViewById(R.id.ayahArabic)).setText(surah.arabic[i]);
-      ((TextView) card.findViewById(R.id.ayahTranslation)).setText(surah.translations[i]);
-      card.findViewById(R.id.ayahBookmark)
-          .setOnClickListener(
-              view -> {
-                preferences
-                    .edit()
-                    .putString("last_surah", surah.name)
-                    .putInt("last_ayah", ayah)
-                    .apply();
-                refreshBookmarkLabels();
-                toast(surah.name + " ayat " + ayah + " disimpan");
-              });
-      ayahContainer.addView(card);
-    }
-    refreshBookmarkLabels();
-    applyNightMode(nightMode);
-    if (restoreBookmark && lastAyah > 1) {
-      scrollToBookmark(ayahContainer.getChildAt(lastAyah - 1));
-    }
+    loadedPage = null;
+    loading = true;
+    findViewById(R.id.quranLoading).setVisibility(View.VISIBLE);
+    findViewById(R.id.quranRetry).setVisibility(View.GONE);
+    findViewById(R.id.quranPagination).setVisibility(View.GONE);
+    ((TextView) findViewById(R.id.quranLoadStatus)).setText("Memuat " + surah.name + "…");
+    repository.load(
+        surah,
+        currentPage,
+        new QuranRepository.Result() {
+          @Override
+          public void ready(QuranPage page, String source) {
+            if (!readingOpen || isFinishing() || isDestroyed()) return;
+            loading = false;
+            loadedPage = page;
+            findViewById(R.id.quranLoading).setVisibility(View.GONE);
+            ((TextView) findViewById(R.id.quranLoadStatus))
+                .setText(
+                    source
+                        + " · Ayat "
+                        + page.verses.get(0).number
+                        + "–"
+                        + page.verses.get(page.verses.size() - 1).number
+                        + (QuranPage.builtIn(surah.id) == null
+                            ? "\nArab Utsmani · Terjemahan Kementerian Agama RI (resource 33)"
+                            : ""));
+            for (QuranPage.Verse verse : page.verses) {
+              View row =
+                  getLayoutInflater().inflate(R.layout.reading_item_ayah, ayahContainer, false);
+              row.setTag(verse.key);
+              ((TextView) row.findViewById(R.id.ayahNumber)).setText(String.valueOf(verse.number));
+              ((TextView) row.findViewById(R.id.ayahArabic)).setText(verse.arabic);
+              String translation = verse.translation.replaceAll("(?is)<sup[^>]*>.*?</sup>", "");
+              ((TextView) row.findViewById(R.id.ayahTranslation))
+                  .setText(
+                      android.text.Html.fromHtml(
+                              translation, android.text.Html.FROM_HTML_MODE_LEGACY)
+                          .toString()
+                          .trim());
+              row.findViewById(R.id.ayahBookmark)
+                  .setOnClickListener(
+                      v -> {
+                        saveLastRead(surah, verse.number);
+                        refreshBookmarkLabels();
+                        toast(surah.name + " ayat " + verse.number + " disimpan");
+                      });
+              ayahContainer.addView(row);
+            }
+            saveLastRead(surah, pendingVerse);
+            refreshBookmarkLabels();
+            applyNightMode(nightMode);
+            ((TextView) findViewById(R.id.quranPageLabel))
+                .setText("Bagian " + page.page + " dari " + page.pages);
+            findViewById(R.id.quranPagination)
+                .setVisibility(page.pages > 1 ? View.VISIBLE : View.GONE);
+            findViewById(R.id.quranPreviousPage).setEnabled(page.page > 1);
+            findViewById(R.id.quranNextPage).setEnabled(page.page < page.pages);
+            View target = ayahContainer.findViewWithTag(surah.id + ":" + pendingVerse);
+            if (target != null) scrollToBookmark(target);
+          }
+
+          @Override
+          public void failed(String message) {
+            loading = false;
+            findViewById(R.id.quranLoading).setVisibility(View.GONE);
+            ((TextView) findViewById(R.id.quranLoadStatus)).setText(message);
+            findViewById(R.id.quranRetry).setVisibility(View.VISIBLE);
+          }
+        });
+  }
+
+  private void saveLastRead(QuranChapters.Chapter surah, int verse) {
+    preferences
+        .edit()
+        .putInt("last_chapter", surah.id)
+        .putString("last_surah", surah.name)
+        .putInt("last_ayah", verse)
+        .putString("last_verse_key", surah.id + ":" + verse)
+        .apply();
   }
 
   private void scrollToBookmark(View bookmark) {
@@ -310,6 +389,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   @Override
   protected void onDestroy() {
     clearBookmarkLayout();
+    if (repository != null) repository.close();
     super.onDestroy();
   }
 
@@ -319,7 +399,11 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     ((TextView) findViewById(R.id.lastReadLabel)).setText(lastSurah + "  ·  Ayat " + lastAyah);
     for (int i = 0; i < ayahContainer.getChildCount(); i++) {
       Button button = ayahContainer.getChildAt(i).findViewById(R.id.ayahBookmark);
-      boolean selected = lastSurah.equals(SurahData.ALL[selectedIndex].name) && lastAyah == i + 1;
+      boolean selected =
+          ayahContainer
+              .getChildAt(i)
+              .getTag()
+              .equals(preferences.getInt("last_chapter", 1) + ":" + lastAyah);
       button.setText(selected ? "✓ Bacaan terakhir" : "Tandai terakhir dibaca");
     }
   }
@@ -341,7 +425,6 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     nightSwitch.setTextColor(foreground);
     ((android.widget.ImageButton) findViewById(R.id.toolbarBack)).setColorFilter(foreground);
     for (int id : secondaryLabels) ((TextView) findViewById(id)).setTextColor(secondary);
-    findViewById(R.id.readingSelectionCard).setBackground(card(cardColor));
     for (int i = 0; i < surahList.getChildCount(); i++) {
       View row = surahList.getChildAt(i);
       row.setBackground(card(cardColor));
@@ -352,10 +435,13 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     }
     for (int i = 0; i < ayahContainer.getChildCount(); i++) {
       View ayah = ayahContainer.getChildAt(i);
-      ayah.setBackground(card(cardColor));
+      ayah.setBackgroundColor(background);
+      ayah.findViewById(R.id.ayahDivider).setBackgroundColor(enabled ? 0xFF29413D : 0xFFE3E8E2);
+      ((TextView) ayah.findViewById(R.id.ayahNumber)).setTextColor(0xFFBA8E48);
       ((TextView) ayah.findViewById(R.id.ayahArabic)).setTextColor(foreground);
       ((TextView) ayah.findViewById(R.id.ayahTranslation)).setTextColor(secondary);
     }
+    ((TextView) findViewById(R.id.quranLoadStatus)).setTextColor(secondary);
     if (surahSelector.getSelectedView() instanceof TextView)
       ((TextView) surahSelector.getSelectedView()).setTextColor(foreground);
     // Keep system icon contrast consistent with the reader's current palette.
@@ -389,6 +475,10 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   @Override
   protected void onResume() {
     super.onResume();
+    if (suspended && readingOpen) {
+      suspended = false;
+      renderSurah(true);
+    }
     if (lightSensor != null
         && !sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL)) {
       lightSensor = null;
@@ -399,11 +489,19 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   @Override
   protected void onPause() {
     if (sensorManager != null) sensorManager.unregisterListener(this);
+    suspended = loading;
+    repository.cancel();
     super.onPause();
   }
 
   @Override
   protected void onSaveInstanceState(Bundle state) {
+    state.putInt("chapter", selectedIndex + 1);
+    state.putInt(
+        "verse",
+        preferences.getInt("last_chapter", 1) == selectedIndex + 1
+            ? preferences.getInt("last_ayah", pendingVerse)
+            : pendingVerse);
     state.putBoolean("night_mode", nightMode);
     state.putBoolean("manual_override", manualOverride);
     state.putBoolean("reading_open", readingOpen);

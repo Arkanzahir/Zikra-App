@@ -208,8 +208,9 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
     scrollTo(ikhlas);
     await(() -> row(ikhlas) != null, 15000);
     Intent online = StudyActivity.readingIntent(page, new HifzTarget(67, "Al-Mulk", 30, 3, 7));
-    assertEquals(Intent.ACTION_VIEW, online.getAction());
-    assertEquals("https://quran.com/67/3", online.getDataString());
+    assertEquals(QuranActivity.class.getName(), online.getComponent().getClassName());
+    assertEquals(67, online.getIntExtra(QuranActivity.EXTRA_TARGET_CHAPTER, 0));
+    assertEquals(3, online.getIntExtra(QuranActivity.EXTRA_TARGET_VERSE, 0));
     Instrumentation.ActivityMonitor monitor =
         getInstrumentation().addMonitor(QuranActivity.class.getName(), null, false);
     try {
