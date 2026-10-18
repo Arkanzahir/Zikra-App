@@ -57,7 +57,7 @@ public final class QuranRepository implements AutoCloseable {
             synchronized (CACHE_LOCK) {
               file.setLastModified(System.currentTimeMillis());
             }
-            deliver(token, () -> result.ready(stored, "Quran.com · halaman tersimpan"));
+            deliver(token, () -> result.ready(stored, "Quran.com · bacaan tersimpan"));
             return;
           } catch (IOException | JSONException | RuntimeException ignored) {
           }

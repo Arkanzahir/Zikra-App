@@ -12,18 +12,22 @@ import com.zikra.app.discovery.GardenSceneView;
 /** Three stories, without requesting an education level or interests. */
 public final class OnboardingActivity extends BaseActivity {
   private static final String[] TITLES = {
-    "Belajar fokus.\nIbadah terjaga.",
-    "Satu niat baik.\nSetiap hari.",
-    "Ayat demi ayat.\nLebih dekat."
+    "Belajar lebih\nterarah.", "Ibadah tetap\nterjaga.", "Dekat, ayat\ndemi ayat."
   };
   private static final String[] CAPTIONS = {
-    "Ruang untuk tugas, waktu sholat,\ndan bacaan yang menemani harimu.",
-    "Tata kegiatan dan ibadahmu.\nMulai dari satu hal yang bisa kamu tuntaskan.",
-    "Pilih target hafalan dan lanjutkan bacaan.\nSedikit demi sedikit, dengan ritmemu."
+    "Tata tugas dan target belajarmu, satu per satu.",
+    "Temukan jadwal sholat di sela kesibukanmu.",
+    "Lanjutkan bacaan dan jaga target hafalanmu."
   };
   private static final String[] EYEBROWS = {
-    "SELAMAT DATANG DI ZIKRA", "RUANG UNTUK BERTUMBUH", "JAGA YANG BERARTI"
+    "RUANG UNTUK BELAJAR", "JEDA YANG BERARTI", "TEMANI BACAANMU"
   };
+  private static final String[] SCENES = {
+    "Karakter membuka buku. Ketuk untuk mengulang animasi.",
+    "Karakter bersiap sholat. Ketuk untuk mengulang animasi.",
+    "Karakter membaca Quran. Ketuk untuk mengulang animasi."
+  };
+  private static final int[] BACKGROUNDS = {0xFFF4E5CB, 0xFFDCE9E1, 0xFFF1EDE1};
   private int step;
   private float downX, downY;
   private GardenSceneView garden;
@@ -34,8 +38,10 @@ public final class OnboardingActivity extends BaseActivity {
     step = state == null ? 0 : Math.max(0, Math.min(2, state.getInt("step")));
     setContentView(R.layout.activity_onboarding);
     setupScreen("Selamat datang di Zikra");
-    getWindow().setNavigationBarColor(getColor(R.color.pine));
-    getWindow().getDecorView().setSystemUiVisibility(0);
+    getWindow()
+        .getDecorView()
+        .setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     garden = findViewById(R.id.onboardGarden);
     findViewById(R.id.onboardContinue)
         .setOnClickListener(
@@ -57,16 +63,19 @@ public final class OnboardingActivity extends BaseActivity {
   }
 
   private void render(boolean animate) {
+    findViewById(R.id.onboardRoot).setBackgroundColor(BACKGROUNDS[step]);
+    getWindow().setStatusBarColor(BACKGROUNDS[step]);
+    getWindow().setNavigationBarColor(BACKGROUNDS[step]);
     ((TextView) findViewById(R.id.onboardTitle)).setText(TITLES[step]);
     ((TextView) findViewById(R.id.onboardEyebrow)).setText(EYEBROWS[step]);
     ((TextView) findViewById(R.id.onboardDescription)).setText(CAPTIONS[step]);
     ((TextView) findViewById(R.id.onboardStep)).setText("Langkah " + (step + 1) + " dari 3");
-    ((TextView) findViewById(R.id.onboardContinue))
-        .setText(step == 2 ? "Mulai harimu" : step == 1 ? "Lanjut" : "Kenalan dulu");
+    ((TextView) findViewById(R.id.onboardContinue)).setText(step == 2 ? "Mulai harimu" : "Lanjut");
     findViewById(R.id.onboardBack).setVisibility(step == 0 ? View.GONE : View.VISIBLE);
     int[] dots = {R.id.onboardDot0, R.id.onboardDot1, R.id.onboardDot2};
     for (int i = 0; i < 3; i++)
-      findViewById(dots[i]).setBackgroundColor(i == step ? getColor(R.color.camel) : 0xFF49685D);
+      findViewById(dots[i]).setBackgroundColor(i == step ? getColor(R.color.pine) : 0xFF91A397);
+    garden.setContentDescription(SCENES[step]);
     garden.setStory(step);
     ((ScrollView) findViewById(R.id.onboardScroll)).scrollTo(0, 0);
     View story = findViewById(R.id.onboardStory);
@@ -85,7 +94,7 @@ public final class OnboardingActivity extends BaseActivity {
     getSharedPreferences("zikra_preferences", MODE_PRIVATE)
         .edit()
         .putBoolean("onboarding_complete", true)
-        .putInt("onboarding_story_version", 2)
+        .putInt("onboarding_story_version", 3)
         .apply();
     startActivity(
         new Intent(this, HomeActivity.class)

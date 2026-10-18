@@ -46,7 +46,8 @@ public final class StudyActivity extends BaseActivity {
   private final Handler handler = new Handler(Looper.getMainLooper());
   private ZikraDbHelper db;
   private TaskAdapter adapter;
-  private boolean diaryMode, catalogLoading, completedExpanded;
+  private boolean diaryMode, ibadahMode, catalogLoading, completedExpanded;
+  private String scopeCategory;
   private Task featuredTask;
   private View agendaHeader;
   private String filter = "All";
@@ -80,20 +81,30 @@ public final class StudyActivity extends BaseActivity {
     setContentView(R.layout.activity_study);
     ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.sharedFeatureHeader))
         .bindIds(R.id.study_back, R.id.study_screen_title, R.id.study_screen_tagline, 0);
-    NavDock.attach(this, findViewById(R.id.studyPageRoot), "study");
+
     ListView agenda = findViewById(R.id.study_tasks);
     agendaHeader = getLayoutInflater().inflate(R.layout.study_agenda_header, agenda, false);
     agenda.addHeaderView(agendaHeader, null, false);
     completedExpanded = state != null && state.getBoolean("completed_expanded", false);
     diaryMode = ZikraDbHelper.CATEGORY_HIFZ.equals(getIntent().getStringExtra("category"));
-    setupScreen(getString(diaryMode ? R.string.study_hifz_title : R.string.study_title));
+    ibadahMode = ZikraDbHelper.CATEGORY_IBADAH.equals(getIntent().getStringExtra("category"));
+    scopeCategory =
+        diaryMode
+            ? ZikraDbHelper.CATEGORY_HIFZ
+            : ibadahMode ? ZikraDbHelper.CATEGORY_IBADAH : ZikraDbHelper.CATEGORY_STUDY;
+    NavDock.attach(this, findViewById(R.id.studyPageRoot), ibadahMode ? "prayer" : "study");
+    setupScreen(
+        ibadahMode
+            ? "Checklist ibadah"
+            : getString(diaryMode ? R.string.study_hifz_title : R.string.study_title));
     getWindow().setStatusBarColor(getColor(R.color.white));
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     db = new ZikraDbHelper(this);
-    filter = state == null ? "All" : state.getString("study_filter", "All");
+    filter = scopeCategory;
+    agendaHeader.findViewById(R.id.study_filters).setVisibility(View.GONE);
     text(R.id.study_screen_title, diaryMode ? R.string.study_hifz_title : R.string.study_title);
     if (diaryMode) {
       filter = ZikraDbHelper.CATEGORY_HIFZ;
@@ -104,11 +115,16 @@ public final class StudyActivity extends BaseActivity {
       text(R.id.study_add, R.string.study_hifz_add);
       text(R.id.study_empty, R.string.study_hifz_empty);
       agendaHeader.findViewById(R.id.study_filters).setVisibility(View.GONE);
-      for (int id :
-          new int[] {R.id.study_filter_all, R.id.study_filter_study, R.id.study_filter_ibadah})
-        agendaHeader.findViewById(id).setVisibility(View.GONE);
       catalog = new SurahCatalog();
       loadCatalog();
+    }
+    if (ibadahMode) {
+      ((TextView) findViewById(R.id.study_screen_title)).setText("Checklist ibadah");
+      ((TextView) findViewById(R.id.study_screen_tagline))
+          .setText("Jaga kebiasaan baik, satu per satu.");
+      ((TextView) agendaHeader.findViewById(R.id.study_heading)).setText("Jeda untuk\nibadah.");
+      ((TextView) agendaHeader.findViewById(R.id.study_section)).setText("Ibadah lainnya");
+      ((TextView) findViewById(R.id.study_add)).setText("Tambah ibadah");
     }
     adapter = new TaskAdapter();
     ListView list = findViewById(R.id.study_tasks);
@@ -122,42 +138,25 @@ public final class StudyActivity extends BaseActivity {
         .back()
         .setOnClickListener(
             view -> {
+              if (ibadahMode) {
+                finish();
+                return;
+              }
               startActivity(
                   new Intent(this, HomeActivity.class)
                       .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
               finish();
             });
     findViewById(R.id.study_add).setOnClickListener(view -> showEditor(null, null));
-    int[] ids = {
-      R.id.study_filter_all,
-      R.id.study_filter_study,
-      R.id.study_filter_ibadah,
-      R.id.study_filter_hifz
-    };
-    String[] categories = {
-      "All",
-      ZikraDbHelper.CATEGORY_STUDY,
-      ZikraDbHelper.CATEGORY_IBADAH,
-      ZikraDbHelper.CATEGORY_HIFZ
-    };
-    for (int i = 0; i < ids.length; i++) {
-      final String category = categories[i];
-      agendaHeader
-          .findViewById(ids[i])
-          .setOnClickListener(
-              v -> {
-                filter = category;
-                refreshTasks();
-              });
-    }
     if (state != null && state.getBoolean("editor_open", false)) {
       long id = state.getLong("editor_task_id", -1);
       Task saved = null;
-      for (Task task : db.getTasks()) if (task.id == id) saved = task;
+      for (Task task : db.getTasks())
+        if (task.id == id && scopeCategory.equals(task.category)) saved = task;
       if (id == -1 || saved != null) {
         showEditor(saved, state.getString("editor_title", ""));
         ((RadioGroup) editorView.findViewById(R.id.study_editor_category))
-            .check(choice(state.getString("editor_category", ZikraDbHelper.CATEGORY_STUDY)));
+            .check(choice(scopeCategory));
         if (hifzEditor != null)
           hifzEditor.restore(state, chapters, catalogLoading, this::loadCatalog);
       }
@@ -219,8 +218,7 @@ public final class StudyActivity extends BaseActivity {
 
   private void refreshTasks() {
     List<Task> filtered = new ArrayList<>();
-    for (Task task : db.getTasks())
-      if ("All".equals(filter) || task.category.equals(filter)) filtered.add(task);
+    for (Task task : db.getTasks()) if (scopeCategory.equals(task.category)) filtered.add(task);
     // Keep user insertion order within each group; structured Hifz targets precede legacy notes.
     if (diaryMode) filtered.sort(Comparator.comparing(task -> task.hifz == null));
     List<Task> pending = new ArrayList<>(), done = new ArrayList<>();
@@ -253,25 +251,11 @@ public final class StudyActivity extends BaseActivity {
         total > 0
             ? (diaryMode ? R.string.agenda_hifz_all_done : R.string.agenda_all_done)
             : (diaryMode ? R.string.study_hifz_empty : R.string.study_empty));
-    int[] ids = {
-      R.id.study_filter_all,
-      R.id.study_filter_study,
-      R.id.study_filter_ibadah,
-      R.id.study_filter_hifz
-    };
-    String[] categories = {
-      "All",
-      ZikraDbHelper.CATEGORY_STUDY,
-      ZikraDbHelper.CATEGORY_IBADAH,
-      ZikraDbHelper.CATEGORY_HIFZ
-    };
-    for (int i = 0; i < ids.length; i++) {
-      TextView tab = agendaHeader.findViewById(ids[i]);
-      boolean selected = categories[i].equals(filter);
-      tab.setSelected(selected);
-      tab.setBackgroundResource(selected ? R.drawable.bg_card : android.R.color.transparent);
-      tab.setTextColor(getColor(selected ? R.color.pine : R.color.study_secondary));
-    }
+    if (ibadahMode)
+      empty.setText(
+          total > 0
+              ? "Ibadah hari ini sudah selesai."
+              : "Belum ada checklist ibadah. Mulai satu kebiasaan baik.");
   }
 
   private int categoryLabel(Task task) {
@@ -379,8 +363,9 @@ public final class StudyActivity extends BaseActivity {
     EditText title = editor.findViewById(R.id.study_editor_title);
     RadioGroup category = editor.findViewById(R.id.study_editor_category);
     title.setText(draft != null ? draft : task == null ? "" : task.title);
-    category.check(
-        choice(diaryMode ? ZikraDbHelper.CATEGORY_HIFZ : task == null ? filter : task.category));
+    category.check(choice(scopeCategory));
+    category.setVisibility(View.GONE);
+    editor.findViewById(R.id.study_editor_category_label).setVisibility(View.GONE);
     ((TextView) editor.findViewById(R.id.study_editor_heading))
         .setText(
             diaryMode
@@ -388,6 +373,16 @@ public final class StudyActivity extends BaseActivity {
                 : (task == null ? R.string.study_refresh_new : R.string.study_edit));
     ((TextView) editor.findViewById(R.id.study_editor_save))
         .setText(diaryMode ? R.string.hifz_save : R.string.study_save_activity);
+    if (ibadahMode) {
+      ((TextView) editor.findViewById(R.id.study_editor_context)).setText("Checklist ibadah");
+      ((TextView) editor.findViewById(R.id.study_editor_heading))
+          .setText(task == null ? "Ibadah baru" : "Ubah ibadah");
+      ((TextView) editor.findViewById(R.id.study_editor_description))
+          .setText("Satu kebiasaan baik yang ingin kamu jaga.");
+      ((TextView) editor.findViewById(R.id.study_editor_title_label)).setText("Nama ibadah");
+      title.setHint("Contoh: Sholat Dzuhur");
+      ((TextView) editor.findViewById(R.id.study_editor_save)).setText("Simpan ibadah");
+    }
     if (diaryMode) {
       ((TextView) editor.findViewById(R.id.study_editor_context))
           .setText(R.string.study_hifz_title);
@@ -490,20 +485,19 @@ public final class StudyActivity extends BaseActivity {
   }
 
   private String selectedCategory() {
-    if (diaryMode) return ZikraDbHelper.CATEGORY_HIFZ;
-    int id =
-        ((RadioGroup) editorView.findViewById(R.id.study_editor_category))
-            .getCheckedRadioButtonId();
-    return id == R.id.study_editor_hifz
-        ? ZikraDbHelper.CATEGORY_HIFZ
-        : id == R.id.study_editor_ibadah
-            ? ZikraDbHelper.CATEGORY_IBADAH
-            : ZikraDbHelper.CATEGORY_STUDY;
+    return scopeCategory;
   }
 
   private void showTaskMenu(View anchor, Task task) {
     PopupMenu menu = new PopupMenu(this, anchor);
-    menu.getMenu().add(0, 1, 0, R.string.study_edit);
+    menu.getMenu()
+        .add(
+            0,
+            1,
+            0,
+            diaryMode
+                ? "Ubah target"
+                : ibadahMode ? "Ubah ibadah" : getString(R.string.study_edit));
     menu.getMenu().add(0, 2, 1, R.string.study_delete);
     menu.setOnMenuItemClickListener(
         item -> {

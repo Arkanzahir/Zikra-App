@@ -7,37 +7,96 @@ import android.graphics.Canvas;
 import android.os.SystemClock;
 import android.test.InstrumentationTestCase;
 import com.zikra.app.discovery.GardenSceneView;
+import java.util.function.BooleanSupplier;
 
 @SuppressWarnings("deprecation")
 public final class OnboardingMotionTest extends InstrumentationTestCase {
   private Activity activity;
 
-  public void testGardenMovesAndPausesWithoutChangingBrand() throws Exception {
+  public void testCharacterPosesChangeThenRestAndPause() throws Exception {
     activity =
         getInstrumentation()
             .startActivitySync(
                 new Intent(getInstrumentation().getTargetContext(), OnboardingActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-    getInstrumentation().waitForIdleSync();
-    long end = SystemClock.uptimeMillis() + 15000;
-    while (!activity.hasWindowFocus() && SystemClock.uptimeMillis() < end) SystemClock.sleep(100);
+    await(activity::hasWindowFocus);
     GardenSceneView scene = activity.findViewById(R.id.onboardGarden);
-    assertTrue(
-        "Foreground garden must animate when system motion is enabled", scene.isMotionRunning());
+    // Let the entry complete, then explicitly replay to observe its full lifetime.
+    SystemClock.sleep(3500);
+    getInstrumentation().runOnMainSync(scene::performClick);
+    await(scene::isMotionRunning);
     Bitmap first = snapshot(scene);
-    SystemClock.sleep(500);
+    SystemClock.sleep(400);
     Bitmap next = snapshot(scene);
-    assertFalse("Floating scenery changes pixels over time", first.sameAs(next));
+    assertFalse("Articulated poses change pixels over time", first.sameAs(next));
     first.recycle();
     next.recycle();
-    getInstrumentation().runOnMainSync(() -> scene.setRunning(false));
+    await(() -> !scene.isMotionRunning());
+    Bitmap rest = snapshot(scene);
+    SystemClock.sleep(300);
+    Bitmap still = snapshot(scene);
+    assertTrue("No perpetual animation after the two-second entry", rest.sameAs(still));
+    rest.recycle();
+    still.recycle();
+    getInstrumentation()
+        .runOnMainSync(
+            () -> {
+              scene.performClick();
+              scene.setRunning(false);
+            });
     assertFalse(scene.isMotionRunning());
     Bitmap stopped = snapshot(scene);
     SystemClock.sleep(300);
-    Bitmap still = snapshot(scene);
-    assertTrue("Paused garden does not advance decorative motion", stopped.sameAs(still));
+    Bitmap paused = snapshot(scene);
+    assertTrue("Background/paused view stays still", stopped.sameAs(paused));
     stopped.recycle();
-    still.recycle();
+    paused.recycle();
+  }
+
+  public void testReducedMotionUsesStillPoster() throws Exception {
+    String old =
+        android.provider.Settings.Global.getString(
+            getInstrumentation().getTargetContext().getContentResolver(),
+            "animator_duration_scale");
+    try {
+      shell("settings put global animator_duration_scale 0");
+      activity =
+          getInstrumentation()
+              .startActivitySync(
+                  new Intent(getInstrumentation().getTargetContext(), OnboardingActivity.class)
+                      .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+      await(activity::hasWindowFocus);
+      GardenSceneView scene = activity.findViewById(R.id.onboardGarden);
+      SystemClock.sleep(1500);
+      getInstrumentation().runOnMainSync(scene::performClick);
+      assertFalse(scene.isMotionRunning());
+      Bitmap first = snapshot(scene);
+      SystemClock.sleep(350);
+      Bitmap next = snapshot(scene);
+      assertTrue("Reduced motion keeps the final illustration still", first.sameAs(next));
+      first.recycle();
+      next.recycle();
+    } finally {
+      shell(
+          old == null
+              ? "settings delete global animator_duration_scale"
+              : "settings put global animator_duration_scale " + old);
+    }
+  }
+
+  private void shell(String command) throws Exception {
+    try (android.os.ParcelFileDescriptor fd =
+            getInstrumentation().getUiAutomation().executeShellCommand(command);
+        java.io.InputStream in = new android.os.ParcelFileDescriptor.AutoCloseInputStream(fd)) {
+      byte[] b = new byte[1024];
+      while (in.read(b) != -1) {}
+    }
+  }
+
+  private void await(BooleanSupplier ready) {
+    long end = SystemClock.uptimeMillis() + 15000;
+    while (!ready.getAsBoolean() && SystemClock.uptimeMillis() < end) SystemClock.sleep(50);
+    assertTrue("Expected animation lifecycle state", ready.getAsBoolean());
   }
 
   private Bitmap snapshot(GardenSceneView scene) {

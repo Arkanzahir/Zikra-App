@@ -95,8 +95,13 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
     assertTrue("Saved verse appears on first catalog open", resume.contains("Ayat 4"));
     assertEquals(114, ((LinearLayout) page.findViewById(R.id.quranSurahList)).getChildCount());
     UiEvidence.capture(getInstrumentation(), "RebuiltQuranCatalog");
+    assertEquals(View.GONE, page.findViewById(R.id.quranSearchCard).getVisibility());
     getInstrumentation()
-        .runOnMainSync(() -> ((EditText) page.findViewById(R.id.quranSearch)).setText("baqarah"));
+        .runOnMainSync(() -> page.findViewById(R.id.quranHeaderSearch).performClick());
+    assertEquals(View.VISIBLE, page.findViewById(R.id.quranSearchCard).getVisibility());
+    getInstrumentation()
+        .runOnMainSync(
+            () -> ((EditText) page.findViewById(R.id.quranSearch)).setText("al baqarah"));
     assertEquals(1, ((LinearLayout) page.findViewById(R.id.quranSurahList)).getChildCount());
   }
 
@@ -151,6 +156,57 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
     awaitVerse("2:201");
     assertEquals(50, ((LinearLayout) page.findViewById(R.id.ayahContainer)).getChildCount());
     assertTrue(page.findViewById(R.id.quranNextPage).isEnabled());
+  }
+
+  public void testDefaultLightHeaderAndPersistedNightOption() throws Exception {
+    prefs.edit().remove("reading_theme").commit();
+    launch(target(1, 1));
+    awaitVerse("1:1");
+    assertFalse(((Switch) page.findViewById(R.id.readingNightSwitch)).isChecked());
+    assertEquals(android.graphics.Color.WHITE, page.getWindow().getStatusBarColor());
+    android.graphics.Rect bounds = new android.graphics.Rect();
+    assertTrue(
+        "Surah introduction remains visible on first verse",
+        page.findViewById(R.id.surahMetadata).getGlobalVisibleRect(bounds));
+    assertTrue(
+        ((TextView) page.findViewById(R.id.surahMetadata))
+            .getText()
+            .toString()
+            .contains("Al-Fatihah"));
+    UiEvidence.capture(getInstrumentation(), "RebuiltQuranReaderLight");
+    getInstrumentation()
+        .runOnMainSync(() -> page.findViewById(R.id.quranReadingOptions).performClick());
+    getInstrumentation().waitForIdleSync();
+    boolean clicked = false;
+    for (android.view.accessibility.AccessibilityNodeInfo node :
+        getInstrumentation()
+            .getUiAutomation()
+            .getRootInActiveWindow()
+            .findAccessibilityNodeInfosByText("Malam")) {
+      for (int i = 0; node != null && i < 4; i++, node = node.getParent()) {
+        if (node.isClickable()) {
+          clicked =
+              node.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK);
+          break;
+        }
+      }
+      if (clicked) break;
+    }
+    assertTrue("Night option accepts user selection", clicked);
+    getInstrumentation().waitForIdleSync();
+    assertEquals("dark", prefs.getString("reading_theme", ""));
+    assertTrue(((Switch) page.findViewById(R.id.readingNightSwitch)).isChecked());
+    Instrumentation.ActivityMonitor monitor =
+        getInstrumentation().addMonitor(QuranActivity.class.getName(), null, false);
+    try {
+      getInstrumentation().runOnMainSync(page::recreate);
+      page = getInstrumentation().waitForMonitorWithTimeout(monitor, 30000);
+      assertNotNull(page);
+    } finally {
+      getInstrumentation().removeMonitor(monitor);
+    }
+    awaitVerse("1:1");
+    assertTrue(((Switch) page.findViewById(R.id.readingNightSwitch)).isChecked());
   }
 
   @Override

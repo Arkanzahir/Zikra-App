@@ -5,7 +5,7 @@
     <string name="agenda_continue">LANJUTKAN HARI INI</string>
     <string name="agenda_complete">Tandai selesai</string>
     <string name="agenda_edit">Ubah</string>
-    <string name="agenda_remaining">Agenda lainnya</string>
+    <string name="agenda_remaining">Tugas lainnya</string>
     <string name="agenda_hifz_remaining">Target lainnya</string>
     <string name="agenda_progress">%1$d dari %2$d selesai</string>
     <string name="agenda_percent">%1$d%%</string>
@@ -14,6 +14,6 @@
     <string name="agenda_completed_open">Selesai · %1$d　⌃</string>
     <string name="agenda_completed_expand">Tampilkan %1$d kegiatan selesai</string>
     <string name="agenda_completed_collapse">Sembunyikan %1$d kegiatan selesai</string>
-    <string name="agenda_all_done">Semua kegiatan di sini selesai.\nAda ruang untuk beristirahat.</string>
+    <string name="agenda_all_done">Semua tugas akademik sudah selesai.</string>
     <string name="agenda_hifz_all_done">Target hari ini selesai.\nTerus jaga hafalanmu, sedikit demi sedikit.</string>
 </resources>

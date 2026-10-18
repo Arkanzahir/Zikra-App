@@ -81,8 +81,10 @@ public final class HomeNavigationTest extends InstrumentationTestCase {
             .contains("Al-Falaq"));
     android.widget.LinearLayout verses = destination.findViewById(R.id.ayahContainer);
     assertEquals(
-        "✓ Bacaan terakhir",
-        ((TextView) verses.getChildAt(3).findViewById(R.id.ayahBookmark)).getText().toString());
+        "Bacaan terakhir",
+        ((TextView) verses.getChildAt(3).findViewById(R.id.ayahLastReadStatus))
+            .getText()
+            .toString());
     assertEquals(
         4, destination.getSharedPreferences("zikra_preferences", 0).getInt("last_ayah", 0));
     assertTrue(

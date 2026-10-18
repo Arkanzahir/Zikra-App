@@ -1,4 +1,4 @@
-> **Status 18 Oktober 2026:** branding master, onboarding taman, langit Home, reader Quran native 114 surah serta cuaca Open-Meteo dibangun ulang dari referensi chat pada branch `recovery/study-hifz-refresh`. Ini implementasi baru; kode asli lokal lama belum ditemukan. Lihat [status dan batas pemeriksaan](validation/rebuilt/README.md) serta [RECOVERY.md](../RECOVERY.md). Catatan validasi lama di bawah bersifat historis.
+> **Status 18 Oktober 2026:** branch `recovery/study-hifz-refresh` kini memakai onboarding karakter 3D bergerak dalam tiga adegan, Study Hub khusus akademik, checklist ibadah dari Waktu Sholat, serta katalog/reader Quran terang sesuai referensi. Logo master dan Home astronomi tetap tersedia. Lihat [validasi/screenshot terbaru](validation/character-refresh/README.md) dan [RECOVERY.md](../RECOVERY.md). Catatan lama di bawah bersifat historis.
 
 # Validasi pembaruan referensi — 16 Oktober 2026
 

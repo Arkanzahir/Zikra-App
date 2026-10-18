@@ -1,3 +1,5 @@
+> **Arah terbaru (18 Oktober 2026):** onboarding mengikuti referensi kartun 3D yang dibagikan dalam chat: satu karakter pelajar, tiga kegiatan (belajar, bersiap sholat, membaca Quran), latar pastel dan copy singkat. Model/animasi asli: [sumber](../tools/animation/README.md). Quran mengikuti katalog dan reader terang pada referensi Suhayel di bawah, dengan mode malam sebagai pilihan. Study Hub khusus akademik; checklist ibadah berada pada Waktu Sholat. [Screenshot APK](../android/validation/character-refresh/README.md).
+
 # Referensi desain dari pengguna
 
 Folder ini sekarang hanya memuat **gambar acuan yang cocok dengan gambar yang diberikan pengguna dalam percakapan**. Mockup Zikra lama, alternatif logo lama, prompt desain lama, duplikat dan acuan tambahan yang tidak terkonfirmasi sudah dikeluarkan dari versi aktif repositori. Jangan mengembalikannya dari riwayat Git atau menjadikannya target desain.

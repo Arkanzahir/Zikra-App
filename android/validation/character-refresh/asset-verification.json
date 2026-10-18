@@ -1,0 +1,32 @@
+[
+  {
+    "scene": "study",
+    "bytes": 291402,
+    "dimensions": [
+      2560,
+      1440
+    ],
+    "distinct_frames": 48,
+    "sha256": "3dd08017ea20459dd60a130d4b4315fdaf3dc7a9939f498fd825acf1b734a6a8"
+  },
+  {
+    "scene": "prayer",
+    "bytes": 269576,
+    "dimensions": [
+      2560,
+      1440
+    ],
+    "distinct_frames": 43,
+    "sha256": "f9fb96564498f542592de724702c2eb34d910de40ea3897a13e9978a7d584cbf"
+  },
+  {
+    "scene": "quran",
+    "bytes": 251774,
+    "dimensions": [
+      2560,
+      1440
+    ],
+    "distinct_frames": 43,
+    "sha256": "e6c3bd6cbc19f071a6ff014beb55ceff15b61304866bda3474865201b6c0a2e5"
+  }
+]

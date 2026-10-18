@@ -6,14 +6,14 @@ Branch `recovery/study-hifz-refresh` memuat pembangunan ulang dari riwayat chat 
 
 | Bagian | Kondisi saat ini |
 | --- | --- |
-| Study/Hifz | Agenda Pine/ivory, target surah/rentang, CRUD, SQLite v2 mempertahankan data, draft editor dan navigasi bersama. Metadata pemilihan 114 surah tersedia offline. |
+| Study/Hifz | Study khusus akademik, checklist ibadah dari Waktu Sholat dan Diary Hifz terpisah; data lama tidak dihapus. Agenda Pine/ivory, target surah/rentang, CRUD, SQLite v2 mempertahankan data, draft editor dan navigasi bersama. Metadata pemilihan 114 surah tersedia offline. |
 | Branding | Master JPG tetap, simbol Pine/putih dengan geometri/alpha identik; XML logo bersama pada splash/onboarding/Home/Tentang, simbol saja pada adaptive icon. Profil memakai avatar. |
-| Onboarding | Taman tiga cerita, float/awan/parallax sentuh/tilt native. Tidak ada pertanyaan jenjang/minat; preferensi lama tidak dihapus. |
+| Onboarding | Karakter kartun 3D asli dalam tiga adegan: membuka buku, bersiap sholat, membaca Quran. Pose bergerak dua detik sekali lalu diam; ketuk untuk mengulang, parallax sentuh/tilt native. Tidak ada pertanyaan jenjang/minat; preferensi lama tidak dihapus. |
 | Home | Logo/lokasi kiri atas, siang/malam, busur matahari berdasarkan terbit/transit/terbenam, fase bulan USNO harian atau perkiraan lokal berlabel, parallax dan animasi masuk. |
-| Quran | Reader native 114 surah melalui public v4 API, Arab Utsmani/terjemahan resource 33, 50 ayat per bagian, bookmark kunci stabil, resume/recreation, delapan bagian cache; empat surah bawaan. Semua target Hifz menuju reader native. |
+| Quran | Katalog ringkas dan reader terang sesuai referensi Suhayel; mode malam opsional melalui pengaturan bacaan. Reader native 114 surah melalui public v4 API, Arab Utsmani/terjemahan resource 33, 50 ayat per bagian, bookmark kunci stabil, resume/recreation, delapan bagian cache; empat surah bawaan. Semua target Hifz menuju reader native. |
 | Cuaca/Protector | Open-Meteo untuk prakiraan model Sukolilo, refresh 10 menit/cache maksimal enam jam bertimestamp. Gempa/peringatan tetap BMKG. Header XML sama dengan Study/Hifz; grafik memakai geometri tersimpan. |
 
-Bukti build, tes dan screenshot APK tersedia di [validasi pembangunan ulang](android/validation/rebuilt/README.md). Catatan [pemulihan awal](android/validation/recovery/README.md) dan [agenda](android/validation/agenda/README.md) tetap dipertahankan sebagai riwayat, bukan status terbaru semua fitur.
+Bukti terbaru ada di [validasi karakter/Study/Quran](android/validation/character-refresh/README.md); [validasi pembangunan ulang](android/validation/rebuilt/README.md) menyimpan checkpoint sebelumnya. Catatan [pemulihan awal](android/validation/recovery/README.md) dan [agenda](android/validation/agenda/README.md) tetap dipertahankan sebagai riwayat, bukan status terbaru semua fitur.
 
 ## Yang belum selesai atau belum terbukti
 

@@ -3,14 +3,14 @@
     <color name="study_warm">#F8F7F2</color>
     <color name="study_secondary">#52645E</color>
     <color name="study_line">#E1E5DD</color>
-    <string name="study_refresh_heading">Rencana hari ini</string>
+    <string name="study_refresh_heading">Study Hub</string>
     <string name="study_refresh_hifz_heading">Murajaah hari ini</string>
     <string name="study_refresh_date">%1$s</string>
     <string name="study_refresh_checklist">Checklist</string>
     <string name="hifz_section">Target murajaah</string>
-    <string name="study_refresh_add">Tambah kegiatan</string>
-    <string name="study_refresh_new">Tambah kegiatan</string>
-    <string name="study_refresh_description">Satu kegiatan yang ingin kamu tuntaskan hari ini.</string>
+    <string name="study_refresh_add">Tambah tugas</string>
+    <string name="study_refresh_new">Tugas baru</string>
+    <string name="study_refresh_description">Catat tugas sekolah, kuliah, atau target belajar yang ingin kamu tuntaskan.</string>
     <string name="hifz_description">Pilih surah dan rentang ayat yang ingin kamu ulang.</string>
     <string name="hifz_kind">TARGET MURAJAAH</string>
     <string name="hifz_legacy">LENGKAPI TARGET</string>
@@ -40,7 +40,7 @@
     <string name="hifz_voice_prompt">Ucapkan catatan untuk target murajaah ini</string>
     <string name="study_close">Tutup tanpa menyimpan</string>
     <string name="hifz_save">Simpan target</string>
-    <string name="study_save_activity">Simpan kegiatan</string>
+    <string name="study_save_activity">Simpan tugas</string>
     <string name="hifz_pending">Belum selesai</string>
     <string name="hifz_done">Selesai hari ini</string>
     <string name="hifz_read">Buka bacaan</string>

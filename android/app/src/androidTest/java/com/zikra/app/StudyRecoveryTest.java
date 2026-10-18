@@ -127,7 +127,10 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
     Task saved = named("ZZ_RECOVERY_STUDY");
     assertNotNull(saved);
     created.add(saved.id);
-    assertEquals(ZikraDbHelper.CATEGORY_IBADAH, saved.category);
+    assertEquals(
+        "Academic scope cannot be changed by stale/hidden category state",
+        ZikraDbHelper.CATEGORY_STUDY,
+        saved.category);
     open();
     onMain(() -> editor().findViewById(R.id.study_editor_cancel).performClick());
     assertEquals(before + 1, db.getTotalCount());
@@ -260,7 +263,7 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
     created.add(done);
     db.setCompleted(done, true);
     launch(false);
-    onMain(() -> page.findViewById(R.id.study_filter_study).performClick());
+    assertEquals(View.GONE, page.findViewById(R.id.study_filters).getVisibility());
     List<Task> pending = new ArrayList<>();
     int completed = 0, total = 0;
     for (Task t : db.getTasks())
@@ -311,6 +314,65 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
     } finally {
       getInstrumentation().removeMonitor(monitor);
     }
+  }
+
+  public void testAcademicAndPrayerScopesKeepExistingTasks() {
+    int before = db.getTotalCount();
+    long academic = db.addTask("ZZ_RECOVERY_ACADEMIC_SCOPE", ZikraDbHelper.CATEGORY_STUDY);
+    long prayer = db.addTask("ZZ_RECOVERY_PRAYER_SCOPE", ZikraDbHelper.CATEGORY_IBADAH);
+    created.add(academic);
+    created.add(prayer);
+    launch(false);
+    assertTrue(
+        adapterContains(academic)
+            || ((TextView) page.findViewById(R.id.agenda_feature_title))
+                .getText()
+                .toString()
+                .equals("ZZ_RECOVERY_ACADEMIC_SCOPE"));
+    assertFalse(adapterContains(prayer));
+    assertEquals(
+        "Akademik",
+        ((TextView) page.findViewById(R.id.agenda_feature_category)).getText().toString());
+    assertEquals(before + 2, db.getTotalCount());
+    onMain(page::finish);
+    reader =
+        getInstrumentation()
+            .startActivitySync(
+                new Intent(getInstrumentation().getTargetContext(), PrayerActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    await(reader::hasWindowFocus, 30000);
+    Instrumentation.ActivityMonitor monitor =
+        getInstrumentation().addMonitor(StudyActivity.class.getName(), null, false);
+    try {
+      onMain(() -> reader.findViewById(R.id.prayerChecklist).performClick());
+      page = (StudyActivity) getInstrumentation().waitForMonitorWithTimeout(monitor, 30000);
+      assertNotNull(page);
+      await(page::hasWindowFocus, 15000);
+    } finally {
+      getInstrumentation().removeMonitor(monitor);
+    }
+    assertEquals(
+        "Checklist ibadah",
+        ((TextView) page.findViewById(R.id.study_screen_title)).getText().toString());
+    assertFalse(adapterContains(academic));
+    assertTrue(
+        adapterContains(prayer)
+            || ((TextView) page.findViewById(R.id.agenda_feature_title))
+                .getText()
+                .toString()
+                .equals("ZZ_RECOVERY_PRAYER_SCOPE"));
+    UiEvidence.capture(getInstrumentation(), "RebuiltIbadahScope");
+    open();
+    onMain(
+        () -> {
+          input(R.id.study_editor_title).setText("ZZ_RECOVERY_NEW_IBADAH");
+          editor().findViewById(R.id.study_editor_save).performClick();
+        });
+    Task saved = named("ZZ_RECOVERY_NEW_IBADAH");
+    assertNotNull(saved);
+    created.add(saved.id);
+    assertEquals(ZikraDbHelper.CATEGORY_IBADAH, saved.category);
+    assertEquals(before + 3, db.getTotalCount());
   }
 
   private void tapCompleted() {

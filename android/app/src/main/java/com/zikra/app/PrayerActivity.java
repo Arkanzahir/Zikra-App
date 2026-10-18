@@ -95,6 +95,12 @@ public final class PrayerActivity extends BaseActivity {
         });
     weekTab.setOnClickListener(view -> selectMode(true));
     findViewById(R.id.prayerOpenQibla).setOnClickListener(view -> open(QiblaActivity.class));
+    findViewById(R.id.prayerChecklist)
+        .setOnClickListener(
+            view ->
+                startActivity(
+                    new Intent(this, StudyActivity.class)
+                        .putExtra("category", com.zikra.app.data.ZikraDbHelper.CATEGORY_IBADAH)));
     Switch master = findViewById(R.id.prayerReminderEnabled);
     master.setOnCheckedChangeListener(
         (view, enabled) -> {

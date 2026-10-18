@@ -42,7 +42,7 @@ public final class RebuiltOnboardingTest extends InstrumentationTestCase {
 
   private void capture(String name) {
     getInstrumentation().waitForIdleSync();
-    SystemClock.sleep(1800);
+    SystemClock.sleep(3500);
     UiEvidence.capture(getInstrumentation(), name);
   }
 
@@ -86,7 +86,7 @@ public final class RebuiltOnboardingTest extends InstrumentationTestCase {
       getInstrumentation().removeMonitor(monitor);
     }
     assertTrue(prefs.getBoolean("onboarding_complete", false));
-    assertEquals(2, prefs.getInt("onboarding_story_version", 0));
+    assertEquals(3, prefs.getInt("onboarding_story_version", 0));
     assertEquals("legacy-level", prefs.getString("education_level", ""));
     assertTrue(
         prefs

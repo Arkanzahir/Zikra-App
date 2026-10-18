@@ -1,4 +1,4 @@
-> **Status 18 Oktober 2026:** branding master, onboarding taman, langit Home, reader Quran native 114 surah serta cuaca Open-Meteo dibangun ulang dari referensi chat pada branch `recovery/study-hifz-refresh`. Ini implementasi baru; kode asli lokal lama belum ditemukan. Lihat [status dan batas pemeriksaan](validation/rebuilt/README.md) serta [RECOVERY.md](../RECOVERY.md). Catatan validasi lama di bawah bersifat historis.
+> **Status 18 Oktober 2026:** branch `recovery/study-hifz-refresh` kini memakai onboarding karakter 3D bergerak dalam tiga adegan, Study Hub khusus akademik, checklist ibadah dari Waktu Sholat, serta katalog/reader Quran terang sesuai referensi. Logo master dan Home astronomi tetap tersedia. Lihat [validasi/screenshot terbaru](validation/character-refresh/README.md) dan [RECOVERY.md](../RECOVERY.md). Catatan lama di bawah bersifat historis.
 
 # Zikra Android — Java dan XML
 
@@ -6,7 +6,7 @@ Project Android Studio mandiri, aplikasi native Java dengan layout XML. Tanpa Ko
 
 ## Melanjutkan dari chat baru
 
-Baca [status terbaru](validation/rebuilt/README.md) sebelum inventaris historis di bawah. Onboarding sudah memakai taman tiga cerita tanpa jenjang/minat. Reader terjemahan mencakup 114 surah melalui public v4 API, empat surah bawaan dan cache delapan bagian. Mushaf halaman, murottal dan offline penuh belum tersedia. Home memakai USNO/fallback berlabel; cuaca memakai Open-Meteo, gempa/peringatan tetap BMKG.
+Baca [status terbaru](validation/rebuilt/README.md) sebelum inventaris historis di bawah. Onboarding memakai karakter 3D dalam tiga adegan tanpa jenjang/minat. Reader terjemahan mencakup 114 surah melalui public v4 API, empat surah bawaan dan cache delapan bagian. Mushaf halaman, murottal dan offline penuh belum tersedia. Home memakai USNO/fallback berlabel; cuaca memakai Open-Meteo, gempa/peringatan tetap BMKG.
 
 
 ## Buka dan jalankan
