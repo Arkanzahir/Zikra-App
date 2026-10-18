@@ -122,7 +122,7 @@ FAILURE: Build failed with an exception.
 * What went wrong:
 Execution failed for task ':app:lintDebug'.
 > Lint found errors in the project; aborting build.
-  
+
   Fix the issues identified by lint, or create a baseline to see only new errors.
   To create a baseline, run `gradlew updateLintBaseline` after adding the following to the module's build.gradle file:
   ```
@@ -133,19 +133,19 @@ Execution failed for task ':app:lintDebug'.
   }
   ```
   For more details, see https://developer.android.com/studio/write/lint#snapshot
-  
+
   Lint found 1 errors, 575 warnings. First failure:
-  
+
   /workspace/Zikra-App/android/app/src/main/java/com/zikra/app/StudyActivity.java:120: Error: @layout/activity_study does not contain a declaration with id study_back [MissingInflatedId]
       findViewById(R.id.study_back)
                    ~~~~~~~~~~~~~~~
-  
+
      Explanation for issues of type "MissingInflatedId":
      Checks calls to layout inflation and makes sure that the referenced ids are
      found in the corresponding layout (or at least one of them, if the layout
      has multiple configurations.)
-  
-  
+
+
   The full lint text report is located at:
     /workspace/Zikra-App/android/app/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt
 
