@@ -192,6 +192,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     applyNightMode(nightMode);
     updateSensorLabel();
     renderCatalog("");
+    refreshBookmarkLabels();
     if (readingOpen) {
       showReader();
       renderSurah(true);

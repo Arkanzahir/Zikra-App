@@ -1,0 +1,6 @@
+
+com.zikra.app.RebuiltQuranTest:.
+Test results for InstrumentationTestRunner=.
+Time: 24.493
+
+OK (1 test)

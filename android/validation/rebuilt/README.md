@@ -72,3 +72,7 @@ Galeri HTML/PDF menanam gambar APK asli agar tidak bergantung pada path file lam
 - [Petunjuk Android Studio](../../BUILDING.md)
 
 Startup cloud memakai entry launcher Splash, menunggu Home/onboarding menjadi foreground dan telah dijalankan ulang. [Log startup](startup-final.txt). Pinterest pin pengguna mengembalikan HTTP 200/judul HTML; playback video belum diverifikasi ([bukti](pinterest-access.json)). Tidak ada perubahan pada prototype web lama.
+
+## Perbaikan label lanjut membaca
+
+Saat meninjau desain Quran, ditemukan label nama surah/ayat pada kartu Lanjut membaca kosong saat katalog pertama dibuka. Label kini diinisialisasi dari preferensi tersimpan pada pembukaan pertama, tanpa perlu masuk reader dahulu. Satu regresi katalog mengisi bookmark contoh Al-Mulk ayat 4, memeriksa label dan search, lalu memulihkan preferensi awal. Build/lint dan satu tes terarah lulus. [Build](quran-resume-label-build.txt) · [tes](quran-resume-label-test.txt). Screenshot katalog/galeri diperbarui; bacaan terakhir pada gambar adalah contoh sementara dari tes. Struktur desain katalog belum dirombak pada patch ini.

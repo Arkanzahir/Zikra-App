@@ -83,7 +83,16 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
       fail("Wrong count");
     } catch (org.json.JSONException expected) {
     }
+    prefs
+        .edit()
+        .putInt("last_chapter", 67)
+        .putString("last_surah", "Al-Mulk")
+        .putInt("last_ayah", 4)
+        .commit();
     launch(new Intent(getInstrumentation().getTargetContext(), QuranActivity.class));
+    String resume = ((TextView) page.findViewById(R.id.lastReadLabel)).getText().toString();
+    assertTrue("Saved chapter appears on first catalog open", resume.contains("Al-Mulk"));
+    assertTrue("Saved verse appears on first catalog open", resume.contains("Ayat 4"));
     assertEquals(114, ((LinearLayout) page.findViewById(R.id.quranSurahList)).getChildCount());
     UiEvidence.capture(getInstrumentation(), "RebuiltQuranCatalog");
     getInstrumentation()
