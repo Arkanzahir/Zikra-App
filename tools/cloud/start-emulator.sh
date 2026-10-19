@@ -4,6 +4,7 @@ source /workspace/setup-zikra/env.sh
 zikra_repo=$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)
 zikra_device=emulator-5558
 zikra_avd=Zikra_Recovery_API28
+zikra_started_emulator=false
 if ! adb devices | awk '{print $1}' | rg -qx "$zikra_device"; then
   if [ ! -d "$ANDROID_AVD_HOME/$zikra_avd.avd" ]; then
     printf 'no\n' | avdmanager create avd -n "$zikra_avd" -k 'system-images;android-28;default;x86_64' --device pixel_2
@@ -19,10 +20,15 @@ skin.dynamic=yes
 showDeviceFrame=no
 AVD
   fi
-  nohup "$ANDROID_HOME/emulator/emulator" "@$zikra_avd" -no-window -no-audio -no-boot-anim -no-snapshot -accel off -gpu swiftshader -cores 2 -memory 2048 -port 5558 > /workspace/setup-zikra/emulator.log 2>&1 < /dev/null &
+  nohup "$ANDROID_HOME/emulator/emulator" "@$zikra_avd" -no-window -no-audio -no-boot-anim -no-snapshot -accel off -gpu swangle -feature -Vulkan -cores 2 -memory 2048 -port 5558 > /workspace/setup-zikra/emulator.log 2>&1 < /dev/null &
+  zikra_started_emulator=true
 fi
 # Short polls keep readiness visible; a first software boot can take several minutes.
 for zikra_poll in $(seq 1 120); do
+  if [ "$zikra_started_emulator" = true ] && rg -q '^(FATAL|PANIC)' /workspace/setup-zikra/emulator.log; then
+    echo 'Emulator launch failed; inspect emulator.log and AVD locks before retrying.' >&2
+    exit 1
+  fi
   if [ "$(adb -s "$zikra_device" shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = 1 ]; then break; fi
   if [ "$zikra_poll" -eq 120 ]; then echo 'Emulator boot timed out; inspect emulator.log.' >&2; exit 1; fi
   if [ "$((zikra_poll % 6))" -eq 0 ]; then echo 'Waiting for Android boot…'; fi

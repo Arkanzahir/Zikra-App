@@ -183,22 +183,27 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
     UiEvidence.capture(getInstrumentation(), "RebuiltQuranReaderLight");
     onMain(() -> page.findViewById(R.id.quranReadingOptions).performClick());
     getInstrumentation().waitForIdleSync();
-    boolean clicked = false;
-    for (android.view.accessibility.AccessibilityNodeInfo node :
-        getInstrumentation()
-            .getUiAutomation()
-            .getRootInActiveWindow()
-            .findAccessibilityNodeInfosByText("Malam")) {
-      for (int i = 0; node != null && i < 4; i++, node = node.getParent()) {
-        if (node.isClickable()) {
-          clicked =
-              node.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK);
-          break;
-        }
-      }
-      if (clicked) break;
-    }
-    assertTrue("Night option accepts user selection", clicked);
+    // The theme group can be below the fold; scroll the actual dialog before selecting.
+    onMain(
+        () -> {
+          RadioButton dark = dialog("readingDialog").findViewById(R.id.quranThemeDark);
+          dark.requestRectangleOnScreen(
+              new android.graphics.Rect(0, 0, dark.getWidth(), dark.getHeight()), true);
+        });
+    getInstrumentation().waitForIdleSync();
+    onMain(
+        () -> {
+          RadioButton dark = dialog("readingDialog").findViewById(R.id.quranThemeDark);
+          android.graphics.Rect visible = new android.graphics.Rect();
+          assertTrue(
+              "Night choice is reachable in the settings scroll",
+              dark.getGlobalVisibleRect(visible));
+          // CompoundButton can toggle through OnCheckedChangeListener while performClick()
+          // returns false when there is no separate OnClickListener. Verify its actual state.
+          dark.performClick();
+          assertTrue("Night option accepts user selection", dark.isChecked());
+          dialog("readingDialog").dismiss();
+        });
     getInstrumentation().waitForIdleSync();
     assertEquals("dark", prefs.getString("reading_theme", ""));
     assertTrue(((Switch) page.findViewById(R.id.readingNightSwitch)).isChecked());

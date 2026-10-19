@@ -119,6 +119,13 @@ public final class StaticOnboardingTest extends InstrumentationTestCase {
               assertTrue("Progress and CTA do not overlap", progress.bottom <= button.top);
               assertTrue(
                   "Scrollable story and navigation do not overlap", content.bottom <= progress.top);
+              TextView skip = root.findViewById(R.id.onboardSkip);
+              assertEquals("Skip remains one complete word at 200%", 1, skip.getLineCount());
+              assertEquals(skip.length(), skip.getLayout().getLineEnd(0));
+              Rect skipBounds = bounds(root, skip);
+              assertTrue(
+                  "Skip stays in the compact viewport",
+                  skipBounds.right <= width && skipBounds.top >= 0);
               TextView title = root.findViewById(R.id.onboardTitle);
               assertTrue(
                   "The scoped layout uses enlarged text",

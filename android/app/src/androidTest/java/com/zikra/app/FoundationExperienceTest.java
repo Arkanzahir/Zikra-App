@@ -45,7 +45,7 @@ public final class FoundationExperienceTest extends InstrumentationTestCase {
                 new Intent(getInstrumentation().getTargetContext(), HomeActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
     getInstrumentation().waitForIdleSync();
-    long deadline = SystemClock.uptimeMillis() + 20000;
+    long deadline = SystemClock.uptimeMillis() + 45000;
     while (!page.hasWindowFocus() && SystemClock.uptimeMillis() < deadline) SystemClock.sleep(100);
     assertTrue("Home receives focus", page.hasWindowFocus());
     return (HomeActivity) page;
@@ -210,6 +210,7 @@ public final class FoundationExperienceTest extends InstrumentationTestCase {
       assertTrue(item.getHeight() >= 48 * dp - 1);
       TextView label = item.findViewById(R.id.navDestinationLabel);
       assertNotNull(label.getLayout());
+      if (i != 2) assertEquals("Keep each destination word intact", 1, label.getLineCount());
       assertEquals(
           "Every destination label remains readable",
           label.length(),
