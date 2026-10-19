@@ -111,14 +111,15 @@ public final class AiActivity extends BaseActivity {
         new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).resolveActivity(getPackageManager())
             != null;
     ((TextView) findViewById(R.id.aiVoiceTitle))
-        .setText(available ? "Pakai suara" : "Ide rencana belajar");
+        .setText(available ? R.string.feature_ai_voice : R.string.feature_ai_voice_fallback);
     ((TextView) findViewById(R.id.aiVoiceCaption))
         .setText(
             available
-                ? "Dikte Android menjadi teks."
-                : "Suara Android belum tersedia. Mulai dengan panduan belajar.");
+                ? R.string.feature_ai_voice_caption
+                : R.string.feature_ai_voice_unavailable);
     ((TextView) findViewById(R.id.aiVoiceAction))
-        .setText(available ? "Gunakan suara  →" : "Coba rencana  →");
+        .setText(
+            available ? R.string.feature_ai_voice_action : R.string.feature_ai_voice_fallback_action);
     View tile = findViewById(R.id.aiVoiceTile);
     tile.setContentDescription(
         available
@@ -163,7 +164,17 @@ public final class AiActivity extends BaseActivity {
         .setPadding(
             0, 0, 0, visible ? 0 : getResources().getDimensionPixelSize(R.dimen.dock_reserved));
     NavDock.setVisible(pageRoot, !visible);
+    updateConversationChrome();
     if (visible) scroll.post(() -> scroll.smoothScrollTo(0, thread.getBottom()));
+  }
+
+  private void updateConversationChrome() {
+    // Keep the introduction out of an active conversation and the resized keyboard viewport.
+    findViewById(R.id.aiWelcome)
+        .setVisibility(messages.length() == 0 && !keyboardVisible ? View.VISIBLE : View.GONE);
+    findViewById(R.id.aiTopics).setVisibility(keyboardVisible ? View.GONE : View.VISIBLE);
+    findViewById(R.id.aiScope).setVisibility(keyboardVisible ? View.GONE : View.VISIBLE);
+    findViewById(R.id.aiOpenStudy).setVisibility(keyboardVisible ? View.GONE : View.VISIBLE);
   }
 
   private void restoreHistory() {
@@ -201,6 +212,7 @@ public final class AiActivity extends BaseActivity {
 
   private void renderConversation() {
     thread.removeAllViews();
+    updateConversationChrome();
     if (messages.length() == 0) {
       bubble(
           "assistant",
@@ -230,7 +242,7 @@ public final class AiActivity extends BaseActivity {
     else cardParams.rightMargin = dp(18);
     card.setLayoutParams(cardParams);
     GradientDrawable background = new GradientDrawable();
-    background.setColor(Color.parseColor(user ? "#15332F" : "#FFFFFF"));
+    background.setColor(getColor(user ? R.color.pine : R.color.feature_surface));
     background.setCornerRadii(
         new float[] {
           dp(19),
@@ -247,7 +259,7 @@ public final class AiActivity extends BaseActivity {
       TextView label = new TextView(this);
       label.setText("✦  ZIKRA · OFFLINE");
       label.setTextSize(12);
-      label.setTextColor(Color.parseColor("#52665F"));
+      label.setTextColor(getColor(R.color.feature_muted));
       label.setTypeface(label.getTypeface(), Typeface.BOLD);
       label.setPadding(0, 0, 0, dp(7));
       card.addView(label);
@@ -256,7 +268,7 @@ public final class AiActivity extends BaseActivity {
     body.setText(message);
     body.setTextSize(16);
     body.setLineSpacing(dp(4), 1f);
-    body.setTextColor(Color.parseColor(user ? "#FFFFFF" : "#15332F"));
+    body.setTextColor(getColor(user ? R.color.white : R.color.pine));
     body.setTextIsSelectable(true);
     card.addView(body);
     row.addView(card);
@@ -402,3 +414,4 @@ public final class AiActivity extends BaseActivity {
     super.onDestroy();
   }
 }
+

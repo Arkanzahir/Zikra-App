@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="feature_paper">#FCFDFB</color>
+    <color name="feature_surface">#F1F5F0</color>
+    <color name="feature_border">#DCE5DC</color>
+    <color name="feature_muted">#52665F</color>
+    <color name="feature_gold_ink">#806337</color>
+    <color name="feature_on_pine">#D5E2D8</color>
+    <string name="feature_study_heading">Satu tugas, satu langkah.</string>
+    <string name="feature_hifz_heading">Jaga ayat yang kamu hafal.</string>
+    <string name="feature_study_hint">Lanjutkan rencanamu, sesuai waktumu.</string>
+    <string name="feature_hifz_hint">Pilih target, ulangi, lalu catat latihanmu.</string>
+    <string name="feature_study_next">TUGAS BERIKUTNYA</string>
+    <string name="feature_hifz_next">LATIHAN BERIKUTNYA</string>
+    <string name="feature_hifz_progress">%1$d dari %2$d target selesai</string>
+    <string name="feature_ai_heading">Mulai dari satu langkah.</string>
+    <string name="feature_ai_hint">Temukan ide untuk belajar, ibadah, dan hafalan.</string>
+    <string name="feature_ai_write">Tulis rencana</string>
+    <string name="feature_ai_voice">Pakai suara</string>
+    <string name="feature_ai_voice_caption">Dikte dengan layanan Android.</string>
+    <string name="feature_ai_voice_action">Gunakan suara →</string>
+    <string name="feature_ai_voice_fallback">Ide belajar</string>
+    <string name="feature_ai_voice_unavailable">Pengenal suara belum tersedia.</string>
+    <string name="feature_ai_voice_fallback_action">Lihat ide →</string>
+    <string name="feature_ai_compose_description">Tulis pesan untuk pendamping offline</string>
+    <string name="feature_ai_voice_description">Ubah suara menjadi teks dengan layanan Android</string>
+    <string name="feature_ai_topics">Pilih topik</string>
+    <string name="feature_ai_study">Belajar</string>
+    <string name="feature_ai_prayer">Ibadah</string>
+    <string name="feature_ai_hifz">Hafalan</string>
+    <string name="feature_ai_input">Apa yang ingin kamu kerjakan?</string>
+    <string name="feature_ai_send">Kirim pesan</string>
+    <string name="feature_ai_scope">Panduan offline untuk rutinitas; belum menjawab soal khusus atau menilai bacaan. Percakapan tersimpan di perangkat.</string>
+    <string name="feature_ai_study_link">Buka Study Hub →</string>
+    <string name="feature_ai_voice_status">Periksa hasil dikte sebelum mengirim.</string>
+    <string name="feature_verse_play">Putar ayat</string>
+    <string name="feature_verse_bookmark">Tandai terakhir dibaca</string>
+    <string name="feature_verse_options">Pilihan ayat</string>
+    <string name="feature_verse_options_for">Pilihan %1$s ayat %2$d</string>
+    <string name="feature_verse_saved">%1$s ayat %2$d disimpan</string>
+    <string name="feature_verse_copy">Salin ayat</string>
+    <string name="feature_verse_share">Bagikan ayat</string>
+    <style name="FeatureTopic">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingHorizontal">8dp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/feature_chip</item>
+        <item name="android:textColor">@color/pine</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+</resources>
+

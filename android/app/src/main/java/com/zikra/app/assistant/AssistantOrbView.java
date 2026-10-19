@@ -10,7 +10,7 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
 
-/** Static resolution-independent lavender glass orb, drawn entirely with the native Canvas. */
+/** Static resolution-independent voice cue in the shared pine, sage and gold palette. */
 public final class AssistantOrbView extends View {
   private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
   private final Path path = new Path();
@@ -39,9 +39,9 @@ public final class AssistantOrbView extends View {
             radius * 1.8f,
             new int[] {
               Color.WHITE,
-              Color.parseColor("#C9C6F9"),
-              Color.parseColor("#B48BD8"),
-              Color.parseColor("#8D8DCA")
+              Color.parseColor("#D5E2D8"),
+              Color.parseColor("#659B86"),
+              Color.parseColor("#15332F")
             },
             new float[] {0f, .28f, .66f, 1f},
             Shader.TileMode.CLAMP));
@@ -65,20 +65,21 @@ public final class AssistantOrbView extends View {
       }
       paint.setStrokeWidth(radius * (band % 3 == 0 ? .068f : .025f));
       paint.setColor(
-          Color.parseColor(band % 3 == 0 ? "#A8F7FA" : band % 3 == 1 ? "#EBD0F9" : "#8075CE"));
+          Color.parseColor(band % 3 == 0 ? "#E5A853" : band % 3 == 1 ? "#D5E2D8" : "#315849"));
       paint.setAlpha(band % 3 == 0 ? 185 : 155);
       canvas.drawPath(path, paint);
     }
     canvas.restore();
     paint.setAlpha(255);
-    paint.setColor(Color.parseColor("#D2BEEA"));
+    paint.setColor(Color.parseColor("#659B86"));
     paint.setStrokeWidth(Math.max(1, radius * .016f));
     canvas.drawCircle(cx, cy, radius, paint);
     if (listening) {
-      paint.setColor(Color.parseColor("#BCA1DC"));
+      paint.setColor(Color.parseColor("#659B86"));
       paint.setAlpha(95);
       canvas.drawCircle(cx, cy, radius * 1.12f, paint);
       paint.setAlpha(255);
     }
   }
 }
+

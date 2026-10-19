@@ -135,6 +135,7 @@ public final class UtilitiesPolishTest extends InstrumentationTestCase {
               });
       LinearLayout thread = assistant.findViewById(R.id.aiChatThread);
       assertEquals(2, thread.getChildCount());
+      assertEquals(View.GONE, assistant.findViewById(R.id.aiWelcome).getVisibility());
       assertTrue(preferences.getString("assistant_history_v1", "").contains("Diary Hifz"));
       Instrumentation.ActivityMonitor monitor =
           getInstrumentation().addMonitor(AiActivity.class.getName(), null, false);
@@ -145,6 +146,7 @@ public final class UtilitiesPolishTest extends InstrumentationTestCase {
         page = restored;
         getInstrumentation().waitForIdleSync();
         assertEquals(2, ((LinearLayout) restored.findViewById(R.id.aiChatThread)).getChildCount());
+        assertEquals(View.GONE, restored.findViewById(R.id.aiWelcome).getVisibility());
         UiEvidence.capture(getInstrumentation(), "UtilityAssistant");
       } finally {
         getInstrumentation().removeMonitor(monitor);
@@ -158,10 +160,15 @@ public final class UtilitiesPolishTest extends InstrumentationTestCase {
   }
 
   public void testLargeFontAssistantKeepsActionsAndComposerUsable() throws Exception {
+    SharedPreferences preferences =
+        getInstrumentation().getTargetContext().getSharedPreferences("zikra_preferences", 0);
+    boolean hadHistory = preferences.contains("assistant_history_v1");
+    String previousHistory = preferences.getString("assistant_history_v1", "[]");
     float previous =
         android.provider.Settings.System.getFloat(
             getInstrumentation().getTargetContext().getContentResolver(), "font_scale", 1f);
     try {
+      preferences.edit().remove("assistant_history_v1").commit();
       shell("settings put system font_scale 2.0");
       SystemClock.sleep(1500);
       AiActivity assistant = launch(AiActivity.class);
@@ -189,6 +196,10 @@ public final class UtilitiesPolishTest extends InstrumentationTestCase {
       }
       shell("settings put system font_scale " + previous);
       SystemClock.sleep(1000);
+      SharedPreferences.Editor editor = preferences.edit();
+      if (hadHistory) editor.putString("assistant_history_v1", previousHistory);
+      else editor.remove("assistant_history_v1");
+      editor.commit();
     }
   }
 
@@ -200,3 +211,4 @@ public final class UtilitiesPolishTest extends InstrumentationTestCase {
     }
   }
 }
+

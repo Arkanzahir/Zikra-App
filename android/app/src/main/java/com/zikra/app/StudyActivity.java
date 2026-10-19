@@ -22,6 +22,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
@@ -126,6 +127,7 @@ public final class StudyActivity extends BaseActivity {
       ((TextView) agendaHeader.findViewById(R.id.study_section)).setText("Ibadah lainnya");
       ((TextView) findViewById(R.id.study_add)).setText("Tambah ibadah");
     }
+    configureFeatureDesign();
     adapter = new TaskAdapter();
     ListView list = findViewById(R.id.study_tasks);
     list.setAdapter(adapter);
@@ -163,10 +165,13 @@ public final class StudyActivity extends BaseActivity {
     text(
         R.id.study_scope_hint,
         diaryMode
-            ? R.string.planner_hifz_scope
-            : ibadahMode ? R.string.planner_ibadah_scope : R.string.planner_study_scope);
+            ? R.string.feature_hifz_hint
+            : ibadahMode ? R.string.planner_ibadah_scope : R.string.feature_study_hint);
     ((TextView) agendaHeader.findViewById(R.id.agenda_feature_caption))
-        .setText(ibadahMode ? R.string.planner_continue_today : R.string.agenda_continue);
+        .setText(
+            diaryMode
+                ? R.string.feature_hifz_next
+                : ibadahMode ? R.string.planner_continue_today : R.string.feature_study_next);
     if (state != null && state.getBoolean("editor_open", false)) {
       long id = state.getLong("editor_task_id", -1);
       Task saved = null;
@@ -182,6 +187,42 @@ public final class StudyActivity extends BaseActivity {
       } else if (state.getBoolean("editor_retained", false)) {
         retainDraftForNewTask();
       }
+    }
+  }
+
+  private void configureFeatureDesign() {
+    if (!ibadahMode)
+      text(
+          R.id.study_heading,
+          diaryMode ? R.string.feature_hifz_heading : R.string.feature_study_heading);
+    if (diaryMode) {
+      agendaHeader.findViewById(R.id.agenda_feature).setBackgroundResource(R.drawable.agenda_feature);
+      ((TextView) agendaHeader.findViewById(R.id.agenda_feature_title))
+          .setTextColor(getColor(R.color.white));
+      ((TextView) agendaHeader.findViewById(R.id.agenda_feature_detail))
+          .setTextColor(getColor(R.color.feature_on_pine));
+      ((TextView) agendaHeader.findViewById(R.id.agenda_feature_caption))
+          .setTextColor(getColor(R.color.camel));
+      ((ImageButton) agendaHeader.findViewById(R.id.agenda_feature_more))
+          .setImageTintList(ColorStateList.valueOf(getColor(R.color.feature_on_pine)));
+      CheckBox complete = agendaHeader.findViewById(R.id.agenda_feature_check);
+      complete.setTextColor(getColor(R.color.white));
+      complete.setButtonTintList(ColorStateList.valueOf(getColor(R.color.camel)));
+      agendaHeader.findViewById(R.id.agenda_feature_action)
+          .setBackgroundResource(R.drawable.agenda_feature_action);
+    }
+    if (getResources().getConfiguration().fontScale >= 1.3f
+        || getResources().getConfiguration().screenWidthDp < 360) {
+      LinearLayout title = agendaHeader.findViewById(R.id.agenda_feature_heading);
+      title.setOrientation(LinearLayout.VERTICAL);
+      title.findViewById(R.id.agenda_feature_title)
+          .setLayoutParams(new LinearLayout.LayoutParams(-1, -2));
+      LinearLayout actions = agendaHeader.findViewById(R.id.agenda_feature_controls);
+      actions.setOrientation(LinearLayout.VERTICAL);
+      actions.findViewById(R.id.agenda_feature_check)
+          .setLayoutParams(new LinearLayout.LayoutParams(-1, -2));
+      actions.findViewById(R.id.agenda_feature_action)
+          .setLayoutParams(new LinearLayout.LayoutParams(-1, -2));
     }
   }
 
@@ -261,7 +302,13 @@ public final class StudyActivity extends BaseActivity {
     ((TextView) agendaHeader.findViewById(R.id.study_percent))
         .setText(getString(R.string.agenda_percent, percent));
     ((TextView) agendaHeader.findViewById(R.id.study_progress_label))
-        .setText(getString(R.string.agenda_progress, completed, total));
+        .setText(
+            getString(
+                diaryMode ? R.string.feature_hifz_progress : R.string.agenda_progress,
+                completed,
+                total));
+    agendaHeader.findViewById(R.id.study_summary)
+        .setVisibility(total == 0 ? View.GONE : View.VISIBLE);
     ((ProgressBar) agendaHeader.findViewById(R.id.study_progress)).setProgress(percent);
     ((TextView) agendaHeader.findViewById(R.id.hifz_planned))
         .setText(getString(R.string.agenda_pending, pending.size()));
@@ -304,6 +351,14 @@ public final class StudyActivity extends BaseActivity {
     TextView action = agendaHeader.findViewById(R.id.agenda_feature_action);
     category.setText(categoryLabel(task));
     title.setText(diaryMode && task.hifz != null ? task.hifz.chapterName : task.title);
+    TextView arabic = agendaHeader.findViewById(R.id.agenda_feature_arabic);
+    arabic.setVisibility(diaryMode && task.hifz != null ? View.VISIBLE : View.GONE);
+    if (diaryMode && task.hifz != null) {
+      arabic.setText(
+          com.zikra.app.reading.QuranChapters.all(this)
+              .get(task.hifz.chapterId - 1).arabic.replace("سُورَةُ ", ""));
+    }
+    detail.setVisibility(diaryMode ? View.VISIBLE : View.GONE);
     detail.setText(
         diaryMode
             ? (task.hifz == null
@@ -791,3 +846,4 @@ public final class StudyActivity extends BaseActivity {
     }
   }
 }
+

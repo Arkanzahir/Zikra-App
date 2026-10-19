@@ -130,8 +130,21 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
         () ->
             ((LinearLayout) page.findViewById(R.id.ayahContainer))
                 .findViewWithTag("67:4")
-                .findViewById(R.id.ayahBookmark)
+                .findViewById(R.id.ayahMore)
                 .performClick());
+    getInstrumentation().waitForIdleSync();
+    android.view.accessibility.AccessibilityNodeInfo popup =
+        getInstrumentation().getUiAutomation().getRootInActiveWindow();
+    assertNotNull("Verse actions menu must be visible", popup);
+    List<android.view.accessibility.AccessibilityNodeInfo> actions =
+        popup.findAccessibilityNodeInfosByText(
+            getInstrumentation().getTargetContext().getString(R.string.feature_verse_bookmark));
+    assertFalse("Bookmark stays reachable from the visible verse menu", actions.isEmpty());
+    android.view.accessibility.AccessibilityNodeInfo action = actions.get(0);
+    while (action != null && !action.isClickable()) action = action.getParent();
+    assertNotNull("Bookmark menu item must be clickable", action);
+    assertTrue(action.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK));
+    getInstrumentation().waitForIdleSync();
     assertEquals("67:4", prefs.getString("last_verse_key", ""));
     Instrumentation.ActivityMonitor monitor =
         getInstrumentation().addMonitor(QuranActivity.class.getName(), null, false);
@@ -341,3 +354,4 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
     super.tearDown();
   }
 }
+

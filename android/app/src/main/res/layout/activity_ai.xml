@@ -1,317 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/aiRoot"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/ai_background">
-    <LinearLayout
-        android:id="@+id/aiPage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/dock_reserved">
-        <com.zikra.app.ui.FeatureHeader
-            android:id="@+id/utilitiesHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <ScrollView
-            android:id="@+id/aiScroll"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:fillViewport="true"
-            android:scrollbars="none"
-            android:layout_weight="1">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="@dimen/screen_inset"
-                android:paddingTop="10dp"
-                android:paddingBottom="16dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"
-                    android:text="Mulai dari\nsatu langkah."
-                    android:textColor="@color/assistant_text"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:lineSpacingExtra="3dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/ai_pill"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="6dp"
-                    android:text="Panduan offline · tanpa akun"
-                    android:textColor="#52665F"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/aiEntryActions"
-                    android:baselineAligned="false">
-                    <LinearLayout
-                        android:id="@+id/aiChatTile"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ai_tile"
-                        android:padding="16dp"
-                        android:orientation="vertical"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:contentDescription="Tulis pesan untuk pendamping offline"
-                        android:minHeight="180dp"
-                        android:foreground="?android:attr/selectableItemBackground">
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:background="@drawable/ai_pill"
-                            android:padding="6dp"
-                            android:src="@drawable/ic_spark"
-                            android:tint="#9B79D0"
-                            android:importantForAccessibility="no" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:text="Tulis rencana"
-                            android:textColor="@color/assistant_text"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Susun kegiatanmu satu per satu."
-                            android:textColor="#52665F"
-                            android:textSize="14sp"
-                            android:lineSpacingExtra="3dp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="Tulis pesan  →"
-                            android:textColor="#466B5C"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/aiVoiceTile"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:background="@drawable/ai_tile"
-                        android:padding="16dp"
-                        android:orientation="vertical"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:contentDescription="Masukkan pesan dengan suara"
-                        android:minHeight="180dp"
-                        android:foreground="?android:attr/selectableItemBackground">
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:background="@drawable/ai_pill"
-                            android:padding="7dp"
-                            android:src="@drawable/ic_mic"
-                            android:tint="#9B79D0"
-                            android:importantForAccessibility="no" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:id="@+id/aiVoiceTitle"
-                            android:text="Pakai suara"
-                            android:textColor="@color/assistant_text"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:id="@+id/aiVoiceCaption"
-                            android:text="Dikte Android menjadi teks."
-                            android:textColor="#52665F"
-                            android:textSize="14sp"
-                            android:lineSpacingExtra="3dp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:id="@+id/aiVoiceAction"
-                            android:text="Gunakan suara  →"
-                            android:textColor="#466B5C"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/aiRoot" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/feature_paper">
+    <LinearLayout android:id="@+id/aiPage"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="vertical" android:paddingBottom="@dimen/dock_reserved">
+        <com.zikra.app.ui.FeatureHeader android:id="@+id/utilitiesHeader"
+            android:layout_width="match_parent" android:layout_height="wrap_content" />
+        <ScrollView android:id="@+id/aiScroll"
+            android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+            android:clipToPadding="false" android:fillViewport="true" android:scrollbars="none">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:paddingHorizontal="@dimen/screen_inset"
+                android:paddingTop="16dp" android:paddingBottom="12dp">
+                <LinearLayout android:id="@+id/aiWelcome"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="@string/feature_ai_heading" android:textColor="@color/pine"
+                        android:textSize="24sp" android:textStyle="bold" />
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp" android:text="@string/feature_ai_hint"
+                        android:textColor="@color/feature_muted" android:textSize="14sp" android:lineSpacingExtra="3dp" />
+                    <LinearLayout android:id="@+id/aiEntryActions"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp" android:baselineAligned="false">
+                        <LinearLayout android:id="@+id/aiChatTile"
+                            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                            android:background="@drawable/feature_chip" android:padding="12dp" android:minHeight="72dp"
+                            android:gravity="center_vertical" android:orientation="horizontal"
+                            android:clickable="true" android:focusable="true"
+                            android:contentDescription="@string/feature_ai_compose_description"
+                            android:foreground="?android:attr/selectableItemBackground">
+                            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                                android:src="@drawable/ic_tasks" android:tint="@color/pine"
+                                android:importantForAccessibility="no" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                                android:layout_marginStart="10dp" android:text="@string/feature_ai_write"
+                                android:textColor="@color/pine" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+                        <LinearLayout android:id="@+id/aiVoiceTile"
+                            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                            android:layout_marginStart="12dp" android:background="@drawable/feature_surface"
+                            android:padding="12dp" android:minHeight="72dp" android:gravity="center_vertical"
+                            android:orientation="horizontal" android:clickable="true" android:focusable="true"
+                            android:contentDescription="@string/feature_ai_voice_description"
+                            android:foreground="?android:attr/selectableItemBackground">
+                            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                                android:src="@drawable/ic_mic" android:tint="@color/pine"
+                                android:importantForAccessibility="no" />
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:layout_marginStart="10dp" android:orientation="vertical">
+                                <TextView android:id="@+id/aiVoiceTitle"
+                                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                                    android:text="@string/feature_ai_voice" android:textColor="@color/pine"
+                                    android:textSize="14sp" android:textStyle="bold" />
+                                <TextView android:id="@+id/aiVoiceCaption"
+                                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                                    android:text="@string/feature_ai_voice_caption" android:textColor="@color/feature_muted"
+                                    android:textSize="12sp" android:visibility="gone" />
+                                <TextView android:id="@+id/aiVoiceAction"
+                                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                                    android:text="@string/feature_ai_voice_action" android:textColor="@color/pine"
+                                    android:textSize="12sp" android:visibility="gone" />
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/aiVoicePanel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/ai_tile"
-                    android:padding="18dp"
-                    android:orientation="vertical"
-                    android:gravity="center_horizontal"
-                    android:visibility="gone">
-                    <com.zikra.app.assistant.AssistantOrbView
-                        android:id="@+id/aiOrb"
-                        android:layout_width="140dp"
-                        android:layout_height="140dp"
-                        android:importantForAccessibility="no" />
-                    <TextView
-                        android:id="@+id/aiVoiceStatus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Ceritakan targetmu hari ini"
-                        android:gravity="center"
-                        android:textColor="#52665F"
-                        android:textSize="14sp" />
+                <LinearLayout android:id="@+id/aiVoicePanel"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp" android:background="@drawable/feature_chip" android:padding="12dp"
+                    android:orientation="horizontal" android:gravity="center_vertical" android:visibility="gone">
+                    <com.zikra.app.assistant.AssistantOrbView android:id="@+id/aiOrb"
+                        android:layout_width="48dp" android:layout_height="48dp" android:importantForAccessibility="no" />
+                    <TextView android:id="@+id/aiVoiceStatus"
+                        android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                        android:layout_marginStart="12dp" android:text="@string/feature_ai_voice_status"
+                        android:textColor="@color/feature_muted" android:textSize="14sp" />
                 </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="Mulai dari topik kecil"
-                    android:textColor="@color/assistant_text"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="9dp"
-                    android:gravity="center_vertical"
-                    android:baselineAligned="false">
-                    <TextView
-                        android:id="@+id/aiTopicStudy"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ai_pill"
-                        android:text="Belajar"
-                        android:gravity="center"
-                        android:textColor="#15332F"
-                        android:textSize="14sp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:minHeight="48dp"
-                        android:paddingVertical="12dp" />
-                    <TextView
-                        android:id="@+id/aiTopicPrayer"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/ai_tile"
-                        android:text="Ibadah"
-                        android:gravity="center"
-                        android:textColor="#15332F"
-                        android:textSize="14sp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:minHeight="48dp"
-                        android:paddingVertical="12dp" />
-                    <TextView
-                        android:id="@+id/aiTopicHifz"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/ai_tile"
-                        android:text="Hafalan"
-                        android:gravity="center"
-                        android:textColor="#15332F"
-                        android:textSize="14sp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:minHeight="48dp"
-                        android:paddingVertical="12dp" />
+                <LinearLayout android:id="@+id/aiTopics"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp" android:orientation="vertical">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="@string/feature_ai_topics" android:textColor="@color/feature_muted" android:textSize="13sp" />
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" android:baselineAligned="false">
+                        <TextView android:id="@+id/aiTopicStudy" style="@style/FeatureTopic" android:text="@string/feature_ai_study" />
+                        <TextView android:id="@+id/aiTopicPrayer" style="@style/FeatureTopic"
+                            android:layout_marginStart="8dp" android:text="@string/feature_ai_prayer" />
+                        <TextView android:id="@+id/aiTopicHifz" style="@style/FeatureTopic"
+                            android:layout_marginStart="8dp" android:text="@string/feature_ai_hifz" />
+                    </LinearLayout>
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/aiChatThread"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="20dp" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="Panduan lokal untuk rutinitas, bukan AI generatif. Tidak menjawab soal khusus atau menilai bacaan Quran. Percakapan tersimpan di perangkat."
-                    android:textColor="#52665F"
-                    android:textSize="14sp"
-                    android:lineSpacingExtra="3dp" />
-                <TextView
-                    android:id="@+id/aiOpenStudy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Lanjutkan ke Study Hub  →"
-                    android:textColor="#466B5C"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:minHeight="48dp"
-                    android:paddingVertical="10dp" />
+                <LinearLayout android:id="@+id/aiChatThread"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:layout_marginTop="16dp" />
+                <TextView android:id="@+id/aiScope"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" android:text="@string/feature_ai_scope"
+                    android:textColor="@color/feature_muted" android:textSize="12sp" android:lineSpacingExtra="3dp" />
+                <TextView android:id="@+id/aiOpenStudy"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+                    android:text="@string/feature_ai_study_link" android:textColor="@color/pine"
+                    android:textSize="14sp" android:textStyle="bold" android:gravity="start|center_vertical"
+                    android:clickable="true" android:focusable="true" android:minHeight="48dp"
+                    android:background="?android:attr/selectableItemBackground" />
             </LinearLayout>
         </ScrollView>
-        <LinearLayout
-            android:id="@+id/aiComposer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ai_tile"
-            android:padding="6dp"
-            android:gravity="bottom"
-            android:layout_marginHorizontal="@dimen/screen_inset"
-            android:layout_marginBottom="12dp"
-            android:elevation="2dp">
-            <ImageButton
-                android:id="@+id/aiVoice"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:padding="13dp"
-                android:src="@drawable/ic_mic"
-                android:tint="#9677B8"
+        <LinearLayout android:id="@+id/aiComposer"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:background="@drawable/feature_surface" android:padding="6dp" android:gravity="bottom"
+            android:layout_marginHorizontal="@dimen/screen_inset" android:layout_marginTop="8dp" android:layout_marginBottom="12dp">
+            <ImageButton android:id="@+id/aiVoice"
+                android:layout_width="48dp" android:layout_height="48dp" android:padding="13dp"
+                android:src="@drawable/ic_mic" android:tint="@color/pine"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Ubah suara menjadi teks dengan layanan Android" />
-            <EditText
-                android:id="@+id/aiInput"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:paddingHorizontal="4dp"
-                android:paddingVertical="12dp"
-                android:background="@null"
-                android:hint="Tulis pesanmu…"
-                android:textColor="@color/assistant_text"
-                android:textColorHint="#52665F"
-                android:textSize="16sp"
-                android:maxLength="500"
-                android:maxLines="4"
-                android:inputType="textCapSentences|textMultiLine"
+                android:contentDescription="@string/feature_ai_voice_description" />
+            <EditText android:id="@+id/aiInput"
+                android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+                android:minHeight="48dp" android:paddingHorizontal="8dp" android:paddingVertical="12dp"
+                android:background="@null" android:hint="@string/feature_ai_input"
+                android:textColor="@color/pine" android:textColorHint="@color/feature_muted" android:textSize="16sp"
+                android:maxLength="500" android:maxLines="4" android:inputType="textCapSentences|textMultiLine"
                 android:gravity="top|start" />
-            <ImageButton
-                android:id="@+id/aiSend"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginBottom="0dp"
-                android:padding="10dp"
-                android:background="@drawable/ai_primary"
-                android:src="@drawable/ai_send"
-                android:contentDescription="Kirim pesan" />
+            <ImageButton android:id="@+id/aiSend"
+                android:layout_width="48dp" android:layout_height="48dp" android:padding="12dp"
+                android:background="@drawable/ai_primary" android:src="@drawable/ai_send"
+                android:contentDescription="@string/feature_ai_send" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>
+

@@ -416,14 +416,6 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
               View row =
                   getLayoutInflater().inflate(R.layout.reading_item_ayah, ayahContainer, false);
               row.setTag(verse.key);
-              row.findViewById(R.id.ayahPlay)
-                  .setContentDescription("Putar " + surah.name + " ayat " + verse.number);
-              row.findViewById(R.id.ayahPlay)
-                  .setOnClickListener(
-                      v -> {
-                        pendingVerse = verse.number;
-                        audioUi.playVerse(verse.number);
-                      });
               ((TextView) row.findViewById(R.id.ayahNumber)).setText(String.valueOf(verse.number));
               ((TextView) row.findViewById(R.id.ayahArabic)).setText(verse.arabic);
               String translation = verse.translation.replaceAll("(?is)<sup[^>]*>.*?</sup>", "");
@@ -433,14 +425,9 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
                               translation, android.text.Html.FROM_HTML_MODE_LEGACY)
                           .toString()
                           .trim());
-              row.findViewById(R.id.ayahBookmark)
-                  .setOnClickListener(
-                      v -> {
-                        pendingVerse = verse.number;
-                        saveLastRead(surah, verse.number);
-                        refreshBookmarkLabels();
-                        toast(surah.name + " ayat " + verse.number + " disimpan");
-                      });
+              row.findViewById(R.id.ayahMore)
+                  .setContentDescription(
+                      getString(R.string.feature_verse_options_for, surah.name, verse.number));
               row.findViewById(R.id.ayahMore)
                   .setOnClickListener(v -> showVerseMenu(v, surah, verse, row));
               ayahContainer.addView(row);
@@ -589,23 +576,11 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     int lastAyah = preferences.getInt("last_ayah", 1);
     ((TextView) findViewById(R.id.lastReadLabel)).setText(lastSurah + "  ·  Ayat " + lastAyah);
     for (int i = 0; i < ayahContainer.getChildCount(); i++) {
-      ImageButton button = ayahContainer.getChildAt(i).findViewById(R.id.ayahBookmark);
       boolean selected =
           ayahContainer
               .getChildAt(i)
               .getTag()
               .equals(preferences.getInt("last_chapter", 1) + ":" + lastAyah);
-      button.setSelected(selected);
-      button.setImageResource(
-          selected ? R.drawable.reading_ic_bookmark_filled : R.drawable.reading_ic_bookmark);
-      button.setImageTintList(
-          android.content.res.ColorStateList.valueOf(
-              selected
-                  ? (nightMode ? 0xFFD0AC6B : 0xFF806337)
-                  : (nightMode ? 0xFFB4C8BE : 0xFF586F62)));
-      button.setContentDescription(
-          (selected ? "Bacaan terakhir: " : "Tandai terakhir dibaca: ")
-              + ayahContainer.getChildAt(i).getTag());
       ((TextView) ayahContainer.getChildAt(i).findViewById(R.id.ayahLastReadStatus))
           .setText(selected ? "Bacaan terakhir" : "");
     }
@@ -653,13 +628,8 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
       int gold = enabled ? 0xFFD0AC6B : 0xFF806337;
       ((TextView) ayah.findViewById(R.id.ayahNumber)).setTextColor(gold);
       ((TextView) ayah.findViewById(R.id.ayahLastReadStatus)).setTextColor(gold);
-      ImageButton bookmark = ayah.findViewById(R.id.ayahBookmark);
-      bookmark.setImageTintList(
-          android.content.res.ColorStateList.valueOf(bookmark.isSelected() ? gold : secondary));
       ((ImageButton) ayah.findViewById(R.id.ayahMore))
           .setImageTintList(android.content.res.ColorStateList.valueOf(secondary));
-      ((ImageButton) ayah.findViewById(R.id.ayahPlay))
-          .setImageTintList(android.content.res.ColorStateList.valueOf(foreground));
       ((TextView) ayah.findViewById(R.id.ayahAudioStatus)).setTextColor(foreground);
       ((TextView) ayah.findViewById(R.id.ayahArabic)).setTextColor(foreground);
       ((TextView) ayah.findViewById(R.id.ayahTranslation)).setTextColor(secondary);
@@ -878,10 +848,24 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   private void showVerseMenu(
       View anchor, QuranChapters.Chapter chapter, QuranPage.Verse verse, View row) {
     android.widget.PopupMenu menu = new android.widget.PopupMenu(this, anchor);
-    menu.getMenu().add(0, 1, 0, "Salin ayat");
-    menu.getMenu().add(0, 2, 1, "Bagikan ayat");
+    menu.getMenu().add(0, 3, 0, R.string.feature_verse_play);
+    menu.getMenu().add(0, 4, 1, R.string.feature_verse_bookmark);
+    menu.getMenu().add(0, 1, 2, R.string.feature_verse_copy);
+    menu.getMenu().add(0, 2, 3, R.string.feature_verse_share);
     menu.setOnMenuItemClickListener(
         item -> {
+          if (item.getItemId() == 3) {
+            pendingVerse = verse.number;
+            audioUi.playVerse(verse.number);
+            return true;
+          }
+          if (item.getItemId() == 4) {
+            pendingVerse = verse.number;
+            saveLastRead(chapter, verse.number);
+            refreshBookmarkLabels();
+            toast(getString(R.string.feature_verse_saved, chapter.name, verse.number));
+            return true;
+          }
           String text =
               verse.arabic
                   + "\n\n"
@@ -979,3 +963,4 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   @Override
   public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 }
+
