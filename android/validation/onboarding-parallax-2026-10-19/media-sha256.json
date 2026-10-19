@@ -1,0 +1,18 @@
+[
+  {
+    "file": "OnboardingParallax.mp4",
+    "sha256": "31216539d42068b8b2b5fc5874512a57ff1e4b5e175f092a0b031d339f90ecd5"
+  },
+  {
+    "file": "screens/OnboardingPrayer.png",
+    "sha256": "6012ac03db68f6c5123b0457d71f5ab6ea6899d3f497864e39b74077c55cd453"
+  },
+  {
+    "file": "screens/OnboardingQuran.png",
+    "sha256": "af88a441d520de9440b44f18b5553682d9c559321a6818a6844cac5f4a17b955"
+  },
+  {
+    "file": "screens/OnboardingStudy.png",
+    "sha256": "b018fa8f58299a78b0ff0f3b9818ca415e67422f2d2b28f58882034c6a7cce8a"
+  }
+]

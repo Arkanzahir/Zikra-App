@@ -10,8 +10,11 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-/** Three static illustrated stories. No animation player, sensor or education/interests form. */
+/**
+ * Three still illustrations with optional touch/scroll depth. No character animation or sensors.
+ */
 public final class OnboardingActivity extends BaseActivity {
+  private com.zikra.app.ui.OnboardingParallax parallax;
   private String[] titles, captions, eyebrows;
   private static final String[] SCENES = {
     "Pelajar berkacamata menulis di meja belajar.",
@@ -49,6 +52,11 @@ public final class OnboardingActivity extends BaseActivity {
             });
     findViewById(R.id.onboardBack).setOnClickListener(v -> move(-1));
     findViewById(R.id.onboardSkip).setOnClickListener(v -> complete());
+    parallax =
+        new com.zikra.app.ui.OnboardingParallax(
+            findViewById(R.id.onboardIllustration), findViewById(R.id.onboardCopy));
+    findViewById(R.id.onboardScroll)
+        .setOnScrollChangeListener((v, x, y, oldX, oldY) -> parallax.onScroll(y));
     render();
   }
 
@@ -73,7 +81,7 @@ public final class OnboardingActivity extends BaseActivity {
     ImageView artwork = findViewById(R.id.onboardIllustration);
     artwork.setContentDescription(SCENES[step]);
     // Decode the current illustration only, at the resolution needed by this display.
-    // Keep all details in the image; ImageView fitCenter handles the responsive viewport.
+    // The controller fits the image and adds a small overscan only while motion is enabled.
     BitmapFactory.Options options = new BitmapFactory.Options();
     options.inJustDecodeBounds = true;
     BitmapFactory.decodeResource(getResources(), ARTWORK[step], options);
@@ -90,6 +98,7 @@ public final class OnboardingActivity extends BaseActivity {
     if (android.os.Build.VERSION.SDK_INT >= 28)
       findViewById(R.id.onboardTitle).setAccessibilityHeading(true);
     ((ScrollView) findViewById(R.id.onboardScroll)).scrollTo(0, 0);
+    parallax.reset();
   }
 
   private void complete() {
@@ -106,6 +115,7 @@ public final class OnboardingActivity extends BaseActivity {
 
   @Override
   public boolean dispatchTouchEvent(MotionEvent event) {
+    if (parallax != null) parallax.onTouch(event);
     if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
       downX = event.getX();
       downY = event.getY();
@@ -127,6 +137,24 @@ public final class OnboardingActivity extends BaseActivity {
   @Override
   protected boolean usesShakeShortcut() {
     return false;
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if (parallax != null) parallax.start();
+  }
+
+  @Override
+  protected void onPause() {
+    if (parallax != null) parallax.stop();
+    super.onPause();
+  }
+
+  @Override
+  public void onWindowFocusChanged(boolean focus) {
+    super.onWindowFocusChanged(focus);
+    if (parallax != null) parallax.refresh();
   }
 
   @Override

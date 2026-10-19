@@ -2,9 +2,10 @@
 
 ## Status terbaru
 
-Tahap onboarding berikutnya selesai: pengantar, judul 32sp dan paragraf manfaat,
-komposisi teks seimbang, kembali di kiri dan langkah di kanan. Ilustrasi serta master
-logo tidak diubah. Build/lint dan lima skenario onboarding unik lulus; [bukti terbaru](android/validation/onboarding-copy-2026-10-19/README.md).
+Tahap onboarding berikutnya selesai: parallax sentuh/gulir pada gambar utuh dan teks,
+karakter tetap diam. Komposisi yang disetujui, judul 32sp, paragraf manfaat serta master
+logo dipertahankan. Tidak ada sensor/loop idle; mengikuti animasi sistem/penghemat daya.
+Build/lint dan tujuh skenario onboarding unik lulus; [video dan bukti terbaru](android/validation/onboarding-parallax-2026-10-19/README.md).
 [Rencana berikutnya](design/IMPROVEMENT_PLAN.md): lokasi bersama/masjid, lalu murottal/
 hafalan dan integrasi asisten. Fitur rencana tersebut belum diimplementasikan tahap ini.
 
@@ -14,7 +15,7 @@ Branch `recovery/study-hifz-refresh` memuat pembangunan ulang dari riwayat chat 
 | --- | --- |
 | Study/Hifz | Study khusus akademik, checklist ibadah dari Waktu Sholat dan Diary Hifz terpisah. Tugas akademik/target Hifz tetap dapat diakses lintas tanggal; ibadah mengikuti hari lokal. Hari baru kosong, tanpa 24 contoh atau 8 progres selesai palsu. Data dan status lama tetap dipertahankan. CRUD/SQLite v2, draft editor, navigasi dan metadata 114 surah offline. |
 | Branding | File master JPG tidak berubah; simbol bulan sabit, buku dan spark tetap sama. Varian Pine/putih memakai geometri/alpha identik; XML logo bersama pada splash/onboarding/Home/Tentang, simbol saja pada adaptive icon. Wordmark ditulis `zikra` tanpa titik; Profil memakai avatar. |
-| Onboarding | Tiga adegan ilustrasi 2D statis 3:2 memenuhi lebar bagian atas: belajar di meja, perempuan bermukena di sajadah, dan membaca Quran dengan rehal. Judul dua baris, footer 01 / 03, tanpa animasi/parallax/transisi isi. ImageView hanya memuat gambar aktif dengan sampling sesuai display. Tanpa pertanyaan jenjang/minat; preferensi lama dipertahankan. |
+| Onboarding | Tiga ilustrasi 2D 3:2: belajar di meja, perempuan bermukena di sajadah, membaca Quran dengan rehal. Parallax gambar utuh/teks saat sentuh/gulir; karakter tetap diam, tanpa sensor/loop idle. Animasi nonaktif/penghemat daya menghentikan efek. Judul/paragraf, kembali dan langkah 01 / 03. ImageView hanya memuat gambar aktif dengan sampling sesuai display. Tanpa jenjang/minat; preferensi lama dipertahankan. |
 | Home | Logo/lokasi kiri atas, siang/malam, busur matahari berdasarkan terbit/transit/terbenam, fase bulan USNO harian atau perkiraan lokal berlabel, parallax dan animasi masuk. |
 | Quran | Katalog ringkas dan reader terang sesuai referensi Suhayel; ukuran tulisan Arab/terjemahan tersimpan, tema terang/malam/otomatis dan lompat ayat dengan validasi rentang. Pencarian Arab mengabaikan harakat/tatweel/variasi alef. Reader native 114 surah public v4, Utsmani/terjemahan resource 33, 50 ayat per bagian, bookmark kunci stabil, resume/recreation, delapan bagian cache; empat surah bawaan. Semua target Hifz menuju reader native. |
 | Cuaca/Protector | Open-Meteo untuk prakiraan model Sukolilo, refresh 10 menit/cache maksimal enam jam bertimestamp. Gempa/peringatan tetap BMKG. Header XML sama dengan Study/Hifz; grafik memakai geometri tersimpan. |

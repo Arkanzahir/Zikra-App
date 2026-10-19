@@ -1,0 +1,8 @@
+
+com.zikra.app.OnboardingParallaxTest:..
+Test results for InstrumentationTestRunner=..
+Time: 32.285
+
+OK (2 tests)
+
+

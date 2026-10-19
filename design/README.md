@@ -1,4 +1,4 @@
-> **Arah terbaru (19 Oktober 2026):** onboarding menggunakan tiga ilustrasi 2D **statis**, dipilih dari kolase terbaru pengguna: pelajar berkacamata di meja, perempuan bermukena di sajadah, serta laki-laki berpeci membaca dengan rehal. Logo master tetap kiri atas; pengantar kecil, judul kuat dan paragraf manfaat menggantikan caption yang terlalu singkat. Warna ivory/Pine; tanpa animasi karakter atau parallax onboarding. [Aturan/aset ilustrasi](illustrations/onboarding/README.md) · [Rencana pengembangan bertahap](IMPROVEMENT_PLAN.md). Referensi 3D sebelumnya bukan arah aktif.
+> **Arah terbaru (19 Oktober 2026):** tiga ilustrasi 2D dan karakternya tetap diam, dengan parallax sentuh/gulir yang kemudian diminta pengguna. Gambar utuh dan teks bergeser sedikit dengan kecepatan berbeda; bukan animasi anggota tubuh atau objek dalam adegan. Logo master tetap kiri atas; pengantar kecil, judul kuat dan paragraf manfaat dipertahankan. Warna ivory/Pine. [Aturan/aset ilustrasi](illustrations/onboarding/README.md) · [Rencana pengembangan bertahap](IMPROVEMENT_PLAN.md). Referensi 3D sebelumnya bukan arah aktif.
 
 # Referensi desain dari pengguna
 
@@ -8,7 +8,7 @@ Folder ini sekarang hanya memuat **gambar acuan yang cocok dengan gambar yang di
 
 ## Referensi onboarding lama — bukan arahan aktif
 
-Gambar karya **Blend wrk** berikut merupakan referensi awal pengguna untuk orbit, kartu pilihan dan chip minat. Arahan ini kemudian diganti dengan ilustrasi 2D statis. Gunakan gambar aktual tiga cerita dan [aturan ilustrasi](illustrations/onboarding/README.md) sebagai acuan aktif; jangan mengembalikan form jenjang/minat atau parallax onboarding.
+Gambar karya **Blend wrk** berikut merupakan referensi awal pengguna untuk orbit, kartu pilihan dan chip minat. Arahan ini kemudian diganti dengan ilustrasi 2D dan parallax sentuh yang halus. Gunakan gambar aktual tiga cerita dan [aturan ilustrasi](illustrations/onboarding/README.md) sebagai acuan aktif; jangan mengembalikan form jenjang/minat atau orbit lama.
 
 [![Referensi onboarding pengguna — Blend wrk](references/onboarding-blend-wrk.png)](references/onboarding-blend-wrk.png)
 

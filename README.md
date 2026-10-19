@@ -1,4 +1,4 @@
-> **Pembaruan terbaru — 19 Oktober 2026 (WIB):** onboarding diperjelas dengan pengantar, judul lebih kuat dan paragraf manfaat pada tiga ilustrasi statis; komposisi teks lebih seimbang. Build/lint dan lima skenario onboarding unik lulus, termasuk layout scoped font 200%. [Screenshot dan batas pemeriksaan](android/validation/onboarding-copy-2026-10-19/README.md) · [Rencana tahap berikutnya](design/IMPROVEMENT_PLAN.md). Ronde sebelumnya: [22 screenshot, 33 tes JVM dan 47 metode emulator unik](android/validation/quality-2026-10-19/README.md). [Android Studio](android/BUILDING.md) · [Status kemampuan](RECOVERY.md).
+> **Pembaruan terbaru — 19 Oktober 2026 (WIB):** onboarding kini memiliki parallax sentuh/gulir yang halus pada gambar utuh dan teks. Karakter tetap diam; komposisi/copy dipertahankan. Tanpa sensor atau loop idle, menghormati animasi sistem/penghemat daya. Build/lint dan tujuh tes onboarding unik lulus. [Video, screenshot dan batas pemeriksaan](android/validation/onboarding-parallax-2026-10-19/README.md) · [Rencana tahap berikutnya](design/IMPROVEMENT_PLAN.md). Ronde sebelumnya: [22 screenshot, 33 tes JVM dan 47 metode emulator unik](android/validation/quality-2026-10-19/README.md). [Android Studio](android/BUILDING.md) · [Status kemampuan](RECOVERY.md).
 
 # Zikra Smart Islamic Student Companion
 
@@ -33,7 +33,7 @@ Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./and
 | Home | Jam/Hijriah/jadwal Sukolilo, branding master kiri atas, langit siang/malam, USNO/fallback berlabel, parallax dan animasi masuk, delapan shortcut, progres SQLite/dock | Uji kelancaran/baterai di HP; pilihan lokasi masih backlog |
 | Protector BMKG | Open-Meteo untuk prakiraan/cache 10 menit–6 jam, BMKG untuk gempa/peringatan, loading/error/sumber, header Pine bersama Study/Hifz | Lokasi masih Sukolilo; belum notifikasi cuaca otomatis |
 | Kiblat | Dial roset, Ka'bah, penanda derajat, acuan 294° Sukolilo, rotasi sensor, panduan kalibrasi, haptik bersyarat akurasi | Uji arah/getaran pada ponsel fisik; lokasi masih tetap Sukolilo |
-| Onboarding | Tiga adegan ilustrasi 2D statis 3:2 memenuhi lebar bagian atas, pengantar kecil/judul 32sp/paragraf manfaat, blok teks seimbang, kembali kiri dan langkah kanan; wordmark `zikra` tanpa titik dan simbol master kiri atas | Cocokkan visual pada HP; tanpa animasi/parallax/jenjang/minat; preferensi lama tetap disimpan |
+| Onboarding | Tiga ilustrasi 2D dengan parallax sentuh/gulir terbatas pada gambar utuh dan teks; karakter diam, pengantar/judul 32sp/paragraf manfaat, kembali kiri dan langkah kanan; wordmark `zikra` tanpa titik dan master kiri atas | Uji kenyamanan/performa HP; tanpa sensor/loop idle/jenjang/minat; menghormati animasi sistem dan penghemat daya; preferensi lama tetap disimpan |
 | Quran | Katalog/reader native 114 surah; pencarian Arab tanpa harakat, ukuran Arab/terjemahan tersimpan, lompat ayat tervalidasi, terang/malam/otomatis; Utsmani/arti resource 33, bagian 50 ayat, bookmark/resume, cache delapan bagian dan empat surah bawaan | Mushaf halaman, audio dan offline penuh belum tersedia |
 | Study Hub / Diary Hifz | Study akademik dan target Hifz tetap dapat diakses lintas tanggal; ibadah khusus hari ini melalui Waktu Sholat. Hari baru kosong; tidak membuat tugas/progres contoh. CRUD/SQLite v2 mempertahankan data lama, target 114 surah/rentang, draft editor/dikte dan reader native | Belum timer fokus/deadline/statistik atau evaluasi bacaan AI; checklist ibadah bukan pencatatan otomatis |
 | Waktu sholat | Kalkulasi matahari harian Sukolilo, daftar hari/pekan, countdown, preferensi dan notifikasi/alarm | Integrasi Aladhan; belum audio adzan; validasi izin dan ketepatan alarm pada HP |
@@ -96,7 +96,7 @@ APK berada di `android/app/build/outputs/apk/debug/app-debug.apk`. Bukti pemerik
 Lanjutkan Arkanzahir/Zikra-App, native Java/XML di android/.
 Gunakan checkout/branch recovery/study-hifz-refresh yang sudah ada; jangan reset.
 Baca RECOVERY.md, README, android/validation/rebuilt/README.md dan BUILDING.md.
-Onboarding 2D statis tanpa titik pada wordmark, Home astronomi/parallax,
+Onboarding 2D berkarakter diam dengan parallax sentuh, wordmark tanpa titik, Home astronomi/parallax,
 Quran native114 dengan ukuran teks/lompat ayat, Open-Meteo/cache,
 serta rencana akademik/Hifz lintas tanggal tersedia pada sumber terbaru.
 Hari baru mulai kosong; jangan membuat ulang progres contoh.

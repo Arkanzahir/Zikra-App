@@ -8,6 +8,8 @@ bahwa seluruh integrasi telah selesai. Tetap Java/XML native, tanpa login dahulu
    ruang, pengantar kecil, judul, paragraf manfaat dan keterbacaan. Pertahankan simbol
    master dan alur belajar → ibadah → Al-Quran. Jelaskan kemampuan yang sudah tersedia,
    tanpa menjanjikan lokasi otomatis, murottal atau AI generatif yang belum ada.
+   Setelah komposisi disetujui, tambahkan parallax sentuh/gulir terbatas pada gambar
+   utuh dan teks; karakter tetap diam. Hormati animasi sistem/penghemat daya, tanpa loop idle.
 2. **Lokasi bersama.** Pilih posisi pengguna dengan izin saat diperlukan, dengan pilihan
    manual ketika izin tidak tersedia. Hubungkan lokasi yang sama ke jadwal sholat,
    cuaca, Kiblat dan pencarian masjid. Saat ini aplikasi masih memakai Sukolilo.
