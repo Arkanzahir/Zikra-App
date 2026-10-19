@@ -1,0 +1,17 @@
+
+com.zikra.app.LocationLiveTest:.
+Failure in testActualNearbyListNativeMapAndRouting:
+junit.framework.AssertionFailedError: Pencarian belum tersedia. Periksa koneksi dan coba lagi nanti.
+	at com.zikra.app.LocationLiveTest.testActualNearbyListNativeMapAndRouting(LocationLiveTest.java:95)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:564)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2145)
+
+Test results for InstrumentationTestRunner=..F
+Time: 67.319
+
+FAILURES!!!
+Tests run: 2,  Failures: 1,  Errors: 0

@@ -14,6 +14,8 @@ import android.os.Build;
 import com.zikra.app.PrayerActivity;
 import com.zikra.app.PrayerSchedule;
 import com.zikra.app.R;
+import com.zikra.app.location.LocationPoint;
+import com.zikra.app.location.LocationStore;
 import java.time.ZonedDateTime;
 
 /** Five native one-shot alarms, recalculated after delivery, boot, clock or preference changes. */
@@ -37,7 +39,7 @@ public final class PrayerReminders {
     NotificationChannel channel =
         new NotificationChannel(
             CHANNEL, "Pengingat waktu sholat", NotificationManager.IMPORTANCE_DEFAULT);
-    channel.setDescription("Waktu sholat harian untuk Sukolilo, Surabaya");
+    channel.setDescription("Waktu sholat harian sesuai lokasi pilihan di Zikra");
     channel.enableVibration(true);
     context.getSystemService(NotificationManager.class).createNotificationChannel(channel);
   }
@@ -59,6 +61,7 @@ public final class PrayerReminders {
 
   public static void sync(Context context) {
     createChannel(context);
+    LocationPoint point = LocationStore.current(context);
     AlarmManager alarms = context.getSystemService(AlarmManager.class);
     NotificationManager notifications = context.getSystemService(NotificationManager.class);
     for (int index = 0; index < 6; index++) {
@@ -78,10 +81,10 @@ public final class PrayerReminders {
               && prefs(context).getBoolean("reminder_" + PrayerSchedule.KEYS[index], true);
       if (!active) notifications.cancel(NOTIFICATION_BASE + index);
       if (!active || !canNotify(context)) continue;
-      long when =
-          PrayerSchedule.nextOccurrence(index, ZonedDateTime.now(PrayerSchedule.ZONE))
-              .toInstant()
-              .toEpochMilli();
+      ZonedDateTime occurrence =
+          PrayerSchedule.nextOccurrence(index, ZonedDateTime.now(point.zone), point);
+      if (occurrence == null) continue;
+      long when = occurrence.toInstant().toEpochMilli();
       PendingIntent operation =
           PendingIntent.getBroadcast(
               context,
@@ -102,10 +105,16 @@ public final class PrayerReminders {
     return new Intent(context, PrayerAlarmReceiver.class)
         .setAction("com.zikra.app.PRAYER_" + index)
         .putExtra(EXTRA_INDEX, index)
-        .putExtra(EXTRA_EPOCH, epoch);
+        .putExtra(EXTRA_EPOCH, epoch)
+        .putExtra("location_key", LocationStore.current(context).key());
   }
 
   static void deliver(Context context, Intent intent) {
+    LocationPoint point = LocationStore.current(context);
+    if (!point.key().equals(intent.getStringExtra("location_key"))) {
+      sync(context);
+      return;
+    }
     int index = intent.getIntExtra(EXTRA_INDEX, -1);
     long epoch = intent.getLongExtra(EXTRA_EPOCH, 0);
     long age = System.currentTimeMillis() - epoch;
@@ -128,13 +137,18 @@ public final class PrayerReminders {
               PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
       String time =
           java.time.Instant.ofEpochMilli(epoch)
-              .atZone(PrayerSchedule.ZONE)
+              .atZone(point.zone)
               .format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
       Notification notification =
           new Notification.Builder(context, CHANNEL)
               .setSmallIcon(R.drawable.ic_notification_prayer)
               .setContentTitle("Waktu " + PrayerSchedule.NAMES[index])
-              .setContentText(time + " WIB · Sukolilo, Surabaya")
+              .setContentText(
+                  time
+                      + " "
+                      + point.zoneLabel(java.time.Instant.ofEpochMilli(epoch))
+                      + " · "
+                      + point.label)
               .setCategory(Notification.CATEGORY_REMINDER)
               .setWhen(epoch)
               .setShowWhen(true)

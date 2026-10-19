@@ -4,19 +4,21 @@ Kerjakan dan simpan checkpoint per tahap pada `recovery/study-hifz-refresh`.
 Daftar ini membedakan rencana dari kemampuan yang sudah tersedia; bukan pernyataan
 bahwa seluruh integrasi telah selesai. Tetap Java/XML native, tanpa login dahulu.
 
-1. **Onboarding — tahap aktif.** Tiga ilustrasi 2D tetap statis. Perbaiki keseimbangan
+1. **Onboarding — selesai pada checkpoint sebelumnya.** Tiga ilustrasi 2D tetap statis. Perbaiki keseimbangan
    ruang, pengantar kecil, judul, paragraf manfaat dan keterbacaan. Pertahankan simbol
    master dan alur belajar → ibadah → Al-Quran. Jelaskan kemampuan yang sudah tersedia,
    tanpa menjanjikan lokasi otomatis, murottal atau AI generatif yang belum ada.
    Setelah komposisi disetujui, tambahkan parallax sentuh/gulir terbatas pada gambar
    utuh dan teks; karakter tetap diam. Hormati animasi sistem/penghemat daya, tanpa loop idle.
-2. **Lokasi bersama.** Pilih posisi pengguna dengan izin saat diperlukan, dengan pilihan
+2. **Lokasi bersama — terpasang dan diperiksa.** Pilih posisi pengguna dengan izin saat diperlukan, dengan pilihan
    manual ketika izin tidak tersedia. Hubungkan lokasi yang sama ke jadwal sholat,
-   cuaca, Kiblat dan pencarian masjid. Saat ini aplikasi masih memakai Sukolilo.
-3. **Masjid terdekat.** Daftar dan peta Google Maps di dalam Zikra, detail nama/alamat/
-   jarak; tombol petunjuk arah membuka aplikasi navigasi Google Maps. Verifikasi
-   layanan Places/Maps, biaya, atribusi dan pengaturan kunci sebelum implementasi.
-   Jangan mengarang jam jamaah/fasilitas. Navigasi belokan tertanam belum termasuk.
+   cuaca, Kiblat dan pencarian masjid. Sukolilo menjadi acuan awal berlabel; pilihan pengguna dibagikan ke fitur terkait.
+3. **Masjid terdekat — versi awal OpenStreetMap, sesuai pilihan pengguna.** Daftar
+   dan peta native di Zikra, alamat yang tersedia, jarak garis lurus, cache dan tombol
+   arah yang membuka Google Maps. Tidak memerlukan akun/billing Google untuk versi ini.
+   Data komunitas serta server publik mempunyai keterbatasan; tidak mengarang fasilitas/
+   jam jamaah. Google Places/Maps di dalam Zikra tetap opsi integrasi berikutnya setelah
+   project, billing, pembatasan kunci dan kebutuhan backend disiapkan.
 4. **Murottal dan hafalan.** Pilihan qari, play/pause, pindah ayat dan ulang satu ayat/
    rentang. Bedakan gulir baca mandiri yang dapat diatur dengan mengikuti ayat audio;
    mode mengikuti audio membutuhkan data waktu per ayat yang sesuai rekaman.

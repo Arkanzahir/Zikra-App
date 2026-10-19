@@ -1,0 +1,7 @@
+
+com.zikra.app.LocationIntegrationTest:.
+com.zikra.app.LocationLiveTest:.
+Test results for InstrumentationTestRunner=..
+Time: 40.729
+
+OK (2 tests)

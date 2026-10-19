@@ -21,6 +21,8 @@ public final class ProtectorActivity extends BaseActivity {
   private static final DateTimeFormatter TIME =
       DateTimeFormatter.ofPattern("dd MMM yyyy · HH:mm 'WIB'", ID)
           .withZone(ZoneId.of("Asia/Jakarta"));
+  private com.zikra.app.location.LocationPoint location =
+      com.zikra.app.location.LocationPoint.INITIAL;
   private BmkgClient bmkg;
   private BmkgParser.Forecast displayedWeather;
   private BmkgParser.Earthquake displayedQuake;
@@ -93,12 +95,7 @@ public final class ProtectorActivity extends BaseActivity {
                         + android.net.Uri.encode(
                             "Saya membutuhkan bantuan. Mohon hubungi saya. Saya akan menuliskan"
                                 + " lokasi saya di pesan ini.")));
-    findViewById(R.id.protectorMaps)
-        .setOnClickListener(
-            v ->
-                external(
-                    Intent.ACTION_VIEW,
-                    "https://www.google.com/maps/search/?api=1&query=Masjid+Manarul+Ilmi+ITS+Surabaya"));
+    findViewById(R.id.protectorMaps).setOnClickListener(v -> open(NearbyMosquesActivity.class));
     findViewById(R.id.protectorSource)
         .setOnClickListener(v -> external(Intent.ACTION_VIEW, "https://data.bmkg.go.id/"));
     findViewById(R.id.protectorTabHome)
@@ -112,6 +109,11 @@ public final class ProtectorActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    com.zikra.app.location.LocationPoint selected =
+        com.zikra.app.location.LocationStore.current(this);
+    if (!selected.key().equals(location.key())) displayedWeather = null;
+    location = selected;
+    text(R.id.protectorToolbarSubtitle, location.caption());
     refreshTimer.post(refreshTick);
   }
 
@@ -141,7 +143,7 @@ public final class ProtectorActivity extends BaseActivity {
       text(R.id.protectorWeatherDescription, "Memuat prakiraan…");
       text(R.id.protectorWeatherTime, "Waktu prakiraan belum tersedia");
       text(R.id.protectorWeatherStatus, "Menghubungkan ke Open-Meteo");
-      text(R.id.protectorWeatherDetails, "Acuan Sukolilo, Surabaya · Data sedang dimuat");
+      text(R.id.protectorWeatherDetails, location.caption() + " · Data sedang dimuat");
     }
     text(
         R.id.protectorQuakeStatus,
@@ -204,7 +206,14 @@ public final class ProtectorActivity extends BaseActivity {
         .setImageResource(WeatherSymbols.forDescription(w.description));
     text(R.id.protectorWeatherTemperature, w.temperature.isEmpty() ? "—°C" : w.temperature + "°C");
     text(R.id.protectorWeatherDescription, available(w.description));
-    text(R.id.protectorWeatherTime, "Prakiraan " + TIME.format(w.time));
+    text(
+        R.id.protectorWeatherTime,
+        "Prakiraan "
+            + DateTimeFormatter.ofPattern("dd MMM yyyy · HH:mm", ID)
+                .withZone(forecast.location.zone)
+                .format(w.time)
+            + " "
+            + forecast.location.zoneLabel(w.time));
     text(R.id.protectorWeatherStatus, com.zikra.app.safety.OpenMeteoClient.status(forecast));
     text(
         R.id.protectorWeatherDetails,

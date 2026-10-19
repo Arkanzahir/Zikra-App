@@ -11,9 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.zikra.app.data.ZikraDbHelper;
+import com.zikra.app.location.LocationPoint;
+import com.zikra.app.location.LocationStore;
 import com.zikra.app.reminders.PrayerReminders;
 import com.zikra.app.ui.SegmentedProgressView;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.chrono.HijrahDate;
 import java.time.format.DateTimeFormatter;
@@ -21,6 +22,7 @@ import java.time.temporal.ChronoField;
 import java.util.Locale;
 
 public final class HomeActivity extends BaseActivity {
+  private LocationPoint location = LocationPoint.INITIAL;
   private ZikraDbHelper db;
   private com.zikra.app.sky.HomeSkyView sky;
   private com.zikra.app.sky.SkyRepository skyRepository;
@@ -81,16 +83,22 @@ public final class HomeActivity extends BaseActivity {
             v -> {
               if (skyDay == null) return;
               new android.app.AlertDialog.Builder(this)
-                  .setTitle("Langit Sukolilo")
+                  .setTitle("Langit · " + location.label)
                   .setMessage(
-                      (skyDay.usno ? "USNO, data harian " : "Perkiraan lokal, ")
+                      (skyDay.usno
+                              ? "USNO, data harian "
+                              : skyDay.solarAvailable
+                                  ? "Perkiraan lokal, "
+                                  : "Ilustrasi waktu; peristiwa matahari tidak tersedia, ")
                           + skyDay.date
-                          + "\nTerbit "
-                          + skyDay.rise
-                          + " · transit "
-                          + skyDay.noon
-                          + " · terbenam "
-                          + skyDay.set
+                          + (skyDay.solarAvailable
+                              ? "\nTerbit "
+                                  + skyDay.rise
+                                  + " · transit "
+                                  + skyDay.noon
+                                  + " · terbenam "
+                                  + skyDay.set
+                              : "\nWaktu terbit/terbenam belum tersedia untuk lokasi/tanggal ini.")
                           + "\nBulan diterangi "
                           + Math.round(skyDay.illumination * 100)
                           + "%.\n\n"
@@ -129,9 +137,7 @@ public final class HomeActivity extends BaseActivity {
                 startActivity(
                     new android.content.Intent(this, QuranActivity.class)
                         .putExtra(QuranActivity.EXTRA_RESUME_READING, true)));
-    findViewById(R.id.homeLocation)
-        .setOnClickListener(
-            v -> external(android.content.Intent.ACTION_VIEW, "geo:0,0?q=Sukolilo,Surabaya"));
+    findViewById(R.id.homeLocation).setOnClickListener(v -> open(LocationActivity.class));
     findViewById(R.id.homePrayerStrip).setOnClickListener(v -> open(PrayerActivity.class));
   }
 
@@ -139,6 +145,22 @@ public final class HomeActivity extends BaseActivity {
   protected void onResume() {
     super.onResume();
     if (db == null) return;
+    LocationPoint selected = LocationStore.current(this);
+    if (!selected.key().equals(location.key())) {
+      requestedSkyDate = null;
+      skyDay = null;
+      activePrayer = -1;
+      prayerDisplayDate = null;
+    }
+    location = selected;
+    ((TextView) findViewById(R.id.homeLocationLabel))
+        .setText(
+            location.label.split(",")[0]
+                + " · "
+                + location.zoneLabel(java.time.Instant.now())
+                + (location.source.equals("initial") ? " · Pilih lokasi" : ""));
+    findViewById(R.id.homeLocation)
+        .setContentDescription("Lokasi " + location.caption() + ". Ketuk untuk mengubah.");
     sky.setRunning(true);
     entrancePolicy.start();
     if (!entrancePlayed) {
@@ -210,7 +232,7 @@ public final class HomeActivity extends BaseActivity {
 
   private void updateClock() {
     if (!java.time.LocalDate.now().equals(progressDate)) updateProgress();
-    ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Jakarta"));
+    ZonedDateTime now = ZonedDateTime.now(location.zone);
     loadSky(false);
     if (skyDay != null) sky.setSky(skyDay, now.toLocalTime());
     ((TextView) findViewById(R.id.homeClock))
@@ -238,35 +260,47 @@ public final class HomeActivity extends BaseActivity {
                 + ", "
                 + date.get(ChronoField.YEAR)
                 + " H");
-    PrayerSchedule.NextPrayer event = PrayerSchedule.nextAfter(now);
-    int next = event.index;
-    PrayerSchedule.Day timetable = PrayerSchedule.forDate(event.time.toLocalDate());
-    int minutes = event.minutesFrom(now);
-    String interval =
-        minutes >= 60 ? (minutes / 60 + " jam " + minutes % 60 + " menit") : (minutes + " menit");
-    String content =
-        PrayerSchedule.NAMES[next]
-            + (event.time.toLocalDate().isAfter(now.toLocalDate()) ? " besok" : "")
-            + " tinggal "
-            + interval
-            + " lagi";
-    SpannableString label = new SpannableString(content);
-    int start = content.indexOf(interval);
-    label.setSpan(
-        new ForegroundColorSpan(getColor(R.color.camel)),
-        start,
-        start + interval.length(),
-        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-    ((TextView) findViewById(R.id.homeCountdown)).setText(label);
-    findViewById(R.id.homeCountdown)
-        .setContentDescription(
-            content + ". Perhitungan harian Sukolilo, WIB. Buka Jadwal Sholat untuk metode.");
+    PrayerSchedule.NextPrayer event = PrayerSchedule.nextAfter(now, location);
+    int next = event == null ? -1 : event.index;
+    PrayerSchedule.Day timetable = PrayerSchedule.forDate(now.toLocalDate(), location);
+    if (event == null) {
+      ((TextView) findViewById(R.id.homeCountdown))
+          .setText("Jadwal belum tersedia untuk lokasi ini");
+    } else {
+      int minutes = event.minutesFrom(now);
+      String interval =
+          minutes >= 60 ? (minutes / 60 + " jam " + minutes % 60 + " menit") : (minutes + " menit");
+      String content =
+          PrayerSchedule.NAMES[next]
+              + (event.time.toLocalDate().isAfter(now.toLocalDate()) ? " besok" : "")
+              + " tinggal "
+              + interval
+              + " lagi";
+      SpannableString label = new SpannableString(content);
+      int start = content.indexOf(interval);
+      label.setSpan(
+          new ForegroundColorSpan(getColor(R.color.camel)),
+          start,
+          start + interval.length(),
+          Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      ((TextView) findViewById(R.id.homeCountdown)).setText(label);
+      findViewById(R.id.homeCountdown)
+          .setContentDescription(
+              content
+                  + ". Perhitungan harian "
+                  + location.caption()
+                  + ". Buka Jadwal Sholat untuk metode.");
+    }
     if (activePrayer != next || !timetable.date.equals(prayerDisplayDate)) {
       activePrayer = next;
       prayerDisplayDate = timetable.date;
       findViewById(R.id.homePrayerStrip)
           .setContentDescription(
-              "Jadwal sholat Sukolilo " + timetable.date + ", WIB. Ketuk untuk rincian.");
+              "Jadwal sholat "
+                  + location.caption()
+                  + " "
+                  + timetable.date
+                  + ". Ketuk untuk rincian.");
       for (int i = 0; i < PRAYER_SLOTS.length; i++) {
         LinearLayout slot = findViewById(PRAYER_SLOTS[i]);
         boolean active = i == next;
@@ -285,17 +319,20 @@ public final class HomeActivity extends BaseActivity {
   }
 
   private void loadSky(boolean force) {
-    java.time.LocalDate date = java.time.LocalDate.now(PrayerSchedule.ZONE);
+    java.time.LocalDate date = java.time.LocalDate.now(location.zone);
     if (!force && date.equals(requestedSkyDate)) return;
     requestedSkyDate = date;
     skyRepository.load(
         date,
         force,
+        location,
         day -> {
           skyDay = day;
-          sky.setSky(day, java.time.LocalTime.now(PrayerSchedule.ZONE));
+          sky.setSky(day, java.time.LocalTime.now(location.zone));
           ((TextView) findViewById(R.id.homeSkySource))
-              .setText("Langit · " + (day.usno ? "USNO" : "perkiraan lokal"));
+              .setText(
+                  "Langit · "
+                      + (day.usno ? "USNO" : day.solarAvailable ? "perkiraan lokal" : "ilustrasi"));
         });
   }
 

@@ -1,0 +1,23 @@
+{
+  "date_wib": "2026-10-19",
+  "jdk": 17,
+  "compile_target_sdk": 35,
+  "runtime_api": 28,
+  "unit_tests": 38,
+  "unit_failures": 0,
+  "device_unique_passed": 13,
+  "device_unique_methods": {
+    "LocationIntegrationTest": 6,
+    "LocationLiveTest": 3,
+    "PrayerRemindersTest": 2,
+    "LocationAlarmTest": 1,
+    "DeviceLocationTest": 1
+  },
+  "lint": {
+    "Warning": 530
+  },
+  "physical_device_tested": false,
+  "gps_source": "Android test provider, Makassar fixture",
+  "masjid_source": "OpenStreetMap / public Overpass",
+  "push_status": "checked separately after local commit; authentication currently invalid (HTTP 401)"
+}

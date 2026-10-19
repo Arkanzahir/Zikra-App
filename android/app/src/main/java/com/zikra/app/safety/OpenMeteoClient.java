@@ -2,7 +2,6 @@ package com.zikra.app.safety;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import com.zikra.app.PrayerSchedule;
 import java.io.*;
 import java.time.*;
 import java.util.concurrent.*;
@@ -10,12 +9,21 @@ import okhttp3.*;
 
 /** Validated hourly model forecast; ten-minute refresh and six-hour labelled failure fallback. */
 public final class OpenMeteoClient implements AutoCloseable {
-  public static final String URL =
-      "https://api.open-meteo.com/v1/forecast?latitude="
-          + PrayerSchedule.LATITUDE
-          + "&longitude="
-          + PrayerSchedule.LONGITUDE
-          + "&hourly=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m&timezone=Asia%2FJakarta&forecast_days=3&wind_speed_unit=kmh";
+  public static okhttp3.HttpUrl url(com.zikra.app.location.LocationPoint point) {
+    return okhttp3.HttpUrl.parse("https://api.open-meteo.com/v1/forecast")
+        .newBuilder()
+        .addQueryParameter("latitude", Double.toString(point.latitude))
+        .addQueryParameter("longitude", Double.toString(point.longitude))
+        .addQueryParameter(
+            "hourly",
+            "temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m")
+        .addQueryParameter("timezone", point.zone.getId())
+        .addQueryParameter("timeformat", "unixtime")
+        .addQueryParameter("forecast_days", "3")
+        .addQueryParameter("wind_speed_unit", "kmh")
+        .build();
+  }
+
   public static final long FRESH_MS = 10 * 60 * 1000L, MAX_AGE_MS = 6 * 60 * 60 * 1000L;
   private static final ExecutorService WORK = Executors.newFixedThreadPool(2);
   private static final OkHttpClient HTTP =
@@ -28,7 +36,7 @@ public final class OpenMeteoClient implements AutoCloseable {
 
   public OpenMeteoClient(Activity activity) {
     owner = activity;
-    cache = owner.getSharedPreferences("zikra_weather_openmeteo_v1", 0);
+    cache = owner.getSharedPreferences("zikra_weather_openmeteo_v2", 0);
   }
 
   public void reset() {
@@ -41,10 +49,13 @@ public final class OpenMeteoClient implements AutoCloseable {
     if (closed) return;
     reset();
     int token = generation;
+    com.zikra.app.location.LocationPoint point =
+        com.zikra.app.location.LocationStore.current(owner);
+    String prefix = point.key() + ":";
     WORK.execute(
         () -> {
-          String cached = cache.getString("json", "");
-          long at = cache.getLong("fetched_at", 0);
+          String cached = cache.getString(prefix + "json", "");
+          long at = cache.getLong(prefix + "fetched_at", 0);
           long now = System.currentTimeMillis();
           BmkgParser.Forecast previous = null;
           if (WeatherCode.usableCache(at, now, MAX_AGE_MS))
@@ -55,7 +66,8 @@ public final class OpenMeteoClient implements AutoCloseable {
                       Instant.ofEpochMilli(now),
                       Instant.ofEpochMilli(at),
                       true,
-                      now - at > FRESH_MS);
+                      now - at > FRESH_MS,
+                      point);
             } catch (Exception ignored) {
             }
           if (previous != null) {
@@ -67,7 +79,7 @@ public final class OpenMeteoClient implements AutoCloseable {
           Call call =
               HTTP.newCall(
                   new Request.Builder()
-                      .url(URL)
+                      .url(url(point))
                       .header("Accept", "application/json")
                       .header("User-Agent", "Zikra-Android/1.0")
                       .build());
@@ -84,13 +96,28 @@ public final class OpenMeteoClient implements AutoCloseable {
               throw new IOException("Weather response too large");
             String json = response.body().string();
             Instant fetched = Instant.now();
-            BmkgParser.Forecast value = OpenMeteoParser.parse(json, fetched, fetched, false, false);
+            BmkgParser.Forecast value =
+                OpenMeteoParser.parse(json, fetched, fetched, false, false, point);
             if (closed || generation != token) return;
-            cache
-                .edit()
-                .putString("json", json)
-                .putLong("fetched_at", fetched.toEpochMilli())
-                .apply();
+            synchronized (OpenMeteoClient.class) {
+              cache
+                  .edit()
+                  .putString(prefix + "json", json)
+                  .putLong(prefix + "fetched_at", fetched.toEpochMilli())
+                  .apply();
+              java.util.List<String> keys = new java.util.ArrayList<>();
+              for (String key : cache.getAll().keySet())
+                if (key.endsWith(":fetched_at")) keys.add(key);
+              keys.sort(java.util.Comparator.comparingLong(k -> cache.getLong(k, 0)));
+              for (int i = 0; i < keys.size() - 4; i++) {
+                String old = keys.get(i);
+                cache
+                    .edit()
+                    .remove(old)
+                    .remove(old.substring(0, old.length() - "fetched_at".length()) + "json")
+                    .apply();
+              }
+            }
             deliver(token, () -> result.success(value));
           } catch (Exception error) {
             if (call.isCanceled()) return;
@@ -122,13 +149,17 @@ public final class OpenMeteoClient implements AutoCloseable {
   public static String status(BmkgParser.Forecast f) {
     String time =
         java.time.format.DateTimeFormatter.ofPattern(
-                "d MMM HH:mm 'WIB'", new java.util.Locale("id", "ID"))
-            .withZone(PrayerSchedule.ZONE)
+                "d MMM HH:mm", new java.util.Locale("id", "ID"))
+            .withZone(f.location.zone)
             .format(f.fetchedAt);
     return "Open-Meteo · "
         + (f.stored ? (f.stale ? "tersimpan · perlu diperbarui" : "tersimpan") : "prakiraan model")
         + "\nDiambil "
-        + time;
+        + time
+        + " "
+        + f.location.zoneLabel(f.fetchedAt)
+        + " · "
+        + f.location.label;
   }
 
   @Override

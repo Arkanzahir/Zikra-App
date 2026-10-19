@@ -39,15 +39,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:minHeight="64dp"
                         android:gravity="center_vertical">
-                        <LinearLayout android:id="@+id/homeLocation" android:layout_width="wrap_content"
+                        <LinearLayout android:id="@+id/homeLocation" android:layout_width="0dp" android:layout_weight="1"
                             android:layout_height="wrap_content" android:minHeight="64dp" android:orientation="vertical" android:gravity="center_vertical"
                             android:theme="@style/ZikraBrandDark" android:clickable="true" android:focusable="true"
-                            android:background="?android:attr/selectableItemBackground" android:contentDescription="Lokasi Sukolilo, Surabaya. Buka peta">
+                            android:background="?android:attr/selectableItemBackground" android:contentDescription="Pilih lokasi untuk jadwal sholat dan cuaca">
                             <include layout="@layout/view_zikra_brand" />
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                android:layout_marginStart="11dp" android:text="Sukolilo, Surabaya" android:textSize="12sp" android:textColor="#D2DFD8" />
+                            <TextView android:id="@+id/homeLocationLabel" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:layout_marginStart="11dp" android:text="Pilih lokasi" android:maxLines="2" android:ellipsize="end" android:textSize="12sp" android:textColor="#D2DFD8" />
                         </LinearLayout>
-                        <Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                        <Space android:layout_width="12dp" android:layout_height="1dp" />
                         <ImageButton
                             android:id="@+id/homeSearch"
                             android:layout_width="48dp"

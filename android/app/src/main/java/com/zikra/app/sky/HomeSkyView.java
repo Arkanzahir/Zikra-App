@@ -47,7 +47,8 @@ public final class HomeSkyView extends View implements SensorEventListener {
     cloud.cubicTo(106, 12, 112, 23, 110, 28);
     cloud.cubicTo(74, 32, 24, 32, 0, 28);
     cloud.close();
-    setSky(SkyDay.estimate(LocalDate.now(com.zikra.app.PrayerSchedule.ZONE)), LocalTime.NOON);
+    com.zikra.app.location.LocationPoint point = com.zikra.app.location.LocationStore.current(c);
+    setSky(SkyDay.estimate(LocalDate.now(point.zone), point), LocalTime.now(point.zone));
   }
 
   public void setSky(SkyDay value, LocalTime localTime) {

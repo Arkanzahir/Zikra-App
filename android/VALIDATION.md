@@ -1,4 +1,4 @@
-> **Pemeriksaan terbaru 19 Oktober 2026:** parallax sentuh/gulir onboarding lulus build/lint, dua tes gerak dan lima tes regresi. [Video, tiga screenshot dan batas uji](validation/onboarding-parallax-2026-10-19/README.md). Ronde kegunaan sebelumnya: [33 tes JVM, 47 metode unik dan 22 screenshot](validation/quality-2026-10-19/README.md). Hasil checkpoint lama di bawah bersifat historis; HP fisik/runtime API 35 belum diverifikasi.
+> **Pemeriksaan terbaru 19 Oktober 2026:** lokasi bersama dan daftar/peta OSM. Build/lint, 38 tes JVM dan 13 metode perangkat unik lulus; GPS memakai provider simulasi Android, bukan HP fisik. [Log, screenshot, kegagalan awal dan batas uji](validation/location-mosques-2026-10-19/README.md). Catatan di bawah historis.
 
 
 # Validasi pembaruan referensi — 16 Oktober 2026

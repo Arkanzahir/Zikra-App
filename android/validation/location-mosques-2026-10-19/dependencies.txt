@@ -1,0 +1,17 @@
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/workspace/setup-zikra/cacerts
+
+> Task :app:dependencies
+
+------------------------------------------------------------
+Project ':app'
+------------------------------------------------------------
+
+debugRuntimeClasspath - Resolved configuration for runtime for variant: debug
++--- com.squareup.okhttp3:okhttp:3.14.9
+|    \--- com.squareup.okio:okio:1.17.2
+\--- org.osmdroid:osmdroid-android:6.1.20
+
+A web-based, searchable dependency report is available by adding the --scan option.
+
+BUILD SUCCESSFUL in 1s
+1 actionable task: 1 executed

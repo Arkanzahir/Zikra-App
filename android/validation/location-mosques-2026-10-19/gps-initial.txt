@@ -1,0 +1,17 @@
+
+com.zikra.app.DeviceLocationTest:
+Failure in testForegroundGpsUsesReceivedFixAndResolvesItsZone:
+junit.framework.AssertionFailedError: expected:<-5.1477> but was:<39.237255>
+	at com.zikra.app.DeviceLocationTest.testForegroundGpsUsesReceivedFixAndResolvesItsZone(DeviceLocationTest.java:55)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:564)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2145)
+
+Test results for InstrumentationTestRunner=.F
+Time: 19.082
+
+FAILURES!!!
+Tests run: 1,  Failures: 1,  Errors: 0

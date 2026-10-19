@@ -69,6 +69,16 @@ public final class ProfileActivity extends BaseActivity {
     ((TextView) findViewById(R.id.profileRoleCaption)).setText(roleLabel());
     rows.removeAllViews();
     row(
+        "Masjid terdekat",
+        "Temukan tempat singgah di sekitarmu",
+        R.drawable.ic_compass,
+        () -> open(NearbyMosquesActivity.class));
+    row(
+        "Lokasi",
+        com.zikra.app.location.LocationStore.current(this).caption(),
+        R.drawable.ic_compass,
+        () -> open(LocationActivity.class));
+    row(
         "Bacaan terakhir",
         preferences.getString("last_surah", "Al-Fatihah")
             + " · Ayat "

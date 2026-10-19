@@ -1,0 +1,34 @@
+[
+  {
+    "file": "LocationDeviceGpsMakassar.png",
+    "sha256": "02a222d16d54ab702772d9d64f65cc2038e184f4bc94c07daf933cd5e90e8304"
+  },
+  {
+    "file": "LocationHomeMakassar.png",
+    "sha256": "9e70d294fd6ad35d1e7d5ee432d429ca571245b69a41645382edb3b4da7469c4"
+  },
+  {
+    "file": "LocationManualMakassar.png",
+    "sha256": "74692b46b179fad6c8c0d479bae8be4296001bded4129f468f2b6b5eab7981b1"
+  },
+  {
+    "file": "LocationMosquesListLive.png",
+    "sha256": "5aa16dd728510bd3c0f52a8855545bf3777e9b3a86ceae93d6389495d7734123"
+  },
+  {
+    "file": "LocationMosquesMapLive.png",
+    "sha256": "6de066b20362f9584a4f6f90bef746bc253c1423fb472ab03a3fd8a17366c031"
+  },
+  {
+    "file": "LocationPrayerMakassar.png",
+    "sha256": "54c6134ac1a0b1732f032e62d55e415268f45bd8a9dced67b971f7f1610ff037"
+  },
+  {
+    "file": "LocationQiblaMakassar.png",
+    "sha256": "e475d8b8a3581afc1d0fe67d350cd25909edb8e1742b3788326e4118b4518282"
+  },
+  {
+    "file": "LocationWeatherMakassarLive.png",
+    "sha256": "dca2e8c955b805e47b2d12406d837eca7b89b8f4af163306a825554b04904fc6"
+  }
+]

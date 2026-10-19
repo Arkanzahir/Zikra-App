@@ -166,6 +166,7 @@ public final class BmkgParser {
   }
 
   public static final class Forecast {
+    public final com.zikra.app.location.LocationPoint location;
     public final Weather current;
     public final List<Weather> slots;
     public final String source;
@@ -183,6 +184,25 @@ public final class BmkgParser {
         Instant fetchedAt,
         boolean stored,
         boolean stale) {
+      this(
+          current,
+          slots,
+          source,
+          fetchedAt,
+          stored,
+          stale,
+          com.zikra.app.location.LocationPoint.INITIAL);
+    }
+
+    public Forecast(
+        Weather current,
+        List<Weather> slots,
+        String source,
+        Instant fetchedAt,
+        boolean stored,
+        boolean stale,
+        com.zikra.app.location.LocationPoint location) {
+      this.location = location;
       this.source = source;
       this.fetchedAt = fetchedAt;
       this.stored = stored;

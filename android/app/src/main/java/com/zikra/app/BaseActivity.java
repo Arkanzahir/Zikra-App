@@ -113,7 +113,7 @@ public abstract class BaseActivity extends Activity {
                 new String[] {
                   "Telepon darurat 112",
                   "Kabari keluarga lewat WhatsApp",
-                  "Petunjuk ke Masjid Manarul Ilmi ITS",
+                  "Cari masjid terdekat",
                   "Buka Protector BMKG"
                 },
                 (d, which) -> {
@@ -123,10 +123,7 @@ public abstract class BaseActivity extends Activity {
                         Intent.ACTION_VIEW,
                         "https://wa.me/?text="
                             + Uri.encode("Aku membutuhkan bantuan. Tolong hubungi aku."));
-                  if (which == 2)
-                    external(
-                        Intent.ACTION_VIEW,
-                        "https://www.google.com/maps/dir/?api=1&destination=Masjid+Manarul+Ilmi+ITS+Surabaya&travelmode=walking");
+                  if (which == 2) open(NearbyMosquesActivity.class);
                   if (which == 3) open(ProtectorActivity.class);
                 })
             .setNegativeButton("Tutup", null)

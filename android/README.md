@@ -1,4 +1,4 @@
-> **Status 19 Oktober 2026:** ronde kegunaan memperbaiki onboarding 2D statis, header/navigasi, keterbacaan, rencana lintas tanggal dan pengaturan reader. Progres baru berasal dari tindakan pengguna, tanpa tugas atau penyelesaian demo otomatis. Build/lint, 33 tes JVM dan 47 metode emulator unik lulus; batas HP fisik/API 35 tetap dicatat. [Hasil dan screenshot terbaru](validation/quality-2026-10-19/README.md) · [RECOVERY.md](../RECOVERY.md). Hasil checkpoint lama di bawah bersifat historis.
+> **Status 19 Oktober 2026:** lokasi bersama dan masjid OSM native sudah tersedia; onboarding/parallax dipertahankan. [Validasi terbaru](validation/location-mosques-2026-10-19/README.md) · [RECOVERY.md](../RECOVERY.md). Ronde kegunaan/onboarding sebelumnya tetap historis.
 
 
 # Zikra Android — Java dan XML
@@ -7,7 +7,7 @@ Project Android Studio mandiri, aplikasi native Java dengan layout XML. Tanpa Ko
 
 ## Melanjutkan dari chat baru
 
-Baca [status terbaru](validation/quality-2026-10-19/README.md) sebelum inventaris historis di bawah. Onboarding memakai tiga ilustrasi 2D statis tanpa jenjang/minat. Reader terjemahan mencakup 114 surah melalui public v4 API, empat surah bawaan dan cache delapan bagian. Mushaf halaman, murottal dan offline penuh belum tersedia. Home memakai USNO/fallback berlabel; cuaca memakai Open-Meteo, gempa/peringatan tetap BMKG.
+Baca [status terbaru](validation/location-mosques-2026-10-19/README.md) sebelum inventaris historis di bawah. Onboarding memakai tiga ilustrasi 2D statis tanpa jenjang/minat. Reader terjemahan mencakup 114 surah melalui public v4 API, empat surah bawaan dan cache delapan bagian. Mushaf halaman, murottal dan offline penuh belum tersedia. Home memakai USNO/fallback berlabel; cuaca memakai Open-Meteo, gempa/peringatan tetap BMKG.
 
 
 ## Buka dan jalankan
@@ -30,15 +30,17 @@ Jalur Java berikut berada di `app/src/main/java/com/zikra/app/`; layout di `app/
 
 | Halaman | Implementasi dan fungsi |
 | --- | --- |
-| Home | `HomeActivity.java`, `activity_home.xml`: jam WIB, Hijriah, langit dinamis, delapan shortcut, progres ibadah nyata dan navigasi adaptif |
+| Home | `HomeActivity.java`, `activity_home.xml`: jam zona pilihan, Hijriah, langit dinamis, delapan shortcut, progres ibadah nyata dan navigasi adaptif |
 | Protector BMKG | `ProtectorActivity.java`, `activity_protector.xml`: kartu cuaca Pine/sage, tautan informasi BMKG, peta Indonesia, laporan gempa, akses bantuan |
 | Detail cuaca | `WeatherActivity.java`, `activity_weather.xml`: hero Pine, kelembapan/angin/jarak pandang, grafik suhu Canvas, slot prakiraan bertanggal |
 | Detail gempa | `EarthquakeActivity.java`, `activity_earthquake.xml`: peta, koordinat episentrum, kedalaman/magnitudo/waktu, buka lokasi di aplikasi peta |
-| Kiblat | `QiblaActivity.java`, `activity_qibla.xml`, `reading/QiblaCompassView.java`: kompas roset sage, Ka'bah, 294° Sukolilo, kalibrasi dan masjid kampus |
-| Waktu sholat | `PrayerActivity.java`, `PrayerSchedule.java`, `reminders/`: perhitungan harian Sukolilo, tab hari/pekan, countdown, alarm dan notifikasi per sholat |
+| Kiblat | `QiblaActivity.java`, `activity_qibla.xml`, `reading/QiblaCompassView.java`: kompas roset sage, Ka'bah, bearing dari koordinat pilihan, kalibrasi dan akses masjid terdekat |
+| Waktu sholat | `PrayerActivity.java`, `PrayerSchedule.java`, `reminders/`: perhitungan harian koordinat/zona pilihan, tab hari/pekan, countdown, alarm dan notifikasi per sholat |
+| Lokasi | `LocationActivity.java`, `location/`: GPS satu kali di foreground, pilihan kota online/offline dan zona waktu eksplisit |
+| Masjid | `NearbyMosquesActivity.java`, `mosque/`: daftar/peta OSM native, cache 30 menit, jarak garis lurus dan arah ke Google Maps |
 | Quran | `QuranActivity.java`, `activity_quran.xml`: katalog/search surah, hero buku native, reader, bookmark ayat, mode malam sensor/manual |
 | Doa | `DuaActivity.java`, `activity_dua.xml`: pencarian, kategori, kartu doa, teks Arab/arti, pelafalan TTS Android |
-| Study Hub/Diary Hifz | `StudyActivity.java`, `activity_study.xml`, `data/ZikraDbHelper.java`: CRUD tugas/ibadah, mode hafalan dengan progres kategori sendiri, dan voice-to-task |
+| Study Hub/Diary Hifz | `StudyActivity.java`, `activity_study.xml`, `data/ZikraDbHelper.java`: agenda akademik, target hafalan terpisah dan editor tugas terstruktur |
 | Zikra AI | `AiActivity.java`, `activity_ai.xml`, `assistant/`: tampilan Pine/ivory, topik belajar/ibadah/hafalan, percakapan lokal dan input suara Android |
 | Profil | `ProfileActivity.java`, `activity_profile.xml`: progres SQLite, bacaan terakhir, Hadis, Kalender, preferensi belajar, pengingat dan bantuan |
 | Onboarding | `OnboardingActivity.java`, `activity_onboarding.xml`: tiga adegan 2D statis 3:2, judul dua baris, langkah 01/03, lewati/lanjut dan SharedPreferences; tanpa jenjang/minat |
@@ -50,23 +52,23 @@ Warna dasar Deep Pine `#15332F`, Emerald `#10B981`, background `#F4F6F8`, kartu 
 
 ## Implementasi Pemrograman Mobile
 
-- **SQLiteOpenHelper:** `ZikraDbHelper` menangani CRUD, transaksi inisialisasi harian dan kalkulasi progres. Hari pertama memuat 24 contoh dengan 8 selesai: 33%, bukan angka 35% yang dipatok. Hari berikutnya memulai 24 default belum selesai; riwayat tetap tersimpan. Tanggal checklist mengikuti zona lokal perangkat.
+- **SQLiteOpenHelper:** `ZikraDbHelper` menangani CRUD, transaksi inisialisasi harian dan kalkulasi progres. Hari baru kosong, tanpa tugas atau progres contoh otomatis. Akademik/Hifz tetap dapat diakses lintas tanggal; ibadah mengikuti hari lokal perangkat. Data lama dipertahankan. Tanggal checklist mengikuti zona lokal perangkat.
 - **SharedPreferences:** `zikra_preferences` menyimpan surah/ayat terakhir, bookmark hadis, jenjang (`education_level`)/minat onboarding serta peran lama, percakapan lokal, pengingat dan preferensi goyangan.
 - **Akselerometer:** dua goyangan membuka pilihan bantuan; listener hanya aktif di foreground. Tombol manual tetap tersedia.
 - **Cahaya:** reader Quran menjadi gelap di bawah 10 lux dan terang di atas 15 lux, dengan kontrol manual dan fallback perangkat tanpa sensor.
-- **Rotasi:** kompas mengoreksi rotasi layar dan deklinasi magnetik untuk Sukolilo; haptik saat sejajar. Pembaruan dibatasi dan nilai stabil tidak menggambar ulang terus-menerus.
+- **Rotasi:** kompas mengoreksi rotasi layar dan deklinasi magnetik untuk koordinat pilihan; haptik saat sejajar. Pembaruan dibatasi dan nilai stabil tidak menggambar ulang terus-menerus.
 - **Networking:** OkHttp Java 3.14.9 menjalankan request dan parsing di background; hasil dikirim ke UI. Request dibatalkan saat layar ditutup/dimuat ulang.
 - **Intent implisit:** dialer `tel:112`, WhatsApp, Google Maps; tidak menelepon atau mengirim pesan otomatis.
 - **Device services:** doa memakai TTS Arab; tugas dan pendamping offline memakai `RecognizerIntent`, dengan fallback jika provider tidak tersedia.
 
 ## Sumber data dan batasan
 
-- BMKG gempa: `https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json`; cuaca Keputih/Sukolilo: `https://api.bmkg.go.id/publik/prakiraan-cuaca?adm4=35.78.09.1001`.
+- BMKG gempa: `https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json`. Cuaca memakai Open-Meteo untuk koordinat/zona pilihan; endpoint cuaca BMKG lama bukan sumber prakiraan aktif.
 - Halaman BMKG menampilkan loading, kegagalan, slot kedaluwarsa dan nilai kosong secara eksplisit. Tidak ada suhu/gempa contoh yang ditampilkan sebagai data live. Akses live host BMKG terblokir dari jaringan cloud saat pemeriksaan; validasi respons dilakukan memakai fixture.
 - Peta native memakai batas negara **Natural Earth, public domain**, dengan atribusi di `res/raw/protector_map_attribution.txt`. Titik episentrum hanya muncul jika koordinat resmi tersedia dan valid. Peta ringkas bukan navigasi turn-by-turn.
 - Quran offline memuat **4 surah lengkap**: Al-Fatihah, Al-Ikhlas, Al-Falaq, An-Nas. Koleksi hadis berisi **7 kutipan pilihan**, bukan seluruh kitab.
 - Zikra AI saat ini **pendamping offline berbasis aturan/template**, belum tersambung ke AI generatif online. Input suara tergantung layanan pengenal ucapan perangkat.
-- Jadwal sholat memakai **perhitungan matahari harian**, bukan jadwal resmi Kemenag atau feed jadwal online. Lokasi tetap Sukolilo (-7,280; 112,790), zona Asia/Jakarta, asumsi permukaan laut. Metode: Subuh -20°, Isya -18°, Ashar bayangan 1×, matahari terbit/terbenam -0,833°, pembulatan ke atas dan ihtiyati 2 menit untuk sholat (terbit tanpa ihtiyati). Algoritme posisi matahari mengikuti persamaan NOAA; nilai diuji terhadap Astral 3.2 pada empat musim dengan selisih maksimal 1 menit setelah pembulatan/ihtiyati. Cocokkan jadwal dengan masjid setempat.
+- Jadwal sholat memakai **perhitungan matahari harian**, bukan jadwal resmi Kemenag atau feed jadwal online. Koordinat dan zona mengikuti pilihan bersama; Sukolilo (-7,280; 112,790), Asia/Jakarta hanya acuan awal. Asumsi permukaan laut. Metode: Subuh -20°, Isya -18°, Ashar bayangan 1×, matahari terbit/terbenam -0,833°, pembulatan ke atas dan ihtiyati 2 menit untuk sholat (terbit tanpa ihtiyati). Algoritme posisi matahari mengikuti persamaan NOAA; nilai diuji terhadap Astral 3.2 pada empat musim dengan selisih maksimal 1 menit setelah pembulatan/ihtiyati. Cocokkan jadwal dengan masjid setempat.
 - Pengingat memakai lima alarm satu kali yang dihitung ulang setelah alarm terkirim, perubahan preferensi, reboot atau perubahan jam. Android 13+ meminta izin notifikasi saat pengguna menyalakan pengingat. Android 12+ menyediakan akses alarm tepat waktu melalui tombol pengaturan; jika akses tidak diberikan, alarm memakai penjadwalan yang dapat ditunda sistem. Bunyi mengikuti channel notifikasi Android, bukan audio adzan. Pengingat awalnya nonaktif sampai pengguna mengaktifkannya.
 - Kalender memakai **Umm al-Qura**; awal bulan/hari raya mengikuti otoritas setempat dan dapat berbeda. Tidak mengklaim penetapan rukyat.
 - Profil lokal tanpa login/sinkronisasi. Infaq dikeluarkan dari shortcut Home; kode halaman lama masih tersimpan sebagai arsip implementasi.
@@ -137,3 +139,7 @@ Tiga layar native: hero orbit, jenjang SMP/SMA/SMK/Mahasiswa, dan maksimal tiga 
 
 
 Onboarding kini memiliki parallax sentuh/tilt, ikon mengambang dan transisi langkah native. Gerak berhenti ketika halaman tidak aktif dan mengikuti pengaturan animasi sistem. Preview: `validation/screens/OnboardingParallax.gif`.
+
+## Lokasi dan peta
+
+Masuk dari label lokasi Home atau Profil → Lokasi. Lokasi perangkat diambil saat diminta; izin perkiraan tetap didukung dan pilihan manual tersedia. Tidak memakai izin lokasi background. GPS bukan fitur hardware wajib. Peta menggunakan osmdroid Java, dengan data/tiles OpenStreetMap; tanpa WebView, Kotlin, Google SDK atau API key. Layanan publik tunduk kebijakan pemakaian; [rincian provider](API_PLAN.md).

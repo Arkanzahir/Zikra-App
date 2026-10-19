@@ -1,3 +1,5 @@
+> **Lokasi/masjid:** versi terbaru memakai OpenStreetMap native. Tidak memerlukan API key atau billing Google. Buka `android/` dengan JDK 17/SDK 35; dependency osmdroid diunduh oleh Gradle. [Bukti terbaru](validation/location-mosques-2026-10-19/README.md).
+
 > **Status 19 Oktober 2026:** ronde kegunaan memperbaiki onboarding 2D statis, header/navigasi, keterbacaan, rencana lintas tanggal dan pengaturan reader. Progres baru berasal dari tindakan pengguna, tanpa tugas atau penyelesaian demo otomatis. Build/lint, 33 tes JVM dan 47 metode emulator unik lulus; batas HP fisik/API 35 tetap dicatat. [Hasil dan screenshot terbaru](validation/quality-2026-10-19/README.md) · [RECOVERY.md](../RECOVERY.md). Hasil checkpoint lama di bawah bersifat historis.
 
 

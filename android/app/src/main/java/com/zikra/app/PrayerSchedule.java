@@ -1,5 +1,6 @@
 package com.zikra.app;
 
+import com.zikra.app.location.LocationPoint;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -9,17 +10,20 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/** Daily solar calculation for Sukolilo. This is a calculation, not an official timetable feed. */
+/**
+ * Daily solar calculation for a selected coordinate and time zone. This is a calculation, not an
+ * official timetable feed.
+ */
 public final class PrayerSchedule {
   public static final ZoneId ZONE = ZoneId.of("Asia/Jakarta");
   public static final double LATITUDE = -7.280, LONGITUDE = 112.790;
   public static final String[] NAMES = {"Subuh", "Terbit", "Dzuhur", "Ashar", "Maghrib", "Isya"};
   public static final String[] KEYS = {"subuh", "terbit", "dzuhur", "ashar", "maghrib", "isya"};
   private static final DateTimeFormatter TIME = DateTimeFormatter.ofPattern("HH:mm");
-  private static final Map<LocalDate, Day> CACHE =
-      new LinkedHashMap<LocalDate, Day>() {
+  private static final Map<String, Day> CACHE =
+      new LinkedHashMap<String, Day>() {
         @Override
-        protected boolean removeEldestEntry(Map.Entry<LocalDate, Day> entry) {
+        protected boolean removeEldestEntry(Map.Entry<String, Day> entry) {
           return size() > 32;
         }
       };
@@ -40,7 +44,7 @@ public final class PrayerSchedule {
     }
 
     public String time(int index) {
-      return TIME.format(at(index));
+      return at(index) == null ? "—" : TIME.format(at(index));
     }
   }
 
@@ -63,68 +67,96 @@ public final class PrayerSchedule {
   }
 
   public static synchronized Day forDate(LocalDate date) {
-    Day cached = CACHE.get(date);
+    return forDate(date, LocationPoint.INITIAL);
+  }
+
+  public static synchronized Day forDate(LocalDate date, LocationPoint point) {
+    String key = date + ":" + point.key();
+    Day cached = CACHE.get(key);
     if (cached != null) return cached;
     // Julian day at UTC midnight of the requested local calendar date. Morning events can
     // occur on the previous UTC day; iteration intentionally permits negative UTC minutes.
     double julian = date.toEpochDay() + 2440587.5;
     LocalTime[] values = new LocalTime[6];
-    values[0] = localTime(solarEvent(julian, -20, false, false), 2);
-    values[1] = localTime(solarEvent(julian, -0.833, false, false), 0);
-    double noon = 720 - 4 * LONGITUDE;
-    for (int i = 0; i < 3; i++) noon = 720 - 4 * LONGITUDE - solar(julian + noon / 1440)[1];
-    values[2] = localTime(noon, 2);
-    values[3] = localTime(solarEvent(julian, 0, true, true), 2);
-    values[4] = localTime(solarEvent(julian, -0.833, true, false), 2);
-    values[5] = localTime(solarEvent(julian, -18, true, false), 2);
+    values[0] = localTime(solarEvent(julian, point, -20, false, false), 2, date, point);
+    values[1] = localTime(solarEvent(julian, point, -0.833, false, false), 0, date, point);
+    double noon = 720 - 4 * point.longitude;
+    for (int i = 0; i < 3; i++) noon = 720 - 4 * point.longitude - solar(julian + noon / 1440)[1];
+    values[2] = localTime(noon, 2, date, point);
+    values[3] = localTime(solarEvent(julian, point, 0, true, true), 2, date, point);
+    values[4] = localTime(solarEvent(julian, point, -0.833, true, false), 2, date, point);
+    values[5] = localTime(solarEvent(julian, point, -18, true, false), 2, date, point);
     Day day = new Day(date, values);
-    CACHE.put(date, day);
+    CACHE.put(key, day);
     return day;
   }
 
   public static NextPrayer nextAfter(ZonedDateTime now) {
-    ZonedDateTime local = now.withZoneSameInstant(ZONE);
-    Day today = forDate(local.toLocalDate());
+    return nextAfter(now, LocationPoint.INITIAL);
+  }
+
+  public static NextPrayer nextAfter(ZonedDateTime now, LocationPoint point) {
+    ZonedDateTime local = now.withZoneSameInstant(point.zone);
+    Day today = forDate(local.toLocalDate(), point);
     for (int index = 0; index < 6; index++) {
-      if (!isPrayer(index)) continue;
-      ZonedDateTime candidate = today.date.atTime(today.at(index)).atZone(ZONE);
+      if (!isPrayer(index) || today.at(index) == null) continue;
+      ZonedDateTime candidate = today.date.atTime(today.at(index)).atZone(point.zone);
       if (candidate.isAfter(local)) return new NextPrayer(index, candidate);
     }
-    Day tomorrow = forDate(local.toLocalDate().plusDays(1));
-    return new NextPrayer(0, tomorrow.date.atTime(tomorrow.at(0)).atZone(ZONE));
+    Day tomorrow = forDate(local.toLocalDate().plusDays(1), point);
+    for (int index = 0; index < 6; index++) {
+      if (isPrayer(index) && tomorrow.at(index) != null)
+        return new NextPrayer(index, tomorrow.date.atTime(tomorrow.at(index)).atZone(point.zone));
+    }
+    return null;
   }
 
   public static ZonedDateTime nextOccurrence(int index, ZonedDateTime now) {
+    return nextOccurrence(index, now, LocationPoint.INITIAL);
+  }
+
+  public static ZonedDateTime nextOccurrence(int index, ZonedDateTime now, LocationPoint point) {
     if (!isPrayer(index)) throw new IllegalArgumentException("Not a prayer index");
-    ZonedDateTime local = now.withZoneSameInstant(ZONE);
-    Day day = forDate(local.toLocalDate());
-    ZonedDateTime event = day.date.atTime(day.at(index)).atZone(ZONE);
-    if (!event.isAfter(local)) {
-      day = forDate(day.date.plusDays(1));
-      event = day.date.atTime(day.at(index)).atZone(ZONE);
+    ZonedDateTime local = now.withZoneSameInstant(point.zone);
+    Day day = forDate(local.toLocalDate(), point);
+    ZonedDateTime event =
+        day.at(index) == null ? null : day.date.atTime(day.at(index)).atZone(point.zone);
+    if (event == null || !event.isAfter(local)) {
+      day = forDate(day.date.plusDays(1), point);
+      event = day.at(index) == null ? null : day.date.atTime(day.at(index)).atZone(point.zone);
     }
     return event;
   }
 
-  private static LocalTime localTime(double utcMinutes, int precautionMinutes) {
-    int minute = Math.floorMod((int) Math.ceil(utcMinutes + 420 - 1e-8) + precautionMinutes, 1440);
-    return LocalTime.of(minute / 60, minute % 60);
+  private static LocalTime localTime(
+      double utcMinutes, int precautionMinutes, LocalDate date, LocationPoint point) {
+    if (!Double.isFinite(utcMinutes)) return null;
+    long seconds = ((long) Math.ceil(utcMinutes - 1e-8) + precautionMinutes) * 60;
+    return date.atStartOfDay(java.time.ZoneOffset.UTC)
+        .toInstant()
+        .plusSeconds(seconds)
+        .atZone(point.zone)
+        .toLocalTime();
   }
 
-  private static double solarEvent(double julian, double altitude, boolean evening, boolean asr) {
-    double utc = 720 - 4 * LONGITUDE + (evening ? 360 : -360);
+  private static double solarEvent(
+      double julian, LocationPoint point, double altitude, boolean evening, boolean asr) {
+    double utc = 720 - 4 * point.longitude + (evening ? 360 : -360);
     for (int iteration = 0; iteration < 4; iteration++) {
       double[] position = solar(julian + utc / 1440);
       double declination = position[0];
       double target =
           asr
-              ? degrees(Math.atan(1 / (1 + Math.tan(radians(Math.abs(LATITUDE - declination))))))
+              ? degrees(
+                  Math.atan(1 / (1 + Math.tan(radians(Math.abs(point.latitude - declination))))))
               : altitude;
       double cosine =
-          (Math.sin(radians(target)) - Math.sin(radians(LATITUDE)) * Math.sin(radians(declination)))
-              / (Math.cos(radians(LATITUDE)) * Math.cos(radians(declination)));
-      double angle = degrees(Math.acos(Math.max(-1, Math.min(1, cosine))));
-      utc = 720 - 4 * LONGITUDE - position[1] + (evening ? 4 : -4) * angle;
+          (Math.sin(radians(target))
+                  - Math.sin(radians(point.latitude)) * Math.sin(radians(declination)))
+              / (Math.cos(radians(point.latitude)) * Math.cos(radians(declination)));
+      if (!Double.isFinite(cosine) || Math.abs(cosine) > 1) return Double.NaN;
+      double angle = degrees(Math.acos(cosine));
+      utc = 720 - 4 * point.longitude - position[1] + (evening ? 4 : -4) * angle;
     }
     return utc;
   }

@@ -39,5 +39,7 @@ android {
 dependencies {
     // OkHttp 3.x and Okio 1.x are Java, including their runtime dependencies.
     implementation 'com.squareup.okhttp3:okhttp:3.14.9'
+    // Native Java map; no Google key or billing is required for the OSM provider.
+    implementation 'org.osmdroid:osmdroid-android:6.1.20'
     testImplementation 'junit:junit:4.13.2'
 }

@@ -6,11 +6,15 @@ mkdir -p /workspace/setup-zikra /workspace/android-user/adb /workspace/gradle-ca
 python3 "$zikra_repo/tools/cloud/bootstrap.py"
 source /workspace/setup-zikra/env.sh
 cp "$JAVA_HOME/lib/security/cacerts" /workspace/setup-zikra/cacerts
-zikra_ca=/usr/local/share/ca-certificates/environment-proxy-ca.crt
-if [ -f "$zikra_ca" ]; then
-  keytool -importcert -noprompt -alias zikra-cloud-proxy -file "$zikra_ca" \
-    -keystore /workspace/setup-zikra/cacerts -storepass changeit
-fi
+# The session can expose several public proxy roots, not only environment-proxy-ca.
+for zikra_ca in /usr/local/share/ca-certificates/*.crt; do
+  [ -f "$zikra_ca" ] || continue
+  zikra_ca_hash=$(openssl x509 -in "$zikra_ca" -subject_hash_old -noout)
+  if ! keytool -list -alias "zikra-cloud-$zikra_ca_hash" -keystore /workspace/setup-zikra/cacerts -storepass changeit >/dev/null 2>&1; then
+    keytool -importcert -noprompt -alias "zikra-cloud-$zikra_ca_hash" -file "$zikra_ca" \
+      -keystore /workspace/setup-zikra/cacerts -storepass changeit
+  fi
+done
 cat >> /workspace/setup-zikra/env.sh <<'ZIKRA_ENV'
 export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS:+$JAVA_TOOL_OPTIONS }-Djavax.net.ssl.trustStore=/workspace/setup-zikra/cacerts"
 ZIKRA_ENV

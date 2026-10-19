@@ -15,7 +15,9 @@ public final class TemperatureChartView extends View {
   private final List<BmkgParser.Weather> slots = new ArrayList<>();
   private final float[] xs = new float[6], ys = new float[6], temperatures = new float[6];
   private final String[] hours = new String[6], labels = new String[6];
-  private final DateTimeFormatter time =
+  private com.zikra.app.location.LocationPoint location =
+      com.zikra.app.location.LocationPoint.INITIAL;
+  private DateTimeFormatter time =
       DateTimeFormatter.ofPattern("HH:mm", new Locale("id", "ID"))
           .withZone(ZoneId.of("Asia/Jakarta"));
 
@@ -27,6 +29,13 @@ public final class TemperatureChartView extends View {
   }
 
   public void setForecast(List<BmkgParser.Weather> forecast) {
+    setForecast(forecast, com.zikra.app.location.LocationStore.current(getContext()));
+  }
+
+  public void setForecast(
+      List<BmkgParser.Weather> forecast, com.zikra.app.location.LocationPoint point) {
+    location = point;
+    time = time.withZone(point.zone);
     slots.clear();
     for (BmkgParser.Weather slot : forecast) {
       try {
@@ -41,12 +50,12 @@ public final class TemperatureChartView extends View {
       }
       if (slots.size() == (getResources().getConfiguration().fontScale > 1.2f ? 3 : 6)) break;
     }
-    StringBuilder description = new StringBuilder("Suhu prakiraan Sukolilo, WIB: ");
+    StringBuilder description = new StringBuilder("Suhu prakiraan " + location.caption() + ": ");
     for (int i = 0; i < slots.size(); i++)
       description
           .append(
               java.time.format.DateTimeFormatter.ofPattern("d MMM", new Locale("id", "ID"))
-                  .withZone(ZoneId.of("Asia/Jakarta"))
+                  .withZone(location.zone)
                   .format(slots.get(i).time))
           .append(" ")
           .append(hours[i])

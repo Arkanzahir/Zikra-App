@@ -28,6 +28,7 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="24dp"
                 android:paddingBottom="20dp">
+                <Button android:id="@+id/qiblaLocation" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="Ubah lokasi" android:textAllCaps="false" android:textColor="@color/pine" />
                 <com.zikra.app.reading.QiblaCompassView
                     android:id="@+id/qiblaCompass"
                     android:layout_width="match_parent"
@@ -50,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
-                    android:text="Barat laut · dari utara sejati"
+                    android:text="Derajat dihitung dari utara sejati"
                     android:textSize="12sp"
                     android:textColor="#53665E" />
                 <Button
@@ -100,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="11dp"
-                    android:text="Masjid acuan · ITS"
+                    android:text="Masjid di sekitar lokasi"
                     android:textStyle="bold"
                     android:textSize="14sp"
                     android:textColor="#243B30" />
@@ -130,7 +131,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Masjid Manarul Ilmi"
+                            android:text="Masjid terdekat"
                             android:textColor="#334C3F"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -138,7 +139,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="Kampus ITS · Sukolilo"
+                            android:id="@+id/qiblaLocationLabel" android:text="Lokasi pilihan"
                             android:textColor="#53665E"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -151,7 +152,7 @@
                         android:textColor="@color/sage"
                         android:textSize="12sp"
                         android:background="?android:attr/selectableItemBackgroundBorderless"
-                        android:contentDescription="Buka arah ke masjid di Google Maps"
+                        android:contentDescription="Buka daftar dan peta masjid terdekat"
                         android:clickable="true"
                         android:focusable="true" />
                 </LinearLayout>
@@ -159,7 +160,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Acuan 294° dari utara sejati untuk Sukolilo. Jauhkan ponsel dari logam dan magnet."
+                    android:id="@+id/qiblaMethod" android:text="Arah dihitung dari lokasi pilihan. Jauhkan ponsel dari logam dan magnet."
                     android:textSize="12sp"
                     android:textColor="#53665E"
                     android:lineSpacingExtra="3dp" />

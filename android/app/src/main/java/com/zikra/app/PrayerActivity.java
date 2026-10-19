@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import com.zikra.app.location.LocationPoint;
+import com.zikra.app.location.LocationStore;
 import com.zikra.app.reminders.PrayerReminders;
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -32,7 +34,8 @@ import java.util.Locale;
 
 /** Daily native timetable with per-prayer Android notification reminders. */
 public final class PrayerActivity extends BaseActivity {
-  private static final ZoneId WIB = ZoneId.of("Asia/Jakarta");
+  private LocationPoint location = LocationPoint.INITIAL;
+  private ZoneId localZone = location.zone;
   private static final Locale ID = Locale.forLanguageTag("id-ID");
   private static final int[] PRAYER_INDEXES = {0, 2, 3, 4, 5};
   private static final String[] PRAYER_KEYS = {"subuh", "dzuhur", "ashar", "maghrib", "isya"};
@@ -41,7 +44,7 @@ public final class PrayerActivity extends BaseActivity {
       new Runnable() {
         @Override
         public void run() {
-          LocalDate today = LocalDate.now(WIB);
+          LocalDate today = LocalDate.now(localZone);
           if (!today.equals(lastClockDate)) {
             lastClockDate = today;
             selectedDate = today;
@@ -66,6 +69,8 @@ public final class PrayerActivity extends BaseActivity {
   protected void onCreate(Bundle state) {
     super.onCreate(state);
     setContentView(R.layout.activity_prayer);
+    location = LocationStore.current(this);
+    localZone = location.zone;
     ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.sharedFeatureHeader))
         .bind(
             R.id.toolbarBack,
@@ -73,7 +78,7 @@ public final class PrayerActivity extends BaseActivity {
             R.id.featureSubtitle,
             R.id.prayerOpenQibla,
             "Waktu Sholat",
-            "Acuan Sukolilo, Surabaya · WIB",
+            location.caption(),
             R.drawable.ic_compass,
             "Buka arah kiblat");
     setupScreen("Waktu Sholat");
@@ -83,7 +88,7 @@ public final class PrayerActivity extends BaseActivity {
         .setSystemUiVisibility(
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     preferences = getSharedPreferences("zikra_preferences", MODE_PRIVATE);
-    selectedDate = LocalDate.now(WIB);
+    selectedDate = LocalDate.now(localZone);
     lastClockDate = selectedDate;
     if (state != null) {
       try {
@@ -100,13 +105,14 @@ public final class PrayerActivity extends BaseActivity {
 
     todayTab.setOnClickListener(
         view -> {
-          selectedDate = LocalDate.now(WIB);
+          selectedDate = LocalDate.now(localZone);
           selectMode(false);
         });
     weekTab.setOnClickListener(view -> selectMode(true));
     ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.sharedFeatureHeader))
         .action()
         .setOnClickListener(view -> open(QiblaActivity.class));
+    findViewById(R.id.prayerLocation).setOnClickListener(v -> open(LocationActivity.class));
     findViewById(R.id.prayerChecklist)
         .setOnClickListener(
             view ->
@@ -141,8 +147,23 @@ public final class PrayerActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    LocationPoint selected = LocationStore.current(this);
+    if (!selected.key().equals(location.key())) selectedDate = LocalDate.now(selected.zone);
+    location = selected;
+    localZone = location.zone;
+    ((TextView) findViewById(R.id.featureSubtitle)).setText(location.caption());
+    ((TextView) findViewById(R.id.prayerMethod))
+        .setText(
+            "Perhitungan "
+                + location.caption()
+                + ". Subuh 20°, Isya 18°, Ashar bayangan 1×; ihtiyati 2 menit (terbit tanpa"
+                + " ihtiyati). Asumsi dekat permukaan laut. Bukan jadwal resmi Kemenag; cocokkan"
+                + " dengan masjid setempat. Tanda — berarti peristiwa belum dapat dihitung untuk"
+                + " tanggal/lokasi ini.");
     PrayerReminders.sync(this);
     updateReminderUi();
+    renderDates();
+    renderWeek();
     renderRows();
     clock.removeCallbacks(updateClock);
     clock.post(updateClock);
@@ -233,20 +254,20 @@ public final class PrayerActivity extends BaseActivity {
         .setText(
             weekMode
                 ? "Jadwal pekan ini"
-                : selectedDate.equals(LocalDate.now(WIB))
+                : selectedDate.equals(LocalDate.now(localZone))
                     ? "Jadwal hari ini"
                     : selectedDate.format(DateTimeFormatter.ofPattern("EEEE, d MMMM", ID)));
   }
 
   private void renderRows() {
     rows.removeAllViews();
-    ZonedDateTime now = ZonedDateTime.now(WIB);
-    PrayerSchedule.NextPrayer upcoming = PrayerSchedule.nextAfter(now);
-    int next = upcoming.index;
-    PrayerSchedule.Day timetable = PrayerSchedule.forDate(selectedDate);
+    ZonedDateTime now = ZonedDateTime.now(localZone);
+    PrayerSchedule.NextPrayer upcoming = PrayerSchedule.nextAfter(now, location);
+    int next = upcoming == null ? -1 : upcoming.index;
+    PrayerSchedule.Day timetable = PrayerSchedule.forDate(selectedDate, location);
     ((TextView) findViewById(R.id.prayerSunrise)).setText(timetable.time(1));
     ((TextView) findViewById(R.id.prayerSunset)).setText(timetable.time(4));
-    boolean today = selectedDate.equals(LocalDate.now(WIB));
+    boolean today = selectedDate.equals(LocalDate.now(localZone));
     boolean master = preferences.getBoolean("reminder_enabled", false);
     for (int item = 0; item < PRAYER_INDEXES.length; item++) {
       final String key = "reminder_" + PRAYER_KEYS[item];
@@ -254,7 +275,10 @@ public final class PrayerActivity extends BaseActivity {
       LinearLayout row =
           (LinearLayout) getLayoutInflater().inflate(R.layout.prayer_item, rows, false);
       row.setBackgroundResource(
-          today && upcoming.time.toLocalDate().equals(selectedDate) && next == index
+          today
+                  && upcoming != null
+                  && upcoming.time.toLocalDate().equals(selectedDate)
+                  && next == index
               ? R.drawable.prayer_bg_active
               : R.drawable.prayer_bg_row);
       ((TextView) row.findViewById(R.id.prayerRowName)).setText(PrayerSchedule.NAMES[index]);
@@ -290,10 +314,17 @@ public final class PrayerActivity extends BaseActivity {
   }
 
   private void renderCountdown() {
-    ZonedDateTime now = ZonedDateTime.now(WIB);
+    ZonedDateTime now = ZonedDateTime.now(localZone);
     boolean today = selectedDate.equals(now.toLocalDate());
-    PrayerSchedule.NextPrayer next = PrayerSchedule.nextAfter(now);
-    PrayerSchedule.Day selected = PrayerSchedule.forDate(selectedDate);
+    PrayerSchedule.NextPrayer next = PrayerSchedule.nextAfter(now, location);
+    PrayerSchedule.Day selected = PrayerSchedule.forDate(selectedDate, location);
+    if (next == null) {
+      ((TextView) findViewById(R.id.prayerNextLabel)).setText("Perhitungan belum tersedia");
+      ((TextView) findViewById(R.id.prayerNextName))
+          .setText("Cocokkan jadwal dengan masjid setempat");
+      ((TextView) findViewById(R.id.prayerCountdown)).setText("—");
+      return;
+    }
     if (today && previousNext != next.index) renderRows();
     ((TextView) findViewById(R.id.prayerNextLabel))
         .setText(
@@ -310,7 +341,7 @@ public final class PrayerActivity extends BaseActivity {
                 : PrayerSchedule.NAMES[0] + " · " + selected.time(0));
     TextView countdown = findViewById(R.id.prayerCountdown);
     if (!today) {
-      countdown.setText("Sukolilo · WIB");
+      countdown.setText(location.zoneLabel(java.time.Instant.now()));
       countdown.setTextSize(21);
       return;
     }
@@ -385,7 +416,7 @@ public final class PrayerActivity extends BaseActivity {
     LocalDate monday = selectedDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
     for (int day = 0; day < 7; day++) {
       LocalDate date = monday.plusDays(day);
-      PrayerSchedule.Day timetable = PrayerSchedule.forDate(date);
+      PrayerSchedule.Day timetable = PrayerSchedule.forDate(date, location);
       TextView item = new TextView(this);
       item.setText(
           date.format(DateTimeFormatter.ofPattern("EEEE, d MMM", ID))
@@ -404,7 +435,9 @@ public final class PrayerActivity extends BaseActivity {
       item.setLineSpacing(dp(5), 1);
       item.setPadding(dp(14), dp(11), dp(14), dp(11));
       item.setBackgroundResource(
-          date.equals(LocalDate.now(WIB)) ? R.drawable.prayer_bg_active : R.drawable.prayer_bg_row);
+          date.equals(LocalDate.now(localZone))
+              ? R.drawable.prayer_bg_active
+              : R.drawable.prayer_bg_row);
       LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, -2);
       params.bottomMargin = dp(7);
       weekSummary.addView(item, params);

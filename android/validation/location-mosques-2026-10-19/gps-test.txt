@@ -1,0 +1,6 @@
+
+com.zikra.app.DeviceLocationTest:.
+Test results for InstrumentationTestRunner=.
+Time: 23.704
+
+OK (1 test)

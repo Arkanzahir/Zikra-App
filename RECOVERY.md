@@ -2,12 +2,12 @@
 
 ## Status terbaru
 
-Tahap onboarding berikutnya selesai: parallax sentuh/gulir pada gambar utuh dan teks,
-karakter tetap diam. Komposisi yang disetujui, judul 32sp, paragraf manfaat serta master
-logo dipertahankan. Tidak ada sensor/loop idle; mengikuti animasi sistem/penghemat daya.
-Build/lint dan tujuh skenario onboarding unik lulus; [video dan bukti terbaru](android/validation/onboarding-parallax-2026-10-19/README.md).
-[Rencana berikutnya](design/IMPROVEMENT_PLAN.md): lokasi bersama/masjid, lalu murottal/
-hafalan dan integrasi asisten. Fitur rencana tersebut belum diimplementasikan tahap ini.
+Tahap lokasi/masjid tersedia: lokasi otomatis saat diminta atau pemilihan kota manual,
+berbagi koordinat/zona waktu untuk Home, jadwal/pengingat sholat, cuaca dan Kiblat.
+Daftar/peta OpenStreetMap native ada di Zikra; petunjuk arah membuka Google Maps.
+Pengguna memilih OSM untuk versi awal karena layanan Google Cloud/billing belum aktif.
+Onboarding/parallax yang disetujui tetap dipertahankan. [Bukti terbaru](android/validation/location-mosques-2026-10-19/README.md).
+Murottal/hafalan dan asisten tetap tahap berikutnya dalam [rencana](design/IMPROVEMENT_PLAN.md).
 
 Branch `recovery/study-hifz-refresh` memuat pembangunan ulang dari riwayat chat dan screenshot pengguna. Sumber asli lokal versi taman/Home belum ditemukan; implementasi baru tidak diklaim identik dengan kode atau piksel aslinya. Checkpoint disimpan ke GitHub per tahap, tanpa menggabungkan main otomatis.
 
@@ -16,9 +16,9 @@ Branch `recovery/study-hifz-refresh` memuat pembangunan ulang dari riwayat chat 
 | Study/Hifz | Study khusus akademik, checklist ibadah dari Waktu Sholat dan Diary Hifz terpisah. Tugas akademik/target Hifz tetap dapat diakses lintas tanggal; ibadah mengikuti hari lokal. Hari baru kosong, tanpa 24 contoh atau 8 progres selesai palsu. Data dan status lama tetap dipertahankan. CRUD/SQLite v2, draft editor, navigasi dan metadata 114 surah offline. |
 | Branding | File master JPG tidak berubah; simbol bulan sabit, buku dan spark tetap sama. Varian Pine/putih memakai geometri/alpha identik; XML logo bersama pada splash/onboarding/Home/Tentang, simbol saja pada adaptive icon. Wordmark ditulis `zikra` tanpa titik; Profil memakai avatar. |
 | Onboarding | Tiga ilustrasi 2D 3:2: belajar di meja, perempuan bermukena di sajadah, membaca Quran dengan rehal. Parallax gambar utuh/teks saat sentuh/gulir; karakter tetap diam, tanpa sensor/loop idle. Animasi nonaktif/penghemat daya menghentikan efek. Judul/paragraf, kembali dan langkah 01 / 03. ImageView hanya memuat gambar aktif dengan sampling sesuai display. Tanpa jenjang/minat; preferensi lama dipertahankan. |
-| Home | Logo/lokasi kiri atas, siang/malam, busur matahari berdasarkan terbit/transit/terbenam, fase bulan USNO harian atau perkiraan lokal berlabel, parallax dan animasi masuk. |
+| Home | Lokasi/zona dipilih pengguna, logo/lokasi kiri atas, siang/malam, busur matahari berdasarkan terbit/transit/terbenam, fase bulan USNO harian atau perkiraan lokal berlabel, parallax dan animasi masuk. |
 | Quran | Katalog ringkas dan reader terang sesuai referensi Suhayel; ukuran tulisan Arab/terjemahan tersimpan, tema terang/malam/otomatis dan lompat ayat dengan validasi rentang. Pencarian Arab mengabaikan harakat/tatweel/variasi alef. Reader native 114 surah public v4, Utsmani/terjemahan resource 33, 50 ayat per bagian, bookmark kunci stabil, resume/recreation, delapan bagian cache; empat surah bawaan. Semua target Hifz menuju reader native. |
-| Cuaca/Protector | Open-Meteo untuk prakiraan model Sukolilo, refresh 10 menit/cache maksimal enam jam bertimestamp. Gempa/peringatan tetap BMKG. Header XML sama dengan Study/Hifz; grafik memakai geometri tersimpan. |
+| Cuaca/Protector | Open-Meteo untuk prakiraan model lokasi pilihan dengan cache terpisah maksimal empat lokasi, refresh 10 menit/cache maksimal enam jam bertimestamp. Gempa/peringatan tetap BMKG. Header XML sama dengan Study/Hifz; grafik memakai geometri tersimpan. |
 
 Ronde 19 Oktober dimulai dari audit sumber/referensi dan panduan aksesibilitas resmi, lalu implementasi terarah pada onboarding, keterbacaan, navigasi, rencana lintas tanggal, reader dan penanganan data jaringan. **Build/lint, 33 tes JVM dan 47 metode emulator unik lulus.** [Laporan ronde ini](android/validation/quality-2026-10-19/README.md) memuat 22 PNG aktual, kegagalan awal/retest dan diagnosis ANR renderer/SystemUI emulator. Label navigasi serta Lewati tetap utuh pada font besar. Ini belum bukti HP fisik atau runtime API 35.
 
@@ -29,9 +29,9 @@ Ronde 19 Oktober dimulai dari audit sumber/referensi dan panduan aksesibilitas r
 ## Yang belum selesai atau belum terbukti
 
 - Mushaf sesuai layout edisi, murottal dan unduhan Quran penuh belum tersedia. Pengguna belum mempunyai akses production Content Sync. Cache bagian yang dibuka bukan offline seluruh Quran.
-- Posisi/orientasi bulan, awan dan bintang merupakan ilustrasi; fraksi terang dari data harian bukan pengamatan langsung atau penetapan awal bulan. Sumber/fallback dijelaskan saat label Langit diketuk. Lokasi masih Sukolilo/WIB.
+- Posisi/orientasi bulan, awan dan bintang merupakan ilustrasi; fraksi terang dari data harian bukan pengamatan langsung atau penetapan awal bulan. Sumber/fallback dijelaskan saat label Langit diketuk. Lokasi/zona mengikuti pilihan; acuan awal Sukolilo/WIB berlabel sampai pengguna menyimpan pilihan.
 - Kelancaran, baterai, sensor Kiblat/tilt, haptik, alarm/izin, layanan suara dan runtime Android API 35 belum diverifikasi di HP fisik. Emulator API 28 dengan software rendering tidak membuktikan performa HP.
-- AI masih berbasis aturan lokal; tidak ada penilaian hafalan AI. Doa/Hadis tetap koleksi terbatas. Pilihan lokasi dan pengembangan fitur lain perlu tahap tersendiri.
+- AI masih berbasis aturan lokal; tidak ada penilaian hafalan AI. Doa/Hadis tetap koleksi terbatas. Pengembangan AI generatif dan fitur Quran lanjutan perlu tahap tersendiri.
 - Uji agenda lama yang terhambat ANR tetap historis. Ronde terbaru memeriksa scoped onboarding320×560dp/font200%, Home sekitar320×720dp/font200% dan asisten200%. SystemUI sempat ANR; pemulihan backend dan pengujian ulang dicatat, bukan dihitung sebagai metode baru. Belum regresi seluruh kondisi/perangkat.
 
 ## Sumber dan riwayat penelusuran

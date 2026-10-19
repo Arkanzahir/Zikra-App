@@ -48,7 +48,7 @@
                             android:tint="@color/protector_cyan_ink" />
                         <TextView
                             style="@style/ProtectorHeading"
-                            android:text="Keputih, Sukolilo"
+                            android:text="Lokasi pilihan"
                             android:id="@+id/weatherLocation"
                             android:layout_width="wrap_content"
                             android:layout_marginStart="6dp"

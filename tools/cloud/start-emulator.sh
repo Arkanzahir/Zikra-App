@@ -45,18 +45,20 @@ if proxy.hostname:
     subprocess.run(['adb','-s','emulator-5558','shell','settings','put','global','http_proxy',f'{address}:{proxy.port or 80}'],check=True)
 PY
 # Install the injected CA in this test emulator only. APK trust policy is unchanged.
-zikra_ca=/usr/local/share/ca-certificates/environment-proxy-ca.crt
-if [ -f "$zikra_ca" ]; then
-  zikra_ca_hash=$(openssl x509 -in "$zikra_ca" -subject_hash_old -noout)
+if [ -d /usr/local/share/ca-certificates ]; then
   adb -s "$zikra_device" shell mkdir -p /data/local/tmp/zikra-cacerts
   adb -s "$zikra_device" shell cp -r /system/etc/security/cacerts/. /data/local/tmp/zikra-cacerts/
-  adb -s "$zikra_device" push "$zikra_ca" "/data/local/tmp/zikra-cacerts/$zikra_ca_hash.0"
+  for zikra_ca in /usr/local/share/ca-certificates/*.crt; do
+    [ -f "$zikra_ca" ] || continue
+    zikra_ca_hash=$(openssl x509 -in "$zikra_ca" -subject_hash_old -noout)
+    adb -s "$zikra_device" push "$zikra_ca" "/data/local/tmp/zikra-cacerts/$zikra_ca_hash.0"
+  done
   if ! adb -s "$zikra_device" shell mount | rg -q 'tmpfs on /system/etc/security/cacerts'; then
     adb -s "$zikra_device" shell mount -t tmpfs tmpfs /system/etc/security/cacerts
   fi
   adb -s "$zikra_device" shell cp -r /data/local/tmp/zikra-cacerts/. /system/etc/security/cacerts/
-  adb -s "$zikra_device" shell chmod 644 "/system/etc/security/cacerts/$zikra_ca_hash.0"
-  adb -s "$zikra_device" shell chcon u:object_r:system_file:s0 "/system/etc/security/cacerts/$zikra_ca_hash.0"
+  adb -s "$zikra_device" shell 'chmod 644 /system/etc/security/cacerts/*'
+  adb -s "$zikra_device" shell 'chcon u:object_r:system_file:s0 /system/etc/security/cacerts/*'
 fi
 adb -s "$zikra_device" shell wm dismiss-keyguard
 adb -s "$zikra_device" install -r "$zikra_repo/android/app/build/outputs/apk/debug/app-debug.apk"

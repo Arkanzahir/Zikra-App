@@ -13,6 +13,13 @@ import android.view.View;
 public class QiblaCompassView extends View {
   private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
   private float heading;
+  private float bearing = 294f;
+
+  public void setBearing(float bearing) {
+    this.bearing = CompassMath.normalize(bearing);
+    invalidate();
+  }
+
   private boolean aligned;
 
   public QiblaCompassView(Context context, AttributeSet attrs) {
@@ -99,7 +106,7 @@ public class QiblaCompassView extends View {
     index.close();
     canvas.drawPath(index, paint);
     canvas.save();
-    canvas.rotate(294f - heading);
+    canvas.rotate(bearing - heading);
     Path pointer = new Path();
     pointer.moveTo(0, -118);
     pointer.lineTo(-8, -87);

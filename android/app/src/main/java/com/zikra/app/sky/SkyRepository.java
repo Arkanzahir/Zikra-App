@@ -2,7 +2,7 @@ package com.zikra.app.sky;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import com.zikra.app.PrayerSchedule;
+import com.zikra.app.location.LocationPoint;
 import java.io.IOException;
 import java.time.*;
 import java.util.concurrent.TimeUnit;
@@ -29,12 +29,16 @@ public final class SkyRepository implements AutoCloseable {
   }
 
   public void load(LocalDate date, boolean force, Result result) {
+    load(date, force, com.zikra.app.location.LocationStore.current(owner), result);
+  }
+
+  public void load(LocalDate date, boolean force, LocationPoint point, Result result) {
     int version = ++generation;
     if (call != null) call.cancel();
-    result.show(SkyDay.estimate(date));
+    result.show(SkyDay.estimate(date, point));
     if (!force) {
       try {
-        result.show(parse(cache.getString("json", ""), date));
+        result.show(parse(cache.getString("json", ""), date, point));
         return;
       } catch (JSONException | RuntimeException ignored) {
       }
@@ -43,10 +47,11 @@ public final class SkyRepository implements AutoCloseable {
         "https://aa.usno.navy.mil/api/rstt/oneday?date="
             + date
             + "&coords="
-            + PrayerSchedule.LATITUDE
+            + point.latitude
             + ","
-            + PrayerSchedule.LONGITUDE
-            + "&tz=7";
+            + point.longitude
+            + "&tz="
+            + (date.atTime(12, 0).atZone(point.zone).getOffset().getTotalSeconds() / 3600d);
     call =
         client.newCall(
             new Request.Builder()
@@ -66,7 +71,7 @@ public final class SkyRepository implements AutoCloseable {
             try (Response source = response) {
               if (!source.isSuccessful() || source.body() == null) return;
               String json = source.body().string();
-              SkyDay day = parse(json, date);
+              SkyDay day = parse(json, date, point);
               owner.runOnUiThread(
                   () -> {
                     if (closed
@@ -83,15 +88,22 @@ public final class SkyRepository implements AutoCloseable {
   }
 
   public static SkyDay parse(String json, LocalDate expected) throws JSONException {
+    return parse(json, expected, LocationPoint.INITIAL);
+  }
+
+  public static SkyDay parse(String json, LocalDate expected, LocationPoint point)
+      throws JSONException {
     JSONObject root = new JSONObject(json);
     JSONArray coords = root.getJSONObject("geometry").getJSONArray("coordinates");
-    if (Math.abs(coords.getDouble(0) - PrayerSchedule.LONGITUDE) > .02
-        || Math.abs(coords.getDouble(1) - PrayerSchedule.LATITUDE) > .02)
+    if (Math.abs(coords.getDouble(0) - point.longitude) > .02
+        || Math.abs(coords.getDouble(1) - point.latitude) > .02)
       throw new JSONException("Location");
     JSONObject data = root.getJSONObject("properties").getJSONObject("data");
     LocalDate date = LocalDate.of(data.getInt("year"), data.getInt("month"), data.getInt("day"));
-    if (!date.equals(expected) || data.getDouble("tz") != 7 || data.optBoolean("isdst", false))
-      throw new JSONException("Date/time zone");
+    if (!date.equals(expected)
+        || data.getDouble("tz")
+            != expected.atTime(12, 0).atZone(point.zone).getOffset().getTotalSeconds() / 3600d
+        || data.optBoolean("isdst", false)) throw new JSONException("Date/time zone");
     LocalTime rise = null, noon = null, set = null;
     JSONArray events = data.getJSONArray("sundata");
     for (int i = 0; i < events.length(); i++) {

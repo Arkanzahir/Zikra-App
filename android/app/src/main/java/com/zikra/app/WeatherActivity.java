@@ -7,12 +7,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.zikra.app.location.LocationPoint;
+import com.zikra.app.location.LocationStore;
 import com.zikra.app.safety.BmkgClient;
 import com.zikra.app.safety.BmkgParser;
 import com.zikra.app.safety.ProtectorChrome;
 import com.zikra.app.safety.TemperatureChartView;
 import com.zikra.app.safety.WeatherSymbols;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +23,7 @@ import java.util.Locale;
 /** Forecast detail inspired by Info BMKG, using actual dated official forecast slots. */
 public final class WeatherActivity extends BaseActivity {
   private final Locale locale = new Locale("id", "ID");
-  private final ZoneId wib = ZoneId.of("Asia/Jakarta");
+  private LocationPoint location = LocationPoint.INITIAL;
   private BmkgClient bmkg;
   private BmkgParser.Forecast displayed;
   private final android.os.Handler refreshTimer =
@@ -40,10 +41,11 @@ public final class WeatherActivity extends BaseActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_weather);
-    setupScreen("Cuaca Sukolilo");
+    location = LocationStore.current(this);
+    setupScreen("Cuaca");
     ProtectorChrome.apply(this);
     text(R.id.protectorToolbarTitle, "Cuaca");
-    text(R.id.protectorToolbarSubtitle, "Acuan Sukolilo · Prakiraan Open-Meteo");
+    text(R.id.protectorToolbarSubtitle, location.caption() + " · Open-Meteo");
     if (getResources().getConfiguration().fontScale > 1.3f) {
       LinearLayout metrics = findViewById(R.id.weatherMetricsHeading);
       metrics.setOrientation(LinearLayout.VERTICAL);
@@ -52,6 +54,9 @@ public final class WeatherActivity extends BaseActivity {
           0;
     }
     bmkg = new BmkgClient(this);
+    findViewById(R.id.weatherLocation).setOnClickListener(v -> open(LocationActivity.class));
+    findViewById(R.id.weatherLocation).setMinimumHeight(dp(48));
+    findViewById(R.id.weatherLocation).setFocusable(true);
     findViewById(R.id.protectorRefresh).setOnClickListener(v -> refresh());
     findViewById(R.id.weatherSource)
         .setOnClickListener(v -> external(Intent.ACTION_VIEW, "https://open-meteo.com/"));
@@ -60,6 +65,11 @@ public final class WeatherActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    LocationPoint selected = LocationStore.current(this);
+    if (!selected.key().equals(location.key())) displayed = null;
+    location = selected;
+    text(R.id.protectorToolbarSubtitle, location.caption() + " · Open-Meteo");
+    text(R.id.weatherLocation, location.label + " · Ubah lokasi");
     refreshTimer.post(refreshTick);
   }
 
@@ -129,12 +139,14 @@ public final class WeatherActivity extends BaseActivity {
     BmkgParser.Weather current = forecast.current;
     ((ImageView) findViewById(R.id.weatherHeroIcon))
         .setImageResource(WeatherSymbols.forDescription(current.description));
-    text(R.id.weatherLocation, current.village + ", " + current.district);
+    text(R.id.weatherLocation, forecast.location.label + " · Ubah lokasi");
     text(
         R.id.weatherDate,
-        DateTimeFormatter.ofPattern("EEEE, d MMM · HH:mm 'WIB'", locale)
-            .withZone(wib)
-            .format(current.time));
+        DateTimeFormatter.ofPattern("EEEE, d MMM · HH:mm", locale)
+                .withZone(location.zone)
+                .format(current.time)
+            + " "
+            + location.zoneLabel(current.time));
     text(
         R.id.weatherTemperature,
         current.temperature.isEmpty() ? "—°C" : current.temperature + "°C");
@@ -146,7 +158,8 @@ public final class WeatherActivity extends BaseActivity {
     List<BmkgParser.Weather> relevant = new ArrayList<>();
     for (BmkgParser.Weather slot : forecast.slots)
       if (!slot.time.isBefore(current.time)) relevant.add(slot);
-    ((TemperatureChartView) findViewById(R.id.weatherChart)).setForecast(relevant);
+    ((TemperatureChartView) findViewById(R.id.weatherChart))
+        .setForecast(relevant, forecast.location);
     LinearLayout list = findViewById(R.id.weatherForecastList);
     list.removeAllViews();
     for (int i = 0; i < Math.min(24, relevant.size()); i++)
@@ -163,12 +176,14 @@ public final class WeatherActivity extends BaseActivity {
     bindCard(
         card,
         R.id.forecastDate,
-        DateTimeFormatter.ofPattern("EEE, dd MMM", locale).withZone(wib).format(slot.time),
+        DateTimeFormatter.ofPattern("EEE, dd MMM", locale)
+            .withZone(location.zone)
+            .format(slot.time),
         secondary);
     bindCard(
         card,
         R.id.forecastHour,
-        DateTimeFormatter.ofPattern("HH:mm", locale).withZone(wib).format(slot.time),
+        DateTimeFormatter.ofPattern("HH:mm", locale).withZone(location.zone).format(slot.time),
         primary);
     ((ImageView) card.findViewById(R.id.forecastIcon))
         .setImageResource(WeatherSymbols.forDescription(slot.description));

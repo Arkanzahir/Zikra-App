@@ -341,7 +341,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/protector_tag_blue"
-                        android:text="Masjid acuan · ITS"
+                        android:text="Masjid terdekat"
                         android:textAllCaps="false"
                         android:textSize="12sp"
                         android:textColor="#15332F"

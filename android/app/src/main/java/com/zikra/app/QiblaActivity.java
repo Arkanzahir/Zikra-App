@@ -1,14 +1,11 @@
 package com.zikra.app;
 
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
 import android.hardware.GeomagneticField;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.os.VibrationEffect;
@@ -22,7 +19,8 @@ import com.zikra.app.reading.QiblaCompassView;
 import java.util.Locale;
 
 public class QiblaActivity extends BaseActivity implements SensorEventListener {
-  private static final float QIBLA_BEARING = 294f;
+  private float qiblaBearing;
+  private com.zikra.app.location.LocationPoint location;
   private SensorManager sensorManager;
   private Sensor rotationSensor;
   private QiblaCompassView compass;
@@ -53,7 +51,7 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
             R.id.featureSubtitle,
             0,
             "Arah Kiblat",
-            "Acuan Sukolilo, Surabaya",
+            com.zikra.app.location.LocationStore.current(this).caption(),
             0,
             null);
     setupScreen("Arah Kiblat");
@@ -68,8 +66,7 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
     sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
     rotationSensor =
         sensorManager == null ? null : sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
-    declination =
-        new GeomagneticField(-7.28f, 112.79f, 10f, System.currentTimeMillis()).getDeclination();
+    updateLocation();
     if (rotationSensor == null) showMissingSensor();
     findViewById(R.id.qiblaCalibrate)
         .setOnClickListener(
@@ -79,33 +76,56 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
                     .setMessage(
                         "Gerakkan ponsel membentuk angka 8 beberapa kali. Lepaskan casing bermagnet"
                             + " dan jauhi logam. Setelah itu pegang ponsel mendatar.\n\n"
-                            + "Arah kiblat panduan Sukolilo: 294° dari utara sejati.")
+                            + "Arah Kiblat: "
+                            + Math.round(qiblaBearing)
+                            + "° dari utara sejati untuk "
+                            + location.label
+                            + ".")
                     .setPositiveButton("Mengerti", null)
                     .show());
-    findViewById(R.id.qiblaMaps)
-        .setOnClickListener(
-            view -> {
-              Uri maps =
-                  Uri.parse(
-                      "https://www.google.com/maps/dir/?api=1&destination=Masjid+Manarul+Ilmi+ITS+Surabaya&travelmode=walking");
-              try {
-                startActivity(new Intent(Intent.ACTION_VIEW, maps));
-              } catch (ActivityNotFoundException exception) {
-                toast("Aplikasi peta atau browser tidak tersedia");
-              }
-            });
+    findViewById(R.id.qiblaMaps).setOnClickListener(v -> open(NearbyMosquesActivity.class));
+    findViewById(R.id.qiblaLocation).setOnClickListener(v -> open(LocationActivity.class));
     NavDock.attach(this, (FrameLayout) findViewById(R.id.qiblaRoot), "qibla");
+  }
+
+  private void updateLocation() {
+    location = com.zikra.app.location.LocationStore.current(this);
+    qiblaBearing = location.qiblaBearing();
+    compass.setBearing(qiblaBearing);
+    declination =
+        new GeomagneticField(
+                (float) location.latitude,
+                (float) location.longitude,
+                0f,
+                System.currentTimeMillis())
+            .getDeclination();
+    ((TextView) findViewById(R.id.featureSubtitle)).setText(location.caption());
+    ((TextView) findViewById(R.id.qiblaBearing)).setText(Math.round(qiblaBearing) + "°");
+    ((TextView) findViewById(R.id.qiblaLocationLabel)).setText(location.label);
+    ((TextView) findViewById(R.id.qiblaMethod))
+        .setText(
+            "Acuan "
+                + Math.round(qiblaBearing)
+                + "° dari utara sejati untuk "
+                + location.label
+                + ". Jauhkan ponsel dari logam dan magnet.");
+    compass.setContentDescription(
+        "Kompas Kiblat " + Math.round(qiblaBearing) + " derajat dari utara sejati");
   }
 
   private void showMissingSensor() {
     sensorStatus.setText(
-        "Sensor kompas tidak tersedia. Gunakan panduan 294° dari utara sejati; arah pada diagram"
+        "Sensor kompas tidak tersedia. Gunakan panduan "
+            + Math.round(qiblaBearing)
+            + "° dari utara sejati; arah pada diagram"
             + " bersifat statis.");
   }
 
   @Override
   protected void onResume() {
     super.onResume();
+    updateLocation();
+    if (rotationSensor == null) showMissingSensor();
     receivedHeading = false;
     aligned = false;
     lastSensorRender = 0;
@@ -153,7 +173,7 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
     float trueHeading = CompassMath.normalize((float) Math.toDegrees(orientation[0]) + declination);
     heading = receivedHeading ? CompassMath.smooth(heading, trueHeading, 0.2f) : trueHeading;
     receivedHeading = true;
-    float distance = Math.abs(CompassMath.delta(QIBLA_BEARING, heading));
+    float distance = Math.abs(CompassMath.delta(qiblaBearing, heading));
     boolean nextAligned =
         sensorAccuracy >= SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM
             && distance <= (aligned ? 8f : 5f);
@@ -170,7 +190,7 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
       String text;
       if (sensorAccuracy < SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM)
         text = "Akurasi sensor rendah · kalibrasi kompas terlebih dahulu";
-      else if (aligned) text = "✓ Sejajar dengan arah kiblat · 294°";
+      else if (aligned) text = "✓ Sejajar dengan arah Kiblat · " + Math.round(qiblaBearing) + "°";
       else
         text =
             String.format(
@@ -178,7 +198,7 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
                 "Sensor aktif · arah ponsel %.0f° · putar %.0f° %s",
                 heading,
                 distance,
-                CompassMath.delta(QIBLA_BEARING, heading) >= 0 ? "ke kanan" : "ke kiri");
+                CompassMath.delta(qiblaBearing, heading) >= 0 ? "ke kanan" : "ke kiri");
       if (!text.equals(lastStatusText)) {
         sensorStatus.setText(text);
         sensorStatus.setTextColor(getColor(aligned ? R.color.sage_active : R.color.pine));
