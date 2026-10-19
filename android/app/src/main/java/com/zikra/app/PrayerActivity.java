@@ -66,6 +66,16 @@ public final class PrayerActivity extends BaseActivity {
   protected void onCreate(Bundle state) {
     super.onCreate(state);
     setContentView(R.layout.activity_prayer);
+    ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.sharedFeatureHeader))
+        .bind(
+            R.id.toolbarBack,
+            R.id.detailTitle,
+            R.id.featureSubtitle,
+            R.id.prayerOpenQibla,
+            "Waktu Sholat",
+            "Acuan Sukolilo, Surabaya · WIB",
+            R.drawable.ic_compass,
+            "Buka arah kiblat");
     setupScreen("Waktu Sholat");
     getWindow().setStatusBarColor(Color.parseColor("#FCFDFB"));
     getWindow()
@@ -94,7 +104,9 @@ public final class PrayerActivity extends BaseActivity {
           selectMode(false);
         });
     weekTab.setOnClickListener(view -> selectMode(true));
-    findViewById(R.id.prayerOpenQibla).setOnClickListener(view -> open(QiblaActivity.class));
+    ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.sharedFeatureHeader))
+        .action()
+        .setOnClickListener(view -> open(QiblaActivity.class));
     findViewById(R.id.prayerChecklist)
         .setOnClickListener(
             view ->
@@ -153,8 +165,8 @@ public final class PrayerActivity extends BaseActivity {
     weekMode = week;
     todayTab.setBackgroundResource(week ? 0 : R.drawable.prayer_bg_green);
     weekTab.setBackgroundResource(week ? R.drawable.prayer_bg_green : 0);
-    todayTab.setTextColor(Color.parseColor(week ? "#7E9185" : "#FFFFFF"));
-    weekTab.setTextColor(Color.parseColor(week ? "#FFFFFF" : "#7E9185"));
+    todayTab.setTextColor(Color.parseColor(week ? "#53665E" : "#FFFFFF"));
+    weekTab.setTextColor(Color.parseColor(week ? "#FFFFFF" : "#53665E"));
     rows.setVisibility(week ? View.GONE : View.VISIBLE);
     weekSummary.setVisibility(week ? View.VISIBLE : View.GONE);
     renderDates();
@@ -170,13 +182,15 @@ public final class PrayerActivity extends BaseActivity {
       LocalDate day = weekStart.plusDays(i);
       LinearLayout item =
           (LinearLayout) getLayoutInflater().inflate(R.layout.prayer_day, dates, false);
+      item.getLayoutParams().width =
+          dp(getResources().getConfiguration().fontScale > 1.3f ? 64 : 52);
       TextView name = item.findViewById(R.id.prayerDayName);
       TextView number = item.findViewById(R.id.prayerDayNumber);
       name.setText(day.format(DateTimeFormatter.ofPattern("EEE", ID)).toUpperCase(ID));
       number.setText(Integer.toString(day.getDayOfMonth()));
       boolean selected = day.equals(selectedDate);
       item.setBackgroundResource(selected ? R.drawable.prayer_bg_green : 0);
-      name.setTextColor(Color.parseColor(selected ? "#DDEDE3" : "#96A69B"));
+      name.setTextColor(Color.parseColor(selected ? "#DDEDE3" : "#53665E"));
       number.setTextColor(Color.parseColor(selected ? "#FFFFFF" : "#2E4837"));
       item.setContentDescription(day.format(DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy", ID)));
       item.setOnClickListener(
@@ -188,6 +202,23 @@ public final class PrayerActivity extends BaseActivity {
           });
       dates.addView(item);
     }
+    dates.post(
+        () -> {
+          if (dates.getParent() instanceof android.widget.HorizontalScrollView) {
+            int selected = selectedDate.getDayOfWeek().getValue() - 1;
+            View child = dates.getChildAt(selected);
+            if (child != null)
+              ((android.widget.HorizontalScrollView) dates.getParent())
+                  .smoothScrollTo(
+                      Math.max(
+                          0,
+                          child.getLeft()
+                              - (dates.getResources().getDisplayMetrics().widthPixels
+                                      - child.getWidth())
+                                  / 2),
+                      0);
+          }
+        });
     String caption = selectedDate.format(DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy", ID));
     try {
       caption +=
@@ -368,7 +399,7 @@ public final class PrayerActivity extends BaseActivity {
               + timetable.time(4)
               + "    Isya  "
               + timetable.time(5));
-      item.setTextSize(11);
+      item.setTextSize(14);
       item.setTextColor(Color.parseColor("#526F5C"));
       item.setLineSpacing(dp(5), 1);
       item.setPadding(dp(14), dp(11), dp(14), dp(11));

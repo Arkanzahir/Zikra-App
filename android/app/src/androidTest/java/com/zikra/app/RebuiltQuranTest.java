@@ -209,6 +209,112 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
     assertTrue(((Switch) page.findViewById(R.id.readingNightSwitch)).isChecked());
   }
 
+  public void testArabicSearchAndReadableSizesSurviveRecreation() throws Exception {
+    launch(new Intent(getInstrumentation().getTargetContext(), QuranActivity.class));
+    getInstrumentation()
+        .runOnMainSync(
+            () -> {
+              page.findViewById(R.id.quranHeaderSearch).performClick();
+              ((EditText) page.findViewById(R.id.quranSearch)).setText("البقرة");
+              LinearLayout results = page.findViewById(R.id.quranSurahList);
+              assertEquals(1, results.getChildCount());
+              assertEquals(
+                  "Al-Baqarah",
+                  ((TextView) results.getChildAt(0).findViewById(R.id.surahListName))
+                      .getText()
+                      .toString());
+              ((EditText) page.findViewById(R.id.quranSearch)).setText("Al Fatihah");
+              assertEquals(1, results.getChildCount());
+              results.getChildAt(0).performClick();
+            });
+    awaitVerse("1:1");
+    getInstrumentation()
+        .runOnMainSync(
+            () -> {
+              page.findViewById(R.id.quranReadingOptions).performClick();
+              AlertDialog settings = dialog("readingDialog");
+              ((SeekBar) settings.findViewById(R.id.quranArabicSize)).setProgress(12);
+              ((SeekBar) settings.findViewById(R.id.quranTranslationSize)).setProgress(6);
+              assertEquals(36, prefs.getInt("reading_arabic_size", 0));
+              assertEquals(20, prefs.getInt("reading_translation_size", 0));
+              settings.dismiss();
+            });
+    recreateReader();
+    awaitVerse("1:1");
+    getInstrumentation()
+        .runOnMainSync(
+            () -> {
+              View row =
+                  ((LinearLayout) page.findViewById(R.id.ayahContainer)).findViewWithTag("1:1");
+              float density = page.getResources().getDisplayMetrics().scaledDensity;
+              assertEquals(
+                  36f, ((TextView) row.findViewById(R.id.ayahArabic)).getTextSize() / density, .1f);
+              assertEquals(
+                  20f,
+                  ((TextView) row.findViewById(R.id.ayahTranslation)).getTextSize() / density,
+                  .1f);
+            });
+    UiEvidence.capture(getInstrumentation(), "ImprovedQuranReadableSizes");
+  }
+
+  public void testVerseJumpValidatesBoundsAndOpensCorrectPart() throws Exception {
+    launch(target(2, 1));
+    awaitVerse("2:1");
+    getInstrumentation()
+        .runOnMainSync(
+            () -> {
+              page.findViewById(R.id.quranJumpToVerse).performClick();
+              AlertDialog jump = dialog("jumpDialog");
+              EditText input = jump.findViewById(R.id.quranJumpInput);
+              input.setText("0");
+              jump.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
+              assertTrue(jump.isShowing());
+              assertNotNull(input.getError());
+              input.setText("287");
+              jump.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
+              assertTrue(jump.isShowing());
+              assertNotNull(input.getError());
+              input.setText("280");
+              jump.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
+              assertFalse(jump.isShowing());
+            });
+    awaitVerse("2:280");
+    assertEquals(280, prefs.getInt("last_ayah", 0));
+    assertEquals("2:280", prefs.getString("last_verse_key", ""));
+    assertTrue(
+        ((TextView) page.findViewById(R.id.quranPageLabel))
+            .getText()
+            .toString()
+            .contains("251–286"));
+    assertEquals(36, ((LinearLayout) page.findViewById(R.id.ayahContainer)).getChildCount());
+    recreateReader();
+    awaitVerse("2:280");
+    assertEquals(280, prefs.getInt("last_ayah", 0));
+    UiEvidence.capture(getInstrumentation(), "ImprovedQuranVerseJump");
+  }
+
+  private AlertDialog dialog(String name) {
+    try {
+      java.lang.reflect.Field field = QuranActivity.class.getDeclaredField(name);
+      field.setAccessible(true);
+      return (AlertDialog) field.get(page);
+    } catch (ReflectiveOperationException error) {
+      throw new AssertionError(error);
+    }
+  }
+
+  private void recreateReader() {
+    Instrumentation.ActivityMonitor monitor =
+        getInstrumentation().addMonitor(QuranActivity.class.getName(), null, false);
+    try {
+      getInstrumentation().runOnMainSync(page::recreate);
+      page = getInstrumentation().waitForMonitorWithTimeout(monitor, 30000);
+      assertNotNull(page);
+    } finally {
+      getInstrumentation().removeMonitor(monitor);
+    }
+  }
+
   @Override
   protected void tearDown() throws Exception {
     if (page != null) getInstrumentation().runOnMainSync(page::finish);

@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.zikra.app.discovery.DiscoveryUi;
 import com.zikra.app.discovery.HadithCollection;
+import com.zikra.app.ui.FeatureHeader;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
@@ -30,6 +31,16 @@ public final class HadithActivity extends BaseActivity {
   protected void onCreate(Bundle state) {
     super.onCreate(state);
     setContentView(R.layout.activity_hadith);
+    ((FeatureHeader) findViewById(R.id.utilitiesHeader))
+        .bind(
+            R.id.toolbarBack,
+            R.id.detailTitle,
+            R.id.featureSubtitle,
+            0,
+            "Hadis",
+            "Kutipan pilihan · offline",
+            0,
+            null);
     setupScreen("Hadis");
     getWindow().setStatusBarColor(Color.parseColor("#F8F9F4"));
     getWindow().setNavigationBarColor(Color.parseColor("#F8F9F4"));
@@ -49,12 +60,15 @@ public final class HadithActivity extends BaseActivity {
       Button tab = new Button(this);
       tab.setText(value);
       tab.setAllCaps(false);
-      tab.setTextSize(12);
+      tab.setTextSize(14);
+      tab.setMinimumHeight(dp(48));
+      tab.setMinHeight(dp(48));
       tab.setMinWidth(0);
       tab.setMinimumWidth(0);
       tab.setPadding(dp(16), 0, dp(16), 0);
       LinearLayout.LayoutParams p =
-          new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, dp(37));
+          new LinearLayout.LayoutParams(
+              LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
       p.setMargins(dp(4), 0, dp(4), 0);
       tab.setLayoutParams(p);
       tab.setOnClickListener(
@@ -87,8 +101,8 @@ public final class HadithActivity extends BaseActivity {
     for (Button tab : tabs) {
       boolean active = category.contentEquals(tab.getText());
       tab.setSelected(active);
-      tab.setBackground(DiscoveryUi.background(this, active ? "#57927E" : "#EDF2EB", 22));
-      tab.setTextColor(Color.parseColor(active ? "#FFFFFF" : "#74877C"));
+      tab.setBackground(DiscoveryUi.background(this, active ? "#15332F" : "#EDF2EB", 22));
+      tab.setTextColor(Color.parseColor(active ? "#FFFFFF" : "#52665F"));
     }
     LinearLayout list = findViewById(R.id.hadithList);
     list.removeAllViews();
@@ -143,7 +157,7 @@ public final class HadithActivity extends BaseActivity {
     body.addView(meaning);
     body.addView(
         DiscoveryUi.text(
-            this, entry.source + "\nKutipan hadis · terjemahan makna", 12, "#7C8B8A", false));
+            this, entry.source + "\nKutipan hadis · terjemahan makna", 14, "#52665F", false));
     android.widget.ScrollView scroll = new android.widget.ScrollView(this);
     scroll.addView(body);
     new AlertDialog.Builder(this)

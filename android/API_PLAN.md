@@ -1,4 +1,4 @@
-> **Status 18 Oktober 2026:** branding master, onboarding taman, langit Home, reader Quran native 114 surah serta cuaca Open-Meteo dibangun ulang dari referensi chat pada branch `recovery/study-hifz-refresh`. Ini implementasi baru; kode asli lokal lama belum ditemukan. Lihat [status dan batas pemeriksaan](validation/rebuilt/README.md) serta [RECOVERY.md](../RECOVERY.md). Catatan validasi lama di bawah bersifat historis.
+> **Status 19 Oktober 2026:** branding master, onboarding 2D statis, langit Home, reader Quran native 114 surah serta cuaca Open-Meteo dibangun ulang dari referensi chat pada branch `recovery/study-hifz-refresh`. Ini implementasi baru; kode asli lokal lama belum ditemukan. Lihat [status dan batas pemeriksaan](validation/rebuilt/README.md) serta [RECOVERY.md](../RECOVERY.md). Catatan validasi lama di bawah bersifat historis.
 
 Provider yang sudah dihubungkan pada pembangunan ulang: Quran.com public v4; USNO `aa.usno.navy.mil/api/rstt/oneday` harian untuk Sukolilo; Open-Meteo `api.open-meteo.com/v1/forecast` untuk prakiraan model; BMKG `data.bmkg.go.id/DataMKG/TEWS/autogempa.json` untuk laporan gempa. Aplikasi tidak membutuhkan secret untuk jalur publik ini. Cache cuaca disegarkan setelah 10 menit dan fallback tersimpan paling lama enam jam dengan timestamp; tidak ditampilkan sebagai pengamatan BMKG. USNO punya fallback perkiraan lokal yang ditandai. Akses production Content Sync belum dimiliki pengguna; jangan mengklaim tersedia.
 
@@ -16,7 +16,7 @@ Pilihan pengguna, 17 Oktober 2026. Dokumen ini menetapkan arah integrasi; daftar
 | Jadwal sholat online | Aladhan | `https://api.aladhan.com/v1/timingsByCity` atau `/v1/timings/{timestamp}` untuk koordinat | Masih memakai kalkulasi harian lokal `PrayerSchedule` |
 | Quran Arab/terjemahan | Quran.com / Quran Foundation | Public v4 chapters, verses/by_chapter, resource 33 | Reader native 114 surah; metadata dibundel; cache maksimal 8 bagian × 50 ayat. Bukan Content Sync/Mushaf/audio |
 | Gempa | BMKG Open Data | `https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json` | Request background, parser, peta dan halaman detail sudah ada |
-| Prakiraan cuaca | Open-Meteo | `https://api.open-meteo.com/v1/forecast` | Belum terintegrasi; cuaca yang ada masih memakai API BMKG Keputih |
+| Prakiraan cuaca | Open-Meteo | `https://api.open-meteo.com/v1/forecast` | Terintegrasi untuk acuan Sukolilo: refresh 10 menit, cache maksimal 6 jam, sumber/waktu terlihat |
 | Bantuan darurat | Android Intent | `tel:112`, `https://wa.me/`, `geo:` / Google Maps | Membuka dialer, WhatsApp dan Maps sudah tersedia |
 
 ## Kontrak integrasi native

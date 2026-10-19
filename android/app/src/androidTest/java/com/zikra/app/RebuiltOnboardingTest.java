@@ -54,9 +54,8 @@ public final class RebuiltOnboardingTest extends InstrumentationTestCase {
         .commit();
     launch();
     assertNotNull(page.getWindow().getDecorView().findViewWithTag("zikraBrand"));
-    assertEquals(
-        "Langkah 1 dari 3", ((TextView) page.findViewById(R.id.onboardStep)).getText().toString());
-    capture("StaticOnboarding1");
+    assertEquals("01 / 03", ((TextView) page.findViewById(R.id.onboardStep)).getText().toString());
+    capture("QualityOnboarding1");
     getInstrumentation()
         .runOnMainSync(() -> page.findViewById(R.id.onboardContinue).performClick());
     Instrumentation.ActivityMonitor monitor =
@@ -69,12 +68,11 @@ public final class RebuiltOnboardingTest extends InstrumentationTestCase {
     } finally {
       getInstrumentation().removeMonitor(monitor);
     }
-    assertEquals(
-        "Langkah 2 dari 3", ((TextView) page.findViewById(R.id.onboardStep)).getText().toString());
-    capture("StaticOnboarding2");
+    assertEquals("02 / 03", ((TextView) page.findViewById(R.id.onboardStep)).getText().toString());
+    capture("QualityOnboarding2");
     getInstrumentation()
         .runOnMainSync(() -> page.findViewById(R.id.onboardContinue).performClick());
-    capture("StaticOnboarding3");
+    capture("QualityOnboarding3");
     monitor = getInstrumentation().addMonitor(HomeActivity.class.getName(), null, false);
     try {
       getInstrumentation()
@@ -86,7 +84,7 @@ public final class RebuiltOnboardingTest extends InstrumentationTestCase {
       getInstrumentation().removeMonitor(monitor);
     }
     assertTrue(prefs.getBoolean("onboarding_complete", false));
-    assertEquals(4, prefs.getInt("onboarding_story_version", 0));
+    assertEquals(5, prefs.getInt("onboarding_story_version", 0));
     assertEquals("legacy-level", prefs.getString("education_level", ""));
     assertTrue(
         prefs

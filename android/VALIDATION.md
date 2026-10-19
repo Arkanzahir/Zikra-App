@@ -1,4 +1,5 @@
-> **Status 18 Oktober 2026:** onboarding terbaru memakai tiga ilustrasi 2D statis; animasi, parallax dan aset 3D onboarding telah dihapus dari APK. Logo master, copy, navigasi, preferensi lama dan fitur lainnya dipertahankan. [Screenshot/validasi terbaru](validation/static-onboarding/README.md) · [RECOVERY.md](../RECOVERY.md). Catatan lama di bawah bersifat historis.
+> **Status 19 Oktober 2026:** ronde kegunaan memperbaiki onboarding 2D statis, header/navigasi, keterbacaan, rencana lintas tanggal dan pengaturan reader. Progres baru berasal dari tindakan pengguna, tanpa tugas atau penyelesaian demo otomatis. [Hasil dan screenshot terbaru](validation/quality-2026-10-19/README.md) · [RECOVERY.md](../RECOVERY.md). Hasil checkpoint lama di bawah bersifat historis.
+
 
 # Validasi pembaruan referensi — 16 Oktober 2026
 

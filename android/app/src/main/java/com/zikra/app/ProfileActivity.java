@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import com.zikra.app.data.ZikraDbHelper;
+import com.zikra.app.ui.FeatureHeader;
 
 /** Local profile and entry points to faith, learning and device preferences. */
 public final class ProfileActivity extends BaseActivity {
@@ -24,7 +26,23 @@ public final class ProfileActivity extends BaseActivity {
   protected void onCreate(Bundle state) {
     super.onCreate(state);
     setContentView(R.layout.activity_profile);
-    setupScreen("Profil Saya");
+    ((FeatureHeader) findViewById(R.id.utilitiesHeader))
+        .bind(
+            R.id.toolbarBack,
+            R.id.detailTitle,
+            R.id.featureSubtitle,
+            0,
+            "Profil",
+            "Ruang pribadimu di perangkat",
+            0,
+            null);
+    setupScreen("Profil");
+    getWindow().setStatusBarColor(0xFFFFFFFF);
+    getWindow().setNavigationBarColor(0xFFF8F9F4);
+    getWindow()
+        .getDecorView()
+        .setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     db = new ZikraDbHelper(this);
     preferences = getSharedPreferences("zikra_preferences", MODE_PRIVATE);
     rows = findViewById(R.id.profileRows);
@@ -40,12 +58,15 @@ public final class ProfileActivity extends BaseActivity {
 
   private void render() {
     if (db == null) return;
-    ZikraDbHelper.Progress progress = db.getProgress();
+    ZikraDbHelper.Progress progress = db.getProgress(ZikraDbHelper.CATEGORY_STUDY);
     ((TextView) findViewById(R.id.profileProgressPercent)).setText(progress.percent + "%");
     ((ProgressBar) findViewById(R.id.profileProgress)).setProgress(progress.percent);
     ((TextView) findViewById(R.id.profileProgressCaption))
-        .setText(progress.completed + " dari " + progress.total + " checklist selesai");
-    ((TextView) findViewById(R.id.profileRoleCaption)).setText("Profil lokal · Sukolilo, Surabaya");
+        .setText(
+            progress.total == 0
+                ? "Belum ada tugas akademik. Tambahkan di Study Hub."
+                : progress.completed + " dari " + progress.total + " tugas akademik selesai");
+    ((TextView) findViewById(R.id.profileRoleCaption)).setText(roleLabel());
     rows.removeAllViews();
     row(
         "Bacaan terakhir",
@@ -74,7 +95,11 @@ public final class ProfileActivity extends BaseActivity {
         "Preferensi jadwal di perangkat",
         R.drawable.ic_bell,
         () -> open(PrayerActivity.class));
-    row("Pengaturan", "Goyangan bantuan cepat", R.drawable.ic_compass, this::settings);
+    row(
+        "Pengaturan",
+        "Bantuan cepat dengan gerakan perangkat",
+        R.drawable.ic_compass,
+        this::settings);
     row(
         "Bantuan & keselamatan",
         "Protector BMKG dan darurat",
@@ -93,11 +118,14 @@ public final class ProfileActivity extends BaseActivity {
   }
 
   private String roleLabel() {
-    String role = preferences.getString("user_role", "Student");
+    String role = preferences.getString("user_role", "");
     if ("Teacher".equals(role)) return "Pengajar";
     if ("Parents".equals(role)) return "Orang tua";
     String level = preferences.getString("education_level", "");
-    return level.isEmpty() ? "Pelajar" : level;
+    if (!level.isEmpty()) return level + " · profil lokal";
+    return "Student".equals(role)
+        ? "Pelajar · profil lokal"
+        : "Profil lokal · tersimpan di perangkat";
   }
 
   private void row(String title, String subtitle, int icon, Runnable action) {
@@ -120,13 +148,13 @@ public final class ProfileActivity extends BaseActivity {
     row.addView(copy, p);
     TextView heading = new TextView(this);
     heading.setText(title);
-    heading.setTextSize(13);
+    heading.setTextSize(16);
     heading.setTextColor(0xFF15332F);
     copy.addView(heading);
     TextView detail = new TextView(this);
     detail.setText(subtitle);
-    detail.setTextSize(10);
-    detail.setTextColor(0xFF8B9B91);
+    detail.setTextSize(14);
+    detail.setTextColor(0xFF52665F);
     detail.setPadding(0, dp(5), 0, 0);
     copy.addView(detail);
     TextView arrow = new TextView(this);
@@ -144,7 +172,8 @@ public final class ProfileActivity extends BaseActivity {
     content.setPadding(dp(24), dp(12), dp(24), dp(12));
     Switch shake = new Switch(this);
     shake.setText("Goyangkan untuk bantuan cepat");
-    shake.setTextSize(13);
+    shake.setTextSize(16);
+    shake.setMinHeight(dp(48));
     shake.setChecked(preferences.getBoolean("shake_enabled", true));
     shake.setOnCheckedChangeListener(
         (button, on) -> preferences.edit().putBoolean("shake_enabled", on).apply());
@@ -153,7 +182,8 @@ public final class ProfileActivity extends BaseActivity {
     explanation.setText(
         "Diterapkan saat halaman dibuka kembali. Akses bantuan juga tersedia melalui Protector"
             + " BMKG.");
-    explanation.setTextSize(12);
+    explanation.setTextSize(14);
+    explanation.setTextColor(0xFF52665F);
     explanation.setPadding(0, dp(16), 0, 0);
     content.addView(explanation);
     profileDialog =

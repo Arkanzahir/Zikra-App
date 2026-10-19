@@ -9,17 +9,16 @@ gambar diam sepenuhnya. Karakter berbeda boleh mewakili beragam pengguna Zikra.
 | Ibadah tetap terjaga. | Kiri bawah, perempuan bermukena di sajadah | `onboarding_prayer_static.webp` |
 | Dekat, ayat demi ayat. | Tengah bawah, laki-laki berpeci membaca Quran dengan rehal | `onboarding_quran_static.webp` |
 
-Aset terpusat pada `android/app/src/main/res/drawable-nodpi/`. Gambar terpisah 1254×1254
+Aset terpusat pada `android/app/src/main/res/drawable-nodpi/`. Gambar terpisah 1536×1024 (3:2)
 disiapkan dengan alat gambar dari panel pilihan, mempertahankan adegan dan gaya garis/warna
 referensi; ini bukan crop yang identik piksel dengan kolase kecil. Tidak ada UI, teks atau logo
 pada aset ilustrasi. Encoding WebP lossless mempertahankan RGBA dari PNG hasil edit persis;
-dimensi/ukuran/hash dicatat di [validasi aset](../../../android/validation/static-onboarding/asset-verification.json).
+Pada ronde 19 Oktober 2026, kanvas diperluas dengan alat gambar agar adegan mencapai tepi layar dan lebih menyatu dengan halaman. Karakter tetap statis. Dimensi/ukuran/hash dicatat di [validasi aset](../../../android/validation/quality-2026-10-19/asset-verification.json).
 
 Gunakan ImageView `fitCenter`, tanpa memotong kepala/tangan/buku/sajadah, tanpa lingkaran latar,
-animasi, float, parallax, tilt, sensor atau pemutar ulang. Tinggi area ilustrasi mengikuti tinggi
-viewport, sementara judul/deskripsi dapat menggulung pada font besar. Navigasi tetap di bawah.
+animasi, float, parallax, tilt, sensor atau pemutar ulang. Lebar ilustrasi mengikuti viewport dengan rasio asli. Ilustrasi, judul dua baris dan deskripsi dapat menggulung bersama pada font besar. Navigasi tetap di bawah dengan nomor langkah 01 / 03.
 Tidak memuat tiga gambar sekaligus atau atlas frame; gambar aktif disampling sesuai display.
 
-Ivory `#FAF7EF`, teks/CTA Pine `#15332F`, teks sekunder `#53655D`. Logo master tetap memakai
+Ivory `#FAF7EF` dengan warna dinding ilustrasi diteruskan ke header/status bar, teks/CTA Pine `#15332F`, teks sekunder `#53655D`. Logo master tetap memakai
 `view_zikra_brand.xml` di kiri atas. Ilustrasi bukan pengganti logo. Lihat [branding](../../branding/README.md).
 Sumber percobaan 3D disimpan sebagai arsip; aset/pemutarnya tidak ikut APK terbaru.

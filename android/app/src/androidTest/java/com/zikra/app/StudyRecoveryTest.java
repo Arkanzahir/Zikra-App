@@ -35,6 +35,7 @@ import org.json.JSONObject;
 
 @SuppressWarnings("deprecation")
 public final class StudyRecoveryTest extends InstrumentationTestCase {
+  private static final String SCOPED_DATABASE = "study-persistent-ui-test.db";
   private StudyActivity page;
   private Activity reader;
   private ZikraDbHelper db;
@@ -57,12 +58,57 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
   }
 
   private void launch(boolean hifz) {
+    launchScope(hifz ? ZikraDbHelper.CATEGORY_HIFZ : ZikraDbHelper.CATEGORY_STUDY);
+  }
+
+  private void launchScope(String category) {
     Intent i =
         new Intent(getInstrumentation().getTargetContext(), StudyActivity.class)
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    if (hifz) i.putExtra("category", ZikraDbHelper.CATEGORY_HIFZ);
+    i.putExtra("category", category);
     page = (StudyActivity) getInstrumentation().startActivitySync(i);
     await(() -> page.hasWindowFocus(), 30000);
+  }
+
+  private void replacePageStorage(ZikraDbHelper isolated) {
+    onMain(
+        () -> {
+          try {
+            Field field = StudyActivity.class.getDeclaredField("db");
+            field.setAccessible(true);
+            if (field.get(page) != isolated) ((ZikraDbHelper) field.get(page)).close();
+            field.set(page, isolated);
+            java.lang.reflect.Method refresh =
+                StudyActivity.class.getDeclaredMethod("refreshTasks");
+            refresh.setAccessible(true);
+            refresh.invoke(page);
+          } catch (ReflectiveOperationException error) {
+            throw new AssertionError(error);
+          }
+        });
+  }
+
+  private static final class PlanningClock extends java.time.Clock {
+    private java.time.Instant now = java.time.Instant.parse("2026-10-18T03:00:00Z");
+
+    @Override
+    public java.time.ZoneId getZone() {
+      return java.time.ZoneId.of("Asia/Jakarta");
+    }
+
+    @Override
+    public java.time.Clock withZone(java.time.ZoneId zone) {
+      return java.time.Clock.fixed(now, zone);
+    }
+
+    @Override
+    public java.time.Instant instant() {
+      return now;
+    }
+
+    void nextDay() {
+      now = now.plusSeconds(86400);
+    }
   }
 
   private Dialog editor() {
@@ -375,6 +421,89 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
     assertEquals(before + 3, db.getTotalCount());
   }
 
+  public void testEmptyWorshipTemplateAndStaleEditorKeepDraftWithoutFalseSave() {
+    getInstrumentation().getTargetContext().deleteDatabase(SCOPED_DATABASE);
+    PlanningClock clock = new PlanningClock();
+    ZikraDbHelper isolated =
+        new ZikraDbHelper(getInstrumentation().getTargetContext(), SCOPED_DATABASE, clock);
+    launchScope(ZikraDbHelper.CATEGORY_IBADAH);
+    replacePageStorage(isolated);
+    assertEquals(0, isolated.getTotalCount());
+    assertEquals(View.VISIBLE, page.findViewById(R.id.ibadah_template).getVisibility());
+    onMain(() -> page.findViewById(R.id.ibadah_template).performClick());
+    assertEquals(5, isolated.getTotalCount());
+    assertEquals(0, isolated.getCompletedCount());
+    assertEquals(View.GONE, page.findViewById(R.id.ibadah_template).getVisibility());
+    long original = isolated.getTasks().get(0).id;
+    onMain(() -> page.findViewById(R.id.agenda_feature_action).performClick());
+    await(() -> editor() != null && editor().isShowing(), 15000);
+    onMain(() -> input(R.id.study_editor_title).setText("Ibadah dari draf kemarin"));
+    clock.nextDay();
+    onMain(() -> editor().findViewById(R.id.study_editor_save).performClick());
+    assertTrue(editor().isShowing());
+    assertEquals("Ibadah dari draf kemarin", input(R.id.study_editor_title).getText().toString());
+    assertEquals(0, isolated.getTotalCount());
+    assertEquals(View.VISIBLE, editor().findViewById(R.id.study_editor_status).getVisibility());
+    assertEquals(
+        page.getString(R.string.planner_add_today),
+        ((TextView) editor().findViewById(R.id.study_editor_save)).getText().toString());
+    try (android.database.Cursor c =
+        isolated
+            .getReadableDatabase()
+            .rawQuery(
+                "SELECT title,completed,task_date FROM tasks WHERE id=?",
+                new String[] {Long.toString(original)})) {
+      assertTrue(c.moveToFirst());
+      assertEquals("Sholat Subuh", c.getString(0));
+      assertEquals(0, c.getInt(1));
+      assertEquals("2026-10-18", c.getString(2));
+    }
+    // The second action explicitly creates today's copy; yesterday's record is untouched.
+    onMain(() -> editor().findViewById(R.id.study_editor_save).performClick());
+    assertNull(editor());
+    assertEquals(1, isolated.getTotalCount());
+    assertEquals("Ibadah dari draf kemarin", isolated.getTasks().get(0).title);
+    assertEquals(0, isolated.getCompletedCount());
+  }
+
+  public void testAcademicPlansRemainVisibleAfterMidnightAndCompletedCollapse() {
+    getInstrumentation().getTargetContext().deleteDatabase(SCOPED_DATABASE);
+    PlanningClock clock = new PlanningClock();
+    ZikraDbHelper isolated =
+        new ZikraDbHelper(getInstrumentation().getTargetContext(), SCOPED_DATABASE, clock);
+    long older = isolated.addTask("Rangkuman yang berlanjut besok", ZikraDbHelper.CATEGORY_STUDY);
+    long second = isolated.addTask("Tinjau kembali catatan", ZikraDbHelper.CATEGORY_STUDY);
+    launch(false);
+    replacePageStorage(isolated);
+    assertEquals(View.GONE, page.findViewById(R.id.ibadah_template).getVisibility());
+    clock.nextDay();
+    replacePageStorage(isolated);
+    assertEquals(
+        "Rangkuman yang berlanjut besok",
+        ((TextView) page.findViewById(R.id.agenda_feature_title)).getText().toString());
+    onMain(() -> page.findViewById(R.id.agenda_feature_action).performClick());
+    await(() -> editor() != null && editor().isShowing(), 15000);
+    onMain(
+        () -> {
+          input(R.id.study_editor_title).setText("Rangkuman lintas hari diperbarui");
+          editor().findViewById(R.id.study_editor_save).performClick();
+        });
+    assertEquals(older, isolated.getTasks().get(0).id);
+    assertEquals("Rangkuman lintas hari diperbarui", isolated.getTasks().get(0).title);
+    onMain(() -> ((CheckBox) page.findViewById(R.id.agenda_feature_check)).performClick());
+    assertTrue(isolated.getTasks().get(0).completed);
+    assertEquals(
+        "Tinjau kembali catatan",
+        ((TextView) page.findViewById(R.id.agenda_feature_title)).getText().toString());
+    assertFalse(adapterContains(older));
+    scrollTo(Long.MIN_VALUE);
+    await(() -> page.findViewById(R.id.agenda_completed_toggle) != null, 15000);
+    tapCompleted();
+    await(() -> adapterContains(older), 10000);
+    assertEquals(2, isolated.getTotalCount());
+    assertEquals(1, isolated.getCompletedCount());
+  }
+
   private void tapCompleted() {
     android.graphics.Rect bounds = new android.graphics.Rect();
     onMain(
@@ -506,6 +635,7 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
       for (java.util.Map.Entry<Long, Boolean> e : changed.entrySet())
         db.setCompleted(e.getKey(), e.getValue());
       db.close();
+      getInstrumentation().getTargetContext().deleteDatabase(SCOPED_DATABASE);
     } finally {
       SharedPreferences.Editor e = prefs.edit();
       if (hadName) e.putString("last_surah", oldName);

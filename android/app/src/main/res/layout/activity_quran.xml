@@ -45,9 +45,9 @@
                             android:src="@drawable/reading_ic_bookmark" android:tint="#9A793E" android:importantForAccessibility="no" />
                         <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginStart="12dp">
                             <TextView android:id="@+id/quranResumeHeading" android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                android:text="Lanjut membaca" android:textSize="11sp" android:textColor="#5D7365" />
+                                android:text="Lanjut membaca" android:textSize="12sp" android:textColor="#5D7365" />
                             <TextView android:id="@+id/lastReadLabel" android:layout_width="match_parent" android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp" android:textSize="14sp" android:textStyle="bold" android:textColor="@color/pine" />
+                                android:layout_marginTop="4dp" android:textSize="16sp" android:textStyle="bold" android:textColor="@color/pine" />
                         </LinearLayout>
                         <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_back" android:rotation="180"
                             android:tint="@color/pine" android:importantForAccessibility="no" />
@@ -57,7 +57,7 @@
                             android:paddingHorizontal="6dp" android:text="Surah" android:textColor="@color/pine" android:textSize="14sp" android:textStyle="bold" />
                         <Space android:layout_width="0dp" android:layout_weight="1" android:layout_height="1dp" />
                         <TextView android:id="@+id/readingAvailable" android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="114 surah" android:textSize="11sp" android:textColor="#6A7D72" />
+                            android:text="114 surah" android:textSize="12sp" android:textColor="#52685D" />
                     </LinearLayout>
                     <View android:layout_width="46dp" android:layout_height="2dp" android:background="@color/pine" />
                     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E9EDE8" />
@@ -65,16 +65,16 @@
                     <TextView android:id="@+id/quranEmpty" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="24dp"
                         android:text="Surah tidak ditemukan. Coba nama lainnya." android:textSize="14sp" android:visibility="gone" />
                     <TextView android:id="@+id/quranFootnote" android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:paddingVertical="16dp" android:textSize="11sp" android:lineSpacingExtra="3dp"
+                        android:paddingVertical="16dp" android:textSize="12sp" android:lineSpacingExtra="3dp"
                         android:text="Sumber bacaan: Quran.com / Quran Foundation. Empat surah tersedia bawaan; bagian yang baru dibuka disimpan terbatas di perangkat." />
                 </LinearLayout>
                 <LinearLayout android:id="@+id/quranReader" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
-                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="100dp"
+                    <LinearLayout android:id="@+id/quranSurahHeader" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="100dp"
                         android:layout_marginTop="16dp" android:orientation="horizontal" android:gravity="center_vertical"
                         android:background="@drawable/quran_surah_header" android:padding="16dp">
                         <TextView android:id="@+id/surahMetadata" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
-                            android:textSize="12sp" android:lineSpacingExtra="4dp" android:textColor="#E5EEE6" />
-                        <TextView android:id="@+id/surahArabicTitle" android:layout_width="120dp" android:layout_height="wrap_content"
+                            android:textSize="14sp" android:lineSpacingExtra="4dp" android:textColor="#E5EEE6" />
+                        <TextView android:id="@+id/surahArabicTitle" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
                             android:layout_marginStart="12dp" android:gravity="end" android:textDirection="rtl" android:textSize="27sp" android:textColor="@color/white" />
                     </LinearLayout>
                     <TextView android:id="@+id/surahBismillah" android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -87,17 +87,19 @@
                     </LinearLayout>
                     <ProgressBar android:id="@+id/quranLoading" android:layout_width="32dp" android:layout_height="32dp" android:layout_gravity="center_horizontal" android:visibility="gone" />
                     <TextView android:id="@+id/quranLoadStatus" android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:textSize="10sp" android:paddingTop="8dp" android:paddingBottom="12dp" android:lineSpacingExtra="3dp" android:accessibilityLiveRegion="polite" />
+                        android:textSize="12sp" android:paddingTop="8dp" android:paddingBottom="12dp" android:lineSpacingExtra="3dp" android:accessibilityLiveRegion="polite" />
                     <Button android:id="@+id/quranRetry" style="@style/ReadingButton" android:text="Coba lagi" android:visibility="gone" />
+                    <Button android:id="@+id/quranJumpToVerse" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="48dp"
+                        android:layout_gravity="end" android:text="@string/quran_jump" android:textAllCaps="false" android:textSize="14sp" android:textColor="@color/pine" />
                     <LinearLayout android:id="@+id/ayahContainer" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
                     <LinearLayout android:id="@+id/quranPagination" android:layout_width="match_parent" android:layout_height="wrap_content"
                         android:orientation="vertical" android:visibility="gone" android:paddingVertical="12dp">
                         <TextView android:id="@+id/quranPageLabel" android:layout_width="match_parent" android:layout_height="wrap_content"
-                            android:gravity="center" android:textColor="@color/camel" android:textSize="12sp" />
+                            android:gravity="center" android:textColor="#586F62" android:textSize="13sp" />
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                            <Button android:id="@+id/quranPreviousPage" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp"
+                            <Button android:id="@+id/quranPreviousPage" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="48dp"
                                 android:text="Sebelumnya" android:textAllCaps="false" />
-                            <Button android:id="@+id/quranNextPage" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp"
+                            <Button android:id="@+id/quranNextPage" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="48dp"
                                 android:text="Ayat berikutnya" android:textAllCaps="false" />
                         </LinearLayout>
                     </LinearLayout>

@@ -53,12 +53,12 @@
                             android:tint="#E8F0FF" />
                         <TextView
                             style="@style/ProtectorBody"
-                            android:text="Sukolilo, Surabaya"
+                            android:text="Acuan Sukolilo, Surabaya"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_marginStart="6dp"
-                            android:textColor="#E8F0FF"
-                            android:textSize="11sp" />
+                            android:textColor="#E5F0EB"
+                            android:textSize="12sp" />
                         <ImageView
                             android:layout_width="17dp"
                             android:layout_height="17dp"
@@ -72,7 +72,8 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:layout_marginTop="11dp"
-                        android:minHeight="59dp">
+                        android:minHeight="59dp"
+                        android:id="@+id/protectorWeatherMetricsHeading">
                         <ImageView
                             android:layout_width="48dp"
                             android:layout_height="48dp"
@@ -96,8 +97,8 @@
                                 style="@style/ProtectorBody"
                                 android:text="Waktu prakiraan belum tersedia"
                                 android:id="@+id/protectorWeatherTime"
-                                android:textColor="#DEE8FF"
-                                android:textSize="10sp"
+                                android:textColor="#E5F0EB"
+                                android:textSize="12sp"
                                 android:layout_marginTop="4dp" />
                         </LinearLayout>
                         <TextView
@@ -123,14 +124,14 @@
                         android:text="Menghubungkan ke Open-Meteo"
                         android:id="@+id/protectorWeatherStatus"
                         android:textColor="#EEF3FF"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:layout_marginTop="9dp" />
                     <TextView
                         style="@style/ProtectorBody"
                         android:text="Prakiraan Sukolilo, Surabaya"
                         android:id="@+id/protectorWeatherDetails"
-                        android:textColor="#DAE6FF"
-                        android:textSize="10sp"
+                        android:textColor="#E5F0EB"
+                        android:textSize="12sp"
                         android:layout_marginTop="3dp" />
                 </LinearLayout>
             </FrameLayout>
@@ -161,14 +162,14 @@
                     android:layout_marginStart="10dp">
                     <TextView
                         style="@style/ProtectorHeading"
-                        android:text="Peringatan dini cuaca"
+                        android:text="Informasi resmi BMKG"
                         android:textSize="12sp"
-                        android:textColor="#AA7626" />
+                        android:textColor="#76501F" />
                     <TextView
                         style="@style/ProtectorBody"
-                        android:text="Lihat informasi resmi untuk wilayahmu"
-                        android:textSize="10sp"
-                        android:textColor="#A28559"
+                        android:text="Periksa peringatan melalui situs BMKG"
+                        android:textSize="12sp"
+                        android:textColor="#76501F"
                         android:layout_marginTop="4dp" />
                 </LinearLayout>
                 <ImageView
@@ -199,7 +200,7 @@
                     android:minHeight="48dp"
                     android:paddingStart="12dp"
                     android:gravity="center"
-                    android:textSize="11sp"
+                    android:textSize="12sp"
                     android:textColor="@color/protector_blue"
                     android:clickable="true"
                     android:focusable="true"
@@ -234,13 +235,15 @@
                             style="@style/ProtectorBody"
                             android:text="BMKG · Indonesia"
                             android:layout_width="wrap_content"
-                            android:layout_height="26dp"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
                             android:paddingHorizontal="10dp"
-                            android:textSize="9sp"
+                            android:textSize="12sp"
                             android:textColor="@color/protector_blue"
                             android:textStyle="bold"
-                            android:background="@drawable/protector_circle_white" />
+                            android:background="@drawable/protector_circle_white"
+                            android:minHeight="26dp"
+                            android:paddingVertical="6dp" />
                         <Space
                             android:layout_width="0dp"
                             android:layout_height="1dp"
@@ -250,12 +253,14 @@
                             android:text="M —"
                             android:id="@+id/protectorMagnitude"
                             android:layout_width="wrap_content"
-                            android:layout_height="26dp"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
                             android:paddingHorizontal="10dp"
-                            android:textSize="11sp"
+                            android:textSize="12sp"
                             android:textColor="#D16A70"
-                            android:background="@drawable/protector_circle_white" />
+                            android:background="@drawable/protector_circle_white"
+                            android:minHeight="26dp"
+                            android:paddingVertical="6dp" />
                     </LinearLayout>
                 </FrameLayout>
                 <LinearLayout
@@ -273,19 +278,19 @@
                         style="@style/ProtectorBody"
                         android:text="Waktu kejadian belum tersedia"
                         android:id="@+id/protectorQuakeTime"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:layout_marginTop="6dp" />
                     <TextView
                         style="@style/ProtectorBody"
                         android:text="Data resmi BMKG · Indonesia"
                         android:id="@+id/protectorQuakeStatus"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:layout_marginTop="4dp" />
                     <TextView
                         style="@style/ProtectorBody"
                         android:text="Lokasi episentrum menunggu data BMKG."
                         android:id="@+id/protectorQuakeDetails"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:layout_marginTop="9dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -303,7 +308,7 @@
                 <TextView
                     style="@style/ProtectorBody"
                     android:text="Goyangkan ponsel dua kali untuk membuka bantuan cepat."
-                    android:textSize="11sp"
+                    android:textSize="12sp"
                     android:layout_marginTop="6dp" />
                 <Button
                     style="@style/ProtectorButton"
@@ -319,34 +324,38 @@
                     <Button
                         android:id="@+id/protectorWhatsapp"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/protector_tag_mint"
-                        android:text="WhatsApp"
+                        android:text="Tulis pesan bantuan"
                         android:textAllCaps="false"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:textColor="#39816A"
                         android:stateListAnimator="@null"
-                        android:layout_marginEnd="5dp" />
+                        android:layout_marginEnd="5dp"
+                        android:minHeight="56dp"
+                        android:padding="8dp" />
                     <Button
                         android:id="@+id/protectorMaps"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/protector_tag_blue"
-                        android:text="Masjid sekitar"
+                        android:text="Masjid acuan · ITS"
                         android:textAllCaps="false"
-                        android:textSize="11sp"
-                        android:textColor="#3569F3"
+                        android:textSize="12sp"
+                        android:textColor="#15332F"
                         android:stateListAnimator="@null"
-                        android:layout_marginStart="5dp" />
+                        android:layout_marginStart="5dp"
+                        android:minHeight="56dp"
+                        android:padding="8dp" />
                 </LinearLayout>
             </LinearLayout>
             <TextView
                 style="@style/ProtectorBody"
-                android:text="Gempa dan peringatan: BMKG · Situs resmi ↗"
+                android:text="Sumber laporan gempa: BMKG ↗"
                 android:id="@+id/protectorSource"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:minHeight="48dp"
                 android:gravity="center"
                 android:layout_marginTop="12dp"

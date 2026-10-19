@@ -11,7 +11,9 @@ Varian Android terpusat di `android/app/src/main/res/drawable-nodpi/`:
 
 Keduanya memakai **mask alpha identik**, kanvas1024×1024 yang sama, dan posisi/proporsi simbol yang sama dari master. Spark tidak dihilangkan. Dibuat dengan konversi piksel deterministik yang diizinkan pengguna; perintah reproduksi `python3 tools/branding/derive_logo.py` memerlukan Pillow/NumPy. Tidak ada tracing atau logo substitusi.
 
-`view_zikra_brand.xml` adalah komponen bersama untuk **simbol + tulisan “zikra.”**. Gunakan theme overlay `ZikraBrandLight` atau `ZikraBrandDark`; jangan mengganti simbol dengan `ic_moon`, `ic_spark` atau ilustrasi dekoratif. Jangan meregangkan bitmap: selalu `fitCenter`, tanpa tint berbeda atau pemotongan spark. Ukuran keseluruhan boleh diskalakan seragam.
+`view_zikra_brand.xml` adalah komponen bersama untuk **simbol + tulisan “zikra”**. Gunakan theme overlay `ZikraBrandLight` atau `ZikraBrandDark`; jangan mengganti simbol dengan `ic_moon`, `ic_spark` atau ilustrasi dekoratif. Jangan meregangkan bitmap: selalu `fitCenter`, tanpa tint berbeda atau pemotongan spark. Ukuran keseluruhan boleh diskalakan seragam.
+
+Wordmark kini ditulis **zikra**, tanpa titik, sesuai keputusan pengguna. Ini hanya perubahan tulisan XML; bentuk simbol, spark, mask alpha dan proporsinya tetap identik.
 
 ## Penerapan
 

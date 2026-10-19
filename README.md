@@ -1,4 +1,4 @@
-> **Status terbaru — 18 Oktober 2026:** onboarding kini memakai **tiga ilustrasi 2D statis** dari pilihan referensi pengguna: belajar di meja, perempuan bermukena di sajadah, dan membaca Quran dengan rehal. Tidak ada animasi karakter, parallax atau transisi isi onboarding. Logo master kiri atas, tiga judul/deskripsi, navigasi dan preferensi lama dipertahankan. Study Hub khusus akademik, checklist ibadah dari Waktu Sholat, serta desain Quran ringkas tetap tersedia. [Screenshot dan validasi terbaru](android/validation/static-onboarding/README.md) · [Android Studio](android/BUILDING.md) · [RECOVERY.md](RECOVERY.md).
+> **Pembaruan sumber — 19 Oktober 2026 (WIB):** audit kegunaan diikuti perbaikan onboarding statis, keterbacaan/navigasi, data rencana lintas tanggal, pengaturan bacaan Quran serta penanganan data cuaca/gempa. Hari baru tidak lagi membuat tugas contoh atau progres selesai palsu. Hasil pemeriksaan ronde ini dicatat setelah pengujian selesai; bukti ronde sebelumnya tidak menjadi bukti kelulusan perubahan baru. [Android Studio](android/BUILDING.md) · [Status dan batas kemampuan](RECOVERY.md).
 
 # Zikra Smart Islamic Student Companion
 
@@ -9,7 +9,7 @@
 
 ## Mulai di sini untuk sesi chat baru
 
-**Pembaruan: 17 Oktober 2026.** Repositori aplikasi utama adalah **[Arkanzahir/Zikra-App](https://github.com/Arkanzahir/Zikra-App)**, project Android Studio di **`android/`**. `Arkanzahir/prototype_zikra` adalah referensi prototipe web lama; jangan memindahkan pengembangan kembali ke React. Gunakan HEAD terbaru branch **`recovery/study-hifz-refresh`**; sumber asli lokal lama belum ditemukan, dan fitur yang hilang sudah dibangun ulang dari referensi chat.
+**Pembaruan: 19 Oktober 2026 (WIB).** Repositori aplikasi utama adalah **[Arkanzahir/Zikra-App](https://github.com/Arkanzahir/Zikra-App)**, project Android Studio di **`android/`**. `Arkanzahir/prototype_zikra` adalah referensi prototipe web lama; jangan memindahkan pengembangan kembali ke React. Gunakan HEAD terbaru branch **`recovery/study-hifz-refresh`**; sumber asli lokal lama belum ditemukan, dan fitur yang hilang sudah dibangun ulang dari referensi chat.
 
 Baca dan **buka gambar di [galeri referensi visual](./design/README.md)** terlebih dahulu; sesi baru perlu melihat file gambarnya, bukan hanya membaca label referensi.
 
@@ -18,7 +18,7 @@ Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./and
 ### Aturan proyek dan cara bekerja
 
 - **Java + layout XML 100% untuk aplikasi Android.** Komponen Canvas native boleh untuk kompas, grafik dan ilustrasi. Tidak memakai Kotlin, Compose, Flutter, React Native, atau WebView.
-- Pertahankan identitas Zikra: Pine `#15332F`, Emerald `#10B981`, background `#F4F6F8`, kartu putih, CTA Amber `#CF9447` / Camel `#E5A853`. BMKG boleh biru/cyan; halaman ibadah sage/ivory. Ikon garis harus konsisten, jarak rapi, tombol mudah disentuh dan dock tidak menutup konten.
+- Pertahankan identitas Zikra: Pine `#15332F`, Emerald `#10B981`, background `#F4F6F8`, kartu putih, CTA Amber `#CF9447` / Camel `#E5A853`. Cuaca/gempa memakai Pine/sage yang sekeluarga dengan halaman lainnya. Ikon garis harus konsisten, jarak rapi, tombol mudah disentuh dan dock tidak menutup konten.
 - Ikuti aset referensi pengguna di `design/`; boleh memperbaiki desain agar modern dan rapi. Home yang sudah diterima dipertahankan, ubah hanya jika diperlukan oleh fitur atau diminta pengguna.
 - **Utamakan fungsi berjalan dan build lulus.** Kerjakan per tahap; jangan menghabiskan waktu pada penyempurnaan kecil. Jalankan satu putaran pemeriksaan yang relevan setelah perubahan selesai; ulang hanya jika ada kegagalan, perubahan baru atau masalah yang belum terselesaikan. Perubahan dokumentasi tidak membutuhkan build aplikasi.
 - Komunikasi dalam bahasa Indonesia, langsung ke inti, maksimal 2–3 poin ringkas; tanpa pembuka/penutup panjang. Tetap beri pembaruan singkat saat pekerjaan berlangsung. `$caveman` adalah gaya komunikasi yang diminta; skill tersebut tidak tersedia pada sesi sebelumnya.
@@ -33,17 +33,19 @@ Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./and
 | Home | Jam/Hijriah/jadwal Sukolilo, branding master kiri atas, langit siang/malam, USNO/fallback berlabel, parallax dan animasi masuk, delapan shortcut, progres SQLite/dock | Uji kelancaran/baterai di HP; pilihan lokasi masih backlog |
 | Protector BMKG | Open-Meteo untuk prakiraan/cache 10 menit–6 jam, BMKG untuk gempa/peringatan, loading/error/sumber, header Pine bersama Study/Hifz | Lokasi masih Sukolilo; belum notifikasi cuaca otomatis |
 | Kiblat | Dial roset, Ka'bah, penanda derajat, acuan 294° Sukolilo, rotasi sensor, panduan kalibrasi, haptik bersyarat akurasi | Uji arah/getaran pada ponsel fisik; lokasi masih tetap Sukolilo |
-| Onboarding | Tiga ilustrasi 2D statis, copy singkat, logo master Pine kiri atas, tinggi gambar responsif, tanpa jenjang/minat | Cocokkan visual pada HP; preferensi lama tetap disimpan |
-| Quran | Katalog ringkas dan reader terang sesuai referensi, malam opsional; native 114 surah public v4, Utsmani/arti resource 33, pagination 50 ayat, bookmark/resume, cache delapan bagian dan empat surah bawaan | Mushaf halaman, audio dan offline penuh belum tersedia |
-| Study Hub / Diary Hifz | Study khusus tugas akademik; ibadah melalui Waktu Sholat; Diary Hifz khusus hafalan. CRUD/SQLite v2, target 114 surah/rentang, draft editor/dikte dan reader native | Belum timer fokus/deadline/statistik atau evaluasi bacaan AI |
+| Onboarding | Tiga adegan ilustrasi 2D statis 3:2 memenuhi lebar bagian atas, judul dua baris, footer 01 / 03; wordmark `zikra` tanpa titik dan simbol master kiri atas | Cocokkan visual pada HP; tanpa animasi/parallax/jenjang/minat; preferensi lama tetap disimpan |
+| Quran | Katalog/reader native 114 surah; pencarian Arab tanpa harakat, ukuran Arab/terjemahan tersimpan, lompat ayat tervalidasi, terang/malam/otomatis; Utsmani/arti resource 33, bagian 50 ayat, bookmark/resume, cache delapan bagian dan empat surah bawaan | Mushaf halaman, audio dan offline penuh belum tersedia |
+| Study Hub / Diary Hifz | Study akademik dan target Hifz tetap dapat diakses lintas tanggal; ibadah khusus hari ini melalui Waktu Sholat. Hari baru kosong; tidak membuat tugas/progres contoh. CRUD/SQLite v2 mempertahankan data lama, target 114 surah/rentang, draft editor/dikte dan reader native | Belum timer fokus/deadline/statistik atau evaluasi bacaan AI; checklist ibadah bukan pencatatan otomatis |
 | Waktu sholat | Kalkulasi matahari harian Sukolilo, daftar hari/pekan, countdown, preferensi dan notifikasi/alarm | Integrasi Aladhan; belum audio adzan; validasi izin dan ketepatan alarm pada HP |
-| Doa / Hadis / Kalender | Pencarian doa dan TTS, 7 kutipan hadis bersumber/bookmark, navigasi kalender Umm al-Qura | Rapikan desain dan tambah konten terverifikasi bertahap; bukan koleksi hadis lengkap |
-| Zikra AI | Chat lokal berbasis aturan, input suara, tampilan awal lavender | Orb holografik/voice UI, backend Featherless, Gemini untuk scan soal; belum AI generatif atau vision |
+| Doa / Hadis / Kalender | Pencarian doa dan TTS, 7 kutipan hadis bersumber/bookmark, navigasi kalender Umm al-Qura | Tambah konten terverifikasi bertahap dan uji suara pada perangkat; bukan koleksi hadis lengkap |
+| Zikra AI | Panduan rutinitas offline berlabel jelas, percakapan lokal dan input suara perangkat | Belum AI generatif, pemecah soal khusus, vision atau penilaian bacaan; Featherless/Gemini belum dihubungkan |
 | Profil | Avatar/profil lokal, progres, bacaan terakhir, Tentang memakai logo master, membuka ulang cerita Zikra | Tanpa akun/cloud sync; uji izin/pengingat pada HP |
 
-### Urutan pekerjaan berikutnya — setelah pemulihan 18 Oktober
+### Ronde kegunaan — 19 Oktober 2026
 
-Study/Hifz, branding master, langit Home, reader native dan Open-Meteo tersedia; onboarding telah diganti menjadi ilustrasi 2D statis sesuai arahan terakhir. Lihat [RECOVERY.md](RECOVERY.md) dan [validasi terbaru](android/validation/static-onboarding/README.md). Berikutnya uji pada HP fisik dan cocokkan hasil visual dengan pengguna sebelum memperluas fitur. Mushaf halaman, murottal, pilihan lokasi dan AI generatif tetap backlog tersendiri. Jangan menyebut semua fitur optimal atau kode lama telah ditemukan.
+Riset memakai acuan pengguna, [panduan aksesibilitas Android](https://developer.android.com/guide/topics/ui/accessibility/apps), [ukuran teks](https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html) dan kontras. Prioritas implementasi: tindakan yang jelas, target sentuh, teks yang bisa membesar, status kosong/loading/error yang jujur, serta data rencana yang tetap berguna besok. Logo master `design/branding/zikra-logo-primary.jpg` tidak digambar ulang; simbol bulan, buku dan spark tetap sama. Titik hanya dihapus dari teks wordmark.
+
+Lanjutkan pemeriksaan terarah perubahan ronde ini, kemudian uji pada HP fisik dan cocokkan hasil visual dengan pengguna. Mushaf halaman, murottal, pilihan lokasi dan AI generatif tetap backlog tersendiri. Lokasi acuan jadwal/cuaca/Kiblat masih **Sukolilo, Surabaya**; aplikasi belum menyesuaikan kota pengguna. Jangan menyebut semua fitur optimal atau kode lama telah ditemukan.
 
 ### Persyaratan mode Mushaf
 
@@ -94,8 +96,10 @@ APK berada di `android/app/build/outputs/apk/debug/app-debug.apk`. Bukti pemerik
 Lanjutkan Arkanzahir/Zikra-App, native Java/XML di android/.
 Gunakan checkout/branch recovery/study-hifz-refresh yang sudah ada; jangan reset.
 Baca RECOVERY.md, README, android/validation/rebuilt/README.md dan BUILDING.md.
-Study/Hifz, branding master, onboarding taman, Home astronomi/parallax,
-reader native 114 surah dan Open-Meteo/cache sudah dibangun ulang dari chat.
+Onboarding 2D statis tanpa titik pada wordmark, Home astronomi/parallax,
+Quran native114 dengan ukuran teks/lompat ayat, Open-Meteo/cache,
+serta rencana akademik/Hifz lintas tanggal tersedia pada sumber terbaru.
+Hari baru mulai kosong; jangan membuat ulang progres contoh.
 Kode asli lokal lama belum ditemukan; jangan menyebut implementasi baru identik.
 Prioritas: uji HP fisik dan cocokkan visual dengan pengguna. Mushaf/audio,
 unduhan penuh, pilihan lokasi dan backend AI belum tersedia.
@@ -116,7 +120,7 @@ Source aplikasi native **Java + layout XML** tersedia di [`android/`](./android/
 - [Hasil pengujian](./android/VALIDATION.md)
 - [Screenshot aplikasi](./android/validation/screens/)
 
-Implementasi awal dipindahkan dari `Arkanzahir/prototype_zikra` pada commit `606dfb634db7839860ade25873c22e14ebd08c87`. Home memakai header ringkas, aksen lentera, siluet masjid transparan, kartu shortcut melengkung, serta progres SQLite. Diary Hifz menggantikan shortcut Jadwal Sholat; jadwal tetap dibuka dari strip waktu atau tombol bel. Lanjut bacaan langsung membuka ayat tersimpan. Jadwal kini dihitung harian untuk Sukolilo dan pengingat memakai notifikasi/alarm Android dengan izin pengguna. Penyempurnaan halaman lain masih bertahap; Quran memuat empat surah dan AI memakai respons lokal.
+**Catatan historis implementasi awal:** source dipindahkan dari `Arkanzahir/prototype_zikra` pada commit `606dfb634db7839860ade25873c22e14ebd08c87`. Versi itu memakai lentera, contoh checklist dan empat surah lokal. Status implementasi sekarang mengikuti tabel di atas; Quran kini mempunyai jalur native 114 surah online dengan empat surah bawaan, sedangkan AI tetap panduan lokal berbasis aturan.
 
 Daftar fitur berikut merupakan target produk dan belum seluruhnya tersedia dalam aplikasi.
 
@@ -159,7 +163,7 @@ Referensi visual pengguna dan kebutuhan produk:
 ## 🚀 Status Proyek
 - [x] Product Requirement Document (PRD)
 - [x] Referensi gambar pengguna dipusatkan di `design/references/`
-- [x] Onboarding taman/parallax dibangun ulang sesuai arahan chat; evaluasi HP/pengguna masih diperlukan
+- [x] Onboarding ilustrasi 2D statis mengikuti arahan terbaru; evaluasi HP/pengguna masih diperlukan
 - [x] Implementasi awal Android native Java/XML
 - [ ] Penyempurnaan tampilan dan kelengkapan fitur Android
 - [ ] Backend & AI Integration

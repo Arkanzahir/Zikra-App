@@ -27,8 +27,8 @@
     <string name="study_required">Nama tugas wajib diisi</string>
     <string name="study_saved">Tugas disimpan</string>
     <string name="study_deleted">Tugas dihapus</string>
-    <string name="study_delete_confirm">Hapus “%1$s” dari checklist hari ini?</string>
-    <string name="study_voice_prompt">Ucapkan tugas kuliah yang ingin ditambahkan</string>
+    <string name="study_delete_confirm">Hapus “%1$s” dari daftar ini?</string>
+    <string name="study_voice_prompt">Ucapkan tugas belajar yang ingin ditambahkan</string>
     <string name="study_voice_missing">Pengenalan suara tidak tersedia. Ketik tugas secara manual.</string>
     <string name="study_voice_empty">Tidak ada ucapan yang dikenali. Silakan coba lagi.</string>
     <string name="study_done">Selesai</string>
@@ -56,4 +56,17 @@
         <item name="android:focusable">true</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>
     </style>
+    <string name="planner_study_scope">Rencana belajarmu tetap tersimpan lintas hari.</string>
+    <string name="planner_hifz_scope">Target dan catatanmu tetap tersimpan lintas hari.</string>
+    <string name="planner_ibadah_scope">Checklist khusus hari ini. Tandai sesuai ibadah yang kamu lakukan.</string>
+    <string name="planner_continue_today">LANJUTKAN HARI INI</string>
+    <string name="planner_prayer_template">Tambahkan checklist sholat wajib</string>
+    <string name="planner_prayers_added">Checklist ditambahkan. Kelima sholat belum ditandai selesai.</string>
+    <string name="planner_prayers_exist">Checklist sholat wajib hari ini sudah tersedia.</string>
+    <string name="planner_stale_ibadah">Hari telah berganti atau ibadah ini sudah dihapus. Drafmu tetap ada. Tambahkan sebagai ibadah hari ini jika masih diperlukan.</string>
+    <string name="planner_missing_task">Rencana ini sudah dihapus. Drafmu tetap ada dan dapat ditambahkan kembali.</string>
+    <string name="planner_add_today">Tambahkan untuk hari ini</string>
+    <string name="planner_add_again">Tambahkan kembali</string>
+    <string name="planner_save_failed">Belum dapat menyimpan ke perangkat. Drafmu tetap ada; coba simpan lagi.</string>
+    <string name="planner_stale_action">Daftar telah berubah. Periksa kembali checklist yang tampil.</string>
 </resources>

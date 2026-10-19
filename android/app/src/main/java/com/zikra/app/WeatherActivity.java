@@ -24,6 +24,7 @@ public final class WeatherActivity extends BaseActivity {
   private final Locale locale = new Locale("id", "ID");
   private final ZoneId wib = ZoneId.of("Asia/Jakarta");
   private BmkgClient bmkg;
+  private BmkgParser.Forecast displayed;
   private final android.os.Handler refreshTimer =
       new android.os.Handler(android.os.Looper.getMainLooper());
   private final Runnable refreshTick =
@@ -42,7 +43,14 @@ public final class WeatherActivity extends BaseActivity {
     setupScreen("Cuaca Sukolilo");
     ProtectorChrome.apply(this);
     text(R.id.protectorToolbarTitle, "Cuaca");
-    text(R.id.protectorToolbarSubtitle, "Open-Meteo · Sukolilo, Surabaya");
+    text(R.id.protectorToolbarSubtitle, "Acuan Sukolilo · Prakiraan Open-Meteo");
+    if (getResources().getConfiguration().fontScale > 1.3f) {
+      LinearLayout metrics = findViewById(R.id.weatherMetricsHeading);
+      metrics.setOrientation(LinearLayout.VERTICAL);
+      ((LinearLayout.LayoutParams) findViewById(R.id.weatherHeroIcon).getLayoutParams())
+              .rightMargin =
+          0;
+    }
     bmkg = new BmkgClient(this);
     findViewById(R.id.protectorRefresh).setOnClickListener(v -> refresh());
     findViewById(R.id.weatherSource)
@@ -64,19 +72,31 @@ public final class WeatherActivity extends BaseActivity {
 
   private void refresh() {
     bmkg.reset();
-    text(R.id.weatherTemperature, "—°C");
-    ((ImageView) findViewById(R.id.weatherHeroIcon))
-        .setImageResource(WeatherSymbols.forDescription(null));
-    text(R.id.weatherDescription, "Memuat prakiraan…");
-    text(R.id.weatherStatus, "Menghubungkan ke Open-Meteo");
-    text(R.id.weatherDate, "Waktu prakiraan belum tersedia");
-    text(R.id.weatherHumidity, "—");
-    text(R.id.weatherWind, "—");
-    text(R.id.weatherDirection, "—");
-    ((TemperatureChartView) findViewById(R.id.weatherChart)).setForecast(Collections.emptyList());
-    ((LinearLayout) findViewById(R.id.weatherForecastList)).removeAllViews();
-    findViewById(R.id.weatherEmptyForecast).setVisibility(View.VISIBLE);
-    text(R.id.weatherEmptyForecast, "Prakiraan akan muncul saat data prakiraan tersedia.");
+    if (displayed != null
+        && !com.zikra.app.safety.WeatherCode.usableCache(
+            displayed.fetchedAt.toEpochMilli(),
+            System.currentTimeMillis(),
+            com.zikra.app.safety.OpenMeteoClient.MAX_AGE_MS)) displayed = null;
+    text(
+        R.id.weatherStatus,
+        displayed == null
+            ? "Menghubungkan ke Open-Meteo…"
+            : com.zikra.app.safety.OpenMeteoClient.status(displayed) + "\nMemperbarui…");
+    if (displayed == null) {
+      text(R.id.weatherTemperature, "—°C");
+      ((ImageView) findViewById(R.id.weatherHeroIcon))
+          .setImageResource(WeatherSymbols.forDescription(null));
+      text(R.id.weatherDescription, "Memuat prakiraan…");
+      text(R.id.weatherStatus, "Menghubungkan ke Open-Meteo");
+      text(R.id.weatherDate, "Waktu prakiraan belum tersedia");
+      text(R.id.weatherHumidity, "—");
+      text(R.id.weatherWind, "—");
+      text(R.id.weatherDirection, "—");
+      ((TemperatureChartView) findViewById(R.id.weatherChart)).setForecast(Collections.emptyList());
+      ((LinearLayout) findViewById(R.id.weatherForecastList)).removeAllViews();
+      findViewById(R.id.weatherEmptyForecast).setVisibility(View.VISIBLE);
+      text(R.id.weatherEmptyForecast, "Prakiraan akan muncul saat data tersedia.");
+    }
     bmkg.weather(
         new BmkgClient.Result<BmkgParser.Forecast>() {
           @Override
@@ -86,14 +106,26 @@ public final class WeatherActivity extends BaseActivity {
 
           @Override
           public void failure(String message) {
-            text(R.id.weatherDescription, "Belum ada data cuaca");
-            text(R.id.weatherStatus, "Ketuk ↻ untuk mencoba lagi");
-            text(R.id.weatherEmptyForecast, message);
+            showFailure(message);
           }
         });
   }
 
+  private void showFailure(String message) {
+    if (displayed == null) {
+      text(R.id.weatherDescription, "Cuaca belum tersedia");
+      text(R.id.weatherEmptyForecast, message);
+    }
+    text(
+        R.id.weatherStatus,
+        displayed == null
+            ? "Periksa koneksi, lalu pilih Muat ulang di kanan atas."
+            : com.zikra.app.safety.OpenMeteoClient.status(displayed)
+                + "\nPembaruan gagal. Data sebelumnya tetap ditampilkan. Pilih Muat ulang.");
+  }
+
   private void show(BmkgParser.Forecast forecast) {
+    displayed = forecast;
     BmkgParser.Weather current = forecast.current;
     ((ImageView) findViewById(R.id.weatherHeroIcon))
         .setImageResource(WeatherSymbols.forDescription(current.description));
@@ -126,8 +158,8 @@ public final class WeatherActivity extends BaseActivity {
     View card = getLayoutInflater().inflate(R.layout.weather_forecast_item, parent, false);
     card.setBackgroundResource(
         selected ? R.drawable.protector_action_blue : R.drawable.protector_forecast_card);
-    int primary = Color.parseColor(selected ? "#FFFFFF" : "#254363"),
-        secondary = Color.parseColor(selected ? "#DCE7FF" : "#8290A4");
+    int primary = Color.parseColor(selected ? "#FFFFFF" : "#15332F"),
+        secondary = Color.parseColor(selected ? "#F0F5FF" : "#526570");
     bindCard(
         card,
         R.id.forecastDate,

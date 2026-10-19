@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="78dp"
+    android:layout_width="100dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:minHeight="146dp"
@@ -14,12 +14,12 @@
         style="@style/ProtectorMetricCaption"
         android:text=""
         android:id="@+id/forecastDate"
-        android:textSize="9sp" />
+        android:textSize="12sp" />
     <TextView
         style="@style/ProtectorMetric"
         android:text=""
         android:id="@+id/forecastHour"
-        android:textSize="11sp"
+        android:textSize="12sp"
         android:layout_marginTop="5dp" />
     <ImageView
         android:layout_width="32dp"
@@ -38,7 +38,6 @@
         style="@style/ProtectorMetricCaption"
         android:text=""
         android:id="@+id/forecastDescription"
-        android:textSize="9sp"
-        android:maxLines="3"
+        android:textSize="12sp"
         android:layout_marginTop="6dp" />
 </LinearLayout>

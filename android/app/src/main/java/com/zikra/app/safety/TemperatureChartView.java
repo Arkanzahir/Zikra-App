@@ -22,7 +22,7 @@ public final class TemperatureChartView extends View {
   public TemperatureChartView(Context c, AttributeSet a) {
     super(c, a);
     paint.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
-    paint.setTextSize(dp(10));
+    paint.setTextSize(12 * getResources().getDisplayMetrics().scaledDensity);
     paint.setTextAlign(Paint.Align.CENTER);
   }
 
@@ -39,11 +39,20 @@ public final class TemperatureChartView extends View {
         slots.add(slot);
       } catch (NumberFormatException ignored) {
       }
-      if (slots.size() == 6) break;
+      if (slots.size() == (getResources().getConfiguration().fontScale > 1.2f ? 3 : 6)) break;
     }
-    StringBuilder description = new StringBuilder("Suhu prakiraan: ");
+    StringBuilder description = new StringBuilder("Suhu prakiraan Sukolilo, WIB: ");
     for (int i = 0; i < slots.size(); i++)
-      description.append(hours[i]).append(" ").append(labels[i]).append(", ");
+      description
+          .append(
+              java.time.format.DateTimeFormatter.ofPattern("d MMM", new Locale("id", "ID"))
+                  .withZone(ZoneId.of("Asia/Jakarta"))
+                  .format(slots.get(i).time))
+          .append(" ")
+          .append(hours[i])
+          .append(" ")
+          .append(labels[i])
+          .append(", ");
     setContentDescription(description.toString());
     rebuild();
     invalidate();
@@ -86,7 +95,7 @@ public final class TemperatureChartView extends View {
     float w = getWidth(), h = getHeight();
     if (slots.isEmpty()) {
       paint.setColor(0xFF5F7F8A);
-      c.drawText("Grafik tersedia setelah prakiraan dimuat", w / 2, h / 2, paint);
+      c.drawText("Belum ada prakiraan", w / 2, h / 2, paint);
       return;
     }
     float left = dp(21), right = w - dp(21), top = dp(23), bottom = h - dp(30);

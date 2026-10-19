@@ -1,4 +1,4 @@
-# Pemulihan Zikra — 18 Oktober 2026
+# Pemulihan dan status Zikra — 19 Oktober 2026 (WIB)
 
 ## Status terbaru
 
@@ -6,14 +6,18 @@ Branch `recovery/study-hifz-refresh` memuat pembangunan ulang dari riwayat chat 
 
 | Bagian | Kondisi saat ini |
 | --- | --- |
-| Study/Hifz | Study khusus akademik, checklist ibadah dari Waktu Sholat dan Diary Hifz terpisah; data lama tidak dihapus. Agenda Pine/ivory, target surah/rentang, CRUD, SQLite v2 mempertahankan data, draft editor dan navigasi bersama. Metadata pemilihan 114 surah tersedia offline. |
-| Branding | Master JPG tetap, simbol Pine/putih dengan geometri/alpha identik; XML logo bersama pada splash/onboarding/Home/Tentang, simbol saja pada adaptive icon. Profil memakai avatar. |
-| Onboarding | Tiga ilustrasi 2D statis: belajar di meja, perempuan bermukena di sajadah, dan membaca Quran dengan rehal. Tanpa animasi/parallax/transisi isi. ImageView native hanya memuat gambar aktif dengan sampling sesuai display. Tidak ada pertanyaan jenjang/minat; preferensi lama dipertahankan. |
+| Study/Hifz | Study khusus akademik, checklist ibadah dari Waktu Sholat dan Diary Hifz terpisah. Tugas akademik/target Hifz tetap dapat diakses lintas tanggal; ibadah mengikuti hari lokal. Hari baru kosong, tanpa 24 contoh atau 8 progres selesai palsu. Data dan status lama tetap dipertahankan. CRUD/SQLite v2, draft editor, navigasi dan metadata 114 surah offline. |
+| Branding | File master JPG tidak berubah; simbol bulan sabit, buku dan spark tetap sama. Varian Pine/putih memakai geometri/alpha identik; XML logo bersama pada splash/onboarding/Home/Tentang, simbol saja pada adaptive icon. Wordmark ditulis `zikra` tanpa titik; Profil memakai avatar. |
+| Onboarding | Tiga adegan ilustrasi 2D statis 3:2 memenuhi lebar bagian atas: belajar di meja, perempuan bermukena di sajadah, dan membaca Quran dengan rehal. Judul dua baris, footer 01 / 03, tanpa animasi/parallax/transisi isi. ImageView hanya memuat gambar aktif dengan sampling sesuai display. Tanpa pertanyaan jenjang/minat; preferensi lama dipertahankan. |
 | Home | Logo/lokasi kiri atas, siang/malam, busur matahari berdasarkan terbit/transit/terbenam, fase bulan USNO harian atau perkiraan lokal berlabel, parallax dan animasi masuk. |
-| Quran | Katalog ringkas dan reader terang sesuai referensi Suhayel; mode malam opsional melalui pengaturan bacaan. Reader native 114 surah melalui public v4 API, Arab Utsmani/terjemahan resource 33, 50 ayat per bagian, bookmark kunci stabil, resume/recreation, delapan bagian cache; empat surah bawaan. Semua target Hifz menuju reader native. |
+| Quran | Katalog ringkas dan reader terang sesuai referensi Suhayel; ukuran tulisan Arab/terjemahan tersimpan, tema terang/malam/otomatis dan lompat ayat dengan validasi rentang. Pencarian Arab mengabaikan harakat/tatweel/variasi alef. Reader native 114 surah public v4, Utsmani/terjemahan resource 33, 50 ayat per bagian, bookmark kunci stabil, resume/recreation, delapan bagian cache; empat surah bawaan. Semua target Hifz menuju reader native. |
 | Cuaca/Protector | Open-Meteo untuk prakiraan model Sukolilo, refresh 10 menit/cache maksimal enam jam bertimestamp. Gempa/peringatan tetap BMKG. Header XML sama dengan Study/Hifz; grafik memakai geometri tersimpan. |
 
-Bukti onboarding terbaru ada di [validasi statis](android/validation/static-onboarding/README.md); [validasi karakter/Study/Quran](android/validation/character-refresh/README.md) merekam checkpoint 3D yang sudah diganti; [validasi pembangunan ulang](android/validation/rebuilt/README.md) menyimpan checkpoint sebelumnya. Catatan [pemulihan awal](android/validation/recovery/README.md) dan [agenda](android/validation/agenda/README.md) tetap dipertahankan sebagai riwayat, bukan status terbaru semua fitur.
+Ronde 19 Oktober dimulai dari audit sumber/referensi dan panduan aksesibilitas resmi, lalu implementasi terarah pada onboarding, keterbacaan, navigasi, rencana lintas tanggal, reader dan penanganan data jaringan. **Hasil pengujian ronde ini belum dinyatakan pada catatan sumber ini.** Hasil dan screenshot dicatat setelah pemeriksaan selesai; build atau tes checkpoint lama tidak membuktikan perubahan baru.
+
+## Riwayat bukti sebelum ronde ini
+
+[Validasi statis](android/validation/static-onboarding/README.md) merekam onboarding 18 Oktober sebelum perbaikan komposisi terbaru; [validasi karakter/Study/Quran](android/validation/character-refresh/README.md) merekam checkpoint 3D yang sudah diganti; [validasi pembangunan ulang](android/validation/rebuilt/README.md) menyimpan checkpoint sebelumnya. Catatan [pemulihan awal](android/validation/recovery/README.md) dan [agenda](android/validation/agenda/README.md) dipertahankan sebagai riwayat, bukan status terbaru semua fitur.
 
 ## Yang belum selesai atau belum terbukti
 

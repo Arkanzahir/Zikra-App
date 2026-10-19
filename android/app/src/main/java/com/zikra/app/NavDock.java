@@ -18,16 +18,32 @@ public final class NavDock {
     final List<ImageView> icons = new ArrayList<>();
     final List<TextView> labels = new ArrayList<>();
     final List<Boolean> active = new ArrayList<>();
+    final List<View> indicators = new ArrayList<>();
+    View content;
+    int extraInset;
+    int appliedInset;
   }
 
   public static void attach(BaseActivity activity, FrameLayout root, String selected) {
     View old = root.findViewWithTag("zikraDock");
-    if (old != null) root.removeView(old);
+    if (old != null) {
+      setVisible(root, false);
+      root.removeView(old);
+    }
     View dock = activity.getLayoutInflater().inflate(R.layout.view_nav_dock, root, false);
     dock.setTag("zikraDock");
-    root.addView(dock, new FrameLayout.LayoutParams(-1, activity.dp(64), Gravity.BOTTOM));
+    int height =
+        activity.dp(
+            64
+                + 32
+                    * Math.max(
+                        0f,
+                        Math.min(1f, activity.getResources().getConfiguration().fontScale - 1f)));
+    root.addView(dock, new FrameLayout.LayoutParams(-1, height, Gravity.BOTTOM));
     LinearLayout items = dock.findViewById(R.id.navItems);
     State state = new State();
+    state.content = root.getChildAt(0);
+    state.extraInset = height - activity.dp(64);
     items.setTag(state);
     add(
         activity,
@@ -80,6 +96,25 @@ public final class NavDock {
         selected,
         R.id.dockProfile);
     setNightMode(root, false);
+    setVisible(root, true);
+  }
+
+  /** Keep existing 64dp reservations and add only the extra space needed for large text. */
+  public static void setVisible(FrameLayout root, boolean visible) {
+    View dock = root.findViewWithTag("zikraDock");
+    if (dock == null) return;
+    State state = (State) dock.findViewById(R.id.navItems).getTag();
+    int wanted = visible ? state.extraInset : 0;
+    if (state.content != null && state.appliedInset != wanted) {
+      View content = state.content;
+      content.setPadding(
+          content.getPaddingLeft(),
+          content.getPaddingTop(),
+          content.getPaddingRight(),
+          Math.max(0, content.getPaddingBottom() + wanted - state.appliedInset));
+      state.appliedInset = wanted;
+    }
+    dock.setVisibility(visible ? View.VISIBLE : View.GONE);
   }
 
   private static void add(
@@ -100,7 +135,22 @@ public final class NavDock {
     glyph.setImageResource(icon);
     TextView text = row.findViewById(R.id.navDestinationLabel);
     text.setText(label);
-    text.setTextSize(10);
+    text.setTextSize(12);
+    text.setTypeface(
+        text.getTypeface(),
+        key.equals(selected) ? android.graphics.Typeface.BOLD : android.graphics.Typeface.NORMAL);
+    View indicator = row.findViewById(R.id.navDestinationIndicator);
+    indicator.setVisibility(key.equals(selected) ? View.VISIBLE : View.INVISIBLE);
+    row.setAccessibilityDelegate(
+        new View.AccessibilityDelegate() {
+          @Override
+          public void onInitializeAccessibilityNodeInfo(
+              View host, android.view.accessibility.AccessibilityNodeInfo info) {
+            super.onInitializeAccessibilityNodeInfo(host, info);
+            info.setClassName(android.widget.Button.class.getName());
+            info.setSelected(host.isSelected());
+          }
+        });
     row.setOnClickListener(
         v -> {
           if (page.getClass() == target) {
@@ -117,12 +167,18 @@ public final class NavDock {
                   .addFlags(
                       target == HomeActivity.class
                           ? Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP
-                          : Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+                          : target == StudyActivity.class
+                              ? 0 // A primary Study destination must never reuse a scoped
+                              // Hifz/Ibadah page.
+                              : target == StudyActivity.class
+                                  ? 0
+                                  : Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
         });
-    items.addView(row, new LinearLayout.LayoutParams(0, page.dp(64), 1));
+    items.addView(row, new LinearLayout.LayoutParams(0, -1, 1));
     state.icons.add(glyph);
     state.labels.add(text);
     state.active.add(key.equals(selected));
+    state.indicators.add(indicator);
   }
 
   public static void setNightMode(FrameLayout root, boolean night) {
@@ -138,6 +194,7 @@ public final class NavDock {
               : (night ? 0xFFA2B5AD : 0xFF65766F);
       state.icons.get(i).setColorFilter(color);
       state.labels.get(i).setTextColor(color);
+      state.indicators.get(i).setBackgroundColor(color);
     }
   }
 }

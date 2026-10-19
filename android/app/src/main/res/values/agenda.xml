@@ -2,7 +2,7 @@
 <resources>
     <string name="agenda_heading">Ruang\nbelajarmu.</string>
     <string name="agenda_hifz_heading">Sedikit ayat,\nsetiap hari.</string>
-    <string name="agenda_continue">LANJUTKAN HARI INI</string>
+    <string name="agenda_continue">LANJUTKAN RENCANA</string>
     <string name="agenda_complete">Tandai selesai</string>
     <string name="agenda_edit">Ubah</string>
     <string name="agenda_remaining">Tugas lainnya</string>
@@ -15,5 +15,5 @@
     <string name="agenda_completed_expand">Tampilkan %1$d kegiatan selesai</string>
     <string name="agenda_completed_collapse">Sembunyikan %1$d kegiatan selesai</string>
     <string name="agenda_all_done">Semua tugas akademik sudah selesai.</string>
-    <string name="agenda_hifz_all_done">Target hari ini selesai.\nTerus jaga hafalanmu, sedikit demi sedikit.</string>
+    <string name="agenda_hifz_all_done">Semua target selesai.\nTerus jaga hafalanmu, sedikit demi sedikit.</string>
 </resources>

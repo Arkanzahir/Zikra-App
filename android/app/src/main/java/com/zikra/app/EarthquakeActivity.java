@@ -15,6 +15,7 @@ import java.util.Locale;
 public final class EarthquakeActivity extends BaseActivity {
   private BmkgClient bmkg;
   private BmkgParser.Earthquake earthquake;
+  private java.time.Instant retrievedAt;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +41,38 @@ public final class EarthquakeActivity extends BaseActivity {
                         + ","
                         + earthquake.longitude);
             });
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
     refresh();
+  }
+
+  @Override
+  protected void onPause() {
+    if (bmkg != null) bmkg.reset();
+    super.onPause();
   }
 
   private void refresh() {
     bmkg.reset();
-    earthquake = null;
-    findViewById(R.id.quakeOpenMap).setEnabled(false);
-    ((IndonesiaMapView) findViewById(R.id.quakeMap)).setEpicenter(null, null);
-    text(R.id.quakeArea, "Memuat gempabumi terkini…");
-    text(R.id.quakeTime, "Waktu kejadian belum tersedia");
-    text(R.id.quakeMagnitude, "—");
-    text(R.id.quakeClock, "—");
-    text(R.id.quakeDepth, "—");
-    text(R.id.quakeStatus, "Menghubungkan ke BMKG…");
-    text(R.id.quakePotential, "Potensi belum tersedia dari BMKG");
-    text(R.id.quakeCoordinates, "Koordinat episentrum belum tersedia");
-    text(R.id.quakeFelt, "Wilayah dirasakan belum tersedia");
+    text(
+        R.id.quakeStatus,
+        earthquake == null ? "Menghubungkan ke BMKG…" : sourceStatus() + "\nMemperbarui…");
+    if (earthquake == null) {
+      findViewById(R.id.quakeOpenMap).setEnabled(false);
+      ((IndonesiaMapView) findViewById(R.id.quakeMap)).setEpicenter(null, null);
+      text(R.id.quakeArea, "Memuat gempabumi terkini…");
+      text(R.id.quakeTime, "Waktu kejadian belum tersedia");
+      text(R.id.quakeMagnitude, "—");
+      text(R.id.quakeClock, "—");
+      text(R.id.quakeDepth, "—");
+      text(R.id.quakeStatus, "Menghubungkan ke BMKG…");
+      text(R.id.quakePotential, "Potensi belum tersedia dari BMKG");
+      text(R.id.quakeCoordinates, "Koordinat episentrum belum tersedia");
+      text(R.id.quakeFelt, "Wilayah dirasakan belum tersedia");
+    }
     bmkg.earthquake(
         new BmkgClient.Result<BmkgParser.Earthquake>() {
           @Override
@@ -66,14 +82,32 @@ public final class EarthquakeActivity extends BaseActivity {
 
           @Override
           public void failure(String message) {
-            text(R.id.quakeArea, "Data gempa belum tersedia");
-            text(R.id.quakeStatus, message + " Ketuk ↻ untuk mencoba lagi.");
+            showFailure(message);
           }
         });
   }
 
+  private void showFailure(String message) {
+    if (earthquake == null) text(R.id.quakeArea, "Laporan gempa belum tersedia");
+    text(
+        R.id.quakeStatus,
+        earthquake == null
+            ? message + " Pilih Muat ulang di kanan atas."
+            : sourceStatus()
+                + "\nPembaruan gagal. Laporan sebelumnya tetap ditampilkan. Pilih Muat ulang.");
+  }
+
+  private String sourceStatus() {
+    return "Laporan terakhir BMKG · Indonesia\nDiambil "
+        + DateTimeFormatter.ofPattern("d MMM HH:mm 'WIB'", new Locale("id", "ID"))
+            .withZone(ZoneId.of("Asia/Jakarta"))
+            .format(retrievedAt)
+        + "\nBukan peringatan untuk lokasi Anda.";
+  }
+
   private void show(BmkgParser.Earthquake q) {
     earthquake = q;
+    retrievedAt = java.time.Instant.now();
     text(R.id.quakeArea, q.area);
     text(
         R.id.quakeTime,
@@ -106,9 +140,7 @@ public final class EarthquakeActivity extends BaseActivity {
             : "Koordinat episentrum belum tersedia dari BMKG");
     text(
         R.id.quakeFelt, q.felt.isEmpty() || "-".equals(q.felt) ? "Tidak dicantumkan BMKG" : q.felt);
-    text(
-        R.id.quakeStatus,
-        "Laporan terakhir BMKG untuk Indonesia. Periksa waktu kejadian pada laporan.");
+    text(R.id.quakeStatus, sourceStatus());
     ((IndonesiaMapView) findViewById(R.id.quakeMap)).setEpicenter(q.latitude, q.longitude);
     findViewById(R.id.quakeOpenMap).setEnabled(q.hasCoordinates());
   }

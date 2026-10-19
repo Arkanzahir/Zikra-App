@@ -27,29 +27,30 @@ public final class OfflineAssistant {
           + "1. Baca satu ayat perlahan sambil melihat teks.\n"
           + "2. Ulangi tiga kali, lalu coba tanpa melihat.\n"
           + "3. Sambungkan dengan ayat sebelumnya.\n"
-          + "4. Catat target di kategori Hifz pada Study Hub.\n\n"
+          + "4. Catat target di Diary Hifz melalui Home.\n\n"
           + "Sepuluh menit yang rutin lebih mudah dijaga. Untuk tajwid dan koreksi bacaan, tetap"
           + " belajar bersama guru.";
     }
     if (contains(normalized, "sholat", "salat", "shalat", "ibadah", "doa", "dzikir", "kiblat")) {
       return "Mulai dengan satu ibadah yang bisa kamu jaga hari ini.\n\n"
           + "1. Periksa jadwal di menu Jadwal Sholat.\n"
-          + "2. Siapkan waktu tenang di antara kegiatan kuliah.\n"
+          + "2. Siapkan waktu tenang di antara kegiatan harian.\n"
           + "3. Baca doa harian dan tandai checklist setelah selesai.\n\n"
-          + "Progresmu hari ini "
-          + completed
-          + " dari "
-          + total
-          + " checklist. Panduan ini untuk membantu rutinitas, bukan fatwa keagamaan.";
+          + "Buka Checklist ibadah melalui Jadwal Sholat untuk mencatat kegiatanmu. "
+          + "Panduan ini membantu rutinitas, bukan fatwa keagamaan.";
     }
     if (contains(
         normalized, "progres", "progress", "checklist", "target hari", "selesai", "tugas hari")) {
+      if (total == 0) {
+        return "Belum ada tugas akademik yang tercatat. Tambahkan satu target kecil di Study Hub."
+            + " Pesan di sini tidak otomatis membuat atau mengubah checklist.";
+      }
       int remaining = Math.max(0, total - completed);
       return "Hari ini kamu telah menyelesaikan "
           + completed
           + " dari "
           + total
-          + " checklist. "
+          + " tugas akademik. "
           + (remaining == 0
               ? "Semua target hari ini sudah selesai. Luangkan waktu untuk istirahat dan refleksi."
               : "Masih ada "
@@ -67,11 +68,11 @@ public final class OfflineAssistant {
           + "Coba letakkan ponsel, tarik napas pelan, dan minum air. Setelah itu pilih satu"
           + " tugas yang bisa selesai dalam lima menit.\n\n"
           + "Kalau perasaan ini menetap atau mengganggu aktivitas, ceritakan kepada orang"
-          + " tepercaya atau layanan konseling kampus. Aku hanya panduan offline dan tidak"
-          + " dapat menilai kesehatanmu.";
+          + " tepercaya atau hubungi layanan konseling. Aku hanya panduan"
+          + " offline dan tidak dapat menilai kesehatanmu.";
     }
     if (contains(normalized, "hai", "halo", "assalam", "hello")) {
-      return "Waalaikumsalam, Arkan. Aku pendamping offline untuk membantu menyusun rutinitas"
+      return "Waalaikumsalam. Aku pendamping offline untuk membantu menyusun rutinitas"
           + " belajar, ibadah, dan hafalan.\n\n"
           + "Coba tulis “bantu susun jadwal belajar”, “lihat progres checklist”, atau pilih"
           + " salah satu topik di atas.";
@@ -80,7 +81,7 @@ public final class OfflineAssistant {
         + "1. Tulis satu hasil yang ingin dicapai dari materi itu.\n"
         + "2. Pelajari satu bagian selama 25 menit tanpa distraksi.\n"
         + "3. Istirahat 5 menit, lalu kerjakan satu latihan.\n"
-        + "4. Catat hal yang belum dipahami untuk ditanyakan ke dosen atau teman.\n\n"
+        + "4. Catat hal yang belum dipahami untuk ditanyakan ke guru, pengajar, atau teman.\n\n"
         + "Tambahkan target itu di Study Hub agar progresnya tercatat. Aku memakai panduan"
         + " lokal; aku belum bisa menjawab soal khusus atau mencari informasi di internet.";
   }

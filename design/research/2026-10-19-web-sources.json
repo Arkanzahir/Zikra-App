@@ -1,0 +1,60 @@
+[
+  {
+    "name": "android_accessibility",
+    "url": "https://developer.android.com/guide/topics/ui/accessibility/apps",
+    "final_url": "https://developer.android.com/guide/topics/ui/accessibility/apps",
+    "status": 200,
+    "title": "Make apps more accessible \u00a0|\u00a0 App quality \u00a0|\u00a0 Android Developers",
+    "chars": 6518,
+    "excerpts": [
+      "t have a focusable area, or touch target size , of at least 48dpx48dp. Larger is even better. Note: For precise input (mouses and trackpads), the touch target can be smaller. See Pointer interactions for more information. In Jetpack Compose, ma",
+      "nd colors that result in a color contrast ratio of at least 4.5:1. For all other text, set the color contrast ratio to at least 3:1. The following image shows two examples of text-to-background color contrast: Figure 1. Lower than recommended (l",
+      " that each interactive UI element have a focusable area, or touch target size , of at least 48dpx48dp. Larger is even better. Note: For precise input (mouses and trackpads), the touch target can be smaller. See Pointer interactions for more information",
+      "or each set of text within your app, we recommend the color contrast \u2014or difference in perceived brightness between the color of the text and the color of the background behind the text\u2014to be above a specific threshold. The exact threshold depends "
+    ]
+  },
+  {
+    "name": "wcag_contrast",
+    "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+    "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+    "status": 200,
+    "title": "Understanding Success Criterion 1.4.3: Contrast (Minimum) | WAI | W3C",
+    "chars": 31302,
+    "excerpts": [
+      "of text and images of text has a contrast ratio of at least 4.5:1, except for the following: Large Text Large-scale text and images of large-scale text have a contrast ratio of at least 3:1; Incidental Text or images of text that are part of an ",
+      "Understanding Success Criterion 1.4.3: Contrast (Minimum) | WAI | W3C Skip to content WCAG 2.2 Understanding Docs Informative explanations, not required to meet WCAG About WCAG Understanding Docs W3C homepage Web Accessibility ",
+      "r is hovering over an object or when an object has keyboard focus. If any of these are used in a page, the text needs to provide sufficient contrast. Although this success criterion only applies to text, similar issues occur for content presente",
+      "chniques should be considered in order to make content more accessible. Not all techniques can be used or would be effective in all situations. G156: Using a technology that has commonly-available user agents that can change the foreground and backgr"
+    ]
+  },
+  {
+    "name": "pillars",
+    "url": "https://www.pillars.app/",
+    "final_url": "https://www.pillars.app/",
+    "status": 200,
+    "title": "",
+    "chars": 0,
+    "excerpts": []
+  },
+  {
+    "name": "tarteel",
+    "url": "https://www.tarteel.ai/",
+    "final_url": "https://tarteel.ai/",
+    "status": 200,
+    "title": "Tarteel AI Quran Memorization",
+    "chars": 29,
+    "excerpts": []
+  },
+  {
+    "name": "structured",
+    "url": "https://structured.app/",
+    "final_url": "https://structured.app/",
+    "status": 200,
+    "title": "Structured \u2014 Daily Planner",
+    "chars": 3470,
+    "excerpts": [
+      "criptions Free Planner Sheets Contact Form PressKit Company Privacy Policy Imprint Terms of Service Data Processing Agreement",
+      " at home integrate meetings get notifications, add widgets, focus on your tasks become structured join more than 1 million happy planners \u201cJust downloaded this app & setup my week. As someone who struggles with scheduling things, I\u2019ve looked for"
+    ]
+  }
+]

@@ -19,12 +19,14 @@
             style="@style/ProtectorEyebrow"
             android:text="INDONESIA · BMKG"
             android:layout_width="wrap_content"
-            android:layout_height="28dp"
+            android:layout_height="wrap_content"
             android:layout_margin="14dp"
             android:gravity="center"
             android:paddingHorizontal="11dp"
             android:textColor="@color/protector_blue"
-            android:background="@drawable/protector_circle_white" />
+            android:background="@drawable/protector_circle_white"
+            android:minHeight="28dp"
+            android:paddingVertical="6dp" />
     </FrameLayout>
     <ScrollView
         android:id="@+id/quakeSheet"
@@ -57,19 +59,21 @@
                     style="@style/ProtectorEyebrow"
                     android:text="LAPORAN TERAKHIR"
                     android:layout_width="wrap_content"
-                    android:layout_height="26dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingHorizontal="9dp"
-                    android:textSize="9sp"
+                    android:textSize="12sp"
                     android:textColor="@color/protector_blue"
-                    android:background="@drawable/protector_tag_blue" />
+                    android:background="@drawable/protector_tag_blue"
+                    android:minHeight="26dp"
+                    android:paddingVertical="6dp" />
                 <TextView
                     style="@style/ProtectorBody"
                     android:text="Sumber: BMKG"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
             <TextView
                 style="@style/ProtectorHeading"
@@ -82,7 +86,7 @@
                 style="@style/ProtectorBody"
                 android:text="Waktu kejadian belum tersedia"
                 android:id="@+id/quakeTime"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:layout_marginTop="7dp" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -120,7 +124,7 @@
                     <TextView
                         style="@style/ProtectorMetricCaption"
                         android:text="Waktu · WIB"
-                        android:textSize="9sp"
+                        android:textSize="12sp"
                         android:textColor="#E0E9FF"
                         android:layout_marginTop="3dp" />
                 </LinearLayout>
@@ -153,7 +157,7 @@
                     <TextView
                         style="@style/ProtectorMetricCaption"
                         android:text="Magnitudo"
-                        android:textSize="9sp"
+                        android:textSize="12sp"
                         android:textColor="#E0E9FF"
                         android:layout_marginTop="3dp" />
                 </LinearLayout>
@@ -186,7 +190,7 @@
                     <TextView
                         style="@style/ProtectorMetricCaption"
                         android:text="Kedalaman"
-                        android:textSize="9sp"
+                        android:textSize="12sp"
                         android:textColor="#E0E9FF"
                         android:layout_marginTop="3dp" />
                 </LinearLayout>
@@ -218,13 +222,13 @@
                     <TextView
                         style="@style/ProtectorHeading"
                         android:text="Potensi tsunami"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:textColor="#526A8C" />
                     <TextView
                         style="@style/ProtectorBody"
                         android:text="Informasi menunggu data BMKG"
                         android:id="@+id/quakePotential"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:layout_marginTop="5dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -250,13 +254,13 @@
                     <TextView
                         style="@style/ProtectorHeading"
                         android:text="Koordinat episentrum"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:textColor="#526A8C" />
                     <TextView
                         style="@style/ProtectorBody"
                         android:text="Koordinat belum tersedia"
                         android:id="@+id/quakeCoordinates"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:layout_marginTop="5dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -282,13 +286,13 @@
                     <TextView
                         style="@style/ProtectorHeading"
                         android:text="Wilayah dirasakan"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:textColor="#526A8C" />
                     <TextView
                         style="@style/ProtectorBody"
                         android:text="Wilayah belum tersedia"
                         android:id="@+id/quakeFelt"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:layout_marginTop="5dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -296,7 +300,7 @@
                 style="@style/ProtectorBody"
                 android:text="Menghubungkan ke BMKG…"
                 android:id="@+id/quakeStatus"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:padding="12dp"
                 android:layout_marginTop="18dp"
                 android:background="@drawable/protector_soft_card" />
@@ -310,7 +314,7 @@
                 style="@style/ProtectorBody"
                 android:text="Sumber laporan: BMKG ↗"
                 android:id="@+id/quakeSource"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:minHeight="48dp"
                 android:gravity="center"
                 android:layout_marginTop="12dp"

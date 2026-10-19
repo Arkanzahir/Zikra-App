@@ -5,4 +5,6 @@
     <item type="id" name="protectorToolbarTitle" />
     <item type="id" name="protectorToolbarSubtitle" />
     <item type="id" name="protectorRefresh" />
+    <item type="id" name="aiClear" />
+    <item type="id" name="calendarToday" />
 </resources>

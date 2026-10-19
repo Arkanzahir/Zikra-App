@@ -39,14 +39,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-/** Daily checklist and structured Hifz targets; the header has no duplicate add action. */
+/** Persistent academic/Hifz plans and a separately scoped daily worship checklist. */
 public final class StudyActivity extends BaseActivity {
   private static final int REQUEST_VOICE_TASK = 100;
   private static final Locale ID = Locale.forLanguageTag("id-ID");
   private final Handler handler = new Handler(Looper.getMainLooper());
   private ZikraDbHelper db;
   private TaskAdapter adapter;
-  private boolean diaryMode, ibadahMode, catalogLoading, completedExpanded;
+  private boolean diaryMode, ibadahMode, catalogLoading, completedExpanded, editorRetained;
   private String scopeCategory;
   private Task featuredTask;
   private View agendaHeader;
@@ -148,17 +148,39 @@ public final class StudyActivity extends BaseActivity {
               finish();
             });
     findViewById(R.id.study_add).setOnClickListener(view -> showEditor(null, null));
+    agendaHeader
+        .findViewById(R.id.ibadah_template)
+        .setOnClickListener(
+            v -> {
+              int added = db.addObligatoryPrayerChecklist();
+              refreshTasks();
+              toast(
+                  getString(
+                      added == 0
+                          ? R.string.planner_prayers_exist
+                          : R.string.planner_prayers_added));
+            });
+    text(
+        R.id.study_scope_hint,
+        diaryMode
+            ? R.string.planner_hifz_scope
+            : ibadahMode ? R.string.planner_ibadah_scope : R.string.planner_study_scope);
+    ((TextView) agendaHeader.findViewById(R.id.agenda_feature_caption))
+        .setText(ibadahMode ? R.string.planner_continue_today : R.string.agenda_continue);
     if (state != null && state.getBoolean("editor_open", false)) {
       long id = state.getLong("editor_task_id", -1);
       Task saved = null;
       for (Task task : db.getTasks())
         if (task.id == id && scopeCategory.equals(task.category)) saved = task;
-      if (id == -1 || saved != null) {
-        showEditor(saved, state.getString("editor_title", ""));
-        ((RadioGroup) editorView.findViewById(R.id.study_editor_category))
-            .check(choice(scopeCategory));
-        if (hifzEditor != null)
-          hifzEditor.restore(state, chapters, catalogLoading, this::loadCatalog);
+      showEditor(saved, state.getString("editor_title", ""));
+      ((RadioGroup) editorView.findViewById(R.id.study_editor_category))
+          .check(choice(scopeCategory));
+      if (hifzEditor != null)
+        hifzEditor.restore(state, chapters, catalogLoading, this::loadCatalog);
+      if (id != -1 && saved == null) {
+        retainDraftForNewTask();
+      } else if (state.getBoolean("editor_retained", false)) {
+        retainDraftForNewTask();
       }
     }
   }
@@ -195,6 +217,7 @@ public final class StudyActivity extends BaseActivity {
           "editor_title",
           ((EditText) editorView.findViewById(R.id.study_editor_title)).getText().toString());
       state.putString("editor_category", selectedCategory());
+      state.putBoolean("editor_retained", editorRetained);
       if (hifzEditor != null) hifzEditor.save(state);
     }
     super.onSaveInstanceState(state);
@@ -251,6 +274,9 @@ public final class StudyActivity extends BaseActivity {
         total > 0
             ? (diaryMode ? R.string.agenda_hifz_all_done : R.string.agenda_all_done)
             : (diaryMode ? R.string.study_hifz_empty : R.string.study_empty));
+    agendaHeader
+        .findViewById(R.id.ibadah_template)
+        .setVisibility(ibadahMode && total == 0 ? View.VISIBLE : View.GONE);
     if (ibadahMode)
       empty.setText(
           total > 0
@@ -320,7 +346,7 @@ public final class StudyActivity extends BaseActivity {
     check.setOnCheckedChangeListener(
         (button, checked) -> {
           if (checked) {
-            db.setCompleted(task.id, true);
+            if (!db.setCompleted(task.id, true)) toast(getString(R.string.planner_stale_action));
             refreshTasks();
           }
         });
@@ -360,6 +386,8 @@ public final class StudyActivity extends BaseActivity {
     editorDialog = dialog;
     editorView = editor;
     editorTask = task;
+    editorRetained = false;
+    final boolean[] saveAsNew = {task == null};
     EditText title = editor.findViewById(R.id.study_editor_title);
     RadioGroup category = editor.findViewById(R.id.study_editor_category);
     title.setText(draft != null ? draft : task == null ? "" : task.title);
@@ -417,20 +445,34 @@ public final class StudyActivity extends BaseActivity {
         .setOnClickListener(
             v -> {
               String value = title.getText().toString().trim(), selected = selectedCategory();
-              if (diaryMode) {
-                HifzTarget target = hifzEditor.target();
-                if (target == null) return;
-                if (value.isEmpty()) value = canonical(target);
-                if (task == null) db.addHifzTask(value, target);
-                else db.updateHifzTask(task.id, value, target);
-              } else {
-                if (value.isEmpty()) {
-                  title.setError(getString(R.string.study_required));
-                  title.requestFocus();
-                  return;
+              boolean saved = true;
+              try {
+                if (diaryMode) {
+                  HifzTarget target = hifzEditor.target();
+                  if (target == null) return;
+                  if (value.isEmpty()) value = canonical(target);
+                  if (saveAsNew[0]) db.addHifzTask(value, target);
+                  else saved = db.updateHifzTask(task.id, value, target);
+                } else {
+                  if (value.isEmpty()) {
+                    title.setError(getString(R.string.study_required));
+                    title.requestFocus();
+                    return;
+                  }
+                  if (saveAsNew[0]) db.addTask(value, selected);
+                  else saved = db.updateTask(task.id, value, selected);
                 }
-                if (task == null) db.addTask(value, selected);
-                else db.updateTask(task.id, value, selected);
+              } catch (android.database.sqlite.SQLiteException error) {
+                TextView status = editor.findViewById(R.id.study_editor_status);
+                status.setText(R.string.planner_save_failed);
+                status.setVisibility(View.VISIBLE);
+                return;
+              }
+              if (!saved) {
+                saveAsNew[0] = true;
+                retainDraftForNewTask();
+                refreshTasks();
+                return;
               }
               if (!"All".equals(filter)) filter = selected;
               refreshTasks();
@@ -462,6 +504,16 @@ public final class StudyActivity extends BaseActivity {
           View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.AT_MOST));
       window.setLayout(width, Math.min(height, editor.getMeasuredHeight()));
     }
+  }
+
+  private void retainDraftForNewTask() {
+    editorTask = null;
+    editorRetained = true;
+    TextView status = editorView.findViewById(R.id.study_editor_status);
+    status.setText(ibadahMode ? R.string.planner_stale_ibadah : R.string.planner_missing_task);
+    status.setVisibility(View.VISIBLE);
+    ((TextView) editorView.findViewById(R.id.study_editor_save))
+        .setText(ibadahMode ? R.string.planner_add_today : R.string.planner_add_again);
   }
 
   private void showNotes(boolean expanded) {
@@ -510,7 +562,7 @@ public final class StudyActivity extends BaseActivity {
                 .setPositiveButton(
                     R.string.study_delete,
                     (d, w) -> {
-                      db.deleteTask(task.id);
+                      if (!db.deleteTask(task.id)) toast(getString(R.string.planner_stale_action));
                       refreshTasks();
                     })
                 .show();
@@ -728,7 +780,7 @@ public final class StudyActivity extends BaseActivity {
               task.title));
       checkbox.setOnCheckedChangeListener(
           (v, checked) -> {
-            db.setCompleted(task.id, checked);
+            if (!db.setCompleted(task.id, checked)) toast(getString(R.string.planner_stale_action));
             refreshTasks();
           });
       more.setContentDescription(getString(R.string.study_actions_for, task.title));

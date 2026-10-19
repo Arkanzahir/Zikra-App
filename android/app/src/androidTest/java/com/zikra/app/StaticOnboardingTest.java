@@ -57,8 +57,7 @@ public final class StaticOnboardingTest extends InstrumentationTestCase {
     }
     previous.recycle();
     getInstrumentation().runOnMainSync(() -> page.findViewById(R.id.onboardBack).performClick());
-    assertEquals(
-        "Langkah 2 dari 3", ((TextView) page.findViewById(R.id.onboardStep)).getText().toString());
+    assertEquals("02 / 03", ((TextView) page.findViewById(R.id.onboardStep)).getText().toString());
   }
 
   public void testSwipeOnWideContinueAdvancesOnlyOneStep() {
@@ -86,8 +85,7 @@ public final class StaticOnboardingTest extends InstrumentationTestCase {
               move.recycle();
               up.recycle();
             });
-    assertEquals(
-        "Langkah 2 dari 3", ((TextView) page.findViewById(R.id.onboardStep)).getText().toString());
+    assertEquals("02 / 03", ((TextView) page.findViewById(R.id.onboardStep)).getText().toString());
   }
 
   public void testCompactLayoutAtLargeFontKeepsNavigationReachable() {
@@ -99,7 +97,7 @@ public final class StaticOnboardingTest extends InstrumentationTestCase {
               config.screenWidthDp = 320;
               config.screenHeightDp = 560;
               config.smallestScreenWidthDp = 320;
-              config.fontScale = 1.3f;
+              config.fontScale = 2.0f;
               android.content.Context scoped = page.createConfigurationContext(config);
               ContextThemeWrapper themed = new ContextThemeWrapper(scoped, R.style.Theme_Zikra);
               float density = themed.getResources().getDisplayMetrics().density;
@@ -124,12 +122,10 @@ public final class StaticOnboardingTest extends InstrumentationTestCase {
               TextView title = root.findViewById(R.id.onboardTitle);
               assertTrue(
                   "The scoped layout uses enlarged text",
-                  title.getTextSize() >= 28 * density * 1.28f);
+                  title.getTextSize() >= 28 * density * 1.98f);
               ImageView illustration = root.findViewById(R.id.onboardIllustration);
-              assertTrue(
-                  "Compact configuration selects a shorter illustration",
-                  illustration.getHeight() >= 150 * density
-                      && illustration.getHeight() <= 165 * density);
+              assertEquals("Hero reaches both viewport edges", width, illustration.getWidth());
+              assertTrue("Full artwork remains visible", illustration.getHeight() > 0);
               ScrollView scroll = root.findViewById(R.id.onboardScroll);
               scroll.scrollTo(0, scroll.getChildAt(0).getHeight());
               Rect caption = bounds(root, root.findViewById(R.id.onboardDescription));

@@ -11,6 +11,16 @@ public final class InfaqActivity extends BaseActivity {
   protected void onCreate(Bundle state) {
     super.onCreate(state);
     setContentView(R.layout.activity_infaq);
+    ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.sharedFeatureHeader))
+        .bind(
+            R.id.toolbarBack,
+            R.id.detailTitle,
+            R.id.featureSubtitle,
+            0,
+            "Infaq Kampus",
+            "Panduan berbagi melalui masjid",
+            0,
+            null);
     setupScreen("Infaq Kampus");
     getWindow().setStatusBarColor(0xFFFCFDFB);
     getWindow()

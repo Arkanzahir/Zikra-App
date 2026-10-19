@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content"
     android:orientation="vertical" android:paddingTop="6dp">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:gravity="center_vertical">
-        <TextView android:id="@+id/ayahNumber" android:layout_width="32dp" android:layout_height="32dp" android:gravity="start|center_vertical"
-            android:textSize="11sp" android:textColor="#9C793D" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:gravity="center_vertical">
+        <TextView android:id="@+id/ayahNumber" android:layout_width="wrap_content" android:minWidth="32dp" android:layout_marginEnd="8dp" android:layout_height="wrap_content" android:gravity="start|center_vertical"
+            android:textSize="13sp" android:textColor="#806337" />
         <TextView android:id="@+id/ayahLastReadStatus" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
-            android:gravity="end" android:textSize="10sp" android:textColor="#9C793D" />
+            android:gravity="end" android:textSize="12sp" android:textColor="#806337" />
         <ImageButton android:id="@+id/ayahBookmark" android:layout_width="48dp" android:layout_height="48dp" android:padding="15dp"
             android:src="@drawable/reading_ic_bookmark" android:tint="#8C723E" android:contentDescription="Tandai terakhir dibaca"
             android:background="?android:attr/selectableItemBackgroundBorderless" />
@@ -17,6 +17,6 @@
         android:gravity="end" android:textAlignment="viewEnd" android:textDirection="rtl" android:textSize="29sp" android:lineSpacingExtra="13dp"
         android:layout_marginTop="8dp" android:layout_marginBottom="16dp" android:textColor="@color/pine" />
     <TextView android:id="@+id/ayahTranslation" android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:textSize="14sp" android:lineSpacingExtra="5dp" android:textColor="#50665B" />
+        android:textSize="16sp" android:lineSpacingExtra="5dp" android:textColor="#50665B" />
     <View android:id="@+id/ayahDivider" android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="20dp" android:background="#E3E8E2" />
 </LinearLayout>

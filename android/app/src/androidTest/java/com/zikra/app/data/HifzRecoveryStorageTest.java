@@ -50,8 +50,8 @@ public final class HifzRecoveryStorageTest extends AndroidTestCase {
     old.setVersion(1);
     old.close();
     open();
-    assertEquals(2, db.getTotalCount());
-    assertEquals(1, db.getCompletedCount());
+    assertEquals(3, db.getTotalCount());
+    assertEquals(2, db.getCompletedCount());
     assertNull(find(42).hifz);
     assertTrue(find(42).completed);
     try (Cursor cursor =
@@ -63,7 +63,7 @@ public final class HifzRecoveryStorageTest extends AndroidTestCase {
     assertEquals(2, db.getReadableDatabase().getVersion());
     db.close();
     open();
-    assertEquals(2, db.getTotalCount());
+    assertEquals(3, db.getTotalCount());
   }
 
   public void testRangePersistsAndNewRangeResetsCompletionButNoteEditDoesNot() {
@@ -82,10 +82,10 @@ public final class HifzRecoveryStorageTest extends AndroidTestCase {
     db.updateTask(id, "Belajar", ZikraDbHelper.CATEGORY_STUDY);
     assertNull(find(id).hifz);
     db.deleteTask(id);
-    assertEquals(24, db.getTotalCount());
+    assertEquals(0, db.getTotalCount());
   }
 
-  public void testInvalidBoundsAndOldDateCannotChangeTargets() {
+  public void testInvalidBoundsAndPriorDateTargetsRemainEditable() {
     open();
     int size = db.getTotalCount();
     for (int[] bounds : new int[][] {{0, 2}, {3, 2}, {1, 5}}) {
@@ -103,10 +103,10 @@ public final class HifzRecoveryStorageTest extends AndroidTestCase {
             getContext(),
             NAME,
             Clock.fixed(Instant.parse("2026-10-19T03:00:00Z"), ZoneId.of("Asia/Jakarta")));
-    db.updateHifzTask(id, "Beda hari", new HifzTarget(113, "Al-Falaq", 5, 1, 5));
+    assertTrue(db.updateHifzTask(id, "Beda hari", new HifzTarget(113, "Al-Falaq", 5, 1, 5)));
     db.close();
     open();
-    assertEquals("Kemarin", find(id).title);
-    assertEquals(112, find(id).hifz.chapterId);
+    assertEquals("Beda hari", find(id).title);
+    assertEquals(113, find(id).hifz.chapterId);
   }
 }

@@ -1,4 +1,5 @@
 <resources>
+    <color name="onboarding_wall">#F4E5CB</color>
     <color name="onboarding_paper">#FAF7EF</color>
     <dimen name="onboard_static_art_height">160dp</dimen>
 </resources>

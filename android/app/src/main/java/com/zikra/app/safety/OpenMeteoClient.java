@@ -38,6 +38,7 @@ public final class OpenMeteoClient implements AutoCloseable {
   }
 
   public void load(BmkgClient.Result<BmkgParser.Forecast> result) {
+    if (closed) return;
     reset();
     int token = generation;
     WORK.execute(
@@ -100,8 +101,10 @@ public final class OpenMeteoClient implements AutoCloseable {
                       result.failure(
                           "Cuaca belum tersedia. Periksa koneksi lalu muat ulang. Cache lebih dari"
                               + " enam jam tidak ditampilkan."));
-            // A valid older forecast was already delivered with its saved timestamp and stale
-            // label.
+            else
+              deliver(
+                  token,
+                  () -> result.failure("Pembaruan cuaca gagal. Data tersimpan tetap tersedia."));
           } finally {
             if (active == call) active = null;
           }
@@ -123,9 +126,7 @@ public final class OpenMeteoClient implements AutoCloseable {
             .withZone(PrayerSchedule.ZONE)
             .format(f.fetchedAt);
     return "Open-Meteo · "
-        + (f.stored
-            ? (f.stale ? "tersimpan; pembaruan belum tersedia" : "tersimpan")
-            : "prakiraan model")
+        + (f.stored ? (f.stale ? "tersimpan · perlu diperbarui" : "tersimpan") : "prakiraan model")
         + "\nDiambil "
         + time;
   }

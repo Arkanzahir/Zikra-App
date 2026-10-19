@@ -17,6 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.zikra.app.ui.FeatureHeader;
 import java.util.Locale;
 
 public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitListener {
@@ -77,6 +78,16 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
   protected void onCreate(Bundle state) {
     super.onCreate(state);
     setContentView(R.layout.activity_dua);
+    ((FeatureHeader) findViewById(R.id.utilitiesHeader))
+        .bind(
+            R.id.toolbarBack,
+            R.id.detailTitle,
+            R.id.featureSubtitle,
+            0,
+            "Doa Harian",
+            "Pilihan doa untuk keseharian",
+            0,
+            null);
     setupScreen("Doa Harian");
     NavDock.attach(this, (FrameLayout) findViewById(R.id.duaRoot), "dua");
     getWindow().setStatusBarColor(Color.parseColor("#F8F9F5"));
@@ -124,14 +135,15 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
       final int category = i;
       TextView chip = new TextView(this);
       chip.setText(CATEGORY_NAMES[i]);
-      chip.setTextSize(10);
+      chip.setTextSize(14);
       chip.setGravity(Gravity.CENTER);
       chip.setPadding(dp(15), 0, dp(15), 0);
-      chip.setMinHeight(dp(40));
+      chip.setMinHeight(dp(48));
       chip.setClickable(true);
       chip.setFocusable(true);
       LinearLayout.LayoutParams params =
-          new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, dp(40));
+          new LinearLayout.LayoutParams(
+              LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
       params.setMarginEnd(dp(8));
       categories.addView(chip, params);
       categoryChips[i] = chip;
@@ -209,10 +221,10 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
     for (int i = 0; i < categoryChips.length; i++) {
       boolean selected = i == selectedCategory;
       GradientDrawable background = new GradientDrawable();
-      background.setColor(Color.parseColor(selected ? "#57876F" : "#EDF1E9"));
+      background.setColor(Color.parseColor(selected ? "#15332F" : "#EDF1E9"));
       background.setCornerRadius(dp(22));
       categoryChips[i].setBackground(background);
-      categoryChips[i].setTextColor(Color.parseColor(selected ? "#FFFFFF" : "#6D8173"));
+      categoryChips[i].setTextColor(Color.parseColor(selected ? "#FFFFFF" : "#52665F"));
       categoryChips[i].setSelected(selected);
     }
   }

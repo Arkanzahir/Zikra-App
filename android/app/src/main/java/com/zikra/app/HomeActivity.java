@@ -63,6 +63,7 @@ public final class HomeActivity extends BaseActivity {
       return;
     }
     setContentView(R.layout.activity_home);
+    adaptHomeForTextSize();
     NavDock.attach(this, findViewById(R.id.homeRoot), "home");
     setupScreen("Zikra");
     db = new ZikraDbHelper(this);
@@ -113,7 +114,12 @@ public final class HomeActivity extends BaseActivity {
     findViewById(R.id.shortcutProtector).setOnClickListener(v -> open(ProtectorActivity.class));
     findViewById(R.id.shortcutStudy).setOnClickListener(v -> open(StudyActivity.class));
     findViewById(R.id.shortcutHadith).setOnClickListener(v -> open(HadithActivity.class));
-    findViewById(R.id.homeChecklist).setOnClickListener(v -> open(StudyActivity.class));
+    findViewById(R.id.homeChecklist)
+        .setOnClickListener(
+            v ->
+                startActivity(
+                    new android.content.Intent(this, StudyActivity.class)
+                        .putExtra("category", ZikraDbHelper.CATEGORY_IBADAH)));
     findViewById(R.id.homeReminders).setOnClickListener(v -> open(PrayerActivity.class));
     findViewById(R.id.homeSearch).setOnClickListener(v -> open(QuranActivity.class));
     findViewById(R.id.homeHijri).setOnClickListener(v -> open(CalendarActivity.class));
@@ -159,16 +165,47 @@ public final class HomeActivity extends BaseActivity {
   }
 
   private void updateProgress() {
-    ZikraDbHelper.Progress progress = db.getProgress();
+    ZikraDbHelper.Progress progress = db.getProgress(ZikraDbHelper.CATEGORY_IBADAH);
     int done = progress.completed, total = progress.total;
     progressDate = java.time.LocalDate.now();
     ((TextView) findViewById(R.id.homeProgressPercent)).setText(progress.percent + "%");
     ((TextView) findViewById(R.id.homeProgressSubtitle))
         .setText(
             total == 0
-                ? "Belum ada checklist hari ini"
-                : done + " dari " + total + " checklist selesai");
+                ? "Mulai dari satu ibadah yang ingin kamu jaga."
+                : done + " dari " + total + " ibadah selesai");
+    ((TextView) findViewById(R.id.homeChecklist))
+        .setText(total == 0 ? "Catat ibadah pertama" : "Buka checklist ibadah");
+    findViewById(R.id.homeProgressPercent)
+        .setVisibility(total == 0 ? android.view.View.GONE : android.view.View.VISIBLE);
+    findViewById(R.id.homeProgressTicks)
+        .setVisibility(total == 0 ? android.view.View.GONE : android.view.View.VISIBLE);
     ((SegmentedProgressView) findViewById(R.id.homeProgressTicks)).setProgress(done, total);
+  }
+
+  /** Keep times readable and reflow shortcuts instead of shrinking the user's larger text. */
+  private void adaptHomeForTextSize() {
+    float scale = getResources().getConfiguration().fontScale;
+    findViewById(R.id.homePrayerStrip).setMinimumWidth(dp(6 * 48 * Math.max(1f, scale)));
+    if (scale <= 1.3f) return;
+    LinearLayout shortcuts = findViewById(R.id.homeShortcuts);
+    java.util.List<android.view.View> tiles = new java.util.ArrayList<>();
+    for (int i = 0; i < shortcuts.getChildCount(); i++) {
+      LinearLayout row = (LinearLayout) shortcuts.getChildAt(i);
+      while (row.getChildCount() > 0) {
+        android.view.View tile = row.getChildAt(0);
+        row.removeViewAt(0);
+        tiles.add(tile);
+      }
+    }
+    shortcuts.removeAllViews();
+    for (int i = 0; i < tiles.size(); i += 2) {
+      LinearLayout row = new LinearLayout(this);
+      row.setGravity(android.view.Gravity.CENTER_VERTICAL);
+      for (int j = i; j < Math.min(i + 2, tiles.size()); j++)
+        row.addView(tiles.get(j), new LinearLayout.LayoutParams(0, -2, 1));
+      shortcuts.addView(row, new LinearLayout.LayoutParams(-1, -2));
+    }
   }
 
   private void updateClock() {

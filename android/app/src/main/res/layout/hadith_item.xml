@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -9,7 +9,8 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:focusable="true"
-    android:clickable="true">
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
     <ImageView
         android:id="@+id/hadithIcon"
         android:layout_width="44dp"
@@ -29,7 +30,7 @@
             android:id="@+id/hadithItemTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:fontFamily="sans-serif-medium"
             android:textColor="@color/pine" />
         <TextView
@@ -37,8 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:textSize="11sp"
-            android:textColor="@color/muted"
+            android:textSize="14sp"
+            android:textColor="#52665F"
             android:maxLines="2"
             android:ellipsize="end"
             android:lineSpacingExtra="3dp" />

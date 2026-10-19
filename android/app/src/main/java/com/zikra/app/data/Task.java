@@ -1,6 +1,6 @@
 package com.zikra.app.data;
 
-/** An immutable snapshot of one task saved in the daily checklist. */
+/** An immutable snapshot of one persistent plan or daily ibadah item. */
 public final class Task {
   public final long id;
   public final String title;

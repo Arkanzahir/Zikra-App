@@ -38,12 +38,24 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
   private long lastStatus;
   private long lastSensorRender;
   private String lastStatusText = "";
+  private int lastAnnouncementState = -1;
+  private long lastAnnouncementAt;
   private int sensorAccuracy = SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM;
 
   @Override
   protected void onCreate(Bundle state) {
     super.onCreate(state);
     setContentView(R.layout.activity_qibla);
+    ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.sharedFeatureHeader))
+        .bind(
+            R.id.toolbarBack,
+            R.id.featureTitle,
+            R.id.featureSubtitle,
+            0,
+            "Arah Kiblat",
+            "Acuan Sukolilo, Surabaya",
+            0,
+            null);
     setupScreen("Arah Kiblat");
     getWindow().setStatusBarColor(getColor(R.color.ivory));
     getWindow().setNavigationBarColor(getColor(R.color.ivory));
@@ -99,10 +111,10 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
     lastSensorRender = 0;
     lastStatus = 0;
     lastStatusText = "";
+    lastAnnouncementState = -1;
     compass.setHeading(0, false);
     sensorAccuracy = SensorManager.SENSOR_STATUS_UNRELIABLE;
-    if (rotationSensor != null)
-      sensorStatus.setText("Menunggu sensor · pegang ponsel mendatar.");
+    if (rotationSensor != null) sensorStatus.setText("Menunggu sensor · pegang ponsel mendatar.");
     if (rotationSensor != null && !sensorManager.registerListener(this, rotationSensor, 100_000)) {
       rotationSensor = null;
       showMissingSensor();
@@ -171,6 +183,18 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
         sensorStatus.setText(text);
         sensorStatus.setTextColor(getColor(aligned ? R.color.sage_active : R.color.pine));
         lastStatusText = text;
+      }
+      // Continuous headings remain readable but should not flood TalkBack.
+      int state =
+          sensorAccuracy < SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM ? 0 : aligned ? 2 : 1;
+      if (state != lastAnnouncementState && now - lastAnnouncementAt >= 2500) {
+        if (state != 1)
+          sensorStatus.announceForAccessibility(
+              state == 2
+                  ? "Sejajar dengan arah kiblat"
+                  : "Akurasi sensor rendah. Kalibrasi kompas.");
+        lastAnnouncementState = state;
+        lastAnnouncementAt = now;
       }
       lastStatus = now;
     }

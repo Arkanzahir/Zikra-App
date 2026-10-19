@@ -1,4 +1,5 @@
-> **Status 18 Oktober 2026:** onboarding terbaru memakai tiga ilustrasi 2D statis; animasi, parallax dan aset 3D onboarding telah dihapus dari APK. Logo master, copy, navigasi, preferensi lama dan fitur lainnya dipertahankan. [Screenshot/validasi terbaru](validation/static-onboarding/README.md) · [RECOVERY.md](../RECOVERY.md). Catatan lama di bawah bersifat historis.
+> **Status 19 Oktober 2026:** ronde kegunaan memperbaiki onboarding 2D statis, header/navigasi, keterbacaan, rencana lintas tanggal dan pengaturan reader. Progres baru berasal dari tindakan pengguna, tanpa tugas atau penyelesaian demo otomatis. [Hasil dan screenshot terbaru](validation/quality-2026-10-19/README.md) · [RECOVERY.md](../RECOVERY.md). Hasil checkpoint lama di bawah bersifat historis.
+
 
 # Zikra Android — Java dan XML
 
@@ -6,12 +7,12 @@ Project Android Studio mandiri, aplikasi native Java dengan layout XML. Tanpa Ko
 
 ## Melanjutkan dari chat baru
 
-Baca [status terbaru](validation/rebuilt/README.md) sebelum inventaris historis di bawah. Onboarding memakai tiga ilustrasi 2D statis tanpa jenjang/minat. Reader terjemahan mencakup 114 surah melalui public v4 API, empat surah bawaan dan cache delapan bagian. Mushaf halaman, murottal dan offline penuh belum tersedia. Home memakai USNO/fallback berlabel; cuaca memakai Open-Meteo, gempa/peringatan tetap BMKG.
+Baca [status terbaru](validation/quality-2026-10-19/README.md) sebelum inventaris historis di bawah. Onboarding memakai tiga ilustrasi 2D statis tanpa jenjang/minat. Reader terjemahan mencakup 114 surah melalui public v4 API, empat surah bawaan dan cache delapan bagian. Mushaf halaman, murottal dan offline penuh belum tersedia. Home memakai USNO/fallback berlabel; cuaca memakai Open-Meteo, gempa/peringatan tetap BMKG.
 
 
 ## Buka dan jalankan
 
-Buka folder `android` melalui Android Studio → Open. Gunakan JDK 17 atau 21, Android SDK 35, Build Tools 35.0.0, dan perangkat Android 8.0/API 26 atau lebih baru. Rincian lingkungan tersedia di [BUILDING.md](BUILDING.md).
+Buka folder `android` melalui Android Studio → Open. Gunakan JDK 17, Android SDK 35, Build Tools 35.0.0, dan perangkat Android 8.0/API 26 atau lebih baru. Rincian lingkungan tersedia di [BUILDING.md](BUILDING.md).
 
 ```sh
 ./gradlew assembleDebug testDebugUnitTest lintDebug
@@ -29,18 +30,18 @@ Jalur Java berikut berada di `app/src/main/java/com/zikra/app/`; layout di `app/
 
 | Halaman | Implementasi dan fungsi |
 | --- | --- |
-| Home | `HomeActivity.java`, `activity_home.xml`: jam WIB 70sp, Hijriah, siluet masjid, delapan shortcut, 24 tick progres SQLite, dock melayang |
-| Protector BMKG | `ProtectorActivity.java`, `activity_protector.xml`: kartu cuaca biru, tautan peringatan resmi, peta Indonesia, laporan gempa, akses bantuan |
-| Detail cuaca | `WeatherActivity.java`, `activity_weather.xml`: hero cyan, kelembapan/angin/jarak pandang, grafik suhu Canvas, slot prakiraan bertanggal |
+| Home | `HomeActivity.java`, `activity_home.xml`: jam WIB, Hijriah, langit dinamis, delapan shortcut, progres ibadah nyata dan navigasi adaptif |
+| Protector BMKG | `ProtectorActivity.java`, `activity_protector.xml`: kartu cuaca Pine/sage, tautan informasi BMKG, peta Indonesia, laporan gempa, akses bantuan |
+| Detail cuaca | `WeatherActivity.java`, `activity_weather.xml`: hero Pine, kelembapan/angin/jarak pandang, grafik suhu Canvas, slot prakiraan bertanggal |
 | Detail gempa | `EarthquakeActivity.java`, `activity_earthquake.xml`: peta, koordinat episentrum, kedalaman/magnitudo/waktu, buka lokasi di aplikasi peta |
 | Kiblat | `QiblaActivity.java`, `activity_qibla.xml`, `reading/QiblaCompassView.java`: kompas roset sage, Ka'bah, 294° Sukolilo, kalibrasi dan masjid kampus |
 | Waktu sholat | `PrayerActivity.java`, `PrayerSchedule.java`, `reminders/`: perhitungan harian Sukolilo, tab hari/pekan, countdown, alarm dan notifikasi per sholat |
 | Quran | `QuranActivity.java`, `activity_quran.xml`: katalog/search surah, hero buku native, reader, bookmark ayat, mode malam sensor/manual |
 | Doa | `DuaActivity.java`, `activity_dua.xml`: pencarian, kategori, kartu doa, teks Arab/arti, pelafalan TTS Android |
 | Study Hub/Diary Hifz | `StudyActivity.java`, `activity_study.xml`, `data/ZikraDbHelper.java`: CRUD tugas/ibadah, mode hafalan dengan progres kategori sendiri, dan voice-to-task |
-| Zikra AI | `AiActivity.java`, `activity_ai.xml`, `assistant/`: tampilan lavender, topik belajar/ibadah/hafalan, percakapan lokal dan input suara Android |
+| Zikra AI | `AiActivity.java`, `activity_ai.xml`, `assistant/`: tampilan Pine/ivory, topik belajar/ibadah/hafalan, percakapan lokal dan input suara Android |
 | Profil | `ProfileActivity.java`, `activity_profile.xml`: progres SQLite, bacaan terakhir, Hadis, Kalender, preferensi belajar, pengingat dan bantuan |
-| Onboarding | `OnboardingActivity.java`, `activity_onboarding.xml`: orbit parallax sentuh/tilt, pilih SMP/SMA-SMK/Mahasiswa, maksimal tiga minat, SharedPreferences; tampil pada peluncuran pertama |
+| Onboarding | `OnboardingActivity.java`, `activity_onboarding.xml`: tiga adegan 2D statis 3:2, judul dua baris, langkah 01/03, lewati/lanjut dan SharedPreferences; tanpa jenjang/minat |
 | Hadis | `HadithActivity.java`, `activity_hadith.xml`: tujuh kutipan pilihan bersumber, pencarian, kategori Bukhari/Muslim dan bookmark |
 | Kalender Hijriah | `CalendarActivity.java`, `activity_calendar.xml`, `discovery/HijriCalendarModel.java`: bulan sebelumnya/berikutnya, pilih tanggal, konversi Gregorian dan hari istimewa |
 | Navigasi | `NavDock.java`: dock XML utama dan dock ibadah; Activity menggunakan explicit Intent |

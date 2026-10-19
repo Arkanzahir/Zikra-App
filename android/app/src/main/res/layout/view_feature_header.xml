@@ -8,9 +8,9 @@
     <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
         android:paddingHorizontal="8dp" android:orientation="vertical">
         <TextView android:id="@+id/featureTitle" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:textSize="18sp" android:textStyle="bold" android:textColor="@color/pine" />
+            android:textSize="20sp" android:textStyle="bold" android:textColor="@color/pine" />
         <TextView android:id="@+id/featureSubtitle" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_marginTop="3dp" android:textSize="11sp" android:textColor="#63766D" android:visibility="gone" />
+            android:layout_marginTop="3dp" android:textSize="13sp" android:textColor="@color/muted" android:visibility="gone" />
     </LinearLayout>
     <ImageButton android:id="@+id/featureAction" android:layout_width="48dp" android:layout_height="48dp"
         android:src="@drawable/protector_ic_refresh" android:tint="@color/pine" android:padding="14dp"

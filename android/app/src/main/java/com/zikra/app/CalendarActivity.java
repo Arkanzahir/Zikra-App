@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.zikra.app.discovery.DiscoveryUi;
 import com.zikra.app.discovery.HijriCalendarModel;
+import com.zikra.app.ui.FeatureHeader;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.chrono.HijrahDate;
@@ -20,12 +21,22 @@ import java.util.Locale;
 public final class CalendarActivity extends BaseActivity {
   private static final Locale ID = Locale.forLanguageTag("id-ID");
   private HijrahDate month, selected;
-  private final LocalDate today = LocalDate.now(ZoneId.of("Asia/Jakarta"));
+  private LocalDate today = LocalDate.now(ZoneId.of("Asia/Jakarta"));
 
   @Override
   protected void onCreate(Bundle state) {
     super.onCreate(state);
     setContentView(R.layout.activity_calendar);
+    ((FeatureHeader) findViewById(R.id.utilitiesHeader))
+        .bind(
+            R.id.toolbarBack,
+            R.id.detailTitle,
+            R.id.featureSubtitle,
+            R.id.calendarToday,
+            "Kalender Hijriah",
+            "Perkiraan Umm al-Qura",
+            R.drawable.ic_tasks,
+            "Kembali ke hari ini");
     setupScreen("Kalender Hijriah");
     getWindow().setStatusBarColor(0xFFF8F9F4);
     getWindow()
@@ -42,7 +53,8 @@ public final class CalendarActivity extends BaseActivity {
     month = HijriCalendarModel.first(selected);
     findViewById(R.id.calendarPrev).setOnClickListener(v -> shift(-1));
     findViewById(R.id.calendarNext).setOnClickListener(v -> shift(1));
-    findViewById(R.id.calendarToday)
+    ((FeatureHeader) findViewById(R.id.utilitiesHeader))
+        .action()
         .setOnClickListener(
             v -> {
               selected = HijrahDate.from(today);
@@ -51,11 +63,29 @@ public final class CalendarActivity extends BaseActivity {
             });
     LinearLayout weekdays = findViewById(R.id.calendarWeekdays);
     for (String day : new String[] {"Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"}) {
-      TextView label = DiscoveryUi.text(this, day, 11, "#88988D", false);
+      TextView label = DiscoveryUi.text(this, day, 14, "#52665F", false);
       label.setGravity(Gravity.CENTER);
-      weekdays.addView(label, new LinearLayout.LayoutParams(0, -1, 1));
+      weekdays.addView(label, new LinearLayout.LayoutParams(0, dp(36), 1));
     }
     NavDock.attach(this, (FrameLayout) findViewById(R.id.calendarRoot), "calendar");
+    render();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    refreshToday(LocalDate.now(ZoneId.of("Asia/Jakarta")));
+  }
+
+  /** Refreshes the real day without discarding a date the user deliberately browsed. */
+  void refreshToday(LocalDate current) {
+    if (current.equals(today) || selected == null) return;
+    boolean followingToday = LocalDate.from(selected).equals(today);
+    today = current;
+    if (followingToday) {
+      selected = HijrahDate.from(today);
+      month = HijriCalendarModel.first(selected);
+    }
     render();
   }
 
@@ -89,12 +119,12 @@ public final class CalendarActivity extends BaseActivity {
     int cells = ((offset + month.lengthOfMonth() + 6) / 7) * 7;
     for (int cell = 0; cell < cells; cell++) {
       final int day = cell - offset + 1;
-      TextView view = DiscoveryUi.text(this, "", 13, "#315849", false);
+      TextView view = DiscoveryUi.text(this, "", 16, "#15332F", false);
       view.setGravity(Gravity.CENTER);
       GridLayout.LayoutParams p =
           new GridLayout.LayoutParams(GridLayout.spec(cell / 7), GridLayout.spec(cell % 7, 1f));
       p.width = 0;
-      p.height = dp(42);
+      p.height = dp(48);
       p.setMargins(dp(1), dp(3), dp(1), dp(3));
       grid.addView(view, p);
       if (day < 1 || day > month.lengthOfMonth()) continue;
@@ -102,10 +132,11 @@ public final class CalendarActivity extends BaseActivity {
       view.setText(Integer.toString(day));
       boolean active = date.equals(selected), isToday = LocalDate.from(date).equals(today);
       view.setBackground(
-          DiscoveryUi.background(this, active ? "#57927E" : isToday ? "#E3F1E8" : "#FFFFFF", 24));
+          DiscoveryUi.background(this, active ? "#15332F" : isToday ? "#E3F1E8" : "#FFFFFF", 24));
       view.setTextColor(Color.parseColor(active ? "#FFFFFF" : "#315849"));
       view.setContentDescription(
           HijriCalendarModel.label(date) + ", " + LocalDate.from(date).format(greg));
+      view.setSelected(active);
       view.setClickable(true);
       view.setFocusable(true);
       view.setOnClickListener(
@@ -136,8 +167,8 @@ public final class CalendarActivity extends BaseActivity {
           DiscoveryUi.text(
               this,
               HijriCalendarModel.label(event.date) + " · " + event.gregorian.format(greg),
-              11,
-              "#839487",
+              14,
+              "#52665F",
               false);
       dates.setPadding(0, dp(8), 0, 0);
       card.addView(dates);

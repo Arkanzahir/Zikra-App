@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/hadithRoot"
@@ -9,41 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <LinearLayout
+        <com.zikra.app.ui.FeatureHeader
+            android:id="@+id/utilitiesHeader"
             android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="16dp">
-            <ImageButton
-                android:id="@+id/toolbarBack"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_back"
-                android:padding="13dp"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:tint="@color/pine"
-                android:contentDescription="Kembali" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Hadis"
-                android:textColor="@color/pine"
-                android:textSize="23sp"
-                android:fontFamily="sans-serif-medium"
-                android:layout_marginStart="6dp" />
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_book"
-                android:tint="@color/sage_active"
-                android:importantForAccessibility="no" />
-        </LinearLayout>
+            android:layout_height="wrap_content" />
         <EditText
             android:id="@+id/hadithSearch"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="22dp"
             android:paddingHorizontal="17dp"
             android:background="@drawable/calendar_card"
@@ -51,16 +24,18 @@
             android:singleLine="true"
             android:inputType="text"
             android:imeOptions="actionSearch"
-            android:textSize="13sp"
+            android:textSize="16sp"
             android:textColor="@color/pine"
-            android:textColorHint="@color/muted"
-            android:contentDescription="Cari hadis atau topik" />
+            android:textColorHint="#52665F"
+            android:contentDescription="Cari hadis atau topik"
+            android:minHeight="56dp" />
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:fillViewport="false"
             android:scrollbars="none"
-            android:paddingHorizontal="18dp">
+            android:paddingHorizontal="18dp"
+            android:paddingVertical="8dp">
             <LinearLayout
                 android:id="@+id/hadithTabs"
                 android:layout_width="wrap_content"
@@ -86,13 +61,17 @@
                     android:background="@drawable/hadith_hero"
                     android:orientation="vertical"
                     android:padding="24dp"
-                    android:layout_marginBottom="20dp">
+                    android:layout_marginBottom="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:contentDescription="Baca hadis Berkata baik. HR. Bukhari 6018 dan Muslim 47.">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="PESAN KEBAIKAN"
                         android:textColor="#D5BD87"
-                        android:textSize="10sp"
+                        android:textSize="14sp"
                         android:letterSpacing="0.16" />
                     <TextView
                         android:layout_width="match_parent"
@@ -119,8 +98,16 @@
                         android:layout_marginTop="17dp"
                         android:text="HR. Bukhari 6018 · Muslim 47"
                         android:textColor="#BBCFC2"
-                        android:textSize="11sp"
+                        android:textSize="14sp"
                         android:gravity="center" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Baca dan simpan hadis  →"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:layout_marginTop="16dp" />
                 </LinearLayout>
                 <TextView
                     android:id="@+id/hadithCount"
@@ -135,19 +122,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Koleksi ringkas offline · terjemahan makna"
-                    android:textColor="@color/muted"
-                    android:textSize="11sp"
+                    android:textColor="#52665F"
+                    android:textSize="14sp"
                     android:layout_marginBottom="14dp" />
                 <TextView
                     android:id="@+id/hadithEmpty"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Belum ada hadis yang cocok.\nCoba kata lain atau kategori Semua."
-                    android:textColor="@color/muted"
-                    android:textSize="13sp"
+                    android:textColor="#52665F"
+                    android:textSize="14sp"
                     android:lineSpacingExtra="7dp"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:minHeight="120dp"
+                    android:accessibilityLiveRegion="polite" />
                 <LinearLayout
                     android:id="@+id/hadithList"
                     android:layout_width="match_parent"

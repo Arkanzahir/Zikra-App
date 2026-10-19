@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -9,13 +9,15 @@
     <LinearLayout
         android:id="@+id/duaExpand"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingHorizontal="16dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:minHeight="88dp"
+        android:paddingVertical="16dp">
         <ImageView
             android:id="@+id/duaRowIcon"
             android:layout_width="38dp"
@@ -36,16 +38,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/pine"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/duaSubtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#92A19A"
-                android:textSize="9sp"
-                android:layout_marginTop="5dp"
-                android:maxLines="2" />
+                android:textColor="#52665F"
+                android:textSize="14sp"
+                android:layout_marginTop="5dp" />
         </LinearLayout>
         <ImageView
             android:id="@+id/duaChevron"
@@ -81,12 +82,12 @@
         <TextView
             style="@style/ReadingBody"
             android:id="@+id/duaTranslation"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
         <TextView
             style="@style/ReadingBody"
             android:id="@+id/duaSource"
-            android:textColor="#AA8856"
-            android:textSize="10sp"
+            android:textColor="#745629"
+            android:textSize="14sp"
             android:layout_marginTop="12dp" />
         <Button
             android:id="@+id/duaListen"
@@ -95,6 +96,9 @@
             android:text="Dengarkan doa"
             android:enabled="false"
             android:background="@drawable/reading_pine_card"
-            android:textSize="12sp" />
+            android:textSize="14sp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingVertical="12dp" />
     </LinearLayout>
 </LinearLayout>

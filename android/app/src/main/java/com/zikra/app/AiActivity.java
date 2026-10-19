@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.zikra.app.assistant.AssistantOrbView;
 import com.zikra.app.assistant.OfflineAssistant;
 import com.zikra.app.data.ZikraDbHelper;
+import com.zikra.app.ui.FeatureHeader;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,14 +50,25 @@ public final class AiActivity extends BaseActivity {
   protected void onCreate(Bundle state) {
     super.onCreate(state);
     setContentView(R.layout.activity_ai);
-    setupScreen("Zikra AI");
+    ((FeatureHeader) findViewById(R.id.utilitiesHeader))
+        .bind(
+            R.id.toolbarBack,
+            R.id.detailTitle,
+            R.id.featureSubtitle,
+            R.id.aiClear,
+            "Pendamping Zikra",
+            "Panduan rutinitas · offline",
+            R.drawable.ai_reset,
+            "Hapus percakapan lokal");
+    setupScreen("Pendamping Zikra");
     getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-    getWindow().setStatusBarColor(Color.parseColor("#F2EAFB"));
+    getWindow().setStatusBarColor(Color.WHITE);
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     preferences = getSharedPreferences("zikra_preferences", MODE_PRIVATE);
+    adaptEntryActions();
     input = findViewById(R.id.aiInput);
     input.setFilters(
         new InputFilter[] {new InputFilter.LengthFilter(OfflineAssistant.MAX_INPUT_LENGTH)});
@@ -68,7 +80,7 @@ public final class AiActivity extends BaseActivity {
     if (state != null) input.setText(state.getString("draft", ""));
     findViewById(R.id.aiSend).setOnClickListener(v -> sendMessage());
     findViewById(R.id.aiVoice).setOnClickListener(v -> beginVoice());
-    findViewById(R.id.aiVoiceTile).setOnClickListener(v -> beginVoice());
+    configureVoiceAvailability();
     findViewById(R.id.aiChatTile).setOnClickListener(v -> focusComposer());
     findViewById(R.id.aiTopicStudy)
         .setOnClickListener(v -> composeTopic("Bantu susun rencana belajar untuk hari ini"));
@@ -77,7 +89,9 @@ public final class AiActivity extends BaseActivity {
     findViewById(R.id.aiTopicHifz)
         .setOnClickListener(v -> composeTopic("Bantu susun target hafalan Al-Quran"));
     findViewById(R.id.aiOpenStudy).setOnClickListener(v -> open(StudyActivity.class));
-    findViewById(R.id.aiClear).setOnClickListener(v -> confirmClear());
+    ((FeatureHeader) findViewById(R.id.utilitiesHeader))
+        .action()
+        .setOnClickListener(v -> confirmClear());
     pageRoot = findViewById(R.id.aiRoot);
     NavDock.attach(this, pageRoot, "ai");
     if (android.os.Build.VERSION.SDK_INT >= 30) {
@@ -90,6 +104,45 @@ public final class AiActivity extends BaseActivity {
     }
     keyboardLayoutListener = () -> refreshKeyboardLayout(pageRoot.getRootWindowInsets());
     pageRoot.getViewTreeObserver().addOnGlobalLayoutListener(keyboardLayoutListener);
+  }
+
+  private void configureVoiceAvailability() {
+    boolean available =
+        new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).resolveActivity(getPackageManager())
+            != null;
+    ((TextView) findViewById(R.id.aiVoiceTitle))
+        .setText(available ? "Pakai suara" : "Ide rencana belajar");
+    ((TextView) findViewById(R.id.aiVoiceCaption))
+        .setText(
+            available
+                ? "Dikte Android menjadi teks."
+                : "Suara Android belum tersedia. Mulai dengan panduan belajar.");
+    ((TextView) findViewById(R.id.aiVoiceAction))
+        .setText(available ? "Gunakan suara  →" : "Coba rencana  →");
+    View tile = findViewById(R.id.aiVoiceTile);
+    tile.setContentDescription(
+        available
+            ? "Ubah suara menjadi teks dengan layanan Android"
+            : "Layanan suara belum tersedia. Buka panduan rencana belajar");
+    tile.setOnClickListener(
+        v -> {
+          if (available) beginVoice();
+          else composeTopic("Bantu susun rencana belajar untuk hari ini");
+        });
+    findViewById(R.id.aiVoice).setVisibility(available ? View.VISIBLE : View.GONE);
+  }
+
+  private void adaptEntryActions() {
+    android.content.res.Configuration configuration = getResources().getConfiguration();
+    if (configuration.fontScale < 1.3f && configuration.screenWidthDp >= 360) return;
+    LinearLayout actions = findViewById(R.id.aiEntryActions);
+    actions.setOrientation(LinearLayout.VERTICAL);
+    for (int index = 0; index < actions.getChildCount(); index++) {
+      View action = actions.getChildAt(index);
+      LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, -2);
+      if (index > 0) params.topMargin = dp(12);
+      action.setLayoutParams(params);
+    }
   }
 
   private void refreshKeyboardLayout(android.view.WindowInsets insets) {
@@ -109,8 +162,7 @@ public final class AiActivity extends BaseActivity {
     findViewById(R.id.aiPage)
         .setPadding(
             0, 0, 0, visible ? 0 : getResources().getDimensionPixelSize(R.dimen.dock_reserved));
-    View dock = pageRoot.findViewWithTag("zikraDock");
-    if (dock != null) dock.setVisibility(visible ? View.GONE : View.VISIBLE);
+    NavDock.setVisible(pageRoot, !visible);
     if (visible) scroll.post(() -> scroll.smoothScrollTo(0, thread.getBottom()));
   }
 
@@ -152,7 +204,7 @@ public final class AiActivity extends BaseActivity {
     if (messages.length() == 0) {
       bubble(
           "assistant",
-          "Hai, Arkan 👋\n"
+          "Assalamualaikum.\n"
               + "Mari susun satu langkah baik hari ini. Mau mulai dari belajar, ibadah, atau"
               + " hafalan?");
       return;
@@ -178,7 +230,7 @@ public final class AiActivity extends BaseActivity {
     else cardParams.rightMargin = dp(18);
     card.setLayoutParams(cardParams);
     GradientDrawable background = new GradientDrawable();
-    background.setColor(Color.parseColor(user ? "#A489C8" : "#FFFFFF"));
+    background.setColor(Color.parseColor(user ? "#15332F" : "#FFFFFF"));
     background.setCornerRadii(
         new float[] {
           dp(19),
@@ -194,17 +246,17 @@ public final class AiActivity extends BaseActivity {
     if (!user) {
       TextView label = new TextView(this);
       label.setText("✦  ZIKRA · OFFLINE");
-      label.setTextSize(9);
-      label.setTextColor(Color.parseColor("#9A7CC0"));
+      label.setTextSize(12);
+      label.setTextColor(Color.parseColor("#52665F"));
       label.setTypeface(label.getTypeface(), Typeface.BOLD);
       label.setPadding(0, 0, 0, dp(7));
       card.addView(label);
     }
     TextView body = new TextView(this);
     body.setText(message);
-    body.setTextSize(12);
+    body.setTextSize(16);
     body.setLineSpacing(dp(4), 1f);
-    body.setTextColor(Color.parseColor(user ? "#FFFFFF" : "#5C5267"));
+    body.setTextColor(Color.parseColor(user ? "#FFFFFF" : "#15332F"));
     body.setTextIsSelectable(true);
     card.addView(body);
     row.addView(card);
@@ -225,7 +277,7 @@ public final class AiActivity extends BaseActivity {
     int completed;
     int total;
     try (ZikraDbHelper database = new ZikraDbHelper(this)) {
-      ZikraDbHelper.Progress progress = database.getProgress();
+      ZikraDbHelper.Progress progress = database.getProgress(ZikraDbHelper.CATEGORY_STUDY);
       completed = progress.completed;
       total = progress.total;
     }
@@ -261,7 +313,8 @@ public final class AiActivity extends BaseActivity {
   private void beginVoice() {
     findViewById(R.id.aiVoicePanel).setVisibility(View.VISIBLE);
     orb.setListening(true);
-    ((TextView) findViewById(R.id.aiVoiceStatus)).setText("Ucapkan pesan di layanan suara Android");
+    ((TextView) findViewById(R.id.aiVoiceStatus))
+        .setText("Layanan Android mengubah suaramu menjadi teks. Periksa sebelum mengirim.");
     Intent recognize = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
     recognize.putExtra(
         RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);

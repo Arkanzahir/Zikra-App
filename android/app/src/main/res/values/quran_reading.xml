@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="quranJumpInput" type="id" />
+    <string name="quran_reading_settings">Pengaturan bacaan</string>
+    <string name="quran_arabic_size">Ukuran tulisan Arab</string>
+    <string name="quran_translation_size">Ukuran terjemahan</string>
+    <string name="quran_size_value">%1$d sp</string>
+    <string name="quran_settings_preview">Segala puji bagi Allah, Tuhan seluruh alam.</string>
+    <string name="quran_appearance">Tampilan</string>
+    <string name="quran_light">Terang</string>
+    <string name="quran_dark">Malam</string>
+    <string name="quran_auto">Otomatis sesuai cahaya</string>
+    <string name="quran_close">Tutup</string>
+    <string name="quran_jump">Lompat ke ayat</string>
+    <string name="quran_jump_hint">Nomor ayat</string>
+    <string name="quran_jump_range">%1$s · Ayat 1–%2$d</string>
+    <string name="quran_jump_invalid">Masukkan nomor ayat antara 1 dan %1$d.</string>
+    <string name="quran_open_verse">Buka ayat</string>
+    <string name="quran_verse_range">Ayat %1$d–%2$d · Bagian %3$d dari %4$d</string>
+</resources>

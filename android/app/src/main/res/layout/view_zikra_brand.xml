@@ -6,7 +6,7 @@
         android:src="?attr/zikraSymbol" android:scaleType="fitCenter"
         android:importantForAccessibility="no" />
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginStart="1dp" android:text="zikra." android:textSize="22sp"
+        android:layout_marginStart="1dp" android:text="zikra" android:textSize="22sp"
         android:textStyle="bold" android:textColor="?attr/zikraInk"
         android:importantForAccessibility="no" />
 </LinearLayout>

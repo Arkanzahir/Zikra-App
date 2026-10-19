@@ -30,7 +30,7 @@
                 android:id="@+id/study_task_tag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="9sp"
+                android:textSize="12sp"
                 android:letterSpacing="0.08"
                 android:textColor="#5D6C60" />
             <TextView
@@ -88,7 +88,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="11sp"
+            android:textSize="13sp"
             android:textColor="@color/study_secondary" />
         <Button
             android:id="@+id/hifz_read"

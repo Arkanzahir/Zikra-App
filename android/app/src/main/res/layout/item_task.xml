@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textColor="@color/study_secondary" />
             <TextView
                 android:id="@+id/study_task_detail"

@@ -59,6 +59,7 @@ public final class BmkgClient implements AutoCloseable {
   }
 
   private <T> void fetch(String url, Parser<T> parser, Result<T> result) {
+    if (closed) return;
     final int requestGeneration = generation;
     Request request =
         new Request.Builder()
@@ -94,7 +95,7 @@ public final class BmkgClient implements AutoCloseable {
                                 "BMKG belum dapat diakses (HTTP " + code + "). Coba lagi nanti."));
                     return;
                   }
-                  T value = parser.parse(body.string());
+                  T value = parser.parse(readBounded(body));
                   post(requestGeneration, () -> result.success(value));
                 } catch (IOException | JSONException error) {
                   post(
@@ -103,6 +104,15 @@ public final class BmkgClient implements AutoCloseable {
                 }
               }
             });
+  }
+
+  /** A malformed server response must not allocate an unbounded JSON string. */
+  static String readBounded(ResponseBody body) throws IOException {
+    final long limit = 262144;
+    if (body.contentLength() > limit) throw new IOException("BMKG response too large");
+    body.source().request(limit + 1);
+    if (body.source().buffer().size() > limit) throw new IOException("BMKG response too large");
+    return body.string();
   }
 
   private void post(int requestGeneration, Runnable action) {

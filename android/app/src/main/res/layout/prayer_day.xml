@@ -1,20 +1,21 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
+    android:layout_width="52dp"
+    android:layout_height="wrap_content"
     android:layout_marginHorizontal="3dp"
     android:orientation="vertical"
     android:gravity="center"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:minHeight="76dp"
+    android:background="?android:attr/selectableItemBackground">
     <TextView
         android:id="@+id/prayerDayName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="9sp"
-        android:textColor="#96A69B" />
+        android:textSize="12sp"
+        android:textColor="#53665E" />
     <TextView
         android:id="@+id/prayerDayNumber"
         android:layout_width="wrap_content"

@@ -1,6 +1,7 @@
 package com.zikra.app;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 /** Three static illustrated stories. No animation player, sensor or education/interests form. */
 public final class OnboardingActivity extends BaseActivity {
   private static final String[] TITLES = {
-    "Belajar lebih terarah.", "Ibadah tetap terjaga.", "Dekat, ayat demi ayat."
+    "Belajar lebih\nterarah.", "Ibadah tetap\nterjaga.", "Dekat, ayat\ndemi ayat."
   };
   private static final String[] CAPTIONS = {
     "Tata tugas dan target belajarmu, satu per satu.",
@@ -38,7 +39,7 @@ public final class OnboardingActivity extends BaseActivity {
     step = state == null ? 0 : Math.max(0, Math.min(2, state.getInt("step")));
     setContentView(R.layout.activity_onboarding);
     setupScreen("Selamat datang di Zikra");
-    getWindow().setStatusBarColor(getColor(R.color.onboarding_paper));
+    getWindow().setStatusBarColor(getColor(R.color.onboarding_wall));
     getWindow().setNavigationBarColor(getColor(R.color.onboarding_paper));
     getWindow()
         .getDecorView()
@@ -66,16 +67,13 @@ public final class OnboardingActivity extends BaseActivity {
   private void render() {
     ((TextView) findViewById(R.id.onboardTitle)).setText(TITLES[step]);
     ((TextView) findViewById(R.id.onboardDescription)).setText(CAPTIONS[step]);
-    ((TextView) findViewById(R.id.onboardStep)).setText("Langkah " + (step + 1) + " dari 3");
+    TextView progress = findViewById(R.id.onboardStep);
+    progress.setText(String.format(java.util.Locale.ROOT, "%02d / 03", step + 1));
+    progress.setContentDescription("Langkah " + (step + 1) + " dari 3");
+    findViewById(R.id.onboardGuestNote).setVisibility(step == 0 ? View.VISIBLE : View.INVISIBLE);
     ((TextView) findViewById(R.id.onboardContinue)).setText(step == 2 ? "Mulai harimu" : "Lanjut");
     // Keep indicators in the same position across all three stories.
     findViewById(R.id.onboardBack).setVisibility(step == 0 ? View.INVISIBLE : View.VISIBLE);
-    int[] dots = {R.id.onboardDot0, R.id.onboardDot1, R.id.onboardDot2};
-    for (int i = 0; i < 3; i++) {
-      View dot = findViewById(dots[i]);
-      dot.setBackgroundColor(i == step ? getColor(R.color.pine) : 0xFFBDC8BD);
-      dot.setSelected(i == step);
-    }
     ImageView artwork = findViewById(R.id.onboardIllustration);
     artwork.setContentDescription(SCENES[step]);
     // Decode the current illustration only, at the resolution needed by this display.
@@ -83,12 +81,18 @@ public final class OnboardingActivity extends BaseActivity {
     BitmapFactory.Options options = new BitmapFactory.Options();
     options.inJustDecodeBounds = true;
     BitmapFactory.decodeResource(getResources(), ARTWORK[step], options);
-    int wanted = Math.max(1, getResources().getDisplayMetrics().widthPixels - dp(48));
+    int wanted = Math.max(1, getResources().getDisplayMetrics().widthPixels);
     options.inSampleSize = 1;
     while (options.outWidth / (options.inSampleSize * 2) >= wanted) options.inSampleSize *= 2;
     options.inJustDecodeBounds = false;
     options.inScaled = false;
-    artwork.setImageBitmap(BitmapFactory.decodeResource(getResources(), ARTWORK[step], options));
+    Bitmap image = BitmapFactory.decodeResource(getResources(), ARTWORK[step], options);
+    artwork.setImageBitmap(image);
+    int wall = image.getPixel(image.getWidth() / 2, 0);
+    findViewById(R.id.onboardHeader).setBackgroundColor(wall);
+    getWindow().setStatusBarColor(wall);
+    if (android.os.Build.VERSION.SDK_INT >= 28)
+      findViewById(R.id.onboardTitle).setAccessibilityHeading(true);
     ((ScrollView) findViewById(R.id.onboardScroll)).scrollTo(0, 0);
   }
 
@@ -96,7 +100,7 @@ public final class OnboardingActivity extends BaseActivity {
     getSharedPreferences("zikra_preferences", MODE_PRIVATE)
         .edit()
         .putBoolean("onboarding_complete", true)
-        .putInt("onboarding_story_version", 4)
+        .putInt("onboarding_story_version", 5)
         .apply();
     startActivity(
         new Intent(this, HomeActivity.class)

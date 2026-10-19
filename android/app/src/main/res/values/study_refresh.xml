@@ -4,7 +4,7 @@
     <color name="study_secondary">#52645E</color>
     <color name="study_line">#E1E5DD</color>
     <string name="study_refresh_heading">Study Hub</string>
-    <string name="study_refresh_hifz_heading">Murajaah hari ini</string>
+    <string name="study_refresh_hifz_heading">Rencana murajaah</string>
     <string name="study_refresh_date">%1$s</string>
     <string name="study_refresh_checklist">Checklist</string>
     <string name="hifz_section">Target murajaah</string>
@@ -42,7 +42,7 @@
     <string name="hifz_save">Simpan target</string>
     <string name="study_save_activity">Simpan tugas</string>
     <string name="hifz_pending">Belum selesai</string>
-    <string name="hifz_done">Selesai hari ini</string>
+    <string name="hifz_done">Selesai</string>
     <string name="hifz_read">Buka bacaan</string>
     <string name="hifz_read_online">Quran.com ↗</string>
     <string name="hifz_configure">Atur ayat ↗</string>

@@ -11,10 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * SQLite source of truth for Home and Study. Each local calendar day has its own checklist. A
- * separate day ledger prevents an empty/deleted day being reseeded. The first day has eight example
- * completions matching the supplied prototype; subsequent days start with all 24 defaults
- * incomplete. Previous days are kept.
+ * Local planning storage. Academic tasks and Hifz targets remain accessible across dates; daily
+ * ibadah is scoped to the local calendar day. Existing records and completion state are retained.
+ * New days start empty: only explicit user actions create tasks or prayer templates.
  */
 public final class ZikraDbHelper extends SQLiteOpenHelper {
   private static final int VERSION = 2;
@@ -23,31 +22,9 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
   public static final String CATEGORY_HIFZ = "Hifz";
   private final Clock clock;
 
-  private static final String[] DEFAULT_TITLES = {
-    "Sholat Subuh",
-    "Dzikir pagi",
-    "Doa sebelum belajar",
-    "Tilawah Al-Fatihah",
-    "Murojaah hafalan",
-    "Sedekah pagi",
-    "Membaca materi kuliah",
-    "Menulis prioritas hari ini",
-    "Sholat Dzuhur",
-    "Sholat Ashar",
-    "Sholat Maghrib",
-    "Sholat Isya",
-    "Sholat Dhuha",
-    "Dzikir petang",
-    "Tilawah Al-Baqarah",
-    "Menambah hafalan",
-    "Membaca terjemahan Al-Quran",
-    "Doa sebelum tidur",
-    "Laporan praktikum fisika",
-    "Latihan soal matematika",
-    "Tugas Pemrograman Mobile",
-    "Meninjau catatan kuliah",
-    "Belajar mandiri 25 menit",
-    "Menyiapkan jadwal besok"
+  private static final String ACTIVE_TASKS = "(category IN ('Study','Hifz') OR task_date = ?)";
+  private static final String[] OBLIGATORY_PRAYERS = {
+    "Sholat Subuh", "Sholat Dzuhur", "Sholat Ashar", "Sholat Maghrib", "Sholat Isya"
   };
 
   public ZikraDbHelper(Context context) {
@@ -109,7 +86,7 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
               "hifz_first",
               "hifz_last"
             },
-            "task_date = ?",
+            ACTIVE_TASKS,
             new String[] {day},
             null,
             null,
@@ -136,12 +113,17 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
     return db.insertOrThrow("tasks", null, values);
   }
 
-  public void updateTask(long id, String title, String category) {
+  public boolean updateTask(long id, String title, String category) {
     String day = today();
     ContentValues values = taskValues(title, category);
     if (!CATEGORY_HIFZ.equals(category)) clearTarget(values);
-    databaseForDay(day)
-        .update("tasks", values, "id = ? AND task_date = ?", new String[] {Long.toString(id), day});
+    return databaseForDay(day)
+            .update(
+                "tasks",
+                values,
+                "id = ? AND " + ACTIVE_TASKS,
+                new String[] {Long.toString(id), day})
+        == 1;
   }
 
   public long addHifzTask(String title, HifzTarget target) {
@@ -155,7 +137,7 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
     return database.insertOrThrow("tasks", null, values);
   }
 
-  public void updateHifzTask(long id, String title, HifzTarget target) {
+  public boolean updateHifzTask(long id, String title, HifzTarget target) {
     if (target == null) throw new IllegalArgumentException("Target wajib diisi");
     ContentValues values = taskValues(title, CATEGORY_HIFZ);
     putTarget(values, target);
@@ -165,17 +147,23 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
     try {
       try (Cursor old =
           database.rawQuery(
-              "SELECT hifz_chapter,hifz_first,hifz_last FROM tasks WHERE id=? AND task_date=?",
+              "SELECT hifz_chapter,hifz_first,hifz_last FROM tasks WHERE id=? AND " + ACTIVE_TASKS,
               new String[] {Long.toString(id), day})) {
-        if (!old.moveToFirst()) return;
+        if (!old.moveToFirst()) return false;
         if (old.isNull(0)
             || old.getInt(0) != target.chapterId
             || old.getInt(1) != target.firstVerse
             || old.getInt(2) != target.lastVerse) values.put("completed", 0);
       }
-      database.update(
-          "tasks", values, "id=? AND task_date=?", new String[] {Long.toString(id), day});
+      boolean updated =
+          database.update(
+                  "tasks",
+                  values,
+                  "id=? AND " + ACTIVE_TASKS,
+                  new String[] {Long.toString(id), day})
+              == 1;
       database.setTransactionSuccessful();
+      return updated;
     } finally {
       database.endTransaction();
     }
@@ -209,18 +197,54 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
     }
   }
 
-  public void setCompleted(long id, boolean completed) {
+  public boolean setCompleted(long id, boolean completed) {
     String day = today();
     ContentValues values = new ContentValues();
     values.put("completed", completed ? 1 : 0);
-    databaseForDay(day)
-        .update("tasks", values, "id = ? AND task_date = ?", new String[] {Long.toString(id), day});
+    return databaseForDay(day)
+            .update(
+                "tasks",
+                values,
+                "id = ? AND " + ACTIVE_TASKS,
+                new String[] {Long.toString(id), day})
+        == 1;
   }
 
-  public void deleteTask(long id) {
+  public boolean deleteTask(long id) {
     String day = today();
-    databaseForDay(day)
-        .delete("tasks", "id = ? AND task_date = ?", new String[] {Long.toString(id), day});
+    return databaseForDay(day)
+            .delete("tasks", "id = ? AND " + ACTIVE_TASKS, new String[] {Long.toString(id), day})
+        == 1;
+  }
+
+  /** Explicit, unchecked prayer template. Repeated taps never duplicate today's matching titles. */
+  public int addObligatoryPrayerChecklist() {
+    String day = today();
+    SQLiteDatabase database = databaseForDay(day);
+    int inserted = 0;
+    database.beginTransaction();
+    try {
+      for (String title : OBLIGATORY_PRAYERS) {
+        boolean exists;
+        try (Cursor cursor =
+            database.rawQuery(
+                "SELECT 1 FROM tasks WHERE task_date=? AND category=? "
+                    + "AND LOWER(TRIM(title))=LOWER(?) LIMIT 1",
+                new String[] {day, CATEGORY_IBADAH, title})) {
+          exists = cursor.moveToFirst();
+        }
+        if (exists) continue;
+        ContentValues values = taskValues(title, CATEGORY_IBADAH);
+        values.put("task_date", day);
+        values.put("completed", 0);
+        database.insertOrThrow("tasks", null, values);
+        inserted++;
+      }
+      database.setTransactionSuccessful();
+      return inserted;
+    } finally {
+      database.endTransaction();
+    }
   }
 
   public int getCompletedCount() {
@@ -235,14 +259,27 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
     return getProgress().percent;
   }
 
-  /** One query keeps numerator and denominator from the same day/snapshot. */
+  /** Numerator and denominator use the same active planning snapshot. */
   public Progress getProgress() {
+    return queryProgress(null);
+  }
+
+  /** Category-specific active progress, without mixing academic plans and daily worship. */
+  public Progress getProgress(String category) {
+    if (!CATEGORY_STUDY.equals(category)
+        && !CATEGORY_IBADAH.equals(category)
+        && !CATEGORY_HIFZ.equals(category)) throw new IllegalArgumentException("Unknown category");
+    return queryProgress(category);
+  }
+
+  private Progress queryProgress(String category) {
     String day = today();
+    String where = ACTIVE_TASKS + (category == null ? "" : " AND category=?");
+    String[] args = category == null ? new String[] {day} : new String[] {day, category};
     try (Cursor cursor =
         databaseForDay(day)
             .rawQuery(
-                "SELECT COUNT(*), COALESCE(SUM(completed), 0) FROM tasks WHERE task_date = ?",
-                new String[] {day})) {
+                "SELECT COUNT(*), COALESCE(SUM(completed), 0) FROM tasks WHERE " + where, args)) {
       cursor.moveToFirst();
       return new Progress(cursor.getInt(1), cursor.getInt(0));
     }
@@ -265,36 +302,12 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
   }
 
   private SQLiteDatabase databaseForDay(String day) {
-    SQLiteDatabase db = getWritableDatabase();
-    db.beginTransaction();
-    try {
-      boolean initialized;
-      try (Cursor cursor =
-          db.rawQuery("SELECT 1 FROM checklist_days WHERE task_date = ?", new String[] {day})) {
-        initialized = cursor.moveToFirst();
-      }
-      if (!initialized) {
-        boolean firstDay;
-        try (Cursor cursor = db.rawQuery("SELECT 1 FROM checklist_days LIMIT 1", null)) {
-          firstDay = !cursor.moveToFirst();
-        }
-        ContentValues ledger = new ContentValues();
-        ledger.put("task_date", day);
-        db.insertOrThrow("checklist_days", null, ledger);
-        for (int i = 0; i < DEFAULT_TITLES.length; i++) {
-          String category = (i == 6 || i == 7 || i >= 18) ? CATEGORY_STUDY : CATEGORY_IBADAH;
-          if (i == 4 || i == 15) category = CATEGORY_HIFZ;
-          ContentValues values = taskValues(DEFAULT_TITLES[i], category);
-          values.put("task_date", day);
-          values.put("completed", firstDay && i < 8 ? 1 : 0);
-          db.insertOrThrow("tasks", null, values);
-        }
-      }
-      db.setTransactionSuccessful();
-    } finally {
-      db.endTransaction();
-    }
-    return db;
+    SQLiteDatabase database = getWritableDatabase();
+    // Keep the existing day ledger; initialization never inserts invented tasks or completions.
+    ContentValues ledger = new ContentValues();
+    ledger.put("task_date", day);
+    database.insertWithOnConflict("checklist_days", null, ledger, SQLiteDatabase.CONFLICT_IGNORE);
+    return database;
   }
 
   private static ContentValues taskValues(String title, String category) {

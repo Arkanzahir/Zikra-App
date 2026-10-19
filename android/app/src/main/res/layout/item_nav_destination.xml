@@ -2,12 +2,19 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="64dp"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
     android:background="?android:attr/selectableItemBackgroundBorderless"
     android:clickable="true"
     android:focusable="true">
+    <View
+        android:id="@+id/navDestinationIndicator"
+        android:layout_width="24dp"
+        android:layout_height="3dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/pine"
+        android:importantForAccessibility="no" />
     <ImageView
         android:id="@+id/navDestinationIcon"
         android:layout_width="20dp"
@@ -16,5 +23,9 @@
     <TextView
         android:id="@+id/navDestinationLabel"
         style="@style/DockLabel"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:paddingHorizontal="2dp"
+        android:maxLines="2"
         android:importantForAccessibility="no" />
 </LinearLayout>

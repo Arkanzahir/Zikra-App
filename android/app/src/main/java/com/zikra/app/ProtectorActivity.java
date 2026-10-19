@@ -22,6 +22,9 @@ public final class ProtectorActivity extends BaseActivity {
       DateTimeFormatter.ofPattern("dd MMM yyyy · HH:mm 'WIB'", ID)
           .withZone(ZoneId.of("Asia/Jakarta"));
   private BmkgClient bmkg;
+  private BmkgParser.Forecast displayedWeather;
+  private BmkgParser.Earthquake displayedQuake;
+  private Instant quakeRetrievedAt;
   private final android.os.Handler refreshTimer =
       new android.os.Handler(android.os.Looper.getMainLooper());
   private final Runnable refreshTick =
@@ -44,6 +47,17 @@ public final class ProtectorActivity extends BaseActivity {
         DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy", ID)
             .withZone(ZoneId.of("Asia/Jakarta"))
             .format(Instant.now()));
+    if (getResources().getConfiguration().fontScale > 1.3f) {
+      android.widget.LinearLayout metrics = findViewById(R.id.protectorWeatherMetricsHeading);
+      metrics.setOrientation(android.widget.LinearLayout.VERTICAL);
+      for (int i = 1; i < metrics.getChildCount(); i++) {
+        android.view.View child = metrics.getChildAt(i);
+        android.widget.LinearLayout.LayoutParams params =
+            (android.widget.LinearLayout.LayoutParams) child.getLayoutParams();
+        params.width = -1;
+        params.weight = 0;
+      }
+    }
     bmkg = new BmkgClient(this);
     findViewById(R.id.protectorRefresh).setOnClickListener(v -> refresh());
     findViewById(R.id.protectorWeatherCard).setOnClickListener(v -> open(WeatherActivity.class));
@@ -52,8 +66,22 @@ public final class ProtectorActivity extends BaseActivity {
     findViewById(R.id.protectorWarnings)
         .setOnClickListener(
             v ->
-                external(
-                    Intent.ACTION_VIEW, "https://www.bmkg.go.id/cuaca/peringatan-dini-cuaca.bmkg"));
+                new android.app.AlertDialog.Builder(this)
+                    .setTitle("Informasi resmi BMKG")
+                    .setMessage(
+                        "Buka situs BMKG untuk memeriksa informasi cuaca. Akses halaman peringatan"
+                            + " dapat dibatasi atau berubah. Prakiraan Open-Meteo di Zikra bukan"
+                            + " peringatan dini.")
+                    .setPositiveButton(
+                        "Buka BMKG",
+                        (dialog, which) -> external(Intent.ACTION_VIEW, "https://www.bmkg.go.id/"))
+                    .setNeutralButton(
+                        "Sumber data BMKG",
+                        (dialog, which) ->
+                            external(
+                                Intent.ACTION_VIEW, "https://data.bmkg.go.id/prakiraan-cuaca/"))
+                    .setNegativeButton("Tutup", null)
+                    .show());
     findViewById(R.id.protectorDial)
         .setOnClickListener(v -> external(Intent.ACTION_DIAL, "tel:112"));
     findViewById(R.id.protectorWhatsapp)
@@ -63,7 +91,8 @@ public final class ProtectorActivity extends BaseActivity {
                     Intent.ACTION_VIEW,
                     "https://wa.me/?text="
                         + android.net.Uri.encode(
-                            "Saya membutuhkan bantuan. Mohon hubungi saya. Lokasi saya: ")));
+                            "Saya membutuhkan bantuan. Mohon hubungi saya. Saya akan menuliskan"
+                                + " lokasi saya di pesan ini.")));
     findViewById(R.id.protectorMaps)
         .setOnClickListener(
             v ->
@@ -95,19 +124,36 @@ public final class ProtectorActivity extends BaseActivity {
 
   private void refresh() {
     bmkg.reset();
-    text(R.id.protectorWeatherTemperature, "—°C");
-    ((ImageView) findViewById(R.id.protectorWeatherIcon))
-        .setImageResource(WeatherSymbols.forDescription(null));
-    text(R.id.protectorWeatherDescription, "Memuat prakiraan…");
-    text(R.id.protectorWeatherTime, "Waktu prakiraan belum tersedia");
-    text(R.id.protectorWeatherStatus, "Menghubungkan ke Open-Meteo");
-    text(R.id.protectorWeatherDetails, "Prakiraan Keputih, Sukolilo · Data sedang dimuat");
-    text(R.id.protectorMagnitude, "M —");
-    text(R.id.protectorQuakeArea, "Memuat laporan gempa…");
-    text(R.id.protectorQuakeStatus, "Data resmi BMKG · Indonesia");
-    text(R.id.protectorQuakeTime, "Waktu kejadian belum tersedia");
-    text(R.id.protectorQuakeDetails, "Lokasi episentrum ditampilkan setelah koordinat diterima.");
-    ((IndonesiaMapView) findViewById(R.id.protectorQuakeMap)).setEpicenter(null, null);
+    if (displayedWeather != null
+        && !com.zikra.app.safety.WeatherCode.usableCache(
+            displayedWeather.fetchedAt.toEpochMilli(),
+            System.currentTimeMillis(),
+            com.zikra.app.safety.OpenMeteoClient.MAX_AGE_MS)) displayedWeather = null;
+    text(
+        R.id.protectorWeatherStatus,
+        displayedWeather == null
+            ? "Menghubungkan ke Open-Meteo…"
+            : com.zikra.app.safety.OpenMeteoClient.status(displayedWeather) + "\nMemperbarui…");
+    if (displayedWeather == null) {
+      text(R.id.protectorWeatherTemperature, "—°C");
+      ((ImageView) findViewById(R.id.protectorWeatherIcon))
+          .setImageResource(WeatherSymbols.forDescription(null));
+      text(R.id.protectorWeatherDescription, "Memuat prakiraan…");
+      text(R.id.protectorWeatherTime, "Waktu prakiraan belum tersedia");
+      text(R.id.protectorWeatherStatus, "Menghubungkan ke Open-Meteo");
+      text(R.id.protectorWeatherDetails, "Acuan Sukolilo, Surabaya · Data sedang dimuat");
+    }
+    text(
+        R.id.protectorQuakeStatus,
+        displayedQuake == null ? "Menghubungkan ke BMKG…" : quakeStatus() + "\nMemperbarui…");
+    if (displayedQuake == null) {
+      text(R.id.protectorMagnitude, "M —");
+      text(R.id.protectorQuakeArea, "Memuat laporan gempa…");
+      text(R.id.protectorQuakeStatus, "Data resmi BMKG · Indonesia");
+      text(R.id.protectorQuakeTime, "Waktu kejadian belum tersedia");
+      text(R.id.protectorQuakeDetails, "Lokasi episentrum ditampilkan setelah koordinat diterima.");
+      ((IndonesiaMapView) findViewById(R.id.protectorQuakeMap)).setEpicenter(null, null);
+    }
     bmkg.weather(
         new BmkgClient.Result<BmkgParser.Forecast>() {
           @Override
@@ -117,9 +163,16 @@ public final class ProtectorActivity extends BaseActivity {
 
           @Override
           public void failure(String message) {
-            text(R.id.protectorWeatherDescription, "Belum ada data cuaca");
-            text(R.id.protectorWeatherStatus, "Ketuk ↻ untuk mencoba lagi");
-            text(R.id.protectorWeatherDetails, message);
+            if (displayedWeather == null) {
+              text(R.id.protectorWeatherDescription, "Cuaca belum tersedia");
+              text(R.id.protectorWeatherDetails, message);
+            }
+            text(
+                R.id.protectorWeatherStatus,
+                displayedWeather == null
+                    ? "Periksa koneksi, lalu pilih Muat ulang di kanan atas."
+                    : com.zikra.app.safety.OpenMeteoClient.status(displayedWeather)
+                        + "\nPembaruan gagal. Pilih Muat ulang.");
           }
         });
     bmkg.earthquake(
@@ -131,14 +184,21 @@ public final class ProtectorActivity extends BaseActivity {
 
           @Override
           public void failure(String message) {
-            text(R.id.protectorQuakeArea, "Data gempa belum tersedia");
-            text(R.id.protectorQuakeStatus, "Ketuk ↻ untuk mencoba lagi");
-            text(R.id.protectorQuakeDetails, message);
+            if (displayedQuake == null) {
+              text(R.id.protectorQuakeArea, "Laporan gempa belum tersedia");
+              text(R.id.protectorQuakeDetails, message);
+            }
+            text(
+                R.id.protectorQuakeStatus,
+                displayedQuake == null
+                    ? "Periksa koneksi, lalu pilih Muat ulang di kanan atas."
+                    : quakeStatus() + "\nPembaruan gagal. Laporan sebelumnya tetap ditampilkan.");
           }
         });
   }
 
   private void showWeather(BmkgParser.Forecast forecast) {
+    displayedWeather = forecast;
     BmkgParser.Weather w = forecast.current;
     ((ImageView) findViewById(R.id.protectorWeatherIcon))
         .setImageResource(WeatherSymbols.forDescription(w.description));
@@ -156,14 +216,22 @@ public final class ProtectorActivity extends BaseActivity {
   }
 
   private void showQuake(BmkgParser.Earthquake q) {
+    displayedQuake = q;
+    quakeRetrievedAt = Instant.now();
     text(R.id.protectorMagnitude, "M " + q.magnitude);
     text(R.id.protectorQuakeArea, q.area);
     text(R.id.protectorQuakeTime, q.time == null ? q.sourceDate : TIME.format(q.time));
-    text(R.id.protectorQuakeStatus, "Laporan terakhir BMKG · Bukan peringatan lokasi Anda");
+    text(R.id.protectorQuakeStatus, quakeStatus());
     text(
         R.id.protectorQuakeDetails,
         "Kedalaman " + available(q.depth) + "\n" + available(q.potential));
     ((IndonesiaMapView) findViewById(R.id.protectorQuakeMap)).setEpicenter(q.latitude, q.longitude);
+  }
+
+  private String quakeStatus() {
+    return "Laporan terakhir BMKG · Indonesia\nDiambil "
+        + TIME.format(quakeRetrievedAt)
+        + "\nBukan peringatan untuk lokasi Anda.";
   }
 
   private String available(String value) {

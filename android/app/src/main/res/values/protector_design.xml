@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <color name="protector_blue">#3569F3</color>
+    <color name="protector_blue">#15332F</color>
     <color name="protector_ink">#1A2B45</color>
-    <color name="protector_muted">#718198</color>
+    <color name="protector_muted">#526570</color>
     <color name="protector_surface">#F5F8FC</color>
     <color name="protector_border">#E8EEF6</color>
     <color name="protector_cyan_ink">#205467</color>
@@ -13,7 +13,7 @@
     <style
         name="ProtectorEyebrow"
         parent="ProtectorBody">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:letterSpacing">0.09</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -28,6 +28,6 @@
         name="ProtectorMetricCaption"
         parent="ProtectorBody">
         <item name="android:gravity">center</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 </resources>
