@@ -81,7 +81,7 @@
                     android:elevation="1dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:contentDescription="Lihat tugas akademik hari ini di Study Hub">
+                    android:contentDescription="Lihat rencana akademik di Study Hub">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:text="Tugas akademik hari ini"
+                            android:text="Rencana akademik"
                             android:textColor="@color/pine"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -128,7 +128,7 @@
                         android:layout_marginTop="10dp"
                         android:textColor="#52665F"
                         android:textSize="14sp"
-                        android:text="Belum ada tugas akademik hari ini" />
+                        android:text="Belum ada tugas akademik" />
                 </LinearLayout>
                 <TextView
                     android:layout_width="match_parent"

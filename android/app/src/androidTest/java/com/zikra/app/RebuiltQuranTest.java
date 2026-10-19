@@ -30,6 +30,21 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
     getInstrumentation().waitForIdleSync();
   }
 
+  private void onMain(Runnable action) {
+    java.util.concurrent.atomic.AtomicReference<Throwable> failure =
+        new java.util.concurrent.atomic.AtomicReference<>();
+    getInstrumentation()
+        .runOnMainSync(
+            () -> {
+              try {
+                action.run();
+              } catch (Throwable error) {
+                failure.set(error);
+              }
+            });
+    if (failure.get() != null) throw new AssertionError(failure.get());
+  }
+
   private Intent target(int chapter, int verse) {
     return new Intent(getInstrumentation().getTargetContext(), QuranActivity.class)
         .putExtra(QuranActivity.EXTRA_TARGET_CHAPTER, chapter)
@@ -40,12 +55,11 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
     long end = SystemClock.uptimeMillis() + 35000;
     while (SystemClock.uptimeMillis() < end) {
       boolean[] found = {false};
-      getInstrumentation()
-          .runOnMainSync(
-              () ->
-                  found[0] =
-                      ((LinearLayout) page.findViewById(R.id.ayahContainer)).findViewWithTag(key)
-                          != null);
+      onMain(
+          () ->
+              found[0] =
+                  ((LinearLayout) page.findViewById(R.id.ayahContainer)).findViewWithTag(key)
+                      != null);
       if (found[0]) return;
       SystemClock.sleep(100);
     }
@@ -96,12 +110,9 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
     assertEquals(114, ((LinearLayout) page.findViewById(R.id.quranSurahList)).getChildCount());
     UiEvidence.capture(getInstrumentation(), "RebuiltQuranCatalog");
     assertEquals(View.GONE, page.findViewById(R.id.quranSearchCard).getVisibility());
-    getInstrumentation()
-        .runOnMainSync(() -> page.findViewById(R.id.quranHeaderSearch).performClick());
+    onMain(() -> page.findViewById(R.id.quranHeaderSearch).performClick());
     assertEquals(View.VISIBLE, page.findViewById(R.id.quranSearchCard).getVisibility());
-    getInstrumentation()
-        .runOnMainSync(
-            () -> ((EditText) page.findViewById(R.id.quranSearch)).setText("al baqarah"));
+    onMain(() -> ((EditText) page.findViewById(R.id.quranSearch)).setText("al baqarah"));
     assertEquals(1, ((LinearLayout) page.findViewById(R.id.quranSurahList)).getChildCount());
   }
 
@@ -112,23 +123,20 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
     assertEquals(QuranActivity.class.getName(), intent.getComponent().getClassName());
     launch(intent);
     awaitVerse("67:3");
-    getInstrumentation()
-        .runOnMainSync(
-            () -> ((Switch) page.findViewById(R.id.readingNightSwitch)).setChecked(true));
+    onMain(() -> ((Switch) page.findViewById(R.id.readingNightSwitch)).setChecked(true));
     SystemClock.sleep(1200);
     UiEvidence.capture(getInstrumentation(), "RebuiltQuranMulk");
-    getInstrumentation()
-        .runOnMainSync(
-            () ->
-                ((LinearLayout) page.findViewById(R.id.ayahContainer))
-                    .findViewWithTag("67:4")
-                    .findViewById(R.id.ayahBookmark)
-                    .performClick());
+    onMain(
+        () ->
+            ((LinearLayout) page.findViewById(R.id.ayahContainer))
+                .findViewWithTag("67:4")
+                .findViewById(R.id.ayahBookmark)
+                .performClick());
     assertEquals("67:4", prefs.getString("last_verse_key", ""));
     Instrumentation.ActivityMonitor monitor =
         getInstrumentation().addMonitor(QuranActivity.class.getName(), null, false);
     try {
-      getInstrumentation().runOnMainSync(page::recreate);
+      onMain(page::recreate);
       page = getInstrumentation().waitForMonitorWithTimeout(monitor, 30000);
       assertNotNull(page);
     } finally {
@@ -151,8 +159,7 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
     assertEquals(36, ((LinearLayout) page.findViewById(R.id.ayahContainer)).getChildCount());
     assertFalse(page.findViewById(R.id.quranNextPage).isEnabled());
     UiEvidence.capture(getInstrumentation(), "RebuiltQuranBaqarah280");
-    getInstrumentation()
-        .runOnMainSync(() -> page.findViewById(R.id.quranPreviousPage).performClick());
+    onMain(() -> page.findViewById(R.id.quranPreviousPage).performClick());
     awaitVerse("2:201");
     assertEquals(50, ((LinearLayout) page.findViewById(R.id.ayahContainer)).getChildCount());
     assertTrue(page.findViewById(R.id.quranNextPage).isEnabled());
@@ -174,8 +181,7 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
             .toString()
             .contains("Al-Fatihah"));
     UiEvidence.capture(getInstrumentation(), "RebuiltQuranReaderLight");
-    getInstrumentation()
-        .runOnMainSync(() -> page.findViewById(R.id.quranReadingOptions).performClick());
+    onMain(() -> page.findViewById(R.id.quranReadingOptions).performClick());
     getInstrumentation().waitForIdleSync();
     boolean clicked = false;
     for (android.view.accessibility.AccessibilityNodeInfo node :
@@ -199,7 +205,7 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
     Instrumentation.ActivityMonitor monitor =
         getInstrumentation().addMonitor(QuranActivity.class.getName(), null, false);
     try {
-      getInstrumentation().runOnMainSync(page::recreate);
+      onMain(page::recreate);
       page = getInstrumentation().waitForMonitorWithTimeout(monitor, 30000);
       assertNotNull(page);
     } finally {
@@ -211,73 +217,69 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
 
   public void testArabicSearchAndReadableSizesSurviveRecreation() throws Exception {
     launch(new Intent(getInstrumentation().getTargetContext(), QuranActivity.class));
-    getInstrumentation()
-        .runOnMainSync(
-            () -> {
-              page.findViewById(R.id.quranHeaderSearch).performClick();
-              ((EditText) page.findViewById(R.id.quranSearch)).setText("البقرة");
-              LinearLayout results = page.findViewById(R.id.quranSurahList);
-              assertEquals(1, results.getChildCount());
-              assertEquals(
-                  "Al-Baqarah",
-                  ((TextView) results.getChildAt(0).findViewById(R.id.surahListName))
-                      .getText()
-                      .toString());
-              ((EditText) page.findViewById(R.id.quranSearch)).setText("Al Fatihah");
-              assertEquals(1, results.getChildCount());
-              results.getChildAt(0).performClick();
-            });
+    onMain(
+        () -> {
+          page.findViewById(R.id.quranHeaderSearch).performClick();
+          ((EditText) page.findViewById(R.id.quranSearch)).setText("البقرة");
+          LinearLayout results = page.findViewById(R.id.quranSurahList);
+          assertEquals(1, results.getChildCount());
+          assertEquals(
+              "Al-Baqarah",
+              ((TextView) results.getChildAt(0).findViewById(R.id.surahListName))
+                  .getText()
+                  .toString());
+          ((EditText) page.findViewById(R.id.quranSearch)).setText("Al Fatihah");
+          assertEquals(1, results.getChildCount());
+          results.getChildAt(0).performClick();
+        });
     awaitVerse("1:1");
-    getInstrumentation()
-        .runOnMainSync(
-            () -> {
-              page.findViewById(R.id.quranReadingOptions).performClick();
-              AlertDialog settings = dialog("readingDialog");
-              ((SeekBar) settings.findViewById(R.id.quranArabicSize)).setProgress(12);
-              ((SeekBar) settings.findViewById(R.id.quranTranslationSize)).setProgress(6);
-              assertEquals(36, prefs.getInt("reading_arabic_size", 0));
-              assertEquals(20, prefs.getInt("reading_translation_size", 0));
-              settings.dismiss();
-            });
+    onMain(
+        () -> {
+          page.findViewById(R.id.quranReadingOptions).performClick();
+          AlertDialog settings = dialog("readingDialog");
+          ((SeekBar) settings.findViewById(R.id.quranArabicSize)).setProgress(12);
+          ((SeekBar) settings.findViewById(R.id.quranTranslationSize)).setProgress(6);
+          assertEquals(36, prefs.getInt("reading_arabic_size", 0));
+          assertEquals(20, prefs.getInt("reading_translation_size", 0));
+          settings.dismiss();
+        });
     recreateReader();
     awaitVerse("1:1");
-    getInstrumentation()
-        .runOnMainSync(
-            () -> {
-              View row =
-                  ((LinearLayout) page.findViewById(R.id.ayahContainer)).findViewWithTag("1:1");
-              float density = page.getResources().getDisplayMetrics().scaledDensity;
-              assertEquals(
-                  36f, ((TextView) row.findViewById(R.id.ayahArabic)).getTextSize() / density, .1f);
-              assertEquals(
-                  20f,
-                  ((TextView) row.findViewById(R.id.ayahTranslation)).getTextSize() / density,
-                  .1f);
-            });
+    onMain(
+        () -> {
+          View row = ((LinearLayout) page.findViewById(R.id.ayahContainer)).findViewWithTag("1:1");
+          float density = page.getResources().getDisplayMetrics().scaledDensity;
+          assertEquals(
+              36f, ((TextView) row.findViewById(R.id.ayahArabic)).getTextSize() / density, .1f);
+          assertEquals(
+              20f,
+              ((TextView) row.findViewById(R.id.ayahTranslation)).getTextSize() / density,
+              .1f);
+        });
     UiEvidence.capture(getInstrumentation(), "ImprovedQuranReadableSizes");
   }
 
   public void testVerseJumpValidatesBoundsAndOpensCorrectPart() throws Exception {
     launch(target(2, 1));
     awaitVerse("2:1");
-    getInstrumentation()
-        .runOnMainSync(
-            () -> {
-              page.findViewById(R.id.quranJumpToVerse).performClick();
-              AlertDialog jump = dialog("jumpDialog");
-              EditText input = jump.findViewById(R.id.quranJumpInput);
-              input.setText("0");
-              jump.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
-              assertTrue(jump.isShowing());
-              assertNotNull(input.getError());
-              input.setText("287");
-              jump.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
-              assertTrue(jump.isShowing());
-              assertNotNull(input.getError());
-              input.setText("280");
-              jump.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
-              assertFalse(jump.isShowing());
-            });
+    onMain(() -> page.findViewById(R.id.quranJumpToVerse).performClick());
+    getInstrumentation().waitForIdleSync();
+    onMain(
+        () -> {
+          AlertDialog jump = dialog("jumpDialog");
+          EditText input = jump.findViewById(R.id.quranJumpInput);
+          input.setText("0");
+          jump.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
+          assertTrue(jump.isShowing());
+          assertNotNull(input.getError());
+          input.setText("287");
+          jump.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
+          assertTrue(jump.isShowing());
+          assertNotNull(input.getError());
+          input.setText("280");
+          jump.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
+          assertFalse(jump.isShowing());
+        });
     awaitVerse("2:280");
     assertEquals(280, prefs.getInt("last_ayah", 0));
     assertEquals("2:280", prefs.getString("last_verse_key", ""));
@@ -307,7 +309,7 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
     Instrumentation.ActivityMonitor monitor =
         getInstrumentation().addMonitor(QuranActivity.class.getName(), null, false);
     try {
-      getInstrumentation().runOnMainSync(page::recreate);
+      onMain(page::recreate);
       page = getInstrumentation().waitForMonitorWithTimeout(monitor, 30000);
       assertNotNull(page);
     } finally {
@@ -317,7 +319,7 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
 
   @Override
   protected void tearDown() throws Exception {
-    if (page != null) getInstrumentation().runOnMainSync(page::finish);
+    if (page != null) onMain(page::finish);
     getInstrumentation().waitForIdleSync();
     SharedPreferences.Editor e = prefs.edit().clear();
     for (Map.Entry<String, ?> x : original.entrySet()) {

@@ -458,8 +458,10 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
       assertEquals(0, c.getInt(1));
       assertEquals("2026-10-18", c.getString(2));
     }
+    // Dismiss listeners are delivered asynchronously; wait for the actual dialog to close.
     // The second action explicitly creates today's copy; yesterday's record is untouched.
     onMain(() -> editor().findViewById(R.id.study_editor_save).performClick());
+    await(() -> editor() == null, 5000);
     assertNull(editor());
     assertEquals(1, isolated.getTotalCount());
     assertEquals("Ibadah dari draf kemarin", isolated.getTasks().get(0).title);

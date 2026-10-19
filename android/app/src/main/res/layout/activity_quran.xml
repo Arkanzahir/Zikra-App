@@ -89,7 +89,7 @@
                     <TextView android:id="@+id/quranLoadStatus" android:layout_width="match_parent" android:layout_height="wrap_content"
                         android:textSize="12sp" android:paddingTop="8dp" android:paddingBottom="12dp" android:lineSpacingExtra="3dp" android:accessibilityLiveRegion="polite" />
                     <Button android:id="@+id/quranRetry" style="@style/ReadingButton" android:text="Coba lagi" android:visibility="gone" />
-                    <Button android:id="@+id/quranJumpToVerse" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="48dp"
+                    <Button android:id="@+id/quranJumpToVerse" android:background="?android:attr/selectableItemBackground" android:stateListAnimator="@null" android:elevation="0dp" android:paddingHorizontal="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="48dp"
                         android:layout_gravity="end" android:text="@string/quran_jump" android:textAllCaps="false" android:textSize="14sp" android:textColor="@color/pine" />
                     <LinearLayout android:id="@+id/ayahContainer" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
                     <LinearLayout android:id="@+id/quranPagination" android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -97,9 +97,9 @@
                         <TextView android:id="@+id/quranPageLabel" android:layout_width="match_parent" android:layout_height="wrap_content"
                             android:gravity="center" android:textColor="#586F62" android:textSize="13sp" />
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                            <Button android:id="@+id/quranPreviousPage" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="48dp"
+                            <Button android:id="@+id/quranPreviousPage" android:background="?android:attr/selectableItemBackground" android:stateListAnimator="@null" android:elevation="0dp" android:paddingHorizontal="16dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="48dp"
                                 android:text="Sebelumnya" android:textAllCaps="false" />
-                            <Button android:id="@+id/quranNextPage" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="48dp"
+                            <Button android:id="@+id/quranNextPage" android:background="?android:attr/selectableItemBackground" android:stateListAnimator="@null" android:elevation="0dp" android:paddingHorizontal="16dp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="48dp"
                                 android:text="Ayat berikutnya" android:textAllCaps="false" />
                         </LinearLayout>
                     </LinearLayout>
