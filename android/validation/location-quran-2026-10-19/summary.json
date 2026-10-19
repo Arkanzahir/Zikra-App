@@ -11,9 +11,12 @@
   "lint": {
     "Warning": 527
   },
-  "runtime_api28_unique_methods_passed": 18,
+  "runtime_api28_unique_methods_passed": 20,
   "live_qari_audio_verified": false,
   "physical_device_tested": false,
   "audio_test_fixture": "Synthetic WAV generated at test runtime; not Quran recitation",
-  "apk_sha256": "50431065edf62423ce6cc5dc2831e8b7553b860785d90474d5eb71872e9e28a7"
+  "apk_sha256": "f927dccf13a67621944d0b1f6519b7812d7a0adb9ad3c85be7d05a0d9e8f163e",
+  "runtime_api35_verified": false,
+  "runtime_api35_note": "Google APIs emulator terminated at memory limit; AOSP emulator did not expose Activity service. No application runtime result claimed.",
+  "runtime_api28_audio_unique_methods_passed": 7
 }

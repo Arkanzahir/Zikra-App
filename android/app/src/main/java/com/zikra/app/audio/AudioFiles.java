@@ -34,6 +34,12 @@ public final class AudioFiles {
   }
 
   public static void delete(Context c, String reciter, int chapter) {
+    android.content.SharedPreferences transfer =
+        c.getSharedPreferences(QuranDownloadService.PREFS, 0);
+    if (transfer.getInt("chapter", 0) == chapter
+        && reciter.equals(transfer.getString("reciter", ""))) {
+      transfer.edit().putString("status", "").putInt("done", 0).putBoolean("busy", false).apply();
+    }
     for (int v = 1; v <= Recitation.count(chapter); v++) {
       File f = file(c, reciter, chapter, v);
       if (f.exists() && !f.delete()) throw new IllegalStateException("Audio belum dapat dihapus");

@@ -1,6 +1,6 @@
 Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/workspace/setup-zikra/cacerts
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.9/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
-Daemon will be stopped at the end of the build 
+Daemon will be stopped at the end of the build
 Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
 > Task :app:preBuild UP-TO-DATE
 > Task :app:preDebugBuild UP-TO-DATE
@@ -50,22 +50,25 @@ Note: Recompile with -Xlint:deprecation for details.
 > Task :app:mapDebugAndroidTestSourceSetPaths UP-TO-DATE
 > Task :app:generateDebugAndroidTestResources UP-TO-DATE
 > Task :app:mergeDebugAndroidTestResources UP-TO-DATE
-> Task :app:bundleDebugClassesToCompileJar
 > Task :app:processDebugAndroidTestManifest UP-TO-DATE
 > Task :app:processDebugAndroidTestResources UP-TO-DATE
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:mergeDebugAndroidTestShaders UP-TO-DATE
 > Task :app:mergeProjectDexDebug
 
 > Task :app:compileDebugAndroidTestJavaWithJavac
-Note: Some input files use unchecked or unsafe operations.
+Note: /workspace/zikra-location-design/android/app/src/androidTest/java/com/zikra/app/QuranAudioTest.java uses unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
 
-> Task :app:mergeDebugAndroidTestShaders UP-TO-DATE
 > Task :app:compileDebugAndroidTestShaders NO-SOURCE
 > Task :app:generateDebugAndroidTestAssets UP-TO-DATE
 > Task :app:mergeDebugAndroidTestAssets UP-TO-DATE
 > Task :app:compressDebugAndroidTestAssets UP-TO-DATE
 > Task :app:desugarDebugAndroidTestFileDependencies UP-TO-DATE
 > Task :app:dexBuilderDebugAndroidTest
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleDebug
 > Task :app:mergeDebugAndroidTestGlobalSynthetics UP-TO-DATE
 > Task :app:processDebugAndroidTestJavaRes NO-SOURCE
 > Task :app:mergeDebugAndroidTestJavaResource UP-TO-DATE
@@ -73,9 +76,6 @@ Note: Recompile with -Xlint:unchecked for details.
 > Task :app:mergeExtDexDebugAndroidTest UP-TO-DATE
 > Task :app:mergeLibDexDebugAndroidTest UP-TO-DATE
 > Task :app:mergeDebugAndroidTestJniLibFolders UP-TO-DATE
-> Task :app:packageDebug
-> Task :app:createDebugApkListingFileRedirect UP-TO-DATE
-> Task :app:assembleDebug
 > Task :app:mergeDebugAndroidTestNativeLibs NO-SOURCE
 > Task :app:stripDebugAndroidTestDebugSymbols NO-SOURCE
 > Task :app:validateSigningDebugAndroidTest UP-TO-DATE
@@ -93,18 +93,15 @@ Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/workspace/setup-zikra/c
 > Task :app:generateDebugAndroidTestLintModel
 > Task :app:extractProguardFiles UP-TO-DATE
 > Task :app:generateDebugLintReportModel
-> Task :app:generateDebugUnitTestLintModel
 > Task :app:packageDebugAndroidTest
 > Task :app:createDebugAndroidTestApkListingFileRedirect UP-TO-DATE
 > Task :app:assembleDebugAndroidTest
+> Task :app:generateDebugUnitTestLintModel
 > Task :app:lintAnalyzeDebug
 > Task :app:lintAnalyzeDebugAndroidTest
 > Task :app:lintAnalyzeDebugUnitTest
-
-> Task :app:lintReportDebug
-Wrote HTML report to file:///workspace/zikra-location-design/android/app/build/reports/lint-results-debug.html
-
+> Task :app:lintReportDebug UP-TO-DATE
 > Task :app:lintDebug
 
-BUILD SUCCESSFUL in 52s
-71 actionable tasks: 19 executed, 52 up-to-date
+BUILD SUCCESSFUL in 33s
+71 actionable tasks: 18 executed, 53 up-to-date

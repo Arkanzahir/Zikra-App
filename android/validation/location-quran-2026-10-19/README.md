@@ -8,7 +8,7 @@ Branch: `feature/location-quran-audio`, berdasarkan `main` pada `d9d2ed4`.
 - Reader: tombol per ayat dan pemutar bawah native; putar/jeda, ayat sebelumnya/berikutnya, seek dalam ayat, tiga qari, rentang dan pengulangan 1–10 kali/ayat, serta ulang rentang sampai dihentikan.
 - Background: satu `MediaPlayer`/`MediaSession` pada foreground service `mediaPlayback`; kontrol notifikasi, audio focus, jeda ketika headset terlepas, wake lock hanya saat playback, pelepasan resource saat stop. Tidak ada autoplay saat boot atau setelah proses mati.
 - Offline: pengguna memulai unduhan surah/qari secara eksplisit. Service `dataSync` terpisah mengunduh secara berurutan, memverifikasi decoder/durasi dan panjang respons, menyimpan berkas secara atomik, mengabaikan `.part` untuk playback, dan mempertahankan ayat lengkap saat terputus. Unduhan dapat dilanjutkan/dijeda; audio dapat dihapus dengan konfirmasi. Teks terjemahan/Arab per surah disimpan terpisah agar tidak tergantung cache delapan bagian. Menghapus audio tidak menghapus bookmark/tugas/hafalan/teks.
-- Gulir: gulir baca 5–60dp/detik tanpa audio, dan mengikuti identitas ayat yang diputar. Keduanya terpisah; sentuhan pada bacaan menjeda gerakan, pindah halaman memuat bagian berikutnya, meninggalkan Activity menghentikan gulir tetapi tidak menghentikan audio.
+- Gulir: kecepatan baca dapat diatur tanpa audio (label lambat/sedang/cepat), dan mengikuti identitas ayat yang diputar. Keduanya terpisah; sentuhan pada bacaan menjeda gerakan, pindah halaman memuat bagian berikutnya, meninggalkan Activity menghentikan gulir tetapi tidak menghentikan audio.
 - Hifz: membuka target meneruskan ayat awal/akhir ke reader. Pemutaran selesai pada batas target kecuali pengguna memilih mengulang rentang. Latihan tidak otomatis ditandai selesai dan tidak menilai ketepatan bacaan.
 - Semua perubahan tetap Java/XML; tidak menambah backend, API key, dependensi Kotlin, login, atau migrasi database.
 
@@ -25,8 +25,8 @@ Branch: `feature/location-quran-audio`, berdasarkan `main` pada `d9d2ed4`.
 JDK 17, SDK/target 35, min SDK 26. Hasil yang telah selesai:
 
 - `assembleDebug`, `assembleDebugAndroidTest`, `testDebugUnitTest`, `lintDebug`: lulus. **46 tes JVM, nol kegagalan; lint nol error, 527 peringatan nonfatal.** [Build](build.txt) · [Ringkasan terstruktur](summary.json).
-- Android 9 / API 28: **18 metode unik lulus**. `NearbyDesignTest` 4 + `LocationIntegrationTest` 6 memeriksa lokasi, daftar/peta, intent arah, refresh gagal, recreate, perubahan kota dan layout font 200%. `QuranAudioTest` 5 memeriksa decoder nyata, rentang/pengulangan, notifikasi, interupsi audio focus, layar mati, gulir/sentuhan, validasi rentang, berkas unduhan lengkap/parsial dan ukuran kontrol. Dua metode reader lama serta satu metode route Hifz turut lulus. [Lokasi](location-tests.txt) · [Audio/reader/Hifz API 28](audio-api28-tests.txt).
-- Pemeriksaan runtime API 35 dicatat terpisah setelah selesai; build dengan SDK 35 sendiri bukan bukti runtime Android 15.
+- Android 9 / API 28: **20 metode unik lulus**. `NearbyDesignTest` 4 + `LocationIntegrationTest` 6 memeriksa lokasi, daftar/peta, intent arah, refresh gagal, recreate, perubahan kota dan layout font 200%. `QuranAudioTest` 7 memeriksa decoder nyata, rentang/pengulangan, notifikasi, interupsi audio focus, layar mati, gulir/sentuhan, validasi rentang, berkas unduhan lengkap/parsial, ukuran kontrol, berpindah bacaan saat audio lain berjalan dan kegagalan decoder. Dua metode reader lama serta satu metode route Hifz turut lulus. [Lokasi](location-tests.txt) · [Audio/reader/Hifz API 28](audio-api28-tests.txt) · [Tujuh tes audio akhir](audio-final-api28-tests.txt) · [Uji ulang tiga metode setelah perubahan label dan hapus unduhan](offline-final-api28-tests.txt).
+- Runtime API 35 **belum terverifikasi**: emulator Google APIs berhenti pada batas memori cloud, sedangkan image AOSP tidak mencapai layanan Activity dalam percobaan ini. Aplikasi tidak mendapatkan hasil tes runtime Android 15; build dengan SDK 35 bukan bukti runtime tersebut.
 
 **Fixture audio adalah WAV sintetis, bukan murottal.** Fixture hanya dibuat oleh APK tes, tidak disertakan dalam APK pengguna. Tes playback memakai decoder, MediaPlayer, notifikasi dan audio focus Android yang nyata; tes unduhan menggunakan berkas lengkap yang sudah tersedia, bukan keberhasilan mengunduh dari CDN. Konfirmasi kebenaran suara qari serta unduhan jaringan penuh masih perlu dijalankan pada jaringan yang dapat mengakses sumber.
 
@@ -37,6 +37,10 @@ Screenshot layar penuh tanpa edit. Pilihan Makassar adalah kota pengujian, bukan
 | Daftar masjid (data uji) | Pemilih lokasi |
 | --- | --- |
 | ![Daftar masjid data uji](screens/masjid-daftar-data-uji.png) | ![Lokasi Makassar pilihan pengujian](screens/lokasi-makassar.png) |
+
+| Pemutar (audio sintetis berlabel) | Validasi rentang ayat dan pengaturan |
+| --- | --- |
+| ![Pemutar dengan audio sintetis, bukan rekaman Quran](screens/quran-audio-sintetis.png) | ![Ayat di luar rentang ditolak](screens/quran-pengaturan-validasi.png) |
 
 ## Sumber dan batas
 

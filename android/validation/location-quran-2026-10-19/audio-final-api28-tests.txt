@@ -1,0 +1,6 @@
+
+com.zikra.app.QuranAudioTest:.......
+Test results for InstrumentationTestRunner=.......
+Time: 139.376
+
+OK (7 tests)

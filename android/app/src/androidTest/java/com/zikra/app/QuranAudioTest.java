@@ -225,6 +225,12 @@ public final class QuranAudioTest extends InstrumentationTestCase {
       if (n.getId() == 7301) item = n;
     item.getNotification().actions[1].actionIntent.send();
     until("Notification resumes audio", () -> state().playing);
+    main(
+        () ->
+            QuranAudioService.send(
+                context,
+                new Intent().setAction(QuranAudioService.SEEK).putExtra("position", 5000)));
+    until("Seek changes the real decoder position", () -> state().position >= 4500);
     AudioManager audio = context.getSystemService(AudioManager.class);
     AudioFocusRequest other =
         new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
@@ -315,6 +321,10 @@ public final class QuranAudioTest extends InstrumentationTestCase {
                 .getString("status", "")
                 .startsWith("Selesai"));
     assertEquals(7, AudioFiles.downloaded(context, Recitation.IDS[0], 1));
+    AudioFiles.delete(context, Recitation.IDS[0], 1);
+    assertEquals(0, AudioFiles.downloaded(context, Recitation.IDS[0], 1));
+    assertEquals(
+        "", context.getSharedPreferences(QuranDownloadService.PREFS, 0).getString("status", ""));
   }
 
   public void testPlayerControlsRemainReachableAt200PercentText() {
@@ -388,6 +398,25 @@ public final class QuranAudioTest extends InstrumentationTestCase {
         "Title returns to the audible surah",
         () -> ((Spinner) page.findViewById(R.id.surahSelector)).getSelectedItemPosition() == 0);
     assertEquals(1, state().chapter);
+  }
+
+  public void testCorruptOfflineAudioShowsErrorWithoutCrashingReader() throws Exception {
+    seed(1, 200);
+    try (FileOutputStream out =
+        new FileOutputStream(AudioFiles.file(context, Recitation.IDS[0], 1, 1))) {
+      out.write(new byte[1024]);
+    }
+    launch(false);
+    click(R.id.quranAudioPlay);
+    until(
+        "Decoder failure is reported",
+        () ->
+            state().status.contains("tidak dapat diputar")
+                || state().status.contains("belum tersedia")
+                || state().status.contains("terhenti"));
+    assertFalse(state().playing);
+    assertFalse(state().loading);
+    assertTrue("Reader remains open after decoder error", page.hasWindowFocus());
   }
 
   @Override

@@ -47,9 +47,18 @@ public final class QuranAudioService extends Service {
       reciter = s.reciter;
       status = s.status;
       loading = s.player != null && !s.prepared;
-      playing = s.prepared && s.player != null && s.player.isPlaying();
-      position = s.prepared ? s.player.getCurrentPosition() : 0;
-      duration = s.prepared ? s.player.getDuration() : 0;
+      playing = s.isPlaying();
+      int at = 0, length = 0;
+      try {
+        if (s.prepared && s.player != null) {
+          at = s.player.getCurrentPosition();
+          length = s.player.getDuration();
+        }
+      } catch (IllegalStateException pendingErrorCallback) {
+        // Native decoder errors may precede the main-thread OnError callback.
+      }
+      position = at;
+      duration = length;
     }
   }
 
@@ -332,7 +341,12 @@ public final class QuranAudioService extends Service {
       stopForeground(STOP_FOREGROUND_DETACH);
       return;
     }
-    player.start();
+    try {
+      player.start();
+    } catch (IllegalStateException invalidPlayer) {
+      error("Audio terhenti. Ketuk Putar untuk memuat ulang.");
+      return;
+    }
     status = "Memutar ayat " + queue.verse;
     session.setActive(true);
     main.removeCallbacks(tick);
@@ -341,8 +355,16 @@ public final class QuranAudioService extends Service {
   }
 
   private void pause(boolean abandon) {
+    if (queue == null) return;
     wantPlay = false;
-    if (prepared && player != null && player.isPlaying()) player.pause();
+    if (isPlaying()) {
+      try {
+        player.pause();
+      } catch (IllegalStateException pendingErrorCallback) {
+        error("Audio terhenti. Ketuk Putar untuk memuat ulang.");
+        return;
+      }
+    }
     if (abandon) {
       resumeOnFocus = false;
       abandonFocus();
@@ -363,8 +385,13 @@ public final class QuranAudioService extends Service {
   }
 
   private void seek(long ms) {
-    if (prepared && player != null)
-      player.seekTo((int) Math.max(0, Math.min(player.getDuration(), ms)));
+    try {
+      if (prepared && player != null)
+        player.seekTo((int) Math.max(0, Math.min(player.getDuration(), ms)));
+    } catch (IllegalStateException pendingErrorCallback) {
+      error("Posisi audio belum dapat diubah. Ketuk Putar untuk memuat ulang.");
+      return;
+    }
     publish(true);
     if (!wantPlay) stopForeground(STOP_FOREGROUND_DETACH);
   }
@@ -456,7 +483,7 @@ public final class QuranAudioService extends Service {
   }
 
   private Notification notification() {
-    boolean playing = prepared && player != null && player.isPlaying();
+    boolean playing = isPlaying();
     Intent open = new Intent(this, QuranActivity.class);
     if (queue != null)
       open.putExtra(QuranActivity.EXTRA_TARGET_CHAPTER, queue.chapter)
@@ -484,6 +511,14 @@ public final class QuranAudioService extends Service {
                 .setMediaSession(session.getSessionToken())
                 .setShowActionsInCompactView(0, 1, 2))
         .build();
+  }
+
+  private boolean isPlaying() {
+    try {
+      return prepared && player != null && player.isPlaying();
+    } catch (IllegalStateException pendingErrorCallback) {
+      return false;
+    }
   }
 
   @Override

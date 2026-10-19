@@ -304,7 +304,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
               + state.verse
               + (state.playing ? " berjalan" : " dijeda")
               + ". Ketuk judul untuk kembali; Putar mengganti ke surah ini.";
-    if (auto) status += " · Gulir baca " + speed + " dp/detik";
+    if (auto) status += " · Gulir baca · " + scrollSpeedName();
     if (touchPaused && follow) status += " · Ikuti ayat dijeda; aktifkan di pengaturan";
     SharedPreferences transfer = activity.getSharedPreferences(QuranDownloadService.PREFS, 0);
     if (QuranDownloadService.running) status += "\n" + transfer.getString("status", "Mengunduh…");
@@ -418,7 +418,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
         toggle(
             body, R.id.quranAudioFollow, "Ikuti ayat yang sedang diputar", follow && !touchPaused);
     label(body, "Gulir baca otomatis · terpisah dari murottal");
-    TextView speedLabel = label(body, speed + " dp/detik");
+    TextView speedLabel = label(body, "Kecepatan " + scrollSpeedName());
     SeekBar speedBar = new SeekBar(activity);
     speedBar.setId(R.id.quranAutoSpeed);
     speedBar.setMax(55);
@@ -431,7 +431,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
           @Override
           public void onProgressChanged(SeekBar bar, int progress, boolean user) {
             speed = 5 + progress;
-            speedLabel.setText(speed + " dp/detik");
+            speedLabel.setText("Kecepatan " + scrollSpeedName());
             prefs.edit().putInt("scroll_speed", speed).apply();
           }
 
@@ -539,6 +539,10 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
                       update();
                     }));
     options.show();
+  }
+
+  private String scrollSpeedName() {
+    return speed < 15 ? "lambat" : speed < 35 ? "sedang" : "cepat";
   }
 
   private void stopScroll() {
