@@ -1,3 +1,5 @@
+> **Checkpoint desain lokasi dan audio Quran:** halaman masjid/lokasi lebih ringkas; pemutar native dengan MediaSession, background, unduhan surah, gulir baca, serta pengulangan rentang Hifz tersedia pada branch perubahan. [Bukti, sumber audio, dan batas pengujian](android/validation/location-quran-2026-10-19/README.md). Rekaman qari langsung belum diuji dari cloud karena pembatasan jaringan; audio uji sintetis dipisahkan dari rekaman Quran.
+
 > **Pembaruan terbaru — 19 Oktober 2026 (WIB):** lokasi otomatis/manual dibagikan ke Home, jadwal/alarm sholat, cuaca, langit dan Kiblat. Masjid terdekat memakai daftar/peta OpenStreetMap native di Zikra; petunjuk arah membuka Google Maps. Tanpa kunci Google untuk versi ini. [Bukti dan batas pemeriksaan](android/validation/location-mosques-2026-10-19/README.md) · [Rencana berikutnya](design/IMPROVEMENT_PLAN.md) · [Android Studio](android/BUILDING.md). Onboarding/parallax yang disetujui tetap dipertahankan.
 
 # Zikra Smart Islamic Student Companion
@@ -9,7 +11,7 @@
 
 ## Mulai di sini untuk sesi chat baru
 
-**Pembaruan: 19 Oktober 2026 (WIB).** Repositori aplikasi utama adalah **[Arkanzahir/Zikra-App](https://github.com/Arkanzahir/Zikra-App)**, project Android Studio di **`android/`**. `Arkanzahir/prototype_zikra` adalah referensi prototipe web lama; jangan memindahkan pengembangan kembali ke React. Gunakan HEAD terbaru branch **`recovery/study-hifz-refresh`**; sumber asli lokal lama belum ditemukan, dan fitur yang hilang sudah dibangun ulang dari referensi chat.
+**Pembaruan: 19 Oktober 2026 (WIB).** Repositori aplikasi utama adalah **[Arkanzahir/Zikra-App](https://github.com/Arkanzahir/Zikra-App)**, project Android Studio di **`android/`**. `Arkanzahir/prototype_zikra` adalah referensi prototipe web lama; jangan memindahkan pengembangan kembali ke React. Versi recovery hingga `d9d2ed4` sudah digabung ke **`main`**; perubahan berikutnya ditinjau melalui branch fitur; sumber asli lokal lama belum ditemukan, dan fitur yang hilang sudah dibangun ulang dari referensi chat.
 
 Baca dan **buka gambar di [galeri referensi visual](./design/README.md)** terlebih dahulu; sesi baru perlu melihat file gambarnya, bukan hanya membaca label referensi.
 
@@ -35,7 +37,7 @@ Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./and
 | Kiblat | Dial roset, Ka'bah, penanda derajat, bearing ke Ka’bah dari koordinat pilihan, koreksi deklinasi setempat, rotasi sensor, panduan kalibrasi, haptik bersyarat akurasi | Uji arah/getaran pada ponsel fisik |
 | Lokasi / Masjid | Pemilih kota online dan 15 pilihan offline, izin lokasi foreground dengan fallback manual; daftar hingga 60 hasil dalam radius 3 km, peta OSM native, cache 30 menit dan arah ke Google Maps | Data komunitas dapat tidak lengkap; layanan publik tanpa SLA; uji GPS/aksesibilitas/performa HP |
 | Onboarding | Tiga ilustrasi 2D dengan parallax sentuh/gulir terbatas pada gambar utuh dan teks; karakter diam, pengantar/judul 32sp/paragraf manfaat, kembali kiri dan langkah kanan; wordmark `zikra` tanpa titik dan master kiri atas | Uji kenyamanan/performa HP; tanpa sensor/loop idle/jenjang/minat; menghormati animasi sistem dan penghemat daya; preferensi lama tetap disimpan |
-| Quran | Katalog/reader native 114 surah; pencarian Arab tanpa harakat, ukuran Arab/terjemahan tersimpan, lompat ayat tervalidasi, terang/malam/otomatis; Utsmani/arti resource 33, bagian 50 ayat, bookmark/resume, cache delapan bagian dan empat surah bawaan | Mushaf halaman, audio dan offline penuh belum tersedia |
+| Quran | Katalog/reader native 114 surah; pencarian Arab tanpa harakat, ukuran Arab/terjemahan tersimpan, lompat ayat tervalidasi, terang/malam/otomatis; Utsmani/arti resource 33, bagian 50 ayat, bookmark/resume, cache delapan bagian dan empat surah bawaan | Mushaf halaman belum tersedia; audio per ayat, unduhan teks/audio per surah dan gulir tersedia pada branch perubahan terbaru |
 | Study Hub / Diary Hifz | Study akademik dan target Hifz tetap dapat diakses lintas tanggal; ibadah khusus hari ini melalui Waktu Sholat. Hari baru kosong; tidak membuat tugas/progres contoh. CRUD/SQLite v2 mempertahankan data lama, target 114 surah/rentang, draft editor/dikte dan reader native | Belum timer fokus/deadline/statistik atau evaluasi bacaan AI; checklist ibadah bukan pencatatan otomatis |
 | Waktu sholat | Kalkulasi matahari harian sesuai koordinat/zona pilihan, daftar hari/pekan, countdown, preferensi dan notifikasi/alarm | Integrasi Aladhan; belum audio adzan; validasi izin dan ketepatan alarm pada HP |
 | Doa / Hadis / Kalender | Pencarian doa dan TTS, 7 kutipan hadis bersumber/bookmark, navigasi kalender Umm al-Qura | Tambah konten terverifikasi bertahap dan uji suara pada perangkat; bukan koleksi hadis lengkap |

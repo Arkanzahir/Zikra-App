@@ -23,6 +23,12 @@ public final class FeatureHeader extends LinearLayout {
     return action;
   }
 
+  /** Match a screen surface without changing headers on other features. */
+  public void setSurfaceColor(int color) {
+    setBackgroundColor(color);
+    getChildAt(0).setBackgroundColor(color);
+  }
+
   public FeatureHeader(Context context, AttributeSet attrs) {
     super(context, attrs);
     setOrientation(VERTICAL);

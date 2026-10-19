@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.zikra.app.location.LocationPoint;
 import com.zikra.app.location.LocationStore;
@@ -35,6 +36,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
   private volatile boolean resumed;
   private boolean searching, restoreResults, restoreMap;
   private MapView mapView;
+  private MosquePlace selectedPlace;
   private final List<MosquePlace> places = new ArrayList<>();
   private AlertDialog sourceDialog;
 
@@ -51,9 +53,11 @@ public final class NearbyMosquesActivity extends BaseActivity {
             R.id.featureSubtitle,
             0,
             "Masjid terdekat",
-            "Tempat singgah di sekitarmu",
+            null,
             0,
             null);
+    ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.mosquesHeader))
+        .setSurfaceColor(getColor(R.color.onboarding_paper));
     setupScreen("Masjid terdekat");
     getWindow().setStatusBarColor(getColor(R.color.onboarding_paper));
     getWindow().setNavigationBarColor(getColor(R.color.onboarding_paper));
@@ -66,7 +70,8 @@ public final class NearbyMosquesActivity extends BaseActivity {
     findViewById(R.id.mosquesLocation).setOnClickListener(v -> open(LocationActivity.class));
     findViewById(R.id.mosquesProvider).setOnClickListener(v -> chooseProvider());
     findViewById(R.id.mosquesRefresh).setOnClickListener(v -> load(lastRequest >= 0));
-    findViewById(R.id.mosquesMapToggle).setOnClickListener(v -> toggleMap());
+    ((RadioGroup) findViewById(R.id.mosquesViewMode))
+        .setOnCheckedChangeListener((group, id) -> showMap(id == R.id.mosquesMapToggle));
     findViewById(R.id.mosquesExternal)
         .setOnClickListener(
             v ->
@@ -80,12 +85,18 @@ public final class NearbyMosquesActivity extends BaseActivity {
   }
 
   private void labels() {
-    text(R.id.mosquesLocation, location.caption() + " · Ubah");
+    text(
+        R.id.mosquesLocation,
+        location.label + "\nUbah lokasi · " + location.zoneLabel(java.time.Instant.now()));
     text(R.id.mosquesProvider, "Tentang data OpenStreetMap");
     text(R.id.mosquesAttribution, "© OpenStreetMap contributors · ODbL ↗");
     if (location.source.equals("initial"))
       text(R.id.mosquesStatus, "Lokasi masih acuan awal. Pilih lokasi agar hasil sesuai tempatmu.");
     else text(R.id.mosquesStatus, "Pilih Cari masjid untuk mencari dari lokasi ini.");
+    text(R.id.mosquesCount, "Di sekitarmu");
+    text(R.id.mosquesRefresh, getString(R.string.nearby_search));
+    findViewById(R.id.mosquesUpdated).setVisibility(View.GONE);
+    emptyState(R.string.nearby_empty_title, R.string.nearby_empty_body);
   }
 
   private void chooseProvider() {
@@ -120,6 +131,8 @@ public final class NearbyMosquesActivity extends BaseActivity {
     int token = ++generation;
     LocationPoint point = location;
     searching = true;
+    findViewById(R.id.mosquesProgress).setVisibility(View.VISIBLE);
+    findViewById(R.id.mosquesEmpty).setVisibility(View.GONE);
     ((Button) findViewById(R.id.mosquesRefresh)).setEnabled(false);
     text(R.id.mosquesStatus, "Mencari tempat ibadah di sekitar lokasi pilihan…");
     work.execute(
@@ -132,33 +145,39 @@ public final class NearbyMosquesActivity extends BaseActivity {
                 () -> {
                   if (!current(token)) return;
                   searching = false;
+                  findViewById(R.id.mosquesProgress).setVisibility(View.GONE);
                   places.clear();
                   places.addAll(found);
+                  selectedPlace = places.isEmpty() ? null : places.get(0);
                   render();
                   ((Button) findViewById(R.id.mosquesRefresh)).setEnabled(true);
+                  text(R.id.mosquesCount, found.size() + " tempat ditemukan");
                   text(
                       R.id.mosquesStatus,
                       found.isEmpty()
-                          ? "Belum ada hasil dalam radius 3 km. Coba lokasi lain atau periksa"
-                              + " Google Maps."
-                          : found.size()
-                              + " tempat dalam radius 3 km · jarak garis lurus. "
-                              + (response.cached ? "Data tersimpan" : "OpenStreetMap")
-                              + " · "
-                              + java.time.format.DateTimeFormatter.ofPattern(
-                                      "d MMM HH:mm", Locale.forLanguageTag("id-ID"))
-                                  .withZone(point.zone)
-                                  .format(java.time.Instant.ofEpochMilli(response.fetchedAt))
-                              + " "
-                              + point.zoneLabel(
-                                  java.time.Instant.ofEpochMilli(response.fetchedAt)));
-                  text(R.id.mosquesRefresh, "Cari ulang");
+                          ? "Belum ada hasil dalam radius 3 km."
+                          : "Terdekat lebih dulu · jarak garis lurus");
+                  if (found.isEmpty())
+                    emptyState(R.string.nearby_no_results_title, R.string.nearby_no_results_body);
+                  text(
+                      R.id.mosquesUpdated,
+                      (response.cached ? "Data tersimpan" : "Diperbarui")
+                          + " · "
+                          + java.time.format.DateTimeFormatter.ofPattern(
+                                  "d MMM HH:mm", Locale.forLanguageTag("id-ID"))
+                              .withZone(point.zone)
+                              .format(java.time.Instant.ofEpochMilli(response.fetchedAt))
+                          + " "
+                          + point.zoneLabel(java.time.Instant.ofEpochMilli(response.fetchedAt)));
+                  findViewById(R.id.mosquesUpdated).setVisibility(View.VISIBLE);
+                  text(R.id.mosquesRefresh, getString(R.string.nearby_refresh));
                 });
           } catch (Exception e) {
             runOnUiThread(
                 () -> {
                   if (!current(token)) return;
                   searching = false;
+                  findViewById(R.id.mosquesProgress).setVisibility(View.GONE);
                   if (e instanceof MosqueSearch.RateLimited)
                     nextAllowedSearch =
                         SystemClock.elapsedRealtime() + ((MosqueSearch.RateLimited) e).retryAfterMs;
@@ -167,6 +186,8 @@ public final class NearbyMosquesActivity extends BaseActivity {
                       R.id.mosquesStatus,
                       "Pencarian belum tersedia. Periksa koneksi dan coba lagi nanti."
                           + (places.isEmpty() ? "" : " Hasil sebelumnya tetap ditampilkan."));
+                  if (places.isEmpty())
+                    emptyState(R.string.nearby_error_title, R.string.nearby_error_body);
                 });
           }
         });
@@ -184,42 +205,63 @@ public final class NearbyMosquesActivity extends BaseActivity {
     LinearLayout list = findViewById(R.id.mosquesResults);
     list.removeAllViews();
     for (MosquePlace place : places) {
-      LinearLayout card = new LinearLayout(this);
-      card.setOrientation(LinearLayout.VERTICAL);
-      card.setPadding(dp(16), dp(16), dp(16), dp(12));
-      card.setBackgroundResource(R.drawable.prayer_bg_row);
-      TextView name = new TextView(this);
-      name.setText(place.name);
-      name.setTextSize(18);
-      name.setTextColor(getColor(R.color.pine));
-      name.setTypeface(name.getTypeface(), android.graphics.Typeface.BOLD);
-      card.addView(name);
-      TextView details = new TextView(this);
-      String distance =
-          place.distance < 1000
-              ? Math.round(place.distance) + " m"
-              : String.format(Locale.forLanguageTag("id-ID"), "%.1f km", place.distance / 1000);
-      details.setText(
-          distance
-              + " · garis lurus\n"
-              + (place.address.isEmpty() ? "Alamat belum tercantum" : place.address));
-      details.setTextColor(getColor(R.color.onboarding_muted));
-      details.setTextSize(14);
-      details.setPadding(0, dp(8), 0, dp(8));
-      details.setLineSpacing(dp(4), 1);
-      card.addView(details);
-      Button route = new Button(this);
-      route.setText("Petunjuk arah ↗");
-      route.setAllCaps(false);
-      route.setMinHeight(dp(48));
-      route.setTextColor(getColor(R.color.pine));
-      route.setOnClickListener(v -> directions(place));
-      card.addView(route);
+      View card = mosqueCard(place, list);
       LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-1, -2);
       lp.bottomMargin = dp(12);
       list.addView(card, lp);
     }
     updateMap();
+    updateSelection();
+  }
+
+  private String distance(MosquePlace place) {
+    return place.distance < 1000
+        ? Math.round(place.distance) + " m"
+        : String.format(Locale.forLanguageTag("id-ID"), "%.1f km", place.distance / 1000);
+  }
+
+  private View mosqueCard(MosquePlace place, android.view.ViewGroup parent) {
+    View card = getLayoutInflater().inflate(R.layout.item_nearby_mosque, parent, false);
+    ((TextView) card.findViewById(R.id.mosqueName)).setText(place.name);
+    ((TextView) card.findViewById(R.id.mosqueDistance)).setText(distance(place) + " · garis lurus");
+    card.setContentDescription(
+        getString(R.string.nearby_details, place.name) + ", " + distance(place));
+    card.setOnClickListener(v -> showDetails(place));
+    View route = card.findViewById(R.id.mosqueDirections);
+    route.setContentDescription(getString(R.string.nearby_route, place.name));
+    route.setOnClickListener(v -> directions(place));
+    return card;
+  }
+
+  private void showDetails(MosquePlace place) {
+    sourceDialog =
+        new AlertDialog.Builder(this)
+            .setTitle(place.name)
+            .setMessage(
+                distance(place)
+                    + " · jarak garis lurus\n\n"
+                    + (place.address.isEmpty()
+                        ? "Alamat belum tercantum di OpenStreetMap."
+                        : place.address)
+                    + "\n\nSumber: OpenStreetMap. Petunjuk arah dibuka melalui Google Maps.")
+            .setPositiveButton("Petunjuk arah", (d, w) -> directions(place))
+            .setNegativeButton("Tutup", null)
+            .show();
+  }
+
+  private void emptyState(int title, int body) {
+    text(R.id.mosquesEmptyTitle, getString(title));
+    text(R.id.mosquesEmptyBody, getString(body));
+    findViewById(R.id.mosquesEmpty).setVisibility(View.VISIBLE);
+  }
+
+  private void updateSelection() {
+    FrameLayout selection = findViewById(R.id.mosquesSelection);
+    selection.removeAllViews();
+    boolean visible =
+        findViewById(R.id.mosquesMap).getVisibility() == View.VISIBLE && selectedPlace != null;
+    selection.setVisibility(visible ? View.VISIBLE : View.GONE);
+    if (visible) selection.addView(mosqueCard(selectedPlace, selection));
   }
 
   private void directions(MosquePlace place) {
@@ -231,23 +273,23 @@ public final class NearbyMosquesActivity extends BaseActivity {
     external(Intent.ACTION_VIEW, uri.build().toString());
   }
 
-  private void toggleMap() {
+  private void showMap(boolean show) {
     FrameLayout container = findViewById(R.id.mosquesMap);
-    if (container.getVisibility() == View.VISIBLE) {
+    findViewById(R.id.mosquesResults).setVisibility(show ? View.GONE : View.VISIBLE);
+    findViewById(R.id.mosquesMapStatus).setVisibility(show ? View.VISIBLE : View.GONE);
+    if (!show) {
       container.setVisibility(View.GONE);
-      text(R.id.mosquesMapToggle, "Lihat peta");
       if (mapView != null) {
         mapView.setUseDataConnection(false);
         mapView.onPause();
       }
+      updateSelection();
       return;
     }
     container.setVisibility(View.VISIBLE);
-    text(R.id.mosquesMapToggle, "Tutup peta");
     text(
         R.id.mosquesMapStatus,
-        "Peta OpenStreetMap · hasil pencarian di lokasi pilihan. Peta memerlukan koneksi; daftar"
-            + " tetap bisa dipakai jika petanya belum termuat.");
+        "Ketuk penanda untuk memilih masjid. Jika peta belum termuat, gunakan tampilan Daftar.");
     findViewById(R.id.mosquesMapStatus).setVisibility(View.VISIBLE);
     if (mapView == null) {
       org.osmdroid.config.IConfigurationProvider config = Configuration.getInstance();
@@ -289,6 +331,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
     mapView.setUseDataConnection(true);
     mapView.onResume();
     updateMap();
+    updateSelection();
   }
 
   private void updateMap() {
@@ -307,13 +350,12 @@ public final class NearbyMosquesActivity extends BaseActivity {
       marker.setTitle(p.name);
       marker.setOnMarkerClickListener(
           (m, mv) -> {
-            sourceDialog =
-                new AlertDialog.Builder(this)
-                    .setTitle(p.name)
-                    .setMessage(p.address.isEmpty() ? "Alamat belum tercantum" : p.address)
-                    .setPositiveButton("Petunjuk arah", (d, w) -> directions(p))
-                    .setNegativeButton("Tutup", null)
-                    .show();
+            selectedPlace = p;
+            updateSelection();
+            View selection = findViewById(R.id.mosquesSelection);
+            selection.announceForAccessibility(p.name + ", " + distance(p));
+            selection.requestRectangleOnScreen(
+                new android.graphics.Rect(0, 0, selection.getWidth(), selection.getHeight()), true);
             return true;
           });
       mapView.getOverlays().add(marker);
@@ -341,6 +383,9 @@ public final class NearbyMosquesActivity extends BaseActivity {
       search.cancel();
       generation++;
       places.clear();
+      selectedPlace = null;
+      searching = false;
+      findViewById(R.id.mosquesProgress).setVisibility(View.GONE);
       lastRequest = -30000;
       nextAllowedSearch = 0;
       render();
@@ -353,7 +398,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
     }
     if (restoreMap) {
       restoreMap = false;
-      toggleMap();
+      ((RadioGroup) findViewById(R.id.mosquesViewMode)).check(R.id.mosquesMapToggle);
     }
   }
 
@@ -361,6 +406,8 @@ public final class NearbyMosquesActivity extends BaseActivity {
   protected void onPause() {
     if (searching) {
       searching = false;
+      findViewById(R.id.mosquesProgress).setVisibility(View.GONE);
+      if (places.isEmpty()) emptyState(R.string.nearby_empty_title, R.string.nearby_empty_body);
       text(R.id.mosquesStatus, "Pencarian dihentikan. Ketuk Cari masjid untuk mencoba lagi.");
     }
     resumed = false;

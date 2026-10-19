@@ -1,0 +1,37 @@
+<resources>
+    <color name="nearby_panel">#EFF2EA</color>
+    <color name="nearby_line">#D9E0D6</color>
+    <string name="nearby_list">Daftar</string><string name="nearby_map">Peta</string>
+    <string name="nearby_radius">Radius 3 km · urut dari yang terdekat</string>
+    <string name="nearby_search">Cari masjid terdekat</string><string name="nearby_refresh">Perbarui hasil</string>
+    <string name="nearby_empty_title">Temukan masjid di sekitarmu</string>
+    <string name="nearby_empty_body">Pastikan lokasi sudah sesuai, lalu ketuk Cari masjid terdekat.</string>
+    <string name="nearby_no_results_title">Belum ada masjid yang ditemukan</string>
+    <string name="nearby_no_results_body">Data dalam radius 3 km belum tersedia. Coba ubah lokasi atau cari di Google Maps.</string>
+    <string name="nearby_error_title">Hasil belum bisa dimuat</string>
+    <string name="nearby_error_body">Periksa koneksi, lalu coba lagi. Kamu juga bisa mencari melalui Google Maps.</string>
+    <string name="nearby_route">Petunjuk arah ke %1$s</string><string name="nearby_details">Lihat rincian %1$s</string>
+    <string name="nearby_disclaimer">Jarak garis lurus, bukan jarak perjalanan. Informasi jamaah dan fasilitas dapat ditanyakan langsung ke masjid.</string>
+    <string name="location_search_hint">Cari nama kota</string><string name="location_search_label">Cari kota</string>
+    <string name="location_auto">Gunakan lokasi perangkat</string>
+    <string name="location_privacy">Hanya diambil saat diminta. Tidak melacak perjalananmu.</string>
+    <style name="NearbyBody">
+        <item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/pine</item><item name="android:textSize">14sp</item><item name="android:lineSpacingExtra">3dp</item>
+    </style>
+    <style name="NearbyCaption" parent="NearbyBody"><item name="android:textColor">@color/onboarding_muted</item><item name="android:textSize">12sp</item></style>
+    <style name="NearbySection" parent="NearbyBody"><item name="android:textSize">18sp</item><item name="android:textStyle">bold</item></style>
+    <style name="NearbyButton">
+        <item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">52dp</item><item name="android:textSize">14sp</item><item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/pine</item><item name="android:background">@drawable/bg_location_outline</item>
+        <item name="android:padding">14dp</item><item name="android:stateListAnimator">@null</item><item name="android:elevation">0dp</item>
+    </style>
+    <style name="NearbyPrimary" parent="NearbyButton"><item name="android:background">@drawable/bg_pine</item><item name="android:textColor">@color/white</item></style>
+    <style name="NearbyTab">
+        <item name="android:layout_width">0dp</item><item name="android:layout_height">wrap_content</item><item name="android:layout_weight">1</item>
+        <item name="android:minHeight">48dp</item><item name="android:button">@null</item><item name="android:background">@drawable/bg_nearby_tab</item>
+        <item name="android:textColor">@color/nearby_tab_text</item><item name="android:textSize">14sp</item><item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item><item name="android:padding">12dp</item>
+    </style>
+</resources>

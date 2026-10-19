@@ -1,0 +1,10 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="92dp"
+    android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp"
+    android:background="@drawable/bg_nearby_card" android:focusable="true" android:clickable="true">
+    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:paddingStart="0dp" android:paddingEnd="12dp">
+        <TextView android:id="@+id/mosqueName" style="@style/NearbySection" android:textSize="16sp" />
+        <TextView android:id="@+id/mosqueDistance" style="@style/NearbyCaption" android:layout_marginTop="6dp" android:textSize="13sp" />
+    </LinearLayout>
+    <ImageButton android:id="@+id/mosqueDirections" android:contentDescription="@string/audio_route" android:layout_width="48dp" android:layout_height="48dp" android:background="@drawable/bg_nearby_panel" android:src="@drawable/ic_nearby_route" android:padding="13dp" />
+</LinearLayout>

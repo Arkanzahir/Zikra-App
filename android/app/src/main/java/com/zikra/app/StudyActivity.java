@@ -614,7 +614,9 @@ public final class StudyActivity extends BaseActivity {
   public static Intent readingIntent(android.content.Context context, HifzTarget target) {
     return new Intent(context, QuranActivity.class)
         .putExtra(QuranActivity.EXTRA_TARGET_CHAPTER, target.chapterId)
-        .putExtra(QuranActivity.EXTRA_TARGET_VERSE, target.firstVerse);
+        .putExtra(QuranActivity.EXTRA_TARGET_VERSE, target.firstVerse)
+        .putExtra(QuranActivity.EXTRA_RANGE_FIRST, target.firstVerse)
+        .putExtra(QuranActivity.EXTRA_RANGE_LAST, target.lastVerse);
   }
 
   private void openReading(HifzTarget target) {

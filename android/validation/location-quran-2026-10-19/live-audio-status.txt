@@ -1,0 +1,7 @@
+19 Oktober 2026 (WIB)
+URL yang diperiksa: https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3
+Hasil dari executor cloud: HTTP CONNECT 403 Forbidden dari proxy.
+Tidak ada rekaman Quran yang diunduh lewat jalur alternatif untuk menghindari kebijakan jaringan.
+Dokumentasi URL, qari, bitrate dan ketentuan diperiksa lewat pencarian web.
+Tes decoder, antrean dan kontrol media memakai WAV sintetis yang dibuat hanya pada runtime tes.
+Keberhasilan tes tersebut bukan verifikasi rekaman qari, ketersediaan CDN, atau unduhan jaringan penuh.

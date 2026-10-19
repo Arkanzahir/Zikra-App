@@ -1,0 +1,19 @@
+{
+  "date_wib": "2026-10-19",
+  "java": 17,
+  "compile_target_sdk": 35,
+  "unit": {
+    "tests": 46,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Warning": 527
+  },
+  "runtime_api28_unique_methods_passed": 18,
+  "live_qari_audio_verified": false,
+  "physical_device_tested": false,
+  "audio_test_fixture": "Synthetic WAV generated at test runtime; not Quran recitation",
+  "apk_sha256": "50431065edf62423ce6cc5dc2831e8b7553b860785d90474d5eb71872e9e28a7"
+}

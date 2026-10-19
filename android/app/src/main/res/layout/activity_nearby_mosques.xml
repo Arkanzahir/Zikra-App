@@ -1,21 +1,35 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/mosquesRoot" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/onboarding_paper">
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
         <com.zikra.app.ui.FeatureHeader android:id="@+id/mosquesHeader" android:layout_width="match_parent" android:layout_height="wrap_content" />
-        <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
-                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Temukan tempat\nuntuk singgah." android:textColor="@color/pine" android:textSize="27sp" android:textStyle="bold" />
-                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="Masjid dan tempat ibadah Muslim dalam radius 3 km dari lokasi pilihanmu." android:textSize="15sp" android:lineSpacingExtra="4dp" android:textColor="@color/onboarding_muted" />
-                <Button android:id="@+id/mosquesLocation" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="52dp" android:layout_marginTop="8dp" android:text="Ubah lokasi" android:textAllCaps="false" android:textColor="@color/pine" android:background="@drawable/bg_location_outline" android:stateListAnimator="@null" android:elevation="0dp" android:padding="12dp" android:textSize="14sp" />
-                <Button android:id="@+id/mosquesProvider" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="Pilih sumber pencarian" android:textAllCaps="false" android:textColor="@color/pine" android:visibility="gone" />
-                <Button android:id="@+id/mosquesRefresh" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="52dp" android:layout_marginTop="10dp" android:background="@drawable/bg_pine" android:padding="12dp" android:text="Cari masjid" android:textAllCaps="false" android:textColor="@color/white" />
-                <TextView android:id="@+id/mosquesStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:textSize="14sp" android:textColor="@color/pine" android:lineSpacingExtra="4dp" android:accessibilityLiveRegion="polite" />
-                <Button android:id="@+id/mosquesMapToggle" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="Lihat peta" android:textAllCaps="false" android:textColor="@color/pine" android:background="@drawable/bg_location_outline" android:stateListAnimator="@null" android:elevation="0dp" android:padding="12dp" android:layout_marginTop="8dp" android:textSize="14sp" />
-                <FrameLayout android:id="@+id/mosquesMap" android:layout_width="match_parent" android:layout_height="280dp" android:visibility="gone" />
-                <TextView android:id="@+id/mosquesMapStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:textSize="13sp" android:textColor="@color/onboarding_muted" android:lineSpacingExtra="4dp" android:visibility="gone" />
-                <TextView android:id="@+id/mosquesAttribution" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:gravity="center_vertical" android:text="Sumber pencarian" android:textSize="12sp" android:textColor="@color/onboarding_muted" android:clickable="true" android:focusable="true" />
-                <LinearLayout android:id="@+id/mosquesResults" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:orientation="vertical" />
-                <Button android:id="@+id/mosquesExternal" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="Cari juga di Google Maps ↗" android:textAllCaps="false" android:textColor="@color/pine" android:background="@drawable/bg_location_outline" android:stateListAnimator="@null" android:elevation="0dp" android:padding="12dp" android:layout_marginTop="8dp" android:textSize="14sp" />
-                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Jarak berupa garis lurus, bukan jarak perjalanan. Jam jamaah, fasilitas, dan kondisi buka perlu dikonfirmasi ke masjid." android:textSize="12sp" android:textColor="@color/onboarding_muted" android:lineSpacingExtra="4dp" />
+        <ScrollView android:id="@+id/mosquesScroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true" android:clipToPadding="false">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="20dp" android:paddingTop="8dp" android:paddingBottom="28dp">
+                <TextView style="@style/NearbyCaption" android:text="LOKASI PENCARIAN" android:letterSpacing="0.08" />
+                <Button android:id="@+id/mosquesLocation" style="@style/NearbyButton" android:layout_marginTop="8dp" android:gravity="start|center_vertical" android:drawableStart="@drawable/ic_nearby_pin" android:drawablePadding="12dp" />
+                <TextView style="@style/NearbyCaption" android:layout_marginTop="10dp" android:text="@string/nearby_radius" />
+                <Button android:id="@+id/mosquesProvider" style="@style/NearbyButton" android:visibility="gone" />
+                <Button android:id="@+id/mosquesRefresh" style="@style/NearbyPrimary" android:layout_marginTop="16dp" android:text="@string/nearby_search" />
+                <RadioGroup android:id="@+id/mosquesViewMode" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="@drawable/bg_nearby_panel" android:padding="4dp" android:layout_marginTop="20dp" android:checkedButton="@id/mosquesListToggle">
+                    <RadioButton android:id="@+id/mosquesListToggle" style="@style/NearbyTab" android:text="@string/nearby_list" />
+                    <RadioButton android:id="@+id/mosquesMapToggle" style="@style/NearbyTab" android:text="@string/nearby_map" />
+                </RadioGroup>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="22dp">
+                    <TextView android:id="@+id/mosquesCount" style="@style/NearbySection" android:layout_width="0dp" android:layout_weight="1" android:text="Di sekitarmu" />
+                    <ProgressBar android:id="@+id/mosquesProgress" style="?android:attr/progressBarStyleSmall" android:layout_width="24dp" android:layout_height="24dp" android:layout_marginStart="12dp" android:visibility="gone" android:importantForAccessibility="no" />
+                </LinearLayout>
+                <TextView android:id="@+id/mosquesStatus" style="@style/NearbyBody" android:layout_marginTop="6dp" android:accessibilityLiveRegion="polite" />
+                <TextView android:id="@+id/mosquesUpdated" style="@style/NearbyCaption" android:visibility="gone" android:layout_marginTop="6dp" />
+                <LinearLayout android:id="@+id/mosquesEmpty" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal" android:padding="24dp" android:background="@drawable/bg_nearby_panel" android:layout_marginTop="16dp">
+                    <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@drawable/ic_nearby_pin" android:padding="8dp" android:importantForAccessibility="no" />
+                    <TextView android:id="@+id/mosquesEmptyTitle" style="@style/NearbySection" android:gravity="center" android:textSize="16sp" android:layout_marginTop="8dp" android:text="@string/nearby_empty_title" />
+                    <TextView android:id="@+id/mosquesEmptyBody" style="@style/NearbyBody" android:gravity="center" android:layout_marginTop="8dp" android:text="@string/nearby_empty_body" />
+                </LinearLayout>
+                <LinearLayout android:id="@+id/mosquesResults" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="16dp" />
+                <FrameLayout android:id="@+id/mosquesMap" android:layout_width="match_parent" android:layout_height="300dp" android:layout_marginTop="16dp" android:background="@drawable/bg_nearby_panel" android:clipToOutline="true" android:visibility="gone" />
+                <FrameLayout android:id="@+id/mosquesSelection" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:visibility="gone" />
+                <TextView android:id="@+id/mosquesMapStatus" style="@style/NearbyCaption" android:layout_marginTop="8dp" android:visibility="gone" />
+                <TextView android:id="@+id/mosquesAttribution" style="@style/NearbyCaption" android:minHeight="48dp" android:gravity="center_vertical" android:layout_marginTop="8dp" android:clickable="true" android:focusable="true" />
+                <Button android:id="@+id/mosquesExternal" style="@style/NearbyButton" android:layout_marginTop="4dp" android:text="Cari juga di Google Maps ↗" />
+                <TextView style="@style/NearbyCaption" android:layout_marginTop="12dp" android:text="@string/nearby_disclaimer" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

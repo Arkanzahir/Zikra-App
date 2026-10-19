@@ -17,6 +17,7 @@ public final class QuranRepository implements AutoCloseable {
       new OkHttpClient.Builder().callTimeout(25, TimeUnit.SECONDS).build();
   private final Handler main = new Handler(Looper.getMainLooper());
   private final File directory;
+  private final File offlineDirectory;
   private volatile boolean closed;
   private volatile int generation;
   private volatile Call active;
@@ -29,6 +30,7 @@ public final class QuranRepository implements AutoCloseable {
 
   public QuranRepository(Context c) {
     directory = new File(c.getFilesDir(), "quran-pages-v4-r33");
+    offlineDirectory = new File(c.getFilesDir(), "quran-offline-r33");
   }
 
   public void cancel() {
@@ -48,6 +50,14 @@ public final class QuranRepository implements AutoCloseable {
             return;
           }
           File file = new File(directory, chapter.id + "-" + page + ".json");
+          try {
+            File offline = new File(offlineDirectory, chapter.id + "-" + page + ".json");
+            QuranPage stored =
+                QuranPage.parse(read(new AtomicFile(offline).openRead()), chapter, page);
+            deliver(token, () -> result.ready(stored, "Quran.com · surah diunduh · offline"));
+            return;
+          } catch (IOException | JSONException | RuntimeException ignored) {
+          }
           try {
             String cached;
             synchronized (CACHE_LOCK) {

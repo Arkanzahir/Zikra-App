@@ -9,10 +9,10 @@ Folder `android` adalah project Android Studio mandiri. Semua source aplikasi me
 
 ## Android Studio
 
-Untuk mencoba pembaruan terbaru, gunakan branch **`recovery/study-hifz-refresh`**, yang belum digabung ke `main`:
+Versi dasar sudah digabung ke **`main`**. Untuk perubahan baru, gunakan branch yang tercantum pada catatan validasi checkpoint tersebut:
 
 ```sh
-git clone --branch recovery/study-hifz-refresh https://github.com/Arkanzahir/Zikra-App.git
+git clone https://github.com/Arkanzahir/Zikra-App.git
 ```
 
 Alternatif: buka branch tersebut di GitHub, pilih **Code → Download ZIP**, lalu ekstrak. Di Android Studio buka **`Zikra-App/android`** (folder yang berisi `settings.gradle`), bukan folder `prototype_zikra`. Saat memakai ZIP GitHub, nama folder luarnya dapat berbeda; tetap pilih subfolder `android`.

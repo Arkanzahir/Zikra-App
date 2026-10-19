@@ -1,0 +1,9 @@
+
+com.zikra.app.NearbyDesignTest:....
+com.zikra.app.LocationIntegrationTest:......
+Test results for InstrumentationTestRunner=..........
+Time: 80.861
+
+OK (10 tests)
+
+

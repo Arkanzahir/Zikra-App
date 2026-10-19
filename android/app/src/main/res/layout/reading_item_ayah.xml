@@ -6,6 +6,8 @@
             android:textSize="13sp" android:textColor="#806337" />
         <TextView android:id="@+id/ayahLastReadStatus" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
             android:gravity="end" android:textSize="12sp" android:textColor="#806337" />
+        <ImageButton android:id="@+id/ayahPlay" android:layout_width="48dp" android:layout_height="48dp" android:padding="15dp"
+            android:src="@drawable/audio_play" android:contentDescription="Putar ayat" android:background="?android:attr/selectableItemBackgroundBorderless" />
         <ImageButton android:id="@+id/ayahBookmark" android:layout_width="48dp" android:layout_height="48dp" android:padding="15dp"
             android:src="@drawable/reading_ic_bookmark" android:tint="#8C723E" android:contentDescription="Tandai terakhir dibaca"
             android:background="?android:attr/selectableItemBackgroundBorderless" />
@@ -13,6 +15,8 @@
             android:src="@drawable/study_ic_more" android:tint="#6C8074" android:rotation="90" android:contentDescription="Pilihan ayat"
             android:background="?android:attr/selectableItemBackgroundBorderless" />
     </LinearLayout>
+    <TextView android:id="@+id/ayahAudioStatus" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:textSize="12sp" android:textColor="@color/pine" android:visibility="gone" />
     <TextView android:id="@+id/ayahArabic" android:layout_width="match_parent" android:layout_height="wrap_content"
         android:gravity="end" android:textAlignment="viewEnd" android:textDirection="rtl" android:textSize="29sp" android:lineSpacingExtra="13dp"
         android:layout_marginTop="8dp" android:layout_marginBottom="16dp" android:textColor="@color/pine" />

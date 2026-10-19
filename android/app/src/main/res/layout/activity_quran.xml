@@ -108,5 +108,6 @@
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
+        <include layout="@layout/view_quran_audio" />
     </LinearLayout>
 </FrameLayout>

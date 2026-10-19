@@ -67,14 +67,9 @@ public final class LocationActivity extends BaseActivity {
     setContentView(R.layout.activity_location);
     ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.locationHeader))
         .bind(
-            R.id.toolbarBack,
-            R.id.featureTitle,
-            R.id.featureSubtitle,
-            0,
-            "Lokasi",
-            "Sesuaikan tempat dan waktumu",
-            0,
-            null);
+            R.id.toolbarBack, R.id.featureTitle, R.id.featureSubtitle, 0, "Lokasi", null, 0, null);
+    ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.locationHeader))
+        .setSurfaceColor(getColor(R.color.onboarding_paper));
     setupScreen("Lokasi");
     getWindow().setStatusBarColor(getColor(R.color.onboarding_paper));
     getWindow().setNavigationBarColor(getColor(R.color.onboarding_paper));
@@ -85,6 +80,7 @@ public final class LocationActivity extends BaseActivity {
     manager = (LocationManager) getSystemService(LOCATION_SERVICE);
     findViewById(R.id.locationAutomatic).setOnClickListener(v -> automatic());
     findViewById(R.id.locationSearch).setOnClickListener(v -> search());
+    findViewById(R.id.locationMore).setOnClickListener(v -> locationDetails());
     ((EditText) findViewById(R.id.locationQuery))
         .setOnEditorActionListener(
             (v, action, e) -> {
@@ -120,15 +116,27 @@ public final class LocationActivity extends BaseActivity {
                 ? "Lokasi perangkat · diambil saat diminta"
                 : "Kota pilihan · pusat kota";
     ((TextView) findViewById(R.id.locationDetails))
-        .setText(
-            source
-                + "\n"
-                + p.zone.getId()
-                + " · "
-                + p.zoneLabel(Instant.now())
-                + "\n"
-                + String.format(Locale.ROOT, "%.4f, %.4f", p.latitude, p.longitude)
-                + (p.accuracy >= 0 ? "\nPerkiraan akurasi ±" + Math.round(p.accuracy) + " m" : ""));
+        .setText(source + "\nZona waktu " + p.zoneLabel(Instant.now()));
+  }
+
+  private void locationDetails() {
+    LocationPoint p = LocationStore.current(this);
+    confirmation =
+        new AlertDialog.Builder(this)
+            .setTitle("Rincian lokasi")
+            .setMessage(
+                p.label
+                    + "\n"
+                    + p.zone.getId()
+                    + " · "
+                    + p.zoneLabel(Instant.now())
+                    + "\n"
+                    + String.format(Locale.ROOT, "%.4f, %.4f", p.latitude, p.longitude)
+                    + (p.accuracy >= 0
+                        ? "\nPerkiraan akurasi ±" + Math.round(p.accuracy) + " m"
+                        : ""))
+            .setPositiveButton("Tutup", null)
+            .show();
   }
 
   private void status(String text) {
@@ -188,14 +196,26 @@ public final class LocationActivity extends BaseActivity {
     list.removeAllViews();
     for (LocationPoint point : points) {
       TextView row = new TextView(this);
-      row.setText(point.label + "\n" + point.zoneLabel(Instant.now()) + " · " + point.zone.getId());
+      String labelText = point.label + "\n" + point.zoneLabel(Instant.now()) + " · pusat kota";
+      android.text.SpannableString rowLabel = new android.text.SpannableString(labelText);
+      rowLabel.setSpan(
+          new android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
+          0,
+          point.label.length(),
+          android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      rowLabel.setSpan(
+          new android.text.style.ForegroundColorSpan(getColor(R.color.onboarding_muted)),
+          point.label.length() + 1,
+          rowLabel.length(),
+          android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      row.setText(rowLabel);
       row.setTextSize(15);
       row.setTextColor(getColor(R.color.pine));
       row.setLineSpacing(dp(4), 1);
       row.setMinHeight(dp(64));
       row.setGravity(android.view.Gravity.CENTER_VERTICAL);
       row.setPadding(dp(16), dp(14), dp(16), dp(14));
-      row.setBackgroundResource(R.drawable.prayer_bg_row);
+      row.setBackgroundResource(R.drawable.bg_nearby_card);
       row.setFocusable(true);
       row.setOnClickListener(v -> confirm(point));
       LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-1, -2);

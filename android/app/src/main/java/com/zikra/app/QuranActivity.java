@@ -32,6 +32,10 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   public static final String EXTRA_TARGET_CHAPTER = "target_chapter";
   public static final String EXTRA_TARGET_VERSE = "target_verse";
   public static final String EXTRA_RESUME_READING = "resume_reading";
+  public static final String EXTRA_RANGE_FIRST = "audio_first";
+  public static final String EXTRA_RANGE_LAST = "audio_last";
+  private com.zikra.app.audio.ReaderAudioUi audioUi;
+  private int rangeChapter, rangeFirst, rangeLast;
   private SensorManager sensorManager;
   private Sensor lightSensor;
   private SharedPreferences preferences;
@@ -220,6 +224,62 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
           toast("Mode cahaya otomatis diaktifkan kembali");
           return true;
         });
+    rangeChapter = getIntent().getIntExtra(EXTRA_TARGET_CHAPTER, 0);
+    if (rangeChapter < 1 || rangeChapter > 114) rangeChapter = selectedIndex + 1;
+    int rangeCount = chapters.get(rangeChapter - 1).count;
+    rangeFirst = getIntent().getIntExtra(EXTRA_RANGE_FIRST, 1);
+    rangeLast = getIntent().getIntExtra(EXTRA_RANGE_LAST, rangeCount);
+    if (rangeFirst < 1 || rangeFirst > rangeLast || rangeLast > rangeCount) {
+      rangeFirst = 1;
+      rangeLast = rangeCount;
+    }
+    audioUi =
+        new com.zikra.app.audio.ReaderAudioUi(
+            this,
+            new com.zikra.app.audio.ReaderAudioUi.Host() {
+              @Override
+              public int chapter() {
+                return selectedIndex + 1;
+              }
+
+              @Override
+              public int verse() {
+                return pendingVerse;
+              }
+
+              @Override
+              public int first() {
+                return chapter() == rangeChapter ? rangeFirst : 1;
+              }
+
+              @Override
+              public int last() {
+                return chapter() == rangeChapter ? rangeLast : chapters.get(selectedIndex).count;
+              }
+
+              @Override
+              public void follow(int chapter, int verse) {
+                followAudioVerse(chapter, verse);
+              }
+
+              @Override
+              public void highlight(int chapter, int verse) {
+                highlightAudio(chapter, verse);
+              }
+
+              @Override
+              public boolean ready() {
+                return readingOpen && !loading && loadedPage != null;
+              }
+
+              @Override
+              public boolean nextPage() {
+                if (loadedPage == null || currentPage >= loadedPage.pages) return false;
+                pendingVerse = currentPage * QuranPage.PAGE_SIZE + 1;
+                renderSurah(true);
+                return true;
+              }
+            });
     applyNightMode(nightMode);
     updateSensorLabel();
     renderCatalog("");
@@ -274,6 +334,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
 
   private void showReader() {
     readingOpen = true;
+    if (audioUi != null) audioUi.reader(true);
     findViewById(R.id.quranTitle).setVisibility(View.GONE);
     findViewById(R.id.quranHeaderSearch).setVisibility(View.GONE);
     findViewById(R.id.quranCatalogButton).setVisibility(View.VISIBLE);
@@ -288,6 +349,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
 
   private void showCatalog() {
     readingOpen = false;
+    if (audioUi != null) audioUi.reader(false);
     repository.cancel();
     loading = false;
     clearBookmarkLayout();
@@ -311,6 +373,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   }
 
   private void renderSurah(boolean restoreBookmark) {
+    if (audioUi != null) audioUi.changedChapter();
     clearBookmarkLayout();
     QuranChapters.Chapter surah = chapters.get(selectedIndex);
     pendingVerse = Math.max(1, Math.min(surah.count, pendingVerse));
@@ -353,6 +416,14 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
               View row =
                   getLayoutInflater().inflate(R.layout.reading_item_ayah, ayahContainer, false);
               row.setTag(verse.key);
+              row.findViewById(R.id.ayahPlay)
+                  .setContentDescription("Putar " + surah.name + " ayat " + verse.number);
+              row.findViewById(R.id.ayahPlay)
+                  .setOnClickListener(
+                      v -> {
+                        pendingVerse = verse.number;
+                        audioUi.playVerse(verse.number);
+                      });
               ((TextView) row.findViewById(R.id.ayahNumber)).setText(String.valueOf(verse.number));
               ((TextView) row.findViewById(R.id.ayahArabic)).setText(verse.arabic);
               String translation = verse.translation.replaceAll("(?is)<sup[^>]*>.*?</sup>", "");
@@ -395,6 +466,10 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
             else
               ((ScrollView) findViewById(R.id.quranScroll))
                   .post(() -> ((ScrollView) findViewById(R.id.quranScroll)).scrollTo(0, 0));
+            ayahContainer.post(
+                () -> {
+                  if (audioUi != null) audioUi.pageReady();
+                });
           }
 
           @Override
@@ -415,6 +490,63 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
         .putInt("last_ayah", verse)
         .putString("last_verse_key", surah.id + ":" + verse)
         .apply();
+  }
+
+  private void followAudioVerse(int chapter, int verse) {
+    if (!readingOpen
+        || chapter < 1
+        || chapter > 114
+        || verse < 1
+        || verse > chapters.get(chapter - 1).count) return;
+    if (chapter != selectedIndex + 1) {
+      selectedIndex = chapter - 1;
+      pendingVerse = verse;
+      surahSelector.setSelection(selectedIndex);
+      showReader();
+      renderSurah(true);
+      return;
+    }
+    pendingVerse = verse;
+    if (QuranPage.pageFor(verse) != currentPage) {
+      renderSurah(true);
+      return;
+    }
+    View row = ayahContainer.findViewWithTag(chapter + ":" + verse);
+    if (row == null) return;
+    row.post(
+        () -> {
+          if (!readingOpen || isFinishing() || isDestroyed()) return;
+          ScrollView scroll = findViewById(R.id.quranScroll);
+          int[] position = new int[2], viewport = new int[2];
+          row.getLocationInWindow(position);
+          scroll.getLocationInWindow(viewport);
+          scroll.smoothScrollTo(
+              0, Math.max(0, position[1] - viewport[1] + scroll.getScrollY() - dp(12)));
+        });
+  }
+
+  private void highlightAudio(int chapter, int verse) {
+    for (int i = 0; i < ayahContainer.getChildCount(); i++) {
+      View row = ayahContainer.getChildAt(i);
+      boolean active = (chapter + ":" + verse).equals(row.getTag());
+      row.setBackgroundColor(
+          active ? (nightMode ? 0xFF233D33 : 0xFFEDF3EA) : (nightMode ? 0xFF10211F : 0xFFFFFFFF));
+      TextView label = row.findViewById(R.id.ayahAudioStatus);
+      label.setText(active ? "Ayat aktif di pemutar" : "");
+      label.setVisibility(active ? View.VISIBLE : View.GONE);
+    }
+  }
+
+  @Override
+  protected void onStart() {
+    super.onStart();
+    if (audioUi != null) audioUi.start();
+  }
+
+  @Override
+  protected void onStop() {
+    if (audioUi != null) audioUi.stop();
+    super.onStop();
   }
 
   private void scrollToBookmark(View bookmark) {
@@ -526,6 +658,9 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
           android.content.res.ColorStateList.valueOf(bookmark.isSelected() ? gold : secondary));
       ((ImageButton) ayah.findViewById(R.id.ayahMore))
           .setImageTintList(android.content.res.ColorStateList.valueOf(secondary));
+      ((ImageButton) ayah.findViewById(R.id.ayahPlay))
+          .setImageTintList(android.content.res.ColorStateList.valueOf(foreground));
+      ((TextView) ayah.findViewById(R.id.ayahAudioStatus)).setTextColor(foreground);
       ((TextView) ayah.findViewById(R.id.ayahArabic)).setTextColor(foreground);
       ((TextView) ayah.findViewById(R.id.ayahTranslation)).setTextColor(secondary);
     }
@@ -544,6 +679,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     getWindow().setStatusBarColor(background);
     getWindow().setNavigationBarColor(background);
     NavDock.setNightMode((FrameLayout) findViewById(R.id.quranPageRoot), enabled);
+    if (audioUi != null) audioUi.theme(enabled);
   }
 
   private GradientDrawable card(int color) {
@@ -804,6 +940,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
 
   @Override
   protected void onPause() {
+    if (audioUi != null) audioUi.pause();
     if (sensorManager != null) sensorManager.unregisterListener(this);
     suspended = loading;
     repository.cancel();

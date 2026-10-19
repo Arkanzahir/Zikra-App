@@ -111,7 +111,8 @@ public final class LocationLiveTest extends InstrumentationTestCase {
     getInstrumentation().addMonitor(monitor);
     try {
       LinearLayout first = (LinearLayout) list.getChildAt(0);
-      getInstrumentation().runOnMainSync(() -> first.getChildAt(2).performClick());
+      getInstrumentation()
+          .runOnMainSync(() -> first.findViewById(R.id.mosqueDirections).performClick());
       getInstrumentation().waitForIdleSync();
       assertNotNull("Route intent is emitted", routed[0]);
       String[] coordinates = routed[0].getData().getQueryParameter("destination").split(",");
@@ -139,7 +140,7 @@ public final class LocationLiveTest extends InstrumentationTestCase {
     assertTrue(map.getOverlays().size() > 1);
     assertTrue(map.getTileProvider().useDataConnection());
     UiEvidence.capture(getInstrumentation(), "LocationMosquesMapLive");
-    click(R.id.mosquesMapToggle);
+    click(R.id.mosquesListToggle);
     assertFalse(map.getTileProvider().useDataConnection());
   }
 
