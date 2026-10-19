@@ -1,18 +1,18 @@
-> **Arah terbaru (18 Oktober 2026):** onboarding menggunakan tiga ilustrasi 2D **statis**, dipilih dari kolase terbaru pengguna: pelajar berkacamata di meja, perempuan bermukena di sajadah, serta laki-laki berpeci membaca dengan rehal. Logo master tetap kiri atas; copy singkat dan warna ivory/Pine. Tidak ada animasi karakter atau parallax onboarding. [Aturan/aset ilustrasi](illustrations/onboarding/README.md) · [Screenshot APK](../android/validation/static-onboarding/README.md). Referensi 3D sebelumnya bukan arah aktif.
+> **Arah terbaru (19 Oktober 2026):** onboarding menggunakan tiga ilustrasi 2D **statis**, dipilih dari kolase terbaru pengguna: pelajar berkacamata di meja, perempuan bermukena di sajadah, serta laki-laki berpeci membaca dengan rehal. Logo master tetap kiri atas; pengantar kecil, judul kuat dan paragraf manfaat menggantikan caption yang terlalu singkat. Warna ivory/Pine; tanpa animasi karakter atau parallax onboarding. [Aturan/aset ilustrasi](illustrations/onboarding/README.md) · [Rencana pengembangan bertahap](IMPROVEMENT_PLAN.md). Referensi 3D sebelumnya bukan arah aktif.
 
 # Referensi desain dari pengguna
 
 Folder ini sekarang hanya memuat **gambar acuan yang cocok dengan gambar yang diberikan pengguna dalam percakapan**. Mockup Zikra lama, alternatif logo lama, prompt desain lama, duplikat dan acuan tambahan yang tidak terkonfirmasi sudah dikeluarkan dari versi aktif repositori. Jangan mengembalikannya dari riwayat Git atau menjadikannya target desain.
 
-**Prioritas: redesign onboarding.** Implementasi orbit/parallax sebelumnya masih belum memenuhi harapan visual pengguna. Quran menyusul. Baca [roadmap dan aturan proyek](../README.md#mulai-di-sini-untuk-sesi-chat-baru).
+**Prioritas: komposisi dan keterbacaan onboarding.** Lokasi bersama dan pencarian masjid menyusul, lalu murottal/hafalan dan integrasi asisten. Baca [rencana terbaru](IMPROVEMENT_PLAN.md) serta [aturan proyek](../README.md#mulai-di-sini-untuk-sesi-chat-baru).
 
-## Wajib dilihat sebelum mengubah onboarding
+## Referensi onboarding lama — bukan arahan aktif
 
-Buka gambar aslinya dengan alat penampil gambar, bukan hanya membaca README. Gambar berikut adalah acuan utama onboarding yang diberikan pengguna: karya **Blend wrk**, tiga layar dengan hero orbit, kartu pilihan pengguna dan chip minat. Adaptasikan pilihan menjadi SMP, SMA/SMK dan Mahasiswa, pertahankan identitas warna Zikra, dan tingkatkan kualitas komposisi/ilustrasi serta kedalaman parallax.
+Gambar karya **Blend wrk** berikut merupakan referensi awal pengguna untuk orbit, kartu pilihan dan chip minat. Arahan ini kemudian diganti dengan ilustrasi 2D statis. Gunakan gambar aktual tiga cerita dan [aturan ilustrasi](illustrations/onboarding/README.md) sebagai acuan aktif; jangan mengembalikan form jenjang/minat atau parallax onboarding.
 
 [![Referensi onboarding pengguna — Blend wrk](references/onboarding-blend-wrk.png)](references/onboarding-blend-wrk.png)
 
-Pengguna meminta perbaikan desain yang terlihat pada ketiga layar, bukan sekadar menambah gerakan pada ilustrasi lama. Implementasi tetap Java/XML native. Pertahankan penyimpanan pilihan, batas tiga minat, Lewati, kembali dan edit melalui Profil.
+Implementasi tetap Java/XML native. Pertahankan Lewati, kembali, progres tiga langkah dan pembukaan ulang melalui Profil. Preferensi jenjang/minat lama tetap disimpan tanpa menanyakan ulang.
 
 ## Home dan Quran — Suhayel Ahmed Nasim
 

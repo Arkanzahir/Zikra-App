@@ -19,6 +19,13 @@ Gunakan ImageView `fitCenter`, tanpa memotong kepala/tangan/buku/sajadah, tanpa 
 animasi, float, parallax, tilt, sensor atau pemutar ulang. Lebar ilustrasi mengikuti viewport dengan rasio asli. Ilustrasi, judul dua baris dan deskripsi dapat menggulung bersama pada font besar. Navigasi tetap di bawah dengan nomor langkah 01 / 03.
 Tidak memuat tiga gambar sekaligus atau atlas frame; gambar aktif disampling sesuai display.
 
+Pembaruan tipografi 19 Oktober: tiap cerita memakai pengantar 11sp, judul 32sp dan
+paragraf manfaat 16sp dengan jarak antarbaris. Blok teks berada di tengah sisa ruang
+di bawah ilustrasi; pada layar pendek/font besar semua isi tetap bisa digulir,
+sementara Lewati dan tombol lanjut tetap tersedia. Kembali di kiri, nomor langkah
+di kanan; catatan tanpa akun tampil konsisten. Copy disimpan terpusat di resource
+`values/onboarding_static.xml`, tanpa klaim fitur yang masih dalam rencana.
+
 Ivory `#FAF7EF` dengan warna dinding ilustrasi diteruskan ke header/status bar, teks/CTA Pine `#15332F`, teks sekunder `#53655D`. Logo master tetap memakai
 `view_zikra_brand.xml` di kiri atas. Ilustrasi bukan pengganti logo. Lihat [branding](../../branding/README.md).
 Sumber percobaan 3D disimpan sebagai arsip; aset/pemutarnya tidak ikut APK terbaru.

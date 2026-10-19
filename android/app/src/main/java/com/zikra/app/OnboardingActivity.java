@@ -12,14 +12,7 @@ import android.widget.TextView;
 
 /** Three static illustrated stories. No animation player, sensor or education/interests form. */
 public final class OnboardingActivity extends BaseActivity {
-  private static final String[] TITLES = {
-    "Belajar lebih\nterarah.", "Ibadah tetap\nterjaga.", "Dekat, ayat\ndemi ayat."
-  };
-  private static final String[] CAPTIONS = {
-    "Tata tugas dan target belajarmu, satu per satu.",
-    "Temukan jadwal sholat di sela kesibukanmu.",
-    "Lanjutkan bacaan dan jaga target hafalanmu."
-  };
+  private String[] titles, captions, eyebrows;
   private static final String[] SCENES = {
     "Pelajar berkacamata menulis di meja belajar.",
     "Perempuan bermukena duduk di atas sajadah.",
@@ -38,6 +31,9 @@ public final class OnboardingActivity extends BaseActivity {
     super.onCreate(state);
     step = state == null ? 0 : Math.max(0, Math.min(2, state.getInt("step")));
     setContentView(R.layout.activity_onboarding);
+    titles = getResources().getStringArray(R.array.onboarding_titles);
+    captions = getResources().getStringArray(R.array.onboarding_captions);
+    eyebrows = getResources().getStringArray(R.array.onboarding_eyebrows);
     setupScreen("Selamat datang di Zikra");
     getWindow().setStatusBarColor(getColor(R.color.onboarding_wall));
     getWindow().setNavigationBarColor(getColor(R.color.onboarding_paper));
@@ -61,16 +57,16 @@ public final class OnboardingActivity extends BaseActivity {
     if (target == step) return;
     step = target;
     render();
-    findViewById(R.id.onboardStory).announceForAccessibility(TITLES[step]);
+    findViewById(R.id.onboardStory).announceForAccessibility(titles[step]);
   }
 
   private void render() {
-    ((TextView) findViewById(R.id.onboardTitle)).setText(TITLES[step]);
-    ((TextView) findViewById(R.id.onboardDescription)).setText(CAPTIONS[step]);
+    ((TextView) findViewById(R.id.onboardEyebrow)).setText(eyebrows[step]);
+    ((TextView) findViewById(R.id.onboardTitle)).setText(titles[step]);
+    ((TextView) findViewById(R.id.onboardDescription)).setText(captions[step]);
     TextView progress = findViewById(R.id.onboardStep);
     progress.setText(String.format(java.util.Locale.ROOT, "%02d / 03", step + 1));
     progress.setContentDescription("Langkah " + (step + 1) + " dari 3");
-    findViewById(R.id.onboardGuestNote).setVisibility(step == 0 ? View.VISIBLE : View.INVISIBLE);
     ((TextView) findViewById(R.id.onboardContinue)).setText(step == 2 ? "Mulai harimu" : "Lanjut");
     // Keep indicators in the same position across all three stories.
     findViewById(R.id.onboardBack).setVisibility(step == 0 ? View.INVISIBLE : View.VISIBLE);

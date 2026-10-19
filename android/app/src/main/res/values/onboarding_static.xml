@@ -1,5 +1,30 @@
 <resources>
     <color name="onboarding_wall">#F4E5CB</color>
     <color name="onboarding_paper">#FAF7EF</color>
+    <color name="onboarding_muted">#53655D</color>
     <dimen name="onboard_static_art_height">160dp</dimen>
+    <string name="onboarding_eyebrow_study">RUANG UNTUK BELAJAR</string>
+    <string name="onboarding_eyebrow_prayer">JEDA UNTUK IBADAH</string>
+    <string name="onboarding_eyebrow_quran">WAKTU BERSAMA AL-QURAN</string>
+    <string name="onboarding_title_study">Belajar lebih\nterarah.</string>
+    <string name="onboarding_title_prayer">Ibadah tetap\nterjaga.</string>
+    <string name="onboarding_title_quran">Dekat, ayat\ndemi ayat.</string>
+    <string name="onboarding_caption_study">Tugas menumpuk? Mulai dari yang paling penting. Susun rencana belajar dan tandai yang sudah selesai, supaya langkah berikutnya lebih jelas.</string>
+    <string name="onboarding_caption_prayer">Di sela kesibukan, beri ruang untuk ibadah. Lihat jadwal sholat, atur pengingat, dan jaga kebiasaan baikmu, satu per satu.</string>
+    <string name="onboarding_caption_quran">Luangkan waktu untuk satu ayat lagi. Lanjutkan bacaan terakhir, simpan ayat pilihan, dan susun target hafalan sesuai kemampuanmu.</string>
+    <string-array name="onboarding_eyebrows">
+        <item>@string/onboarding_eyebrow_study</item>
+        <item>@string/onboarding_eyebrow_prayer</item>
+        <item>@string/onboarding_eyebrow_quran</item>
+    </string-array>
+    <string-array name="onboarding_titles">
+        <item>@string/onboarding_title_study</item>
+        <item>@string/onboarding_title_prayer</item>
+        <item>@string/onboarding_title_quran</item>
+    </string-array>
+    <string-array name="onboarding_captions">
+        <item>@string/onboarding_caption_study</item>
+        <item>@string/onboarding_caption_prayer</item>
+        <item>@string/onboarding_caption_quran</item>
+    </string-array>
 </resources>

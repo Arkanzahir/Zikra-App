@@ -1,4 +1,4 @@
-> **Status 19 Oktober 2026:** ronde kegunaan memperbaiki onboarding 2D statis, header/navigasi, keterbacaan, rencana lintas tanggal dan pengaturan reader. Progres baru berasal dari tindakan pengguna, tanpa tugas atau penyelesaian demo otomatis. Build/lint, 33 tes JVM dan 47 metode emulator unik lulus; batas HP fisik/API 35 tetap dicatat. [Hasil dan screenshot terbaru](validation/quality-2026-10-19/README.md) · [RECOVERY.md](../RECOVERY.md). Hasil checkpoint lama di bawah bersifat historis.
+> **Pemeriksaan terbaru 19 Oktober 2026:** perbaikan komposisi/copy onboarding lulus build/lint dan lima metode instrumentasi unik. [Tiga screenshot dan batas uji](validation/onboarding-copy-2026-10-19/README.md). Ronde kegunaan sebelumnya: [33 tes JVM, 47 metode unik dan 22 screenshot](validation/quality-2026-10-19/README.md). Hasil checkpoint lama di bawah bersifat historis; HP fisik/runtime API 35 belum diverifikasi.
 
 
 # Validasi pembaruan referensi — 16 Oktober 2026

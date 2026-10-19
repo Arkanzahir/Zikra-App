@@ -2,6 +2,12 @@
 
 ## Status terbaru
 
+Tahap onboarding berikutnya selesai: pengantar, judul 32sp dan paragraf manfaat,
+komposisi teks seimbang, kembali di kiri dan langkah di kanan. Ilustrasi serta master
+logo tidak diubah. Build/lint dan lima skenario onboarding unik lulus; [bukti terbaru](android/validation/onboarding-copy-2026-10-19/README.md).
+[Rencana berikutnya](design/IMPROVEMENT_PLAN.md): lokasi bersama/masjid, lalu murottal/
+hafalan dan integrasi asisten. Fitur rencana tersebut belum diimplementasikan tahap ini.
+
 Branch `recovery/study-hifz-refresh` memuat pembangunan ulang dari riwayat chat dan screenshot pengguna. Sumber asli lokal versi taman/Home belum ditemukan; implementasi baru tidak diklaim identik dengan kode atau piksel aslinya. Checkpoint disimpan ke GitHub per tahap, tanpa menggabungkan main otomatis.
 
 | Bagian | Kondisi saat ini |
