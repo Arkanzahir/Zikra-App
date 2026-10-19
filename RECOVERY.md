@@ -13,7 +13,7 @@ Branch `recovery/study-hifz-refresh` memuat pembangunan ulang dari riwayat chat 
 | Quran | Katalog ringkas dan reader terang sesuai referensi Suhayel; ukuran tulisan Arab/terjemahan tersimpan, tema terang/malam/otomatis dan lompat ayat dengan validasi rentang. Pencarian Arab mengabaikan harakat/tatweel/variasi alef. Reader native 114 surah public v4, Utsmani/terjemahan resource 33, 50 ayat per bagian, bookmark kunci stabil, resume/recreation, delapan bagian cache; empat surah bawaan. Semua target Hifz menuju reader native. |
 | Cuaca/Protector | Open-Meteo untuk prakiraan model Sukolilo, refresh 10 menit/cache maksimal enam jam bertimestamp. Gempa/peringatan tetap BMKG. Header XML sama dengan Study/Hifz; grafik memakai geometri tersimpan. |
 
-Ronde 19 Oktober dimulai dari audit sumber/referensi dan panduan aksesibilitas resmi, lalu implementasi terarah pada onboarding, keterbacaan, navigasi, rencana lintas tanggal, reader dan penanganan data jaringan. **Hasil pengujian ronde ini belum dinyatakan pada catatan sumber ini.** Hasil dan screenshot dicatat setelah pemeriksaan selesai; build atau tes checkpoint lama tidak membuktikan perubahan baru.
+Ronde 19 Oktober dimulai dari audit sumber/referensi dan panduan aksesibilitas resmi, lalu implementasi terarah pada onboarding, keterbacaan, navigasi, rencana lintas tanggal, reader dan penanganan data jaringan. **Build/lint, 33 tes JVM dan 47 metode emulator unik lulus.** [Laporan ronde ini](android/validation/quality-2026-10-19/README.md) memuat 22 PNG aktual, kegagalan awal/retest dan diagnosis ANR renderer/SystemUI emulator. Label navigasi serta Lewati tetap utuh pada font besar. Ini belum bukti HP fisik atau runtime API 35.
 
 ## Riwayat bukti sebelum ronde ini
 
@@ -25,7 +25,7 @@ Ronde 19 Oktober dimulai dari audit sumber/referensi dan panduan aksesibilitas r
 - Posisi/orientasi bulan, awan dan bintang merupakan ilustrasi; fraksi terang dari data harian bukan pengamatan langsung atau penetapan awal bulan. Sumber/fallback dijelaskan saat label Langit diketuk. Lokasi masih Sukolilo/WIB.
 - Kelancaran, baterai, sensor Kiblat/tilt, haptik, alarm/izin, layanan suara dan runtime Android API 35 belum diverifikasi di HP fisik. Emulator API 28 dengan software rendering tidak membuktikan performa HP.
 - AI masih berbasis aturan lokal; tidak ada penilaian hafalan AI. Doa/Hadis tetap koleksi terbatas. Pilihan lokasi dan pengembangan fitur lain perlu tahap tersendiri.
-- Tes layar kecil/font besar agenda lama terhambat ANR System UI emulator; jangan menyebutnya lulus. Suite yang lulus dicatat per checkpoint; belum regresi menyeluruh semua fitur.
+- Uji agenda lama yang terhambat ANR tetap historis. Ronde terbaru memeriksa scoped onboarding320×560dp/font200%, Home sekitar320×720dp/font200% dan asisten200%. SystemUI sempat ANR; pemulihan backend dan pengujian ulang dicatat, bukan dihitung sebagai metode baru. Belum regresi seluruh kondisi/perangkat.
 
 ## Sumber dan riwayat penelusuran
 

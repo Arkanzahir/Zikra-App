@@ -1,0 +1,35 @@
+[
+  {
+    "scene": "study",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "762cda9dae004b90b4cd144f7f1ad48c8d02cee8eb73598346f776c301dd4262",
+    "bytes": 1180014,
+    "static": true,
+    "conversion": "lossless RGBA-identical"
+  },
+  {
+    "scene": "prayer",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "791686aa6dcb2d7112131a2ac08eab8e383a481254074460d50246c710ac97b3",
+    "bytes": 1235306,
+    "static": true,
+    "conversion": "lossless RGBA-identical"
+  },
+  {
+    "scene": "quran",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "4682c3e687248821641d2ba78b6bc2180a13203f36f2e687cf31e3790149d257",
+    "bytes": 1215634,
+    "static": true,
+    "conversion": "lossless RGBA-identical"
+  }
+]

@@ -1,0 +1,71 @@
+INSTRUMENTATION_STATUS: class=com.zikra.app.RebuiltQuranTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.zikra.app.RebuiltQuranTest:
+INSTRUMENTATION_STATUS: test=testDefaultLightHeaderAndPersistedNightOption
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.RebuiltQuranTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: junit.framework.AssertionFailedError: Night option accepts user selection
+	at com.zikra.app.RebuiltQuranTest.onMain(RebuiltQuranTest.java:45)
+	at com.zikra.app.RebuiltQuranTest.testDefaultLightHeaderAndPersistedNightOption(RebuiltQuranTest.java:194)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:564)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2145)
+Caused by: junit.framework.AssertionFailedError: Night option accepts user selection
+	at com.zikra.app.RebuiltQuranTest.lambda$testDefaultLightHeaderAndPersistedNightOption$9(RebuiltQuranTest.java:201)
+	at com.zikra.app.RebuiltQuranTest.$r8$lambda$qcEyNuw0bzcrx_G0UB2pCq2EP8g(Unknown Source:0)
+	at com.zikra.app.RebuiltQuranTest$$ExternalSyntheticLambda7.run(D8$$SyntheticClass:0)
+	at com.zikra.app.RebuiltQuranTest.lambda$onMain$0(RebuiltQuranTest.java:40)
+	at com.zikra.app.RebuiltQuranTest$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2163)
+	at android.os.Handler.handleCallback(Handler.java:873)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:193)
+	at android.app.ActivityThread.main(ActivityThread.java:6669)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:858)
+
+INSTRUMENTATION_STATUS: stream=
+Error in testDefaultLightHeaderAndPersistedNightOption:
+java.lang.AssertionError: junit.framework.AssertionFailedError: Night option accepts user selection
+	at com.zikra.app.RebuiltQuranTest.onMain(RebuiltQuranTest.java:45)
+	at com.zikra.app.RebuiltQuranTest.testDefaultLightHeaderAndPersistedNightOption(RebuiltQuranTest.java:194)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:564)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2145)
+Caused by: junit.framework.AssertionFailedError: Night option accepts user selection
+	at com.zikra.app.RebuiltQuranTest.lambda$testDefaultLightHeaderAndPersistedNightOption$9(RebuiltQuranTest.java:201)
+	at com.zikra.app.RebuiltQuranTest.$r8$lambda$qcEyNuw0bzcrx_G0UB2pCq2EP8g(Unknown Source:0)
+	at com.zikra.app.RebuiltQuranTest$$ExternalSyntheticLambda7.run(D8$$SyntheticClass:0)
+	at com.zikra.app.RebuiltQuranTest.lambda$onMain$0(RebuiltQuranTest.java:40)
+	at com.zikra.app.RebuiltQuranTest$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2163)
+	at android.os.Handler.handleCallback(Handler.java:873)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:193)
+	at android.app.ActivityThread.main(ActivityThread.java:6669)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:858)
+
+INSTRUMENTATION_STATUS: test=testDefaultLightHeaderAndPersistedNightOption
+INSTRUMENTATION_STATUS_CODE: -1
+INSTRUMENTATION_RESULT: stream=
+Test results for InstrumentationTestRunner=.E
+Time: 26.247
+
+FAILURES!!!
+Tests run: 1,  Failures: 0,  Errors: 1
+
+
+INSTRUMENTATION_CODE: -1

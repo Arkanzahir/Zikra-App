@@ -1,0 +1,50 @@
+[
+  {
+    "name": "com.zikra.app.sky.SkyDayTest",
+    "tests": "3",
+    "failures": "0",
+    "errors": "0"
+  },
+  {
+    "name": "com.zikra.app.safety.WeatherCodeTest",
+    "tests": "3",
+    "failures": "0",
+    "errors": "0"
+  },
+  {
+    "name": "com.zikra.app.assistant.OfflineAssistantTest",
+    "tests": "6",
+    "failures": "0",
+    "errors": "0"
+  },
+  {
+    "name": "com.zikra.app.reading.CompassMathTest",
+    "tests": "4",
+    "failures": "0",
+    "errors": "0"
+  },
+  {
+    "name": "com.zikra.app.reading.SurahSearchTest",
+    "tests": "3",
+    "failures": "0",
+    "errors": "0"
+  },
+  {
+    "name": "com.zikra.app.discovery.HijriCalendarModelTest",
+    "tests": "3",
+    "failures": "0",
+    "errors": "0"
+  },
+  {
+    "name": "com.zikra.app.PrayerScheduleTest",
+    "tests": "7",
+    "failures": "0",
+    "errors": "0"
+  },
+  {
+    "name": "com.zikra.app.safety.ForecastSelectorTest",
+    "tests": "4",
+    "failures": "0",
+    "errors": "0"
+  }
+]

@@ -1,0 +1,366 @@
+{
+  "date": "2026-10-19",
+  "unit_tests": 33,
+  "device_tests": 47,
+  "device_invocations_completed": 59,
+  "unresolved_failures": [],
+  "initial_harness_issues": [
+    "Study dialog dismissal was read before its asynchronous callback; awaited dismissal then retested.",
+    "Quran jump clicked in the same UI dispatch as dialog creation, before OnShow listener installation; split dispatches and caught test assertions off the UI thread, then retested."
+  ],
+  "additional_harness_issue": "The repeated theme check relied on the click return value. CompoundButton may toggle via OnCheckedChangeListener while returning false without a separate OnClickListener. The test now scrolls to the visible RadioButton, clicks it, and verifies checked state plus persisted/recreated theme.",
+  "device": "AOSP API 28, software rendering (SwiftShader, then ANGLE/SwiftShader recovery), no KVM",
+  "physical_device_tested": false,
+  "runtime_api_35_tested": false,
+  "source_checkpoint": "3bfe9737ef9cd88e595bbc885e1244fd22e32e2d",
+  "passed_tests": [
+    "com.zikra.app.FoundationExperienceTest#testHomeChecklistOpensWorshipInsteadOfAcademics",
+    "com.zikra.app.FoundationExperienceTest#testHomeSummaryCountsWorshipWithoutAcademicTasks",
+    "com.zikra.app.FoundationExperienceTest#testNarrowHomeAtTwoHundredPercentKeepsActionsAboveDock",
+    "com.zikra.app.FoundationExperienceTest#testPrimaryStudyDoesNotReopenAScopedHifzScreen",
+    "com.zikra.app.FoundationExperienceTest#testSupportingTextAndAmberActionMeetNormalTextContrast",
+    "com.zikra.app.QualityJourneyTest#testCaptureActualFeatureJourney",
+    "com.zikra.app.RebuiltOnboardingTest#testSkipHomeBrandAndActualAppIcon",
+    "com.zikra.app.RebuiltOnboardingTest#testThreeStoriesRecreateAndPreserveLegacyPreferences",
+    "com.zikra.app.RebuiltQuranTest#testArabicSearchAndReadableSizesSurviveRecreation",
+    "com.zikra.app.RebuiltQuranTest#testBaqarahLastPageAndPreviousPageLive",
+    "com.zikra.app.RebuiltQuranTest#testCatalogAndStrictPageValidation",
+    "com.zikra.app.RebuiltQuranTest#testDefaultLightHeaderAndPersistedNightOption",
+    "com.zikra.app.RebuiltQuranTest#testNativeMulkBookmarkRecreateAndCachedResume",
+    "com.zikra.app.RebuiltQuranTest#testVerseJumpValidatesBoundsAndOpensCorrectPart",
+    "com.zikra.app.SafetyReliabilityTest#testEarthquakeRefreshAndFailureKeepReportAndValidCoordinates",
+    "com.zikra.app.SafetyReliabilityTest#testPrayerUsesReferenceHeaderAndAccessibleReminderTargets",
+    "com.zikra.app.SafetyReliabilityTest#testWeatherPreservesDatedValuesAfterFailureButRejectsExpiredData",
+    "com.zikra.app.StaticOnboardingTest#testArtworkRemainsStaticAndStoriesAreDistinct",
+    "com.zikra.app.StaticOnboardingTest#testCompactLayoutAtLargeFontKeepsNavigationReachable",
+    "com.zikra.app.StaticOnboardingTest#testSwipeOnWideContinueAdvancesOnlyOneStep",
+    "com.zikra.app.StudyRecoveryTest#testAcademicAndPrayerScopesKeepExistingTasks",
+    "com.zikra.app.StudyRecoveryTest#testAcademicPlansRemainVisibleAfterMidnightAndCompletedCollapse",
+    "com.zikra.app.StudyRecoveryTest#testAgendaCompletionFilterAndRecreation",
+    "com.zikra.app.StudyRecoveryTest#testCatalogLiveRangeValidationDraftAndCancelledRecognition",
+    "com.zikra.app.StudyRecoveryTest#testCatalogRejectsIncompleteAndMisorderedMetadata",
+    "com.zikra.app.StudyRecoveryTest#testDateAndStudyEditorValidationDictationAndSave",
+    "com.zikra.app.StudyRecoveryTest#testEmptyWorshipTemplateAndStaleEditorKeepDraftWithoutFalseSave",
+    "com.zikra.app.StudyRecoveryTest#testTargetCardsCompletionAndLocalReaderRoute",
+    "com.zikra.app.UtilitiesPolishTest#testCalendarRefreshesTodayWhileKeepingABrowsedDate",
+    "com.zikra.app.UtilitiesPolishTest#testDuaSearchAndExpandWorkWithoutAnArabicVoice",
+    "com.zikra.app.UtilitiesPolishTest#testLargeFontAssistantKeepsActionsAndComposerUsable",
+    "com.zikra.app.UtilitiesPolishTest#testProfileUsesAcademicProgressAndDoesNotInventIdentity",
+    "com.zikra.app.UtilitiesPolishTest#testWrittenAssistantRestoresHistoryAndUsesTheRealHifzDestination",
+    "com.zikra.app.data.HifzRecoveryStorageTest#testInvalidBoundsAndPriorDateTargetsRemainEditable",
+    "com.zikra.app.data.HifzRecoveryStorageTest#testRangePersistsAndNewRangeResetsCompletionButNoteEditDoesNot",
+    "com.zikra.app.data.HifzRecoveryStorageTest#testVersionOneMigrationKeepsDatesIdsAndCompletion",
+    "com.zikra.app.data.ZikraDbHelperTest#testAcademicAndHifzPersistAcrossLocalMidnightWithoutCopies",
+    "com.zikra.app.data.ZikraDbHelperTest#testFreshInstallStartsEmptyAndCrudReflectsOnlyRealActions",
+    "com.zikra.app.data.ZikraDbHelperTest#testInvalidInputDoesNotChangePlans",
+    "com.zikra.app.data.ZikraDbHelperTest#testPrayerTemplateRequiresExplicitActionAndAvoidsDuplicates",
+    "com.zikra.app.data.ZikraDbHelperTest#testRelaunchAndNextDayNeverReseedAnEmptyList",
+    "com.zikra.app.data.ZikraDbHelperTest#testStaleDailyWorshipCannotClaimSavedOrAlterYesterday",
+    "com.zikra.app.data.ZikraDbHelperTest#testVersionTwoLegacyRowsKeepIdsDatesCategoriesAndCompletion",
+    "com.zikra.app.reminders.PrayerRemindersTest#testFiveAlarmsRespectPerPrayerAndMasterSwitches",
+    "com.zikra.app.reminders.PrayerRemindersTest#testReceiverPostsRealNotificationAndIgnoresDuplicateAndFutureEvents",
+    "com.zikra.app.safety.BmkgTransportTest#testBoundedBodyAcceptsActualJsonAndRejectsOversizedDeclaredBody",
+    "com.zikra.app.safety.BmkgTransportTest#testChunkedResponseIsBoundedEvenWithoutContentLength"
+  ],
+  "records": [
+    {
+      "test": "com.zikra.app.data.ZikraDbHelperTest#testAcademicAndHifzPersistAcrossLocalMidnightWithoutCopies",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.data.ZikraDbHelperTest#testFreshInstallStartsEmptyAndCrudReflectsOnlyRealActions",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.data.ZikraDbHelperTest#testInvalidInputDoesNotChangePlans",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.data.ZikraDbHelperTest#testPrayerTemplateRequiresExplicitActionAndAvoidsDuplicates",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.data.ZikraDbHelperTest#testRelaunchAndNextDayNeverReseedAnEmptyList",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.data.ZikraDbHelperTest#testStaleDailyWorshipCannotClaimSavedOrAlterYesterday",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.data.ZikraDbHelperTest#testVersionTwoLegacyRowsKeepIdsDatesCategoriesAndCompletion",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.data.HifzRecoveryStorageTest#testInvalidBoundsAndPriorDateTargetsRemainEditable",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.data.HifzRecoveryStorageTest#testRangePersistsAndNewRangeResetsCompletionButNoteEditDoesNot",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.data.HifzRecoveryStorageTest#testVersionOneMigrationKeepsDatesIdsAndCompletion",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.StudyRecoveryTest#testAcademicAndPrayerScopesKeepExistingTasks",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.StudyRecoveryTest#testAcademicPlansRemainVisibleAfterMidnightAndCompletedCollapse",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.StudyRecoveryTest#testAgendaCompletionFilterAndRecreation",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.StudyRecoveryTest#testCatalogLiveRangeValidationDraftAndCancelledRecognition",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.StudyRecoveryTest#testCatalogRejectsIncompleteAndMisorderedMetadata",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.StudyRecoveryTest#testDateAndStudyEditorValidationDictationAndSave",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.StudyRecoveryTest#testEmptyWorshipTemplateAndStaleEditorKeepDraftWithoutFalseSave",
+      "passed": false,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.StudyRecoveryTest#testTargetCardsCompletionAndLocalReaderRoute",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltQuranTest#testArabicSearchAndReadableSizesSurviveRecreation",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltQuranTest#testBaqarahLastPageAndPreviousPageLive",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltQuranTest#testCatalogAndStrictPageValidation",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltQuranTest#testDefaultLightHeaderAndPersistedNightOption",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltQuranTest#testNativeMulkBookmarkRecreateAndCachedResume",
+      "passed": true,
+      "log": "device-main.txt"
+    },
+    {
+      "test": "com.zikra.app.StudyRecoveryTest#testEmptyWorshipTemplateAndStaleEditorKeepDraftWithoutFalseSave",
+      "passed": true,
+      "log": "device-journeys.txt"
+    },
+    {
+      "test": "com.zikra.app.FoundationExperienceTest#testHomeSummaryCountsWorshipWithoutAcademicTasks",
+      "passed": true,
+      "log": "device-journeys.txt"
+    },
+    {
+      "test": "com.zikra.app.FoundationExperienceTest#testHomeChecklistOpensWorshipInsteadOfAcademics",
+      "passed": true,
+      "log": "device-journeys.txt"
+    },
+    {
+      "test": "com.zikra.app.FoundationExperienceTest#testSupportingTextAndAmberActionMeetNormalTextContrast",
+      "passed": true,
+      "log": "device-journeys.txt"
+    },
+    {
+      "test": "com.zikra.app.FoundationExperienceTest#testPrimaryStudyDoesNotReopenAScopedHifzScreen",
+      "passed": true,
+      "log": "device-journeys.txt"
+    },
+    {
+      "test": "com.zikra.app.UtilitiesPolishTest#testProfileUsesAcademicProgressAndDoesNotInventIdentity",
+      "passed": true,
+      "log": "device-journeys.txt"
+    },
+    {
+      "test": "com.zikra.app.UtilitiesPolishTest#testCalendarRefreshesTodayWhileKeepingABrowsedDate",
+      "passed": true,
+      "log": "device-journeys.txt"
+    },
+    {
+      "test": "com.zikra.app.UtilitiesPolishTest#testDuaSearchAndExpandWorkWithoutAnArabicVoice",
+      "passed": true,
+      "log": "device-journeys.txt"
+    },
+    {
+      "test": "com.zikra.app.UtilitiesPolishTest#testWrittenAssistantRestoresHistoryAndUsesTheRealHifzDestination",
+      "passed": true,
+      "log": "device-journeys.txt"
+    },
+    {
+      "test": "com.zikra.app.QualityJourneyTest#testCaptureActualFeatureJourney",
+      "passed": true,
+      "log": "device-journeys.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltQuranTest#testVerseJumpValidatesBoundsAndOpensCorrectPart",
+      "passed": true,
+      "log": "device-remaining.txt"
+    },
+    {
+      "test": "com.zikra.app.StaticOnboardingTest#testArtworkRemainsStaticAndStoriesAreDistinct",
+      "passed": true,
+      "log": "device-remaining.txt"
+    },
+    {
+      "test": "com.zikra.app.StaticOnboardingTest#testCompactLayoutAtLargeFontKeepsNavigationReachable",
+      "passed": true,
+      "log": "device-remaining.txt"
+    },
+    {
+      "test": "com.zikra.app.StaticOnboardingTest#testSwipeOnWideContinueAdvancesOnlyOneStep",
+      "passed": true,
+      "log": "device-remaining.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltOnboardingTest#testSkipHomeBrandAndActualAppIcon",
+      "passed": true,
+      "log": "device-remaining.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltOnboardingTest#testThreeStoriesRecreateAndPreserveLegacyPreferences",
+      "passed": true,
+      "log": "device-remaining.txt"
+    },
+    {
+      "test": "com.zikra.app.SafetyReliabilityTest#testEarthquakeRefreshAndFailureKeepReportAndValidCoordinates",
+      "passed": true,
+      "log": "device-remaining.txt"
+    },
+    {
+      "test": "com.zikra.app.SafetyReliabilityTest#testPrayerUsesReferenceHeaderAndAccessibleReminderTargets",
+      "passed": true,
+      "log": "device-remaining.txt"
+    },
+    {
+      "test": "com.zikra.app.SafetyReliabilityTest#testWeatherPreservesDatedValuesAfterFailureButRejectsExpiredData",
+      "passed": true,
+      "log": "device-remaining.txt"
+    },
+    {
+      "test": "com.zikra.app.safety.BmkgTransportTest#testBoundedBodyAcceptsActualJsonAndRejectsOversizedDeclaredBody",
+      "passed": true,
+      "log": "device-remaining.txt"
+    },
+    {
+      "test": "com.zikra.app.safety.BmkgTransportTest#testChunkedResponseIsBoundedEvenWithoutContentLength",
+      "passed": true,
+      "log": "device-remaining.txt"
+    },
+    {
+      "test": "com.zikra.app.reminders.PrayerRemindersTest#testFiveAlarmsRespectPerPrayerAndMasterSwitches",
+      "passed": true,
+      "log": "device-remaining.txt"
+    },
+    {
+      "test": "com.zikra.app.reminders.PrayerRemindersTest#testReceiverPostsRealNotificationAndIgnoresDuplicateAndFutureEvents",
+      "passed": true,
+      "log": "device-remaining.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltQuranTest#testVerseJumpValidatesBoundsAndOpensCorrectPart",
+      "passed": true,
+      "log": "device-final-layout.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltQuranTest#testDefaultLightHeaderAndPersistedNightOption",
+      "passed": true,
+      "log": "device-final-layout.txt"
+    },
+    {
+      "test": "com.zikra.app.UtilitiesPolishTest#testLargeFontAssistantKeepsActionsAndComposerUsable",
+      "passed": true,
+      "log": "device-final-layout.txt"
+    },
+    {
+      "test": "com.zikra.app.FoundationExperienceTest#testNarrowHomeAtTwoHundredPercentKeepsActionsAboveDock",
+      "passed": true,
+      "log": "device-final-layout.txt"
+    },
+    {
+      "test": "com.zikra.app.UtilitiesPolishTest#testProfileUsesAcademicProgressAndDoesNotInventIdentity",
+      "passed": true,
+      "log": "device-profile-final.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltQuranTest#testDefaultLightHeaderAndPersistedNightOption",
+      "passed": false,
+      "log": "device-nav-labels.txt"
+    },
+    {
+      "test": "com.zikra.app.UtilitiesPolishTest#testLargeFontAssistantKeepsActionsAndComposerUsable",
+      "passed": true,
+      "log": "device-nav-labels.txt"
+    },
+    {
+      "test": "com.zikra.app.FoundationExperienceTest#testNarrowHomeAtTwoHundredPercentKeepsActionsAboveDock",
+      "passed": false,
+      "log": "device-nav-labels.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltQuranTest#testDefaultLightHeaderAndPersistedNightOption",
+      "passed": false,
+      "log": "device-theme-widget-initial.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltQuranTest#testDefaultLightHeaderAndPersistedNightOption",
+      "passed": true,
+      "log": "device-theme-retry.txt"
+    },
+    {
+      "test": "com.zikra.app.FoundationExperienceTest#testNarrowHomeAtTwoHundredPercentKeepsActionsAboveDock",
+      "passed": true,
+      "log": "device-font-home-retry.txt"
+    },
+    {
+      "test": "com.zikra.app.StaticOnboardingTest#testCompactLayoutAtLargeFontKeepsNavigationReachable",
+      "passed": true,
+      "log": "device-skip-scaled.txt"
+    },
+    {
+      "test": "com.zikra.app.RebuiltOnboardingTest#testThreeStoriesRecreateAndPreserveLegacyPreferences",
+      "passed": true,
+      "log": "device-skip-scaled.txt"
+    }
+  ],
+  "screenshots": 22,
+  "lint_errors": 0,
+  "lint_warnings": 482,
+  "apk_sha256": "69e533a276eef6af4b58e0566b36902c80332b5335fe1a8663d243e7ad7ab248"
+}

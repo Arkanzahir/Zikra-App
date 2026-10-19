@@ -1,0 +1,6 @@
+restarting adbd as root
+  mCurrentFocus=Window{9fdf9ee u0 com.android.launcher3/com.android.launcher3.Launcher}
+1.0
+
+Performing Streamed Install
+Success

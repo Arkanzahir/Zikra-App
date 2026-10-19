@@ -1,0 +1,70 @@
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: FATAL EXCEPTION: main
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: Process: com.zikra.app, PID: 5058
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: java.lang.RuntimeException: Unable to destroy activity {com.zikra.app/com.zikra.app.HomeActivity}: android.os.NetworkOnMainThreadException
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.ActivityThread.performDestroyActivity(ActivityThread.java:4458)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.ActivityThread.handleDestroyActivity(ActivityThread.java:4476)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.servertransaction.DestroyActivityItem.execute(DestroyActivityItem.java:39)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.servertransaction.TransactionExecutor.executeLifecycleState(TransactionExecutor.java:145)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:70)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1808)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:106)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:193)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:6669)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:858)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: Caused by: android.os.NetworkOnMainThreadException
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.os.StrictMode$AndroidBlockGuardPolicy.onNetwork(StrictMode.java:1513)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.android.org.conscrypt.Platform.blockGuardOnNetwork(Platform.java:415)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.android.org.conscrypt.ConscryptFileDescriptorSocket.shutdownAndFreeSslNative(ConscryptFileDescriptorSocket.java:1005)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.android.org.conscrypt.ConscryptFileDescriptorSocket.close(ConscryptFileDescriptorSocket.java:1000)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at okhttp3.internal.Util.closeQuietly(Util.java:154)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at okhttp3.internal.connection.RealConnectionPool.evictAll(RealConnectionPool.java:154)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at okhttp3.ConnectionPool.evictAll(ConnectionPool.java:55)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.zikra.app.sky.SkyRepository.close(SkyRepository.java:137)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at com.zikra.app.HomeActivity.onDestroy(HomeActivity.java:299)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.Activity.performDestroy(Activity.java:7395)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.Instrumentation.callActivityOnDestroy(Instrumentation.java:1306)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	at android.app.ActivityThread.performDestroyActivity(ActivityThread.java:4443)
+10-18 11:01:07.122  5058  5058 E AndroidRuntime: 	... 11 more
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: FATAL EXCEPTION: main
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: Process: com.zikra.app, PID: 5305
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: java.lang.RuntimeException: Exception thrown in onCreate() of ComponentInfo{com.zikra.app.test/android.test.InstrumentationTestRunner}: java.lang.RuntimeException: Could not find test class. Class: com.zikra.app.RebuiltQuranTest
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:5868)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.app.ActivityThread.access$1100(ActivityThread.java:199)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1650)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:106)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:193)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:6669)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:858)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: Caused by: java.lang.RuntimeException: Could not find test class. Class: com.zikra.app.RebuiltQuranTest
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.test.AndroidTestRunner.runFailed(AndroidTestRunner.java:245)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.test.AndroidTestRunner.loadTestClass(AndroidTestRunner.java:94)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.test.AndroidTestRunner.setTestClassName(AndroidTestRunner.java:54)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.test.suitebuilder.TestSuiteBuilder.addTestClassByName(TestSuiteBuilder.java:80)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.test.InstrumentationTestRunner.parseTestClass(InstrumentationTestRunner.java:453)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.test.InstrumentationTestRunner.parseTestClasses(InstrumentationTestRunner.java:434)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.test.InstrumentationTestRunner.onCreate(InstrumentationTestRunner.java:381)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:5863)
+10-18 11:06:50.216  5305  5305 E AndroidRuntime: 	... 8 more
+10-18 16:12:50.750  6806  6807 F libc    : Fatal signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x0 in tid 6807 (Binder:6806_1), pid 6806 (cmd)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: FATAL EXCEPTION: main
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: Process: com.zikra.app, PID: 7800
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: junit.framework.AssertionFailedError
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at junit.framework.Assert.fail(Assert.java:48)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at junit.framework.Assert.assertTrue(Assert.java:20)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at junit.framework.Assert.assertNotNull(Assert.java:218)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at junit.framework.Assert.assertNotNull(Assert.java:211)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at com.zikra.app.RebuiltQuranTest.lambda$testVerseJumpValidatesBoundsAndOpensCorrectPart$10(RebuiltQuranTest.java:272)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at com.zikra.app.RebuiltQuranTest.$r8$lambda$a7y8qXHQmgpgoXYkkA9TsTWdHCo(Unknown Source:0)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at com.zikra.app.RebuiltQuranTest$$ExternalSyntheticLambda11.run(D8$$SyntheticClass:0)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2163)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:873)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:99)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:193)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:6669)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+10-19 00:20:35.898  7800  7800 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:858)

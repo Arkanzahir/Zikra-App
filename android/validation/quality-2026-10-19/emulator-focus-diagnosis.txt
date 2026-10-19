@@ -1,0 +1,70 @@
+Emulator API28 focus/render diagnostic,19 October2026.
+No KVM. SwiftShader/gfxstream before recovery.
+SystemUI ANR preceded narrow Home focus failure:
+10-19 00:34:10.039  1827  1856 W BroadcastQueue: Receiver during timeout of BroadcastRecord{7e2b794 u-1 android.intent.action.TIME_TICK} : BroadcastFilter{275330b u0 ReceiverList{782e2da 4749 com.android.systemui/10012/u0 remote:4e34485}}
+10-19 00:34:10.792  1827  1856 I ActivityManager: Skipping duplicate ANR: ProcessRecord{d69507d 4749:com.android.systemui/u0a12} Broadcast of Intent { act=android.intent.action.TIME_TICK flg=0x50200014 (has extras) }
+
+system_server android.ui waiting for native RenderThread:
+"android.ui" prio=5 tid=13 Native
+  | group="main" sCount=1 dsCount=0 flags=1 obj=0x12dc08c0 self=0x7de3f36d0400
+  | sysTid=1822 nice=-2 cgrp=default sched=0/0 handle=0x7de3e0b084f0
+  | state=S schedstat=( 1357884237 5214384172 1080 ) utm=24 stm=111 core=0 HZ=100
+  | stack=0x7de3e0a05000-0x7de3e0a07000 stackSize=1041KB
+  | held mutexes=
+  kernel: futex_wait_queue_me+0xcb/0x11b
+  kernel: futex_wait+0x120/0x25e
+  kernel: do_futex+0xbe/0x468
+  kernel: SyS_futex+0xbf/0x139
+  kernel: entry_SYSCALL_64_fastpath+0x1e/0x99
+  native: #00 pc 0000000000026b96  /system/lib64/libc.so (syscall+22)
+  native: #01 pc 0000000000029cd5  /system/lib64/libc.so (__futex_wait_ex(void volatile*, bool, int, bool, timespec const*)+133)
+  native: #02 pc 000000000009219d  /system/lib64/libc.so (pthread_cond_wait+45)
+  native: #03 pc 000000000006963e  /system/lib64/libc++.so (std::__1::condition_variable::wait(std::__1::unique_lock<std::__1::mutex>&)+14)
+  native: #04 pc 000000000006c39a  /system/lib64/libc++.so (std::__1::__assoc_sub_state::copy()+90)
+  native: #05 pc 000000000006c755  /system/lib64/libc++.so (std::__1::future<void>::get()+21)
+  native: #06 pc 000000000011283d  /system/lib64/libhwui.so (android::uirenderer::renderthread::RenderProxy::setStopped(bool)+349)
+  at android.view.ThreadedRenderer.nSetStopped(Native method)
+  at android.view.ThreadedRenderer.setStopped(ThreadedRenderer.java:524)
+  at android.view.ViewRootImpl.performDraw(ViewRootImpl.java:3149)
+  at android.view.ViewRootImpl.performTraversals(ViewRootImpl.java:2484)
+  at android.view.ViewRootImpl.doTraversal(ViewRootImpl.java:1460)
+  at android.view.ViewRootImpl$TraversalRunnable.run(ViewRootImpl.java:7183)
+  at android.view.Choreographer$CallbackRecord.run(Choreographer.java:949)
+  at android.view.Choreographer.doCallbacks(Choreographer.java:761)
+  at android.view.Choreographer.doFrame(Choreographer.java:696)
+  at android.view.Choreographer$FrameDisplayEventReceiver.run(Choreographer.java:935)
+  at android.os.Handler.handleCallback(Handler.java:873)
+  at android.os.Handler.dispatchMessage(Handler.java:99)
+  at android.os.Looper.loop(Looper.java:193)
+  at android.os.HandlerThread.run(HandlerThread.java:65)
+  at com.android.server.ServiceThread.run(ServiceThread.java:44)
+  at com.android.server.UiThread.run(UiThread.java:43)
+
+
+RenderThread in emulator EGL swapBuffers:
+"RenderThread" daemon prio=7 tid=77 Native
+  | group="main" sCount=1 dsCount=0 flags=1 obj=0x14282208 self=0x7de3f1d34400
+  | sysTid=2393 nice=10 cgrp=default sched=0/0 handle=0x7de3db9d44f0
+  | state=R schedstat=( 843784826 35306785021 396 ) utm=15 stm=69 core=0 HZ=100
+  | stack=0x7de3db8d9000-0x7de3db8db000 stackSize=1009KB
+  | held mutexes=
+  kernel: retint_kernel+0x1b/0x1d
+  kernel: prepare_exit_to_usermode+0x1f/0x26
+  kernel: retint_user+0x8/0x2f
+  native: #00 pc 000000000000f984  /vendor/lib64/egl/libEGL_emulation.so (egl_window_surface_t::swapBuffers()+132)
+  native: #01 pc 0000000000014deb  /vendor/lib64/egl/libEGL_emulation.so (eglSwapBuffers+555)
+  native: #02 pc 00000000000173cf  /system/lib64/libEGL.so (eglSwapBuffersWithDamageKHR+623)
+  native: #03 pc 00000000004ff288  /system/lib64/libhwui.so (android::uirenderer::renderthread::EglManager::swapBuffers(android::uirenderer::renderthread::Frame const&, SkRect const&)+104)
+  native: #04 pc 00000000004f8134  /system/lib64/libhwui.so (android::uirenderer::skiapipeline::SkiaOpenGLPipeline::swapBuffers(android::uirenderer::renderthread::Frame const&, bool, SkRect const&, android::uirenderer::FrameInfo*, bool*)+68)
+  native: #05 pc 000000000010b87d  /system/lib64/libhwui.so (android::uirenderer::renderthread::CanvasContext::draw()+333)
+  native: #06 pc 00000000004fdd64  /system/lib64/libhwui.so (_ZNSt3__110__function6__funcIZN7android10uirenderer12renderthread13DrawFrameTask11postAndWaitEvE3$_0NS_9allocatorIS6_EEFvvEEclEv$c303f2d2360db58ed70a2d0ac7ed911b+1284)
+  native: #07 pc 00000000004b1662  /system/lib64/libhwui.so (android::uirenderer::WorkQueue::process()+194)
+  native: #08 pc 0000000000119d2c  /system/lib64/libhwui.so (android::uirenderer::renderthread::RenderThread::threadLoop()+268)
+  native: #09 pc 000000000000f79a  /system/lib64/libutils.so (android::Thread::_threadLoop(void*)+314)
+  native: #10 pc 0000000000092bab  /system/lib64/libc.so (__pthread_start(void*)+27)
+  native: #11 pc 000000000002af2d  /system/lib64/libc.so (__start_thread+61)
+  (no managed stack frames)
+
+
+Renderer recovery uses ANGLE/SwiftShader with guest Vulkan disabled, snapshots disabled, same AVD/userdata.
+This is evidence about emulator state, not a physical-device performance measurement.
