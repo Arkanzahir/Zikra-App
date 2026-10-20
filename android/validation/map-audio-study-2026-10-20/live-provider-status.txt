@@ -1,0 +1,6 @@
+20 Oktober 2026 (WIB), koneksi HTTPS melalui proxy environment yang diwariskan.
+Policy: restricted, enforced, observations_current=true; host provider tidak tercantum.
+https://tile.openstreetmap.org/14/13320/8523.png : curl exit 56, CONNECT tunnel failed, response 403
+https://overpass.private.coffee/api/status : curl exit 56, CONNECT tunnel failed, response 403
+https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3 : curl exit 56, CONNECT tunnel failed, response 403
+Tidak ada rekaman/tile live yang berhasil diambil. Tidak mengubah proxy atau melewati policy.

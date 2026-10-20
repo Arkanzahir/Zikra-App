@@ -52,6 +52,9 @@
         <activity android:name=".DuaActivity" android:exported="false" />
         <activity android:name=".ProtectorActivity" android:exported="false" />
         <activity android:name=".QiblaActivity" android:exported="false" />
+        <receiver android:name=".study.StudyAlarmReceiver" android:exported="false" />
+        <receiver android:name=".study.FocusAlarmReceiver" android:exported="false" />
+        <activity android:name=".FocusTimerActivity" android:exported="false" />
         <activity android:name=".StudyActivity" android:exported="false" />
         <activity android:name=".QuranActivity" android:exported="false" />
         <activity android:name=".HomeActivity" android:exported="false" />

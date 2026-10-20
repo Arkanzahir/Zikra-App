@@ -1,0 +1,7 @@
+
+com.zikra.app.AcademicFeaturesTest:.......
+com.zikra.app.StudyRecoveryTest:..
+Test results for InstrumentationTestRunner=.........
+Time: 66.373
+
+OK (9 tests)

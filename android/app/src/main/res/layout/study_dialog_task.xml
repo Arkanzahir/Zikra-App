@@ -15,7 +15,8 @@
         android:importantForAccessibility="no" />
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:fillViewport="true"
         android:clipToPadding="false">
         <LinearLayout
@@ -185,6 +186,7 @@
                 android:maxLines="4"
                 android:maxLength="200"
                 android:gravity="top|start" />
+            <include layout="@layout/view_study_schedule" />
             <TextView
                 android:id="@+id/study_editor_category_label"
                 style="@style/StudyLabel"
@@ -241,10 +243,15 @@
                 android:textColor="#A1392E"
                 android:accessibilityLiveRegion="polite"
                 android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp">
+                android:paddingHorizontal="24dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="20dp">
                 <Button
                     android:id="@+id/study_editor_cancel"
                     style="@style/StudyButton"
@@ -263,6 +270,4 @@
                     android:textColor="@color/white"
                     android:text="@string/study_save_activity" />
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>

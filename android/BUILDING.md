@@ -78,3 +78,15 @@ Sensor rotasi, cahaya, akselerometer, getaran, aplikasi WhatsApp/Maps, pengenal 
 Buka Jadwal Sholat melalui strip waktu atau tombol bel Home, lalu aktifkan **Pengingat sholat**. Android 13+ menampilkan permintaan izin notifikasi. Untuk Android 12+, tombol **Atur ketepatan pengingat** membuka akses alarm tepat waktu; jika tidak diizinkan, aplikasi tetap memakai alarm yang ketepatannya dapat dipengaruhi penghematan daya sistem. Pilihan per sholat diatur lewat ikon bel pada baris jadwal.
 
 `PrayerRemindersTest` memakai layanan alarm/notifikasi perangkat sungguhan dan memberikan izin notifikasi melalui UiAutomation pada perangkat uji jika dibutuhkan. Tes memverifikasi jadwal aktif/nonaktif dan receiver notifikasi dengan broadcast uji, bukan menunggu waktu sholat sebenarnya.
+
+## Timer dan tenggat Study (checkpoint lanjutan)
+
+Branch `feature/map-audio-study-2026-10-20` menambahkan timer fokus dan tenggat/pengingat
+akademik. Pilih tugas → Mulai fokus, atau Fokus belajar pada Study Hub. Tenggat dan
+pengingat diatur dari editor tugas; notifikasi perlu diizinkan jika ingin ditampilkan.
+Timer memakai elapsed realtime dan alarm inexact, tanpa service background khusus
+atau permintaan akses exact alarm baru. Penghemat daya dapat menunda notifikasi.
+
+APK versionCode 2 (1.1) memigrasikan SQLite v1/v2 ke v3 tanpa reset data. Setelah
+upgrade, gunakan source v3 untuk data tersebut; jangan memaksa memasang APK lama v2
+lewat opsi downgrade. [Bukti dan batas](validation/map-audio-study-2026-10-20/README.md).

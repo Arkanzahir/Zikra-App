@@ -1,3 +1,5 @@
+> **Checkpoint lanjutan — 20 Oktober 2026 (WIB):** branch `feature/map-audio-study-2026-10-20`, berdasarkan `2b13539`, menambahkan status/coba ulang peta, perbaikan unduhan audio rusak, timer fokus dan tenggat/pengingat akademik. [Bukti dan batas](android/validation/map-audio-study-2026-10-20/README.md). Provider live masih ditolak proxy 403; bukan klaim verifikasi peta online/qari asli. Main terakhir terkonfirmasi tetap `1045fa7`.
+
 > **Status terkonfirmasi — 20 Oktober 2026 (WIB):** `main` sudah memuat `1045fa7` (desain lokasi/masjid, pemutar Quran native, background, unduhan per surah, gulir baca dan latihan rentang Hifz). Branch recovery tetap `d9d2ed4`. [Bukti audio dan batas pengujian](android/validation/location-quran-2026-10-19/README.md). Tahap perapian berikutnya ada pada `feature/location-polish-2026-10-20`: [hasil](android/validation/location-polish-2026-10-20/README.md) · [rencana tersimpan](design/IMPROVEMENT_PLAN.md).
 
 # Zikra Smart Islamic Student Companion
@@ -36,7 +38,7 @@ Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./and
 | Lokasi / Masjid | Pemilih kota online dan 15 pilihan offline, izin lokasi foreground dengan fallback manual; daftar hingga 60 hasil dalam radius 3 km, peta OSM native, cache 30 menit dan arah ke Google Maps | Data komunitas dapat tidak lengkap; layanan publik tanpa SLA; uji GPS/aksesibilitas/performa HP |
 | Onboarding | Tiga ilustrasi 2D dengan parallax sentuh/gulir terbatas pada gambar utuh dan teks; karakter diam, pengantar/judul 32sp/paragraf manfaat, kembali kiri dan langkah kanan; wordmark `zikra` tanpa titik dan master kiri atas | Uji kenyamanan/performa HP; tanpa sensor/loop idle/jenjang/minat; menghormati animasi sistem dan penghemat daya; preferensi lama tetap disimpan |
 | Quran | Katalog/reader native 114 surah; pencarian Arab tanpa harakat, ukuran Arab/terjemahan tersimpan, lompat ayat tervalidasi, terang/malam/otomatis; Utsmani/arti resource 33, bagian 50 ayat, bookmark/resume, cache delapan bagian dan empat surah bawaan | Audio per ayat, background/notifikasi, unduhan teks/audio per surah, gulir mandiri/follow dan rentang Hifz sudah di main `1045fa7`; rekaman qari live/unduhan jaringan penuh belum teruji; Mushaf halaman belum tersedia |
-| Study Hub / Diary Hifz | Study akademik dan target Hifz tetap dapat diakses lintas tanggal; ibadah khusus hari ini melalui Waktu Sholat. Hari baru kosong; tidak membuat tugas/progres contoh. CRUD/SQLite v2 mempertahankan data lama, target 114 surah/rentang, draft editor/dikte dan reader native | Belum timer fokus/deadline/statistik atau evaluasi bacaan AI; checklist ibadah bukan pencatatan otomatis |
+| Study Hub / Diary Hifz | Study akademik dan target Hifz tetap dapat diakses lintas tanggal; ibadah khusus hari ini melalui Waktu Sholat. Hari baru kosong; tidak membuat tugas/progres contoh. CRUD/SQLite v3 mempertahankan data lama, target 114 surah/rentang, draft editor/dikte dan reader native | Timer fokus 25/5 atau 50/10, tenggat/pengingat opsional tersedia pada branch lanjutan; notifikasi dapat ditunda sistem. Statistik/evaluasi bacaan AI belum tersedia; checklist ibadah ditandai sendiri |
 | Waktu sholat | Kalkulasi matahari harian sesuai koordinat/zona pilihan, daftar hari/pekan, countdown, preferensi dan notifikasi/alarm | Integrasi Aladhan; belum audio adzan; validasi izin dan ketepatan alarm pada HP |
 | Doa / Hadis / Kalender | Pencarian doa dan TTS, 7 kutipan hadis bersumber/bookmark, navigasi kalender Umm al-Qura | Tambah konten terverifikasi bertahap dan uji suara pada perangkat; bukan koleksi hadis lengkap |
 | Zikra AI | Panduan rutinitas offline berlabel jelas, percakapan lokal dan input suara perangkat | Belum AI generatif, pemecah soal khusus, vision atau penilaian bacaan; Featherless/Gemini belum dihubungkan |
@@ -103,9 +105,10 @@ android/BUILDING.md dan laporan validasi terbaru yang ditautkan.
 Lokasi bersama/masjid OSM, pemutar Quran background/unduhan per surah,
 gulir baca/follow dan rentang latihan Hifz sudah ada. Audio live qari belum terbukti;
 validasi decoder sebelumnya memakai WAV sintetis, bukan rekaman Quran.
-Tahap lokasi netral/status berada di feature/location-polish-2026-10-20.
-Berikutnya: desain Study/Hifz/asisten sesuai rencana tersimpan; timer/pengingat
-akademik, Mushaf halaman dan AI generatif tetap backlog, belum terpasang.
+Branch lanjutan feature/map-audio-study-2026-10-20 berangkat dari 2b13539.
+Timer fokus, tenggat/pengingat Study, SQLite v3, retry peta dan repair audio
+sudah terpasang di branch ini. Periksa ulang hash GitHub dan validasi terbaru.
+Mushaf halaman, statistik dan AI generatif tetap backlog; provider live masih terbuka.
 Pertahankan data pengguna, master logo bulan+buku+spark dan onboarding/Home.
 Tampilkan preview Android aktual, satu putaran uji relevan, ulang bila ada masalah.
 Commit/push checkpoint dan cocokkan hash remote; jangan anggap autentikasi pulih.

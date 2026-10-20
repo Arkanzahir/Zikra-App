@@ -70,11 +70,26 @@ mengklaim full download telah diuji. Mushaf layout edisi tetap pekerjaan terpisa
 
 Ini arah tahap berikutnya, bukan klaim bahwa seluruh perapian tersebut sudah dikerjakan.
 
-## Tahap 4 — fitur lanjutan yang belum diimplementasikan
+## Checkpoint lanjutan peta/audio/Study
 
-- **Timer fokus akademik:** siklus fokus/jeda, pulihkan waktu setelah background/recreation,
+Branch `feature/map-audio-study-2026-10-20`, berdasarkan `2b13539`:
+
+- Status loading/belum termuat dan coba ulang tile peta; penanda tidak diklaim sebagai bukti jalan sudah termuat.
+- Unduhan memeriksa decoder cache audio dan mengganti berkas rusak melalui transfer atomik.
+- Study menonjolkan tugas berurutan tenggat; header/ruang kosong diringkas. Detail rentang Hifz diperbesar dan kartu Pine dipertahankan.
+- Timer 25/5 dan 50/10, hitung monotonic, jeda/lanjut, simpan/recreation, background tanpa foreground service.
+  Pergantian fase dimulai sendiri, tidak menandai tugas selesai. Reboot menjeda sisa tersimpan.
+- Tenggat/pengingat Study opsional, draft editor tersimpan dan migrasi SQLite v3 mempertahankan data.
+  Notifikasi/alarm lokal inexact dapat tertunda sistem; perubahan/selesai/hapus memblokir alarm lama.
+- Akses live OSM/Overpass/CDN masih CONNECT 403; uji fixture Android tidak menggantikan verifikasi provider asli.
+
+[Bukti checkpoint](../android/validation/map-audio-study-2026-10-20/README.md).
+
+## Tahap 4 — rincian akademik terpasang dan backlog berikutnya
+
+- **Timer fokus akademik — terpasang pada branch lanjutan:** siklus fokus/jeda, pulihkan waktu setelah background/recreation,
   tindakan mulai/jeda/selesai jelas; jangan menandai tugas selesai otomatis.
-- **Pengingat akademik:** tenggat dan preferensi per tugas, izin notifikasi saat diperlukan,
+- **Pengingat akademik — terpasang pada branch lanjutan:** tenggat dan preferensi per tugas, izin notifikasi saat diperlukan,
   penjadwalan ulang setelah edit/reboot/perubahan waktu. Uji izin ditolak dan hemat daya.
   Penyimpanan baru harus memakai migrasi yang mempertahankan data; tanpa reset SQLite.
 - **AI generatif:** backend HTTPS dengan kredensial provider di server, bukan APK/Git/chat.

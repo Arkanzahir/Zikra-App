@@ -16,7 +16,7 @@ import java.util.List;
  * New days start empty: only explicit user actions create tasks or prayer templates.
  */
 public final class ZikraDbHelper extends SQLiteOpenHelper {
-  private static final int VERSION = 2;
+  private static final int VERSION = 3;
   public static final String CATEGORY_STUDY = "Study";
   public static final String CATEGORY_IBADAH = "Ibadah";
   public static final String CATEGORY_HIFZ = "Hifz";
@@ -48,16 +48,20 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
             + "CHECK(completed IN (0,1)))");
     db.execSQL("CREATE INDEX tasks_date ON tasks(task_date, id)");
     addHifzColumns(db);
+    addAcademicColumns(db);
   }
 
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    if (oldVersion == 1 && newVersion == 2) {
-      addHifzColumns(db);
-      return;
-    }
-    throw new IllegalStateException(
-        "Unsupported database migration: " + oldVersion + " to " + newVersion);
+    if (oldVersion < 1 || newVersion != VERSION)
+      throw new IllegalStateException("Unsupported migration");
+    if (oldVersion < 2) addHifzColumns(db);
+    if (oldVersion < 3) addAcademicColumns(db);
+  }
+
+  private static void addAcademicColumns(SQLiteDatabase db) {
+    db.execSQL("ALTER TABLE tasks ADD COLUMN due_at INTEGER NOT NULL DEFAULT 0");
+    db.execSQL("ALTER TABLE tasks ADD COLUMN study_reminder INTEGER NOT NULL DEFAULT 0");
   }
 
   private static void addHifzColumns(SQLiteDatabase db) {
@@ -84,7 +88,9 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
               "hifz_name",
               "hifz_count",
               "hifz_first",
-              "hifz_last"
+              "hifz_last",
+              "due_at",
+              "study_reminder"
             },
             ACTIVE_TASKS,
             new String[] {day},
@@ -98,7 +104,9 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
                 cursor.getString(1),
                 cursor.getString(2),
                 cursor.getInt(3) == 1,
-                readTarget(cursor)));
+                readTarget(cursor),
+                cursor.getLong(9),
+                cursor.getInt(10) == 1));
       }
     }
     return tasks;
@@ -117,6 +125,10 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
     String day = today();
     ContentValues values = taskValues(title, category);
     if (!CATEGORY_HIFZ.equals(category)) clearTarget(values);
+    if (!CATEGORY_STUDY.equals(category)) {
+      values.put("due_at", 0);
+      values.put("study_reminder", 0);
+    }
     return databaseForDay(day)
             .update(
                 "tasks",
@@ -124,6 +136,32 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
                 "id = ? AND " + ACTIVE_TASKS,
                 new String[] {Long.toString(id), day})
         == 1;
+  }
+
+  public long addAcademicTask(String title, long dueAt, boolean reminder) {
+    ContentValues values = academicValues(title, dueAt, reminder);
+    values.put("task_date", today());
+    values.put("completed", 0);
+    return databaseForDay(today()).insertOrThrow("tasks", null, values);
+  }
+
+  public boolean updateAcademicTask(long id, String title, long dueAt, boolean reminder) {
+    return databaseForDay(today())
+            .update(
+                "tasks",
+                academicValues(title, dueAt, reminder),
+                "id=? AND category=?",
+                new String[] {Long.toString(id), CATEGORY_STUDY})
+        == 1;
+  }
+
+  private static ContentValues academicValues(String title, long dueAt, boolean reminder) {
+    if (dueAt < 0 || (reminder && dueAt == 0))
+      throw new IllegalArgumentException("Tenggat tidak valid");
+    ContentValues values = taskValues(title, CATEGORY_STUDY);
+    values.put("due_at", dueAt);
+    values.put("study_reminder", reminder ? 1 : 0);
+    return values;
   }
 
   public long addHifzTask(String title, HifzTarget target) {

@@ -483,7 +483,18 @@ public final class StudyRecoveryTest extends InstrumentationTestCase {
     assertEquals(
         "Rangkuman yang berlanjut besok",
         ((TextView) page.findViewById(R.id.agenda_feature_title)).getText().toString());
-    onMain(() -> page.findViewById(R.id.agenda_feature_action).performClick());
+    onMain(() -> page.findViewById(R.id.agenda_feature_more).performClick());
+    getInstrumentation().waitForIdleSync();
+    java.util.List<android.view.accessibility.AccessibilityNodeInfo> actions =
+        getInstrumentation()
+            .getUiAutomation()
+            .getRootInActiveWindow()
+            .findAccessibilityNodeInfosByText(page.getString(R.string.study_edit));
+    assertFalse(actions.isEmpty());
+    android.view.accessibility.AccessibilityNodeInfo edit = actions.get(0);
+    while (edit != null && !edit.isClickable()) edit = edit.getParent();
+    assertNotNull("Edit menu has clickable action", edit);
+    assertTrue(edit.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK));
     await(() -> editor() != null && editor().isShowing(), 15000);
     onMain(
         () -> {

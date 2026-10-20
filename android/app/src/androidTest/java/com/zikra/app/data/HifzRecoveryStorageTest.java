@@ -60,7 +60,7 @@ public final class HifzRecoveryStorageTest extends AndroidTestCase {
       assertEquals("Riwayat", cursor.getString(0));
       assertEquals(1, cursor.getInt(1));
     }
-    assertEquals(2, db.getReadableDatabase().getVersion());
+    assertEquals(3, db.getReadableDatabase().getVersion());
     db.close();
     open();
     assertEquals(3, db.getTotalCount());

@@ -1,3 +1,5 @@
+> **Checkpoint lanjutan 20 Oktober 2026:** timer fokus, tenggat/pengingat Study, status retry peta dan transfer ulang audio rusak tersedia pada `feature/map-audio-study-2026-10-20`. SQLite v3 mempertahankan data. [Hasil dan batas](validation/map-audio-study-2026-10-20/README.md). Provider live belum terverifikasi karena proxy 403.
+
 > **Status 20 Oktober 2026:** `main` terkonfirmasi `1045fa7`, termasuk pemutar Quran native/background/notifikasi, unduhan teks-audio per surah, gulir dan latihan rentang Hifz. [Bukti/batas audio](validation/location-quran-2026-10-19/README.md). Perapian netral masjid/lokasi: [tahap 20 Oktober](validation/location-polish-2026-10-20/README.md). Catatan checkpoint lama di bawah bersifat historis bila berbeda.
 
 > **Status 19 Oktober 2026:** lokasi bersama dan masjid OSM native sudah tersedia; onboarding/parallax dipertahankan. [Validasi terbaru](validation/location-mosques-2026-10-19/README.md) · [RECOVERY.md](../RECOVERY.md). Ronde kegunaan/onboarding sebelumnya tetap historis.
@@ -9,7 +11,7 @@ Project Android Studio mandiri, aplikasi native Java dengan layout XML. Tanpa Ko
 
 ## Melanjutkan dari chat baru
 
-Baca [status terbaru](validation/location-mosques-2026-10-19/README.md) sebelum inventaris historis di bawah. Onboarding memakai tiga ilustrasi 2D statis tanpa jenjang/minat. Reader terjemahan mencakup 114 surah melalui public v4 API, empat surah bawaan dan cache delapan bagian. Mushaf halaman, murottal dan offline penuh belum tersedia. Home memakai USNO/fallback berlabel; cuaca memakai Open-Meteo, gempa/peringatan tetap BMKG.
+Baca [status terbaru](validation/location-mosques-2026-10-19/README.md) sebelum inventaris historis di bawah. Onboarding memakai tiga ilustrasi 2D statis tanpa jenjang/minat. Reader terjemahan mencakup 114 surah melalui public v4 API, empat surah bawaan dan cache delapan bagian. Mushaf halaman dan offline seluruh korpus otomatis belum tersedia; pemutar murottal/unduhan per surah sudah terpasang, dengan verifikasi rekaman qari live masih terbuka. Home memakai USNO/fallback berlabel; cuaca memakai Open-Meteo, gempa/peringatan tetap BMKG.
 
 
 ## Buka dan jalankan

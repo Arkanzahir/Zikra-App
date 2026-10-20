@@ -1,0 +1,48 @@
+{
+  "date_wib": "2026-10-20",
+  "branch": "feature/map-audio-study-2026-10-20",
+  "parent_commit": "2b135398bd1c17e37f20b1ce2a08299c50b6eb9e",
+  "main_at_audit": "1045fa75113a14553c3bb59b0df83e35b6f90fa0",
+  "java": 17,
+  "compile_target_sdk": 35,
+  "sqlite_version": 3,
+  "version_code": 2,
+  "version_name": "1.1",
+  "unit": {
+    "tests": 52,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Warning": 548
+  },
+  "runtime_api28_unique_methods_passed": 39,
+  "runtime_api28_method_groups": {
+    "AcademicFeaturesTest": 7,
+    "AudioTransferTest": 4,
+    "NearbyDesignTest": 7,
+    "QuranAudioTest": 7,
+    "DatabaseTests": 10,
+    "StudyRecoveryTest_selected": 4
+  },
+  "initial_run": {
+    "tests": 35,
+    "failures": 3,
+    "errors": 1,
+    "note": "See initial log and documented fixes; all failed cases subsequently passed."
+  },
+  "retest_runs_passed": [
+    15,
+    9,
+    2
+  ],
+  "runtime_api35_verified": false,
+  "physical_device_tested": false,
+  "live_map_tiles_verified": false,
+  "live_mosque_api_verified": false,
+  "live_qari_audio_verified": false,
+  "network_transfer_fixture": "Local OkHttp interceptor, synthetic WAV body; not Quran recitation",
+  "provider_status": "HTTPS CONNECT 403 through managed cloud proxy",
+  "apk_sha256": "8ee1da2c388cdd6cb67f3e83d6c677eaeae6b6aba2ff31dba43f67c5b317bc8d"
+}

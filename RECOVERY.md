@@ -2,6 +2,14 @@
 
 ## Status terbaru
 
+Tahap berikutnya di `feature/map-audio-study-2026-10-20`, berdasarkan `2b13539`:
+status/coba ulang peta saat tile gagal, perbaikan pengunduhan ulang cache audio rusak,
+Study berurutan tenggat, timer fokus/jeda dan pengingat tugas opsional. SQLite v3
+menambah `due_at`/`study_reminder` secara bertahap dari v1/v2 tanpa membuang tabel/data.
+[Bukti tahap ini](android/validation/map-audio-study-2026-10-20/README.md).
+Provider OSM/Overpass/CDN qari masih ditolak proxy cloud (CONNECT 403); status live belum terverifikasi.
+
+
 GitHub diperiksa pada 20 Oktober 2026 (WIB): `main` dan
 `feature/location-quran-audio` sama-sama `1045fa75113a14553c3bb59b0df83e35b6f90fa0`;
 `recovery/study-hifz-refresh` tetap `d9d2ed4b5fb39606b659a708300a00b92fba7126`.
@@ -15,7 +23,7 @@ gulir mandiri/follow serta latihan rentang Hifz sudah masuk main pada `1045fa7`.
 46 tes JVM dan 20 metode API 28 lulus; audio uji WAV sintetis, bukan rekaman Quran.
 CDN qari live/full download serta runtime API 35 dan HP fisik belum terbukti.
 
-Tahap lanjutan `feature/location-polish-2026-10-20` berangkat dari `1045fa7`:
+Checkpoint sebelumnya `feature/location-polish-2026-10-20` berangkat dari `1045fa7`:
 latar masjid/lokasi netral `#F4F6F8`, kartu lokasi ringkas, indikator loading kota,
 pembatalan lookup saat memilih kota manual, status pembatasan layanan dan
 pemulihan hasil masjid kosong. [Validasi tahap ini](android/validation/location-polish-2026-10-20/README.md).
@@ -27,7 +35,7 @@ diklaim identik dengan kode atau piksel aslinya. Pertahankan seluruh perubahan/d
 
 | Bagian | Kondisi saat ini |
 | --- | --- |
-| Study/Hifz | Study khusus akademik, checklist ibadah dari Waktu Sholat dan Diary Hifz terpisah. Tugas akademik/target Hifz tetap dapat diakses lintas tanggal; ibadah mengikuti hari lokal. Hari baru kosong, tanpa 24 contoh atau 8 progres selesai palsu. Data dan status lama tetap dipertahankan. CRUD/SQLite v2, draft editor, navigasi dan metadata 114 surah offline. |
+| Study/Hifz | Study khusus akademik, checklist ibadah dari Waktu Sholat dan Diary Hifz terpisah. Tugas akademik/target Hifz tetap dapat diakses lintas tanggal; ibadah mengikuti hari lokal. Hari baru kosong, tanpa 24 contoh atau 8 progres selesai palsu. Data dan status lama tetap dipertahankan. CRUD/SQLite v3, draft editor, navigasi dan metadata 114 surah offline. |
 | Branding | File master JPG tidak berubah; simbol bulan sabit, buku dan spark tetap sama. Varian Pine/putih memakai geometri/alpha identik; XML logo bersama pada splash/onboarding/Home/Tentang, simbol saja pada adaptive icon. Wordmark ditulis `zikra` tanpa titik; Profil memakai avatar. |
 | Onboarding | Tiga ilustrasi 2D 3:2: belajar di meja, perempuan bermukena di sajadah, membaca Quran dengan rehal. Parallax gambar utuh/teks saat sentuh/gulir; karakter tetap diam, tanpa sensor/loop idle. Animasi nonaktif/penghemat daya menghentikan efek. Judul/paragraf, kembali dan langkah 01 / 03. ImageView hanya memuat gambar aktif dengan sampling sesuai display. Tanpa jenjang/minat; preferensi lama dipertahankan. |
 | Home | Lokasi/zona dipilih pengguna, logo/lokasi kiri atas, siang/malam, busur matahari berdasarkan terbit/transit/terbenam, fase bulan USNO harian atau perkiraan lokal berlabel, parallax dan animasi masuk. |

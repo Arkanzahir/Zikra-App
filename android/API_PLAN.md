@@ -16,6 +16,7 @@ dari rencana berikutnya. [Bukti lokasi/audio](validation/location-quran-2026-10-
 | Quran | Quran.com public v4 / metadata bawaan | 114 metadata surah, reader Arab/terjemahan resource 33, empat surah bawaan, delapan bagian cache × 50 ayat |
 | Gempa | BMKG Open Data | Laporan terakhir Indonesia, bukan prediksi atau peringatan pribadi berdasarkan posisi pengguna |
 | Audio Quran | Al Quran Cloud CDN, HTTPS 128kbps | Alafasy/Al-Husary/Al-Minshawi; satu file per ayat; background, notifikasi, rentang/repeat dan unduhan eksplisit per surah/qari sudah di main `1045fa7`. Decoder diuji dengan WAV sintetis; CDN qari live/full download belum terbukti |
+| Timer/pengingat akademik | Android AlarmManager + notifikasi lokal | Timer monotonic 25/5 atau 50/10; tenggat Study opsional, alarm inexact dapat tertunda sistem; tanpa provider baru |
 | AI | Aturan lokal offline | Featherless/Gemini belum terhubung |
 
 ## Lokasi bersama
@@ -84,3 +85,14 @@ lengkap, dan infrastruktur publik tidak mempunyai SLA untuk aplikasi ini.
 
 Tidak ada secret baru yang diperlukan build versi OSM ini. Alarm, sensor, GPS nyata,
 layanan suara, performa/baterai dan runtime API 35 tetap perlu diuji di perangkat fisik.
+
+## Pemeriksaan provider — 20 Oktober 2026
+
+Tile OSM, Overpass dan CDN qari masih mendapat penolakan proxy CONNECT 403 pada
+checkpoint `feature/map-audio-study-2026-10-20`. Tidak mengganti sumber atau melewati
+policy. [Log](validation/map-audio-study-2026-10-20/live-provider-status.txt).
+Peta kini menunjukkan loading/belum termuat dan tombol coba ulang; status keberhasilan
+mengikuti callback library, bukan menganggap penanda sebagai bukti tile jalan tersedia.
+Transfer unduhan menolak cache rusak dan melakukan validasi decoder sebelum memakai
+berkas lengkap atau menyimpan hasil unduhan. Pengujian HTTP memakai fixture WAV sintetis;
+keberhasilan server live/qari dan kebenaran suara tetap perlu diuji pada jaringan yang diizinkan.

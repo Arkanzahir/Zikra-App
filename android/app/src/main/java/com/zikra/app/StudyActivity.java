@@ -29,6 +29,7 @@ import android.widget.TextView;
 import com.zikra.app.data.HifzTarget;
 import com.zikra.app.data.Task;
 import com.zikra.app.data.ZikraDbHelper;
+import com.zikra.app.study.*;
 import com.zikra.app.study.SurahCatalog;
 import com.zikra.app.study.SurahCatalog.Chapter;
 import com.zikra.app.ui.HifzEditor;
@@ -56,6 +57,7 @@ public final class StudyActivity extends BaseActivity {
   private View editorView;
   private Task editorTask;
   private HifzEditor hifzEditor;
+  private ScheduleEditor scheduleEditor;
   private SurahCatalog catalog;
   private List<Chapter> chapters = SurahCatalog.local();
   private final Runnable dayCheck =
@@ -126,6 +128,12 @@ public final class StudyActivity extends BaseActivity {
       ((TextView) agendaHeader.findViewById(R.id.study_section)).setText("Ibadah lainnya");
       ((TextView) findViewById(R.id.study_add)).setText("Tambah ibadah");
     }
+    if (!diaryMode && !ibadahMode) {
+      ((TextView) agendaHeader.findViewById(R.id.study_heading)).setText("Tugas aktif");
+      View focus = agendaHeader.findViewById(R.id.studyFocus);
+      focus.setVisibility(View.VISIBLE);
+      focus.setOnClickListener(v -> startActivity(new Intent(this, FocusTimerActivity.class)));
+    }
     adapter = new TaskAdapter();
     ListView list = findViewById(R.id.study_tasks);
     list.setAdapter(adapter);
@@ -175,6 +183,7 @@ public final class StudyActivity extends BaseActivity {
       showEditor(saved, state.getString("editor_title", ""));
       ((RadioGroup) editorView.findViewById(R.id.study_editor_category))
           .check(choice(scopeCategory));
+      if (scheduleEditor != null) scheduleEditor.restore(state);
       if (hifzEditor != null)
         hifzEditor.restore(state, chapters, catalogLoading, this::loadCatalog);
       if (id != -1 && saved == null) {
@@ -219,6 +228,7 @@ public final class StudyActivity extends BaseActivity {
       state.putString("editor_category", selectedCategory());
       state.putBoolean("editor_retained", editorRetained);
       if (hifzEditor != null) hifzEditor.save(state);
+      if (scheduleEditor != null) scheduleEditor.save(state);
     }
     super.onSaveInstanceState(state);
   }
@@ -244,6 +254,9 @@ public final class StudyActivity extends BaseActivity {
     for (Task task : db.getTasks()) if (scopeCategory.equals(task.category)) filtered.add(task);
     // Keep user insertion order within each group; structured Hifz targets precede legacy notes.
     if (diaryMode) filtered.sort(Comparator.comparing(task -> task.hifz == null));
+    if (!diaryMode && !ibadahMode)
+      filtered.sort(
+          Comparator.comparingLong(task -> task.dueAt == 0 ? Long.MAX_VALUE : task.dueAt));
     List<Task> pending = new ArrayList<>(), done = new ArrayList<>();
     for (Task task : filtered) (task.completed ? done : pending).add(task);
     featuredTask = pending.isEmpty() ? null : pending.remove(0);
@@ -256,6 +269,7 @@ public final class StudyActivity extends BaseActivity {
     adapter.items = rows;
     adapter.notifyDataSetChanged();
     bindFeatured();
+    if (!diaryMode && !ibadahMode) StudyReminders.sync(this);
     int completed = done.size(), total = filtered.size();
     int percent = total == 0 ? 0 : Math.round(100f * completed / total);
     ((TextView) agendaHeader.findViewById(R.id.study_percent))
@@ -265,6 +279,9 @@ public final class StudyActivity extends BaseActivity {
     ((ProgressBar) agendaHeader.findViewById(R.id.study_progress)).setProgress(percent);
     ((TextView) agendaHeader.findViewById(R.id.hifz_planned))
         .setText(getString(R.string.agenda_pending, pending.size()));
+    agendaHeader
+        .findViewById(R.id.study_summary)
+        .setVisibility(total == 0 ? View.GONE : View.VISIBLE);
     agendaHeader
         .findViewById(R.id.agenda_section)
         .setVisibility(pending.isEmpty() ? View.GONE : View.VISIBLE);
@@ -319,6 +336,12 @@ public final class StudyActivity extends BaseActivity {
                     : ZikraDbHelper.CATEGORY_HIFZ.equals(task.category)
                         ? R.string.study_daily_hifz
                         : R.string.study_daily_study));
+    if (!diaryMode && !ibadahMode)
+      detail.setText(
+          task.dueAt == 0
+              ? "Tanpa tenggat · mulai satu sesi fokus"
+              : ((task.dueAt < System.currentTimeMillis()) ? "Lewat tenggat · " : "Tenggat · ")
+                  + ScheduleEditor.label(task.dueAt));
     if (diaryMode && task.hifz != null && !task.title.equals(canonical(task.hifz))) {
       detail.append("\n" + task.title);
     }
@@ -330,10 +353,13 @@ public final class StudyActivity extends BaseActivity {
                     ? R.string.hifz_read_online
                     : R.string.hifz_read)
             : R.string.agenda_edit);
+    if (!diaryMode && !ibadahMode) action.setText("Mulai fokus");
     action.setContentDescription(action.getText() + " " + title.getText());
     action.setOnClickListener(
         v -> {
           if (diaryMode && task.hifz != null) openReading(task.hifz);
+          else if (!diaryMode && !ibadahMode)
+            startActivity(new Intent(this, FocusTimerActivity.class).putExtra("task", task.id));
           else showEditor(task, null);
         });
     View more = agendaHeader.findViewById(R.id.agenda_feature_more);
@@ -386,6 +412,7 @@ public final class StudyActivity extends BaseActivity {
     editorDialog = dialog;
     editorView = editor;
     editorTask = task;
+    scheduleEditor = null;
     editorRetained = false;
     final boolean[] saveAsNew = {task == null};
     EditText title = editor.findViewById(R.id.study_editor_title);
@@ -436,6 +463,19 @@ public final class StudyActivity extends BaseActivity {
           .findViewById(R.id.hifz_note_toggle)
           .setOnClickListener(v -> showNotes(title.getVisibility() != View.VISIBLE));
     }
+    if (!diaryMode && !ibadahMode)
+      scheduleEditor =
+          new ScheduleEditor(
+              this,
+              editor,
+              task,
+              () -> {
+                if (android.os.Build.VERSION.SDK_INT >= 33
+                    && checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                        != android.content.pm.PackageManager.PERMISSION_GRANTED)
+                  requestPermissions(
+                      new String[] {android.Manifest.permission.POST_NOTIFICATIONS}, 903);
+              });
     title.setSelection(title.length());
     editor.findViewById(R.id.study_editor_close).setOnClickListener(v -> dialog.dismiss());
     editor.findViewById(R.id.study_editor_cancel).setOnClickListener(v -> dialog.dismiss());
@@ -459,8 +499,18 @@ public final class StudyActivity extends BaseActivity {
                     title.requestFocus();
                     return;
                   }
-                  if (saveAsNew[0]) db.addTask(value, selected);
-                  else saved = db.updateTask(task.id, value, selected);
+                  if (scheduleEditor != null) {
+                    if (!scheduleEditor.valid()) return;
+                    if (saveAsNew[0])
+                      db.addAcademicTask(value, scheduleEditor.dueAt(), scheduleEditor.reminder());
+                    else
+                      saved =
+                          db.updateAcademicTask(
+                              task.id, value, scheduleEditor.dueAt(), scheduleEditor.reminder());
+                  } else {
+                    if (saveAsNew[0]) db.addTask(value, selected);
+                    else saved = db.updateTask(task.id, value, selected);
+                  }
                 }
               } catch (android.database.sqlite.SQLiteException error) {
                 TextView status = editor.findViewById(R.id.study_editor_status);
@@ -487,6 +537,8 @@ public final class StudyActivity extends BaseActivity {
             editorView = null;
             editorTask = null;
             hifzEditor = null;
+            if (scheduleEditor != null) scheduleEditor.close();
+            scheduleEditor = null;
           }
         });
     dialog.show();
@@ -526,6 +578,15 @@ public final class StudyActivity extends BaseActivity {
         }) editorView.findViewById(id).setVisibility(expanded ? View.VISIBLE : View.GONE);
     ((TextView) editorView.findViewById(R.id.hifz_note_toggle))
         .setText(expanded ? R.string.hifz_note_hide : R.string.hifz_note_add);
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int code, String[] permissions, int[] grants) {
+    super.onRequestPermissionsResult(code, permissions, grants);
+    if (code == 903) {
+      if (scheduleEditor != null) scheduleEditor.render();
+      StudyReminders.sync(this);
+    }
   }
 
   private int choice(String category) {
@@ -736,6 +797,8 @@ public final class StudyActivity extends BaseActivity {
               : task.category.equals(ZikraDbHelper.CATEGORY_IBADAH)
                   ? R.string.study_category_ibadah
                   : R.string.study_category_study);
+      if (!diaryMode && !ibadahMode && task.dueAt > 0)
+        detail.setText("Tenggat · " + ScheduleEditor.label(task.dueAt));
       if (diaryMode) {
         HifzTarget target = task.hifz;
         title.setText(target == null ? task.title : target.chapterName);
