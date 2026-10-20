@@ -2,6 +2,8 @@ package com.zikra.app;
 
 import android.app.*;
 import android.content.*;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.*;
 import android.provider.Settings;
 import android.test.InstrumentationTestCase;
@@ -191,7 +193,7 @@ public final class FocusMotionTest extends InstrumentationTestCase {
     try (ParcelFileDescriptor recording =
         getInstrumentation()
             .getUiAutomation()
-            .executeShellCommand("screenrecord --time-limit 14 " + video.getAbsolutePath())) {
+            .executeShellCommand("screenrecord --time-limit 24 " + video.getAbsolutePath())) {
       SystemClock.sleep(900);
       click(R.id.focusPlay);
       SystemClock.sleep(5000);
@@ -199,7 +201,24 @@ public final class FocusMotionTest extends InstrumentationTestCase {
       click(R.id.focusPlay);
       SystemClock.sleep(2000);
       click(R.id.focusPlay);
-      SystemClock.sleep(6000);
+      SystemClock.sleep(2500);
+      main(
+          () -> {
+            FocusClock clock = (FocusClock) field(page, "clock");
+            clock.running = false;
+            clock.remaining = 0;
+            clock.finished = true;
+            FocusTimer.schedule(context, clock);
+          });
+      await(
+          () ->
+              ((TextView) page.findViewById(R.id.focusPlay))
+                  .getText()
+                  .toString()
+                  .equals("Mulai istirahat"));
+      click(R.id.focusPlay);
+      await(() -> (Float) field(garden(), "phaseMix") > .99f);
+      SystemClock.sleep(8500);
     }
     assertTrue("Native video captured", video.isFile() && video.length() > 1000);
     for (Task existing : db.getTasks()) if (existing.id == task) assertFalse(existing.completed);
@@ -219,8 +238,9 @@ public final class FocusMotionTest extends InstrumentationTestCase {
           stage.offsetDescendantRectToMyCoords(total, labels);
           float density = page.getResources().getDisplayMetrics().density;
           assertTrue(
-              "Clock labels remain above companion artwork",
-              labels.bottom < stage.getHeight() - 150 * density);
+              "Clock labels keep a dedicated gap above the companion view",
+              labels.bottom + 11 * density <= garden().getTop());
+          assertTrue("Character has its own space", garden().getHeight() >= 190 * density);
         });
     UiEvidence.capture(getInstrumentation(), "FocusCompanionLargeText");
     main(
@@ -234,6 +254,56 @@ public final class FocusMotionTest extends InstrumentationTestCase {
                         page.findViewById(R.id.focusPlay).getHeight()),
                     true));
     assertTrue(page.findViewById(R.id.focusPlay).getGlobalVisibleRect(new android.graphics.Rect()));
+  }
+
+  private Bitmap characterFrame() {
+    final Bitmap[] result = new Bitmap[1];
+    main(
+        () -> {
+          result[0] =
+              Bitmap.createBitmap(
+                  garden().getWidth(), garden().getHeight(), Bitmap.Config.ARGB_8888);
+          garden().draw(new Canvas(result[0]));
+        });
+    return result[0];
+  }
+
+  public void testCharacterPixelsMoveAndFreezeOnPause() throws Exception {
+    launch();
+    click(R.id.focusPlay);
+    await(this::animating);
+    SystemClock.sleep(600);
+    Bitmap first = characterFrame();
+    SystemClock.sleep(1000);
+    Bitmap second = characterFrame();
+    int changed = 0;
+    for (int y = 0; y < first.getHeight(); y++)
+      for (int x = 0; x < first.getWidth(); x++)
+        if (first.getPixel(x, y) != second.getPixel(x, y)) changed++;
+    assertTrue(
+        "Visible character pixels change, not just a scheduled callback: " + changed,
+        changed > first.getWidth() * first.getHeight() / 100);
+    File dir = new File(context.getExternalFilesDir(null), "validation");
+    dir.mkdirs();
+    try (FileOutputStream out = new FileOutputStream(new File(dir, "character-motion-a.png"))) {
+      first.compress(Bitmap.CompressFormat.PNG, 100, out);
+    }
+    try (FileOutputStream out = new FileOutputStream(new File(dir, "character-motion-b.png"))) {
+      second.compress(Bitmap.CompressFormat.PNG, 100, out);
+    }
+    first.recycle();
+    second.recycle();
+    click(R.id.focusPlay);
+    await(() -> !animating());
+    long remaining = FocusTimer.load(context).remaining;
+    SystemClock.sleep(400);
+    Bitmap paused = characterFrame();
+    SystemClock.sleep(900);
+    Bitmap stillPaused = characterFrame();
+    assertTrue("Character really stops drawing movement on pause", paused.sameAs(stillPaused));
+    assertEquals(remaining, FocusTimer.load(context).remaining);
+    paused.recycle();
+    stillPaused.recycle();
   }
 
   @Override

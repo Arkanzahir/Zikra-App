@@ -1,0 +1,6 @@
+com.zikra.app.FocusMotionTest:......
+com.zikra.app.AcademicFeaturesTest:..
+Test results for InstrumentationTestRunner=........
+Time: 136.386
+
+OK (8 tests)

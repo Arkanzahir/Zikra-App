@@ -7,6 +7,11 @@ hash GitHub setelah setiap push. Tetap Android Java/XML, JDK 17, SDK/target 35.
 ## Pembaruan Fokus/Pomodoro berdasarkan rekaman pengguna
 
 Arah aktif mengikuti referensi kedua: satu karakter dengan pose membaca dan istirahat.
+Revisi setelah umpan balik pengguna pada `7f9d60a`: cincin besar dihapus, angka di atas
+karakter yang lebih besar, gerak badan/kepala/tangan/buku terlihat dan pose duduk
+saat istirahat. Label dan karakter menempati view terpisah.
+[Bukti revisi](../android/validation/focus-motion-placement-2026-10-20/README.md).
+Paragraf berikut mencatat checkpoint pertama yang telah direvisi.
 Canvas native menampilkan karakter daun orisinal Pine/emas, cincin progres, napas/kedip,
 transisi fase dan tombol yang tetap terjangkau. Animasi mengikuti pengaturan sistem,
 penghemat daya, lifecycle serta jeda timer. Font 200% memperoleh ruang ekstra.

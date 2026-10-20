@@ -6,28 +6,28 @@ import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.View;
 
-/** Decorative native companion. Animation never owns or advances the actual countdown. */
+/** Decorative native companion. The actual timer is owned by FocusClock, never by drawing. */
 public final class FocusGardenView extends View {
   private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-  private final RectF ring = new RectF(), shape = new RectF();
+  private final RectF shape = new RectF();
   private final Path path = new Path();
   private boolean allowed, active, running, resting, finished, framePosted;
   private long lastFrame;
-  private float elapsed, density, motionTime, phaseMix;
+  private float motionTime, phaseMix;
   private android.animation.ValueAnimator phase;
   private final Runnable frame =
       () -> {
         framePosted = false;
         if (!canAnimate()) return;
         long now = SystemClock.uptimeMillis();
-        motionTime += Math.min(.05f, Math.max(.001f, (now - lastFrame) / 1000f));
+        // Advance by real visible time. Slow frames must not turn the motion into slow motion.
+        motionTime += Math.max(0, (now - lastFrame) / 1000f);
         invalidate();
         schedule();
       };
 
   public FocusGardenView(Context context, AttributeSet attrs) {
     super(context, attrs);
-    density = getResources().getDisplayMetrics().density;
     setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_NO);
     setFocusable(false);
     setClickable(false);
@@ -46,7 +46,6 @@ public final class FocusGardenView extends View {
 
   public void snapshot(
       long remaining, long total, boolean running, boolean resting, boolean finished) {
-    elapsed = total <= 0 ? 0 : Math.max(0, Math.min(1, 1f - (float) remaining / total));
     this.running = running;
     this.finished = finished;
     if (this.resting != resting) {
@@ -85,13 +84,6 @@ public final class FocusGardenView extends View {
     framePosted = false;
   }
 
-  @Override
-  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-    super.onSizeChanged(w, h, oldw, oldh);
-    float r = Math.min(w * .29f, h * .26f), cy = h * .31f;
-    ring.set(w / 2f - r, cy - r, w / 2f + r, cy + r);
-  }
-
   private static int blend(int a, int b, float t) {
     return Color.rgb(
         (int) (Color.red(a) * (1 - t) + Color.red(b) * t),
@@ -126,116 +118,153 @@ public final class FocusGardenView extends View {
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    int accent = blend(0xFFCF9447, 0xFF57927E, phaseMix);
-    float cx = ring.centerX(), cy = ring.centerY(), r = ring.width() / 2;
-    paint.setStyle(Paint.Style.FILL);
-    paint.setColor(blend(0xFFEAF3EE, 0xFFE3F2EC, phaseMix));
-    canvas.drawOval(ring, paint);
-    paint.setColor(0xFFBCCFC5);
-    for (int i = 0; i < 12; i++) {
-      double a = Math.toRadians(i * 30 - 90);
-      canvas.drawCircle(
-          cx + (r + 8 * density) * (float) Math.cos(a),
-          cy + (r + 8 * density) * (float) Math.sin(a),
-          1.2f * density,
-          paint);
-    }
-    paint.setStyle(Paint.Style.STROKE);
-    paint.setStrokeWidth(3.5f * density);
-    paint.setStrokeCap(Paint.Cap.ROUND);
-    paint.setColor(0xFFD0E0D6);
-    canvas.drawOval(ring, paint);
-    paint.setColor(accent);
-    if (elapsed > 0) canvas.drawArc(ring, -90, 360 * elapsed, false, paint);
-    paint.setStyle(Paint.Style.FILL);
-    double end = Math.toRadians(360 * elapsed - 90);
-    float hx = cx + r * (float) Math.cos(end), hy = cy + r * (float) Math.sin(end);
-    paint.setColor(accent);
-    paint.setAlpha(30);
-    canvas.drawCircle(hx, hy, 8 * density, paint);
-    paint.setAlpha(255);
-    canvas.drawCircle(hx, hy, 3.5f * density, paint);
-    // Original leaf companion; it is decorative artwork, not a replacement for the brand logo.
-    float scale = Math.min(density, getWidth() / 280f);
+    float density = getResources().getDisplayMetrics().density;
+    float scale = Math.min(1.35f * density, Math.min(getWidth() / 204f, getHeight() / 184f));
+    float breath = (float) Math.sin(motionTime * 2.1f);
+    float sway = (float) Math.sin(motionTime * 1.65f);
+    float hand = (float) Math.sin(motionTime * 2.1f + .8f);
     canvas.save();
-    canvas.translate(getWidth() / 2f, getHeight() - 59 * density);
+    canvas.translate(getWidth() / 2f, getHeight() * .56f);
     canvas.scale(scale, scale);
-    float breath = (float) Math.sin(motionTime * 1.7f);
-    oval(canvas, -51, 47, 51, 55, 0x182F6750);
-    oval(canvas, -44, 35, 44, 49, blend(0xFFDCE9E0, 0xFFD4E7E0, phaseMix));
-    canvas.translate(0, breath * 1.8f);
-    // Feet and the white body retain a calm silhouette in both poses.
-    round(canvas, -22, 26, -4, 44, 7, 0xFFFCFEFC);
-    round(canvas, 4, 26, 22, 44, 7, 0xFFFCFEFC);
-    round(canvas, -25, -8, 25, 36, 17, 0xFFFCFEFC);
+    // The floor stays still while the companion moves independently above it.
+    oval(canvas, -53 - breath * 2, 62, 53 + breath * 2, 70, 0x182F6750);
+    if (phaseMix > 0) {
+      oval(canvas, -61, 47, 61, 66, blend(0xFFEDF4EF, 0xFFB3CEBE, phaseMix));
+      line(canvas, -58, 57, -67, 60, 0xFF87AC98, 1.5f);
+      line(canvas, 58, 57, 67, 60, 0xFF87AC98, 1.5f);
+    }
+    canvas.translate(sway * (1 - phaseMix) * 2.5f, breath * (resting ? 2.5f : 4.8f));
+    canvas.rotate(sway * (resting ? 1.5f : 4f), 0, 38);
+    // Seated feet during a break; alternating feet during focus.
+    if (phaseMix > .5f) {
+      round(canvas, -34, 40, 0, 58, 9, 0xFFFCFEFC);
+      round(canvas, 0, 40, 34, 58, 9, 0xFFFCFEFC);
+    } else {
+      canvas.save();
+      canvas.rotate(sway * 10, -13, 40);
+      round(canvas, -26, 36, -6, 61, 8, 0xFFFCFEFC);
+      line(canvas, -23, 59, -9, 59, 0xFF7F9E8E, 1.2f);
+      canvas.restore();
+      canvas.save();
+      canvas.rotate(-sway * 10, 13, 40);
+      round(canvas, 6, 36, 26, 61, 8, 0xFFFCFEFC);
+      line(canvas, 9, 59, 23, 59, 0xFF7F9E8E, 1.2f);
+      canvas.restore();
+    }
+    round(canvas, -29, -8, 29, 46, 20, 0xFFFCFEFC);
     paint.setStyle(Paint.Style.STROKE);
     paint.setColor(0xFF719385);
-    paint.setStrokeWidth(1.5f);
-    shape.set(-25, -8, 25, 36);
-    canvas.drawRoundRect(shape, 17, 17, paint);
+    paint.setStrokeWidth(1.4f);
+    shape.set(-29, -8, 29, 46);
+    canvas.drawRoundRect(shape, 20, 20, paint);
     paint.setStyle(Paint.Style.FILL);
-    // Original Pine hood with a gold leaf.
-    oval(canvas, -37, -68, 37, 4, blend(0xFF214D43, 0xFF447A65, phaseMix));
-    oval(canvas, -27, -54, 27, -5, 0xFFFCFEFC);
+    // A separate nod makes the reading pose visibly alive rather than shifting one static icon.
+    canvas.save();
+    canvas.translate(0, -1.8f * hand);
+    canvas.rotate(sway * 2.2f, 0, -30);
+    round(canvas, -42, -74, 42, 6, 33, blend(0xFF214D43, 0xFF447A65, phaseMix));
+    round(canvas, -31, -56, 31, -5, 21, 0xFFFCFEFC);
+    canvas.save();
+    canvas.rotate(sway * 9, 2, -72);
     path.reset();
-    path.moveTo(-1, -65);
-    path.cubicTo(-15, -85, -4, -91, 6, -72);
-    path.cubicTo(18, -91, 31, -82, 13, -67);
+    path.moveTo(-2, -73);
+    path.cubicTo(-21, -94, -9, -101, 4, -81);
+    path.cubicTo(15, -100, 32, -90, 12, -74);
     path.close();
     paint.setColor(0xFFE5B565);
     canvas.drawPath(path, paint);
-    boolean blink = running && active && allowed && motionTime % 5.2f > 4.95f;
-    if (blink) {
-      line(canvas, -13, -30, -6, -30, 0xFF15332F, 2);
-      line(canvas, 6, -30, 13, -30, 0xFF15332F, 2);
+    canvas.restore();
+    boolean blink = running && active && allowed && motionTime % 4.4f > 4.15f;
+    if (blink || (resting && motionTime % 5.6f > 3.9f)) {
+      line(canvas, -15, -30, -8, -29, 0xFF15332F, 2);
+      line(canvas, 8, -29, 15, -30, 0xFF15332F, 2);
     } else {
-      oval(canvas, -12, -34, -8, -28, 0xFF15332F);
-      oval(canvas, 8, -34, 12, -28, 0xFF15332F);
+      oval(canvas, -14 + sway, -34, -10 + sway, -28, 0xFF15332F);
+      oval(canvas, 10 + sway, -34, 14 + sway, -28, 0xFF15332F);
     }
-    oval(canvas, -21, -25, -12, -20, 0x55E5A853);
-    oval(canvas, 12, -25, 21, -20, 0x55E5A853);
+    oval(canvas, -23, -25, -13, -20, 0x55E5A853);
+    oval(canvas, 13, -25, 23, -20, 0x55E5A853);
     paint.setStyle(Paint.Style.STROKE);
     paint.setColor(0xFF42715D);
-    paint.setStrokeWidth(1.4f);
-    shape.set(-5, -28, 5, -18);
+    paint.setStrokeWidth(1.5f);
+    shape.set(-5, -27, 5, -17);
     canvas.drawArc(shape, 15, 150, false, paint);
     paint.setStyle(Paint.Style.FILL);
-    if (phaseMix < .5f) {
-      // Open book during focus, held independently of the live countdown.
-      path.reset();
-      path.moveTo(-23, 2);
-      path.lineTo(0, 7);
-      path.lineTo(23, 2);
-      path.lineTo(23, 24);
-      path.lineTo(0, 29);
-      path.lineTo(-23, 24);
-      path.close();
-      paint.setColor(0xFFD8A759);
-      canvas.drawPath(path, paint);
-      line(canvas, 0, 8, 0, 26, 0xFF8A672E, 1.2f);
-      line(canvas, -17, 10, -5, 13, 0xFFFFF3DB, 1.4f);
-      line(canvas, 5, 13, 17, 10, 0xFFFFF3DB, 1.4f);
-      oval(canvas, -31, 7, -18, 20, 0xFFFCFEFC);
-      oval(canvas, 18, 7, 31, 20, 0xFFFCFEFC);
-    } else {
-      round(canvas, -12, 4, 12, 26, 5, 0xFF8DB6A3);
-      paint.setStyle(Paint.Style.STROKE);
-      paint.setColor(0xFF57927E);
-      paint.setStrokeWidth(3);
-      shape.set(7, 8, 21, 20);
-      canvas.drawOval(shape, paint);
-      paint.setStyle(Paint.Style.FILL);
-      oval(canvas, -30, 10, -10, 24, 0xFFFCFEFC);
-      oval(canvas, 10, 10, 30, 24, 0xFFFCFEFC);
-      float steam = (float) Math.sin(motionTime * 1.3f) * 2;
-      line(canvas, -3, -2, -4, -9 - steam, 0x88719385, 1.3f);
-      line(canvas, 4, -3, 6, -11 - steam, 0x88719385, 1.3f);
-    }
+    canvas.restore();
+    canvas.save();
+    canvas.translate(hand * 1.7f, hand * 2.6f);
+    canvas.rotate(hand * 3, 0, 17);
+    if (phaseMix < .5f) drawBook(canvas);
+    else drawCup(canvas);
+    canvas.restore();
     if (finished) {
-      oval(canvas, 43, -42, 48, -37, accent);
-      oval(canvas, -46, -55, -42, -51, accent);
+      oval(canvas, 51, -51, 56, -46, 0xFFD8A759);
+      oval(canvas, -55, -62, -51, -58, 0xFFD8A759);
     }
     canvas.restore();
+  }
+
+  private void drawBook(Canvas canvas) {
+    // Hands and book move together. A page periodically folds across the open book.
+    line(canvas, -25, 8, -25, 23, 0xFF719385, 10);
+    line(canvas, 25, 8, 25, 23, 0xFF719385, 10);
+    path.reset();
+    path.moveTo(-27, 6);
+    path.lineTo(0, 11);
+    path.lineTo(27, 6);
+    path.lineTo(27, 31);
+    path.lineTo(0, 36);
+    path.lineTo(-27, 31);
+    path.close();
+    paint.setColor(0xFFD8A759);
+    canvas.drawPath(path, paint);
+    line(canvas, 0, 12, 0, 33, 0xFF8A672E, 1.2f);
+    for (int i = 0; i < 3; i++) {
+      line(canvas, -21, 14 + i * 5, -6, 17 + i * 5, 0xFFFFF3DB, 1.2f);
+      line(canvas, 6, 17 + i * 5, 21, 14 + i * 5, 0xFFFFF3DB, 1.2f);
+    }
+    float turn = motionTime % 5f;
+    if (turn < 1.5f) {
+      float edge = 25 * (float) Math.cos(turn / 1.5f * Math.PI);
+      path.reset();
+      path.moveTo(0, 11);
+      path.quadTo(edge * .5f, 2, edge, 7);
+      path.lineTo(edge, 30);
+      path.quadTo(edge * .5f, 27, 0, 35);
+      path.close();
+      paint.setColor(0xFFFFF3DB);
+      canvas.drawPath(path, paint);
+    }
+    oval(canvas, -36, 15, -22, 28, 0xFFFCFEFC);
+    oval(canvas, 22, 15, 36, 28, 0xFFFCFEFC);
+  }
+
+  private void drawCup(Canvas canvas) {
+    round(canvas, -14, 11, 14, 36, 6, 0xFF8DB6A3);
+    paint.setStyle(Paint.Style.STROKE);
+    paint.setColor(0xFF57927E);
+    paint.setStrokeWidth(3);
+    shape.set(9, 16, 24, 29);
+    canvas.drawOval(shape, paint);
+    paint.setStyle(Paint.Style.FILL);
+    oval(canvas, -33, 19, -12, 32, 0xFFFCFEFC);
+    oval(canvas, 12, 19, 33, 32, 0xFFFCFEFC);
+    // Separate drifting steam strokes make the rest pose easy to distinguish in motion.
+    for (int i = 0; i < 2; i++) {
+      float rise = (motionTime * 11 + i * 10) % 22;
+      float drift = (float) Math.sin(motionTime * 2.5f + i) * 3;
+      paint.setColor(0x88719385);
+      paint.setAlpha((int) (130 * (1 - rise / 22)));
+      paint.setStyle(Paint.Style.STROKE);
+      paint.setStrokeWidth(1.7f);
+      path.reset();
+      path.moveTo(-4 + i * 9, 7 - rise);
+      path.cubicTo(
+          -9 + i * 9 + drift, 2 - rise, 2 + i * 9 + drift, -2 - rise, -3 + i * 9, -7 - rise);
+      canvas.drawPath(path, paint);
+      paint.setAlpha(255);
+      paint.setStyle(Paint.Style.FILL);
+    }
   }
 
   @Override

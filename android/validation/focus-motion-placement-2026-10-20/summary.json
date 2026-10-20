@@ -1,0 +1,45 @@
+{
+  "date_wib": "2026-10-20",
+  "source_parent": "7f9d60a0fdd9124a6c989914541d8d0773780f25",
+  "push_target": "main (previous explicit user authorization)",
+  "unit": {
+    "tests": 52,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Warning": 545
+  },
+  "api28_methods_passed": 8,
+  "motion_methods": 6,
+  "timer_regression_methods": 2,
+  "character_pixels_changed_after_one_second": 14436,
+  "character_total_pixels": 124440,
+  "character_same_pixels_on_pause": true,
+  "font_scale_tested": 2.0,
+  "animator_scale_tested": [
+    0,
+    1
+  ],
+  "preview": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 540,
+        "height": 1170
+      }
+    ],
+    "format": {
+      "duration": "22.574533",
+      "size": "237322"
+    }
+  },
+  "preview_source": "native Android screenrecord; synthetic task/time, forced session end for explicit break action",
+  "api35_runtime_tested": false,
+  "physical_device_tested": false,
+  "schema_changed": false,
+  "logo_changed": false,
+  "apk_sha256": "54697b590361266942b03ce41ebd9c941369b37033b052abb232aa9b9fe401ae"
+}

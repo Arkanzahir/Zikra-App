@@ -1,3 +1,5 @@
+> **Revisi terbaru — 20 Oktober 2026 (WIB):** gerak karakter Fokus/Pomodoro diperjelas dan komposisinya mengikuti angka → karakter → kontrol. Cincin besar diganti progres tipis; angka dan karakter tidak lagi ditumpuk. [Video Android, screenshot dan validasi](android/validation/focus-motion-placement-2026-10-20/README.md). Tahap sebelumnya di bawah merupakan riwayat implementasi, bukan persetujuan visual pengguna.
+
 > **Terbaru — 20 Oktober 2026 (WIB):** `main` memuat desain Fokus/Pomodoro dengan karakter daun, pose membaca/istirahat, cincin progres dan animasi yang mengikuti pengaturan sistem. Checkpoint lokasi, audio dan Study sampai `f48fd31` turut tercakup. [Video Android, screenshot dan hasil pemeriksaan](android/validation/focus-motion-2026-10-20/README.md). Periksa hash remote sebelum melanjutkan.
 
 > **Checkpoint lanjutan — 20 Oktober 2026 (WIB):** branch `feature/map-audio-study-2026-10-20`, berdasarkan `2b13539`, menambahkan status/coba ulang peta, perbaikan unduhan audio rusak, timer fokus dan tenggat/pengingat akademik. [Bukti dan batas](android/validation/map-audio-study-2026-10-20/README.md). Provider live masih ditolak proxy 403; bukan klaim verifikasi peta online/qari asli. Main sebelum rangkaian checkpoint ini berada pada `1045fa7`.
@@ -110,7 +112,7 @@ gulir baca/follow dan rentang latihan Hifz sudah ada. Audio live qari belum terb
 validasi decoder sebelumnya memakai WAV sintetis, bukan rekaman Quran.
 Checkpoint Study f48fd31 dan desain animasi Pomodoro terbaru sudah tercakup main.
 Timer fokus, tenggat/pengingat Study, SQLite v3, retry peta dan repair audio
-sudah terpasang; baca validasi focus-motion-2026-10-20 dan cocokkan hash GitHub.
+sudah terpasang; baca validasi focus-motion-placement-2026-10-20 dan cocokkan hash GitHub.
 Mushaf halaman, statistik dan AI generatif tetap backlog; provider live masih terbuka.
 Pertahankan data pengguna, master logo bulan+buku+spark dan onboarding/Home.
 Tampilkan preview Android aktual, satu putaran uji relevan, ulang bila ada masalah.

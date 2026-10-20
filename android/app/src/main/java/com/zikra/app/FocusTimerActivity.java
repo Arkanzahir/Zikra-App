@@ -54,12 +54,6 @@ public final class FocusTimerActivity extends BaseActivity {
         .setSystemUiVisibility(
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     garden = findViewById(R.id.focusGarden);
-    if (getResources().getConfiguration().fontScale > 1.5f) {
-      View stage = findViewById(R.id.focusStage);
-      android.view.ViewGroup.LayoutParams size = stage.getLayoutParams();
-      size.height = dp(400);
-      stage.setLayoutParams(size);
-    }
     motion = new com.zikra.app.ui.AmbientMotionPolicy(this, this::refreshMotion);
     ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.focusHeader))
         .action()
@@ -212,6 +206,8 @@ public final class FocusTimerActivity extends BaseActivity {
     text(
         R.id.focusHint,
         notificationsAllowed ? R.string.focus_encourage : R.string.focus_notification_off);
+    ((ProgressBar) findViewById(R.id.focusProgress))
+        .setProgress((int) Math.max(0, Math.min(1000, 1000L - clock.remaining * 1000L / total)));
     garden.snapshot(clock.remaining, total, clock.running, clock.breakPhase, clock.finished);
   }
 

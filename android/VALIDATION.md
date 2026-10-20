@@ -1,3 +1,5 @@
+> **Revisi gerak/posisi Fokus — 20 Oktober 2026:** [video Android dan tes piksel karakter](validation/focus-motion-placement-2026-10-20/README.md). Angka/karakter terpisah, progres tipis, pose duduk saat istirahat dan pengujian font 200%.
+
 > **Pemeriksaan terbaru — Fokus/Pomodoro, 20 Oktober 2026:** karakter native berpose fokus/istirahat, motion opt-out/lifecycle dan font 200%. [Rekaman Android, screenshot dan hasil](validation/focus-motion-2026-10-20/README.md). Semua checkpoint sebelumnya dipertahankan pada main sesuai permintaan pengguna.
 
 > **Checkpoint peta/audio/Study — 20 Oktober 2026:** [hasil dan batas pengujian](validation/map-audio-study-2026-10-20/README.md). Memuat transfer audio dengan fixture sintetis, status tile, migrasi SQLite v3, timer fokus dan pengingat akademik. Peta/provider qari live masih ditolak proxy 403.

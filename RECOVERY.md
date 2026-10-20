@@ -2,6 +2,11 @@
 
 ## Status terbaru
 
+Revisi setelah `7f9d60a`: pengguna menilai gerak/posisi karakter belum sesuai referensi.
+Susunan kini angka di atas karakter, progres tipis, gerak badan/kepala/tangan/buku
+lebih terlihat dan pose istirahat duduk. [Bukti terbaru](android/validation/focus-motion-placement-2026-10-20/README.md).
+Catatan cincin progres besar di bawah adalah hasil terdahulu yang sudah direvisi.
+
 Main kini mencakup checkpoint `f48fd31` dan desain Fokus/Pomodoro terbaru berdasarkan
 referensi gerak pengguna: karakter daun membaca/istirahat, ring progres, gerak napas/
 kedip dan penghormatan pengaturan animasi/penghemat daya. Pengguna meminta push langsung
