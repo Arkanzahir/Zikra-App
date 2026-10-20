@@ -1,3 +1,5 @@
+> **Fondasi Mushaf — 21 Oktober 2026:** [model halaman/pemetaan/timing dan 69 tes JVM](android/validation/mushaf-foundation-2026-10-21/README.md). Belum mode Mushaf di UI; izin paket sumber dan tes HP tetap terbuka.
+
 > **Audit lokal — 21 Oktober 2026:** [handoff sesi](PROJECT_HANDOFF.md) · [hasil build/API dan hambatan tes audio asli](android/validation/local-qari-2026-10-21/README.md). Playback Android live, Mushaf dan sorotan kata belum terverifikasi.
 
 > **Quran native — 21 Oktober 2026 (WIB):** katalog lebih ringkas, reader dengan header Pine dan menu ayat, pemutar kecil serta panel audio dari bawah sudah diterapkan. [Preview APK, pemeriksaan dan batas](android/validation/quran-reader-panel-2026-10-21/README.md). Mushaf halaman/sorotan kata masih menunggu sumber terverifikasi; akses live teks/audio dari cloud tetap ditolak proxy.

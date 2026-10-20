@@ -1,0 +1,100 @@
+﻿{
+    "date_wib":  "2026-10-21",
+    "source_parent":  "4ec1cbe060ca2b0ddda404586b7fa9384d53c2ba",
+    "suites":  [
+                   {
+                       "suite":  "com.zikra.app.assistant.OfflineAssistantTest",
+                       "tests":  6,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.audio.RecitationTest",
+                       "tests":  8,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.discovery.HijriCalendarModelTest",
+                       "tests":  3,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.location.LocationPointTest",
+                       "tests":  5,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.PrayerScheduleTest",
+                       "tests":  7,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.reading.CompassMathTest",
+                       "tests":  4,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.reading.mushaf.MushafFoundationTest",
+                       "tests":  17,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.reading.SurahSearchTest",
+                       "tests":  3,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.safety.ForecastSelectorTest",
+                       "tests":  4,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.safety.WeatherCodeTest",
+                       "tests":  3,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.sky.SkyDayTest",
+                       "tests":  3,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.study.FocusClockTest",
+                       "tests":  6,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   }
+               ],
+    "tests":  69,
+    "failures":  0,
+    "errors":  0,
+    "skipped":  0,
+    "lint_errors":  0,
+    "lint_warnings":  577,
+    "runtime_tested":  false,
+    "production_mushaf_exposed":  false,
+    "quran_assets_added":  false,
+    "note":  "Foundation only; tests use synthetic tokens/timings, not a Quran edition or actual recordings"
+}

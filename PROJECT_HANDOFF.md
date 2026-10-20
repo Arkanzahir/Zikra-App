@@ -1,5 +1,23 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Pembaruan fondasi Mushaf
+
+[Laporan terbaru](android/validation/mushaf-foundation-2026-10-21/README.md):
+model halaman, indeks ayat/halaman satu edisi dan lookup timing berdasarkan hash
+recording/posisi player ditambahkan, dengan **17 tes baru; total 69 JVM lulus**,
+APK aplikasi/tes dan lint lulus. Belum renderer/loader/adapter player atau layar
+Mushaf yang dapat dibuka. Tidak ada preview Android baru. Fixture sintetis untuk
+validasi struktur/logika, bukan data Quran/timing asli.
+
+Gambar acuan tambahan disimpan dan ditautkan dari design/QURAN_READER_DESIGN.md.
+Pengguna menunda tes HP dan mengonfirmasi belum memiliki akun Foundation.
+Kandidat konkret QUL: layout 10 (V2 1421H/604 halaman), font 249, script 61.
+Panduan font menyebut bundling native; izin paket/aset eksplisit, versi/hash dan
+korpus penuh belum diverifikasi. Tidak ada data/font dari paket yang diimpor.
+Lanjutkan izin/akses dan audit korpus, baru loader/renderer/persistensi dan
+adapter player. Tes playback asli tetap belum selesai; jangan mengulang emulator
+API 37 tanpa menyelesaikan hambatan yang dicatat di bawah.
+
 ## Proyek/acuan
 
 Arkanzahir/Zikra-App; Android Java/XML, JDK 17, compile/target SDK 35, min 26.

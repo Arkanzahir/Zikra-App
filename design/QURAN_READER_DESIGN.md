@@ -46,6 +46,22 @@ menonaktifkan sorotan/gulir otomatis.
 
 ## Koreksi acuan Mushaf oleh pengguna
 
+### Acuan visual tambahan — 21 Oktober 2026
+
+Pengguna mengonfirmasi gambar berikut sebagai arah tampilan: "seperti itu kurang
+lebih". Ini acuan komposisi UI, bukan sumber teks Quran atau layout edisi cetak.
+
+![Acuan Mushaf dari pengguna](references/mushaf-user-reference-2026-10-21.png)
+
+- Halaman bernuansa kertas terang, bingkai/ornamen tipis, Arab dominan dan nomor
+  ayat inline. Info surah/juz kecil, judul surah berornamen ringkas.
+- Mode membaca tenang; ketuk untuk menampilkan kontrol. Navigasi halaman di bawah.
+- Saat audio aktif, pemutar kecil berada di bawah halaman; sorotan kata emas
+  mengikuti recording/timing terverifikasi. Menu tindakan ayat bersifat kontekstual.
+- Jangan menyalin susunan per-ayat, teks Arab, nomor, atau posisi kata dari gambar
+  konsep. Baris/halaman tetap mengikuti satu edisi terverifikasi, menyambung dan
+  dapat memuat beberapa ayat per baris sesuai edisi. Gambar tidak menetapkan edisi.
+
 Pengguna memberi foto halaman Al-Mulk sebagai koreksi terhadap mockup Mushaf yang
 terlalu memisahkan setiap ayat. **Mockup Mushaf generasi sebelumnya tidak menjadi
 acuan layout.** Foto koreksi belum tersimpan sebagai file di repository ini.
