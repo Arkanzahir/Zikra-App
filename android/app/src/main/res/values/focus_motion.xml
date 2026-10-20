@@ -1,0 +1,21 @@
+<resources>
+    <string name="focus_intro">Sedikit lebih tenang. Satu tugas pada satu waktu.</string>
+    <string name="focus_remaining">menit tersisa</string>
+    <string name="focus_start">Mulai fokus</string>
+    <string name="focus_continue">Lanjutkan</string>
+    <string name="focus_pause">Jeda fokus</string>
+    <string name="focus_pause_break">Jeda istirahat</string>
+    <string name="focus_begin_break">Mulai istirahat</string>
+    <string name="focus_reset">Ulang sesi</string>
+    <string name="focus_ready">SIAP FOKUS</string>
+    <string name="focus_active">WAKTU FOKUS</string>
+    <string name="focus_rest">WAKTU ISTIRAHAT</string>
+    <string name="focus_paused">SEDANG DIJEDA</string>
+    <string name="focus_finished">SESI SELESAI</string>
+    <string name="focus_finish_note">Waktunya ambil jeda</string>
+    <string name="focus_finish_break_note">Siap untuk langkah berikutnya</string>
+    <string name="focus_encourage">Satu sesi kecil, satu langkah maju.</string>
+    <string name="focus_notification_off">Notifikasi belum aktif. Timer tetap dihitung.</string>
+    <string name="focus_information">Tentang timer fokus</string>
+    <string name="focus_information_body">Timer tetap dihitung saat layar ditutup. Notifikasi akhir dapat tertunda oleh sistem atau penghemat daya. Setelah perangkat dimulai ulang, sisa sesi tersimpan dalam keadaan dijeda.\n\nMulai istirahat dan sesi berikutnya sesuai kebutuhanmu. Tugas tetap kamu tandai selesai sendiri di Study Hub.</string>
+</resources>

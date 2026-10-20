@@ -1,4 +1,6 @@
-> **Checkpoint lanjutan — 20 Oktober 2026 (WIB):** branch `feature/map-audio-study-2026-10-20`, berdasarkan `2b13539`, menambahkan status/coba ulang peta, perbaikan unduhan audio rusak, timer fokus dan tenggat/pengingat akademik. [Bukti dan batas](android/validation/map-audio-study-2026-10-20/README.md). Provider live masih ditolak proxy 403; bukan klaim verifikasi peta online/qari asli. Main terakhir terkonfirmasi tetap `1045fa7`.
+> **Terbaru — 20 Oktober 2026 (WIB):** `main` memuat desain Fokus/Pomodoro dengan karakter daun, pose membaca/istirahat, cincin progres dan animasi yang mengikuti pengaturan sistem. Checkpoint lokasi, audio dan Study sampai `f48fd31` turut tercakup. [Video Android, screenshot dan hasil pemeriksaan](android/validation/focus-motion-2026-10-20/README.md). Periksa hash remote sebelum melanjutkan.
+
+> **Checkpoint lanjutan — 20 Oktober 2026 (WIB):** branch `feature/map-audio-study-2026-10-20`, berdasarkan `2b13539`, menambahkan status/coba ulang peta, perbaikan unduhan audio rusak, timer fokus dan tenggat/pengingat akademik. [Bukti dan batas](android/validation/map-audio-study-2026-10-20/README.md). Provider live masih ditolak proxy 403; bukan klaim verifikasi peta online/qari asli. Main sebelum rangkaian checkpoint ini berada pada `1045fa7`.
 
 > **Status terkonfirmasi — 20 Oktober 2026 (WIB):** `main` sudah memuat `1045fa7` (desain lokasi/masjid, pemutar Quran native, background, unduhan per surah, gulir baca dan latihan rentang Hifz). Branch recovery tetap `d9d2ed4`. [Bukti audio dan batas pengujian](android/validation/location-quran-2026-10-19/README.md). Tahap perapian berikutnya ada pada `feature/location-polish-2026-10-20`: [hasil](android/validation/location-polish-2026-10-20/README.md) · [rencana tersimpan](design/IMPROVEMENT_PLAN.md).
 
@@ -11,7 +13,7 @@
 
 ## Mulai di sini untuk sesi chat baru
 
-**Pembaruan: 20 Oktober 2026 (WIB).** Repositori aplikasi utama adalah **[Arkanzahir/Zikra-App](https://github.com/Arkanzahir/Zikra-App)**, project Android Studio di **`android/`**. `Arkanzahir/prototype_zikra` adalah referensi prototipe web lama; jangan memindahkan pengembangan kembali ke React. Versi recovery `d9d2ed4` dan pembaruan Quran `1045fa7` sudah digabung ke **`main`**; tahap berikutnya disimpan pada branch fitur; sumber asli lokal lama belum ditemukan, dan fitur yang hilang sudah dibangun ulang dari referensi chat.
+**Pembaruan: 20 Oktober 2026 (WIB).** Repositori aplikasi utama adalah **[Arkanzahir/Zikra-App](https://github.com/Arkanzahir/Zikra-App)**, project Android Studio di **`android/`**. `Arkanzahir/prototype_zikra` adalah referensi prototipe web lama; jangan memindahkan pengembangan kembali ke React. Versi recovery, Quran, perapian lokasi, timer/pengingat Study hingga `f48fd31` beserta desain animasi Fokus/Pomodoro sudah dimasukkan ke **`main`** sesuai permintaan pengguna; sumber asli lokal lama belum ditemukan, dan fitur yang hilang sudah dibangun ulang dari referensi chat.
 
 Baca dan **buka gambar di [galeri referensi visual](./design/README.md)** terlebih dahulu; sesi baru perlu melihat file gambarnya, bukan hanya membaca label referensi.
 
@@ -98,16 +100,17 @@ APK berada di `android/app/build/outputs/apk/debug/app-debug.apk`. Bukti pemerik
 ```text
 Lanjutkan Arkanzahir/Zikra-App, native Java/XML di android/, JDK 17/SDK 35.
 Periksa git status/branch/commit/remote/perubahan lokal dan fetch tanpa reset.
-GitHub main terakhir terkonfirmasi 1045fa7; recovery/study-hifz-refresh d9d2ed4.
+Main memuat checkpoint recovery/Quran/lokasi/Study dan animasi Fokus/Pomodoro.
+Periksa hash remote terkini; recovery/study-hifz-refresh tetap checkpoint lama d9d2ed4.
 Periksa ulang ref live; gunakan checkout aktual, prototype_zikra referensi lama.
 Baca RECOVERY.md, README, android/API_PLAN.md, design/IMPROVEMENT_PLAN.md,
 android/BUILDING.md dan laporan validasi terbaru yang ditautkan.
 Lokasi bersama/masjid OSM, pemutar Quran background/unduhan per surah,
 gulir baca/follow dan rentang latihan Hifz sudah ada. Audio live qari belum terbukti;
 validasi decoder sebelumnya memakai WAV sintetis, bukan rekaman Quran.
-Branch lanjutan feature/map-audio-study-2026-10-20 berangkat dari 2b13539.
+Checkpoint Study f48fd31 dan desain animasi Pomodoro terbaru sudah tercakup main.
 Timer fokus, tenggat/pengingat Study, SQLite v3, retry peta dan repair audio
-sudah terpasang di branch ini. Periksa ulang hash GitHub dan validasi terbaru.
+sudah terpasang; baca validasi focus-motion-2026-10-20 dan cocokkan hash GitHub.
 Mushaf halaman, statistik dan AI generatif tetap backlog; provider live masih terbuka.
 Pertahankan data pengguna, master logo bulan+buku+spark dan onboarding/Home.
 Tampilkan preview Android aktual, satu putaran uji relevan, ulang bila ada masalah.

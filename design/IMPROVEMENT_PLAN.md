@@ -4,6 +4,16 @@ Rencana ini tersimpan di repository. Status berasal dari source dan bukti Androi
 bukan preview web. Kerjakan per tahap, pertahankan data pengguna, dan cocokkan
 hash GitHub setelah setiap push. Tetap Android Java/XML, JDK 17, SDK/target 35.
 
+## Pembaruan Fokus/Pomodoro berdasarkan rekaman pengguna
+
+Arah aktif mengikuti referensi kedua: satu karakter dengan pose membaca dan istirahat.
+Canvas native menampilkan karakter daun orisinal Pine/emas, cincin progres, napas/kedip,
+transisi fase dan tombol yang tetap terjangkau. Animasi mengikuti pengaturan sistem,
+penghemat daya, lifecycle serta jeda timer. Font 200% memperoleh ruang ekstra.
+Tidak mengubah logo master, schema atau mekanisme penghitungan timer.
+Pengguna meminta seluruh checkpoint terbaru langsung masuk main setelah pemeriksaan.
+[Bukti video dan hasil](../android/validation/focus-motion-2026-10-20/README.md).
+
 ## Titik awal yang telah diperiksa
 
 - Repo utama `Arkanzahir/Zikra-App`; `prototype_zikra` hanya referensi lama.

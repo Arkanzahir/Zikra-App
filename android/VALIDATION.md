@@ -1,3 +1,5 @@
+> **Pemeriksaan terbaru — Fokus/Pomodoro, 20 Oktober 2026:** karakter native berpose fokus/istirahat, motion opt-out/lifecycle dan font 200%. [Rekaman Android, screenshot dan hasil](validation/focus-motion-2026-10-20/README.md). Semua checkpoint sebelumnya dipertahankan pada main sesuai permintaan pengguna.
+
 > **Checkpoint peta/audio/Study — 20 Oktober 2026:** [hasil dan batas pengujian](validation/map-audio-study-2026-10-20/README.md). Memuat transfer audio dengan fixture sintetis, status tile, migrasi SQLite v3, timer fokus dan pengingat akademik. Peta/provider qari live masih ditolak proxy 403.
 
 > **Pemeriksaan terbaru — 20 Oktober 2026 (WIB):** perapian netral masjid/lokasi dan state pencarian. [Hasil, screenshot Android dan batas pengujian](validation/location-polish-2026-10-20/README.md). Pemutar/gulir/Hifz sebelumnya sudah masuk main `1045fa7`: [bukti audio 19 Oktober](validation/location-quran-2026-10-19/README.md), memakai WAV sintetis, bukan rekaman qari. Catatan di bawah adalah checkpoint historis.

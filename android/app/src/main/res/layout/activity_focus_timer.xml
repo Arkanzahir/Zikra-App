@@ -1,21 +1,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/background">
     <com.zikra.app.ui.FeatureHeader android:id="@+id/focusHeader" android:layout_width="match_parent" android:layout_height="wrap_content" />
-    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true" android:clipToPadding="false">
+        <LinearLayout android:id="@+id/focusContent" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="20dp" android:paddingTop="12dp" android:paddingBottom="24dp">
             <TextView android:id="@+id/focusTask" style="@style/NearbySection" android:textSize="22sp" />
-            <TextView style="@style/NearbyCaption" android:layout_marginTop="8dp" android:text="Pilih ritmemu. Satu sesi, satu langkah." />
-            <RadioGroup android:id="@+id/focusDuration" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="@drawable/bg_nearby_panel" android:padding="4dp" android:layout_marginTop="24dp">
+            <TextView style="@style/NearbyCaption" android:layout_marginTop="8dp" android:text="@string/focus_intro" />
+            <RadioGroup android:id="@+id/focusDuration" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="@drawable/bg_nearby_panel" android:padding="4dp" android:layout_marginTop="18dp">
                 <RadioButton android:id="@+id/focusShort" style="@style/NearbyTab" android:text="25 / 5 menit" />
                 <RadioButton android:id="@+id/focusLong" style="@style/NearbyTab" android:text="50 / 10 menit" />
             </RadioGroup>
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp" android:layout_marginTop="24dp" android:background="@drawable/agenda_feature" android:gravity="center">
-                <TextView android:id="@+id/focusPhase" style="@style/NearbyCaption" android:textColor="#D5E2D8" android:gravity="center" android:letterSpacing="0.1" />
-                <TextView android:id="@+id/focusTime" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_marginBottom="20dp" android:textSize="64sp" android:textStyle="bold" android:textColor="@color/white" android:gravity="center" android:maxLines="1" android:autoSizeTextType="uniform" android:autoSizeMinTextSize="30sp" android:autoSizeMaxTextSize="64sp" android:autoSizeStepGranularity="2sp" />
-                <Button android:id="@+id/focusPlay" style="@style/NearbyButton" android:background="@drawable/bg_nearby_card" android:text="Mulai" />
-            </LinearLayout>
-            <Button android:id="@+id/focusReset" style="@style/NearbyButton" android:layout_marginTop="16dp" android:text="Ulang timer" />
-            <Button android:id="@+id/focusNotificationSettings" style="@style/NearbyButton" android:layout_marginTop="12dp" android:text="Atur notifikasi" android:visibility="gone" />
-            <TextView android:id="@+id/focusHint" style="@style/NearbyBody" android:layout_marginTop="20dp" />
+            <FrameLayout android:id="@+id/focusStage" android:layout_width="match_parent" android:layout_height="300dp" android:layout_marginTop="20dp" android:background="@drawable/bg_focus_stage" android:clipToOutline="true">
+                <com.zikra.app.ui.FocusGardenView android:id="@+id/focusGarden" android:layout_width="match_parent" android:layout_height="match_parent" android:importantForAccessibility="no" />
+                <LinearLayout android:layout_width="156dp" android:layout_height="wrap_content" android:layout_gravity="top|center_horizontal" android:layout_marginTop="30dp" android:gravity="center" android:orientation="vertical">
+                    <TextView android:id="@+id/focusPhase" style="@style/NearbyCaption" android:gravity="center" android:letterSpacing="0.08" android:textSize="11sp" />
+                    <TextView android:id="@+id/focusTime" android:layout_width="match_parent" android:layout_height="76dp" android:includeFontPadding="false" android:layout_marginTop="6dp" android:layout_marginBottom="2dp" android:textSize="48sp" android:textStyle="bold" android:textColor="@color/pine" android:gravity="center" android:maxLines="1" android:autoSizeTextType="uniform" android:autoSizeMinTextSize="18sp" android:autoSizeMaxTextSize="48sp" android:autoSizeStepGranularity="2sp" />
+                    <TextView android:id="@+id/focusTotal" style="@style/NearbyCaption" android:gravity="center" android:text="@string/focus_remaining" />
+                </LinearLayout>
+            </FrameLayout>
+            <Button android:id="@+id/focusPlay" style="@style/NearbyPrimary" android:minHeight="56dp" android:layout_marginTop="20dp" android:drawableStart="@drawable/audio_play" android:drawableTint="@color/white" android:drawablePadding="10dp" android:text="@string/focus_start" />
+            <Button android:id="@+id/focusReset" style="@style/NearbyButton" android:background="?android:attr/selectableItemBackground" android:layout_marginTop="4dp" android:text="@string/focus_reset" />
+            <Button android:id="@+id/focusNotificationSettings" style="@style/NearbyButton" android:layout_marginTop="8dp" android:text="Atur notifikasi" android:visibility="gone" />
+            <TextView android:id="@+id/focusHint" style="@style/NearbyCaption" android:gravity="center" android:layout_marginTop="6dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

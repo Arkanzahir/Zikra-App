@@ -14,6 +14,12 @@ import java.util.Locale;
  */
 public final class FocusTimerActivity extends BaseActivity {
   private FocusClock clock;
+  private com.zikra.app.ui.FocusGardenView garden;
+  private com.zikra.app.ui.AmbientMotionPolicy motion;
+  private boolean foreground, entered;
+  private String lastTime = "";
+  private Boolean lastPlaying;
+  private boolean notificationsAllowed;
   private final Handler handler = new Handler(Looper.getMainLooper());
   private AlertDialog confirmation;
   private String taskTitle = "Satu langkah untuk belajarmu";
@@ -37,8 +43,8 @@ public final class FocusTimerActivity extends BaseActivity {
             0,
             "Fokus belajar",
             null,
-            0,
-            null);
+            R.drawable.ic_nearby_info,
+            getString(R.string.focus_information));
     ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.focusHeader))
         .setSurfaceColor(getColor(R.color.background));
     setupScreen("Fokus belajar");
@@ -47,6 +53,25 @@ public final class FocusTimerActivity extends BaseActivity {
         .getDecorView()
         .setSystemUiVisibility(
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+    garden = findViewById(R.id.focusGarden);
+    if (getResources().getConfiguration().fontScale > 1.5f) {
+      View stage = findViewById(R.id.focusStage);
+      android.view.ViewGroup.LayoutParams size = stage.getLayoutParams();
+      size.height = dp(400);
+      stage.setLayoutParams(size);
+    }
+    motion = new com.zikra.app.ui.AmbientMotionPolicy(this, this::refreshMotion);
+    ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.focusHeader))
+        .action()
+        .setOnClickListener(
+            v -> {
+              confirmation =
+                  new AlertDialog.Builder(this)
+                      .setTitle(R.string.focus_information)
+                      .setMessage(R.string.focus_information_body)
+                      .setPositiveButton("Mengerti", null)
+                      .show();
+            });
     clock = FocusTimer.load(this);
     long task = getIntent().getLongExtra("task", -1);
     if (task != -1 && task != clock.taskId) {
@@ -84,6 +109,7 @@ public final class FocusTimerActivity extends BaseActivity {
     findViewById(R.id.focusPlay)
         .setOnClickListener(
             v -> {
+              feedback(v);
               if (clock.running) clock.pause(SystemClock.elapsedRealtime(), FocusTimer.boot(this));
               else {
                 clock.start(SystemClock.elapsedRealtime(), FocusTimer.boot(this));
@@ -145,25 +171,86 @@ public final class FocusTimerActivity extends BaseActivity {
   private void render() {
     clock.update(SystemClock.elapsedRealtime(), FocusTimer.boot(this));
     long seconds = (clock.remaining + 999) / 1000;
-    ((TextView) findViewById(R.id.focusTime))
-        .setText(String.format(Locale.ROOT, "%02d:%02d", seconds / 60, seconds % 60));
-    ((TextView) findViewById(R.id.focusPhase))
-        .setText(clock.finished ? "SESI SELESAI" : clock.breakPhase ? "WAKTU JEDA" : "WAKTU FOKUS");
-    ((TextView) findViewById(R.id.focusPlay))
-        .setText(
-            clock.running
-                ? "Jeda"
-                : clock.finished ? (clock.breakPhase ? "Mulai fokus" : "Mulai jeda") : "Mulai");
-    ((TextView) findViewById(R.id.focusTask)).setText(taskTitle);
+    String time = String.format(Locale.ROOT, "%02d:%02d", seconds / 60, seconds % 60);
+    if (!lastTime.equals(time)) {
+      lastTime = time;
+      ((TextView) findViewById(R.id.focusTime)).setText(time);
+    }
+    long total = (clock.breakPhase ? clock.breakMinutes : clock.focusMinutes) * 60000L;
+    boolean paused = !clock.running && !clock.finished && clock.remaining < total;
+    text(
+        R.id.focusPhase,
+        clock.finished
+            ? R.string.focus_finished
+            : paused
+                ? R.string.focus_paused
+                : clock.breakPhase
+                    ? R.string.focus_rest
+                    : clock.running ? R.string.focus_active : R.string.focus_ready);
+    text(
+        R.id.focusTotal,
+        clock.finished
+            ? (clock.breakPhase ? R.string.focus_finish_break_note : R.string.focus_finish_note)
+            : R.string.focus_remaining);
+    Button play = findViewById(R.id.focusPlay);
+    text(
+        R.id.focusPlay,
+        clock.running
+            ? (clock.breakPhase ? R.string.focus_pause_break : R.string.focus_pause)
+            : clock.finished
+                ? (clock.breakPhase ? R.string.focus_start : R.string.focus_begin_break)
+                : paused ? R.string.focus_continue : R.string.focus_start);
+    if (lastPlaying == null || lastPlaying != clock.running) {
+      lastPlaying = clock.running;
+      play.setCompoundDrawablesRelativeWithIntrinsicBounds(
+          clock.running ? R.drawable.audio_pause : R.drawable.audio_play, 0, 0, 0);
+    }
+    TextView title = findViewById(R.id.focusTask);
+    if (!taskTitle.contentEquals(title.getText())) title.setText(taskTitle);
     findViewById(R.id.focusNotificationSettings)
-        .setVisibility(StudyReminders.permitted(this) ? View.GONE : View.VISIBLE);
-    ((TextView) findViewById(R.id.focusHint))
-        .setText(
-            StudyReminders.permitted(this)
-                ? "Timer tetap dihitung saat layar ditutup. Notifikasi dapat tertunda oleh"
-                    + " penghemat daya. Tugas ditandai selesai sendiri."
-                : "Timer tetap berjalan; notifikasi belum diizinkan. Buka halaman ini untuk melihat"
-                    + " sisa waktu. Tugas ditandai selesai sendiri.");
+        .setVisibility(notificationsAllowed ? View.GONE : View.VISIBLE);
+    text(
+        R.id.focusHint,
+        notificationsAllowed ? R.string.focus_encourage : R.string.focus_notification_off);
+    garden.snapshot(clock.remaining, total, clock.running, clock.breakPhase, clock.finished);
+  }
+
+  private void text(int id, int resource) {
+    TextView view = findViewById(id);
+    String value = getString(resource);
+    if (!value.contentEquals(view.getText())) view.setText(value);
+  }
+
+  private void refreshMotion() {
+    boolean enabled = motion != null && motion.enabled();
+    if (garden != null) garden.setMotion(foreground, enabled);
+    if (!enabled) {
+      View content = findViewById(R.id.focusContent);
+      content.animate().cancel();
+      content.setAlpha(1);
+      content.setTranslationY(0);
+      View play = findViewById(R.id.focusPlay);
+      play.animate().cancel();
+      play.setScaleX(1);
+      play.setScaleY(1);
+    }
+  }
+
+  private void feedback(View view) {
+    if (motion == null || !motion.enabled()) return;
+    view.animate().cancel();
+    view.setScaleX(.975f);
+    view.setScaleY(.975f);
+    view.animate().scaleX(1).scaleY(1).setDuration(160).start();
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int code, String[] permissions, int[] grants) {
+    super.onRequestPermissionsResult(code, permissions, grants);
+    if (code == 902 && clock != null) {
+      notificationsAllowed = StudyReminders.permitted(this);
+      render();
+    }
   }
 
   private void loadTitle(long id) {
@@ -180,6 +267,16 @@ public final class FocusTimerActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    foreground = true;
+    notificationsAllowed = StudyReminders.permitted(this);
+    if (motion != null) motion.start();
+    if (!entered && motion != null && motion.enabled()) {
+      entered = true;
+      View content = findViewById(R.id.focusContent);
+      content.setAlpha(0);
+      content.setTranslationY(dp(10));
+      content.animate().alpha(1).translationY(0).setDuration(360).start();
+    }
     if (clock != null) {
       clock = FocusTimer.load(this);
       loadTitle(clock.taskId);
@@ -189,6 +286,16 @@ public final class FocusTimerActivity extends BaseActivity {
 
   @Override
   protected void onPause() {
+    foreground = false;
+    if (motion != null) motion.stop();
+    View content = findViewById(R.id.focusContent);
+    content.animate().cancel();
+    content.setAlpha(1);
+    content.setTranslationY(0);
+    View play = findViewById(R.id.focusPlay);
+    play.animate().cancel();
+    play.setScaleX(1);
+    play.setScaleY(1);
     handler.removeCallbacks(tick);
     if (clock != null) {
       clock.update(SystemClock.elapsedRealtime(), FocusTimer.boot(this));
@@ -200,6 +307,7 @@ public final class FocusTimerActivity extends BaseActivity {
   @Override
   protected void onDestroy() {
     handler.removeCallbacksAndMessages(null);
+    if (motion != null) motion.stop();
     if (confirmation != null) confirmation.dismiss();
     super.onDestroy();
   }

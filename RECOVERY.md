@@ -2,6 +2,14 @@
 
 ## Status terbaru
 
+Main kini mencakup checkpoint `f48fd31` dan desain Fokus/Pomodoro terbaru berdasarkan
+referensi gerak pengguna: karakter daun membaca/istirahat, ring progres, gerak napas/
+kedip dan penghormatan pengaturan animasi/penghemat daya. Pengguna meminta push langsung
+ke main setelah validasi. [Bukti terbaru](android/validation/focus-motion-2026-10-20/README.md).
+Hitungan monotonic, alarm, tugas dan SQLite v3 dipertahankan. Baca hash remote terbaru;
+catatan branch/commit di bawah merupakan urutan checkpoint sebelum perapian animasi ini.
+
+
 Tahap berikutnya di `feature/map-audio-study-2026-10-20`, berdasarkan `2b13539`:
 status/coba ulang peta saat tile gagal, perbaikan pengunduhan ulang cache audio rusak,
 Study berurutan tenggat, timer fokus/jeda dan pengingat tugas opsional. SQLite v3
