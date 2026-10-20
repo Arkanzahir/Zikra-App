@@ -221,6 +221,28 @@ public final class NearbyDesignTest extends InstrumentationTestCase {
     assertEquals(View.VISIBLE, page.findViewById(R.id.mosquesEmpty).getVisibility());
   }
 
+  public void testMissingMapTilesShowStatusAndRetry() throws Exception {
+    launch();
+    loadCached();
+    click(R.id.mosquesMapToggle);
+    getInstrumentation().runOnMainSync(() -> mapUnchecked().setUseDataConnection(false));
+    java.lang.reflect.Field field = NearbyMosquesActivity.class.getDeclaredField("tileEvents");
+    field.setAccessible(true);
+    android.os.Handler events = (android.os.Handler) field.get(page);
+    events.sendEmptyMessage(org.osmdroid.tileprovider.MapTileProviderBase.MAPTILE_FAIL_ID);
+    getInstrumentation().waitForIdleSync();
+    assertEquals(View.VISIBLE, page.findViewById(R.id.mosquesMapRetry).getVisibility());
+    assertTrue(text(R.id.mosquesMapNotice).contains("belum termuat"));
+    UiEvidence.capture(getInstrumentation(), "MapMissingTilesExplicit");
+    click(R.id.mosquesMapRetry);
+    assertTrue(text(R.id.mosquesMapNotice).contains("Memuat"));
+    events.sendEmptyMessage(org.osmdroid.tileprovider.MapTileProviderBase.MAPTILE_SUCCESS_ID);
+    getInstrumentation().waitForIdleSync();
+    assertEquals(View.GONE, page.findViewById(R.id.mosquesMapNotice).getVisibility());
+    click(R.id.mosquesListToggle);
+    assertEquals(2, results().getChildCount());
+  }
+
   private MapView mapUnchecked() {
     try {
       return map();

@@ -3,7 +3,6 @@ package com.zikra.app.audio;
 import android.app.*;
 import android.content.*;
 import android.content.pm.ServiceInfo;
-import android.media.MediaMetadataRetriever;
 import android.os.*;
 import android.util.AtomicFile;
 import com.zikra.app.QuranActivity;
@@ -77,7 +76,7 @@ public final class QuranDownloadService extends Service {
             textPages();
             for (int verse = 1; verse <= Recitation.count(chapter); verse++) {
               checkCancelled();
-              if (!AudioFiles.available(this, qari, chapter, verse)) download(verse);
+              AudioTransfer.ensure(this, http, qari, chapter, verse, this::checkCancelled);
               update(
                   "Mengunduh "
                       + QuranChapters.all(this).get(chapter - 1).name
@@ -185,55 +184,6 @@ public final class QuranDownloadService extends Service {
           throw failure;
         }
       }
-    }
-  }
-
-  private void download(int verse) throws Exception {
-    File target = AudioFiles.file(this, qari, chapter, verse);
-    target.getParentFile().mkdirs();
-    File partial = new File(target.getPath() + ".part");
-    try {
-      Request request =
-          new Request.Builder()
-              .url(Recitation.url(qari, chapter, verse))
-              .header("User-Agent", "Zikra-Android/1.0 (+https://github.com/Arkanzahir/Zikra-App)")
-              .build();
-      try (Response response = http.newCall(request).execute()) {
-        if (!response.isSuccessful() || response.body() == null)
-          throw new IOException("Audio HTTP");
-        try (InputStream in = response.body().byteStream();
-            FileOutputStream out = new FileOutputStream(partial)) {
-          byte[] bytes = new byte[16384];
-          int n;
-          long size = 0;
-          while ((n = in.read(bytes)) != -1) {
-            checkCancelled();
-            size += n;
-            if (size > 20L * 1024 * 1024) throw new IOException("Audio too large");
-            out.write(bytes, 0, n);
-          }
-          out.getFD().sync();
-          if (size < 129
-              || (response.body().contentLength() >= 0 && size != response.body().contentLength()))
-            throw new IOException("Incomplete audio");
-        }
-      }
-      MediaMetadataRetriever metadata = new MediaMetadataRetriever();
-      try {
-        metadata.setDataSource(partial.getAbsolutePath());
-        String mime = metadata.extractMetadata(MediaMetadataRetriever.METADATA_KEY_MIMETYPE);
-        String duration = metadata.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
-        if (mime == null
-            || !mime.startsWith("audio/")
-            || duration == null
-            || Long.parseLong(duration) < 1) throw new IOException("Invalid audio");
-      } finally {
-        metadata.release();
-      }
-      checkCancelled();
-      if (!partial.renameTo(target)) throw new IOException("Cannot save audio");
-    } finally {
-      if (partial.exists()) partial.delete();
     }
   }
 

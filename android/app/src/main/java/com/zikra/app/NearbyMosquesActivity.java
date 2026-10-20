@@ -36,6 +36,28 @@ public final class NearbyMosquesActivity extends BaseActivity {
   private volatile boolean resumed;
   private boolean searching, hasSearched, restoreResults, restoreMap;
   private MapView mapView;
+  private final android.os.Handler mapStatus =
+      new android.os.Handler(android.os.Looper.getMainLooper());
+  private boolean mapHasTiles;
+  private long mapRetryAt;
+  private final Runnable mapTimeout = () -> mapUnavailable();
+  private final android.os.Handler tileEvents =
+      new android.os.Handler(
+          android.os.Looper.getMainLooper(),
+          message -> {
+            if (!resumed
+                || mapView == null
+                || findViewById(R.id.mosquesMap).getVisibility() != View.VISIBLE) return true;
+            if (message.what == org.osmdroid.tileprovider.MapTileProviderBase.MAPTILE_SUCCESS_ID) {
+              mapHasTiles = true;
+              mapStatus.removeCallbacks(mapTimeout);
+              findViewById(R.id.mosquesMapNotice).setVisibility(View.GONE);
+              findViewById(R.id.mosquesMapRetry).setVisibility(View.GONE);
+              text(R.id.mosquesMapStatus, getString(R.string.nearby_map_ready));
+            } else if (message.what == org.osmdroid.tileprovider.MapTileProviderBase.MAPTILE_FAIL_ID
+                && !mapHasTiles) mapUnavailable();
+            return true;
+          });
   private MosquePlace selectedPlace;
   private final List<MosquePlace> places = new ArrayList<>();
   private AlertDialog sourceDialog;
@@ -81,6 +103,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
                         + android.net.Uri.encode(
                             "masjid near " + location.latitude + "," + location.longitude)));
     findViewById(R.id.mosquesAttribution).setOnClickListener(v -> chooseProvider());
+    findViewById(R.id.mosquesMapRetry).setOnClickListener(v -> retryMap());
     labels();
   }
 
@@ -291,6 +314,8 @@ public final class NearbyMosquesActivity extends BaseActivity {
     findViewById(R.id.mosquesMapStatus).setVisibility(show ? View.VISIBLE : View.GONE);
     if (!show) {
       container.setVisibility(View.GONE);
+      mapStatus.removeCallbacks(mapTimeout);
+      findViewById(R.id.mosquesMapRetry).setVisibility(View.GONE);
       if (mapView != null) {
         mapView.setUseDataConnection(false);
         mapView.onPause();
@@ -317,7 +342,10 @@ public final class NearbyMosquesActivity extends BaseActivity {
       mapView.setMultiTouchControls(true);
       mapView.setMinZoomLevel(3d);
       mapView.setMaxZoomLevel(19d);
-      container.addView(mapView, new FrameLayout.LayoutParams(-1, -1));
+      mapView.getMapOverlay().setLoadingBackgroundColor(getColor(R.color.nearby_panel));
+      mapView.getMapOverlay().setLoadingLineColor(getColor(R.color.nearby_panel));
+      mapView.getTileProvider().getTileRequestCompleteHandlers().add(tileEvents);
+      container.addView(mapView, 0, new FrameLayout.LayoutParams(-1, -1));
       mapView.setOnTouchListener(
           (v, e) -> {
             boolean end =
@@ -344,6 +372,35 @@ public final class NearbyMosquesActivity extends BaseActivity {
     mapView.onResume();
     updateMap();
     updateSelection();
+    if (!mapHasTiles) mapLoading();
+  }
+
+  private void mapLoading() {
+    text(R.id.mosquesMapNotice, getString(R.string.nearby_map_loading));
+    findViewById(R.id.mosquesMapNotice).setVisibility(View.VISIBLE);
+    findViewById(R.id.mosquesMapRetry).setVisibility(View.GONE);
+    mapStatus.removeCallbacks(mapTimeout);
+    mapStatus.postDelayed(mapTimeout, 12000);
+  }
+
+  private void mapUnavailable() {
+    mapStatus.removeCallbacks(mapTimeout);
+    text(R.id.mosquesMapNotice, getString(R.string.nearby_map_unavailable));
+    findViewById(R.id.mosquesMapNotice).setVisibility(View.VISIBLE);
+    findViewById(R.id.mosquesMapRetry).setVisibility(View.VISIBLE);
+    text(R.id.mosquesMapStatus, getString(R.string.nearby_map_help));
+  }
+
+  private void retryMap() {
+    long now = android.os.SystemClock.elapsedRealtime();
+    if (now < mapRetryAt) {
+      text(R.id.mosquesMapStatus, getString(R.string.nearby_map_wait));
+      return;
+    }
+    mapRetryAt = now + 15000;
+    mapLoading();
+    mapView.setUseDataConnection(true);
+    mapView.invalidate();
   }
 
   private void updateMap() {
@@ -351,6 +408,8 @@ public final class NearbyMosquesActivity extends BaseActivity {
     mapView.getOverlays().clear();
     Marker origin = new Marker(mapView);
     origin.setPosition(new GeoPoint(location.latitude, location.longitude));
+    origin.setIcon(getDrawable(R.drawable.ic_nearby_pin));
+    origin.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
     origin.setTitle("Lokasi pilihan");
     origin.setSnippet(location.label);
     mapView.getOverlays().add(origin);
@@ -388,6 +447,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
     if (mapView != null && findViewById(R.id.mosquesMap).getVisibility() == View.VISIBLE) {
       mapView.setUseDataConnection(true);
       mapView.onResume();
+      if (!mapHasTiles) mapLoading();
     }
     LocationPoint selected = LocationStore.current(this);
     if (!selected.key().equals(location.key())) {
@@ -396,6 +456,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
       generation++;
       places.clear();
       selectedPlace = null;
+      mapHasTiles = false;
       searching = false;
       hasSearched = false;
       findViewById(R.id.mosquesProgress).setVisibility(View.GONE);
@@ -425,6 +486,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
       text(R.id.mosquesStatus, "Pencarian dihentikan. Ketuk Cari masjid untuk mencoba lagi.");
     }
     resumed = false;
+    mapStatus.removeCallbacks(mapTimeout);
     generation++;
     search.cancel();
     if (mapView != null) {
@@ -446,7 +508,12 @@ public final class NearbyMosquesActivity extends BaseActivity {
   protected void onDestroy() {
     search.close();
     work.shutdownNow();
-    if (mapView != null) mapView.onDetach();
+    mapStatus.removeCallbacksAndMessages(null);
+    tileEvents.removeCallbacksAndMessages(null);
+    if (mapView != null) {
+      mapView.getTileProvider().getTileRequestCompleteHandlers().remove(tileEvents);
+      mapView.onDetach();
+    }
     super.onDestroy();
   }
 }

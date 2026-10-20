@@ -24,7 +24,10 @@
                     <TextView android:id="@+id/mosquesEmptyBody" style="@style/NearbyBody" android:gravity="center" android:layout_marginTop="8dp" android:text="@string/nearby_empty_body" />
                 </LinearLayout>
                 <LinearLayout android:id="@+id/mosquesResults" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="16dp" />
-                <FrameLayout android:id="@+id/mosquesMap" android:layout_width="match_parent" android:layout_height="300dp" android:layout_marginTop="16dp" android:background="@drawable/bg_nearby_panel" android:clipToOutline="true" android:visibility="gone" />
+                <FrameLayout android:id="@+id/mosquesMap" android:layout_width="match_parent" android:layout_height="300dp" android:layout_marginTop="16dp" android:background="@drawable/bg_nearby_panel" android:clipToOutline="true" android:visibility="gone">
+                    <TextView android:id="@+id/mosquesMapNotice" style="@style/NearbyBody" android:layout_width="wrap_content" android:layout_gravity="center" android:layout_margin="16dp" android:padding="16dp" android:background="@drawable/bg_nearby_card" android:gravity="center" android:accessibilityLiveRegion="polite" android:importantForAccessibility="yes" />
+                </FrameLayout>
+                <Button android:id="@+id/mosquesMapRetry" style="@style/NearbyButton" android:layout_marginTop="8dp" android:text="@string/nearby_map_retry" android:visibility="gone" />
                 <FrameLayout android:id="@+id/mosquesSelection" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:visibility="gone" />
                 <TextView android:id="@+id/mosquesMapStatus" style="@style/NearbyCaption" android:layout_marginTop="8dp" android:visibility="gone" />
                 <TextView android:id="@+id/mosquesAttribution" style="@style/NearbyCaption" android:minHeight="48dp" android:gravity="center_vertical" android:layout_marginTop="8dp" android:clickable="true" android:focusable="true" />

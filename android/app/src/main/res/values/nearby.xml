@@ -42,4 +42,10 @@
         <item name="android:textColor">@color/nearby_tab_text</item><item name="android:textSize">14sp</item><item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item><item name="android:padding">12dp</item>
     </style>
+    <string name="nearby_map_loading">Memuat peta jalan…</string>
+    <string name="nearby_map_unavailable">Peta jalan belum termuat</string>
+    <string name="nearby_map_help">Periksa koneksi, lalu coba muat peta lagi. Daftar dan petunjuk arah tetap bisa digunakan.</string>
+    <string name="nearby_map_retry">Muat ulang peta</string>
+    <string name="nearby_map_wait">Tunggu sebentar sebelum memuat ulang peta.</string>
+    <string name="nearby_map_ready">Peta dimuat bertahap. Ketuk penanda untuk memilih masjid.</string>
 </resources>

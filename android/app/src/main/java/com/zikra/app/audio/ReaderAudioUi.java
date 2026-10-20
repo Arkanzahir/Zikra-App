@@ -39,6 +39,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
   private QuranAudioService service;
   private QuranAudioService.State state;
   private boolean bound, reading, seeking, follow, touchPaused, auto, awaitingPage, active;
+  private Boolean showingPlaying;
   private int chapter, first, last, repeats, speed, lastFollowed;
   private String qari;
   private boolean loop;
@@ -121,6 +122,11 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     loop = prefs.getBoolean("loop", false);
     follow = prefs.getBoolean("follow", true);
     speed = Math.max(5, Math.min(60, prefs.getInt("scroll_speed", 20)));
+    a.findViewById(R.id.quranAudioTitle)
+        .setOnClickListener(
+            v -> {
+              if (state != null && state.chapter > 0) host.follow(state.chapter, state.verse);
+            });
     a.findViewById(R.id.quranAudioPlay).setOnClickListener(v -> playPause());
     a.findViewById(R.id.quranAudioPrevious)
         .setOnClickListener(v -> send(QuranAudioService.PREVIOUS));
@@ -281,13 +287,10 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     text(R.id.quranAudioTitle, title);
     boolean otherChapter = state != null && state.chapter > 0 && state.chapter != chapter;
     TextView heading = activity.findViewById(R.id.quranAudioTitle);
-    heading.setOnClickListener(
-        v -> {
-          if (state != null && state.chapter > 0) host.follow(state.chapter, state.verse);
-        });
-    heading.setClickable(otherChapter);
-    heading.setFocusable(otherChapter);
-    heading.setMinHeight(otherChapter ? dp(48) : 0);
+    if (heading.isClickable() != otherChapter) heading.setClickable(otherChapter);
+    if (heading.isFocusable() != otherChapter) heading.setFocusable(otherChapter);
+    if (heading.getMinHeight() != (otherChapter ? dp(48) : 0))
+      heading.setMinHeight(otherChapter ? dp(48) : 0);
     String status =
         current
             ? state.status + " · " + Recitation.NAMES[Recitation.reciterIndex(state.reciter)]
@@ -317,15 +320,19 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     }
     text(R.id.quranAudioStatus, status);
     ImageButton play = activity.findViewById(R.id.quranAudioPlay);
-    play.setImageResource(playing ? R.drawable.audio_pause : R.drawable.audio_play);
-    play.setContentDescription(playing ? "Jeda murottal" : "Putar murottal");
+    if (showingPlaying == null || showingPlaying != playing) {
+      showingPlaying = playing;
+      play.setImageResource(playing ? R.drawable.audio_pause : R.drawable.audio_play);
+      play.setContentDescription(playing ? "Jeda murottal" : "Putar murottal");
+    }
     activity.findViewById(R.id.quranAudioPrevious).setEnabled(current && state.verse > state.first);
     activity.findViewById(R.id.quranAudioNext).setEnabled(current && state.verse < state.last);
     SeekBar seek = activity.findViewById(R.id.quranAudioSeek);
     seek.setEnabled(current && state.duration > 0);
     if (!seeking) {
-      seek.setMax(current ? state.duration : 0);
-      seek.setProgress(current ? state.position : 0);
+      int max = current ? state.duration : 0, progress = current ? state.position : 0;
+      if (seek.getMax() != max) seek.setMax(max);
+      if (seek.getProgress() != progress) seek.setProgress(progress);
     }
     text(
         R.id.quranAudioTime,
