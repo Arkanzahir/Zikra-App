@@ -256,6 +256,46 @@ public final class FocusMotionTest extends InstrumentationTestCase {
     assertTrue(page.findViewById(R.id.focusPlay).getGlobalVisibleRect(new android.graphics.Rect()));
   }
 
+  public void testPauseUsesRestPoseWithoutStartingBreakAndResumeReadsAgain() {
+    FocusClock seed = FocusTimer.load(context);
+    seed.reset(25, 5, task);
+    FocusTimer.save(context, seed);
+    launch();
+    assertFalse((Boolean) field(garden(), "resting"));
+    click(R.id.focusPlay);
+    await(this::animating);
+    await(() -> (Float) field(garden(), "motionTime") > .25f);
+    click(R.id.focusPlay);
+    await(() -> (Float) field(garden(), "phaseMix") > .99f);
+    FocusClock paused = FocusTimer.load(context);
+    assertFalse(paused.running);
+    assertFalse("Pausing the character never starts a break timer", paused.breakPhase);
+    assertTrue(paused.remaining > 24 * 60000L);
+    assertFalse(animating());
+    assertEquals(
+        "SEDANG DIJEDA", ((TextView) page.findViewById(R.id.focusPhase)).getText().toString());
+    UiEvidence.capture(getInstrumentation(), "FocusPauseRestPose");
+    Instrumentation.ActivityMonitor monitor =
+        getInstrumentation().addMonitor(FocusTimerActivity.class.getName(), null, false);
+    try {
+      main(page::recreate);
+      page = (FocusTimerActivity) getInstrumentation().waitForMonitorWithTimeout(monitor, 20000);
+      assertNotNull(page);
+      await(() -> (Float) field(garden(), "phaseMix") > .99f);
+      assertFalse(animating());
+      assertFalse(FocusTimer.load(context).breakPhase);
+      assertEquals(paused.remaining, FocusTimer.load(context).remaining);
+    } finally {
+      getInstrumentation().removeMonitor(monitor);
+    }
+    click(R.id.focusPlay);
+    await(() -> (Float) field(garden(), "phaseMix") < .01f);
+    await(this::animating);
+    assertTrue(FocusTimer.load(context).running);
+    assertFalse(FocusTimer.load(context).breakPhase);
+    assertTrue(FocusTimer.load(context).remaining <= paused.remaining);
+  }
+
   private Bitmap characterFrame() {
     final Bitmap[] result = new Bitmap[1];
     main(
@@ -296,6 +336,7 @@ public final class FocusMotionTest extends InstrumentationTestCase {
     click(R.id.focusPlay);
     await(() -> !animating());
     long remaining = FocusTimer.load(context).remaining;
+    await(() -> (Float) field(garden(), "phaseMix") > .99f);
     SystemClock.sleep(400);
     Bitmap paused = characterFrame();
     SystemClock.sleep(900);

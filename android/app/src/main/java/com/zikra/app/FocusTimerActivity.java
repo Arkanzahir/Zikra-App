@@ -208,7 +208,9 @@ public final class FocusTimerActivity extends BaseActivity {
         notificationsAllowed ? R.string.focus_encourage : R.string.focus_notification_off);
     ((ProgressBar) findViewById(R.id.focusProgress))
         .setProgress((int) Math.max(0, Math.min(1000, 1000L - clock.remaining * 1000L / total)));
-    garden.snapshot(clock.remaining, total, clock.running, clock.breakPhase, clock.finished);
+    // A pause changes only the companion pose; it does not start the break countdown.
+    garden.snapshot(
+        clock.remaining, total, clock.running, clock.breakPhase || paused, clock.finished);
   }
 
   private void text(int id, int resource) {

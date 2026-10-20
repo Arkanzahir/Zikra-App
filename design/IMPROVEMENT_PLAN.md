@@ -4,7 +4,17 @@ Rencana ini tersimpan di repository. Status berasal dari source dan bukti Androi
 bukan preview web. Kerjakan per tahap, pertahankan data pengguna, dan cocokkan
 hash GitHub setelah setiap push. Tetap Android Java/XML, JDK 17, SDK/target 35.
 
+## Arah Quran/Mushaf yang dibahas setelah Pomodoro
+
+[Acuan gabungan dan batas implementasi](QURAN_READER_DESIGN.md) tersimpan. Desain
+reader/panel audio baru, Mushaf halaman dan sorotan kata masih rencana; jangan
+menganggap gambar konsep sebagai source atau bukti APK.
+
 ## Pembaruan Fokus/Pomodoro berdasarkan rekaman pengguna
+
+Permintaan setelah `b8f3a04`: Jeda fokus juga memakai pose duduk/cangkir, lalu kembali
+membaca saat Lanjutkan. Sisa waktu dan fase timer tidak diganti.
+[Bukti pose jeda](../android/validation/focus-pause-pose-2026-10-20/README.md).
 
 Arah aktif mengikuti referensi kedua: satu karakter dengan pose membaca dan istirahat.
 Revisi setelah umpan balik pengguna pada `7f9d60a`: cincin besar dihapus, angka di atas

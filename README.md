@@ -1,3 +1,7 @@
+> **Pose jeda fokus — 20 Oktober 2026 (WIB):** Jeda menampilkan karakter duduk membawa cangkir sambil menyimpan sisa fokus; Lanjutkan kembali ke pose membaca. Fase break tetap terpisah. [Bukti dan validasi](android/validation/focus-pause-pose-2026-10-20/README.md).
+
+> **Acuan Quran berikutnya:** [desain katalog/reader/panel audio dan koreksi Mushaf](design/QURAN_READER_DESIGN.md) kini tersimpan. Ini rencana, bukan fitur baru pada APK; sinkronisasi kata dan Mushaf halaman masih membutuhkan data terverifikasi.
+
 > **Revisi terbaru — 20 Oktober 2026 (WIB):** gerak karakter Fokus/Pomodoro diperjelas dan komposisinya mengikuti angka → karakter → kontrol. Cincin besar diganti progres tipis; angka dan karakter tidak lagi ditumpuk. [Video Android, screenshot dan validasi](android/validation/focus-motion-placement-2026-10-20/README.md). Tahap sebelumnya di bawah merupakan riwayat implementasi, bukan persetujuan visual pengguna.
 
 > **Terbaru — 20 Oktober 2026 (WIB):** `main` memuat desain Fokus/Pomodoro dengan karakter daun, pose membaca/istirahat, cincin progres dan animasi yang mengikuti pengaturan sistem. Checkpoint lokasi, audio dan Study sampai `f48fd31` turut tercakup. [Video Android, screenshot dan hasil pemeriksaan](android/validation/focus-motion-2026-10-20/README.md). Periksa hash remote sebelum melanjutkan.

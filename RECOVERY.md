@@ -2,6 +2,12 @@
 
 ## Status terbaru
 
+Revisi berikutnya berdasarkan `b8f3a04`: pose cangkir juga dipakai saat jeda fokus;
+lanjut kembali membaca, tanpa mengubah fase atau sisa waktu.
+[Bukti](android/validation/focus-pause-pose-2026-10-20/README.md).
+[Acuan Quran/Mushaf yang disepakati](design/QURAN_READER_DESIGN.md) kini disimpan;
+reader baru, Mushaf dan sorotan kata masih rencana, bukan fitur APK pada checkpoint ini.
+
 Revisi setelah `7f9d60a`: pengguna menilai gerak/posisi karakter belum sesuai referensi.
 Susunan kini angka di atas karakter, progres tipis, gerak badan/kepala/tangan/buku
 lebih terlihat dan pose istirahat duduk. [Bukti terbaru](android/validation/focus-motion-placement-2026-10-20/README.md).

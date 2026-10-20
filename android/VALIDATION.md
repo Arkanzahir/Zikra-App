@@ -1,3 +1,5 @@
+> **Pose jeda fokus — 20 Oktober 2026:** [hasil Android](validation/focus-pause-pose-2026-10-20/README.md). Pose istirahat saat paused, sisa fokus tetap, kembali membaca saat lanjut. Acuan desain Quran disimpan terpisah sebagai rencana.
+
 > **Revisi gerak/posisi Fokus — 20 Oktober 2026:** [video Android dan tes piksel karakter](validation/focus-motion-placement-2026-10-20/README.md). Angka/karakter terpisah, progres tipis, pose duduk saat istirahat dan pengujian font 200%.
 
 > **Pemeriksaan terbaru — Fokus/Pomodoro, 20 Oktober 2026:** karakter native berpose fokus/istirahat, motion opt-out/lifecycle dan font 200%. [Rekaman Android, screenshot dan hasil](validation/focus-motion-2026-10-20/README.md). Semua checkpoint sebelumnya dipertahankan pada main sesuai permintaan pengguna.

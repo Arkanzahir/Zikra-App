@@ -1,0 +1,43 @@
+{
+  "date_wib": "2026-10-20",
+  "source_parent": "b8f3a04df7f2e7dbb6cb6e4fc09881ac158687ce",
+  "unit": {
+    "tests": 52,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Warning": 545
+  },
+  "runtime_api28_unique_methods_passed": 9,
+  "motion_methods": 7,
+  "timer_regression_methods": 2,
+  "pause_pose": "resting, stationary after transition",
+  "pause_starts_break_timer": false,
+  "recreation_preserves_paused_focus": true,
+  "resume_pose": "reading, animated",
+  "preview": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 540,
+        "height": 1170
+      }
+    ],
+    "format": {
+      "duration": "22.382078",
+      "size": "293766"
+    }
+  },
+  "preview_fixture": "temporary task, initial time, session completion advanced for break demonstration",
+  "schema_changed": false,
+  "quran_redesign_implemented": false,
+  "mushaf_implemented": false,
+  "word_timing_implemented": false,
+  "quran_concept_and_requirements_saved": true,
+  "physical_device_tested": false,
+  "runtime_api35_tested": false,
+  "apk_sha256": "9e982ec6951645cdaa2ed1656304a7cf2af88dbe9a6fe7a92225e915d3790bca"
+}
