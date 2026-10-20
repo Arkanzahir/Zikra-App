@@ -34,7 +34,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
   private long lastRequest = -30000;
   private long nextAllowedSearch;
   private volatile boolean resumed;
-  private boolean searching, restoreResults, restoreMap;
+  private boolean searching, hasSearched, restoreResults, restoreMap;
   private MapView mapView;
   private MosquePlace selectedPlace;
   private final List<MosquePlace> places = new ArrayList<>();
@@ -57,10 +57,10 @@ public final class NearbyMosquesActivity extends BaseActivity {
             0,
             null);
     ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.mosquesHeader))
-        .setSurfaceColor(getColor(R.color.onboarding_paper));
+        .setSurfaceColor(getColor(R.color.nearby_surface));
     setupScreen("Masjid terdekat");
-    getWindow().setStatusBarColor(getColor(R.color.onboarding_paper));
-    getWindow().setNavigationBarColor(getColor(R.color.onboarding_paper));
+    getWindow().setStatusBarColor(getColor(R.color.nearby_surface));
+    getWindow().setNavigationBarColor(getColor(R.color.nearby_surface));
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(
@@ -131,6 +131,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
     int token = ++generation;
     LocationPoint point = location;
     searching = true;
+    if (places.isEmpty()) text(R.id.mosquesCount, getString(R.string.nearby_loading));
     findViewById(R.id.mosquesProgress).setVisibility(View.VISIBLE);
     findViewById(R.id.mosquesEmpty).setVisibility(View.GONE);
     ((Button) findViewById(R.id.mosquesRefresh)).setEnabled(false);
@@ -145,6 +146,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
                 () -> {
                   if (!current(token)) return;
                   searching = false;
+                  hasSearched = true;
                   findViewById(R.id.mosquesProgress).setVisibility(View.GONE);
                   places.clear();
                   places.addAll(found);
@@ -178,16 +180,26 @@ public final class NearbyMosquesActivity extends BaseActivity {
                   if (!current(token)) return;
                   searching = false;
                   findViewById(R.id.mosquesProgress).setVisibility(View.GONE);
-                  if (e instanceof MosqueSearch.RateLimited)
+                  boolean limited = e instanceof MosqueSearch.RateLimited;
+                  if (limited)
                     nextAllowedSearch =
                         SystemClock.elapsedRealtime() + ((MosqueSearch.RateLimited) e).retryAfterMs;
                   ((Button) findViewById(R.id.mosquesRefresh)).setEnabled(true);
                   text(
                       R.id.mosquesStatus,
-                      "Pencarian belum tersedia. Periksa koneksi dan coba lagi nanti."
+                      (limited
+                              ? getString(
+                                  R.string.nearby_rate_limit,
+                                  (((MosqueSearch.RateLimited) e).retryAfterMs + 999) / 1000)
+                              : "Pencarian belum tersedia. Periksa koneksi dan coba lagi nanti.")
                           + (places.isEmpty() ? "" : " Hasil sebelumnya tetap ditampilkan."));
-                  if (places.isEmpty())
-                    emptyState(R.string.nearby_error_title, R.string.nearby_error_body);
+                  if (places.isEmpty()) {
+                    text(R.id.mosquesCount, getString(R.string.nearby_incomplete));
+                    text(R.id.mosquesRefresh, getString(R.string.nearby_retry));
+                    emptyState(
+                        limited ? R.string.nearby_rate_limit_title : R.string.nearby_error_title,
+                        limited ? R.string.nearby_rate_limit_body : R.string.nearby_error_body);
+                  }
                 });
           }
         });
@@ -318,7 +330,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
       attribution.setText("© OpenStreetMap contributors ↗");
       attribution.setTextSize(12);
       attribution.setTextColor(getColor(R.color.pine));
-      attribution.setBackgroundColor(0xEEFAF7EF);
+      attribution.setBackgroundColor(getColor(R.color.nearby_surface));
       attribution.setMinHeight(dp(48));
       attribution.setGravity(android.view.Gravity.CENTER_VERTICAL);
       attribution.setPadding(dp(10), dp(4), dp(10), dp(4));
@@ -385,6 +397,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
       places.clear();
       selectedPlace = null;
       searching = false;
+      hasSearched = false;
       findViewById(R.id.mosquesProgress).setVisibility(View.GONE);
       lastRequest = -30000;
       nextAllowedSearch = 0;
@@ -408,6 +421,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
       searching = false;
       findViewById(R.id.mosquesProgress).setVisibility(View.GONE);
       if (places.isEmpty()) emptyState(R.string.nearby_empty_title, R.string.nearby_empty_body);
+      if (places.isEmpty()) text(R.id.mosquesCount, getString(R.string.nearby_incomplete));
       text(R.id.mosquesStatus, "Pencarian dihentikan. Ketuk Cari masjid untuk mencoba lagi.");
     }
     resumed = false;
@@ -423,7 +437,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
 
   @Override
   protected void onSaveInstanceState(Bundle state) {
-    state.putBoolean("searched", !places.isEmpty());
+    state.putBoolean("searched", hasSearched);
     state.putBoolean("map_open", findViewById(R.id.mosquesMap).getVisibility() == View.VISIBLE);
     super.onSaveInstanceState(state);
   }

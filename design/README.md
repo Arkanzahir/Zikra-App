@@ -4,7 +4,7 @@
 
 Folder ini sekarang hanya memuat **gambar acuan yang cocok dengan gambar yang diberikan pengguna dalam percakapan**. Mockup Zikra lama, alternatif logo lama, prompt desain lama, duplikat dan acuan tambahan yang tidak terkonfirmasi sudah dikeluarkan dari versi aktif repositori. Jangan mengembalikannya dari riwayat Git atau menjadikannya target desain.
 
-**Prioritas: komposisi dan keterbacaan onboarding.** Lokasi bersama dan pencarian masjid menyusul, lalu murottal/hafalan dan integrasi asisten. Baca [rencana terbaru](IMPROVEMENT_PLAN.md) serta [aturan proyek](../README.md#mulai-di-sini-untuk-sesi-chat-baru).
+**Status 20 Oktober 2026:** onboarding/parallax, lokasi bersama/masjid OSM dan pemutar Quran/Hifz sudah ada di main `1045fa7`. Prioritas aktif: netralisasi latar dan status masjid/lokasi; kemudian konsistensi Study/Hifz/asisten. Verifikasi audio qari live tetap terbuka. Baca [rencana terbaru](IMPROVEMENT_PLAN.md) serta [aturan proyek](../README.md#mulai-di-sini-untuk-sesi-chat-baru).
 
 ## Referensi onboarding lama — bukan arahan aktif
 

@@ -1,0 +1,27 @@
+{
+  "date_wib": "2026-10-20",
+  "branch": "feature/location-polish-2026-10-20",
+  "parent_commit": "1045fa75113a14553c3bb59b0df83e35b6f90fa0",
+  "main_verified_before_work": "1045fa75113a14553c3bb59b0df83e35b6f90fa0",
+  "recovery_verified_before_work": "d9d2ed4b5fb39606b659a708300a00b92fba7126",
+  "java": 17,
+  "compile_target_sdk": 35,
+  "unit": {
+    "tests": 46,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Warning": 527
+  },
+  "runtime_api28_unique_methods_passed": 10,
+  "runtime_api28_repeat_rate_limit_passed": 1,
+  "runtime_api28_repeat_font_200_passed": 2,
+  "city_http_fixture": "Local OkHttp interceptor in test APK; no provider network access",
+  "mosque_fixture": "Cached records explicitly labeled DATA UJI; local cached rate limit",
+  "physical_device_tested": false,
+  "runtime_api35_verified": false,
+  "live_qari_audio_verified": false,
+  "apk_sha256": "e6f43a556a8d50ede3895a67127d3dd273908398287b5cfe56c3642f7ddea131"
+}

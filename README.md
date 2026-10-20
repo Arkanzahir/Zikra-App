@@ -1,6 +1,4 @@
-> **Checkpoint desain lokasi dan audio Quran:** halaman masjid/lokasi lebih ringkas; pemutar native dengan MediaSession, background, unduhan surah, gulir baca, serta pengulangan rentang Hifz tersedia pada branch perubahan. [Bukti, sumber audio, dan batas pengujian](android/validation/location-quran-2026-10-19/README.md). Rekaman qari langsung belum diuji dari cloud karena pembatasan jaringan; audio uji sintetis dipisahkan dari rekaman Quran.
-
-> **Pembaruan terbaru — 19 Oktober 2026 (WIB):** lokasi otomatis/manual dibagikan ke Home, jadwal/alarm sholat, cuaca, langit dan Kiblat. Masjid terdekat memakai daftar/peta OpenStreetMap native di Zikra; petunjuk arah membuka Google Maps. Tanpa kunci Google untuk versi ini. [Bukti dan batas pemeriksaan](android/validation/location-mosques-2026-10-19/README.md) · [Rencana berikutnya](design/IMPROVEMENT_PLAN.md) · [Android Studio](android/BUILDING.md). Onboarding/parallax yang disetujui tetap dipertahankan.
+> **Status terkonfirmasi — 20 Oktober 2026 (WIB):** `main` sudah memuat `1045fa7` (desain lokasi/masjid, pemutar Quran native, background, unduhan per surah, gulir baca dan latihan rentang Hifz). Branch recovery tetap `d9d2ed4`. [Bukti audio dan batas pengujian](android/validation/location-quran-2026-10-19/README.md). Tahap perapian berikutnya ada pada `feature/location-polish-2026-10-20`: [hasil](android/validation/location-polish-2026-10-20/README.md) · [rencana tersimpan](design/IMPROVEMENT_PLAN.md).
 
 # Zikra Smart Islamic Student Companion
 
@@ -11,7 +9,7 @@
 
 ## Mulai di sini untuk sesi chat baru
 
-**Pembaruan: 19 Oktober 2026 (WIB).** Repositori aplikasi utama adalah **[Arkanzahir/Zikra-App](https://github.com/Arkanzahir/Zikra-App)**, project Android Studio di **`android/`**. `Arkanzahir/prototype_zikra` adalah referensi prototipe web lama; jangan memindahkan pengembangan kembali ke React. Versi recovery hingga `d9d2ed4` sudah digabung ke **`main`**; perubahan berikutnya ditinjau melalui branch fitur; sumber asli lokal lama belum ditemukan, dan fitur yang hilang sudah dibangun ulang dari referensi chat.
+**Pembaruan: 20 Oktober 2026 (WIB).** Repositori aplikasi utama adalah **[Arkanzahir/Zikra-App](https://github.com/Arkanzahir/Zikra-App)**, project Android Studio di **`android/`**. `Arkanzahir/prototype_zikra` adalah referensi prototipe web lama; jangan memindahkan pengembangan kembali ke React. Versi recovery `d9d2ed4` dan pembaruan Quran `1045fa7` sudah digabung ke **`main`**; tahap berikutnya disimpan pada branch fitur; sumber asli lokal lama belum ditemukan, dan fitur yang hilang sudah dibangun ulang dari referensi chat.
 
 Baca dan **buka gambar di [galeri referensi visual](./design/README.md)** terlebih dahulu; sesi baru perlu melihat file gambarnya, bukan hanya membaca label referensi.
 
@@ -37,7 +35,7 @@ Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./and
 | Kiblat | Dial roset, Ka'bah, penanda derajat, bearing ke Ka’bah dari koordinat pilihan, koreksi deklinasi setempat, rotasi sensor, panduan kalibrasi, haptik bersyarat akurasi | Uji arah/getaran pada ponsel fisik |
 | Lokasi / Masjid | Pemilih kota online dan 15 pilihan offline, izin lokasi foreground dengan fallback manual; daftar hingga 60 hasil dalam radius 3 km, peta OSM native, cache 30 menit dan arah ke Google Maps | Data komunitas dapat tidak lengkap; layanan publik tanpa SLA; uji GPS/aksesibilitas/performa HP |
 | Onboarding | Tiga ilustrasi 2D dengan parallax sentuh/gulir terbatas pada gambar utuh dan teks; karakter diam, pengantar/judul 32sp/paragraf manfaat, kembali kiri dan langkah kanan; wordmark `zikra` tanpa titik dan master kiri atas | Uji kenyamanan/performa HP; tanpa sensor/loop idle/jenjang/minat; menghormati animasi sistem dan penghemat daya; preferensi lama tetap disimpan |
-| Quran | Katalog/reader native 114 surah; pencarian Arab tanpa harakat, ukuran Arab/terjemahan tersimpan, lompat ayat tervalidasi, terang/malam/otomatis; Utsmani/arti resource 33, bagian 50 ayat, bookmark/resume, cache delapan bagian dan empat surah bawaan | Mushaf halaman belum tersedia; audio per ayat, unduhan teks/audio per surah dan gulir tersedia pada branch perubahan terbaru |
+| Quran | Katalog/reader native 114 surah; pencarian Arab tanpa harakat, ukuran Arab/terjemahan tersimpan, lompat ayat tervalidasi, terang/malam/otomatis; Utsmani/arti resource 33, bagian 50 ayat, bookmark/resume, cache delapan bagian dan empat surah bawaan | Audio per ayat, background/notifikasi, unduhan teks/audio per surah, gulir mandiri/follow dan rentang Hifz sudah di main `1045fa7`; rekaman qari live/unduhan jaringan penuh belum teruji; Mushaf halaman belum tersedia |
 | Study Hub / Diary Hifz | Study akademik dan target Hifz tetap dapat diakses lintas tanggal; ibadah khusus hari ini melalui Waktu Sholat. Hari baru kosong; tidak membuat tugas/progres contoh. CRUD/SQLite v2 mempertahankan data lama, target 114 surah/rentang, draft editor/dikte dan reader native | Belum timer fokus/deadline/statistik atau evaluasi bacaan AI; checklist ibadah bukan pencatatan otomatis |
 | Waktu sholat | Kalkulasi matahari harian sesuai koordinat/zona pilihan, daftar hari/pekan, countdown, preferensi dan notifikasi/alarm | Integrasi Aladhan; belum audio adzan; validasi izin dan ketepatan alarm pada HP |
 | Doa / Hadis / Kalender | Pencarian doa dan TTS, 7 kutipan hadis bersumber/bookmark, navigasi kalender Umm al-Qura | Tambah konten terverifikasi bertahap dan uji suara pada perangkat; bukan koleksi hadis lengkap |
@@ -48,7 +46,7 @@ Baca README ini, [dokumentasi Android](./android/README.md), [rencana API](./and
 
 Riset memakai acuan pengguna, [panduan aksesibilitas Android](https://developer.android.com/guide/topics/ui/accessibility/apps), [ukuran teks](https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html) dan kontras. Prioritas implementasi: tindakan yang jelas, target sentuh, teks yang bisa membesar, status kosong/loading/error yang jujur, serta data rencana yang tetap berguna besok. Logo master `design/branding/zikra-logo-primary.jpg` tidak digambar ulang; simbol bulan, buku dan spark tetap sama. Titik hanya dihapus dari teks wordmark.
 
-Lanjutkan pemeriksaan terarah perubahan ronde ini, kemudian uji pada HP fisik dan cocokkan hasil visual dengan pengguna. Mushaf halaman, murottal dan AI generatif tetap backlog tersendiri. Lokasi kini dipilih pengguna; **Sukolilo, Surabaya** hanya acuan awal yang berlabel sampai pilihan disimpan. Jangan menyebut semua fitur optimal atau kode lama telah ditemukan.
+Lanjutkan pemeriksaan terarah perubahan ronde ini, kemudian uji pada HP fisik dan cocokkan hasil visual dengan pengguna. Mushaf halaman dan AI generatif tetap backlog tersendiri; pemutar murottal sudah terpasang, dengan pengujian rekaman qari live masih terbuka. Lokasi kini dipilih pengguna; **Sukolilo, Surabaya** hanya acuan awal yang berlabel sampai pilihan disimpan. Jangan menyebut semua fitur optimal atau kode lama telah ditemukan.
 
 ### Persyaratan mode Mushaf
 
@@ -96,20 +94,23 @@ APK berada di `android/app/build/outputs/apk/debug/app-debug.apk`. Bukti pemerik
 ### Teks pembuka yang dapat disalin ke chat baru
 
 ```text
-Lanjutkan Arkanzahir/Zikra-App, native Java/XML di android/.
-Gunakan checkout/branch recovery/study-hifz-refresh yang sudah ada; jangan reset.
-Baca RECOVERY.md, README, android/validation/rebuilt/README.md dan BUILDING.md.
-Onboarding 2D berkarakter diam dengan parallax sentuh, wordmark tanpa titik, Home astronomi/parallax,
-Quran native114 dengan ukuran teks/lompat ayat, Open-Meteo/cache,
-serta rencana akademik/Hifz lintas tanggal tersedia pada sumber terbaru.
-Hari baru mulai kosong; jangan membuat ulang progres contoh.
-Kode asli lokal lama belum ditemukan; jangan menyebut implementasi baru identik.
-Prioritas: uji HP fisik dan cocokkan visual dengan pengguna. Mushaf/audio,
-unduhan penuh dan backend AI belum tersedia. Lokasi bersama dan masjid OSM sudah ada.
-Ikuti galeri referensi design/ dan master crescent+book+spark; tanpa login/Infaq.
-Simpan checkpoint kode ke GitHub; main jangan digabung otomatis.
-Satu putaran uji relevan, ulang hanya karena perubahan/kegagalan nyata.
-Jawab ringkas dalam bahasa Indonesia.
+Lanjutkan Arkanzahir/Zikra-App, native Java/XML di android/, JDK 17/SDK 35.
+Periksa git status/branch/commit/remote/perubahan lokal dan fetch tanpa reset.
+GitHub main terakhir terkonfirmasi 1045fa7; recovery/study-hifz-refresh d9d2ed4.
+Periksa ulang ref live; gunakan checkout aktual, prototype_zikra referensi lama.
+Baca RECOVERY.md, README, android/API_PLAN.md, design/IMPROVEMENT_PLAN.md,
+android/BUILDING.md dan laporan validasi terbaru yang ditautkan.
+Lokasi bersama/masjid OSM, pemutar Quran background/unduhan per surah,
+gulir baca/follow dan rentang latihan Hifz sudah ada. Audio live qari belum terbukti;
+validasi decoder sebelumnya memakai WAV sintetis, bukan rekaman Quran.
+Tahap lokasi netral/status berada di feature/location-polish-2026-10-20.
+Berikutnya: desain Study/Hifz/asisten sesuai rencana tersimpan; timer/pengingat
+akademik, Mushaf halaman dan AI generatif tetap backlog, belum terpasang.
+Pertahankan data pengguna, master logo bulan+buku+spark dan onboarding/Home.
+Tampilkan preview Android aktual, satu putaran uji relevan, ulang bila ada masalah.
+Commit/push checkpoint dan cocokkan hash remote; jangan anggap autentikasi pulih.
+Main digabung hanya sesuai permintaan pengguna; jangan minta token di chat.
+Komunikasi ringkas dalam bahasa Indonesia.
 ```
 
 ---

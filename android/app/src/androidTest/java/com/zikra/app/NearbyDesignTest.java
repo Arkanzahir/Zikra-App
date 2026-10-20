@@ -108,7 +108,7 @@ public final class NearbyDesignTest extends InstrumentationTestCase {
     assertEquals(View.GONE, page.findViewById(R.id.mosquesMap).getVisibility());
     ViewGroup header = page.findViewById(R.id.mosquesHeader);
     assertEquals(
-        context.getColor(R.color.onboarding_paper),
+        context.getColor(R.color.nearby_surface),
         ((ColorDrawable) header.getChildAt(0).getBackground()).getColor());
     loadCached();
     assertEquals(
@@ -227,6 +227,60 @@ public final class NearbyDesignTest extends InstrumentationTestCase {
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public void testEmptySearchSurvivesRecreation() throws Exception {
+    context
+        .getSharedPreferences("zikra_mosques_osm", 0)
+        .edit()
+        .putString("json", "{\"elements\":[]}")
+        .commit();
+    launch();
+    click(R.id.mosquesRefresh);
+    waitForText(R.id.mosquesCount, "0 tempat");
+    assertEquals(View.VISIBLE, page.findViewById(R.id.mosquesEmpty).getVisibility());
+    assertTrue(text(R.id.mosquesEmptyTitle).contains("Belum ada masjid"));
+    String fetched = text(R.id.mosquesUpdated);
+    UiEvidence.capture(getInstrumentation(), "NearbyPolishEmpty");
+    Instrumentation.ActivityMonitor monitor =
+        getInstrumentation().addMonitor(NearbyMosquesActivity.class.getName(), null, false);
+    try {
+      getInstrumentation().runOnMainSync(page::recreate);
+      page = getInstrumentation().waitForMonitorWithTimeout(monitor, 30000);
+      assertNotNull(page);
+      waitForText(R.id.mosquesCount, "0 tempat");
+      assertEquals(fetched, text(R.id.mosquesUpdated));
+      assertEquals(View.VISIBLE, page.findViewById(R.id.mosquesEmpty).getVisibility());
+      assertEquals(0, results().getChildCount());
+    } finally {
+      getInstrumentation().removeMonitor(monitor);
+    }
+  }
+
+  public void testRateLimitWithoutResultsShowsRetryAndKeepsLocation() throws Exception {
+    context
+        .getSharedPreferences("zikra_mosques_osm", 0)
+        .edit()
+        .clear()
+        .putLong("retry_until", System.currentTimeMillis() + 60000)
+        .commit();
+    launch();
+    click(R.id.mosquesRefresh);
+    waitForText(R.id.mosquesStatus, "membatasi pencarian");
+    assertEquals(View.GONE, page.findViewById(R.id.mosquesProgress).getVisibility());
+    assertEquals(View.VISIBLE, page.findViewById(R.id.mosquesEmpty).getVisibility());
+    assertEquals("Coba lagi", text(R.id.mosquesRefresh));
+    assertEquals("Pencarian belum selesai", text(R.id.mosquesCount));
+    assertEquals(0, results().getChildCount());
+    assertEquals(location.key(), LocationStore.current(context).key());
+    UiEvidence.capture(getInstrumentation(), "NearbyPolishRateLimit");
+  }
+
+  private void waitForText(int id, String value) {
+    long until = SystemClock.uptimeMillis() + 15000;
+    while (!text(id).contains(value) && SystemClock.uptimeMillis() < until) SystemClock.sleep(100);
+    getInstrumentation().waitForIdleSync();
+    assertTrue(text(id), text(id).contains(value));
   }
 
   public void testRecreationRestoresMapAndCachedResults() throws Exception {

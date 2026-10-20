@@ -1,18 +1,23 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/locationRoot" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/onboarding_paper">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/locationRoot" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/nearby_surface">
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
         <com.zikra.app.ui.FeatureHeader android:id="@+id/locationHeader" android:layout_width="match_parent" android:layout_height="wrap_content" />
         <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="20dp" android:paddingTop="8dp" android:paddingBottom="24dp">
                 <TextView style="@style/NearbyBody" android:text="Jadwal sholat, cuaca, Kiblat, dan masjid mengikuti lokasi yang kamu pilih." />
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:orientation="vertical" android:padding="20dp" android:background="@drawable/bg_location_selected">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:orientation="vertical" android:padding="16dp" android:background="@drawable/bg_location_selected">
                     <TextView style="@style/NearbyCaption" android:text="LOKASI AKTIF" android:letterSpacing="0.08" android:textColor="#D2DFD8" />
-                    <TextView android:id="@+id/locationCurrent" style="@style/NearbySection" android:textSize="20sp" android:layout_marginTop="10dp" android:textColor="@color/white" />
-                    <TextView android:id="@+id/locationDetails" style="@style/NearbyBody" android:layout_marginTop="8dp" android:textSize="13sp" android:textColor="#D2DFD8" />
-                    <Button android:id="@+id/locationMore" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="48dp" android:paddingHorizontal="0dp" android:background="?android:attr/selectableItemBackground" android:stateListAnimator="@null" android:text="Rincian lokasi" android:textAllCaps="false" android:textSize="12sp" android:textColor="@color/white" />
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                        <TextView android:id="@+id/locationCurrent" style="@style/NearbySection" android:layout_width="0dp" android:layout_weight="1" android:textSize="20sp" android:textColor="@color/white" />
+                        <ImageButton android:id="@+id/locationMore" android:layout_width="48dp" android:layout_height="48dp" android:layout_marginStart="8dp" android:padding="12dp" android:background="?android:attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_nearby_info" android:tint="@color/white" android:contentDescription="@string/location_details_label" />
+                    </LinearLayout>
+                    <TextView android:id="@+id/locationDetails" style="@style/NearbyBody" android:layout_marginTop="4dp" android:textSize="13sp" android:textColor="#D2DFD8" />
                 </LinearLayout>
                 <Button android:id="@+id/locationAutomatic" style="@style/NearbyPrimary" android:layout_marginTop="16dp" android:text="@string/location_auto" />
                 <TextView style="@style/NearbyCaption" android:layout_marginTop="8dp" android:text="@string/location_privacy" />
-                <TextView android:id="@+id/locationStatus" style="@style/NearbyBody" android:layout_marginTop="12dp" android:accessibilityLiveRegion="polite" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="12dp">
+                    <ProgressBar android:id="@+id/locationProgress" style="?android:attr/progressBarStyleSmall" android:layout_width="24dp" android:layout_height="24dp" android:layout_marginEnd="10dp" android:indeterminateTint="@color/pine" android:visibility="gone" android:importantForAccessibility="no" />
+                    <TextView android:id="@+id/locationStatus" style="@style/NearbyBody" android:layout_width="0dp" android:layout_weight="1" android:visibility="gone" android:accessibilityLiveRegion="polite" />
+                </LinearLayout>
                 <Button android:id="@+id/locationSettings" style="@style/NearbyButton" android:visibility="gone" android:layout_marginTop="8dp" android:text="Pengaturan lokasi perangkat" />
                 <TextView style="@style/NearbySection" android:layout_marginTop="24dp" android:text="Atau pilih kota" />
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="12dp">

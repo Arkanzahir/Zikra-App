@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/mosquesRoot" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/onboarding_paper">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/mosquesRoot" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/nearby_surface">
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
         <com.zikra.app.ui.FeatureHeader android:id="@+id/mosquesHeader" android:layout_width="match_parent" android:layout_height="wrap_content" />
         <ScrollView android:id="@+id/mosquesScroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true" android:clipToPadding="false">

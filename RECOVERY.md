@@ -1,15 +1,29 @@
-# Pemulihan dan status Zikra — 19 Oktober 2026 (WIB)
+# Pemulihan dan status Zikra — 20 Oktober 2026 (WIB)
 
 ## Status terbaru
 
-Tahap lokasi/masjid tersedia: lokasi otomatis saat diminta atau pemilihan kota manual,
-berbagi koordinat/zona waktu untuk Home, jadwal/pengingat sholat, cuaca dan Kiblat.
-Daftar/peta OpenStreetMap native ada di Zikra; petunjuk arah membuka Google Maps.
-Pengguna memilih OSM untuk versi awal karena layanan Google Cloud/billing belum aktif.
-Onboarding/parallax yang disetujui tetap dipertahankan. [Bukti terbaru](android/validation/location-mosques-2026-10-19/README.md).
-Murottal/hafalan dan asisten tetap tahap berikutnya dalam [rencana](design/IMPROVEMENT_PLAN.md).
+GitHub diperiksa pada 20 Oktober 2026 (WIB): `main` dan
+`feature/location-quran-audio` sama-sama `1045fa75113a14553c3bb59b0df83e35b6f90fa0`;
+`recovery/study-hifz-refresh` tetap `d9d2ed4b5fb39606b659a708300a00b92fba7126`.
+Merge ke main sebelumnya diminta pengguna dan telah berhasil. Pembacaan Git remote
+berhasil pada sesi ini; kemampuan push harus dibuktikan oleh hasil push aktual.
 
-Branch `recovery/study-hifz-refresh` memuat pembangunan ulang dari riwayat chat dan screenshot pengguna. Sumber asli lokal versi taman/Home belum ditemukan; implementasi baru tidak diklaim identik dengan kode atau piksel aslinya. Checkpoint disimpan ke GitHub per tahap, tanpa menggabungkan main otomatis.
+Lokasi otomatis/manual, jadwal/cuaca/Kiblat bersama dan masjid OSM sudah ada.
+Pemutar Quran per ayat, qari, background/MediaSession/notifikasi, unduhan surah,
+gulir mandiri/follow serta latihan rentang Hifz sudah masuk main pada `1045fa7`.
+[Bukti 19 Oktober](android/validation/location-quran-2026-10-19/README.md):
+46 tes JVM dan 20 metode API 28 lulus; audio uji WAV sintetis, bukan rekaman Quran.
+CDN qari live/full download serta runtime API 35 dan HP fisik belum terbukti.
+
+Tahap lanjutan `feature/location-polish-2026-10-20` berangkat dari `1045fa7`:
+latar masjid/lokasi netral `#F4F6F8`, kartu lokasi ringkas, indikator loading kota,
+pembatalan lookup saat memilih kota manual, status pembatasan layanan dan
+pemulihan hasil masjid kosong. [Validasi tahap ini](android/validation/location-polish-2026-10-20/README.md).
+[Rencana aktif](design/IMPROVEMENT_PLAN.md) sudah tersimpan sebagai file.
+
+Branch recovery adalah checkpoint lama, bukan satu-satunya sumber terbaru.
+Sumber asli lokal versi taman/Home belum ditemukan; implementasi baru tidak
+diklaim identik dengan kode atau piksel aslinya. Pertahankan seluruh perubahan/data.
 
 | Bagian | Kondisi saat ini |
 | --- | --- |
@@ -20,7 +34,7 @@ Branch `recovery/study-hifz-refresh` memuat pembangunan ulang dari riwayat chat 
 | Quran | Katalog ringkas dan reader terang sesuai referensi Suhayel; ukuran tulisan Arab/terjemahan tersimpan, tema terang/malam/otomatis dan lompat ayat dengan validasi rentang. Pencarian Arab mengabaikan harakat/tatweel/variasi alef. Reader native 114 surah public v4, Utsmani/terjemahan resource 33, 50 ayat per bagian, bookmark kunci stabil, resume/recreation, delapan bagian cache; empat surah bawaan. Semua target Hifz menuju reader native. |
 | Cuaca/Protector | Open-Meteo untuk prakiraan model lokasi pilihan dengan cache terpisah maksimal empat lokasi, refresh 10 menit/cache maksimal enam jam bertimestamp. Gempa/peringatan tetap BMKG. Header XML sama dengan Study/Hifz; grafik memakai geometri tersimpan. |
 
-Ronde 19 Oktober dimulai dari audit sumber/referensi dan panduan aksesibilitas resmi, lalu implementasi terarah pada onboarding, keterbacaan, navigasi, rencana lintas tanggal, reader dan penanganan data jaringan. **Build/lint, 33 tes JVM dan 47 metode emulator unik lulus.** [Laporan ronde ini](android/validation/quality-2026-10-19/README.md) memuat 22 PNG aktual, kegagalan awal/retest dan diagnosis ANR renderer/SystemUI emulator. Label navigasi serta Lewati tetap utuh pada font besar. Ini belum bukti HP fisik atau runtime API 35.
+Ronde kegunaan sebelumnya pada 19 Oktober dimulai dari audit sumber/referensi dan panduan aksesibilitas resmi, lalu implementasi terarah pada onboarding, keterbacaan, navigasi, rencana lintas tanggal, reader dan penanganan data jaringan. **Build/lint, 33 tes JVM dan 47 metode emulator unik lulus.** [Laporan ronde ini](android/validation/quality-2026-10-19/README.md) memuat 22 PNG aktual, kegagalan awal/retest dan diagnosis ANR renderer/SystemUI emulator. Label navigasi serta Lewati tetap utuh pada font besar. Ini belum bukti HP fisik atau runtime API 35.
 
 ## Riwayat bukti sebelum ronde ini
 
@@ -28,7 +42,7 @@ Ronde 19 Oktober dimulai dari audit sumber/referensi dan panduan aksesibilitas r
 
 ## Yang belum selesai atau belum terbukti
 
-- Mushaf sesuai layout edisi, murottal dan unduhan Quran penuh belum tersedia. Pengguna belum mempunyai akses production Content Sync. Cache bagian yang dibuka bukan offline seluruh Quran.
+- Mushaf sesuai layout edisi dan offline seluruh korpus otomatis belum tersedia. Pemutar/unduhan teks-audio per surah sudah ada di main; keberhasilan rekaman qari live dan unduhan jaringan penuh belum terbukti. Pengguna belum mempunyai akses production Content Sync. Cache delapan bagian biasa bukan offline seluruh Quran.
 - Posisi/orientasi bulan, awan dan bintang merupakan ilustrasi; fraksi terang dari data harian bukan pengamatan langsung atau penetapan awal bulan. Sumber/fallback dijelaskan saat label Langit diketuk. Lokasi/zona mengikuti pilihan; acuan awal Sukolilo/WIB berlabel sampai pengguna menyimpan pilihan.
 - Kelancaran, baterai, sensor Kiblat/tilt, haptik, alarm/izin, layanan suara dan runtime Android API 35 belum diverifikasi di HP fisik. Emulator API 28 dengan software rendering tidak membuktikan performa HP.
 - AI masih berbasis aturan lokal; tidak ada penilaian hafalan AI. Doa/Hadis tetap koleksi terbatas. Pengembangan AI generatif dan fitur Quran lanjutan perlu tahap tersendiri.

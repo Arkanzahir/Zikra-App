@@ -1,8 +1,8 @@
-# Provider dan status integrasi — 19 Oktober 2026
+# Provider dan status integrasi — 20 Oktober 2026
 
 Aplikasi tetap Java/XML native. Daftar ini membedakan layanan yang sudah digunakan
 
-dari rencana berikutnya. [Bukti ronde lokasi/masjid](validation/location-mosques-2026-10-19/README.md).
+dari rencana berikutnya. [Bukti lokasi/audio](validation/location-quran-2026-10-19/README.md) · [Perapian lokasi berikutnya](validation/location-polish-2026-10-20/README.md).
 
 | Kebutuhan | Layanan aktual | Kondisi |
 | --- | --- | --- |
@@ -15,6 +15,7 @@ dari rencana berikutnya. [Bukti ronde lokasi/masjid](validation/location-mosques
 | Langit Home | USNO harian + perkiraan lokal berlabel | Lokasi/tanggal/offset zona diperiksa; fallback eksplisit bila layanan/peristiwa matahari tidak tersedia |
 | Quran | Quran.com public v4 / metadata bawaan | 114 metadata surah, reader Arab/terjemahan resource 33, empat surah bawaan, delapan bagian cache × 50 ayat |
 | Gempa | BMKG Open Data | Laporan terakhir Indonesia, bukan prediksi atau peringatan pribadi berdasarkan posisi pengguna |
+| Audio Quran | Al Quran Cloud CDN, HTTPS 128kbps | Alafasy/Al-Husary/Al-Minshawi; satu file per ayat; background, notifikasi, rentang/repeat dan unduhan eksplisit per surah/qari sudah di main `1045fa7`. Decoder diuji dengan WAV sintetis; CDN qari live/full download belum terbukti |
 | AI | Aturan lokal offline | Featherless/Gemini belum terhubung |
 
 ## Lokasi bersama
@@ -70,8 +71,7 @@ lengkap, dan infrastruktur publik tidak mempunyai SLA untuk aplikasi ini.
   tanggal/zona/metode harus konsisten antara Home, daftar dan alarm. Belum terpasang;
   kalkulasi lokal sekarang tetap berlabel dan bukan publikasi resmi Kemenag.
 - **Quran Foundation:** Content Sync production belum dimiliki pengguna. Mushaf
-  membutuhkan layout edisi/font berlisensi yang konsisten. Murottal memakai rekaman
-  qari yang sah dan data waktu per ayat untuk mode mengikuti audio, bukan TTS doa.
+  membutuhkan layout edisi/font berlisensi yang konsisten. Audio per ayat kini memakai Al Quran Cloud CDN dengan atribusi/ketentuan di pengaturan. Mengikuti audio memakai identitas berkas ayat dan event MediaPlayer, bukan estimasi waktu atau sinkron kata. TTS doa tidak menjadi murottal. Content Sync/Mushaf dan verifikasi audio qari live masih terbuka.
 - **AI Featherless/Gemini:** membutuhkan backend HTTPS dan model/kredensial yang valid.
   Kunci provider disimpan di backend, bukan APK/Git. Jangan mengklaim AI telah membaca
   seluruh fitur hanya karena tersedia panduan aturan atau navigasi lokal.

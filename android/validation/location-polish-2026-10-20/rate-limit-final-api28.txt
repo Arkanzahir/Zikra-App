@@ -1,0 +1,6 @@
+
+com.zikra.app.NearbyDesignTest:.
+Test results for InstrumentationTestRunner=.
+Time: 6.919
+
+OK (1 test)

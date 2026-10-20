@@ -1,6 +1,7 @@
 <resources>
-    <color name="nearby_panel">#EFF2EA</color>
-    <color name="nearby_line">#D9E0D6</color>
+    <color name="nearby_surface">@color/background</color>
+    <color name="nearby_panel">#E9F0EE</color>
+    <color name="nearby_line">#DCE5E2</color>
     <string name="nearby_list">Daftar</string><string name="nearby_map">Peta</string>
     <string name="nearby_radius">Radius 3 km · urut dari yang terdekat</string>
     <string name="nearby_search">Cari masjid terdekat</string><string name="nearby_refresh">Perbarui hasil</string>
@@ -10,10 +11,17 @@
     <string name="nearby_no_results_body">Data dalam radius 3 km belum tersedia. Coba ubah lokasi atau cari di Google Maps.</string>
     <string name="nearby_error_title">Hasil belum bisa dimuat</string>
     <string name="nearby_error_body">Periksa koneksi, lalu coba lagi. Kamu juga bisa mencari melalui Google Maps.</string>
+    <string name="nearby_retry">Coba lagi</string>
+    <string name="nearby_rate_limit">Layanan sedang membatasi pencarian. Tunggu %1$d detik sebelum mencoba lagi.</string>
+    <string name="nearby_rate_limit_title">Pencarian dibatasi sementara</string>
+    <string name="nearby_rate_limit_body">Coba lagi setelah jeda layanan. Kamu tetap bisa mengubah lokasi atau mencari melalui Google Maps.</string>
+    <string name="nearby_loading">Mencari masjid…</string>
+    <string name="nearby_incomplete">Pencarian belum selesai</string>
     <string name="nearby_route">Petunjuk arah ke %1$s</string><string name="nearby_details">Lihat rincian %1$s</string>
     <string name="nearby_disclaimer">Jarak garis lurus, bukan jarak perjalanan. Informasi jamaah dan fasilitas dapat ditanyakan langsung ke masjid.</string>
     <string name="location_search_hint">Cari nama kota</string><string name="location_search_label">Cari kota</string>
     <string name="location_auto">Gunakan lokasi perangkat</string>
+    <string name="location_details_label">Rincian lokasi aktif</string>
     <string name="location_privacy">Hanya diambil saat diminta. Tidak melacak perjalananmu.</string>
     <style name="NearbyBody">
         <item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item>

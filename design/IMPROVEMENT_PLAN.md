@@ -1,36 +1,97 @@
-# Rencana pengembangan yang dibahas — 19 Oktober 2026
+# Rencana implementasi Zikra — 20 Oktober 2026 (WIB)
 
-Kerjakan dan simpan checkpoint per tahap pada `recovery/study-hifz-refresh`.
-Daftar ini membedakan rencana dari kemampuan yang sudah tersedia; bukan pernyataan
-bahwa seluruh integrasi telah selesai. Tetap Java/XML native, tanpa login dahulu.
+Rencana ini tersimpan di repository. Status berasal dari source dan bukti Android,
+bukan preview web. Kerjakan per tahap, pertahankan data pengguna, dan cocokkan
+hash GitHub setelah setiap push. Tetap Android Java/XML, JDK 17, SDK/target 35.
 
-1. **Onboarding — selesai pada checkpoint sebelumnya.** Tiga ilustrasi 2D tetap statis. Perbaiki keseimbangan
-   ruang, pengantar kecil, judul, paragraf manfaat dan keterbacaan. Pertahankan simbol
-   master dan alur belajar → ibadah → Al-Quran. Jelaskan kemampuan yang sudah tersedia,
-   tanpa menjanjikan lokasi otomatis, murottal atau AI generatif yang belum ada.
-   Setelah komposisi disetujui, tambahkan parallax sentuh/gulir terbatas pada gambar
-   utuh dan teks; karakter tetap diam. Hormati animasi sistem/penghemat daya, tanpa loop idle.
-2. **Lokasi bersama — terpasang dan diperiksa.** Pilih posisi pengguna dengan izin saat diperlukan, dengan pilihan
-   manual ketika izin tidak tersedia. Hubungkan lokasi yang sama ke jadwal sholat,
-   cuaca, Kiblat dan pencarian masjid. Sukolilo menjadi acuan awal berlabel; pilihan pengguna dibagikan ke fitur terkait.
-3. **Masjid terdekat — versi awal OpenStreetMap, sesuai pilihan pengguna.** Daftar
-   dan peta native di Zikra, alamat yang tersedia, jarak garis lurus, cache dan tombol
-   arah yang membuka Google Maps. Tidak memerlukan akun/billing Google untuk versi ini.
-   Data komunitas serta server publik mempunyai keterbatasan; tidak mengarang fasilitas/
-   jam jamaah. Google Places/Maps di dalam Zikra tetap opsi integrasi berikutnya setelah
-   project, billing, pembatasan kunci dan kebutuhan backend disiapkan.
-4. **Murottal dan hafalan.** Pilihan qari, play/pause, pindah ayat dan ulang satu ayat/
-   rentang. Bedakan gulir baca mandiri yang dapat diatur dengan mengikuti ayat audio;
-   mode mengikuti audio membutuhkan data waktu per ayat yang sesuai rekaman.
-   Hubungkan target Diary Hifz ke rentang bacaan. Pemutar kecil, kontrol notifikasi
-   dan unduhan per surah menyusul sesuai dukungan sumber audio/lisensi/akses.
-5. **Asisten.** Mulai dari konteks tugas, target hafalan, bacaan terakhir dan jadwal
-   sholat yang benar-benar tersedia. Usulan agenda ditinjau pengguna sebelum disimpan.
-   Asisten sekarang masih berbasis aturan offline; layanan generatif perlu integrasi
-   tersendiri dan kunci provider tidak disimpan di APK.
+## Titik awal yang telah diperiksa
 
-Study Hub tetap khusus akademik; ibadah dan Diary Hifz terpisah. Pengingat tenggat,
-timer fokus dan statistik adalah lanjutan akademik, belum tersedia hanya karena
-tercantum pada rencana ini. Pada setiap tahap, rapikan konsistensi visual dan periksa
-kondisi data kosong, jaringan gagal dan izin ditolak yang relevan. Uji HP fisik tetap
-diperlukan untuk performa, sensor, pengingat dan audio; hasil emulator tidak menggantikannya.
+- Repo utama `Arkanzahir/Zikra-App`; `prototype_zikra` hanya referensi lama.
+- GitHub `main` sudah `1045fa7`, berisi recovery `d9d2ed4` serta dua commit desain/audio.
+  Branch `recovery/study-hifz-refresh` masih `d9d2ed4`; jangan kembali ke sana dan
+  kehilangan pembaruan yang sudah ada di main. Periksa ulang ref ketika melanjutkan.
+- Checkout saat audit bersih. Tahap baru memakai `feature/location-polish-2026-10-20`,
+  berdasarkan `1045fa7`. Jangan reset atau menimpa perubahan yang ditemukan.
+- [Validasi audio 19 Oktober](../android/validation/location-quran-2026-10-19/README.md):
+  46 tes JVM dan 20 metode Android 9/API 28 lulus. Audio uji sintetis, bukan murottal;
+  rekaman qari live, full download jaringan, API 35 dan HP fisik belum terverifikasi.
+
+## Tahap 1 — masjid dan pemilih lokasi (prioritas aktif)
+
+Tujuan: lokasi pencarian mudah dibaca, hasil mudah dipilih, dan status jaringan jelas.
+
+- Header, status/navigation bar dan latar halaman menyatu memakai netral `#F4F6F8`.
+  Pisahkan dari warna kertas onboarding; jangan mengubah onboarding/Home yang diterima.
+- Ringkas lokasi aktif; nama kota dominan, sumber/zona lebih kecil, koordinat/akurasi
+  melalui rincian. Tetap ada acuan awal berlabel dan konfirmasi sebelum menyimpan.
+- Pertahankan satu kontrol Daftar/Peta, hierarki nama → jarak → tombol arah minimal 48dp.
+  Marker dan kartu pilihan membuka Google Maps eksternal; jarak tetap garis lurus.
+- Tampilkan indikator pencarian kota; pilihan offline tetap dapat dipilih selama menunggu.
+  Memilih kota manual membatalkan lookup/GPS yang tertunda; callback lama tidak mengganggu
+  pilihan baru. Penolakan izin tetap menyediakan kota manual.
+- Bedakan belum mencari, sedang memuat, hasil kosong dan gagal. Pertahankan hasil/waktu
+  lama saat refresh gagal; jelaskan pembatasan layanan dan jedanya. Hasil kosong tetap
+  dipulihkan saat Activity dibuat ulang. Jangan mengisi hasil contoh pada APK pengguna.
+- Periksa UI Android aktual, pilihan kota/zona, perubahan kota, daftar/peta/arah,
+  loading/kosong/gagal, recreation dan font besar. Screenshot fixture diberi label/konteks.
+
+[Bukti tahap 1](../android/validation/location-polish-2026-10-20/README.md).
+Data komunitas OSM dan server publik tidak menjamin semua masjid tersedia atau SLA.
+
+## Tahap 2 — Quran, murottal dan Hifz (sudah terpasang; verifikasi live terbuka)
+
+Prioritas pengguna sebelumnya: murottal → gulir Quran → hafalan. Source pada main sudah memuat:
+
+- Pemutar per ayat, tiga qari, putar/jeda/seek/sebelumnya/berikutnya, rentang/pengulangan;
+  foreground service `mediaPlayback`, MediaSession/notifikasi dan audio focus.
+- Unduhan eksplisit per surah/qari, service `dataSync`, berkas atomik, penolakan berkas
+  parsial/rusak dan hapus audio tanpa menghapus tugas/bookmark/target Hifz.
+- Gulir baca berkecepatan terpisah dari mengikuti audio; sentuhan menjeda gerakan.
+- Target Diary Hifz meneruskan surah/ayat awal/akhir ke reader, tanpa penilaian AI atau
+  otomatis menandai latihan selesai. Source audio rekaman, bukan TTS doa.
+
+Lanjutan pemeriksaan: rekaman qari asli dan kebenaran ayat, unduh melalui jaringan,
+putus/sambung, layar mati, telepon/headset/Bluetooth, penghemat daya vendor dan API 35.
+Cloud saat ini membatasi host CDN. Jangan menganggap WAV tes sebagai Quran atau
+mengklaim full download telah diuji. Mushaf layout edisi tetap pekerjaan terpisah.
+
+## Tahap 3 — konsistensi Study, Hifz, asisten dan reader
+
+- **Study:** tonjolkan tugas aktif dan langkah berikutnya, ringkas kartu kosong. Tetap
+  akademik; tugas/progres hanya dari tindakan pengguna, data lama tetap tersimpan.
+- **Hifz:** pertahankan kartu Pine; utamakan nama surah dan rentang ayat, lalu progres/
+  tindakan latihan. Jangan mencampurkan ibadah/akademik atau membuat progres contoh.
+- **Asisten:** kurangi pembuka berulang, utamakan percakapan dan composer yang terjangkau.
+  Label aturan offline tetap jujur. Gunakan mikrofon vektor untuk input suara.
+- **Quran:** jarak ayat proporsional, kontras/ukuran teks nyaman dan kontrol tidak menutup
+  bacaan. Periksa tema malam serta font besar. Pertahankan bookmark/resume.
+- Gunakan komponen/resource bersama dan ikon vektor konsisten. Jangan mengubah master
+  `branding/zikra-logo-primary.jpg`: bulan, buku, spark dan proporsinya tetap; Pine `#15332F`.
+
+Ini arah tahap berikutnya, bukan klaim bahwa seluruh perapian tersebut sudah dikerjakan.
+
+## Tahap 4 — fitur lanjutan yang belum diimplementasikan
+
+- **Timer fokus akademik:** siklus fokus/jeda, pulihkan waktu setelah background/recreation,
+  tindakan mulai/jeda/selesai jelas; jangan menandai tugas selesai otomatis.
+- **Pengingat akademik:** tenggat dan preferensi per tugas, izin notifikasi saat diperlukan,
+  penjadwalan ulang setelah edit/reboot/perubahan waktu. Uji izin ditolak dan hemat daya.
+  Penyimpanan baru harus memakai migrasi yang mempertahankan data; tanpa reset SQLite.
+- **AI generatif:** backend HTTPS dengan kredensial provider di server, bukan APK/Git/chat.
+  Konteks tugas/Hifz/jadwal hanya yang benar-benar tersedia dan diperlukan. Usulan agenda
+  ditinjau sebelum disimpan. Tanpa backend/model/kredensial valid, jangan memakai balasan
+  template sebagai bukti integrasi generatif atau penilaian hafalan.
+- **Mushaf halaman/Aladhan:** verifikasi sumber/layout/font/lisensi atau metode/jadwal lebih
+  dahulu; bukan sekadar menyembunyikan terjemahan atau mengganti label jadwal lokal.
+
+## Penyimpanan dan bukti setiap tahap
+
+1. Periksa status/branch/commit/remote/perubahan lokal; baca README, RECOVERY, API_PLAN,
+   rencana ini dan laporan validasi terbaru. Jangan menyimpulkan source dari nama environment.
+2. Selesaikan satu tahap, tampilkan screenshot/preview Android aktual, lalu satu putaran
+   build/lint dan tes relevan. Ulang hanya bila ada perubahan, kegagalan atau masalah terbuka.
+3. Simpan hasil dan batas pemeriksaan di `android/validation/`, perbarui status/rencana,
+   commit dan push checkpoint. Cocokkan hash remote; laporkan bila push gagal.
+4. Jangan menganggap autentikasi cloud berhasil hanya karena pernah berhasil. Gunakan
+   koneksi resmi yang tersedia; jangan meminta token di chat. Main digabung sesuai
+   permintaan pengguna; branch checkpoint tetap memungkinkan tinjauan per tahap.

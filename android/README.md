@@ -1,3 +1,5 @@
+> **Status 20 Oktober 2026:** `main` terkonfirmasi `1045fa7`, termasuk pemutar Quran native/background/notifikasi, unduhan teks-audio per surah, gulir dan latihan rentang Hifz. [Bukti/batas audio](validation/location-quran-2026-10-19/README.md). Perapian netral masjid/lokasi: [tahap 20 Oktober](validation/location-polish-2026-10-20/README.md). Catatan checkpoint lama di bawah bersifat historis bila berbeda.
+
 > **Status 19 Oktober 2026:** lokasi bersama dan masjid OSM native sudah tersedia; onboarding/parallax dipertahankan. [Validasi terbaru](validation/location-mosques-2026-10-19/README.md) · [RECOVERY.md](../RECOVERY.md). Ronde kegunaan/onboarding sebelumnya tetap historis.
 
 

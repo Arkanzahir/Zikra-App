@@ -9,7 +9,7 @@ Folder `android` adalah project Android Studio mandiri. Semua source aplikasi me
 
 ## Android Studio
 
-Versi dasar sudah digabung ke **`main`**. Untuk perubahan baru, gunakan branch yang tercantum pada catatan validasi checkpoint tersebut:
+Versi recovery dan pemutar Quran hingga `1045fa7` sudah digabung ke **`main`** (ref diperiksa 20 Oktober 2026). Untuk perubahan baru, gunakan branch yang tercantum pada catatan validasi checkpoint tersebut:
 
 ```sh
 git clone https://github.com/Arkanzahir/Zikra-App.git

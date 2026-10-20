@@ -41,7 +41,7 @@ public final class LocationActivity extends BaseActivity {
   private final Runnable timeout =
       () -> {
         stopTracking();
-        busy = false;
+        setBusy(false);
         status("Lokasi belum ditemukan. Coba di tempat terbuka atau pilih kota secara manual.");
       };
   private final LocationListener listener =
@@ -69,10 +69,10 @@ public final class LocationActivity extends BaseActivity {
         .bind(
             R.id.toolbarBack, R.id.featureTitle, R.id.featureSubtitle, 0, "Lokasi", null, 0, null);
     ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.locationHeader))
-        .setSurfaceColor(getColor(R.color.onboarding_paper));
+        .setSurfaceColor(getColor(R.color.nearby_surface));
     setupScreen("Lokasi");
-    getWindow().setStatusBarColor(getColor(R.color.onboarding_paper));
-    getWindow().setNavigationBarColor(getColor(R.color.onboarding_paper));
+    getWindow().setStatusBarColor(getColor(R.color.nearby_surface));
+    getWindow().setNavigationBarColor(getColor(R.color.nearby_surface));
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(
@@ -116,7 +116,7 @@ public final class LocationActivity extends BaseActivity {
                 ? "Lokasi perangkat · diambil saat diminta"
                 : "Kota pilihan · pusat kota";
     ((TextView) findViewById(R.id.locationDetails))
-        .setText(source + "\nZona waktu " + p.zoneLabel(Instant.now()));
+        .setText(source + " · " + p.zoneLabel(Instant.now()));
   }
 
   private void locationDetails() {
@@ -139,8 +139,15 @@ public final class LocationActivity extends BaseActivity {
             .show();
   }
 
+  private void setBusy(boolean value) {
+    busy = value;
+    findViewById(R.id.locationProgress).setVisibility(value ? View.VISIBLE : View.GONE);
+  }
+
   private void status(String text) {
-    ((TextView) findViewById(R.id.locationStatus)).setText(text);
+    TextView label = findViewById(R.id.locationStatus);
+    label.setText(text);
+    label.setVisibility(text.isEmpty() ? View.GONE : View.VISIBLE);
   }
 
   private void search() {
@@ -150,12 +157,13 @@ public final class LocationActivity extends BaseActivity {
       query.setError("Tulis setidaknya dua huruf nama kota");
       return;
     }
+    query.setError(null);
     ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
         .hideSoftInputFromWindow(query.getWindowToken(), 0);
     stopTracking();
     service.cancel();
     int token = ++generation;
-    busy = true;
+    setBusy(true);
     status("Mencari kota…");
     work.execute(
         () -> {
@@ -165,7 +173,7 @@ public final class LocationActivity extends BaseActivity {
             runOnUiThread(
                 () -> {
                   if (!current(token)) return;
-                  busy = false;
+                  setBusy(false);
                   results(found, "Hasil Open-Meteo / GeoNames · pusat kota");
                   status(
                       found.isEmpty()
@@ -176,7 +184,7 @@ public final class LocationActivity extends BaseActivity {
             runOnUiThread(
                 () -> {
                   if (!current(token)) return;
-                  busy = false;
+                  setBusy(false);
                   List<LocationPoint> offline = CitySearch.bundled(name);
                   results(offline, "Pilihan offline · pusat kota");
                   status(
@@ -225,6 +233,12 @@ public final class LocationActivity extends BaseActivity {
   }
 
   private void confirm(LocationPoint point) {
+    // Choosing a manual result takes precedence over any in-flight lookup or GPS fix.
+    stopTracking();
+    service.cancel();
+    generation++;
+    setBusy(false);
+    status("Periksa dan konfirmasi lokasi pilihan.");
     if (confirmation != null) confirmation.dismiss();
     confirmation =
         new AlertDialog.Builder(this)
@@ -243,7 +257,8 @@ public final class LocationActivity extends BaseActivity {
                   showCurrent();
                   status("Lokasi disimpan. Fitur yang terkait akan memakai pilihan ini.");
                 })
-            .setNegativeButton("Batal", null)
+            .setNegativeButton("Batal", (d, which) -> status("Lokasi aktif belum diubah."))
+            .setOnCancelListener(d -> status("Lokasi aktif belum diubah."))
             .show();
   }
 
@@ -262,11 +277,11 @@ public final class LocationActivity extends BaseActivity {
     stopTracking();
     service.cancel();
     generation++;
-    busy = true;
+    setBusy(true);
     findViewById(R.id.locationSettings).setVisibility(View.GONE);
     if (manager == null
         || (android.os.Build.VERSION.SDK_INT >= 28 && !manager.isLocationEnabled())) {
-      busy = false;
+      setBusy(false);
       status("Lokasi perangkat belum aktif. Aktifkan di pengaturan atau pilih kota secara manual.");
       findViewById(R.id.locationSettings).setVisibility(View.VISIBLE);
       return;
@@ -297,7 +312,7 @@ public final class LocationActivity extends BaseActivity {
       return;
     }
     if (!requested) {
-      busy = false;
+      setBusy(false);
       status("Layanan lokasi belum tersedia. Pilih kota secara manual atau periksa izin aplikasi.");
       findViewById(R.id.locationSettings).setVisibility(View.VISIBLE);
       return;
@@ -309,7 +324,7 @@ public final class LocationActivity extends BaseActivity {
   private void resolve(Location fix) {
     stopTracking();
     int token = ++generation;
-    busy = true;
+    setBusy(true);
     status("Menyesuaikan zona waktu lokasi…");
     work.execute(
         () -> {
@@ -319,7 +334,7 @@ public final class LocationActivity extends BaseActivity {
             runOnUiThread(
                 () -> {
                   if (current(token)) {
-                    busy = false;
+                    setBusy(false);
                     status("Posisi ditemukan. Periksa dan konfirmasi lokasinya.");
                     confirm(point);
                   }
@@ -328,7 +343,7 @@ public final class LocationActivity extends BaseActivity {
             runOnUiThread(
                 () -> {
                   if (!current(token)) return;
-                  busy = false;
+                  setBusy(false);
                   status(
                       "Posisi ditemukan, tetapi zona waktu belum bisa diperiksa. Pilih zona waktu"
                           + " yang sesuai atau gunakan pencarian kota.");
@@ -390,7 +405,7 @@ public final class LocationActivity extends BaseActivity {
     service.cancel();
     generation++;
     if (busy) {
-      busy = false;
+      setBusy(false);
       status("Pencarian dihentikan. Pilih Cari kota atau Gunakan lokasi saya untuk mencoba lagi.");
     }
     if (confirmation != null) confirmation.dismiss();
