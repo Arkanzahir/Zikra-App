@@ -1,3 +1,5 @@
+> **Bukti break aktif — 21 Oktober 2026:** [video khusus dan tes terarah](validation/break-animation-2026-10-21/README.md). Label video sebelumnya dikoreksi; frame jeda/fokus tidak dianggap bukti break aktif.
+
 > **Pose jeda fokus — 20 Oktober 2026:** [hasil Android](validation/focus-pause-pose-2026-10-20/README.md). Pose istirahat saat paused, sisa fokus tetap, kembali membaca saat lanjut. Acuan desain Quran disimpan terpisah sebagai rencana.
 
 > **Revisi gerak/posisi Fokus — 20 Oktober 2026:** [video Android dan tes piksel karakter](validation/focus-motion-placement-2026-10-20/README.md). Angka/karakter terpisah, progres tipis, pose duduk saat istirahat dan pengujian font 200%.

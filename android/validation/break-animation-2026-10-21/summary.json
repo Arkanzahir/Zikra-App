@@ -1,0 +1,26 @@
+{
+  "date_wib": "2026-10-21",
+  "source_parent": "87f7454a662aa81e456c7bb5d2e119eb02fc770a",
+  "application_code_changed": false,
+  "runtime_api28_tests_rerun": 1,
+  "break_running_confirmed": true,
+  "label": "WAKTU ISTIRAHAT",
+  "break_countdown_decreases": true,
+  "character_bitmap_changes": true,
+  "preview": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 540,
+        "height": 1170
+      }
+    ],
+    "format": {
+      "duration": "6.442278",
+      "size": "74355"
+    }
+  },
+  "physical_device_tested": false,
+  "runtime_api35_tested": false
+}

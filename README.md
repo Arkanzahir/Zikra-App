@@ -1,3 +1,5 @@
+> **Bukti break aktif — 21 Oktober 2026:** [rekaman/GIF khusus](android/validation/break-animation-2026-10-21/README.md). Memperbaiki bukti video yang sebelumnya berakhir sebelum break; tidak mengubah kode aplikasi.
+
 > **Pose jeda fokus — 20 Oktober 2026 (WIB):** Jeda menampilkan karakter duduk membawa cangkir sambil menyimpan sisa fokus; Lanjutkan kembali ke pose membaca. Fase break tetap terpisah. [Bukti dan validasi](android/validation/focus-pause-pose-2026-10-20/README.md).
 
 > **Acuan Quran berikutnya:** [desain katalog/reader/panel audio dan koreksi Mushaf](design/QURAN_READER_DESIGN.md) kini tersimpan. Ini rencana, bukan fitur baru pada APK; sinkronisasi kata dan Mushaf halaman masih membutuhkan data terverifikasi.

@@ -32,7 +32,11 @@ Kasus break eksplisit, gerak aktual, pengaturan motion, background/dialog dan fo
 
 ![Jeda fokus, sisa waktu tersimpan](screens/jeda-pose-istirahat-data-uji.png)
 
-[Break aktif](screens/break-data-uji.png) · [Preview fokus → jeda → lanjut → break](focus-pause-preview.mp4).
+[Screenshot break](screens/break-data-uji.png) · [Preview fokus/jeda/lanjut](focus-pause-preview.mp4).
+
+**Koreksi 21 Oktober:** rekaman lama berakhir sebelum break aktif tertangkap.
+[Bukti break aktif khusus](../break-animation-2026-10-21/README.md) menggantikan klaim
+bahwa video lama memperlihatkan break. Screenshot break di atas tetap terpisah.
 
 Tugas **DATA UJI**, sisa waktu serta akhir sesi yang dipercepat dalam preview adalah
 fixture, bukan aktivitas/progres pengguna. Setting, preferensi dan tugas sementara

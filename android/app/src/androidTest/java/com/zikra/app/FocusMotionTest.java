@@ -167,7 +167,7 @@ public final class FocusMotionTest extends InstrumentationTestCase {
     }
   }
 
-  public void testBreakPoseOnlyStartsAfterExplicitAction() {
+  public void testBreakPoseOnlyStartsAfterExplicitAction() throws Exception {
     FocusClock clock = FocusTimer.load(context);
     clock.remaining = 0;
     clock.finished = true;
@@ -182,6 +182,31 @@ public final class FocusMotionTest extends InstrumentationTestCase {
     assertEquals(
         "WAKTU ISTIRAHAT", ((TextView) page.findViewById(R.id.focusPhase)).getText().toString());
     UiEvidence.capture(getInstrumentation(), "FocusCompanionBreak");
+    // Record only after the UI is confirmed to be in an active break. A recording
+    // started before launch/focus/pause can end before the break ever appears.
+    File dir = new File(context.getExternalFilesDir(null), "validation");
+    dir.mkdirs();
+    File video = new File(dir, "break-active-preview.mp4");
+    if (video.exists()) video.delete();
+    long before = ((FocusClock) field(page, "clock")).remaining;
+    try (ParcelFileDescriptor recording =
+        getInstrumentation()
+            .getUiAutomation()
+            .executeShellCommand("screenrecord --time-limit 8 " + video.getAbsolutePath())) {
+      SystemClock.sleep(1100);
+      Bitmap first = characterFrame();
+      SystemClock.sleep(1000);
+      Bitmap second = characterFrame();
+      assertFalse(
+          "The resting companion really moves during an active break", first.sameAs(second));
+      first.recycle();
+      second.recycle();
+      SystemClock.sleep(7000);
+    }
+    assertTrue("Active-break video captured", video.isFile() && video.length() > 1000);
+    assertTrue(FocusTimer.load(context).breakPhase);
+    assertTrue(FocusTimer.load(context).running);
+    assertTrue(((FocusClock) field(page, "clock")).remaining < before);
   }
 
   public void testCaptureNativeMotionPreview() throws Exception {
