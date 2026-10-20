@@ -42,7 +42,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
   private Boolean showingPlaying;
   private int chapter, first, last, repeats, speed, lastFollowed;
   private String qari;
-  private boolean loop;
+  private boolean loop, night;
   private long lastFrame;
   private float fractional;
   private AlertDialog options, downloads;
@@ -352,94 +352,70 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     return Math.round(value * activity.getResources().getDisplayMetrics().density);
   }
 
-  private TextView label(LinearLayout parent, String title) {
-    TextView v = new TextView(activity);
-    v.setText(title);
-    v.setTextSize(14);
-    v.setPadding(0, dp(14), 0, dp(6));
-    parent.addView(v);
-    return v;
-  }
-
-  private Spinner spinner(LinearLayout parent, int id, String[] values, int selected) {
-    Spinner view = new Spinner(activity);
-    view.setId(id);
-    view.setMinimumHeight(dp(48));
+  private void picker(Spinner view, String[] values, int selected) {
     ArrayAdapter<String> adapter =
-        new ArrayAdapter<>(activity, android.R.layout.simple_spinner_dropdown_item, values);
+        new ArrayAdapter<String>(activity, android.R.layout.simple_spinner_dropdown_item, values) {
+          @Override
+          public View getView(int position, View convert, ViewGroup parent) {
+            TextView text = (TextView) super.getView(position, convert, parent);
+            text.setTextSize(12);
+            text.setTextColor(night ? 0xFFEEF6F2 : 0xFF15332F);
+            text.setSingleLine(false);
+            text.setMaxLines(2);
+            text.setPadding(0, 0, 0, 0);
+            return text;
+          }
+        };
     view.setAdapter(adapter);
     view.setSelection(selected);
-    parent.addView(view, new LinearLayout.LayoutParams(-1, -2));
-    return view;
-  }
-
-  private Switch toggle(LinearLayout parent, int id, String title, boolean checked) {
-    Switch v = new Switch(activity);
-    v.setId(id);
-    v.setText(title);
-    v.setTextSize(14);
-    v.setMinHeight(dp(52));
-    v.setChecked(checked);
-    parent.addView(v);
-    return v;
-  }
-
-  private EditText number(LinearLayout row, int id, int value, String description) {
-    EditText v = new EditText(activity);
-    v.setId(id);
-    v.setText(String.valueOf(value));
-    v.setTextSize(16);
-    v.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
-    v.setSingleLine();
-    v.setMinHeight(dp(48));
-    v.setContentDescription(description);
-    v.setFilters(new android.text.InputFilter[] {new android.text.InputFilter.LengthFilter(3)});
-    row.addView(v, new LinearLayout.LayoutParams(0, -2, 1));
-    return v;
   }
 
   public void options() {
     if (options != null) options.dismiss();
-    ScrollView scroll = new ScrollView(activity);
-    LinearLayout body = new LinearLayout(activity);
-    body.setOrientation(LinearLayout.VERTICAL);
-    body.setPadding(dp(24), 0, dp(24), dp(16));
-    scroll.addView(body);
-    label(body, "Qari");
-    Spinner reciters =
-        spinner(body, R.id.quranAudioReciter, Recitation.NAMES, Recitation.reciterIndex(qari));
-    label(body, "Rentang ayat · " + QuranChapters.all(activity).get(chapter - 1).name);
-    LinearLayout range = new LinearLayout(activity);
-    body.addView(range);
-    EditText start = number(range, R.id.quranAudioFirst, first, "Ayat awal");
-    TextView dash = new TextView(activity);
-    dash.setText(" — ");
-    range.addView(dash);
-    EditText end = number(range, R.id.quranAudioLast, last, "Ayat akhir");
-    label(body, "Pengulangan setiap ayat");
+    View body = activity.getLayoutInflater().inflate(R.layout.quran_audio_options, null);
+    Spinner reciters = body.findViewById(R.id.quranAudioReciter);
+    picker(reciters, Recitation.NAMES, Recitation.reciterIndex(qari));
+    Spinner repeat = body.findViewById(R.id.quranAudioRepeats);
     String[] counts = new String[10];
-    for (int i = 0; i < 10; i++) counts[i] = (i + 1) + " kali";
-    Spinner repeat = spinner(body, R.id.quranAudioRepeats, counts, repeats - 1);
-    Switch loopChoice = toggle(body, R.id.quranAudioLoop, "Ulang rentang sampai dihentikan", loop);
-    Switch followChoice =
-        toggle(
-            body, R.id.quranAudioFollow, "Ikuti ayat yang sedang diputar", follow && !touchPaused);
-    label(body, "Gulir baca otomatis · terpisah dari murottal");
-    TextView speedLabel = label(body, "Kecepatan " + scrollSpeedName());
-    SeekBar speedBar = new SeekBar(activity);
-    speedBar.setId(R.id.quranAutoSpeed);
-    speedBar.setMax(55);
+    for (int i = 0; i < counts.length; i++) counts[i] = (i + 1) + " kali";
+    picker(repeat, counts, repeats - 1);
+    EditText start = body.findViewById(R.id.quranAudioFirst);
+    EditText end = body.findViewById(R.id.quranAudioLast);
+    start.setText(String.valueOf(first));
+    end.setText(String.valueOf(last));
+    View rangeEditor = body.findViewById(R.id.quranRangeEditor);
+    ((TextView) body.findViewById(R.id.quranRangeSummary)).setText(first + "–" + last);
+    body.findViewById(R.id.quranRangeAction)
+        .setOnClickListener(
+            v -> {
+              rangeEditor.setVisibility(
+                  rangeEditor.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+              if (rangeEditor.getVisibility() == View.VISIBLE) start.requestFocus();
+            });
+    Switch loopChoice = body.findViewById(R.id.quranAudioLoop);
+    loopChoice.setChecked(loop);
+    Switch followChoice = body.findViewById(R.id.quranAudioFollow);
+    followChoice.setChecked(follow && !touchPaused);
+    Switch autoChoice = body.findViewById(R.id.quranAutoScroll);
+    autoChoice.setChecked(auto);
+    // Both modes drive the same viewport; choosing one turns the other off.
+    autoChoice.setOnCheckedChangeListener(
+        (button, checked) -> {
+          if (checked) followChoice.setChecked(false);
+        });
+    followChoice.setOnCheckedChangeListener(
+        (button, checked) -> {
+          if (checked) autoChoice.setChecked(false);
+        });
+    TextView speedLabel = body.findViewById(R.id.quranAutoSpeedLabel);
+    SeekBar speedBar = body.findViewById(R.id.quranAutoSpeed);
     speedBar.setProgress(speed - 5);
-    speedBar.setMinimumHeight(dp(48));
-    speedBar.setContentDescription("Kecepatan gulir baca");
-    body.addView(speedBar, new LinearLayout.LayoutParams(-1, dp(48)));
+    speedLabel.setText("Kecepatan · " + scrollSpeedName(speed));
     speedBar.setOnSeekBarChangeListener(
         new SeekBar.OnSeekBarChangeListener() {
           @Override
-          public void onProgressChanged(SeekBar bar, int progress, boolean user) {
-            speed = 5 + progress;
-            speedLabel.setText("Kecepatan " + scrollSpeedName());
-            prefs.edit().putInt("scroll_speed", speed).apply();
+          public void onProgressChanged(SeekBar bar, int value, boolean user) {
+            speedLabel.setText("Kecepatan · " + scrollSpeedName(value + 5));
           }
 
           @Override
@@ -448,108 +424,197 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
           @Override
           public void onStopTrackingTouch(SeekBar bar) {}
         });
-    Button autoButton = new Button(activity);
-    autoButton.setId(R.id.quranAutoScroll);
-    autoButton.setAllCaps(false);
-    autoButton.setMinHeight(dp(48));
-    autoButton.setText(auto ? "Hentikan gulir baca" : "Mulai gulir baca");
-    body.addView(autoButton);
-    autoButton.setOnClickListener(
-        v -> {
-          if (auto) stopScroll();
-          else {
-            follow = false;
-            touchPaused = false;
-            auto = true;
-            awaitingPage = false;
-            prefs.edit().putBoolean("follow", false).apply();
-            lastFrame = SystemClock.uptimeMillis();
-            main.removeCallbacks(scrollFrame);
-            main.post(scrollFrame);
-          }
-          options.dismiss();
-          update();
-        });
-    TextView source =
-        label(
-            body,
-            "Rekaman qari: Al Quran Cloud / Islamic Network. Menyentuh bacaan menjeda gulir."
-                + " Progres hafalan tidak ditandai otomatis.");
-    source.setTextSize(12);
-    source.setMinHeight(dp(48));
-    source.setOnClickListener(
-        v -> {
-          try {
-            activity.startActivity(
-                new Intent(
-                    Intent.ACTION_VIEW,
-                    android.net.Uri.parse("https://alquran.cloud/terms-and-conditions")));
-          } catch (ActivityNotFoundException e) {
-            Toast.makeText(activity, "Browser belum tersedia.", Toast.LENGTH_SHORT).show();
-          }
-        });
+    body.findViewById(R.id.quranAudioSource)
+        .setOnClickListener(
+            v -> {
+              try {
+                activity.startActivity(
+                    new Intent(
+                        Intent.ACTION_VIEW,
+                        android.net.Uri.parse("https://alquran.cloud/terms-and-conditions")));
+              } catch (ActivityNotFoundException unavailable) {
+                Toast.makeText(activity, "Browser belum tersedia.", Toast.LENGTH_SHORT).show();
+              }
+            });
     options =
         new AlertDialog.Builder(activity)
-            .setTitle("Audio dan gulir Quran")
-            .setView(scroll)
+            .setView(body)
             .setNegativeButton("Tutup", null)
             .setPositiveButton("Terapkan", null)
             .create();
+    View.OnClickListener apply =
+        v -> {
+          int from, to;
+          try {
+            from = Integer.parseInt(start.getText().toString());
+            to = Integer.parseInt(end.getText().toString());
+          } catch (NumberFormatException invalid) {
+            rangeEditor.setVisibility(View.VISIBLE);
+            start.setError("Isi nomor ayat");
+            start.requestFocus();
+            return;
+          }
+          if (from < 1 || to < from || to > Recitation.count(chapter)) {
+            rangeEditor.setVisibility(View.VISIBLE);
+            end.setError("Gunakan rentang 1–" + Recitation.count(chapter));
+            end.requestFocus();
+            return;
+          }
+          first = from;
+          last = to;
+          qari = Recitation.IDS[reciters.getSelectedItemPosition()];
+          repeats = repeat.getSelectedItemPosition() + 1;
+          loop = loopChoice.isChecked();
+          follow = followChoice.isChecked();
+          speed = speedBar.getProgress() + 5;
+          touchPaused = false;
+          lastFollowed = 0;
+          prefs
+              .edit()
+              .putString("reciter", qari)
+              .putInt("repeats", repeats)
+              .putBoolean("loop", loop)
+              .putBoolean("follow", follow)
+              .putInt("scroll_speed", speed)
+              .apply();
+          stopScroll();
+          if (autoChoice.isChecked()) {
+            auto = true;
+            lastFrame = SystemClock.uptimeMillis();
+            main.post(scrollFrame);
+          }
+          if (state != null && state.chapter == chapter) {
+            if (state.playing || state.requested)
+              send(
+                  QuranAudioService.play(
+                      chapter,
+                      first,
+                      last,
+                      Math.max(first, Math.min(last, state.verse)),
+                      qari,
+                      repeats,
+                      loop));
+            else send(QuranAudioService.STOP);
+          }
+          options.dismiss();
+          update();
+          if (v.getId() == R.id.quranAudioDownload) downloads();
+        };
+    body.findViewById(R.id.quranAudioDownload).setOnClickListener(apply);
     options.setOnShowListener(
-        d ->
-            options
-                .getButton(AlertDialog.BUTTON_POSITIVE)
-                .setOnClickListener(
-                    v -> {
-                      int from, to;
-                      try {
-                        from = Integer.parseInt(start.getText().toString());
-                        to = Integer.parseInt(end.getText().toString());
-                      } catch (NumberFormatException invalid) {
-                        start.setError("Isi nomor ayat");
-                        return;
-                      }
-                      if (from < 1 || to < from || to > Recitation.count(chapter)) {
-                        end.setError("Gunakan rentang 1–" + Recitation.count(chapter));
-                        return;
-                      }
-                      first = from;
-                      last = to;
-                      qari = Recitation.IDS[reciters.getSelectedItemPosition()];
-                      repeats = repeat.getSelectedItemPosition() + 1;
-                      loop = loopChoice.isChecked();
-                      follow = followChoice.isChecked();
-                      touchPaused = false;
-                      lastFollowed = 0;
-                      prefs
-                          .edit()
-                          .putString("reciter", qari)
-                          .putInt("repeats", repeats)
-                          .putBoolean("loop", loop)
-                          .putBoolean("follow", follow)
-                          .apply();
-                      if (follow) stopScroll();
-                      if (state != null && state.chapter == chapter) {
-                        if (state.playing || state.requested)
-                          send(
-                              QuranAudioService.play(
-                                  chapter,
-                                  first,
-                                  last,
-                                  Math.max(first, Math.min(last, state.verse)),
-                                  qari,
-                                  repeats,
-                                  loop));
-                        else send(QuranAudioService.STOP);
-                      }
-                      options.dismiss();
-                      update();
-                    }));
+        dialog -> {
+          options.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(apply);
+          styleSheet(options, body);
+        });
     options.show();
   }
 
+  private void sheetPalette(View view) {
+    int foreground = night ? 0xFFEEF6F2 : 0xFF15332F;
+    if (view instanceof TextView) ((TextView) view).setTextColor(foreground);
+    if (view instanceof ImageView)
+      ((ImageView) view).setImageTintList(ColorStateList.valueOf(foreground));
+    if (view instanceof Spinner)
+      ((Spinner) view)
+          .setBackgroundTintList(ColorStateList.valueOf(night ? 0xFFACCCB7 : 0xFF586F62));
+    if (view instanceof SeekBar) {
+      SeekBar slider = (SeekBar) view;
+      slider.setProgressTintList(ColorStateList.valueOf(night ? 0xFFACCCB7 : 0xFF15332F));
+      slider.setThumbTintList(ColorStateList.valueOf(night ? 0xFFACCCB7 : 0xFF15332F));
+      slider.setProgressBackgroundTintList(ColorStateList.valueOf(night ? 0xFF456055 : 0xFFD6E2DB));
+    }
+    if (!(view instanceof TextView)
+        && !(view instanceof ViewGroup)
+        && view.getLayoutParams() != null
+        && view.getLayoutParams().height == dp(1))
+      view.setBackgroundColor(night ? 0xFF345149 : 0xFFE9EDE8);
+    if (view instanceof Switch) {
+      ((Switch) view)
+          .setThumbTintList(
+              new ColorStateList(
+                  new int[][] {new int[] {android.R.attr.state_checked}, new int[] {}},
+                  new int[] {night ? 0xFFACCCB7 : 0xFF15332F, 0xFF8E9E96}));
+    }
+    if (view instanceof ViewGroup)
+      for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++)
+        sheetPalette(((ViewGroup) view).getChildAt(i));
+  }
+
+  private android.graphics.drawable.GradientDrawable sheetBackground() {
+    android.graphics.drawable.GradientDrawable background =
+        new android.graphics.drawable.GradientDrawable();
+    background.setColor(night ? 0xFF1D3530 : 0xFFFFFFFF);
+    float radius = dp(24);
+    background.setCornerRadii(new float[] {radius, radius, radius, radius, 0, 0, 0, 0});
+    return background;
+  }
+
+  private void styleSheet(AlertDialog dialog, View body) {
+    sheetPalette(body);
+    Window window = dialog.getWindow();
+    if (window == null) return;
+    window.setBackgroundDrawable(sheetBackground());
+    window.getDecorView().setPadding(0, 0, 0, 0);
+    window.setGravity(Gravity.BOTTOM);
+    window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+    window.setDimAmount(.36f);
+    window.setStatusBarColor(android.graphics.Color.TRANSPARENT);
+    window.setNavigationBarColor(night ? 0xFF1D3530 : 0xFFFFFFFF);
+    window
+        .getDecorView()
+        .setSystemUiVisibility(
+            night
+                ? 0
+                : View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+    android.os.PowerManager power =
+        (android.os.PowerManager) activity.getSystemService(Context.POWER_SERVICE);
+    boolean motion =
+        android.animation.ValueAnimator.areAnimatorsEnabled()
+            && (power == null || !power.isPowerSaveMode());
+    window.setWindowAnimations(motion ? R.style.QuranSheetAnimation : 0);
+    window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+    ScrollView scroll = body.findViewById(R.id.quranAudioSheetScroll);
+    View contents = scroll.getChildAt(0);
+    int width = activity.getResources().getDisplayMetrics().widthPixels - dp(48);
+    contents.measure(
+        View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
+        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+    final int natural = contents.getMeasuredHeight();
+    View decor = window.getDecorView();
+    android.view.ViewTreeObserver.OnGlobalLayoutListener size =
+        () -> {
+          android.graphics.Rect visible = new android.graphics.Rect();
+          decor.getWindowVisibleDisplayFrame(visible);
+          int available =
+              visible.height() > 0
+                  ? visible.height()
+                  : activity.getResources().getDisplayMetrics().heightPixels;
+          int height = Math.min(natural, Math.max(dp(100), (int) (available * .88f) - dp(132)));
+          if (scroll.getLayoutParams().height != height) {
+            scroll.getLayoutParams().height = height;
+            scroll.requestLayout();
+          }
+        };
+    decor.getViewTreeObserver().addOnGlobalLayoutListener(size);
+    dialog.setOnDismissListener(
+        d -> {
+          if (decor.getViewTreeObserver().isAlive())
+            decor.getViewTreeObserver().removeOnGlobalLayoutListener(size);
+        });
+    size.onGlobalLayout();
+    dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(night ? 0xFFACCCB7 : 0xFF15332F);
+    Button apply = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+    apply.setTextColor(night ? 0xFFACCCB7 : 0xFF15332F);
+    apply.setMinHeight(dp(48));
+  }
+
+  private String scrollSpeedName(int value) {
+    return value < 15 ? "Lambat" : value < 35 ? "Sedang" : "Cepat";
+  }
+
   private String scrollSpeedName() {
-    return speed < 15 ? "lambat" : speed < 35 ? "sedang" : "cepat";
+    return scrollSpeedName(speed);
   }
 
   private void stopScroll() {
@@ -640,8 +705,9 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
   }
 
   public void theme(boolean night) {
+    this.night = night;
     int foreground = night ? 0xFFEEF6F2 : 0xFF15332F, secondary = night ? 0xFFB4C8BE : 0xFF586C63;
-    activity.findViewById(R.id.quranAudioPanel).setBackgroundColor(night ? 0xFF1D3530 : 0xFFEFF2EA);
+    activity.findViewById(R.id.quranAudioPanel).setBackgroundColor(night ? 0xFF1D3530 : 0xFFFFFFFF);
     ((TextView) activity.findViewById(R.id.quranAudioTitle)).setTextColor(foreground);
     for (int id : new int[] {R.id.quranAudioStatus, R.id.quranAudioTime})
       ((TextView) activity.findViewById(id)).setTextColor(secondary);
@@ -656,5 +722,23 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
           .setImageTintList(ColorStateList.valueOf(foreground));
     ((SeekBar) activity.findViewById(R.id.quranAudioSeek))
         .setProgressTintList(ColorStateList.valueOf(night ? 0xFFACCCB7 : 0xFF15332F));
+    if (reading && state != null && state.chapter == chapter) host.highlight(chapter, state.verse);
+    if (options != null && options.isShowing()) {
+      sheetPalette(options.findViewById(R.id.quranAudioSheet));
+      Window window = options.getWindow();
+      if (window != null) {
+        window.setBackgroundDrawable(sheetBackground());
+        window.setNavigationBarColor(night ? 0xFF1D3530 : 0xFFFFFFFF);
+        window
+            .getDecorView()
+            .setSystemUiVisibility(
+                night
+                    ? 0
+                    : View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                        | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+      }
+      for (int button : new int[] {AlertDialog.BUTTON_POSITIVE, AlertDialog.BUTTON_NEGATIVE})
+        options.getButton(button).setTextColor(night ? 0xFFACCCB7 : 0xFF15332F);
+    }
   }
 }

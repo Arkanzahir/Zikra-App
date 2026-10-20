@@ -1,0 +1,51 @@
+{
+  "date_wib": "2026-10-21",
+  "source_parent": "486a35d08b81d1c4404eb13a94d163f6b91a92e4",
+  "unit": {
+    "tests": 52,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Warning": 576
+  },
+  "runtime_api28_unique_passed_methods": 18,
+  "ui_audio_regression_final_round_passed": 14,
+  "local_transfer_unchanged_methods_passed_in_initial_round": 4,
+  "release_theme_and_preview_methods_rerun_passed": 2,
+  "initial_runner_failures": {
+    "bookmark_test_helper": "side-effect predicate evaluated twice; click now uses clickable native ancestor and predicate evaluates once",
+    "unknown_test_selector": "CorrectPage did not exist; added a real built-in verse-jump test from reading settings"
+  },
+  "font_scale_tested": 2.0,
+  "font_scale_restored": 1.0,
+  "live_qari_tested": false,
+  "live_text_network_tested": false,
+  "live_provider_result": "CONNECT denied by proxy HTTP 403",
+  "mushaf_implemented": false,
+  "word_progressive_highlight_implemented": false,
+  "active_ayah_background_retained": true,
+  "schema_changed": false,
+  "permissions_added": false,
+  "dependencies_added": false,
+  "logo_changed": false,
+  "runtime_api35_tested": false,
+  "physical_device_tested": false,
+  "preview_source": "Native Android screenrecord, built-in Quran text and settings, no audio playback in UI preview",
+  "preview": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 540,
+        "height": 1170
+      }
+    ],
+    "format": {
+      "duration": "8.515178",
+      "size": "128748"
+    }
+  },
+  "apk_sha256": "caa9a7adc1134afabde20755df85b83ff5dac28d35aec413dd38f0e6a67ed7ce"
+}

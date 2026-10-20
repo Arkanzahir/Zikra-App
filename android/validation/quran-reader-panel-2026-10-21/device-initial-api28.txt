@@ -1,0 +1,28 @@
+com.zikra.app.QuranDesignTest:...
+Failure in testVerseMenuBookmarkSurvivesRecreation:
+junit.framework.AssertionFailedError
+	at com.zikra.app.QuranDesignTest.until(QuranDesignTest.java:65)
+	at com.zikra.app.QuranDesignTest.testVerseMenuBookmarkSurvivesRecreation(QuranDesignTest.java:190)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:564)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2145)
+
+com.zikra.app.QuranAudioTest:.......
+com.zikra.app.AudioTransferTest:....
+com.zikra.app.RebuiltQuranTest:..
+Failure in testVerseJumpValidatesBoundsAndOpensCorrectPage:
+junit.framework.AssertionFailedError: Method "testVerseJumpValidatesBoundsAndOpensCorrectPage" not found
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:171)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:564)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2145)
+
+Test results for InstrumentationTestRunner=....F..............F
+Time: 312.276
+
+FAILURES!!!
+Tests run: 18,  Failures: 2,  Errors: 0

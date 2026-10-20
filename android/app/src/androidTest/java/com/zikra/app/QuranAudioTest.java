@@ -267,7 +267,13 @@ public final class QuranAudioTest extends InstrumentationTestCase {
     assertTrue(dialog.isShowing());
     assertNotNull(((EditText) dialog.findViewById(R.id.quranAudioLast)).getError());
     UiEvidence.capture(getInstrumentation(), "QuranAudioOptionsTest");
-    main(() -> dialog.findViewById(R.id.quranAutoScroll).performClick());
+    main(
+        () -> {
+          ((EditText) dialog.findViewById(R.id.quranAudioLast)).setText("7");
+          dialog.findViewById(R.id.quranAutoScroll).performClick();
+          assertFalse(((Switch) dialog.findViewById(R.id.quranAudioFollow)).isChecked());
+          dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
+        });
     ScrollView scroll = page.findViewById(R.id.quranScroll);
     until("Reading scroll moves without audio", () -> scroll.getScrollY() > 15);
     main(
@@ -356,8 +362,7 @@ public final class QuranAudioTest extends InstrumentationTestCase {
                 R.id.quranAudioPlay,
                 R.id.quranAudioNext,
                 R.id.quranAudioPrevious,
-                R.id.quranAudioOptions,
-                R.id.quranAudioDownload
+                R.id.quranAudioOptions
               }) {
             View action = panel.findViewById(id);
             android.graphics.Rect box = new android.graphics.Rect();

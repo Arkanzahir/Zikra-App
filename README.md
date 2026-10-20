@@ -1,8 +1,10 @@
+> **Quran native — 21 Oktober 2026 (WIB):** katalog lebih ringkas, reader dengan header Pine dan menu ayat, pemutar kecil serta panel audio dari bawah sudah diterapkan. [Preview APK, pemeriksaan dan batas](android/validation/quran-reader-panel-2026-10-21/README.md). Mushaf halaman/sorotan kata masih menunggu sumber terverifikasi; akses live teks/audio dari cloud tetap ditolak proxy.
+
 > **Bukti break aktif — 21 Oktober 2026:** [rekaman/GIF khusus](android/validation/break-animation-2026-10-21/README.md). Memperbaiki bukti video yang sebelumnya berakhir sebelum break; tidak mengubah kode aplikasi.
 
 > **Pose jeda fokus — 20 Oktober 2026 (WIB):** Jeda menampilkan karakter duduk membawa cangkir sambil menyimpan sisa fokus; Lanjutkan kembali ke pose membaca. Fase break tetap terpisah. [Bukti dan validasi](android/validation/focus-pause-pose-2026-10-20/README.md).
 
-> **Acuan Quran berikutnya:** [desain katalog/reader/panel audio dan koreksi Mushaf](design/QURAN_READER_DESIGN.md) kini tersimpan. Ini rencana, bukan fitur baru pada APK; sinkronisasi kata dan Mushaf halaman masih membutuhkan data terverifikasi.
+> **Acuan Quran:** [desain katalog/reader/panel audio dan koreksi Mushaf](design/QURAN_READER_DESIGN.md) tersimpan. Bagian katalog/reader/panel sudah diterapkan; sinkronisasi kata dan Mushaf halaman masih membutuhkan data terverifikasi.
 
 > **Revisi terbaru — 20 Oktober 2026 (WIB):** gerak karakter Fokus/Pomodoro diperjelas dan komposisinya mengikuti angka → karakter → kontrol. Cincin besar diganti progres tipis; angka dan karakter tidak lagi ditumpuk. [Video Android, screenshot dan validasi](android/validation/focus-motion-placement-2026-10-20/README.md). Tahap sebelumnya di bawah merupakan riwayat implementasi, bukan persetujuan visual pengguna.
 
@@ -118,7 +120,7 @@ gulir baca/follow dan rentang latihan Hifz sudah ada. Audio live qari belum terb
 validasi decoder sebelumnya memakai WAV sintetis, bukan rekaman Quran.
 Checkpoint Study f48fd31 dan desain animasi Pomodoro terbaru sudah tercakup main.
 Timer fokus, tenggat/pengingat Study, SQLite v3, retry peta dan repair audio
-sudah terpasang; baca validasi focus-motion-placement-2026-10-20 dan cocokkan hash GitHub.
+sudah terpasang; baca validasi quran-reader-panel-2026-10-21 dan cocokkan hash GitHub.
 Mushaf halaman, statistik dan AI generatif tetap backlog; provider live masih terbuka.
 Pertahankan data pengguna, master logo bulan+buku+spark dan onboarding/Home.
 Tampilkan preview Android aktual, satu putaran uji relevan, ulang bila ada masalah.

@@ -7,7 +7,8 @@ hash GitHub setelah setiap push. Tetap Android Java/XML, JDK 17, SDK/target 35.
 ## Arah Quran/Mushaf yang dibahas setelah Pomodoro
 
 [Acuan gabungan dan batas implementasi](QURAN_READER_DESIGN.md) tersimpan. Desain
-reader/panel audio baru, Mushaf halaman dan sorotan kata masih rencana; jangan
+reader/panel audio kini diterapkan: [bukti Android](../android/validation/quran-reader-panel-2026-10-21/README.md).
+Mushaf halaman dan sorotan kata tetap menunggu data terverifikasi; jangan
 menganggap gambar konsep sebagai source atau bukti APK.
 
 ## Pembaruan Fokus/Pomodoro berdasarkan rekaman pengguna

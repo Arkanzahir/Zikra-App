@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/quranAudioSheet" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+    <View android:layout_width="36dp" android:layout_height="4dp" android:layout_marginTop="10dp" android:layout_marginBottom="10dp" android:layout_gravity="center_horizontal" android:background="#A7B5AF" android:importantForAccessibility="no" />
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingHorizontal="24dp" android:paddingBottom="12dp" android:text="Pemutar Quran" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/pine" android:accessibilityHeading="true" />
+    <ScrollView android:id="@+id/quranAudioSheetScroll" android:layout_width="match_parent" android:layout_height="wrap_content" android:fillViewport="false">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="24dp" android:paddingBottom="8dp">
+            <LinearLayout style="@style/QuranSheetRow">
+                <ImageView style="@style/QuranSheetIcon" android:src="@drawable/ic_user" />
+                <LinearLayout style="@style/QuranSheetColumn">
+                    <TextView style="@style/QuranSheetLabel" android:text="Qari" android:labelFor="@id/quranAudioReciter" />
+                    <Spinner android:id="@id/quranAudioReciter" style="@style/QuranSheetPicker" android:contentDescription="Pilih qari" />
+                </LinearLayout>
+            </LinearLayout>
+            <View style="@style/QuranSheetDivider" />
+            <LinearLayout style="@style/QuranSheetRow">
+                <ImageView style="@style/QuranSheetIcon" android:src="@drawable/audio_repeat" />
+                <LinearLayout style="@style/QuranSheetColumn">
+                    <TextView style="@style/QuranSheetLabel" android:text="Pengulangan setiap ayat" android:labelFor="@id/quranAudioRepeats" />
+                    <Spinner android:id="@id/quranAudioRepeats" style="@style/QuranSheetPicker" android:contentDescription="Jumlah pengulangan per ayat" />
+                </LinearLayout>
+            </LinearLayout>
+            <View style="@style/QuranSheetDivider" />
+            <LinearLayout android:id="@+id/quranRangeAction" style="@style/QuranSheetRow" android:background="?android:attr/selectableItemBackground" android:clickable="true" android:focusable="true" android:contentDescription="Ubah rentang ayat">
+                <ImageView style="@style/QuranSheetIcon" android:src="@drawable/audio_range" />
+                <LinearLayout style="@style/QuranSheetColumn">
+                    <TextView style="@style/QuranSheetLabel" android:text="Rentang ayat" />
+                    <TextView android:id="@+id/quranRangeSummary" style="@style/QuranSheetValue" android:paddingVertical="8dp" />
+                </LinearLayout>
+                <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_back" android:rotation="180" android:importantForAccessibility="no" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/quranRangeEditor" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:visibility="gone">
+                <EditText android:id="@id/quranAudioFirst" style="@style/QuranSheetNumber" android:hint="Awal" android:contentDescription="Ayat awal" />
+                <TextView android:layout_width="32dp" android:layout_height="48dp" android:gravity="center" android:text="–" android:importantForAccessibility="no" />
+                <EditText android:id="@id/quranAudioLast" style="@style/QuranSheetNumber" android:hint="Akhir" android:contentDescription="Ayat akhir" />
+            </LinearLayout>
+            <Switch android:id="@id/quranAudioLoop" style="@style/QuranSheetSwitch" android:text="Ulangi rentang terus-menerus" />
+            <View style="@style/QuranSheetDivider" />
+            <Switch android:id="@id/quranAutoScroll" style="@style/QuranSheetSwitch" android:text="Gulir baca&#10;Gulir mandiri tanpa audio" />
+            <TextView android:id="@+id/quranAutoSpeedLabel" style="@style/QuranSheetValue" android:text="Kecepatan gulir" android:labelFor="@id/quranAutoSpeed" />
+            <SeekBar android:id="@id/quranAutoSpeed" android:layout_width="match_parent" android:layout_height="48dp" android:max="55" android:progressTint="@color/pine" android:thumbTint="@color/pine" android:contentDescription="Kecepatan gulir baca" />
+            <View style="@style/QuranSheetDivider" />
+            <Switch android:id="@id/quranAudioFollow" style="@style/QuranSheetSwitch" android:text="Ikuti ayat audio&#10;Gulir ke ayat yang sedang diputar" />
+            <View style="@style/QuranSheetDivider" />
+            <Button android:id="@id/quranAudioDownload" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="56dp" android:background="?android:attr/selectableItemBackground" android:stateListAnimator="@null" android:elevation="0dp" android:drawableStart="@drawable/audio_download" android:drawablePadding="16dp" android:drawableTint="@color/pine" android:text="Unduh / kelola audio surah" android:textAllCaps="false" android:textSize="14sp" android:gravity="start|center_vertical" android:textColor="@color/pine" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Menyentuh bacaan menjeda gulir. Hafalan ditandai selesai sendiri." android:textSize="11sp" android:textColor="#586F62" android:paddingTop="8dp" android:paddingBottom="4dp" />
+            <Button android:id="@+id/quranAudioSource" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:background="?android:attr/selectableItemBackground" android:text="Sumber audio · Al Quran Cloud / Islamic Network" android:textAllCaps="false" android:textSize="11sp" android:textColor="#586F62" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,3 +1,5 @@
+> **Audit 21 Oktober 2026:** reader/panel audio native diperbarui. API teks, CDN qari dan host dokumentasi Foundation masih mendapat CONNECT 403 dari proxy cloud. [Bukti request, dokumentasi Mushaf dan prasyarat timing](validation/quran-reader-panel-2026-10-21/SOURCE_AUDIT.md). Provider lama dipertahankan.
+
 # Provider dan status integrasi — 20 Oktober 2026
 
 Aplikasi tetap Java/XML native. Daftar ini membedakan layanan yang sudah digunakan

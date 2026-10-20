@@ -2,6 +2,12 @@
 
 ## Status terbaru
 
+21 Oktober: berdasarkan `486a35d`, desain katalog/reader/panel audio Quran sudah
+diterapkan di Java/XML. Data, parser, service audio dan unduhan tetap dipakai.
+[Bukti terbaru](android/validation/quran-reader-panel-2026-10-21/README.md).
+Mushaf dan sorotan kata masih belum tersedia: akses API/CDN tetap ditolak proxy
+dan data layout/timing/izin font belum terverifikasi. Catatan di bawah historis.
+
 Revisi berikutnya berdasarkan `b8f3a04`: pose cangkir juga dipakai saat jeda fokus;
 lanjut kembali membaca, tanpa mengubah fase atau sisa waktu.
 [Bukti](android/validation/focus-pause-pose-2026-10-20/README.md).

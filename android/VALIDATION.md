@@ -1,3 +1,5 @@
+> **Quran reader/panel — 21 Oktober 2026:** [hasil APK native](validation/quran-reader-panel-2026-10-21/README.md). Katalog/reader, panel audio, tema malam/font 200%, transaksi pengaturan, bookmark dan regresi audio lokal. [Audit sumber/live](validation/quran-reader-panel-2026-10-21/SOURCE_AUDIT.md).
+
 > **Bukti break aktif — 21 Oktober 2026:** [video khusus dan tes terarah](validation/break-animation-2026-10-21/README.md). Label video sebelumnya dikoreksi; frame jeda/fokus tidak dianggap bukti break aktif.
 
 > **Pose jeda fokus — 20 Oktober 2026:** [hasil Android](validation/focus-pause-pose-2026-10-20/README.md). Pose istirahat saat paused, sisa fokus tetap, kembali membaca saat lanjut. Acuan desain Quran disimpan terpisah sebagai rencana.
