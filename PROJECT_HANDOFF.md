@@ -1,0 +1,79 @@
+# Handoff Zikra — 21 Oktober 2026 (WIB)
+
+## Proyek/acuan
+
+Arkanzahir/Zikra-App; Android Java/XML, JDK 17, compile/target SDK 35, min 26.
+prototype_zikra hanya referensi. Root berisi dokumen ini dan android/. ZIP kini
+memiliki .git/origin, main mengikuti origin/main tanpa checkout/reset source.
+Baca README.md, RECOVERY.md, android/API_PLAN.md, design/IMPROVEMENT_PLAN.md,
+design/QURAN_READER_DESIGN.md dan android/VALIDATION.md.
+
+## Implementasi/bukti
+
+Source produksi tidak diubah dalam audit lokal ini. Onboarding/Home, lokasi,
+jadwal/cuaca/Kiblat, OSM, Study/Hifz, fokus, Quran reader/panel/audio/unduhan tetap
+implementasi sebelumnya. Bukti historis: android/validation/quran-reader-panel-2026-10-21/
+(52 JVM/18 metode API 28 saat checkpoint lama; audio sintetis).
+
+[Laporan sesi lokal](android/validation/local-qari-2026-10-21/README.md) dan
+[ringkasan](android/validation/local-qari-2026-10-21/summary.json): build/tes APK,
+52 JVM dan lint dijalankan lokal. Dua tes live baru compiled, **nol live lulus**.
+Tidak ada screenshot/rekaman baru atau klaim suara didengarkan.
+[API/MP3/hash/timing](android/validation/local-qari-2026-10-21/providers.json).
+
+## Pekerjaan/hambatan
+
+Prioritas audio asli belum selesai. LiveQariPlaybackTest menyiapkan streaming tiga
+qari/kontrol/layar mati/pergantian surah dan unduhan-repair/offline/repeat/range.
+Hanya emulator uji; radio dimatikan sementara, file/preferensi dipulihkan.
+Jangan clear data pengguna. Suite belum terbukti runtime; periksa teardown/hasil.
+
+Emulator API 37 mengalami WHPX/offline; C sempat penuh. TEMP/TMP di D memungkinkan
+boot dan pemasangan APK, tetapi instrumentasi crash sebelum hasil metode, lalu
+ADB hilang. Stack trace tidak diperoleh; akar crash belum diketahui. Setelah
+emulator berakhir C kembali sekitar 9 GB bebas. Runtime API 35/HP belum diuji.
+
+Berikutnya: emulator stabil API 35 dengan ruang disk cukup, ambil crash buffer
+segera, jalankan suite; lalu interupsi jaringan saat stream/transfer, headset,
+telepon dan bukti Android aktual. Jangan menyebut compiled sebagai lulus.
+
+## Sumber, izin dan keputusan
+
+[Audit sumber](android/validation/local-qari-2026-10-21/SOURCE_AUDIT.md): QCF V2
+kandidat, edisi belum final. QUL layout 12 adalah Indopak 610 halaman. Verifikasi
+izin/version/hash data+font/layout, halaman awal/tengah/akhir serta Al-Mulk.
+Jalur resmi QF font/gambar memerlukan akun developer aktif; API/Content Sync
+memerlukan akses server. Cache teks lama perlu audit/migrasi sesuai syarat terbaru,
+tanpa menghapus data otomatis. Tidak ada backend/secret baru.
+
+Timing Alafasy 1:1 tersedia, hash recording berbeda dari MP3 aplikasi. Kecocokan
+PCM/timeline/korpus belum terbukti. Mushaf/sorotan kata belum diimplementasikan;
+jangan menebak timestamp. AI generatif/perluasan Study tetap tahap lain.
+
+Pertahankan Pine #15332F, master design/branding/zikra-logo-primary.jpg
+(bulan+buku+spark), Home/onboarding dan reader/panel yang disepakati. Mushaf harus
+berbaris berkesinambungan dengan nomor inline, bukan kartu per ayat. Pertahankan
+preferensi, bookmark/posisi, Hifz, tugas, unduhan valid dan SQLite.
+
+## Build/tes
+
+Ikuti android/BUILDING.md. JAVA_HOME JDK 17 dan ANDROID_HOME melalui environment
+lokal; jangan commit path komputer/local.properties. Dari android/:
+
+```text
+gradlew.bat assembleDebug assembleDebugAndroidTest testDebugUnitTest lintDebug
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+adb shell am instrument -w -e class com.zikra.app.LiveQariPlaybackTest com.zikra.app.test/android.test.InstrumentationTestRunner
+```
+
+tools/Test-QuranProviders.ps1 -OutputPath <json> -TemporaryRoot <folder> menguji
+host HTTP/signature/hash, bukan playback Android. APK lokal ignored:
+android/app/build/outputs/apk/debug/app-debug.apk. Laporan/log ada pada tautan di atas.
+
+## Commit/push
+
+Baseline main/origin/main setelah fetch: 9f97bd44d473df8f4686f129a7be5212de09cdda.
+Pengguna mengizinkan commit/push main tanpa force. Push checkpoint audit ini
+akan dicatat setelah verifikasi aktual. Temukan commit dokumen dengan
+`git log -1 -- PROJECT_HANDOFF.md`.

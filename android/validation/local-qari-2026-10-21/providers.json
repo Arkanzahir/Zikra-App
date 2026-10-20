@@ -1,0 +1,80 @@
+{
+  "checked_at": "2026-10-21T05:32:10.9561944+07:00",
+  "scope": "Host HTTP and MP3 signatures; not Android playback or listening verification",
+  "text": {
+    "url": "https://api.quran.com/api/v4/verses/by_chapter/67?language=id&translations=33&fields=text_uthmani&per_page=50&page=1",
+    "first_key": "67:1",
+    "last_key": "67:30",
+    "http": 200,
+    "translation_resource": 33,
+    "verses": 30
+  },
+  "audio": [
+    {
+      "url": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
+      "qari": "ar.alafasy",
+      "mp3_signature": true,
+      "verse_key": "1:1",
+      "type": "audio/mpeg",
+      "http": 200,
+      "bytes": 146830,
+      "sha256": "C0D5BA887523E64B5CF7DB8F26A6DDD3936B1AC9286F133E258F0DD7F6B7353E"
+    },
+    {
+      "url": "https://cdn.islamic.network/quran/audio/128/ar.husary/1.mp3",
+      "qari": "ar.husary",
+      "mp3_signature": true,
+      "verse_key": "1:1",
+      "type": "audio/mpeg",
+      "http": 200,
+      "bytes": 82558,
+      "sha256": "74BEDD2A73D9C49A6B80C7113CB20724AC18FAC9E458B479BD6D9B96131098C4"
+    },
+    {
+      "url": "https://cdn.islamic.network/quran/audio/128/ar.minshawi/1.mp3",
+      "qari": "ar.minshawi",
+      "mp3_signature": true,
+      "verse_key": "1:1",
+      "type": "audio/mpeg",
+      "http": 200,
+      "bytes": 79540,
+      "sha256": "0E4B59C7F85EBDB67F5EBCBC4538D0281CD545F888AD12B27EADD95A831BD9F0"
+    }
+  ],
+  "timing_sample": {
+    "verse_key": "1:1",
+    "recording_bytes": 146830,
+    "recording_sha256": "8808F3FC313D9DF87B6090EE9EFC8C11859DA58B0100AD92621C5EE9A93D7280",
+    "url": "https://api.quran.com/api/v4/recitations/7/by_ayah/1:1?fields=segments",
+    "recording_url": "https://audio.qurancdn.com/Alafasy/mp3/001001.mp3",
+    "same_bytes_as_current_alafasy": false,
+    "scope": "One ayah only; byte equality does not establish full-corpus timing coverage",
+    "http": 200,
+    "segments": [
+      [
+        0,
+        1,
+        60,
+        610
+      ],
+      [
+        1,
+        2,
+        620,
+        1310
+      ],
+      [
+        2,
+        3,
+        1320,
+        2450
+      ],
+      [
+        3,
+        4,
+        2460,
+        5970
+      ]
+    ]
+  }
+}

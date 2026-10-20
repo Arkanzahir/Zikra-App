@@ -1,3 +1,5 @@
+> **Audit lokal — 21 Oktober 2026:** [build, 52 JVM, provider dan kegagalan instrumentasi API 37](validation/local-qari-2026-10-21/README.md). Nol metode live dinyatakan lulus.
+
 > **Quran reader/panel — 21 Oktober 2026:** [hasil APK native](validation/quran-reader-panel-2026-10-21/README.md). Katalog/reader, panel audio, tema malam/font 200%, transaksi pengaturan, bookmark dan regresi audio lokal. [Audit sumber/live](validation/quran-reader-panel-2026-10-21/SOURCE_AUDIT.md).
 
 > **Bukti break aktif — 21 Oktober 2026:** [video khusus dan tes terarah](validation/break-animation-2026-10-21/README.md). Label video sebelumnya dikoreksi; frame jeda/fokus tidak dianggap bukti break aktif.

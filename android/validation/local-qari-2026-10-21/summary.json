@@ -1,0 +1,94 @@
+﻿{
+    "date_wib":  "2026-10-21",
+    "source_parent":  "9f97bd44d473df8f4686f129a7be5212de09cdda",
+    "unit_suites":  [
+                        {
+                            "suite":  "com.zikra.app.assistant.OfflineAssistantTest",
+                            "tests":  6,
+                            "failures":  0,
+                            "errors":  0,
+                            "skipped":  0
+                        },
+                        {
+                            "suite":  "com.zikra.app.audio.RecitationTest",
+                            "tests":  8,
+                            "failures":  0,
+                            "errors":  0,
+                            "skipped":  0
+                        },
+                        {
+                            "suite":  "com.zikra.app.discovery.HijriCalendarModelTest",
+                            "tests":  3,
+                            "failures":  0,
+                            "errors":  0,
+                            "skipped":  0
+                        },
+                        {
+                            "suite":  "com.zikra.app.location.LocationPointTest",
+                            "tests":  5,
+                            "failures":  0,
+                            "errors":  0,
+                            "skipped":  0
+                        },
+                        {
+                            "suite":  "com.zikra.app.PrayerScheduleTest",
+                            "tests":  7,
+                            "failures":  0,
+                            "errors":  0,
+                            "skipped":  0
+                        },
+                        {
+                            "suite":  "com.zikra.app.reading.CompassMathTest",
+                            "tests":  4,
+                            "failures":  0,
+                            "errors":  0,
+                            "skipped":  0
+                        },
+                        {
+                            "suite":  "com.zikra.app.reading.SurahSearchTest",
+                            "tests":  3,
+                            "failures":  0,
+                            "errors":  0,
+                            "skipped":  0
+                        },
+                        {
+                            "suite":  "com.zikra.app.safety.ForecastSelectorTest",
+                            "tests":  4,
+                            "failures":  0,
+                            "errors":  0,
+                            "skipped":  0
+                        },
+                        {
+                            "suite":  "com.zikra.app.safety.WeatherCodeTest",
+                            "tests":  3,
+                            "failures":  0,
+                            "errors":  0,
+                            "skipped":  0
+                        },
+                        {
+                            "suite":  "com.zikra.app.sky.SkyDayTest",
+                            "tests":  3,
+                            "failures":  0,
+                            "errors":  0,
+                            "skipped":  0
+                        },
+                        {
+                            "suite":  "com.zikra.app.study.FocusClockTest",
+                            "tests":  6,
+                            "failures":  0,
+                            "errors":  0,
+                            "skipped":  0
+                        }
+                    ],
+    "total_tests":  52,
+    "lint_errors":  0,
+    "lint_warnings":  577,
+    "live_test_methods_compiled":  2,
+    "live_test_methods_passed":  0,
+    "device_result":  "Instrumentation process crashed; subsequent ADB connection lost",
+    "runtime_sdk":  37,
+    "api35_runtime_tested":  false,
+    "physical_device_tested":  false,
+    "screenshot_or_recording_captured":  false,
+    "apk_sha256":  "0E2EBBFF826821B546213909548AC122AFC71B2872469CDCA760616D49FFF9B6"
+}

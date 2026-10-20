@@ -1,3 +1,5 @@
+> **Audit lokal — 21 Oktober 2026:** [handoff sesi](PROJECT_HANDOFF.md) · [hasil build/API dan hambatan tes audio asli](android/validation/local-qari-2026-10-21/README.md). Playback Android live, Mushaf dan sorotan kata belum terverifikasi.
+
 > **Quran native — 21 Oktober 2026 (WIB):** katalog lebih ringkas, reader dengan header Pine dan menu ayat, pemutar kecil serta panel audio dari bawah sudah diterapkan. [Preview APK, pemeriksaan dan batas](android/validation/quran-reader-panel-2026-10-21/README.md). Mushaf halaman/sorotan kata masih menunggu sumber terverifikasi; akses live teks/audio dari cloud tetap ditolak proxy.
 
 > **Bukti break aktif — 21 Oktober 2026:** [rekaman/GIF khusus](android/validation/break-animation-2026-10-21/README.md). Memperbaiki bukti video yang sebelumnya berakhir sebelum break; tidak mengubah kode aplikasi.

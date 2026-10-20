@@ -1,3 +1,5 @@
+> **Audit Windows — 21 Oktober 2026:** API teks/CDN qari dapat diakses HTTP 200 dari komputer lokal. Timing sampel tersedia tetapi kecocokan recording belum terbukti; [audit/izin terbaru](validation/local-qari-2026-10-21/SOURCE_AUDIT.md). Penolakan proxy di bawah adalah riwayat cloud.
+
 > **Audit 21 Oktober 2026:** reader/panel audio native diperbarui. API teks, CDN qari dan host dokumentasi Foundation masih mendapat CONNECT 403 dari proxy cloud. [Bukti request, dokumentasi Mushaf dan prasyarat timing](validation/quran-reader-panel-2026-10-21/SOURCE_AUDIT.md). Provider lama dipertahankan.
 
 # Provider dan status integrasi — 20 Oktober 2026
