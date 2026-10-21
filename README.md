@@ -193,3 +193,6 @@ Referensi visual pengguna dan kebutuhan produk:
 - [x] Implementasi awal Android native Java/XML
 - [ ] Penyempurnaan tampilan dan kelengkapan fitur Android
 - [ ] Backend & AI Integration
+> Pembaruan tampilan Mushaf — 21 Oktober 2026: header Aa/menu kecil, surah–juz
+> kiri/kanan, bingkai berornamen lembut dan mini player tipis mengikuti referensi.
+> [Screenshot native dan validasi](android/validation/mushaf-reference-2026-10-21/README.md).

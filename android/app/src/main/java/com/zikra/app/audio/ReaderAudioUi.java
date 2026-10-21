@@ -284,6 +284,8 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     boolean playing = current && (state.playing || (state.loading && state.requested));
     String name = QuranChapters.all(activity).get(chapter - 1).name;
     String title = name + " · " + (current ? "Ayat " + state.verse : "Ayat " + first + "–" + last);
+    boolean compact = activity.findViewById(R.id.mushafAudioProgress) != null;
+    if (compact && !current) title = name + " · Ayat " + host.verse();
     text(R.id.quranAudioTitle, title);
     boolean otherChapter = state != null && state.chapter > 0 && state.chapter != chapter;
     TextView heading = activity.findViewById(R.id.quranAudioTitle);
@@ -298,6 +300,9 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
                 + " · ulang "
                 + repeats
                 + "× per ayat";
+    if (compact && !current) status = Recitation.NAMES[Recitation.reciterIndex(qari)];
+    if (compact && current && state.playing && state.duration > 0)
+      status = Recitation.NAMES[Recitation.reciterIndex(state.reciter)];
     if (current && state.repeats > 1) status += " · " + state.repeat + "/" + state.repeats;
     if (otherChapter)
       status =

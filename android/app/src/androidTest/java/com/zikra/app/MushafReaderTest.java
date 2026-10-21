@@ -6,6 +6,7 @@ import android.os.*;
 import android.test.InstrumentationTestCase;
 import android.view.*;
 import android.widget.*;
+import com.zikra.app.audio.QuranAudioService;
 import com.zikra.app.reading.mushaf.*;
 import java.lang.reflect.*;
 import java.util.*;
@@ -87,6 +88,24 @@ public final class MushafReaderTest extends InstrumentationTestCase {
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     loaded(1);
     assertFalse(page.findViewById(R.id.mushafPrevious).isEnabled());
+    assertEquals(View.GONE, page.findViewById(R.id.mushafAudioProgress).getVisibility());
+    main(() -> page.findViewById(R.id.mushafTranslation).performClick());
+    AlertDialog menu = (AlertDialog) field(page, "dialog");
+    main(() -> menu.getListView().performItemClick(null, 2, 2));
+    assertEquals(View.VISIBLE, page.findViewById(R.id.mushafAudioProgress).getVisibility());
+    main(() -> page.findViewById(R.id.mushafTranslation).performClick());
+    AlertDialog collapse = (AlertDialog) field(page, "dialog");
+    main(() -> collapse.getListView().performItemClick(null, 2, 2));
+    main(() -> page.findViewById(R.id.mushafTranslation).performClick());
+    AlertDialog sourceMenu = (AlertDialog) field(page, "dialog");
+    main(() -> sourceMenu.getListView().performItemClick(null, 3, 3));
+    AlertDialog source = (AlertDialog) field(page, "dialog");
+    assertTrue(
+        ((TextView) source.findViewById(android.R.id.message))
+            .getText()
+            .toString()
+            .contains("Quran Foundation"));
+    main(source::dismiss);
     UiEvidence.capture(getInstrumentation(), "Mushaf-AlFatihah");
     for (int number : new int[] {300, 562, 604}) {
       invoke(page, "load", new Class<?>[] {int.class}, number);
@@ -159,6 +178,44 @@ public final class MushafReaderTest extends InstrumentationTestCase {
                   && field(parent, "loadedPage") != null);
     } finally {
       getInstrumentation().removeMonitor(monitor);
+    }
+  }
+
+  public void testMiniPlayerWithActualAudioAndTimeline() throws Exception {
+    page =
+        getInstrumentation()
+            .startActivitySync(
+                new Intent(context, MushafActivity.class)
+                    .putExtra(QuranActivity.EXTRA_TARGET_CHAPTER, 67)
+                    .putExtra(QuranActivity.EXTRA_TARGET_VERSE, 5)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    loaded(562);
+    Object audio = field(page, "audio");
+    until("Audio service bound", () -> field(audio, "service") != null);
+    try {
+      invoke(audio, "playVerse", new Class<?>[] {int.class}, 5);
+      until(
+          "Actual recitation plays through native decoder",
+          () -> {
+            QuranAudioService.State state = (QuranAudioService.State) field(audio, "state");
+            return state != null
+                && state.chapter == 67
+                && state.playing
+                && state.position > 250
+                && state.duration > 0;
+          });
+      assertEquals(View.GONE, page.findViewById(R.id.mushafAudioProgress).getVisibility());
+      UiEvidence.capture(getInstrumentation(), "Mushaf-Mini-Audio-Active");
+      main(() -> page.findViewById(R.id.mushafTranslation).performClick());
+      AlertDialog menu = (AlertDialog) field(page, "dialog");
+      main(() -> menu.getListView().performItemClick(null, 2, 2));
+      assertEquals(View.VISIBLE, page.findViewById(R.id.mushafAudioProgress).getVisibility());
+      assertTrue(page.findViewById(R.id.quranAudioSeek).isEnabled());
+      UiEvidence.capture(getInstrumentation(), "Mushaf-Expanded-Audio");
+      main(() -> page.findViewById(R.id.quranAudioPlay).performClick());
+      until("Pause button works", () -> !((QuranAudioService.State) field(audio, "state")).playing);
+    } finally {
+      main(() -> QuranAudioService.send(context, QuranAudioService.STOP));
     }
   }
 

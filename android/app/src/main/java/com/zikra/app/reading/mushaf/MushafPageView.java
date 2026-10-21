@@ -27,6 +27,7 @@ public final class MushafPageView extends View {
   private QcfCanvasFont canvasFont;
   private Actions actions;
   private boolean night;
+  private float viewportRatio = 1.48f;
   private int activeChapter, activeVerse;
 
   private static final class Hit {
@@ -108,32 +109,45 @@ public final class MushafPageView extends View {
     int width = MeasureSpec.getSize(widthSpec);
     if (getLayoutParams() != null && getLayoutParams().width > 0) width = getLayoutParams().width;
     if (width == 0) width = getResources().getDisplayMetrics().widthPixels;
-    setMeasuredDimension(width, Math.round(width * 1.48f));
+    setMeasuredDimension(width, Math.round(width * viewportRatio));
+  }
+
+  public void fitViewport(int width, int height) {
+    if (width <= 0 || height <= 0) return;
+    float next = Math.max(1.48f, (float) height / width);
+    if (Math.abs(next - viewportRatio) > .001f) {
+      viewportRatio = next;
+      requestLayout();
+    }
   }
 
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
     canvas.drawColor(color(R.color.mushaf_paper, R.color.mushaf_night_paper));
-    float w = getWidth(), margin = w * .085f, top = w * .075f, rowHeight = w * .086f;
+    float w = getWidth(),
+        margin = w * .085f,
+        top = w * .055f,
+        rowHeight = (getHeight() - w * .14f) / 15;
     frame.setColor(color(R.color.mushaf_border, R.color.mushaf_night_border));
     frame.setStyle(Paint.Style.STROKE);
     frame.setStrokeWidth(Math.max(1, w / 500));
     canvas.drawRect(margin * .45f, top * .35f, w - margin * .45f, getHeight() - top * .35f, frame);
     canvas.drawRect(margin * .58f, top * .48f, w - margin * .58f, getHeight() - top * .48f, frame);
-    float inset = margin * .58f, arm = w * .035f;
+    diamond(canvas, w / 2, top * .35f, w * .007f);
+    float inset = margin * .58f, arm = w * .021f;
     for (int x : new int[] {-1, 1}) {
       for (int y : new int[] {-1, 1}) {
         canvas.save();
         canvas.translate(x < 0 ? inset : w - inset, y < 0 ? top * .48f : getHeight() - top * .48f);
         canvas.scale(-x, -y);
         Path corner = new Path();
-        corner.moveTo(0, arm * 2);
-        corner.lineTo(arm, arm * 2);
-        corner.quadTo(arm * 2, arm * 2, arm * 2, arm);
-        corner.lineTo(arm * 2, 0);
+        corner.moveTo(0, arm * 2.8f);
+        corner.cubicTo(arm * 2, arm * 3, arm * 3, arm, arm, arm);
+        corner.cubicTo(arm * .5f, arm * 2, arm * 2.5f, arm * 2, arm * 2.5f, 0);
         canvas.drawPath(corner, frame);
-        diamond(canvas, arm * .8f, arm * .8f, arm * .23f);
+        diamond(canvas, arm * .6f, arm * .6f, arm * .23f);
+        canvas.drawCircle(arm * 1.5f, arm * 2.5f, arm * .18f, frame);
         canvas.restore();
       }
     }
@@ -141,8 +155,9 @@ public final class MushafPageView extends View {
     if (document == null || canvasFont == null) return;
     // Opening pages retain their source lines, with generous spacing like a frontispiece.
     if (document.page.number <= 2) {
-      top = w * .14f;
-      rowHeight = w * .145f;
+      top = w * .035f;
+      int last = document.page.lines.get(document.page.lines.size() - 1).number;
+      rowHeight = (getHeight() - top - w * .12f) / (last - .28f);
     }
     ink.setTypeface(font);
     ink.setTextSize(100);
@@ -165,14 +180,25 @@ public final class MushafPageView extends View {
       float length = natural + gap * (line.words.size() - 1);
       float right = line.centered ? (w + length) / 2 : w - margin;
       float baseline = top + (line.number - 1) * rowHeight + rowHeight * .72f;
+      float cursor = right;
+      RectF activeBounds = null;
+      for (MushafPage.Word word : line.words) {
+        float width = canvasFont.metrics.width(word.glyph, size);
+        if (word.chapter == activeChapter && word.verse == activeVerse) {
+          RectF box = new RectF(cursor - width, baseline - size, cursor, baseline + size * .35f);
+          if (activeBounds == null) activeBounds = box;
+          else activeBounds.union(box);
+        }
+        cursor -= width + gap;
+      }
+      if (activeBounds != null) {
+        frame.setStyle(Paint.Style.FILL);
+        frame.setColor(color(R.color.mushaf_selection, R.color.mushaf_night_selection));
+        canvas.drawRoundRect(activeBounds, size * .1f, size * .1f, frame);
+      }
       for (MushafPage.Word word : line.words) {
         float width = canvasFont.metrics.width(word.glyph, size);
         RectF box = new RectF(right - width, baseline - size, right, baseline + size * .35f);
-        if (word.chapter == activeChapter && word.verse == activeVerse) {
-          frame.setStyle(Paint.Style.FILL);
-          frame.setColor(night ? 0xFF314C40 : 0xFFE3ECD9);
-          canvas.drawRoundRect(box, size * .1f, size * .1f, frame);
-        }
         ink.setColor(color(R.color.mushaf_ink, R.color.mushaf_night_ink));
         canvasFont.draw(canvas, word.glyph, right, baseline, ink);
         hits.add(new Hit(box, word));
@@ -222,8 +248,28 @@ public final class MushafPageView extends View {
     frame.setStrokeWidth(Math.max(1, width / 900));
     float half = Math.max(textWidth / 2 + size * .65f, width * .19f);
     float center = baseline - size * .22f, height = size * .44f;
-    RectF plaque = new RectF(width / 2 - half, center - height, width / 2 + half, center + height);
-    canvas.drawRoundRect(plaque, height, height, frame);
+    Path plaque = new Path();
+    float left = width / 2 - half, right = width / 2 + half;
+    plaque.moveTo(left, center);
+    plaque.cubicTo(
+        left + height,
+        center - height * .3f,
+        left,
+        center - height,
+        left + height * 1.4f,
+        center - height);
+    plaque.lineTo(right - height * 1.4f, center - height);
+    plaque.cubicTo(right, center - height, right - height, center - height * .3f, right, center);
+    plaque.cubicTo(
+        right - height,
+        center + height * .3f,
+        right,
+        center + height,
+        right - height * 1.4f,
+        center + height);
+    plaque.lineTo(left + height * 1.4f, center + height);
+    plaque.cubicTo(left, center + height, left + height, center + height * .3f, left, center);
+    canvas.drawPath(plaque, frame);
     for (int direction : new int[] {-1, 1}) {
       float edge = width / 2 + direction * half;
       diamond(canvas, edge + direction * size * .24f, center, size * .16f);

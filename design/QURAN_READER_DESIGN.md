@@ -103,3 +103,11 @@ kertas ivory, metadata terpusat dan player khusus Mushaf yang lebih ringkas.
 Halaman pembuka diberi ruang lebih lapang tanpa mengubah susunan baris sumber.
 [Screenshot dan validasi](../android/validation/mushaf-polish-2026-10-21/README.md).
 Sorotan emas per kata tetap tahap berikutnya; dekorasi emas bukan indikator audio.
+## Iterasi mengikuti referensi yang dikirim ulang
+
+Header lebih kecil dengan Aa dan ⋮; metadata surah/juz di kiri–kanan. Bingkai
+menyesuaikan viewport dan memakai sudut melengkung tipis serta judul berornamen.
+Mini player mempertahankan 48dp target sentuh dengan ikon/cakram yang lebih kecil.
+Seekbar/durasi hanya dibuka lewat menu posisi audio, atribusi melalui Sumber Mushaf.
+Penanda ayat sage menyatu per baris. Ini belum sorotan emas per kata.
+[Bukti native terbaru](../android/validation/mushaf-reference-2026-10-21/README.md).

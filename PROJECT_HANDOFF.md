@@ -1,5 +1,16 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: desain mengikuti referensi yang dikirim ulang
+
+Header kecil Aa/⋮, surah kiri–juz kanan, bingkai melengkung halus, ornamen judul
+dan mini player tipis. Bingkai mengikuti tinggi viewport; penanda sage ayat aktif
+menyatu per baris. Seekbar dibuka lewat ⋮ → posisi audio; atribusi dipindahkan ke
+⋮ → Sumber Mushaf. [Screenshot native dan bukti](android/validation/mushaf-reference-2026-10-21/README.md).
+Build/lint dan 78 JVM lulus. Empat metode Android unik lulus, termasuk playback
+asli/posisi native dan jeda pada mini player; satu diulang pada teks sistem 200%.
+APK terbaru `D:/Download/Zikra-App-main/Zikra-Mushaf-Reference-20261021-debug.apk`.
+Batas Android 12+/online dan sorotan kata belum terhubung tetap berlaku.
+
 ## Terbaru: poles tampilan sesuai arah referensi pengguna
 
 Bingkai sage bersudut geometris, ornamen judul sand gold, kertas ivory,

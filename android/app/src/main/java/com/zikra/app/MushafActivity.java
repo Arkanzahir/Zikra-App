@@ -93,7 +93,12 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
     repository = new MushafRepository(this);
     pageView = findViewById(R.id.mushafPage);
     findViewById(R.id.toolbarBack).setOnClickListener(v -> finish());
-    findViewById(R.id.mushafTranslation).setOnClickListener(v -> finish());
+    findViewById(R.id.mushafTranslation).setOnClickListener(v -> more());
+    findViewById(R.id.quranScroll)
+        .addOnLayoutChangeListener(
+            (v, l, t, r, b, oldL, oldT, oldR, oldB) -> {
+              if (r - l != oldR - oldL || b - t != oldB - oldT) applyZoom();
+            });
     findViewById(R.id.mushafNext).setOnClickListener(v -> load(Math.min(604, page + 1)));
     findViewById(R.id.mushafPrevious).setOnClickListener(v -> load(Math.max(1, page - 1)));
     findViewById(R.id.mushafJump).setOnClickListener(v -> jump());
@@ -159,6 +164,7 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
     pageView.setVisibility(View.INVISIBLE);
     findViewById(R.id.mushafRetry).setVisibility(View.GONE);
     ((TextView) findViewById(R.id.mushafStatus)).setText(R.string.mushaf_loading);
+    findViewById(R.id.mushafStatus).setVisibility(View.VISIBLE);
     findViewById(R.id.mushafNext).setEnabled(false);
     findViewById(R.id.mushafPrevious).setEnabled(false);
   }
@@ -216,11 +222,10 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
             }
             pageView.setVisibility(View.VISIBLE);
             ((TextView) findViewById(R.id.mushafMetadata))
-                .setText(
-                    QuranChapters.all(MushafActivity.this).get(chapter - 1).name
-                        + " · Juz "
-                        + data.juz);
-            ((TextView) findViewById(R.id.mushafStatus)).setText(R.string.mushaf_attribution);
+                .setText(QuranChapters.all(MushafActivity.this).get(chapter - 1).name);
+            ((TextView) findViewById(R.id.mushafJuz))
+                .setText(getString(R.string.mushaf_juz_label, data.juz));
+            findViewById(R.id.mushafStatus).setVisibility(View.GONE);
             ((Button) findViewById(R.id.mushafJump))
                 .setText(getString(R.string.mushaf_page_label, page));
             findViewById(R.id.mushafNext).setEnabled(page < 604);
@@ -263,6 +268,7 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
     container.post(
         () -> {
           if (isDestroyed() || container.getWidth() == 0) return;
+          pageView.fitViewport(container.getWidth(), findViewById(R.id.quranScroll).getHeight());
           ViewGroup.LayoutParams params = pageView.getLayoutParams();
           params.width = container.getWidth() * zoom / 100;
           pageView.setLayoutParams(params);
@@ -273,7 +279,7 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
   @Override
   public void toggleChrome() {
     chrome = !chrome;
-    for (int id : new int[] {R.id.mushafHeader, R.id.mushafMetadata, R.id.mushafNavigation})
+    for (int id : new int[] {R.id.mushafHeader, R.id.mushafMetadataRow, R.id.mushafNavigation})
       findViewById(id).setVisibility(chrome ? View.VISIBLE : View.GONE);
   }
 
@@ -428,6 +434,36 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
             .show();
   }
 
+  private void more() {
+    if (dialog != null) dialog.dismiss();
+    dialog =
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.mushaf_more)
+            .setItems(
+                new String[] {
+                  getString(R.string.mushaf_choose_verse),
+                  getString(R.string.mushaf_translation),
+                  getString(R.string.mushaf_timeline),
+                  getString(R.string.mushaf_source)
+                },
+                (d, choice) -> {
+                  if (choice == 0) chooseVerse();
+                  else if (choice == 1) finish();
+                  else if (choice == 2) {
+                    View timeline = findViewById(R.id.mushafAudioProgress);
+                    timeline.setVisibility(
+                        timeline.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+                  } else
+                    dialog =
+                        new AlertDialog.Builder(this)
+                            .setTitle(R.string.mushaf_source)
+                            .setMessage(R.string.mushaf_source_detail)
+                            .setPositiveButton(R.string.quran_close, null)
+                            .show();
+                })
+            .show();
+  }
+
   private void chooseVerse() {
     if (!ready) return;
     LinkedHashMap<String, MushafPage.Word> words = new LinkedHashMap<>();
@@ -461,6 +497,8 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
                 ? 0
                 : View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     ((TextView) findViewById(R.id.mushafMetadata))
+        .setTextColor(night ? 0xFFD1DDCA : getColor(R.color.muted));
+    ((TextView) findViewById(R.id.mushafJuz))
         .setTextColor(night ? 0xFFD1DDCA : getColor(R.color.muted));
     ((TextView) findViewById(R.id.mushafStatus))
         .setTextColor(night ? 0xFFD1DDCA : getColor(R.color.muted));
