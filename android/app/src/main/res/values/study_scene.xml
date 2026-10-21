@@ -1,0 +1,19 @@
+<resources>
+    <string name="study_scene_tasks_done">Tugas selesai</string>
+    <string name="study_scene_worship_done">Ibadah selesai</string>
+    <string name="study_scene_targets_done">Target selesai</string>
+    <string name="study_scene_focus_elapsed">Fokus sesi ini</string>
+    <string name="study_scene_elapsed">%1$d mnt</string>
+    <string name="study_scene_task_count">%1$d/%2$d</string>
+    <string name="study_scene_agenda">Agenda belajar</string>
+    <string name="study_scene_add">+ Tambah</string>
+    <string name="study_scene_calendar">Pilih tanggal agenda</string>
+    <string name="study_scene_empty">Belum ada agenda. Tambahkan satu tugas untuk memulai.</string>
+    <string name="study_scene_settings">Pengaturan sesi</string>
+    <string name="study_scene_short">25 menit fokus · 5 menit istirahat</string>
+    <string name="study_scene_long">50 menit fokus · 10 menit istirahat</string>
+    <string name="study_scene_end_session">Akhiri sesi</string>
+    <string name="study_scene_repeat">Ulang sesi</string>
+    <string name="study_scene_end_question">Akhiri sesi ini dan kembali ke agenda? Tugasmu tetap tersimpan.</string>
+    <string name="study_scene_rest_hint">Rehat sejenak. Lanjutkan saat kamu siap.</string>
+</resources>

@@ -201,6 +201,8 @@ public final class FocusMotionTest extends InstrumentationTestCase {
           "The resting companion really moves during an active break", first.sameAs(second));
       first.recycle();
       second.recycle();
+      SystemClock.sleep(1100);
+      UiEvidence.capture(getInstrumentation(), "StudyDrinkSip");
       SystemClock.sleep(7000);
     }
     assertTrue("Active-break video captured", video.isFile() && video.length() > 1000);
@@ -376,6 +378,107 @@ public final class FocusMotionTest extends InstrumentationTestCase {
     assertEquals(remaining, FocusTimer.load(context).remaining);
     paused.recycle();
     stillPaused.recycle();
+  }
+
+  public void testWritingHandMovesWhileRoomStaysFixed() throws Exception {
+    launch();
+    click(R.id.focusPlay);
+    await(this::animating);
+    File dir = new File(context.getExternalFilesDir(null), "validation");
+    dir.mkdirs();
+    File video = new File(dir, "writing-active-preview.mp4");
+    if (video.exists()) video.delete();
+    try (ParcelFileDescriptor recording =
+        getInstrumentation()
+            .getUiAutomation()
+            .executeShellCommand("screenrecord --time-limit 8 " + video.getAbsolutePath())) {
+      SystemClock.sleep(700);
+      Bitmap first = characterFrame();
+      SystemClock.sleep(1000);
+      Bitmap second = characterFrame();
+      assertEquals(
+          "The window and room stay fixed",
+          0,
+          changedPixels(first, second, .86f, .08f, .97f, .25f));
+      assertTrue(
+          "The writing hand and pen really move over the notebook",
+          changedPixels(first, second, .37f, .80f, .53f, .92f) > 20);
+      first.recycle();
+      second.recycle();
+      UiEvidence.capture(getInstrumentation(), "StudyWritingActive");
+      SystemClock.sleep(7000);
+    }
+    assertTrue(video.isFile() && video.length() > 1000);
+  }
+
+  private int changedPixels(
+      Bitmap first, Bitmap second, float left, float top, float right, float bottom) {
+    int count = 0;
+    for (int y = (int) (first.getHeight() * top); y < first.getHeight() * bottom; y++)
+      for (int x = (int) (first.getWidth() * left); x < first.getWidth() * right; x++)
+        if (first.getPixel(x, y) != second.getPixel(x, y)) count++;
+    return count;
+  }
+
+  public void testEndSessionKeepsTaskIncomplete() throws Exception {
+    launch();
+    click(R.id.focusPlay);
+    await(this::animating);
+    click(R.id.focusEnd);
+    main(
+        () ->
+            ((AlertDialog) field(page, "confirmation"))
+                .getButton(AlertDialog.BUTTON_POSITIVE)
+                .performClick());
+    await(() -> page.isFinishing());
+    FocusClock stopped = FocusTimer.load(context);
+    assertFalse(stopped.running);
+    assertFalse(stopped.breakPhase);
+    assertEquals(stopped.focusMinutes * 60000L, stopped.remaining);
+    for (Task item : db.getTasks()) if (item.id == task) assertFalse(item.completed);
+  }
+
+  public void testPaintedStudyAgendaKeepsRealTasksAndOpensEditor() throws Exception {
+    long second = db.addTask("[DATA UJI] Latihan Matematika", ZikraDbHelper.CATEGORY_STUDY);
+    long third = db.addTask("[DATA UJI] Ulas catatan", ZikraDbHelper.CATEGORY_STUDY);
+    StudyActivity agenda = null;
+    try {
+      agenda =
+          (StudyActivity)
+              getInstrumentation()
+                  .startActivitySync(
+                      new Intent(context, StudyActivity.class)
+                          .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+      getInstrumentation().waitForIdleSync();
+      final StudyActivity current = agenda;
+      await(() -> current.hasWindowFocus());
+      final Bitmap[] image = new Bitmap[1];
+      main(
+          () -> {
+            android.view.View card = current.findViewById(R.id.studyFocus);
+            image[0] =
+                Bitmap.createBitmap(card.getWidth(), card.getHeight(), Bitmap.Config.ARGB_8888);
+            card.draw(new Canvas(image[0]));
+          });
+      Bitmap card = image[0];
+      int illustrationPixels = 0;
+      for (int y = card.getHeight() / 5; y < card.getHeight() * 4 / 5; y++)
+        for (int x = card.getWidth() * 3 / 4; x < card.getWidth() * 9 / 10; x++)
+          if (card.getPixel(x, y) != context.getColor(R.color.concept_pine)) illustrationPixels++;
+      assertTrue("Painted character is visible on the Study card", illustrationPixels > 1000);
+      card.recycle();
+      UiEvidence.capture(getInstrumentation(), "StudyPaintedAgendaFixture");
+      main(() -> current.findViewById(R.id.studyAddInline).performClick());
+      assertTrue(((Dialog) field(current, "editorDialog")).isShowing());
+      main(() -> ((Dialog) field(current, "editorDialog")).dismiss());
+    } finally {
+      if (agenda != null) {
+        final StudyActivity current = agenda;
+        main(current::finish);
+      }
+      db.deleteTask(second);
+      db.deleteTask(third);
+    }
   }
 
   @Override

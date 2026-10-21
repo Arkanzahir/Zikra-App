@@ -1,191 +1,200 @@
 package com.zikra.app.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
+import android.graphics.*;
 import com.zikra.app.R;
+import java.lang.ref.WeakReference;
 
-/** Original layered illustration. The room is fixed; face, hands and steam move separately. */
+/**
+ * Painted animation layers: room stays fixed, forearm/wrist and drinking arm have their own pivots.
+ */
 final class StudyScenePainter {
-  private final Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
-  private final Path path = new Path();
-  private final RectF box = new RectF();
-  private final int pine, mint, skin, hair, wood, gold, window, paper;
+  private static final float W = 960, H = 640;
+  private static WeakReference<Assets> cached = new WeakReference<>(null);
+  private final Assets assets;
+  private final Paint bitmap = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+  private final Paint ink = new Paint(Paint.ANTI_ALIAS_FLAG);
+  private final RectF room = new RectF(0, 0, W, H);
+  private final RectF body = new RectF(230, 125, 690, 585);
+  private final RectF writingArm = new RectF(270, 490, 470, 570);
+  private final RectF drinkingArm = new RectF(238, 304, 586, 565);
+  private final RectF clipRect = new RectF();
+  private final Path rounded = new Path(),
+      book = new Path(),
+      support = new Path(),
+      stroke = new Path();
+  private final int pine;
+  private Shader thumbnailFade;
+  private int fadeWidth;
+  private final ColorFilter thumbnailTone =
+      new PorterDuffColorFilter(0xFF9EAB88, PorterDuff.Mode.MULTIPLY);
+
+  private static final class Assets {
+    final Bitmap room, poses, writing, drinking;
+    final Rect focus, rest;
+
+    Assets(Context context) {
+      room = decode(context, R.drawable.study_room_v2);
+      poses = decode(context, R.drawable.study_student_poses_v2);
+      writing = decode(context, R.drawable.study_writing_arm_v2);
+      drinking = decode(context, R.drawable.study_drinking_arm_v2);
+      int half = poses.getWidth() / 2;
+      focus = new Rect(0, 0, half, poses.getHeight());
+      rest = new Rect(half, 0, poses.getWidth(), poses.getHeight());
+    }
+
+    private static Bitmap decode(Context context, int resource) {
+      BitmapFactory.Options options = new BitmapFactory.Options();
+      options.inScaled = false;
+      options.inSampleSize = 2;
+      return BitmapFactory.decodeResource(context.getResources(), resource, options);
+    }
+  }
 
   StudyScenePainter(Context context) {
-    pine = context.getColor(R.color.concept_pine);
-    mint = context.getColor(R.color.concept_mint);
-    skin = context.getColor(R.color.concept_skin);
-    hair = context.getColor(R.color.concept_hair);
-    wood = context.getColor(R.color.concept_wood);
-    gold = context.getColor(R.color.concept_gold);
-    window = context.getColor(R.color.concept_window);
-    paper = context.getColor(R.color.concept_ivory);
-  }
-
-  private void rect(Canvas c, float x, float y, float w, float h, float radius, int color) {
-    p.setStyle(Paint.Style.FILL);
-    p.setColor(color);
-    box.set(x, y, x + w, y + h);
-    c.drawRoundRect(box, radius, radius, p);
-  }
-
-  private void oval(Canvas c, float x, float y, float w, float h, int color) {
-    p.setStyle(Paint.Style.FILL);
-    p.setColor(color);
-    box.set(x, y, x + w, y + h);
-    c.drawOval(box, p);
-  }
-
-  private void line(Canvas c, float x, float y, float x2, float y2, int color, float width) {
-    p.setStyle(Paint.Style.STROKE);
-    p.setStrokeWidth(width);
-    p.setStrokeCap(Paint.Cap.ROUND);
-    p.setColor(color);
-    c.drawLine(x, y, x2, y2, p);
-    p.setStyle(Paint.Style.FILL);
-  }
-
-  private void fill(Canvas c, int color) {
-    p.setColor(color);
-    p.setStyle(Paint.Style.FILL);
-    c.drawPath(path, p);
-  }
-
-  void draw(Canvas c, int width, int height, float time, boolean rest, boolean preview) {
-    float scale =
-        preview ? Math.max(width / 360f, height / 230f) : Math.min(width / 360f, height / 230f);
-    c.save();
-    c.translate((width - 360 * scale) / 2, (height - 230 * scale) / 2);
-    c.scale(scale, scale);
-    rect(c, 0, 0, 360, 230, 22, rest ? 0xFFDDE9DE : 0xFFECE9DA);
-    // A quiet window and static leaves provide depth without moving the whole scene.
-    rect(c, 20, 12, 118, 151, 12, 0xFFC7B18A);
-    rect(c, 27, 18, 104, 139, 8, window);
-    oval(c, 70, 25, 46, 46, 0xFFF4ECD0);
-    oval(c, 26, 80, 64, 80, 0xFFB8CDB4);
-    oval(c, 72, 105, 59, 51, 0xFF9AB69B);
-    line(c, 76, 18, 76, 157, paper, 5);
-    line(c, 28, 88, 131, 88, paper, 5);
-    rect(c, 16, 155, 126, 9, 3, wood);
-    line(c, 41, 176, 42, 120, pine, 2);
-    oval(c, 23, 131, 18, 30, 0xFF71997C);
-    oval(c, 43, 119, 17, 32, 0xFF7CA587);
-    rect(c, 27, 161, 32, 33, 5, 0xFFB99467);
-    // Chair stays still behind the student.
-    rect(c, 139, 111, 99, 101, 23, 0xFF9CA78D);
-    float breath = (float) Math.sin(time * 1.8f) * 1.3f;
-    c.save();
-    c.translate(0, breath);
-    path.reset();
-    path.moveTo(144, 197);
-    path.cubicTo(140, 155, 142, 129, 168, 123);
-    path.cubicTo(185, 118, 206, 123, 218, 139);
-    path.lineTo(242, 197);
-    path.close();
-    fill(c, 0xFF779984);
-    // Collar and neck.
-    rect(c, 176, 112, 20, 24, 6, skin);
-    line(c, 168, 128, 181, 138, pine, 1.5f);
-    line(c, 181, 138, 198, 126, pine, 1.5f);
-    c.save();
-    c.rotate((float) Math.sin(time * .8f) * (rest ? 1.5f : .9f), 185, 108);
-    oval(c, 158, 64, 59, 64, skin);
-    oval(c, 156, 93, 11, 17, skin);
-    // Hand-drawn swept hair silhouette, rather than a moving bitmap.
-    path.reset();
-    path.moveTo(160, 103);
-    path.cubicTo(150, 90, 150, 68, 161, 63);
-    path.cubicTo(154, 51, 176, 48, 181, 56);
-    path.cubicTo(188, 44, 204, 53, 205, 60);
-    path.cubicTo(224, 57, 227, 77, 218, 84);
-    path.cubicTo(208, 89, 196, 80, 189, 71);
-    path.cubicTo(185, 85, 172, 81, 167, 91);
-    path.lineTo(167, 107);
-    path.close();
-    fill(c, hair);
-    boolean blink = time % 5.2f > .0f && time % 5.2f < .16f;
-    line(c, 181, 98, 187, rest || blink ? 98 : 99, hair, 1.6f);
-    line(c, 201, 98, 207, rest || blink ? 98 : 99, hair, 1.6f);
-    line(c, 197, 101, 195, 108, 0xFFC18A66, 1.2f);
-    path.reset();
-    path.moveTo(191, 116);
-    path.quadTo(197, 120, 203, 114);
-    p.setStyle(Paint.Style.STROKE);
-    p.setColor(0xFF9F6950);
-    p.setStrokeWidth(1.5f);
-    c.drawPath(path, p);
-    p.setStyle(Paint.Style.FILL);
-    c.restore();
-    if (rest) {
-      // Forearms, cup and independent rising steam during break/paused pose.
-      line(c, 157, 154, 184, 168, 0xFF658970, 17);
-      line(c, 215, 152, 217, 169, 0xFF658970, 17);
-      line(c, 184, 168, 195, 151, skin, 12);
-      line(c, 217, 169, 221, 148, skin, 12);
-      rect(c, 193, 135, 30, 32, 5, paper);
-      p.setStyle(Paint.Style.STROKE);
-      p.setColor(paper);
-      p.setStrokeWidth(4);
-      box.set(218, 140, 235, 157);
-      c.drawOval(box, p);
-      p.setStyle(Paint.Style.FILL);
-      line(c, 197, 139, 218, 139, gold, 1.5f);
-      for (int i = 0; i < 2; i++) {
-        float drift = (time * 8 + i * 12) % 24;
-        path.reset();
-        path.moveTo(201 + i * 10, 129 - drift);
-        path.cubicTo(
-            193 + i * 10, 121 - drift, 211 + i * 10, 116 - drift, 202 + i * 10, 109 - drift);
-        p.setStyle(Paint.Style.STROKE);
-        p.setStrokeWidth(1.6f);
-        p.setColor(0x90FFFFFF);
-        c.drawPath(path, p);
-        p.setStyle(Paint.Style.FILL);
+    synchronized (StudyScenePainter.class) {
+      Assets current = cached.get();
+      if (current == null) {
+        current = new Assets(context);
+        cached = new WeakReference<>(current);
       }
-    } else {
-      line(c, 153, 147, 142, 189, 0xFF658970, 19);
-      line(c, 142, 189, 182, 197, skin, 12);
-      line(c, 215, 147, 230, 183, 0xFF658970, 18);
-      float hand = (float) Math.sin(time * 3.2f) * 2.6f;
-      line(c, 230, 183, 212 + hand, 196, skin, 12);
-      line(c, 211 + hand, 188, 204 + hand, 207, hair, 2);
+      assets = current;
     }
-    c.restore();
-    rect(c, 12, 204, 336, 12, 4, wood);
-    rect(c, 27, 216, 9, 14, 1, wood);
-    rect(c, 321, 216, 9, 14, 1, wood);
-    // Open book remains on the desk in both states.
-    path.reset();
-    path.moveTo(113, 198);
-    path.quadTo(143, 191, 174, 198);
-    path.quadTo(200, 191, 234, 199);
-    path.lineTo(234, 206);
-    path.quadTo(205, 201, 174, 207);
-    path.quadTo(141, 201, 111, 207);
-    path.close();
-    fill(c, paper);
-    line(c, 174, 199, 174, 207, wood, 1);
-    for (int i = 0; i < 3; i++) {
-      line(c, 122, 199 + i * 2, 161, 200 + i * 2, 0xFFB9BDA9, .6f);
-      line(c, 185, 200 + i * 2, 220, 199 + i * 2, 0xFFB9BDA9, .6f);
+    pine = context.getColor(R.color.concept_pine);
+    ink.setStrokeCap(Paint.Cap.ROUND);
+    ink.setStrokeJoin(Paint.Join.ROUND);
+    book.moveTo(335, 519);
+    book.lineTo(475, 515);
+    book.lineTo(597, 519);
+    book.lineTo(653, 592);
+    book.lineTo(475, 599);
+    book.lineTo(287, 592);
+    book.close();
+    support.moveTo(455, 552);
+    support.cubicTo(440, 536, 456, 514, 480, 507);
+    support.lineTo(600, 511);
+    support.quadTo(655, 518, 655, 550);
+    support.lineTo(620, 561);
+    support.close();
+  }
+
+  void draw(Canvas canvas, int width, int height, float seconds, boolean resting, boolean preview) {
+    if (width <= 0 || height <= 0) return;
+    int outside = canvas.save();
+    rounded.reset();
+    clipRect.set(0, 0, width, height);
+    rounded.addRoundRect(
+        clipRect,
+        Math.min(width, height) * .055f,
+        Math.min(width, height) * .055f,
+        Path.Direction.CW);
+    canvas.clipPath(rounded);
+    canvas.drawColor(pine);
+    float scale = preview ? height / H : Math.max(width / W, height / H);
+    canvas.translate(
+        preview ? width - W * scale : (width - W * scale) / 2, (height - H * scale) / 2);
+    canvas.scale(scale, scale);
+    bitmap.setColorFilter(preview ? thumbnailTone : null);
+    canvas.drawBitmap(assets.room, null, room, bitmap);
+    bitmap.setColorFilter(null);
+    Rect pose = resting ? assets.rest : assets.focus;
+    int figure = canvas.save();
+    float breath = (float) Math.sin(seconds * 1.6f) * .75f;
+    canvas.translate(0, breath);
+    canvas.drawBitmap(assets.poses, pose, body, bitmap);
+    canvas.restoreToCount(figure);
+    // The original notebook is a foreground plane, so the torso never paints over its pages.
+    int paper = canvas.save();
+    canvas.clipPath(book);
+    canvas.drawBitmap(assets.room, null, room, bitmap);
+    canvas.restoreToCount(paper);
+    int hand = canvas.save();
+    canvas.clipPath(support);
+    canvas.drawBitmap(assets.poses, pose, body, bitmap);
+    canvas.restoreToCount(hand);
+    if (resting) drink(canvas, seconds);
+    else write(canvas, seconds);
+    canvas.restoreToCount(outside);
+    if (preview) {
+      if (thumbnailFade == null || fadeWidth != width) {
+        fadeWidth = width;
+        thumbnailFade =
+            new LinearGradient(
+                0,
+                0,
+                width * .72f,
+                0,
+                new int[] {pine, pine, 0x00153D34},
+                new float[] {0, .55f, 1},
+                Shader.TileMode.CLAMP);
+      }
+      ink.setStyle(Paint.Style.FILL);
+      ink.setShader(thumbnailFade);
+      canvas.drawRoundRect(0, 0, width, height, height * .055f, height * .055f, ink);
+      ink.setShader(null);
     }
-    // Desk lamp and a short stack of books are fixed, with no text baked into artwork.
-    line(c, 297, 191, 298, 122, pine, 3);
-    line(c, 298, 122, 281, 101, pine, 3);
-    path.reset();
-    path.moveTo(272, 94);
-    path.lineTo(285, 98);
-    path.lineTo(296, 117);
-    path.lineTo(260, 117);
-    path.close();
-    fill(c, gold);
-    rect(c, 282, 192, 34, 5, 3, pine);
-    rect(c, 61, 184, 38, 7, 2, pine);
-    rect(c, 59, 191, 43, 6, 2, gold);
-    rect(c, 63, 197, 39, 6, 2, paper);
-    c.restore();
+  }
+
+  private void write(Canvas canvas, float time) {
+    // Tiny pen strokes plus a slower traverse across a line; every position comes from scene time.
+    float traverse = (float) Math.sin(time * .8f) * 5;
+    float letters = (float) Math.sin(time * 13f) * 1.7f;
+    float elbow = (float) Math.sin(time * 2.1f) * 1.1f;
+    ink.setStyle(Paint.Style.STROKE);
+    ink.setStrokeWidth(.9f);
+    ink.setColor(0x90746B54);
+    for (int line = 0; line < 3; line++) {
+      stroke.reset();
+      stroke.moveTo(389, 551 + line * 7);
+      float end = 423 + 10 * (float) Math.sin(time * .4f + line);
+      for (float x = 392; x < end; x += 3)
+        stroke.lineTo(x, 551 + line * 7 + (float) Math.sin(x * 1.2f) * .6f);
+      canvas.drawPath(stroke, ink);
+    }
+    int arm = canvas.save();
+    canvas.rotate(elbow, 300, 520);
+    canvas.translate(traverse, letters * .35f);
+    // The forearm and hand share the same painting but rotate at separate elbow/wrist joints.
+    int forearm = canvas.save();
+    canvas.clipRect(250, 475, 400, 595);
+    canvas.drawBitmap(assets.writing, null, writingArm, bitmap);
+    canvas.restoreToCount(forearm);
+    int wrist = canvas.save();
+    canvas.rotate(letters, 398, 540);
+    canvas.clipRect(396, 475, 500, 595);
+    canvas.drawBitmap(assets.writing, null, writingArm, bitmap);
+    canvas.restoreToCount(wrist);
+    canvas.restoreToCount(arm);
+  }
+
+  private static float smooth(float value) {
+    float t = Math.max(0, Math.min(1, value));
+    return t * t * (3 - 2 * t);
+  }
+
+  private void drink(Canvas canvas, float time) {
+    float phase = time % 8;
+    float lift =
+        phase < 1.5f
+            ? 0
+            : phase < 3
+                ? smooth((phase - 1.5f) / 1.5f)
+                : phase < 4.2f ? 1 : phase < 5.8f ? 1 - smooth((phase - 4.2f) / 1.6f) : 0;
+    float sip = phase > 3 && phase < 4.2f ? (float) Math.sin((phase - 3) / 1.2f * Math.PI) : 0;
+    int arm = canvas.save();
+    // Lower cup -> elbow lifts to lips -> gentle sip tilt -> return to rest, over eight seconds.
+    canvas.rotate(25 - 36 * lift - 2 * sip, 300, 520);
+    canvas.drawBitmap(assets.drinking, null, drinkingArm, bitmap);
+    ink.setStyle(Paint.Style.STROKE);
+    ink.setStrokeWidth(1.4f);
+    ink.setColor(0x90FFF9EB);
+    for (int i = 0; i < 2; i++) {
+      float rise = (time * 9 + i * 14) % 28;
+      stroke.reset();
+      stroke.moveTo(525 + i * 13, 326 - rise);
+      stroke.cubicTo(518 + i * 13, 316 - rise, 535 + i * 13, 310 - rise, 527 + i * 13, 298 - rise);
+      canvas.drawPath(stroke, ink);
+    }
+    canvas.restoreToCount(arm);
   }
 }

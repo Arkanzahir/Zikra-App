@@ -23,6 +23,10 @@ public final class FeatureHeader extends LinearLayout {
     return action;
   }
 
+  public TextView heading() {
+    return heading;
+  }
+
   /** Match a screen surface without changing headers on other features. */
   public void setSurfaceColor(int color) {
     setBackgroundColor(color);

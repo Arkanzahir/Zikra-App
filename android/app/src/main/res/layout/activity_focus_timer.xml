@@ -17,10 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="20dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="24dp">
-            <TextView android:id="@+id/focusTask" style="@style/NearbySection" android:textSize="20sp" android:gravity="center" />
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+            <TextView android:id="@+id/focusTask" style="@style/NearbySection" android:textSize="18sp" android:gravity="center" />
             <TextView style="@style/NearbyCaption" android:layout_marginTop="8dp" android:text="@string/focus_intro" android:visibility="gone" />
             <RadioGroup
                 android:id="@+id/focusDuration"
@@ -29,7 +29,8 @@
                 android:orientation="horizontal"
                 android:background="@drawable/bg_nearby_panel"
                 android:padding="4dp"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="12dp"
+                android:visibility="gone">
                 <RadioButton android:id="@+id/focusShort" style="@style/NearbyTab" android:text="25 / 5 menit" />
                 <RadioButton android:id="@+id/focusLong" style="@style/NearbyTab" android:text="50 / 10 menit" />
             </RadioGroup>
@@ -37,7 +38,7 @@
                 android:id="@+id/focusStage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:orientation="vertical"
@@ -47,12 +48,14 @@
                 <TextView
                     android:id="@+id/focusPhase"
                     style="@style/NearbyCaption"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:gravity="center"
                     android:paddingHorizontal="12dp"
-                    android:letterSpacing="0.08"
-                    android:textSize="11sp" />
-                <FrameLayout android:layout_width="208dp" android:layout_height="208dp" android:layout_marginTop="12dp">
+                    android:letterSpacing="0"
+                    android:textSize="10sp"
+                    android:paddingVertical="5dp"
+                    android:background="@drawable/reference_mint_card" />
+                <FrameLayout android:layout_width="192dp" android:layout_height="192dp" android:layout_marginTop="6dp">
                     <com.zikra.app.ui.FocusRingView
                         android:id="@+id/focusRing"
                         android:layout_width="match_parent"
@@ -70,32 +73,33 @@
                             android:layout_height="wrap_content"
                             android:includeFontPadding="false"
                             android:layout_marginTop="0dp"
-                            android:textSize="56sp"
+                            android:textSize="48sp"
                             android:textStyle="bold"
                             android:textColor="@color/pine"
                             android:gravity="center"
                             android:maxLines="1"
                             android:autoSizeTextType="uniform"
                             android:autoSizeMinTextSize="22sp"
-                            android:autoSizeMaxTextSize="56sp"
+                            android:autoSizeMaxTextSize="48sp"
                             android:autoSizeStepGranularity="2sp"
-                            android:minHeight="72dp" />
+                            android:minHeight="62dp" />
                         <TextView
                             android:id="@+id/focusTotal"
                             style="@style/NearbyCaption"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:paddingHorizontal="12dp"
                             android:gravity="center"
                             android:text="@string/focus_remaining"
-                            android:textSize="13sp"
-                            android:layout_marginTop="8dp" />
+                            android:textSize="11sp"
+                            android:layout_marginTop="4dp"
+                            android:maxWidth="136dp" />
                     </LinearLayout>
                 </FrameLayout>
                 <com.zikra.app.ui.FocusGardenView
                     android:id="@+id/focusGarden"
                     android:layout_width="match_parent"
-                    android:layout_height="176dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_height="208dp"
+                    android:layout_marginTop="10dp"
                     android:importantForAccessibility="no" />
                 <ProgressBar
                     android:id="@+id/focusProgress"
@@ -114,14 +118,28 @@
                 style="@style/NearbyButton"
                 android:background="?android:attr/selectableItemBackground"
                 android:layout_marginTop="4dp"
-                android:text="@string/focus_reset" />
+                android:text="@string/focus_reset"
+                android:textSize="13sp"
+                android:visibility="gone" />
+            <Button
+                android:id="@+id/focusEnd"
+                style="@style/NearbyButton"
+                android:layout_marginTop="4dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="@string/study_scene_end_session"
+                android:textSize="13sp" />
             <Button
                 android:id="@+id/focusNotificationSettings"
                 style="@style/NearbyButton"
                 android:layout_marginTop="8dp"
                 android:text="Atur notifikasi"
                 android:visibility="gone" />
-            <TextView android:id="@+id/focusHint" style="@style/NearbyCaption" android:gravity="center" android:layout_marginTop="6dp" />
+            <TextView
+                android:id="@+id/focusHint"
+                style="@style/NearbyCaption"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:textSize="11sp" />
         </LinearLayout>
     </ScrollView>
     <Button

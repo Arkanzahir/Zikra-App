@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/studyPageRoot"
@@ -23,7 +23,7 @@
             android:clipToPadding="false"
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp"
-            android:paddingHorizontal="20dp"
+            android:paddingHorizontal="16dp"
             android:paddingBottom="16dp"
             android:scrollbars="none" />
         <Button

@@ -1,3 +1,5 @@
+> **Study beranimasi 1.4.0 — 22 Oktober 2026:** aset ilustrasi dibuat dahulu, lalu dipasang ke agenda/fokus/istirahat. Tangan menulis dan siklus cangkir mengikuti timer; 7 tes Android lulus, termasuk jeda, lifecycle dan font 200%. [Screenshot, video, build dan batas](android/validation/study-layered-motion-2026-10-22/README.md). Emulator ditutup; HP fisik belum diuji.
+
 > **Home/Quran 1.3.2 — 22 Oktober 2026:** ilustrasi masjid baru, proporsi Home dan daftar surah mengikuti referensi lebih dekat. [Screenshot APK, build dan batas](android/validation/reference-fidelity-2026-10-22/README.md). Study/AI belum setara ilustrasi konsep.
 
 > **Emulator / 1.3.1 — 22 Oktober 2026:** screenshot native Home/Study/AI/Quran, layout fokus lebih ringkas dan tombol tetap terlihat. Gerak break/pause dan font 200%: 4 tes Android lulus. [Bukti, video dan batas](android/validation/emulator-layout-2026-10-22/README.md). Emulator ditutup setelah tes.

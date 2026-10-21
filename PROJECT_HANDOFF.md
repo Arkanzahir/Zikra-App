@@ -1,3 +1,13 @@
+## Checkpoint Study 1.4.0 — 22 Oktober 2026
+
+- Aset generated-first, prompt lengkap: `design/study-layered-assets-2026-10-22.md`.
+- Ruangan tetap, karakter dua pose, siku/pergelangan menulis; cangkir naik-minum-turun dalam 8 detik. Rig 2D.
+- Agenda dua metrik aktual (Fokus sesi ini), inline tambah/editor asli dan kalender aktif. Timer gear durasi, akhiri sesi tidak menyelesaikan tugas, font besar caption di luar ring.
+- Bukti: `android/validation/study-layered-motion-2026-10-22/README.md`. Build/lint29detik, final paket8detik; 7 tes native/33.963detik lulus. Fixture dikembalikan teardown. Emulator ditutup, HP belum diuji. Tidak ada tes ulang playback/API.
+- APK luar repo: `D:\Download\Zikra-App-main\Zikra-Study-Animated-v1.4.0-debug.apk`. Versi8/1.4.0.
+- Build terisolasi `.local/concept-release-v130/android` menghindari eksperimen prefetch audio yang masih WIP. Jangan stage MushafReaderTest, QuranAudioService, TimedAudioRepository, tool timing dan catatan private lokal tanpa validasi.
+- Home/Quran versi1.3.2 tetap; mini-player katalog masih backlog. Featherless belum dihosting; rahasia tetap hanya lokal.
+
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
 ## Terbaru: Home/Quran lebih dekat referensi — 1.3.2, 22 Oktober 2026

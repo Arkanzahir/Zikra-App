@@ -43,29 +43,42 @@ public final class FocusTimerActivity extends BaseActivity {
             0,
             "Fokus belajar",
             null,
-            R.drawable.ic_nearby_info,
-            getString(R.string.focus_information));
+            R.drawable.study_scene_settings_icon,
+            getString(R.string.study_scene_settings));
     ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.focusHeader))
-        .setSurfaceColor(getColor(R.color.background));
+        .setSurfaceColor(getColor(R.color.concept_ivory));
     setupScreen("Fokus belajar");
-    getWindow().setStatusBarColor(getColor(R.color.background));
+    getWindow().setStatusBarColor(getColor(R.color.concept_ivory));
+    View focusChrome =
+        ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.focusHeader)).getChildAt(0);
+    focusChrome.setMinimumHeight(dp(56));
+    focusChrome.setPadding(dp(8), dp(4), dp(8), dp(4));
+    ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.focusHeader)).heading().setTextSize(18);
+    ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.focusHeader))
+        .heading()
+        .setGravity(android.view.Gravity.CENTER);
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     garden = findViewById(R.id.focusGarden);
+    if (getResources().getConfiguration().fontScale >= 1.5f) {
+      TextView caption = findViewById(R.id.focusTotal);
+      android.view.ViewGroup labels = (android.view.ViewGroup) caption.getParent();
+      View ringFrame = (View) labels.getParent();
+      labels.removeView(caption);
+      LinearLayout stage = findViewById(R.id.focusStage);
+      caption.setMaxWidth(Integer.MAX_VALUE);
+      LinearLayout.LayoutParams captionParams = new LinearLayout.LayoutParams(-1, -2);
+      captionParams.topMargin = dp(12);
+      stage.addView(caption, stage.indexOfChild(ringFrame) + 1, captionParams);
+      ((LinearLayout.LayoutParams) garden.getLayoutParams()).topMargin = dp(14);
+    }
+
     motion = new com.zikra.app.ui.AmbientMotionPolicy(this, this::refreshMotion);
     ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.focusHeader))
         .action()
-        .setOnClickListener(
-            v -> {
-              confirmation =
-                  new AlertDialog.Builder(this)
-                      .setTitle(R.string.focus_information)
-                      .setMessage(R.string.focus_information_body)
-                      .setPositiveButton("Mengerti", null)
-                      .show();
-            });
+        .setOnClickListener(v -> showSessionOptions());
     clock = FocusTimer.load(this);
     long task = getIntent().getLongExtra("task", -1);
     if (task != -1 && task != clock.taskId) {
@@ -147,6 +160,49 @@ public final class FocusTimerActivity extends BaseActivity {
                           (d, w) -> reset(clock.focusMinutes, clock.breakMinutes, clock.taskId))
                       .show();
             });
+    findViewById(R.id.focusEnd)
+        .setOnClickListener(
+            v -> {
+              confirmation =
+                  new AlertDialog.Builder(this)
+                      .setTitle(R.string.study_scene_end_session)
+                      .setMessage(R.string.study_scene_end_question)
+                      .setNegativeButton(R.string.study_cancel, null)
+                      .setPositiveButton(
+                          R.string.study_scene_end_session,
+                          (d, w) -> {
+                            reset(clock.focusMinutes, clock.breakMinutes, clock.taskId);
+                            finish();
+                          })
+                      .show();
+            });
+  }
+
+  private void showSessionOptions() {
+    String[] choices = {
+      getString(R.string.study_scene_short),
+      getString(R.string.study_scene_long),
+      getString(R.string.focus_reset),
+      getString(R.string.focus_information)
+    };
+    confirmation =
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.study_scene_settings)
+            .setItems(
+                choices,
+                (d, item) -> {
+                  if (item < 2)
+                    findViewById(item == 0 ? R.id.focusShort : R.id.focusLong).performClick();
+                  else if (item == 2) findViewById(R.id.focusReset).performClick();
+                  else
+                    confirmation =
+                        new AlertDialog.Builder(this)
+                            .setTitle(R.string.focus_information)
+                            .setMessage(R.string.focus_information_body)
+                            .setPositiveButton(android.R.string.ok, null)
+                            .show();
+                })
+            .show();
   }
 
   private void restoreChoice() {
@@ -211,7 +267,10 @@ public final class FocusTimerActivity extends BaseActivity {
     if (notificationsAllowed && motion != null && !motion.enabled())
       text(R.id.focusHint, R.string.design_focus_motion_off);
     else if (notificationsAllowed && (clock.breakPhase || paused))
-      text(R.id.focusHint, R.string.design_focus_rest_hint);
+      text(R.id.focusHint, R.string.study_scene_rest_hint);
+    findViewById(R.id.focusHint)
+        .setBackgroundResource(clock.breakPhase ? R.drawable.study_scene_rest_note : 0);
+    findViewById(R.id.focusHint).setPadding(dp(12), dp(10), dp(12), dp(10));
     ((ProgressBar) findViewById(R.id.focusProgress))
         .setProgress((int) Math.max(0, Math.min(1000, 1000L - clock.remaining * 1000L / total)));
     ((com.zikra.app.ui.FocusRingView) findViewById(R.id.focusRing))
@@ -220,6 +279,11 @@ public final class FocusTimerActivity extends BaseActivity {
       text(
           R.id.focusTotal,
           clock.breakPhase || paused ? R.string.concept_break_calm : R.string.concept_focus_calm);
+    ((com.zikra.app.ui.FeatureHeader) findViewById(R.id.focusHeader))
+        .setSurfaceColor(getColor(clock.breakPhase ? R.color.concept_mint : R.color.concept_ivory));
+    getWindow()
+        .setStatusBarColor(
+            getColor(clock.breakPhase ? R.color.concept_mint : R.color.concept_ivory));
     findViewById(R.id.focusContent)
         .setBackgroundColor(
             getColor(clock.breakPhase ? R.color.concept_mint : R.color.concept_ivory));

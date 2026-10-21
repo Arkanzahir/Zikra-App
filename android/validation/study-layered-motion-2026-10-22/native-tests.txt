@@ -1,0 +1,6 @@
+
+com.zikra.app.FocusMotionTest:.......
+Test results for InstrumentationTestRunner=.......
+Time: 33.963
+
+OK (7 tests)

@@ -1,0 +1,31 @@
+{
+  "versionName": "1.4.0",
+  "versionCode": 8,
+  "apkSha256": "139d1eeaa9737f6187b4af5dd3e96cc2c2e10169b988012c96449e9eb4c94156",
+  "apkBytes": 13257670,
+  "buildSeconds": 29,
+  "finalPackagingSeconds": 8,
+  "workers": 1,
+  "heapMiB": 512,
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 677
+  },
+  "nativeInstrumentationTests": 7,
+  "nativeInstrumentationSeconds": 33.963,
+  "font200Percent": "Clock/caption separated; scrollable scene and anchored play button checked",
+  "assetsGeneratedBeforeImplementation": true,
+  "animation": "2D bitmap layers, elbow/wrist writing, 8-second lift/sip/lower loop",
+  "roomRemainsFixed": true,
+  "testFixtureData": "Labelled DATA UJI; temporary tasks and timer settings restored by teardown",
+  "emulatorStopped": true,
+  "physicalPhoneTested": false,
+  "playbackRetested": false,
+  "prefetchExperimentIncluded": false,
+  "miniPlayerOnQuranCatalog": false,
+  "androidAppSourceTree": "3ff2921da52b2162fe8e31c92a25442eeea954d2",
+  "sourceFilesChecked": 476,
+  "sourceMismatches": 0,
+  "debugCertificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b"
+}

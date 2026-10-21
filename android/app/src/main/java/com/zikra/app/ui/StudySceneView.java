@@ -15,6 +15,15 @@ public final class StudySceneView extends View {
   }
 
   @Override
+  protected void onMeasure(int widthSpec, int heightSpec) {
+    setMeasuredDimension(
+        MeasureSpec.getSize(widthSpec),
+        MeasureSpec.getMode(heightSpec) == MeasureSpec.EXACTLY
+            ? MeasureSpec.getSize(heightSpec)
+            : Math.round(152 * getResources().getDisplayMetrics().density));
+  }
+
+  @Override
   protected void onDraw(Canvas canvas) {
     scene.draw(canvas, getWidth(), getHeight(), 0, false, true);
   }
