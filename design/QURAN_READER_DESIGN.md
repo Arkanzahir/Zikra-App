@@ -96,3 +96,10 @@ jangan menganggap akses CDN atau API sudah pulih. Kerjakan desain reader/panel d
 source Android Java/XML, lalu preview APK aktual dan pemeriksaan terkait. Bedakan
 fungsi yang benar-benar bekerja dari konsep, fixture audio sintetis atau API yang
 belum dapat diuji. Pertahankan tugas, bookmark, unduhan dan data pengguna.
+# Pembaruan visual native 21 Oktober 2026
+
+Bingkai sage tipis dengan sudut geometris, ornamen judul surah sand gold,
+kertas ivory, metadata terpusat dan player khusus Mushaf yang lebih ringkas.
+Halaman pembuka diberi ruang lebih lapang tanpa mengubah susunan baris sumber.
+[Screenshot dan validasi](../android/validation/mushaf-polish-2026-10-21/README.md).
+Sorotan emas per kata tetap tahap berikutnya; dekorasi emas bukan indikator audio.

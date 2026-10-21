@@ -1,5 +1,14 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: poles tampilan sesuai arah referensi pengguna
+
+Bingkai sage bersudut geometris, ornamen judul sand gold, kertas ivory,
+metadata terpusat, halaman pembuka lebih lapang dan player khusus Mushaf lebih
+ringkas. Glyph/baris sumber tetap utuh. [Bukti native dan hasil tes](android/validation/mushaf-polish-2026-10-21/README.md).
+Build/lint, 78 JVM dan tiga metode Mushaf lulus; satu metode diulang pada font
+sistem 200%. Batas Android 12+/online dan sorotan kata belum terhubung tetap sama.
+APK baru di `D:/Download/Zikra-App-main/Zikra-Mushaf-Polished-20261021-debug.apk`.
+
 ## Terbaru: Mushaf online dan audio qari asli
 
 Commit implementasi `83f520c65849c1c10feb20913c18a4e81419145c` berhasil dipush ke

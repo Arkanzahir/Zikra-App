@@ -8,7 +8,14 @@
         <item name="android:stateListAnimator">@null</item>
         <item name="android:elevation">0dp</item>
     </style>
-    <color name="mushaf_paper">#FAFBF5</color>
+    <color name="mushaf_paper">#FBFBF6</color>
+    <color name="mushaf_night_paper">#152A26</color>
+    <color name="mushaf_border">#B8C3AE</color>
+    <color name="mushaf_night_border">#718978</color>
+    <color name="mushaf_gold">#AC9767</color>
+    <color name="mushaf_night_gold">#C6B581</color>
+    <color name="mushaf_ink">#15332F</color>
+    <color name="mushaf_night_ink">#F0F2DD</color>
     <string name="mushaf_title">Mushaf</string>
     <string name="mushaf_open">Baca Mushaf · halaman</string>
     <string name="mushaf_back">Kembali ke ayat dan terjemahan</string>

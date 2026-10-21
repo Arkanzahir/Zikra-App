@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.*;
 import android.util.AttributeSet;
 import android.view.*;
+import com.zikra.app.R;
 import com.zikra.app.reading.*;
 import java.util.*;
 
@@ -107,21 +108,42 @@ public final class MushafPageView extends View {
     int width = MeasureSpec.getSize(widthSpec);
     if (getLayoutParams() != null && getLayoutParams().width > 0) width = getLayoutParams().width;
     if (width == 0) width = getResources().getDisplayMetrics().widthPixels;
-    setMeasuredDimension(width, Math.round(width * 1.58f));
+    setMeasuredDimension(width, Math.round(width * 1.48f));
   }
 
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    canvas.drawColor(night ? 0xFF152A26 : 0xFFFAFBF5);
-    float w = getWidth(), margin = w * .065f, top = w * .06f, rowHeight = w * .094f;
-    frame.setColor(night ? 0xFF759281 : 0xFFB5C4AD);
+    canvas.drawColor(color(R.color.mushaf_paper, R.color.mushaf_night_paper));
+    float w = getWidth(), margin = w * .085f, top = w * .075f, rowHeight = w * .086f;
+    frame.setColor(color(R.color.mushaf_border, R.color.mushaf_night_border));
     frame.setStyle(Paint.Style.STROKE);
     frame.setStrokeWidth(Math.max(1, w / 500));
     canvas.drawRect(margin * .45f, top * .35f, w - margin * .45f, getHeight() - top * .35f, frame);
     canvas.drawRect(margin * .58f, top * .48f, w - margin * .58f, getHeight() - top * .48f, frame);
+    float inset = margin * .58f, arm = w * .035f;
+    for (int x : new int[] {-1, 1}) {
+      for (int y : new int[] {-1, 1}) {
+        canvas.save();
+        canvas.translate(x < 0 ? inset : w - inset, y < 0 ? top * .48f : getHeight() - top * .48f);
+        canvas.scale(-x, -y);
+        Path corner = new Path();
+        corner.moveTo(0, arm * 2);
+        corner.lineTo(arm, arm * 2);
+        corner.quadTo(arm * 2, arm * 2, arm * 2, arm);
+        corner.lineTo(arm * 2, 0);
+        canvas.drawPath(corner, frame);
+        diamond(canvas, arm * .8f, arm * .8f, arm * .23f);
+        canvas.restore();
+      }
+    }
     hits.clear();
     if (document == null || canvasFont == null) return;
+    // Opening pages retain their source lines, with generous spacing like a frontispiece.
+    if (document.page.number <= 2) {
+      top = w * .14f;
+      rowHeight = w * .145f;
+    }
     ink.setTypeface(font);
     ink.setTextSize(100);
     float longest = 1;
@@ -151,7 +173,7 @@ public final class MushafPageView extends View {
           frame.setColor(night ? 0xFF314C40 : 0xFFE3ECD9);
           canvas.drawRoundRect(box, size * .1f, size * .1f, frame);
         }
-        ink.setColor(night ? 0xFFF0F2DD : 0xFF15332F);
+        ink.setColor(color(R.color.mushaf_ink, R.color.mushaf_night_ink));
         canvasFont.draw(canvas, word.glyph, right, baseline, ink);
         hits.add(new Hit(box, word));
         right -= width + gap;
@@ -163,11 +185,9 @@ public final class MushafPageView extends View {
         ink.setTextSize(size * .62f);
         ink.setColor(night ? 0xFFE0D4AA : 0xFF596C4D);
         String title = QuranChapters.all(getContext()).get(first.chapter - 1).arabic;
-        canvas.drawText(
-            title,
-            (w - ink.measureText(title)) / 2,
-            top + (header - 1) * rowHeight + rowHeight * .7f,
-            ink);
+        float titleBaseline = top + (header - 1) * rowHeight + rowHeight * .7f;
+        ornament(canvas, w, titleBaseline, ink.measureText(title), size);
+        canvas.drawText(title, (w - ink.measureText(title)) / 2, titleBaseline, ink);
         if (first.chapter != 1 && first.chapter != 9 && line.number >= 3) {
           // Existing verified built-in Al-Fatihah 1:1; no text is copied from a mockup.
           String basmalah = QuranPage.builtIn(1).verses.get(0).arabic;
@@ -179,6 +199,36 @@ public final class MushafPageView extends View {
               ink);
         }
       }
+    }
+  }
+
+  private int color(int day, int dark) {
+    return getContext().getColor(night ? dark : day);
+  }
+
+  private void diamond(Canvas canvas, float x, float y, float radius) {
+    Path path = new Path();
+    path.moveTo(x, y - radius);
+    path.lineTo(x + radius, y);
+    path.lineTo(x, y + radius);
+    path.lineTo(x - radius, y);
+    path.close();
+    canvas.drawPath(path, frame);
+  }
+
+  private void ornament(Canvas canvas, float width, float baseline, float textWidth, float size) {
+    frame.setStyle(Paint.Style.STROKE);
+    frame.setColor(color(R.color.mushaf_gold, R.color.mushaf_night_gold));
+    frame.setStrokeWidth(Math.max(1, width / 900));
+    float half = Math.max(textWidth / 2 + size * .65f, width * .19f);
+    float center = baseline - size * .22f, height = size * .44f;
+    RectF plaque = new RectF(width / 2 - half, center - height, width / 2 + half, center + height);
+    canvas.drawRoundRect(plaque, height, height, frame);
+    for (int direction : new int[] {-1, 1}) {
+      float edge = width / 2 + direction * half;
+      diamond(canvas, edge + direction * size * .24f, center, size * .16f);
+      canvas.drawLine(
+          edge + direction * size * .43f, center, edge + direction * size * .78f, center, frame);
     }
   }
 
