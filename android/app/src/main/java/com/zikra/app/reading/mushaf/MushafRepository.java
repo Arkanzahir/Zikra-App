@@ -131,6 +131,7 @@ public final class MushafRepository implements AutoCloseable {
                             + "?mushaf=1&words=true&word_fields=code_v2,text_uthmani&per_page=50"),
                     page);
             if (closed || token != generation) return;
+            ensureHeadingFont();
             if (!fonts.isDirectory() && !fonts.mkdirs()) throw new IOException("Font folder");
             File file = new File(fonts, "p" + page + ".ttf");
             Typeface font = null;
@@ -182,5 +183,32 @@ public final class MushafRepository implements AutoCloseable {
     generation++;
     http.dispatcher().cancelAll();
     worker.shutdownNow();
+  }
+
+  private void ensureHeadingFont() throws IOException {
+    File folder = new File(fonts.getParentFile(), "qcf-title-font");
+    if (!folder.isDirectory() && !folder.mkdirs()) throw new IOException("Title font folder");
+    File file = new File(folder, "surah-names-v1.ttf");
+    if (file.isFile() && System.currentTimeMillis() - file.lastModified() < 7L * 86400000) {
+      try {
+        new SurahHeadingFont(file);
+        return;
+      } catch (RuntimeException invalid) {
+      }
+    }
+    byte[] bytes =
+        fetch(
+            "https://verses.quran.foundation/fonts/quran/surah-names/v1/sura_names.ttf",
+            1024 * 1024);
+    AtomicFile atomic = new AtomicFile(file);
+    FileOutputStream out = atomic.startWrite();
+    try {
+      out.write(bytes);
+      atomic.finishWrite(out);
+    } catch (IOException error) {
+      atomic.failWrite(out);
+      throw error;
+    }
+    new SurahHeadingFont(file);
   }
 }

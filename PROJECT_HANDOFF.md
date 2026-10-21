@@ -1,5 +1,15 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: jenis font judul diganti menjadi kaligrafi surah
+
+Judul serif sistem diganti Surah Names v1 dari CDN Quran Foundation, sesuai
+pemetaan resmi Quran.com (001–114 dan prefiks surah). Outline tinta diukur agar
+kaligrafi pas di kotak, tanpa meregangkan bentuk. Font utuh dicache terpisah
+tujuh hari dan tidak dibundel; font ayat QCF V2 tetap. [Bukti/sumber/hasil tes](android/validation/mushaf-title-font-2026-10-21/README.md).
+Build/lint dan 80 JVM lulus; lima metode Android unik lulus, termasuk pemeriksaan
+114 ligatur. Audit visual hanya halaman contoh, belum seluruh 604 halaman atau
+semua nama. APK terbaru `D:/Download/Zikra-App-main/Zikra-Mushaf-Calligraphy-20261021-debug.apk`.
+
 ## Terbaru: proporsi dan jarak bacaan dirapikan
 
 Reservasi judul dalam badan dihapus ketika panel luar sudah memuat judul itu.

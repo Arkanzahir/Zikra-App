@@ -26,6 +26,7 @@ public final class MushafPageView extends View {
   private MushafDocument document;
   private Typeface font;
   private QcfCanvasFont canvasFont;
+  private SurahHeadingFont headingFont;
   private Actions actions;
   private boolean night;
   private float viewportRatio = 1.48f;
@@ -79,6 +80,9 @@ public final class MushafPageView extends View {
     this.font = font;
     this.actions = actions;
     try {
+      headingFont =
+          new SurahHeadingFont(
+              new java.io.File(getContext().getCacheDir(), "qcf-title-font/surah-names-v1.ttf"));
       canvasFont =
           new QcfCanvasFont(
               new java.io.File(
@@ -144,11 +148,11 @@ public final class MushafPageView extends View {
       rowHeight = Math.min(rowHeight, w * .15f);
     }
     int firstChapter = document.page.lines.get(0).words.get(0).chapter;
-    drawFittedLabel(
+    headingFont.draw(
         canvas,
-        surahHeading(firstChapter),
-        new RectF(w * .285f, w * .106f, w * .725f, w * .188f),
-        w * .052f);
+        firstChapter,
+        new RectF(w * .29f, w * .113f, w * .72f, w * .181f),
+        color(R.color.mushaf_ink, R.color.mushaf_night_ink));
     ink.setTypeface(font);
     ink.setTextSize(100);
     float longest = 1;
@@ -220,7 +224,8 @@ public final class MushafPageView extends View {
           RectF label =
               new RectF(
                   w * .295f, band.top + height * .10f, w * .705f, band.bottom - height * .10f);
-          drawFittedLabel(canvas, surahHeading(first.chapter), label, w * .043f);
+          headingFont.draw(
+              canvas, first.chapter, label, color(R.color.mushaf_ink, R.color.mushaf_night_ink));
         }
         ink.setTypeface(Typeface.create("serif", Typeface.NORMAL));
         ink.setColor(color(R.color.mushaf_ink, R.color.mushaf_night_ink));

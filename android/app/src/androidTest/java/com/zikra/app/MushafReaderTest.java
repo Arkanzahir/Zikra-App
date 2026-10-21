@@ -147,6 +147,32 @@ public final class MushafReaderTest extends InstrumentationTestCase {
     main(() -> page.findViewById(R.id.mushafPage).performClick());
   }
 
+  public void testAllOfficialSurahNameLigaturesRenderAsCalligraphy() throws Exception {
+    page =
+        getInstrumentation()
+            .startActivitySync(
+                new Intent(context, MushafActivity.class)
+                    .putExtra(QuranActivity.EXTRA_TARGET_CHAPTER, 1)
+                    .putExtra(QuranActivity.EXTRA_TARGET_VERSE, 1)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    loaded(1);
+    java.io.File file =
+        new java.io.File(context.getCacheDir(), "qcf-title-font/surah-names-v1.ttf");
+    SurahHeadingFont headings = new SurahHeadingFont(file);
+    android.graphics.Paint probe = new android.graphics.Paint();
+    probe.setTypeface(android.graphics.Typeface.createFromFile(file));
+    probe.setFontFeatureSettings("'liga' 1, 'rlig' 1");
+    for (int chapter = 1; chapter <= 114; chapter++) {
+      assertTrue(
+          "Official surah ligature " + chapter,
+          probe.hasGlyph(String.format(Locale.ROOT, "%03d", chapter)));
+      android.graphics.RectF bounds = new android.graphics.RectF();
+      headings.outline(chapter).computeBounds(bounds, true);
+      assertTrue(
+          "Calligraphic ink bounds for " + chapter, bounds.width() > 0 && bounds.height() > 0);
+    }
+  }
+
   public void testModeSwitchReturnsTheSameSelectedAyah() throws Exception {
     parent =
         getInstrumentation()

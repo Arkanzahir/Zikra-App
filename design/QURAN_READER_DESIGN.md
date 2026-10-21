@@ -130,3 +130,9 @@ Surah berikutnya dalam halaman memakai panel bergaya sama. Medali nomor ayat
 teal kontras, latar terang, ukuran angka lebih besar dan slot sesuai jumlah digit.
 Lebar/tinggi baris menentukan ukuran bacaan; susunan baris sumber tetap dijaga.
 [Screenshot terbaru](../android/validation/mushaf-panels-2026-10-21/README.md).
+## Jenis huruf judul kaligrafi
+
+Nama surah menggunakan ligatur Surah Names v1 dari sumber Quran.com/Foundation.
+Ukuran berdasarkan outline tinta, dengan skala seragam di panel atas maupun
+pemisah surah. Font sistem serif tidak lagi dipakai pada jalur gambar judul.
+[Sumber dan bukti](../android/validation/mushaf-title-font-2026-10-21/README.md).
