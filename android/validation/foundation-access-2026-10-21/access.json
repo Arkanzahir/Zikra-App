@@ -1,0 +1,42 @@
+﻿{
+    "checked_at":  "2026-10-21T06:59:04.5331404+07:00",
+    "environment":  "production",
+    "authentication_http":  200,
+    "probes":  [
+                   {
+                       "name":  "chapters",
+                       "path":  "/chapters",
+                       "http":  200,
+                       "chapter_count":  114
+                   },
+                   {
+                       "name":  "mulk_text",
+                       "path":  "/verses/by_chapter/67?language=id\u0026translations=33\u0026fields=text_uthmani\u0026per_page=50\u0026page=1",
+                       "http":  200,
+                       "verse_count":  30,
+                       "first_key":  "67:1",
+                       "last_key":  "67:30",
+                       "uthmani_present":  true,
+                       "translation_resource":  33
+                   },
+                   {
+                       "name":  "mushaf_page_1",
+                       "path":  "/verses/by_page/1?words=true\u0026word_fields=code_v2,line_number,page_number\u0026mushaf=1\u0026per_page=50",
+                       "http":  200,
+                       "verse_count":  7,
+                       "word_count":  36,
+                       "glyphs_present":  36,
+                       "line_metadata_present":  36
+                   },
+                   {
+                       "name":  "alafasy_word_timing_1_1",
+                       "path":  "/recitations/7/by_ayah/1:1?fields=segments",
+                       "http":  200,
+                       "audio_items":  1,
+                       "segment_count":  4,
+                       "verse_key":  "1:1"
+                   }
+               ],
+    "credentials_or_tokens_saved":  false,
+    "android_playback_tested":  false
+}

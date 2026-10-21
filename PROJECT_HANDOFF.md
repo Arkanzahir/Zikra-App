@@ -1,5 +1,21 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Akses Foundation Production berhasil — 06:59 WIB
+
+Pengguna kini memiliki app Developer Console API-access-only / Server dan telah
+mengisi kredensial Production di `.local/quran-foundation.env` (Git-ignored).
+Jangan membaca nilainya ke output/chat atau memasukkannya ke APK/commit.
+[Bukti terbaru](android/validation/foundation-access-2026-10-21/README.md): token
+200; chapters 200/114; Al-Mulk 200/30; mushaf 1 halaman 1 200/36 glyph dengan baris;
+recitation 7 ayat 1:1 200/4 segmen. Script tools/Test-QuranFoundation.ps1 menyimpan
+ringkasan tanpa token, secret atau respons mentah.
+
+Pernyataan akun/akses belum ada pada bagian sebelumnya di bawah adalah riwayat,
+bukan penghambat terkini. Akses Content Sync belum diuji. Lanjut audit page-layout
+API dan font resmi, lalu loader/renderer/perpindahan mode/posisi serta backend
+untuk menjaga secret di server. Jumlah words termasuk marker; timing kata bersuara
+harus dipetakan dengan benar. Ini belum pembuktian UI Mushaf atau audio Android.
+
 ## Pembaruan fondasi Mushaf
 
 [Laporan terbaru](android/validation/mushaf-foundation-2026-10-21/README.md):
