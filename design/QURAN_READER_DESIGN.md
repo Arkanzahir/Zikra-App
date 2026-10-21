@@ -111,3 +111,9 @@ Mini player mempertahankan 48dp target sentuh dengan ikon/cakram yang lebih keci
 Seekbar/durasi hanya dibuka lewat menu posisi audio, atribusi melalui Sumber Mushaf.
 Penanda ayat sage menyatu per baris. Ini belum sorotan emas per kata.
 [Bukti native terbaru](../android/validation/mushaf-reference-2026-10-21/README.md).
+## Iterasi khusus ornamen
+
+Sudut halaman menggunakan sulur/daun/bunga kecil, ujung cartouche menggunakan
+finial floral simetris dan medali nomor menggunakan bintang delapan emas pucat
+berlapis. Medali berasal dari metadata akhir ayat, tetap di slot sumber; font
+resmi tidak diubah. [Bukti terbaru](../android/validation/mushaf-ornaments-2026-10-21/README.md).

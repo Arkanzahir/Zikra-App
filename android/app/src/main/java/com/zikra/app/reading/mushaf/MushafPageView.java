@@ -20,6 +20,7 @@ public final class MushafPageView extends View {
 
   private final Paint ink = new Paint(Paint.ANTI_ALIAS_FLAG);
   private final Paint frame = new Paint(Paint.ANTI_ALIAS_FLAG);
+  private final MushafOrnaments ornaments = new MushafOrnaments();
   private final List<Hit> hits = new ArrayList<>();
   private final GestureDetector gestures;
   private MushafDocument document;
@@ -135,20 +136,17 @@ public final class MushafPageView extends View {
     canvas.drawRect(margin * .45f, top * .35f, w - margin * .45f, getHeight() - top * .35f, frame);
     canvas.drawRect(margin * .58f, top * .48f, w - margin * .58f, getHeight() - top * .48f, frame);
     diamond(canvas, w / 2, top * .35f, w * .007f);
-    float inset = margin * .58f, arm = w * .021f;
+    float inset = margin * .58f;
     for (int x : new int[] {-1, 1}) {
       for (int y : new int[] {-1, 1}) {
-        canvas.save();
-        canvas.translate(x < 0 ? inset : w - inset, y < 0 ? top * .48f : getHeight() - top * .48f);
-        canvas.scale(-x, -y);
-        Path corner = new Path();
-        corner.moveTo(0, arm * 2.8f);
-        corner.cubicTo(arm * 2, arm * 3, arm * 3, arm, arm, arm);
-        corner.cubicTo(arm * .5f, arm * 2, arm * 2.5f, arm * 2, arm * 2.5f, 0);
-        canvas.drawPath(corner, frame);
-        diamond(canvas, arm * .6f, arm * .6f, arm * .23f);
-        canvas.drawCircle(arm * 1.5f, arm * 2.5f, arm * .18f, frame);
-        canvas.restore();
+        ornaments.corner(
+            canvas,
+            x < 0 ? inset : w - inset,
+            y < 0 ? top * .48f : getHeight() - top * .48f,
+            w / 680,
+            -x,
+            -y,
+            color(R.color.mushaf_border, R.color.mushaf_night_border));
       }
     }
     hits.clear();
@@ -200,7 +198,17 @@ public final class MushafPageView extends View {
         float width = canvasFont.metrics.width(word.glyph, size);
         RectF box = new RectF(right - width, baseline - size, right, baseline + size * .35f);
         ink.setColor(color(R.color.mushaf_ink, R.color.mushaf_night_ink));
-        canvasFont.draw(canvas, word.glyph, right, baseline, ink);
+        if (word.verseEnd) {
+          ornaments.medallion(
+              canvas,
+              right,
+              baseline,
+              width,
+              size,
+              word.verse,
+              color(R.color.mushaf_gold, R.color.mushaf_night_gold),
+              ink.getColor());
+        } else canvasFont.draw(canvas, word.glyph, right, baseline, ink);
         hits.add(new Hit(box, word));
         right -= width + gap;
       }
@@ -272,9 +280,13 @@ public final class MushafPageView extends View {
     canvas.drawPath(plaque, frame);
     for (int direction : new int[] {-1, 1}) {
       float edge = width / 2 + direction * half;
-      diamond(canvas, edge + direction * size * .24f, center, size * .16f);
-      canvas.drawLine(
-          edge + direction * size * .43f, center, edge + direction * size * .78f, center, frame);
+      ornaments.finial(
+          canvas,
+          edge + direction * size * .06f,
+          center,
+          size * .72f,
+          direction,
+          color(R.color.mushaf_gold, R.color.mushaf_night_gold));
     }
   }
 

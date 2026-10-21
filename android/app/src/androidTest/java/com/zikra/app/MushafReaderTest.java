@@ -107,7 +107,7 @@ public final class MushafReaderTest extends InstrumentationTestCase {
             .contains("Quran Foundation"));
     main(source::dismiss);
     UiEvidence.capture(getInstrumentation(), "Mushaf-AlFatihah");
-    for (int number : new int[] {300, 562, 604}) {
+    for (int number : new int[] {49, 300, 562, 604}) {
       invoke(page, "load", new Class<?>[] {int.class}, number);
       loaded(number);
       MushafDocument data = (MushafDocument) field(page, "document");
@@ -116,7 +116,8 @@ public final class MushafReaderTest extends InstrumentationTestCase {
       for (MushafPage.Line line : data.page.lines)
         for (MushafPage.Word word : line.words)
           for (int cp : word.glyph.codePoints().toArray())
-            assertTrue("Native font covers page glyph", nativeFont.metrics.glyph(cp) > 0);
+            if (cp != ' ')
+              assertTrue("Native font covers page glyph", nativeFont.metrics.glyph(cp) > 0);
       UiEvidence.capture(getInstrumentation(), "Mushaf-Page-" + number);
     }
     assertFalse(page.findViewById(R.id.mushafNext).isEnabled());

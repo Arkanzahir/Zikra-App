@@ -60,6 +60,21 @@ public class MushafDocumentTest {
     MushafDocument.parse(root.toString(), 1);
   }
 
+  @Test
+  public void verseMedallionUsesExplicitEndMetadataNotTheLastWordInALine() throws Exception {
+    JSONObject root = response();
+    root.getJSONArray("verses")
+        .getJSONObject(0)
+        .getJSONArray("words")
+        .getJSONObject(1)
+        .put("char_type_name", "end");
+    MushafDocument data = MushafDocument.parse(root.toString(), 1);
+    assertTrue(data.page.lines.get(0).words.get(1).verseEnd);
+    assertEquals(1, data.page.lines.get(0).words.get(1).verse);
+    assertFalse(data.page.lines.get(0).words.get(2).verseEnd);
+    assertFalse(data.page.lines.get(1).words.get(0).verseEnd);
+  }
+
   @Test(expected = JSONException.class)
   public void missingPositionRejected() throws Exception {
     JSONObject root = response();

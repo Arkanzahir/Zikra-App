@@ -66,7 +66,8 @@ public final class MushafDocument {
         lastLine = line;
         groups
             .computeIfAbsent(line, ignored -> new ArrayList<>())
-            .add(new MushafPage.Word(++ordinal, chapter, ayah, position, glyph));
+            .add(
+                new MushafPage.Word(++ordinal, chapter, ayah, position, glyph, "end".equals(kind)));
         String text = word.optString("text_uthmani", "");
         if (!text.isEmpty()) readable.append(text).append(' ');
         included++;

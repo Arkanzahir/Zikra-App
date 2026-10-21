@@ -20,14 +20,20 @@ public final class QcfCanvasFont {
     int count = text.codePointCount(0, text.length());
     int[] ids = new int[count];
     float[] positions = new float[count * 2];
+    int rendered = 0;
     for (int i = 0, at = 0; i < count; i++) {
       int cp = text.codePointAt(at);
       at += Character.charCount(cp);
-      ids[i] = metrics.glyph(cp);
-      right -= metrics.advance(ids[i], paint.getTextSize());
-      positions[i * 2] = right;
-      positions[i * 2 + 1] = baseline;
+      if (cp == ' ') {
+        right -= paint.getTextSize() * .08f;
+        continue;
+      }
+      ids[rendered] = metrics.glyph(cp);
+      right -= metrics.advance(ids[rendered], paint.getTextSize());
+      positions[rendered * 2] = right;
+      positions[rendered * 2 + 1] = baseline;
+      rendered++;
     }
-    canvas.drawGlyphs(ids, 0, positions, 0, count, font, paint);
+    canvas.drawGlyphs(ids, 0, positions, 0, rendered, font, paint);
   }
 }

@@ -107,7 +107,7 @@ public final class QcfGlyphMetrics {
     float width = 0;
     for (int i = 0; i < text.length(); ) {
       int cp = text.codePointAt(i);
-      width += advance(glyph(cp), size);
+      width += cp == ' ' ? size * .08f : advance(glyph(cp), size);
       i += Character.charCount(cp);
     }
     return width;

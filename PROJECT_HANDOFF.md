@@ -1,5 +1,17 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: fokus bentuk ornamen referensi
+
+Sudut bersulur/daun, finial floral pada judul dan medali angka bersudut emas pucat
+berlapis. Native path, font tidak diubah. Slot/nomor ayat memakai metadata sumber;
+tata letak baris tidak diganti. [Bukti dan temuan](android/validation/mushaf-ornaments-2026-10-21/README.md).
+Pengujian medali tiga digit juga menemukan spasi U+0020 pada code_v2 halaman 49
+yang tidak ada glyph fontnya; renderer kini memberi advance spasi dan melewati
+penggambaran karakter pemisah tersebut. Huruf bacaan tetap utuh.
+Build/lint dan 80 JVM lulus, empat metode Android final lulus termasuk halaman 49
+dan playback asli. Log gagal awal/interupsi emulator disimpan terpisah. APK terbaru
+`D:/Download/Zikra-App-main/Zikra-Mushaf-Ornaments-20261021-debug.apk`.
+
 ## Terbaru: desain mengikuti referensi yang dikirim ulang
 
 Header kecil Aa/⋮, surah kiri–juz kanan, bingkai melengkung halus, ornamen judul
