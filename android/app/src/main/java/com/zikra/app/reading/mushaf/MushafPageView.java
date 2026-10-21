@@ -27,6 +27,7 @@ public final class MushafPageView extends View {
   private Typeface font;
   private QcfCanvasFont canvasFont;
   private SurahHeadingFont headingFont;
+  private BasmalahRenderer basmalahRenderer;
   private Actions actions;
   private boolean night;
   private float viewportRatio = 1.48f;
@@ -80,6 +81,8 @@ public final class MushafPageView extends View {
     this.font = font;
     this.actions = actions;
     try {
+      basmalahRenderer =
+          new BasmalahRenderer(new java.io.File(getContext().getCacheDir(), "qcf-basmalah/p1.ttf"));
       headingFont =
           new SurahHeadingFont(
               new java.io.File(getContext().getCacheDir(), "qcf-title-font/surah-names-v1.ttf"));
@@ -227,17 +230,12 @@ public final class MushafPageView extends View {
           headingFont.draw(
               canvas, first.chapter, label, color(R.color.mushaf_ink, R.color.mushaf_night_ink));
         }
-        ink.setTypeface(Typeface.create("serif", Typeface.NORMAL));
-        ink.setColor(color(R.color.mushaf_ink, R.color.mushaf_night_ink));
         if (first.chapter != 1 && first.chapter != 9 && line.number >= 3) {
-          // Existing verified built-in Al-Fatihah 1:1; no text is copied from a mockup.
-          String basmalah = QuranPage.builtIn(1).verses.get(0).arabic;
-          ink.setTextSize(size * .59f);
-          canvas.drawText(
-              basmalah,
-              (w - ink.measureText(basmalah)) / 2,
-              top + (line.number - rowOffset - 2) * rowHeight + rowHeight * .7f,
-              ink);
+          float rowTop = top + (line.number - rowOffset - 2) * rowHeight;
+          basmalahRenderer.draw(
+              canvas,
+              new RectF(w * .20f, rowTop + rowHeight * .06f, w * .80f, rowTop + rowHeight * .88f),
+              color(R.color.mushaf_ink, R.color.mushaf_night_ink));
         }
       }
     }

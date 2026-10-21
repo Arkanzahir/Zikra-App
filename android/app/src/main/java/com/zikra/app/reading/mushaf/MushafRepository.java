@@ -132,6 +132,7 @@ public final class MushafRepository implements AutoCloseable {
                     page);
             if (closed || token != generation) return;
             ensureHeadingFont();
+            ensureBasmalahFont();
             if (!fonts.isDirectory() && !fonts.mkdirs()) throw new IOException("Font folder");
             File file = new File(fonts, "p" + page + ".ttf");
             Typeface font = null;
@@ -210,5 +211,30 @@ public final class MushafRepository implements AutoCloseable {
       throw error;
     }
     new SurahHeadingFont(file);
+  }
+
+  private void ensureBasmalahFont() throws IOException {
+    File folder = new File(fonts.getParentFile(), "qcf-basmalah");
+    if (!folder.isDirectory() && !folder.mkdirs()) throw new IOException("Basmalah font folder");
+    File file = new File(folder, "p1.ttf");
+    if (file.isFile() && System.currentTimeMillis() - file.lastModified() < 7L * 86400000) {
+      try {
+        new BasmalahRenderer(file);
+        return;
+      } catch (IOException | RuntimeException invalid) {
+      }
+    }
+    byte[] bytes =
+        fetch("https://verses.quran.foundation/fonts/quran/hafs/v2/ttf/p1.ttf", 3 * 1024 * 1024);
+    AtomicFile atomic = new AtomicFile(file);
+    FileOutputStream out = atomic.startWrite();
+    try {
+      out.write(bytes);
+      atomic.finishWrite(out);
+    } catch (IOException error) {
+      atomic.failWrite(out);
+      throw error;
+    }
+    new BasmalahRenderer(file);
   }
 }

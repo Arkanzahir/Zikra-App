@@ -136,3 +136,11 @@ Nama surah menggunakan ligatur Surah Names v1 dari sumber Quran.com/Foundation.
 Ukuran berdasarkan outline tinta, dengan skala seragam di panel atas maupun
 pemisah surah. Font sistem serif tidak lagi dipakai pada jalur gambar judul.
 [Sumber dan bukti](../android/validation/mushaf-title-font-2026-10-21/README.md).
+
+## Basmalah mengikuti ukuran tinta Mushaf
+
+Basmalah tambahan memakai empat glyph QCF V2 Al-Fatihah 1:1 dari font p1 resmi,
+tanpa medali. Batas tinta aktual menentukan skala seragam, dipusatkan dalam baris
+antara judul dan ayat. Serif sistem kecil tidak lagi digunakan. Al-Fatihah tetap
+memakai ayat pertama; At-Taubah tanpa basmalah tambahan.
+[Bukti native](../android/validation/mushaf-basmalah-2026-10-21/README.md).

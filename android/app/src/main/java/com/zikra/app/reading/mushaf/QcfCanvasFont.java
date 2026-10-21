@@ -36,4 +36,24 @@ public final class QcfCanvasFont {
     }
     canvas.drawGlyphs(ids, 0, positions, 0, rendered, font, paint);
   }
+
+  public RectF inkBounds(String text, Paint paint) {
+    RectF result = new RectF();
+    float right = 0;
+    for (int at = 0; at < text.length(); ) {
+      int cp = text.codePointAt(at);
+      at += Character.charCount(cp);
+      if (cp == ' ') {
+        right -= paint.getTextSize() * .08f;
+        continue;
+      }
+      int glyph = metrics.glyph(cp);
+      right -= metrics.advance(glyph, paint.getTextSize());
+      RectF box = new RectF();
+      font.getGlyphBounds(glyph, paint, box);
+      box.offset(right, 0);
+      result.union(box);
+    }
+    return result;
+  }
 }

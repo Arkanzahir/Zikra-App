@@ -107,7 +107,7 @@ public final class MushafReaderTest extends InstrumentationTestCase {
             .contains("Quran Foundation"));
     main(source::dismiss);
     UiEvidence.capture(getInstrumentation(), "Mushaf-AlFatihah");
-    for (int number : new int[] {49, 300, 562, 604}) {
+    for (int number : new int[] {49, 187, 300, 562, 604}) {
       invoke(page, "load", new Class<?>[] {int.class}, number);
       loaded(number);
       MushafDocument data = (MushafDocument) field(page, "document");
@@ -159,6 +159,11 @@ public final class MushafReaderTest extends InstrumentationTestCase {
     java.io.File file =
         new java.io.File(context.getCacheDir(), "qcf-title-font/surah-names-v1.ttf");
     SurahHeadingFont headings = new SurahHeadingFont(file);
+    BasmalahRenderer basmalah =
+        new BasmalahRenderer(new java.io.File(context.getCacheDir(), "qcf-basmalah/p1.ttf"));
+    assertTrue(
+        "Verified basmalah has full-line ink bounds",
+        basmalah.inkBounds().width() > basmalah.inkBounds().height() * 3);
     android.graphics.Paint probe = new android.graphics.Paint();
     probe.setTypeface(android.graphics.Typeface.createFromFile(file));
     probe.setFontFeatureSettings("'liga' 1, 'rlig' 1");

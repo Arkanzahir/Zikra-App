@@ -213,7 +213,6 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
               chapter = first.chapter;
               verse = first.verse;
             }
-            ready = true;
             try {
               pageView.bind(data, font, MushafActivity.this);
             } catch (RuntimeException invalidFont) {
@@ -232,9 +231,10 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
             findViewById(R.id.mushafPrevious).setEnabled(page > 1);
             ((ScrollView) findViewById(R.id.quranScroll)).scrollTo(0, 0);
             applyZoom();
+            remember();
+            ready = true;
             audio.changedChapter();
             audio.pageReady();
-            remember();
           }
 
           public void failed() {

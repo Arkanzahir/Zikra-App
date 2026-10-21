@@ -136,6 +136,13 @@ public class MushafDocumentTest {
       int count = 0;
       for (MushafPage.Line line : data.page.lines) count += line.words.size();
       assertEquals(counts[i], count);
+      if (pages[i] == 1) {
+        StringJoiner basmalah = new StringJoiner(" ");
+        for (MushafPage.Line line : data.page.lines)
+          for (MushafPage.Word word : line.words)
+            if (word.verse == 1 && !word.verseEnd) basmalah.add(word.glyph);
+        assertEquals(BasmalahRenderer.QCF_BASMALAH, basmalah.toString());
+      }
       if (pages[i] == 562) assertTrue(data.page.contains(67, 1));
       if (pages[i] == 604) assertTrue(data.page.contains(114, 6));
     }

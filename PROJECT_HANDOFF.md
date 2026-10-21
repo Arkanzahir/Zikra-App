@@ -1,5 +1,17 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: basmalah lebih besar dan memakai glyph Mushaf
+
+Basmalah serif sistem berukuran 0,59× huruf ayat diganti empat glyph asli QCF V2
+Al-Fatihah 1:1, tanpa medali. Ukuran memakai batas tinta dan skala seragam agar
+mengisi baris dengan rapi. Font p1 utuh dicache terpisah tujuh hari; tidak dibundel.
+Al-Fatihah tidak mendapat basmalah ganda; At-Taubah tanpa tambahan, diperiksa pada
+halaman 187. [Bukti dan pengujian](android/validation/mushaf-basmalah-2026-10-21/README.md).
+Build/lint dan 80 JVM lulus; 5 metode Android unik lulus, satu diulang pada teks
+sistem 200%. Kegagalan tes awal menemukan status siap sebelum posisi tersimpan;
+urutan diperbaiki dan log awal disimpan. Belum diuji di HP fisik/seluruh 604 halaman.
+APK terbaru `D:/Download/Zikra-App-main/Zikra-Mushaf-Basmalah-20261021-debug.apk`.
+
 ## Terbaru: jenis font judul diganti menjadi kaligrafi surah
 
 Judul serif sistem diganti Surah Names v1 dari CDN Quran Foundation, sesuai
