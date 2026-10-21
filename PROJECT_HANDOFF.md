@@ -1,5 +1,17 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: emulator dan koreksi tampilan — 1.3.1, 22 Oktober 2026
+
+Pengguna meminta emulator. Satu Medium_Phone berhasil boot dengan GPU host dan
+Vulkan off, layar 720x1600/density320, lalu dihentikan setelah bukti selesai.
+Home/Study/AI dipadatkan; tombol timer kini tetap di bawah. Bug karakter bergerak
+saat pause diperbaiki dengan syarat running. Empat tes Android final lulus
+(break aktif, piksel fokus/pause, teks200%, pause/recreate/resume). Build/lint
+lulus27detik; APK luar root Zikra-Concept-Refresh-v1.3.1-debug.apk. Screenshot dan
+video nyata: android/validation/emulator-layout-2026-10-22/. Tidak menguji ulang
+audio/live Featherless atau HP. Jangan mengklaim gambar Canvas identik mockup.
+Eksperimen prefetch audio/cache/MushafReaderTest tetap WIP, dikecualikan dari APK.
+
 ## Terbaru: konsep terpilih diterapkan — 1.3.0
 
 Pengguna memilih mockup Home/Quran/AI dan Study/Fokus/Break, meminta langit serta

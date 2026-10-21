@@ -1,0 +1,18 @@
+
+com.zikra.app.FocusMotionTest:
+Failure in testCaptureNativeMotionPreview:
+junit.framework.AssertionFailedError
+	at com.zikra.app.FocusMotionTest.await(FocusMotionTest.java:116)
+	at com.zikra.app.FocusMotionTest.testCaptureNativeMotionPreview(FocusMotionTest.java:238)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:569)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2655)
+
+Test results for InstrumentationTestRunner=.F
+Time: 26.663
+
+FAILURES!!!
+Tests run: 1,  Failures: 1,  Errors: 0

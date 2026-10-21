@@ -219,11 +219,7 @@ public final class AiActivity extends BaseActivity {
   private void renderConversation() {
     thread.removeAllViews();
     if (messages.length() == 0) {
-      bubble(
-          "assistant",
-          "Assalamualaikum.\n"
-              + "Mari susun satu langkah baik hari ini. Mau mulai dari belajar, ibadah, atau"
-              + " hafalan?");
+      bubble("assistant", getString(R.string.concept_ai_welcome));
       return;
     }
     for (int i = 0; i < messages.length(); i++) {

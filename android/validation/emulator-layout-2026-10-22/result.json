@@ -1,0 +1,22 @@
+{
+  "versionName": "1.3.1",
+  "versionCode": 6,
+  "apkSha256": "ede22a74561b855935e85f183070aac7006bc2dd1291e6489bf5431ed43dee64",
+  "nativeAndroidTests": {
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 18.855
+  },
+  "buildSeconds": 27,
+  "physicalPhoneUsed": false,
+  "emulatorStopped": true,
+  "freeRamGiBAfterStop": 8.92,
+  "providerLiveTested": false,
+  "playbackRetested": false,
+  "prefetchExperimentIncluded": false,
+  "androidAppSourceTree": "d350f697e2aaeeffabc5bba72ed554f319afee48",
+  "sourceFilesChecked": 458,
+  "sourceMismatches": 0,
+  "debugCertificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b"
+}

@@ -52,7 +52,7 @@
                     android:paddingHorizontal="12dp"
                     android:letterSpacing="0.08"
                     android:textSize="11sp" />
-                <FrameLayout android:layout_width="248dp" android:layout_height="248dp" android:layout_marginTop="12dp">
+                <FrameLayout android:layout_width="208dp" android:layout_height="208dp" android:layout_marginTop="12dp">
                     <com.zikra.app.ui.FocusRingView
                         android:id="@+id/focusRing"
                         android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                 <com.zikra.app.ui.FocusGardenView
                     android:id="@+id/focusGarden"
                     android:layout_width="match_parent"
-                    android:layout_height="230dp"
+                    android:layout_height="176dp"
                     android:layout_marginTop="14dp"
                     android:importantForAccessibility="no" />
                 <ProgressBar
@@ -110,15 +110,6 @@
                     android:visibility="gone" />
             </LinearLayout>
             <Button
-                android:id="@+id/focusPlay"
-                style="@style/NearbyPrimary"
-                android:minHeight="56dp"
-                android:layout_marginTop="16dp"
-                android:drawableStart="@drawable/audio_play"
-                android:drawableTint="@color/white"
-                android:drawablePadding="10dp"
-                android:text="@string/focus_start" />
-            <Button
                 android:id="@+id/focusReset"
                 style="@style/NearbyButton"
                 android:background="?android:attr/selectableItemBackground"
@@ -133,4 +124,15 @@
             <TextView android:id="@+id/focusHint" style="@style/NearbyCaption" android:gravity="center" android:layout_marginTop="6dp" />
         </LinearLayout>
     </ScrollView>
+    <Button
+        android:id="@+id/focusPlay"
+        style="@style/NearbyPrimary"
+        android:minHeight="56dp"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/audio_play"
+        android:drawableTint="@color/white"
+        android:drawablePadding="10dp"
+        android:text="@string/focus_start"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="12dp" />
 </LinearLayout>

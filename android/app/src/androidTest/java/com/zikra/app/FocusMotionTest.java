@@ -265,7 +265,7 @@ public final class FocusMotionTest extends InstrumentationTestCase {
           assertTrue(
               "Clock labels keep a dedicated gap above the companion view",
               labels.bottom + 11 * density <= garden().getTop());
-          assertTrue("Character has its own space", garden().getHeight() >= 190 * density);
+          assertTrue("Character has its own space", garden().getHeight() >= 160 * density);
         });
     UiEvidence.capture(getInstrumentation(), "FocusCompanionLargeText");
     main(
@@ -278,7 +278,13 @@ public final class FocusMotionTest extends InstrumentationTestCase {
                         page.findViewById(R.id.focusPlay).getWidth(),
                         page.findViewById(R.id.focusPlay).getHeight()),
                     true));
-    assertTrue(page.findViewById(R.id.focusPlay).getGlobalVisibleRect(new android.graphics.Rect()));
+    android.graphics.Rect visible = new android.graphics.Rect();
+    android.view.View play = page.findViewById(R.id.focusPlay);
+    assertTrue(play.getGlobalVisibleRect(visible));
+    assertEquals(
+        "The entire timer button stays visible with large text",
+        play.getHeight(),
+        visible.height());
   }
 
   public void testPauseUsesRestPoseWithoutStartingBreakAndResumeReadsAgain() {

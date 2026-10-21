@@ -1,3 +1,5 @@
+> **Emulator / 1.3.1 — 22 Oktober 2026:** screenshot native Home/Study/AI/Quran, layout fokus lebih ringkas dan tombol tetap terlihat. Gerak break/pause dan font 200%: 4 tes Android lulus. [Bukti, video dan batas](android/validation/emulator-layout-2026-10-22/README.md). Emulator ditutup setelah tes.
+
 > **Konsep pilihan pengguna — 1.3.0:** Home/langit, Study/fokus/break, katalog Quran dan AI diperbarui. Reader mendukung warna kata saat sumber/timing cocok; jalur Featherless siap dikonfigurasi, belum live. [Build, 96 JVM, 9 tes backend dan batas visual/HP](android/validation/concept-refresh-2026-10-21/README.md).
 
 > **Orb bergerak 1.2.1 — 21 Oktober 2026:** pita warna mengalir, kilau dan denyut halus pada Pendamping Zikra. [Build dan batas](android/validation/orb-motion-2026-10-21/README.md). Build/lint lulus; gerak belum diuji di HP.

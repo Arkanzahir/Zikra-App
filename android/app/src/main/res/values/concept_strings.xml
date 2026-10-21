@@ -58,4 +58,8 @@ atur hari ini?</string>
     <string name="concept_quran_surah">Surah</string>
     <string name="concept_quran_count">114 surah</string>
     <string name="concept_ai_retry">Coba lagi</string>
+    <string name="concept_sky_info">ⓘ</string>
+    <string name="concept_ai_plan_short">Atur rencana harian.</string>
+    <string name="concept_ai_welcome">Ceritakan rencana yang ingin kamu susun.</string>
+    <string name="concept_session_short">Durasi sesi • %1$d / %2$d menit</string>
 </resources>

@@ -1,3 +1,5 @@
+> **Emulator / 1.3.1 — 22 Oktober 2026:** screenshot native Home/Study/AI/Quran, layout fokus lebih ringkas dan tombol tetap terlihat. Gerak break/pause dan font 200%: 4 tes Android lulus. [Bukti, video dan batas](validation/emulator-layout-2026-10-22/README.md). Emulator ditutup setelah tes.
+
 > **Terbaru 1.3.0:** desain mengikuti konsep pilihan pengguna, sorotan kata reader dan jalur backend Featherless. [Validasi/batas](validation/concept-refresh-2026-10-21/README.md). Belum screenshot/tes native HP atau AI online live.
 
 > **Checkpoint lanjutan 20 Oktober 2026:** timer fokus, tenggat/pengingat Study, status retry peta dan transfer ulang audio rusak tersedia pada `feature/map-audio-study-2026-10-20`. SQLite v3 mempertahankan data. [Hasil dan batas](validation/map-audio-study-2026-10-20/README.md). Provider live belum terverifikasi karena proxy 403.

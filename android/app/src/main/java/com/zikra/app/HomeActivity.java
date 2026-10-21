@@ -107,6 +107,7 @@ public final class HomeActivity extends BaseActivity {
                           + " fraksi terang harian; arah dan penempatannya ilustratif. Bukan"
                           + " penetapan awal bulan Hijriah.")
                   .setPositiveButton("Tutup", null)
+                  .setNegativeButton("Pengingat salat", (d, w) -> open(PrayerActivity.class))
                   .setNeutralButton("Perbarui", (d, w) -> loadSky(true))
                   .show();
             });
@@ -132,6 +133,7 @@ public final class HomeActivity extends BaseActivity {
     findViewById(R.id.homeReminders).setOnClickListener(v -> open(PrayerActivity.class));
     findViewById(R.id.homeSearch).setOnClickListener(v -> open(QuranActivity.class));
     findViewById(R.id.homeHijri).setOnClickListener(v -> open(CalendarActivity.class));
+    findViewById(R.id.homeGregorian).setOnClickListener(v -> open(CalendarActivity.class));
     findViewById(R.id.homeContinueReading)
         .setOnClickListener(
             v ->
@@ -363,10 +365,11 @@ public final class HomeActivity extends BaseActivity {
         day -> {
           skyDay = day;
           sky.setSky(day, java.time.LocalTime.now(location.zone));
-          ((TextView) findViewById(R.id.homeSkySource))
-              .setText(
+          findViewById(R.id.homeSkySource)
+              .setContentDescription(
                   "Langit · "
-                      + (day.usno ? "USNO" : day.solarAvailable ? "perkiraan lokal" : "ilustrasi"));
+                      + (day.usno ? "USNO" : day.solarAvailable ? "perkiraan lokal" : "ilustrasi")
+                      + ". Ketuk untuk sumber dan pengaturan pengingat.");
         });
   }
 

@@ -22,7 +22,7 @@
                 android:id="@+id/homeHero"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="390dp"
+                android:minHeight="328dp"
                 android:background="@drawable/bg_home_hero">
                 <com.zikra.app.sky.HomeSkyView android:id="@+id/homeSky" android:layout_width="match_parent" android:layout_height="match_parent" />
                 <LinearLayout
@@ -30,8 +30,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingHorizontal="20dp"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="16dp">
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -72,6 +72,18 @@
                             android:src="@drawable/reading_ic_search"
                             android:tint="@color/home_hero_text"
                             android:contentDescription="Cari surah Al-Qur’an" />
+                        <TextView
+                            android:id="@+id/homeSkySource"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minHeight="48dp"
+                            android:gravity="center"
+                            android:text="@string/concept_sky_info"
+                            android:textSize="16sp"
+                            android:textColor="@color/studio_tint_aac1b6"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?android:attr/selectableItemBackgroundBorderless" />
                         <ImageButton
                             android:id="@+id/homeReminders"
                             android:layout_width="48dp"
@@ -80,25 +92,28 @@
                             android:background="?android:attr/selectableItemBackgroundBorderless"
                             android:src="@drawable/ic_bell"
                             android:tint="@color/home_hero_text"
-                            android:contentDescription="Jadwal dan pengaturan pengingat sholat" />
+                            android:contentDescription="Jadwal dan pengaturan pengingat sholat"
+                            android:visibility="gone" />
                     </LinearLayout>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/concept_greeting_evening"
-                        android:textSize="22sp"
+                        android:textSize="21sp"
                         android:textColor="@color/white"
                         android:id="@+id/homeGreeting"
                         android:textStyle="bold"
-                        android:layout_marginTop="22dp" />
+                        android:layout_marginTop="8dp"
+                        android:includeFontPadding="false" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textSize="13sp"
+                        android:textSize="12sp"
                         android:textColor="@color/studio_tint_dae9e0"
                         android:id="@+id/homeGregorian"
-                        android:layout_marginTop="4dp" />
+                        android:layout_marginTop="4dp"
+                        android:includeFontPadding="false" />
                     <TextView
                         android:id="@+id/homeHijri"
                         android:layout_width="match_parent"
@@ -111,51 +126,54 @@
                         android:textColor="@color/home_hero_text"
                         android:background="?android:attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
-                        android:focusable="true" />
+                        android:focusable="true"
+                        android:visibility="gone" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/concept_next_prayer"
-                        android:textSize="13sp"
+                        android:textSize="12sp"
                         android:textColor="@color/studio_tint_dae9e0"
-                        android:layout_marginTop="14dp" />
+                        android:layout_marginTop="10dp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textSize="32sp"
+                        android:textSize="28sp"
                         android:textColor="@color/white"
                         android:id="@+id/homeNextPrayer"
                         android:textStyle="bold"
-                        android:layout_marginTop="4dp"
-                        android:maxWidth="230dp" />
+                        android:layout_marginTop="2dp"
+                        android:maxWidth="230dp"
+                        android:includeFontPadding="false" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         android:textColor="@color/studio_tint_dae9e0"
                         android:id="@+id/homeNextTime"
-                        android:layout_marginTop="2dp" />
+                        android:layout_marginTop="2dp"
+                        android:includeFontPadding="false" />
                     <TextView
                         android:id="@+id/homeClock"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="46dp"
+                        android:minHeight="40dp"
                         android:gravity="start"
                         android:text="14:54"
                         android:textColor="@color/white"
-                        android:textSize="34sp"
+                        android:textSize="30sp"
                         android:maxLines="1"
                         android:autoSizeTextType="uniform"
                         android:autoSizeMinTextSize="24sp"
-                        android:autoSizeMaxTextSize="34sp"
+                        android:autoSizeMaxTextSize="30sp"
                         android:autoSizeStepGranularity="1sp"
                         android:textStyle="bold"
                         android:letterSpacing="0"
                         android:includeFontPadding="false"
                         android:fontFeatureSettings="tnum"
-                        android:layout_marginTop="8dp" />
+                        android:layout_marginTop="4dp" />
                     <TextView
                         android:id="@+id/homeCountdown"
                         android:layout_width="wrap_content"
@@ -169,13 +187,14 @@
                         android:background="@null"
                         android:text="Maghrib tinggal 27 menit lagi"
                         android:textColor="@color/home_hero_text"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:visibility="gone" />
                     <HorizontalScrollView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fillViewport="true"
                         android:scrollbars="none"
-                        android:layout_marginTop="12dp">
+                        android:layout_marginTop="8dp">
                         <LinearLayout
                             android:id="@+id/homePrayerStrip"
                             android:layout_width="match_parent"
@@ -191,8 +210,8 @@
                                 android:id="@+id/prayerSlot0"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:minHeight="62dp"
-                                android:paddingVertical="10dp"
+                                android:minHeight="52dp"
+                                android:paddingVertical="6dp"
                                 android:layout_weight="1"
                                 android:layout_marginHorizontal="1dp"
                                 android:gravity="center"
@@ -226,8 +245,8 @@
                                 android:id="@+id/prayerSlot1"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:minHeight="62dp"
-                                android:paddingVertical="10dp"
+                                android:minHeight="52dp"
+                                android:paddingVertical="6dp"
                                 android:layout_weight="1"
                                 android:layout_marginHorizontal="1dp"
                                 android:gravity="center"
@@ -261,8 +280,8 @@
                                 android:id="@+id/prayerSlot2"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:minHeight="62dp"
-                                android:paddingVertical="10dp"
+                                android:minHeight="52dp"
+                                android:paddingVertical="6dp"
                                 android:layout_weight="1"
                                 android:layout_marginHorizontal="1dp"
                                 android:gravity="center"
@@ -296,8 +315,8 @@
                                 android:id="@+id/prayerSlot3"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:minHeight="62dp"
-                                android:paddingVertical="10dp"
+                                android:minHeight="52dp"
+                                android:paddingVertical="6dp"
                                 android:layout_weight="1"
                                 android:layout_marginHorizontal="1dp"
                                 android:gravity="center"
@@ -331,8 +350,8 @@
                                 android:id="@+id/prayerSlot4"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:minHeight="62dp"
-                                android:paddingVertical="10dp"
+                                android:minHeight="52dp"
+                                android:paddingVertical="6dp"
                                 android:layout_weight="1"
                                 android:layout_marginHorizontal="1dp"
                                 android:gravity="center"
@@ -366,8 +385,8 @@
                                 android:id="@+id/prayerSlot5"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:minHeight="62dp"
-                                android:paddingVertical="10dp"
+                                android:minHeight="52dp"
+                                android:paddingVertical="6dp"
                                 android:layout_weight="1"
                                 android:layout_marginHorizontal="1dp"
                                 android:gravity="center"
@@ -399,18 +418,6 @@
                             </LinearLayout>
                         </LinearLayout>
                     </HorizontalScrollView>
-                    <TextView
-                        android:id="@+id/homeSkySource"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minHeight="32dp"
-                        android:gravity="end"
-                        android:text="Langit · perkiraan lokal"
-                        android:textSize="10sp"
-                        android:textColor="@color/studio_tint_aac1b6"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:background="?android:attr/selectableItemBackgroundBorderless" />
                 </LinearLayout>
             </FrameLayout>
             <com.zikra.app.ui.CurvedShortcutLayout

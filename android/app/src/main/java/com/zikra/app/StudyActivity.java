@@ -136,7 +136,8 @@ public final class StudyActivity extends BaseActivity {
     }
     if (!diaryMode && !ibadahMode) {
       ((TextView) agendaHeader.findViewById(R.id.study_heading))
-          .setText(R.string.design_study_heading);
+          .setText(R.string.concept_study_heading);
+      agendaHeader.findViewById(R.id.study_scope_hint).setVisibility(View.GONE);
       View focus = agendaHeader.findViewById(R.id.studyFocus);
       focus.setVisibility(View.VISIBLE);
       focus.setOnClickListener(v -> startActivity(new Intent(this, FocusTimerActivity.class)));
@@ -300,11 +301,7 @@ public final class StudyActivity extends BaseActivity {
         .setText(
             getString(R.string.concept_focus_duration, timer.focusMinutes, timer.breakMinutes));
     ((TextView) agendaHeader.findViewById(R.id.studySessionCaption))
-        .setText(
-            getString(R.string.concept_focus_setting)
-                + " · "
-                + getString(
-                    R.string.concept_focus_duration, timer.focusMinutes, timer.breakMinutes));
+        .setText(getString(R.string.concept_session_short, timer.focusMinutes, timer.breakMinutes));
     ((TextView) agendaHeader.findViewById(R.id.study_section))
         .setText(
             selectedAgendaDay == null

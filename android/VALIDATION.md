@@ -1,3 +1,5 @@
+> **Emulator / 1.3.1 — 22 Oktober 2026:** screenshot native Home/Study/AI/Quran, layout fokus lebih ringkas dan tombol tetap terlihat. Gerak break/pause dan font 200%: 4 tes Android lulus. [Bukti, video dan batas](validation/emulator-layout-2026-10-22/README.md). Emulator ditutup setelah tes.
+
 > **Terbaru 1.3.0:** [laporan konsep terpilih, animasi native, reader dan gateway](validation/concept-refresh-2026-10-21/README.md): 96 JVM/9 backend mock lulus; lint 0 error; tes Android hanya dikompilasi. Belum bukti runtime/screenshot HP versi ini.
 
 > **Mushaf online/QCF V2 — 21 Oktober 2026:** [APK native, preview, 78 JVM dan lima metode API 37](validation/mushaf-reader-2026-10-21/README.md). Audio asli tiga qari, unduhan Al-Fatihah/repair/offline terbukti di emulator; bukan pemeriksaan pelafalan manusia atau HP.

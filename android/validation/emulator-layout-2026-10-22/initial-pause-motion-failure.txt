@@ -1,0 +1,17 @@
+
+com.zikra.app.FocusMotionTest:.
+Failure in testCharacterPixelsMoveAndFreezeOnPause:
+junit.framework.AssertionFailedError: Character really stops drawing movement on pause
+	at com.zikra.app.FocusMotionTest.testCharacterPixelsMoveAndFreezeOnPause(FocusMotionTest.java:369)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:569)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2655)
+
+Test results for InstrumentationTestRunner=..F
+Time: 27.841
+
+FAILURES!!!
+Tests run: 2,  Failures: 1,  Errors: 0
