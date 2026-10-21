@@ -211,18 +211,16 @@ public final class QuranAudioTest extends InstrumentationTestCase {
             QuranAudioService.send(
                 context, QuranAudioService.play(1, 1, 1, 1, Recitation.IDS[0], 1, true)));
     until("Real local playback starts", () -> state().playing);
-    NotificationManager manager = context.getSystemService(NotificationManager.class);
-    android.service.notification.StatusBarNotification item = null;
-    for (android.service.notification.StatusBarNotification n : manager.getActiveNotifications())
-      if (n.getId() == 7301) item = n;
+    until("Playing notification offers Pause", () -> mediaNotification("Jeda") != null);
+    android.service.notification.StatusBarNotification item = mediaNotification("Jeda");
     assertNotNull("Media notification exists", item);
     assertNotNull(
         "MediaSession token exists",
         item.getNotification().extras.getParcelable(Notification.EXTRA_MEDIA_SESSION));
     item.getNotification().actions[1].actionIntent.send();
     until("Notification pauses audio", () -> !state().playing && state().status.equals("Dijeda"));
-    for (android.service.notification.StatusBarNotification n : manager.getActiveNotifications())
-      if (n.getId() == 7301) item = n;
+    until("Paused notification offers Play", () -> mediaNotification("Putar") != null);
+    item = mediaNotification("Putar");
     item.getNotification().actions[1].actionIntent.send();
     until("Notification resumes audio", () -> state().playing);
     main(
@@ -253,6 +251,18 @@ public final class QuranAudioTest extends InstrumentationTestCase {
       shell("input keyevent 224");
       shell("wm dismiss-keyguard");
     }
+  }
+
+  private android.service.notification.StatusBarNotification mediaNotification(String action) {
+    for (android.service.notification.StatusBarNotification item :
+        context.getSystemService(NotificationManager.class).getActiveNotifications()) {
+      Notification.Action[] buttons = item.getNotification().actions;
+      if (item.getId() == 7301
+          && buttons != null
+          && buttons.length > 1
+          && action.contentEquals(buttons[1].title)) return item;
+    }
+    return null;
   }
 
   public void testAutoScrollStopsOnManualTouchAndRangeValidationKeepsDialogOpen() throws Exception {

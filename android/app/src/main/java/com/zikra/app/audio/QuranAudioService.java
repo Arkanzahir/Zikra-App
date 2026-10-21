@@ -9,9 +9,11 @@ import android.os.*;
 import com.zikra.app.QuranActivity;
 import com.zikra.app.R;
 import com.zikra.app.reading.QuranChapters;
+import com.zikra.app.reading.mushaf.WordTimeline;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.*;
 
 /** One native player and media session survive Activity changes. No automatic playback on boot. */
 public final class QuranAudioService extends Service {
@@ -30,8 +32,9 @@ public final class QuranAudioService extends Service {
   }
 
   public static final class State {
-    public final int chapter, verse, first, last, repeat, repeats, position, duration;
-    public final boolean playing, loading, loop, requested;
+    public final int chapter, verse, first, last, repeat, repeats, position, duration, word;
+    public final float wordFraction;
+    public final boolean playing, loading, loop, requested, wordSync, wordTimingAvailable;
     public final String reciter, status;
 
     State(QuranAudioService s) {
@@ -46,7 +49,7 @@ public final class QuranAudioService extends Service {
       requested = s.wantPlay;
       reciter = s.reciter;
       status = s.status;
-      loading = s.player != null && !s.prepared;
+      loading = s.fetching || (s.player != null && (!s.prepared || s.buffering || s.seeking));
       playing = s.isPlaying();
       int at = 0, length = 0;
       try {
@@ -59,6 +62,14 @@ public final class QuranAudioService extends Service {
       }
       position = at;
       duration = length;
+      wordSync = s.wordSync;
+      wordTimingAvailable = s.timeline != null;
+      WordTimeline.Highlight highlight =
+          s.timeline == null
+              ? null
+              : s.timeline.at(chapter, verse, s.recordingSha256, at, loading, s.prepared);
+      word = highlight == null ? 0 : highlight.word;
+      wordFraction = highlight == null ? 0 : highlight.fraction;
     }
   }
 
@@ -78,6 +89,13 @@ public final class QuranAudioService extends Service {
   private RecitationQueue queue;
   private String reciter = Recitation.IDS[0], status = "Pilih ayat untuk mulai mendengarkan";
   private boolean prepared, wantPlay, resumeOnFocus, finished;
+  private boolean wordSync, fetching, buffering, seeking;
+  private volatile boolean destroyed;
+  private volatile int audioGeneration;
+  private WordTimeline timeline;
+  private String recordingSha256;
+  private TimedAudioRepository timedAudio;
+  private final ExecutorService audioWorker = Executors.newSingleThreadExecutor();
   private final BroadcastReceiver noisy =
       new BroadcastReceiver() {
         @Override
@@ -157,6 +175,7 @@ public final class QuranAudioService extends Service {
   @Override
   public void onCreate() {
     super.onCreate();
+    timedAudio = new TimedAudioRepository(this);
     audio = (AudioManager) getSystemService(AUDIO_SERVICE);
     focus =
         new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
@@ -235,6 +254,7 @@ public final class QuranAudioService extends Service {
         Recitation.reciterIndex(qari);
         queue = next;
         reciter = qari;
+        wordSync = intent.getBooleanExtra("word_sync", false);
         finished = false;
         prepare();
       } catch (IllegalArgumentException invalid) {
@@ -264,6 +284,33 @@ public final class QuranAudioService extends Service {
     status = "Memuat audio ayat " + queue.verse + "…";
     foreground();
     session.setActive(true);
+    if (wordSync) {
+      fetching = true;
+      main.postDelayed(prepareTimeout, 45000);
+      int token = audioGeneration, chapter = queue.chapter, verse = queue.verse;
+      String qari = reciter;
+      publish(true);
+      audioWorker.execute(
+          () -> {
+            if (destroyed || token != audioGeneration) return;
+            TimedAudioRepository.Clip clip = null;
+            try {
+              clip = timedAudio.load(qari, chapter, verse);
+            } catch (Exception unavailable) {
+              // Existing downloads/stream remain playable, with ayah highlighting only.
+            }
+            TimedAudioRepository.Clip found = clip;
+            main.post(
+                () -> {
+                  if (destroyed || token != audioGeneration) return;
+                  fetching = false;
+                  preparePlayer(found);
+                });
+          });
+    } else preparePlayer(null);
+  }
+
+  private void preparePlayer(TimedAudioRepository.Clip clip) {
     MediaPlayer next = new MediaPlayer();
     player = next;
     next.setAudioAttributes(attributes());
@@ -273,11 +320,31 @@ public final class QuranAudioService extends Service {
           if (player != p) return;
           main.removeCallbacks(prepareTimeout);
           prepared = true;
+          if (clip != null) {
+            recordingSha256 = clip.sha256;
+            timeline = clip.data.timeline(clip.sha256, p.getDuration());
+          }
           if (wantPlay) resume();
           else {
             status = "Dijeda";
             publish(true);
           }
+        });
+    next.setOnInfoListener(
+        (p, what, extra) -> {
+          if (player == p
+              && (what == MediaPlayer.MEDIA_INFO_BUFFERING_START
+                  || what == MediaPlayer.MEDIA_INFO_BUFFERING_END)) {
+            buffering = what == MediaPlayer.MEDIA_INFO_BUFFERING_START;
+            publish(false);
+          }
+          return false;
+        });
+    next.setOnSeekCompleteListener(
+        p -> {
+          if (player != p) return;
+          seeking = false;
+          publish(false);
         });
     next.setOnCompletionListener(
         p -> {
@@ -302,9 +369,11 @@ public final class QuranAudioService extends Service {
     try {
       File file = AudioFiles.file(this, reciter, queue.chapter, queue.verse);
       next.setDataSource(
-          AudioFiles.available(this, reciter, queue.chapter, queue.verse)
-              ? file.getAbsolutePath()
-              : Recitation.url(reciter, queue.chapter, queue.verse));
+          clip != null
+              ? clip.file.getAbsolutePath()
+              : AudioFiles.available(this, reciter, queue.chapter, queue.verse)
+                  ? file.getAbsolutePath()
+                  : Recitation.url(reciter, queue.chapter, queue.verse));
       next.prepareAsync();
       main.postDelayed(prepareTimeout, 45000);
       publish(true);
@@ -323,6 +392,11 @@ public final class QuranAudioService extends Service {
       queue.verse = queue.first;
       queue.repetition = 1;
       prepare();
+      return;
+    }
+    if (fetching) {
+      wantPlay = true;
+      publish(true);
       return;
     }
     if (player == null) {
@@ -386,8 +460,10 @@ public final class QuranAudioService extends Service {
 
   private void seek(long ms) {
     try {
-      if (prepared && player != null)
+      if (prepared && player != null) {
+        seeking = true;
         player.seekTo((int) Math.max(0, Math.min(player.getDuration(), ms)));
+      }
     } catch (IllegalStateException pendingErrorCallback) {
       error("Posisi audio belum dapat diubah. Ketuk Putar untuk memuat ulang.");
       return;
@@ -411,6 +487,11 @@ public final class QuranAudioService extends Service {
   }
 
   private void releasePlayer() {
+    audioGeneration++;
+    fetching = buffering = seeking = false;
+    timeline = null;
+    recordingSha256 = null;
+    if (timedAudio != null) timedAudio.cancel();
     main.removeCallbacks(tick);
     main.removeCallbacks(prepareTimeout);
     prepared = false;
@@ -523,7 +604,10 @@ public final class QuranAudioService extends Service {
 
   @Override
   public void onDestroy() {
+    destroyed = true;
     releasePlayer();
+    audioWorker.execute(timedAudio::close);
+    audioWorker.shutdown();
     abandonFocus();
     unregisterReceiver(noisy);
     listeners.clear();

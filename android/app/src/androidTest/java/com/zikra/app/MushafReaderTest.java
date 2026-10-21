@@ -7,6 +7,7 @@ import android.test.InstrumentationTestCase;
 import android.view.*;
 import android.widget.*;
 import com.zikra.app.audio.QuranAudioService;
+import com.zikra.app.audio.Recitation;
 import com.zikra.app.reading.mushaf.*;
 import java.lang.reflect.*;
 import java.util.*;
@@ -237,6 +238,8 @@ public final class MushafReaderTest extends InstrumentationTestCase {
                 && state.duration > 0;
           });
       assertEquals(View.GONE, page.findViewById(R.id.mushafAudioProgress).getVisibility());
+      QuranAudioService service = (QuranAudioService) field(audio, "service");
+      assertTrue("Al-Mulk uses matched word timings", service.state().wordTimingAvailable);
       UiEvidence.capture(getInstrumentation(), "Mushaf-Mini-Audio-Active");
       main(() -> page.findViewById(R.id.mushafTranslation).performClick());
       AlertDialog menu = (AlertDialog) field(page, "dialog");
@@ -246,6 +249,165 @@ public final class MushafReaderTest extends InstrumentationTestCase {
       UiEvidence.capture(getInstrumentation(), "Mushaf-Expanded-Audio");
       main(() -> page.findViewById(R.id.quranAudioPlay).performClick());
       until("Pause button works", () -> !((QuranAudioService.State) field(audio, "state")).playing);
+      WordTimeline timeline = (WordTimeline) field(service, "timeline");
+      WordTimeline.Segment lastWord = timeline.segments.get(timeline.wordCount - 1);
+      main(
+          () ->
+              QuranAudioService.send(
+                  context,
+                  new Intent()
+                      .setAction(QuranAudioService.SEEK)
+                      .putExtra("position", (int) ((lastWord.startMs + lastWord.endMs) / 2))));
+      until(
+          "Gold follows last word across Al-Mulk lines",
+          () ->
+              !service.state().loading
+                  && service.state().word == timeline.wordCount
+                  && (Integer) field(field(page, "pageView"), "activeWord") == timeline.wordCount);
+      UiEvidence.capture(getInstrumentation(), "Mushaf-Word-Multiline");
+    } finally {
+      main(() -> QuranAudioService.send(context, QuranAudioService.STOP));
+    }
+  }
+
+  public void testWordHighlightUsesActualAudioForAllThreeQaris() throws Exception {
+    page =
+        getInstrumentation()
+            .startActivitySync(
+                new Intent(context, MushafActivity.class)
+                    .putExtra(QuranActivity.EXTRA_TARGET_CHAPTER, 1)
+                    .putExtra(QuranActivity.EXTRA_TARGET_VERSE, 1)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    loaded(1);
+    Object audio = field(page, "audio");
+    until("Audio bound", () -> field(audio, "service") != null);
+    QuranAudioService service = (QuranAudioService) field(audio, "service");
+    org.json.JSONArray evidence = new org.json.JSONArray();
+    try {
+      for (String qari : Recitation.IDS) {
+        main(
+            () ->
+                QuranAudioService.send(
+                    context,
+                    QuranAudioService.play(1, 1, 7, 1, qari, 1, false)
+                        .putExtra("word_sync", true)));
+        until(
+            "Real timed recording plays: " + qari,
+            () ->
+                service.state().playing
+                    && service.state().wordTimingAvailable
+                    && service.state().reciter.equals(qari));
+        WordTimeline timeline = (WordTimeline) field(service, "timeline");
+        assertEquals(4, timeline.wordCount);
+        main(() -> QuranAudioService.send(context, QuranAudioService.PAUSE));
+        until("Paused", () -> !service.state().playing && !service.state().loading);
+        for (int number : new int[] {2, 4, 1}) {
+          WordTimeline.Segment segment = timeline.segments.get(number - 1);
+          int target = (int) ((segment.startMs + segment.endMs) / 2);
+          main(
+              () ->
+                  QuranAudioService.send(
+                      context,
+                      new Intent().setAction(QuranAudioService.SEEK).putExtra("position", target)));
+          until(
+              "Native seek and rendered word " + number,
+              () ->
+                  !service.state().loading
+                      && service.state().word == number
+                      && ((Integer) field(field(page, "pageView"), "activeWord")) == number);
+          int frozen = service.state().position;
+          float fraction = service.state().wordFraction;
+          SystemClock.sleep(250);
+          assertEquals(frozen, service.state().position);
+          assertEquals(fraction, service.state().wordFraction, .001f);
+          if (number == 2) {
+            UiEvidence.capture(getInstrumentation(), "Mushaf-Word-" + qari);
+            if (qari.equals("ar.alafasy")) {
+              invoke(page, "options", new Class<?>[] {});
+              AlertDialog options = (AlertDialog) field(page, "dialog");
+              main(() -> options.getListView().performItemClick(null, 4, 4));
+              UiEvidence.capture(getInstrumentation(), "Mushaf-Word-Night");
+              invoke(page, "options", new Class<?>[] {});
+              AlertDialog restore = (AlertDialog) field(page, "dialog");
+              main(() -> restore.getListView().performItemClick(null, 4, 4));
+            }
+          }
+        }
+        main(() -> QuranAudioService.send(context, QuranAudioService.RESUME));
+        until(
+            "Word follows native playback",
+            () -> service.state().playing && service.state().word > 0);
+        evidence.put(
+            new org.json.JSONObject()
+                .put("reciter", qari)
+                .put("recordingSha256", field(service, "recordingSha256"))
+                .put("durationMs", service.state().duration)
+                .put("words", timeline.wordCount)
+                .put("seekPausePositionsVerified", "2,4,1"));
+      }
+      java.io.File folder = new java.io.File(context.getExternalFilesDir(null), "validation");
+      folder.mkdirs();
+      try (java.io.FileOutputStream out =
+          new java.io.FileOutputStream(new java.io.File(folder, "Mushaf-Word-Audio.json"))) {
+        out.write(evidence.toString(2).getBytes(java.nio.charset.StandardCharsets.UTF_8));
+      }
+    } finally {
+      main(() -> QuranAudioService.send(context, QuranAudioService.STOP));
+    }
+  }
+
+  public void testWordHighlightFollowsNextAyahToNextPageAndClearsOnStop() throws Exception {
+    page =
+        getInstrumentation()
+            .startActivitySync(
+                new Intent(context, MushafActivity.class)
+                    .putExtra(QuranActivity.EXTRA_TARGET_CHAPTER, 2)
+                    .putExtra(QuranActivity.EXTRA_TARGET_VERSE, 5)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    loaded(2);
+    Object audio = field(page, "audio");
+    until("Audio bound", () -> field(audio, "service") != null);
+    QuranAudioService service = (QuranAudioService) field(audio, "service");
+    try {
+      main(
+          () ->
+              QuranAudioService.send(
+                  context,
+                  QuranAudioService.play(2, 5, 6, 5, "ar.alafasy", 2, false)
+                      .putExtra("word_sync", true)));
+      until(
+          "Timed Al-Baqarah plays",
+          () -> service.state().playing && service.state().wordTimingAvailable);
+      main(
+          () ->
+              QuranAudioService.send(
+                  context,
+                  new Intent()
+                      .setAction(QuranAudioService.SEEK)
+                      .putExtra("position", service.state().duration - 200)));
+      until(
+          "Repeat uses same native timing",
+          () -> service.state().repeat == 2 && service.state().playing && service.state().word > 0);
+      main(
+          () ->
+              QuranAudioService.send(
+                  context,
+                  new Intent()
+                      .setAction(QuranAudioService.SEEK)
+                      .putExtra("position", service.state().duration - 200)));
+      until(
+          "Next ayah has its own timed recording",
+          () ->
+              service.state().verse == 6
+                  && service.state().playing
+                  && service.state().wordTimingAvailable);
+      loaded(3);
+      until(
+          "Gold word visible on next page",
+          () -> (Integer) field(field(page, "pageView"), "activeWord") > 0);
+      UiEvidence.capture(getInstrumentation(), "Mushaf-Word-Next-Page");
+      main(() -> QuranAudioService.send(context, QuranAudioService.STOP));
+      until("Stop clears gold", () -> (Integer) field(field(page, "pageView"), "activeWord") == 0);
     } finally {
       main(() -> QuranAudioService.send(context, QuranAudioService.STOP));
     }

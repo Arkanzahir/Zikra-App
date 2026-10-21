@@ -144,6 +144,36 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
                 pageView.active(c, v);
               }
 
+              public boolean wordSync() {
+                return true;
+              }
+
+              public void wordHighlight(int c, int v, int word, float fraction, boolean follow) {
+                pageView.wordActive(c, v, word, fraction);
+                if (!follow
+                    || !ready
+                    || word < 1
+                    || document == null
+                    || !document.page.contains(c, v)
+                    || pageView.containsWord(c, v, word)) return;
+                busy();
+                repository.locateWord(
+                    c,
+                    v,
+                    word,
+                    new MushafRepository.Located() {
+                      public void ready(int found) {
+                        chapter = c;
+                        verse = v;
+                        load(found);
+                      }
+
+                      public void failed() {
+                        MushafActivity.this.failed();
+                      }
+                    });
+              }
+
               public void follow(int c, int v) {
                 if (!ready) return;
                 if (document.page.contains(c, v)) {

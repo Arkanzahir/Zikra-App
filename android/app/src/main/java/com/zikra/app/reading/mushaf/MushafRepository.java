@@ -59,6 +59,15 @@ public final class MushafRepository implements AutoCloseable {
   }
 
   public void locate(int chapter, int verse, int preferred, Located result) {
+    locate(chapter, verse, preferred, 0, result);
+  }
+
+  public void locateWord(int chapter, int verse, int position, Located result) {
+    if (position < 1) throw new IllegalArgumentException("Invalid word position");
+    locate(chapter, verse, 0, position, result);
+  }
+
+  private void locate(int chapter, int verse, int preferred, int position, Located result) {
     com.zikra.app.audio.Recitation.globalVerse(chapter, verse);
     int token = ++generation;
     http.dispatcher().cancelAll();
@@ -70,9 +79,13 @@ public final class MushafRepository implements AutoCloseable {
                 new JSONObject(
                     json("verses/by_key/" + chapter + ":" + verse + "?mushaf=1&words=true"));
             JSONArray words = root.getJSONObject("verse").getJSONArray("words");
-            int page = words.getJSONObject(0).getInt("page_number");
-            for (int i = 0; i < words.length(); i++)
-              if (words.getJSONObject(i).getInt("page_number") == preferred) page = preferred;
+            int page = position == 0 ? words.getJSONObject(0).getInt("page_number") : 0;
+            for (int i = 0; i < words.length(); i++) {
+              JSONObject word = words.getJSONObject(i);
+              if (position > 0
+                  ? word.getInt("position") == position
+                  : word.getInt("page_number") == preferred) page = word.getInt("page_number");
+            }
             if (page < 1 || page > 604) throw new IOException("Page range");
             int found = page;
             main.post(

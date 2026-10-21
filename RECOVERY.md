@@ -1,4 +1,4 @@
-> **Checkpoint Mushaf online — 21 Oktober 2026:** mode native QCF V2 Android 12+ dan tes qari asli kini tersedia. [Bukti dan batas](android/validation/mushaf-reader-2026-10-21/README.md). Status belum ada/blocked di bawah adalah riwayat sebelum checkpoint ini.
+> **Checkpoint sorotan kata — 21 Oktober 2026:** sorotan emas Mushaf kini mengikuti rekaman/timing asli tiga qari dan posisi decoder. [Bukti, pengujian dan batas](android/validation/mushaf-word-sync-2026-10-21/README.md). Online, belum audit semua ayat/HP fisik. Status belum ada/blocked di bawah adalah riwayat sebelum checkpoint terbaru.
 
 # Pemulihan dan status Zikra — 20 Oktober 2026 (WIB)
 

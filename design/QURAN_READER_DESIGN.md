@@ -144,3 +144,12 @@ tanpa medali. Batas tinta aktual menentukan skala seragam, dipusatkan dalam bari
 antara judul dan ayat. Serif sistem kecil tidak lagi digunakan. Al-Fatihah tetap
 memakai ayat pertama; At-Taubah tanpa basmalah tambahan.
 [Bukti native](../android/validation/mushaf-basmalah-2026-10-21/README.md).
+
+## Sorotan kata Mushaf terhubung
+
+Glyph kata diisi emas secara bertahap dari kanan ke kiri, menurut posisi decoder
+dan segmen asli untuk file audio yang diputar. Latar sage ayat tetap; medali tidak
+mendapat efek kata. Ukuran, font dan posisi bacaan tidak berubah. Jeda membekukan
+efek, seek menunggu decoder, gap/buffering/Stop membersihkannya. Mode malam memakai
+emas terang. Timing tidak tersedia menampilkan keterangan dan sorotan ayat.
+[Bukti dan pengujian](../android/validation/mushaf-word-sync-2026-10-21/README.md).

@@ -32,6 +32,8 @@ public final class MushafPageView extends View {
   private boolean night;
   private float viewportRatio = 1.48f;
   private int activeChapter, activeVerse;
+  private int wordChapter, wordVerse, activeWord;
+  private float wordFraction;
 
   private static final class Hit {
     final RectF bounds;
@@ -110,6 +112,29 @@ public final class MushafPageView extends View {
     activeChapter = chapter;
     activeVerse = verse;
     invalidate();
+  }
+
+  public void wordActive(int chapter, int verse, int word, float fraction) {
+    if (wordChapter == chapter
+        && wordVerse == verse
+        && activeWord == word
+        && wordFraction == fraction) return;
+    wordChapter = chapter;
+    wordVerse = verse;
+    activeWord = word;
+    wordFraction = Math.max(0, Math.min(1, fraction));
+    invalidate();
+  }
+
+  public boolean containsWord(int chapter, int verse, int position) {
+    if (document == null) return false;
+    for (MushafPage.Line line : document.page.lines)
+      for (MushafPage.Word word : line.words)
+        if (!word.verseEnd
+            && word.chapter == chapter
+            && word.verse == verse
+            && word.position == position) return true;
+    return false;
   }
 
   @Override
@@ -212,7 +237,18 @@ public final class MushafPageView extends View {
               color(R.color.mushaf_border, R.color.mushaf_night_border),
               ink.getColor(),
               color(R.color.mushaf_medallion_fill, R.color.mushaf_night_medallion_fill));
-        } else canvasFont.draw(canvas, word.glyph, right, baseline, ink);
+        } else {
+          canvasFont.draw(canvas, word.glyph, right, baseline, ink);
+          if (word.chapter == wordChapter
+              && word.verse == wordVerse
+              && word.position == activeWord) {
+            canvas.save();
+            canvas.clipRect(right - width * wordFraction, box.top, right, box.bottom);
+            ink.setColor(color(R.color.mushaf_word_gold, R.color.mushaf_night_word_gold));
+            canvasFont.draw(canvas, word.glyph, right, baseline, ink);
+            canvas.restore();
+          }
+        }
         hits.add(new Hit(box, word));
         right -= width + gap;
       }

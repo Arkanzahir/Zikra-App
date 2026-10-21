@@ -24,7 +24,10 @@
     <string name="mushaf_more">Menu bacaan</string>
     <string name="mushaf_source">Sumber Mushaf</string>
     <string name="mushaf_timeline">Tampilkan/sembunyikan posisi audio</string>
-    <string name="mushaf_source_detail">Teks dan glyph: Quran.com / Quran Foundation, QCF V2, Mushaf Madani 1421H. Font resmi digunakan tanpa modifikasi. Halaman memerlukan koneksi internet.</string>
+    <string name="mushaf_source_detail">Teks dan glyph: Quran.com / Quran Foundation, QCF V2, Mushaf Madani 1421H. Font resmi digunakan tanpa modifikasi. Audio dengan sorotan kata memakai rekaman dan timing yang dipasangkan Quran.com / Quran Foundation serta QuranicAudio. Halaman dan sorotan kata memerlukan koneksi internet. Unduhan audio lama tetap dapat diputar tanpa sorotan kata.</string>
+    <string name="mushaf_word_timing_unavailable"> · Sorotan kata belum tersedia untuk audio ini</string>
+    <color name="mushaf_word_gold">#A16207</color>
+    <color name="mushaf_night_word_gold">#F1C76C</color>
     <color name="mushaf_selection">#E7EEDD</color>
     <color name="mushaf_night_selection">#314C40</color>
     <string name="mushaf_open">Baca Mushaf · halaman</string>

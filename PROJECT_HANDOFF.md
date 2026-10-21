@@ -1,5 +1,24 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: sorotan emas per kata aktif di Mushaf
+
+Mushaf otomatis meminta audio/timing per ayat yang dipasangkan Quran.com untuk
+Alafasy (7), Husary (6), Minshawi Murattal (9). File asli dihitung SHA256 lalu
+diputar oleh decoder; jumlah kata dan durasi diverifikasi sebelum WordTimeline
+diaktifkan. Isi glyph tersapu emas RTL menurut posisi aktual, termasuk seek,
+jeda, pengulangan dan pindah halaman. Medali tidak diwarnai emas. Sentuhan manual
+tetap menjeda mengikuti ayat. Reader biasa/unduhan lama mempertahankan provider
+lama; timing tidak lengkap/gagal memakai sorotan ayat dengan keterangan di UI.
+Maksimal tiga file audio cache sementara; timing di memori, tanpa token dalam APK.
+
+[Bukti native, hash audio dan log](android/validation/mushaf-word-sync-2026-10-21/README.md).
+Build/lint, 87 JVM dan 10 metode Android unik lulus: tujuh Mushaf memakai audio
+asli, tiga regresi service lama memakai fixture WAV sintetis. Tes notifikasi
+menunggu tombol yang sesuai state; izin notifikasi emulator diaktifkan khusus tes
+dan dikembalikan. Log gagal awal disimpan. Belum tes HP fisik/seluruh ayat; online
+dan ketersediaan timing sumber tetap diperlukan. Backend/Content Sync belum dibuat.
+APK terbaru `D:/Download/Zikra-App-main/Zikra-Mushaf-WordSync-20261021-debug.apk`.
+
 ## Terbaru: basmalah lebih besar dan memakai glyph Mushaf
 
 Basmalah serif sistem berukuran 0,59× huruf ayat diganti empat glyph asli QCF V2

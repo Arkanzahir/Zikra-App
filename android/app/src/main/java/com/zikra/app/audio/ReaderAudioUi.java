@@ -27,6 +27,12 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
 
     void highlight(int chapter, int verse);
 
+    default boolean wordSync() {
+      return false;
+    }
+
+    default void wordHighlight(int chapter, int verse, int word, float fraction, boolean follow) {}
+
     boolean nextPage();
 
     boolean ready();
@@ -58,6 +64,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
         public void onServiceDisconnected(ComponentName n) {
           service = null;
           state = null;
+          host.wordHighlight(0, 0, 0, 0, false);
           update();
         }
       };
@@ -69,6 +76,23 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
             update();
             main.postDelayed(this, 750);
           }
+        }
+      };
+  private final Runnable wordFrame =
+      new Runnable() {
+        @Override
+        public void run() {
+          if (!active || !reading || !host.wordSync()) return;
+          if (service != null) {
+            QuranAudioService.State current = service.state();
+            host.wordHighlight(
+                current.chapter,
+                current.verse,
+                current.word,
+                current.wordFraction,
+                follow && !touchPaused);
+          }
+          main.postDelayed(this, 32);
         }
       };
   private final Runnable scrollFrame =
@@ -172,12 +196,16 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
           activity.bindService(
               new Intent(activity, QuranAudioService.class), connection, Context.BIND_AUTO_CREATE);
     main.post(poll);
+    main.removeCallbacks(wordFrame);
+    if (host.wordSync()) main.post(wordFrame);
   }
 
   public void stop() {
     active = false;
     stopScroll();
     main.removeCallbacks(poll);
+    main.removeCallbacks(wordFrame);
+    host.wordHighlight(0, 0, 0, 0, false);
     if (service != null) service.removeListener(this);
     if (bound) {
       activity.unbindService(connection);
@@ -240,6 +268,8 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
 
   private void send(Intent intent) {
     try {
+      if (QuranAudioService.PLAY.equals(intent.getAction()))
+        intent.putExtra("word_sync", host.wordSync());
       QuranAudioService.send(activity, intent);
     } catch (RuntimeException unavailable) {
       Toast.makeText(
@@ -257,6 +287,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
         && state.chapter == host.chapter()
         && state.first == first
         && state.last == last
+        && state.wordSync == host.wordSync()
         && state.reciter.equals(qari)) {
       send(
           state.playing || (state.loading && state.requested)
@@ -303,6 +334,8 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     if (compact && !current) status = Recitation.NAMES[Recitation.reciterIndex(qari)];
     if (compact && current && state.playing && state.duration > 0)
       status = Recitation.NAMES[Recitation.reciterIndex(state.reciter)];
+    if (current && host.wordSync() && state.duration > 0 && !state.wordTimingAvailable)
+      status += activity.getString(R.string.mushaf_word_timing_unavailable);
     if (current && state.repeats > 1) status += " · " + state.repeat + "/" + state.repeats;
     if (otherChapter)
       status =
