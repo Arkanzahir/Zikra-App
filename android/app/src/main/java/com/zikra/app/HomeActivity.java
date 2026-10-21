@@ -156,12 +156,7 @@ public final class HomeActivity extends BaseActivity {
       prayerDisplayDate = null;
     }
     location = selected;
-    ((TextView) findViewById(R.id.homeLocationLabel))
-        .setText(
-            location.label.split(",")[0]
-                + " · "
-                + location.zoneLabel(java.time.Instant.now())
-                + (location.source.equals("initial") ? " · Pilih lokasi" : ""));
+    ((TextView) findViewById(R.id.homeLocationLabel)).setText(location.label.split(",")[0] + " ⌄");
     findViewById(R.id.homeLocation)
         .setContentDescription("Lokasi " + location.caption() + ". Ketuk untuk mengubah.");
     sky.setRunning(true);
@@ -200,7 +195,7 @@ public final class HomeActivity extends BaseActivity {
                 ? "Mulai dari satu ibadah yang ingin kamu jaga."
                 : done + " dari " + total + " ibadah selesai");
     ((TextView) findViewById(R.id.homeChecklist))
-        .setText(total == 0 ? "Catat ibadah pertama" : "Buka checklist ibadah");
+        .setText(total == 0 ? R.string.reference_target_first : R.string.reference_target_open);
     findViewById(R.id.homeProgressPercent)
         .setVisibility(total == 0 ? android.view.View.GONE : android.view.View.VISIBLE);
     findViewById(R.id.homeProgressTicks)
@@ -211,7 +206,7 @@ public final class HomeActivity extends BaseActivity {
   /** Keep times readable and reflow shortcuts instead of shrinking the user's larger text. */
   private void adaptHomeForTextSize() {
     float scale = getResources().getConfiguration().fontScale;
-    findViewById(R.id.homePrayerStrip).setMinimumWidth(dp(6 * 48 * Math.max(1f, scale)));
+    findViewById(R.id.homePrayerStrip).setMinimumWidth(dp(5 * 48 * Math.max(1f, scale)));
     if (scale <= 1.3f) return;
     LinearLayout shortcuts = findViewById(R.id.homeShortcuts);
     java.util.List<android.view.View> tiles = new java.util.ArrayList<>();
@@ -285,16 +280,17 @@ public final class HomeActivity extends BaseActivity {
       ((TextView) findViewById(R.id.homeCountdown))
           .setText("Jadwal belum tersedia untuk lokasi ini");
     } else {
-      ((TextView) findViewById(R.id.homeNextPrayer)).setText(PrayerSchedule.NAMES[next]);
+      ((TextView) findViewById(R.id.homeNextPrayer))
+          .setText(getString(R.string.reference_towards_prayer, PrayerSchedule.NAMES[next]));
       ((TextView) findViewById(R.id.homeNextTime))
           .setText(
               getString(
-                  R.string.concept_next_prayer_time,
-                  getString(
-                      event.time.toLocalDate().isAfter(now.toLocalDate())
-                          ? R.string.concept_tomorrow
-                          : R.string.concept_today),
-                  event.time.format(DateTimeFormatter.ofPattern("HH.mm", Locale.ROOT))));
+                  R.string.reference_prayer_time,
+                  PrayerSchedule.NAMES[next],
+                  event.time.format(DateTimeFormatter.ofPattern("HH.mm", Locale.ROOT))
+                      + (event.time.toLocalDate().isAfter(now.toLocalDate())
+                          ? " \u00b7 " + getString(R.string.concept_tomorrow)
+                          : "")));
       long seconds = Math.max(0, java.time.Duration.between(now, event.time).getSeconds());
       ((TextView) findViewById(R.id.homeClock))
           .setText(

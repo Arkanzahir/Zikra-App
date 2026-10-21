@@ -186,7 +186,10 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
     audio.reader(true);
     palette();
     if (saved != null) load(page);
-    else locate(chapter, verse);
+    else {
+      locate(chapter, verse);
+      if (getIntent().getBooleanExtra("browse_juz", false)) chooseJuz();
+    }
   }
 
   private void busy() {
@@ -373,16 +376,19 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
                             .setItems(names, (choice, index) -> locate(index + 1, 1))
                             .show();
                   } else {
-                    String[] names = new String[30];
-                    for (int i = 0; i < 30; i++)
-                      names[i] = getString(R.string.mushaf_juz_label, i + 1);
-                    dialog =
-                        new AlertDialog.Builder(this)
-                            .setTitle(R.string.mushaf_jump_juz)
-                            .setItems(names, (choice, index) -> locateJuz(index + 1))
-                            .show();
+                    chooseJuz();
                   }
                 })
+            .show();
+  }
+
+  private void chooseJuz() {
+    String[] names = new String[30];
+    for (int i = 0; i < names.length; i++) names[i] = getString(R.string.mushaf_juz_label, i + 1);
+    dialog =
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.mushaf_jump_juz)
+            .setItems(names, (choice, index) -> locateJuz(index + 1))
             .show();
   }
 

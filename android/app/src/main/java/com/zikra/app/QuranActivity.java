@@ -143,6 +143,15 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     findViewById(R.id.quranHeaderSearch).setOnClickListener(v -> toggleSearch());
     findViewById(R.id.quranReadingOptions).setOnClickListener(v -> showReadingOptions());
     findViewById(R.id.quranCatalogMushaf).setOnClickListener(v -> openMushaf());
+    findViewById(R.id.quranBrowseJuz).setOnClickListener(v -> openMushaf(true));
+    findViewById(R.id.quranBookmark)
+        .setOnClickListener(
+            v -> {
+              selectedIndex =
+                  Math.max(
+                      0, Math.min(chapters.size() - 1, preferences.getInt("last_chapter", 1) - 1));
+              openSurah(selectedIndex, true);
+            });
     findViewById(R.id.quranReaderMushaf).setOnClickListener(v -> openMushaf());
     findViewById(R.id.quranReaderAudio).setOnClickListener(v -> audioUi.options());
     findViewById(R.id.quranCatalogDownloads)
@@ -773,7 +782,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     for (int id : secondaryLabels) ((TextView) findViewById(id)).setTextColor(secondary);
     for (int i = 0; i < surahList.getChildCount(); i++) {
       View row = surahList.getChildAt(i);
-      row.setBackground(card(enabled ? 0xFF1D3530 : 0xFFFFFFFF));
+      row.setBackgroundColor(background);
       row.findViewById(R.id.surahListDivider).setBackgroundColor(enabled ? 0xFF29413D : 0xFFEBEEE9);
       ((TextView) row.findViewById(R.id.surahListNumber))
           .setTextColor(enabled ? 0xFFD0AC6B : 0xFF7F6739);
@@ -898,6 +907,10 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   }
 
   private void openMushaf() {
+    openMushaf(false);
+  }
+
+  private void openMushaf(boolean chooseJuz) {
     if (android.os.Build.VERSION.SDK_INT < 31) {
       toast(getString(R.string.design_mushaf_min_android));
       return;
@@ -914,6 +927,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     if (readingDialog != null) readingDialog.dismiss();
     startActivityForResult(
         new android.content.Intent(this, MushafActivity.class)
+            .putExtra("browse_juz", chooseJuz)
             .putExtra(EXTRA_TARGET_CHAPTER, selectedIndex + 1)
             .putExtra(EXTRA_TARGET_VERSE, visibleVerse)
             .putExtra(EXTRA_RANGE_FIRST, selectedIndex + 1 == rangeChapter ? rangeFirst : 1)

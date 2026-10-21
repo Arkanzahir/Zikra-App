@@ -6,6 +6,7 @@ import android.hardware.*;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.*;
+import com.zikra.app.R;
 import com.zikra.app.ui.AmbientMotionPolicy;
 import java.time.*;
 
@@ -13,7 +14,11 @@ import java.time.*;
 public final class HomeSkyView extends View implements SensorEventListener {
   private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
   private final Path cloud = new Path(), moon = new Path();
-  private final MosqueSkyPainter mosque;
+  private final Bitmap landscape;
+  private final RectF landscapeBounds = new RectF();
+  private final Paint landscapePaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+  private final ColorFilter nightLandscape =
+      new PorterDuffColorFilter(0xFF9ABDB2, PorterDuff.Mode.MULTIPLY);
   private Shader backdrop;
   private boolean backdropDay;
   private int backdropWidth, backdropHeight;
@@ -29,7 +34,12 @@ public final class HomeSkyView extends View implements SensorEventListener {
   public HomeSkyView(Context c, AttributeSet a) {
     super(c, a);
     setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_NO);
-    mosque = new MosqueSkyPainter();
+    BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+    bitmapOptions.inScaled = false;
+    bitmapOptions.inSampleSize = 2;
+    landscape =
+        BitmapFactory.decodeResource(
+            c.getResources(), R.drawable.home_mosque_landscape_v2, bitmapOptions);
     sensors = (SensorManager) c.getSystemService(Context.SENSOR_SERVICE);
     gravity = sensors == null ? null : sensors.getDefaultSensor(Sensor.TYPE_GRAVITY);
     policy =
@@ -138,6 +148,16 @@ public final class HomeSkyView extends View implements SensorEventListener {
   }
 
   @Override
+  protected void onMeasure(int widthSpec, int heightSpec) {
+    // This background fills the hero's second layout pass; it never determines its height.
+    int height =
+        MeasureSpec.getMode(heightSpec) == MeasureSpec.EXACTLY
+            ? MeasureSpec.getSize(heightSpec)
+            : 0;
+    setMeasuredDimension(MeasureSpec.getSize(widthSpec), height);
+  }
+
+  @Override
   protected void onDraw(Canvas c) {
     boolean animate = isMotionRunning(), light = isDaytime();
     float t = animate ? (SystemClock.uptimeMillis() - origin) / 1000f : 0;
@@ -236,7 +256,10 @@ public final class HomeSkyView extends View implements SensorEventListener {
     }
     c.save();
     c.translate(offsetX * 3 * u, offsetY * 1.5f * u);
-    mosque.draw(c, w, h, light);
+    float imageHeight = w * landscape.getHeight() / landscape.getWidth();
+    landscapeBounds.set(0, h - imageHeight, w, h);
+    landscapePaint.setColorFilter(light ? null : nightLandscape);
+    c.drawBitmap(landscape, null, landscapeBounds, landscapePaint);
     c.restore();
     if (animate) postInvalidateDelayed(33);
   }

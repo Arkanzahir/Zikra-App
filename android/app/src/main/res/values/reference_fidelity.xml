@@ -1,0 +1,18 @@
+<resources>
+    <color name="reference_schedule_surface">#C5163E36</color>
+    <color name="reference_schedule_line">#447A9E8F</color>
+    <string name="reference_protector_short">Protector</string>
+    <string name="reference_continue">Lanjut membaca</string>
+    <string name="reference_today_worship">Ibadah hari ini</string>
+    <string name="reference_target_first">Catat ibadah</string>
+    <string name="reference_target_open">Lihat target</string>
+    <string name="reference_quran_caption">Baca, dengarkan, dan renungkan setiap firman-Nya.</string>
+    <string name="reference_last_read">Terakhir dibaca</string>
+    <string name="reference_open_mushaf">Buka Mushaf</string>
+    <string name="reference_juz">Juz</string>
+    <string name="reference_bookmarks">Penanda</string>
+    <string name="reference_juz_action">Pilih juz di Mushaf</string>
+    <string name="reference_bookmark_action">Buka penanda terakhir dibaca</string>
+    <string name="reference_towards_prayer">Menuju %1$s</string>
+    <string name="reference_prayer_time">%1$s • %2$s</string>
+</resources>

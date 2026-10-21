@@ -1,5 +1,17 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: Home/Quran lebih dekat referensi — 1.3.2, 22 Oktober 2026
+
+Masjid detail PNG transparan dengan langit/awan/celestial native terpisah; hero
+Home/pintasan/kartu ibadah dipadatkan. Quran: buku berlengkung emas, hero136dp,
+baris surah56dp; Juz membuka pemilih Mushaf, Penanda membuka last_chapter/last_ayah.
+Bukti asli di android/validation/reference-fidelity-2026-10-22/. Build/lint35detik
+lulus; cek navigasi manual, font200% masih wrapping, bukan audit aksesibilitas
+lulus. Tidak menguji ulang audio/gerak/HP. Emulator dimatikan, adb kosong.
+APK luar repo Zikra-Home-Quran-v1.3.2-debug.apk, source terisolasi tanpa prefetch.
+Ilustrasi Study dan orb masih belum setara referensi. Jangan klaim keseluruhan
+konsep sudah diterapkan identik. Metadata gambar/prompt di design/reference-fidelity-2026-10-22.md.
+
 ## Terbaru: emulator dan koreksi tampilan — 1.3.1, 22 Oktober 2026
 
 Pengguna meminta emulator. Satu Medium_Phone berhasil boot dengan GPU host dan

@@ -1,3 +1,5 @@
+> **Home/Quran 1.3.2 — 22 Oktober 2026:** ilustrasi masjid baru, proporsi Home dan daftar surah mengikuti referensi lebih dekat. [Screenshot APK, build dan batas](validation/reference-fidelity-2026-10-22/README.md). Study/AI belum setara ilustrasi konsep.
+
 > **Emulator / 1.3.1 — 22 Oktober 2026:** screenshot native Home/Study/AI/Quran, layout fokus lebih ringkas dan tombol tetap terlihat. Gerak break/pause dan font 200%: 4 tes Android lulus. [Bukti, video dan batas](validation/emulator-layout-2026-10-22/README.md). Emulator ditutup setelah tes.
 
 > **Terbaru 1.3.0:** [laporan konsep terpilih, animasi native, reader dan gateway](validation/concept-refresh-2026-10-21/README.md): 96 JVM/9 backend mock lulus; lint 0 error; tes Android hanya dikompilasi. Belum bukti runtime/screenshot HP versi ini.

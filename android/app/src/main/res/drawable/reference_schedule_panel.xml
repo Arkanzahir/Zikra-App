@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/reference_schedule_surface" />
+    <stroke android:width="1dp" android:color="@color/reference_schedule_line" />
+    <corners android:radius="14dp" />
+</shape>

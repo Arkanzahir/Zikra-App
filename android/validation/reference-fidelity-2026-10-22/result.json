@@ -1,0 +1,31 @@
+{
+  "versionName": "1.3.2",
+  "versionCode": 7,
+  "apkSha256": "54a7961e51f347d42ea0049287d2130a7469a4aa0b12d5813bbe6baf19905f42",
+  "apkBytes": 7955087,
+  "buildSeconds": 35,
+  "workers": 1,
+  "heapMiB": 512,
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 663
+  },
+  "nativeManualChecks": [
+    "Home first viewport and live data",
+    "Quran five rows at 360dp width",
+    "Juz opens existing Mushaf chooser",
+    "Penanda opens last-read Al-Fatihah reader"
+  ],
+  "automatedInstrumentationMethodsRun": 0,
+  "font200Percent": "Screenshots only; wrapping remains, not a full accessibility pass",
+  "emulatorStopped": true,
+  "physicalPhoneTested": false,
+  "playbackRetested": false,
+  "prefetchExperimentIncluded": false,
+  "freeRamGiBAfterStop": 6.51,
+  "androidAppSourceTree": "28eac6d79b01e644d0c75f9b06a4e7c8db4378a7",
+  "sourceFilesChecked": 467,
+  "sourceMismatches": 0,
+  "debugCertificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b"
+}

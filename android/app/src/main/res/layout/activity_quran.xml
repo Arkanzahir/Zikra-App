@@ -10,11 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/concept_ivory">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="12dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:gravity="center_vertical" android:paddingHorizontal="12dp">
             <ImageButton
                 android:id="@+id/toolbarBack"
                 android:layout_width="48dp"
@@ -76,7 +72,8 @@
             android:id="@+id/quranHeaderDivider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/studio_tint_e9ede8" />
+            android:background="@color/studio_tint_e9ede8"
+            android:visibility="gone" />
         <ScrollView
             android:id="@+id/quranScroll"
             android:layout_width="match_parent"
@@ -84,56 +81,47 @@
             android:layout_weight="1"
             android:fillViewport="true"
             android:clipToPadding="false"
-            android:paddingHorizontal="20dp"
+            android:paddingHorizontal="16dp"
             android:paddingBottom="88dp">
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
-                <LinearLayout
-                    android:id="@+id/quranCatalog"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                <LinearLayout android:id="@+id/quranCatalog" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="20dp"
-                        android:layout_marginTop="12dp"
-                        android:background="@drawable/studio_hero">
+                        android:padding="16dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/reference_quran_hero">
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/concept_quran_eyebrow"
-                                    android:textSize="12sp"
+                                    android:textSize="11sp"
                                     android:textColor="@color/studio_tint_d4e9dc"
                                     android:letterSpacing="0"
-                                    android:textStyle="bold" />
+                                    android:textStyle="normal" />
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/concept_quran_heading"
-                                    android:textSize="26sp"
+                                    android:textSize="24sp"
                                     android:textColor="@color/white"
-                                    android:layout_marginTop="10dp"
+                                    android:layout_marginTop="3dp"
                                     android:textStyle="bold" />
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/concept_quran_caption"
-                                    android:textSize="13sp"
+                                    android:text="@string/reference_quran_caption"
+                                    android:textSize="11sp"
                                     android:textColor="@color/studio_tint_dae9e0"
-                                    android:layout_marginTop="8dp"
-                                    android:lineSpacingExtra="3dp" />
+                                    android:layout_marginTop="6dp" />
                             </LinearLayout>
                             <ImageView
-                                android:layout_width="90dp"
-                                android:layout_height="100dp"
-                                android:src="@drawable/studio_quran_book"
+                                android:layout_width="98dp"
+                                android:layout_height="104dp"
+                                android:src="@drawable/reference_quran_book"
                                 android:importantForAccessibility="no"
                                 android:scaleType="fitCenter" />
                         </LinearLayout>
@@ -180,22 +168,22 @@
                         android:id="@+id/quranResume"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="72dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="8dp"
+                        android:minHeight="60dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="6dp"
                         android:gravity="center_vertical"
-                        android:paddingHorizontal="14dp"
-                        android:paddingVertical="12dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="8dp"
                         android:background="@drawable/concept_mint_card"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground">
                         <ImageView
                             android:id="@+id/quranResumeIcon"
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:src="@drawable/reading_ic_bookmark"
-                            android:tint="@color/studio_tint_9a793e"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_book"
+                            android:tint="@color/pine"
                             android:importantForAccessibility="no" />
                         <LinearLayout
                             android:layout_width="0dp"
@@ -207,15 +195,15 @@
                                 android:id="@+id/quranResumeHeading"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Lanjut membaca"
-                                android:textSize="12sp"
+                                android:text="@string/reference_last_read"
+                                android:textSize="10sp"
                                 android:textColor="@color/studio_tint_5d7365" />
                             <TextView
                                 android:id="@+id/lastReadLabel"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:textSize="16sp"
+                                android:layout_marginTop="2dp"
+                                android:textSize="14sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/pine" />
                         </LinearLayout>
@@ -239,56 +227,90 @@
                             android:layout_height="wrap_content"
                             android:minHeight="48dp"
                             android:layout_marginTop="0dp"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="12dp"
-                            android:background="@drawable/concept_paper_card"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="8dp"
+                            android:background="@drawable/reference_paper_action"
                             android:backgroundTint="@null"
-                            android:text="@string/design_mushaf_action"
+                            android:text="@string/reference_open_mushaf"
                             android:textColor="@color/pine"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textAllCaps="false"
                             android:textStyle="bold"
                             android:stateListAnimator="@null"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/home_ic_quran"
+                            android:drawablePadding="6dp"
+                            android:drawableTint="@color/pine" />
                         <Button
                             android:id="@+id/quranCatalogDownloads"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:minHeight="48dp"
-                            android:background="@drawable/concept_paper_card"
+                            android:background="@drawable/reference_paper_action"
                             android:backgroundTint="@null"
                             android:text="@string/concept_quran_downloads"
                             android:textColor="@color/pine"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textAllCaps="false"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="12dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="8dp"
                             android:stateListAnimator="@null"
                             android:layout_weight="1"
-                            android:layout_marginStart="10dp" />
+                            android:layout_marginStart="10dp"
+                            android:drawableStart="@drawable/audio_download"
+                            android:drawablePadding="6dp"
+                            android:drawableTint="@color/pine" />
                     </LinearLayout>
                     <LinearLayout android:layout_width="match_parent" android:layout_height="44dp" android:gravity="center_vertical">
                         <TextView
                             android:id="@+id/quranSurahHeading"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:gravity="center_vertical"
+                            android:gravity="center"
                             android:paddingHorizontal="6dp"
-                            android:text="Surah"
+                            android:text="@string/concept_quran_surah"
                             android:textColor="@color/pine"
-                            android:textSize="19sp"
-                            android:textStyle="bold" />
-                        <Space android:layout_width="0dp" android:layout_weight="1" android:layout_height="1dp" />
-                        <TextView
-                            android:id="@+id/readingAvailable"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="114 surah"
                             android:textSize="12sp"
-                            android:textColor="@color/studio_tint_52685d" />
+                            android:textStyle="bold"
+                            android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/quranBrowseJuz"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/reference_juz"
+                            android:textSize="12sp"
+                            android:textColor="@color/concept_muted"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:contentDescription="@string/reference_juz_action" />
+                        <TextView
+                            android:id="@+id/quranBookmark"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/reference_bookmarks"
+                            android:textSize="12sp"
+                            android:textColor="@color/concept_muted"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:contentDescription="@string/reference_bookmark_action" />
                     </LinearLayout>
-                    <View android:layout_width="46dp" android:layout_height="2dp" android:background="@color/pine" />
+                    <View android:layout_width="96dp" android:layout_height="2dp" android:background="@color/pine" />
                     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/studio_tint_e9ede8" />
+                    <TextView
+                        android:id="@+id/readingAvailable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="114 surah"
+                        android:textSize="10sp"
+                        android:textColor="@color/studio_tint_52685d"
+                        android:paddingTop="7dp"
+                        android:paddingBottom="5dp" />
                     <LinearLayout
                         android:id="@+id/quranSurahList"
                         android:layout_width="match_parent"
@@ -383,7 +405,7 @@
                                     android:layout_height="wrap_content"
                                     android:minHeight="48dp"
                                     android:paddingHorizontal="12dp"
-                                    android:text="@string/design_mushaf_action"
+                                    android:text="@string/reference_open_mushaf"
                                     android:textColor="@color/pine"
                                     android:textSize="14sp"
                                     android:textAllCaps="false"
