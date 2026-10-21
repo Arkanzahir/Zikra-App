@@ -123,3 +123,10 @@ Menggunakan bagian ornamen JPEG pengguna untuk bingkai empat sisi dan panel
 atas–bawah; judul dan seluruh bacaan ditulis oleh aplikasi secara terpisah.
 Kertas biru muda, garis teal rapat, filter gelap untuk mode malam. Sumber gambar
 dan bukti native: [laporan teal](../android/validation/mushaf-teal-2026-10-21/README.md).
+## Judul dan angka mengikuti contoh Mushaf nyata
+
+Judul atas memakai “سُورَةُ + nama” dan ukuran huruf dibatasi kotak aman panel.
+Surah berikutnya dalam halaman memakai panel bergaya sama. Medali nomor ayat
+teal kontras, latar terang, ukuran angka lebih besar dan slot sesuai jumlah digit.
+Lebar/tinggi baris menentukan ukuran bacaan; susunan baris sumber tetap dijaga.
+[Screenshot terbaru](../android/validation/mushaf-panels-2026-10-21/README.md).

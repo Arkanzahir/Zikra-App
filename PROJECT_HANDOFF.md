@@ -1,5 +1,16 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: judul surah pas kotak dan nomor ayat lebih jelas
+
+Panel atas memakai “سُورَةُ + nama” dengan ukuran otomatis menurut lebar/tinggi
+kotak aman. Awal surah berikutnya pada halaman sama memakai panel teal senada.
+Medali angka kini teal kontras dengan latar terang; slot diperlebar berdasarkan
+digit dan ukuran baris dihitung ulang. Batas tinggi font menjaga jarak harakat.
+Urutan kata/ayat dan baris tetap dari sumber, tetapi jarak horizontal berubah.
+[Bukti dan validasi](android/validation/mushaf-panels-2026-10-21/README.md).
+Build/lint, 80 JVM dan 4 metode Android unik lulus; satu diulang pada font sistem
+200%. APK terbaru `D:/Download/Zikra-App-main/Zikra-Mushaf-Panels-20261021-debug.apk`.
+
 ## Terbaru: bingkai teal memakai gambar pengguna
 
 Pengguna mengizinkan langsung memakai gambar Pinterest yang diunggah. JPEG utuh

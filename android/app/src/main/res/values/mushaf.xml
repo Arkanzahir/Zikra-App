@@ -17,6 +17,9 @@
     <color name="mushaf_ink">#15332F</color>
     <color name="mushaf_night_ink">#F0F2DD</color>
     <string name="mushaf_title">Mushaf</string>
+    <string name="mushaf_surah_heading">سُورَةُ %1$s</string>
+    <color name="mushaf_medallion_fill">#F4FCFC</color>
+    <color name="mushaf_night_medallion_fill">#173A36</color>
     <string name="mushaf_more_symbol">⋮</string>
     <string name="mushaf_more">Menu bacaan</string>
     <string name="mushaf_source">Sumber Mushaf</string>

@@ -59,6 +59,17 @@ final class MushafOrnaments {
         reference, new Rect(left, top, right, bottom), new RectF(x1, y1, x2, y2), image);
   }
 
+  void surahBand(Canvas canvas, RectF box) {
+    canvas.save();
+    canvas.translate(box.left, box.top);
+    canvas.scale(box.width() / 530, box.height() / 76);
+    slice(canvas, 60, 60, 177, 136, 0, 0, 117, 76);
+    slice(canvas, 477, 60, 590, 136, 417, 0, 530, 76);
+    slice(canvas, 177, 60, 477, 68, 117, 0, 417, 8);
+    slice(canvas, 177, 128, 477, 136, 117, 68, 417, 76);
+    canvas.restore();
+  }
+
   void corner(
       Canvas canvas, float x, float y, float scale, int horizontal, int vertical, int color) {
     canvas.save();
@@ -128,11 +139,12 @@ final class MushafOrnaments {
       float size,
       int verse,
       int gold,
-      int ink) {
+      int ink,
+      int paper) {
     float cx = right - width / 2, cy = baseline - size * .31f;
-    float rx = Math.min(width * .43f, size * .34f), ry = size * .43f;
+    float rx = width * .43f, ry = size * .45f;
     line.setColor(gold);
-    line.setStrokeWidth(Math.max(1, size / 75));
+    line.setStrokeWidth(Math.max(1.3f, size / 48));
     Path outline = new Path();
     for (int i = 0; i < 16; i++) {
       double angle = -Math.PI / 2 + i * Math.PI / 8;
@@ -143,10 +155,15 @@ final class MushafOrnaments {
       else outline.lineTo(x, y);
     }
     outline.close();
+    line.setStyle(Paint.Style.FILL);
+    line.setColor(paper);
+    canvas.drawPath(outline, line);
+    line.setStyle(Paint.Style.STROKE);
+    line.setColor(gold);
     canvas.drawPath(outline, line);
     canvas.save();
     canvas.scale(.84f, .86f, cx, cy);
-    line.setAlpha(130);
+    line.setAlpha(190);
     canvas.drawPath(outline, line);
     line.setAlpha(255);
     canvas.restore();
@@ -154,9 +171,9 @@ final class MushafOrnaments {
     for (char digit : Integer.toString(verse).toCharArray())
       digits.append((char) ('٠' + digit - '0'));
     numeral.setColor(ink);
-    numeral.setTextSize(size * .48f);
+    numeral.setTextSize(size * .58f);
     float measured = numeral.measureText(digits.toString());
-    if (measured > rx * 1.3f) numeral.setTextSize(numeral.getTextSize() * rx * 1.3f / measured);
+    if (measured > rx * 1.5f) numeral.setTextSize(numeral.getTextSize() * rx * 1.5f / measured);
     Paint.FontMetrics metrics = numeral.getFontMetrics();
     canvas.drawText(digits.toString(), cx, cy - (metrics.ascent + metrics.descent) / 2, numeral);
   }
