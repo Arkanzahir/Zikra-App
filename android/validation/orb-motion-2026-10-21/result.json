@@ -1,0 +1,24 @@
+{
+  "versionName": "1.2.1",
+  "versionCode": 4,
+  "sha256": "F476B849C0B1EC6AC3D3DB80DC9B2E7C9AEEDC5DB014CF0ABDF5C312A6D9C1C4",
+  "bytes": 5947862,
+  "androidAppSourceTree": "387de87940110c1f70426e16cc2f03615c76a01e",
+  "build": "SUCCESS",
+  "buildSeconds": 34,
+  "lint": [
+    {
+      "Name": "Warning",
+      "Count": 608
+    }
+  ],
+  "checks": [
+    "assembleDebug",
+    "lintDebug"
+  ],
+  "unitTests": "Not rerun for this UI animation; 87 passed for v1.2",
+  "deviceMotionTest": "Not run: user requested APK first",
+  "frameDelayMs": 50,
+  "newEmulatorStarted": false,
+  "experimentalAudioPrefetchIncluded": false
+}

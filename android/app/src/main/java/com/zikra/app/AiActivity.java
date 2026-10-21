@@ -392,6 +392,18 @@ public final class AiActivity extends BaseActivity {
   }
 
   @Override
+  protected void onResume() {
+    super.onResume();
+    if (orb != null) orb.setActive(true);
+  }
+
+  @Override
+  protected void onPause() {
+    if (orb != null) orb.setActive(false);
+    super.onPause();
+  }
+
+  @Override
   protected void onDestroy() {
     if (pageRoot != null) {
       pageRoot.setOnApplyWindowInsetsListener(null);

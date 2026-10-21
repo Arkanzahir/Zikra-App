@@ -1,5 +1,20 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: orb bergerak — 1.2.1
+
+Koreksi pengguna: orb referensi bergerak, sedangkan APK 1.2 masih statis.
+AssistantOrbView kini menggambar pita mengalir, kilau, putaran dan denyut kecil;
+target sekitar 20 fps, shader/objek gambar dipakai ulang. Animasi terikat lifecycle
+AiActivity, visibilitas viewport, fokus serta kebijakan animasi/penghemat daya.
+Tidak menambah izin mikrofon atau kemampuan AI generatif.
+[Build dan batas](android/validation/orb-motion-2026-10-21/README.md).
+
+APK `Zikra-Visual-Refresh-v1.2.1-debug.apk`, versionCode 4. Build/lint lulus dalam
+34 detik (0 error, 608 warning), heap 768 MiB/satu worker/tanpa emulator. Belum ada
+rekaman atau tes gerakan/lifecycle/kinerja di HP. Tes JVM 87 berasal dari v1.2,
+tidak diulang untuk koreksi visual ini. Pengguna tetap memilih APK dahulu.
+Eksperimen prefetch lama tidak ikut APK; perubahan lokal sebelumnya dipertahankan.
+
 ## Terbaru: pembaruan tampilan native 1.2
 
 Home, katalog Quran, Study Hub, Fokus dan Pendamping Zikra diperbarui memakai

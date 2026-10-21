@@ -1,3 +1,5 @@
+> **Orb bergerak 1.2.1 — 21 Oktober 2026:** pita warna mengalir, kilau dan denyut halus pada Pendamping Zikra. [Build dan batas](android/validation/orb-motion-2026-10-21/README.md). Build/lint lulus; gerak belum diuji di HP.
+
 > **Tampilan native 1.2 — 21 Oktober 2026:** Home/Quran/Study/Pendamping Zikra diperbarui; Mushaf dan gulir otomatis lebih mudah ditemukan. [Hasil build, referensi dan batas pengujian](android/validation/visual-refresh-2026-10-21/README.md). Pengguna memilih APK dahulu; belum diuji visual di HP. Sorotan kata khusus Mushaf; adzan penuh dan AI generatif belum tersedia.
 
 > **Sorotan kata Mushaf — 21 Oktober 2026:** emas per kata mengikuti posisi audio asli untuk tiga qari, termasuk jeda/seek/pengulangan dan pindah halaman. [Bukti native, 87 JVM dan 10 tes Android](android/validation/mushaf-word-sync-2026-10-21/README.md). Memerlukan timing yang cocok dan koneksi; belum offline penuh atau audit seluruh ayat. [Handoff terbaru](PROJECT_HANDOFF.md).

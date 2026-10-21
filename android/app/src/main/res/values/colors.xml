@@ -51,4 +51,11 @@
     <color name="studio_tint_bed2c7">#BED2C7</color>
     <color name="studio_tint_7f6739">#7F6739</color>
     <color name="studio_tint_ebeee9">#EBEEE9</color>
+    <color name="orb_glass_light">#C9C6F9</color>
+    <color name="orb_glass_mid">#B48BD8</color>
+    <color name="orb_glass_dark">#8D8DCA</color>
+    <color name="orb_ribbon_cyan">#A8F7FA</color>
+    <color name="orb_ribbon_pink">#EBD0F9</color>
+    <color name="orb_ribbon_purple">#8075CE</color>
+    <color name="orb_border">#D2BEEA</color>
 </resources>
