@@ -20,7 +20,7 @@ public final class MushafPageView extends View {
 
   private final Paint ink = new Paint(Paint.ANTI_ALIAS_FLAG);
   private final Paint frame = new Paint(Paint.ANTI_ALIAS_FLAG);
-  private final MushafOrnaments ornaments = new MushafOrnaments();
+  private final MushafOrnaments ornaments = new MushafOrnaments(getContext());
   private final List<Hit> hits = new ArrayList<>();
   private final GestureDetector gestures;
   private MushafDocument document;
@@ -127,36 +127,31 @@ public final class MushafPageView extends View {
     super.onDraw(canvas);
     canvas.drawColor(color(R.color.mushaf_paper, R.color.mushaf_night_paper));
     float w = getWidth(),
-        margin = w * .085f,
-        top = w * .055f,
-        rowHeight = (getHeight() - w * .14f) / 15;
-    frame.setColor(color(R.color.mushaf_border, R.color.mushaf_night_border));
-    frame.setStyle(Paint.Style.STROKE);
-    frame.setStrokeWidth(Math.max(1, w / 500));
-    canvas.drawRect(margin * .45f, top * .35f, w - margin * .45f, getHeight() - top * .35f, frame);
-    canvas.drawRect(margin * .58f, top * .48f, w - margin * .58f, getHeight() - top * .48f, frame);
-    diamond(canvas, w / 2, top * .35f, w * .007f);
-    float inset = margin * .58f;
-    for (int x : new int[] {-1, 1}) {
-      for (int y : new int[] {-1, 1}) {
-        ornaments.corner(
-            canvas,
-            x < 0 ? inset : w - inset,
-            y < 0 ? top * .48f : getHeight() - top * .48f,
-            w / 680,
-            -x,
-            -y,
-            color(R.color.mushaf_border, R.color.mushaf_night_border));
-      }
-    }
+        margin = w * .12f,
+        top = w * .245f,
+        rowHeight = (getHeight() - w * .50f) / 15;
+    ornaments.border(canvas, w, getHeight(), night);
     hits.clear();
     if (document == null || canvasFont == null) return;
     // Opening pages retain their source lines, with generous spacing like a frontispiece.
     if (document.page.number <= 2) {
-      top = w * .035f;
+      top = w * .245f;
       int last = document.page.lines.get(document.page.lines.size() - 1).number;
-      rowHeight = (getHeight() - top - w * .12f) / (last - .28f);
+      rowHeight = (getHeight() - top - w * .25f) / (last - .28f);
     }
+    ink.setTypeface(Typeface.create("serif", Typeface.NORMAL));
+    ink.setTextSize(w * .041f);
+    ink.setColor(color(R.color.mushaf_border, R.color.mushaf_night_border));
+    String panelTitle =
+        QuranChapters.all(getContext())
+            .get(document.page.lines.get(0).words.get(0).chapter - 1)
+            .arabic;
+    Paint.FontMetrics titleMetrics = ink.getFontMetrics();
+    canvas.drawText(
+        panelTitle,
+        (w - ink.measureText(panelTitle)) / 2,
+        w * .145f - (titleMetrics.ascent + titleMetrics.descent) / 2,
+        ink);
     ink.setTypeface(font);
     ink.setTextSize(100);
     float longest = 1;
@@ -220,8 +215,9 @@ public final class MushafPageView extends View {
         ink.setColor(night ? 0xFFE0D4AA : 0xFF596C4D);
         String title = QuranChapters.all(getContext()).get(first.chapter - 1).arabic;
         float titleBaseline = top + (header - 1) * rowHeight + rowHeight * .7f;
-        ornament(canvas, w, titleBaseline, ink.measureText(title), size);
-        canvas.drawText(title, (w - ink.measureText(title)) / 2, titleBaseline, ink);
+        if (header > 1) ornament(canvas, w, titleBaseline, ink.measureText(title), size);
+        if (header > 1)
+          canvas.drawText(title, (w - ink.measureText(title)) / 2, titleBaseline, ink);
         if (first.chapter != 1 && first.chapter != 9 && line.number >= 3) {
           // Existing verified built-in Al-Fatihah 1:1; no text is copied from a mockup.
           String basmalah = QuranPage.builtIn(1).verses.get(0).arabic;

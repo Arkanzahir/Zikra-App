@@ -8,10 +8,10 @@
         <item name="android:stateListAnimator">@null</item>
         <item name="android:elevation">0dp</item>
     </style>
-    <color name="mushaf_paper">#FBFBF6</color>
+    <color name="mushaf_paper">#E3F7FC</color>
     <color name="mushaf_night_paper">#152A26</color>
-    <color name="mushaf_border">#B8C3AE</color>
-    <color name="mushaf_night_border">#718978</color>
+    <color name="mushaf_border">#126A70</color>
+    <color name="mushaf_night_border">#83BDB7</color>
     <color name="mushaf_gold">#AC9767</color>
     <color name="mushaf_night_gold">#C6B581</color>
     <color name="mushaf_ink">#15332F</color>

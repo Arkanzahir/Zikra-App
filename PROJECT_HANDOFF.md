@@ -1,5 +1,16 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: bingkai teal memakai gambar pengguna
+
+Pengguna mengizinkan langsung memakai gambar Pinterest yang diunggah. JPEG utuh
+disimpan sebagai drawable-nodpi; renderer mengambil ornamen tepi/panel dan memakai
+judul dari aplikasi di tengah panel atas, bukan kaligrafi bitmap. Teks/glyph tetap
+terpisah. Margin aman dan warna kertas disesuaikan, mode malam memakai filter.
+[Bukti native, asal gambar, hasil tes](android/validation/mushaf-teal-2026-10-21/README.md).
+Build/lint dan 80 JVM lulus; 4 metode Android unik lulus, satu diulang pada teks
+sistem 200%. APK terbaru `D:/Download/Zikra-App-main/Zikra-Mushaf-Teal-20261021-debug.apk`.
+Batas resolusi JPEG, Android 12+/online dan sorotan kata belum aktif tetap dicatat.
+
 ## Terbaru: fokus bentuk ornamen referensi
 
 Sudut bersulur/daun, finial floral pada judul dan medali angka bersudut emas pucat

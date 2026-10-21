@@ -117,3 +117,9 @@ Sudut halaman menggunakan sulur/daun/bunga kecil, ujung cartouche menggunakan
 finial floral simetris dan medali nomor menggunakan bintang delapan emas pucat
 berlapis. Medali berasal dari metadata akhir ayat, tetap di slot sumber; font
 resmi tidak diubah. [Bukti terbaru](../android/validation/mushaf-ornaments-2026-10-21/README.md).
+## Bingkai teal dari gambar yang diberikan pengguna
+
+Menggunakan bagian ornamen JPEG pengguna untuk bingkai empat sisi dan panel
+atas–bawah; judul dan seluruh bacaan ditulis oleh aplikasi secara terpisah.
+Kertas biru muda, garis teal rapat, filter gelap untuk mode malam. Sumber gambar
+dan bukti native: [laporan teal](../android/validation/mushaf-teal-2026-10-21/README.md).
