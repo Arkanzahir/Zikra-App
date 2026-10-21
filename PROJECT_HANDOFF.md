@@ -1,5 +1,37 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: Mushaf online dan audio qari asli
+
+[Laporan/preview terbaru](android/validation/mushaf-reader-2026-10-21/README.md).
+Mode Mushaf QCF V2 / mushaf 1 sudah dapat dibuka dari reader Aa → Baca Mushaf.
+Native glyph/baris/nomor inline, RTL, lompat halaman/surah/juz, simpan posisi dan
+perpindahan ayat ke Terjemahan, zoom/malam serta player lama terhubung.
+**Mushaf sementara Android 12+/API 31+**, karena Canvas.drawGlyphs; entry disembunyikan
+pada API 26–30. Minimum aplikasi/reader lama tetap 26. Tidak ada fallback glyph palsu.
+
+Halaman tetap online public v4 (sumber reader lama); JSON baru tidak dipersistenkan.
+Font CDN resmi Foundation dicache maksimal delapan file/refresh tujuh hari, tanpa
+modifikasi/bundle terpisah. Akun developer aktif pengguna dan atribusi di app memenuhi
+prasyarat font yang diperiksa. Rahasia Production tetap .local, tidak di APK/Git.
+Gateway terautentikasi/backend dan Content Sync belum diintegrasikan.
+
+Build/APK tes/lint dan 78 JVM lulus. Lima metode Android unik lulus di AVD uji baru
+API 37: tiga Mushaf dan dua audio asli. Streaming Alafasy/Husary/Minshawi, seek,
+background/layar mati, unduhan lengkap Al-Fatihah/Alafasy, repair rusak/parsial dan
+repeat/range dengan jaringan mati kini terbukti di emulator. Tidak ada penilaian
+pelafalan manusia/HP/headset/telepon. Dua run streaming yang dihentikan adalah
+kegagalan helper, bukan hasil lulus; log dan perbaikannya tersimpan.
+
+Screenshot normal/Al-Mulk/604/malam/zoom/teks sistem 200% adalah APK native,
+bukan konsep. Belum audit visual semua 604 halaman. Sorotan kata emas masih belum
+terhubung; hanya penanda ayat sage. WordTimeline tetap fondasi untuk adapter berikutnya.
+Jangan menganggap screenshot menunjukkan sinkron kata atau menyimpulkan data timing
+QF cocok dengan CDN lama hanya karena nama qari sama.
+
+Berikutnya: pairing recording/timing (termasuk PCM/offset bila hash berbeda), adapter
+player dan end-marker, lifecycle/recreation, uji HP/API 31/35, backend/Content Sync.
+Semua bagian status di bawah adalah riwayat sebelum checkpoint Mushaf ini.
+
 ## Akses Foundation Production berhasil — 06:59 WIB
 
 Pengguna kini memiliki app Developer Console API-access-only / Server dan telah

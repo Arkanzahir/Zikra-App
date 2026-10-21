@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mushafRoot" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@color/mushaf_paper">
+    <LinearLayout android:id="@+id/mushafHeader" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:minHeight="52dp" android:gravity="center_vertical" android:orientation="horizontal">
+        <ImageButton android:id="@+id/toolbarBack" android:layout_width="48dp" android:layout_height="48dp"
+            android:src="@drawable/ic_back" android:tint="@color/pine" android:padding="14dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless" android:contentDescription="@string/mushaf_back" />
+        <TextView android:id="@+id/mushafTitle" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+            android:text="@string/mushaf_title" android:textSize="18sp" android:textColor="@color/pine" />
+        <Button android:id="@+id/mushafZoom" style="@style/MushafButton" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Aa" android:textAllCaps="false" android:contentDescription="@string/mushaf_options" />
+        <Button android:id="@+id/mushafTranslation" style="@style/MushafButton" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:minHeight="48dp" android:text="@string/mushaf_translation" android:textAllCaps="false" />
+    </LinearLayout>
+    <TextView android:id="@+id/mushafMetadata" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp" android:paddingVertical="6dp" android:textColor="@color/muted" android:textSize="12sp" />
+    <ScrollView android:id="@+id/quranScroll" android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1" android:fillViewport="true">
+        <HorizontalScrollView android:id="@+id/mushafHorizontal" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:fillViewport="true" android:layoutDirection="rtl">
+            <com.zikra.app.reading.mushaf.MushafPageView android:id="@+id/mushafPage"
+                android:layout_width="match_parent" android:layout_height="wrap_content" />
+        </HorizontalScrollView>
+    </ScrollView>
+    <TextView android:id="@+id/mushafStatus" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp" android:paddingVertical="6dp" android:textSize="12sp"
+        android:textColor="@color/muted" android:accessibilityLiveRegion="polite" />
+    <Button android:id="@+id/mushafRetry" style="@style/MushafButton" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:minHeight="48dp" android:text="@string/mushaf_retry" android:visibility="gone" />
+    <include layout="@layout/view_quran_audio" />
+    <LinearLayout android:id="@+id/mushafNavigation" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical" android:layoutDirection="ltr">
+        <Button android:id="@+id/mushafNext" style="@style/MushafButton" android:textSize="24sp" android:layout_width="64dp" android:layout_height="wrap_content"
+            android:text="‹" android:contentDescription="@string/mushaf_next" />
+        <Button android:id="@+id/mushafJump" style="@style/MushafButton" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+            android:minHeight="48dp" android:textAllCaps="false" />
+        <Button android:id="@+id/mushafPrevious" style="@style/MushafButton" android:textSize="24sp" android:layout_width="64dp" android:layout_height="wrap_content"
+            android:text="›" android:contentDescription="@string/mushaf_previous" />
+    </LinearLayout>
+</LinearLayout>

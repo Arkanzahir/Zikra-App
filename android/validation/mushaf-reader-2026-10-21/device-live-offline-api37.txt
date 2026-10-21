@@ -1,0 +1,11 @@
+
+com.zikra.app.LiveQariPlaybackTest:INSTRUMENTATION_STATUS: chapter=1
+INSTRUMENTATION_STATUS: duration_ms=6087
+INSTRUMENTATION_STATUS: live_qari=ar.alafasy
+INSTRUMENTATION_STATUS: position_ms=313
+INSTRUMENTATION_STATUS_CODE: 0
+.
+Test results for InstrumentationTestRunner=.
+Time: 37.537
+
+OK (1 test)

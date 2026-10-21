@@ -775,6 +775,57 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
               showVerseJump();
             });
     readingDialog.show();
+    settings
+        .findViewById(R.id.quranOpenMushaf)
+        .setVisibility(android.os.Build.VERSION.SDK_INT >= 31 ? View.VISIBLE : View.GONE);
+    settings
+        .findViewById(R.id.quranOpenMushaf)
+        .setOnClickListener(
+            v -> {
+              int visibleVerse = pendingVerse;
+              android.graphics.Rect visible = new android.graphics.Rect();
+              for (int i = 0; i < ayahContainer.getChildCount(); i++) {
+                View row = ayahContainer.getChildAt(i);
+                if (row.getGlobalVisibleRect(visible) && row.getTag() instanceof String) {
+                  visibleVerse = Integer.parseInt(((String) row.getTag()).split(":")[1]);
+                  break;
+                }
+              }
+              readingDialog.dismiss();
+              startActivityForResult(
+                  new android.content.Intent(this, MushafActivity.class)
+                      .putExtra(EXTRA_TARGET_CHAPTER, selectedIndex + 1)
+                      .putExtra(EXTRA_TARGET_VERSE, visibleVerse)
+                      .putExtra(
+                          EXTRA_RANGE_FIRST, selectedIndex + 1 == rangeChapter ? rangeFirst : 1)
+                      .putExtra(
+                          EXTRA_RANGE_LAST,
+                          selectedIndex + 1 == rangeChapter
+                              ? rangeLast
+                              : chapters.get(selectedIndex).count),
+                  MushafActivity.REQUEST);
+            });
+  }
+
+  @Override
+  protected void onActivityResult(int request, int result, android.content.Intent data) {
+    super.onActivityResult(request, result, data);
+    if (request == MushafActivity.REQUEST && result == RESULT_OK && data != null) {
+      int chapter = data.getIntExtra(EXTRA_TARGET_CHAPTER, 0);
+      int verse = data.getIntExtra(EXTRA_TARGET_VERSE, 0);
+      if (chapter >= 1
+          && chapter <= 114
+          && verse >= 1
+          && verse <= chapters.get(chapter - 1).count) {
+        selectedIndex = chapter - 1;
+        pendingVerse = verse;
+        readingOpen = true;
+        suspended = false;
+        surahSelector.setSelection(selectedIndex);
+        showReader();
+        renderSurah(true);
+      }
+    }
   }
 
   private void bindReadingSize(

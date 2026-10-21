@@ -1,3 +1,5 @@
+> **Checkpoint Mushaf online — 21 Oktober 2026:** mode native QCF V2 Android 12+ dan tes qari asli kini tersedia. [Bukti dan batas](android/validation/mushaf-reader-2026-10-21/README.md). Status belum ada/blocked di bawah adalah riwayat sebelum checkpoint ini.
+
 # Pemulihan dan status Zikra — 20 Oktober 2026 (WIB)
 
 ## Status terbaru

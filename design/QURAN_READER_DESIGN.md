@@ -1,7 +1,7 @@
 # Arah desain Quran, audio dan Mushaf — 20 Oktober 2026 (WIB)
 
 Status 21 Oktober: **katalog, reader ayat-terjemahan dan panel audio sudah diterapkan**;
-Mushaf halaman dan sorotan kata masih rencana dengan prasyarat data.
+Mushaf QCF V2 online kini tersedia pada Android 12+; sorotan kata masih menunggu pairing rekaman/timing. Lihat [bukti terbaru](../android/validation/mushaf-reader-2026-10-21/README.md).
 [Bukti native dan batas](../android/validation/quran-reader-panel-2026-10-21/README.md).
 Parser, source teks dan pemutar Quran lama dipertahankan. Gambar adalah konsep hasil generasi visual, bukan
 screenshot aplikasi atau sumber teks Al-Quran. Jangan mengambil teks Arab, nomor,

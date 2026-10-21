@@ -1,0 +1,6 @@
+
+com.zikra.app.MushafReaderTest:..
+Test results for InstrumentationTestRunner=..
+Time: 10.195
+
+OK (2 tests)

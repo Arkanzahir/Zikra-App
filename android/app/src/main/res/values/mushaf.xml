@@ -1,0 +1,35 @@
+<resources>
+    <style name="MushafButton" parent="android:style/Widget.Material.Button.Borderless">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:textColor">@color/pine</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+    <color name="mushaf_paper">#FAFBF5</color>
+    <string name="mushaf_title">Mushaf</string>
+    <string name="mushaf_open">Baca Mushaf · halaman</string>
+    <string name="mushaf_back">Kembali ke ayat dan terjemahan</string>
+    <string name="mushaf_options">Pengaturan Mushaf</string>
+    <string name="mushaf_translation">Terjemahan</string>
+    <string name="mushaf_next">Halaman berikutnya</string>
+    <string name="mushaf_previous">Halaman sebelumnya</string>
+    <string name="mushaf_retry">Coba lagi</string>
+    <string name="mushaf_loading">Memuat halaman Mushaf…</string>
+    <string name="mushaf_error">Halaman belum termuat. Periksa koneksi lalu coba lagi. Bacaan terakhir tetap tersimpan.</string>
+    <string name="mushaf_attribution">QCF V2 · Quran Foundation · online</string>
+    <string name="mushaf_page_label">Halaman %1$d / 604</string>
+    <string name="mushaf_page_range">Masukkan halaman 1–604</string>
+    <string name="mushaf_verse_actions">Tindakan ayat</string>
+    <string name="mushaf_choose_verse">Pilih ayat pada halaman</string>
+    <string name="mushaf_zoom_label">Pembesaran halaman</string>
+    <string name="mushaf_night">Mode malam</string>
+    <string name="mushaf_bookmark">Tandai terakhir dibaca</string>
+    <string name="mushaf_bookmarked">Bacaan terakhir disimpan</string>
+    <string name="mushaf_jump_page">Lompat halaman</string>
+    <string name="mushaf_jump_surah">Lompat surah</string>
+    <string name="mushaf_jump_juz">Lompat juz</string>
+    <string name="mushaf_juz_label">Juz %1$d</string>
+</resources>

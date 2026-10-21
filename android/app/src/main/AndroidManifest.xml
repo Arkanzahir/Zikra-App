@@ -57,6 +57,7 @@
         <activity android:name=".FocusTimerActivity" android:exported="false" />
         <activity android:name=".StudyActivity" android:exported="false" />
         <activity android:name=".QuranActivity" android:exported="false" />
+        <activity android:name=".MushafActivity" android:exported="false" />
         <activity android:name=".HomeActivity" android:exported="false" />
         <activity android:name=".SplashActivity" android:exported="true" android:theme="@style/Theme.Zikra.Launch">
             <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>

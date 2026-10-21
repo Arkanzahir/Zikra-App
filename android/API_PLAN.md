@@ -1,3 +1,5 @@
+> **Mushaf online dan audio asli — 21 Oktober 2026:** renderer memakai public v4 yang sudah ada, font QCF V2 dari CDN resmi dengan atribusi/cache terbatas. Lima metode emulator API 37 (termasuk decoder/unduhan/offline qari asli) lulus. [Laporan](validation/mushaf-reader-2026-10-21/README.md). Gateway backend/Content Sync dan sinkron kata belum diintegrasikan.
+
 > **Production Foundation — 21 Oktober 2026, 06:59 WIB:** autentikasi dan empat probe konten resmi HTTP 200: 114 surah, Al-Mulk, glyph/baris mushaf 1 halaman 1 dan timing sampel Alafasy. [Bukti tanpa kredensial](validation/foundation-access-2026-10-21/README.md). Akses Content Sync, renderer dan playback Android belum diuji. Status cloud/akun sebelumnya di bawah adalah riwayat.
 
 > **Audit Windows — 21 Oktober 2026:** API teks/CDN qari dapat diakses HTTP 200 dari komputer lokal. Timing sampel tersedia tetapi kecocokan recording belum terbukti; [audit/izin terbaru](validation/local-qari-2026-10-21/SOURCE_AUDIT.md). Penolakan proxy di bawah adalah riwayat cloud.

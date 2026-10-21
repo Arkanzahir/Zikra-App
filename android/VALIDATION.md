@@ -1,3 +1,5 @@
+> **Mushaf online/QCF V2 — 21 Oktober 2026:** [APK native, preview, 78 JVM dan lima metode API 37](validation/mushaf-reader-2026-10-21/README.md). Audio asli tiga qari, unduhan Al-Fatihah/repair/offline terbukti di emulator; bukan pemeriksaan pelafalan manusia atau HP.
+
 > **Audit lokal — 21 Oktober 2026:** [build, 52 JVM, provider dan kegagalan instrumentasi API 37](validation/local-qari-2026-10-21/README.md). Nol metode live dinyatakan lulus.
 
 > **Quran reader/panel — 21 Oktober 2026:** [hasil APK native](validation/quran-reader-panel-2026-10-21/README.md). Katalog/reader, panel audio, tema malam/font 200%, transaksi pengaturan, bookmark dan regresi audio lokal. [Audit sumber/live](validation/quran-reader-panel-2026-10-21/SOURCE_AUDIT.md).

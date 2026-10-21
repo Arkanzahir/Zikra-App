@@ -628,6 +628,11 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     stopScroll();
   }
 
+  public void userTouch() {
+    stopScroll();
+    touchPaused = true;
+  }
+
   private void downloads() {
     if (downloads != null) downloads.dismiss();
     int downloaded = AudioFiles.downloaded(activity, qari, chapter);
@@ -722,6 +727,10 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
           .setImageTintList(ColorStateList.valueOf(foreground));
     ((SeekBar) activity.findViewById(R.id.quranAudioSeek))
         .setProgressTintList(ColorStateList.valueOf(night ? 0xFFACCCB7 : 0xFF15332F));
+    ((SeekBar) activity.findViewById(R.id.quranAudioSeek))
+        .setThumbTintList(ColorStateList.valueOf(night ? 0xFFACCCB7 : 0xFF15332F));
+    ((SeekBar) activity.findViewById(R.id.quranAudioSeek))
+        .setProgressBackgroundTintList(ColorStateList.valueOf(night ? 0xFF587369 : 0xFFDAE3DD));
     if (reading && state != null && state.chapter == chapter) host.highlight(chapter, state.verse);
     if (options != null && options.isShowing()) {
       sheetPalette(options.findViewById(R.id.quranAudioSheet));

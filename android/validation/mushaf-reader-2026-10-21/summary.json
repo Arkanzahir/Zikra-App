@@ -1,0 +1,149 @@
+{
+    "date_wib":  "2026-10-21",
+    "source_parent":  "ee2662c65e24b8f9bdf6ce0835d69280d6017006",
+    "tests":  78,
+    "failures":  0,
+    "errors":  0,
+    "skipped":  0,
+    "suites":  [
+                   {
+                       "suite":  "com.zikra.app.assistant.OfflineAssistantTest",
+                       "tests":  6,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.audio.RecitationTest",
+                       "tests":  8,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.discovery.HijriCalendarModelTest",
+                       "tests":  3,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.location.LocationPointTest",
+                       "tests":  5,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.PrayerScheduleTest",
+                       "tests":  7,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.reading.CompassMathTest",
+                       "tests":  4,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.reading.mushaf.MushafDocumentTest",
+                       "tests":  7,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.reading.mushaf.MushafFoundationTest",
+                       "tests":  17,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.reading.mushaf.QcfGlyphMetricsTest",
+                       "tests":  2,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.reading.SurahSearchTest",
+                       "tests":  3,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.safety.ForecastSelectorTest",
+                       "tests":  4,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.safety.WeatherCodeTest",
+                       "tests":  3,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.sky.SkyDayTest",
+                       "tests":  3,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   },
+                   {
+                       "suite":  "com.zikra.app.study.FocusClockTest",
+                       "tests":  6,
+                       "failures":  0,
+                       "errors":  0,
+                       "skipped":  0
+                   }
+               ],
+    "lint_errors":  0,
+    "lint_warnings":  589,
+    "runtime_sdk":  37,
+    "mushaf_min_sdk":  31,
+    "app_min_sdk":  26,
+    "device_mushaf_unique_passed":  3,
+    "device_live_audio_unique_passed":  2,
+    "host_pages_parsed":  [
+                              1,
+                              2,
+                              300,
+                              562,
+                              604
+                          ],
+    "native_glyph_pages_checked":  [
+                                       300,
+                                       562,
+                                       604
+                                   ],
+    "page_zoom_tested":  2,
+    "system_font_scale_tested":  2,
+    "live_audio_reciters":  [
+                                "ar.alafasy",
+                                "ar.husary",
+                                "ar.minshawi"
+                            ],
+    "original_audio_full_surah_download_tested":  "Al-Fatihah / Alafasy",
+    "network_disabled_offline_tested":  true,
+    "human_listening_verified":  false,
+    "word_timing_highlight_connected":  false,
+    "content_sync_integrated":  false,
+    "production_credentials_in_apk":  false,
+    "physical_device_tested":  false,
+    "apk_sha256":  "69BC28F74F6BE11DD65EFBA297FCA2C27D27B75915D316ABA59AE2B80F69526B",
+    "evidence":  {
+                     "offline":  "device-live-offline-api37.txt",
+                     "streaming":  "device-live-stream-bounded-api37.txt",
+                     "build":  "build-verified-release.txt",
+                     "font200":  "device-juz-font200-release-api37.txt",
+                     "mushaf":  "device-verified-release-api37.txt"
+                 }
+}
