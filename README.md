@@ -1,3 +1,5 @@
+> **Tampilan native 1.2 — 21 Oktober 2026:** Home/Quran/Study/Pendamping Zikra diperbarui; Mushaf dan gulir otomatis lebih mudah ditemukan. [Hasil build, referensi dan batas pengujian](android/validation/visual-refresh-2026-10-21/README.md). Pengguna memilih APK dahulu; belum diuji visual di HP. Sorotan kata khusus Mushaf; adzan penuh dan AI generatif belum tersedia.
+
 > **Sorotan kata Mushaf — 21 Oktober 2026:** emas per kata mengikuti posisi audio asli untuk tiga qari, termasuk jeda/seek/pengulangan dan pindah halaman. [Bukti native, 87 JVM dan 10 tes Android](android/validation/mushaf-word-sync-2026-10-21/README.md). Memerlukan timing yang cocok dan koneksi; belum offline penuh atau audit seluruh ayat. [Handoff terbaru](PROJECT_HANDOFF.md).
 
 > **Mushaf online — 21 Oktober 2026:** QCF V2 native pada Android 12+, navigasi halaman/surah/juz, zoom/malam, posisi dan player. [Preview tahap awal dan pengujian audio asli](android/validation/mushaf-reader-2026-10-21/README.md). Catatan keterbatasan pada laporan lama bersifat historis.

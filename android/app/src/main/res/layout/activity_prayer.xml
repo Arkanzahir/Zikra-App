@@ -267,6 +267,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/design_prayer_sound_note"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="16dp"
+                    android:lineSpacingExtra="4dp"
+                    android:textColor="@color/muted" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/prayerMethod" android:text="Perhitungan lokasi pilihan. Subuh 20°, Isya 18°, Ashar bayangan 1×; ihtiyati 2 menit (terbit tanpa ihtiyati). Asumsi dekat permukaan laut. Ini hasil perhitungan, bukan jadwal resmi Kemenag; cocokkan dengan masjid setempat."
                     android:textSize="12sp"
                     android:textColor="#53665E"

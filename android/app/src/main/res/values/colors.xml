@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="pine">#15332F</color>
     <color name="emerald">#10B981</color>
@@ -19,4 +19,36 @@
     <color name="sage_active">#57927E</color>
     <color name="assistant_text">#322C40</color>
     <color name="assistant_accent">#8D6BB6</color>
+    <color name="studio_cream">#F7F6F0</color>
+    <color name="studio_mint">#EAF3ED</color>
+    <color name="studio_lavender">#F1EDF8</color>
+    <color name="studio_ink">#302D45</color>
+    <color name="studio_purple">#71559C</color>
+    <color name="studio_teal">#246A68</color>
+    <color name="studio_paper">#FCFAF5</color>
+    <color name="studio_tint_d2dfd8">#D2DFD8</color>
+    <color name="studio_tint_aac1b6">#AAC1B6</color>
+    <color name="studio_tint_20ffffff">#20FFFFFF</color>
+    <color name="studio_tint_d8ebdd">#D8EBDD</color>
+    <color name="studio_tint_f4d69d">#F4D69D</color>
+    <color name="studio_tint_9b79d0">#9B79D0</color>
+    <color name="studio_tint_52665f">#52665F</color>
+    <color name="studio_tint_466b5c">#466B5C</color>
+    <color name="studio_tint_9677b8">#9677B8</color>
+    <color name="studio_tint_e9ede8">#E9EDE8</color>
+    <color name="studio_tint_d4e9dc">#D4E9DC</color>
+    <color name="studio_tint_dae9e0">#DAE9E0</color>
+    <color name="studio_tint_7e8f86">#7E8F86</color>
+    <color name="studio_tint_9a793e">#9A793E</color>
+    <color name="studio_tint_5d7365">#5D7365</color>
+    <color name="studio_tint_52685d">#52685D</color>
+    <color name="studio_tint_e5eee6">#E5EEE6</color>
+    <color name="studio_tint_586f62">#586F62</color>
+    <color name="studio_tint_d0e0d6">#D0E0D6</color>
+    <color name="studio_tint_e3e9e2">#E3E9E2</color>
+    <color name="studio_tint_e6ba77">#E6BA77</color>
+    <color name="studio_tint_d5e2d8">#D5E2D8</color>
+    <color name="studio_tint_bed2c7">#BED2C7</color>
+    <color name="studio_tint_7f6739">#7F6739</color>
+    <color name="studio_tint_ebeee9">#EBEEE9</color>
 </resources>

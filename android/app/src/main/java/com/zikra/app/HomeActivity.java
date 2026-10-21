@@ -65,6 +65,7 @@ public final class HomeActivity extends BaseActivity {
       return;
     }
     setContentView(R.layout.activity_home);
+    findViewById(R.id.homeFocusCard).setOnClickListener(v -> open(FocusTimerActivity.class));
     adaptHomeForTextSize();
     NavDock.attach(this, findViewById(R.id.homeRoot), "home");
     setupScreen("Zikra");

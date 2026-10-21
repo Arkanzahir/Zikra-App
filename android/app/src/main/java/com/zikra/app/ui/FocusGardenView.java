@@ -68,7 +68,8 @@ public final class FocusGardenView extends View {
   }
 
   private boolean canAnimate() {
-    return active && allowed && running && isAttachedToWindow() && isShown() && hasWindowFocus();
+    return active && allowed && (running || (resting && !finished))
+        && isAttachedToWindow() && isShown() && hasWindowFocus();
   }
 
   private void schedule() {

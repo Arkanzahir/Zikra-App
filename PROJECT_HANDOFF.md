@@ -1,5 +1,26 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: pembaruan tampilan native 1.2
+
+Home, katalog Quran, Study Hub, Fokus dan Pendamping Zikra diperbarui memakai
+Pine/mint/cream/lavender, ilustrasi vektor dan orb yang langsung terlihat.
+Mushaf kini mempunyai akses langsung di katalog/reader; tombol gulir otomatis
+dan audio/ikuti ayat juga terlihat. Ringkasan Study tidak hilang saat kosong.
+Pose jeda karakter boleh bergerak saat kebijakan animasi sistem mengizinkan.
+[Hasil, referensi dan batas](android/validation/visual-refresh-2026-10-21/README.md).
+
+APK `Zikra-Visual-Refresh-v1.2-debug.apk`: versionCode 3, minSdk 26, target 35.
+Build sumber staged terpisah, 87 tes JVM dan lint lulus (0 error, 611 warning),
+39 detik, heap 768 MiB/satu worker/tanpa emulator. HP tidak terhubung; pengguna
+memilih Siapkan APK dulu. Belum ada screenshot atau pengujian UI/native HP untuk
+revisi ini. Eksperimen prefetch dan tes tambahan lama tetap di working tree,
+tidak ikut APK ini. Source APK memakai implementasi audio stabil sebelumnya.
+
+Sorotan kata tetap khusus Mushaf (Android 12+/online/timing cocok); reader
+terjemahan masih sorotan ayat. Adzan penuh belum tersedia, AI masih panduan lokal,
+dan error masjid pada HP belum dibuktikan/ditangani live pada tahap desain ini.
+Prioritas berikut: cek visual APK di HP, lalu fitur audio/masjid secara terarah.
+
 ## Terbaru: sorotan emas per kata aktif di Mushaf
 
 Mushaf otomatis meminta audio/timing per ayat yang dipasangkan Quran.com untuk

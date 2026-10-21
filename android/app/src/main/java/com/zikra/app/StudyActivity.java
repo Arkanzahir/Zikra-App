@@ -129,7 +129,8 @@ public final class StudyActivity extends BaseActivity {
       ((TextView) findViewById(R.id.study_add)).setText("Tambah ibadah");
     }
     if (!diaryMode && !ibadahMode) {
-      ((TextView) agendaHeader.findViewById(R.id.study_heading)).setText("Tugas aktif");
+      ((TextView) agendaHeader.findViewById(R.id.study_heading))
+          .setText(R.string.design_study_heading);
       View focus = agendaHeader.findViewById(R.id.studyFocus);
       focus.setVisibility(View.VISIBLE);
       focus.setOnClickListener(v -> startActivity(new Intent(this, FocusTimerActivity.class)));
@@ -281,7 +282,7 @@ public final class StudyActivity extends BaseActivity {
         .setText(getString(R.string.agenda_pending, pending.size()));
     agendaHeader
         .findViewById(R.id.study_summary)
-        .setVisibility(total == 0 ? View.GONE : View.VISIBLE);
+        .setVisibility(View.VISIBLE);
     agendaHeader
         .findViewById(R.id.agenda_section)
         .setVisibility(pending.isEmpty() ? View.GONE : View.VISIBLE);
@@ -291,6 +292,8 @@ public final class StudyActivity extends BaseActivity {
         total > 0
             ? (diaryMode ? R.string.agenda_hifz_all_done : R.string.agenda_all_done)
             : (diaryMode ? R.string.study_hifz_empty : R.string.study_empty));
+    if (!diaryMode && !ibadahMode && total == 0)
+      empty.setText(R.string.design_study_empty);
     agendaHeader
         .findViewById(R.id.ibadah_template)
         .setVisibility(ibadahMode && total == 0 ? View.VISIBLE : View.GONE);

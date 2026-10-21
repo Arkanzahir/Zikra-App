@@ -62,7 +62,9 @@ public final class AiActivity extends BaseActivity {
             "Hapus percakapan lokal");
     setupScreen("Pendamping Zikra");
     getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-    getWindow().setStatusBarColor(Color.WHITE);
+    getWindow().setStatusBarColor(getColor(R.color.studio_lavender));
+    ((FeatureHeader) findViewById(R.id.utilitiesHeader))
+        .setSurfaceColor(getColor(R.color.studio_lavender));
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(

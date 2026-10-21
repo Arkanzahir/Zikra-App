@@ -521,6 +521,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
             lastFrame = SystemClock.uptimeMillis();
             main.post(scrollFrame);
           }
+          updateScrollButton();
           if (state != null && state.chapter == chapter) {
             if (state.playing || state.requested)
               send(
@@ -655,11 +656,40 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     return scrollSpeedName(speed);
   }
 
+  public void toggleAutoScroll() {
+    if (auto) {
+      stopScroll();
+      return;
+    }
+    if (!active || !reading) return;
+    follow = false;
+    touchPaused = false;
+    lastFollowed = 0;
+    prefs.edit().putBoolean("follow", false).apply();
+    auto = true;
+    awaitingPage = false;
+    fractional = 0;
+    lastFrame = SystemClock.uptimeMillis();
+    main.removeCallbacks(scrollFrame);
+    main.post(scrollFrame);
+    updateScrollButton();
+  }
+
+  private void updateScrollButton() {
+    TextView button = activity.findViewById(com.zikra.app.R.id.quranReaderAuto);
+    if (button != null) {
+      button.setText(auto ? com.zikra.app.R.string.design_auto_scroll_stop
+          : com.zikra.app.R.string.design_auto_scroll);
+      button.setSelected(auto);
+    }
+  }
+
   private void stopScroll() {
     auto = false;
     awaitingPage = false;
     fractional = 0;
     main.removeCallbacks(scrollFrame);
+    updateScrollButton();
   }
 
   public void pause() {

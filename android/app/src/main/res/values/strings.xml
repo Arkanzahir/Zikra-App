@@ -1,4 +1,38 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Zikra</string>
+    <string name="design_home_eyebrow">RUANG HARIANMU</string>
+    <string name="design_home_heading">Jaga ibadah. Rawat semangat.</string>
+    <string name="design_home_focus">Satu sesi, satu langkah.</string>
+    <string name="design_home_focus_caption">Beri ruang untuk fokus. Sisanya, pelan-pelan.</string>
+    <string name="design_home_focus_action">Mulai fokus  →</string>
+    <string name="design_study_heading">Ruang untuk\nide besarmu.</string>
+    <string name="design_focus_title">Fokus belajar</string>
+    <string name="design_focus_caption">Temani belajarmu dengan sesi 25/5 atau 50/10 menit.</string>
+    <string name="design_focus_action">Buka ruang fokus  →</string>
+    <string name="design_study_empty">Belum ada rencana?\nMulai dari satu tugas kecil hari ini.</string>
+    <string name="design_quran_eyebrow">RUANG BACA</string>
+    <string name="design_quran_heading">Dekat dengan\nAl-Qur’an.</string>
+    <string name="design_quran_caption">Baca, dengarkan, dan lanjutkan perjalananmu.</string>
+    <string name="design_mushaf_action">Buka Mushaf  →</string>
+    <string name="design_mushaf_description">Halaman Quran · audio &amp; sorotan kata</string>
+    <string name="design_reading_tools">Temani bacaanmu</string>
+    <string name="design_auto_scroll">Gulir otomatis</string>
+    <string name="design_audio_settings">Audio &amp; ikuti ayat</string>
+    <string name="design_ai_eyebrow">PENDAMPING ZIKRA</string>
+    <string name="design_ai_heading">Ada ruang untuk\nrencanamu.</string>
+    <string name="design_ai_caption">Belajar, ibadah, dan hafalan. Mulai dari satu percakapan kecil.</string>
+    <string name="design_ai_local">Panduan lokal · tanpa akun</string>
+    <string name="design_ai_write">Tulis rencana</string>
+    <string name="design_ai_write_caption">Urai targetmu jadi langkah kecil.</string>
+    <string name="design_ai_write_action">Mulai menulis  →</string>
+    <string name="design_ai_voice">Ceritakan idemu</string>
+    <string name="design_ai_voice_caption">Diktekan rencana dengan suara.</string>
+    <string name="design_focus_motion_off">Gerak karakter mengikuti pengaturan animasi dan penghemat daya HP.</string>
+    <string name="design_focus_rest_hint">Tarik napas. Karaktermu ikut beristirahat; timer tetap mengikuti sesi yang kamu pilih.</string>
+    <string name="design_study_progress_empty">Rencanamu dimulai dari sini</string>
+    <string name="design_study_progress_zero">Belum ada tugas yang dicatat</string>
+    <string name="design_auto_scroll_stop">Jeda gulir</string>
+    <string name="design_mushaf_min_android">Mushaf memerlukan Android 12 atau lebih baru.</string>
+    <string name="design_prayer_sound_note">Pengingat memakai suara notifikasi HP sesuai pengaturan sistem. Audio adzan penuh belum tersedia.</string>
 </resources>

@@ -1,0 +1,113 @@
+{
+  "versionName": "1.2",
+  "versionCode": 3,
+  "sha256": "66B21BF737FC7AB8EC53DEE3D07A0EE303F8C24C41B54379626AE4D14835077A",
+  "bytes": 5944350,
+  "androidSourceTree": "e1f69ce98f0182d7d3c70bf3b1b3d0c3e6b2c725",
+  "build": "SUCCESS",
+  "buildSeconds": 39,
+  "workerCount": 1,
+  "jvmHeapMB": 768,
+  "tests": [
+    {
+      "suite": "com.zikra.app.assistant.OfflineAssistantTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.audio.RecitationTest",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.audio.TimedRecitationTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.discovery.HijriCalendarModelTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.location.LocationPointTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.PrayerScheduleTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.reading.CompassMathTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.reading.mushaf.MushafDocumentTest",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.reading.mushaf.MushafFoundationTest",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.reading.mushaf.QcfGlyphMetricsTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.reading.SurahSearchTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.safety.ForecastSelectorTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.safety.WeatherCodeTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.sky.SkyDayTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "suite": "com.zikra.app.study.FocusClockTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "lint": [
+    {
+      "Name": "Warning",
+      "Count": 611
+    }
+  ],
+  "deviceUiTest": "NOT RUN: no adb device; user requested APK first",
+  "experimentalPrefetchIncluded": false,
+  "androidAppSourceTree": "fd4b78086de2cb8b0693883896ca1d7a6ac6bb72",
+  "sameDebugSignerAsWordSyncApk": true
+}

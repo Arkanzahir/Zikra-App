@@ -136,6 +136,10 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     findViewById(R.id.quranCatalogButton).setOnClickListener(view -> showCatalog());
     findViewById(R.id.quranHeaderSearch).setOnClickListener(v -> toggleSearch());
     findViewById(R.id.quranReadingOptions).setOnClickListener(v -> showReadingOptions());
+    findViewById(R.id.quranCatalogMushaf).setOnClickListener(v -> openMushaf());
+    findViewById(R.id.quranReaderMushaf).setOnClickListener(v -> openMushaf());
+    findViewById(R.id.quranReaderAudio).setOnClickListener(v -> audioUi.options());
+    findViewById(R.id.quranReaderAuto).setOnClickListener(v -> audioUi.toggleAutoScroll());
     findViewById(R.id.quranBackToCatalog).setOnClickListener(view -> showCatalog());
     findViewById(R.id.toolbarBack)
         .setOnClickListener(
@@ -635,7 +639,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     nightMode = enabled;
     int foreground = Color.parseColor(enabled ? "#EEF6F2" : "#15332F");
     int secondary = Color.parseColor(enabled ? "#B4C8BE" : "#586F62");
-    int background = Color.parseColor(enabled ? "#10211F" : "#FFFFFF");
+    int background = Color.parseColor(enabled ? "#10211F" : "#F7F6F0");
     int cardColor = Color.parseColor(enabled ? "#1D3530" : "#FFFFFF");
     findViewById(R.id.quranRoot).setBackgroundColor(background);
     ((TextView) findViewById(R.id.quranTitle)).setTextColor(foreground);
@@ -657,7 +661,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     for (int id : secondaryLabels) ((TextView) findViewById(id)).setTextColor(secondary);
     for (int i = 0; i < surahList.getChildCount(); i++) {
       View row = surahList.getChildAt(i);
-      row.setBackgroundColor(background);
+      row.setBackground(card(enabled ? 0xFF1D3530 : 0xFFFFFFFF));
       row.findViewById(R.id.surahListDivider).setBackgroundColor(enabled ? 0xFF29413D : 0xFFEBEEE9);
       ((TextView) row.findViewById(R.id.surahListNumber))
           .setTextColor(enabled ? 0xFFD0AC6B : 0xFF7F6739);
@@ -778,33 +782,36 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     settings
         .findViewById(R.id.quranOpenMushaf)
         .setVisibility(android.os.Build.VERSION.SDK_INT >= 31 ? View.VISIBLE : View.GONE);
-    settings
-        .findViewById(R.id.quranOpenMushaf)
-        .setOnClickListener(
-            v -> {
-              int visibleVerse = pendingVerse;
-              android.graphics.Rect visible = new android.graphics.Rect();
-              for (int i = 0; i < ayahContainer.getChildCount(); i++) {
-                View row = ayahContainer.getChildAt(i);
-                if (row.getGlobalVisibleRect(visible) && row.getTag() instanceof String) {
-                  visibleVerse = Integer.parseInt(((String) row.getTag()).split(":")[1]);
-                  break;
-                }
-              }
-              readingDialog.dismiss();
-              startActivityForResult(
-                  new android.content.Intent(this, MushafActivity.class)
-                      .putExtra(EXTRA_TARGET_CHAPTER, selectedIndex + 1)
-                      .putExtra(EXTRA_TARGET_VERSE, visibleVerse)
-                      .putExtra(
-                          EXTRA_RANGE_FIRST, selectedIndex + 1 == rangeChapter ? rangeFirst : 1)
-                      .putExtra(
-                          EXTRA_RANGE_LAST,
-                          selectedIndex + 1 == rangeChapter
-                              ? rangeLast
-                              : chapters.get(selectedIndex).count),
-                  MushafActivity.REQUEST);
-            });
+    settings.findViewById(R.id.quranOpenMushaf).setOnClickListener(v -> openMushaf());
+  }
+
+  private void openMushaf() {
+    if (android.os.Build.VERSION.SDK_INT < 31) {
+      toast(getString(R.string.design_mushaf_min_android));
+      return;
+    }
+    int visibleVerse = pendingVerse;
+    android.graphics.Rect visible = new android.graphics.Rect();
+    for (int i = 0; readingOpen && i < ayahContainer.getChildCount(); i++) {
+      View row = ayahContainer.getChildAt(i);
+      if (row.getGlobalVisibleRect(visible) && row.getTag() instanceof String) {
+        visibleVerse = Integer.parseInt(((String) row.getTag()).split(":")[1]);
+        break;
+      }
+    }
+    if (readingDialog != null) readingDialog.dismiss();
+    startActivityForResult(
+        new android.content.Intent(this, MushafActivity.class)
+            .putExtra(EXTRA_TARGET_CHAPTER, selectedIndex + 1)
+            .putExtra(EXTRA_TARGET_VERSE, visibleVerse)
+            .putExtra(
+                EXTRA_RANGE_FIRST, selectedIndex + 1 == rangeChapter ? rangeFirst : 1)
+            .putExtra(
+                EXTRA_RANGE_LAST,
+                selectedIndex + 1 == rangeChapter
+                    ? rangeLast
+                    : chapters.get(selectedIndex).count),
+        MushafActivity.REQUEST);
   }
 
   @Override

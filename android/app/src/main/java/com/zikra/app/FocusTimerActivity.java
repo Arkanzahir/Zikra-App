@@ -206,6 +206,10 @@ public final class FocusTimerActivity extends BaseActivity {
     text(
         R.id.focusHint,
         notificationsAllowed ? R.string.focus_encourage : R.string.focus_notification_off);
+    if (notificationsAllowed && motion != null && !motion.enabled())
+      text(R.id.focusHint, R.string.design_focus_motion_off);
+    else if (notificationsAllowed && (clock.breakPhase || paused))
+      text(R.id.focusHint, R.string.design_focus_rest_hint);
     ((ProgressBar) findViewById(R.id.focusProgress))
         .setProgress((int) Math.max(0, Math.min(1000, 1000L - clock.remaining * 1000L / total)));
     // A pause changes only the companion pose; it does not start the break countdown.

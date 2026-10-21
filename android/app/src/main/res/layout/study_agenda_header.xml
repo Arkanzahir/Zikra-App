@@ -5,42 +5,93 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingTop="20dp">
-    <TextView
-        android:id="@+id/study_date"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="13sp"
-        android:textColor="@color/study_secondary" />
-    <TextView
-        android:id="@+id/study_heading"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="20dp"
+        android:background="@drawable/studio_hero">
+        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
+            <TextView
+                android:id="@+id/study_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/studio_tint_d4e9dc" />
+            <TextView
+                android:id="@+id/study_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/agenda_heading"
+                android:textColor="@color/white"
+                android:textSize="27sp"
+                android:textStyle="bold"
+                android:lineSpacingExtra="0dp" />
+            <TextView
+                android:id="@+id/study_scope_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="14sp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/planner_study_scope"
+                android:textColor="@color/studio_tint_dae9e0" />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="124dp"
+            android:src="@drawable/studio_books"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/studyFocus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/agenda_heading"
-        android:textColor="@color/pine"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:lineSpacingExtra="0dp" />
-    <TextView
-        android:id="@+id/study_scope_hint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="14sp"
-        android:lineSpacingExtra="3dp"
-        android:text="@string/planner_study_scope"
-        android:textColor="@color/study_secondary" />
-    <Button android:id="@+id/studyFocus" style="@style/NearbyButton" android:layout_marginTop="14dp" android:text="Fokus belajar" android:visibility="gone" />
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="@drawable/studio_sage_card"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        android:minHeight="144dp"
+        android:foreground="?android:attr/selectableItemBackground">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/design_focus_title"
+            android:textSize="21sp"
+            android:textColor="@color/pine"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/design_focus_caption"
+            android:textSize="14sp"
+            android:textColor="@color/muted"
+            android:layout_marginTop="8dp"
+            android:lineSpacingExtra="3dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/design_focus_action"
+            android:textSize="14sp"
+            android:textColor="@color/studio_teal"
+            android:layout_marginTop="14dp"
+            android:textStyle="bold" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/study_summary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+        android:orientation="vertical"
+        android:padding="18dp"
+        android:background="@drawable/bg_card">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
             <TextView
                 android:id="@+id/study_progress_label"
                 android:layout_width="0dp"
@@ -65,7 +116,7 @@
             android:layout_marginTop="8dp"
             android:max="100"
             android:progressTint="@color/pine"
-            android:progressBackgroundTint="#E3E9E2" />
+            android:progressBackgroundTint="@color/studio_tint_e3e9e2" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/study_filters"
@@ -74,22 +125,10 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/study_tabs_bg"
         android:padding="3dp">
-        <TextView
-            android:id="@+id/study_filter_all"
-            style="@style/study_Filter"
-            android:text="@string/study_all" />
-        <TextView
-            android:id="@+id/study_filter_study"
-            style="@style/study_Filter"
-            android:text="@string/study_category_study" />
-        <TextView
-            android:id="@+id/study_filter_ibadah"
-            style="@style/study_Filter"
-            android:text="@string/study_category_ibadah" />
-        <TextView
-            android:id="@+id/study_filter_hifz"
-            style="@style/study_Filter"
-            android:text="@string/study_category_hifz" />
+        <TextView android:id="@+id/study_filter_all" style="@style/study_Filter" android:text="@string/study_all" />
+        <TextView android:id="@+id/study_filter_study" style="@style/study_Filter" android:text="@string/study_category_study" />
+        <TextView android:id="@+id/study_filter_ibadah" style="@style/study_Filter" android:text="@string/study_category_ibadah" />
+        <TextView android:id="@+id/study_filter_hifz" style="@style/study_Filter" android:text="@string/study_category_hifz" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/agenda_feature"
@@ -99,15 +138,8 @@
         android:padding="18dp"
         android:orientation="vertical"
         android:background="@drawable/agenda_feature">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-            <View
-                android:layout_width="20dp"
-                android:layout_height="2dp"
-                android:background="@color/camel"
-                android:importantForAccessibility="no" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+            <View android:layout_width="20dp" android:layout_height="2dp" android:background="@color/camel" android:importantForAccessibility="no" />
             <TextView
                 android:id="@+id/agenda_feature_caption"
                 android:layout_width="0dp"
@@ -116,7 +148,7 @@
                 android:layout_marginStart="8dp"
                 android:textSize="12sp"
                 android:letterSpacing="0.08"
-                android:textColor="#E6BA77"
+                android:textColor="@color/studio_tint_e6ba77"
                 android:text="@string/agenda_continue" />
             <ImageButton
                 android:id="@+id/agenda_feature_more"
@@ -127,7 +159,7 @@
                 android:layout_marginBottom="-6dp"
                 android:padding="14dp"
                 android:src="@drawable/study_ic_more"
-                android:tint="#D5E2D8"
+                android:tint="@color/studio_tint_d5e2d8"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/study_task_actions" />
         </LinearLayout>
@@ -137,7 +169,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:textSize="13sp"
-            android:textColor="#BED2C7" />
+            android:textColor="@color/studio_tint_bed2c7" />
         <TextView
             android:id="@+id/agenda_feature_title"
             android:layout_width="match_parent"
@@ -152,7 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:textSize="14sp"
-            android:textColor="#D5E2D8" />
+            android:textColor="@color/studio_tint_d5e2d8" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -164,7 +196,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
-                android:buttonTint="#E6BA77"
+                android:buttonTint="@color/studio_tint_e6ba77"
                 android:text="@string/agenda_complete"
                 android:textSize="12sp"
                 android:textColor="@color/white"
@@ -190,12 +222,15 @@
         android:id="@+id/study_empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:paddingVertical="20dp"
         android:text="@string/study_empty"
-        android:textColor="@color/study_secondary"
-        android:textSize="14sp"
-        android:visibility="gone" />
+        android:textColor="@color/pine"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:background="@drawable/studio_gold_card"
+        android:padding="20dp"
+        android:lineSpacingExtra="5dp" />
     <Button
         android:id="@+id/ibadah_template"
         style="@style/StudyButton"
