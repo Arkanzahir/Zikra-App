@@ -133,18 +133,22 @@ public final class MushafPageView extends View {
     ornaments.border(canvas, w, getHeight(), night);
     hits.clear();
     if (document == null || canvasFont == null) return;
-    // Opening pages retain their source lines, with generous spacing like a frontispiece.
+    MushafPage.Word opening = document.page.lines.get(0).words.get(0);
+    int firstLine = document.page.lines.get(0).number;
+    int sourceHeading = firstLine - (opening.chapter == 1 || opening.chapter == 9 ? 1 : 2);
+    int rowOffset = opening.verse == 1 && opening.position == 1 && sourceHeading == 1 ? 1 : 0;
+    int lastLine = document.page.lines.get(document.page.lines.size() - 1).number;
+    rowHeight = (getHeight() - top - w * .25f) / (lastLine - rowOffset - .28f);
+    // The page title already occupies the outer panel; do not reserve it twice in the body.
     if (document.page.number <= 2) {
-      top = w * .245f;
-      int last = document.page.lines.get(document.page.lines.size() - 1).number;
-      rowHeight = (getHeight() - top - w * .25f) / (last - .28f);
+      rowHeight = Math.min(rowHeight, w * .15f);
     }
     int firstChapter = document.page.lines.get(0).words.get(0).chapter;
     drawFittedLabel(
         canvas,
         surahHeading(firstChapter),
         new RectF(w * .285f, w * .106f, w * .725f, w * .188f),
-        w * .067f);
+        w * .052f);
     ink.setTypeface(font);
     ink.setTextSize(100);
     float longest = 1;
@@ -159,13 +163,17 @@ public final class MushafPageView extends View {
       ink.setTextSize(size);
       float natural = 0;
       for (MushafPage.Word word : line.words) natural += wordWidth(word, size);
+      boolean centered =
+          line.centered
+              || line.words.size() == 1
+              || (w - margin * 2 - natural) / (line.words.size() - 1) > size * .4f;
       float gap =
-          line.centered || line.words.size() == 1
+          centered
               ? size * .08f
               : Math.max(0, (w - margin * 2 - natural) / (line.words.size() - 1));
       float length = natural + gap * (line.words.size() - 1);
-      float right = line.centered ? (w + length) / 2 : w - margin;
-      float baseline = top + (line.number - 1) * rowHeight + rowHeight * .72f;
+      float right = centered ? (w + length) / 2 : w - margin;
+      float baseline = top + (line.number - rowOffset - 1) * rowHeight + rowHeight * .72f;
       float cursor = right;
       RectF activeBounds = null;
       for (MushafPage.Word word : line.words) {
@@ -205,14 +213,14 @@ public final class MushafPageView extends View {
       if (first.verse == 1 && first.position == 1 && line.number >= 2) {
         int header = line.number - (first.chapter == 1 || first.chapter == 9 ? 1 : 2);
         if (header > 1) {
-          float center = top + (header - 1) * rowHeight + rowHeight * .48f;
-          float height = Math.min(rowHeight * .86f, w * .085f);
+          float center = top + (header - rowOffset - 1) * rowHeight + rowHeight * .48f;
+          float height = Math.min(rowHeight * .72f, w * .075f);
           RectF band = new RectF(w * .105f, center - height / 2, w * .895f, center + height / 2);
           ornaments.surahBand(canvas, band);
           RectF label =
               new RectF(
                   w * .295f, band.top + height * .10f, w * .705f, band.bottom - height * .10f);
-          drawFittedLabel(canvas, surahHeading(first.chapter), label, w * .054f);
+          drawFittedLabel(canvas, surahHeading(first.chapter), label, w * .043f);
         }
         ink.setTypeface(Typeface.create("serif", Typeface.NORMAL));
         ink.setColor(color(R.color.mushaf_ink, R.color.mushaf_night_ink));
@@ -223,7 +231,7 @@ public final class MushafPageView extends View {
           canvas.drawText(
               basmalah,
               (w - ink.measureText(basmalah)) / 2,
-              top + (line.number - 2) * rowHeight + rowHeight * .7f,
+              top + (line.number - rowOffset - 2) * rowHeight + rowHeight * .7f,
               ink);
         }
       }

@@ -142,13 +142,13 @@ final class MushafOrnaments {
       int ink,
       int paper) {
     float cx = right - width / 2, cy = baseline - size * .31f;
-    float rx = width * .43f, ry = size * .45f;
+    float rx = Math.min(width * .43f, size * .43f), ry = size * .40f;
     line.setColor(gold);
     line.setStrokeWidth(Math.max(1.3f, size / 48));
     Path outline = new Path();
     for (int i = 0; i < 16; i++) {
       double angle = -Math.PI / 2 + i * Math.PI / 8;
-      float radius = i % 2 == 0 ? 1 : .82f;
+      float radius = i % 2 == 0 ? 1 : .9f;
       float x = cx + (float) Math.cos(angle) * rx * radius;
       float y = cy + (float) Math.sin(angle) * ry * radius;
       if (i == 0) outline.moveTo(x, y);
@@ -171,7 +171,7 @@ final class MushafOrnaments {
     for (char digit : Integer.toString(verse).toCharArray())
       digits.append((char) ('٠' + digit - '0'));
     numeral.setColor(ink);
-    numeral.setTextSize(size * .58f);
+    numeral.setTextSize(size * .52f);
     float measured = numeral.measureText(digits.toString());
     if (measured > rx * 1.5f) numeral.setTextSize(numeral.getTextSize() * rx * 1.5f / measured);
     Paint.FontMetrics metrics = numeral.getFontMetrics();

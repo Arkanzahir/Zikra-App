@@ -1,5 +1,15 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: proporsi dan jarak bacaan dirapikan
+
+Reservasi judul dalam badan dihapus ketika panel luar sudah memuat judul itu.
+Judul lebih kecil, panel antar-surah lebih tipis, celah antarkata dibatasi dan
+baris pendek dipusatkan. Medali lebih bulat; halaman pembuka tidak dipaksa
+merenggang memenuhi semua ruang. Huruf/ayat dan pembagian baris sumber tetap.
+[Bukti native](android/validation/mushaf-spacing-2026-10-21/README.md).
+Build/lint, 80 JVM, 4 metode Android lulus; satu diulang pada teks sistem 200%.
+APK terbaru `D:/Download/Zikra-App-main/Zikra-Mushaf-Tidy-20261021-debug.apk`.
+
 ## Terbaru: judul surah pas kotak dan nomor ayat lebih jelas
 
 Panel atas memakai “سُورَةُ + nama” dengan ukuran otomatis menurut lebar/tinggi
