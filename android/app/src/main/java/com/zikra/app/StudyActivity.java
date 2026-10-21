@@ -53,6 +53,7 @@ public final class StudyActivity extends BaseActivity {
   private View agendaHeader;
   private String filter = "All";
   private LocalDate displayedDay;
+  private LocalDate selectedAgendaDay;
   private Dialog editorDialog;
   private View editorView;
   private Task editorTask;
@@ -88,6 +89,11 @@ public final class StudyActivity extends BaseActivity {
     agendaHeader = getLayoutInflater().inflate(R.layout.study_agenda_header, agenda, false);
     agenda.addHeaderView(agendaHeader, null, false);
     completedExpanded = state != null && state.getBoolean("completed_expanded", false);
+    if (state != null && state.getString("agenda_day") != null)
+      try {
+        selectedAgendaDay = LocalDate.parse(state.getString("agenda_day"));
+      } catch (java.time.DateTimeException ignored) {
+      }
     diaryMode = ZikraDbHelper.CATEGORY_HIFZ.equals(getIntent().getStringExtra("category"));
     ibadahMode = ZikraDbHelper.CATEGORY_IBADAH.equals(getIntent().getStringExtra("category"));
     scopeCategory =
@@ -219,6 +225,7 @@ public final class StudyActivity extends BaseActivity {
   @Override
   protected void onSaveInstanceState(Bundle state) {
     state.putString("study_filter", filter);
+    if (selectedAgendaDay != null) state.putString("agenda_day", selectedAgendaDay.toString());
     state.putBoolean("completed_expanded", completedExpanded);
     if (editorDialog != null && editorDialog.isShowing()) {
       state.putBoolean("editor_open", true);
@@ -248,11 +255,83 @@ public final class StudyActivity extends BaseActivity {
     String date = displayedDay.format(DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy", ID));
     ((TextView) agendaHeader.findViewById(R.id.study_date))
         .setText(date.substring(0, 1).toUpperCase(ID) + date.substring(1));
+    renderWeek();
+  }
+
+  private void renderWeek() {
+    android.widget.LinearLayout week = agendaHeader.findViewById(R.id.studyWeek);
+    week.setVisibility(diaryMode || ibadahMode ? View.GONE : View.VISIBLE);
+    if (diaryMode || ibadahMode) return;
+    week.removeAllViews();
+    LocalDate today = LocalDate.now();
+    LocalDate anchor = selectedAgendaDay == null ? today : selectedAgendaDay;
+    LocalDate monday =
+        anchor.with(
+            java.time.temporal.TemporalAdjusters.previousOrSame(java.time.DayOfWeek.MONDAY));
+    for (int i = 0; i < 7; i++) {
+      LocalDate day = monday.plusDays(i);
+      TextView cell = new TextView(this);
+      boolean selected = anchor.equals(day);
+      cell.setText(day.format(DateTimeFormatter.ofPattern("EEE\nd", ID)));
+      cell.setTextSize(12);
+      cell.setGravity(Gravity.CENTER);
+      cell.setMinHeight(dp(56));
+      cell.setTextColor(getColor(selected ? R.color.white : R.color.pine));
+      cell.setBackgroundResource(selected ? R.drawable.concept_selected_day : 0);
+      cell.setSelected(selected);
+      cell.setContentDescription(day.format(DateTimeFormatter.ofPattern("EEEE, d MMMM", ID)));
+      cell.setOnClickListener(
+          v -> {
+            selectedAgendaDay = day;
+            renderWeek();
+            refreshTasks();
+          });
+      cell.setOnLongClickListener(
+          v -> {
+            selectedAgendaDay = null;
+            renderWeek();
+            refreshTasks();
+            return true;
+          });
+      week.addView(cell, new android.widget.LinearLayout.LayoutParams(dp(48), -2));
+    }
+    com.zikra.app.study.FocusClock timer = com.zikra.app.study.FocusTimer.load(this);
+    ((TextView) agendaHeader.findViewById(R.id.studyFocusDuration))
+        .setText(
+            getString(R.string.concept_focus_duration, timer.focusMinutes, timer.breakMinutes));
+    ((TextView) agendaHeader.findViewById(R.id.studySessionCaption))
+        .setText(
+            getString(R.string.concept_focus_setting)
+                + " · "
+                + getString(
+                    R.string.concept_focus_duration, timer.focusMinutes, timer.breakMinutes));
+    ((TextView) agendaHeader.findViewById(R.id.study_section))
+        .setText(
+            selectedAgendaDay == null
+                ? getString(R.string.concept_study_all)
+                : selectedAgendaDay.equals(today)
+                    ? getString(R.string.concept_study_agenda)
+                    : getString(
+                        R.string.concept_study_agenda_date,
+                        selectedAgendaDay.format(DateTimeFormatter.ofPattern("d MMM", ID))));
   }
 
   private void refreshTasks() {
     List<Task> filtered = new ArrayList<>();
-    for (Task task : db.getTasks()) if (scopeCategory.equals(task.category)) filtered.add(task);
+    for (Task task : db.getTasks()) {
+      if (!scopeCategory.equals(task.category)) continue;
+      if (!diaryMode && !ibadahMode && selectedAgendaDay != null && task.dueAt > 0) {
+        LocalDate due =
+            java.time.Instant.ofEpochMilli(task.dueAt)
+                .atZone(java.time.ZoneId.systemDefault())
+                .toLocalDate();
+        if (!due.equals(selectedAgendaDay)
+            && !(selectedAgendaDay.equals(LocalDate.now())
+                && due.isBefore(selectedAgendaDay)
+                && !task.completed)) continue;
+      }
+      filtered.add(task);
+    }
     // Keep user insertion order within each group; structured Hifz targets precede legacy notes.
     if (diaryMode) filtered.sort(Comparator.comparing(task -> task.hifz == null));
     if (!diaryMode && !ibadahMode)
@@ -280,9 +359,7 @@ public final class StudyActivity extends BaseActivity {
     ((ProgressBar) agendaHeader.findViewById(R.id.study_progress)).setProgress(percent);
     ((TextView) agendaHeader.findViewById(R.id.hifz_planned))
         .setText(getString(R.string.agenda_pending, pending.size()));
-    agendaHeader
-        .findViewById(R.id.study_summary)
-        .setVisibility(View.VISIBLE);
+    agendaHeader.findViewById(R.id.study_summary).setVisibility(View.VISIBLE);
     agendaHeader
         .findViewById(R.id.agenda_section)
         .setVisibility(pending.isEmpty() ? View.GONE : View.VISIBLE);
@@ -292,8 +369,7 @@ public final class StudyActivity extends BaseActivity {
         total > 0
             ? (diaryMode ? R.string.agenda_hifz_all_done : R.string.agenda_all_done)
             : (diaryMode ? R.string.study_hifz_empty : R.string.study_empty));
-    if (!diaryMode && !ibadahMode && total == 0)
-      empty.setText(R.string.design_study_empty);
+    if (!diaryMode && !ibadahMode && total == 0) empty.setText(R.string.design_study_empty);
     agendaHeader
         .findViewById(R.id.ibadah_template)
         .setVisibility(ibadahMode && total == 0 ? View.VISIBLE : View.GONE);

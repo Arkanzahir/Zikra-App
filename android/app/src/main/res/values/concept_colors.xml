@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <color name="concept_ivory">#F7F6F0</color>
+    <color name="concept_pine">#153D34</color>
+    <color name="concept_mint">#E6EFE4</color>
+    <color name="concept_gold">#C99143</color>
+    <color name="concept_gold_ink">#80531E</color>
+    <color name="concept_gold_wash">#FBF0D9</color>
+    <color name="concept_lavender">#EEE8F6</color>
+    <color name="concept_purple">#66508C</color>
+    <color name="concept_line">#E4E7DD</color>
+    <color name="concept_muted">#596B62</color>
+    <color name="concept_paper">#FFFFFF</color>
+    <color name="concept_cloud">#8EAFA0</color>
+    <color name="concept_moon">#F1DCA4</color>
+    <color name="concept_skin">#E4B58E</color>
+    <color name="concept_hair">#27332F</color>
+    <color name="concept_wood">#B98E5E</color>
+    <color name="concept_window">#DDE9DB</color>
+</resources>

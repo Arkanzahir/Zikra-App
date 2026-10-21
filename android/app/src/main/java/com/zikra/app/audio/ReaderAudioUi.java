@@ -33,6 +33,8 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
 
     default void wordHighlight(int chapter, int verse, int word, float fraction, boolean follow) {}
 
+    default void wordMetadata(int chapter, int verse, java.util.List<String> words) {}
+
     boolean nextPage();
 
     boolean ready();
@@ -85,6 +87,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
           if (!active || !reading || !host.wordSync()) return;
           if (service != null) {
             QuranAudioService.State current = service.state();
+            host.wordMetadata(current.chapter, current.verse, current.words);
             host.wordHighlight(
                 current.chapter,
                 current.verse,
@@ -218,6 +221,8 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
 
   public void reader(boolean visible) {
     reading = visible;
+    main.removeCallbacks(wordFrame);
+    if (active && visible && host.wordSync()) main.post(wordFrame);
     activity.findViewById(R.id.quranAudioPanel).setVisibility(visible ? View.VISIBLE : View.GONE);
     if (!visible) stopScroll();
     else changedChapter();
@@ -307,6 +312,16 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
       last = Recitation.count(host.chapter());
     }
     send(QuranAudioService.play(host.chapter(), first, last, verse, qari, repeats, loop));
+  }
+
+  public void wordModeChanged() {
+    host.wordHighlight(0, 0, 0, 0, false);
+    main.removeCallbacks(wordFrame);
+    if (active && host.wordSync()) main.post(wordFrame);
+    if (reading
+        && state != null
+        && state.chapter == host.chapter()
+        && (state.playing || state.requested)) playVerse(state.verse);
   }
 
   private void update() {
@@ -678,8 +693,10 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
   private void updateScrollButton() {
     TextView button = activity.findViewById(com.zikra.app.R.id.quranReaderAuto);
     if (button != null) {
-      button.setText(auto ? com.zikra.app.R.string.design_auto_scroll_stop
-          : com.zikra.app.R.string.design_auto_scroll);
+      button.setText(
+          auto
+              ? com.zikra.app.R.string.design_auto_scroll_stop
+              : com.zikra.app.R.string.design_auto_scroll);
       button.setSelected(auto);
     }
   }
@@ -701,7 +718,12 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     touchPaused = true;
   }
 
-  private void downloads() {
+  public void downloads() {
+    if (chapter < 1) {
+      chapter = host.chapter();
+      first = host.first();
+      last = host.last();
+    }
     if (downloads != null) downloads.dismiss();
     int downloaded = AudioFiles.downloaded(activity, qari, chapter);
     String status =

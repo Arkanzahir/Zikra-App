@@ -35,6 +35,12 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   public static final String EXTRA_RANGE_FIRST = "audio_first";
   public static final String EXTRA_RANGE_LAST = "audio_last";
   private com.zikra.app.audio.ReaderAudioUi audioUi;
+  private TextView wordText;
+  private List<String> wordSource;
+  private String wordKey = "";
+  private ArabicWordMap wordMap;
+  private int lastWord = -1;
+  private boolean lastWordNight;
   private int rangeChapter, rangeFirst, rangeLast;
   private SensorManager sensorManager;
   private Sensor lightSensor;
@@ -139,6 +145,24 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     findViewById(R.id.quranCatalogMushaf).setOnClickListener(v -> openMushaf());
     findViewById(R.id.quranReaderMushaf).setOnClickListener(v -> openMushaf());
     findViewById(R.id.quranReaderAudio).setOnClickListener(v -> audioUi.options());
+    findViewById(R.id.quranCatalogDownloads)
+        .setOnClickListener(
+            v -> {
+              showReader();
+              if (loadedPage == null) renderSurah(true);
+              audioUi.downloads();
+            });
+    Switch wordMode = findViewById(R.id.quranWordFollow);
+    wordMode.setChecked(preferences.getBoolean("reader_word_sync", true));
+    wordMode.setText(
+        wordMode.isChecked() ? R.string.concept_word_follow : R.string.concept_ayah_follow);
+    wordMode.setOnCheckedChangeListener(
+        (view, enabled) -> {
+          preferences.edit().putBoolean("reader_word_sync", enabled).apply();
+          wordMode.setText(enabled ? R.string.concept_word_follow : R.string.concept_ayah_follow);
+          clearWordHighlight();
+          if (audioUi != null) audioUi.wordModeChanged();
+        });
     findViewById(R.id.quranReaderAuto).setOnClickListener(v -> audioUi.toggleAutoScroll());
     findViewById(R.id.quranBackToCatalog).setOnClickListener(view -> showCatalog());
     findViewById(R.id.toolbarBack)
@@ -269,6 +293,22 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
               @Override
               public void highlight(int chapter, int verse) {
                 highlightAudio(chapter, verse);
+              }
+
+              @Override
+              public boolean wordSync() {
+                return preferences.getBoolean("reader_word_sync", true);
+              }
+
+              @Override
+              public void wordMetadata(int chapter, int verse, List<String> words) {
+                bindWordMetadata(chapter, verse, words);
+              }
+
+              @Override
+              public void wordHighlight(
+                  int chapter, int verse, int word, float fraction, boolean follow) {
+                colorAudioWord(chapter, verse, word);
               }
 
               @Override
@@ -554,11 +594,80 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
       View row = ayahContainer.getChildAt(i);
       boolean active = (chapter + ":" + verse).equals(row.getTag());
       row.setBackgroundColor(
-          active ? (nightMode ? 0xFF233D33 : 0xFFEDF3EA) : (nightMode ? 0xFF10211F : 0xFFFFFFFF));
+          active
+              ? (nightMode ? 0xFF333C2B : getColor(R.color.concept_gold_wash))
+              : (nightMode ? 0xFF10211F : getColor(R.color.concept_ivory)));
+      boolean mapped = active && wordText == row.findViewById(R.id.ayahArabic) && wordMap != null;
+      ((TextView) row.findViewById(R.id.ayahArabic))
+          .setTextColor(
+              active && !mapped
+                  ? (nightMode ? 0xFFF0CB88 : getColor(R.color.concept_gold_ink))
+                  : (nightMode ? 0xFFEEF6F2 : getColor(R.color.pine)));
       TextView label = row.findViewById(R.id.ayahAudioStatus);
-      label.setText(active ? "Ayat aktif di pemutar" : "");
+      label.setText(
+          active
+              ? getString(mapped ? R.string.concept_word_active : R.string.concept_ayah_active)
+              : "");
       label.setVisibility(active ? View.VISIBLE : View.GONE);
     }
+  }
+
+  private void clearWordHighlight() {
+    if (wordText != null && wordText.getText() instanceof android.text.Spannable)
+      for (android.text.style.ForegroundColorSpan span :
+          ((android.text.Spannable) wordText.getText())
+              .getSpans(0, wordText.length(), android.text.style.ForegroundColorSpan.class))
+        ((android.text.Spannable) wordText.getText()).removeSpan(span);
+    wordText = null;
+    wordSource = null;
+    wordMap = null;
+    wordKey = "";
+    lastWord = -1;
+  }
+
+  private void bindWordMetadata(int chapter, int verse, List<String> words) {
+    String key = chapter + ":" + verse;
+    if (wordSource == words
+        && wordKey.equals(key)
+        && wordText != null
+        && wordText.isAttachedToWindow()) return;
+    clearWordHighlight();
+    if (!readingOpen || loadedPage == null || words.isEmpty()) return;
+    View row = ayahContainer.findViewWithTag(key);
+    if (row == null) return;
+    wordText = row.findViewById(R.id.ayahArabic);
+    wordSource = words;
+    wordKey = key;
+    wordMap = ArabicWordMap.match(wordText.getText().toString(), words);
+    if (wordMap == null) {
+      ((TextView) row.findViewById(R.id.ayahAudioStatus))
+          .setText(R.string.concept_word_unavailable);
+      return;
+    }
+    wordText.setText(wordText.getText(), TextView.BufferType.SPANNABLE);
+    ((TextView) row.findViewById(R.id.ayahAudioStatus)).setText(R.string.concept_word_active);
+  }
+
+  private void colorAudioWord(int chapter, int verse, int word) {
+    if (wordText == null || !wordKey.equals(chapter + ":" + verse)) {
+      if (chapter == 0) clearWordHighlight();
+      return;
+    }
+    if (wordMap == null || (lastWord == word && lastWordNight == nightMode)) return;
+    lastWord = word;
+    lastWordNight = nightMode;
+    android.text.Spannable text = (android.text.Spannable) wordText.getText();
+    for (android.text.style.ForegroundColorSpan span :
+        text.getSpans(0, text.length(), android.text.style.ForegroundColorSpan.class))
+      text.removeSpan(span);
+    wordText.setTextColor(nightMode ? 0xFFEEF6F2 : getColor(R.color.pine));
+    if (word > 0 && word <= wordMap.starts.length)
+      text.setSpan(
+          new android.text.style.ForegroundColorSpan(
+              nightMode ? 0xFFF0CB88 : getColor(R.color.concept_gold_ink)),
+          wordMap.starts[word - 1],
+          wordMap.ends[word - 1],
+          android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
   }
 
   @Override
@@ -657,6 +766,9 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     findViewById(R.id.quranResume)
         .setBackground(card(Color.parseColor(enabled ? "#233D33" : "#EDF3EA")));
     nightSwitch.setTextColor(foreground);
+    ((TextView) findViewById(R.id.quranWordFollow)).setTextColor(foreground);
+    for (int id : new int[] {R.id.quranReaderAuto, R.id.quranReaderMushaf, R.id.quranReaderAudio})
+      ((TextView) findViewById(id)).setTextColor(foreground);
     ((android.widget.ImageButton) findViewById(R.id.toolbarBack)).setColorFilter(foreground);
     for (int id : secondaryLabels) ((TextView) findViewById(id)).setTextColor(secondary);
     for (int i = 0; i < surahList.getChildCount(); i++) {
@@ -804,13 +916,10 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
         new android.content.Intent(this, MushafActivity.class)
             .putExtra(EXTRA_TARGET_CHAPTER, selectedIndex + 1)
             .putExtra(EXTRA_TARGET_VERSE, visibleVerse)
-            .putExtra(
-                EXTRA_RANGE_FIRST, selectedIndex + 1 == rangeChapter ? rangeFirst : 1)
+            .putExtra(EXTRA_RANGE_FIRST, selectedIndex + 1 == rangeChapter ? rangeFirst : 1)
             .putExtra(
                 EXTRA_RANGE_LAST,
-                selectedIndex + 1 == rangeChapter
-                    ? rangeLast
-                    : chapters.get(selectedIndex).count),
+                selectedIndex + 1 == rangeChapter ? rangeLast : chapters.get(selectedIndex).count),
         MushafActivity.REQUEST);
   }
 

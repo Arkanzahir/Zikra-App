@@ -64,7 +64,7 @@ public final class TimedAudioRepository implements AutoCloseable {
                     + ":"
                     + verse
                     + "?fields=segments,duration"),
-            json("verses/by_key/" + chapter + ":" + verse + "?words=true"));
+            json("verses/by_key/" + chapter + ":" + verse + "?words=true&word_fields=text_uthmani"));
     byte[] bytes = fetch(data.url, 8 * 1024 * 1024);
     MessageDigest digest = MessageDigest.getInstance("SHA-256");
     StringBuilder hash = new StringBuilder();

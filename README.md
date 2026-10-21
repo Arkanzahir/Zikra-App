@@ -1,3 +1,5 @@
+> **Konsep pilihan pengguna — 1.3.0:** Home/langit, Study/fokus/break, katalog Quran dan AI diperbarui. Reader mendukung warna kata saat sumber/timing cocok; jalur Featherless siap dikonfigurasi, belum live. [Build, 96 JVM, 9 tes backend dan batas visual/HP](android/validation/concept-refresh-2026-10-21/README.md).
+
 > **Orb bergerak 1.2.1 — 21 Oktober 2026:** pita warna mengalir, kilau dan denyut halus pada Pendamping Zikra. [Build dan batas](android/validation/orb-motion-2026-10-21/README.md). Build/lint lulus; gerak belum diuji di HP.
 
 > **Tampilan native 1.2 — 21 Oktober 2026:** Home/Quran/Study/Pendamping Zikra diperbarui; Mushaf dan gulir otomatis lebih mudah ditemukan. [Hasil build, referensi dan batas pengujian](android/validation/visual-refresh-2026-10-21/README.md). Pengguna memilih APK dahulu; belum diuji visual di HP. Sorotan kata khusus Mushaf; adzan penuh dan AI generatif belum tersedia.

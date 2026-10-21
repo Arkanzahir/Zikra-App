@@ -1,0 +1,17 @@
+✔ requires server credentials (0.8193ms)
+✔ rejects system injection roles and oversized histories (0.1676ms)
+✔ injects server system prompt, fixes model and keeps API key server-side (33.6289ms)
+✔ unauthorized requests never reach provider (6.6468ms)
+✔ invalid inputs never reach provider (3.9419ms)
+✔ provider error body is not leaked (5.4913ms)
+✔ empty and oversized provider content is rejected (3.7834ms)
+✔ bounded provider response prevents memory growth (4.049ms)
+✔ rate limit prevents unlimited upstream requests (118.2424ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 260.6795

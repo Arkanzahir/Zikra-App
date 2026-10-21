@@ -32,7 +32,11 @@ public final class AiActivity extends BaseActivity {
   private static final int VOICE_REQUEST = 4001;
   private static final String HISTORY_KEY = "assistant_history_v1";
   private static final int MAX_MESSAGES = 24;
-  private static final int MAX_STORED_TEXT = 1600;
+  private static final int MAX_STORED_TEXT = 8000;
+  private com.zikra.app.assistant.AssistantConnection connection;
+  private com.zikra.app.assistant.OnlineAssistantClient onlineClient;
+  private boolean waiting;
+  private AlertDialog modeDialog;
   private SharedPreferences preferences;
   private EditText input;
   private LinearLayout thread;
@@ -70,6 +74,11 @@ public final class AiActivity extends BaseActivity {
         .setSystemUiVisibility(
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     preferences = getSharedPreferences("zikra_preferences", MODE_PRIVATE);
+    connection = new com.zikra.app.assistant.AssistantConnection(this);
+    onlineClient = new com.zikra.app.assistant.OnlineAssistantClient();
+    findViewById(R.id.aiMode).setOnClickListener(v -> chooseMode());
+    findViewById(R.id.aiRetry).setOnClickListener(v -> requestOnline());
+    updateMode();
     adaptEntryActions();
     input = findViewById(R.id.aiInput);
     input.setFilters(
@@ -182,7 +191,7 @@ public final class AiActivity extends BaseActivity {
         if ((!"user".equals(role) && !"assistant".equals(role))
             || text.isEmpty()
             || text.length() > MAX_STORED_TEXT) continue;
-        addToHistory(role, text);
+        addToHistory(role, text, item.optString("mode", "offline"));
       }
     } catch (JSONException ignored) {
       messages = new JSONArray();
@@ -190,12 +199,18 @@ public final class AiActivity extends BaseActivity {
   }
 
   private void addToHistory(String role, String text) {
+    addToHistory(role, text, connection != null && connection.online() ? "online" : "offline");
+  }
+
+  private void addToHistory(String role, String text, String mode) {
     try {
       JSONObject item = new JSONObject();
       item.put("role", role);
       item.put("text", text);
+      item.put("mode", mode);
       messages.put(item);
       while (messages.length() > MAX_MESSAGES) messages.remove(0);
+      while (messages.length() > 1 && messages.toString().length() > 48000) messages.remove(0);
     } catch (JSONException ignored) {
       /* All fields are validated strings. */
     }
@@ -213,11 +228,16 @@ public final class AiActivity extends BaseActivity {
     }
     for (int i = 0; i < messages.length(); i++) {
       JSONObject item = messages.optJSONObject(i);
-      if (item != null) bubble(item.optString("role"), item.optString("text"));
+      if (item != null)
+        bubble(item.optString("role"), item.optString("text"), item.optString("mode", "offline"));
     }
   }
 
   private void bubble(String role, String message) {
+    bubble(role, message, "offline");
+  }
+
+  private void bubble(String role, String message, String mode) {
     boolean user = "user".equals(role);
     LinearLayout row = new LinearLayout(this);
     row.setGravity(user ? Gravity.END : Gravity.START);
@@ -232,7 +252,7 @@ public final class AiActivity extends BaseActivity {
     else cardParams.rightMargin = dp(18);
     card.setLayoutParams(cardParams);
     GradientDrawable background = new GradientDrawable();
-    background.setColor(Color.parseColor(user ? "#15332F" : "#FFFFFF"));
+    background.setColor(getColor(user ? R.color.concept_lavender : R.color.white));
     background.setCornerRadii(
         new float[] {
           dp(19),
@@ -247,7 +267,10 @@ public final class AiActivity extends BaseActivity {
     card.setBackground(background);
     if (!user) {
       TextView label = new TextView(this);
-      label.setText("✦  ZIKRA · OFFLINE");
+      label.setText(
+          "online".equals(mode)
+              ? R.string.concept_ai_cloud_label
+              : R.string.concept_ai_local_label);
       label.setTextSize(12);
       label.setTextColor(Color.parseColor("#52665F"));
       label.setTypeface(label.getTypeface(), Typeface.BOLD);
@@ -258,7 +281,7 @@ public final class AiActivity extends BaseActivity {
     body.setText(message);
     body.setTextSize(16);
     body.setLineSpacing(dp(4), 1f);
-    body.setTextColor(Color.parseColor(user ? "#FFFFFF" : "#15332F"));
+    body.setTextColor(getColor(R.color.pine));
     body.setTextIsSelectable(true);
     card.addView(body);
     row.addView(card);
@@ -266,6 +289,9 @@ public final class AiActivity extends BaseActivity {
   }
 
   private void sendMessage() {
+    if (waiting) return;
+    findViewById(R.id.aiRequestStatus).setVisibility(View.GONE);
+    findViewById(R.id.aiRetry).setVisibility(View.GONE);
     String message = input.getText().toString().trim();
     if (message.isEmpty()) {
       input.setError("Tulis pesanmu dahulu");
@@ -274,6 +300,14 @@ public final class AiActivity extends BaseActivity {
     }
     if (message.length() > OfflineAssistant.MAX_INPUT_LENGTH) {
       input.setError("Maksimal 500 karakter");
+      return;
+    }
+    if (connection.online()) {
+      addToHistory("user", message);
+      preferences.edit().putString(HISTORY_KEY, messages.toString()).apply();
+      input.setText("");
+      renderConversation();
+      requestOnline();
       return;
     }
     int completed;
@@ -295,6 +329,131 @@ public final class AiActivity extends BaseActivity {
         () -> {
           if (!isFinishing()) scroll.smoothScrollTo(0, thread.getBottom());
         });
+  }
+
+  private void updateMode() {
+    boolean online = connection.online();
+    ((TextView) findViewById(R.id.aiMode))
+        .setText(online ? R.string.concept_ai_mode_online : R.string.concept_ai_mode_offline);
+    ((TextView) findViewById(R.id.aiPrivacyNote))
+        .setText(online ? R.string.concept_ai_network_note : R.string.concept_ai_local_note);
+    ((TextView) findViewById(R.id.featureSubtitle))
+        .setText(online ? R.string.concept_ai_mode_online : R.string.concept_ai_mode_offline);
+  }
+
+  private void chooseMode() {
+    modeDialog =
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.concept_ai_choose_mode)
+            .setItems(
+                new String[] {
+                  getString(R.string.concept_ai_offline), getString(R.string.concept_ai_online)
+                },
+                (d, index) -> {
+                  onlineClient.cancel();
+                  setWaiting(false);
+                  findViewById(R.id.aiRetry).setVisibility(View.GONE);
+                  if (index == 0) {
+                    connection.offline();
+                    updateMode();
+                  } else configureGateway();
+                })
+            .show();
+  }
+
+  private void configureGateway() {
+    LinearLayout form = new LinearLayout(this);
+    form.setOrientation(LinearLayout.VERTICAL);
+    form.setPadding(dp(24), dp(8), dp(24), dp(8));
+    TextView note = new TextView(this);
+    note.setText(R.string.concept_ai_backend_note);
+    note.setTextSize(14);
+    form.addView(note);
+    EditText endpoint = new EditText(this);
+    endpoint.setSingleLine(true);
+    endpoint.setInputType(
+        android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_URI);
+    endpoint.setHint(R.string.concept_ai_endpoint);
+    endpoint.setText(connection.endpoint());
+    form.addView(endpoint);
+    EditText access = new EditText(this);
+    access.setSingleLine(true);
+    access.setInputType(
+        android.text.InputType.TYPE_CLASS_TEXT
+            | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+    access.setHint(R.string.concept_ai_access);
+    form.addView(access);
+    modeDialog =
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.concept_ai_backend)
+            .setView(form)
+            .setPositiveButton(R.string.concept_ai_connect, null)
+            .setNegativeButton(R.string.concept_ai_cancel, null)
+            .create();
+    modeDialog.setOnShowListener(
+        d ->
+            modeDialog
+                .getButton(AlertDialog.BUTTON_POSITIVE)
+                .setOnClickListener(
+                    v -> {
+                      try {
+                        connection.save(
+                            endpoint.getText().toString().trim(),
+                            access.getText().toString().trim());
+                        updateMode();
+                        modeDialog.dismiss();
+                      } catch (Exception invalid) {
+                        endpoint.setError(getString(R.string.concept_ai_backend_invalid));
+                      }
+                    }));
+    modeDialog.show();
+  }
+
+  private void setWaiting(boolean value) {
+    waiting = value;
+    findViewById(R.id.aiSend).setEnabled(!value);
+    TextView status = findViewById(R.id.aiRequestStatus);
+    status.setText(value ? R.string.concept_ai_pending : R.string.concept_ai_failed);
+    status.setVisibility(value ? View.VISIBLE : View.GONE);
+  }
+
+  private void requestOnline() {
+    if (waiting
+        || !connection.online()
+        || messages.length() == 0
+        || !"user".equals(messages.optJSONObject(messages.length() - 1).optString("role"))) return;
+    setWaiting(true);
+    findViewById(R.id.aiRetry).setVisibility(View.GONE);
+    try {
+      onlineClient.send(
+          connection,
+          messages,
+          new com.zikra.app.assistant.OnlineAssistantClient.Result() {
+            @Override
+            public void complete(String reply) {
+              if (isFinishing() || isDestroyed()) return;
+              setWaiting(false);
+              addToHistory("assistant", reply, "online");
+              preferences.edit().putString(HISTORY_KEY, messages.toString()).apply();
+              renderConversation();
+              scroll.post(() -> scroll.smoothScrollTo(0, thread.getBottom()));
+            }
+
+            @Override
+            public void failed() {
+              showOnlineFailure();
+            }
+          });
+    } catch (Exception unavailable) {
+      showOnlineFailure();
+    }
+  }
+
+  private void showOnlineFailure() {
+    if (isFinishing() || isDestroyed()) return;
+    setWaiting(false);
+    findViewById(R.id.aiRequestStatus).setVisibility(View.VISIBLE);
+    findViewById(R.id.aiRetry).setVisibility(View.VISIBLE);
   }
 
   private void composeTopic(String text) {
@@ -376,6 +535,9 @@ public final class AiActivity extends BaseActivity {
             .setPositiveButton(
                 "Hapus",
                 (dialog, which) -> {
+                  onlineClient.cancel();
+                  setWaiting(false);
+                  findViewById(R.id.aiRetry).setVisibility(View.GONE);
                   messages = new JSONArray();
                   preferences.edit().remove(HISTORY_KEY).apply();
                   renderConversation();
@@ -399,6 +561,8 @@ public final class AiActivity extends BaseActivity {
 
   @Override
   protected void onPause() {
+    if (onlineClient != null) onlineClient.cancel();
+    if (waiting) showOnlineFailure();
     if (orb != null) orb.setActive(false);
     super.onPause();
   }
@@ -413,6 +577,8 @@ public final class AiActivity extends BaseActivity {
     }
     if (clearDialog != null) clearDialog.dismiss();
     if (voiceDialog != null) voiceDialog.dismiss();
+    if (modeDialog != null) modeDialog.dismiss();
+    if (onlineClient != null) onlineClient.close();
     super.onDestroy();
   }
 }

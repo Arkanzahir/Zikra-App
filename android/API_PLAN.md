@@ -1,3 +1,5 @@
+> **Reader/Featherless 1.3.0:** reader terjemahan dapat memakai pasangan rekaman/timing dan pencocokan urutan kata; ayat-only saat mismatch/offline. [Laporan](validation/concept-refresh-2026-10-21/README.md). [Gateway Featherless](../backend/README.md) tersedia, tetapi belum dihosting/dikonfigurasi/diuji live. API key tidak ada di APK.
+
 > **Sorotan kata online — 21 Oktober 2026:** public Quran.com v4 memasangkan URL rekaman dan segments per ayat untuk Alafasy/Husary/Minshawi. SHA256 file yang diputar, cakupan kata dan durasi decoder mengikat WordTimeline; tidak menerapkan timing pada rekaman CDN lama. [Implementasi, bukti dan batas](validation/mushaf-word-sync-2026-10-21/README.md). Backend terautentikasi/Content Sync dan timing offline belum terhubung.
 
 > **Mushaf online dan audio asli — 21 Oktober 2026:** renderer memakai public v4 yang sudah ada, font QCF V2 dari CDN resmi dengan atribusi/cache terbatas. Lima metode emulator API 37 (termasuk decoder/unduhan/offline qari asli) lulus. [Laporan](validation/mushaf-reader-2026-10-21/README.md). Gateway backend/Content Sync dan sinkron kata belum diintegrasikan.

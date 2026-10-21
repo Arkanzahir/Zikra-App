@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/aiRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ai_background">
+    android:background="@color/concept_ivory">
     <LinearLayout
         android:id="@+id/aiPage"
         android:layout_width="match_parent"
@@ -32,9 +32,10 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:padding="20dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/studio_violet_card">
+                    android:padding="0dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@null"
+                    android:minHeight="170dp">
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -47,12 +48,13 @@
                             android:textSize="10sp"
                             android:textColor="@color/studio_purple"
                             android:letterSpacing="0.12"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:visibility="gone" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/design_ai_heading"
-                            android:textSize="25sp"
+                            android:text="@string/concept_ai_heading"
+                            android:textSize="23sp"
                             android:textColor="@color/studio_ink"
                             android:layout_marginTop="12dp"
                             android:textStyle="bold"
@@ -60,7 +62,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/design_ai_caption"
+                            android:text="@string/concept_ai_caption"
                             android:textSize="14sp"
                             android:textColor="@color/studio_ink"
                             android:layout_marginTop="10dp"
@@ -68,18 +70,26 @@
                     </LinearLayout>
                     <com.zikra.app.assistant.AssistantOrbView
                         android:id="@+id/aiOrb"
-                        android:layout_width="104dp"
-                        android:layout_height="144dp"
+                        android:layout_width="108dp"
+                        android:layout_height="136dp"
                         android:importantForAccessibility="no" />
                 </LinearLayout>
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/design_ai_local"
+                    android:text="@string/concept_ai_mode_offline"
                     android:textSize="12sp"
                     android:textColor="@color/studio_purple"
                     android:layout_marginTop="12dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:id="@+id/aiMode"
+                    android:background="@drawable/concept_violet_card"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:minHeight="48dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -91,13 +101,13 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/studio_sage_card"
-                        android:padding="16dp"
+                        android:background="@drawable/concept_paper_card"
+                        android:padding="12dp"
                         android:orientation="vertical"
                         android:clickable="true"
                         android:focusable="true"
                         android:contentDescription="Tulis pesan untuk pendamping offline"
-                        android:minHeight="164dp"
+                        android:minHeight="120dp"
                         android:foreground="?android:attr/selectableItemBackground">
                         <ImageView
                             android:layout_width="30dp"
@@ -111,7 +121,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            android:text="Tulis rencana"
+                            android:text="@string/concept_ai_plan"
                             android:textColor="@color/assistant_text"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -130,7 +140,8 @@
                             android:text="Tulis pesan  →"
                             android:textColor="@color/studio_tint_466b5c"
                             android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:visibility="gone" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/aiVoiceTile"
@@ -138,13 +149,13 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:background="@drawable/studio_violet_card"
-                        android:padding="16dp"
+                        android:background="@drawable/concept_paper_card"
+                        android:padding="12dp"
                         android:orientation="vertical"
                         android:clickable="true"
                         android:focusable="true"
                         android:contentDescription="Masukkan pesan dengan suara"
-                        android:minHeight="164dp"
+                        android:minHeight="120dp"
                         android:foreground="?android:attr/selectableItemBackground">
                         <ImageView
                             android:layout_width="30dp"
@@ -266,16 +277,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="20dp" />
+                    android:layout_marginTop="16dp" />
+                <TextView
+                    android:id="@+id/aiRequestStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/concept_ai_pending"
+                    android:textSize="14sp"
+                    android:textColor="@color/concept_muted"
+                    android:visibility="gone"
+                    android:accessibilityLiveRegion="polite"
+                    android:paddingVertical="12dp" />
+                <Button
+                    android:id="@+id/aiRetry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:text="@string/concept_ai_retry"
+                    android:textAllCaps="false"
+                    android:visibility="gone" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="Panduan lokal untuk rutinitas, bukan AI generatif. Tidak menjawab soal khusus atau menilai bacaan Quran. Percakapan tersimpan di perangkat."
+                    android:gravity="start"
+                    android:text="@string/concept_ai_local_note"
                     android:textColor="@color/studio_tint_52665f"
-                    android:textSize="14sp"
-                    android:lineSpacingExtra="3dp" />
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/aiPrivacyNote" />
                 <TextView
                     android:id="@+id/aiOpenStudy"
                     android:layout_width="match_parent"
@@ -296,12 +326,12 @@
             android:id="@+id/aiComposer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ai_tile"
+            android:background="@drawable/concept_paper_card"
             android:padding="6dp"
             android:gravity="bottom"
             android:layout_marginHorizontal="@dimen/screen_inset"
             android:layout_marginBottom="12dp"
-            android:elevation="2dp">
+            android:elevation="0dp">
             <ImageButton
                 android:id="@+id/aiVoice"
                 android:layout_width="48dp"

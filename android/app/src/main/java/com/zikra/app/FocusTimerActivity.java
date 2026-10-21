@@ -171,6 +171,8 @@ public final class FocusTimerActivity extends BaseActivity {
       ((TextView) findViewById(R.id.focusTime)).setText(time);
     }
     long total = (clock.breakPhase ? clock.breakMinutes : clock.focusMinutes) * 60000L;
+    ((TextView) findViewById(R.id.featureTitle))
+        .setText(clock.breakPhase ? R.string.concept_break_title : R.string.concept_focus_title);
     boolean paused = !clock.running && !clock.finished && clock.remaining < total;
     text(
         R.id.focusPhase,
@@ -212,6 +214,15 @@ public final class FocusTimerActivity extends BaseActivity {
       text(R.id.focusHint, R.string.design_focus_rest_hint);
     ((ProgressBar) findViewById(R.id.focusProgress))
         .setProgress((int) Math.max(0, Math.min(1000, 1000L - clock.remaining * 1000L / total)));
+    ((com.zikra.app.ui.FocusRingView) findViewById(R.id.focusRing))
+        .snapshot(clock.remaining, total, clock.breakPhase);
+    if (!clock.finished)
+      text(
+          R.id.focusTotal,
+          clock.breakPhase || paused ? R.string.concept_break_calm : R.string.concept_focus_calm);
+    findViewById(R.id.focusContent)
+        .setBackgroundColor(
+            getColor(clock.breakPhase ? R.color.concept_mint : R.color.concept_ivory));
     // A pause changes only the companion pose; it does not start the break countdown.
     garden.snapshot(
         clock.remaining, total, clock.running, clock.breakPhase || paused, clock.finished);

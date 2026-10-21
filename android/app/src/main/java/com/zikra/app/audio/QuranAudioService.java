@@ -36,6 +36,7 @@ public final class QuranAudioService extends Service {
     public final float wordFraction;
     public final boolean playing, loading, loop, requested, wordSync, wordTimingAvailable;
     public final String reciter, status;
+    public final List<String> words;
 
     State(QuranAudioService s) {
       RecitationQueue q = s.queue;
@@ -64,6 +65,7 @@ public final class QuranAudioService extends Service {
       duration = length;
       wordSync = s.wordSync;
       wordTimingAvailable = s.timeline != null;
+      words = s.timedWords;
       WordTimeline.Highlight highlight =
           s.timeline == null
               ? null
@@ -93,6 +95,7 @@ public final class QuranAudioService extends Service {
   private volatile boolean destroyed;
   private volatile int audioGeneration;
   private WordTimeline timeline;
+  private List<String> timedWords = java.util.Collections.emptyList();
   private String recordingSha256;
   private TimedAudioRepository timedAudio;
   private final ExecutorService audioWorker = Executors.newSingleThreadExecutor();
@@ -323,6 +326,7 @@ public final class QuranAudioService extends Service {
           if (clip != null) {
             recordingSha256 = clip.sha256;
             timeline = clip.data.timeline(clip.sha256, p.getDuration());
+            if (timeline != null) timedWords = clip.data.words;
           }
           if (wantPlay) resume();
           else {
@@ -490,6 +494,7 @@ public final class QuranAudioService extends Service {
     audioGeneration++;
     fetching = buffering = seeking = false;
     timeline = null;
+    timedWords = java.util.Collections.emptyList();
     recordingSha256 = null;
     if (timedAudio != null) timedAudio.cancel();
     main.removeCallbacks(tick);

@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background">
+    android:background="@color/concept_ivory">
     <com.zikra.app.ui.FeatureHeader android:id="@+id/focusHeader" android:layout_width="match_parent" android:layout_height="wrap_content" />
     <ScrollView
         android:layout_width="match_parent"
@@ -20,8 +20,8 @@
             android:paddingHorizontal="20dp"
             android:paddingTop="12dp"
             android:paddingBottom="24dp">
-            <TextView android:id="@+id/focusTask" style="@style/NearbySection" android:textSize="22sp" />
-            <TextView style="@style/NearbyCaption" android:layout_marginTop="8dp" android:text="@string/focus_intro" />
+            <TextView android:id="@+id/focusTask" style="@style/NearbySection" android:textSize="20sp" android:gravity="center" />
+            <TextView style="@style/NearbyCaption" android:layout_marginTop="8dp" android:text="@string/focus_intro" android:visibility="gone" />
             <RadioGroup
                 android:id="@+id/focusDuration"
                 android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:orientation="horizontal"
                 android:background="@drawable/bg_nearby_panel"
                 android:padding="4dp"
-                android:layout_marginTop="18dp">
+                android:layout_marginTop="12dp">
                 <RadioButton android:id="@+id/focusShort" style="@style/NearbyTab" android:text="25 / 5 menit" />
                 <RadioButton android:id="@+id/focusLong" style="@style/NearbyTab" android:text="50 / 10 menit" />
             </RadioGroup>
@@ -37,13 +37,13 @@
                 android:id="@+id/focusStage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="14dp"
+                android:layout_marginTop="16dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
                 android:orientation="vertical"
                 android:gravity="center_horizontal"
-                android:background="@drawable/studio_focus_stage"
-                android:padding="20dp">
+                android:background="@null"
+                android:padding="0dp">
                 <TextView
                     android:id="@+id/focusPhase"
                     style="@style/NearbyCaption"
@@ -52,33 +52,50 @@
                     android:paddingHorizontal="12dp"
                     android:letterSpacing="0.08"
                     android:textSize="11sp" />
-                <TextView
-                    android:id="@+id/focusTime"
-                    android:layout_width="240dp"
-                    android:layout_height="76dp"
-                    android:includeFontPadding="false"
-                    android:layout_marginTop="4dp"
-                    android:textSize="56sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/pine"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="22sp"
-                    android:autoSizeMaxTextSize="56sp"
-                    android:autoSizeStepGranularity="2sp" />
-                <TextView
-                    android:id="@+id/focusTotal"
-                    style="@style/NearbyCaption"
-                    android:layout_width="match_parent"
-                    android:paddingHorizontal="12dp"
-                    android:gravity="center"
-                    android:text="@string/focus_remaining" />
+                <FrameLayout android:layout_width="248dp" android:layout_height="248dp" android:layout_marginTop="12dp">
+                    <com.zikra.app.ui.FocusRingView
+                        android:id="@+id/focusRing"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:importantForAccessibility="no" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/focusTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:layout_marginTop="0dp"
+                            android:textSize="56sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/pine"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:autoSizeTextType="uniform"
+                            android:autoSizeMinTextSize="22sp"
+                            android:autoSizeMaxTextSize="56sp"
+                            android:autoSizeStepGranularity="2sp"
+                            android:minHeight="72dp" />
+                        <TextView
+                            android:id="@+id/focusTotal"
+                            style="@style/NearbyCaption"
+                            android:layout_width="match_parent"
+                            android:paddingHorizontal="12dp"
+                            android:gravity="center"
+                            android:text="@string/focus_remaining"
+                            android:textSize="13sp"
+                            android:layout_marginTop="8dp" />
+                    </LinearLayout>
+                </FrameLayout>
                 <com.zikra.app.ui.FocusGardenView
                     android:id="@+id/focusGarden"
                     android:layout_width="match_parent"
-                    android:layout_height="194dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="14dp"
                     android:importantForAccessibility="no" />
                 <ProgressBar
                     android:id="@+id/focusProgress"
@@ -89,7 +106,8 @@
                     android:max="1000"
                     android:progressTint="@color/pine"
                     android:progressBackgroundTint="@color/studio_tint_d0e0d6"
-                    android:importantForAccessibility="no" />
+                    android:importantForAccessibility="no"
+                    android:visibility="gone" />
             </LinearLayout>
             <Button
                 android:id="@+id/focusPlay"

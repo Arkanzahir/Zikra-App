@@ -1,31 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="?android:attr/selectableItemBackgroundBorderless"
-    android:clickable="true"
-    android:focusable="true">
-    <View
-        android:id="@+id/navDestinationIndicator"
-        android:layout_width="24dp"
-        android:layout_height="3dp"
-        android:layout_marginBottom="4dp"
-        android:background="@color/pine"
-        android:importantForAccessibility="no" />
-    <ImageView
-        android:id="@+id/navDestinationIcon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:importantForAccessibility="no" />
-    <TextView
-        android:id="@+id/navDestinationLabel"
-        style="@style/DockLabel"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:paddingHorizontal="2dp"
-        android:maxLines="2"
-        android:importantForAccessibility="no" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center" android:background="?android:attr/selectableItemBackgroundBorderless" android:clickable="true" android:focusable="true">
+    <View android:id="@+id/navDestinationIndicator" android:layout_width="24dp" android:layout_height="3dp" android:layout_marginBottom="4dp" android:background="@color/pine" android:importantForAccessibility="no" android:visibility="gone" />
+    <ImageView android:id="@+id/navDestinationIcon" android:layout_width="48dp" android:layout_height="32dp" android:importantForAccessibility="no" android:paddingHorizontal="12dp" android:paddingVertical="4dp" />
+    <TextView android:id="@+id/navDestinationLabel" style="@style/DockLabel" android:layout_width="match_parent" android:gravity="center" android:paddingHorizontal="2dp" android:maxLines="2" android:importantForAccessibility="no" />
 </LinearLayout>

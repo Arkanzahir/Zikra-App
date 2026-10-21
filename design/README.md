@@ -1,3 +1,5 @@
+> **Acuan terpilih 21 Oktober 2026:** pengguna memilih [konsep revisi Home/Quran/AI serta Study/Fokus/Break](approved-2026-10-21/README.md). Gambar tersebut adalah arah desain aktif tambahan, bukan bukti aplikasi. Data, font Mushaf dan susunan ayat tetap berasal dari sumber terverifikasi.
+
 > **Arah terbaru (19 Oktober 2026):** tiga ilustrasi 2D dan karakternya tetap diam, dengan parallax sentuh/gulir yang kemudian diminta pengguna. Gambar utuh dan teks bergeser sedikit dengan kecepatan berbeda; bukan animasi anggota tubuh atau objek dalam adegan. Logo master tetap kiri atas; pengantar kecil, judul kuat dan paragraf manfaat dipertahankan. Warna ivory/Pine. [Aturan/aset ilustrasi](illustrations/onboarding/README.md) · [Rencana pengembangan bertahap](IMPROVEMENT_PLAN.md). Referensi 3D sebelumnya bukan arah aktif.
 
 # Referensi desain dari pengguna

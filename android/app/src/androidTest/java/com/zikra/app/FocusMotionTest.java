@@ -176,7 +176,7 @@ public final class FocusMotionTest extends InstrumentationTestCase {
     assertFalse(FocusTimer.load(context).breakPhase);
     assertFalse(animating());
     click(R.id.focusPlay);
-    await(() -> (Float) field(garden(), "phaseMix") > .99f);
+    await(() -> (Boolean) field(garden(), "resting"));
     assertTrue(FocusTimer.load(context).breakPhase);
     assertTrue(FocusTimer.load(context).running);
     assertEquals(
@@ -242,7 +242,7 @@ public final class FocusMotionTest extends InstrumentationTestCase {
                   .toString()
                   .equals("Mulai istirahat"));
       click(R.id.focusPlay);
-      await(() -> (Float) field(garden(), "phaseMix") > .99f);
+      await(() -> (Boolean) field(garden(), "resting"));
       SystemClock.sleep(8500);
     }
     assertTrue("Native video captured", video.isFile() && video.length() > 1000);
@@ -291,7 +291,7 @@ public final class FocusMotionTest extends InstrumentationTestCase {
     await(this::animating);
     await(() -> (Float) field(garden(), "motionTime") > .25f);
     click(R.id.focusPlay);
-    await(() -> (Float) field(garden(), "phaseMix") > .99f);
+    await(() -> (Boolean) field(garden(), "resting"));
     FocusClock paused = FocusTimer.load(context);
     assertFalse(paused.running);
     assertFalse("Pausing the character never starts a break timer", paused.breakPhase);
@@ -306,7 +306,7 @@ public final class FocusMotionTest extends InstrumentationTestCase {
       main(page::recreate);
       page = (FocusTimerActivity) getInstrumentation().waitForMonitorWithTimeout(monitor, 20000);
       assertNotNull(page);
-      await(() -> (Float) field(garden(), "phaseMix") > .99f);
+      await(() -> (Boolean) field(garden(), "resting"));
       assertFalse(animating());
       assertFalse(FocusTimer.load(context).breakPhase);
       assertEquals(paused.remaining, FocusTimer.load(context).remaining);
@@ -314,7 +314,7 @@ public final class FocusMotionTest extends InstrumentationTestCase {
       getInstrumentation().removeMonitor(monitor);
     }
     click(R.id.focusPlay);
-    await(() -> (Float) field(garden(), "phaseMix") < .01f);
+    await(() -> !(Boolean) field(garden(), "resting"));
     await(this::animating);
     assertTrue(FocusTimer.load(context).running);
     assertFalse(FocusTimer.load(context).breakPhase);
@@ -361,7 +361,7 @@ public final class FocusMotionTest extends InstrumentationTestCase {
     click(R.id.focusPlay);
     await(() -> !animating());
     long remaining = FocusTimer.load(context).remaining;
-    await(() -> (Float) field(garden(), "phaseMix") > .99f);
+    await(() -> (Boolean) field(garden(), "resting"));
     SystemClock.sleep(400);
     Bitmap paused = characterFrame();
     SystemClock.sleep(900);

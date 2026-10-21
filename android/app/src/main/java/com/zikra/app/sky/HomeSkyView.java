@@ -2,12 +2,10 @@ package com.zikra.app.sky;
 
 import android.content.Context;
 import android.graphics.*;
-import android.graphics.drawable.Drawable;
 import android.hardware.*;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.*;
-import com.zikra.app.R;
 import com.zikra.app.ui.AmbientMotionPolicy;
 import java.time.*;
 
@@ -15,7 +13,10 @@ import java.time.*;
 public final class HomeSkyView extends View implements SensorEventListener {
   private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
   private final Path cloud = new Path(), moon = new Path();
-  private final Drawable skyline;
+  private final MosqueSkyPainter mosque;
+  private Shader backdrop;
+  private boolean backdropDay;
+  private int backdropWidth, backdropHeight;
   private final AmbientMotionPolicy policy;
   private final SensorManager sensors;
   private final Sensor gravity;
@@ -28,9 +29,7 @@ public final class HomeSkyView extends View implements SensorEventListener {
   public HomeSkyView(Context c, AttributeSet a) {
     super(c, a);
     setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_NO);
-    skyline = c.getDrawable(R.drawable.home_mosque_silhouette);
-    skyline.setTint(0xFF9ABAA9);
-    skyline.setAlpha(28);
+    mosque = new MosqueSkyPainter();
     sensors = (SensorManager) c.getSystemService(Context.SENSOR_SERVICE);
     gravity = sensors == null ? null : sensors.getDefaultSensor(Sensor.TYPE_GRAVITY);
     policy =
@@ -147,28 +146,63 @@ public final class HomeSkyView extends View implements SensorEventListener {
       offsetY += (aimY - offsetY) * .10f;
     } else offsetX = offsetY = 0;
     float w = getWidth(), h = getHeight(), u = w / 400f;
-    c.drawColor(light ? 0xFF1A4039 : 0xFF102923);
+    if (backdrop == null
+        || backdropDay != light
+        || backdropWidth != getWidth()
+        || backdropHeight != getHeight()) {
+      backdropDay = light;
+      backdropWidth = getWidth();
+      backdropHeight = getHeight();
+      backdrop =
+          new LinearGradient(
+              0,
+              0,
+              w,
+              h,
+              light ? 0xFF143F37 : 0xFF102E2D,
+              light ? 0xFF547665 : 0xFF193D37,
+              Shader.TileMode.CLAMP);
+    }
+    paint.setShader(backdrop);
+    paint.setAlpha(255);
+    c.drawRect(0, 0, w, h, paint);
+    paint.setShader(null);
     if (light) {
       float progress = day.sunProgress(time),
-          x = w * (.09f + .82f * progress),
-          y = h * .43f - h * .30f * (float) Math.sin(Math.PI * progress);
+          x = w * (.68f + .22f * progress),
+          y = h * .34f - h * .08f * (float) Math.sin(Math.PI * progress);
       paint.setColor(0xFFEDC581);
       paint.setAlpha(20);
-      c.drawCircle(x, y, 22 * u, paint);
+      c.drawCircle(x, y, 24 * u, paint);
       paint.setAlpha(230);
-      c.drawCircle(x, y, 8 * u, paint);
+      c.drawCircle(x, y, 17 * u, paint);
+      c.save();
+      c.rotate(t * .7f, x, y);
+      paint.setAlpha(40);
+      paint.setStrokeWidth(u);
+      for (int i = 0; i < 12; i++) {
+        double a = i * Math.PI / 6;
+        c.drawLine(
+            x + (float) Math.cos(a) * 21 * u,
+            y + (float) Math.sin(a) * 21 * u,
+            x + (float) Math.cos(a) * 24 * u,
+            y + (float) Math.sin(a) * 24 * u,
+            paint);
+      }
+      c.restore();
+      paint.setAlpha(255);
       cloud(
           c,
           w * .72f + offsetX * 5 * u + (float) Math.sin(t * .15) * 8 * u,
-          h * .23f + offsetY * 2 * u,
+          h * .38f + offsetY * 2 * u,
           .62f * u,
-          28);
+          66);
       cloud(
           c,
           w * .01f + offsetX * 9 * u + (float) Math.sin(t * .11) * 10 * u,
           h * .40f,
           .8f * u,
-          22);
+          45);
     } else {
       for (int i = 0; i < 19; i++) {
         float x = w * ((i * 43 + 23) % 367) / 400f, y = h * (.25f + ((i * 31) % 47) / 170f);
@@ -180,8 +214,11 @@ public final class HomeSkyView extends View implements SensorEventListener {
             x + offsetX * 3 * u, y + offsetY * 2 * u, (i % 3 == 0 ? 1.2f : .7f) * u, paint);
       }
       c.save();
-      c.translate(w * .78f + offsetX * 5 * u, h * .27f + offsetY * 3 * u);
-      c.scale(11 * u * (day.waxing ? 1 : -1), 11 * u);
+      c.translate(
+          w * .84f + offsetX * 5 * u,
+          h * .31f + offsetY * 3 * u + (float) Math.sin(t * .12f) * 2 * u);
+      c.rotate(-18 + (float) Math.sin(t * .045f) * 6);
+      c.scale(17 * u * (day.waxing ? 1 : -1), 17 * u);
       paint.setColor(0xFF63756A);
       paint.setAlpha(80);
       c.drawCircle(0, 0, 1, paint);
@@ -190,12 +227,16 @@ public final class HomeSkyView extends View implements SensorEventListener {
       c.drawPath(moon, paint);
       c.restore();
       cloud(
-          c, -12 * u + offsetX * 7 * u + (float) Math.sin(t * .10) * 8 * u, h * .37f, .8f * u, 13);
+          c,
+          w * .58f + offsetX * 7 * u + (float) Math.sin(t * .10) * 15 * u,
+          h * .42f,
+          .8f * u,
+          34);
+      cloud(c, w * .70f + (float) Math.sin(t * .07f) * 24 * u, h * .57f, 1.1f * u, 22);
     }
     c.save();
     c.translate(offsetX * 3 * u, offsetY * 1.5f * u);
-    skyline.setBounds(-5, (int) (h - 142 * u), (int) w + 5, (int) (h + 12 * u));
-    skyline.draw(c);
+    mosque.draw(c, w, h, light);
     c.restore();
     if (animate) postInvalidateDelayed(33);
   }

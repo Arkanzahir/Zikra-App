@@ -1,3 +1,5 @@
+> **Implementasi 1.3.0:** [konsep katalog pilihan pengguna](approved-2026-10-21/README.md) diterapkan. Reader terjemahan dapat mewarnai kata melalui pasangan recording/timing dan pencocokan seluruh urutan kata. Mismatch/offline kembali ke sorotan ayat. Ornamen/layout Mushaf tetap dipertahankan; validasi visual/playback versi ini menunggu HP.
+
 # Arah desain Quran, audio dan Mushaf — 20 Oktober 2026 (WIB)
 
 Status 21 Oktober: **katalog, reader ayat-terjemahan dan panel audio sudah diterapkan**;

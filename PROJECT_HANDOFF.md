@@ -1,5 +1,36 @@
 # Handoff Zikra — 21 Oktober 2026 (WIB)
 
+## Terbaru: konsep terpilih diterapkan — 1.3.0
+
+Pengguna memilih mockup Home/Quran/AI dan Study/Fokus/Break, meminta langit serta
+karakter bergerak dan warna teks mengikuti audio. Referensi tersimpan pada
+design/approved-2026-10-21/. Home memakai sapaan sesuai waktu/countdown, Canvas
+masjid/awan/matahari/bulan; Study mendapat strip tanggal/tugas dan ring timer,
+ilustrasi siswa berlapis membaca/cangkir dengan tangan/kepala/uap yang terpisah.
+Timer/SQLite lama dipertahankan. Jangan menyalin angka/tugas demo dari mockup.
+
+Reader terjemahan kini dapat memakai timing rekaman yang sama dengan Mushaf dan
+pencocokan SELURUH urutan kata Arab sebelum mewarnai kata. Ejaan/urutan/timing
+mismatch kembali ke warna ayat; pilihan sorotan ayat/offline tersedia. Ornamen
+Mushaf tetap. Belum uji playback/UI native versi ini.
+
+Featherless: pengguna belum punya backend dan memilih siapkan jalur dulu.
+Gateway Node + klien Android opt-in tersedia, provider key hanya di environment
+server, kode gateway disimpan Android Keystore. Offline default, online belum
+live/deploy. Lihat backend/README.md untuk batas pengujian pribadi/hosting.
+
+APK Zikra-Concept-Refresh-v1.3.0-debug.apk (folder induk workspace), code 5,
+sertifikat sama. Build akhir 32 detik, heap 768 MiB/1 worker/tanpa emulator:
+96 JVM lulus tanpa skip, 9 tes backend mock lulus, tes Android berhasil dikompilasi,
+lint 0 error/648 warning. Belum screenshot/rekaman HP dan belum klaim identik
+mockup atau kelancaran animasi. [Laporan](android/validation/concept-refresh-2026-10-21/README.md).
+
+Build terpisah dari eksperimen prefetch lama. Working tree service/cache audio,
+MushafReaderTest, alat audit timing dan catatan storage lama tetap dipertahankan;
+jangan hapus/commit perubahan lama itu tanpa meninjau lingkupnya. Berikutnya:
+pasang sebagai pembaruan di HP (jangan uninstall), cek visual/teks besar dan
+gerak/playback; hosting/model/key server diperlukan untuk uji Featherless live.
+
 ## Terbaru: orb bergerak — 1.2.1
 
 Koreksi pengguna: orb referensi bergerak, sedangkan APK 1.2 masih statis.

@@ -1,0 +1,44 @@
+{
+  "versionName": "1.3.0",
+  "versionCode": 5,
+  "apkFile": "Zikra-Concept-Refresh-v1.3.0-debug.apk",
+  "apkSha256": "1a4f0cc9d7de3c31d47abcc31906ee9e679937630a18554b93c628e710d98da2",
+  "androidAppSourceTree": "39e9c838a00b2b5e27c75af840a18c8f269c0664",
+  "build": {
+    "assembleDebug": true,
+    "assembleDebugAndroidTest": true,
+    "testDebugUnitTest": true,
+    "lintDebug": true,
+    "seconds": 32,
+    "workers": 1,
+    "heapMiB": 768,
+    "emulatorStarted": false
+  },
+  "jvm": {
+    "tests": 96,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Error": 0,
+    "Warning": 648,
+    "Fatal": 0
+  },
+  "backend": {
+    "tests": 9,
+    "passed": 9,
+    "liveFeatherless": false,
+    "mockedProvider": true,
+    "deployed": false
+  },
+  "nativeRuntimeTested": false,
+  "nativeScreenshots": [],
+  "physicalPhoneTested": false,
+  "sourceNotes": "App built from staged sources. Prior uncommitted audio prefetch experiment excluded, preserved locally.",
+  "limits": [
+    "Native visual match, animation lifecycle/performance and playback require HP verification.",
+    "Word matching can fall back to ayah-only; full offline word timings not provided.",
+    "Private gateway requires HTTPS hosting, provider credentials/model and client access configuration before live use."
+  ]
+}

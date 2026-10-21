@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/quranPageRoot"
@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@color/concept_ivory">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="64dp"
@@ -108,51 +108,35 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/design_quran_eyebrow"
-                                    android:textSize="10sp"
+                                    android:text="@string/concept_quran_eyebrow"
+                                    android:textSize="12sp"
                                     android:textColor="@color/studio_tint_d4e9dc"
-                                    android:letterSpacing="0.14"
+                                    android:letterSpacing="0"
                                     android:textStyle="bold" />
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/design_quran_heading"
-                                    android:textSize="27sp"
+                                    android:text="@string/concept_quran_heading"
+                                    android:textSize="26sp"
                                     android:textColor="@color/white"
                                     android:layout_marginTop="10dp"
                                     android:textStyle="bold" />
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/design_quran_caption"
-                                    android:textSize="14sp"
+                                    android:text="@string/concept_quran_caption"
+                                    android:textSize="13sp"
                                     android:textColor="@color/studio_tint_dae9e0"
                                     android:layout_marginTop="8dp"
                                     android:lineSpacingExtra="3dp" />
                             </LinearLayout>
                             <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="112dp"
+                                android:layout_width="90dp"
+                                android:layout_height="100dp"
                                 android:src="@drawable/studio_quran_book"
                                 android:importantForAccessibility="no"
                                 android:scaleType="fitCenter" />
                         </LinearLayout>
-                        <Button
-                            android:id="@+id/quranCatalogMushaf"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:minHeight="48dp"
-                            android:layout_marginTop="16dp"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="12dp"
-                            android:background="@drawable/studio_gold_button"
-                            android:backgroundTint="@null"
-                            android:text="@string/design_mushaf_action"
-                            android:textColor="@color/pine"
-                            android:textSize="15sp"
-                            android:textAllCaps="false"
-                            android:textStyle="bold"
-                            android:stateListAnimator="@null" />
                     </LinearLayout>
                     <TextView
                         android:id="@+id/quranIntro"
@@ -198,11 +182,11 @@
                         android:layout_height="wrap_content"
                         android:minHeight="72dp"
                         android:layout_marginTop="16dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_marginBottom="8dp"
                         android:gravity="center_vertical"
                         android:paddingHorizontal="14dp"
                         android:paddingVertical="12dp"
-                        android:background="@drawable/quran_resume_background"
+                        android:background="@drawable/concept_mint_card"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground">
@@ -242,6 +226,46 @@
                             android:rotation="180"
                             android:tint="@color/pine"
                             android:importantForAccessibility="no" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp"
+                        android:baselineAligned="false">
+                        <Button
+                            android:id="@+id/quranCatalogMushaf"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:layout_marginTop="0dp"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="12dp"
+                            android:background="@drawable/concept_paper_card"
+                            android:backgroundTint="@null"
+                            android:text="@string/design_mushaf_action"
+                            android:textColor="@color/pine"
+                            android:textSize="14sp"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:stateListAnimator="@null"
+                            android:layout_weight="1" />
+                        <Button
+                            android:id="@+id/quranCatalogDownloads"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:background="@drawable/concept_paper_card"
+                            android:backgroundTint="@null"
+                            android:text="@string/concept_quran_downloads"
+                            android:textColor="@color/pine"
+                            android:textSize="14sp"
+                            android:textAllCaps="false"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="12dp"
+                            android:stateListAnimator="@null"
+                            android:layout_weight="1"
+                            android:layout_marginStart="10dp" />
                     </LinearLayout>
                     <LinearLayout android:layout_width="match_parent" android:layout_height="44dp" android:gravity="center_vertical">
                         <TextView
@@ -322,6 +346,16 @@
                             android:textSize="27sp"
                             android:textColor="@color/white" />
                     </LinearLayout>
+                    <Switch
+                        android:id="@+id/quranWordFollow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:text="@string/concept_word_follow"
+                        android:textSize="14sp"
+                        android:textColor="@color/pine"
+                        android:paddingHorizontal="8dp"
+                        android:showText="false" />
                     <LinearLayout
                         android:id="@+id/quranVisibleTools"
                         android:layout_width="match_parent"

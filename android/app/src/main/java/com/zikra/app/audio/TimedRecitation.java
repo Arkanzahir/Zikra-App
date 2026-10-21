@@ -11,6 +11,7 @@ public final class TimedRecitation {
   public final long reportedDurationMs;
   public final String url, revision;
   public final List<WordTimeline.Segment> segments;
+  public final List<String> words;
 
   public static int id(String reciter) {
     return new int[] {7, 6, 9}[Recitation.reciterIndex(reciter)];
@@ -48,14 +49,17 @@ public final class TimedRecitation {
     reportedDurationMs = Math.round(audio.getDouble("duration") * 1000);
     JSONArray words = ayah.getJSONArray("words");
     int count = 0;
+    List<String> arabicWords = new ArrayList<>();
     for (int i = 0; i < words.length(); i++) {
       JSONObject word = words.getJSONObject(i);
       if ("word".equals(word.getString("char_type_name"))) {
         if (word.getInt("position") != ++count) throw new JSONException("Word position gap");
+        arabicWords.add(word.optString("text_uthmani", ""));
       } else if (!"end".equals(word.getString("char_type_name")))
         throw new JSONException("Unexpected word type");
     }
     wordCount = count;
+    this.words = Collections.unmodifiableList(arabicWords);
     List<WordTimeline.Segment> parsed = new ArrayList<>();
     JSONArray offsets = audio.optJSONArray("segments");
     if (offsets != null) {

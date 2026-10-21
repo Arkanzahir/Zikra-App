@@ -145,7 +145,8 @@ public final class NavDock {
         text.getTypeface(),
         key.equals(selected) ? android.graphics.Typeface.BOLD : android.graphics.Typeface.NORMAL);
     View indicator = row.findViewById(R.id.navDestinationIndicator);
-    indicator.setVisibility(key.equals(selected) ? View.VISIBLE : View.INVISIBLE);
+    indicator.setVisibility(View.GONE);
+    glyph.setBackgroundResource(key.equals(selected) ? R.drawable.concept_mint_card : 0);
     row.setAccessibilityDelegate(
         new View.AccessibilityDelegate() {
           @Override
@@ -198,6 +199,13 @@ public final class NavDock {
               ? (night ? 0xFFF5F7F6 : 0xFF15332F)
               : (night ? 0xFFA2B5AD : 0xFF65766F);
       state.icons.get(i).setColorFilter(color);
+      state
+          .icons
+          .get(i)
+          .setBackgroundResource(
+              state.active.get(i)
+                  ? (night ? R.drawable.concept_pine_button : R.drawable.concept_mint_card)
+                  : 0);
       state.labels.get(i).setTextColor(color);
       state.indicators.get(i).setBackgroundColor(color);
     }

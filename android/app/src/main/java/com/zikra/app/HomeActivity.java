@@ -51,7 +51,7 @@ public final class HomeActivity extends BaseActivity {
         @Override
         public void run() {
           updateClock();
-          timer.postDelayed(this, 60000 - System.currentTimeMillis() % 60000);
+          timer.postDelayed(this, 1000 - System.currentTimeMillis() % 1000);
         }
       };
 
@@ -236,8 +236,20 @@ public final class HomeActivity extends BaseActivity {
     ZonedDateTime now = ZonedDateTime.now(location.zone);
     loadSky(false);
     if (skyDay != null) sky.setSky(skyDay, now.toLocalTime());
-    ((TextView) findViewById(R.id.homeClock))
-        .setText(now.format(DateTimeFormatter.ofPattern("HH:mm", Locale.ROOT)));
+    int hour = now.getHour();
+    ((TextView) findViewById(R.id.homeGreeting))
+        .setText(
+            hour < 11 && hour >= 4
+                ? R.string.concept_greeting_morning
+                : hour < 15 && hour >= 11
+                    ? R.string.concept_greeting_noon
+                    : hour < 18 && hour >= 15
+                        ? R.string.concept_greeting_afternoon
+                        : R.string.concept_greeting_evening);
+    ((TextView) findViewById(R.id.homeGregorian))
+        .setText(
+            now.format(
+                DateTimeFormatter.ofPattern("EEEE, d MMMM", Locale.forLanguageTag("id-ID"))));
     HijrahDate date = HijrahDate.from(now.toLocalDate());
     String[] months = {
       "Muharram",
@@ -265,9 +277,27 @@ public final class HomeActivity extends BaseActivity {
     int next = event == null ? -1 : event.index;
     PrayerSchedule.Day timetable = PrayerSchedule.forDate(now.toLocalDate(), location);
     if (event == null) {
+      ((TextView) findViewById(R.id.homeNextPrayer)).setText("—");
+      ((TextView) findViewById(R.id.homeNextTime)).setText("");
+      ((TextView) findViewById(R.id.homeClock)).setText("—");
       ((TextView) findViewById(R.id.homeCountdown))
           .setText("Jadwal belum tersedia untuk lokasi ini");
     } else {
+      ((TextView) findViewById(R.id.homeNextPrayer)).setText(PrayerSchedule.NAMES[next]);
+      ((TextView) findViewById(R.id.homeNextTime))
+          .setText(
+              getString(
+                  R.string.concept_next_prayer_time,
+                  getString(
+                      event.time.toLocalDate().isAfter(now.toLocalDate())
+                          ? R.string.concept_tomorrow
+                          : R.string.concept_today),
+                  event.time.format(DateTimeFormatter.ofPattern("HH.mm", Locale.ROOT))));
+      long seconds = Math.max(0, java.time.Duration.between(now, event.time).getSeconds());
+      ((TextView) findViewById(R.id.homeClock))
+          .setText(
+              String.format(
+                  Locale.ROOT, "%02d:%02d:%02d", seconds / 3600, seconds / 60 % 60, seconds % 60));
       int minutes = event.minutesFrom(now);
       String interval =
           minutes >= 60 ? (minutes / 60 + " jam " + minutes % 60 + " menit") : (minutes + " menit");
@@ -305,11 +335,14 @@ public final class HomeActivity extends BaseActivity {
       for (int i = 0; i < PRAYER_SLOTS.length; i++) {
         LinearLayout slot = findViewById(PRAYER_SLOTS[i]);
         boolean active = i == next;
+        slot.setBackgroundResource(active ? R.drawable.concept_gold_button : 0);
         ((ImageView) slot.getChildAt(1))
             .setColorFilter(getColor(active ? R.color.camel : R.color.home_prayer_text));
-        ((TextView) slot.getChildAt(0)).setTextColor(getColor(R.color.home_prayer_text));
+        ((TextView) slot.getChildAt(0))
+            .setTextColor(getColor(active ? R.color.pine : R.color.home_prayer_text));
         ((TextView) slot.getChildAt(2)).setText(timetable.time(i));
-        ((TextView) slot.getChildAt(2)).setTextColor(getColor(R.color.white));
+        ((TextView) slot.getChildAt(2))
+            .setTextColor(getColor(active ? R.color.pine : R.color.white));
         slot.setContentDescription(
             PrayerSchedule.NAMES[i]
                 + " "
