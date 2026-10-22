@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "date": "2026-10-22",
+  "stage": "source-assets-and-browser-preview",
+  "apkChanged": false,
+  "liveWeatherConnected": false,
+  "generator": "built-in image_gen",
+  "assets": [
+    {
+      "file": "city-foreground.png",
+      "generatedFile": "exec-2ddf9cc3-5e82-475c-a070-6a6ca84e1ada.png",
+      "width": 1774,
+      "height": 887,
+      "mode": "RGBA",
+      "bytes": 1601215,
+      "sha256": "f03abd033d8204de5a50b954463f43e0142937704e9b20f4150fcbe8c41f49a4",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "fullyTransparentFraction": 0.5984,
+      "rgbaDecodeBytesEstimate": 6294152,
+      "unmodifiedFromGenerator": true
+    },
+    {
+      "file": "clouds-light.png",
+      "generatedFile": "exec-a5f22811-e76b-4a4d-ae31-9a37bc248ca4.png",
+      "width": 1942,
+      "height": 809,
+      "mode": "RGBA",
+      "bytes": 1046770,
+      "sha256": "2854526829c8596b206ad28038f5bdfee2db0eeaa4e287f155d8489460f65349",
+      "alphaRange": [
+        0,
+        254
+      ],
+      "fullyTransparentFraction": 0.6196,
+      "rgbaDecodeBytesEstimate": 6284312,
+      "unmodifiedFromGenerator": true
+    },
+    {
+      "file": "clouds-storm.png",
+      "generatedFile": "exec-17b184b5-8fcf-4092-b354-80fe130caaec.png",
+      "width": 1942,
+      "height": 809,
+      "mode": "RGBA",
+      "bytes": 1593643,
+      "sha256": "c71ff2d1979e181c4febcdd21ee2d4903e6858c3d18cb2832f4d7208aef58925",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "fullyTransparentFraction": 0.3749,
+      "rgbaDecodeBytesEstimate": 6284312,
+      "unmodifiedFromGenerator": true
+    }
+  ],
+  "sourcePngBytes": 4241628,
+  "sourcePngMiB": 4.045,
+  "optimizedForAndroid": false,
+  "weatherModes": [
+    "clear",
+    "partly",
+    "overcast",
+    "rain",
+    "heavy",
+    "storm",
+    "night"
+  ],
+  "precipitation": "procedural canvas, no raster rain or video",
+  "motionFrameCap": 30,
+  "motionPauseOnHidden": true,
+  "manualPause": true,
+  "respectsReducedMotion": true,
+  "emulatorUsed": false,
+  "phoneUsed": false,
+  "verification": [
+    "PNG alpha checked",
+    "source copies hash verified",
+    "preview.js Node syntax check",
+    "seven browser modes and pause/play checked",
+    "clear/cloudy/storm browser screenshots"
+  ],
+  "limitations": [
+    "This is not a native Android implementation",
+    "No live API or location used",
+    "No CPU/battery/frame-rate or native RAM benchmark",
+    "Original PNGs are source masters, not final APK textures"
+  ]
+}
