@@ -43,6 +43,19 @@ public final class HomeNavigationTest extends InstrumentationTestCase {
     awaitWindowFocus(home);
   }
 
+  public void testComfortableHomeOrdersPrayerBeforeCountdown() throws Exception {
+    View name = home.findViewById(R.id.homeNextPrayer),
+        time = home.findViewById(R.id.homeNextTime),
+        clock = home.findViewById(R.id.homeClock);
+    assertTrue("Prayer name comes before time", name.getTop() < time.getTop());
+    assertTrue("Countdown follows prayer time", time.getBottom() <= clock.getTop());
+    assertTrue(
+        "Illustrated hero retains reference height",
+        home.findViewById(R.id.homeHero).getHeight()
+            >= 304 * home.getResources().getDisplayMetrics().density - 1);
+    UiEvidence.capture(getInstrumentation(), "ComfortableHome");
+  }
+
   public void testHadithShortcutOpensSearchableHadithPage() {
     openFromHome(R.id.shortcutHadith, HadithActivity.class);
     assertNotNull(destination.findViewById(R.id.hadithSearch));

@@ -1,3 +1,5 @@
+> **Tata letak1.4.2 — 22 Oktober 2026:** Home, Reader Quran dan Study diselaraskan dengan referensi terbaru: urutan salat, judul surat/bismillah, nomor/audio di kiri ayat, player di atas navigasi dan agenda lebih padat. [Screenshot native, tes dan batas](android/validation/comfortable-layout-2026-10-22/README.md). Enam metode Android lulus; koreksi kosmetik akhir diperiksa ulang terarah.
+
 > **Quran 1.4.1 — 22 Oktober 2026:** mini-player katalog, tombol lanjut mengikuti ayat, dan pencocokan alif Utsmani. Lima tes Android lulus, termasuk sorotan kata/ayat berikut dengan rekaman Alafasy asli. JVM: 93 lulus, 3 dilewati. [Screenshot, build dan batas](android/validation/quran-catalog-audio-2026-10-22/README.md).
 
 > **Study beranimasi 1.4.0 — 22 Oktober 2026:** aset ilustrasi dibuat dahulu, lalu dipasang ke agenda/fokus/istirahat. Tangan menulis dan siklus cangkir mengikuti timer; 7 tes Android lulus, termasuk jeda, lifecycle dan font 200%. [Screenshot, video, build dan batas](android/validation/study-layered-motion-2026-10-22/README.md). Emulator ditutup; HP fisik belum diuji.

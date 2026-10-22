@@ -95,6 +95,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
       heading.setOrientation(LinearLayout.VERTICAL);
       TextView metadata = findViewById(R.id.surahMetadata);
       metadata.setLayoutParams(new LinearLayout.LayoutParams(-1, -2));
+      surahSelector.getLayoutParams().height = dp(48);
       TextView arabicHeading = findViewById(R.id.surahArabicTitle);
       LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, -2);
       params.topMargin = dp(12);
@@ -153,6 +154,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
               openSurah(selectedIndex, true);
             });
     findViewById(R.id.quranReaderMushaf).setOnClickListener(v -> openMushaf());
+    findViewById(R.id.quranReaderFont).setOnClickListener(v -> showReadingOptions());
     findViewById(R.id.quranReaderAudio).setOnClickListener(v -> audioUi.options());
     findViewById(R.id.quranCatalogDownloads)
         .setOnClickListener(
@@ -164,11 +166,11 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     Switch wordMode = findViewById(R.id.quranWordFollow);
     wordMode.setChecked(preferences.getBoolean("reader_word_sync", true));
     wordMode.setText(
-        wordMode.isChecked() ? R.string.concept_word_follow : R.string.concept_ayah_follow);
+        wordMode.isChecked() ? R.string.layout_word_follow : R.string.layout_ayah_follow);
     wordMode.setOnCheckedChangeListener(
         (view, enabled) -> {
           preferences.edit().putBoolean("reader_word_sync", enabled).apply();
-          wordMode.setText(enabled ? R.string.concept_word_follow : R.string.concept_ayah_follow);
+          wordMode.setText(enabled ? R.string.layout_word_follow : R.string.layout_ayah_follow);
           clearWordHighlight();
           if (audioUi != null) audioUi.wordModeChanged();
         });
@@ -401,11 +403,12 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     readingOpen = true;
     if (audioUi != null) audioUi.reader(true);
     findViewById(R.id.quranTitle).setVisibility(View.GONE);
+    findViewById(R.id.quranReaderToolbar).setVisibility(View.VISIBLE);
     findViewById(R.id.quranHeaderSearch).setVisibility(View.GONE);
     findViewById(R.id.quranCatalogButton).setVisibility(View.GONE);
     findViewById(R.id.quranReadingOptions).setVisibility(View.VISIBLE);
     surahSelector.setVisibility(View.VISIBLE);
-    NavDock.setVisible((FrameLayout) findViewById(R.id.quranPageRoot), false);
+    NavDock.setVisible((FrameLayout) findViewById(R.id.quranPageRoot), true);
     findViewById(R.id.quranScroll).setPadding(dp(20), 0, dp(20), dp(24));
     findViewById(R.id.quranCatalog).setVisibility(View.GONE);
     findViewById(R.id.quranReader).setVisibility(View.VISIBLE);
@@ -418,6 +421,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     loading = false;
     clearBookmarkLayout();
     findViewById(R.id.quranTitle).setVisibility(View.VISIBLE);
+    findViewById(R.id.quranReaderToolbar).setVisibility(View.GONE);
     findViewById(R.id.quranHeaderSearch).setVisibility(View.VISIBLE);
     findViewById(R.id.quranCatalogButton).setVisibility(View.GONE);
     findViewById(R.id.quranReadingOptions).setVisibility(View.GONE);
@@ -443,17 +447,9 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     QuranChapters.Chapter surah = chapters.get(selectedIndex);
     pendingVerse = Math.max(1, Math.min(surah.count, pendingVerse));
     currentPage = QuranPage.pageFor(pendingVerse);
-    ((TextView) findViewById(R.id.surahArabicTitle)).setText(surah.arabic);
-    android.text.SpannableString metadata =
-        new android.text.SpannableString(
-            surah.name + "\n" + surah.place + " · " + surah.count + " ayat");
-    metadata.setSpan(
-        new android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
-        0,
-        surah.name.length(),
-        0);
-    metadata.setSpan(new android.text.style.RelativeSizeSpan(1.2f), 0, surah.name.length(), 0);
-    ((TextView) findViewById(R.id.surahMetadata)).setText(metadata);
+    ((TextView) findViewById(R.id.surahArabicTitle)).setText("سُورَةُ " + surah.arabic);
+    ((TextView) findViewById(R.id.surahMetadata))
+        .setText(getString(R.string.layout_surah_meta, surah.id, surah.count));
     findViewById(R.id.quranSurahHeader)
         .setContentDescription(
             surah.name + ", " + surah.meaning + ", " + surah.place + ", " + surah.count + " ayat");
@@ -464,6 +460,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     loadedPage = null;
     loading = true;
     findViewById(R.id.quranLoading).setVisibility(View.VISIBLE);
+    findViewById(R.id.quranLoadStatus).setVisibility(View.VISIBLE);
     findViewById(R.id.quranRetry).setVisibility(View.GONE);
     findViewById(R.id.quranPagination).setVisibility(View.GONE);
     findViewById(R.id.quranJumpToVerse).setOnClickListener(v -> showVerseJump());
@@ -478,6 +475,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
             loading = false;
             loadedPage = page;
             TextView sourceLabel = findViewById(R.id.quranLoadStatus);
+            sourceLabel.setVisibility(View.GONE);
             sourceLabel.setMaxLines(1);
             sourceLabel.setEllipsize(android.text.TextUtils.TruncateAt.END);
             findViewById(R.id.quranLoading).setVisibility(View.GONE);
@@ -520,11 +518,17 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
                         refreshBookmarkLabels();
                         toast(surah.name + " ayat " + verse.number + " disimpan");
                       });
-              row.findViewById(R.id.ayahMore)
+              row.findViewById(R.id.ayahNumber)
                   .setOnClickListener(v -> showVerseMenu(v, surah, verse, row));
+              row.findViewById(R.id.ayahNumber)
+                  .setContentDescription(
+                      getString(R.string.layout_verse_actions) + " " + verse.number);
+              row.findViewById(R.id.ayahMore)
+                  .setOnClickListener(
+                      v -> showVerseMenu(row.findViewById(R.id.ayahNumber), surah, verse, row));
               row.setOnLongClickListener(
                   v -> {
-                    showVerseMenu(row.findViewById(R.id.ayahMore), surah, verse, row);
+                    showVerseMenu(row.findViewById(R.id.ayahNumber), surah, verse, row);
                     return true;
                   });
               ayahContainer.addView(row);
@@ -629,7 +633,10 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
           active
               ? getString(mapped ? R.string.concept_word_active : R.string.concept_ayah_active)
               : "");
-      label.setVisibility(active ? View.VISIBLE : View.GONE);
+      label.setVisibility(
+          active && !mapped && preferences.getBoolean("reader_word_sync", true)
+              ? View.VISIBLE
+              : View.GONE);
     }
   }
 
@@ -667,6 +674,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     }
     wordText.setText(wordText.getText(), TextView.BufferType.SPANNABLE);
     ((TextView) row.findViewById(R.id.ayahAudioStatus)).setText(R.string.concept_word_active);
+    row.findViewById(R.id.ayahAudioStatus).setVisibility(View.GONE);
   }
 
   private void colorAudioWord(int chapter, int verse, int word) {
@@ -778,6 +786,14 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     ((TextView) findViewById(R.id.quranSearch)).setTextColor(foreground);
     ((TextView) findViewById(R.id.quranResumeHeading)).setTextColor(secondary);
     ((TextView) findViewById(R.id.surahBismillah)).setTextColor(foreground);
+    ((TextView) findViewById(R.id.surahArabicTitle)).setTextColor(foreground);
+    ((TextView) findViewById(R.id.surahMetadata)).setTextColor(secondary);
+    findViewById(R.id.quranReaderMovement).setBackgroundColor(background);
+    ((TextView) findViewById(R.id.quranReaderFont)).setTextColor(foreground);
+    for (int id : new int[] {R.id.quranReaderFont, R.id.quranReaderMushaf, R.id.quranReaderAudio}) {
+      findViewById(id).setBackground(card(enabled ? 0xFF233D33 : 0xFFFFFCF6));
+      findViewById(id).setStateListAnimator(null);
+    }
     findViewById(R.id.quranHeaderDivider).setBackgroundColor(enabled ? 0xFF29413D : 0xFFE9EDE8);
     for (int id :
         new int[] {R.id.quranHeaderSearch, R.id.quranCatalogButton, R.id.quranReadingOptions})

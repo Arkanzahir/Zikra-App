@@ -1,0 +1,13 @@
+<resources>
+    <string name="layout_study_heading">Rencana hari ini</string>
+    <string name="layout_mushaf">Mushaf</string>
+    <string name="layout_font">Aa  Ukuran teks</string>
+    <string name="layout_audio">Audio</string>
+    <string name="layout_word_follow">Sorotan kata</string>
+    <string name="layout_verse_actions">Pilihan ayat: tandai, salin, bagikan</string>
+    <string name="layout_surah_meta">Surah %1$d · %2$d ayat</string>
+    <string name="layout_no_deadline">Belum ada tenggat</string>
+    <string name="layout_prayer_time">%1$s · %2$s</string>
+    <string name="layout_today">Hari ini</string>
+    <string name="layout_ayah_follow">Sorotan ayat</string>
+</resources>

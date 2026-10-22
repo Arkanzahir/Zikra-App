@@ -1,0 +1,7 @@
+
+com.zikra.app.QuranDesignTest:..
+com.zikra.app.FocusMotionTest:.
+Test results for InstrumentationTestRunner=...
+Time: 7.079
+
+OK (3 tests)

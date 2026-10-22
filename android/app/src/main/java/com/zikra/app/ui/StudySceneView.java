@@ -20,7 +20,7 @@ public final class StudySceneView extends View {
         MeasureSpec.getSize(widthSpec),
         MeasureSpec.getMode(heightSpec) == MeasureSpec.EXACTLY
             ? MeasureSpec.getSize(heightSpec)
-            : Math.round(152 * getResources().getDisplayMetrics().density));
+            : Math.round(132 * getResources().getDisplayMetrics().density));
   }
 
   @Override

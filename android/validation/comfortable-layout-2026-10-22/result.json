@@ -1,0 +1,31 @@
+{
+  "versionName": "1.4.2",
+  "versionCode": 10,
+  "apkSha256": "4b5275817e360ee99e191f0a03ff6056d41dd6b7d076939f8cd1ad4d47ef8ab3",
+  "apkBytes": 13313029,
+  "buildSeconds": 22,
+  "workers": 1,
+  "heapMiB": 512,
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 695
+  },
+  "distinctNativeTests": 6,
+  "sixNativeSeconds": 29.581,
+  "targetedAfterContrastTests": 3,
+  "targetedAfterContrastSeconds": 7.079,
+  "finalReaderTests": 2,
+  "finalReaderSeconds": 4.698,
+  "jvmRerun": false,
+  "liveAudioRegression": "Alafasy Al-Fatihah 2-3 passed in six-test run before final cosmetic spacing/contrast changes",
+  "font200Percent": "Night controls/play/navigation and scroll viewport tested; screenshots visually checked",
+  "emulatorStopped": true,
+  "physicalPhoneTested": false,
+  "prefetchExperimentIncluded": false,
+  "prototypeExactPixelMatch": false,
+  "androidAppSourceTree": "ff5d47923f7f71021c6e9a0c6b81c3e601918a5f",
+  "sourceFilesChecked": 482,
+  "sourceMismatches": 0,
+  "debugCertificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b"
+}

@@ -8,6 +8,7 @@ import android.os.*;
 import android.provider.Settings;
 import android.test.InstrumentationTestCase;
 import android.widget.TextView;
+import android.widget.LinearLayout;
 import com.zikra.app.data.*;
 import com.zikra.app.study.*;
 import com.zikra.app.ui.FocusGardenView;
@@ -467,6 +468,13 @@ public final class FocusMotionTest extends InstrumentationTestCase {
           if (card.getPixel(x, y) != context.getColor(R.color.concept_pine)) illustrationPixels++;
       assertTrue("Painted character is visible on the Study card", illustrationPixels > 1000);
       card.recycle();
+      assertTrue(
+          "Compact illustrated hero",
+          current.findViewById(R.id.studyFocus).getHeight()
+              <= 144 * current.getResources().getDisplayMetrics().density);
+      TextView firstDay =
+          (TextView) ((LinearLayout) current.findViewById(R.id.studyWeek)).getChildAt(0);
+      assertTrue("Calendar date precedes weekday", Character.isDigit(firstDay.getText().charAt(0)));
       UiEvidence.capture(getInstrumentation(), "StudyPaintedAgendaFixture");
       main(() -> current.findViewById(R.id.studyAddInline).performClick());
       assertTrue(((Dialog) field(current, "editorDialog")).isShowing());

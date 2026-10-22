@@ -137,7 +137,7 @@ public final class StudyActivity extends BaseActivity {
     }
     if (!diaryMode && !ibadahMode) {
       ((TextView) agendaHeader.findViewById(R.id.study_heading))
-          .setText(R.string.concept_study_heading);
+          .setText(R.string.layout_study_heading);
       agendaHeader.findViewById(R.id.study_scope_hint).setVisibility(View.GONE);
       View focus = agendaHeader.findViewById(R.id.studyFocus);
       focus.setVisibility(View.VISIBLE);
@@ -148,12 +148,13 @@ public final class StudyActivity extends BaseActivity {
             startActivity(intent);
           });
       com.zikra.app.ui.FeatureHeader header = findViewById(R.id.sharedFeatureHeader);
-      header.back().setVisibility(View.GONE);
+      header.back().setVisibility(View.INVISIBLE);
       header.setSurfaceColor(getColor(R.color.concept_ivory));
       View chrome = header.getChildAt(0);
       chrome.setMinimumHeight(dp(56));
       chrome.setPadding(dp(8), dp(4), dp(8), dp(4));
       ((TextView) findViewById(R.id.study_screen_title)).setTextSize(18);
+      ((TextView) findViewById(R.id.study_screen_title)).setGravity(Gravity.CENTER);
       android.widget.ImageButton calendar = (android.widget.ImageButton) header.action();
       calendar.setImageResource(R.drawable.ic_tasks);
       calendar.setVisibility(View.VISIBLE);
@@ -329,7 +330,7 @@ public final class StudyActivity extends BaseActivity {
       LocalDate day = monday.plusDays(i);
       TextView cell = new TextView(this);
       boolean selected = anchor.equals(day);
-      cell.setText(day.format(DateTimeFormatter.ofPattern("EEE\nd", ID)));
+      cell.setText(day.format(DateTimeFormatter.ofPattern("d\nEEE", ID)));
       cell.setTextSize(12);
       cell.setGravity(Gravity.CENTER);
       cell.setMinHeight(dp(56));
@@ -951,7 +952,8 @@ public final class StudyActivity extends BaseActivity {
               : ZikraDbHelper.CATEGORY_IBADAH.equals(task.category) ? 0xFF42715D : 0xFF15332F;
       tag.setTextColor(accent);
       View marker = row.findViewById(R.id.agenda_category_marker);
-      if (marker != null) marker.setBackgroundTintList(ColorStateList.valueOf(accent));
+      if (marker != null && (diaryMode || ibadahMode))
+        marker.setBackgroundTintList(ColorStateList.valueOf(accent));
       tag.setText(
           task.category.equals(ZikraDbHelper.CATEGORY_HIFZ)
               ? R.string.study_category_hifz
@@ -960,6 +962,14 @@ public final class StudyActivity extends BaseActivity {
                   : R.string.study_category_study);
       if (!diaryMode && !ibadahMode && task.dueAt > 0)
         detail.setText("Tenggat · " + ScheduleEditor.label(task.dueAt));
+      if (!diaryMode && !ibadahMode) {
+        tag.setText(
+            task.completed
+                ? getString(R.string.hifz_done)
+                : task.dueAt > 0
+                    ? ScheduleEditor.label(task.dueAt)
+                    : getString(R.string.layout_no_deadline));
+      }
       if (diaryMode) {
         HifzTarget target = task.hifz;
         title.setText(target == null ? task.title : target.chapterName);

@@ -108,6 +108,91 @@ public final class QuranDesignTest extends InstrumentationTestCase {
     }
   }
 
+  public void testComfortableReaderLayoutAndVisibleActions() throws Exception {
+    page =
+        (QuranActivity)
+            getInstrumentation()
+                .startActivitySync(
+                    new Intent(context, QuranActivity.class)
+                        .putExtra(QuranActivity.EXTRA_TARGET_CHAPTER, 112)
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    until(
+        () ->
+            page.hasWindowFocus()
+                && ((LinearLayout) page.findViewById(R.id.ayahContainer)).getChildCount() == 4);
+    getInstrumentation().waitForIdleSync();
+    View row = ((LinearLayout) page.findViewById(R.id.ayahContainer)).getChildAt(0);
+    Rect number = new Rect(), play = new Rect(), arabic = new Rect(), translation = new Rect();
+    row.findViewById(R.id.ayahNumber).getGlobalVisibleRect(number);
+    row.findViewById(R.id.ayahPlay).getGlobalVisibleRect(play);
+    row.findViewById(R.id.ayahArabic).getGlobalVisibleRect(arabic);
+    row.findViewById(R.id.ayahTranslation).getGlobalVisibleRect(translation);
+    assertTrue(
+        "Number then audio then Arabic from left",
+        number.right <= play.left && play.right <= arabic.left);
+    assertTrue("Translation below Arabic line", translation.top >= arabic.bottom);
+    Rect player = new Rect(), dock = new Rect(), movement = new Rect();
+    page.findViewById(R.id.quranAudioPanel).getGlobalVisibleRect(player);
+    page.findViewById(R.id.dockQuran).getGlobalVisibleRect(dock);
+    page.findViewById(R.id.quranReaderMovement).getGlobalVisibleRect(movement);
+    assertTrue("Reader dock stays visible", page.findViewById(R.id.dockQuran).isShown());
+    assertTrue("Movement strip above player", movement.bottom <= player.top);
+    Rect controls = new Rect();
+    page.findViewById(R.id.readerAudioControls).getGlobalVisibleRect(controls);
+    assertTrue("Player controls clear navigation", controls.bottom <= dock.top);
+    assertTrue(
+        "Player plus reserved dock is compact",
+        player.height() <= 176 * page.getResources().getDisplayMetrics().density);
+    assertEquals(View.GONE, page.findViewById(R.id.quranLoadStatus).getVisibility());
+    UiEvidence.capture(getInstrumentation(), "ComfortableReaderIkhlas");
+    click(R.id.quranReaderFont);
+    assertTrue(((AlertDialog) field(page, "readingDialog")).isShowing());
+    main(() -> ((AlertDialog) field(page, "readingDialog")).dismiss());
+    main(() -> row.findViewById(R.id.ayahNumber).performClick());
+    until(
+        () ->
+            getInstrumentation()
+                    .getUiAutomation()
+                    .getRootInActiveWindow()
+                    .findAccessibilityNodeInfosByText("Tandai terakhir dibaca")
+                    .size()
+                > 0);
+    UiEvidence.capture(getInstrumentation(), "ComfortableVerseActions");
+    shell("input keyevent 4");
+  }
+
+  public void testComfortableLargeReaderKeepsPlayerAndNavigationReachable() throws Exception {
+    shell("settings put system font_scale 2.0");
+    context
+        .getSharedPreferences("zikra_preferences", 0)
+        .edit()
+        .putString("reading_theme", "dark")
+        .commit();
+    launch(true);
+    Rect play = new Rect(), dock = new Rect();
+    assertTrue(page.findViewById(R.id.quranAudioPlay).getGlobalVisibleRect(play));
+    assertTrue(page.findViewById(R.id.dockQuran).getGlobalVisibleRect(dock));
+    assertTrue(
+        "Full play target above dock",
+        play.bottom <= dock.top
+            && play.height() >= 48 * page.getResources().getDisplayMetrics().density - 1);
+    assertTrue(
+        "Reader retains scroll viewport",
+        page.findViewById(R.id.quranScroll).getHeight()
+            >= 100 * page.getResources().getDisplayMetrics().density);
+    for (int id : new int[] {R.id.quranReaderFont, R.id.quranReaderMushaf, R.id.quranReaderAudio}) {
+      assertEquals(
+          "Night tool text remains readable",
+          0xFFEEF6F2,
+          ((TextView) page.findViewById(id)).getCurrentTextColor());
+      android.graphics.drawable.GradientDrawable background =
+          (android.graphics.drawable.GradientDrawable) page.findViewById(id).getBackground();
+      assertEquals(
+          "Night tool uses dark surface", 0xFF233D33, background.getColor().getDefaultColor());
+    }
+    UiEvidence.capture(getInstrumentation(), "ComfortableReaderLargeNight");
+  }
+
   public void testCatalogReaderAndNativePanelPreview() throws Exception {
     launch(false);
     assertEquals(114, ((LinearLayout) page.findViewById(R.id.quranSurahList)).getChildCount());

@@ -1,0 +1,14 @@
+
+com.zikra.app.QuranDesignTest:..
+com.zikra.app.HomeNavigationTest:.
+com.zikra.app.FocusMotionTest:.
+com.zikra.app.QuranAudioTest:INSTRUMENTATION_STATUS: different_word_offsets=2
+INSTRUMENTATION_STATUS: duration_ms=4624
+INSTRUMENTATION_STATUS: next_verse=3
+INSTRUMENTATION_STATUS: recording=Live Alafasy Quran.com timed recording
+INSTRUMENTATION_STATUS_CODE: 0
+..
+Test results for InstrumentationTestRunner=......
+Time: 29.581
+
+OK (6 tests)

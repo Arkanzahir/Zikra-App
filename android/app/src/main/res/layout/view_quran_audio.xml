@@ -1,16 +1,120 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/quranAudioPanel" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="12dp" android:paddingTop="6dp" android:paddingBottom="2dp" android:background="@color/white" android:elevation="3dp" android:visibility="gone">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
-        <TextView android:id="@+id/quranAudioTitle" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:textColor="@color/pine" android:textStyle="bold" android:textSize="13sp" android:maxLines="2" android:ellipsize="end" />
-        <ImageButton android:id="@+id/quranAudioPrevious" style="@style/QuranAudioControl" android:src="@drawable/audio_previous" android:contentDescription="@string/audio_previous" />
-        <ImageButton android:id="@+id/quranAudioPlay" style="@style/QuranAudioControl" android:background="@drawable/bg_pine" android:src="@drawable/audio_play" android:tint="@color/white" android:contentDescription="@string/audio_play" />
-        <ImageButton android:id="@+id/quranAudioNext" style="@style/QuranAudioControl" android:src="@drawable/audio_next" android:contentDescription="@string/audio_next" />
-        <ImageButton android:id="@+id/quranAudioOptions" style="@style/QuranAudioControl" android:src="@drawable/audio_expand" android:contentDescription="@string/audio_options" />
-        <ImageButton android:id="@+id/quranAudioDownload" style="@style/QuranAudioControl" android:src="@drawable/audio_download" android:contentDescription="@string/audio_download" android:visibility="gone" />
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/quranAudioPanel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="12dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="64dp"
+    android:background="@color/concept_ivory"
+    android:elevation="0dp"
+    android:visibility="gone">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:id="@+id/readerAudioRow">
+        <LinearLayout
+            android:id="@+id/readerAudioInfo"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <ImageView
+                android:id="@+id/readerAudioCover"
+                android:layout_width="36dp"
+                android:layout_height="40dp"
+                android:src="@drawable/reference_quran_book"
+                android:background="@drawable/bg_pine"
+                android:padding="4dp"
+                android:importantForAccessibility="no" />
+            <LinearLayout
+                android:id="@+id/readerAudioMetadata"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp">
+                <TextView
+                    android:id="@+id/quranAudioTitle"
+                    android:layout_width="match_parent"
+                    android:layout_weight="0"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/pine"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
+                <TextView
+                    android:id="@+id/quranAudioStatus"
+                    style="@style/NearbyCaption"
+                    android:textSize="11sp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:accessibilityLiveRegion="polite" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/readerAudioControls"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:gravity="center_vertical">
+            <ImageButton
+                android:id="@+id/quranAudioPrevious"
+                style="@style/QuranAudioControl"
+                android:src="@drawable/audio_previous"
+                android:contentDescription="@string/audio_previous" />
+            <ImageButton
+                android:id="@+id/quranAudioPlay"
+                style="@style/QuranAudioControl"
+                android:background="@drawable/bg_mushaf_play"
+                android:src="@drawable/audio_play"
+                android:tint="@color/white"
+                android:contentDescription="@string/audio_play" />
+            <ImageButton
+                android:id="@+id/quranAudioNext"
+                style="@style/QuranAudioControl"
+                android:src="@drawable/audio_next"
+                android:contentDescription="@string/audio_next" />
+            <ImageButton
+                android:id="@+id/quranAudioOptions"
+                style="@style/QuranAudioControl"
+                android:src="@drawable/audio_expand"
+                android:contentDescription="@string/audio_options"
+                android:visibility="gone" />
+            <ImageButton
+                android:id="@+id/quranAudioDownload"
+                style="@style/QuranAudioControl"
+                android:src="@drawable/audio_download"
+                android:contentDescription="@string/audio_download"
+                android:visibility="gone" />
+        </LinearLayout>
     </LinearLayout>
-    <TextView android:id="@+id/quranAudioStatus" style="@style/NearbyCaption" android:textSize="11sp" android:maxLines="2" android:ellipsize="end" android:accessibilityLiveRegion="polite" />
-    <Button android:id="@+id/quranAudioFollowResume" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/catalog_audio_follow_resume" android:textAllCaps="false" android:textColor="@color/pine" android:background="@drawable/concept_mint_card" android:visibility="gone" />
+    <Button
+        android:id="@+id/quranAudioFollowResume"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/catalog_audio_follow_resume"
+        android:textAllCaps="false"
+        android:textColor="@color/pine"
+        android:background="@drawable/concept_mint_card"
+        android:visibility="gone" />
     <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:gravity="center_vertical">
-        <SeekBar android:id="@+id/quranAudioSeek" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp" android:contentDescription="@string/audio_position" />
-        <TextView android:id="@+id/quranAudioTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="10sp" android:textColor="@color/onboarding_muted" android:text="@string/audio_empty_time" />
+        <SeekBar
+            android:id="@+id/quranAudioSeek"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="48dp"
+            android:contentDescription="@string/audio_position" />
+        <TextView
+            android:id="@+id/quranAudioTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="@color/onboarding_muted"
+            android:text="@string/audio_empty_time" />
     </LinearLayout>
 </LinearLayout>

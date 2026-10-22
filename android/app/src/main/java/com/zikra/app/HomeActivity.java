@@ -280,17 +280,15 @@ public final class HomeActivity extends BaseActivity {
       ((TextView) findViewById(R.id.homeCountdown))
           .setText("Jadwal belum tersedia untuk lokasi ini");
     } else {
-      ((TextView) findViewById(R.id.homeNextPrayer))
-          .setText(getString(R.string.reference_towards_prayer, PrayerSchedule.NAMES[next]));
+      ((TextView) findViewById(R.id.homeNextPrayer)).setText(PrayerSchedule.NAMES[next]);
       ((TextView) findViewById(R.id.homeNextTime))
           .setText(
               getString(
-                  R.string.reference_prayer_time,
-                  PrayerSchedule.NAMES[next],
-                  event.time.format(DateTimeFormatter.ofPattern("HH.mm", Locale.ROOT))
-                      + (event.time.toLocalDate().isAfter(now.toLocalDate())
-                          ? " \u00b7 " + getString(R.string.concept_tomorrow)
-                          : "")));
+                  R.string.layout_prayer_time,
+                  event.time.toLocalDate().isAfter(now.toLocalDate())
+                      ? getString(R.string.concept_tomorrow)
+                      : getString(R.string.layout_today),
+                  event.time.format(DateTimeFormatter.ofPattern("HH.mm", Locale.ROOT))));
       long seconds = Math.max(0, java.time.Duration.between(now, event.time).getSeconds());
       ((TextView) findViewById(R.id.homeClock))
           .setText(

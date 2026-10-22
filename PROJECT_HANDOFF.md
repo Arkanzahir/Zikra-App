@@ -1,3 +1,11 @@
+## Checkpoint tata letak1.4.2 — 22 Oktober 2026
+
+- Acuan baru `design/approved-2026-10-21/comfortable-layout-reference.png`. Reader header Arab/bismillah terpusat, metadata toolbar, nomor/speaker kiri/Arab kanan, arti bawah; menu lewat nomor/longpress; player ringkas+seek48dp di atas dock dan strip gulir/sorotan bawah.
+- Home urutan nama salat/waktu/countdown, hero304dp/ikon50dp. Study kalender tanggal dahulu, hero132dp/statistik72dp dan timeline tugas; tidak mengarang durasi/prioritas harian.
+- `android/validation/comfortable-layout-2026-10-22/`: build/lint22detik;6metode native lulus29.581detik termasuk Alafasy asli/katalog;3rerun setelah kontras7.079detik dan2Reader final4.698detik. JVM tidak diulang. Font200/malam dilihat langsung; emulator ditutup. HP belum diuji.
+- APK luar root `Zikra-Layout-Rapi-v1.4.2-debug.apk`, code10. Ilustrasi masjid/karakter lama dipertahankan. Kecepatan audio/label prioritas konsep belum menjadi fitur; Protector/Hadis/Doa belum dipoles.
+- Build terisolasi `.local/concept-release-v130/android` menghindari WIP prefetch audio. Pertahankan file service/timing/MushafReaderTest/tool audit dan catatan private sebagai WIP terpisah. Featherless belum dihosting.
+
 ## Checkpoint Quran 1.4.1 — 22 Oktober 2026
 
 - Mini-player katalog ditambahkan (judul/audio dari service aktif, kontrol antrean dan progres, membuka ayat terdengar); tema malam/font200, tanpa player kedua.

@@ -143,6 +143,15 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
   public ReaderAudioUi(Activity a, Host host) {
     activity = a;
     this.host = host;
+    if (a.findViewById(R.id.readerAudioRow) != null
+        && a.getResources().getConfiguration().fontScale >= 1.5f) {
+      LinearLayout row = a.findViewById(R.id.readerAudioRow);
+      row.setOrientation(LinearLayout.VERTICAL);
+      a.findViewById(R.id.readerAudioInfo).setLayoutParams(new LinearLayout.LayoutParams(-1, -2));
+      ((LinearLayout.LayoutParams) a.findViewById(R.id.readerAudioControls).getLayoutParams())
+              .gravity =
+          Gravity.END;
+    }
     catalog =
         a.findViewById(R.id.quranCatalogAudio) == null
             ? null
@@ -244,6 +253,8 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     main.removeCallbacks(wordFrame);
     if (active && visible && host.wordSync()) main.post(wordFrame);
     activity.findViewById(R.id.quranAudioPanel).setVisibility(visible ? View.VISIBLE : View.GONE);
+    View movement = activity.findViewById(R.id.quranReaderMovement);
+    if (movement != null) movement.setVisibility(visible ? View.VISIBLE : View.GONE);
     if (!visible) stopScroll();
     else changedChapter();
     update();
@@ -358,7 +369,9 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     boolean playing = current && (state.playing || (state.loading && state.requested));
     String name = QuranChapters.all(activity).get(chapter - 1).name;
     String title = name + " · " + (current ? "Ayat " + state.verse : "Ayat " + first + "–" + last);
-    boolean compact = activity.findViewById(R.id.mushafAudioProgress) != null;
+    boolean compact =
+        activity.findViewById(R.id.mushafAudioProgress) != null
+            || activity.findViewById(R.id.readerAudioCover) != null;
     if (compact && !current) title = name + " · Ayat " + host.verse();
     text(R.id.quranAudioTitle, title);
     boolean otherChapter = state != null && state.chapter > 0 && state.chapter != chapter;
@@ -845,7 +858,9 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     this.night = night;
     if (catalog != null) catalog.theme(night);
     int foreground = night ? 0xFFEEF6F2 : 0xFF15332F, secondary = night ? 0xFFB4C8BE : 0xFF586C63;
-    activity.findViewById(R.id.quranAudioPanel).setBackgroundColor(night ? 0xFF1D3530 : 0xFFFFFFFF);
+    activity
+        .findViewById(R.id.quranAudioPanel)
+        .setBackgroundColor(night ? 0xFF1D3530 : activity.getColor(R.color.concept_ivory));
     ((TextView) activity.findViewById(R.id.quranAudioTitle)).setTextColor(foreground);
     for (int id : new int[] {R.id.quranAudioStatus, R.id.quranAudioTime})
       ((TextView) activity.findViewById(id)).setTextColor(secondary);
