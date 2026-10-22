@@ -1,0 +1,32 @@
+{
+  "versionName": "1.4.3",
+  "versionCode": 11,
+  "apkSha256": "0fe1dabcd663b356ad5110b9f8c257652ec66d6a0d2d64eba8722effad8bae31",
+  "apkBytes": 13210388,
+  "buildSeconds": 30,
+  "workers": 1,
+  "heapMiB": 512,
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 696
+  },
+  "distinctNativeTests": 5,
+  "fiveNativeSeconds": 32.012,
+  "finalLargeTextRerunTests": 1,
+  "finalLargeTextSeconds": 2.553,
+  "defaultFolded": true,
+  "minimumVerifiedViewportGainDp": 80,
+  "foldStopsPlayback": false,
+  "foldStopsIndependentScroll": false,
+  "persistedFoldPreference": true,
+  "jvmRerun": false,
+  "emulatorStopped": true,
+  "physicalPhoneTested": false,
+  "prefetchExperimentIncluded": false,
+  "missingScreenshot": "ReaderFoldedPlayingSynthetic capture timed out while automatic scrolling; not supplied as evidence",
+  "androidAppSourceTree": "190bee0f28d64d4f1191c65f8fe597d39f76992c",
+  "sourceFilesChecked": 486,
+  "sourceMismatches": 0,
+  "debugCertificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b"
+}

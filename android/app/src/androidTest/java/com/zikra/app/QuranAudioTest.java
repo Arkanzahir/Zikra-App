@@ -682,6 +682,65 @@ public final class QuranAudioTest extends InstrumentationTestCase {
     getInstrumentation().sendStatus(0, evidence);
   }
 
+  public void testFoldedPanelFreesReadingSpacePersistsAndKeepsPlayback() throws Exception {
+    seed(1, 30000);
+    launch(false);
+    assertEquals(View.GONE, page.findViewById(R.id.readerAudioBody).getVisibility());
+    ScrollView scroll = page.findViewById(R.id.quranScroll);
+    int foldedViewport = scroll.getHeight();
+    click(R.id.quranAudioFoldedPlay);
+    until("Compact play starts audio", () -> state().playing);
+    click(R.id.quranAudioExpand);
+    until("Panel opens", () -> page.findViewById(R.id.readerAudioBody).isShown());
+    assertTrue(
+        "Folding saves at least 80dp of reading space",
+        foldedViewport - scroll.getHeight()
+            >= 80 * page.getResources().getDisplayMetrics().density);
+    ReaderAudioUi audio = (ReaderAudioUi) ui();
+    main(audio::toggleAutoScroll);
+    until("Independent scroll starts", () -> scroll.getScrollY() > 10);
+    click(R.id.quranAudioFoldClose);
+    assertEquals(View.GONE, page.findViewById(R.id.readerAudioBody).getVisibility());
+    java.lang.reflect.Field auto = ReaderAudioUi.class.getDeclaredField("auto");
+    auto.setAccessible(true);
+    assertTrue("Fold leaves scroll running", auto.getBoolean(audio));
+    int position = state().position;
+    SystemClock.sleep(500);
+    assertTrue("Fold leaves decoder playing", state().playing && state().position > position);
+    click(R.id.quranAudioFoldedPlay);
+    until("Compact pause works", () -> !state().playing && !state().requested);
+    click(R.id.quranAudioFoldedPlay);
+    until("Compact resume works", () -> state().playing);
+    syntheticLabel();
+    UiEvidence.capture(getInstrumentation(), "ReaderFoldedPlayingSynthetic");
+    Instrumentation.ActivityMonitor monitor =
+        getInstrumentation().addMonitor(QuranActivity.class.getName(), null, false);
+    try {
+      main(page::recreate);
+      page = getInstrumentation().waitForMonitorWithTimeout(monitor, 20000);
+      assertNotNull(page);
+      until(
+          "Recreated reader ready",
+          () ->
+              page.hasWindowFocus()
+                  && ((LinearLayout) page.findViewById(R.id.ayahContainer)).getChildCount() == 7);
+      assertEquals(
+          "Collapsed choice survives recreation",
+          View.GONE,
+          page.findViewById(R.id.readerAudioBody).getVisibility());
+      assertTrue("Recreation does not stop playback", state().playing);
+    } finally {
+      getInstrumentation().removeMonitor(monitor);
+    }
+    click(R.id.quranReaderAudio);
+    assertTrue(
+        "Header audio action reopens controls", page.findViewById(R.id.readerAudioBody).isShown());
+    click(R.id.quranAudioOptions);
+    assertTrue(options().isShowing());
+    AlertDialog panelOptions = options();
+    main(panelOptions::dismiss);
+  }
+
   @Override
   protected void tearDown() throws Exception {
     try {

@@ -378,8 +378,10 @@
                         android:layout_marginTop="8dp"
                         android:orientation="vertical"
                         android:gravity="center_vertical"
-                        android:background="@null"
-                        android:padding="0dp">
+                        android:background="@drawable/reader_heading_frame"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="8dp"
+                        android:layout_marginBottom="8dp">
                         <TextView
                             android:id="@+id/surahArabicTitle"
                             android:layout_width="match_parent"
@@ -392,19 +394,26 @@
                             android:textColor="@color/pine"
                             android:paddingVertical="8dp"
                             android:includeFontPadding="false" />
+                        <ImageView
+                            android:id="@+id/readerTitleFlourish"
+                            android:layout_width="80dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/reader_heading_flourish"
+                            android:importantForAccessibility="no" />
+                        <TextView
+                            android:id="@+id/surahBismillah"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textDirection="rtl"
+                            android:textSize="25sp"
+                            android:textColor="@color/pine"
+                            android:text="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp"
+                            android:includeFontPadding="false" />
                     </LinearLayout>
-                    <TextView
-                        android:id="@+id/surahBismillah"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textDirection="rtl"
-                        android:textSize="25sp"
-                        android:textColor="@color/pine"
-                        android:text="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="12dp"
-                        android:includeFontPadding="false" />
                     <LinearLayout
                         android:id="@+id/quranVisibleTools"
                         android:layout_width="match_parent"
@@ -567,37 +576,99 @@
         </ScrollView>
         <include layout="@layout/view_quran_catalog_audio" />
         <LinearLayout
-            android:id="@+id/quranReaderMovement"
+            android:id="@+id/readerAudioDock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingBottom="64dp"
             android:visibility="gone"
-            android:paddingHorizontal="12dp"
             android:background="@color/concept_ivory">
-            <Button
-                android:id="@+id/quranReaderAuto"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:minHeight="48dp"
-                android:text="@string/design_auto_scroll"
-                android:textSize="11sp"
-                android:textAllCaps="false"
-                android:textColor="@color/pine"
-                android:background="?android:attr/selectableItemBackground" />
-            <Switch
-                android:id="@+id/quranWordFollow"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/quranAudioFolded"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
-                android:text="@string/layout_word_follow"
-                android:textSize="11sp"
-                android:textColor="@color/pine"
-                android:paddingHorizontal="8dp"
-                android:showText="false"
-                android:layout_weight="1" />
+                android:gravity="center_vertical"
+                android:paddingHorizontal="12dp">
+                <TextView
+                    android:id="@+id/quranAudioFoldedTitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/reader_audio_folded"
+                    android:textColor="@color/pine"
+                    android:textSize="12sp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/reader_audio_expand" />
+                <ImageButton
+                    android:id="@+id/quranAudioFoldedPlay"
+                    style="@style/QuranAudioControl"
+                    android:src="@drawable/audio_play"
+                    android:contentDescription="@string/audio_play" />
+                <ImageButton
+                    android:id="@+id/quranAudioExpand"
+                    style="@style/QuranAudioControl"
+                    android:src="@drawable/audio_expand"
+                    android:contentDescription="@string/reader_audio_expand" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/readerAudioBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <LinearLayout
+                    android:id="@+id/quranReaderMovement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    android:paddingHorizontal="12dp"
+                    android:background="@color/concept_ivory">
+                    <Button
+                        android:id="@+id/quranReaderAuto"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:minHeight="48dp"
+                        android:text="@string/design_auto_scroll"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/pine"
+                        android:background="?android:attr/selectableItemBackground" />
+                    <Switch
+                        android:id="@+id/quranWordFollow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:text="@string/layout_word_follow"
+                        android:textSize="11sp"
+                        android:textColor="@color/pine"
+                        android:paddingHorizontal="8dp"
+                        android:showText="false"
+                        android:layout_weight="1" />
+                    <ImageButton
+                        android:id="@+id/quranAudioOptions"
+                        style="@style/QuranAudioControl"
+                        android:src="@drawable/study_scene_settings_icon"
+                        android:contentDescription="@string/audio_options"
+                        android:visibility="visible" />
+                    <ImageButton
+                        android:id="@+id/quranAudioFoldClose"
+                        style="@style/QuranAudioControl"
+                        android:src="@drawable/audio_expand"
+                        android:rotation="180"
+                        android:contentDescription="@string/reader_audio_collapse" />
+                </LinearLayout>
+                <include layout="@layout/view_quran_audio" />
+            </LinearLayout>
         </LinearLayout>
-        <include layout="@layout/view_quran_audio" />
     </LinearLayout>
 </FrameLayout>

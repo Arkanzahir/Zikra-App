@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:paddingHorizontal="12dp"
     android:paddingTop="2dp"
-    android:paddingBottom="64dp"
+    android:paddingBottom="0dp"
     android:background="@color/concept_ivory"
     android:elevation="0dp"
     android:visibility="gone">
@@ -78,12 +78,6 @@
                 style="@style/QuranAudioControl"
                 android:src="@drawable/audio_next"
                 android:contentDescription="@string/audio_next" />
-            <ImageButton
-                android:id="@+id/quranAudioOptions"
-                style="@style/QuranAudioControl"
-                android:src="@drawable/audio_expand"
-                android:contentDescription="@string/audio_options"
-                android:visibility="gone" />
             <ImageButton
                 android:id="@+id/quranAudioDownload"
                 style="@style/QuranAudioControl"

@@ -155,7 +155,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
             });
     findViewById(R.id.quranReaderMushaf).setOnClickListener(v -> openMushaf());
     findViewById(R.id.quranReaderFont).setOnClickListener(v -> showReadingOptions());
-    findViewById(R.id.quranReaderAudio).setOnClickListener(v -> audioUi.options());
+    findViewById(R.id.quranReaderAudio).setOnClickListener(v -> audioUi.togglePanel());
     findViewById(R.id.quranCatalogDownloads)
         .setOnClickListener(
             v -> {

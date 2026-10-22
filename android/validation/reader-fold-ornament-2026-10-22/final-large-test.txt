@@ -1,0 +1,6 @@
+
+com.zikra.app.QuranDesignTest:.
+Test results for InstrumentationTestRunner=.
+Time: 2.553
+
+OK (1 test)

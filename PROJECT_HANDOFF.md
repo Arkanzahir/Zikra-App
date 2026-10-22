@@ -1,3 +1,11 @@
+## Checkpoint Reader 1.4.3 — 22 Oktober 2026
+
+- Audio/gulir default terlipat menjadi baris ringkas 48dp; label/panah/tombol Audio membuka panel, panah bawah menutup. Pref `quran_audio_options.reader_audio_folded` tersimpan, fold tidak menghentikan audio/gulir/sorotan. Gear pengaturan kini di panel terbuka.
+- Judul surat dan bismillah dalam bingkai vector emas transparan dengan motif sudut/divider; tidak ada raster/teks Arab yang diganti. Default bismillah1/9 tetap seperti sebelumnya.
+- `android/validation/reader-fold-ornament-2026-10-22/`: build/lint30detik; 5 metode native/32.012detik lulus, satu rerun font200%/malam final2.553detik. Ruang viewport bertambah minimal80dp. Live Alafasy2–3, pause/resume/follow dan katalog diuji. Capture WAV saat autoscroll timeout, tidak diklaim; assertion tetap lulus.
+- APK luar root `Zikra-Reader-Lipat-v1.4.3-debug.apk`, code11. Emulator ditutup. Home/Study/Protector tidak diubah. JVM/HP belum diuji ulang.
+- Pertahankan WIP prefetch service/repository, MushafReaderTest, tools audit dan catatan private. APK memakai sumber stabil terisolasi `.local/concept-release-v130/android`; Featherless belum dihosting.
+
 ## Checkpoint tata letak1.4.2 — 22 Oktober 2026
 
 - Acuan baru `design/approved-2026-10-21/comfortable-layout-reference.png`. Reader header Arab/bismillah terpusat, metadata toolbar, nomor/speaker kiri/Arab kanan, arti bawah; menu lewat nomor/longpress; player ringkas+seek48dp di atas dock dan strip gulir/sorotan bawah.

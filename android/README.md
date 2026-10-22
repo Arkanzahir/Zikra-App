@@ -1,3 +1,5 @@
+> **Reader 1.4.3 — 22 Oktober 2026:** panel audio/gulir dilipat secara bawaan, tetap dapat mengontrol audio; pilihan tersimpan. Judul surat diberi ornamen emas tipis. [Screenshot, lima tes Android dan batas](validation/reader-fold-ornament-2026-10-22/README.md). Emulator ditutup; belum tes HP.
+
 > **Tata letak1.4.2 — 22 Oktober 2026:** Home, Reader Quran dan Study diselaraskan dengan referensi terbaru: urutan salat, judul surat/bismillah, nomor/audio di kiri ayat, player di atas navigasi dan agenda lebih padat. [Screenshot native, tes dan batas](validation/comfortable-layout-2026-10-22/README.md). Enam metode Android lulus; koreksi kosmetik akhir diperiksa ulang terarah.
 
 > **Quran 1.4.1 — 22 Oktober 2026:** mini-player katalog, tombol lanjut mengikuti ayat, dan pencocokan alif Utsmani. Lima tes Android lulus, termasuk sorotan kata/ayat berikut dengan rekaman Alafasy asli. JVM: 93 lulus, 3 dilewati. [Screenshot, build dan batas](validation/quran-catalog-audio-2026-10-22/README.md).

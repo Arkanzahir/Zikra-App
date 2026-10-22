@@ -1,0 +1,5 @@
+<resources>
+    <string name="reader_audio_folded">Audio &amp; gulir</string>
+    <string name="reader_audio_expand">Buka panel audio dan gulir</string>
+    <string name="reader_audio_collapse">Sembunyikan panel audio dan gulir</string>
+</resources>

@@ -121,6 +121,9 @@ public final class QuranDesignTest extends InstrumentationTestCase {
             page.hasWindowFocus()
                 && ((LinearLayout) page.findViewById(R.id.ayahContainer)).getChildCount() == 4);
     getInstrumentation().waitForIdleSync();
+    assertEquals(View.GONE, page.findViewById(R.id.readerAudioBody).getVisibility());
+    UiEvidence.capture(getInstrumentation(), "ReaderOrnamentFolded");
+    click(R.id.quranAudioExpand);
     View row = ((LinearLayout) page.findViewById(R.id.ayahContainer)).getChildAt(0);
     Rect number = new Rect(), play = new Rect(), arabic = new Rect(), translation = new Rect();
     row.findViewById(R.id.ayahNumber).getGlobalVisibleRect(number);
@@ -141,7 +144,7 @@ public final class QuranDesignTest extends InstrumentationTestCase {
     page.findViewById(R.id.readerAudioControls).getGlobalVisibleRect(controls);
     assertTrue("Player controls clear navigation", controls.bottom <= dock.top);
     assertTrue(
-        "Player plus reserved dock is compact",
+        "Expanded player remains compact",
         player.height() <= 176 * page.getResources().getDisplayMetrics().density);
     assertEquals(View.GONE, page.findViewById(R.id.quranLoadStatus).getVisibility());
     UiEvidence.capture(getInstrumentation(), "ComfortableReaderIkhlas");
@@ -169,6 +172,7 @@ public final class QuranDesignTest extends InstrumentationTestCase {
         .putString("reading_theme", "dark")
         .commit();
     launch(true);
+    click(R.id.quranAudioExpand);
     Rect play = new Rect(), dock = new Rect();
     assertTrue(page.findViewById(R.id.quranAudioPlay).getGlobalVisibleRect(play));
     assertTrue(page.findViewById(R.id.dockQuran).getGlobalVisibleRect(dock));

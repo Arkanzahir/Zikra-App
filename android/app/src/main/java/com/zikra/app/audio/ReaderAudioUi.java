@@ -55,7 +55,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
   private Boolean showingPlaying;
   private int chapter, first, last, repeats, speed, lastFollowed;
   private String qari;
-  private boolean loop, night;
+  private boolean loop, night, audioFolded;
   private long lastFrame;
   private float fractional;
   private AlertDialog options, downloads;
@@ -168,7 +168,25 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
                 });
     View resumeFollow = a.findViewById(R.id.quranAudioFollowResume);
     if (resumeFollow != null) resumeFollow.setOnClickListener(v -> resumeFollow());
+    if (a.findViewById(R.id.readerAudioDock) != null
+        && a.getResources().getConfiguration().fontScale >= 1.5f) wrapMovementControls();
     prefs = a.getSharedPreferences("quran_audio_options", 0);
+    audioFolded = prefs.getBoolean("reader_audio_folded", true);
+    if (a.findViewById(R.id.readerAudioDock) != null) {
+      a.findViewById(R.id.quranAudioExpand).setOnClickListener(v -> togglePanel());
+      a.findViewById(R.id.quranAudioFoldedTitle).setOnClickListener(v -> togglePanel());
+      a.findViewById(R.id.quranAudioFoldClose).setOnClickListener(v -> togglePanel());
+      a.findViewById(R.id.quranAudioFoldedPlay)
+          .setOnClickListener(
+              v -> {
+                if (state == null || state.chapter < 1) playPause();
+                else
+                  send(
+                      state.playing || (state.loading && state.requested)
+                          ? QuranAudioService.PAUSE
+                          : QuranAudioService.RESUME);
+              });
+    }
     qari = prefs.getString("reciter", Recitation.IDS[0]);
     try {
       Recitation.reciterIndex(qari);
@@ -252,12 +270,69 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     reading = visible;
     main.removeCallbacks(wordFrame);
     if (active && visible && host.wordSync()) main.post(wordFrame);
-    activity.findViewById(R.id.quranAudioPanel).setVisibility(visible ? View.VISIBLE : View.GONE);
-    View movement = activity.findViewById(R.id.quranReaderMovement);
-    if (movement != null) movement.setVisibility(visible ? View.VISIBLE : View.GONE);
+    renderDock();
     if (!visible) stopScroll();
     else changedChapter();
     update();
+  }
+
+  private void wrapMovementControls() {
+    LinearLayout movement = activity.findViewById(R.id.quranReaderMovement);
+    View auto = activity.findViewById(R.id.quranReaderAuto),
+        word = activity.findViewById(R.id.quranWordFollow),
+        options = activity.findViewById(R.id.quranAudioOptions),
+        close = activity.findViewById(R.id.quranAudioFoldClose);
+    movement.removeAllViews();
+    movement.setOrientation(LinearLayout.VERTICAL);
+    LinearLayout modes = new LinearLayout(activity);
+    modes.setGravity(Gravity.CENTER_VERTICAL);
+    modes.addView(auto, new LinearLayout.LayoutParams(0, -2, 1));
+    modes.addView(word, new LinearLayout.LayoutParams(0, -2, 1));
+    LinearLayout actions = new LinearLayout(activity);
+    actions.setGravity(Gravity.END);
+    actions.addView(options, new LinearLayout.LayoutParams(dp(48), dp(48)));
+    actions.addView(close, new LinearLayout.LayoutParams(dp(48), dp(48)));
+    movement.addView(modes, new LinearLayout.LayoutParams(-1, -2));
+    movement.addView(actions, new LinearLayout.LayoutParams(-1, dp(48)));
+  }
+
+  /** Folding only changes chrome, never playback, follow, or scroll state. */
+  public void togglePanel() {
+    if (activity.findViewById(R.id.readerAudioDock) == null) {
+      options();
+      return;
+    }
+    audioFolded = !audioFolded;
+    prefs.edit().putBoolean("reader_audio_folded", audioFolded).apply();
+    renderDock();
+  }
+
+  private void renderDock() {
+    View dock = activity.findViewById(R.id.readerAudioDock);
+    boolean full = reading && (dock == null || !audioFolded);
+    activity.findViewById(R.id.quranAudioPanel).setVisibility(full ? View.VISIBLE : View.GONE);
+    View movement = activity.findViewById(R.id.quranReaderMovement);
+    if (movement != null) movement.setVisibility(full ? View.VISIBLE : View.GONE);
+    if (dock == null) return;
+    dock.setVisibility(reading ? View.VISIBLE : View.GONE);
+    activity.findViewById(R.id.readerAudioBody).setVisibility(full ? View.VISIBLE : View.GONE);
+    activity
+        .findViewById(R.id.quranAudioFolded)
+        .setVisibility(audioFolded ? View.VISIBLE : View.GONE);
+    boolean queued = state != null && state.chapter > 0;
+    text(
+        R.id.quranAudioFoldedTitle,
+        queued
+            ? activity.getString(
+                R.string.catalog_audio_title,
+                QuranChapters.all(activity).get(state.chapter - 1).name,
+                state.verse)
+            : activity.getString(R.string.reader_audio_folded));
+    boolean playing = queued && (state.playing || (state.loading && state.requested));
+    ImageButton play = activity.findViewById(R.id.quranAudioFoldedPlay);
+    play.setImageResource(playing ? R.drawable.audio_pause : R.drawable.audio_play);
+    play.setContentDescription(
+        activity.getString(playing ? R.string.catalog_audio_pause : R.string.audio_play));
   }
 
   public void changedChapter() {
@@ -358,6 +433,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
 
   private void update() {
     if (catalog != null) catalog.update(state, reading);
+    renderDock();
     View resume = activity.findViewById(R.id.quranAudioFollowResume);
     if (resume != null)
       resume.setVisibility(
@@ -857,6 +933,15 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
   public void theme(boolean night) {
     this.night = night;
     if (catalog != null) catalog.theme(night);
+    View dock = activity.findViewById(R.id.readerAudioDock);
+    if (dock != null) {
+      dock.setBackgroundColor(night ? 0xFF10211F : activity.getColor(R.color.concept_ivory));
+      int color = night ? 0xFFEEF6F2 : 0xFF15332F;
+      ((TextView) activity.findViewById(R.id.quranAudioFoldedTitle)).setTextColor(color);
+      for (int id :
+          new int[] {R.id.quranAudioExpand, R.id.quranAudioFoldedPlay, R.id.quranAudioFoldClose})
+        ((ImageButton) activity.findViewById(id)).setImageTintList(ColorStateList.valueOf(color));
+    }
     int foreground = night ? 0xFFEEF6F2 : 0xFF15332F, secondary = night ? 0xFFB4C8BE : 0xFF586C63;
     activity
         .findViewById(R.id.quranAudioPanel)
