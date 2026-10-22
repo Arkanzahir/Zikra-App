@@ -300,6 +300,18 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
               }
 
               @Override
+              public void openAudio(int chapter, int verse) {
+                if (chapter < 1 || chapter > chapters.size()) return;
+                if (!readingOpen) {
+                  selectedIndex = chapter - 1;
+                  pendingVerse = verse;
+                  surahSelector.setSelection(selectedIndex);
+                  showReader();
+                  renderSurah(true);
+                } else followAudioVerse(chapter, verse);
+              }
+
+              @Override
               public void highlight(int chapter, int verse) {
                 highlightAudio(chapter, verse);
               }
@@ -402,7 +414,6 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
 
   private void showCatalog() {
     readingOpen = false;
-    if (audioUi != null) audioUi.reader(false);
     repository.cancel();
     loading = false;
     clearBookmarkLayout();
@@ -416,6 +427,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     findViewById(R.id.quranCatalog).setVisibility(View.VISIBLE);
     findViewById(R.id.quranReader).setVisibility(View.GONE);
     refreshBookmarkLabels();
+    if (audioUi != null) audioUi.reader(false);
     ((ScrollView) findViewById(R.id.quranScroll)).scrollTo(0, 0);
   }
 

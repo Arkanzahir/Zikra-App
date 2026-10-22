@@ -1,0 +1,37 @@
+{
+  "versionName": "1.4.1",
+  "versionCode": 9,
+  "apkSha256": "036230d5ced65bf46433de666104df2ed74fddc00de4f7f23973c735c10c29e5",
+  "apkBytes": 13308618,
+  "buildSeconds": 34,
+  "workers": 1,
+  "heapMiB": 512,
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 680
+  },
+  "jvm": {
+    "tests": 96,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 3
+  },
+  "jvmSkippedMethods": [
+    "com.zikra.app.reading.mushaf.MushafDocumentTest.actualHostSnapshotsParseWithoutBundlingContentInTests",
+    "com.zikra.app.reading.mushaf.QcfGlyphMetricsTest.originalFontKeepsPositiveAdvancesForUnicodeCombiningCodes",
+    "com.zikra.app.reading.mushaf.QcfGlyphMetricsTest.threeDigitMedallionsKeepTheirSourceGlyphAdvance"
+  ],
+  "nativeTests": 5,
+  "nativeSeconds": 22.44,
+  "actualRecitationTested": "Alafasy Al-Fatihah verses 2-3; decoder word spans, next-verse follow, pause and seek",
+  "syntheticAudioTests": "Catalog controls and 200%/night layout use labelled 440 Hz WAV fixtures; files restored",
+  "physicalPhoneTested": false,
+  "emulatorStopped": true,
+  "prefetchExperimentIncluded": false,
+  "protectorRedesignedThisRound": false,
+  "androidAppSourceTree": "6d9dd120440ef6640492c7c17e03d7ea562e7ebb",
+  "sourceFilesChecked": 479,
+  "sourceMismatches": 0,
+  "debugCertificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b"
+}

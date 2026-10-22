@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.reading.mushaf.MushafDocumentTest" tests="8" skipped="1" failures="0" errors="0" timestamp="2026-10-22T02:41:48" hostname="LAPTOP-C0PN7S52" time="0.005">
+  <properties/>
+  <testcase name="missingPositionRejected" classname="com.zikra.app.reading.mushaf.MushafDocumentTest" time="0.001"/>
+  <testcase name="wordsOnAdjacentPageAreFilteredAndStartingPositionIsKept" classname="com.zikra.app.reading.mushaf.MushafDocumentTest" time="0.001"/>
+  <testcase name="reversedLinesRejected" classname="com.zikra.app.reading.mushaf.MushafDocumentTest" time="0.001"/>
+  <testcase name="incompletePaginationRejected" classname="com.zikra.app.reading.mushaf.MushafDocumentTest" time="0.0"/>
+  <testcase name="nonSequentialDatabaseIdsAndSharedLinesAreSupported" classname="com.zikra.app.reading.mushaf.MushafDocumentTest" time="0.0"/>
+  <testcase name="verseMedallionUsesExplicitEndMetadataNotTheLastWordInALine" classname="com.zikra.app.reading.mushaf.MushafDocumentTest" time="0.001"/>
+  <testcase name="missingGlyphRejected" classname="com.zikra.app.reading.mushaf.MushafDocumentTest" time="0.0"/>
+  <testcase name="actualHostSnapshotsParseWithoutBundlingContentInTests" classname="com.zikra.app.reading.mushaf.MushafDocumentTest" time="0.001">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

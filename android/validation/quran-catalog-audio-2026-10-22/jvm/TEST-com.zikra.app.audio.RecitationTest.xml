@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.audio.RecitationTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-22T02:41:48" hostname="LAPTOP-C0PN7S52" time="0.003">
+  <properties/>
+  <testcase name="rangeMustMatchRealSurahCount" classname="com.zikra.app.audio.RecitationTest" time="0.0"/>
+  <testcase name="reciterMustBeAllowlisted" classname="com.zikra.app.audio.RecitationTest" time="0.0"/>
+  <testcase name="explicitRangeLoopReturnsToFirstAyah" classname="com.zikra.app.audio.RecitationTest" time="0.0"/>
+  <testcase name="allAyahsHaveDistinctContinuousIdentifiers" classname="com.zikra.app.audio.RecitationTest" time="0.001"/>
+  <testcase name="skipsCannotEscapeHifzRangeAndResetRepetition" classname="com.zikra.app.audio.RecitationTest" time="0.0"/>
+  <testcase name="rangeRepeatsEachVerseBeforeAdvancingAndStopsAtEnd" classname="com.zikra.app.audio.RecitationTest" time="0.0"/>
+  <testcase name="knownVerseKeysMapToPublishedGlobalNumbering" classname="com.zikra.app.audio.RecitationTest" time="0.0"/>
+  <testcase name="invalidAyahCannotResolveToDifferentSurahAudio" classname="com.zikra.app.audio.RecitationTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

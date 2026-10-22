@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.reading.mushaf.MushafFoundationTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-10-22T02:41:48" hostname="LAPTOP-C0PN7S52" time="0.003">
+  <properties/>
+  <testcase name="packagesCannotMixEditions" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.001"/>
+  <testcase name="mismatchedRecordingAyahBufferingOrOptOutDisableHighlight" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <testcase name="repeatedWordsCannotRenderTwice" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <testcase name="missingVersePositionIsRejectedAcrossLineBreaks" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <testcase name="missingPackagePageIsRejected" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <testcase name="editionLineBoundsCannotBeExceeded" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <testcase name="pageKeepsVerseAcrossLinesAndSeveralVersesOnOneLine" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <testcase name="pageBoundaryCannotDropWords" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <testcase name="modeSwitchKeepsPreferredPageWhenAyahSpansTwoPages" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.001"/>
+  <testcase name="segmentsCannotExceedRecordingDuration" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <testcase name="overlappingTimingsAreRejected" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <testcase name="missingWordsCannotSilentlyDisappear" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <testcase name="verseCannotJumpToAnotherSurahByInvalidNumber" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <testcase name="callerCannotChangeValidatedPage" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <testcase name="incompleteWordCoverageIsRejected" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.001"/>
+  <testcase name="gapsAndBoundariesDoNotInventWordTiming" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <testcase name="positionControlsSeekPauseAndRepeatWithoutElapsedClock" classname="com.zikra.app.reading.mushaf.MushafFoundationTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

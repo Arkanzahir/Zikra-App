@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.reading.CompassMathTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-22T02:41:48" hostname="LAPTOP-C0PN7S52" time="0.0">
+  <properties/>
+  <testcase name="alignmentUsesCircularDistanceAndTolerance" classname="com.zikra.app.reading.CompassMathTest" time="0.0"/>
+  <testcase name="turnsAcrossNorthUseShortestDirection" classname="com.zikra.app.reading.CompassMathTest" time="0.0"/>
+  <testcase name="smoothingDoesNotSpinAcrossNorth" classname="com.zikra.app.reading.CompassMathTest" time="0.0"/>
+  <testcase name="normalizesNegativeAndMultipleRevolutions" classname="com.zikra.app.reading.CompassMathTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

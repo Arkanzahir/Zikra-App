@@ -27,6 +27,10 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
 
     void highlight(int chapter, int verse);
 
+    default void openAudio(int chapter, int verse) {
+      follow(chapter, verse);
+    }
+
     default boolean wordSync() {
       return false;
     }
@@ -42,6 +46,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
 
   private final Activity activity;
   private final Host host;
+  private final CatalogAudioUi catalog;
   private final SharedPreferences prefs;
   private final Handler main = new Handler(Looper.getMainLooper());
   private QuranAudioService service;
@@ -138,6 +143,22 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
   public ReaderAudioUi(Activity a, Host host) {
     activity = a;
     this.host = host;
+    catalog =
+        a.findViewById(R.id.quranCatalogAudio) == null
+            ? null
+            : new CatalogAudioUi(
+                a,
+                new CatalogAudioUi.Actions() {
+                  public void command(String command) {
+                    send(command);
+                  }
+
+                  public void open(int chapter, int verse) {
+                    host.openAudio(chapter, verse);
+                  }
+                });
+    View resumeFollow = a.findViewById(R.id.quranAudioFollowResume);
+    if (resumeFollow != null) resumeFollow.setOnClickListener(v -> resumeFollow());
     prefs = a.getSharedPreferences("quran_audio_options", 0);
     qari = prefs.getString("reciter", Recitation.IDS[0]);
     try {
@@ -185,8 +206,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
         .setOnTouchListener(
             (v, event) -> {
               if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
-                stopScroll();
-                touchPaused = true;
+                userTouch();
               }
               return false;
             });
@@ -226,6 +246,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
     activity.findViewById(R.id.quranAudioPanel).setVisibility(visible ? View.VISIBLE : View.GONE);
     if (!visible) stopScroll();
     else changedChapter();
+    update();
   }
 
   public void changedChapter() {
@@ -325,6 +346,13 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
   }
 
   private void update() {
+    if (catalog != null) catalog.update(state, reading);
+    View resume = activity.findViewById(R.id.quranAudioFollowResume);
+    if (resume != null)
+      resume.setVisibility(
+          reading && touchPaused && follow && state != null && state.chapter > 0
+              ? View.VISIBLE
+              : View.GONE);
     if (!reading || chapter < 1) return;
     boolean current = state != null && state.chapter == chapter;
     boolean playing = current && (state.playing || (state.loading && state.requested));
@@ -716,6 +744,20 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
   public void userTouch() {
     stopScroll();
     touchPaused = true;
+    update();
+  }
+
+  private void resumeFollow() {
+    stopScroll();
+    touchPaused = false;
+    follow = true;
+    prefs.edit().putBoolean("follow", true).apply();
+    if (state != null && state.chapter > 0) {
+      lastFollowed = state.verse;
+      host.openAudio(state.chapter, state.verse);
+      host.highlight(state.chapter, state.verse);
+    }
+    update();
   }
 
   public void downloads() {
@@ -801,6 +843,7 @@ public final class ReaderAudioUi implements QuranAudioService.Listener {
 
   public void theme(boolean night) {
     this.night = night;
+    if (catalog != null) catalog.theme(night);
     int foreground = night ? 0xFFEEF6F2 : 0xFF15332F, secondary = night ? 0xFFB4C8BE : 0xFF586C63;
     activity.findViewById(R.id.quranAudioPanel).setBackgroundColor(night ? 0xFF1D3530 : 0xFFFFFFFF);
     ((TextView) activity.findViewById(R.id.quranAudioTitle)).setTextColor(foreground);

@@ -52,6 +52,7 @@ public final class QuranAudioTest extends InstrumentationTestCase {
         .edit()
         .putBoolean("onboarding_complete", true)
         .putBoolean("shake_enabled", false)
+        .putBoolean("reader_word_sync", false)
         .putString("reading_theme", "light")
         .commit();
     context
@@ -104,6 +105,8 @@ public final class QuranAudioTest extends InstrumentationTestCase {
                     connection,
                     Context.BIND_AUTO_CREATE));
     until("Audio service bound", () -> service != null);
+    main(() -> QuranAudioService.send(context, QuranAudioService.STOP));
+    until("Each test starts without a stale audio queue", () -> state().chapter == 0);
   }
 
   private void seed(int verse, int durationMs) throws Exception {
@@ -432,6 +435,251 @@ public final class QuranAudioTest extends InstrumentationTestCase {
     assertFalse(state().playing);
     assertFalse(state().loading);
     assertTrue("Reader remains open after decoder error", page.hasWindowFocus());
+  }
+
+  private void syntheticLabel() {
+    main(
+        () -> {
+          TextView label = new TextView(page);
+          label.setText("DATA UJI · AUDIO SINTETIS, BUKAN QURAN");
+          label.setTextSize(11);
+          label.setTextColor(0xFF15332F);
+          label.setBackgroundColor(0xFFFBF1DB);
+          ((LinearLayout) page.findViewById(R.id.quranRoot)).addView(label, 0);
+        });
+  }
+
+  public void testCatalogMiniPlayerControlsAudibleQueueAndReturnsToItsVerse() throws Exception {
+    seed(1, 20000);
+    seed(2, 20000);
+    seed(3, 20000);
+    launch(false);
+    click(R.id.toolbarBack);
+    assertEquals(View.GONE, page.findViewById(R.id.quranCatalogAudio).getVisibility());
+    main(
+        () ->
+            QuranAudioService.send(
+                context, QuranAudioService.play(1, 1, 3, 2, Recitation.IDS[0], 1, false)));
+    until(
+        "Catalog observes active queue",
+        () ->
+            state().playing
+                && page.findViewById(R.id.quranCatalogAudio).getVisibility() == View.VISIBLE);
+    until(
+        "Catalog names audible verse",
+        () ->
+            ((TextView) page.findViewById(R.id.catalogAudioTitle))
+                .getText()
+                .toString()
+                .contains("Ayat 2"));
+    syntheticLabel();
+    UiEvidence.capture(getInstrumentation(), "QuranCatalogMiniSynthetic");
+    android.graphics.Rect player = new android.graphics.Rect(), dock = new android.graphics.Rect();
+    page.findViewById(R.id.catalogAudioCard).getGlobalVisibleRect(player);
+    page.findViewById(R.id.dockQuran).getGlobalVisibleRect(dock);
+    assertTrue("Mini player stays above navigation", player.bottom <= dock.top);
+    click(R.id.catalogAudioPlay);
+    until("Catalog pauses decoder", () -> !state().playing && !state().requested);
+    click(R.id.catalogAudioPlay);
+    until("Catalog resumes same range", () -> state().playing);
+    assertEquals(1, state().chapter);
+    assertEquals(3, state().last);
+    click(R.id.catalogAudioNext);
+    until("Next preserves chosen range", () -> state().verse == 3 && state().playing);
+    assertFalse(page.findViewById(R.id.catalogAudioNext).isEnabled());
+    click(R.id.catalogAudioPrevious);
+    until("Previous returns to verse two", () -> state().verse == 2 && state().playing);
+    click(R.id.catalogAudioOpen);
+    until(
+        "Opens audible reader",
+        () ->
+            page.findViewById(R.id.quranReader).getVisibility() == View.VISIBLE
+                && ((Spinner) page.findViewById(R.id.surahSelector)).getSelectedItemPosition()
+                    == 0);
+    assertEquals(View.GONE, page.findViewById(R.id.quranCatalogAudio).getVisibility());
+    main(() -> ((Spinner) page.findViewById(R.id.surahSelector)).setSelection(111));
+    until(
+        "Different surah finishes opening before Back",
+        () ->
+            ((LinearLayout) page.findViewById(R.id.ayahContainer)).getChildCount() == 4
+                && page.findViewById(R.id.quranReader).getVisibility() == View.VISIBLE);
+    click(R.id.toolbarBack);
+    until(
+        "Browsing other surah does not replace audio",
+        () ->
+            page.findViewById(R.id.quranCatalogAudio).getVisibility() == View.VISIBLE
+                && ((TextView) page.findViewById(R.id.catalogAudioTitle))
+                    .getText()
+                    .toString()
+                    .startsWith("Al-Fatihah"));
+    assertEquals(1, state().chapter);
+    click(R.id.catalogAudioOpen);
+    until(
+        "Open uses queue instead of selected surah",
+        () -> ((Spinner) page.findViewById(R.id.surahSelector)).getSelectedItemPosition() == 0);
+    click(R.id.toolbarBack);
+    main(() -> QuranAudioService.send(context, QuranAudioService.STOP));
+    until(
+        "Stop removes catalog mini player",
+        () -> page.findViewById(R.id.quranCatalogAudio).getVisibility() == View.GONE);
+  }
+
+  public void testFollowAyahResumesAfterTouchAndColorsActiveVerse() throws Exception {
+    seed(1, 20000);
+    seed(2, 20000);
+    launch(false);
+    main(
+        () ->
+            QuranAudioService.send(
+                context, QuranAudioService.play(1, 1, 2, 1, Recitation.IDS[0], 1, false)));
+    until("Audio starts", () -> state().playing);
+    final ReaderAudioUi audio = (ReaderAudioUi) ui();
+    main(audio::userTouch);
+    until(
+        "Resume-follow action visible",
+        () -> page.findViewById(R.id.quranAudioFollowResume).getVisibility() == View.VISIBLE);
+    main(() -> QuranAudioService.send(context, QuranAudioService.NEXT));
+    until("Next ayah loaded", () -> state().verse == 2 && state().playing);
+    TextView arabic =
+        ((LinearLayout) page.findViewById(R.id.ayahContainer))
+            .getChildAt(1)
+            .findViewById(R.id.ayahArabic);
+    until(
+        "Active ayah changes color",
+        () -> arabic.getCurrentTextColor() == page.getColor(R.color.concept_gold_ink));
+    main(() -> ((ScrollView) page.findViewById(R.id.quranScroll)).scrollTo(0, 0));
+    click(R.id.quranAudioFollowResume);
+    until(
+        "Follow brings audible ayah into view",
+        () -> ((ScrollView) page.findViewById(R.id.quranScroll)).getScrollY() > 20);
+    assertEquals(View.GONE, page.findViewById(R.id.quranAudioFollowResume).getVisibility());
+    syntheticLabel();
+    UiEvidence.capture(getInstrumentation(), "QuranFollowResumedSynthetic");
+  }
+
+  public void testCatalogMiniPlayerAtLargeTextAndNight() throws Exception {
+    String font =
+        android.provider.Settings.System.getString(context.getContentResolver(), "font_scale");
+    try {
+      shell("settings put system font_scale 2.0");
+      context
+          .getSharedPreferences("zikra_preferences", 0)
+          .edit()
+          .putString("reading_theme", "dark")
+          .commit();
+      seed(1, 20000);
+      launch(false);
+      click(R.id.toolbarBack);
+      main(
+          () ->
+              QuranAudioService.send(
+                  context, QuranAudioService.play(1, 1, 1, 1, Recitation.IDS[0], 1, false)));
+      until(
+          "Large mini visible",
+          () ->
+              state().playing
+                  && page.findViewById(R.id.quranCatalogAudio).getVisibility() == View.VISIBLE);
+      assertTrue(page.getResources().getConfiguration().fontScale > 1.5f);
+      android.graphics.Rect card = new android.graphics.Rect(),
+          dock = new android.graphics.Rect(),
+          play = new android.graphics.Rect();
+      page.findViewById(R.id.catalogAudioCard).getGlobalVisibleRect(card);
+      page.findViewById(R.id.dockQuran).getGlobalVisibleRect(dock);
+      assertTrue(page.findViewById(R.id.catalogAudioPlay).getGlobalVisibleRect(play));
+      assertTrue("Large text player clears dock", card.bottom <= dock.top);
+      assertTrue(
+          "Full play target visible",
+          play.height() >= 48 * page.getResources().getDisplayMetrics().density - 1);
+      assertEquals(
+          0xFFEEF6F2, ((TextView) page.findViewById(R.id.catalogAudioTitle)).getCurrentTextColor());
+      syntheticLabel();
+      UiEvidence.capture(getInstrumentation(), "QuranCatalogMiniLargeNightSynthetic");
+    } finally {
+      if (page != null) main(page::finish);
+      shell("settings put system font_scale " + (font == null ? "1.0" : font));
+    }
+  }
+
+  public void testLiveReaderWordColorUsesDecodedAudioAndFollowsNextAyah() throws Exception {
+    context
+        .getSharedPreferences("zikra_preferences", 0)
+        .edit()
+        .putBoolean("reader_word_sync", true)
+        .commit();
+    launch(false);
+    main(
+        () ->
+            QuranAudioService.send(
+                context,
+                QuranAudioService.play(1, 2, 3, 2, Recitation.IDS[0], 1, false)
+                    .putExtra("word_sync", true)));
+    long end = SystemClock.uptimeMillis() + 90000;
+    while (!state().playing && SystemClock.uptimeMillis() < end) SystemClock.sleep(100);
+    assertTrue("Actual timed recording starts: " + state().status, state().playing);
+    assertTrue("Timing belongs to active recording", state().wordTimingAvailable);
+    TextView arabic =
+        ((LinearLayout) page.findViewById(R.id.ayahContainer))
+            .getChildAt(1)
+            .findViewById(R.id.ayahArabic);
+    java.util.Set<Integer> starts = new java.util.HashSet<>();
+    long watch = SystemClock.uptimeMillis() + 12000;
+    while (starts.size() < 2 && SystemClock.uptimeMillis() < watch && state().verse == 2) {
+      main(
+          () -> {
+            if (arabic.getText() instanceof android.text.Spanned) {
+              android.text.Spanned text = (android.text.Spanned) arabic.getText();
+              for (android.text.style.ForegroundColorSpan span :
+                  text.getSpans(0, text.length(), android.text.style.ForegroundColorSpan.class))
+                starts.add(text.getSpanStart(span));
+            }
+          });
+      SystemClock.sleep(50);
+    }
+    if (starts.size() < 2) {
+      Bundle details = new Bundle();
+      details.putString("display_text", arabic.getText().toString());
+      details.putString("source_words", state().words.toString());
+      details.putString("status", state().status);
+      details.putInt("verse", state().verse);
+      getInstrumentation().sendStatus(0, details);
+      UiEvidence.capture(getInstrumentation(), "QuranWordFailure");
+    }
+    assertTrue("Real decoder advances color across two different words", starts.size() >= 2);
+    UiEvidence.capture(getInstrumentation(), "QuranReaderLiveWordColor");
+    until("Actual next ayah plays", () -> state().verse == 3 && state().playing);
+    until(
+        "Audio follows next ayah in reader",
+        () -> ((ScrollView) page.findViewById(R.id.quranScroll)).getScrollY() > 30);
+    TextView next =
+        ((LinearLayout) page.findViewById(R.id.ayahContainer))
+            .getChildAt(2)
+            .findViewById(R.id.ayahArabic);
+    until(
+        "Next verse receives word span",
+        () ->
+            next.getText() instanceof android.text.Spanned
+                && ((android.text.Spanned) next.getText())
+                        .getSpans(0, next.length(), android.text.style.ForegroundColorSpan.class)
+                        .length
+                    == 1);
+    UiEvidence.capture(getInstrumentation(), "QuranReaderLiveNextAyah");
+    main(() -> QuranAudioService.send(context, QuranAudioService.PAUSE));
+    until("Actual recitation pauses", () -> !state().playing && !state().requested);
+    int paused = state().position;
+    SystemClock.sleep(350);
+    assertTrue("Decoder position freezes", Math.abs(state().position - paused) < 120);
+    main(
+        () ->
+            QuranAudioService.send(
+                context,
+                new Intent().setAction(QuranAudioService.SEEK).putExtra("position", 1000)));
+    until("Seek updates actual position", () -> Math.abs(state().position - 1000) < 350);
+    Bundle evidence = new Bundle();
+    evidence.putString("recording", "Live Alafasy Quran.com timed recording");
+    evidence.putInt("different_word_offsets", starts.size());
+    evidence.putInt("next_verse", state().verse);
+    evidence.putInt("duration_ms", state().duration);
+    getInstrumentation().sendStatus(0, evidence);
   }
 
   @Override

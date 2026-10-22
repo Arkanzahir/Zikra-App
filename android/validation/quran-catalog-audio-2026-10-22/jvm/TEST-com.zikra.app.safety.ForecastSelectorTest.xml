@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.safety.ForecastSelectorTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-22T02:41:48" hostname="LAPTOP-C0PN7S52" time="0.002">
+  <properties/>
+  <testcase name="expiredResponseUsesLatestAvailableTime" classname="com.zikra.app.safety.ForecastSelectorTest" time="0.0"/>
+  <testcase name="selectsNearestUpcomingForecastFromUnsortedResponse" classname="com.zikra.app.safety.ForecastSelectorTest" time="0.0"/>
+  <testcase name="emptyOrInvalidResponseHasNoForecast" classname="com.zikra.app.safety.ForecastSelectorTest" time="0.0"/>
+  <testcase name="parsesBmkgUtcAndWibWithoutApplyingDeviceTimezone" classname="com.zikra.app.safety.ForecastSelectorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

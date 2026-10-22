@@ -1,3 +1,11 @@
+## Checkpoint Quran 1.4.1 — 22 Oktober 2026
+
+- Mini-player katalog ditambahkan (judul/audio dari service aktif, kontrol antrean dan progres, membuka ayat terdengar); tema malam/font200, tanpa player kedua.
+- Tombol Lanjut ikuti ayat sesudah sentuhan manual. ArabicWordMap mendukung alif penuh vs superscript alif eksplisit; seluruh kata tetap diperiksa, mismatch fallback ayat.
+- `android/validation/quran-catalog-audio-2026-10-22/`: build/lint34detik, 93 JVM lulus/3 optional host-fixture dilewati, 5 native/22.44detik lulus. Alafasy Al-Fatihah2–3 asli: offset kata berubah, follow ayat3, pause/seek; kontrol/layout juga memakai WAV sintetis berlabel. Tidak audit semua qari/ayat/HP.
+- APK luar root `Zikra-Quran-Player-v1.4.1-debug.apk`, code9. Emulator ditutup. Protector/Hadis/Doa belum dipoles ronde ini.
+- Build memakai `.local/concept-release-v130/android` stabil. Pertahankan eksperimen audio, MushafReaderTest, tools timing dan catatan private lokal sebagai WIP; tidak termasuk paket/commit ini. Featherless belum dihosting.
+
 ## Checkpoint Study 1.4.0 — 22 Oktober 2026
 
 - Aset generated-first, prompt lengkap: `design/study-layered-assets-2026-10-22.md`.

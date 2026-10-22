@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.reading.mushaf.QcfGlyphMetricsTest" tests="3" skipped="2" failures="0" errors="0" timestamp="2026-10-22T02:41:48" hostname="LAPTOP-C0PN7S52" time="0.008">
+  <properties/>
+  <testcase name="originalFontKeepsPositiveAdvancesForUnicodeCombiningCodes" classname="com.zikra.app.reading.mushaf.QcfGlyphMetricsTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="threeDigitMedallionsKeepTheirSourceGlyphAdvance" classname="com.zikra.app.reading.mushaf.QcfGlyphMetricsTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="corruptFontCannotBecomeARenderablePage" classname="com.zikra.app.reading.mushaf.QcfGlyphMetricsTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

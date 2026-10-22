@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.safety.WeatherCodeTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-22T02:41:48" hostname="LAPTOP-C0PN7S52" time="0.0">
+  <properties/>
+  <testcase name="rejectsUnknownWeatherCode" classname="com.zikra.app.safety.WeatherCodeTest" time="0.0"/>
+  <testcase name="cacheAgeBoundariesAndClockRollback" classname="com.zikra.app.safety.WeatherCodeTest" time="0.0"/>
+  <testcase name="codesAndWindDirectionsAreExplicit" classname="com.zikra.app.safety.WeatherCodeTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

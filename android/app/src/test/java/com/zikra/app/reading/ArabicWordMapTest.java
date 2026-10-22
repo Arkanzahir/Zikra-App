@@ -45,7 +45,13 @@ public class ArabicWordMapTest {
   }
 
   @Test
-  public void lexicalDifferenceRejectsRatherThanGuessing() {
-    assertNull(ArabicWordMap.match("العالمين", List.of("ٱلْعَـٰلَمِينَ")));
+  public void daggerAlifMatchesFullAlifWithoutChangingOffsetsOrDroppingLetters() {
+    String verse = "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ";
+    ArabicWordMap map =
+        ArabicWordMap.match(verse, List.of("ٱلْحَمْدُ", "لِلَّهِ", "رَبِّ", "ٱلْعَـٰلَمِينَ"));
+    assertNotNull(map);
+    assertEquals("الْعَالَمِينَ", verse.substring(map.starts[3], map.ends[3]));
+    assertNull(ArabicWordMap.match("العالمين", List.of("العلمين")));
+    assertNull(ArabicWordMap.match("العالمين", List.of("الظَّـٰلَمِينَ")));
   }
 }

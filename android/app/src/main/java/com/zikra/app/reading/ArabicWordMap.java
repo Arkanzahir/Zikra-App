@@ -20,12 +20,21 @@ public final class ArabicWordMap {
   }
 
   private static String key(String text) {
+    return key(text, false);
+  }
+
+  private static String key(String text, boolean expandDaggerAlif) {
     StringBuilder result = new StringBuilder();
     text.codePoints()
         .forEach(
             cp -> {
               // Uthmani marks, tatweel and ayah/waqf signs do not alter lexical order.
               if (cp == 0x640) return;
+              // An explicit superscript alif can represent a full alif in the local spelling.
+              if (cp == 0x670 && expandDaggerAlif) {
+                result.appendCodePoint(0x627);
+                return;
+              }
               if (Character.isLetter(cp)
                   && Character.UnicodeScript.of(cp) == Character.UnicodeScript.ARABIC
                   && !(cp >= 0x6D6 && cp <= 0x6ED)
@@ -42,7 +51,10 @@ public final class ArabicWordMap {
     while (matcher.find()) {
       String word = key(matcher.group());
       if (word.isEmpty()) continue;
-      if (index >= source.size() || !word.equals(key(source.get(index)))) return null;
+      if (index >= source.size()) return null;
+      String sourceWord = source.get(index);
+      if (!word.equals(key(sourceWord))
+          && !key(matcher.group(), true).equals(key(sourceWord, true))) return null;
       starts.add(matcher.start());
       ends.add(matcher.end());
       index++;

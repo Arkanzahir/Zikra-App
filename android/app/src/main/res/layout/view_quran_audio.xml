@@ -8,6 +8,7 @@
         <ImageButton android:id="@+id/quranAudioDownload" style="@style/QuranAudioControl" android:src="@drawable/audio_download" android:contentDescription="@string/audio_download" android:visibility="gone" />
     </LinearLayout>
     <TextView android:id="@+id/quranAudioStatus" style="@style/NearbyCaption" android:textSize="11sp" android:maxLines="2" android:ellipsize="end" android:accessibilityLiveRegion="polite" />
+    <Button android:id="@+id/quranAudioFollowResume" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/catalog_audio_follow_resume" android:textAllCaps="false" android:textColor="@color/pine" android:background="@drawable/concept_mint_card" android:visibility="gone" />
     <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:gravity="center_vertical">
         <SeekBar android:id="@+id/quranAudioSeek" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp" android:contentDescription="@string/audio_position" />
         <TextView android:id="@+id/quranAudioTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="10sp" android:textColor="@color/onboarding_muted" android:text="@string/audio_empty_time" />

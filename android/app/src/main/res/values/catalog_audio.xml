@@ -1,0 +1,7 @@
+<resources>
+    <string name="catalog_audio_title">%1$s · Ayat %2$d</string>
+    <string name="catalog_audio_open">Buka bacaan %1$s, ayat %2$d</string>
+    <string name="catalog_audio_time">%1$s / %2$s</string>
+    <string name="catalog_audio_follow_resume">Lanjut ikuti ayat</string>
+    <string name="catalog_audio_pause">Jeda murottal</string>
+</resources>

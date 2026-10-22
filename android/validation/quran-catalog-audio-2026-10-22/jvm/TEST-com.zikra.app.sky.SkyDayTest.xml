@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.sky.SkyDayTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-22T02:41:48" hostname="LAPTOP-C0PN7S52" time="0.0">
+  <properties/>
+  <testcase name="fallbackMoonChangesByAstronomicalDate" classname="com.zikra.app.sky.SkyDayTest" time="0.0"/>
+  <testcase name="realSolarNoonIsMidArcAndEndpointsAreClamped" classname="com.zikra.app.sky.SkyDayTest" time="0.0"/>
+  <testcase name="rejectsInvertedSolarEvents" classname="com.zikra.app.sky.SkyDayTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
