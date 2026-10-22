@@ -1,49 +1,30 @@
 <!doctype html>
-<html lang="id">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Zikra · Pratinjau aset cuaca</title>
-<link rel="stylesheet" href="preview.css">
-</head>
-<body>
-<main>
-<header class="intro"><p class="eyebrow">ZIKRA / PROTECTOR</p><h1>Langit yang mengikuti cuaca.</h1><p>Aset berlapis dan contoh gerak. Belum tersambung ke cuaca langsung atau APK.</p></header>
-<div class="workspace">
-<section class="device" aria-label="Pratinjau header Protector">
-<div class="scene" id="scene" data-mode="clear">
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zikra · Protector sesuai referensi</title><link rel="stylesheet" href="protector.css"></head>
+<body><svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 5v6h-6M4 19v-6h6M5 8a8 8 0 0 1 13-3l2 3M4 16l2 3a8 8 0 0 0 13-3"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol><symbol id="i-external" viewBox="0 0 24 24"><path d="M8 6h10v10M6 18 18 6"/></symbol><symbol id="i-down" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol><symbol id="i-back" viewBox="0 0 24 24"><path d="M20 12H4m6-6-6 6 6 6"/></symbol><symbol id="i-temp" viewBox="0 0 24 24"><path d="M10 14V5a2 2 0 0 1 4 0v9a5 5 0 1 1-4 0Zm2-6v10"/></symbol><symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3S5 11 5 15a7 7 0 0 0 14 0c0-4-7-12-7-12Z"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 7v6l4 2"/><circle cx="12" cy="12" r="9"/></symbol><symbol id="i-shelter" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8M6 9v12h12V9M10 21v-7h4v7"/></symbol><symbol id="i-phone" viewBox="0 0 24 24"><path d="m6 3-3 3c0 7 8 15 15 15l3-3-5-4-3 2-5-5 2-3Z"/></symbol><symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v11h-7v-7h-4v7H3Z"/></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5C9 2 4 3 2 4v15c4-2 7-1 10 1 3-2 6-3 10-1V4c-2-1-7-2-10 1Zm0 0v15"/></symbol><symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 2.7 7.3L22 12l-7.3 2.7L12 22l-2.7-7.3L2 12l7.3-2.7Z"/></symbol><symbol id="i-study" viewBox="0 0 24 24"><path d="m2 8 10-5 10 5-10 5Zm4 2v7c4 3 8 3 12 0v-7M22 8v9"/></symbol><symbol id="i-user" viewBox="0 0 24 24"><path d="M4 21v-2a8 8 0 0 1 16 0v2Z"/><circle cx="12" cy="7" r="4"/></symbol><symbol id="i-target" viewBox="0 0 24 24"><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/><circle cx="12" cy="12" r="9"/></symbol><symbol id="i-info" viewBox="0 0 24 24"><path d="M12 10v7m0-11v1"/><circle cx="12" cy="12" r="9"/></symbol></svg>
+<header class="preview-header"><div><strong>ZIKRA / PROTECTOR</strong><span>Pratinjau tata letak · semua data contoh</span></div><a href="asset-lab.html">Lihat lapisan aset ↗</a></header>
+<main class="preview-stage"><div class="phone-slot"><section class="phone" aria-label="Pratinjau layar Protector"><div class="screen">
+<div id="overview" class="overview">
+<header class="scene" id="scene" data-mode="partly">
 <div class="sun" aria-hidden="true"></div><div class="moon" aria-hidden="true"></div>
-<img class="cloud cloud-back" src="clouds-light.png" alt="" draggable="false">
-<img class="cloud cloud-front" src="clouds-light.png" alt="" draggable="false">
-<img class="cloud storm-back" src="clouds-storm.png" alt="" draggable="false">
-<img class="cloud storm-front" src="clouds-storm.png" alt="" draggable="false">
-<img class="city" src="city-foreground.png" alt="" draggable="false">
-<div class="atmosphere" aria-hidden="true"></div>
-<canvas id="rain" aria-hidden="true"></canvas><div class="scrim" aria-hidden="true"></div>
-<div class="weather">
-<div class="topline"><strong>Protector</strong><span class="sample">SIMULASI</span></div>
-<p class="location">Surabaya · contoh lokasi</p>
-<p class="micro">Cuaca di lokasimu</p>
-<p class="temperature"><span id="temperature">29</span><sup>°</sup></p>
-<p id="condition">Cerah</p>
-<p class="source">Tampilan contoh, bukan kondisi langsung</p>
-</div>
-</div>
-<div class="scene-footer"><span class="status-dot"></span><span id="layer-note">Tanpa lapisan awan dan hujan</span></div>
-</section>
-<section class="controls" aria-labelledby="controls-title">
-<p class="eyebrow">COBA SUASANANYA</p><h2 id="controls-title">Satu kota, beberapa langit.</h2>
-<p class="lede">Kota tetap. Awan bergerak sebagai lapisan terpisah; jumlah, panjang, dan kecepatan titik hujan berubah mengikuti mode.</p>
-<div class="mode-buttons" id="modes" role="group" aria-label="Pilih simulasi cuaca"></div>
-<div class="motion-control"><button id="motion" type="button" aria-pressed="true">Jeda gerak</button><span id="motion-note">Gerak aktif</span></div>
-<dl class="facts"><div><dt>Lapisan aktif</dt><dd id="layers">Langit + matahari + kota</dd></div><div><dt>Hujan</dt><dd id="intensity">Tidak ada</dd></div><div><dt>Awan</dt><dd id="cloud-motion">Tidak ditampilkan</dd></div></dl>
-<p class="fine">Badai adalah contoh visual. Integrasi nanti mengikuti kode cuaca dan data intensitas yang tersedia, bukan tebakan dari suhu. Tidak ada suara atau kilatan otomatis.</p>
-</section>
-</div>
-<section class="assets" aria-labelledby="asset-title"><div class="section-title"><h2 id="asset-title">Aset yang disiapkan</h2><span>PNG asli · transparan</span></div><div class="asset-grid">
-<a href="city-foreground.png" class="asset"><div class="checker"><img src="city-foreground.png" alt="Lapisan kota tanpa langit"></div><strong>Kota</strong><span>1774 × 887 · 1,53 MiB</span></a>
-<a href="clouds-light.png" class="asset"><div class="checker"><img src="clouds-light.png" alt="Awan terang transparan"></div><strong>Awan terang</strong><span>1942 × 809 · 1,00 MiB</span></a>
-<a href="clouds-storm.png" class="asset"><div class="checker"><img src="clouds-storm.png" alt="Awan gelap transparan"></div><strong>Awan gelap</strong><span>1942 × 809 · 1,52 MiB</span></a>
-</div></section>
-<footer>Pratinjau desain · aset sumber belum dioptimalkan untuk APK · gerak berhenti saat tab tersembunyi</footer>
-</main><script src="preview.js"></script>
-</body></html>
+<img class="cloud cloud-back" src="clouds-light.png" alt=""><img class="cloud cloud-front" src="clouds-light.png" alt=""><img class="cloud storm-back" src="clouds-storm.png" alt=""><img class="cloud storm-front" src="clouds-storm.png" alt=""><img class="city" src="city-foreground.png" alt=""><div class="atmosphere" aria-hidden="true"></div><canvas id="rain" aria-hidden="true"></canvas><div class="scrim" aria-hidden="true"></div>
+<div class="statusbar"><span>09:41</span><span aria-hidden="true">▰ ◢ ▰</span></div>
+<div class="weather"><div class="title-row"><h1>Protector</h1><button class="icon-button refresh-demo" aria-label="Putar ulang contoh"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg></button></div><span class="location">Surabaya <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></span><div class="weather-reading"><p class="micro">Cuaca di lokasimu</p><p class="temperature"><span id="temperature">29</span><sup>°</sup></p><p id="condition">Cerah berawan</p><p class="example-label">Contoh cuaca</p></div></div>
+<div class="weather-stats"><span><svg class="icon" aria-hidden="true"><use href="#i-temp"/></svg> Terasa <b id="feels">31°</b></span><span><svg class="icon" aria-hidden="true"><use href="#i-drop"/></svg> Kelembapan <b id="humidity">72%</b></span></div>
+</header>
+<section class="content" aria-label="Informasi gempa">
+<div class="section-heading"><h2>Peta gempa</h2><button class="outlined-small" id="expand-map">Perbesar <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></button></div>
+<button class="map-preview" id="map-open" aria-label="Buka pratinjau peta gempa"><img src="map-overview.svg" alt="Peta Jawa dan Bali dengan episentrum contoh, bukan kejadian aktual"></button>
+<section class="report" aria-labelledby="report-title"><div class="report-heading"><h3 id="report-title">Laporan terakhir</h3><span class="badge">Contoh</span></div><dl class="metrics"><div><dt>Magnitudo</dt><dd>—</dd></div><div><dt>Kedalaman</dt><dd>—</dd></div><div><dt>Waktu</dt><dd>—</dd></div></dl><button class="text-action" id="detail-open">Detail gempa <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button></section>
+<div class="update-note"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><div><strong>Pembaruan data</strong><p>Waktu pembaruan akan ditampilkan</p></div></div>
+<div class="shortcuts"><div class="shortcut"><span class="circle gold"><svg class="icon" aria-hidden="true"><use href="#i-shelter"/></svg></span><strong>Panduan gempa</strong><span class="chevron">›</span></div><div class="shortcut"><span class="circle mint"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span><strong>Kontak darurat</strong><span class="chevron">›</span></div></div>
+<p class="source-note">Integrasi data gempa: BMKG</p></section>
+<nav class="nav" aria-label="Contoh navigasi utama"><span class="nav-item active"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg><span>Home</span></span><span class="nav-item "><svg class="icon" aria-hidden="true"><use href="#i-book"/></svg><span>Quran</span></span><span class="nav-item "><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg><span>Zikra AI</span></span><span class="nav-item "><svg class="icon" aria-hidden="true"><use href="#i-study"/></svg><span>Study</span></span><span class="nav-item "><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg><span>Profil</span></span></nav><div class="gesture" aria-hidden="true"></div></div>
+<section id="detail" class="detail" aria-label="Pratinjau detail peta gempa" hidden>
+<div class="detail-status">09:41 <span aria-hidden="true">◢ ▰</span></div>
+<div class="detail-toolbar"><button class="icon-button" id="map-back" aria-label="Kembali ke Protector"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg></button><h2>Peta gempa</h2><button class="icon-button refresh-demo" aria-label="Atur ulang pratinjau"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg></button></div>
+<div class="map-tabs" role="group" aria-label="Jenis peta"><button id="epicenter-tab" aria-pressed="true">Peta episentrum</button><button id="shakemap-tab" aria-pressed="false">Peta guncangan</button></div>
+<div class="detail-map"><div class="map-corner">Ilustrasi peta</div><span class="badge detail-badge">Contoh tampilan</span><img id="detail-geography" src="map-detail.svg" alt="Peta geografis contoh"><div id="shake-empty" class="shake-empty" hidden><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><strong>Peta guncangan belum dimuat</strong><p>Pratinjau ini belum tersambung ke laporan BMKG.</p></div><div class="zoom-controls"><button id="zoom-in" aria-label="Perbesar peta">+</button><button id="zoom-out" aria-label="Perkecil peta">−</button><button id="zoom-reset" aria-label="Atur ulang posisi peta"><svg class="icon" aria-hidden="true"><use href="#i-target"/></svg></button></div><p class="map-caption">Posisi dan data hanya ilustrasi</p></div>
+<section class="detail-sheet"><div class="handle" aria-hidden="true"></div><div class="sheet-heading"><h2>Episentrum gempa</h2><span class="badge">DATA CONTOH</span></div><p class="sheet-location">Lokasi mengikuti laporan yang dipilih</p><dl class="metrics"><div><dt>Magnitudo</dt><dd>—</dd></div><div><dt>Kedalaman</dt><dd>—</dd></div><div><dt>Waktu</dt><dd>—</dd></div></dl><p class="felt">Dirasakan: mengikuti laporan BMKG</p><a class="primary-action" href="https://data.bmkg.go.id/gempabumi/" target="_blank" rel="noopener">Lihat sumber BMKG <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a><p class="not-live"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg> Bukan kejadian aktual</p></section><div class="gesture" aria-hidden="true"></div></section>
+</div></section></div>
+<aside class="demo-controls"><p class="control-eyebrow">TATA LETAK SESUAI REFERENSI</p><h2>Cuaca, lalu peta.<br>Informasi tetap utama.</h2><p class="control-copy">Header lebih ringkas, judul serif, isi sans-serif. Peta, laporan terakhir, dan navigasi kini berada dalam satu layar.</p><div id="modes" class="mode-buttons" role="group" aria-label="Pilih contoh cuaca"></div><div class="motion-row"><button id="motion" aria-pressed="true">Jeda gerak</button><span id="motion-note">Gerak aktif</span></div><button id="actual-size" class="size-button" aria-pressed="false">Lihat ukuran asli</button><p class="demo-note">Kota, cuaca, dan titik gempa adalah contoh. Belum perubahan APK. Navigasi utama serta pintasan hanya contoh tata letak.</p><p class="font-note">Judul: Georgia Bold<br>Isi: Plus Jakarta Sans</p><a class="asset-link" href="README.md">Aset dan catatan desain ↗</a></aside>
+</main><script src="protector.js"></script></body></html>

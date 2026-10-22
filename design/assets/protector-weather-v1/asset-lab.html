@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zikra · Pratinjau aset cuaca</title>
+<link rel="stylesheet" href="preview.css">
+</head>
+<body>
+<main>
+<header class="intro"><p class="eyebrow">ZIKRA / PROTECTOR</p><h1>Langit yang mengikuti cuaca.</h1><p>Aset berlapis dan contoh gerak. Belum tersambung ke cuaca langsung atau APK.</p></header>
+<div class="workspace">
+<section class="device" aria-label="Pratinjau header Protector">
+<div class="scene" id="scene" data-mode="clear">
+<div class="sun" aria-hidden="true"></div><div class="moon" aria-hidden="true"></div>
+<img class="cloud cloud-back" src="clouds-light.png" alt="" draggable="false">
+<img class="cloud cloud-front" src="clouds-light.png" alt="" draggable="false">
+<img class="cloud storm-back" src="clouds-storm.png" alt="" draggable="false">
+<img class="cloud storm-front" src="clouds-storm.png" alt="" draggable="false">
+<img class="city" src="city-foreground.png" alt="" draggable="false">
+<div class="atmosphere" aria-hidden="true"></div>
+<canvas id="rain" aria-hidden="true"></canvas><div class="scrim" aria-hidden="true"></div>
+<div class="weather">
+<div class="topline"><strong>Protector</strong><span class="sample">SIMULASI</span></div>
+<p class="location">Surabaya · contoh lokasi</p>
+<p class="micro">Cuaca di lokasimu</p>
+<p class="temperature"><span id="temperature">29</span><sup>°</sup></p>
+<p id="condition">Cerah</p>
+<p class="source">Tampilan contoh, bukan kondisi langsung</p>
+</div>
+</div>
+<div class="scene-footer"><span class="status-dot"></span><span id="layer-note">Tanpa lapisan awan dan hujan</span></div>
+</section>
+<section class="controls" aria-labelledby="controls-title">
+<p class="eyebrow">COBA SUASANANYA</p><h2 id="controls-title">Satu kota, beberapa langit.</h2>
+<p class="lede">Kota tetap. Awan bergerak sebagai lapisan terpisah; jumlah, panjang, dan kecepatan titik hujan berubah mengikuti mode.</p>
+<div class="mode-buttons" id="modes" role="group" aria-label="Pilih simulasi cuaca"></div>
+<div class="motion-control"><button id="motion" type="button" aria-pressed="true">Jeda gerak</button><span id="motion-note">Gerak aktif</span></div>
+<dl class="facts"><div><dt>Lapisan aktif</dt><dd id="layers">Langit + matahari + kota</dd></div><div><dt>Hujan</dt><dd id="intensity">Tidak ada</dd></div><div><dt>Awan</dt><dd id="cloud-motion">Tidak ditampilkan</dd></div></dl>
+<p class="fine">Badai adalah contoh visual. Integrasi nanti mengikuti kode cuaca dan data intensitas yang tersedia, bukan tebakan dari suhu. Tidak ada suara atau kilatan otomatis.</p>
+</section>
+</div>
+<section class="assets" aria-labelledby="asset-title"><div class="section-title"><h2 id="asset-title">Aset yang disiapkan</h2><span>PNG asli · transparan</span></div><div class="asset-grid">
+<a href="city-foreground.png" class="asset"><div class="checker"><img src="city-foreground.png" alt="Lapisan kota tanpa langit"></div><strong>Kota</strong><span>1774 × 887 · 1,53 MiB</span></a>
+<a href="clouds-light.png" class="asset"><div class="checker"><img src="clouds-light.png" alt="Awan terang transparan"></div><strong>Awan terang</strong><span>1942 × 809 · 1,00 MiB</span></a>
+<a href="clouds-storm.png" class="asset"><div class="checker"><img src="clouds-storm.png" alt="Awan gelap transparan"></div><strong>Awan gelap</strong><span>1942 × 809 · 1,52 MiB</span></a>
+</div></section>
+<footer>Pratinjau desain · aset sumber belum dioptimalkan untuk APK · gerak berhenti saat tab tersembunyi</footer>
+</main><script src="preview.js"></script>
+</body></html>

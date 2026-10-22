@@ -86,5 +86,26 @@
     "No live API or location used",
     "No CPU/battery/frame-rate or native RAM benchmark",
     "Original PNGs are source masters, not final APK textures"
+  ],
+  "layoutRevision": 2,
+  "defaultPreview": "preview.html",
+  "assetLab": "asset-lab.html",
+  "font": {
+    "title": "Georgia Bold (system serif)",
+    "body": "Plus Jakarta Sans (bundled OFL)",
+    "exactGeneratedReferenceFontKnown": false
+  },
+  "maps": {
+    "source": "Bundled Natural Earth 50m derivative",
+    "files": [
+      "map-overview.svg",
+      "map-detail.svg"
+    ],
+    "live": false
+  },
+  "screenshots": [
+    "layout-overview.png",
+    "layout-rain.png",
+    "layout-map.png"
   ]
 }

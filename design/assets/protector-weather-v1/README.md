@@ -1,5 +1,7 @@
 # Paket aset cuaca Protector — v1
 
+**Revisi tata letak 22 Oktober:** preview.html kini menampilkan Protector lengkap mengikuti acuan pengguna, dengan header ringkas, peta, laporan, navigasi serta detail peta. [Perubahan, font dan verifikasi](LAYOUT.md). Laboratorium aset awal dipindahkan ke [asset-lab.html](asset-lab.html); tiga PNG sumber tetap sama.
+
 Aset asli dari built-in image_gen, 22 Oktober 2026. Tiga PNG RGBA dengan alpha nyata; source pack untuk tahap desain. **Belum dipasang di APK** dan tidak mengubah data API atau fitur peta.
 
 ## Lihat pratinjau
