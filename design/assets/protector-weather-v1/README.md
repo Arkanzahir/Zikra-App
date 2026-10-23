@@ -1,6 +1,6 @@
 # Paket aset cuaca Protector — v1
 
-**Revisi 23 Oktober:** font isi Roboto Condensed, layar 356×740, peta geografis interaktif dan pilihan membaca laporan/shakemap BMKG. **Masih pratinjau browser, belum perubahan APK.** [Rincian dan batas verifikasi](LAYOUT.md).
+**Revisi 4, 23 Oktober:** font isi Roboto normal, judul serif lebih ringkas, spasi tetap, dan pratinjau mengikuti lebar layar. Screenshot terbaru: [layout-typography-v4.png](layout-typography-v4.png). Peta geografis interaktif serta pilihan membaca laporan/shakemap BMKG tetap tersedia. **Masih pratinjau browser, belum perubahan APK.** [Rincian dan batas verifikasi](LAYOUT.md).
 
 **Revisi tata letak 22 Oktober:** preview.html kini menampilkan Protector lengkap mengikuti acuan pengguna, dengan header ringkas, peta, laporan, navigasi serta detail peta. [Perubahan, font dan verifikasi](LAYOUT.md). Laboratorium aset awal dipindahkan ke [asset-lab.html](asset-lab.html); tiga PNG sumber tetap sama.
 

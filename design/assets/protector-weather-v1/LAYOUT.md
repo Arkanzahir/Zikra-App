@@ -1,5 +1,18 @@
 # Protector: menyelaraskan tata letak dengan referensi pengguna
 
+## Revisi 4 — font dan ritme tata letak
+
+23 Oktober 2026. Menanggapi koreksi pengguna bahwa font dan susunan masih berbeda.
+
+- Roboto normal menggantikan Roboto Condensed untuk isi; bobot400/500/600/700 sesuai hierarki. Judul Protector memakai Times New Roman Bold25px menggantikan Georgia yang tampak terlalu lebar. Ini pendekatan visual terhadap gambar, bukan klaim identitas font generatif yang pasti.
+- CSS dikonsolidasikan menjadi satu aturan per komponen, menghapus tumpukan override yang membuat ukuran sulit dikendalikan. Padding12px, gap8px, peta150px, laporan tiga kolom dan panel42/41px memakai ritme yang tetap.
+- Pratinjau awal mengikuti lebar layar, bukan mengecilkan seluruh ponsel agar muat setinggi viewport. Tombol Sesuaikan layar tetap tersedia.
+- CSS/JS memakai penanda revisi?v=4. Browser sebelumnya masih memakai CSS dan skrip lama meskipun dokumen HTML diperbarui; font dan ukuran baru kini terverifikasi pada halaman yang dilihat pengguna.
+- Pemeriksaan DOM: font judul25px/700, heading18px/700, label11px/400; font selesai dimuat. Screen740px, content412px, report87px dan shortcuts41px tidak overflow.
+- Screenshot aktual tersedia di layout-typography-v4.png. Masih pratinjau browser; tidak ada build APK atau pengujian perangkat. Latar kota dan gaya basemap sungguhan masih berbeda dari ilustrasi pada gambar referensi.
+
+---
+
 ## Revisi 3 — 23 Oktober 2026
 
 **Status: pratinjau browser. APK dan layar native Protector belum berubah.**

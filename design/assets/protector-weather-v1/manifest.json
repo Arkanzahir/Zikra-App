@@ -84,7 +84,9 @@
     "Projection coordinate order and round-trip checks",
     "Five public-report parser tests",
     "Live BMKG report and official shakemap loaded in browser",
-    "Visible OSM tiles loaded; UI geometry has no content overflow"
+    "Visible OSM tiles loaded; UI geometry has no content overflow",
+    "Revision 4: browser computed styles confirm normal-width Roboto, 25px serif title, content and shortcuts without overflow",
+    "Revision 4: actual browser screenshot saved; default preview no longer shrinks to viewport height"
   ],
   "limitations": [
     "Browser prototype only; native Android not changed",
@@ -93,12 +95,12 @@
     "Weather PNGs remain source masters",
     "Exact font identity cannot be recovered from the generated reference"
   ],
-  "layoutRevision": 3,
+  "layoutRevision": 4,
   "defaultPreview": "preview.html",
   "assetLab": "asset-lab.html",
   "font": {
-    "title": "Georgia Bold (system serif)",
-    "body": "Roboto Condensed (bundled OFL), Roboto for temperature",
+    "title": "Times New Roman Bold (system serif), 25px",
+    "body": "Roboto (bundled OFL), normal width",
     "exactGeneratedReferenceFontKnown": false
   },
   "maps": {
@@ -109,10 +111,8 @@
     "shakemap": "Validated filename on fixed static.bmkg.go.id host"
   },
   "screenshots": [
-    "layout-overview.png",
-    "layout-rain.png",
-    "layout-map.png"
+    "layout-typography-v4.png"
   ],
-  "screenshotsRevision": 2,
-  "screenshotsNote": "Existing layout PNGs show revision 2. Revision 3 screenshot capture failed in the browser tool; do not present old PNGs as current."
+  "screenshotsRevision": 4,
+  "screenshotsNote": "layout-typography-v4.png is the current browser capture; older screenshots remain historical."
 }

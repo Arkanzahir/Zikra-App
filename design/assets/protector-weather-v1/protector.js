@@ -28,7 +28,7 @@ new ResizeObserver(resize).observe(scene);
 resize();selectMode("partly");
 const overview=document.getElementById("overview"),detail=document.getElementById("detail"),geography=document.getElementById("detail-geography");
 const overviewMap=new EarthquakeMap(document.getElementById("overview-geography")), detailMap=new EarthquakeMap(geography,true);
-let actualSize=false,report=null;
+let actualSize=true,report=null;
 function showMap(show){overview.hidden=show;detail.hidden=!show;syncMotion();if(show){detailMap.draw();document.getElementById("map-back").focus();}else document.getElementById("expand-map").focus()}
 for(const id of ["expand-map","map-open","detail-open"])document.getElementById(id).addEventListener("click",()=>showMap(true));
 document.getElementById("map-back").addEventListener("click",()=>showMap(false));
