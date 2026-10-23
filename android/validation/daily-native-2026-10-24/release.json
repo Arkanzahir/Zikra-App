@@ -1,0 +1,50 @@
+{
+  "versionName": "1.6.0",
+  "versionCode": 14,
+  "apk": "Zikra-Daily-v1.6.0-debug.apk",
+  "bytes": 31242144,
+  "sha256": "14897b3148d42d11502841faf33a8d2746ac36b930d21a754d2d1badc8d0a0c8",
+  "lint": {
+    "Warning": 680
+  },
+  "scopedSourceFiles": 32,
+  "trackedProductionFilesCompared": 447,
+  "excludedUnfinishedAudioFiles": [
+    "android/app/src/main/java/com/zikra/app/audio/QuranAudioService.java",
+    "android/app/src/main/java/com/zikra/app/audio/TimedAudioRepository.java"
+  ],
+  "sourceSha256": {
+    "android/app/build.gradle": "ef4e42c35a768b703c32b60cdf86f50592100664df1001da6d857b65d4254041",
+    "android/app/src/androidTest/java/com/zikra/app/DailyDesignReleaseTest.java": "1c0179953480755a11e881bebb2066ff805bcc6f0f0bc87dd4432847e4bb6cdb",
+    "android/app/src/main/AndroidManifest.xml": "a93638dc4b65ece23d0b7d8dc1e0f0b76a08932df5dc9116ae350006f74cc3b0",
+    "android/app/src/main/java/com/zikra/app/DuaActivity.java": "84796a8f89358e86cf3a936d5673b682bfac066915d17e0517fb2cf0994a9318",
+    "android/app/src/main/java/com/zikra/app/HadithActivity.java": "b3f909acc242f57166e170ae10ac4ea3d3a6e5d46fd03ffb1573acaae963e69b",
+    "android/app/src/main/java/com/zikra/app/HadithReaderActivity.java": "7bf2d623038df56892fe90d736e22d44321634104f294a57d8066fe99778082b",
+    "android/app/src/main/java/com/zikra/app/OnboardingActivity.java": "5139121018ed06a434a6013071c6db016fdef336e35aa5c116189b38bfcc5a35",
+    "android/app/src/main/java/com/zikra/app/ProfileActivity.java": "296faffce941a50d7d4087504e224c58150ea7dbb3589c78d311db51700525cf",
+    "android/app/src/main/java/com/zikra/app/discovery/DiscoveryUi.java": "5eb1acff6b60a7776377f58e88fa3628b01fe9e07922bb3376a40d0bcb76231e",
+    "android/app/src/main/java/com/zikra/app/ui/BookCoverView.java": "4a37621af52420cddce0216ce471d187fc399952bb48df02c20f7605a3574bc5",
+    "android/app/src/main/java/com/zikra/app/ui/DailyUi.java": "3c4ec3b498cee46e890972df310dc76ebf703aff2da4e8bdabc045aa63105c54",
+    "android/app/src/main/res/drawable-nodpi/daily_books.png": "283156f75944eda6f4f583a0be4ecac98e0939f4635c0071262b8850b120e697",
+    "android/app/src/main/res/drawable-nodpi/daily_onboarding_read.png": "b52387448444fe6f655691ecb0889ff536ec962d70dc9c2e3f98945bf77bad77",
+    "android/app/src/main/res/drawable-nodpi/daily_onboarding_study.png": "5150843cc4f9ab083e286f922f041c99b7ba75694d2fcf7242dbd037246cc71d",
+    "android/app/src/main/res/drawable-nodpi/daily_onboarding_welcome.png": "25a55c0e61c45ed225ccfb251ae754545b839297fd8627768b4cfc3d2c5f814b",
+    "android/app/src/main/res/drawable-nodpi/daily_window.png": "513c4ff68c9dc9107718e8b925b77a8a42e5efbb53917b732d46c3ce39773a94",
+    "android/app/src/main/res/drawable/daily_gold_card.xml": "86831c2ec3eb2a8ac3fdf53f7d72bb2f5850392652b0fa802aca59110dd00884",
+    "android/app/src/main/res/drawable/daily_hero_scrim.xml": "239cfc6e99a7a56cf4616edf8927ca62271270488fb6dc8127880d947bd84efd",
+    "android/app/src/main/res/drawable/daily_mint_card.xml": "6f66ba3857a3acd00c7d894af6c4b153fa343f71d974cd7e9109f6d15cc842d0",
+    "android/app/src/main/res/drawable/daily_paper_card.xml": "44cdbe1083af66866903410a88e507d406b3614c1065281ab78ab30035c35433",
+    "android/app/src/main/res/drawable/daily_pine_card.xml": "c78cc92fb0c0f0656b50413c9bcb500b3396af45bf8bc636fe062cf3804f3aed",
+    "android/app/src/main/res/drawable/daily_profile_paper.xml": "93aa1ae40b57b60ea72897d1d9c7f4ea86cfd092e714c55297f30b203505f331",
+    "android/app/src/main/res/drawable/daily_profile_scene.xml": "8595a91cb5993f73c0a9a799946847aa6606f0f3f934f3c3c2601bec05ba7da0",
+    "android/app/src/main/res/drawable/daily_white_card.xml": "1902781fef2e46ac5a3d12da30723f23f6c7946eeef04c5b876278a5009d08b0",
+    "android/app/src/main/res/layout/activity_dua.xml": "791290154d0d6cf25a134ae37193b3a27ac73605d3f3d1d617c2c409819fc92f",
+    "android/app/src/main/res/layout/activity_hadith.xml": "2edd8b7ccdcd17d05d0011c26d9492da919eb22b466fed967321e842a6ba39dd",
+    "android/app/src/main/res/layout/activity_hadith_reader.xml": "fd8e351b6e01333014983b9b215830b80d6251fbb33d01c6c661d136ff297446",
+    "android/app/src/main/res/layout/activity_onboarding.xml": "be213c36b993b7ffc4af7ef2971abfba4c626b95c1b4cdfd00f02f29daeae6e5",
+    "android/app/src/main/res/layout/activity_profile.xml": "54195fbc3f0bd4c8ddb06eaf177e35c758f189d599785a07b97921464d2f4824",
+    "android/app/src/main/res/layout/reading_item_dua.xml": "4fd909f23063dbc555ec8ce444f36d46442e8d417f2b3f91f9f529b84b2ee184",
+    "android/app/src/main/res/values/daily_design.xml": "1d32b3a13e1421df4bf90e10f56d819aaff1c99b86cb4664ea49d3383b6719eb",
+    "android/app/src/main/res/values/onboarding_static.xml": "08652ace506b81a797f92a88dc25368336f270d35d6261471165da228bd60ed3"
+  }
+}

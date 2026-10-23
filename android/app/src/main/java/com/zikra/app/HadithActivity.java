@@ -1,11 +1,9 @@
 package com.zikra.app;
 
-import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,15 +30,7 @@ public final class HadithActivity extends BaseActivity {
     super.onCreate(state);
     setContentView(R.layout.activity_hadith);
     ((FeatureHeader) findViewById(R.id.utilitiesHeader))
-        .bind(
-            R.id.toolbarBack,
-            R.id.detailTitle,
-            R.id.featureSubtitle,
-            0,
-            "Hadis",
-            "Kutipan pilihan · offline",
-            0,
-            null);
+        .bind(R.id.toolbarBack, R.id.detailTitle, R.id.featureSubtitle, 0, "Hadis", null, 0, null);
     setupScreen("Hadis");
     getWindow().setStatusBarColor(Color.parseColor("#F8F9F4"));
     getWindow().setNavigationBarColor(Color.parseColor("#F8F9F4"));
@@ -93,8 +83,62 @@ public final class HadithActivity extends BaseActivity {
           public void afterTextChanged(Editable s) {}
         });
     findViewById(R.id.hadithHero).setOnClickListener(v -> showDetail(HadithCollection.ENTRIES[1]));
-    NavDock.attach(this, (FrameLayout) findViewById(R.id.hadithRoot), "hadith");
+    NavDock.attach(this, (FrameLayout) findViewById(R.id.hadithRoot), "home");
+    com.zikra.app.ui.DailyUi.chrome(this, R.color.daily_paper);
+    ((com.zikra.app.ui.BookCoverView) findViewById(R.id.dailyCoverMuslim)).setMuslim(true);
+    findViewById(R.id.dailyBookBukhari).setOnClickListener(v -> chooseCollection("Bukhari"));
+    findViewById(R.id.dailyBookMuslim).setOnClickListener(v -> chooseCollection("Muslim"));
+    findViewById(R.id.dailyHadithResume)
+        .setOnClickListener(
+            v -> {
+              String id =
+                  getSharedPreferences("zikra_preferences", 0)
+                      .getString("last_hadith_id", "intentions");
+              for (HadithCollection.Entry entry : HadithCollection.ENTRIES)
+                if (entry.id.equals(id)) {
+                  showDetail(entry);
+                  return;
+                }
+              showDetail(HadithCollection.ENTRIES[0]);
+            });
     render();
+  }
+
+  private void chooseCollection(String value) {
+    category = value;
+    search.setText("");
+    render();
+    findViewById(R.id.hadithCount)
+        .post(
+            () ->
+                findViewById(R.id.hadithCount)
+                    .requestRectangleOnScreen(
+                        new android.graphics.Rect(
+                            0, 0, findViewById(R.id.hadithCount).getWidth(), dp(160)),
+                        false));
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if (saved != null) {
+      saved =
+          new HashSet<>(
+              getSharedPreferences("zikra_preferences", 0)
+                  .getStringSet("hadith_bookmarks", new HashSet<>()));
+      String id =
+          getSharedPreferences("zikra_preferences", 0).getString("last_hadith_id", "intentions");
+      for (HadithCollection.Entry entry : HadithCollection.ENTRIES)
+        if (entry.id.equals(id))
+          ((TextView) findViewById(R.id.dailyHadithResume))
+              .setText(
+                  getString(R.string.daily_continue_hadith)
+                      + "\n"
+                      + entry.title
+                      + " · "
+                      + entry.source);
+      render();
+    }
   }
 
   private void render() {
@@ -143,40 +187,8 @@ public final class HadithActivity extends BaseActivity {
   }
 
   private void showDetail(HadithCollection.Entry entry) {
-    LinearLayout body = new LinearLayout(this);
-    body.setOrientation(LinearLayout.VERTICAL);
-    body.setPadding(dp(24), dp(8), dp(24), dp(10));
-    TextView arabic = DiscoveryUi.text(this, entry.arabic, 27, "#315849", false);
-    arabic.setGravity(Gravity.END);
-    arabic.setTextDirection(View.TEXT_DIRECTION_RTL);
-    arabic.setLineSpacing(dp(8), 1f);
-    body.addView(arabic);
-    TextView meaning = DiscoveryUi.text(this, entry.meaning, 15, "#315849", false);
-    meaning.setPadding(0, dp(20), 0, dp(16));
-    meaning.setLineSpacing(dp(5), 1f);
-    body.addView(meaning);
-    body.addView(
-        DiscoveryUi.text(
-            this, entry.source + "\nKutipan hadis · terjemahan makna", 14, "#52665F", false));
-    android.widget.ScrollView scroll = new android.widget.ScrollView(this);
-    scroll.addView(body);
-    new AlertDialog.Builder(this)
-        .setTitle(entry.title)
-        .setView(scroll)
-        .setPositiveButton("Tutup", null)
-        .setNeutralButton(
-            saved.contains(entry.id) ? "Hapus simpanan" : "Simpan",
-            (dialog, which) -> {
-              if (saved.contains(entry.id)) saved.remove(entry.id);
-              else saved.add(entry.id);
-              getSharedPreferences("zikra_preferences", MODE_PRIVATE)
-                  .edit()
-                  .putStringSet("hadith_bookmarks", new HashSet<>(saved))
-                  .apply();
-              render();
-              toast(saved.contains(entry.id) ? "Hadis disimpan" : "Simpanan dihapus");
-            })
-        .show();
+    startActivity(
+        new android.content.Intent(this, HadithReaderActivity.class).putExtra("entry", entry.id));
   }
 
   @Override

@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <color name="daily_paper">#FAF7EF</color>
+    <color name="daily_ink">#183E35</color>
+    <color name="daily_muted">#6E7D70</color>
+    <color name="daily_mint">#E4EBDD</color>
+    <color name="daily_gold">#BD914C</color>
+    <color name="daily_sand">#F2E6CD</color>
+    <color name="daily_line">#E3E4D8</color>
+    <color name="daily_white">#FFFEFA</color>
+    <string name="daily_hadith_eyebrow">PUSTAKA HADIS</string>
+    <string name="daily_hadith_hero">Nasihat\nuntuk harimu.</string>
+    <string name="daily_hadith_sub">Baca, pahami, lalu ingat kembali.</string>
+    <string name="daily_continue_hadith">Lanjutkan bacaan</string>
+    <string name="daily_choose_book">Pilih kitab</string>
+    <string name="daily_book_bukhari">Shahih Bukhari</string>
+    <string name="daily_book_muslim">Shahih Muslim</string>
+    <string name="daily_author_bukhari">Imam Al-Bukhari</string>
+    <string name="daily_author_muslim">Imam Muslim</string>
+    <string name="daily_hadith_search">Cari hadis, topik, atau rujukan…</string>
+    <string name="daily_hadith_note">Kutipan pilihan · bukan kitab lengkap</string>
+    <string name="daily_saved_hadith">Hadis tersimpan</string>
+    <string name="daily_hadith_hero_access">Baca kutipan hadis berkata baik</string>
+    <string name="daily_dua_eyebrow">TEMANI HARIMU</string>
+    <string name="daily_dua_hero">Ada doa di\nsetiap langkah.</string>
+    <string name="daily_dua_search">Cari doa atau kegiatan…</string>
+    <string name="daily_dua_feature">Sebelum mulai belajar</string>
+    <string name="daily_dua_hint">Memohon ilmu yang bermanfaat · Taha 20:114</string>
+    <string name="daily_dua_list">Untuk keseharianmu</string>
+    <string name="daily_profile_title">Profil</string>
+    <string name="daily_profile_sub">Ruang pribadimu untuk tumbuh, pelan-pelan.</string>
+    <string name="daily_edit_profile">Ubah profil →</string>
+    <string name="daily_profile_initial">Z</string>
+    <string name="daily_profile_activity">Langkahmu hari ini</string>
+    <string name="daily_profile_collections">Ruang simpanan</string>
+    <string name="daily_profile_settings">Atur sesuai caramu</string>
+    <string name="daily_profile_private">Profil tersimpan di perangkat · tanpa akun</string>
+    <string name="daily_profile_edit_title">Namamu di Zikra</string>
+    <string name="daily_profile_name_hint">Nama tampilan</string>
+    <string name="daily_profile_name_error">Isi nama terlebih dahulu</string>
+    <string name="daily_profile_default_name">Pengguna Zikra</string>
+    <string name="daily_quran">Al-Quran</string>
+    <string name="daily_hadith">Hadis</string>
+    <string name="daily_dua">Doa</string>
+    <string name="daily_quran_saved_caption">Bacaan terakhir</string>
+    <string name="daily_hadith_saved_caption">Nasihat baik</string>
+    <string name="daily_dua_saved_caption">Untuk harimu</string>
+    <string name="daily_quote_label">Kutipan hadis · terjemahan makna</string>
+    <string name="daily_translation">ARTI KUTIPAN</string>
+    <string name="daily_reference">RUJUKAN</string>
+    <string name="daily_reader_bookmark">Simpan</string>
+    <string name="daily_reader_saved">Tersimpan</string>
+    <string name="daily_reader_copy">Salin</string>
+    <string name="daily_reader_share">Bagikan</string>
+    <string name="daily_reader_size">Ukuran teks</string>
+    <string name="daily_reader_size_small">Nyaman</string>
+    <string name="daily_reader_size_large">Lebih besar</string>
+    <string name="daily_reader_size_largest">Sangat besar</string>
+    <string name="daily_reader_copied">Kutipan disalin</string>
+    <string name="daily_save">Simpan</string>
+    <string name="daily_cancel">Batal</string>
+    <string name="daily_reader_invalid">Kutipan tidak ditemukan</string>
+    <string name="daily_profile_more">Lainnya</string>
+    <string name="daily_about">Tentang Zikra</string>
+    <string name="daily_read_source">Bacaan terakhir · Ayat %1$d</string>
+    <string name="daily_onboard_finish">Mulai bersama Zikra</string>
+    <string name="daily_onboard_guest">Mulai tanpa akun</string>
+    <string name="daily_onboard_feature_welcome">Ibadah  ·  Quran  ·  Fokus</string>
+    <string name="daily_onboard_feature_quran">Lanjutkan bacaan terakhirmu</string>
+    <string name="daily_onboard_feature_study">25 menit fokus  ·  5 menit jeda</string>
+    <style name="DailyText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/daily_ink</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/plus_jakarta_sans</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+    </style>
+    <style name="DailyHeading" parent="DailyText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="DailyCaption" parent="DailyText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/daily_muted</item>
+    </style>
+    <style name="DailyButton" parent="DailyText">
+        <item name="android:gravity">center</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">10dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/daily_mint_card</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+</resources>

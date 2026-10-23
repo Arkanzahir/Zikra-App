@@ -1,162 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/profileRoot"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F7F9F7">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="none"
-        android:clipToPadding="false">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="124dp">
-            <com.zikra.app.ui.FeatureHeader
-                android:id="@+id/utilitiesHeader"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#F8F9F4"
-                android:paddingHorizontal="@dimen/screen_inset"
-                android:paddingTop="8dp"
-                android:paddingBottom="32dp"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
-                <ImageView
-                    android:layout_width="78dp"
-                    android:layout_height="78dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/profile_avatar"
-                    android:contentDescription="Avatar profil lokal"
-                    android:src="@drawable/ic_user"
-                    android:tint="@color/pine"
-                    android:padding="20dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:text="Pengguna Zikra"
-                    android:textColor="@color/pine"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:id="@+id/profileDisplayName" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="Profil lokal · tersimpan di perangkat"
-                    android:textColor="#52665F"
-                    android:textSize="14sp"
-                    android:id="@+id/profileRoleCaption" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="17dp"
-                    android:background="@drawable/reading_mint_card"
-                    android:paddingHorizontal="14dp"
-                    android:paddingVertical="7dp"
-                    android:text="Satu langkah baik, setiap hari"
-                    android:textColor="#52665F"
-                    android:textSize="14sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="22dp"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:id="@+id/profileProgressCard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_card"
-                    android:padding="19dp"
-                    android:orientation="vertical"
-                    android:elevation="1dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:contentDescription="Lihat rencana akademik di Study Hub">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical">
-                        <ImageView
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
-                            android:background="@drawable/circle_mint"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_tasks"
-                            android:tint="#598B74"
-                            android:importantForAccessibility="no" />
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:text="Rencana akademik"
-                            android:textColor="@color/pine"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-                        <TextView
-                            android:id="@+id/profileProgressPercent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0%"
-                            android:textColor="#598B74"
-                            android:textSize="19sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                    <ProgressBar
-                        android:id="@+id/profileProgress"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="7dp"
-                        android:layout_marginTop="17dp"
-                        android:max="100"
-                        android:progressTint="#598B74"
-                        android:progressBackgroundTint="#EAF0EB" />
-                    <TextView
-                        android:id="@+id/profileProgressCaption"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:textColor="#52665F"
-                        android:textSize="14sp"
-                        android:text="Belum ada tugas akademik" />
+<?xml version='1.0' encoding='utf-8'?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/profileRoot" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/daily_mint">
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:scrollbars="none" android:clipToPadding="false">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingBottom="88dp" android:background="@color/daily_paper">
+            <com.zikra.app.ui.FeatureHeader android:id="@+id/utilitiesHeader" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/daily_profile_scene">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal" android:paddingHorizontal="24dp" android:paddingTop="8dp" android:paddingBottom="10dp">
+                    <TextView style="@style/DailyText" android:id="@+id/dailyProfileInitial" android:text="@string/daily_profile_initial" android:layout_width="64dp" android:layout_height="64dp" android:gravity="center" android:textSize="32sp" android:fontFamily="serif" android:background="@drawable/profile_avatar" />
+                    <TextView style="@style/DailyHeading" android:id="@+id/profileDisplayName" android:text="@string/daily_profile_default_name" android:gravity="center" android:textSize="21sp" android:layout_marginTop="8dp" />
+                    <TextView style="@style/DailyCaption" android:text="@string/daily_profile_sub" android:gravity="center" android:layout_marginTop="6dp" android:textSize="12sp" />
+                    <TextView style="@style/DailyCaption" android:id="@+id/profileRoleCaption" android:text="@string/daily_profile_private" android:gravity="center" android:textSize="10sp" android:layout_marginTop="5dp" android:visibility="gone" />
+                    <TextView style="@style/DailyButton" android:id="@+id/dailyProfileEdit" android:text="@string/daily_edit_profile" android:background="@android:color/transparent" android:layout_width="wrap_content" android:textSize="12sp" />
                 </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginBottom="12dp"
-                    android:text="RUANG PRIBADIMU"
-                    android:textColor="#52665F"
-                    android:textSize="14sp"
-                    android:letterSpacing="0.12"
-                    android:textStyle="bold" />
-                <LinearLayout
-                    android:id="@+id/profileRows"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_card"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="5dp" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"
-                    android:gravity="center"
-                    android:text="Zikra · belajar dan ibadah dalam keseharian.&#10;Profil lokal · tanpa akun atau sinkronisasi cloud"
-                    android:textColor="#52665F"
-                    android:textSize="14sp"
-                    android:lineSpacingExtra="5dp" />
+            </FrameLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingHorizontal="20dp" android:paddingTop="20dp" android:orientation="vertical" android:background="@drawable/daily_profile_paper" android:layout_marginTop="-10dp">
+                <TextView style="@style/DailyHeading" android:text="@string/daily_profile_activity" />
+                <LinearLayout android:id="@+id/profileProgressCard" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingVertical="16dp" android:clickable="true" android:focusable="true" android:foreground="?android:attr/selectableItemBackground">
+                    <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@drawable/ic_graduation" android:tint="@color/daily_ink" android:importantForAccessibility="no" />
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:paddingStart="12dp">
+                        <TextView style="@style/DailyHeading" android:id="@+id/profileProgressPercent" android:text="@string/daily_profile_activity" android:textSize="16sp" />
+                        <ProgressBar android:id="@+id/profileProgress" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="4dp" android:max="100" android:progressTint="@color/daily_ink" android:progressBackgroundTint="@color/daily_line" android:layout_marginTop="7dp" />
+                        <TextView style="@style/DailyCaption" android:id="@+id/profileProgressCaption" android:text="@string/daily_profile_activity" android:layout_marginTop="7dp" android:textSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/daily_line" />
+                <TextView style="@style/DailyHeading" android:text="@string/daily_profile_collections" android:layout_marginTop="20dp" android:layout_marginBottom="12dp" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="20dp" android:baselineAligned="false">
+                    <LinearLayout android:id="@+id/dailyProfileQuran" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="84dp" android:layout_marginHorizontal="4dp" android:padding="10dp" android:background="@drawable/daily_white_card" android:orientation="vertical" android:gravity="center" android:clickable="true" android:focusable="true" android:foreground="?android:attr/selectableItemBackground" android:contentDescription="@string/daily_quran">
+                        <ImageView android:layout_width="25dp" android:layout_height="25dp" android:src="@drawable/ic_book" android:tint="@color/daily_ink" android:importantForAccessibility="no" />
+                        <TextView style="@style/DailyText" android:text="@string/daily_quran" android:textSize="12sp" android:gravity="center" android:layout_marginTop="8dp" />
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/dailyProfileHadith" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="84dp" android:layout_marginHorizontal="4dp" android:padding="10dp" android:background="@drawable/daily_white_card" android:orientation="vertical" android:gravity="center" android:clickable="true" android:focusable="true" android:foreground="?android:attr/selectableItemBackground" android:contentDescription="@string/daily_hadith">
+                        <ImageView android:layout_width="25dp" android:layout_height="25dp" android:src="@drawable/reading_ic_bookmark" android:tint="@color/daily_ink" android:importantForAccessibility="no" />
+                        <TextView style="@style/DailyText" android:text="@string/daily_hadith" android:textSize="12sp" android:gravity="center" android:layout_marginTop="8dp" />
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/dailyProfileDua" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="84dp" android:layout_marginHorizontal="4dp" android:padding="10dp" android:background="@drawable/daily_white_card" android:orientation="vertical" android:gravity="center" android:clickable="true" android:focusable="true" android:foreground="?android:attr/selectableItemBackground" android:contentDescription="@string/daily_dua">
+                        <ImageView android:layout_width="25dp" android:layout_height="25dp" android:src="@drawable/home_ic_dua" android:tint="@color/daily_ink" android:importantForAccessibility="no" />
+                        <TextView style="@style/DailyText" android:text="@string/daily_dua" android:textSize="12sp" android:gravity="center" android:layout_marginTop="8dp" />
+                    </LinearLayout>
+                </LinearLayout>
+                <TextView style="@style/DailyHeading" android:text="@string/daily_profile_settings" android:layout_marginBottom="10dp" />
+                <LinearLayout android:id="@+id/profileRows" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                <TextView style="@style/DailyCaption" android:text="@string/daily_profile_private" android:gravity="center" android:textSize="11sp" android:paddingVertical="20dp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

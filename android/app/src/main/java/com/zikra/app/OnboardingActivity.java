@@ -17,14 +17,14 @@ public final class OnboardingActivity extends BaseActivity {
   private com.zikra.app.ui.OnboardingParallax parallax;
   private String[] titles, captions, eyebrows;
   private static final String[] SCENES = {
-    "Pelajar berkacamata menulis di meja belajar.",
-    "Perempuan bermukena duduk di atas sajadah.",
-    "Laki-laki berpeci membaca Quran dengan rehal."
+    "Masjid Indonesia beratap tumpang dengan halaman yang tenang.",
+    "Pelajar berkacamata membaca Quran di atas rehal.",
+    "Pelajar yang sama menulis di meja belajar."
   };
   private static final int[] ARTWORK = {
-    R.drawable.onboarding_study_static,
-    R.drawable.onboarding_prayer_static,
-    R.drawable.onboarding_quran_static
+    R.drawable.daily_onboarding_welcome,
+    R.drawable.daily_onboarding_read,
+    R.drawable.daily_onboarding_study
   };
   private int step;
   private float downX, downY;
@@ -75,7 +75,20 @@ public final class OnboardingActivity extends BaseActivity {
     TextView progress = findViewById(R.id.onboardStep);
     progress.setText(String.format(java.util.Locale.ROOT, "%02d / 03", step + 1));
     progress.setContentDescription("Langkah " + (step + 1) + " dari 3");
-    ((TextView) findViewById(R.id.onboardContinue)).setText(step == 2 ? "Mulai harimu" : "Lanjut");
+    ((TextView) findViewById(R.id.onboardContinue))
+        .setText(step == 2 ? getString(R.string.daily_onboard_finish) : "Lanjut");
+    ((TextView) findViewById(R.id.dailyOnboardFeature))
+        .setText(
+            new int[] {
+                  R.string.daily_onboard_feature_welcome,
+                  R.string.daily_onboard_feature_quran,
+                  R.string.daily_onboard_feature_study
+                }
+                [step]);
+    findViewById(R.id.onboardContinue)
+        .setBackgroundResource(step == 2 ? R.drawable.daily_gold_card : R.drawable.daily_pine_card);
+    ((TextView) findViewById(R.id.onboardContinue))
+        .setTextColor(getColor(step == 2 ? R.color.daily_ink : R.color.white));
     // Keep indicators in the same position across all three stories.
     findViewById(R.id.onboardBack).setVisibility(step == 0 ? View.INVISIBLE : View.VISIBLE);
     ImageView artwork = findViewById(R.id.onboardIllustration);
@@ -92,7 +105,7 @@ public final class OnboardingActivity extends BaseActivity {
     options.inScaled = false;
     Bitmap image = BitmapFactory.decodeResource(getResources(), ARTWORK[step], options);
     artwork.setImageBitmap(image);
-    int wall = image.getPixel(image.getWidth() / 2, 0);
+    int wall = getColor(R.color.daily_paper);
     findViewById(R.id.onboardHeader).setBackgroundColor(wall);
     getWindow().setStatusBarColor(wall);
     if (android.os.Build.VERSION.SDK_INT >= 28)
@@ -105,7 +118,7 @@ public final class OnboardingActivity extends BaseActivity {
     getSharedPreferences("zikra_preferences", MODE_PRIVATE)
         .edit()
         .putBoolean("onboarding_complete", true)
-        .putInt("onboarding_story_version", 5)
+        .putInt("onboarding_story_version", 6)
         .apply();
     startActivity(
         new Intent(this, HomeActivity.class)

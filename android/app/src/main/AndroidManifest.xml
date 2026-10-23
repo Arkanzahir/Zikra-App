@@ -42,6 +42,7 @@
         <activity android:name=".LocationActivity" android:exported="false" />
         <activity android:name=".OnboardingActivity" android:exported="false" />
         <activity android:name=".HadithActivity" android:exported="false" />
+        <activity android:name=".HadithReaderActivity" android:exported="false" />
         <activity android:name=".CalendarActivity" android:exported="false" />
         <activity android:name=".WeatherActivity" android:exported="false" />
         <activity android:name=".EarthquakeActivity" android:exported="false" />

@@ -1,147 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/hadithRoot"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/warm_background">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <com.zikra.app.ui.FeatureHeader
-            android:id="@+id/utilitiesHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:id="@+id/hadithSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="22dp"
-            android:paddingHorizontal="17dp"
-            android:background="@drawable/calendar_card"
-            android:hint="Cari hadis atau topik…"
-            android:singleLine="true"
-            android:inputType="text"
-            android:imeOptions="actionSearch"
-            android:textSize="16sp"
-            android:textColor="@color/pine"
-            android:textColorHint="#52665F"
-            android:contentDescription="Cari hadis atau topik"
-            android:minHeight="56dp" />
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="false"
-            android:scrollbars="none"
-            android:paddingHorizontal="18dp"
-            android:paddingVertical="8dp">
-            <LinearLayout
-                android:id="@+id/hadithTabs"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center_vertical" />
-        </HorizontalScrollView>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:paddingHorizontal="@dimen/screen_inset"
-            android:paddingBottom="118dp"
-            android:clipToPadding="false">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:id="@+id/hadithHero"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/hadith_hero"
-                    android:orientation="vertical"
-                    android:padding="24dp"
-                    android:layout_marginBottom="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:contentDescription="Baca hadis Berkata baik. HR. Bukhari 6018 dan Muslim 47.">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="PESAN KEBAIKAN"
-                        android:textColor="#D5BD87"
-                        android:textSize="14sp"
-                        android:letterSpacing="0.16" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="19dp"
-                        android:text="فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ"
-                        android:textColor="@color/white"
-                        android:textSize="28sp"
-                        android:gravity="center"
-                        android:textDirection="rtl" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="“Hendaklah ia berkata baik\natau diam.”"
-                        android:textColor="@color/white"
-                        android:textSize="19sp"
-                        android:gravity="center"
-                        android:fontFamily="serif"
-                        android:lineSpacingExtra="5dp" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="17dp"
-                        android:text="HR. Bukhari 6018 · Muslim 47"
-                        android:textColor="#BBCFC2"
-                        android:textSize="14sp"
-                        android:gravity="center" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Baca dan simpan hadis  →"
-                        android:textColor="#FFFFFF"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        android:layout_marginTop="16dp" />
+<?xml version='1.0' encoding='utf-8'?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/hadithRoot" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/daily_paper">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+        <com.zikra.app.ui.FeatureHeader android:id="@+id/utilitiesHeader" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        <ScrollView android:id="@+id/hadithScroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:paddingBottom="88dp" android:clipToPadding="false" android:scrollbars="none">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="20dp">
+                <FrameLayout android:layout_width="match_parent" android:layout_height="168dp" android:background="@drawable/daily_pine_card" android:clipToOutline="true" android:layout_marginBottom="12dp" android:id="@+id/hadithHero" android:clickable="true" android:focusable="true" android:contentDescription="@string/daily_hadith_hero_access">
+                    <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/daily_books" android:scaleType="centerCrop" android:importantForAccessibility="no" />
+                    <View android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/daily_hero_scrim" />
+                    <LinearLayout android:layout_width="184dp" android:layout_height="match_parent" android:orientation="vertical" android:padding="18dp">
+                        <TextView style="@style/DailyCaption" android:text="@string/daily_hadith_eyebrow" android:textColor="@color/daily_sand" android:textSize="10sp" android:letterSpacing="0.09" />
+                        <TextView style="@style/DailyHeading" android:text="@string/daily_hadith_hero" android:textSize="21sp" android:textColor="@color/daily_white" android:layout_marginTop="10dp" />
+                        <TextView style="@style/DailyCaption" android:text="@string/daily_hadith_sub" android:textColor="@color/daily_paper" android:textSize="11sp" android:layout_marginTop="8dp" />
+                    </LinearLayout>
+                </FrameLayout>
+                <TextView style="@style/DailyButton" android:id="@+id/dailyHadithResume" android:text="@string/daily_continue_hadith" android:gravity="center_vertical" android:textSize="12sp" android:layout_marginBottom="2dp" />
+                <TextView style="@style/DailyHeading" android:text="@string/daily_choose_book" android:layout_marginTop="20dp" android:layout_marginBottom="12dp" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout android:id="@+id/dailyBookBukhari" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="10dp" android:clickable="true" android:focusable="true" android:foreground="?android:attr/selectableItemBackground" android:contentDescription="@string/daily_book_bukhari">
+                        <com.zikra.app.ui.BookCoverView android:id="@+id/dailyCoverBukhari" android:layout_width="match_parent" android:layout_height="204dp" android:importantForAccessibility="no" />
+                        <TextView style="@style/DailyText" android:text="@string/daily_book_bukhari" android:textStyle="bold" android:textSize="13sp" android:layout_marginTop="6dp" />
+                        <TextView style="@style/DailyCaption" android:text="@string/daily_author_bukhari" android:textSize="11sp" android:layout_marginTop="3dp" />
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/dailyBookMuslim" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginStart="10dp" android:clickable="true" android:focusable="true" android:foreground="?android:attr/selectableItemBackground" android:contentDescription="@string/daily_book_muslim">
+                        <com.zikra.app.ui.BookCoverView android:id="@+id/dailyCoverMuslim" android:layout_width="match_parent" android:layout_height="204dp" android:importantForAccessibility="no" />
+                        <TextView style="@style/DailyText" android:text="@string/daily_book_muslim" android:textStyle="bold" android:textSize="13sp" android:layout_marginTop="6dp" />
+                        <TextView style="@style/DailyCaption" android:text="@string/daily_author_muslim" android:textSize="11sp" android:layout_marginTop="3dp" />
+                    </LinearLayout>
                 </LinearLayout>
-                <TextView
-                    android:id="@+id/hadithCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Pilihan hadis"
-                    android:textColor="@color/pine"
-                    android:textSize="17sp"
-                    android:fontFamily="sans-serif-medium"
-                    android:layout_marginBottom="6dp" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Koleksi ringkas offline · terjemahan makna"
-                    android:textColor="#52665F"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="14dp" />
-                <TextView
-                    android:id="@+id/hadithEmpty"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Belum ada hadis yang cocok.\nCoba kata lain atau kategori Semua."
-                    android:textColor="#52665F"
-                    android:textSize="14sp"
-                    android:lineSpacingExtra="7dp"
-                    android:visibility="gone"
-                    android:minHeight="120dp"
-                    android:accessibilityLiveRegion="polite" />
-                <LinearLayout
-                    android:id="@+id/hadithList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
+                <TextView style="@style/DailyHeading" android:id="@+id/hadithCount" android:text="@string/daily_hadith_note" android:layout_marginTop="20dp" android:layout_marginBottom="12dp" android:textSize="16sp" />
+                <EditText android:id="@+id/hadithSearch" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:background="@drawable/daily_white_card" android:paddingHorizontal="14dp" android:hint="@string/daily_hadith_search" android:textColor="@color/daily_ink" android:textColorHint="@color/daily_muted" android:textSize="13sp" android:singleLine="true" android:inputType="text" android:imeOptions="actionSearch" android:importantForAutofill="no" />
+                <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none" android:layout_marginVertical="8dp">
+                    <LinearLayout android:id="@+id/hadithTabs" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" />
+                </HorizontalScrollView>
+                <TextView style="@style/DailyCaption" android:id="@+id/hadithEmpty" android:text="@string/daily_hadith_note" android:visibility="gone" android:paddingVertical="24dp" android:accessibilityLiveRegion="polite" />
+                <LinearLayout android:id="@+id/hadithList" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                <TextView style="@style/DailyCaption" android:text="@string/daily_hadith_note" android:gravity="center" android:paddingVertical="18dp" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

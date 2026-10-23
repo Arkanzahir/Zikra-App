@@ -85,17 +85,18 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
             R.id.featureSubtitle,
             0,
             "Doa Harian",
-            "Pilihan doa untuk keseharian",
+            null,
             0,
             null);
     setupScreen("Doa Harian");
-    NavDock.attach(this, (FrameLayout) findViewById(R.id.duaRoot), "dua");
+    NavDock.attach(this, (FrameLayout) findViewById(R.id.duaRoot), "home");
     getWindow().setStatusBarColor(Color.parseColor("#F8F9F5"));
     getWindow().setNavigationBarColor(Color.parseColor("#F8F9F5"));
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+    com.zikra.app.ui.DailyUi.chrome(this, R.color.daily_paper);
     voiceStatus = findViewById(R.id.duaVoiceStatus);
     installVoice = findViewById(R.id.duaInstallVoice);
     LinearLayout container = findViewById(R.id.duaContainer);

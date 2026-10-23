@@ -34,7 +34,9 @@ public final class DiscoveryUi {
     view.setText(content);
     view.setTextSize(size);
     view.setTextColor(Color.parseColor(color));
-    if (bold) view.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
+    view.setTypeface(
+        context.getResources().getFont(com.zikra.app.R.font.plus_jakarta_sans),
+        bold ? Typeface.BOLD : Typeface.NORMAL);
     return view;
   }
 }

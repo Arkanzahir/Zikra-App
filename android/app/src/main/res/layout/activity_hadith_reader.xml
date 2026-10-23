@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/daily_paper">
+    <com.zikra.app.ui.FeatureHeader android:id="@+id/utilitiesHeader" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true" android:scrollbars="none">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
+            <TextView style="@style/DailyCaption" android:text="@string/daily_quote_label" android:letterSpacing="0.06" android:textSize="11sp" />
+            <TextView style="@style/DailyHeading" android:id="@+id/dailyReaderTitle" android:layout_marginTop="12dp" android:textSize="26sp" />
+            <TextView style="@style/DailyButton" android:id="@+id/dailyReaderSize" android:layout_marginTop="18dp" android:layout_width="wrap_content" android:text="@string/daily_reader_size" android:textSize="12sp" />
+            <TextView style="@style/DailyText" android:id="@+id/dailyReaderArabic" android:layout_marginVertical="28dp" android:textSize="30sp" android:fontFamily="serif" android:includeFontPadding="true" android:textDirection="rtl" android:gravity="end" android:lineSpacingExtra="14dp" android:textIsSelectable="true" />
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/daily_line" />
+            <TextView style="@style/DailyCaption" android:text="@string/daily_translation" android:layout_marginTop="20dp" android:letterSpacing="0.09" android:textSize="11sp" />
+            <TextView style="@style/DailyText" android:id="@+id/dailyReaderMeaning" android:layout_marginTop="12dp" android:textSize="16sp" android:lineSpacingExtra="7dp" android:textIsSelectable="true" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp" android:layout_marginTop="24dp" android:background="@drawable/daily_mint_card">
+                <TextView style="@style/DailyHeading" android:text="@string/daily_reference" android:textSize="12sp" />
+                <TextView style="@style/DailyCaption" android:id="@+id/dailyReaderSource" android:layout_marginTop="10dp" />
+                <TextView style="@style/DailyCaption" android:text="@string/daily_quote_label" android:layout_marginTop="8dp" android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:paddingVertical="8dp" android:background="@color/daily_mint" android:baselineAligned="false">
+        <TextView style="@style/DailyButton" android:id="@+id/dailyReaderSave" android:layout_width="0dp" android:layout_weight="1" android:text="@string/daily_reader_bookmark" android:textSize="13sp" />
+        <TextView style="@style/DailyButton" android:id="@+id/dailyReaderCopy" android:layout_width="0dp" android:layout_weight="1" android:text="@string/daily_reader_copy" android:textSize="13sp" />
+        <TextView style="@style/DailyButton" android:id="@+id/dailyReaderShare" android:layout_width="0dp" android:layout_weight="1" android:text="@string/daily_reader_share" android:textSize="13sp" />
+    </LinearLayout>
+</LinearLayout>
