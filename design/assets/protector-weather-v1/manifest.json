@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "date": "2026-10-22",
+  "date": "2026-10-23",
   "stage": "source-assets-and-browser-preview",
   "apkChanged": false,
   "liveWeatherConnected": false,
@@ -79,33 +79,40 @@
     "source copies hash verified",
     "preview.js Node syntax check",
     "seven browser modes and pause/play checked",
-    "clear/cloudy/storm browser screenshots"
+    "clear/cloudy/storm browser screenshots",
+    "Reference screen proportions revised to 356x740",
+    "Projection coordinate order and round-trip checks",
+    "Five public-report parser tests",
+    "Live BMKG report and official shakemap loaded in browser",
+    "Visible OSM tiles loaded; UI geometry has no content overflow"
   ],
   "limitations": [
-    "This is not a native Android implementation",
-    "No live API or location used",
-    "No CPU/battery/frame-rate or native RAM benchmark",
-    "Original PNGs are source masters, not final APK textures"
+    "Browser prototype only; native Android not changed",
+    "Weather and city remain examples; no GPS request",
+    "No native CPU/battery/RAM or device testing",
+    "Weather PNGs remain source masters",
+    "Exact font identity cannot be recovered from the generated reference"
   ],
-  "layoutRevision": 2,
+  "layoutRevision": 3,
   "defaultPreview": "preview.html",
   "assetLab": "asset-lab.html",
   "font": {
     "title": "Georgia Bold (system serif)",
-    "body": "Plus Jakarta Sans (bundled OFL)",
+    "body": "Roboto Condensed (bundled OFL), Roboto for temperature",
     "exactGeneratedReferenceFontKnown": false
   },
   "maps": {
-    "source": "Bundled Natural Earth 50m derivative",
-    "files": [
-      "map-overview.svg",
-      "map-detail.svg"
-    ],
-    "live": false
+    "source": "OpenStreetMap Standard tiles, visible viewport only; Natural Earth fallback",
+    "live": "Optional public BMKG report on explicit button press",
+    "default": "Labelled example, never an unlabelled fixture",
+    "coordinates": "BMKG latitude then longitude; invalid coordinates produce no marker",
+    "shakemap": "Validated filename on fixed static.bmkg.go.id host"
   },
   "screenshots": [
     "layout-overview.png",
     "layout-rain.png",
     "layout-map.png"
-  ]
+  ],
+  "screenshotsRevision": 2,
+  "screenshotsNote": "Existing layout PNGs show revision 2. Revision 3 screenshot capture failed in the browser tool; do not present old PNGs as current."
 }

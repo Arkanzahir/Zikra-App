@@ -19,3 +19,19 @@ decimal places for a small offline map. It includes Indonesia and neighboring
 countries. The map is an overview and does not represent navigation detail.
 Plate-carree projection preserves the supplied geographic positions. Earthquake
 markers are drawn only from actual BMKG coordinates supplied at runtime.
+
+Browser revision 3 (23 October 2026):
+Online basemap: © OpenStreetMap contributors, ODbL.
+https://www.openstreetmap.org/copyright
+Standard tiles: https://tile.openstreetmap.org/{z}/{x}/{y}.png
+Policy: https://operations.osmfoundation.org/policies/tiles/
+Only visible tiles are requested. No prefetch, offline tile bundle or cache bypass.
+Fallback country boundaries: the same Natural Earth source above, projected to
+Web Mercator in the browser. The two older SVGs remain revision-2 artifacts.
+
+Earthquake report and shakemap: BMKG (Badan Meteorologi, Klimatologi, dan Geofisika).
+https://data.bmkg.go.id/gempabumi/
+https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json
+Shakemap filenames are checked before using https://static.bmkg.go.id/.
+Default preview pin is explicitly an example. In BMKG mode the marker uses the
+report's latitude then longitude; missing/invalid coordinates mean no marker.

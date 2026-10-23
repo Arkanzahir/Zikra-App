@@ -1,5 +1,38 @@
 # Protector: menyelaraskan tata letak dengan referensi pengguna
 
+## Revisi 3 — 23 Oktober 2026
+
+**Status: pratinjau browser. APK dan layar native Protector belum berubah.**
+
+- Ukuran logical layar menjadi 356×740, hero278px dengan overlap14px, map148px dan nav51px. Mengurangi ruang vertikal berlebih dibanding revisi2.
+- Judul Protector tetap Georgia Bold25px. Isi memakai Roboto Condensed, suhu Roboto58px. Font OFL disertakan dari repositori resmi Google Fonts. Ini pendekatan bentuk/hierarki; identitas font dalam gambar generatif tidak diketahui, sehingga tidak diklaim identik.
+- Label isi dibesarkan dan ruang antarelemen dirapatkan. Screenshot lama layout-*.png tetap merupakan revisi2; jangan menyebutnya bukti revisi3.
+- Tiga PNG cuaca tidak diubah. Kota masih ilustrasi umum; bukan foto kota atau komposisi persis pada referensi. Animasi cuaca tetap contoh dan dijeda saat peta detail dibuka.
+
+### Peta dan laporan
+
+Peta kini memakai tile geografis OpenStreetMap Standard dengan atribusi terlihat, hanya untuk viewport yang dibuka pengguna. Tidak melakukan unduhan massal atau prefetch. Fallback Natural Earth digambar dengan proyeksi Web Mercator yang sama, sehingga marker tidak bergeser saat tile termuat. Detail mendukung zoom3–9, reset, geser dan tombol panah.
+
+Mode awal **contoh**. Tombol **Cek laporan BMKG** mengambil endpoint publik tetap melalui serve_preview.py di loopback. Tidak meminta lokasi atau kredensial pengguna. Proxy membatasi ukuran262144byte, timeout12detik dan cache60detik. Magnitudo divalidasi, latitude/longitude harus finite dan dalam rentang; koordinat tidak valid menghilangkan marker. Waktu pengambilan dipisahkan dari waktu kejadian. Kegagalan pembaruan tidak mengubah laporan lama menjadi data baru.
+
+Peta guncangan memakai gambar BMKG yang sesuai dengan field Shakemap laporan itu; nama file diizinkan secara ketat dan host tetap static.bmkg.go.id. Jika tidak ada/gagal, UI menampilkan kondisi belum tersedia. Bukan overlay guncangan buatan atau deteksi gempa oleh HP. Ini laporan terakhir Indonesia, bukan peringatan untuk lokasi pengguna.
+
+### Verifikasi revisi 3
+
+- Node: sintaks tiga skrip, proyeksi round-trip, arah utara/selatan/timur, koordinat terbalik dan titik invalid lolos.
+- Python: lima tes parser lolos, termasuk timestamp tanpa zona, magnitudo rusak dan nama shakemap yang mencoba pindah host/path.
+- Browser: empat tile overview termuat. Laporan BMKG yang diterima saat pemeriksaan menunjukkan kejadian22Oktober2026,17:57:49WIB, M5.2, kedalaman120km, koordinat-3.11,102.14. Bukan klaim gempa baru hari ini. Shakemap resmi 20261022175749.mmi.jpg termuat, lebar612px.
+- Browser setelah reload: zoom5→6 memuat skala tile yang sesuai; reset dan geser60px melalui tombol panah menggeser marker60px pada proyeksi yang sama.
+- Geometri DOM: content dan screen tidak overflow pada viewport1265×720; detail map353px dan sheet255px. Font selesai dimuat. Ini pemeriksaan geometri, bukan bukti visual pixel-identical.
+- Pengambilan screenshot revisi3 melalui API browser gagal (Unable to capture screenshot), termasuk metode alternatif terdokumentasi. Karena itu belum ada bukti screenshot terbaru atau perbandingan visual final yang dapat dinyatakan lulus.
+- Tidak menjalankan emulator, build Gradle atau pengujian Android. Belum ada APK baru, profiling RAM/FPS/baterai, maupun pengujian peta native terbaru.
+
+Jalankan: `python serve_preview.py --port 8770`, lalu buka http://127.0.0.1:8770/preview.html.
+
+---
+
+Catatan revisi2 di bawah bersifat historis.
+
 22 Oktober 2026. Halaman browser, bukan implementasi Android atau bukti data live.
 
 ## Masalah dan hasil

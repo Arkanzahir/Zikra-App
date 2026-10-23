@@ -1,12 +1,14 @@
 # Paket aset cuaca Protector — v1
 
+**Revisi 23 Oktober:** font isi Roboto Condensed, layar 356×740, peta geografis interaktif dan pilihan membaca laporan/shakemap BMKG. **Masih pratinjau browser, belum perubahan APK.** [Rincian dan batas verifikasi](LAYOUT.md).
+
 **Revisi tata letak 22 Oktober:** preview.html kini menampilkan Protector lengkap mengikuti acuan pengguna, dengan header ringkas, peta, laporan, navigasi serta detail peta. [Perubahan, font dan verifikasi](LAYOUT.md). Laboratorium aset awal dipindahkan ke [asset-lab.html](asset-lab.html); tiga PNG sumber tetap sama.
 
 Aset asli dari built-in image_gen, 22 Oktober 2026. Tiga PNG RGBA dengan alpha nyata; source pack untuk tahap desain. **Belum dipasang di APK** dan tidak mengubah data API atau fitur peta.
 
 ## Lihat pratinjau
 
-Buka [preview.html](preview.html) di browser, atau jalankan server lokal dari folder ini. Tidak ada CDN, pustaka eksternal, API, akses lokasi, suara atau pengiriman data. Semua suhu, lokasi, dan kondisi dalam preview adalah contoh. Buka mode, lalu Putar/Jeda gerak.
+Jalankan `python serve_preview.py --port 8770` dari folder ini, lalu buka http://127.0.0.1:8770/preview.html. Tidak ada akses GPS, suara, kredensial atau API berbayar. Peta mengambil tile OpenStreetMap hanya untuk area yang terlihat, memakai cache normal browser serta atribusi terlihat. Tombol **Cek laporan BMKG** membaca endpoint publik tetap melalui server loopback. Mode awal tetap bertanda contoh; cuaca selalu contoh. `asset-lab.html` tetap dapat digunakan tanpa data gempa.
 
 - Cerah: langit dan matahari; awan benar-benar tidak terlihat.
 - Berawan: awan terang bergerak perlahan dalam dua lapisan.
