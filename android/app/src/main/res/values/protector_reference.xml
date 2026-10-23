@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <color name="protector_ivory">#FAF8F0</color>
+    <color name="protector_reference_ink">#123337</color>
+    <color name="protector_moss">#EBEEDF</color>
+    <style name="Theme.Zikra.Protector" parent="Theme.Zikra">
+        <item name="android:fontFamily">@font/protector_roboto</item>
+        <item name="android:windowBackground">@color/protector_ivory</item>
+    </style>
+    <style name="ProtectorReferenceText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/protector_reference_ink</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/protector_roboto</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+    <style name="ProtectorReferenceAction" parent="ProtectorReferenceText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingHorizontal">12dp</item>
+        <item name="android:background">@drawable/protector_reference_outline</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+    <string name="protector_reference_title">Protector</string>
+    <string name="protector_map_title">Peta gempa</string>
+    <string name="protector_expand">Perbesar ↗</string>
+    <string name="protector_weather_here">Prakiraan di lokasimu</string>
+    <string name="protector_report">Laporan terakhir BMKG</string>
+    <string name="protector_detail">Detail gempa →</string>
+    <string name="protector_guide">Panduan gempa ›</string>
+    <string name="protector_emergency">Kontak darurat ›</string>
+    <string name="protector_source_note">Integrasi data gempa: BMKG ↗</string>
+    <string name="protector_epicenter">Peta episentrum</string>
+    <string name="protector_shaking">Peta guncangan</string>
+    <string name="protector_quake_heading">Episentrum gempa</string>
+    <string name="protector_bmkg_source">Lihat sumber BMKG ↗</string>
+    <string name="protector_magnitude_label">Magnitudo</string>
+    <string name="protector_depth_label">Kedalaman</string>
+    <string name="protector_time_label">Waktu · WIB</string>
+    <string name="protector_shakemap_loading">Memuat peta guncangan BMKG…</string>
+    <string name="protector_shakemap_missing">Peta guncangan belum tersedia untuk laporan ini.</string>
+    <string name="protector_shakemap_failed">Peta guncangan gagal dimuat. Ketuk untuk mencoba lagi.</string>
+    <string name="protector_shakemap_description">Peta intensitas guncangan resmi BMKG untuk laporan yang dipilih</string>
+    <string name="protector_map_loading">Memuat peta…</string>
+    <string name="protector_map_fallback">Peta daring belum tersedia · batas wilayah luring</string>
+    <string name="protector_osm_attribution">© OpenStreetMap contributors ↗</string>
+    <string name="protector_back">Kembali</string>
+    <string name="protector_refresh">Muat ulang</string>
+    <string name="protector_zoom_in">Perbesar peta</string>
+    <string name="protector_zoom_out">Perkecil peta</string>
+    <string name="protector_map_reset">Kembali ke episentrum</string>
+    <string name="protector_placeholder">—</string>
+    <color name="protector_ref_color_ffffff">#FFFFFF</color>
+    <string name="protector_ref_protector_refresh_text">↻</string>
+    <string name="protector_ref_protector_location_text">Surabaya ⌄</string>
+    <string name="protector_ref_protector_weather_temperature_text">—°</string>
+    <string name="protector_ref_protector_weather_description_text">Memuat prakiraan…</string>
+    <string name="protector_ref_protector_weather_time_text">Waktu prakiraan belum tersedia</string>
+    <string name="protector_ref_protector_weather_details_text">Data cuaca sedang dimuat</string>
+    <color name="protector_ref_color_596461">#596461</color>
+    <string name="protector_ref_protector_quake_area_text">Memuat laporan gempa…</string>
+    <string name="protector_ref_protector_quake_status_text">Menghubungkan ke BMKG…</string>
+    <string name="protector_ref_protector_nav_home_contentdescription">Home</string>
+    <string name="protector_ref_protector_nav_label_home_text">Home</string>
+    <string name="protector_ref_protector_nav_quran_contentdescription">Quran</string>
+    <string name="protector_ref_protector_nav_label_quran_text">Quran</string>
+    <string name="protector_ref_protector_nav_ai_contentdescription">Zikra AI</string>
+    <string name="protector_ref_protector_nav_label_ai_text">Zikra AI</string>
+    <string name="protector_ref_protector_nav_study_contentdescription">Study</string>
+    <string name="protector_ref_protector_nav_label_study_text">Study</string>
+    <string name="protector_ref_protector_nav_profile_contentdescription">Profil</string>
+    <string name="protector_ref_protector_nav_label_profile_text">Profil</string>
+    <string name="protector_ref_toolbar_back_text">‹</string>
+    <string name="protector_ref_quake_area_text">Memuat laporan gempa…</string>
+    <string name="protector_ref_quake_time_text">Waktu kejadian belum tersedia</string>
+    <string name="protector_ref_quake_felt_text">Wilayah dirasakan belum tersedia</string>
+    <string name="protector_ref_quake_potential_text">Potensi belum tersedia dari BMKG</string>
+    <string name="protector_ref_quake_coordinates_text">Koordinat belum tersedia</string>
+    <string name="protector_ref_quake_status_text">Menghubungkan ke BMKG…</string>
+    <string name="protector_ref_quake_open_map_text">Buka episentrum di Maps ↗</string>
+</resources>

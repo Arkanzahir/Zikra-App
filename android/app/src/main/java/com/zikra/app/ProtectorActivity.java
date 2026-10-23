@@ -2,253 +2,207 @@ package com.zikra.app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import com.zikra.app.safety.BmkgClient;
-import com.zikra.app.safety.BmkgParser;
-import com.zikra.app.safety.IndonesiaMapView;
-import com.zikra.app.safety.ProtectorChrome;
-import com.zikra.app.safety.WeatherSymbols;
-import java.time.Instant;
-import java.time.ZoneId;
+import com.zikra.app.location.*;
+import com.zikra.app.safety.*;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-/** Native Info BMKG dashboard: official forecasts, recent earthquake, and emergency actions. */
+/** Approved weather/map composition, backed by existing lifecycle-bound data clients. */
 public final class ProtectorActivity extends BaseActivity {
   private static final Locale ID = new Locale("id", "ID");
-  private static final DateTimeFormatter TIME =
-      DateTimeFormatter.ofPattern("dd MMM yyyy · HH:mm 'WIB'", ID)
-          .withZone(ZoneId.of("Asia/Jakarta"));
-  private com.zikra.app.location.LocationPoint location =
-      com.zikra.app.location.LocationPoint.INITIAL;
+  private static final DateTimeFormatter CLOCK =
+      DateTimeFormatter.ofPattern("HH:mm 'WIB'", ID).withZone(ZoneId.of("Asia/Jakarta"));
   private BmkgClient bmkg;
-  private BmkgParser.Forecast displayedWeather;
-  private BmkgParser.Earthquake displayedQuake;
-  private Instant quakeRetrievedAt;
-  private final android.os.Handler refreshTimer =
+  private BmkgParser.Forecast weather;
+  private BmkgParser.Earthquake quake;
+  private LocationPoint location = LocationPoint.INITIAL;
+  private Instant retrieved;
+  private ProtectorWeatherView scene;
+  private EarthquakeMapView map;
+  private final android.os.Handler timer =
       new android.os.Handler(android.os.Looper.getMainLooper());
-  private final Runnable refreshTick =
+  private final Runnable tick =
       new Runnable() {
-        @Override
         public void run() {
           refresh();
-          refreshTimer.postDelayed(this, com.zikra.app.safety.OpenMeteoClient.FRESH_MS);
+          timer.postDelayed(this, OpenMeteoClient.FRESH_MS);
         }
       };
 
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+  protected void onCreate(Bundle saved) {
+    setTheme(R.style.Theme_Zikra_Protector);
+    super.onCreate(saved);
     setContentView(R.layout.activity_protector);
-    setupScreen("Zikra Protector");
-    ProtectorChrome.apply(this);
-    text(
-        R.id.protectorToolbarSubtitle,
-        DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy", ID)
-            .withZone(ZoneId.of("Asia/Jakarta"))
-            .format(Instant.now()));
-    if (getResources().getConfiguration().fontScale > 1.3f) {
-      android.widget.LinearLayout metrics = findViewById(R.id.protectorWeatherMetricsHeading);
-      metrics.setOrientation(android.widget.LinearLayout.VERTICAL);
-      for (int i = 1; i < metrics.getChildCount(); i++) {
-        android.view.View child = metrics.getChildAt(i);
-        android.widget.LinearLayout.LayoutParams params =
-            (android.widget.LinearLayout.LayoutParams) child.getLayoutParams();
-        params.width = -1;
-        params.weight = 0;
-      }
-    }
+    setupScreen("Protector");
+    getWindow().setStatusBarColor(0xff2697d1);
+    getWindow().setNavigationBarColor(0xfffaf8f0);
+    scene = findViewById(R.id.protectorWeatherScene);
+    map = findViewById(R.id.protectorQuakeMap);
+    map.setCompact(true);
     bmkg = new BmkgClient(this);
+    findViewById(R.id.protectorScroll)
+        .setOnScrollChangeListener((v, x, y, oldX, oldY) -> scene.updateVisibility());
+    float scale = getResources().getConfiguration().fontScale;
+    if (scale > 1.15f)
+      findViewById(R.id.protectorWeatherCard).getLayoutParams().height =
+          dp(284 + 160 * (scale - 1));
     findViewById(R.id.protectorRefresh).setOnClickListener(v -> refresh());
-    findViewById(R.id.protectorWeatherCard).setOnClickListener(v -> open(WeatherActivity.class));
+    findViewById(R.id.protectorLocation).setOnClickListener(v -> open(LocationActivity.class));
+    findViewById(R.id.protectorWeatherTemperature)
+        .setOnClickListener(v -> open(WeatherActivity.class));
+    findViewById(R.id.protectorWeatherDetails).setOnClickListener(v -> open(WeatherActivity.class));
     findViewById(R.id.protectorQuakeCard).setOnClickListener(v -> open(EarthquakeActivity.class));
     findViewById(R.id.protectorQuakeOpen).setOnClickListener(v -> open(EarthquakeActivity.class));
+    findViewById(R.id.protectorSource)
+        .setOnClickListener(
+            v -> external(Intent.ACTION_VIEW, "https://data.bmkg.go.id/gempabumi/"));
     findViewById(R.id.protectorWarnings)
         .setOnClickListener(
             v ->
                 new android.app.AlertDialog.Builder(this)
-                    .setTitle("Informasi resmi BMKG")
+                    .setTitle("Saat terjadi gempa")
                     .setMessage(
-                        "Buka situs BMKG untuk memeriksa informasi cuaca. Akses halaman peringatan"
-                            + " dapat dibatasi atau berubah. Prakiraan Open-Meteo di Zikra bukan"
-                            + " peringatan dini.")
+                        "Lindungi kepala dan leher, berlindung di bawah meja yang kuat, lalu"
+                            + " berpegangan. Jauhi kaca. Setelah guncangan berhenti, keluar dengan"
+                            + " tertib dan jangan memakai lift. Di dekat pantai, ikuti arahan"
+                            + " evakuasi resmi.\n\n"
+                            + "Laporan ini adalah gempa terakhir di Indonesia, bukan peringatan"
+                            + " dini untuk lokasimu.")
                     .setPositiveButton(
-                        "Buka BMKG",
-                        (dialog, which) -> external(Intent.ACTION_VIEW, "https://www.bmkg.go.id/"))
-                    .setNeutralButton(
-                        "Sumber data BMKG",
-                        (dialog, which) ->
+                        "Panduan BMKG",
+                        (d, w) ->
                             external(
-                                Intent.ACTION_VIEW, "https://data.bmkg.go.id/prakiraan-cuaca/"))
+                                Intent.ACTION_VIEW,
+                                "https://www.bmkg.go.id/gempabumi/antisipasi-gempabumi"))
                     .setNegativeButton("Tutup", null)
                     .show());
-    findViewById(R.id.protectorDial)
-        .setOnClickListener(v -> external(Intent.ACTION_DIAL, "tel:112"));
-    findViewById(R.id.protectorWhatsapp)
+    findViewById(R.id.protectorEmergency).setOnClickListener(v -> showEmergencyActions());
+    findViewById(R.id.protectorNavHome)
         .setOnClickListener(
             v ->
-                external(
-                    Intent.ACTION_VIEW,
-                    "https://wa.me/?text="
-                        + android.net.Uri.encode(
-                            "Saya membutuhkan bantuan. Mohon hubungi saya. Saya akan menuliskan"
-                                + " lokasi saya di pesan ini.")));
-    findViewById(R.id.protectorMaps).setOnClickListener(v -> open(NearbyMosquesActivity.class));
-    findViewById(R.id.protectorSource)
-        .setOnClickListener(v -> external(Intent.ACTION_VIEW, "https://data.bmkg.go.id/"));
-    findViewById(R.id.protectorTabHome)
-        .setOnClickListener(
-            v -> ((ScrollView) findViewById(R.id.protectorScroll)).smoothScrollTo(0, 0));
-    findViewById(R.id.protectorTabWeather).setOnClickListener(v -> open(WeatherActivity.class));
-    findViewById(R.id.protectorTabQuake).setOnClickListener(v -> open(EarthquakeActivity.class));
-    findViewById(R.id.protectorTabHelp).setOnClickListener(v -> showEmergencyActions());
+                startActivity(
+                    new Intent(this, HomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)));
+    findViewById(R.id.protectorNavQuran).setOnClickListener(v -> open(QuranActivity.class));
+    findViewById(R.id.protectorNavAi).setOnClickListener(v -> open(AiActivity.class));
+    findViewById(R.id.protectorNavStudy).setOnClickListener(v -> open(StudyActivity.class));
+    findViewById(R.id.protectorNavProfile).setOnClickListener(v -> open(ProfileActivity.class));
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    com.zikra.app.location.LocationPoint selected =
-        com.zikra.app.location.LocationStore.current(this);
-    if (!selected.key().equals(location.key())) displayedWeather = null;
+    LocationPoint selected = LocationStore.current(this);
+    if (!selected.key().equals(location.key())) weather = null;
     location = selected;
-    text(R.id.protectorToolbarSubtitle, location.caption());
-    refreshTimer.post(refreshTick);
+    text(R.id.protectorLocation, location.label + " ⌄");
+    scene.setActive(true);
+    map.resume();
+    timer.post(tick);
   }
 
   @Override
   protected void onPause() {
-    refreshTimer.removeCallbacks(refreshTick);
-    if (bmkg != null) bmkg.reset();
+    timer.removeCallbacks(tick);
+    scene.setActive(false);
+    map.pause();
+    bmkg.reset();
     super.onPause();
   }
 
   private void refresh() {
     bmkg.reset();
-    if (displayedWeather != null
-        && !com.zikra.app.safety.WeatherCode.usableCache(
-            displayedWeather.fetchedAt.toEpochMilli(),
+    if (weather != null
+        && !WeatherCode.usableCache(
+            weather.fetchedAt.toEpochMilli(),
             System.currentTimeMillis(),
-            com.zikra.app.safety.OpenMeteoClient.MAX_AGE_MS)) displayedWeather = null;
-    text(
-        R.id.protectorWeatherStatus,
-        displayedWeather == null
-            ? "Menghubungkan ke Open-Meteo…"
-            : com.zikra.app.safety.OpenMeteoClient.status(displayedWeather) + "\nMemperbarui…");
-    if (displayedWeather == null) {
-      text(R.id.protectorWeatherTemperature, "—°C");
-      ((ImageView) findViewById(R.id.protectorWeatherIcon))
-          .setImageResource(WeatherSymbols.forDescription(null));
+            OpenMeteoClient.MAX_AGE_MS)) weather = null;
+    if (weather == null) {
+      scene.setWeather(null, location.zone);
+      getWindow().setStatusBarColor(scene.getSkyColor());
+      text(R.id.protectorWeatherTemperature, "—°");
       text(R.id.protectorWeatherDescription, "Memuat prakiraan…");
-      text(R.id.protectorWeatherTime, "Waktu prakiraan belum tersedia");
-      text(R.id.protectorWeatherStatus, "Menghubungkan ke Open-Meteo");
-      text(R.id.protectorWeatherDetails, location.caption() + " · Data sedang dimuat");
-    }
-    text(
-        R.id.protectorQuakeStatus,
-        displayedQuake == null ? "Menghubungkan ke BMKG…" : quakeStatus() + "\nMemperbarui…");
-    if (displayedQuake == null) {
-      text(R.id.protectorMagnitude, "M —");
-      text(R.id.protectorQuakeArea, "Memuat laporan gempa…");
-      text(R.id.protectorQuakeStatus, "Data resmi BMKG · Indonesia");
-      text(R.id.protectorQuakeTime, "Waktu kejadian belum tersedia");
-      text(R.id.protectorQuakeDetails, "Lokasi episentrum ditampilkan setelah koordinat diterima.");
-      ((IndonesiaMapView) findViewById(R.id.protectorQuakeMap)).setEpicenter(null, null);
+      text(R.id.protectorWeatherTime, "Menghubungkan ke Open-Meteo");
+      text(R.id.protectorWeatherDetails, "Kelembapan — · Angin —");
     }
     bmkg.weather(
         new BmkgClient.Result<BmkgParser.Forecast>() {
-          @Override
-          public void success(BmkgParser.Forecast value) {
-            showWeather(value);
+          public void success(BmkgParser.Forecast f) {
+            showWeather(f);
           }
 
-          @Override
           public void failure(String message) {
-            if (displayedWeather == null) {
+            if (weather == null) {
               text(R.id.protectorWeatherDescription, "Cuaca belum tersedia");
-              text(R.id.protectorWeatherDetails, message);
-            }
-            text(
-                R.id.protectorWeatherStatus,
-                displayedWeather == null
-                    ? "Periksa koneksi, lalu pilih Muat ulang di kanan atas."
-                    : com.zikra.app.safety.OpenMeteoClient.status(displayedWeather)
-                        + "\nPembaruan gagal. Pilih Muat ulang.");
+              text(R.id.protectorWeatherTime, "Periksa koneksi, lalu muat ulang");
+            } else text(R.id.protectorWeatherTime, "Pembaruan gagal · prakiraan tersimpan");
           }
         });
+    text(
+        R.id.protectorQuakeStatus,
+        quake == null ? "Menghubungkan ke BMKG…" : status() + " · Memperbarui…");
     bmkg.earthquake(
         new BmkgClient.Result<BmkgParser.Earthquake>() {
-          @Override
-          public void success(BmkgParser.Earthquake value) {
-            showQuake(value);
+          public void success(BmkgParser.Earthquake q) {
+            showQuake(q);
           }
 
-          @Override
           public void failure(String message) {
-            if (displayedQuake == null) {
-              text(R.id.protectorQuakeArea, "Laporan gempa belum tersedia");
-              text(R.id.protectorQuakeDetails, message);
-            }
+            if (quake == null) text(R.id.protectorQuakeArea, "Laporan gempa belum tersedia");
             text(
                 R.id.protectorQuakeStatus,
-                displayedQuake == null
-                    ? "Periksa koneksi, lalu pilih Muat ulang di kanan atas."
-                    : quakeStatus() + "\nPembaruan gagal. Laporan sebelumnya tetap ditampilkan.");
+                quake == null
+                    ? "BMKG belum terhubung · ketuk muat ulang"
+                    : status() + "\nPembaruan gagal; laporan sebelumnya ditampilkan.");
           }
         });
   }
 
-  private void showWeather(BmkgParser.Forecast forecast) {
-    displayedWeather = forecast;
-    BmkgParser.Weather w = forecast.current;
-    ((ImageView) findViewById(R.id.protectorWeatherIcon))
-        .setImageResource(WeatherSymbols.forDescription(w.description));
-    text(R.id.protectorWeatherTemperature, w.temperature.isEmpty() ? "—°C" : w.temperature + "°C");
-    text(R.id.protectorWeatherDescription, available(w.description));
+  private void showWeather(BmkgParser.Forecast f) {
+    weather = f;
+    BmkgParser.Weather w = f.current;
+    scene.setWeather(w.description, f.location.zone);
+    getWindow().setStatusBarColor(scene.getSkyColor());
+    text(R.id.protectorWeatherTemperature, w.temperature + "°");
+    text(R.id.protectorWeatherDescription, w.description);
     text(
         R.id.protectorWeatherTime,
-        "Prakiraan "
-            + DateTimeFormatter.ofPattern("dd MMM yyyy · HH:mm", ID)
-                .withZone(forecast.location.zone)
+        "Open-Meteo · "
+            + (f.stored ? "tersimpan" : "prakiraan")
+            + " · "
+            + DateTimeFormatter.ofPattern("d MMM HH:mm", ID)
+                .withZone(f.location.zone)
                 .format(w.time)
             + " "
-            + forecast.location.zoneLabel(w.time));
-    text(R.id.protectorWeatherStatus, com.zikra.app.safety.OpenMeteoClient.status(forecast));
+            + f.location.zoneLabel(w.time));
     text(
         R.id.protectorWeatherDetails,
-        "Kelembapan "
-            + unit(w.humidity, "%")
-            + "  ·  Angin "
-            + unit(w.wind, " km/jam")
-            + "  ·  Lihat prakiraan →");
+        "Kelembapan " + w.humidity + "%  ·  Angin " + w.wind + " km/jam");
   }
 
   private void showQuake(BmkgParser.Earthquake q) {
-    displayedQuake = q;
-    quakeRetrievedAt = Instant.now();
-    text(R.id.protectorMagnitude, "M " + q.magnitude);
-    text(R.id.protectorQuakeArea, q.area);
-    text(R.id.protectorQuakeTime, q.time == null ? q.sourceDate : TIME.format(q.time));
-    text(R.id.protectorQuakeStatus, quakeStatus());
+    quake = q;
+    retrieved = Instant.now();
+    text(R.id.protectorMagnitude, q.magnitude);
+    text(R.id.protectorDepth, q.depth);
     text(
-        R.id.protectorQuakeDetails,
-        "Kedalaman " + available(q.depth) + "\n" + available(q.potential));
-    ((IndonesiaMapView) findViewById(R.id.protectorQuakeMap)).setEpicenter(q.latitude, q.longitude);
+        R.id.protectorClock,
+        q.time == null
+            ? "—"
+            : DateTimeFormatter.ofPattern("d MMM · HH:mm", ID)
+                .withZone(ZoneId.of("Asia/Jakarta"))
+                .format(q.time));
+    text(R.id.protectorQuakeArea, q.area);
+    text(R.id.protectorQuakeStatus, status());
+    map.setEpicenter(q.latitude, q.longitude);
   }
 
-  private String quakeStatus() {
-    return "Laporan terakhir BMKG · Indonesia\nDiambil "
-        + TIME.format(quakeRetrievedAt)
-        + "\nBukan peringatan untuk lokasi Anda.";
-  }
-
-  private String available(String value) {
-    return value.isEmpty() ? "Belum tersedia" : value;
-  }
-
-  private String unit(String value, String unit) {
-    return value.isEmpty() ? "—" : value + unit;
+  private String status() {
+    return "Diambil "
+        + CLOCK.format(retrieved)
+        + " · laporan terakhir Indonesia\nBukan peringatan untuk lokasimu.";
   }
 
   private void text(int id, String value) {
@@ -258,6 +212,7 @@ public final class ProtectorActivity extends BaseActivity {
   @Override
   protected void onDestroy() {
     if (bmkg != null) bmkg.close();
+    if (map != null) map.close();
     super.onDestroy();
   }
 }

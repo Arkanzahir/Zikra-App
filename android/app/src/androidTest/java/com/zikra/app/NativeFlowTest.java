@@ -86,7 +86,7 @@ public final class NativeFlowTest extends InstrumentationTestCase {
   }
 
   public void testProtectorInflatesWhileNetworkIsUnavailable() {
-    assertNotNull(launch(ProtectorActivity.class).findViewById(R.id.protectorDial));
+    assertNotNull(launch(ProtectorActivity.class).findViewById(R.id.protectorEmergency));
   }
 
   public void testDuaInflatesWithoutArabicTtsEngine() {

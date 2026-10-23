@@ -120,7 +120,7 @@ public final class RebuiltWeatherTest extends InstrumentationTestCase {
 
   public void testOfficialEarthquakeAndProtectorLive() {
     launch(ProtectorActivity.class);
-    awaitText(R.id.protectorWeatherStatus, "Open-Meteo");
+    awaitText(R.id.protectorWeatherTime, "Open-Meteo");
     awaitText(R.id.protectorQuakeStatus, "Laporan terakhir BMKG");
     UiEvidence.capture(getInstrumentation(), "RebuiltProtectorLive");
     finishPage();

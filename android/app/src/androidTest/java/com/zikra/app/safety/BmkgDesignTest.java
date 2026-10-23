@@ -57,8 +57,8 @@ public final class BmkgDesignTest extends InstrumentationTestCase {
               } catch (IllegalAccessException e) {
                 throw new AssertionError(e);
               }
-              ((TextView) page.findViewById(R.id.protectorToolbarSubtitle))
-                  .setText("DATA UJI · BUKAN DATA LIVE");
+              TextView label = page.findViewById(R.id.protectorTitle);
+              if (label != null) label.setText("Protector · DATA UJI");
             });
   }
 
@@ -88,13 +88,12 @@ public final class BmkgDesignTest extends InstrumentationTestCase {
     launch(ProtectorActivity.class);
     BmkgParser.Forecast forecast =
         BmkgParser.forecast(FORECAST, Instant.parse("2026-10-17T02:30:00Z"));
-    bind("showWeather", BmkgParser.Weather.class, forecast.current);
+    bind("showWeather", BmkgParser.Forecast.class, forecast);
     bind("showQuake", BmkgParser.Earthquake.class, BmkgParser.earthquake(QUAKE));
     rendered("ProtectorDesignFixture");
-    assertEquals(
-        "27°C", ((TextView) page.findViewById(R.id.protectorWeatherTemperature)).getText());
-    assertEquals("M 5.1", ((TextView) page.findViewById(R.id.protectorMagnitude)).getText());
-    assertTrue(((IndonesiaMapView) page.findViewById(R.id.protectorQuakeMap)).hasEpicenter());
+    assertEquals("27°", ((TextView) page.findViewById(R.id.protectorWeatherTemperature)).getText());
+    assertEquals("5.1", ((TextView) page.findViewById(R.id.protectorMagnitude)).getText());
+    assertTrue(((EarthquakeMapView) page.findViewById(R.id.protectorQuakeMap)).hasEpicenter());
   }
 
   public void testForecastBindsEveryDatedSlotIntoXmlCards() throws Exception {

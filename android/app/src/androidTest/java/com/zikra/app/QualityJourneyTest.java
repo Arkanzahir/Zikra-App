@@ -111,9 +111,9 @@ public final class QualityJourneyTest extends InstrumentationTestCase {
     waitUntil(
         12000,
         () ->
-            !pending(text(R.id.protectorWeatherStatus))
+            !pending(text(R.id.protectorWeatherTime))
                 && !text(R.id.protectorQuakeArea).startsWith("Memuat"));
-    evidence.append("Protector weather: ").append(text(R.id.protectorWeatherStatus)).append('\n');
+    evidence.append("Protector weather: ").append(text(R.id.protectorWeatherTime)).append('\n');
     evidence.append("Protector earthquake: ").append(text(R.id.protectorQuakeStatus)).append('\n');
     capture("QualityProtector");
     launch(WeatherActivity.class);

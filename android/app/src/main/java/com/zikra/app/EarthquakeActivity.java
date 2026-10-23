@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 import com.zikra.app.safety.BmkgClient;
 import com.zikra.app.safety.BmkgParser;
-import com.zikra.app.safety.IndonesiaMapView;
-import com.zikra.app.safety.ProtectorChrome;
+import com.zikra.app.safety.EarthquakeMapView;
+import com.zikra.app.safety.ShakemapLoader;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -14,17 +14,34 @@ import java.util.Locale;
 /** Geographic earthquake detail with an actual-coordinate Maps intent and native bottom sheet. */
 public final class EarthquakeActivity extends BaseActivity {
   private BmkgClient bmkg;
+  private EarthquakeMapView map;
+  private ShakemapLoader shaking;
+  private boolean shakingSelected;
   private BmkgParser.Earthquake earthquake;
   private java.time.Instant retrievedAt;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    setTheme(R.style.Theme_Zikra_Protector);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_earthquake);
     setupScreen("Gempabumi BMKG");
-    ProtectorChrome.apply(this);
-    text(R.id.protectorToolbarTitle, "Gempabumi");
-    text(R.id.protectorToolbarSubtitle, "Info BMKG · Laporan terakhir Indonesia");
+    getWindow().setStatusBarColor(0xfffaf8f0);
+    getWindow()
+        .getDecorView()
+        .setSystemUiVisibility(
+            android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                | android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+    map = findViewById(R.id.quakeMap);
+    shaking =
+        new ShakemapLoader(
+            this, findViewById(R.id.quakeShakingImage), findViewById(R.id.quakeShakingStatus));
+    findViewById(R.id.quakeTabEpicenter).setOnClickListener(v -> selectMap(false));
+    findViewById(R.id.quakeTabShaking).setOnClickListener(v -> selectMap(true));
+    selectMap(false);
+    int available = getResources().getDisplayMetrics().heightPixels;
+    findViewById(R.id.quakeSheet).getLayoutParams().height =
+        Math.min(dp(320), Math.round(available * .44f));
     bmkg = new BmkgClient(this);
     findViewById(R.id.protectorRefresh).setOnClickListener(v -> refresh());
     findViewById(R.id.quakeSource)
@@ -46,11 +63,37 @@ public final class EarthquakeActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    if (!shakingSelected) map.resume();
+    else shaking.load(earthquake == null ? "" : earthquake.shakemapUrl);
     refresh();
+  }
+
+  private void selectMap(boolean selected) {
+    shakingSelected = selected;
+    findViewById(R.id.quakeShakingPanel)
+        .setVisibility(selected ? android.view.View.VISIBLE : android.view.View.GONE);
+    for (int id : new int[] {R.id.quakeTabEpicenter, R.id.quakeTabShaking}) {
+      boolean active = (id == R.id.quakeTabShaking) == selected;
+      findViewById(id)
+          .setBackgroundResource(
+              active
+                  ? R.drawable.protector_reference_selected
+                  : R.drawable.protector_reference_outline);
+      ((TextView) findViewById(id)).setTextColor(active ? 0xffffffff : 0xff123337);
+    }
+    if (selected) {
+      map.pause();
+      shaking.load(earthquake == null ? "" : earthquake.shakemapUrl);
+    } else {
+      shaking.pause();
+      map.resume();
+    }
   }
 
   @Override
   protected void onPause() {
+    map.pause();
+    shaking.pause();
     if (bmkg != null) bmkg.reset();
     super.onPause();
   }
@@ -62,7 +105,7 @@ public final class EarthquakeActivity extends BaseActivity {
         earthquake == null ? "Menghubungkan ke BMKG…" : sourceStatus() + "\nMemperbarui…");
     if (earthquake == null) {
       findViewById(R.id.quakeOpenMap).setEnabled(false);
-      ((IndonesiaMapView) findViewById(R.id.quakeMap)).setEpicenter(null, null);
+      map.setEpicenter(null, null);
       text(R.id.quakeArea, "Memuat gempabumi terkini…");
       text(R.id.quakeTime, "Waktu kejadian belum tersedia");
       text(R.id.quakeMagnitude, "—");
@@ -106,7 +149,10 @@ public final class EarthquakeActivity extends BaseActivity {
   }
 
   private void show(BmkgParser.Earthquake q) {
+    String previous = earthquake == null ? "" : earthquake.shakemapUrl;
     earthquake = q;
+    if (!previous.equals(q.shakemapUrl)) shaking.clear();
+    if (shakingSelected) shaking.load(q.shakemapUrl);
     retrievedAt = java.time.Instant.now();
     text(R.id.quakeArea, q.area);
     text(
@@ -141,7 +187,7 @@ public final class EarthquakeActivity extends BaseActivity {
     text(
         R.id.quakeFelt, q.felt.isEmpty() || "-".equals(q.felt) ? "Tidak dicantumkan BMKG" : q.felt);
     text(R.id.quakeStatus, sourceStatus());
-    ((IndonesiaMapView) findViewById(R.id.quakeMap)).setEpicenter(q.latitude, q.longitude);
+    map.setEpicenter(q.latitude, q.longitude);
     findViewById(R.id.quakeOpenMap).setEnabled(q.hasCoordinates());
   }
 
@@ -156,6 +202,8 @@ public final class EarthquakeActivity extends BaseActivity {
   @Override
   protected void onDestroy() {
     if (bmkg != null) bmkg.close();
+    if (map != null) map.close();
+    if (shaking != null) shaking.close();
     super.onDestroy();
   }
 }

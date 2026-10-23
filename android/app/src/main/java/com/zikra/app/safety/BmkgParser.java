@@ -20,6 +20,12 @@ public final class BmkgParser {
     String area = text(quake, "Wilayah"), magnitude = text(quake, "Magnitude");
     if (area.isEmpty() || magnitude.isEmpty())
       throw new JSONException("Informasi gempa tidak lengkap");
+    try {
+      double m = Double.parseDouble(magnitude);
+      if (!Double.isFinite(m) || m < 0 || m > 10) throw new NumberFormatException();
+    } catch (NumberFormatException e) {
+      throw new JSONException("Magnitudo tidak valid");
+    }
     Double latitude = null, longitude = null;
     String[] coordinates = text(quake, "Coordinates").split(",");
     if (coordinates.length == 2) {
@@ -47,7 +53,14 @@ public final class BmkgParser {
         latitude,
         longitude,
         text(quake, "Lintang"),
-        text(quake, "Bujur"));
+        text(quake, "Bujur"),
+        shakemapUrl(text(quake, "Shakemap")));
+  }
+
+  public static String shakemapUrl(String filename) {
+    return filename != null && filename.matches("[A-Za-z0-9_-]{1,80}(?:\\.mmi)?\\.jpg")
+        ? "https://static.bmkg.go.id/" + filename
+        : "";
   }
 
   public static Weather weather(String json, Instant now) throws JSONException {
@@ -120,7 +133,8 @@ public final class BmkgParser {
         felt,
         sourceDate,
         latitudeText,
-        longitudeText;
+        longitudeText,
+        shakemapUrl;
     public final Instant time;
     public final Double latitude, longitude;
 
@@ -147,6 +161,35 @@ public final class BmkgParser {
         Double longitude,
         String latitudeText,
         String longitudeText) {
+      this(
+          magnitude,
+          area,
+          depth,
+          potential,
+          felt,
+          sourceDate,
+          time,
+          latitude,
+          longitude,
+          latitudeText,
+          longitudeText,
+          "");
+    }
+
+    public Earthquake(
+        String magnitude,
+        String area,
+        String depth,
+        String potential,
+        String felt,
+        String sourceDate,
+        Instant time,
+        Double latitude,
+        Double longitude,
+        String latitudeText,
+        String longitudeText,
+        String shakemapUrl) {
+      this.shakemapUrl = shakemapUrl;
       this.magnitude = magnitude;
       this.area = area;
       this.depth = depth;

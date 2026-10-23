@@ -42,7 +42,8 @@ public final class BmkgNativeTest extends InstrumentationTestCase {
         getInstrumentation().addMonitor(WeatherActivity.class.getName(), null, false);
     try {
       getInstrumentation()
-          .runOnMainSync(() -> dashboard.findViewById(R.id.protectorWeatherCard).performClick());
+          .runOnMainSync(
+              () -> dashboard.findViewById(R.id.protectorWeatherTemperature).performClick());
       Activity detail = getInstrumentation().waitForMonitorWithTimeout(monitor, 60000);
       assertNotNull("Weather card must open a native detail Activity", detail);
       pages.add(detail);
@@ -67,7 +68,7 @@ public final class BmkgNativeTest extends InstrumentationTestCase {
       pages.add(detail);
       getInstrumentation().waitForIdleSync();
       com.zikra.app.UiEvidence.capture(getInstrumentation(), "EarthquakeActivity");
-      assertTrue(detail.findViewById(R.id.quakeMap) instanceof IndonesiaMapView);
+      assertTrue(detail.findViewById(R.id.quakeMap) instanceof EarthquakeMapView);
       assertNotNull(detail.findViewById(R.id.quakeOpenMap));
     } finally {
       getInstrumentation().removeMonitor(monitor);

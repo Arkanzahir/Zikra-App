@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.safety.ProtectorDataTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-23T10:22:28" hostname="LAPTOP-C0PN7S52" time="0.01">
+  <properties/>
+  <testcase name="reportKeepsCoordinateOrderAndShakemap" classname="com.zikra.app.safety.ProtectorDataTest" time="0.005"/>
+  <testcase name="invalidMagnitudeRejected" classname="com.zikra.app.safety.ProtectorDataTest" time="0.0"/>
+  <testcase name="phaseUsesDateAndWrapsBeforeEpoch" classname="com.zikra.app.safety.ProtectorDataTest" time="0.004"/>
+  <testcase name="shakemapAcceptsOfficialFilenameOnly" classname="com.zikra.app.safety.ProtectorDataTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

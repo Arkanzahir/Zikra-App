@@ -1,0 +1,7 @@
+
+com.zikra.app.safety.ProtectorReleaseTest:..
+com.zikra.app.safety.BmkgDesignTest:.
+Test results for InstrumentationTestRunner=...
+Time: 40.286
+
+OK (3 tests)

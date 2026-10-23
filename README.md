@@ -1,3 +1,5 @@
+> **Protector 1.5.0 — 23 Oktober 2026:** desain preview diterapkan ke APK native: cuaca berlapis/animasi, fase bulan pendekatan tanggal, peta episentrum interaktif dan Shakemap BMKG. [Screenshot APK, tes, dan batas](android/validation/protector-native-2026-10-23/README.md).
+
 > **Reader 1.4.3 — 22 Oktober 2026:** panel audio/gulir dilipat secara bawaan, tetap dapat mengontrol audio; pilihan tersimpan. Judul surat diberi ornamen emas tipis. [Screenshot, lima tes Android dan batas](android/validation/reader-fold-ornament-2026-10-22/README.md). Emulator ditutup; belum tes HP.
 
 > **Tata letak1.4.2 — 22 Oktober 2026:** Home, Reader Quran dan Study diselaraskan dengan referensi terbaru: urutan salat, judul surat/bismillah, nomor/audio di kiri ayat, player di atas navigasi dan agenda lebih padat. [Screenshot native, tes dan batas](android/validation/comfortable-layout-2026-10-22/README.md). Enam metode Android lulus; koreksi kosmetik akhir diperiksa ulang terarah.

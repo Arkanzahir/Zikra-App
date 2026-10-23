@@ -1,0 +1,51 @@
+{
+  "versionName": "1.5.0",
+  "versionCode": 12,
+  "apkBytes": 17982611,
+  "apkSha256": "a4e459bf5a81884ed3cfc4e5911139aa6b2ccf2577a4bbd3456d16cfb5a1e68d",
+  "sourceBuildFilesVerified": 28,
+  "build": "assembleDebug assembleDebugAndroidTest lintDebug",
+  "workers": 1,
+  "heapMiB": 512,
+  "metaspaceMiB": 256,
+  "buildSeconds": 33,
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 682
+  },
+  "jvmTests": 4,
+  "nativeMethodsInitial": 8,
+  "nativeMethodsAfterFinalArtwork": 3,
+  "liveWeatherLoaded": true,
+  "liveEarthquakeLoaded": true,
+  "liveOsmTilesLoaded": true,
+  "liveBmkgShakemapLoaded": true,
+  "rainProofUsesLabelledFixture": true,
+  "emulatorGuestMiB": 1536,
+  "emulatorStopped": true,
+  "physicalPhoneTested": false,
+  "accessibilityFullAudit": false,
+  "moon": "Mean synodic phase approximation, not hilal determination",
+  "weather": "Open-Meteo hourly model, not local weather observation",
+  "audioExperimentsIncluded": false,
+  "assets": [
+    {
+      "name": "protector_city.png",
+      "bytes": 1601215,
+      "sha256": "f03abd033d8204de5a50b954463f43e0142937704e9b20f4150fcbe8c41f49a4"
+    },
+    {
+      "name": "protector_clouds.png",
+      "bytes": 1046770,
+      "sha256": "2854526829c8596b206ad28038f5bdfee2db0eeaa4e287f155d8489460f65349"
+    },
+    {
+      "name": "protector_storm.png",
+      "bytes": 1593643,
+      "sha256": "c71ff2d1979e181c4febcdd21ee2d4903e6858c3d18cb2832f4d7208aef58925"
+    }
+  ],
+  "finalBuildSeconds": 27,
+  "postNativeChange": "Added event date to compact overview clock; final assembleDebug/lintDebug passed, emulator was not restarted for this text-only correction."
+}
