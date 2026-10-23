@@ -104,6 +104,87 @@ public final class ProtectorReleaseTest extends InstrumentationTestCase {
     assertEquals(View.GONE, page.findViewById(R.id.quakeShakingPanel).getVisibility());
   }
 
+  public void testReferenceArtworkAndMotion() throws Exception {
+    launch(ProtectorActivity.class);
+    Field client = ProtectorActivity.class.getDeclaredField("bmkg");
+    client.setAccessible(true);
+    ProtectorWeatherView scene = page.findViewById(R.id.protectorWeatherScene);
+    java.time.ZoneId daylight =
+        java.time.ZoneOffset.ofHours(
+            12 - java.time.Instant.now().atZone(java.time.ZoneOffset.UTC).getHour());
+    getInstrumentation()
+        .runOnMainSync(
+            () -> {
+              try {
+                ((BmkgClient) client.get(page)).close();
+              } catch (Exception e) {
+                throw new AssertionError(e);
+              }
+              ((TextView) page.findViewById(R.id.protectorTitle)).setText("Protector");
+              ((TextView) page.findViewById(R.id.protectorLocation)).setText("Surabaya ⌄");
+              ((TextView) page.findViewById(R.id.protectorWeatherTemperature)).setText("29°");
+              ((TextView) page.findViewById(R.id.protectorWeatherDescription))
+                  .setText("Cerah berawan");
+              ((TextView) page.findViewById(R.id.protectorWeatherTime))
+                  .setText("Contoh visual · bukan cuaca aktual");
+              ((TextView) page.findViewById(R.id.protectorWeatherDetails))
+                  .setText("Terasa 31°     •     Kelembapan 72%");
+              scene.setWeather("Cerah berawan", daylight);
+              page.getWindow().setStatusBarColor(scene.getSkyColor());
+            });
+    SystemClock.sleep(350);
+    UiEvidence.capture(getInstrumentation(), "ProtectorSunnyV2");
+    getInstrumentation()
+        .runOnMainSync(
+            () -> {
+              ((TextView) page.findViewById(R.id.protectorWeatherTemperature)).setText("26°");
+              ((TextView) page.findViewById(R.id.protectorWeatherDescription))
+                  .setText("Hujan ringan");
+              ((TextView) page.findViewById(R.id.protectorWeatherDetails))
+                  .setText("Terasa 27°     •     Kelembapan 88%");
+              scene.setWeather("Hujan ringan", daylight);
+              page.getWindow().setStatusBarColor(scene.getSkyColor());
+            });
+    SystemClock.sleep(350);
+    UiEvidence.capture(getInstrumentation(), "ProtectorRainV2");
+    Field elapsed = ProtectorWeatherView.class.getDeclaredField("elapsed");
+    elapsed.setAccessible(true);
+    float[] clock = new float[3];
+    getInstrumentation()
+        .runOnMainSync(
+            () -> {
+              try {
+                clock[0] = elapsed.getFloat(scene);
+              } catch (Exception e) {
+                throw new AssertionError(e);
+              }
+            });
+    SystemClock.sleep(500);
+    getInstrumentation()
+        .runOnMainSync(
+            () -> {
+              try {
+                clock[1] = elapsed.getFloat(scene);
+              } catch (Exception e) {
+                throw new AssertionError(e);
+              }
+              scene.setActive(false);
+            });
+    UiEvidence.capture(getInstrumentation(), "ProtectorRainMotionV2");
+    SystemClock.sleep(300);
+    getInstrumentation()
+        .runOnMainSync(
+            () -> {
+              try {
+                clock[2] = elapsed.getFloat(scene);
+              } catch (Exception e) {
+                throw new AssertionError(e);
+              }
+            });
+    assertTrue("Cloud/rain clock advances while visible", clock[1] > clock[0]);
+    assertEquals("Clock stops when paused", clock[1], clock[2]);
+  }
+
   @Override
   protected void tearDown() throws Exception {
     if (page != null) getInstrumentation().runOnMainSync(page::finish);

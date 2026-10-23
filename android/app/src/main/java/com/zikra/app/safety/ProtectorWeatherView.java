@@ -26,7 +26,8 @@ public final class ProtectorWeatherView extends View {
   private float elapsed;
   private LinearGradient sky;
   private LinearGradient sideScrim, bottomScrim;
-  private ColorMatrixColorFilter cityFilter;
+  private ColorMatrixColorFilter cityFilter, cloudFilter;
+  private RadialGradient sunGlow;
   private int skyColor;
   private final Runnable frame =
       () -> {
@@ -83,21 +84,39 @@ public final class ProtectorWeatherView extends View {
 
   private void updateSky() {
     int top =
-        !available ? 0xff617981 : night ? 0xff0e273c : cloudMode == 2 ? 0xff37596b : 0xff2697d1;
+        !available ? 0xff617981 : night ? 0xff0e273c : cloudMode == 2 ? 0xff304e65 : 0xff0785d0;
     int bottom =
-        !available ? 0xff9db2b0 : night ? 0xff2e5668 : cloudMode == 2 ? 0xff8dafb8 : 0xffcbdcbc;
+        !available ? 0xff9db2b0 : night ? 0xff2e5668 : cloudMode == 2 ? 0xff8dafb8 : 0xffb9e3f0;
     skyColor = top;
     sky = new LinearGradient(0, 0, 0, Math.max(1, getHeight()), top, bottom, Shader.TileMode.CLAMP);
     float width = Math.max(1, getWidth()), height = Math.max(1, getHeight());
     sideScrim =
-        new LinearGradient(0, 0, width * .76f, 0, 0x470a3455, 0x000a3455, Shader.TileMode.CLAMP);
+        new LinearGradient(0, 0, width * .66f, 0, 0x280a3455, 0x000a3455, Shader.TileMode.CLAMP);
     bottomScrim =
         new LinearGradient(
             0, height * .65f, 0, height, 0x00123d3e, 0x88123d3e, Shader.TileMode.CLAMP);
-    float brightness = night ? .35f : cloudMode == 2 ? .69f : 1f;
+    float brightness = night ? .35f : cloudMode == 2 ? .76f : 1f;
     ColorMatrix matrix = new ColorMatrix();
     matrix.setScale(brightness, brightness, brightness, 1);
+    if (cloudMode == 2) {
+      ColorMatrix saturation = new ColorMatrix();
+      saturation.setSaturation(.48f);
+      matrix.postConcat(saturation);
+      ColorMatrix cool = new ColorMatrix();
+      cool.setScale(.80f, .94f, 1.03f, 1);
+      matrix.postConcat(cool);
+    }
     cityFilter = new ColorMatrixColorFilter(matrix);
+    matrix.setScale(night ? .28f : 1f, night ? .38f : 1f, night ? .52f : 1f, 1);
+    cloudFilter = new ColorMatrixColorFilter(matrix);
+    sunGlow =
+        new RadialGradient(
+            width * .78f,
+            height * .35f,
+            width * .18f,
+            new int[] {0xbffff2a5, 0x55ffdc77, 0x00ffdc77},
+            new float[] {0, .4f, 1},
+            Shader.TileMode.CLAMP);
   }
 
   public int getSkyColor() {
@@ -169,44 +188,42 @@ public final class ProtectorWeatherView extends View {
           canvas.drawRect(x + left, y + yy, x + right, y + yy + 2 * r / 80 + .3f, paint);
         }
       } else {
-        paint.setColor(0x22ffe69d);
-        canvas.drawCircle(x, y, r * 1.8f, paint);
-        paint.setColor(0xffffe69d);
+        paint.setShader(sunGlow);
+        canvas.drawCircle(x, y, w * .18f, paint);
+        paint.setShader(null);
+        paint.setColor(0xfffff4b3);
         canvas.drawCircle(x, y, r, paint);
       }
     }
     if (available && cloudMode > 0) {
       Bitmap layer = cloudMode == 1 ? clouds : storm;
-      float offset = (float) Math.sin(elapsed * .045) * w * .09f;
-      paint.setAlpha(night ? 160 : cloudMode == 1 ? 240 : 255);
-      float density = getResources().getDisplayMetrics().density;
-      float left = cloudMode == 1 ? w * .20f : -w * .53f;
-      float layerWidth = cloudMode == 1 ? w * 1.32f : w * 1.9f;
-      float top = cloudMode == 1 ? -15 * density : -100 * density;
-      float layerHeight = layerWidth * layer.getHeight() / layer.getWidth();
-      target.set(left + offset, top, left + offset + layerWidth, top + layerHeight);
+      // One continuous painted cloud field. Overscan keeps its edges offscreen during drift.
+      float offset = (float) Math.sin(elapsed * .065) * w * .025f;
+      float scale = Math.max(w / layer.getWidth(), h / layer.getHeight()) * 1.08f;
+      float layerWidth = layer.getWidth() * scale, layerHeight = layer.getHeight() * scale;
+      float left = (w - layerWidth) / 2 + offset, top = (h - layerHeight) / 2;
+      target.set(left, top, left + layerWidth, top + layerHeight);
+      paint.setColorFilter(cloudFilter);
       canvas.drawBitmap(layer, null, target, paint);
-      left = cloudMode == 1 ? w * .43f : -w * .12f;
-      layerWidth = cloudMode == 1 ? w * 1.25f : w * 1.7f;
-      top = cloudMode == 1 ? 30 * density : -54 * density;
-      layerHeight = layerWidth * layer.getHeight() / layer.getWidth();
-      target.set(left - offset, top, left - offset + layerWidth, top + layerHeight);
-      canvas.drawBitmap(layer, null, target, paint);
-      paint.setAlpha(255);
+      paint.setColorFilter(null);
     }
-    float cityH = w * 1.55f * city.getHeight() / city.getWidth();
-    float bottom = h + 7 * getResources().getDisplayMetrics().density;
-    target.set(-w * .275f, bottom - cityH, w * 1.275f, bottom);
+    // Preserve the skyline's scale: distant roofs at roughly 75% of the hero height.
+    float cityH = w * city.getHeight() / city.getWidth();
+    float bottom = Math.max(h, h * .75f + cityH * .37f);
+    target.set(0, bottom - cityH, w, bottom);
     paint.setColorFilter(cityFilter);
     canvas.drawBitmap(city, null, target, paint);
     paint.setColorFilter(null);
     if (available && rain > 0) {
-      paint.setColor(0x75d8e9ef);
-      paint.setStrokeWidth(Math.max(1, w / 400));
-      for (int i = 0; i < rain; i++) {
-        float x = ((i * 73.37f + elapsed * (rain > 40 ? 65 : 30)) % (w + 40)) - 20;
-        float y = (i * 47.19f + elapsed * (rain > 40 ? 510 : 250)) % (h + 40) - 20;
-        canvas.drawLine(x, y, x - 4, y + 12 + (rain > 40 ? 8 : 0), paint);
+      paint.setStrokeWidth(Math.max(.7f, w / 900));
+      for (int i = 0; i < rain * 5; i++) {
+        float speed = h * (rain > 40 ? .95f : .65f);
+        float y = (i * 47.19f + elapsed * speed) % (h + 60) - 30;
+        // Wind and individual streaks both travel down-left.
+        float x = ((i * 73.37f - elapsed * speed * .27f) % (w + 60) + w + 60) % (w + 60) - 30;
+        float length = h * (i % 3 == 0 ? .055f : .032f);
+        paint.setColor(i % 3 == 0 ? 0x65d8e9ef : 0x35d8e9ef);
+        canvas.drawLine(x, y, x - length * .27f, y + length, paint);
       }
     }
     paint.setAlpha(255);
