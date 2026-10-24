@@ -148,4 +148,75 @@ public final class OptionalContentTest extends InstrumentationTestCase {
       context.deleteDatabase(name);
     }
   }
+
+  public void testReviewedDuaDisplaysCorrectionsAndOriginalsFromOfflinePackage() throws Exception {
+    File file = new File(context.getFilesDir(), "equran-doa-catalog.json");
+    byte[] original = file.exists() ? Files.readAllBytes(file.toPath()) : null;
+    DuaCatalogRepository repo = new DuaCatalogRepository(context);
+    try {
+      DuaCatalog downloaded = load(repo, true, true);
+      for (DuaCatalog.Entry entry : downloaded.entries)
+        assertTrue("Source snapshot changed: review it before updating evidence", entry.review != com.zikra.app.discovery.DuaReview.SOURCE_CHANGED);
+      close(repo); repo = new DuaCatalogRepository(context);
+      assertEquals(225, load(repo, false, true).entries.size());
+      page = getInstrumentation().startActivitySync(new Intent(context, DuaLibraryActivity.class)
+          .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)); waitCatalog(page);
+      EditText search = page.findViewById(R.id.duaLibrarySearch);
+      LinearLayout list = page.findViewById(R.id.duaLibraryContent);
+      for (int number : new int[]{3, 26, 55, 70, 76, 77, 94, 98, 111, 121, 122, 123, 124, 145, 154, 159, 168, 176, 186, 188, 211}) {
+        DuaCatalog.Entry expected = null;
+        for (DuaCatalog.Entry entry : downloaded.entries) if (entry.number == number) expected = entry;
+        assertNotNull(expected);
+        final DuaCatalog.Entry target = expected;
+        getInstrumentation().runOnMainSync(() -> search.setText(number == 186 ? "لبيك"
+            : number == 123 ? "kokohkanlah aku" : target.title));
+        android.view.View card = null;
+        for (int i = 0; i < list.getChildCount(); i++) {
+          android.view.View child = list.getChildAt(i);
+          if (("EQuran · " + number).contentEquals(((TextView) child.findViewById(R.id.duaSubtitle)).getText())) card = child;
+        }
+        assertNotNull("Search finds source ID " + number, card);
+        final android.view.View result = card;
+        getInstrumentation().runOnMainSync(() -> result.findViewById(R.id.duaExpand).performClick());
+        assertEquals(target.arabic, ((TextView) card.findViewById(R.id.duaArabic)).getText().toString());
+        assertEquals(target.latin, ((TextView) card.findViewById(R.id.duaLatin)).getText().toString());
+        assertEquals(target.meaning, ((TextView) card.findViewById(R.id.duaTranslation)).getText().toString());
+        assertEquals(target.review.displayTitle(target.title), ((TextView) card.findViewById(R.id.duaTitle)).getText().toString());
+        assertTrue(((TextView) card.findViewById(R.id.duaSource)).getText().toString().contains("Catatan bacaan"));
+        getInstrumentation().runOnMainSync(() -> result.findViewById(R.id.duaSourceToggle).performClick());
+        String details = ((TextView) card.findViewById(R.id.duaSourceDetails)).getText().toString();
+        assertTrue(details.contains(target.reference));
+        if (!target.arabic.equals(target.sourceArabic)) assertTrue(details.contains(target.sourceArabic));
+        if (!target.latin.equals(target.sourceLatin)) assertTrue(details.contains(target.sourceLatin));
+        if (!target.meaning.equals(target.sourceMeaning)) assertTrue(details.contains(target.sourceMeaning));
+        if (!target.title.equals(target.review.displayTitle(target.title))) assertTrue(details.contains(target.title));
+        assertTrue(card.findViewById(R.id.duaListen).isEnabled());
+        if (number == 186 || number == 77) UiEvidence.capture(getInstrumentation(), "Dua-Reviewed-" + number);
+      }
+      getInstrumentation().runOnMainSync(page::finish); page = null;
+      org.json.JSONObject changed = new org.json.JSONObject(new String(Files.readAllBytes(file.toPath()),
+          java.nio.charset.StandardCharsets.UTF_8));
+      org.json.JSONArray data = changed.getJSONArray("data");
+      for (int i = 0; i < data.length(); i++) if (data.getJSONObject(i).getInt("id") == 186)
+        data.getJSONObject(i).put("nama", "Sumber berubah uji");
+      Files.write(file.toPath(), changed.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
+      page = getInstrumentation().startActivitySync(new Intent(context, DuaLibraryActivity.class)
+          .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)); waitCatalog(page);
+      EditText changedSearch = page.findViewById(R.id.duaLibrarySearch);
+      getInstrumentation().runOnMainSync(() -> changedSearch.setText("Sumber berubah uji"));
+      LinearLayout changedList = page.findViewById(R.id.duaLibraryContent);
+      assertEquals(1, changedList.getChildCount());
+      android.view.View changedCard = changedList.getChildAt(0);
+      getInstrumentation().runOnMainSync(() -> changedCard.findViewById(R.id.duaExpand).performClick());
+      assertTrue(((TextView) changedCard.findViewById(R.id.duaSource)).getText().toString().contains("Belum ditinjau"));
+      assertTrue(((TextView) changedCard.findViewById(R.id.duaArabic)).getText().toString().startsWith("بَّيْكَ"));
+      getInstrumentation().runOnMainSync(() -> changedCard.findViewById(R.id.duaSourceToggle).performClick());
+      assertTrue(((TextView) changedCard.findViewById(R.id.duaSourceDetails)).getText().toString()
+          .contains("Koreksi versi lama tidak diterapkan"));
+    } finally {
+      if (page != null) { getInstrumentation().runOnMainSync(page::finish); page = null; }
+      close(repo);
+      if (original == null) Files.deleteIfExists(file.toPath()); else Files.write(file.toPath(), original);
+    }
+  }
 }

@@ -10,7 +10,7 @@ public final class DuaReviewTest {
     assertNotEquals(DuaReview.fingerprint("a", "bc", "d", "e"), DuaReview.fingerprint("ab", "c", "d", "e"));
     assertNotEquals(DuaReview.fingerprint("a", "b", "c", "d"), DuaReview.fingerprint("a", "b", "c", "changed"));
     assertEquals(DuaReview.SOURCE_CHANGED, DuaReview.forSource(18, "changed", "b", "c", "d"));
-    assertEquals(DuaReview.NONE, DuaReview.forSource(999, "a", "b", "c", "d"));
+    assertEquals(DuaReview.SOURCE_CHANGED, DuaReview.forSource(999, "a", "b", "c", "d"));
     assertEquals("fixture", DuaReview.SOURCE_CHANGED.displayArabic("fixture"));
   }
   @Test(expected = IllegalArgumentException.class) public void rejectsAnEmbeddedSnapshotSeparator() {
@@ -37,24 +37,60 @@ public final class DuaReviewTest {
       if (entry.number == 20) assertEquals(DuaReview.RAIN_NUMBERING, entry.review);
       if (entry.number == 96) assertEquals(DuaReview.GRADING_CONTEXT, entry.review);
       if (entry.number == 139) assertEquals(DuaReview.AFTER_MEAL_NUMBERING, entry.review);
-      if (entry.review == DuaReview.TITLE_TYPO || entry.review == DuaReview.TITLE_SCOPE) {
+      if (java.util.Arrays.asList(16, 55, 66, 70, 103, 121).contains(entry.number)) {
         assertNotEquals(entry.title, entry.review.displayTitle(entry.title));
         assertEquals(entry.title, DuaReview.SOURCE_CHANGED.displayTitle(entry.title));
         assertEquals(DuaReview.SOURCE_CHANGED, DuaReview.forSource(entry.number,
-            entry.title + "changed", entry.sourceArabic, entry.meaning, entry.reference));
+            entry.title + "changed", entry.sourceArabic, entry.sourceMeaning, entry.reference));
       }
-      if (entry.review == DuaReview.ARABIC_INSTRUCTIONS) {
+      if (java.util.Arrays.asList(57, 76, 77, 209).contains(entry.number)) {
         assertFalse(entry.arabic.matches("(?s).*[A-Za-z].*"));
         assertTrue(entry.sourceArabic.endsWith(entry.arabic));
         assertTrue(entry.sourceArabic.contains("\n"));
         assertEquals(DuaReview.SOURCE_CHANGED, DuaReview.forSource(entry.number,
-            entry.title, entry.sourceArabic + "changed", entry.meaning, entry.reference));
+            entry.title, entry.sourceArabic + "changed", entry.sourceMeaning, entry.reference));
       } else if (entry.review == DuaReview.WITR_LAYOUT) {
         assertFalse(entry.arabic.contains("("));
         assertFalse(entry.arabic.contains(")"));
         assertEquals(entry.sourceArabic.replace("(", "").replace(")", "").trim(), entry.arabic);
+      } else if (entry.number == 186) {
+        assertEquals("لَبَّيْكَ، إِنَّ الْعَيْشَ عَيْشُ الْآخِرَةِ", entry.arabic);
+        assertTrue(entry.search.contains(HadithSearch.normalize("لبيك")));
+      } else if (entry.number == 188) {
+        assertTrue(entry.arabic.contains("اَلأَحَدُ"));
+        assertFalse(entry.arabic.contains("اَلأَ حَدُ"));
+      } else if (entry.number == 111) {
+        assertTrue(entry.arabic.contains("بِعِلْمِكَ الْغَيْبَ"));
+        assertTrue(entry.arabic.contains("فِي الْغَيْبِ"));
+        assertTrue(entry.latin.contains("bi'ilmikal ghoiba"));
+        assertTrue(entry.latin.contains("fil ghoibi"));
+        assertTrue(entry.sourceLatin.contains("bi'ilmikal ghoibi"));
       } else if (entry.number != 6) assertEquals(entry.sourceArabic, entry.arabic);
+      if (entry.number == 154) {
+        assertTrue(entry.sourceMeaning.contains("berlindung berlindung"));
+        assertFalse(entry.meaning.contains("berlindung berlindung"));
+      } else if (entry.number == 123) {
+        assertTrue(entry.meaning.contains("kokohkanlah aku"));
+        assertTrue(entry.search.contains("kokohkanlah aku"));
+        assertTrue(entry.meaning.contains("aku menemui-Mu"));
+        assertTrue(entry.sourceMeaning.contains("kokohkanlah kami"));
+      } else assertEquals(entry.sourceMeaning, entry.meaning);
+      {
+        assertNotEquals(DuaReview.SOURCE_CHANGED, entry.review);
+        assertEquals(DuaReview.SOURCE_CHANGED, DuaReview.forSource(entry.number,
+            entry.title + "changed", entry.sourceArabic, entry.sourceMeaning, entry.reference));
+        assertEquals(DuaReview.SOURCE_CHANGED, DuaReview.forSource(entry.number,
+            entry.title, entry.sourceArabic + "changed", entry.sourceMeaning, entry.reference));
+        assertEquals(DuaReview.SOURCE_CHANGED, DuaReview.forSource(entry.number,
+            entry.title, entry.sourceArabic, entry.sourceMeaning + "changed", entry.reference));
+        assertEquals(DuaReview.SOURCE_CHANGED, DuaReview.forSource(entry.number,
+            entry.title, entry.sourceArabic, entry.sourceMeaning, entry.reference + "changed"));
+        assertEquals(entry.sourceMeaning, DuaReview.SOURCE_CHANGED.displayMeaning(entry.sourceMeaning));
+        assertEquals(entry.sourceLatin, DuaReview.SOURCE_CHANGED.displayLatin(entry.sourceLatin));
+      }
+      if (entry.number != 111) assertEquals(entry.sourceLatin, entry.latin);
+      if (entry.number == 55) assertTrue(entry.search.contains("dzikir ketika masuk pasar"));
     }
-    assertEquals(14, corrected);
+    assertEquals(33, corrected);
   }
 }

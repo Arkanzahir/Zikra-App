@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="dua_library_title">Koleksi Doa &amp; Dzikir</string>
-    <string name="dua_library_intro">Koleksi tambahan dari EQuran.id. Arab, Latin, arti dan rujukan mengikuti sumber; belum seluruh entri diperiksa satu per satu. Unduh sekali untuk pencarian luring. Doa pilihan bawaan tersedia pada halaman sebelumnya.</string>
+    <string name="dua_library_intro">Koleksi tambahan dari EQuran.id. Baca catatan untuk variasi lafal, arti dan rujukannya. Unduh sekali untuk pencarian luring; doa pilihan bawaan tetap tersedia pada halaman sebelumnya.</string>
     <string name="dua_library_search">Cari judul, Arab, arti atau rujukan</string>
     <string name="dua_library_all_groups">Semua kelompok</string>
     <string name="dua_library_group">Pilih kelompok bacaan</string>
     <string name="dua_library_count">%1$d hasil · %2$d bacaan tersimpan</string>
-    <string name="dua_library_source">EQuran.id · %1$d bacaan berujukan dari %2$d entri sumber. %3$d entri tanpa teks/rujukan lengkap tidak ditampilkan. Rujukan terisi bukan tanda seluruh teks sudah ditelaah. Pelafalan memakai TTS Android, bukan rekaman qari.</string>
+    <string name="dua_library_source">EQuran.id · %1$d bacaan dari %2$d entri sumber; %3$d entri tidak lengkap tidak ditampilkan. %4$d bacaan baru/berubah belum ditinjau. Koleksi memuat ayat, riwayat, atsar dan doa yang disesuaikan; bukan seluruhnya satu jenis riwayat atau satu penilaian. Pelafalan: TTS Android.</string>
     <string name="dua_library_not_downloaded">Koleksi tambahan belum tersimpan atau belum dapat dibuka. Unduh dengan koneksi internet; doa pilihan bawaan tetap tersedia.</string>
     <string name="dua_library_update_failed">Pembaruan gagal. Koleksi yang sudah tersimpan tetap dapat dipakai. Coba lagi saat koneksi tersedia.</string>
     <string name="dua_library_empty">Belum ada bacaan yang cocok. Unduh koleksi atau ubah kelompok/kata pencarian.</string>

@@ -1,0 +1,66 @@
+{
+  "versionName": "1.7.6",
+  "versionCode": 24,
+  "sourceCommit": "pending_scoped_commit",
+  "apkBytes": 31319928,
+  "apkSha256": "7dc808e6280ac4f4182f4bda89ceae43c88eb0329e25dd8baa3f2caaed0f5b57",
+  "sizeLimitBytes": 100000000,
+  "underLimit": true,
+  "unitSuites": [
+    {
+      "name": "com.zikra.app.discovery.DuaCatalogTest",
+      "tests": "4",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-10-24T16:58:29",
+      "hostname": "LAPTOP-C0PN7S52",
+      "time": "0.015"
+    },
+    {
+      "name": "com.zikra.app.discovery.DuaReviewTest",
+      "tests": "3",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-10-24T16:58:29",
+      "hostname": "LAPTOP-C0PN7S52",
+      "time": "0.138"
+    },
+    {
+      "name": "com.zikra.app.discovery.DuaSelectionTest",
+      "tests": "3",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-10-24T16:58:29",
+      "hostname": "LAPTOP-C0PN7S52",
+      "time": "0.021"
+    }
+  ],
+  "unitTests": 10,
+  "unitSkipped": 0,
+  "lint": {
+    "Warning": 709
+  },
+  "nativeMethods": 2,
+  "nativeCoveredChangedEntries": 21,
+  "emulator": {
+    "api": 37,
+    "width": 720,
+    "height": 1600,
+    "density": 320,
+    "fontScale": 1.0,
+    "actualMemTotalKb": 4008372,
+    "closedAfterCheck": true
+  },
+  "reviewedSnapshotGuardEntries": 225,
+  "curationHandledEntries": 33,
+  "builtinSelectionSha256": "c9c254f07fb88a83b81ea0d6f734ad5bf9a5e9285c575c0ff37ceef5461ac154",
+  "builtinSelectionCount": 14,
+  "nativeVoiceOutputVerified": false,
+  "physicalPhoneTested": false,
+  "hadithMaintainerReply": "No incoming message in sent clarification thread when checked 24 October 2026",
+  "completedAtUtc": "2026-10-24T17:00:32.237290+00:00",
+  "completedDateWib": "2026-10-25"
+}

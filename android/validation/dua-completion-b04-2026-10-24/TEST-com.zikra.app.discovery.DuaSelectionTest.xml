@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.discovery.DuaSelectionTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-24T16:58:29" hostname="LAPTOP-C0PN7S52" time="0.021">
+  <properties/>
+  <testcase name="morningEveningVariantsAndCompanionThunderAttributionStayDistinct" classname="com.zikra.app.discovery.DuaSelectionTest" time="0.008"/>
+  <testcase name="duplicatedIdentityAndMissingSourceCannotEnterBundledSelection" classname="com.zikra.app.discovery.DuaSelectionTest" time="0.007"/>
+  <testcase name="bundledSelectionCoversRequiredContextsAndKeepsLegacyPositions" classname="com.zikra.app.discovery.DuaSelectionTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

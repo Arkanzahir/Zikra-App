@@ -115,8 +115,12 @@ public final class DuaLibraryActivity extends BaseActivity {
     previous.setEnabled(offset > 0); next.setEnabled(offset + 20 < matches.size());
     ((TextView) findViewById(R.id.duaLibraryCount)).setText(
         getString(R.string.dua_library_count, matches.size(), catalog == null ? 0 : catalog.entries.size()));
-    if (catalog != null) status.setText(getString(R.string.dua_library_source,
-        catalog.entries.size(), catalog.sourceCount, catalog.excludedWithoutReference + catalog.excludedWithoutText));
+    if (catalog != null) {
+      int unreviewed = 0;
+      for (DuaCatalog.Entry entry : catalog.entries) if (entry.review == DuaReview.SOURCE_CHANGED) unreviewed++;
+      status.setText(getString(R.string.dua_library_source, catalog.entries.size(), catalog.sourceCount,
+          catalog.excludedWithoutReference + catalog.excludedWithoutText, unreviewed));
+    }
     for (int i = offset; i < Math.min(offset + 20, matches.size()); i++) {
       DuaCatalog.Entry entry = matches.get(i);
       View card = getLayoutInflater().inflate(R.layout.reading_item_dua, content, false);
@@ -124,7 +128,10 @@ public final class DuaLibraryActivity extends BaseActivity {
       ((TextView) card.findViewById(R.id.duaTitle)).setText(displayTitle);
       ((TextView) card.findViewById(R.id.duaRowCategory)).setText(entry.group);
       ((TextView) card.findViewById(R.id.duaSubtitle)).setText("EQuran · " + entry.number);
-      DuaReadingUi.bind(card, entry.arabic, entry.latin, entry.meaning, "EQuran.id · " + entry.number,
+      String sourceLabel = entry.review == DuaReview.NONE ? "EQuran.id · " + entry.number
+          : getString(entry.review == DuaReview.SOURCE_CHANGED ? R.string.dua_review_unreviewed_source_label
+              : R.string.dua_review_source_label, entry.number);
+      DuaReadingUi.bind(card, entry.arabic, entry.latin, entry.meaning, sourceLabel,
           reviewNote(entry) + entry.reference + "\n\nhttps://equran.id/api/doa/" + entry.number);
       ((android.widget.ImageView) card.findViewById(R.id.duaRowIcon)).setImageResource(R.drawable.home_ic_dua);
       Button audio = card.findViewById(R.id.duaListen); audio.setText(R.string.dua_library_tts); audio.setEnabled(true);
@@ -161,9 +168,40 @@ public final class DuaLibraryActivity extends BaseActivity {
       case AFTER_MEAL_NUMBERING: note = R.string.dua_review_after_meal; break;
       case GRADING_CONTEXT: note = R.string.dua_review_grading; break;
       case SOURCE_CHANGED: note = R.string.dua_review_changed; break;
+      case AYYUB_ADAPTED: note = R.string.dua_review_ayyub; break;
+      case MARKET_SCOPE: note = R.string.dua_review_market; break;
+      case ANAS_ADAPTED: note = R.string.dua_review_anas; break;
+      case BIRTH_GREETING: note = R.string.dua_review_birth; break;
+      case CHILD_ADAPTED: note = R.string.dua_review_child_adapted; break;
+      case CHILD_REFERENCE: note = R.string.dua_review_child_reference; break;
+      case FIQH_ADAPTED: note = R.string.dua_review_fiqh; break;
+      case JARIR_ADAPTED: note = R.string.dua_review_jarir; break;
+      case IBN_MASUD_ATHAR: note = R.string.dua_review_ibn_masud; break;
+      case IMAN_ROUTES: note = R.string.dua_review_iman_routes; break;
+      case EID_GREETING: note = R.string.dua_review_eid; break;
+      case MEANING_REPEAT: note = R.string.dua_review_meaning_repeat; break;
+      case LABBAIK_LETTER: note = R.string.dua_review_labbaik; break;
+      case WORD_SPACING: note = R.string.dua_review_word_spacing; break;
+      case COMPOSITE_KHUTBA: note = R.string.dua_review_composite; break;
+      case SLEEP_GRADING: note = R.string.dua_review_sleep_grading; break;
+      case DEBT_GRADING: note = R.string.dua_review_debt_grading; break;
+      case MEANING_PERSON: note = R.string.dua_review_meaning_person; break;
+      case DEATH_NUMBERING: note = R.string.dua_review_death_number; break;
+      case POVERTY_NUMBERING: note = R.string.dua_review_poverty_number; break;
+      case GOOD_DEEDS_NUMBERING: note = R.string.dua_review_good_deeds_number; break;
+      case GHAYB_HARAKAT: note = R.string.dua_review_ghayb; break;
       default: return "";
     }
-    return getString(note) + "\n\n";
+    StringBuilder details = new StringBuilder(getString(note)).append("\n\n");
+    if (!entry.arabic.equals(entry.sourceArabic)) details.append(getString(R.string.dua_review_original_arabic))
+        .append('\n').append(entry.sourceArabic).append("\n\n");
+    if (!entry.latin.equals(entry.sourceLatin)) details.append(getString(R.string.dua_review_original_latin))
+        .append('\n').append(entry.sourceLatin).append("\n\n");
+    if (!entry.meaning.equals(entry.sourceMeaning)) details.append(getString(R.string.dua_review_original_meaning))
+        .append('\n').append(entry.sourceMeaning).append("\n\n");
+    if (!entry.title.equals(entry.review.displayTitle(entry.title))) details.append(getString(R.string.dua_review_original_title))
+        .append('\n').append(entry.title).append("\n\n");
+    return details.toString();
   }
 
   @Override protected void onSaveInstanceState(Bundle state) {

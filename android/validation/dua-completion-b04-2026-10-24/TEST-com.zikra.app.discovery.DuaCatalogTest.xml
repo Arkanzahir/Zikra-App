@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.discovery.DuaCatalogTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-24T16:58:29" hostname="LAPTOP-C0PN7S52" time="0.015">
+  <properties/>
+  <testcase name="rejectsDuplicatesAndWrongIdTypes" classname="com.zikra.app.discovery.DuaCatalogTest" time="0.012"/>
+  <testcase name="excludesUnreferencedRowsAndPreservesSourceIdentity" classname="com.zikra.app.discovery.DuaCatalogTest" time="0.001"/>
+  <testcase name="excludesAnEntryWhoseTranslationIsMissing" classname="com.zikra.app.discovery.DuaCatalogTest" time="0.001"/>
+  <testcase name="rejectsPartialAndTrailingPayloadInsteadOfReplacingGoodCache" classname="com.zikra.app.discovery.DuaCatalogTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
