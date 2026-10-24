@@ -16,6 +16,14 @@ Dokumen ini menjadi **checklist pengerjaan aktif**. [PRD](ZIKRA_PRD.md) tetap me
 6. Pertahankan data pengguna, perubahan lokal yang belum selesai, dan kredensial privat. Jangan stage seluruh working tree. APK harus cocok dengan source checkpoint yang diklaim.
 7. Angka **65%** pada percakapan adalah estimasi kasar kesiapan, bukan hasil audit atau persentase checkbox. Checklist memuat pekerjaan dengan ukuran berbeda; jangan membagi jumlah centang untuk mengklaim persentase total.
 
+## Batas ukuran unduhan — permintaan pengguna 24 Oktober 2026
+
+- **Setiap versi distribusi dengan fitur dalam cakupan rilis harus berukuran di bawah 100 MB** untuk unduhan awal. Untuk pemeriksaan APK langsung, gunakan batas konservatif `< 100.000.000 byte`; untuk distribusi AAB, ukur unduhan perangkat yang dikirim toko, bukan ukuran berkas AAB saja.
+- Baseline 1.6.2: APK debug **31.216.429 byte / 31,2 MB**. Sekitar 29.953.338 byte komponen resource terkompresi, terutama ilustrasi PNG. [Hasil pemeriksaan](android/validation/apk-size-2026-10-24.md).
+- Model AI tidak dibundel ke APK. Rekaman murottal/paket luring besar diunduh sesuai pilihan pengguna; jangan memasukkan seluruh audio kitab/surah ke installer untuk mengejar klaim luring penuh.
+- Ukuran cache/unduhan setelah instalasi berbeda dari ukuran installer. Pada B02–B04/D03/E01, tentukan paket bertahap, informasi ukuran, penghapusan unduhan dan pembatasan cache sesuai modul; ini belum klaim seluruh kontrol tersebut sudah tersedia.
+- Ukuran unduhan kecil tidak membuktikan RAM/baterai ringan. F04/G02 tetap memerlukan pengukuran decode ilustrasi, animasi, audio dan peta pada HP.
+
 ## Baseline yang sudah terbukti, bukan sertifikasi siap rilis
 
 - [x] **BASE01 — Onboarding tiga ilustrasi dan navigasi langkah native.** Implementasi/preferensi diuji pada checkpoint 1.6.0. [Bukti](android/validation/daily-native-2026-10-24/README.md).
@@ -95,7 +103,7 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 - [ ] **G01 — Uji alur pengguna lintas fitur.** Instal baru → onboarding/lokasi → Home → baca/putar Quran → Study/tugas → pengingat → Protector → Hadis/Doa → Profil → tutup/buka ulang. Uji juga pembaruan dari APK lama. Catat hasil per alur dan perbaiki bug sebelum mengulang bagian yang terdampak.
 - [ ] **G02 — Uji HP fisik dan kegagalan nyata.** Gunakan HP ketika pengguna tersedia: layar mati/background, izin ditolak, penghemat daya, headset/telepon, sinyal putus/lambat dan penyimpanan terbatas. Matriks perangkat/versi Android dan batas yang belum diuji harus tertulis; emulator saja tidak mencentang ini.
 - [ ] **G03 — Tinjau layanan dan data untuk penggunaan publik.** Backend memiliki batas penggunaan, penanganan kegagalan dan pemantauan minimum tanpa log sensitif; sumber Hadis/Quran/audio/peta/cuaca memiliki atribusi dan penggunaan yang sesuai. Nyatakan dengan jelas fitur luring, server, serta data yang dikirim/disimpan.
-- [ ] **G04 — Siapkan paket distribusi yang dapat dilacak.** Build release bertanda tangan/AAB bila diperlukan, versi baru, hash, catatan perubahan dan instruksi pembaruan. Kunci signing disimpan privat. Bukti source/build cocok, tidak ada secret/fixture pengguna pada paket, dan informasi privasi/dukungan sesuai fitur aktual.
+- [ ] **G04 — Siapkan paket distribusi yang dapat dilacak.** Build release bertanda tangan/AAB bila diperlukan, versi baru, hash, catatan perubahan dan instruksi pembaruan. Verifikasi unduhan awal setiap versi **di bawah 100 MB** sesuai batas ukuran di atas. Kunci signing disimpan privat. Bukti source/build cocok, tidak ada secret/fixture pengguna pada paket, dan informasi privasi/dukungan sesuai fitur aktual.
 - [ ] **G05 — Gerbang rilis publik.** Semua item wajib cakupan A02 memenuhi syarat; tidak ada bug yang menghalangi alur inti atau merusak data; layanan produksi dan HP telah diperiksa; keterbatasan tertulis dan hasil beta ditindaklanjuti. Sebelum ini, sebut build sebagai beta, bukan seluruh proyek 100% selesai.
 
 ## Jejak kebutuhan PRD agar tidak ada fitur yang terlupakan
@@ -141,5 +149,6 @@ Fitur post-MVP yang memang tercantum terpisah di PRD—XP/badge, keuangan anak k
 | 24 Okt 2026 | BASE01–BASE04 | Halaman harian diterapkan; data konten masih terbatas | 1.6.0 `4729730`, 1.6.1 `7d45b57`; tautan bukti di baseline |
 | 24 Okt 2026 | PLAN | Rencana aktif, urutan dependensi, syarat selesai dan jejak PRD disimpan | Dokumen ini; belum mencentang pekerjaan A–G |
 | 24 Okt 2026 | UI01 | Permintaan koreksi daftar Doa diprioritaskan; layout diperbaiki dan diperiksa. Distribusi konten dicatat sebagai usulan, bukan integrasi selesai. | APK 1.6.2; [bukti native](android/validation/dua-list-2026-10-24/README.md), [rencana konten](design/CONTENT_DELIVERY_PLAN.md) |
+| 24 Okt 2026 | SIZE / G04 | Batas unduhan awal setiap versi ditetapkan pengguna: <100 MB. APK 1.6.2 diukur 31,2 MB; belum klaim ukuran semua fitur mendatang atau penggunaan RAM HP. | [Baseline ukuran](android/validation/apk-size-2026-10-24.md) |
 
 Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | tautan laporan/screenshot/tes + commit fitur`. Keputusan menunda/mengubah cakupan juga dicatat di tabel ini.
