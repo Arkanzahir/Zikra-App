@@ -32,12 +32,12 @@ Ini hasil pemeriksaan source dan isi JSON, bukan klaim respons endpoint range te
 
 ## Keputusan checkpoint
 
-**Gading dipertahankan sebagai kandidat teknis, belum ditetapkan sumber produksi/kitab lengkap.** B01 belum memenuhi syarat untuk ditutup; B02–B04 belum diimplementasikan. Tujuh kutipan lokal tetap jumlah Hadis APK saat ini.
+**Gading dipertahankan sebagai kandidat teknis, belum ditetapkan sumber produksi/kitab lengkap.** B01 belum memenuhi syarat untuk ditutup. Setelah penelitian awal, adaptor kandidat dan penyimpanan diuji pada debug beta 1.7.0: [bukti B02/B03 dan batas distribusi](../content-b-2026-10-24/README.md). Tujuh kutipan bawaan tetap ada; paket kandidat opsional terpisah. Implementasi teknis yang dapat diganti ini tidak menutup ketentuan sumber B01/G03.
 
 Pekerjaan B01 berikutnya:
 
 1. Cari identitas edisi/asli terjemahan dan ketentuan penggunaan konten yang dapat ditautkan; bandingkan sumber alternatif dengan asal yang jelas.
 2. Cocokkan sampel awal, sekitar celah dan akhir kedua kitab ke edisi rujukan; dokumentasikan perbedaan pemecahan/penggabungan nomor, jangan menambah teks dengan AI.
-3. Pilih sumber final serta kontrak ID/pembaruan; catat atribusi, cakupan yang benar-benar tersedia dan keadaan nomor tidak ditemukan. Baru kemudian centang B01 dan mulai B02.
+3. Pilih sumber final serta kontrak ID/pembaruan; catat atribusi, cakupan yang benar-benar tersedia dan keadaan nomor tidak ditemukan. Baru kemudian centang B01 dan sahkan pemakaian sumber untuk distribusi publik. Adaptor beta B02/B03 sudah diuji terpisah tanpa mengklaim B01 selesai.
 
 Tidak ada pengiriman pesan ke pengelola sumber atau perubahan layanan eksternal pada pemeriksaan ini. Jika konfirmasi langsung diperlukan, siapkan pertanyaan konkret terlebih dahulu; delegasi menentukan cakupan bukan izin menghubungi pihak lain.

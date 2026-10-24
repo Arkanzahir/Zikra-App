@@ -1,3 +1,5 @@
+> **Konten beta 1.7.0 — 24 Oktober 2026:** [Hadis bertahap/pencarian/penanda serta koleksi Doa tambahan](android/validation/content-b-2026-10-24/README.md). B02/B03 teknis lulus; B01 sumber Hadis dan B04 kurasi/konteks Doa tetap terbuka. Paket kandidat Hadis 11.568 entri, Doa tambahan 225 setelah unduh; empat Doa/tujuh kutipan bawaan tetap ada. Bukan klaim kitab cetak lengkap atau rilis publik. Riwayat di bawah memakai jumlah pada versi masing-masing.
+
 > **Arah pengerjaan aktif:** [Implementation plan dan checklist rilis](IMPLEMENTATION_PLAN.md). Selesaikan satu ID, penuhi syarat selesai, lalu centang dan simpan bukti sebelum berpindah.
 
 > **A03–A04 selesai — 24 Oktober 2026 / 1.6.3:** [WIP audio dipisahkan dengan cadangan](android/validation/baseline-a03-2026-10-24/README.md); [zona kota, kalender/tenggat dan bacaan terakhir diselaraskan](android/validation/integration-a04-2026-10-24/README.md). Enam tes native lulus termasuk tutup-buka proses, data Study/Profil tetap tersimpan; APK debug 31,1 MB. Emulator ditutup. Berikutnya B01; keamanan server produksi dan uji HP tetap terbuka.

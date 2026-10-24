@@ -1,0 +1,47 @@
+{
+  "checked": "2026-10-24",
+  "versionName": "1.7.0",
+  "versionCode": 18,
+  "distribution": "debug beta, not public-source approval",
+  "apkFile": "Zikra-Content-v1.7.0-beta-debug.apk",
+  "bytes": 31413900,
+  "sha256": "a92f5d90caaeee129f542976735251c04fcd1495249533969e11148779498af6",
+  "below100MillionBytes": true,
+  "productionFileReceipt": "source-files.json",
+  "unit": {
+    "tests": 107,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 3
+  },
+  "lint": {
+    "Warning": 698
+  },
+  "native": {
+    "hadith": "1 passed on pre-Doa content build; real pinned book downloads",
+    "optionalContent": "2 passed on final build, 14.979 seconds; real EQuran + invalid-update fixture + storage release"
+  },
+  "emulator": "API 37.1, Medium_Phone; closed after use",
+  "hadith": {
+    "bukhari": 6638,
+    "muslim": 4930,
+    "builtInExcerpts": 7,
+    "publicSourceApproval": false
+  },
+  "dua": {
+    "sourceRows": 227,
+    "displayableDownloadedRows": 225,
+    "builtIn": 4,
+    "excludedIds": [
+      42,
+      144
+    ],
+    "curationComplete": false
+  },
+  "notes": [
+    "Counts are source entries, not unique texts across books/built-in choices.",
+    "No full source JSON bundled in APK/Git.",
+    "TTS pronunciation/physical HP not verified; production hosting not configured."
+  ],
+  "productionCommit": "fcaf20f852409e71464ac2ba1ae18215e43f1211"
+}

@@ -1,0 +1,6 @@
+
+com.zikra.app.HadithContentTest:.
+Test results for InstrumentationTestRunner=.
+Time: 51.661
+
+OK (1 test)

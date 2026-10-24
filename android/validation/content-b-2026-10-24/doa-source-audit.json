@@ -1,0 +1,220 @@
+{
+  "checked": "2026-10-24",
+  "url": "https://equran.id/api/doa",
+  "documentation": "https://equran.id/apidev/doa",
+  "bytes": 283848,
+  "sha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b",
+  "apiRows": 227,
+  "documentedRows": 228,
+  "displayableRows": 225,
+  "groupsInSource": 44,
+  "excluded": [
+    {
+      "id": 42,
+      "reason": "Indonesian meaning empty"
+    },
+    {
+      "id": 144,
+      "reason": "reference empty"
+    }
+  ],
+  "coverageByTitleGroupTags": {
+    "belajar": [
+      {
+        "id": 95,
+        "title": "Doa Memohon Ilmu 1",
+        "group": "Doa Memohon Ilmu"
+      },
+      {
+        "id": 96,
+        "title": "Doa Memohon Ilmu 2",
+        "group": "Doa Memohon Ilmu"
+      },
+      {
+        "id": 97,
+        "title": "Doa Memohon Ilmu Yang Bermanfaat Dan Berlindung Dari Ilmu Yang Tidak Bermanfaat",
+        "group": "Doa Memohon Ilmu"
+      },
+      {
+        "id": 98,
+        "title": "Doa Agar Paham Tentang Agama",
+        "group": "Doa Memohon Ilmu"
+      }
+    ],
+    "makan": [
+      {
+        "id": 135,
+        "title": "Doa Sebelum Makan",
+        "group": "Doa Terkait Makan"
+      },
+      {
+        "id": 136,
+        "title": "Bila Lupa Membaca Doa Sebelum Makan",
+        "group": "Doa Terkait Makan"
+      },
+      {
+        "id": 137,
+        "title": "Doa Bila Diberi Rezeki Berupa Makanan",
+        "group": "Doa Terkait Makan"
+      },
+      {
+        "id": 138,
+        "title": "Doa Minum Susu",
+        "group": "Doa Terkait Makan"
+      },
+      {
+        "id": 139,
+        "title": "Doa Setelah Makan",
+        "group": "Doa Terkait Makan"
+      },
+      {
+        "id": 140,
+        "title": "Doa Bila Diberi Makan Oleh Orang Lain",
+        "group": "Doa Terkait Makan"
+      }
+    ],
+    "tidur": [
+      {
+        "id": 1,
+        "title": "Doa Sebelum Tidur 1",
+        "group": "Doa Sebelum dan Sesudah Tidur"
+      },
+      {
+        "id": 2,
+        "title": "Doa Sebelum Tidur 2",
+        "group": "Doa Sebelum dan Sesudah Tidur"
+      },
+      {
+        "id": 3,
+        "title": "Doa Bila Takut Dan Kesepian Ketika Tidur",
+        "group": "Doa Sebelum dan Sesudah Tidur"
+      },
+      {
+        "id": 4,
+        "title": "Doa Membalikkan Tubuh Ketika Tidur Malam",
+        "group": "Doa Sebelum dan Sesudah Tidur"
+      },
+      {
+        "id": 5,
+        "title": "Doa Bila Terjaga Di Malam Hari",
+        "group": "Doa Sebelum dan Sesudah Tidur"
+      },
+      {
+        "id": 6,
+        "title": "Doa Bangun Tidur 1",
+        "group": "Doa Sebelum dan Sesudah Tidur"
+      },
+      {
+        "id": 7,
+        "title": "Doa Bangun Tidur 2",
+        "group": "Doa Sebelum dan Sesudah Tidur"
+      }
+    ],
+    "rumah": [
+      {
+        "id": 128,
+        "title": "Doa Keluar Rumah",
+        "group": "Doa Keluar Dan Masuk Rumah"
+      },
+      {
+        "id": 129,
+        "title": "Doa Masuk Rumah 1 (Bismillah)",
+        "group": "Doa Keluar Dan Masuk Rumah"
+      },
+      {
+        "id": 130,
+        "title": "Doa Masuk Rumah 2 (Salam)",
+        "group": "Doa Keluar Dan Masuk Rumah"
+      },
+      {
+        "id": 131,
+        "title": "Doa Masuk Rumah Ketika Tidak Ada Orang",
+        "group": "Doa Keluar Dan Masuk Rumah"
+      }
+    ],
+    "perjalanan": [
+      {
+        "id": 48,
+        "title": "Doa Naik Kendaraan",
+        "group": "Doa Perjalanan"
+      },
+      {
+        "id": 49,
+        "title": "Doa Musafir Kepada Orang Yang Ditinggalkan",
+        "group": "Doa Perjalanan"
+      },
+      {
+        "id": 50,
+        "title": "Doa Orang Mukim Kepada Musafir",
+        "group": "Doa Perjalanan"
+      },
+      {
+        "id": 51,
+        "title": "Doa Bepergian",
+        "group": "Doa Perjalanan"
+      },
+      {
+        "id": 52,
+        "title": "Doa Musafir Menjelang Subuh",
+        "group": "Doa Perjalanan"
+      },
+      {
+        "id": 53,
+        "title": "Doa Singgah Di Suatu Tempat, Baik Dalam Bepergian Ataupun Tidak",
+        "group": "Doa Perjalanan"
+      },
+      {
+        "id": 54,
+        "title": "Doa Masuk Desa Atau Kota",
+        "group": "Doa Perjalanan"
+      },
+      {
+        "id": 55,
+        "title": "Doa Masuk Pasar, Mall, Terminal, Bandara Dan Pusat Keramaian Lainnya",
+        "group": "Doa Perjalanan"
+      },
+      {
+        "id": 56,
+        "title": "Doa Bila Binatang Atau Kendaraan Tergelincir",
+        "group": "Doa Perjalanan"
+      },
+      {
+        "id": 57,
+        "title": "Doa Pulang Dari Bepergian",
+        "group": "Doa Perjalanan"
+      }
+    ],
+    "hujan": [
+      {
+        "id": 18,
+        "title": "Doa ketika angin ribut, halilintar dan hujan",
+        "group": "Doa Menghadapi Fenomena Alam"
+      },
+      {
+        "id": 19,
+        "title": "Doa minta hujan",
+        "group": "Doa Menghadapi Fenomena Alam"
+      },
+      {
+        "id": 20,
+        "title": "Doa ketika hujan",
+        "group": "Doa Menghadapi Fenomena Alam"
+      },
+      {
+        "id": 21,
+        "title": "Doa Ketika Hujan Lebat, Atau Agar Hujan Berhenti",
+        "group": "Doa Menghadapi Fenomena Alam"
+      }
+    ],
+    "petir": [
+      {
+        "id": 18,
+        "title": "Doa ketika angin ribut, halilintar dan hujan",
+        "group": "Doa Menghadapi Fenomena Alam"
+      }
+    ],
+    "pagi": [],
+    "petang": []
+  },
+  "warning": "Field-presence and coverage audit, not scholarly verification of every entry. Morning/evening coverage absent; item 18 title mentions thunder but body is a wind prayer; contextual/source review remains B04/G03."
+}
