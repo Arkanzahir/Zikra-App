@@ -1,5 +1,7 @@
 > **Arah pengerjaan aktif:** [Implementation plan dan checklist rilis](IMPLEMENTATION_PLAN.md). Selesaikan satu ID, penuhi syarat selesai, lalu centang dan simpan bukti sebelum berpindah.
 
+> **Cakupan A02 ditetapkan — 24 Oktober 2026:** berdasarkan delegasi pengguna, [fitur wajib beta/publik dan penundaan](RELEASE_SCOPE.md) sudah dicatat. Berikutnya B01 validasi sumber Hadis; akun/sinkronisasi dan Vision menyusul setelah rilis pertama. Keputusan cakupan bukan implementasi fitur baru.
+
 > **Audit A01 — 24 Oktober 2026:** [23 kebutuhan PRD dan 21 layar dipetakan](android/validation/release-audit/FEATURE_MATRIX.md); berikutnya A02 untuk keputusan cakupan beta/publik. APK masih empat Doa dan tujuh kutipan Hadis. Kandidat sumber terhitung 227 Doa/dzikir serta 11.568 entri Bukhari/Muslim; belum diimpor atau disahkan sebagai kitab lengkap. Pemeriksaan source/dokumen ini tidak menambah klaim kesiapan runtime.
 
 > **Daftar Doa 1.6.2 — 24 Oktober 2026:** daftar terpadu dengan kategori/rujukan, ikon sesuai isi dan bacaan aktif berwarna. UI01 selesai; [screenshot native dan hasil pemeriksaan](android/validation/dua-list-2026-10-24/README.md). Data Doa/Hadis belum diperluas; [rencana penyimpanan konten](design/CONTENT_DELIVERY_PLAN.md) masih usulan.
