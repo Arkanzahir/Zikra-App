@@ -6,8 +6,8 @@ Usulan tugas terstruktur dan Tadabbur bersumber telah menerima completion nyata
 melalui gateway privat lokal. Mode akses per instalasi, pencabutan dan kuota
 persisten tersedia di source, dengan [paket deploy](deploy/README.md).
 **Belum dihosting**, belum dibuktikan APK → hosting → provider dari HP.
-Pengguna memilih siapkan paket dulu; key lama masih khusus uji privat. Rotasi
-ditunda sampai sebelum publik, belum diklaim sudah dilakukan.
+Pengguna memilih siapkan paket dulu dan memakai key yang sudah ada. Syarat
+rotasi dibatalkan sesuai [keputusan terbaru](../android/validation/assistant-c-2026-10-25/key-decision-2026-10-25.md).
 
 Alur sasaran: Android → backend HTTPS → Featherless. Mode offline Android tetap
 default; online mengirim pesan saat ini, atau riwayat online bila dipilih
@@ -47,10 +47,9 @@ klien tidak boleh memilih provider/model melalui request.
    diabaikan Git. Batasi akses
    berkas ke operator/service. Jangan paste key ke chat, perintah shell, log,
    ticket, laporan atau konfigurasi Android.
-2. Rotasi key yang pernah dibagikan melalui dashboard provider, perbarui env
-   privat dan cabut key lama. Catat waktu/konfirmasi operator tanpa nilai key;
-   completion berhasil saja tidak membuktikan rotasi. Tidak ada key diubah/dicabut
-   otomatis oleh pemeriksaan C01.
+2. Gunakan key provider yang sudah tersedia pada env privat sesuai keputusan
+   pengguna. Tidak ada kewajiban rotasi sebagai prasyarat C01 atau deploy.
+   Pemeriksaan C01 tidak mengubah atau mencabut key.
 3. Tentukan ID model yang tersedia untuk akun/kuotanya. `GET /v1/models` menurut
    dokumentasi adalah katalog; hasil katalog saja bukan bukti akses completion.
    Catatan lokal lama mendapat 404 pada katalog tetapi completion berhasil.
@@ -100,10 +99,10 @@ Di Windows penghentian child process adalah terminasi proses; hasil tersebut
 bukan bukti drain SIGTERM Linux.
 
 `GET /health` mengembalikan `{"status":"ok"}` tanpa konfigurasi. Ini liveness
-proses, bukan readiness model/kuota, rotasi key atau status hosting publik.
+proses, bukan readiness model/kuota atau status hosting publik.
 
-Startup ulang: hentikan proses milik service ini, injeksikan env privat yang sama
-atau hasil rotasi, jalankan lagi lalu periksa health dan satu completion sintetis
+Startup ulang: hentikan proses milik service ini, injeksikan env privat yang
+terkonfigurasi, jalankan lagi lalu periksa health dan satu completion sintetis
 bila perlu. Pada Unix SIGTERM/SIGINT menghentikan penerimaan koneksi, memberi
 kesempatan request selesai, lalu menutup koneksi tersisa paling lambat 40 detik.
 

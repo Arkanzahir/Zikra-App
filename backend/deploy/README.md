@@ -32,9 +32,9 @@ tetap terbuka sampai layanan nyata dan HP dapat diperiksa.
 1. Siapkan domain DNS ke VPS, Docker/Compose dan firewall yang hanya membuka
    port publik yang dibutuhkan proxy. Batasi akses SSH/operator. Periksa patch
    OS/runtime dan kebijakan privasi/retensi provider/hosting.
-2. **Sebelum publik:** rotasi key provider yang pernah dibagikan, cabut key lama,
-   simpan key baru pada berkas env di luar source atau secret store, akses hanya
-   operator/service. Isi model yang telah dibuktikan tersedia. Gunakan
+2. Gunakan key provider yang sudah ada sesuai keputusan pengguna; simpan pada
+   berkas env di luar source atau secret store, akses hanya operator/service.
+   Isi model yang telah dibuktikan tersedia. Gunakan
    [template kosong](../.env.production.example); jangan menyalin `.local` ke Git,
    image atau APK. Set `ZIKRA_ENV_FILE` ke path absolut berkas privat itu, serta
    `ZIKRA_DOMAIN` ke domain nyata. Jangan menaruh secret dalam command line.
@@ -86,7 +86,9 @@ tetap terbuka sampai layanan nyata dan HP dapat diperiksa.
   dalam template ini. Audit konfigurasi log/retensi platform yang dipilih.
 - [ ] APK → HTTPS permanen → provider berhasil pada HP; token salah, kuota,
   jaringan putus/batal dan laptop pengembang mati benar-benar diperiksa.
-- [ ] Rotasi key lama dikonfirmasi operator; belum dianggap dilakukan oleh kode.
+
+Syarat rotasi dibatalkan oleh pengguna; gunakan key yang sudah ada. Lihat
+[keputusan terbaru](../../android/validation/assistant-c-2026-10-25/key-decision-2026-10-25.md).
 
 Rujukan: [Dockerfile](https://docs.docker.com/reference/dockerfile/),
 [Caddy reverse proxy](https://caddyserver.com/docs/caddyfile/directives/reverse_proxy),

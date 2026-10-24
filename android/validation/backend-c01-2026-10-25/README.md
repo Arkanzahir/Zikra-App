@@ -1,5 +1,12 @@
 # C01 — Audit dan persiapan konfigurasi backend
 
+**Pembaruan keputusan 25 Oktober:** pengguna membatalkan syarat rotasi dan memilih
+key yang sudah ada. C01 selesai persiapan konfigurasi berdasarkan pemeriksaan
+di bawah dan [verifikasi penutupan](../assistant-c-2026-10-25/key-decision-2026-10-25.md).
+Isi berikut adalah snapshot audit sebelum keputusan tersebut; status rotasi dan
+langkah wajib rotasi historis di bawah tidak lagi menjadi prasyarat aktif.
+Receipt lama dipertahankan tanpa mengklaim key sudah dirotasi. Hosting tetap C02.
+
 25 Oktober 2026 (WIB). Baseline Git `83312da`; APK tetap **1.7.6 beta / code 24**.
 **C01 belum selesai:** pengguna mengonfirmasi key Featherless yang pernah
 dibagikan **belum dirotasi**. Persiapan dan pemeriksaan privat lokal selesai;

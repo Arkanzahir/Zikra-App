@@ -4,14 +4,15 @@
 SQLite v4, unduhan awal **31.362.014 byte**. [Receipt source/APK/uji](release.json).
 Source kandidat: **`7982e10`**; checkpoint lokal, belum dipush pada akhir sesi ini.
 **Bagian C belum dinyatakan seluruhnya selesai.** Pengguna memilih siapkan paket
-deploy dahulu karena belum ada hosting. Pengguna juga menunda rotasi sampai
-sebelum publik; key tidak diganti dan tidak diklaim aman hanya karena masih bekerja.
+deploy dahulu karena belum ada hosting. [Keputusan terbaru pengguna](key-decision-2026-10-25.md)
+membatalkan syarat rotasi: gunakan key yang sudah ada. C01 selesai persiapan
+konfigurasi; key tidak diganti, receipt terdahulu tetap mencatat fakta saat diuji.
 
 ## Status per ID
 
-| ID | Bagian yang sudah dibuktikan | Sisa / alasan checkbox tetap terbuka |
+| ID | Bagian yang sudah dibuktikan | Status / sisa pemeriksaan |
 | --- | --- | --- |
-| C01 | Validasi env, health/restart dan completion privat; mode private tetap kompatibel, mode installation tersedia | Rotasi/pencabutan key lama sebelum hosting publik belum dilakukan, sesuai keputusan pengguna |
+| C01 | Validasi env, health/restart dan completion privat; mode private tetap kompatibel, mode installation tersedia | Selesai persiapan konfigurasi 25 Oktober; syarat rotasi dibatalkan pengguna, [bukti penutupan](key-decision-2026-10-25.md). Hosting nyata tetap C02 |
 | C02 | Token unik per instalasi, pencabutan, kuota per instalasi yang bertahan restart diuji di Node; paket Docker/Compose/Caddy dan runbook tersedia | Belum ada akun/VPS/domain; Docker tidak tersedia lokal. Image/proxy/TLS/boot/restart permanen/laptop mati belum diuji |
 | C03 | Native online/offline, preview izin per request, loading, batal, retry, label online dan sanitasi error terarah lulus | Alur native memakai respons jaringan terkendali; belum APK → HTTPS hosting permanen → provider |
 | C04 | Nama/tugas/tenggat/perhitungan salat hanya saat dipilih; proposal ditinjau dan disimpan sekali; edit stale/selesai ditolak; Tadabbur mengambil sumber nyata | Jadwal kelas mingguan belum tersedia pada D04 dan tidak dikarang/dikirim sebagai data palsu; integrasi end-to-end setelah C02/C03 dan pemeriksaan cakupan konteks masih perlu |
@@ -64,7 +65,7 @@ File store ini **satu proses/satu replika**, belum database terdistribusi. Tidak
 menyimpan percakapan atau profil; tetap perlu retensi metadata/backup dan audit
 log platform saat hosting dipilih. Compose/Caddy/systemd yang belum dijalankan
 tidak menjadi bukti C02 sudah selesai. Key provider tetap hanya di env server;
-key yang pernah dibagikan belum dirotasi. Tidak ada resource cloud/biaya dibuat.
+key yang sudah ada tetap dipakai sesuai keputusan pengguna. Tidak ada resource cloud/biaya dibuat.
 
 ## Bukti dan batas uji
 
@@ -104,7 +105,7 @@ tidak bergantung backend AI. D02 tetap mencakup sumber audio/penjadwalan dan HP.
 ## Langkah berikutnya
 
 1. Pilih akun layanan/VPS/domain ketika pengguna siap; jalankan paket, uji TLS,
-   volume/restart/kuota/pencabutan dan laptop mati. Rotasi dilakukan sebelum publik.
+   volume/restart/kuota/pencabutan dan laptop mati.
 2. Hubungkan APK ke endpoint permanen dan token instalasinya, uji rantai nyata
    serta gagal/batal/kuota dari HP. Jangan isi provider key di APK.
 3. Uji dikte/mikrofon layanan nyata, lanjutkan konteks jadwal kelas setelah D04,

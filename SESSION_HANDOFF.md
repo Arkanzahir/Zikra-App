@@ -49,9 +49,10 @@ File utama B04: `DuaReview.java`, `DuaSourceSnapshots.java`, `DuaCatalog.java` d
 ## Pekerjaan aktif: C — kode lokal siap, hosting/HP dan dependensi belum ditutup
 
 Pengguna meminta melanjutkan seluruh C dan menambahkan tugas pengingat adzan.
-Keputusan 25 Oktober: **belum ada hosting; siapkan paket deploy dahulu**. Rotasi
-key ditunda sampai sebelum publik; tidak menghalangi kode/uji privat berikutnya,
-tetapi belum dianggap dilakukan. Jangan bertanya ulang seolah keputusan ini hilang.
+Keputusan 25 Oktober: **belum ada hosting; siapkan paket deploy dahulu**.
+Keputusan terbaru pengguna: **pakai key yang sudah ada; syarat rotasi dibatalkan**,
+menggantikan keputusan menunda sebelumnya. Jangan meminta rotasi ulang sebagai
+prasyarat. Key/env privat tidak diubah; provider key tetap hanya di server.
 
 [Bukti/source/checklist C](android/validation/assistant-c-2026-10-25/README.md):
 - C02 source: token unik per instalasi, revoke, kuota persisten; satu proses/replika.
@@ -75,8 +76,8 @@ tetapi belum dianggap dilakukan. Jangan bertanya ulang seolah keputusan ini hila
   716 warning. Build satu worker/heap 1.024 MiB. Emulator dimatikan; image
   menaikkan RAM aktual sekitar 4 GB walau request 1.536 MiB.
 
-C01 tetap terbuka untuk rotasi sebelum hosting publik; gunakan key hanya di
-server privat. C05 butuh server permanen dan HP; jangan menganggap probe localhost
+C01 selesai persiapan konfigurasi, dengan [keputusan terbaru dan bukti penutupan](android/validation/assistant-c-2026-10-25/key-decision-2026-10-25.md).
+C05 butuh server permanen dan HP; jangan menganggap probe localhost
 atau screenshot interceptor sebagai bukti C05. Lanjutkan dari source ini, bukan
 membuat ulang gateway/UI. Pilih layanan/domain ketika pengguna siap, uji paket
 secara nyata, lalu lakukan rantai APK/HP dan dikte. Konteks jadwal kelas mengikuti
