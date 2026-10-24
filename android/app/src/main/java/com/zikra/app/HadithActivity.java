@@ -10,7 +10,8 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.zikra.app.discovery.DiscoveryUi;
+import android.graphics.drawable.GradientDrawable;
+import android.widget.ImageView;
 import com.zikra.app.discovery.HadithCollection;
 import com.zikra.app.discovery.HadithStore;
 import com.zikra.app.ui.FeatureHeader;
@@ -20,7 +21,7 @@ import java.util.Set;
 
 /** Searchable small local collection; saved items are persisted on this device. */
 public final class HadithActivity extends BaseActivity {
-  private final String[] categories = {"Semua", "Bukhari", "Muslim", "Tersimpan"};
+  private final String[] categories = {"Semua", "Tersimpan"};
   private String category = "Semua";
   private EditText search;
   private Set<String> saved;
@@ -62,7 +63,9 @@ public final class HadithActivity extends BaseActivity {
       Button tab = new Button(this);
       tab.setText(value);
       tab.setAllCaps(false);
-      tab.setTextSize(14);
+      tab.setTextSize(13);
+      tab.setStateListAnimator(null);
+      tab.setElevation(0);
       tab.setMinimumHeight(dp(48));
       tab.setMinHeight(dp(48));
       tab.setMinWidth(0);
@@ -100,6 +103,15 @@ public final class HadithActivity extends BaseActivity {
     NavDock.attach(this, (FrameLayout) findViewById(R.id.hadithRoot), "home");
     com.zikra.app.ui.DailyUi.chrome(this, R.color.daily_paper);
     ((com.zikra.app.ui.BookCoverView) findViewById(R.id.dailyCoverMuslim)).setMuslim(true);
+    if (getResources().getConfiguration().fontScale > 1.3f) {
+      ((LinearLayout) findViewById(R.id.hadithBooks)).setOrientation(LinearLayout.VERTICAL);
+      for (int book : new int[]{R.id.dailyBookBukhari, R.id.dailyBookMuslim}) {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.bottomMargin = dp(8);
+        findViewById(book).setLayoutParams(params);
+      }
+    }
     findViewById(R.id.dailyBookBukhari).setOnClickListener(v -> chooseCollection("Bukhari"));
     findViewById(R.id.dailyBookMuslim).setOnClickListener(v -> chooseCollection("Muslim"));
     findViewById(R.id.dailyHadithResume)
@@ -165,7 +177,7 @@ public final class HadithActivity extends BaseActivity {
                       + "\n"
                       + entry.title
                       + " · "
-                      + entry.source);
+                      + entry.collection);
         }
         public void failed() { }
       });
@@ -178,9 +190,15 @@ public final class HadithActivity extends BaseActivity {
     for (Button tab : tabs) {
       boolean active = category.contentEquals(tab.getText());
       tab.setSelected(active);
-      tab.setBackground(DiscoveryUi.background(this, active ? "#15332F" : "#EDF2EB", 22));
-      tab.setTextColor(Color.parseColor(active ? "#FFFFFF" : "#52665F"));
+      GradientDrawable background = new GradientDrawable();
+      background.setColor(getColor(active ? R.color.daily_ink : android.R.color.transparent));
+      background.setCornerRadius(dp(14));
+      if (!active) background.setStroke(dp(1), getColor(R.color.daily_line));
+      tab.setBackground(background);
+      tab.setTextColor(getColor(active ? android.R.color.white : R.color.hadith_secondary));
     }
+    findViewById(R.id.dailyBookBukhari).setActivated("Bukhari".equals(category));
+    findViewById(R.id.dailyBookMuslim).setActivated("Muslim".equals(category));
     if (pendingSearch != null) handler.removeCallbacks(pendingSearch);
     int token = ++generation;
     pendingSearch = () -> {
@@ -207,8 +225,13 @@ public final class HadithActivity extends BaseActivity {
       View row = getLayoutInflater().inflate(R.layout.hadith_item, list, false);
       ((TextView) row.findViewById(R.id.hadithItemTitle)).setText(entry.title);
       ((TextView) row.findViewById(R.id.hadithItemSummary)).setText(entry.meaning);
-      ((TextView) row.findViewById(R.id.hadithItemSaved))
-          .setText(saved.contains(entry.id) ? "★" : "›");
+      ((TextView) row.findViewById(R.id.hadithItemReference)).setText(entry.collection.toUpperCase(Locale.ROOT));
+      ImageView marker = row.findViewById(R.id.hadithItemSaved);
+      marker.setImageResource(saved.contains(entry.id) ? R.drawable.reading_ic_bookmark_filled : R.drawable.home_ic_chevron);
+      marker.setImageTintList(android.content.res.ColorStateList.valueOf(
+          getColor(saved.contains(entry.id) ? R.color.hadith_bronze : R.color.daily_ink)));
+      row.findViewById(R.id.hadithRowDivider).setVisibility(
+          list.getChildCount() + 1 == page.entries.size() ? View.GONE : View.VISIBLE);
       row.setContentDescription(
           entry.title + ". " + entry.source + (saved.contains(entry.id) ? ". Tersimpan" : ""));
       row.setOnClickListener(v -> showDetail(entry));
@@ -220,6 +243,7 @@ public final class HadithActivity extends BaseActivity {
     ((TextView) findViewById(R.id.hadithStatus)).setText(
         getString(R.string.hadith_search_scope)
             + (page.unavailableSaved == 0 ? "" : "\n" + getString(R.string.hadith_missing_saved, page.unavailableSaved)));
+    findViewById(R.id.hadithPager).setVisibility(page.total > HadithStore.PAGE_SIZE ? View.VISIBLE : View.GONE);
     findViewById(R.id.hadithPrevious).setEnabled(page.offset > 0);
     findViewById(R.id.hadithNext).setEnabled(page.offset + page.entries.size() < page.total);
     findViewById(R.id.hadithEmpty).setVisibility(page.total == 0 ? View.VISIBLE : View.GONE);

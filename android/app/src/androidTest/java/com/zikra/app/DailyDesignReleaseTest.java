@@ -78,50 +78,81 @@ public final class DailyDesignReleaseTest extends InstrumentationTestCase {
     assertEquals(education, prefs().getString("education_level", null));
   }
 
-  public void testHadithCollectionsSearchReaderAndPersistence() {
+  private void waitForHadithUi(java.util.function.BooleanSupplier condition) {
+    long deadline = android.os.SystemClock.uptimeMillis() + 10000;
+    while (!condition.getAsBoolean() && android.os.SystemClock.uptimeMillis() < deadline) {
+      getInstrumentation().waitForIdleSync();
+      android.os.SystemClock.sleep(50);
+    }
+    assertTrue("Hadith UI finishes its asynchronous data request", condition.getAsBoolean());
+  }
+
+  public void testHadithCollectionsSearchReaderAndPersistence() throws Exception {
     Set<String> original = new HashSet<>(prefs().getStringSet("hadith_bookmarks", new HashSet<>()));
+    String originalLast = prefs().getString("last_hadith_id", null);
+    boolean hadSize = prefs().contains("hadith_reader_size");
+    int originalSize = prefs().getInt("hadith_reader_size", 0);
     try {
       launch(HadithActivity.class);
+      LinearLayout list = page.findViewById(R.id.hadithList);
+      waitForHadithUi(() -> list.getChildCount() > 0);
       capture("DailyHadithOverview");
       click(R.id.dailyBookMuslim);
-      assertTrue(
-          ((TextView) page.findViewById(R.id.hadithCount)).getText().toString().contains("5"));
-      getInstrumentation()
-          .runOnMainSync(
-              () -> ((EditText) page.findViewById(R.id.hadithSearch)).setText("not-a-hadith-9842"));
-      assertEquals(View.VISIBLE, page.findViewById(R.id.hadithEmpty).getVisibility());
-      getInstrumentation()
-          .runOnMainSync(() -> ((EditText) page.findViewById(R.id.hadithSearch)).setText(""));
-      LinearLayout list = page.findViewById(R.id.hadithList);
-      assertEquals(5, list.getChildCount());
+      getInstrumentation().runOnMainSync(
+          () -> ((EditText) page.findViewById(R.id.hadithSearch)).setText("not-a-hadith-9842"));
+      waitForHadithUi(() -> list.getChildCount() == 0
+          && page.findViewById(R.id.hadithEmpty).getVisibility() == View.VISIBLE);
+      assertTrue(page.findViewById(R.id.dailyBookMuslim).isActivated());
+      getInstrumentation().runOnMainSync(() -> {
+        ((EditText) page.findViewById(R.id.hadithSearch)).setText("");
+        ((LinearLayout) page.findViewById(R.id.hadithTabs)).getChildAt(0).performClick();
+      });
+      waitForHadithUi(() -> list.getChildCount() > 0
+          && page.findViewById(R.id.hadithEmpty).getVisibility() == View.GONE);
+      assertFalse(page.findViewById(R.id.dailyBookMuslim).isActivated());
+      String selectedTitle = ((TextView) list.getChildAt(0).findViewById(R.id.hadithItemTitle)).getText().toString();
       Instrumentation.ActivityMonitor monitor =
           getInstrumentation().addMonitor(HadithReaderActivity.class.getName(), null, false);
       try {
         getInstrumentation().runOnMainSync(() -> list.getChildAt(0).performClick());
         reader = getInstrumentation().waitForMonitorWithTimeout(monitor, 10000);
         assertNotNull(reader);
-        getInstrumentation().waitForIdleSync();
+        waitForHadithUi(() -> ((TextView) reader.findViewById(R.id.dailyReaderArabic)).getText().length() > 0);
         capture("DailyHadithReader");
-        assertTrue(((TextView) reader.findViewById(R.id.dailyReaderArabic)).getText().length() > 0);
+        float beforeSize = ((TextView) reader.findViewById(R.id.dailyReaderArabic)).getTextSize();
+        getInstrumentation().runOnMainSync(() -> reader.findViewById(R.id.dailyReaderSize).performClick());
+        Field sizeField = HadithReaderActivity.class.getDeclaredField("sizeDialog");
+        sizeField.setAccessible(true);
+        AlertDialog sizes = (AlertDialog) sizeField.get(reader);
+        assertTrue(sizes.isShowing());
+        int choice = prefs().getInt("hadith_reader_size", 0) == 0 ? 1 : 0;
+        getInstrumentation().runOnMainSync(() -> sizes.getListView().performItemClick(null, choice, choice));
+        assertFalse(sizes.isShowing());
+        assertTrue(beforeSize != ((TextView) reader.findViewById(R.id.dailyReaderArabic)).getTextSize());
+        String arabic = ((TextView) reader.findViewById(R.id.dailyReaderArabic)).getText().toString();
+        String reference = ((TextView) reader.findViewById(R.id.dailyReaderSource)).getText().toString();
+        assertFalse(((TextView) reader.findViewById(R.id.hadithReaderBook)).getText().toString().isEmpty());
+        getInstrumentation().runOnMainSync(() -> reader.findViewById(R.id.dailyReaderCopy).performClick());
+        android.content.ClipboardManager clipboard = (android.content.ClipboardManager)
+            getInstrumentation().getTargetContext().getSystemService(Context.CLIPBOARD_SERVICE);
+        String copied = clipboard.getPrimaryClip().getItemAt(0).getText().toString();
+        assertTrue(copied.contains(arabic)); assertTrue(copied.contains(reference));
         String id = reader.getIntent().getStringExtra("entry");
         boolean before = prefs().getStringSet("hadith_bookmarks", new HashSet<>()).contains(id);
-        getInstrumentation()
-            .runOnMainSync(() -> reader.findViewById(R.id.dailyReaderSave).performClick());
-        assertEquals(
-            !before, prefs().getStringSet("hadith_bookmarks", new HashSet<>()).contains(id));
+        getInstrumentation().runOnMainSync(() -> reader.findViewById(R.id.dailyReaderSave).performClick());
+        assertEquals(!before, prefs().getStringSet("hadith_bookmarks", new HashSet<>()).contains(id));
         getInstrumentation().runOnMainSync(reader::finish);
         reader = null;
-        getInstrumentation().waitForIdleSync();
-        assertTrue(
-            ((TextView) page.findViewById(R.id.dailyHadithResume))
-                .getText()
-                .toString()
-                .contains("Niat"));
+        waitForHadithUi(() -> ((TextView) page.findViewById(R.id.dailyHadithResume))
+            .getText().toString().contains(selectedTitle));
       } finally {
         getInstrumentation().removeMonitor(monitor);
       }
     } finally {
-      prefs().edit().putStringSet("hadith_bookmarks", original).commit();
+      SharedPreferences.Editor restore = prefs().edit().putStringSet("hadith_bookmarks", original);
+      if (originalLast == null) restore.remove("last_hadith_id"); else restore.putString("last_hadith_id", originalLast);
+      if (hadSize) restore.putInt("hadith_reader_size", originalSize); else restore.remove("hadith_reader_size");
+      restore.commit();
     }
   }
 

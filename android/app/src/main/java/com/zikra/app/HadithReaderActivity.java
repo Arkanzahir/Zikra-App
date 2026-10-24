@@ -24,8 +24,9 @@ public final class HadithReaderActivity extends BaseActivity {
     String id = getIntent().getStringExtra("entry");
     setContentView(R.layout.activity_hadith_reader);
     ((FeatureHeader) findViewById(R.id.utilitiesHeader))
-        .bind(R.id.toolbarBack, R.id.detailTitle, R.id.featureSubtitle, 0,
-            getString(R.string.daily_hadith), null, 0, null);
+        .bind(R.id.toolbarBack, R.id.detailTitle, R.id.featureSubtitle, R.id.dailyReaderSize,
+            getString(R.string.daily_hadith), null, R.drawable.reading_ic_text_size,
+            getString(R.string.daily_reader_size));
     setupScreen(getString(R.string.daily_hadith));
     DailyUi.chrome(this, R.color.daily_paper);
     text(R.id.dailyReaderMeaning, getString(R.string.hadith_loading));
@@ -61,13 +62,17 @@ public final class HadithReaderActivity extends BaseActivity {
             R.id.toolbarBack,
             R.id.detailTitle,
             R.id.featureSubtitle,
-            0,
+            R.id.dailyReaderSize,
             getString(R.string.daily_hadith),
             null,
-            0,
-            null);
+            R.drawable.reading_ic_text_size,
+            getString(R.string.daily_reader_size));
     setupScreen(entry.title);
     DailyUi.chrome(this, R.color.daily_paper);
+    text(R.id.hadithReaderKind, getString(entry.excerpt ? R.string.hadith_refined_excerpt : R.string.hadith_refined_full));
+    text(R.id.hadithReaderBook, entry.collection);
+    text(R.id.hadithReaderMeaningLabel, getString(entry.excerpt ? R.string.daily_translation : R.string.hadith_refined_translation));
+    text(R.id.hadithReaderNote, getString(entry.excerpt ? R.string.daily_quote_label : R.string.hadith_source_notice));
     text(R.id.dailyReaderTitle, entry.title);
     text(R.id.dailyReaderArabic, entry.arabic);
     text(R.id.dailyReaderMeaning, entry.meaning);
@@ -89,7 +94,7 @@ public final class HadithReaderActivity extends BaseActivity {
                       .putExtra(Intent.EXTRA_TEXT, shareText());
               startActivity(Intent.createChooser(intent, getString(R.string.daily_reader_share)));
             });
-    findViewById(R.id.dailyReaderSize)
+    ((FeatureHeader) findViewById(R.id.utilitiesHeader)).action()
         .setOnClickListener(
             v -> {
               sizeDialog =
@@ -150,8 +155,8 @@ public final class HadithReaderActivity extends BaseActivity {
   }
 
   private void applySize() {
-    ((TextView) findViewById(R.id.dailyReaderArabic)).setTextSize(30 + size * 5);
-    ((TextView) findViewById(R.id.dailyReaderMeaning)).setTextSize(16 + size * 2);
+    ((TextView) findViewById(R.id.dailyReaderArabic)).setTextSize(28 + size * 4);
+    ((TextView) findViewById(R.id.dailyReaderMeaning)).setTextSize(15 + size * 2);
   }
 
   @Override

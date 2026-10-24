@@ -83,7 +83,7 @@ public final class BookCoverView extends View {
     c.drawText(muslim ? "Muslim" : "Bukhari", 83, 128, paint);
     paint.setTypeface(smallFont);
     paint.setTextSize(6.1f);
-    c.drawText("KUTIPAN PILIHAN", 83, 172, paint);
+    c.drawText(getResources().getString(com.zikra.app.R.string.hadith_refined_cover_caption), 83, 172, paint);
     c.restore();
   }
 }

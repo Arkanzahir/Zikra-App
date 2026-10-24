@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="dailyReaderSize" type="id" />
+    <color name="hadith_secondary">#53675D</color>
+    <color name="hadith_bronze">#82683E</color>
+    <color name="hadith_selected_edge">#9BB7A1</color>
+    <string name="hadith_refined_cover_caption">PILIH KITAB</string>
+    <string name="hadith_refined_hero">Baca hadis,\npahami maknanya.</string>
+    <string name="hadith_refined_search">Cari kata atau nomor hadis…</string>
+    <string name="hadith_refined_bukhari">Bukhari</string>
+    <string name="hadith_refined_muslim">Muslim</string>
+    <string name="hadith_refined_sahih">SHAHIH</string>
+    <string name="hadith_refined_downloads">Unduhan</string>
+    <string name="hadith_refined_source">Penomoran mengikuti sumber · Lihat atribusi</string>
+    <string name="hadith_refined_excerpt">KUTIPAN PILIHAN</string>
+    <string name="hadith_refined_full">RIWAYAT · NOMOR SUMBER</string>
+    <string name="hadith_refined_arabic">TEKS ARAB</string>
+    <string name="hadith_refined_translation">TERJEMAHAN</string>
+    <style name="HadithLabel" parent="DailyCaption">
+        <item name="android:textColor">@color/hadith_bronze</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.06</item>
+    </style>
+</resources>
