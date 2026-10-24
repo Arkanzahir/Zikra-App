@@ -1,0 +1,7 @@
+
+com.zikra.app.DailyDesignReleaseTest:.
+com.zikra.app.OptionalContentTest:.
+Test results for InstrumentationTestRunner=..
+Time: 12.661
+
+OK (2 tests)

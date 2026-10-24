@@ -1,6 +1,6 @@
 # Rencana implementasi Zikra menuju rilis publik
 
-Dibuat/diperbarui: **24 Oktober 2026 (WIB)**. Baseline fitur terbaru: **1.7.2 beta / code 20** (`91c8739`); source dan hash pada [bukti pilihan doa](android/validation/dua-selection-b04-2026-10-24/release.json); A04 tetap checkpoint 1.6.3 (`2b291ff`). Checkpoint UI01 tetap 1.6.2.
+Dibuat/diperbarui: **24 Oktober 2026 (WIB)**. Baseline fitur terbaru: **1.7.3 beta / code 21** (`3c577ea`); source dan hash pada [bukti perapian Doa](android/validation/dua-refined-2026-10-24/release.json); A04 tetap checkpoint 1.6.3 (`2b291ff`). Checkpoint UI01 tetap 1.6.2.
 
 Dokumen ini menjadi **checklist pengerjaan aktif**. [PRD](ZIKRA_PRD.md) tetap menjadi daftar kebutuhan produk; [rencana lama](design/IMPROVEMENT_PLAN.md) dan laporan validasi adalah riwayat. Jika kebutuhan lama berbeda dengan keputusan terbaru pengguna, catat keputusan beserta alasannya di sini.
 
@@ -95,6 +95,8 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 
 - [x] **UI01 — Perbaiki daftar Doa yang terlalu membulat/generik.** Selesai 24 Oktober 2026, APK 1.6.2: satu daftar dengan divider, ikon sesuai isi, kategori/rujukan, warna bacaan terbuka dan Arab rata kanan. Build/lint serta tes buka/cari terarah lulus; [screenshot dan batas](android/validation/dua-list-2026-10-24/README.md). Dataset/API belum lengkap; F02/B01–B04 tetap terbuka.
 
+- [x] **UI02 — Rapikan desain Doa setelah preview pengguna.** Selesai 24 Oktober 2026, APK 1.7.3: [screenshot asli, pemeriksaan dan batas](android/validation/dua-refined-2026-10-24/README.md). Tombol koleksi menyatu dengan halaman, kategori/ikon/ruang baca diperjelas, Arab/Latin/arti dipisah dan detail sumber dapat dilipat pada kedua koleksi. Dua metode native / tiga eksekusi (normal dan font 200%) lulus; build/lint tanpa error, emulator ditutup. Data 14/225 tidak diubah; bukan penyelesaian kurasi B01/B04 atau seluruh F03.
+
 - [ ] **F01 — Bekukan panduan visual berdasarkan referensi yang diterima.** Catat font, ukuran/jarak, ikon, warna, radius dan keluarga ilustrasi per konteks; bedakan variasi fungsi yang disengaja dari gaya yang bertabrakan. Pertahankan logo dan referensi yang sudah disetujui. Hasil: dokumen acuan + daftar layar yang perlu diselaraskan.
 - [ ] **F02 — Selaraskan seluruh layar dan teks.** Periksa Home, Quran/reader/Mushaf, Study/fokus/break/Hifz, AI, Protector/peta, Hadis/reader, Doa, Profil, salat, Kiblat, lokasi/masjid, kalender dan pengaturan. Rapikan ruang kosong, kartu berulang, orb/dekorasi generik serta kalimat template. Gunakan isi nyata, bukan statistik contoh.
 - [ ] **F03 — Ukuran layar, teks besar dan aksesibilitas.** Kontrol tetap terjangkau, target sentuh memadai, Arab/Indonesia tidak terpotong, kontras dan label aksesibel. Periksa font besar, tema yang tersedia, keyboard, dialog, loading/kosong/gagal dan scroll. Simpan screenshot native pada ukuran yang diuji.
@@ -163,5 +165,7 @@ Fitur post-MVP yang memang tercantum terpisah di PRD—XP/badge, keuangan anak k
 | 24 Oktober 2026 | B01/B04 — validasi lanjutan | Delapan sampel Hadis menunjukkan perbedaan skema nomor; muqaddimah diberi catatan. Lima penanganan Doa terikat snapshot sumber, termasuk satu harakat, konteks angin, penomoran dan atribusi penilaian. Kedua ID tetap terbuka; bukan penutupan semua konten. | [Laporan dan build 1.7.1](android/validation/source-review-b-2026-10-24/README.md), source `3ef14dc`, tanpa emulator/email |
 
 | 24 Oktober 2026 | B04 — kategori terisi, review belum selesai | Empat pilihan bawaan diperluas menjadi 14 termasuk pagi/petang/guruh; Arab/Latin/arti, sumber dan kategori luring. Inventaris 227 ID memisahkan field lengkap dari penelaahan isi; 213 entri tambahan belum ditelaah. B01/B04 tetap terbuka; tanpa emulator atau email. | [Bukti beta 1.7.2](android/validation/dua-selection-b04-2026-10-24/README.md), source `91c8739`, APK 31,3 MB, 110 unit lulus/3 dilewati |
+
+| 24 Oktober 2026 | UI02 | Permintaan pengguna memperbaiki desain Doa diprioritaskan. Navigasi koleksi, hierarki bacaan dan sumber lipat diterapkan pada APK; dataset tetap. | [Bukti native 1.7.3](android/validation/dua-refined-2026-10-24/README.md), source `3c577ea`, APK 31,1 MB, 2 metode/3 eksekusi, tanpa uji HP |
 
 Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | tautan laporan/screenshot/tes + commit fitur`. Keputusan menunda/mengubah cakupan juga dicatat di tabel ini.

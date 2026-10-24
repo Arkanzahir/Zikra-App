@@ -1,0 +1,33 @@
+{
+  "checked": "2026-10-24",
+  "versionName": "1.7.3",
+  "versionCode": 21,
+  "productionCommit": "3c577eac09095421d648f8e0e6cafa547b9efbec",
+  "apkFile": "Zikra-Design-v1.7.3-beta-debug.apk",
+  "bytes": 31136501,
+  "sha256": "cae58ba78360e53fc0ea22a4bf0768ea976b6b14c1d392535e2503cedc43ea1e",
+  "below100MillionBytes": true,
+  "lint": {
+    "Warning": 698
+  },
+  "nativeMethods": 2,
+  "nativeExecutions": 3,
+  "fontScales": [
+    1.0,
+    2.0
+  ],
+  "unitTests": "Not rerun: presentation changes; Android build/lint and affected native flows checked.",
+  "bundledDuaCount": 14,
+  "optionalDuaCount": 225,
+  "selectionResourceSha256": "c9c254f07fb88a83b81ea0d6f734ad5bf9a5e9285c575c0ff37ceef5461ac154",
+  "b01Complete": false,
+  "b04Complete": false,
+  "emulatorClosed": true,
+  "screenshots": {
+    "Doa-Large-Overview.png": "835f21cbc0f7b8303152e93a0e82555e0a3523c69895bdc1478ed41cfe6c279c",
+    "Doa-Large-Reading.png": "17bf8023a3f07d53ee0fb831d5f836698866994243bd9b72cc9257f1b5eb51f3",
+    "Doa-Library-Source.png": "c24b302ef6f2df17d4960b3ec48be0f7a2f3ccf0cd8e2179e8956c08d4369b02",
+    "Doa-Overview.png": "2eb405d802e93731c7d7af1a125cae77aee29a3e55023e4da27f6d33cf5e097f",
+    "Doa-Reading.png": "fc9eb6d130bfcdd4926c16fc586db93ccad974a1413def3301044edd47f441d5"
+  }
+}
