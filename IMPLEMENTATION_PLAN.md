@@ -4,7 +4,7 @@ Dibuat/diperbarui: **24 Oktober 2026 (WIB)**. Baseline fitur terbaru: **1.6.2 / 
 
 Dokumen ini menjadi **checklist pengerjaan aktif**. [PRD](ZIKRA_PRD.md) tetap menjadi daftar kebutuhan produk; [rencana lama](design/IMPROVEMENT_PLAN.md) dan laporan validasi adalah riwayat. Jika kebutuhan lama berbeda dengan keputusan terbaru pengguna, catat keputusan beserta alasannya di sini.
 
-**Pekerjaan aktif berikutnya: B01 — validasi dan pilih sumber Hadis.** A02 selesai berdasarkan delegasi pengguna 24 Oktober: [cakupan beta/publik dan penundaan eksplisit](RELEASE_SCOPE.md). Akun/sinkronisasi serta Vision ditunda; AI teks/tindakan tugas, briefing, adzan penuh, jadwal kelas dan push gempa tetap wajib untuk publik. A03–A04 wajib ditutup sebelum tahap D. A01: [matriks 23 kebutuhan PRD dan 21 layar](android/validation/release-audit/FEATURE_MATRIX.md). B01–B04 belum selesai; kandidat 227 Doa/dzikir dan 11.568 entri dua koleksi belum konten tervalidasi/diimpor.
+**Pekerjaan aktif: A04 — integrasi data antarmenu.** Pengguna meminta A03–A04 dituntaskan sebelum melanjutkan B01 pada 24 Oktober. A03 selesai: [WIP audio disimpan terpisah dan 470 file baseline diverifikasi](android/validation/baseline-a03-2026-10-24/README.md). B01 sudah mempunyai checkpoint penelitian, belum selesai, dilanjutkan setelah A04. [Cakupan A02](RELEASE_SCOPE.md) tetap berlaku; [audit A01](android/validation/release-audit/FEATURE_MATRIX.md) mencatat gap awal. Kandidat konten belum diimpor.
 
 ## Cara memakai checklist
 
@@ -41,7 +41,7 @@ Featherless pernah menjawab melalui gateway lokal pada 22 Oktober menurut catata
 | Tahap | Hasil yang dituju | Mulai setelah |
 | --- | --- | --- |
 | A — Audit dan batas rilis | Status setiap fitur jelas; baseline dapat dibangun ulang | Sekarang |
-| B — Hadis dan Doa | Isi berlandaskan sumber, pencarian berguna, penyimpanan andal | A01–A02 |
+| B — Hadis dan Doa | Isi berlandaskan sumber, pencarian berguna, penyimpanan andal | A01–A04; urutan diperjelas pengguna 24 Oktober |
 | C — Backend dan AI | AI online dapat dipakai dari HP tanpa laptop pengembang | A02; keputusan hosting saat konfigurasi siap |
 | D — Fitur inti | Quran, salat, Study/Hifz dan lokasi terhubung dengan benar | A03–A04; tiap modul diperiksa bergiliran |
 | E — Protector | Data gempa/cuaca benar; notifikasi sesuai lingkup rilis | C02 untuk push; D01/D04 untuk konteks jadwal |
@@ -54,7 +54,7 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 
 - [x] **A01 — Inventaris fitur dan selisih terhadap PRD.** Selesai 24 Oktober 2026: [matriks aktual/bukti/gap/ID lanjutan](android/validation/release-audit/FEATURE_MATRIX.md), [inventaris source baseline](android/validation/release-audit/SOURCE_INVENTORY.json) dan [hitungan kandidat konten](android/validation/release-audit/CONTENT_COUNTS.json). Seluruh 23 kebutuhan inti dan 21 layar diperiksa; status tidak ada/sebagian/tersedia/teruji terarah dibedakan. Tidak ada sertifikasi teruji rilis. Audit dokumen/source memakai laporan runtime terdahulu, tanpa build/emulator baru; A02–G05 tetap terbuka sesuai kriterianya.
 - [x] **A02 — Tetapkan cakupan beta dan rilis publik.** Selesai 24 Oktober 2026 berdasarkan delegasi pengguna untuk menentukan cakupan: [keputusan tersimpan](RELEASE_SCOPE.md). Beta adalah tahap uji; publik tetap mewajibkan modul inti, Hadis/Doa tervalidasi, AI teks/konteks/tindakan tugas, briefing, adzan, jadwal kelas dan push. Akun/sinkronisasi serta Vision ditunda eksplisit ke setelah rilis pertama; source Infaq dipertahankan di luar navigasi rilis. Tidak ada fitur runtime dianggap selesai karena keputusan ini.
-- [ ] **A03 — Rapikan baseline source dan pekerjaan audio tertunda.** Tinjau perubahan service/timing/MushafReaderTest/tool audit yang masih lokal; putuskan gabung setelah diperiksa atau simpan terpisah. Source commit, versi APK dan bukti harus selaras tanpa menghilangkan WIP.
+- [x] **A03 — Rapikan baseline source dan pekerjaan audio tertunda.** Selesai 24 Oktober 2026: [keputusan dan bukti](android/validation/baseline-a03-2026-10-24/README.md). Lima file prefetch/audit belum teruji disimpan dalam stash + arsip privat yang diverifikasi, source stabil dipertahankan. Seluruh 470 file produksi/build cocok dengan snapshot APK 1.6.2 dan hash APK diperiksa. Optimasi prefetch belum digabung; tinjau kembali pada D03. A03 tidak berarti optimasi tersebut sudah lolos uji.
 - [ ] **A04 — Audit integrasi data antarmenu.** Satu pilihan lokasi/zona dipakai Home, salat, cuaca, Kiblat dan masjid; bacaan terakhir sama pada Home/katalog/reader; tugas/progres konsisten di Study/Profil. Uji pulih setelah aplikasi dibuka ulang, tanpa data contoh.
 
 ## B — Lengkapi Hadis dan Doa
@@ -153,5 +153,6 @@ Fitur post-MVP yang memang tercantum terpisah di PRD—XP/badge, keuangan anak k
 | 24 Okt 2026 | A01 | Audit 23 kebutuhan PRD dan 21 layar selesai; fitur parsial/tidak ada dibedakan dari bukti terarah. APK tetap 4 Doa/7 kutipan; kandidat 227 Doa/dzikir + 11.568 entri dua koleksi belum diimpor/disahkan lengkap. Berikutnya A02, tanpa menghapus kebutuhan PRD diam-diam. | [Matriks dan batas](android/validation/release-audit/FEATURE_MATRIX.md), [inventaris](android/validation/release-audit/SOURCE_INVENTORY.json), [metadata hitungan](android/validation/release-audit/CONTENT_COUNTS.json); baseline `5884b52`, tanpa emulator/build baru |
 | 24 Okt 2026 | A02 | Pengguna mendelegasikan pilihan cakupan. Modul inti diselesaikan untuk publik; akun/sinkronisasi dan Vision setelah rilis pertama. Beta hanya tahap uji; AI teks/tindakan, briefing dan push tetap wajib publik. Berikutnya B01, lalu konten; A03–A04 sebelum D. | [Cakupan wajib/bersyarat/ditunda dan gerbang selesai](RELEASE_SCOPE.md); keputusan dokumentasi, APK tetap 1.6.2 |
 | 24 Okt 2026 | B01 — checkpoint, belum selesai | Dua JSON dipatok commit/hash dan diperiksa bentuk/nomor. Range API memakai posisi baris, bukan selalu nomor sumber. Kandidat belum final; bukti edisi/asal terjemahan serta penggunaan masih dicari. | [Laporan sumber dan langkah berikutnya](android/validation/hadith-source-2026-10-24/README.md); tanpa impor APK/server atau emulator |
+| 24 Okt 2026 | A03 / koreksi urutan | Pengguna meminta perhatian keamanan serta A03–A04 sebelum B01. WIP audio dipertahankan privat, baseline stabil cocok dengan APK; berikutnya A04. Security diterapkan selama pengerjaan; C01/C02/G03 tetap gerbang produksi. | [Baseline, cadangan dan batas keamanan](android/validation/baseline-a03-2026-10-24/README.md) |
 
 Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | tautan laporan/screenshot/tes + commit fitur`. Keputusan menunda/mengubah cakupan juga dicatat di tabel ini.

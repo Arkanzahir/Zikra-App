@@ -1,0 +1,28 @@
+{
+  "checked": "2026-10-24",
+  "baselineCommit": "bc637c390092d222423c4460fb9eb877c0bee302",
+  "decision": "Preserve unverified audio WIP separately; retain stable playback in main.",
+  "privateStash": "35686be384ac549e5a5bf85be87cfe56e3b667df",
+  "privateBackup": ".local/pending-audio-a03-2026-10-24/source-wip.zip",
+  "preservedFileSha256": {
+    "android/app/src/main/java/com/zikra/app/audio/QuranAudioService.java": "14a4954a735a9ec46fd37b41fd015004a8b264b03bbfaa738ff74c5ea262f792",
+    "android/app/src/main/java/com/zikra/app/audio/TimedAudioRepository.java": "9724ec4d2bc470826a840b2ffdef1ccd86e4adb5aa1cbf328ab5e7daf15ec638",
+    "android/app/src/androidTest/java/com/zikra/app/MushafReaderTest.java": "d44c5c090b5211efd181e7f7e456f5527e2485f024b9e10b7597f46af45601a2",
+    "tools/RecitationTimingAudit.java": "1265e0b4f032f79707e7a1403f2c78019c64cea86e97d2a8742ec03813f68a15",
+    "tools/Test-RecitationTimings.ps1": "6660c60a2bea965cd0739d235b5387cdc72d54848d8a961712354e2e3e8563ae"
+  },
+  "productionFilesCompared": 470,
+  "normalizedProductionDifferencesFromBuiltSnapshot": [],
+  "apk": {
+    "version": "1.6.2",
+    "versionCode": 16,
+    "name": "Zikra-Daily-v1.6.2-debug.apk",
+    "bytes": 31216429,
+    "sha256": "e8eba21c2411531fe26fab9374012368ed4231f4645b7d5755a2bcf863123f05"
+  },
+  "limitedSecretPatternScan": {
+    "scope": "tracked android/app/src/main and backend text; two credential-like patterns only",
+    "matches": 0,
+    "limits": "Not a full secret history, dependency or security audit."
+  }
+}

@@ -56,9 +56,9 @@ Ini adalah penundaan berdasarkan kewenangan yang diberikan pengguna pada 24 Okto
 
 ## Urutan kerja dan definisi selesai
 
-1. **B01** validasi/pilih sumber Hadis; tulis keputusan serta bukti. Bila terhambat sumber, laporkan bagian yang belum terbukti dan kerjakan persiapan yang tidak bergantung izin; jangan mengimpor distribusi secara diam-diam.
-2. **B02 → B03 → B04**, lengkapkan konten dan penyimpanan dengan uji terarah. Setiap item ditutup sendiri; jangan menggabungkan seluruh tahap menjadi satu klaim selesai.
-3. **A03 → A04**, rapikan WIP audio dan pembuktian lintas data sebelum tahap D. WIP tidak dihapus/stage bersama pekerjaan konten.
+1. **A03 → A04 terlebih dahulu**, sesuai koreksi pengguna 24 Oktober setelah keputusan cakupan: rapikan WIP audio dan buktikan integrasi data. WIP dipertahankan terpisah bila belum lolos; keamanan diperhatikan selama pengerjaan. Penelitian B01 yang sudah ada tetap disimpan.
+2. **B01**, lanjut validasi/pilih sumber Hadis setelah A04; tulis keputusan serta bukti. Bila terhambat sumber, laporkan bagian yang belum terbukti dan kerjakan persiapan yang tidak bergantung izin; jangan mengimpor distribusi secara diam-diam.
+3. **B02 → B03 → B04**, lengkapkan konten dan penyimpanan dengan uji terarah. Setiap item ditutup sendiri; jangan menggabungkan seluruh tahap menjadi satu klaim selesai.
 4. **C → D → E** mengikuti dependensi plan. C02 menyiapkan hosting saat konfigurasi konkret siap; keputusan yang membutuhkan akun hosting/biaya dibawa kepada pengguna pada titik itu.
 5. **F → G**, penyelarasan menyeluruh dan uji beta/HP sebelum signed release publik. Kerapian dasar/error penting diperbaiki dalam modul yang sedang dikerjakan.
 
