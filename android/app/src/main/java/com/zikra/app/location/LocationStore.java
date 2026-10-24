@@ -3,12 +3,23 @@ package com.zikra.app.location;
 import android.content.Context;
 import android.content.SharedPreferences;
 import com.zikra.app.reminders.PrayerReminders;
+import java.time.Instant;
+import java.time.LocalDate;
 
 /** One device-local location choice shared across features; never starts GPS in the background. */
 public final class LocationStore {
   public static final String PREFS = "zikra_location";
 
   private LocationStore() {}
+
+  public static LocalDate today(Context context) {
+    return localDate(context, Instant.now());
+  }
+
+  /** Use the selected city for daily records as well as the prayer/sky date. */
+  public static LocalDate localDate(Context context, Instant instant) {
+    return instant.atZone(current(context).zone).toLocalDate();
+  }
 
   public static LocationPoint current(Context context) {
     SharedPreferences p = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);

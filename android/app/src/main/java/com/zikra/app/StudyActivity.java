@@ -66,7 +66,7 @@ public final class StudyActivity extends BaseActivity {
       new Runnable() {
         @Override
         public void run() {
-          if (!LocalDate.now().equals(displayedDay)) {
+          if (!com.zikra.app.location.LocationStore.today(StudyActivity.this).equals(displayedDay)) {
             renderDate();
             refreshTasks();
           }
@@ -290,7 +290,7 @@ public final class StudyActivity extends BaseActivity {
   }
 
   private void chooseAgendaDay() {
-    LocalDate selected = selectedAgendaDay == null ? LocalDate.now() : selectedAgendaDay;
+    LocalDate selected = selectedAgendaDay == null ? com.zikra.app.location.LocationStore.today(StudyActivity.this) : selectedAgendaDay;
     agendaDateDialog =
         new android.app.DatePickerDialog(
             this,
@@ -306,7 +306,7 @@ public final class StudyActivity extends BaseActivity {
   }
 
   private void renderDate() {
-    displayedDay = LocalDate.now();
+    displayedDay = com.zikra.app.location.LocationStore.today(StudyActivity.this);
     String date =
         displayedDay.format(
             DateTimeFormatter.ofPattern(
@@ -321,7 +321,7 @@ public final class StudyActivity extends BaseActivity {
     week.setVisibility(diaryMode || ibadahMode ? View.GONE : View.VISIBLE);
     if (diaryMode || ibadahMode) return;
     week.removeAllViews();
-    LocalDate today = LocalDate.now();
+    LocalDate today = com.zikra.app.location.LocationStore.today(StudyActivity.this);
     LocalDate anchor = selectedAgendaDay == null ? today : selectedAgendaDay;
     LocalDate monday =
         anchor.with(
@@ -390,10 +390,10 @@ public final class StudyActivity extends BaseActivity {
       if (!diaryMode && !ibadahMode && selectedAgendaDay != null && task.dueAt > 0) {
         LocalDate due =
             java.time.Instant.ofEpochMilli(task.dueAt)
-                .atZone(java.time.ZoneId.systemDefault())
+                .atZone(com.zikra.app.location.LocationStore.current(StudyActivity.this).zone)
                 .toLocalDate();
         if (!due.equals(selectedAgendaDay)
-            && !(selectedAgendaDay.equals(LocalDate.now())
+            && !(selectedAgendaDay.equals(com.zikra.app.location.LocationStore.today(StudyActivity.this))
                 && due.isBefore(selectedAgendaDay)
                 && !task.completed)) continue;
       }
@@ -496,7 +496,7 @@ public final class StudyActivity extends BaseActivity {
           task.dueAt == 0
               ? "Tanpa tenggat · mulai satu sesi fokus"
               : ((task.dueAt < System.currentTimeMillis()) ? "Lewat tenggat · " : "Tenggat · ")
-                  + ScheduleEditor.label(task.dueAt));
+                  + ScheduleEditor.label(StudyActivity.this, task.dueAt));
     if (diaryMode && task.hifz != null && !task.title.equals(canonical(task.hifz))) {
       detail.append("\n" + task.title);
     }
@@ -961,13 +961,13 @@ public final class StudyActivity extends BaseActivity {
                   ? R.string.study_category_ibadah
                   : R.string.study_category_study);
       if (!diaryMode && !ibadahMode && task.dueAt > 0)
-        detail.setText("Tenggat · " + ScheduleEditor.label(task.dueAt));
+        detail.setText("Tenggat · " + ScheduleEditor.label(StudyActivity.this, task.dueAt));
       if (!diaryMode && !ibadahMode) {
         tag.setText(
             task.completed
                 ? getString(R.string.hifz_done)
                 : task.dueAt > 0
-                    ? ScheduleEditor.label(task.dueAt)
+                    ? ScheduleEditor.label(StudyActivity.this, task.dueAt)
                     : getString(R.string.layout_no_deadline));
       }
       if (diaryMode) {

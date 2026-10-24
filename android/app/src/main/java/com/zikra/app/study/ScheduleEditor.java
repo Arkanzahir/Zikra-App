@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.*;
 import com.zikra.app.R;
 import com.zikra.app.data.Task;
+import com.zikra.app.location.LocationStore;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -43,7 +44,7 @@ public final class ScheduleEditor {
   }
 
   private void choose() {
-    Calendar seed = Calendar.getInstance();
+    Calendar seed = Calendar.getInstance(TimeZone.getTimeZone(LocationStore.current(activity).zone));
     seed.setTimeInMillis(due == 0 ? System.currentTimeMillis() + 3600000 : due);
     picker =
         new DatePickerDialog(
@@ -53,7 +54,8 @@ public final class ScheduleEditor {
                   new TimePickerDialog(
                       activity,
                       (clock, hour, minute) -> {
-                        Calendar chosen = Calendar.getInstance();
+                        Calendar chosen =
+                            Calendar.getInstance(TimeZone.getTimeZone(LocationStore.current(activity).zone));
                         chosen.set(year, month, day, hour, minute, 0);
                         chosen.set(Calendar.MILLISECOND, 0);
                         due = chosen.getTimeInMillis();
@@ -70,22 +72,22 @@ public final class ScheduleEditor {
     picker.show();
   }
 
-  public static String label(long due) {
+  public static String label(android.content.Context context, long due) {
     if (due == 0) return "Tanpa tenggat";
     return Instant.ofEpochMilli(due)
-        .atZone(ZoneId.systemDefault())
+        .atZone(LocationStore.current(context).zone)
         .format(DateTimeFormatter.ofPattern("d MMM yyyy · HH:mm", Locale.forLanguageTag("id-ID")));
   }
 
   public void render() {
     ((TextView) root.findViewById(R.id.studyDeadline))
-        .setText(due == 0 ? "Atur tenggat (opsional)" : label(due));
+        .setText(due == 0 ? "Atur tenggat (opsional)" : label(activity, due));
     root.findViewById(R.id.studyDeadlineClear).setVisibility(due == 0 ? View.GONE : View.VISIBLE);
     reminder.setEnabled(due > 0);
     ((TextView) root.findViewById(R.id.studyScheduleHint))
         .setText(
             !reminder.isChecked()
-                ? "Tenggat memakai waktu lokal perangkat. Pengingat bersifat opsional."
+                ? "Tenggat mengikuti zona kota pilihan. Pengingat bersifat opsional."
                 : StudyReminders.permitted(activity)
                     ? "Pengingat sekitar waktu tenggat; dapat tertunda oleh sistem/penghemat daya."
                     : "Notifikasi belum diizinkan. Tenggat tetap disimpan; aktifkan notifikasi"

@@ -10,9 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.zikra.app.discovery.DiscoveryUi;
 import com.zikra.app.discovery.HijriCalendarModel;
+import com.zikra.app.location.LocationStore;
 import com.zikra.app.ui.FeatureHeader;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.chrono.HijrahDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
@@ -21,11 +21,12 @@ import java.util.Locale;
 public final class CalendarActivity extends BaseActivity {
   private static final Locale ID = Locale.forLanguageTag("id-ID");
   private HijrahDate month, selected;
-  private LocalDate today = LocalDate.now(ZoneId.of("Asia/Jakarta"));
+  private LocalDate today;
 
   @Override
   protected void onCreate(Bundle state) {
     super.onCreate(state);
+    today = LocationStore.today(this);
     setContentView(R.layout.activity_calendar);
     ((FeatureHeader) findViewById(R.id.utilitiesHeader))
         .bind(
@@ -74,7 +75,7 @@ public final class CalendarActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    refreshToday(LocalDate.now(ZoneId.of("Asia/Jakarta")));
+    refreshToday(LocationStore.today(this));
   }
 
   /** Refreshes the real day without discarding a date the user deliberately browsed. */

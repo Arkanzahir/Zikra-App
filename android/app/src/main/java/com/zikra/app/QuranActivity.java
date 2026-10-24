@@ -752,11 +752,10 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     ((TextView) findViewById(R.id.lastReadLabel)).setText(lastSurah + "  ·  Ayat " + lastAyah);
     for (int i = 0; i < ayahContainer.getChildCount(); i++) {
       ImageButton button = ayahContainer.getChildAt(i).findViewById(R.id.ayahBookmark);
+      if (button == null) continue;
       boolean selected =
-          ayahContainer
-              .getChildAt(i)
-              .getTag()
-              .equals(preferences.getInt("last_chapter", 1) + ":" + lastAyah);
+          (preferences.getInt("last_chapter", 1) + ":" + lastAyah)
+              .equals(ayahContainer.getChildAt(i).getTag());
       button.setSelected(selected);
       button.setImageResource(
           selected ? R.drawable.reading_ic_bookmark_filled : R.drawable.reading_ic_bookmark);
@@ -1166,6 +1165,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   @Override
   protected void onResume() {
     super.onResume();
+    refreshBookmarkLabels();
     if (suspended && readingOpen) {
       suspended = false;
       renderSurah(true);

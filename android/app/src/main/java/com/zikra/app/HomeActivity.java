@@ -187,7 +187,7 @@ public final class HomeActivity extends BaseActivity {
   private void updateProgress() {
     ZikraDbHelper.Progress progress = db.getProgress(ZikraDbHelper.CATEGORY_IBADAH);
     int done = progress.completed, total = progress.total;
-    progressDate = java.time.LocalDate.now();
+    progressDate = LocationStore.today(this);
     ((TextView) findViewById(R.id.homeProgressPercent)).setText(progress.percent + "%");
     ((TextView) findViewById(R.id.homeProgressSubtitle))
         .setText(
@@ -229,7 +229,7 @@ public final class HomeActivity extends BaseActivity {
   }
 
   private void updateClock() {
-    if (!java.time.LocalDate.now().equals(progressDate)) updateProgress();
+    if (!LocationStore.today(this).equals(progressDate)) updateProgress();
     ZonedDateTime now = ZonedDateTime.now(location.zone);
     loadSky(false);
     if (skyDay != null) sky.setSky(skyDay, now.toLocalTime());

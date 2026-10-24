@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import com.zikra.app.location.LocationStore;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
   public static final String CATEGORY_IBADAH = "Ibadah";
   public static final String CATEGORY_HIFZ = "Hifz";
   private final Clock clock;
+  private final Context context;
+  private final boolean followsLocation;
 
   private static final String ACTIVE_TASKS = "(category IN ('Study','Hifz') OR task_date = ?)";
   private static final String[] OBLIGATORY_PRAYERS = {
@@ -28,14 +31,20 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
   };
 
   public ZikraDbHelper(Context context) {
-    this(context, "zikra.db", Clock.systemDefaultZone());
+    this(context, "zikra.db", Clock.systemUTC(), true);
   }
 
   /** Allows a separate database and clock for deterministic instrumented tests. */
   public ZikraDbHelper(Context context, String databaseName, Clock clock) {
+    this(context, databaseName, clock, false);
+  }
+
+  private ZikraDbHelper(Context context, String databaseName, Clock clock, boolean followsLocation) {
     super(context.getApplicationContext(), databaseName, null, VERSION);
     if (clock == null) throw new IllegalArgumentException("Clock is required");
     this.clock = clock;
+    this.context = context.getApplicationContext();
+    this.followsLocation = followsLocation;
   }
 
   @Override
@@ -336,7 +345,10 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
   }
 
   private String today() {
-    return LocalDate.now(clock).toString();
+    return (followsLocation
+            ? LocationStore.localDate(context, clock.instant())
+            : LocalDate.now(clock))
+        .toString();
   }
 
   private SQLiteDatabase databaseForDay(String day) {

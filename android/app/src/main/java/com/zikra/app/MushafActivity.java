@@ -282,12 +282,10 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
         .putInt("last_mushaf_page", page)
         .putInt("last_mushaf_chapter", chapter)
         .putInt("last_mushaf_verse", verse)
-        .apply();
-    prefs
-        .edit()
         .putInt("last_chapter", chapter)
         .putInt("last_ayah", verse)
         .putString("last_surah", QuranChapters.all(this).get(chapter - 1).name)
+        .putString("last_verse_key", chapter + ":" + verse)
         .apply();
     setResult(
         RESULT_OK,
@@ -346,6 +344,7 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
                         .putInt("last_chapter", c)
                         .putInt("last_ayah", v)
                         .putString("last_surah", QuranChapters.all(this).get(c - 1).name)
+                        .putString("last_verse_key", c + ":" + v)
                         .apply();
                     toast(getString(R.string.mushaf_bookmarked));
                   }
