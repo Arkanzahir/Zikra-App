@@ -16,7 +16,7 @@
 
 Server mengelola versi, pemeriksaan sumber dan pembaruan bersama. HP menyediakan akses cepat/luring. Server tersebut tidak wajib secara teknis untuk membaca API publik; akses langsung plus cache HP tetap opsi untuk beta bila belum ada hosting. Penyimpanan ulang/redistribusi hanya diterapkan setelah ketentuan konten mengizinkannya.
 
-Penyimpanan **konten bacaan** di server berbeda dari menyinkronkan **data pribadi pengguna**. Rencana ini tidak otomatis mengunggah profil, tugas, riwayat membaca atau bookmark; akun/sinkronisasi tetap keputusan A02/D06.
+Penyimpanan **konten bacaan** di server berbeda dari menyinkronkan **data pribadi pengguna**. Rencana ini tidak otomatis mengunggah profil, tugas, riwayat membaca atau bookmark; [A02](../RELEASE_SCOPE.md) menunda akun/sinkronisasi antar-HP setelah rilis pertama. D06 tetap wajib menjaga penyimpanan lokal dan migrasi.
 
 ## Kandidat yang sudah ditemukan
 

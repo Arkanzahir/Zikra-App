@@ -1,0 +1,8 @@
+
+com.zikra.app.CrossFeatureIntegrationTest:.
+Test results for InstrumentationTestRunner=.
+Time: 8.592
+
+OK (1 test)
+
+

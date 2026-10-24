@@ -1,5 +1,7 @@
 > **Arah pengerjaan aktif:** [Implementation plan dan checklist rilis](IMPLEMENTATION_PLAN.md). Selesaikan satu ID, penuhi syarat selesai, lalu centang dan simpan bukti sebelum berpindah.
 
+> **A03–A04 selesai — 24 Oktober 2026 / 1.6.3:** [WIP audio dipisahkan dengan cadangan](android/validation/baseline-a03-2026-10-24/README.md); [zona kota, kalender/tenggat dan bacaan terakhir diselaraskan](android/validation/integration-a04-2026-10-24/README.md). Enam tes native lulus termasuk tutup-buka proses, data Study/Profil tetap tersimpan; APK debug 31,1 MB. Emulator ditutup. Berikutnya B01; keamanan server produksi dan uji HP tetap terbuka.
+
 > **Cakupan A02 ditetapkan — 24 Oktober 2026:** berdasarkan delegasi pengguna, [fitur wajib beta/publik dan penundaan](RELEASE_SCOPE.md) sudah dicatat. Berikutnya B01 validasi sumber Hadis; akun/sinkronisasi dan Vision menyusul setelah rilis pertama. Keputusan cakupan bukan implementasi fitur baru.
 
 > **Audit A01 — 24 Oktober 2026:** [23 kebutuhan PRD dan 21 layar dipetakan](android/validation/release-audit/FEATURE_MATRIX.md); berikutnya A02 untuk keputusan cakupan beta/publik. APK masih empat Doa dan tujuh kutipan Hadis. Kandidat sumber terhitung 227 Doa/dzikir serta 11.568 entri Bukhari/Muslim; belum diimpor atau disahkan sebagai kitab lengkap. Pemeriksaan source/dokumen ini tidak menambah klaim kesiapan runtime.

@@ -2,6 +2,8 @@
 
 24 Oktober 2026. Baseline source **`5884b52074e24334223109cba3826b9876b3248b`**, aplikasi **1.6.2 / code 16**. Acuan: [PRD](../../../ZIKRA_PRD.md) dan [checklist aktif](../../../IMPLEMENTATION_PLAN.md).
 
+Pembaruan sesudah audit ini: [A02 menetapkan cakupan](../../../RELEASE_SCOPE.md), [A03 menyimpan WIP audio terpisah](../baseline-a03-2026-10-24/README.md), dan [A04/1.6.3 memperbaiki integrasi zona/tanggal/bacaan serta membuktikan buka ulang proses](../integration-a04-2026-10-24/README.md). Tabel di bawah tetap snapshot A01; jangan menjadikan gap kalender WIB atau status A02/A03/A04 yang historis sebagai status terbaru.
+
 Audit ini membaca source, manifest, model penyimpanan, rute antarmenu dan laporan pemeriksaan terdahulu. Tidak menjalankan ulang APK/emulator atau menguji HP. Bukti historis tetap terbatas pada versi, perangkat dan skenario laporan masing-masing. Screenshot konsep bukan bukti implementasi. Tidak ada fitur yang disertifikasi **teruji rilis** oleh audit ini.
 
 ## Arti status

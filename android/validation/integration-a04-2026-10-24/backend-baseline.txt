@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: requires server credentials
+ok 1 - requires server credentials
+  ---
+  duration_ms: 1.1261
+  type: 'test'
+  ...
+# Subtest: rejects system injection roles and oversized histories
+ok 2 - rejects system injection roles and oversized histories
+  ---
+  duration_ms: 0.2958
+  type: 'test'
+  ...
+# Subtest: injects server system prompt, fixes model and keeps API key server-side
+ok 3 - injects server system prompt, fixes model and keeps API key server-side
+  ---
+  duration_ms: 51.5773
+  type: 'test'
+  ...
+# Subtest: unauthorized requests never reach provider
+ok 4 - unauthorized requests never reach provider
+  ---
+  duration_ms: 10.1149
+  type: 'test'
+  ...
+# Subtest: invalid inputs never reach provider
+ok 5 - invalid inputs never reach provider
+  ---
+  duration_ms: 7.4837
+  type: 'test'
+  ...
+# Subtest: provider error body is not leaked
+ok 6 - provider error body is not leaked
+  ---
+  duration_ms: 5.2963
+  type: 'test'
+  ...
+# Subtest: empty and oversized provider content is rejected
+ok 7 - empty and oversized provider content is rejected
+  ---
+  duration_ms: 5.7085
+  type: 'test'
+  ...
+# Subtest: bounded provider response prevents memory growth
+ok 8 - bounded provider response prevents memory growth
+  ---
+  duration_ms: 6.5715
+  type: 'test'
+  ...
+# Subtest: rate limit prevents unlimited upstream requests
+ok 9 - rate limit prevents unlimited upstream requests
+  ---
+  duration_ms: 17.9896
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 242.8904
