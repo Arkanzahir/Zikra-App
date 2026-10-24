@@ -1,6 +1,7 @@
 import http from 'node:http';
 import { timingSafeEqual } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
+import { ConfigError, readConfig, validateCredentials } from './config.mjs';
 
 const SYSTEM = 'Kamu Pendamping Zikra. Jawab dalam bahasa Indonesia yang singkat dan membantu. '
   + 'Bantu rencana belajar, rutinitas, dan hafalan. Jangan mengklaim telah mengubah tugas atau timer. '
@@ -29,26 +30,35 @@ export function validateMessages(value) {
   return messages.at(-1).role === 'user' ? messages : null;
 }
 
+class InputError extends Error {
+  constructor(message, status) { super(message); this.status = status; }
+}
+
 async function boundedJson(stream, limit) {
   let count = 0;
   const chunks = [];
-  for await (const chunk of stream) {
+  // Keep the request socket alive long enough to return a controlled 413.
+  const source = stream.iterator ? stream.iterator({ destroyOnReturn: false }) : stream;
+  for await (const chunk of source) {
     count += chunk.length;
-    if (count > limit) { const error = new Error('too_large'); error.status = 413; throw error; }
+    if (count > limit) {
+      throw new InputError('too_large', 413);
+    }
     chunks.push(chunk);
   }
   try { return JSON.parse(Buffer.concat(chunks).toString('utf8')); }
-  catch { const error = new Error('invalid_json'); error.status = 400; throw error; }
+  catch { throw new InputError('invalid_json', 400); }
 }
 
-export function createGateway({ apiKey, model, clientToken, fetchImpl = fetch, now = Date.now }) {
-  if (!apiKey || !model || !clientToken || clientToken.length < 32)
-    throw new Error('Configure FEATHERLESS_API_KEY, FEATHERLESS_MODEL and a 32+ character ZIKRA_CLIENT_TOKEN.');
+export function createGateway({ apiKey, model, clientToken, fetchImpl = fetch, now = Date.now,
+  providerTimeoutMs = 35000 }) {
+  validateCredentials({ apiKey, model, clientToken });
   const counters = new Map();
   let active = 0;
   const server = http.createServer(async (req, res) => {
     const reply = (status, value) => {
       if (res.destroyed || res.writableEnded) return;
+      if (!req.complete) res.setHeader('Connection', 'close');
       res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8',
         'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' });
       res.end(JSON.stringify(value));
@@ -72,12 +82,17 @@ export function createGateway({ apiKey, model, clientToken, fetchImpl = fetch, n
     }
     active++;
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 35000);
+    const timeout = setTimeout(() => controller.abort(), providerTimeoutMs);
     const closed = () => { if (!res.writableEnded) controller.abort(); };
     res.on('close', closed);
     try {
-      const body = await boundedJson(req, BODY_LIMIT);
-      const messages = validateMessages(body.messages);
+      let body;
+      try { body = await boundedJson(req, BODY_LIMIT); }
+      catch (error) {
+        if (error instanceof InputError) return reply(error.status, { error: error.message });
+        throw error;
+      }
+      const messages = validateMessages(body?.messages);
       if (!messages) return reply(400, { error: 'invalid_messages' });
       const upstream = await fetchImpl('https://api.featherless.ai/v1/chat/completions', {
         method: 'POST', signal: controller.signal, redirect: 'error',
@@ -91,14 +106,18 @@ export function createGateway({ apiKey, model, clientToken, fetchImpl = fetch, n
         return reply(upstream.status === 429 ? 429 : 502,
           { error: upstream.status === 429 ? 'provider_busy' : 'provider_unavailable' });
       }
-      const data = await boundedJson(upstream.body, 128 * 1024);
+      let data;
+      try { data = await boundedJson(upstream.body, 128 * 1024); }
+      catch (error) {
+        if (controller.signal.aborted) throw error;
+        return reply(502, { error: 'invalid_provider_response' });
+      }
       const content = data?.choices?.[0]?.message?.content;
       if (typeof content !== 'string' || !content.trim() || content.length > 8000)
         return reply(502, { error: 'invalid_provider_response' });
       reply(200, { reply: content.trim(), provider: 'featherless' });
     } catch (error) {
-      reply(error.status || (controller.signal.aborted ? 504 : 502),
-        { error: error.status ? error.message : 'provider_unavailable' });
+      reply(controller.signal.aborted ? 504 : 502, { error: 'provider_unavailable' });
     } finally {
       clearTimeout(timeout); res.off('close', closed); active--;
     }
@@ -106,13 +125,37 @@ export function createGateway({ apiKey, model, clientToken, fetchImpl = fetch, n
   server.requestTimeout = 15000;
   server.headersTimeout = 10000;
   server.maxConnections = 16;
+  server.maxHeadersCount = 64;
   return server;
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const server = createGateway({ apiKey: process.env.FEATHERLESS_API_KEY,
-    model: process.env.FEATHERLESS_MODEL, clientToken: process.env.ZIKRA_CLIENT_TOKEN });
-  server.listen(Number(process.env.PORT || 8787), process.env.HOST || '127.0.0.1', () => {
-    console.log('Zikra assistant gateway ready. No conversation logging.');
-  });
+  try {
+    const config = readConfig();
+    if (process.argv.includes('--check-config')) {
+      console.log('Configuration valid. Private gateway only; model access and key rotation not verified.');
+    } else {
+      const server = createGateway(config);
+      server.on('error', () => {
+        console.error('Gateway could not listen. Check the private bind configuration.');
+        process.exitCode = 1;
+      });
+      let stopping = false;
+      const stop = () => {
+        if (stopping) return;
+        stopping = true;
+        const deadline = setTimeout(() => server.closeAllConnections(), 40000);
+        deadline.unref();
+        server.close(() => { clearTimeout(deadline); });
+      };
+      process.on('SIGTERM', stop);
+      process.on('SIGINT', stop);
+      server.listen(config.port, config.host, () => {
+        console.log('Zikra private assistant gateway ready. No conversation logging.');
+      });
+    }
+  } catch (error) {
+    console.error(error instanceof ConfigError ? error.message : 'Gateway startup failed.');
+    process.exitCode = 1;
+  }
 }

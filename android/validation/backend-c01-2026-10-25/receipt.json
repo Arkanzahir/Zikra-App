@@ -1,0 +1,46 @@
+{
+  "dateWib": "2026-10-25",
+  "baselineSourceCommit": "83312da",
+  "scope": "C01 local preparation, not production release",
+  "c01Complete": false,
+  "keyRotationVerified": false,
+  "operatorConfirmedNotRotated": true,
+  "tests": {
+    "total": 20,
+    "passed": 20,
+    "failed": 0,
+    "skipped": 0
+  },
+  "runtime": "v22.17.0",
+  "liveProvider": {
+    "syntheticRequests": 1,
+    "gatewayStatus": 200,
+    "replyValid": true,
+    "privateLoopbackOnly": true
+  },
+  "android": {
+    "changed": false,
+    "version": "1.7.6 beta",
+    "versionCode": 24,
+    "initialDownloadBytes": 31319928,
+    "under100000000Bytes": true
+  },
+  "limitations": [
+    "key rotation outstanding",
+    "no permanent hosting/domain/HTTPS",
+    "shared token remains private only",
+    "no APK-to-hosting or physical phone test",
+    "systemd template and Unix drain not exercised on Windows"
+  ],
+  "sha256": {
+    "backend/config.mjs": "b380eda0642c123a57803083ed3fb9db32a7dc58bbfd483fc8329d8c15cb789b",
+    "backend/server.mjs": "5ae3febeee79cbae2020786539567ac82d2674ca21ced4196d5fa0b7882491a9",
+    "backend/check-private.mjs": "a005968c597ba5ab2890a0f6ae07c086f1d99382f4756058a213a0afd5262d73",
+    "backend/config.test.mjs": "4187ec9d894bd609264269447fe439220d8b0d1961c9a327d302984b087a4a6e",
+    "backend/server.test.mjs": "eca2e07f198e92c7fe39bf48f4a88d3b240a3c195b6f8bbe8ea6573957212347",
+    "backend/package.json": "8772aa095aa29eb81230f4dcd5548187c55f66ac2c3defbff340bf7cebc63652",
+    "backend/.env.example": "ef9db4e19991bb72fa7555ff64da8d58958efa0b4ae85d13503a5a89734e6139",
+    "backend/deploy/zikra-private.service": "3bb105759a469a63e7c940c4868615237f4defffb86e02a817fbcec9a6418a43",
+    "backend/README.md": "ea8818507ac4ed19f18f253f400dbf39f7eea5a9d35fc72f60b706b29f376347"
+  }
+}

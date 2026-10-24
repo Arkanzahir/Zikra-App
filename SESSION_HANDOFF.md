@@ -46,15 +46,33 @@ File utama B04: `DuaReview.java`, `DuaSourceSnapshots.java`, `DuaCatalog.java` d
 - Jangan mengirim email duplikat atau menunggu secara aktif tanpa pekerjaan. Modul independen bisa lanjut. Jangan memasukkan identitas Gmail pengguna, ID thread atau receipt privat ke Git.
 - Bukti: [audit sumber](android/validation/hadith-source-2026-10-24/README.md), [review sumber](android/validation/source-review-b-2026-10-24/README.md), [riwayat klarifikasi terkirim](android/validation/b-final-review-2026-10-24/README.md). Bagian awal laporan lama bersifat historis; B04 terbaru ada pada laporan penyelesaiannya.
 
-## Satu pekerjaan selanjutnya: C01
+## Pekerjaan aktif: C01 — persiapan lokal selesai, menunggu rotasi key
 
-**Audit dan siapkan konfigurasi backend produksi yang sudah ada**, sambil B01 menunggu dependensi. Belum dikerjakan oleh checkpoint handoff ini.
+**Checkpoint 25 Oktober:** [audit dan bukti](android/validation/backend-c01-2026-10-25/README.md).
+Gateway yang sudah ada dipertahankan; `config.mjs` menambah validasi env, CLI
+`--check-config` tidak mencetak nilai, error body client/provider dibedakan dan
+shutdown/runbook/template systemd disiapkan. **20 tes lulus, 0 gagal/skip**.
 
-1. Baca `backend/server.mjs`, `backend/server.test.mjs`, `backend/README.md`, `backend/package.json`, serta kriteria C01. Gateway sudah tersedia; jangan membangunnya ulang.
-2. Tinjau konfigurasi privat, validasi env, pemilihan model yang tersedia, health check dan cara menjalankan ulang. Jalankan tes backend terarah; gunakan skill keamanan untuk review JavaScript yang relevan.
-3. Rekonsiliasi status lama README backend: tes simulasi tersedia; catatan lokal menyatakan gateway → Featherless pernah berhasil 22 Oktober. Itu **bukan** bukti APK → hosting permanen → provider. Jangan menyalin konfigurasi privat ke laporan.
-4. Kunci yang pernah dibagikan harus dirotasi sebelum hosting publik; jangan klaim sudah dirotasi tanpa bukti. Kunci provider hanya server. Shared gateway token pribadi bukan autentikasi produksi.
-5. Hosting/domain belum dipilih. Persiapan dapat dilanjutkan; deployment dan identitas/akses produksi adalah **C02**, memerlukan pilihan layanan nyata. Jangan mencentang C01 jika kriterianya masih belum terpenuhi; dokumentasikan dependensi.
+1. Dua start proses CLI privat pada port loopback yang sama berhasil: health 200,
+   akses tanpa token 401, satu completion sintetis gateway → Featherless 200.
+   Pemeriksaan ulang source final tanpa request provider juga lulus. Proses uji
+   ditutup; Windows termination bukan bukti drain Linux/systemd/hosting nyata.
+2. **Pengguna mengonfirmasi key belum dirotasi pada 25 Oktober. C01 tetap [ ].**
+   Tersisa rotasi di dashboard oleh pemilik, pembaruan `.local/featherless.env`,
+   pencabutan key lama dan satu completion sintetis ulang. Jangan kirim key ke
+   chat/Git/log, jangan klaim rotasi hanya karena completion berhasil.
+3. Lanjutkan dari bukti ini, jangan mengulang gateway dari nol. Setelah rotasi,
+   jalankan `node --env-file=.local/featherless.env backend/server.mjs --check-config`
+   dan `node --env-file=.local/featherless.env backend/check-private.mjs --live`;
+   simpan hasil aman dan konfirmasi operator, lalu nilai penutupan C01.
+4. Hosting/domain belum dipilih; **C02 belum dikerjakan**. Template systemd belum
+   dipasang/diuji di Linux; shared gateway token tetap privat, bukan autentikasi
+   publik. Identitas instalasi, kuota, HTTPS permanen, laptop mati dan APK/HP
+   tetap C02/C03/C05. B01 dan gerbang rilis publik tetap terbuka.
+5. Pemindaian key/token saat ini: tidak ditemukan pada file tracked working tree
+   + file C01 baru atau 399 entry APK terdekompresi. Bukan sertifikasi semua
+   secret/riwayat. Hash WIP/env/arsip audio dan stash cocok baseline; source Android,
+   desain dan data pengguna tidak disentuh. APK tetap 1.7.6 beta 31.319.928 byte.
 
 Backend memakai Node 22+, tanpa dependensi npm tambahan; endpoint `/v1/assistant` dan `/health`. Mode offline Android default, online opt-in mengirim pesan yang dipilih. Jangan otomatis mengirim profil, lokasi, tugas atau berkas perangkat. HTTPS wajib, jangan bypass TLS atau redirect kredensial lintas host.
 
@@ -69,4 +87,6 @@ Backend memakai Node 22+, tanpa dependensi npm tambahan; endpoint `/v1/assistant
 - Build hemat RAM, tes sesuai perubahan; tutup emulator setelah dipakai. Dokumen saja tidak memerlukan build/emulator. Petunjuk: `android/BUILDING.md`.
 - Lingkungan lokal: JDK `C:\Users\Lenovo\.jdks\jbr-17.0.14`, SDK `E:\AndroidSDK`, Gradle cache `E:\.gradle`. Gunakan `git -c safe.directory=D:/Download/Zikra-App-main/Zikra-App-main` bila diperlukan.
 
-Handoff ini hanya memperbarui dokumen. Tidak mengubah APK, memulai C01, memeriksa email ulang atau menyatakan B01 selesai.
+Handoff awal `83312da` hanya dokumentasi; checkpoint C01 berikutnya mencakup kode
+backend dan bukti di atas. Tidak mengubah APK, memeriksa email ulang, mencentang
+C01 sebelum rotasi atau menyatakan B01/rilis publik selesai.

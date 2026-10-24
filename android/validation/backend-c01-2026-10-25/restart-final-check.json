@@ -1,0 +1,27 @@
+{
+  "runtime": "v22.17.0",
+  "scope": "private-loopback-not-production",
+  "configValid": true,
+  "starts": [
+    {
+      "healthStatus": 200,
+      "healthMinimal": true,
+      "unauthorizedStatus": 401,
+      "processStopped": true,
+      "logsContainSecret": false,
+      "stopMode": "windows-process-termination"
+    },
+    {
+      "healthStatus": 200,
+      "healthMinimal": true,
+      "unauthorizedStatus": 401,
+      "processStopped": true,
+      "logsContainSecret": false,
+      "stopMode": "windows-process-termination"
+    }
+  ],
+  "liveRequested": false,
+  "keyRotationVerified": false,
+  "publicHostingVerified": false,
+  "passed": true
+}

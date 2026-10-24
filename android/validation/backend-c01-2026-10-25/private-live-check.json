@@ -1,0 +1,32 @@
+{
+  "checkedDateWib": "2026-10-25",
+  "runtime": "v22.17.0",
+  "scope": "private-loopback-not-production",
+  "command": "node --env-file=.local/featherless.env backend/check-private.mjs --live",
+  "configValid": true,
+  "starts": [
+    {
+      "healthStatus": 200,
+      "healthMinimal": true,
+      "unauthorizedStatus": 401,
+      "processStopped": true,
+      "logsContainSecret": false,
+      "stopMode": "windows-process-termination"
+    },
+    {
+      "healthStatus": 200,
+      "healthMinimal": true,
+      "unauthorizedStatus": 401,
+      "processStopped": true,
+      "logsContainSecret": false,
+      "stopMode": "windows-process-termination"
+    }
+  ],
+  "liveRequested": true,
+  "keyRotationVerified": false,
+  "publicHostingVerified": false,
+  "liveGatewayStatus": 200,
+  "liveReplyValid": true,
+  "passed": true,
+  "operatorRotationConfirmation": "User confirmed not yet rotated on 2026-10-25; C01 remains unchecked."
+}
