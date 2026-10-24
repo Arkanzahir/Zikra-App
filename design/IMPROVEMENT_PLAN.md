@@ -1,3 +1,5 @@
+> **Arsip rencana 20 Oktober.** Checklist aktif menuju rilis publik sekarang ada di [IMPLEMENTATION_PLAN.md](../IMPLEMENTATION_PLAN.md). Status pada dokumen ini bersifat historis; gunakan rencana aktif dan bukti terbaru saat melanjutkan pekerjaan.
+
 # Rencana implementasi Zikra — 20 Oktober 2026 (WIB)
 
 Rencana ini tersimpan di repository. Status berasal dari source dan bukti Android,
