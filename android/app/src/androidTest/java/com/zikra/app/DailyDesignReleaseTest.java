@@ -130,6 +130,12 @@ public final class DailyDesignReleaseTest extends InstrumentationTestCase {
     capture("DailyDuaOverview");
     LinearLayout list = page.findViewById(R.id.duaContainer);
     View first = list.getChildAt(0);
+    getInstrumentation()
+        .runOnMainSync(
+            () ->
+                ((ScrollView) page.findViewById(R.id.duaScroll))
+                    .scrollTo(0, ((View) page.findViewById(R.id.duaCount).getParent()).getTop()));
+    capture("DailyDuaList");
     getInstrumentation().runOnMainSync(() -> first.findViewById(R.id.duaExpand).performClick());
     assertEquals(View.VISIBLE, first.findViewById(R.id.duaContent).getVisibility());
     assertTrue(

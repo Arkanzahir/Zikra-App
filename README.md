@@ -1,5 +1,7 @@
 > **Arah pengerjaan aktif:** [Implementation plan dan checklist rilis](IMPLEMENTATION_PLAN.md). Selesaikan satu ID, penuhi syarat selesai, lalu centang dan simpan bukti sebelum berpindah.
 
+> **Daftar Doa 1.6.2 — 24 Oktober 2026:** daftar terpadu dengan kategori/rujukan, ikon sesuai isi dan bacaan aktif berwarna. UI01 selesai; [screenshot native dan hasil pemeriksaan](android/validation/dua-list-2026-10-24/README.md). Data Doa/Hadis belum diperluas; [rencana penyimpanan konten](design/CONTENT_DELIVERY_PLAN.md) masih usulan.
+
 > **Latar Profil 1.6.1 — 24 Oktober 2026:** buku, lampu dan meja berwarna menggantikan garis latar yang terlalu samar. [Screenshot native dan pemeriksaan terarah](android/validation/profile-background-2026-10-24/README.md).
 
 > **Halaman harian 1.6.0 — 24 Oktober 2026:** onboarding tiga ilustrasi, sampul koleksi dan halaman baca Hadis, Doa Harian berilustrasi, serta Profil berlatar halus dengan nama yang bisa diubah dan progres asli. [Screenshot native, empat tes Android dan batas](android/validation/daily-native-2026-10-24/README.md). Hadis tetap tujuh kutipan lokal; belum kitab lengkap atau API Hadis.

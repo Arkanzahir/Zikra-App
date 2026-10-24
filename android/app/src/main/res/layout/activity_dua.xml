@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/duaRoot" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/daily_paper">
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
         <com.zikra.app.ui.FeatureHeader android:id="@+id/utilitiesHeader" android:layout_width="match_parent" android:layout_height="wrap_content" />
-        <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:clipToPadding="false" android:paddingHorizontal="20dp" android:paddingBottom="112dp" android:scrollbars="none">
+        <ScrollView android:id="@+id/duaScroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:clipToPadding="false" android:paddingHorizontal="20dp" android:paddingBottom="112dp" android:scrollbars="none">
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
                 <FrameLayout android:layout_width="match_parent" android:layout_height="168dp" android:background="@drawable/daily_pine_card" android:clipToOutline="true" android:layout_marginBottom="12dp">
                     <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/daily_window" android:scaleType="centerCrop" android:importantForAccessibility="no" />
@@ -19,13 +19,15 @@
                     <LinearLayout android:id="@+id/duaCategories" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="match_parent" android:gravity="center_vertical" />
                 </HorizontalScrollView>
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:layout_marginBottom="14dp">
-                    <TextView style="@style/ReadingTitle" android:layout_width="0dp" android:layout_weight="1" android:text="Pilihan doa · offline" android:textSize="15sp" />
-                    <TextView android:id="@+id/duaCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#52665F" android:textSize="14sp" />
+                    <TextView style="@style/DailyHeading" android:layout_width="0dp" android:layout_weight="1" android:text="@string/dua_collection_title" android:textSize="18sp" />
+                    <TextView android:id="@+id/duaCount" style="@style/DailyCaption" android:layout_width="wrap_content" android:paddingHorizontal="10dp" android:paddingVertical="5dp" android:background="@drawable/daily_mint_card" android:textSize="11sp" />
                 </LinearLayout>
-                <LinearLayout android:id="@+id/duaContainer" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+                <LinearLayout android:id="@+id/duaContainer" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/daily_white_card" android:clipToOutline="true" />
                 <TextView android:id="@+id/duaEmpty" style="@style/ReadingBody" android:text="Belum ada doa yang sesuai. Coba kategori atau kata lainnya." android:paddingVertical="24dp" android:visibility="gone" />
+                <LinearLayout android:id="@+id/duaVoicePanel" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
                 <TextView style="@style/ReadingBody" android:id="@+id/duaVoiceStatus" android:text="Menyiapkan suara bahasa Arab…" android:textSize="14sp" android:layout_marginTop="10dp" android:layout_marginBottom="12dp" android:accessibilityLiveRegion="polite" />
                 <Button android:id="@+id/duaInstallVoice" style="@style/ReadingButton" android:text="Pasang suara bahasa Arab" android:visibility="gone" android:layout_marginBottom="16dp" android:background="@drawable/reading_mint_card" android:textColor="@color/pine" android:layout_height="wrap_content" android:minHeight="48dp" android:paddingVertical="12dp" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

@@ -52,12 +52,6 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
   };
   private static final String[] CATEGORY_NAMES = {"Semua", "Harian", "Belajar", "Perlindungan"};
   private static final int[] DUA_CATEGORIES = {2, 1, 1, 3};
-  private static final String[] SUBTITLES = {
-    "Memohon ilmu yang bermanfaat",
-    "Mensyukuri hujan yang membawa rahmat",
-    "Memohon kebaikan dunia dan akhirat",
-    "Penguat hati ketika menghadapi ujian"
-  };
   private TextToSpeech tts;
   private TextView voiceStatus;
   private Button installVoice;
@@ -105,19 +99,23 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
       selectedCategory = state.getInt("dua_category", 0);
       expandedIndex = state.getInt("dua_expanded", -1);
     }
+    String[] rowCategories = getResources().getStringArray(R.array.dua_row_categories);
+    String[] rowReferences = getResources().getStringArray(R.array.dua_row_references);
+    int[] rowIcons = {
+      R.drawable.ic_book, R.drawable.dua_ic_rain, R.drawable.home_ic_dua, R.drawable.ic_shield
+    };
     for (int i = 0; i < DUAS.length; i++) {
       final int index = i;
       View card = getLayoutInflater().inflate(R.layout.reading_item_dua, container, false);
       ((TextView) card.findViewById(R.id.duaTitle)).setText(DUAS[i][0]);
-      ((TextView) card.findViewById(R.id.duaSubtitle)).setText(SUBTITLES[i]);
+      ((TextView) card.findViewById(R.id.duaRowCategory)).setText(rowCategories[i]);
+      ((TextView) card.findViewById(R.id.duaSubtitle)).setText(rowReferences[i]);
       ((TextView) card.findViewById(R.id.duaArabic)).setText(DUAS[i][1]);
       ((TextView) card.findViewById(R.id.duaTranslation)).setText(DUAS[i][2]);
       ((TextView) card.findViewById(R.id.duaSource)).setText(DUAS[i][3]);
       listenButtons[i] = card.findViewById(R.id.duaListen);
       listenButtons[i].setOnClickListener(view -> playDua(index));
-      ((ImageView) card.findViewById(R.id.duaRowIcon))
-          .setImageResource(
-              i == 0 ? R.drawable.ic_book : i == 3 ? R.drawable.ic_shield : R.drawable.ic_heart);
+      ((ImageView) card.findViewById(R.id.duaRowIcon)).setImageResource(rowIcons[i]);
       card.findViewById(R.id.duaExpand)
           .setOnClickListener(
               view -> {
@@ -188,12 +186,22 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
   private void updateExpandedCards() {
     for (int i = 0; i < duaCards.length; i++) {
       boolean expanded = i == expandedIndex;
+      duaCards[i].setActivated(expanded);
       duaCards[i].findViewById(R.id.duaContent).setVisibility(expanded ? View.VISIBLE : View.GONE);
       duaCards[i].findViewById(R.id.duaChevron).setRotation(expanded ? 270 : 180);
       duaCards[i]
           .findViewById(R.id.duaExpand)
           .setContentDescription(DUAS[i][0] + (expanded ? ", tutup doa" : ", buka doa dan arti"));
     }
+    updateVoicePanel();
+  }
+
+  private void updateVoicePanel() {
+    boolean open =
+        expandedIndex >= 0
+            && expandedIndex < duaCards.length
+            && duaCards[expandedIndex].getVisibility() == View.VISIBLE;
+    findViewById(R.id.duaVoicePanel).setVisibility(open ? View.VISIBLE : View.GONE);
   }
 
   private void filterDuas() {
@@ -204,6 +212,7 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
             .trim()
             .toLowerCase(Locale.ROOT);
     int visibleCount = 0;
+    View lastVisible = null;
     for (int i = 0; i < DUAS.length; i++) {
       boolean matches = selectedCategory == 0 || selectedCategory == DUA_CATEGORIES[i];
       matches &=
@@ -211,14 +220,20 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
               .toLowerCase(Locale.ROOT)
               .contains(query);
       duaCards[i].setVisibility(matches ? View.VISIBLE : View.GONE);
-      if (matches) visibleCount++;
-      else if (speakingIndex == i) {
+      duaCards[i].findViewById(R.id.duaRowDivider).setVisibility(View.VISIBLE);
+      if (matches) {
+        visibleCount++;
+        lastVisible = duaCards[i];
+      } else if (speakingIndex == i) {
         if (tts != null) tts.stop();
         resetPlayback();
       }
     }
-    ((TextView) findViewById(R.id.duaCount)).setText(visibleCount + " doa");
+    if (lastVisible != null) lastVisible.findViewById(R.id.duaRowDivider).setVisibility(View.GONE);
+    ((TextView) findViewById(R.id.duaCount))
+        .setText(getString(R.string.dua_collection_count, visibleCount));
     findViewById(R.id.duaEmpty).setVisibility(visibleCount == 0 ? View.VISIBLE : View.GONE);
+    updateVoicePanel();
     for (int i = 0; i < categoryChips.length; i++) {
       boolean selected = i == selectedCategory;
       GradientDrawable background = new GradientDrawable();

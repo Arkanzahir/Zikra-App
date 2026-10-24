@@ -1,18 +1,66 @@
 <?xml version='1.0' encoding='utf-8'?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12dp" android:orientation="vertical" android:background="@drawable/reading_white_card">
-    <LinearLayout android:id="@+id/duaExpand" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:foreground="?android:attr/selectableItemBackground" android:clickable="true" android:focusable="true" android:minHeight="72dp" android:paddingVertical="16dp">
-        <ImageView android:id="@+id/duaRowIcon" android:layout_width="38dp" android:layout_height="38dp" android:padding="10dp" android:background="@drawable/reading_number" android:src="@drawable/ic_heart" android:tint="#638A72" android:importantForAccessibility="no" />
-        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="13dp" android:orientation="vertical">
-            <TextView android:id="@+id/duaTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/pine" android:textSize="13sp" android:textStyle="bold" />
-            <TextView android:id="@+id/duaSubtitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#52665F" android:textSize="13sp" android:layout_marginTop="5dp" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dua_entry_background">
+    <LinearLayout android:id="@+id/duaExpand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="14dp"
+        android:minHeight="88dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+        <ImageView android:id="@+id/duaRowIcon"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_book"
+            android:tint="@color/daily_ink"
+            android:importantForAccessibility="no" />
+        <LinearLayout android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical">
+            <TextView android:id="@+id/duaRowCategory"
+                style="@style/DailyCaption"
+                android:textColor="@color/dua_bronze"
+                android:textSize="9sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.09" />
+            <TextView android:id="@+id/duaTitle"
+                style="@style/DailyHeading"
+                android:textSize="15sp"
+                android:layout_marginTop="4dp" />
+            <TextView android:id="@+id/duaSubtitle"
+                style="@style/DailyCaption"
+                android:textSize="11sp"
+                android:layout_marginTop="4dp" />
         </LinearLayout>
-        <ImageView android:id="@+id/duaChevron" android:layout_width="15dp" android:layout_height="15dp" android:src="@drawable/ic_back" android:tint="#92A19A" android:rotation="180" android:importantForAccessibility="no" />
+        <ImageView android:id="@+id/duaChevron"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/daily_ink"
+            android:rotation="180"
+            android:importantForAccessibility="no" />
     </LinearLayout>
     <LinearLayout android:id="@+id/duaContent" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="20dp" android:paddingBottom="20dp" android:visibility="gone">
         <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EDF1EB" />
-        <TextView android:id="@+id/duaArabic" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginVertical="18dp" android:textDirection="rtl" android:gravity="end" android:textColor="@color/pine" android:textSize="29sp" android:lineSpacingExtra="12dp" />
+        <TextView android:id="@+id/duaArabic" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginVertical="18dp" android:textDirection="rtl" android:textAlignment="viewEnd" android:gravity="end" android:textColor="@color/pine" android:textSize="29sp" android:lineSpacingExtra="12dp" />
         <TextView style="@style/ReadingBody" android:id="@+id/duaTranslation" android:textSize="13sp" />
         <TextView style="@style/ReadingBody" android:id="@+id/duaSource" android:textColor="#745629" android:textSize="13sp" android:layout_marginTop="12dp" />
         <Button android:id="@+id/duaListen" style="@style/ReadingButton" android:layout_marginTop="18dp" android:text="Dengarkan doa" android:enabled="false" android:background="@drawable/reading_pine_card" android:textSize="13sp" android:layout_height="wrap_content" android:minHeight="48dp" android:paddingVertical="12dp" />
     </LinearLayout>
+    <View android:id="@+id/duaRowDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/daily_line" />
 </LinearLayout>

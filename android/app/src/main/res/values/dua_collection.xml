@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dua_bronze">#82683E</color>
+    <color name="dua_selected">#EEF2E8</color>
+    <string name="dua_collection_title">Doa pilihan</string>
+    <string name="dua_collection_count">%1$d doa</string>
+    <string-array name="dua_row_categories">
+        <item>BELAJAR</item>
+        <item>CUACA</item>
+        <item>KEBAIKAN</item>
+        <item>PERLINDUNGAN</item>
+    </string-array>
+    <string-array name="dua_row_references">
+        <item>Taha 20:114</item>
+        <item>HR. Bukhari 1032</item>
+        <item>Al-Baqarah 2:201</item>
+        <item>HR. Muslim 918</item>
+    </string-array>
+</resources>

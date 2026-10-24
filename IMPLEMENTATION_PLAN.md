@@ -1,10 +1,10 @@
 # Rencana implementasi Zikra menuju rilis publik
 
-Dibuat/diperbarui: **24 Oktober 2026 (WIB)**. Baseline: **1.6.1 / code 15**, commit fitur `7d45b57`.
+Dibuat/diperbarui: **24 Oktober 2026 (WIB)**. Baseline fitur terbaru: **1.6.2 / code 16** (UI01). Checkpoint sebelumnya: 1.6.1, commit `7d45b57`.
 
 Dokumen ini menjadi **checklist pengerjaan aktif**. [PRD](ZIKRA_PRD.md) tetap menjadi daftar kebutuhan produk; [rencana lama](design/IMPROVEMENT_PLAN.md) dan laporan validasi adalah riwayat. Jika kebutuhan lama berbeda dengan keputusan terbaru pengguna, catat keputusan beserta alasannya di sini.
 
-**Pekerjaan berikutnya: A01 — audit kesenjangan seluruh menu dan kebutuhan PRD.** Belum ada fitur baru yang dikerjakan dalam checkpoint penyusunan rencana ini.
+**Pekerjaan berikutnya: A01 — audit kesenjangan seluruh menu dan kebutuhan PRD.** UI01 selesai atas koreksi langsung pengguna; [bukti](android/validation/dua-list-2026-10-24/README.md). B01–B04 tetap belum selesai. [Usulan penyimpanan konten](design/CONTENT_DELIVERY_PLAN.md) sudah dicatat, belum diimplementasikan.
 
 ## Cara memakai checklist
 
@@ -83,6 +83,8 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 
 ## F — Satu bahasa desain, bukan hiasan tambahan
 
+- [x] **UI01 — Perbaiki daftar Doa yang terlalu membulat/generik.** Selesai 24 Oktober 2026, APK 1.6.2: satu daftar dengan divider, ikon sesuai isi, kategori/rujukan, warna bacaan terbuka dan Arab rata kanan. Build/lint serta tes buka/cari terarah lulus; [screenshot dan batas](android/validation/dua-list-2026-10-24/README.md). Dataset/API belum lengkap; F02/B01–B04 tetap terbuka.
+
 - [ ] **F01 — Bekukan panduan visual berdasarkan referensi yang diterima.** Catat font, ukuran/jarak, ikon, warna, radius dan keluarga ilustrasi per konteks; bedakan variasi fungsi yang disengaja dari gaya yang bertabrakan. Pertahankan logo dan referensi yang sudah disetujui. Hasil: dokumen acuan + daftar layar yang perlu diselaraskan.
 - [ ] **F02 — Selaraskan seluruh layar dan teks.** Periksa Home, Quran/reader/Mushaf, Study/fokus/break/Hifz, AI, Protector/peta, Hadis/reader, Doa, Profil, salat, Kiblat, lokasi/masjid, kalender dan pengaturan. Rapikan ruang kosong, kartu berulang, orb/dekorasi generik serta kalimat template. Gunakan isi nyata, bukan statistik contoh.
 - [ ] **F03 — Ukuran layar, teks besar dan aksesibilitas.** Kontrol tetap terjangkau, target sentuh memadai, Arab/Indonesia tidak terpotong, kontras dan label aksesibel. Periksa font besar, tema yang tersedia, keyboard, dialog, loading/kosong/gagal dan scroll. Simpan screenshot native pada ukuran yang diuji.
@@ -138,5 +140,6 @@ Fitur post-MVP yang memang tercantum terpisah di PRD—XP/badge, keuangan anak k
 | --- | --- | --- | --- |
 | 24 Okt 2026 | BASE01–BASE04 | Halaman harian diterapkan; data konten masih terbatas | 1.6.0 `4729730`, 1.6.1 `7d45b57`; tautan bukti di baseline |
 | 24 Okt 2026 | PLAN | Rencana aktif, urutan dependensi, syarat selesai dan jejak PRD disimpan | Dokumen ini; belum mencentang pekerjaan A–G |
+| 24 Okt 2026 | UI01 | Permintaan koreksi daftar Doa diprioritaskan; layout diperbaiki dan diperiksa. Distribusi konten dicatat sebagai usulan, bukan integrasi selesai. | APK 1.6.2; [bukti native](android/validation/dua-list-2026-10-24/README.md), [rencana konten](design/CONTENT_DELIVERY_PLAN.md) |
 
 Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | tautan laporan/screenshot/tes + commit fitur`. Keputusan menunda/mengubah cakupan juga dicatat di tabel ini.
