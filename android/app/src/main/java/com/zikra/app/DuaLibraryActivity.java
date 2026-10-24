@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TreeSet;
 
-/** The extra catalogue is optional; the four quick prayers remain available without downloading. */
+/** The extra catalogue is optional; the bundled selected prayers remain available without downloading. */
 public final class DuaLibraryActivity extends BaseActivity {
   private DuaCatalogRepository repository;
   private DuaCatalog catalog;

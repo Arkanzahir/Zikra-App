@@ -1,0 +1,223 @@
+{
+  "schema": 1,
+  "revision": "2026-10-24.1",
+  "entries": [
+    {
+      "id": "daily:study",
+      "title": "Sebelum belajar",
+      "arabic": "رَبِّ زِدْنِي عِلْمًا",
+      "meaning": "Ya Tuhanku, tambahkanlah ilmu kepadaku.",
+      "reference": "Al-Quran · Taha 20:114",
+      "category": 2,
+      "sourceUrl": "https://quran.com/20/114",
+      "sourceName": "Pilihan bawaan Zikra; rujukan tercantum di atas.",
+      "note": "",
+      "kind": "quran",
+      "latin": "Rabbi zidni 'ilma."
+    },
+    {
+      "id": "daily:rain",
+      "title": "Ketika hujan turun",
+      "arabic": "اللَّهُمَّ صَيِّبًا نَافِعًا",
+      "meaning": "Ya Allah, jadikanlah hujan ini bermanfaat.",
+      "reference": "Sahih al-Bukhari · 1032",
+      "category": 8,
+      "sourceUrl": "https://sunnah.com/bukhari:1032",
+      "sourceName": "Pilihan bawaan Zikra; rujukan tercantum di atas.",
+      "note": "",
+      "kind": "hadith",
+      "latin": "Allahumma shayyiban nafi'an."
+    },
+    {
+      "id": "daily:goodness",
+      "title": "Kebaikan dunia dan akhirat",
+      "arabic": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+      "meaning": "Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat, serta lindungilah kami dari azab neraka.",
+      "reference": "Al-Quran · Al-Baqarah 2:201",
+      "category": 1,
+      "sourceUrl": "https://quran.com/2/201",
+      "sourceName": "Pilihan bawaan Zikra; rujukan tercantum di atas.",
+      "note": "",
+      "kind": "quran",
+      "latin": "Rabbana atina fid-dunya hasanatan wa fil-akhirati hasanatan wa qina 'adzaban-nar."
+    },
+    {
+      "id": "daily:calamity",
+      "title": "Saat tertimpa musibah",
+      "arabic": "إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ، اللَّهُمَّ أْجُرْنِي فِي مُصِيبَتِي وَأَخْلِفْ لِي خَيْرًا مِنْهَا",
+      "meaning": "Sesungguhnya kami milik Allah dan kepada-Nya kami kembali. Ya Allah, berilah pahala atas musibahku dan gantilah dengan yang lebih baik.",
+      "reference": "Sahih Muslim · 918 · doa umum saat musibah",
+      "category": 3,
+      "sourceUrl": "https://sunnah.com/muslim:918a",
+      "sourceName": "Pilihan bawaan Zikra; rujukan tercantum di atas.",
+      "note": "",
+      "kind": "hadith",
+      "latin": "Inna lillahi wa inna ilaihi raji'un. Allahumma'jurni fi mushibati wa akhlif li khairan minha."
+    },
+    {
+      "id": "daily:sleep",
+      "title": "Sebelum tidur",
+      "arabic": "بِاسْمِكَ رَبِّيْ وَضَعْتُ جَنْبِيْ، وَبِكَ أَرْفَعُهُ، إِنْ أَمْسَكْتَ نَفْسِيْ فَارْحَمْهَا، وَإِنْ أَرْسَلْتَهَا فَاحْفَظْهَا بِمَا تَحْفَظُ بِهِ عِبَادَكَ الصَّالِحِيْنَ",
+      "meaning": "Dengan nama Engkau, wahai Tuhanku, aku meletakkan lambungku. Dan dengan namaMu pula aku bangun daripadanya. Apabila Engkau menahan rohku (mati), maka berilah rahmat padanya. Tapi apabila Engkau melepaskannya, maka peliharalah, sebagaimana Engkau memelihara hamba-hambaMu yang shalih.",
+      "reference": "Sahih al-Bukhari · 6320",
+      "category": 5,
+      "sourceUrl": "https://sunnah.com/bukhari:6320",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/1",
+      "note": "",
+      "kind": "hadith",
+      "origin": {
+        "provider": "equran",
+        "number": 1,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "latin": "Bismika robbii wa dho'tu janbii, wa bika arfa'uhu, in amsakta nafsii farhamhaa, wa in arsaltahaa fahfazhhaa bimaa tahfazhu bihi 'ibaadakash-sholihiin."
+    },
+    {
+      "id": "daily:wake",
+      "title": "Bangun tidur",
+      "arabic": "اَلْحَمْدُ لِلَّهِ الَّذِيْ أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+      "meaning": "Segala puji bagi Allah, yang membangunkan kami setelah ditidurkanNya dan kepadaNya kami dibangkitkan.",
+      "reference": "Sahih al-Bukhari · 6312",
+      "category": 5,
+      "sourceUrl": "https://sunnah.com/bukhari:6312",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/6",
+      "note": "Harakat akhir an-nusyur diselaraskan dengan pembanding Bukhari 6312; raw sumber tetap pada koleksi tambahan.",
+      "kind": "hadith",
+      "origin": {
+        "provider": "equran",
+        "number": 6,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "latin": "Alhamdulillaahil-ladzii ahyaanaa ba'da maa amaatanaa wa ilaihin-nusyuur."
+    },
+    {
+      "id": "daily:before-meal",
+      "title": "Sebelum makan",
+      "arabic": "بِسْمِ اللَّهِ",
+      "meaning": "Dengan nama Allah.",
+      "reference": "Sahih al-Bukhari · 5376",
+      "category": 4,
+      "sourceUrl": "https://sunnah.com/bukhari:5376",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/135",
+      "note": "Bacaan singkat menyebut nama Allah sebelum makan, bukan kutipan seluruh matan hadis.",
+      "kind": "hadith",
+      "origin": {
+        "provider": "equran",
+        "number": 135,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "latin": "Bismillaah."
+    },
+    {
+      "id": "daily:after-meal",
+      "title": "Setelah makan",
+      "arabic": "اَلْحَمْدُ لِلَّهِ الَّذِيْ أَطْعَمَنِيْ هَـٰذَا وَرَزَقَنِيْهِ، مِنْ غَيْرِ حَوْلٍ مِنِّيْ وَلاَ قُوَّةٍ",
+      "meaning": "Segala puji bagi Allah yang telah memberiku makanan ini, dan memberi rezeki kepadaku, tanpa daya dan kekuatan dariku.",
+      "reference": "Jami at-Tirmidzi · 3458",
+      "category": 4,
+      "sourceUrl": "https://sunnah.com/tirmidhi:3458",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/139",
+      "note": "Nomor Tirmidzi mengikuti pembanding di atas; nomor Abu Dawud pada katalog EQuran tidak dianggap penomoran edisi yang sama.",
+      "kind": "hadith",
+      "origin": {
+        "provider": "equran",
+        "number": 139,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "latin": "Alhamdulillaahil-ladzii ath'amanii haadzaa wa rozaqoniihi, min ghoiri haulin minnii wa laa quwwah."
+    },
+    {
+      "id": "daily:leave-home",
+      "title": "Keluar rumah",
+      "arabic": "بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، لاَ حَوْلَ وَلاَ قُوَّةَ إِلاَّ بِاللَّهِ",
+      "meaning": "Dengan nama Allah, aku bertawakkal kepada Allah, tiada daya dan kekuatan kecuali dengan pertolongan Allah.",
+      "reference": "Sunan Abu Dawud · 5095",
+      "category": 6,
+      "sourceUrl": "https://sunnah.com/abudawud:5095",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/128",
+      "note": "",
+      "kind": "hadith",
+      "origin": {
+        "provider": "equran",
+        "number": 128,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "latin": "Bismillaah, tawakkaltu 'alallaah, laa haula wa laa quwwata illaa billaah."
+    },
+    {
+      "id": "daily:enter-home",
+      "title": "Masuk rumah",
+      "arabic": "بِسْمِ اللَّهِ",
+      "meaning": "Dengan nama Allah.",
+      "reference": "Sahih Muslim · 2018a",
+      "category": 6,
+      "sourceUrl": "https://sunnah.com/muslim:2018a",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/129",
+      "note": "Bacaan singkat menyebut nama Allah saat masuk rumah, bukan kutipan seluruh matan hadis.",
+      "kind": "hadith",
+      "origin": {
+        "provider": "equran",
+        "number": 129,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "latin": "Bismillaah."
+    },
+    {
+      "id": "daily:travel",
+      "title": "Ketika bepergian",
+      "arabic": "اَللَّهُ أَكْبَرُ، اَللَّهُ أَكْبَرُ، اَللَّهُ أَكْبَرُ، (سُبْحَانَ الَّذِيْ سَخَّرَ لَنَا هَـٰذَا وَمَا كُنَّا لَهُ مُقْرِنِيْنَ. وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُوْنَ) اَللَّهُمَّ إِنَّا نَسْأَلُكَ فِيْ سَفَرِنَا هَـٰذَا الْبِرَّ وَالتَّقْوَى، وَمِنَ الْعَمَلِ مَا تَرْضَى، اَللَّهُمَّ هَوِّنْ عَلَيْنَا سَفَرَنَا هَـٰذَا وَاطْوِ عَنَّا بُعْدَهُ، اَللَّهُمَّ أَنْتَ الصَّاحِبُ فِي السَّفَرِ وَالْخَلِيْفَةُ فِي اْلأَهْلِ، اَللَّهُمَّ إِنِّيْ أَعُوْذُ بِكَ مِنْ وَعْثَاءِ السَّفَرِ وَكَآبَةِ الْمَنْظَرِ وَسُوْءِ الْمُنْقَلَبِ فِي الْمَالِ وَاْلأَهْلِ",
+      "meaning": "Allah Maha Besar (3x). (Maha Suci Tuhan yang menundukkan kendaraan ini untuk kami, padahal kami sebelumnya tidak mampu menguasainya. Dan sesungguhnya kami akan kembali kepada Tuhan kami (di hari Kiamat)). Ya Allah, sesungguhnya kami memohon kebaikan dan taqwa dalam bepergian ini, kami mohon perbuatan yang meridhakanMu. Ya Allah, permudahlah perjalanan kami ini, dan dekatkan jaraknya bagi kami. Ya Allah, Engkaulah teman dalam bepergian dan yang mengurusi keluarga(ku). Ya Allah, sesungguhnya aku berlindung kepada-Mu dari kelelahan dalam bepergian, pemandangan yang menyedihkan dan kepulangan yang jelek dalam harta dan keluarga.",
+      "reference": "Sahih Muslim · 1342",
+      "category": 7,
+      "sourceUrl": "https://sunnah.com/muslim:1342",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/51",
+      "note": "Bacaan ketika berangkat; tambahan khusus ketika kembali tidak digabungkan ke dalam bacaan ini.",
+      "kind": "hadith",
+      "origin": {
+        "provider": "equran",
+        "number": 51,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "latin": "Allaahu akbar (3x), (subhaanal-ladzii sakh-khoro lanaa haadzaa wa maa kunnaa lahu muqriniin. Wa innaa ilaa robbinaa lamunqolibuun), allaahumma innaa nas-aluka fii safarinaa haadzal birro wat-taqwaa, wa minal 'amali maa tardhoo, allaahumma hawwin 'alainaa safaronaa haadzaa wathwi 'annaa bu'dah, allaahumma antash-shoohibu fis-safari wal kholiifatu fil ahli, allaahumma innii a'uudzu bika min wa'tsaa-is-safari wa ka-aabatil manzhori wa suu-il munqolabi fil maali wal ahli."
+    },
+    {
+      "id": "daily:morning",
+      "title": "Dzikir ketika pagi",
+      "arabic": "اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ",
+      "meaning": "Ya Allah, dengan pertolongan-Mu kami memasuki pagi dan sore, kami hidup dan mati. Kepada-Mu kami dibangkitkan.",
+      "reference": "As-Sunan al-Kubra an-Nasai · 10323",
+      "category": 9,
+      "sourceUrl": "https://hadeethenc.com/id/browse/hadith/5490",
+      "sourceName": "Lafal Arab: HadeethEnc 5490; arti ringkas Indonesia disusun untuk Zikra.",
+      "note": "Salah satu bacaan pagi, bukan seluruh rangkaian dzikir pagi. Lafal dipilih dari riwayat pada rujukan; terdapat variasi lafal pada riwayat lain.",
+      "kind": "hadith",
+      "latin": "Allahumma bika ashbahna, wa bika amsaina, wa bika nahya, wa bika namutu, wa ilaikan-nusyur."
+    },
+    {
+      "id": "daily:evening",
+      "title": "Dzikir ketika petang",
+      "arabic": "اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ",
+      "meaning": "Ya Allah, dengan pertolongan-Mu kami memasuki sore dan pagi, kami hidup dan mati. Kepada-Mu kami kembali.",
+      "reference": "As-Sunan al-Kubra an-Nasai · 10323",
+      "category": 9,
+      "sourceUrl": "https://hadeethenc.com/id/browse/hadith/5490",
+      "sourceName": "Lafal Arab: HadeethEnc 5490; arti ringkas Indonesia disusun untuk Zikra.",
+      "note": "Salah satu bacaan petang, bukan seluruh rangkaian dzikir petang. Menggunakan variasi penutup wa ilaikal-masir yang dijelaskan pada rujukan.",
+      "kind": "hadith",
+      "latin": "Allahumma bika amsaina, wa bika ashbahna, wa bika nahya, wa bika namutu, wa ilaikal-mashir."
+    },
+    {
+      "id": "daily:thunder",
+      "title": "Ketika mendengar guruh / petir",
+      "arabic": "سُبْحَانَ الَّذِي يُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ",
+      "meaning": "Mahasuci Dia yang guruh bertasbih memuji-Nya, dan para malaikat pun bertasbih karena takut kepada-Nya.",
+      "reference": "Al-Adab al-Mufrad · 723 · atsar Abdullah bin az-Zubair",
+      "category": 8,
+      "sourceUrl": "https://sunnah.com/adab:723",
+      "sourceName": "Bacaan atsar sahabat; arti ringkas Indonesia disusun untuk Zikra.",
+      "note": "Riwayat ini berupa ucapan Abdullah bin az-Zubair, bukan sabda Nabi. Bacaan dipakai ketika mendengar guruh.",
+      "kind": "athar",
+      "latin": "Subhanalladzi yusabbihur-ra'du bihamdihi wal-malaikatu min khifatih."
+    }
+  ]
+}

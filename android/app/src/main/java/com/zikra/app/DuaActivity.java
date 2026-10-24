@@ -17,41 +17,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.zikra.app.discovery.DuaSelection;
 import com.zikra.app.ui.FeatureHeader;
+import java.util.List;
 import java.util.Locale;
 
 public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitListener {
-  private static final String[][] DUAS = {
-    {
-      "Sebelum belajar",
-      "رَبِّ زِدْنِي عِلْمًا",
-      "Ya Tuhanku, tambahkanlah ilmu kepadaku.",
-      "Al-Quran · Taha 20:114"
-    },
-    {
-      "Ketika hujan turun",
-      "اللَّهُمَّ صَيِّبًا نَافِعًا",
-      "Ya Allah, jadikanlah hujan ini bermanfaat.",
-      "Sahih al-Bukhari · 1032"
-    },
-    {
-      "Kebaikan dunia dan akhirat",
-      "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
-      "Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat, serta lindungilah"
-          + " kami dari azab neraka.",
-      "Al-Quran · Al-Baqarah 2:201"
-    },
-    {
-      "Saat tertimpa musibah",
-      "إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ، اللَّهُمَّ أْجُرْنِي فِي مُصِيبَتِي وَأَخْلِفْ"
-          + " لِي خَيْرًا مِنْهَا",
-      "Sesungguhnya kami milik Allah dan kepada-Nya kami kembali. Ya Allah, berilah pahala atas"
-          + " musibahku dan gantilah dengan yang lebih baik.",
-      "Sahih Muslim · 918 · doa umum saat musibah"
-    }
-  };
-  private static final String[] CATEGORY_NAMES = {"Semua", "Harian", "Belajar", "Perlindungan"};
-  private static final int[] DUA_CATEGORIES = {2, 1, 1, 3};
+  private List<DuaSelection.Entry> duas;
+  private static final List<String> CATEGORY_NAMES = DuaSelection.CATEGORIES;
   private TextToSpeech tts;
   private TextView voiceStatus;
   private Button installVoice;
@@ -63,8 +36,8 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
   private int speakingIndex = -1;
   private String currentUtterance;
   private int utteranceSequence;
-  private final View[] duaCards = new View[DUAS.length];
-  private final TextView[] categoryChips = new TextView[CATEGORY_NAMES.length];
+  private View[] duaCards;
+  private final TextView[] categoryChips = new TextView[CATEGORY_NAMES.size()];
   private int selectedCategory;
   private int expandedIndex = -1;
 
@@ -72,6 +45,12 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
   protected void onCreate(Bundle state) {
     super.onCreate(state);
     setContentView(R.layout.activity_dua);
+    try {
+      duas = DuaSelection.read(getResources().openRawResource(R.raw.dua_selected));
+    } catch (java.io.IOException | org.json.JSONException invalidBundledSelection) {
+      throw new IllegalStateException("Invalid bundled prayer selection", invalidBundledSelection);
+    }
+    duaCards = new View[duas.size()];
     ((FeatureHeader) findViewById(R.id.utilitiesHeader))
         .bind(
             R.id.toolbarBack,
@@ -95,28 +74,32 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
     voiceStatus = findViewById(R.id.duaVoiceStatus);
     installVoice = findViewById(R.id.duaInstallVoice);
     LinearLayout container = findViewById(R.id.duaContainer);
-    listenButtons = new Button[DUAS.length];
+    listenButtons = new Button[duas.size()];
     if (state != null) {
       selectedCategory = state.getInt("dua_category", 0);
       expandedIndex = state.getInt("dua_expanded", -1);
+      String expandedId = state.getString("dua_expanded_id");
+      if (expandedId != null) {
+        expandedIndex = -1;
+        for (int i = 0; i < duas.size(); i++) if (expandedId.equals(duas.get(i).id)) expandedIndex = i;
+      }
     }
-    String[] rowCategories = getResources().getStringArray(R.array.dua_row_categories);
-    String[] rowReferences = getResources().getStringArray(R.array.dua_row_references);
-    int[] rowIcons = {
-      R.drawable.ic_book, R.drawable.dua_ic_rain, R.drawable.home_ic_dua, R.drawable.ic_shield
-    };
-    for (int i = 0; i < DUAS.length; i++) {
+    selectedCategory = Math.max(0, Math.min(selectedCategory, CATEGORY_NAMES.size() - 1));
+    expandedIndex = expandedIndex >= 0 && expandedIndex < duas.size() ? expandedIndex : -1;
+    for (int i = 0; i < duas.size(); i++) {
       final int index = i;
       View card = getLayoutInflater().inflate(R.layout.reading_item_dua, container, false);
-      ((TextView) card.findViewById(R.id.duaTitle)).setText(DUAS[i][0]);
-      ((TextView) card.findViewById(R.id.duaRowCategory)).setText(rowCategories[i]);
-      ((TextView) card.findViewById(R.id.duaSubtitle)).setText(rowReferences[i]);
-      ((TextView) card.findViewById(R.id.duaArabic)).setText(DUAS[i][1]);
-      ((TextView) card.findViewById(R.id.duaTranslation)).setText(DUAS[i][2]);
-      ((TextView) card.findViewById(R.id.duaSource)).setText(DUAS[i][3]);
+      ((TextView) card.findViewById(R.id.duaTitle)).setText(duas.get(i).title);
+      ((TextView) card.findViewById(R.id.duaRowCategory)).setText(CATEGORY_NAMES.get(duas.get(i).category).toUpperCase(Locale.ROOT));
+      ((TextView) card.findViewById(R.id.duaSubtitle)).setText(duas.get(i).reference);
+      ((TextView) card.findViewById(R.id.duaArabic)).setText(duas.get(i).arabic);
+      ((TextView) card.findViewById(R.id.duaTranslation)).setText(
+          "Latin bantu\n" + duas.get(i).latin + "\n\nArti\n" + duas.get(i).meaning);
+      ((TextView) card.findViewById(R.id.duaSource)).setText(duas.get(i).sourceText());
       listenButtons[i] = card.findViewById(R.id.duaListen);
+      listenButtons[i].setText(R.string.dua_library_tts);
       listenButtons[i].setOnClickListener(view -> playDua(index));
-      ((ImageView) card.findViewById(R.id.duaRowIcon)).setImageResource(rowIcons[i]);
+      ((ImageView) card.findViewById(R.id.duaRowIcon)).setImageResource(rowIcon(duas.get(i).category));
       card.findViewById(R.id.duaExpand)
           .setOnClickListener(
               view -> {
@@ -131,10 +114,10 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
       container.addView(card);
     }
     LinearLayout categories = findViewById(R.id.duaCategories);
-    for (int i = 0; i < CATEGORY_NAMES.length; i++) {
+    for (int i = 0; i < CATEGORY_NAMES.size(); i++) {
       final int category = i;
       TextView chip = new TextView(this);
-      chip.setText(CATEGORY_NAMES[i]);
+      chip.setText(CATEGORY_NAMES.get(i));
       chip.setTextSize(14);
       chip.setGravity(Gravity.CENTER);
       chip.setPadding(dp(15), 0, dp(15), 0);
@@ -184,6 +167,13 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
     tts = new TextToSpeech(this, this);
   }
 
+  private int rowIcon(int category) {
+    if (category == 2) return R.drawable.ic_book;
+    if (category == 3) return R.drawable.ic_shield;
+    if (category == 8) return R.drawable.dua_ic_rain;
+    return R.drawable.home_ic_dua;
+  }
+
   private void updateExpandedCards() {
     for (int i = 0; i < duaCards.length; i++) {
       boolean expanded = i == expandedIndex;
@@ -192,7 +182,7 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
       duaCards[i].findViewById(R.id.duaChevron).setRotation(expanded ? 270 : 180);
       duaCards[i]
           .findViewById(R.id.duaExpand)
-          .setContentDescription(DUAS[i][0] + (expanded ? ", tutup doa" : ", buka doa dan arti"));
+          .setContentDescription(duas.get(i).title + (expanded ? ", tutup doa" : ", buka doa dan arti"));
     }
     updateVoicePanel();
   }
@@ -206,20 +196,11 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
   }
 
   private void filterDuas() {
-    String query =
-        ((EditText) findViewById(R.id.duaSearch))
-            .getText()
-            .toString()
-            .trim()
-            .toLowerCase(Locale.ROOT);
+    String query = ((EditText) findViewById(R.id.duaSearch)).getText().toString();
     int visibleCount = 0;
     View lastVisible = null;
-    for (int i = 0; i < DUAS.length; i++) {
-      boolean matches = selectedCategory == 0 || selectedCategory == DUA_CATEGORIES[i];
-      matches &=
-          (DUAS[i][0] + " " + DUAS[i][1] + " " + DUAS[i][2])
-              .toLowerCase(Locale.ROOT)
-              .contains(query);
+    for (int i = 0; i < duas.size(); i++) {
+      boolean matches = duas.get(i).matches(query, selectedCategory);
       duaCards[i].setVisibility(matches ? View.VISIBLE : View.GONE);
       duaCards[i].findViewById(R.id.duaRowDivider).setVisibility(View.VISIBLE);
       if (matches) {
@@ -250,6 +231,8 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
   protected void onSaveInstanceState(Bundle state) {
     state.putInt("dua_category", selectedCategory);
     state.putInt("dua_expanded", expandedIndex);
+    if (expandedIndex >= 0 && expandedIndex < duas.size())
+      state.putString("dua_expanded_id", duas.get(expandedIndex).id);
     super.onSaveInstanceState(state);
   }
 
@@ -307,7 +290,7 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
     speakingIndex = index;
     listenButtons[index].setText("Hentikan audio");
     currentUtterance = "dua-" + index + "-" + (++utteranceSequence);
-    int result = tts.speak(DUAS[index][1], TextToSpeech.QUEUE_FLUSH, null, currentUtterance);
+    int result = tts.speak(duas.get(index).arabic, TextToSpeech.QUEUE_FLUSH, null, currentUtterance);
     if (result == TextToSpeech.ERROR) {
       resetPlayback();
       toast("Audio belum dapat diputar. Periksa mesin suara di pengaturan perangkat.");
@@ -332,7 +315,7 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
   private void resetPlayback() {
     speakingIndex = -1;
     currentUtterance = null;
-    for (Button button : listenButtons) button.setText("Dengarkan doa");
+    for (Button button : listenButtons) button.setText(getString(R.string.dua_library_tts));
   }
 
   @Override
