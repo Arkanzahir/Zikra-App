@@ -7,7 +7,7 @@ import java.util.Locale;
 
 /** Corrections apply to a reviewed source snapshot, never blindly to a reused provider ID. */
 public enum DuaReview {
-  NONE, SOURCE_CHANGED, WAKE_UP, WIND, RAIN_NUMBERING, GRADING_CONTEXT, AFTER_MEAL_NUMBERING;
+  NONE, SOURCE_CHANGED, WAKE_UP, WIND, RAIN_NUMBERING, GRADING_CONTEXT, AFTER_MEAL_NUMBERING, ARABIC_INSTRUCTIONS, WITR_LAYOUT;
 
   public static DuaReview forSource(int id, String title, String arabic, String meaning, String reference) {
     String expected; DuaReview review;
@@ -17,6 +17,11 @@ public enum DuaReview {
       case 20: expected = "1ab612312d815d856ca5735b07954b75b2f6cb1d830dc326a754e834872238d5"; review = RAIN_NUMBERING; break;
       case 96: expected = "811109d3e416464781ca6da504788eb2cdc09e4f79daf946905b91640a42e549"; review = GRADING_CONTEXT; break;
       case 139: expected = "baf12d0972ec1ba32eaa4aad2da62184752ea465cb2e430ceb86730e485df096"; review = AFTER_MEAL_NUMBERING; break;
+      case 57: expected = "433e8629514ef9043ff2a4abb1b14ef5cbe97a5bf2cd084cde7e9fdb3da899da"; review = ARABIC_INSTRUCTIONS; break;
+      case 76: expected = "5d0ea829c4b141121df3f8909c0f0d3523c50ce22f9cbdaa512b94b43387124c"; review = ARABIC_INSTRUCTIONS; break;
+      case 77: expected = "c24cdde114b8f0b231ad844980f998c59c162d483b9d738eb168961c06510f6b"; review = ARABIC_INSTRUCTIONS; break;
+      case 209: expected = "5ed03893e9255b9b5dbb5e348211976f0e5c087ce8fa0a855c0df966381561a8"; review = ARABIC_INSTRUCTIONS; break;
+      case 225: expected = "0b975000eec579c5e3d1c5b5f688334381ab28987b0c0d3c782e704b16177ac8"; review = WITR_LAYOUT; break;
       default: return NONE;
     }
     return expected.equals(fingerprint(title, arabic, meaning, reference)) ? review : SOURCE_CHANGED;
@@ -35,6 +40,9 @@ public enum DuaReview {
   }
 
   String displayArabic(String source) {
-    return this == WAKE_UP ? source.replace("النُّشُوْرِ", "النُّشُورُ") : source;
+    if (this == WAKE_UP) return source.replace("النُّشُوْرِ", "النُّشُورُ");
+    if (this == ARABIC_INSTRUCTIONS) return source.substring(source.indexOf('\n') + 1).trim();
+    if (this == WITR_LAYOUT) return source.replace("(", "").replace(")", "").trim();
+    return source;
   }
 }

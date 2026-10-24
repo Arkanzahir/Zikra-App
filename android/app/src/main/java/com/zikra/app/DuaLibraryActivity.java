@@ -148,6 +148,10 @@ public final class DuaLibraryActivity extends BaseActivity {
   private String reviewNote(DuaCatalog.Entry entry) {
     int note;
     switch (entry.review) {
+      case ARABIC_INSTRUCTIONS:
+        return getString(R.string.dua_review_instructions) + "\n"
+            + entry.sourceArabic.substring(0, entry.sourceArabic.indexOf('\n')).trim() + "\n\n";
+      case WITR_LAYOUT: note = R.string.dua_review_witr_layout; break;
       case WAKE_UP: note = R.string.dua_review_wake; break;
       case WIND: note = R.string.dua_review_wind; break;
       case RAIN_NUMBERING: note = R.string.dua_review_rain; break;

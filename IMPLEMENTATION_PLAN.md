@@ -172,4 +172,8 @@ Fitur post-MVP yang memang tercantum terpisah di PRD—XP/badge, keuangan anak k
 
 | 24 Oktober 2026 | UI03 | Permintaan pengguna memperbaiki Hadis diprioritaskan; katalog/reader dirapikan, Arab rata kanan dan ukuran via Aa. Doa 14/225 tetap, pemeriksaan sumber tidak disamakan dengan tes UI. | [Bukti 1.7.4](android/validation/hadith-refined-2026-10-24/README.md), source `0c9827d`, APK 31,3 MB, 1 metode/2 eksekusi, tanpa HP |
 
+| 24 Oktober 2026 | B01/B04 lanjutan | Halaman sumber/kebijakan TafsirQ diperiksa, edisi/penerjemah belum jelas. Tiga ID Doa tambahan 2/3/5 dibandingkan; ditemukan variasi lafal/penilaian dan nomor. Total 15 perbandingan awal, 210 belum dibandingkan; bukan tashih penuh. | [Antrean dan catatan](android/validation/b-final-review-2026-10-24/README.md); tanpa perubahan APK/email |
+
+| 24 Oktober 2026 | B04 editorial/koreksi tampilan | Petunjuk Indonesia dipisahkan dari Arab pada empat ID; kurung ID 225 dirapikan, raw/ID tetap dan koreksi terikat fingerprint. Pemeriksaan editorial berbeda dari validasi rujukan penuh; B01/B04 tetap terbuka. | [Bukti dan temuan per entri](android/validation/b-final-review-2026-10-24/README.md), tiga tes snapshot lulus tanpa skip, build/lint lulus; belum APK distribusi/HP |
+
 Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | tautan laporan/screenshot/tes + commit fitur`. Keputusan menunda/mengubah cakupan juga dicatat di tabel ini.

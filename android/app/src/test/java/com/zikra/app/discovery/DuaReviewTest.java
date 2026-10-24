@@ -37,8 +37,18 @@ public final class DuaReviewTest {
       if (entry.number == 20) assertEquals(DuaReview.RAIN_NUMBERING, entry.review);
       if (entry.number == 96) assertEquals(DuaReview.GRADING_CONTEXT, entry.review);
       if (entry.number == 139) assertEquals(DuaReview.AFTER_MEAL_NUMBERING, entry.review);
-      if (entry.number != 6) assertEquals(entry.sourceArabic, entry.arabic);
+      if (entry.review == DuaReview.ARABIC_INSTRUCTIONS) {
+        assertFalse(entry.arabic.matches("(?s).*[A-Za-z].*"));
+        assertTrue(entry.sourceArabic.endsWith(entry.arabic));
+        assertTrue(entry.sourceArabic.contains("\n"));
+        assertEquals(DuaReview.SOURCE_CHANGED, DuaReview.forSource(entry.number,
+            entry.title, entry.sourceArabic + "changed", entry.meaning, entry.reference));
+      } else if (entry.review == DuaReview.WITR_LAYOUT) {
+        assertFalse(entry.arabic.contains("("));
+        assertFalse(entry.arabic.contains(")"));
+        assertEquals(entry.sourceArabic.replace("(", "").replace(")", "").trim(), entry.arabic);
+      } else if (entry.number != 6) assertEquals(entry.sourceArabic, entry.arabic);
     }
-    assertEquals(5, corrected);
+    assertEquals(10, corrected);
   }
 }

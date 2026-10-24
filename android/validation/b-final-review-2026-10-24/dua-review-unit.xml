@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.discovery.DuaReviewTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-24T14:02:43" hostname="LAPTOP-C0PN7S52" time="0.069">
+  <properties/>
+  <testcase name="snapshotIdentityIncludesBoundariesAndEveryReviewedField" classname="com.zikra.app.discovery.DuaReviewTest" time="0.004"/>
+  <testcase name="rejectsAnEmbeddedSnapshotSeparator" classname="com.zikra.app.discovery.DuaReviewTest" time="0.0"/>
+  <testcase name="auditedRealCatalogueAppliesOnlyTheReviewedCorrections" classname="com.zikra.app.discovery.DuaReviewTest" time="0.065"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
