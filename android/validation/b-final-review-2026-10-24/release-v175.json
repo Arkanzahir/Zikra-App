@@ -1,0 +1,22 @@
+{
+  "versionName": "1.7.5",
+  "versionCode": 23,
+  "productionCommit": "d439db20874ce560f15987b8e36c12520c19ccca",
+  "apkFile": "Zikra-Content-v1.7.5-beta-debug.apk",
+  "bytes": 31139888,
+  "sha256": "a421a37135882671d8935c63dc850558a48738bc485b3d908556b90a1059b216",
+  "unitTests": {
+    "DuaReviewTest": 3,
+    "failed": 0,
+    "skipped": 0
+  },
+  "referenceToolTests": 4,
+  "lintErrors": 0,
+  "lintWarnings": 709,
+  "nativeTests": "Not run: scoped title/display changes; no emulator or HP used.",
+  "sourceQuestion": "Sent with explicit user consent via Gmail; reply pending",
+  "normalizedArabicComparisonCandidates": 78,
+  "candidateCountIsValidatedCount": false,
+  "b01Complete": false,
+  "b04Complete": false
+}

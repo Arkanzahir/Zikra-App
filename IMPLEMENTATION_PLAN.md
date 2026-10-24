@@ -1,6 +1,6 @@
 # Rencana implementasi Zikra menuju rilis publik
 
-Dibuat/diperbarui: **24 Oktober 2026 (WIB)**. Baseline fitur terbaru: **1.7.4 beta / code 22** (`0c9827d`); source dan hash pada [bukti perapian Hadis](android/validation/hadith-refined-2026-10-24/release.json); A04 tetap checkpoint 1.6.3 (`2b291ff`). Checkpoint UI01 tetap 1.6.2.
+Dibuat/diperbarui: **24 Oktober 2026 (WIB)**. Baseline fitur terbaru: **1.7.5 beta / code 23** (`d439db2`); source dan hash pada [bukti lanjutan B](android/validation/b-final-review-2026-10-24/release-v175.json); A04 tetap checkpoint 1.6.3 (`2b291ff`). Checkpoint UI01 tetap 1.6.2.
 
 Dokumen ini menjadi **checklist pengerjaan aktif**. [PRD](ZIKRA_PRD.md) tetap menjadi daftar kebutuhan produk; [rencana lama](design/IMPROVEMENT_PLAN.md) dan laporan validasi adalah riwayat. Jika kebutuhan lama berbeda dengan keputusan terbaru pengguna, catat keputusan beserta alasannya di sini.
 
