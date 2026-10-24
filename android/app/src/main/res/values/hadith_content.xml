@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hadith_loading">Memuat bacaan…</string>
+    <string name="hadith_load_failed">Data belum bisa dibuka. Coba lagi dengan mengetuk kategori.</string>
+    <string name="hadith_no_results">Belum ada hasil</string>
+    <string name="hadith_page_range">%1$d–%2$d dari %3$d bacaan</string>
+    <string name="hadith_search_scope">Pencarian hanya pada data di perangkat. Unduh koleksi untuk mencari seluruh data sumber yang tersedia.</string>
+    <string name="hadith_missing_saved">%1$d penanda menunggu koleksi diunduh kembali; penandanya tetap disimpan.</string>
+    <string name="hadith_saved_empty">Belum ada penanda yang dapat dibuka. Unduh kembali koleksi yang dihapus, atau simpan sebuah bacaan.</string>
+    <string name="hadith_collection_empty">Belum ada hasil. Coba kata/nomor lain atau unduh koleksi. Pilihan kutipan bawaan ada pada kategori Semua.</string>
+    <string name="hadith_downloads">Unduhan koleksi</string>
+    <string name="hadith_download">Unduh</string>
+    <string name="hadith_redownload">Unduh ulang</string>
+    <string name="hadith_remove_package">Hapus unduhan</string>
+    <string name="hadith_book_download">%1$s · %2$d hadis · %3$s MB</string>
+    <string name="hadith_package_info">Data Arab dan terjemahan Indonesia dari Gading/Tafsirq. Nomor mengikuti dataset sumber dan dapat memiliki celah. Unduhan diperiksa dengan checksum sebelum mengganti data lama. Hapus paket tidak menghapus penanda. Koneksi diperlukan untuk mengunduh; setelah tersimpan dapat dibaca dan dicari luring.</string>
+    <string name="hadith_downloading">Mengunduh dan memeriksa koleksi · %1$d%%</string>
+    <string name="hadith_downloaded">Koleksi tersimpan untuk dibaca luring.</string>
+    <string name="hadith_download_cancelled">Unduhan dibatalkan. Data sebelumnya tetap tersedia.</string>
+    <string name="hadith_download_error">Unduhan belum selesai atau gagal pemeriksaan. Data sebelumnya dipertahankan. Coba lagi melalui Unduhan koleksi.</string>
+    <string name="hadith_storage_error">Ruang penyimpanan belum cukup untuk memeriksa dan memasang koleksi.</string>
+    <string name="hadith_resume_missing">Koleksi bacaan ini belum tersimpan. Unduh kembali melalui Unduhan koleksi; posisi dan penandanya tetap disimpan.</string>
+    <string name="hadith_unavailable">Bacaan belum tersimpan</string>
+    <string name="hadith_source_notice">Sumber: Gading Hadith API / Tafsirq. Penomoran mengikuti dataset Tafsirq; dapat berbeda dari edisi lain.</string>
+    <string name="hadith_source_title">Sumber dan atribusi</string>
+    <string name="hadith_previous">Sebelumnya</string>
+    <string name="hadith_next">Berikutnya</string>
+    <string name="hadith_cancel_download">Batalkan unduhan</string>
+</resources>

@@ -28,13 +28,21 @@
                     </LinearLayout>
                 </LinearLayout>
                 <TextView style="@style/DailyHeading" android:id="@+id/hadithCount" android:text="@string/daily_hadith_note" android:layout_marginTop="20dp" android:layout_marginBottom="12dp" android:textSize="16sp" />
-                <EditText android:id="@+id/hadithSearch" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:background="@drawable/daily_white_card" android:paddingHorizontal="14dp" android:hint="@string/daily_hadith_search" android:textColor="@color/daily_ink" android:textColorHint="@color/daily_muted" android:textSize="13sp" android:singleLine="true" android:inputType="text" android:imeOptions="actionSearch" android:importantForAutofill="no" />
+                <EditText android:id="@+id/hadithSearch"
+                    android:maxLength="200" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:background="@drawable/daily_white_card" android:paddingHorizontal="14dp" android:hint="@string/daily_hadith_search" android:textColor="@color/daily_ink" android:textColorHint="@color/daily_muted" android:textSize="13sp" android:singleLine="true" android:inputType="text" android:imeOptions="actionSearch" android:importantForAutofill="no" />
                 <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none" android:layout_marginVertical="8dp">
                     <LinearLayout android:id="@+id/hadithTabs" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" />
                 </HorizontalScrollView>
-                <TextView style="@style/DailyCaption" android:id="@+id/hadithEmpty" android:text="@string/daily_hadith_note" android:visibility="gone" android:paddingVertical="24dp" android:accessibilityLiveRegion="polite" />
+                <Button android:id="@+id/hadithDownloads" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/hadith_downloads" android:textAllCaps="false" />
+                <TextView style="@style/DailyCaption" android:id="@+id/hadithStatus" android:text="@string/hadith_search_scope" android:paddingVertical="8dp" android:accessibilityLiveRegion="polite" />
+                <Button android:id="@+id/hadithCancelDownload" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/hadith_cancel_download" android:visibility="gone" android:textAllCaps="false" />
+                <TextView style="@style/DailyCaption" android:id="@+id/hadithEmpty" android:text="@string/hadith_collection_empty" android:visibility="gone" android:paddingVertical="24dp" android:accessibilityLiveRegion="polite" />
                 <LinearLayout android:id="@+id/hadithList" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
-                <TextView style="@style/DailyCaption" android:text="@string/daily_hadith_note" android:gravity="center" android:paddingVertical="18dp" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="12dp">
+                    <Button android:id="@+id/hadithPrevious" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/hadith_previous" android:textAllCaps="false" />
+                    <Button android:id="@+id/hadithNext" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/hadith_next" android:textAllCaps="false" />
+                </LinearLayout>
+                <TextView android:id="@+id/hadithSource" style="@style/DailyCaption" android:text="@string/hadith_source_notice" android:gravity="center" android:paddingVertical="18dp" android:clickable="true" android:focusable="true" android:minHeight="48dp" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

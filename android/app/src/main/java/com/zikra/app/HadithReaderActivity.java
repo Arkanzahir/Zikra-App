@@ -5,6 +5,7 @@ import android.content.*;
 import android.os.Bundle;
 import android.widget.TextView;
 import com.zikra.app.discovery.HadithCollection;
+import com.zikra.app.discovery.HadithStore;
 import com.zikra.app.ui.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,21 +16,42 @@ public final class HadithReaderActivity extends BaseActivity {
   private SharedPreferences preferences;
   private int size;
   private AlertDialog sizeDialog;
+  private HadithStore store;
 
   @Override
   protected void onCreate(Bundle state) {
     super.onCreate(state);
     String id = getIntent().getStringExtra("entry");
-    for (HadithCollection.Entry candidate : HadithCollection.ENTRIES)
-      if (candidate.id.equals(id)) {
-        entry = candidate;
-        break;
+    setContentView(R.layout.activity_hadith_reader);
+    ((FeatureHeader) findViewById(R.id.utilitiesHeader))
+        .bind(R.id.toolbarBack, R.id.detailTitle, R.id.featureSubtitle, 0,
+            getString(R.string.daily_hadith), null, 0, null);
+    setupScreen(getString(R.string.daily_hadith));
+    DailyUi.chrome(this, R.color.daily_paper);
+    text(R.id.dailyReaderMeaning, getString(R.string.hadith_loading));
+    store = new HadithStore(this);
+    store.get(id, new HadithStore.Result<HadithCollection.Entry>() {
+      public void show(HadithCollection.Entry value) {
+        if (value == null) { unavailable(id); return; }
+        entry = value; bindEntry();
       }
-    if (entry == null) {
-      toast(getString(R.string.daily_reader_invalid));
-      finish();
-      return;
-    }
+      public void failed() { unavailable(id); }
+    });
+  }
+
+  private void unavailable(String id) {
+    String book = HadithCollection.bookForId(id);
+    text(R.id.dailyReaderTitle, getString(R.string.hadith_unavailable));
+    text(R.id.dailyReaderMeaning, getString(R.string.hadith_resume_missing));
+    for (int control : new int[]{R.id.dailyReaderCopy, R.id.dailyReaderShare, R.id.dailyReaderSize})
+      findViewById(control).setEnabled(false);
+    TextView open = findViewById(R.id.dailyReaderSave);
+    open.setText(R.string.hadith_downloads);
+    open.setOnClickListener(v -> startActivity(new Intent(this, HadithActivity.class).putExtra("book", book)));
+    setupScreen(getString(R.string.daily_hadith));
+  }
+
+  private void bindEntry() {
     preferences = getSharedPreferences("zikra_preferences", MODE_PRIVATE);
     preferences.edit().putString("last_hadith_id", entry.id).apply();
     size = Math.max(0, Math.min(2, preferences.getInt("hadith_reader_size", 0)));
@@ -106,7 +128,7 @@ public final class HadithReaderActivity extends BaseActivity {
         + "\n\n"
         + entry.source
         + "\n"
-        + getString(R.string.daily_quote_label);
+        + getString(entry.excerpt ? R.string.daily_quote_label : R.string.hadith_source_notice);
   }
 
   private Set<String> bookmarks() {
@@ -135,6 +157,7 @@ public final class HadithReaderActivity extends BaseActivity {
   @Override
   protected void onDestroy() {
     if (sizeDialog != null) sizeDialog.dismiss();
+    if (store != null) store.close();
     super.onDestroy();
   }
 }

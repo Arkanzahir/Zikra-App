@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dua_library_title">Koleksi Doa &amp; Dzikir</string>
+    <string name="dua_library_intro">Bacaan dengan Arab, Latin, arti dan catatan sumber. Unduh sekali untuk pencarian luring; empat doa pilihan tetap tersedia pada halaman sebelumnya.</string>
+    <string name="dua_library_search">Cari judul, Arab, arti atau rujukan</string>
+    <string name="dua_library_all_groups">Semua kelompok</string>
+    <string name="dua_library_group">Pilih kelompok bacaan</string>
+    <string name="dua_library_count">%1$d hasil · %2$d bacaan tersimpan</string>
+    <string name="dua_library_source">EQuran.id · %1$d bacaan berujukan dari %2$d entri sumber. %3$d entri tanpa teks/rujukan lengkap tidak ditampilkan. Pelafalan memakai TTS Android, bukan rekaman qari.</string>
+    <string name="dua_library_not_downloaded">Koleksi tambahan belum tersimpan atau belum dapat dibuka. Unduh dengan koneksi internet; empat doa bawaan tetap tersedia.</string>
+    <string name="dua_library_update_failed">Pembaruan gagal. Koleksi yang sudah tersimpan tetap dapat dipakai. Coba lagi saat koneksi tersedia.</string>
+    <string name="dua_library_empty">Belum ada bacaan yang cocok. Unduh koleksi atau ubah kelompok/kata pencarian.</string>
+    <string name="dua_library_refresh">Unduh / perbarui koleksi · kurang dari 1 MB</string>
+    <string name="dua_library_loading">Memuat dan memeriksa koleksi…</string>
+    <string name="dua_library_remove">Hapus koleksi tambahan</string>
+    <string name="dua_library_remove_hint">Hapus hanya unduhan koleksi ini. Empat doa pilihan bawaan tetap tersedia.</string>
+    <string name="dua_library_tts">Dengarkan · TTS Android</string>
+    <string name="dua_library_voice_unavailable">Suara bahasa Arab belum tersedia di perangkat. Bacaan tetap bisa dibuka; suara dapat dipasang melalui pengaturan TTS Android.</string>
+    <string name="dua_library_open">Jelajahi koleksi Doa &amp; Dzikir</string>
+</resources>

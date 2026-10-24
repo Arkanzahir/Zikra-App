@@ -51,6 +51,7 @@
         <activity android:name=".InfaqActivity" android:exported="false" />
         <activity android:name=".PrayerActivity" android:exported="false" />
         <activity android:name=".DuaActivity" android:exported="false" />
+        <activity android:name=".DuaLibraryActivity" android:exported="false" />
         <activity android:name=".ProtectorActivity" android:exported="false" />
         <activity android:name=".QiblaActivity" android:exported="false" />
         <receiver android:name=".study.StudyAlarmReceiver" android:exported="false" />

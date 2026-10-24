@@ -83,6 +83,7 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
             0,
             null);
     setupScreen("Doa Harian");
+    findViewById(R.id.duaLibraryOpen).setOnClickListener(v -> startActivity(new Intent(this, DuaLibraryActivity.class)));
     NavDock.attach(this, (FrameLayout) findViewById(R.id.duaRoot), "home");
     getWindow().setStatusBarColor(Color.parseColor("#F8F9F5"));
     getWindow().setNavigationBarColor(Color.parseColor("#F8F9F5"));

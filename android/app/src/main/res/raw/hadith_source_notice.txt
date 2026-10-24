@@ -1,0 +1,35 @@
+Dataset: gadingnst/hadith-api
+Upstream source declared by the project: tafsirq.com
+Snapshot: 8e15b4f9e7585822426a0d470e8dfec27e2a1707
+https://github.com/gadingnst/hadith-api
+
+Penomoran mengikuti dataset Tafsirq, bukan urutan baris atau semua edisi cetak.
+Bukhari: 6.638 entri, nomor tertinggi 7.008.
+Muslim: 4.930 entri, nomor tertinggi 5.362.
+Celah nomor dipertahankan. Identitas edisi cetak/penerjemah tidak dinyatakan
+dalam metadata sumber yang tersedia. Ini bukan klaim kitab cetak tanpa celah.
+Teks tidak dilengkapi atau diterjemahkan ulang oleh AI.
+
+Repository license notice (as published by the repository):
+
+MIT License
+
+Copyright (c) 2020 Sutan Nasution.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

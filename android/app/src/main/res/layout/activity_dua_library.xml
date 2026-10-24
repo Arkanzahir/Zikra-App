@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/daily_paper">
+    <com.zikra.app.ui.FeatureHeader android:id="@+id/utilitiesHeader" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <ScrollView android:id="@+id/duaLibraryScroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+            <TextView style="@style/DailyCaption" android:text="@string/dua_library_intro" android:layout_marginBottom="16dp" />
+            <EditText android:id="@+id/duaLibrarySearch" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:singleLine="true" android:maxLength="200" android:inputType="text" android:importantForAutofill="no" android:hint="@string/dua_library_search" android:background="@drawable/daily_white_card" android:padding="12dp" android:textColor="@color/daily_ink" android:textColorHint="@color/daily_muted" android:textSize="15sp" />
+            <Button style="@style/ReadingButton" android:id="@+id/duaLibraryGroup" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:background="@drawable/daily_white_card" android:textColor="@color/daily_ink" android:layout_marginTop="8dp" android:text="@string/dua_library_all_groups" android:textAllCaps="false" />
+            <TextView android:id="@+id/duaLibraryCount" style="@style/DailyHeading" android:textSize="16sp" android:paddingVertical="12dp" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingTop="8dp">
+                <Button style="@style/ReadingButton" android:id="@+id/duaLibraryPrevious" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:background="@drawable/daily_white_card" android:textColor="@color/daily_ink" android:minHeight="48dp" android:text="@string/hadith_previous" android:textAllCaps="false" />
+                <Button style="@style/ReadingButton" android:id="@+id/duaLibraryNext" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:background="@drawable/daily_white_card" android:textColor="@color/daily_ink" android:minHeight="48dp" android:text="@string/hadith_next" android:textAllCaps="false" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/duaLibraryContent" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/daily_white_card" />
+            <TextView android:id="@+id/duaLibraryEmpty" style="@style/DailyCaption" android:text="@string/dua_library_empty" android:paddingVertical="16dp" />
+            <TextView android:id="@+id/duaLibraryStatus" style="@style/DailyCaption" android:text="@string/dua_library_not_downloaded" android:paddingVertical="12dp" android:accessibilityLiveRegion="polite" />
+            <Button style="@style/ReadingButton" android:id="@+id/duaLibraryRefresh" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/dua_library_refresh" android:textAllCaps="false" />
+            <Button style="@style/ReadingButton" android:id="@+id/duaLibraryRemove" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:background="@drawable/daily_white_card" android:textColor="@color/daily_ink" android:layout_marginTop="8dp" android:text="@string/dua_library_remove" android:textAllCaps="false" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

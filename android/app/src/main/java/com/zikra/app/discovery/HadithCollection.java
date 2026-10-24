@@ -6,16 +6,36 @@ public final class HadithCollection {
 
   public static final class Entry {
     public final String id, title, arabic, meaning, source, collection;
+    public final boolean excerpt;
 
     private Entry(
         String id, String title, String arabic, String meaning, String source, String collection) {
+      this(id, title, arabic, meaning, source, collection, true);
+    }
+
+    private Entry(String id, String title, String arabic, String meaning, String source,
+        String collection, boolean excerpt) {
       this.id = id;
       this.title = title;
       this.arabic = arabic;
       this.meaning = meaning;
       this.source = source;
       this.collection = collection;
+      this.excerpt = excerpt;
     }
+  }
+
+  public static Entry sourced(String book, int number, String arabic, String meaning) {
+    if (!("bukhari".equals(book) || "muslim".equals(book)) || number < 1 || number > 100000)
+      throw new IllegalArgumentException("Hadith identity");
+    String name = "bukhari".equals(book) ? "Bukhari" : "Muslim";
+    return new Entry("tafsirq-v1:" + book + ":" + number, "Hadis " + number, arabic, meaning,
+        "HR. " + name + " · " + number + " · penomoran Tafsirq", name, false);
+  }
+
+  public static String bookForId(String id) {
+    if (id == null || !id.matches("tafsirq-v1:(bukhari|muslim):[1-9][0-9]{0,5}")) return null;
+    return id.split(":")[1];
   }
 
   public static final Entry[] ENTRIES = {
