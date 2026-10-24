@@ -1,0 +1,5 @@
+**
+!package.json
+!*.mjs
+*.test.mjs
+check-private.mjs

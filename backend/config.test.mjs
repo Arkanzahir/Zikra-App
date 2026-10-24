@@ -13,6 +13,12 @@ test('private config defaults to loopback and validates explicit bind', () => {
   assert.equal(config.port, 8787);
   assert.ok(Object.isFrozen(config));
   assert.equal(readConfig({ ...env, HOST: '0.0.0.0', PORT: '3000' }).port, 3000);
+  const installation = { ...env, ZIKRA_ACCESS_MODE: 'installation',
+    ZIKRA_CLIENTS_FILE: '/data/clients.json', ZIKRA_USAGE_FILE: '/data/usage.json' };
+  assert.equal(readConfig({ ...installation, ZIKRA_CLIENT_TOKEN: undefined }).dailyLimit, 100);
+  assert.throws(() => readConfig({ ...installation, ZIKRA_DAILY_LIMIT: '0' }), ConfigError);
+  assert.throws(() => readConfig({ ...installation, ZIKRA_CLIENTS_FILE: 'relative.json' }), ConfigError);
+  assert.throws(() => readConfig({ ...env, ZIKRA_ACCESS_MODE: 'unknown' }), ConfigError);
 });
 
 test('config rejects missing, control, whitespace and malformed values without echoing them', () => {

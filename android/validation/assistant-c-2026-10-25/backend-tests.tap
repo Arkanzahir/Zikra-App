@@ -1,0 +1,166 @@
+TAP version 13
+# Subtest: installation tokens are hashed, independently revocable and not shared client credentials
+ok 1 - installation tokens are hashed, independently revocable and not shared client credentials
+  ---
+  duration_ms: 26.6067
+  type: 'test'
+  ...
+# Subtest: daily and minute quotas survive process recreation, reset at UTC day boundary and fail closed on corruption
+ok 2 - daily and minute quotas survive process recreation, reset at UTC day boundary and fail closed on corruption
+  ---
+  duration_ms: 123.6401
+  type: 'test'
+  ...
+# Subtest: installation gateway enforces revocation/quotas before provider and isolates clients behind one proxy
+ok 3 - installation gateway enforces revocation/quotas before provider and isolates clients behind one proxy
+  ---
+  duration_ms: 81.9137
+  type: 'test'
+  ...
+# Subtest: selected context rejects hidden fields, invalid prayer time and unconsented actions
+ok 4 - selected context rejects hidden fields, invalid prayer time and unconsented actions
+  ---
+  duration_ms: 69.5599
+  type: 'test'
+  ...
+# Subtest: edit can only propose a selected incomplete task and cannot complete/delete it
+ok 5 - edit can only propose a selected incomplete task and cannot complete/delete it
+  ---
+  duration_ms: 0.3444
+  type: 'test'
+  ...
+# Subtest: source failure never calls model; valid source is returned separately from model summary
+ok 6 - source failure never calls model; valid source is returned separately from model summary
+  ---
+  duration_ms: 50.5219
+  type: 'test'
+  ...
+# Subtest: private config defaults to loopback and validates explicit bind
+ok 7 - private config defaults to loopback and validates explicit bind
+  ---
+  duration_ms: 1.6667
+  type: 'test'
+  ...
+# Subtest: config rejects missing, control, whitespace and malformed values without echoing them
+ok 8 - config rejects missing, control, whitespace and malformed values without echoing them
+  ---
+  duration_ms: 4.2883
+  type: 'test'
+  ...
+# Subtest: CLI check validates without listening or exposing credentials; invalid startup exits nonzero
+ok 9 - CLI check validates without listening or exposing credentials; invalid startup exits nonzero
+  ---
+  duration_ms: 169.7848
+  type: 'test'
+  ...
+# Subtest: requires server credentials
+ok 10 - requires server credentials
+  ---
+  duration_ms: 1.5286
+  type: 'test'
+  ...
+# Subtest: rejects system injection roles and oversized histories
+ok 11 - rejects system injection roles and oversized histories
+  ---
+  duration_ms: 0.4471
+  type: 'test'
+  ...
+# Subtest: injects server system prompt, fixes model and keeps API key server-side
+ok 12 - injects server system prompt, fixes model and keeps API key server-side
+  ---
+  duration_ms: 53.8288
+  type: 'test'
+  ...
+# Subtest: unauthorized requests never reach provider
+ok 13 - unauthorized requests never reach provider
+  ---
+  duration_ms: 11.9784
+  type: 'test'
+  ...
+# Subtest: invalid inputs never reach provider
+ok 14 - invalid inputs never reach provider
+  ---
+  duration_ms: 4.5479
+  type: 'test'
+  ...
+# Subtest: provider error body is not leaked
+ok 15 - provider error body is not leaked
+  ---
+  duration_ms: 6.5565
+  type: 'test'
+  ...
+# Subtest: empty and oversized provider content is rejected
+ok 16 - empty and oversized provider content is rejected
+  ---
+  duration_ms: 5.7338
+  type: 'test'
+  ...
+# Subtest: bounded provider response prevents memory growth
+ok 17 - bounded provider response prevents memory growth
+  ---
+  duration_ms: 6.6703
+  type: 'test'
+  ...
+# Subtest: health is liveness only and reveals no private configuration
+ok 18 - health is liveness only and reveals no private configuration
+  ---
+  duration_ms: 6.5534
+  type: 'test'
+  ...
+# Subtest: null, malformed JSON, wrong type and declared oversize are client errors
+ok 19 - null, malformed JSON, wrong type and declared oversize are client errors
+  ---
+  duration_ms: 13.8323
+  type: 'test'
+  ...
+# Subtest: chunked oversize returns 413 instead of dropping the request socket
+ok 20 - chunked oversize returns 413 instead of dropping the request socket
+  ---
+  duration_ms: 8.087
+  type: 'test'
+  ...
+# Subtest: provider malformed JSON, null and thrown errors stay sanitized
+ok 21 - provider malformed JSON, null and thrown errors stay sanitized
+  ---
+  duration_ms: 11.7695
+  type: 'test'
+  ...
+# Subtest: provider 429 is mapped without leaking its body
+ok 22 - provider 429 is mapped without leaking its body
+  ---
+  duration_ms: 6.7666
+  type: 'test'
+  ...
+# Subtest: provider timeout aborts work and releases capacity
+ok 23 - provider timeout aborts work and releases capacity
+  ---
+  duration_ms: 44.7433
+  type: 'test'
+  ...
+# Subtest: two active requests block a third
+ok 24 - two active requests block a third
+  ---
+  duration_ms: 15.595
+  type: 'test'
+  ...
+# Subtest: client disconnect aborts provider work
+ok 25 - client disconnect aborts provider work
+  ---
+  duration_ms: 5.4777
+  type: 'test'
+  ...
+# Subtest: rate limit prevents unlimited upstream requests
+ok 26 - rate limit prevents unlimited upstream requests
+  ---
+  duration_ms: 19.1705
+  type: 'test'
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 26
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 379.7198

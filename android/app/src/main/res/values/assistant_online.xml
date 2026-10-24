@@ -1,0 +1,32 @@
+<resources>
+    <string name="assistant_review_send">Tinjau sebelum mengirim</string>
+    <string name="assistant_send_note">Hanya data yang terlihat di bawah dikirim ke backend dan penyedia AI. Tidak ada profil, lokasi GPS, tugas atau berkas yang dikirim otomatis. Pilihan berlaku untuk satu pengiriman.</string>
+    <string name="assistant_select_name">Sertakan nama profil</string>
+    <string name="assistant_select_tasks">Sertakan maksimal 10 tugas dan tenggat</string>
+    <string name="assistant_select_prayer">Sertakan perhitungan salat hari ini dan zona waktu</string>
+    <string name="assistant_select_history">Sertakan riwayat chat online</string>
+    <string name="assistant_select_proposals">Izinkan usulan tambah/edit tugas untuk ditinjau</string>
+    <string name="assistant_send_selected">Kirim pilihan ini</string>
+    <string name="assistant_cancel_send">Batalkan pengiriman</string>
+    <string name="assistant_cancelled">Pengiriman dibatalkan. Pesan tetap di perangkat.</string>
+    <string name="assistant_auth_failed">Akses backend tidak berlaku atau sudah dicabut. Periksa kode akses.</string>
+    <string name="assistant_quota_failed">Batas penggunaan tercapai atau penyedia sedang sibuk. Tunggu sebelum mencoba lagi.</string>
+    <string name="assistant_timeout_failed">Waktu tunggu habis. Periksa koneksi lalu coba lagi.</string>
+    <string name="assistant_network_failed">Backend tidak terhubung. Periksa internet lalu coba lagi.</string>
+    <string name="assistant_server_failed">Backend atau penyedia belum tersedia. Coba lagi nanti.</string>
+    <string name="assistant_response_failed">Balasan backend tidak valid. Belum ada jawaban online yang ditampilkan.</string>
+    <string name="assistant_source_failed">Sumber tafsir belum tersedia. Tidak membuat kutipan atau tafsir pengganti. Coba lagi nanti.</string>
+    <string name="assistant_review_task">Tinjau usulan tugas</string>
+    <string name="assistant_task_saved">Usulan sudah disimpan</string>
+    <string name="assistant_task_unsaved">Usulan belum disimpan. Periksa judul dan tenggat; progres tugas tidak diubah.</string>
+    <string name="assistant_task_title">Judul tugas</string>
+    <string name="assistant_task_due">Ubah tenggat</string>
+    <string name="assistant_task_no_due">Tanpa tenggat</string>
+    <string name="assistant_save_task">Simpan ke Study</string>
+    <string name="assistant_voice_consent">Dikte memakai layanan pengenal suara Android yang tersedia di perangkat. Pemrosesan suara mengikuti layanan tersebut dan dapat memakai internet. Zikra menerima teks untuk diperiksa; hasilnya tidak langsung dikirim ke AI.</string>
+    <string name="assistant_voice_start">Mulai dikte</string>
+    <string name="assistant_tafsir_note">Tadabbur hanya diringkas dari petikan sumber yang berhasil dimuat. Ringkasan AI bukan teks tafsir asli. Sumber dinyatakan berasal dari Kemenag oleh EQuran.id.</string>
+    <string name="assistant_tafsir_original">Lihat petikan tafsir dan sumber</string>
+    <string name="assistant_tafsir_open">Buka sumber</string>
+    <string name="assistant_tafsir_action">Tanya makna ayat</string>
+</resources>

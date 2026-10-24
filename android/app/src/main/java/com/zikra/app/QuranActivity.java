@@ -1110,8 +1110,14 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     menu.getMenu().add(0, 4, 1, "Tandai terakhir dibaca");
     menu.getMenu().add(0, 1, 2, "Salin ayat");
     menu.getMenu().add(0, 2, 3, "Bagikan ayat");
+    menu.getMenu().add(0, 5, 4, R.string.assistant_tafsir_action);
     menu.setOnMenuItemClickListener(
         item -> {
+          if (item.getItemId() == 5) {
+            startActivity(new android.content.Intent(this, AiActivity.class)
+                .putExtra("tadabbur_chapter", chapter.id).putExtra("tadabbur_verse", verse.number));
+            return true;
+          }
           if (item.getItemId() == 3) {
             row.findViewById(R.id.ayahPlay).performClick();
             return true;

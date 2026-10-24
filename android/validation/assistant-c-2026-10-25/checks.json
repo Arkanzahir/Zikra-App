@@ -1,0 +1,62 @@
+{
+  "dateWib": "2026-10-25",
+  "build": {
+    "debugApk": "passed",
+    "debugTestApk": "passed",
+    "workers": 1,
+    "heapMiB": 1024,
+    "signedProductionRelease": false
+  },
+  "androidUnit": {
+    "tests": 118,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4,
+    "passed": 114
+  },
+  "assistantUnitSuites": {
+    "com.zikra.app.assistant.AssistantGatewayTest": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "com.zikra.app.assistant.AssistantSelectionTest": {
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "com.zikra.app.assistant.OfflineAssistantTest": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 716
+  },
+  "backend": {
+    "tests": 26,
+    "passed": 26,
+    "failed": 0
+  },
+  "native": {
+    "assistantMethods": 6,
+    "migrationMethods": 11,
+    "font200Methods": 2,
+    "passed": true,
+    "controlledResponses": true,
+    "actualMicrophone": false,
+    "physicalPhone": false
+  },
+  "emulator": {
+    "api": "37.1",
+    "requestedRamMiB": 1536,
+    "reportedMemTotalKiB": 4008372,
+    "closed": true
+  }
+}

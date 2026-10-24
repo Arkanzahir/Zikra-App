@@ -75,6 +75,13 @@ Sensor rotasi, cahaya, akselerometer, getaran, aplikasi WhatsApp/Maps, pengenal 
 
 ## Pengingat sholat
 
+Kandidat 1.8.0 beta (versionCode 25) menambah SQLite v4 untuk receipt tindakan
+AI yang sudah ditinjau. Migrasi dari v3 menambah tabel, tanpa reset task/Hifz;
+jangan memaksa downgrade ke APK lama setelah database naik. Alur AI/deploy dan
+batas HP/mikrofon ada pada [bukti C](validation/assistant-c-2026-10-25/README.md).
+Pilihan adzan/notifikasi biasa/getar/mati masih tugas D02a; bukan sudah tersedia
+karena build AI ini berhasil.
+
 Buka Jadwal Sholat melalui strip waktu atau tombol bel Home, lalu aktifkan **Pengingat sholat**. Android 13+ menampilkan permintaan izin notifikasi. Untuk Android 12+, tombol **Atur ketepatan pengingat** membuka akses alarm tepat waktu; jika tidak diizinkan, aplikasi tetap memakai alarm yang ketepatannya dapat dipengaruhi penghematan daya sistem. Pilihan per sholat diatur lewat ikon bel pada baris jadwal.
 
 `PrayerRemindersTest` memakai layanan alarm/notifikasi perangkat sungguhan dan memberikan izin notifikasi melalui UiAutomation pada perangkat uji jika dibutuhkan. Tes memverifikasi jadwal aktif/nonaktif dan receiver notifikasi dengan broadcast uji, bukan menunggu waktu sholat sebenarnya.

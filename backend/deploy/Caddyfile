@@ -1,0 +1,12 @@
+{$ZIKRA_DOMAIN} {
+    request_body {
+        max_size 49152
+    }
+    reverse_proxy backend:8787 {
+        health_uri /health
+        health_interval 30s
+        transport http {
+            response_header_timeout 45s
+        }
+    }
+}

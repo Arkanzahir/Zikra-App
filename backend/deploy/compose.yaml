@@ -1,0 +1,40 @@
+services:
+  backend:
+    build: ..
+    env_file: ${ZIKRA_ENV_FILE:?Set an absolute path to the private backend env file}
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8787
+      ZIKRA_ACCESS_MODE: installation
+      ZIKRA_CLIENTS_FILE: /data/clients.json
+      ZIKRA_USAGE_FILE: /data/usage.json
+    volumes:
+      - clients:/data
+    expose:
+      - "8787"
+    restart: unless-stopped
+    stop_grace_period: 45s
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+  proxy:
+    image: caddy:2-alpine
+    environment:
+      ZIKRA_DOMAIN: ${ZIKRA_DOMAIN:?Set the real backend domain}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - certificates:/data
+      - proxy_config:/config
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  clients:
+  certificates:
+  proxy_config:

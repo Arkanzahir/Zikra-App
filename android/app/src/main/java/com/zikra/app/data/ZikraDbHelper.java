@@ -17,7 +17,7 @@ import java.util.List;
  * New days start empty: only explicit user actions create tasks or prayer templates.
  */
 public final class ZikraDbHelper extends SQLiteOpenHelper {
-  private static final int VERSION = 3;
+  private static final int VERSION = 4;
   public static final String CATEGORY_STUDY = "Study";
   public static final String CATEGORY_IBADAH = "Ibadah";
   public static final String CATEGORY_HIFZ = "Hifz";
@@ -58,6 +58,7 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
     db.execSQL("CREATE INDEX tasks_date ON tasks(task_date, id)");
     addHifzColumns(db);
     addAcademicColumns(db);
+    addAssistantReceipts(db);
   }
 
   @Override
@@ -66,6 +67,51 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
       throw new IllegalStateException("Unsupported migration");
     if (oldVersion < 2) addHifzColumns(db);
     if (oldVersion < 3) addAcademicColumns(db);
+    if (oldVersion < 4) addAssistantReceipts(db);
+  }
+
+  private static void addAssistantReceipts(SQLiteDatabase db) {
+    db.execSQL("CREATE TABLE assistant_actions (action_id TEXT PRIMARY KEY NOT NULL, task_id INTEGER NOT NULL)");
+  }
+
+  public boolean assistantProposalApplied(String id) {
+    try (Cursor cursor = getReadableDatabase().rawQuery(
+        "SELECT 1 FROM assistant_actions WHERE action_id=?", new String[] {id})) {
+      return cursor.moveToFirst();
+    }
+  }
+
+  /** Call only after explicit review. Receipt and mutation commit together, surviving retries/restarts. */
+  public long applyReviewedProposal(com.zikra.app.assistant.TaskProposal proposal) {
+    SQLiteDatabase db = databaseForDay(today());
+    db.beginTransaction();
+    try {
+      try (Cursor receipt = db.rawQuery("SELECT task_id FROM assistant_actions WHERE action_id=?",
+          new String[] {proposal.id})) {
+        if (receipt.moveToFirst()) { db.setTransactionSuccessful(); return receipt.getLong(0); }
+      }
+      long taskId;
+      if ("add_task".equals(proposal.kind)) {
+        ContentValues values = academicValues(proposal.title, proposal.dueAt, false);
+        values.put("task_date", today()); values.put("completed", 0);
+        taskId = db.insertOrThrow("tasks", null, values);
+      } else {
+        ContentValues values = new ContentValues();
+        values.put("title", proposal.title); values.put("due_at", proposal.dueAt);
+        if (proposal.dueAt == 0) values.put("study_reminder", 0);
+        if (db.update("tasks", values,
+            "id=? AND category=? AND completed=0 AND title=? AND due_at=?",
+            new String[] {Long.toString(proposal.taskId), CATEGORY_STUDY,
+              proposal.expectedTitle, Long.toString(proposal.expectedDueAt)}) != 1)
+          throw new IllegalStateException("Tugas berubah atau sudah selesai. Minta usulan baru.");
+        taskId = proposal.taskId;
+      }
+      ContentValues receipt = new ContentValues();
+      receipt.put("action_id", proposal.id); receipt.put("task_id", taskId);
+      db.insertOrThrow("assistant_actions", null, receipt);
+      db.setTransactionSuccessful();
+      return taskId;
+    } finally { db.endTransaction(); }
   }
 
   private static void addAcademicColumns(SQLiteDatabase db) {

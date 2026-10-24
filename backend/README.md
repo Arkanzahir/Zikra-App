@@ -1,16 +1,19 @@
 # Gateway Featherless untuk Pendamping Zikra
 
-Status 25 Oktober 2026: konfigurasi dan gateway **privat lokal** diperiksa pada
-C01. Dua proses start ulang, health check dan satu completion nyata lewat gateway
-berhasil; [bukti dan batas](../android/validation/backend-c01-2026-10-25/README.md).
-Catatan 22 Oktober juga menyebut completion lokal berhasil; klaim lama README
-bahwa belum pernah ada permintaan live sudah dikoreksi. Belum ada hosting HTTPS
-permanen, autentikasi per instalasi atau bukti APK → hosting → provider dari HP.
-**C01 tetap terbuka: pengguna mengonfirmasi key belum dirotasi pada 25 Oktober.**
+Status 25 Oktober 2026: [persiapan C01](../android/validation/backend-c01-2026-10-25/README.md)
+dilanjutkan dengan [alur C03/C04/C06 dan bukti](../android/validation/assistant-c-2026-10-25/README.md).
+Usulan tugas terstruktur dan Tadabbur bersumber telah menerima completion nyata
+melalui gateway privat lokal. Mode akses per instalasi, pencabutan dan kuota
+persisten tersedia di source, dengan [paket deploy](deploy/README.md).
+**Belum dihosting**, belum dibuktikan APK → hosting → provider dari HP.
+Pengguna memilih siapkan paket dulu; key lama masih khusus uji privat. Rotasi
+ditunda sampai sebelum publik, belum diklaim sudah dilakukan.
 
 Alur sasaran: Android → backend HTTPS → Featherless. Mode offline Android tetap
-default; online hanya mengirim pesan percakapan yang dipilih (maksimal 24 pesan /
-16.000 karakter), tanpa profil, lokasi, isi tugas atau berkas perangkat otomatis.
+default; online mengirim pesan saat ini, atau riwayat online bila dipilih
+(maksimal 24 pesan / 16.000 karakter). Nama, maksimal 10 tugas/tenggat dan
+perhitungan salat/zona hanya dikirim lewat pilihan eksplisit per request dengan
+preview. Tidak mengirim koordinat GPS, profil, tugas atau berkas otomatis.
 Provider key hanya dibaca di server. Jawaban gagal tidak diganti diam-diam dengan
 jawaban lokal. Model AI tidak dibundel ke APK.
 
@@ -27,13 +30,21 @@ bukan sertifikasi patch runtime produksi.
 | `ZIKRA_CLIENT_TOKEN` | Wajib, token acak terpisah 32–256 karakter huruf/angka dan `._~+/=-`, tidak berawalan `sk-`, berbeda dari key provider; sesuai validasi Android, hanya uji pribadi |
 | `HOST` | Default `127.0.0.1`; IP literal atau `localhost`. Bind selain loopback hanya setelah isolasi jaringan hosting ditinjau |
 | `PORT` | Default `8787`, bilangan bulat 1–65535 |
+| `ZIKRA_ACCESS_MODE` | Default `private`; pilih `installation` untuk token instalasi yang dapat dicabut |
+| `ZIKRA_CLIENTS_FILE` / `ZIKRA_USAGE_FILE` | Mode installation: dua path absolut terpisah pada volume privat persisten; registry dan kuota, tanpa percakapan |
+| `ZIKRA_DAILY_LIMIT` | Mode installation: 1–1000 percobaan/hari UTC per instalasi, default 100 |
+
+`ZIKRA_CLIENT_TOKEN` hanya wajib pada mode private. Mode installation tidak
+menerima shared token sebagai fallback; provider key tetap wajib di server.
+Lihat administrasi penerbitan/revokasi dan batas satu replika pada runbook deploy.
 
 Konfigurasi salah menghentikan startup tanpa mencetak nilai/stack trace.
 `NODE_TLS_REJECT_UNAUTHORIZED=0` ditolak. Provider URL tetap, redirect ditolak;
 klien tidak boleh memilih provider/model melalui request.
 
 1. Gunakan secret store hosting atau berkas env **di luar source**. `.env.example`
-   hanya template kosong; `.env*` privat dan `.local/` diabaikan Git. Batasi akses
+   dan `.env.production.example` hanya template kosong; env privat serta `.local/`
+   diabaikan Git. Batasi akses
    berkas ke operator/service. Jangan paste key ke chat, perintah shell, log,
    ticket, laporan atau konfigurasi Android.
 2. Rotasi key yang pernah dibagikan melalui dashboard provider, perbarui env
@@ -113,10 +124,11 @@ besar 413; JSON/isi client salah 400; tipe salah 415; token salah 401; provider
 429 tetap 429; body provider rusak/terlalu besar menjadi 502; timeout 504.
 Pembatalan klien membatalkan fetch provider.
 
-Kuota saat ini hanya di memori, hilang saat restart dan tidak dibagi antarreplika.
-Di belakang satu proxy, klien berbagi kuota alamat socket proxy. Gateway sengaja
-tidak mempercayai `X-Forwarded-For`; C02 harus merancang trust proxy dan kuota
-identitas instalasi yang dapat dicabut, bukan menyalakan trust sembarang header.
+Mode private memakai kuota socket di memori yang hilang saat restart. Mode
+installation memakai identitas token yang dapat dicabut dan kuota persisten
+per instalasi, satu proses/satu replika. Keduanya tidak mempercayai
+`X-Forwarded-For`. Jangan menambah replika pada volume file yang sama tanpa
+database/koordinasi kuota transaksional bersama yang diperiksa ulang.
 
 Jangan membuka HTTP port ini ke internet. C02 wajib menyediakan HTTPS permanen,
 isolasi port internal, reverse proxy dengan batas body/timeout yang sesuai,

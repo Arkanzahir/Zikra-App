@@ -14,16 +14,35 @@ public final class OnlineAssistantClient implements AutoCloseable {
   public interface Result {
     void complete(String reply);
 
+    default void complete(String reply, JSONObject proposal, JSONObject source) { complete(reply); }
+
     void failed();
+
+    default void failed(Failure failure) { failed(); }
   }
 
-  private final OkHttpClient http =
-      new OkHttpClient.Builder()
+  public enum Failure { UNAUTHORIZED, QUOTA, TIMEOUT, NETWORK, SERVER, INVALID_RESPONSE, SOURCE }
+
+  public static Failure failure(int status, String error) {
+    if ("source_unavailable".equals(error)) return Failure.SOURCE;
+    if (status == 401 || status == 403) return Failure.UNAUTHORIZED;
+    if (status == 429) return Failure.QUOTA;
+    if (status == 408 || status == 504) return Failure.TIMEOUT;
+    return status >= 500 ? Failure.SERVER : Failure.INVALID_RESPONSE;
+  }
+
+  private final OkHttpClient http;
+
+  public OnlineAssistantClient() {
+    this(new OkHttpClient.Builder()
           .callTimeout(45, TimeUnit.SECONDS)
           .followRedirects(false)
           .followSslRedirects(false)
           .retryOnConnectionFailure(false)
-          .build();
+          .build());
+  }
+
+  OnlineAssistantClient(OkHttpClient http) { this.http = http; }
   private final Handler main = new Handler(Looper.getMainLooper());
   private Call active;
   private int generation;
@@ -46,11 +65,14 @@ public final class OnlineAssistantClient implements AutoCloseable {
 
   public void send(AssistantConnection connection, JSONArray stored, Result result)
       throws Exception {
+    send(connection, new JSONObject().put("messages", context(stored)), result);
+  }
+
+  public void send(AssistantConnection connection, JSONObject body, Result result) throws Exception {
     cancel();
     int token = generation;
     String code = connection.accessCode(), endpoint = connection.endpoint();
     if (!AssistantConnection.valid(endpoint, code)) throw new IOException("Invalid gateway");
-    JSONObject body = new JSONObject().put("messages", context(stored));
     active =
         http.newCall(
             new Request.Builder()
@@ -66,33 +88,77 @@ public final class OnlineAssistantClient implements AutoCloseable {
           public void onFailure(Call call, IOException error) {
             main.post(
                 () -> {
-                  if (token == generation) result.failed();
+                  if (token == generation) result.failed(error instanceof java.io.InterruptedIOException
+                      ? Failure.TIMEOUT : Failure.NETWORK);
                 });
           }
 
           @Override
           public void onResponse(Call call, Response response) {
             String answer = null;
+            JSONObject proposal = null, source = null;
+            Failure failure = Failure.INVALID_RESPONSE;
             try (response) {
-              if (response.isSuccessful() && response.body() != null) {
+              failure = failure(response.code(), "");
+              if (response.body() != null) {
                 response.body().source().request(65537);
                 if (response.body().source().buffer().size() <= 65536) {
-                  String value = new JSONObject(response.body().string()).getString("reply").trim();
-                  if (!value.isEmpty() && value.length() <= 8000) answer = value;
+                  JSONObject data = new JSONObject(response.body().string());
+                  failure = failure(response.code(), data.optString("error"));
+                  if (response.isSuccessful() && "featherless".equals(data.optString("provider"))) {
+                    Object raw = data.opt("reply");
+                    String value = raw instanceof String ? ((String) raw).trim() : "";
+                    if (!value.isEmpty() && value.length() <= 8000) {
+                      answer = value;
+                      proposal = authorizedProposal(data.optJSONObject("proposal"), body);
+                      source = verifiedSource(data.optJSONObject("source"), body.optJSONObject("verse"));
+                      if (body.has("verse") && source == null) { answer = null; failure = Failure.SOURCE; }
+                    }
+                  }
                 }
               }
             } catch (IOException | JSONException ignored) {
             }
             String finalAnswer = answer;
+            JSONObject finalProposal = proposal, finalSource = source;
+            Failure finalFailure = failure;
             main.post(
                 () -> {
                   if (token == generation) {
-                    if (finalAnswer != null) result.complete(finalAnswer);
-                    else result.failed();
+                    if (finalAnswer != null) result.complete(finalAnswer, finalProposal, finalSource);
+                    else result.failed(finalFailure);
                   }
                 });
           }
         });
+  }
+
+  public static JSONObject authorizedProposal(JSONObject proposal, JSONObject request) {
+    JSONObject features = request.optJSONObject("features"), context = request.optJSONObject("context");
+    if (proposal == null || features == null || !features.optBoolean("taskProposals", false)) return null;
+    try {
+      TaskProposal parsed = TaskProposal.fromJson(proposal);
+      if (!parsed.id.equals(request.optString("requestId"))) return null;
+      if ("add_task".equals(parsed.kind)) return proposal;
+      JSONArray tasks = context == null ? null : context.optJSONArray("tasks");
+      if (tasks == null) return null;
+      for (int i = 0; i < tasks.length(); i++) {
+        JSONObject task = tasks.getJSONObject(i);
+        if (task.optString("id").equals(Long.toString(parsed.taskId)) && !task.getBoolean("completed")
+            && task.getString("title").equals(parsed.expectedTitle) && task.getLong("dueAt") == parsed.expectedDueAt)
+          return proposal;
+      }
+    } catch (JSONException | IllegalArgumentException invalid) { }
+    return null;
+  }
+
+  public static JSONObject verifiedSource(JSONObject source, JSONObject verse) {
+    if (source == null || verse == null) return null;
+    int chapter = verse.optInt("chapter"), number = verse.optInt("number");
+    if (source.optInt("chapter") != chapter || source.optInt("number") != number
+        || !("https://equran.id/tafsir/" + chapter).equals(source.optString("url"))
+        || source.optString("text").trim().isEmpty() || source.optString("text").length() > 6000) return null;
+    return source;
   }
 
   public void cancel() {

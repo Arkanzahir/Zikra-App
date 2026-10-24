@@ -96,7 +96,7 @@ public final class AcademicFeaturesTest extends InstrumentationTestCase {
       assertEquals(5, task.hifz.lastVerse);
       assertEquals(0, task.dueAt);
       assertFalse(task.reminder);
-      assertEquals(3, upgraded.getReadableDatabase().getVersion());
+      assertEquals(4, upgraded.getReadableDatabase().getVersion());
       long id =
           upgraded.addAcademicTask("[DATA UJI] Tenggat", System.currentTimeMillis() + 600000, true);
       assertEquals(2, upgraded.getTasks().size());

@@ -1,0 +1,30 @@
+{
+  "dateWib": "2026-10-25",
+  "scope": "synthetic-private-loopback; no APK, hosting or microphone claim",
+  "runtime": "v22.17.0",
+  "keyRotated": false,
+  "providerRequests": 2,
+  "taskProposal": {
+    "status": 200,
+    "replyValid": true,
+    "proposalPresent": true,
+    "kind": "add_task",
+    "expectedTitle": true,
+    "noDeadline": true
+  },
+  "source": {
+    "fetched": true,
+    "chapter": 1,
+    "number": 2,
+    "url": "https://equran.id/tafsir/1",
+    "chars": 2126,
+    "sha256": "c220846202733bc43f80c87141f554067bb0e5fb5fe78bf1c393f0aef0977624",
+    "truncated": false
+  },
+  "tadabbur": {
+    "status": 200,
+    "replyValid": true,
+    "sourceMatches": true
+  },
+  "passed": true
+}
