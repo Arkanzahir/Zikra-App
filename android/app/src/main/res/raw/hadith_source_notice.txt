@@ -10,6 +10,11 @@ Celah nomor dipertahankan. Identitas edisi cetak/penerjemah tidak dinyatakan
 dalam metadata sumber yang tersedia. Ini bukan klaim kitab cetak tanpa celah.
 Teks tidak dilengkapi atau diterjemahkan ulang oleh AI.
 
+Paket Muslim juga memuat riwayat muqaddimah; nama kitab tidak menjadi
+penilaian otomatis untuk setiap riwayat pengantarnya. Contoh nomor Tafsirq
+3001 (Bukhari) sejalan dengan nomor 3240 di Sunnah.com, bukan nomor 3001
+di semua edisi. Nomor sumber dan identitas bacaan tetap dipertahankan.
+
 Repository license notice (as published by the repository):
 
 MIT License

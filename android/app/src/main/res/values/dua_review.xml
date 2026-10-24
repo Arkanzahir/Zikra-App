@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dua_review_wind_title">Ketika angin bertiup</string>
+    <string name="dua_review_wake">Catatan bacaan: harakat akhir kata an-nusyūr diselaraskan dengan Bukhari 6312. Rujukan pembanding: https://sunnah.com/bukhari:6312</string>
+    <string name="dua_review_wind">Catatan konteks: bacaan ini memohon kebaikan angin dan perlindungan dari keburukannya. Judul EQuran juga menyebut halilintar/hujan; bacaan ini tidak ditandai sebagai doa khusus petir. Pembanding konteks: https://sunnah.com/abudawud:5097</string>
+    <string name="dua_review_rain">Catatan rujukan: bacaan hujan juga dapat ditelusuri pada Bukhari 1032 di Sunnah.com. Nomor 985 pada catatan EQuran dipertahankan sebagai nomor sumber, bukan dianggap otomatis sama antar edisi. https://sunnah.com/bukhari:1032</string>
+    <string name="dua_review_grading">Catatan rujukan: EQuran mencantumkan penilaian sahih oleh Al-Albani; halaman Ibn Majah 251 di Sunnah.com mencantumkan daif oleh Darussalam. Penilaian perlu dilihat bersama sanad dan redaksi riwayatnya. https://sunnah.com/ibnmajah:251</string>
+    <string name="dua_review_changed">Catatan kurasi: data sumber ini telah berubah dari versi yang diperiksa. Koreksi versi lama tidak diterapkan; rujuk sumber dan periksa kembali bacaannya.</string>
+    <string name="dua_review_after_meal">Catatan rujukan: bacaan ini dapat ditelusuri pada Tirmidzi 3458 dan Abu Dawud 4023 di Sunnah.com. Catatan EQuran menyebut Abu Daud 4043 tanpa penjelasan edisi; nomor tersebut tidak disamakan otomatis. https://sunnah.com/tirmidhi:3458 · https://sunnah.com/abudawud:4023</string>
+</resources>

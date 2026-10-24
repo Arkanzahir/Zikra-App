@@ -15,13 +15,17 @@ public final class DuaCatalog {
   public final int sourceCount, excludedWithoutReference, excludedWithoutText;
   public static final class Entry {
     public final int number;
-    public final String id, title, group, arabic, latin, meaning, reference, search;
+    public final String id, title, group, arabic, sourceArabic, latin, meaning, reference, search;
+    public final DuaReview review;
     private Entry(int number, String title, String group, String arabic, String latin,
         String meaning, String reference, String tags) {
       this.number = number; this.id = "equran-doa:" + number; this.title = title; this.group = group;
-      this.arabic = arabic; this.latin = latin; this.meaning = meaning; this.reference = reference;
-      search = HadithSearch.normalize(title + " " + group + " " + arabic + " " + latin
-          + " " + meaning + " " + reference + " " + tags);
+      review = DuaReview.forSource(number, title, arabic, meaning, reference);
+      this.sourceArabic = arabic; this.arabic = review.displayArabic(arabic);
+      this.latin = latin; this.meaning = meaning; this.reference = reference;
+      search = HadithSearch.normalize((review == DuaReview.WIND ? "angin" : title)
+          + " " + group + " " + arabic + " " + latin + " " + meaning + " " + reference
+          + " " + (review == DuaReview.WIND ? "" : tags));
     }
   }
   private DuaCatalog(List<Entry> entries, int sourceCount, int excluded, int withoutText) {

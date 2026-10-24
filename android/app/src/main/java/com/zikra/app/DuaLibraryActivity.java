@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.zikra.app.discovery.DuaCatalog;
+import com.zikra.app.discovery.DuaReview;
 import com.zikra.app.discovery.DuaCatalogRepository;
 import com.zikra.app.discovery.HadithSearch;
 import com.zikra.app.ui.FeatureHeader;
@@ -118,13 +119,14 @@ public final class DuaLibraryActivity extends BaseActivity {
     for (int i = offset; i < Math.min(offset + 20, matches.size()); i++) {
       DuaCatalog.Entry entry = matches.get(i);
       View card = getLayoutInflater().inflate(R.layout.reading_item_dua, content, false);
-      ((TextView) card.findViewById(R.id.duaTitle)).setText(entry.title);
+      String displayTitle = entry.review == DuaReview.WIND ? getString(R.string.dua_review_wind_title) : entry.title;
+      ((TextView) card.findViewById(R.id.duaTitle)).setText(displayTitle);
       ((TextView) card.findViewById(R.id.duaRowCategory)).setText(entry.group);
       ((TextView) card.findViewById(R.id.duaSubtitle)).setText("EQuran · " + entry.number);
       ((TextView) card.findViewById(R.id.duaArabic)).setText(entry.arabic);
       ((TextView) card.findViewById(R.id.duaTranslation)).setText(
           (entry.latin.isEmpty() ? "" : entry.latin + "\n\n") + entry.meaning);
-      ((TextView) card.findViewById(R.id.duaSource)).setText(entry.reference + "\n\nhttps://equran.id/api/doa/" + entry.number);
+      ((TextView) card.findViewById(R.id.duaSource)).setText(reviewNote(entry) + entry.reference + "\n\nhttps://equran.id/api/doa/" + entry.number);
       ((android.widget.ImageView) card.findViewById(R.id.duaRowIcon)).setImageResource(R.drawable.home_ic_dua);
       Button audio = card.findViewById(R.id.duaListen); audio.setText(R.string.dua_library_tts); audio.setEnabled(true);
       audio.setOnClickListener(v -> {
@@ -138,12 +140,26 @@ public final class DuaLibraryActivity extends BaseActivity {
       card.findViewById(R.id.duaExpand).setOnClickListener(v -> {
         expandedId = entry.id.equals(expandedId) ? null : entry.id; render();
       });
-      card.findViewById(R.id.duaExpand).setContentDescription(entry.title + ", " + entry.group);
+      card.findViewById(R.id.duaExpand).setContentDescription(displayTitle + ", " + entry.group);
       card.findViewById(R.id.duaRowDivider).setVisibility(i + 1 == matches.size() ? View.GONE : View.VISIBLE);
       content.addView(card);
     }
     findViewById(R.id.duaLibraryEmpty).setVisibility(matches.isEmpty() ? View.VISIBLE : View.GONE);
   }
+  private String reviewNote(DuaCatalog.Entry entry) {
+    int note;
+    switch (entry.review) {
+      case WAKE_UP: note = R.string.dua_review_wake; break;
+      case WIND: note = R.string.dua_review_wind; break;
+      case RAIN_NUMBERING: note = R.string.dua_review_rain; break;
+      case AFTER_MEAL_NUMBERING: note = R.string.dua_review_after_meal; break;
+      case GRADING_CONTEXT: note = R.string.dua_review_grading; break;
+      case SOURCE_CHANGED: note = R.string.dua_review_changed; break;
+      default: return "";
+    }
+    return getString(note) + "\n\n";
+  }
+
   @Override protected void onSaveInstanceState(Bundle state) {
     state.putString("group", group); state.putString("query", search.getText().toString());
     state.putString("expanded", expandedId); state.putInt("offset", offset); super.onSaveInstanceState(state);
