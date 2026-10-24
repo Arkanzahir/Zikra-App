@@ -11,6 +11,7 @@
 ## Checkpoint yang dapat dipulihkan
 
 - Parent pekerjaan C lanjutan: `20c21fc` (checkpoint lokal C01), handoff yang sudah dipush sebelumnya `83312da`. Source checkpoint kandidat lihat [receipt C](android/validation/assistant-c-2026-10-25/release.json); gunakan Git log aktual, jangan menganggap checkpoint lokal sudah dipush.
+- Source kandidat 1.8.0: **`7982e10e0df98f9b2ee9ca01fa9d89c058363280`**, disimpan lokal; receipt dokumentasi adalah commit penerus, belum push.
 - Aplikasi **1.8.0 beta / versionCode 25**, SQLite v4. APK debug, belum signed release publik.
 - APK lokal: `D:\Download\Zikra-App-main\Zikra-AI-v1.8.0-beta-debug.apk`.
 - Ukuran **31.362.014 byte**; SHA-256 `77ed491b65e2519758412bdbe44bc07d494a282ca8a3dda0d7ac5d55bd15a5c1`.

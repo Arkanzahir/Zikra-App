@@ -2,6 +2,7 @@
 
 25 Oktober 2026 (WIB). Baseline `20c21fc`; kandidat **1.8.0 beta / versionCode 25**,
 SQLite v4, unduhan awal **31.362.014 byte**. [Receipt source/APK/uji](release.json).
+Source kandidat: **`7982e10`**; checkpoint lokal, belum dipush pada akhir sesi ini.
 **Bagian C belum dinyatakan seluruhnya selesai.** Pengguna memilih siapkan paket
 deploy dahulu karena belum ada hosting. Pengguna juga menunda rotasi sampai
 sebelum publik; key tidak diganti dan tidak diklaim aman hanya karena masih bekerja.

@@ -1,0 +1,23 @@
+{
+  "dateWib": "2026-10-25",
+  "versionName": "1.8.0 beta",
+  "versionCode": 25,
+  "databaseVersion": 4,
+  "sourceCommit": "7982e10e0df98f9b2ee9ca01fa9d89c058363280",
+  "previousCheckpoint": "20c21fc",
+  "apkFile": "Zikra-AI-v1.8.0-beta-debug.apk",
+  "apkBytes": 31362014,
+  "apkSha256": "77ed491b65e2519758412bdbe44bc07d494a282ca8a3dda0d7ac5d55bd15a5c1",
+  "under100000000Bytes": true,
+  "publicRelease": false,
+  "entireStageCComplete": false,
+  "providerKeyRotated": false,
+  "hostingDeployed": false,
+  "physicalPhoneTested": false,
+  "actualMicrophoneTested": false,
+  "providerProof": "live-local.json",
+  "checks": "checks.json",
+  "sourceSnapshot": "source-files.json",
+  "secretPreservation": "secret-and-preservation.json",
+  "additionalTask": "D02a; queued, not implemented"
+}
