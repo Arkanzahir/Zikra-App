@@ -1,0 +1,15 @@
+{
+  "version": "1.7.2",
+  "versionCode": 20,
+  "productionCommit": "91c87398c848b1acfa6f63c383b4f0dacc6a7a64",
+  "apkSha256": "4ef1acfed5648ce481a6b5d9e204d4e5aa44946be4582ae1b30cda8f35b303ac",
+  "capture": "Android emulator, unmodified screenshots",
+  "test": "DailyDesignReleaseTest#testDuaFilterAndReadWithoutVoice",
+  "result": "1 native method passed",
+  "screenshots": {
+    "Doa-Expanded-v1.7.2.png": "3ad0dce0203d34763c85db79cbaf578cb9ed0a1b208e3ab88408ff95bccf9b56",
+    "Doa-List-v1.7.2.png": "ba43d11e1bee5adf77c8cb1f1f2f6702096a4f3e89d8353b1fa1dad6657ef425",
+    "Doa-Overview-v1.7.2.png": "fb853f2c4ef7d66faf495905e4302ed2005e0e81609c382c327f411a34e549bd"
+  },
+  "limits": "Overview, list, expansion and empty-search return only; not all 14 entries, audio, all categories, or full B04 verification."
+}

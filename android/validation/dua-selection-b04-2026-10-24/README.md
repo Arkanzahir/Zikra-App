@@ -54,3 +54,7 @@ Build Android, lint dan unit test lulus; jumlah/hash/commit pada `release.json`.
 - **B04:** kategori yang kurang sudah diisi dan semua entri memiliki inventaris, tetapi penelaahan 213 bacaan tambahan, detail teks/arti serta pemeriksaan perangkat yang tersisa belum dinyatakan selesai. Pilihan 14 tidak digunakan untuk diam-diam menganggap seluruh koleksi 225 selesai.
 
 Cakupan rilis tetap [A02](../../../RELEASE_SCOPE.md). Jumlah pilihan boleh bertambah setelah review; daftar tambahan yang belum ditelaah tidak diubah menjadi konten terverifikasi hanya karena mempunyai nomor rujukan.
+
+## Preview pada permintaan berikutnya
+
+Pengguna kemudian meminta melihat desain. [Screenshot APK 1.7.2 dan satu metode native buka/cari/baca](../dua-preview-2026-10-24/README.md) diambil dengan emulator singkat tanpa build baru; emulator ditutup sesudahnya. Batas tanpa emulator di atas berlaku pada putaran pembuatan paket, sebelum permintaan preview ini. B01/B04 tetap terbuka.
