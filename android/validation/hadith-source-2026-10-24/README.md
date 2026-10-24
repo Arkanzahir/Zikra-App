@@ -34,6 +34,8 @@ Ini hasil pemeriksaan source dan isi JSON, bukan klaim respons endpoint range te
 
 **Gading dipertahankan sebagai kandidat teknis, belum ditetapkan sumber produksi/kitab lengkap.** B01 belum memenuhi syarat untuk ditutup. Setelah penelitian awal, adaptor kandidat dan penyimpanan diuji pada debug beta 1.7.0: [bukti B02/B03 dan batas distribusi](../content-b-2026-10-24/README.md). Tujuh kutipan bawaan tetap ada; paket kandidat opsional terpisah. Implementasi teknis yang dapat diganti ini tidak menutup ketentuan sumber B01/G03.
 
+**Lanjutan pada hari yang sama:** [8 sampel pembanding, temuan muqaddimah/nomor dan peninjauan alternatif](../source-review-b-2026-10-24/README.md) sudah dicatat. Konfirmasi edisi/penerjemah dan penggunaan konten belum diperoleh; tidak ada pesan dikirim kepada pengelola.
+
 Pekerjaan B01 berikutnya:
 
 1. Cari identitas edisi/asli terjemahan dan ketentuan penggunaan konten yang dapat ditautkan; bandingkan sumber alternatif dengan asal yang jelas.

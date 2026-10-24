@@ -1,3 +1,5 @@
+> **Kurasi konten beta 1.7.1 — 24 Oktober 2026:** [8 sampel Hadis, 12 sampel Doa dan 5 penanganan di APK](android/validation/source-review-b-2026-10-24/README.md). Koreksi mengikuti fingerprint versi sumber; sumber asli/ID tetap tersimpan. B01/B04 masih terbuka, tidak ada konfirmasi/email pengelola atau uji HP baru. Riwayat 1.7.0 di bawah tetap bukti interaksi native koleksi.
+
 > **Konten beta 1.7.0 — 24 Oktober 2026:** [Hadis bertahap/pencarian/penanda serta koleksi Doa tambahan](android/validation/content-b-2026-10-24/README.md). B02/B03 teknis lulus; B01 sumber Hadis dan B04 kurasi/konteks Doa tetap terbuka. Paket kandidat Hadis 11.568 entri, Doa tambahan 225 setelah unduh; empat Doa/tujuh kutipan bawaan tetap ada. Bukan klaim kitab cetak lengkap atau rilis publik. Riwayat di bawah memakai jumlah pada versi masing-masing.
 
 > **Arah pengerjaan aktif:** [Implementation plan dan checklist rilis](IMPLEMENTATION_PLAN.md). Selesaikan satu ID, penuhi syarat selesai, lalu centang dan simpan bukti sebelum berpindah.

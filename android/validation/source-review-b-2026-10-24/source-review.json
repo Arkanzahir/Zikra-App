@@ -1,0 +1,97 @@
+{
+  "checked": "2026-10-24",
+  "candidateRevision": "8e15b4f9e7585822426a0d470e8dfec27e2a1707",
+  "hadithSamples": [
+    {
+      "book": "bukhari",
+      "tafsirqNumber": 1,
+      "arabicSha256": "dcb5a9c0bbb0ed2e20632f84c4b90e0be801582d02d1bf4568abb94d4a447a1a",
+      "indonesianSha256": "890f06fb6d029a3b5f1e7198d28d10d18659989792d5aee931d1d7ce2aad2552",
+      "comparisonUrl": "https://sunnah.com/bukhari:1",
+      "subject": "niat dan tujuan hijrah",
+      "method": "Manual comparison of visible Arabic chain/matn; punctuation and vocalization are not asserted byte-identical.",
+      "status": "Consistent sample; no global numbering conversion or translation-rights approval."
+    },
+    {
+      "book": "bukhari",
+      "tafsirqNumber": 2977,
+      "arabicSha256": "13a76fa41dd730fa6c46c5d20c1481c25f23a9e0378e7f3bdfd176a666f7d9f1",
+      "indonesianSha256": "5b4f0e3e6399ab614f377394bf8d3c2036a042ed1cee705bcc18668fd5180500",
+      "comparisonUrl": "https://sunnah.com/bukhari:3216",
+      "subject": "panggilan penjaga surga dan Abu Bakr",
+      "method": "Manual comparison of visible Arabic chain/matn; punctuation and vocalization are not asserted byte-identical.",
+      "status": "Consistent sample; no global numbering conversion or translation-rights approval."
+    },
+    {
+      "book": "bukhari",
+      "tafsirqNumber": 3001,
+      "arabicSha256": "e61a84b4ae4d3290993ebfcded36533017975c247bfce0e9baf27127d0e71a4a",
+      "indonesianSha256": "84dc9dce2e70ba20d355065952dedf1ff35ad5f0399030b6b105fb9d4534293f",
+      "comparisonUrl": "https://sunnah.com/bukhari:3240",
+      "subject": "tempat sesudah kematian",
+      "method": "Manual comparison of visible Arabic chain/matn; punctuation and vocalization are not asserted byte-identical.",
+      "status": "Consistent sample; no global numbering conversion or translation-rights approval."
+    },
+    {
+      "book": "bukhari",
+      "tafsirqNumber": 7008,
+      "arabicSha256": "b43f853133d4c0588e1b3267db84b978327375b7cf1f4df3fe65d9eea14e79e4",
+      "indonesianSha256": "d5f63185cd9cb1c893ccdc51b78e0397137c02417d5b016d850b656b9cc6b971",
+      "comparisonUrl": "https://sunnah.com/bukhari:7563",
+      "subject": "dua kalimat dzikir",
+      "method": "Manual comparison of visible Arabic chain/matn; punctuation and vocalization are not asserted byte-identical.",
+      "status": "Consistent sample; no global numbering conversion or translation-rights approval."
+    },
+    {
+      "book": "muslim",
+      "tafsirqNumber": 1,
+      "arabicSha256": "0d5b97fa2820eb407f1ef14d64df7917dc27e3e67505c7181e144a49cf99f783",
+      "indonesianSha256": "86b98ae2b80319c833322022c9060b18f2450cb4d2b8b9a8bf917aca2214984f",
+      "comparisonUrl": "https://sunnah.com/muslim/introduction",
+      "subject": "riwayat pada muqaddimah, bukan Muslim 1 bagian utama",
+      "method": "Manual comparison of visible Arabic chain/matn; punctuation and vocalization are not asserted byte-identical.",
+      "status": "Consistent sample; no global numbering conversion or translation-rights approval."
+    },
+    {
+      "book": "muslim",
+      "tafsirqNumber": 47,
+      "arabicSha256": "67798faec0a251dfe0a73448fcc21a5df4943a62a9f1dfb48152905c53a2c4bb",
+      "indonesianSha256": "26aa874f27c718f674abc667a68632b2733819465ed00d86123c32b96f7bd60a",
+      "comparisonUrl": "https://sunnah.com/muslim:32",
+      "subject": "Muadh dan penyampaian kabar syahadat",
+      "method": "Manual comparison of visible Arabic chain/matn; punctuation and vocalization are not asserted byte-identical.",
+      "status": "Consistent sample; no global numbering conversion or translation-rights approval."
+    },
+    {
+      "book": "muslim",
+      "tafsirqNumber": 49,
+      "arabicSha256": "888e63fe4da17a50db8a7d606289e7bdc3e0ea1e8363b304c0b0460a591c48ca",
+      "indonesianSha256": "05b712e04e59867f307b92d8c129e2be256b8b37b34c6214d55d6f665ab5467b",
+      "comparisonUrl": "https://sunnah.com/muslim:34",
+      "subject": "rasa iman dan keridaan",
+      "method": "Manual comparison of visible Arabic chain/matn; punctuation and vocalization are not asserted byte-identical.",
+      "status": "Consistent sample; no global numbering conversion or translation-rights approval."
+    },
+    {
+      "book": "muslim",
+      "tafsirqNumber": 5362,
+      "arabicSha256": "fd2606dc09056fa5f3af726265f40ef715f76efff1dea6c0f8dace1f5f9f761c",
+      "indonesianSha256": "920c38740e6199914f33080d5e554b65b8d1b47be4297a5fa63a7b2d31e987bb",
+      "comparisonUrl": "https://sunnah.com/muslim:3033b",
+      "subject": "dua pihak dalam Al-Hajj 19",
+      "method": "Manual comparison of visible Arabic chain/matn; punctuation and vocalization are not asserted byte-identical.",
+      "status": "Consistent sample; no global numbering conversion or translation-rights approval."
+    }
+  ],
+  "missingNumberIssue": "https://github.com/gadingnst/hadith-api/issues/11",
+  "rights": {
+    "hadith": "Upstream Indonesian translator, edition and content grant still unconfirmed.",
+    "doaTerms": "https://equran.id/terms",
+    "doaSummary": "Official terms allow API app development and sharing with attribution; reasonable use, no resale of obtained data. Not an accuracy certification."
+  },
+  "contact": {
+    "publicProfile": "https://github.com/gadingnst",
+    "address": "contact@gading.dev",
+    "sent": false
+  }
+}

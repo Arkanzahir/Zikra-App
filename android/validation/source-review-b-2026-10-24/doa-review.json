@@ -1,0 +1,120 @@
+{
+  "checked": "2026-10-24",
+  "sourceUrl": "https://equran.id/api/doa",
+  "sourceSnapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b",
+  "reviewedSamples": [
+    {
+      "id": 1,
+      "title": "Doa Sebelum Tidur 1",
+      "sourceFingerprint": "a312be76058e4d37e0e56c4de0055362f523a7916aa321d3530bb3a3dadf7a21",
+      "comparisonUrl": "https://sunnah.com/bukhari:6320",
+      "observation": "Prayer text consistent; source volume reference, not universal hadith number.",
+      "scope": "Initial contextual/text/reference check, not complete tashih of every harakat/translation/sanad."
+    },
+    {
+      "id": 6,
+      "title": "Doa Bangun Tidur 1",
+      "sourceFingerprint": "e38beae72f57b70e3675893dadde7fcfa46e5fa56d879163fedfd03210af4c04",
+      "comparisonUrl": "https://sunnah.com/bukhari:6312",
+      "observation": "Ending vocalization differs; snapshot-bound final harakat correction added.",
+      "scope": "Initial contextual/text/reference check, not complete tashih of every harakat/translation/sanad."
+    },
+    {
+      "id": 18,
+      "title": "Doa ketika angin ribut, halilintar dan hujan",
+      "sourceFingerprint": "88a82df458a0e89ad9ed4340462cf722db19ad34e91e3a469df96ac9bf49ad14",
+      "comparisonUrl": "https://sunnah.com/abudawud:5097",
+      "observation": "Wind context; broad thunder/rain title is not treated as a specific thunder invocation.",
+      "scope": "Initial contextual/text/reference check, not complete tashih of every harakat/translation/sanad."
+    },
+    {
+      "id": 20,
+      "title": "Doa ketika hujan",
+      "sourceFingerprint": "1ab612312d815d856ca5735b07954b75b2f6cb1d830dc326a754e834872238d5",
+      "comparisonUrl": "https://sunnah.com/bukhari:1032",
+      "observation": "Rain text located; source number 985 has no declared edition.",
+      "scope": "Initial contextual/text/reference check, not complete tashih of every harakat/translation/sanad."
+    },
+    {
+      "id": 48,
+      "title": "Doa Naik Kendaraan",
+      "sourceFingerprint": "c14af87db93c769ee788fcd1bfe97890a26ccff41f111474a9ac0323fca8046a",
+      "comparisonUrl": "https://sunnah.com/abudawud:2602",
+      "observation": "Mounting prayer and additions consistent in context.",
+      "scope": "Initial contextual/text/reference check, not complete tashih of every harakat/translation/sanad."
+    },
+    {
+      "id": 51,
+      "title": "Doa Bepergian",
+      "sourceFingerprint": "11ae015073d005bb2278c9911c62986bad46173ab0380b98259799f1a338eb1e",
+      "comparisonUrl": "https://sunnah.com/muslim:1342",
+      "observation": "Travel prayer and return addition consistent in context.",
+      "scope": "Initial contextual/text/reference check, not complete tashih of every harakat/translation/sanad."
+    },
+    {
+      "id": 95,
+      "title": "Doa Memohon Ilmu 1",
+      "sourceFingerprint": "496d4f8bf3e331d542383d0b90819ce06f6a74d4170d7dded0f9e13d1684ce4f",
+      "comparisonUrl": "https://quran.com/20/114",
+      "observation": "Short Quran invocation located.",
+      "scope": "Initial contextual/text/reference check, not complete tashih of every harakat/translation/sanad."
+    },
+    {
+      "id": 96,
+      "title": "Doa Memohon Ilmu 2",
+      "sourceFingerprint": "811109d3e416464781ca6da504788eb2cdc09e4f79daf946905b91640a42e549",
+      "comparisonUrl": "https://sunnah.com/ibnmajah:251",
+      "observation": "Source cites Al-Albani sahih; comparator displays Darussalam daif; grading is not flattened across chains/wordings.",
+      "scope": "Initial contextual/text/reference check, not complete tashih of every harakat/translation/sanad."
+    },
+    {
+      "id": 128,
+      "title": "Doa Keluar Rumah",
+      "sourceFingerprint": "1937309ef46deb305e3faa04232c5b94c95e3e1c335fb37bbf192fd202a9c092",
+      "comparisonUrl": "https://sunnah.com/abudawud:5095",
+      "observation": "Leaving-home prayer consistent.",
+      "scope": "Initial contextual/text/reference check, not complete tashih of every harakat/translation/sanad."
+    },
+    {
+      "id": 129,
+      "title": "Doa Masuk Rumah 1 (Bismillah)",
+      "sourceFingerprint": "29f9d62b776b9022095fea0a7949bc31232b540bd32f427a9cc697ed0e4f56d5",
+      "comparisonUrl": "https://sunnah.com/muslim:2018a",
+      "observation": "Mentioning Allah on entering home supported; short Bismillah is not a quotation of a longer prayer.",
+      "scope": "Initial contextual/text/reference check, not complete tashih of every harakat/translation/sanad."
+    },
+    {
+      "id": 135,
+      "title": "Doa Sebelum Makan",
+      "sourceFingerprint": "c5aac24f00a5a27ea75ff4df1e0a337060a962bd8c39fd1ef636bd3af1427f5c",
+      "comparisonUrl": "https://sunnah.com/bukhari:5376",
+      "observation": "Mentioning Allah before food supported.",
+      "scope": "Initial contextual/text/reference check, not complete tashih of every harakat/translation/sanad."
+    },
+    {
+      "id": 139,
+      "title": "Doa Setelah Makan",
+      "sourceFingerprint": "baf12d0972ec1ba32eaa4aad2da62184752ea465cb2e430ceb86730e485df096",
+      "comparisonUrl": "https://sunnah.com/tirmidhi:3458",
+      "observation": "After-meal wording located; source Abu Dawud 4043 lacks edition, comparator 4023 also located.",
+      "scope": "Initial contextual/text/reference check, not complete tashih of every harakat/translation/sanad."
+    }
+  ],
+  "runtimeNotesIds": [
+    6,
+    18,
+    20,
+    96,
+    139
+  ],
+  "unreviewedDisplayableCount": 213,
+  "morningEveningSourceCandidate": "https://hadeethenc.com/id/browse/hadith/5490",
+  "morningEveningAdded": false,
+  "thunderSourceCandidate": "https://sunnah.com/adab:723",
+  "thunderAdded": false,
+  "remaining": [
+    "Review remaining 213 displayed entries and deeper Arabic/translation details in the 12 samples.",
+    "Add explicitly sourced morning/evening and thunder entries; do not relabel the wind prayer.",
+    "Confirm source rights/attribution for any new provider; do not copy remote API keys into APK."
+  ]
+}

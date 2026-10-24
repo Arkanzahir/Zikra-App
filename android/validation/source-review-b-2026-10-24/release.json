@@ -1,0 +1,39 @@
+{
+  "checked": "2026-10-24",
+  "versionName": "1.7.1",
+  "versionCode": 19,
+  "distribution": "debug beta",
+  "apkFile": "Zikra-Content-v1.7.1-beta-debug.apk",
+  "bytes": 31433745,
+  "sha256": "b55e7462e7ef4c6b711f080f1d61820392664cb8315efdd8c81d387145a3d30b",
+  "below100MillionBytes": true,
+  "baseProductionCommit": "fcaf20f852409e71464ac2ba1ae18215e43f1211",
+  "unit": {
+    "tests": 110,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 3
+  },
+  "curationTests": {
+    "tests": 3,
+    "passed": 3,
+    "skipped": 0,
+    "realSourceRows": 227,
+    "displayableRows": 225,
+    "reviewNotesMatched": 5
+  },
+  "lint": {
+    "Warning": 698
+  },
+  "nativeTests": "No new emulator or physical-device run; collection interactions were tested on 1.7.0. This update tests content logic and builds Android resources.",
+  "corrections": [
+    "ID6: snapshot-bound final harakat correction; raw Arabic retained",
+    "ID18: wind-specific display/search context; source title retained in raw cache",
+    "ID20/139: alternative-numbering notes",
+    "ID96: explicitly attributed grading difference"
+  ],
+  "b01Complete": false,
+  "b04Complete": false,
+  "emailSent": false,
+  "productionCommit": "3ef14dc0b681667a75223170814608e53c24d657"
+}
