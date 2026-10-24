@@ -4,7 +4,7 @@ Dibuat/diperbarui: **24 Oktober 2026 (WIB)**. Baseline fitur terbaru: **1.6.2 / 
 
 Dokumen ini menjadi **checklist pengerjaan aktif**. [PRD](ZIKRA_PRD.md) tetap menjadi daftar kebutuhan produk; [rencana lama](design/IMPROVEMENT_PLAN.md) dan laporan validasi adalah riwayat. Jika kebutuhan lama berbeda dengan keputusan terbaru pengguna, catat keputusan beserta alasannya di sini.
 
-**Pekerjaan berikutnya: A01 — audit kesenjangan seluruh menu dan kebutuhan PRD.** UI01 selesai atas koreksi langsung pengguna; [bukti](android/validation/dua-list-2026-10-24/README.md). B01–B04 tetap belum selesai. [Usulan penyimpanan konten](design/CONTENT_DELIVERY_PLAN.md) sudah dicatat, belum diimplementasikan.
+**Pekerjaan berikutnya: A02 — tetapkan cakupan beta dan rilis publik.** A01 selesai 24 Oktober: [matriks 23 kebutuhan PRD dan 21 layar](android/validation/release-audit/FEATURE_MATRIX.md). UI01 sudah selesai; [bukti](android/validation/dua-list-2026-10-24/README.md). B01–B04 tetap belum selesai. [Usulan penyimpanan konten](design/CONTENT_DELIVERY_PLAN.md) belum diimplementasikan; kandidat dihitung 227 Doa/dzikir dan 11.568 entri Bukhari/Muslim, belum konten tervalidasi/diimpor.
 
 ## Cara memakai checklist
 
@@ -52,7 +52,7 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 
 ## A — Audit dan batas rilis
 
-- [ ] **A01 — Inventaris fitur dan selisih terhadap PRD.** Periksa seluruh menu/source; buat `android/validation/release-audit/FEATURE_MATRIX.md` berisi kebutuhan, implementasi aktual, bukti, kekurangan dan ID pekerjaan. Bedakan tidak ada, tersedia, teruji terarah, dan teruji untuk rilis. Jangan menyimpulkan dari screenshot saja.
+- [x] **A01 — Inventaris fitur dan selisih terhadap PRD.** Selesai 24 Oktober 2026: [matriks aktual/bukti/gap/ID lanjutan](android/validation/release-audit/FEATURE_MATRIX.md), [inventaris source baseline](android/validation/release-audit/SOURCE_INVENTORY.json) dan [hitungan kandidat konten](android/validation/release-audit/CONTENT_COUNTS.json). Seluruh 23 kebutuhan inti dan 21 layar diperiksa; status tidak ada/sebagian/tersedia/teruji terarah dibedakan. Tidak ada sertifikasi teruji rilis. Audit dokumen/source memakai laporan runtime terdahulu, tanpa build/emulator baru; A02–G05 tetap terbuka sesuai kriterianya.
 - [ ] **A02 — Tetapkan cakupan beta dan rilis publik.** Catat fitur wajib, fitur bersyarat, dan yang memang disepakati ditunda. Putuskan apakah akun/sinkronisasi, Vision PR, briefing serta aksi AI masuk rilis pertama. Penundaan kebutuhan PRD harus punya keputusan pengguna; jangan menghilangkannya diam-diam.
 - [ ] **A03 — Rapikan baseline source dan pekerjaan audio tertunda.** Tinjau perubahan service/timing/MushafReaderTest/tool audit yang masih lokal; putuskan gabung setelah diperiksa atau simpan terpisah. Source commit, versi APK dan bukti harus selaras tanpa menghilangkan WIP.
 - [ ] **A04 — Audit integrasi data antarmenu.** Satu pilihan lokasi/zona dipakai Home, salat, cuaca, Kiblat dan masjid; bacaan terakhir sama pada Home/katalog/reader; tugas/progres konsisten di Study/Profil. Uji pulih setelah aplikasi dibuka ulang, tanpa data contoh.
@@ -108,7 +108,7 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 
 ## Jejak kebutuhan PRD agar tidak ada fitur yang terlupakan
 
-Pemetaan ini adalah tujuan pekerjaan, **bukan klaim fitur sudah selesai**. A01 harus mengisi matriks bukti implementasinya.
+Pemetaan ini adalah tujuan pekerjaan, **bukan klaim fitur sudah selesai**. Hasil A01 ada pada [matriks bukti dan kesenjangan](android/validation/release-audit/FEATURE_MATRIX.md).
 
 | Kebutuhan PRD | Pekerjaan penutup |
 | --- | --- |
@@ -150,5 +150,6 @@ Fitur post-MVP yang memang tercantum terpisah di PRD—XP/badge, keuangan anak k
 | 24 Okt 2026 | PLAN | Rencana aktif, urutan dependensi, syarat selesai dan jejak PRD disimpan | Dokumen ini; belum mencentang pekerjaan A–G |
 | 24 Okt 2026 | UI01 | Permintaan koreksi daftar Doa diprioritaskan; layout diperbaiki dan diperiksa. Distribusi konten dicatat sebagai usulan, bukan integrasi selesai. | APK 1.6.2; [bukti native](android/validation/dua-list-2026-10-24/README.md), [rencana konten](design/CONTENT_DELIVERY_PLAN.md) |
 | 24 Okt 2026 | SIZE / G04 | Batas unduhan awal setiap versi ditetapkan pengguna: <100 MB. APK 1.6.2 diukur 31,2 MB; belum klaim ukuran semua fitur mendatang atau penggunaan RAM HP. | [Baseline ukuran](android/validation/apk-size-2026-10-24.md) |
+| 24 Okt 2026 | A01 | Audit 23 kebutuhan PRD dan 21 layar selesai; fitur parsial/tidak ada dibedakan dari bukti terarah. APK tetap 4 Doa/7 kutipan; kandidat 227 Doa/dzikir + 11.568 entri dua koleksi belum diimpor/disahkan lengkap. Berikutnya A02, tanpa menghapus kebutuhan PRD diam-diam. | [Matriks dan batas](android/validation/release-audit/FEATURE_MATRIX.md), [inventaris](android/validation/release-audit/SOURCE_INVENTORY.json), [metadata hitungan](android/validation/release-audit/CONTENT_COUNTS.json); baseline `5884b52`, tanpa emulator/build baru |
 
 Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | tautan laporan/screenshot/tes + commit fitur`. Keputusan menunda/mengubah cakupan juga dicatat di tabel ini.

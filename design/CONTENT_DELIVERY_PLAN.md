@@ -25,4 +25,6 @@ Penyimpanan **konten bacaan** di server berbeda dari menyinkronkan **data pribad
 
 ## Bukti yang diperlukan sebelum B01–B04 dicentang
 
+Pemeriksaan awal 24 Oktober: APK masih **4 Doa dan 7 kutipan Hadis**. Respons EQuran dihitung **227** entri (dokumentasi menyebut 228); dua JSON Hadith API berisi **6.638 Bukhari + 4.930 Muslim = 11.568** entri. Ada celah penomoran Bukhari yang perlu pemeriksaan edisi; angka ini bukan klaim riwayat unik/koleksi lengkap atau keputusan sumber final. [Metadata sumber/ukuran/hash](../android/validation/release-audit/CONTENT_COUNTS.json) dan [batas audit](../android/validation/release-audit/FEATURE_MATRIX.md). Tidak ada isi baru yang diimpor oleh pemeriksaan ini.
+
 Catatan sumber/ketentuan; sampel respons nyata; cakupan koleksi/bahasa; pemetaan ID/nomor; ukuran paket; impor data rusak/duplikat; pembaruan atomik; pencarian online/luring yang jelas; serta bookmark tetap benar setelah versi berubah. Isi Arab/terjemahan tidak diganti atau dilengkapi oleh AI.
