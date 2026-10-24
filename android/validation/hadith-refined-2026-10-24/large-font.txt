@@ -1,0 +1,5 @@
+com.zikra.app.DailyDesignReleaseTest:.
+Test results for InstrumentationTestRunner=.
+Time: 7.133
+
+OK (1 test)

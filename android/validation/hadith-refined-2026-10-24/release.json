@@ -1,0 +1,36 @@
+{
+  "checked": "2026-10-24",
+  "versionName": "1.7.4",
+  "versionCode": 22,
+  "productionCommit": "0c9827daf0d7be55dfad95c478479d54a9d3be02",
+  "apkFile": "Zikra-Design-v1.7.4-beta-debug.apk",
+  "bytes": 31280892,
+  "sha256": "402d4e37ee4637046dcb02314861f5ccb8be9159cace4618d6c7e136e9940f6b",
+  "below100MillionBytes": true,
+  "lint": {
+    "Warning": 709
+  },
+  "nativeMethods": 1,
+  "nativeExecutions": 2,
+  "fontScales": [
+    1.0,
+    2.0
+  ],
+  "screenPixels": [
+    720,
+    1600
+  ],
+  "densityDpi": 320,
+  "screenshotContent": "7 bundled excerpts; optional Hadith packages not downloaded in this UI check",
+  "unitTests": "Not rerun for presentation changes; Android build/lint and affected native flow checked.",
+  "selectionResourceSha256": "c9c254f07fb88a83b81ea0d6f734ad5bf9a5e9285c575c0ff37ceef5461ac154",
+  "b01Complete": false,
+  "b04Complete": false,
+  "emulatorClosed": true,
+  "screenshots": {
+    "Hadith-Large-Overview.png": "61ea0a2725115111e1907797aae62631dda5312916a04e89eaeed8ba1799b179",
+    "Hadith-Large-Reader.png": "8b4859f1c5ab803f8577b0a9b2b55cf61b66151b76070935bf6f1c26180d7e0a",
+    "Hadith-Overview.png": "c9b140969f25fbf134e58b06511b73c358493e6c282e93829e0b35fc2e6731c3",
+    "Hadith-Reader.png": "5678be18a9f1b92c7e6cf081c28248d3d889bf5047530d66bae4c135d7d07138"
+  }
+}
