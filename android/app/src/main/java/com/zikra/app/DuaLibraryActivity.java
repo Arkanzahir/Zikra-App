@@ -120,7 +120,7 @@ public final class DuaLibraryActivity extends BaseActivity {
     for (int i = offset; i < Math.min(offset + 20, matches.size()); i++) {
       DuaCatalog.Entry entry = matches.get(i);
       View card = getLayoutInflater().inflate(R.layout.reading_item_dua, content, false);
-      String displayTitle = entry.review == DuaReview.WIND ? getString(R.string.dua_review_wind_title) : entry.title;
+      String displayTitle = entry.review == DuaReview.WIND ? getString(R.string.dua_review_wind_title) : entry.review.displayTitle(entry.title);
       ((TextView) card.findViewById(R.id.duaTitle)).setText(displayTitle);
       ((TextView) card.findViewById(R.id.duaRowCategory)).setText(entry.group);
       ((TextView) card.findViewById(R.id.duaSubtitle)).setText("EQuran · " + entry.number);
@@ -148,6 +148,9 @@ public final class DuaLibraryActivity extends BaseActivity {
   private String reviewNote(DuaCatalog.Entry entry) {
     int note;
     switch (entry.review) {
+      case TITLE_TYPO:
+      case TITLE_SCOPE:
+        return getString(R.string.dua_review_title) + "\n" + entry.title + "\n\n";
       case ARABIC_INSTRUCTIONS:
         return getString(R.string.dua_review_instructions) + "\n"
             + entry.sourceArabic.substring(0, entry.sourceArabic.indexOf('\n')).trim() + "\n\n";

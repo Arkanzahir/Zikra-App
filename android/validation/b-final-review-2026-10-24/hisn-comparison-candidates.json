@@ -1,0 +1,2635 @@
+{
+  "sourceSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b",
+  "referenceUrl": "https://sunnah.com/hisn",
+  "referenceSha256": "216cccb71d4ce88a64792c9c6c64c08c6f0b9c33e9975a8e400a6289e2f929c7",
+  "referenceLines": 3890,
+  "referenceEntryHeadings": 267,
+  "candidateCount": 78,
+  "limits": "Normalized substring matching only. Absence is not invalidity; presence is not validation of context, meaning, diacritics, attribution or grading.",
+  "entries": [
+    {
+      "id": 1,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 2,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        105
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:105"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 3,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        113
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:113"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 4,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 5,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 6,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        1
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:1"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 7,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        3
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:3"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 8,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        10
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:10"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 9,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 10,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 11,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        13
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:13"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 12,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        5
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:5"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 13,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        6
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:6"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 14,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 15,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 16,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 17,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        203
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:203"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 18,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        166
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:166"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 19,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        169
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:169"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 20,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        172
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:172"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 21,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        174
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:174"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 22,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        190
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:190"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 23,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        191
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:191"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 24,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        192
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:192"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 25,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 26,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 27,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 28,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        150
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:150"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 29,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 30,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        155
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:155"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 31,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        162
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:162"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 32,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        163
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:163"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 33,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        164
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:164"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 34,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 35,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 36,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        139
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:139"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 37,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        124
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:124"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 38,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        154
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:154"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 39,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        194
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:194"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 40,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        218
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:218"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 41,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        218
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:218"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 42,
+      "displayable": false,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 43,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        136
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:136"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 44,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        201,
+        202
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:201",
+        "https://sunnah.com/hisn:202"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 45,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        202
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:202"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 46,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 47,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 48,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 49,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        211
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:211"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 50,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        212
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:212"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 51,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        207
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:207"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 52,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        215
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:215"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 53,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        97,
+        216
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:97",
+        "https://sunnah.com/hisn:216"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 54,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 55,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        209
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:209"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 56,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 57,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 58,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        75,
+        138,
+        193
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:75",
+        "https://sunnah.com/hisn:138",
+        "https://sunnah.com/hisn:193"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 59,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        75,
+        138,
+        193
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:75",
+        "https://sunnah.com/hisn:138",
+        "https://sunnah.com/hisn:193"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 60,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        61
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:61"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 61,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 62,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 63,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 64,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 65,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 66,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 67,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 68,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 69,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 70,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 71,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 72,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 73,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 74,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        145
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:145"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 75,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 76,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 77,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 78,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 79,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 80,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 81,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 82,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        263
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:263"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 83,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 84,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 85,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 86,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 87,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 88,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 89,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 90,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 91,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        203
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:203"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 92,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 93,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 94,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 95,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 96,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 97,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 98,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 99,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 100,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 101,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 102,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 103,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 104,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 105,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 106,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        187
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:187"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 107,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 108,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 109,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 110,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 111,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 112,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 113,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 114,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        83
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:83"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 115,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 116,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 117,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 118,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 119,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 120,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 121,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 122,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 123,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 124,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 125,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 126,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 127,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 128,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 129,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 130,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 131,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 132,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        23
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:23"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 133,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        23
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:23"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 134,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        25
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:25"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 135,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 136,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 137,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        179
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:179"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 138,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        179
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:179"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 139,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        180
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:180"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 140,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        183
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:183"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 141,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        176
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:176"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 142,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        184
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:184"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 143,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 144,
+      "displayable": false,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 145,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 146,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        246
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:246"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 147,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        205
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:205"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 148,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 149,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 150,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 151,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 152,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 153,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 154,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 155,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 156,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 157,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 158,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        121,
+        137
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:121",
+        "https://sunnah.com/hisn:137"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 159,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 160,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 161,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        132
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:132"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 162,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 163,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 164,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 165,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 166,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 167,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 168,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 169,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 170,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 171,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 172,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        235
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:235"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 173,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 174,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 175,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 176,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 177,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 178,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 179,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 180,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        101
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:101"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 181,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 182,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 183,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 184,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 185,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 186,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 187,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 188,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        65
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:65"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 189,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 190,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        188,
+        189
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:188",
+        "https://sunnah.com/hisn:189"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 191,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 192,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 193,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        200
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:200"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 194,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 195,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 196,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        232
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:232"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 197,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        75,
+        138,
+        193
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:75",
+        "https://sunnah.com/hisn:138",
+        "https://sunnah.com/hisn:193"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 198,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 199,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 200,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 201,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        250
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:250"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 202,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        57
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:57"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 203,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 204,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        91,
+        94,
+        254,
+        256
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:91",
+        "https://sunnah.com/hisn:94",
+        "https://sunnah.com/hisn:254",
+        "https://sunnah.com/hisn:256"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 205,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        91,
+        94,
+        254,
+        256
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:91",
+        "https://sunnah.com/hisn:94",
+        "https://sunnah.com/hisn:254",
+        "https://sunnah.com/hisn:256"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 206,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        256
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:256"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 207,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        259
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:259"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 208,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        2,
+        257,
+        261,
+        265
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:2",
+        "https://sunnah.com/hisn:257",
+        "https://sunnah.com/hisn:261",
+        "https://sunnah.com/hisn:265"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 209,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 210,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 211,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 212,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        195
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:195"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 213,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 214,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        15,
+        196
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:15",
+        "https://sunnah.com/hisn:196"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 215,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        126
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:126"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 216,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 217,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        131
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:131"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 218,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 219,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        132
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:132"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 220,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 221,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 222,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        50
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:50"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 223,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 224,
+      "displayable": true,
+      "normalizedArabicCandidates": [
+        47,
+        117
+      ],
+      "comparisonUrls": [
+        "https://sunnah.com/hisn:47",
+        "https://sunnah.com/hisn:117"
+      ],
+      "status": "candidate_requires_context_review",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 225,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 226,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    },
+    {
+      "id": 227,
+      "displayable": true,
+      "normalizedArabicCandidates": [],
+      "comparisonUrls": [],
+      "status": "no_candidate_in_this_reference",
+      "harakatReviewed": false,
+      "meaningReviewed": false,
+      "authenticityCertified": false
+    }
+  ]
+}

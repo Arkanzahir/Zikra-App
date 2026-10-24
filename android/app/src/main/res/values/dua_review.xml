@@ -9,4 +9,5 @@
     <string name="dua_review_after_meal">Catatan rujukan: bacaan ini dapat ditelusuri pada Tirmidzi 3458 dan Abu Dawud 4023 di Sunnah.com. Catatan EQuran menyebut Abu Daud 4043 tanpa penjelasan edisi; nomor tersebut tidak disamakan otomatis. https://sunnah.com/tirmidhi:3458 · https://sunnah.com/abudawud:4023</string>
     <string name="dua_review_instructions">Petunjuk sumber dipisahkan dari lafal Arab:</string>
     <string name="dua_review_witr_layout">Catatan tata tulis: kurung yang tidak berpasangan dihapus dari tampilan, tanpa mengganti kata Arab. Baca Subhanal-Malikil-Quddus tiga kali; keterangan pengulangan dan tambahan tetap pada arti/sumber. Pembanding: https://sunnah.com/hisn:119</string>
+    <string name="dua_review_title">Catatan judul: ejaan atau cakupan judul dirapikan sesuai isi petikan. Lafal dan arti tidak diganti. Judul sumber:</string>
 </resources>

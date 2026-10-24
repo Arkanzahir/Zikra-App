@@ -7,7 +7,7 @@ import java.util.Locale;
 
 /** Corrections apply to a reviewed source snapshot, never blindly to a reused provider ID. */
 public enum DuaReview {
-  NONE, SOURCE_CHANGED, WAKE_UP, WIND, RAIN_NUMBERING, GRADING_CONTEXT, AFTER_MEAL_NUMBERING, ARABIC_INSTRUCTIONS, WITR_LAYOUT;
+  NONE, SOURCE_CHANGED, WAKE_UP, WIND, RAIN_NUMBERING, GRADING_CONTEXT, AFTER_MEAL_NUMBERING, ARABIC_INSTRUCTIONS, WITR_LAYOUT, TITLE_TYPO, TITLE_SCOPE;
 
   public static DuaReview forSource(int id, String title, String arabic, String meaning, String reference) {
     String expected; DuaReview review;
@@ -22,6 +22,10 @@ public enum DuaReview {
       case 77: expected = "c24cdde114b8f0b231ad844980f998c59c162d483b9d738eb168961c06510f6b"; review = ARABIC_INSTRUCTIONS; break;
       case 209: expected = "5ed03893e9255b9b5dbb5e348211976f0e5c087ce8fa0a855c0df966381561a8"; review = ARABIC_INSTRUCTIONS; break;
       case 225: expected = "0b975000eec579c5e3d1c5b5f688334381ab28987b0c0d3c782e704b16177ac8"; review = WITR_LAYOUT; break;
+      case 16: expected = "fdcb8bb467ae5cc20d3dd13ac262e0aa4b7dbe08fc665d0df9f5a96d6f9da78f"; review = TITLE_SCOPE; break;
+      case 66: expected = "8a24f0f9b8671c611d7c09a3ab5cd6e13f447b9d755b75c24dc8e334457f34dc"; review = TITLE_TYPO; break;
+      case 103: expected = "963f3a81d8dec76266ec0b6138b50116bb3c0e50a12f21a0765fc327ac36ebdb"; review = TITLE_TYPO; break;
+      case 121: expected = "380db7f08e5a580667356890af14077052b901f25023d31022ebd8576c9063f4"; review = TITLE_TYPO; break;
       default: return NONE;
     }
     return expected.equals(fingerprint(title, arabic, meaning, reference)) ? review : SOURCE_CHANGED;
@@ -37,6 +41,13 @@ public enum DuaReview {
       for (byte value : digest) out.append(String.format(Locale.ROOT, "%02x", value & 255));
       return out.toString();
     } catch (NoSuchAlgorithmException impossible) { throw new IllegalStateException(impossible); }
+  }
+
+  public String displayTitle(String source) {
+    if (this == TITLE_SCOPE) return "Berlindung dari malas, pengecut, usia tua dan kikir";
+    if (this == TITLE_TYPO) return source.replace("Nabil Ibrahim", "Nabi Ibrahim")
+        .replace("Nabu Musa", "Nabi Musa").replace("Sebagai pembeli Petunjuk", "Sebagai pemberi Petunjuk");
+    return source;
   }
 
   String displayArabic(String source) {

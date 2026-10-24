@@ -212,7 +212,8 @@
     "meaningReview": "pending",
     "referenceContextReview": "pending",
     "editorialScreening": "title_arabic_meaning_read; not_external_source_validation",
-    "editorialFinding": "Judul menyebut siksa kubur, tetapi lafal/arti petikan tidak memuatnya; perlu perjelas judul."
+    "editorialFinding": "Judul menyebut siksa kubur, tetapi lafal/arti petikan tidak memuatnya; perlu perjelas judul.",
+    "implemented": "snapshot-bound title correction; original title, Arabic and meaning retained"
   },
   {
     "id": 17,
@@ -867,7 +868,8 @@
     "meaningReview": "pending",
     "referenceContextReview": "pending",
     "editorialScreening": "title_arabic_meaning_read; not_external_source_validation",
-    "editorialFinding": "Typo judul Nabil."
+    "editorialFinding": "Typo judul Nabil.",
+    "implemented": "snapshot-bound title correction; original title, Arabic and meaning retained"
   },
   {
     "id": 67,
@@ -1354,7 +1356,8 @@
     "meaningReview": "pending",
     "referenceContextReview": "pending",
     "editorialScreening": "title_arabic_meaning_read; not_external_source_validation",
-    "editorialFinding": "Typo judul Nabu."
+    "editorialFinding": "Typo judul Nabu.",
+    "implemented": "snapshot-bound title correction; original title, Arabic and meaning retained"
   },
   {
     "id": 104,
@@ -1589,7 +1592,8 @@
     "meaningReview": "pending",
     "referenceContextReview": "pending",
     "editorialScreening": "title_arabic_meaning_read; not_external_source_validation",
-    "editorialFinding": "Typo judul pembeli vs pemberi."
+    "editorialFinding": "Typo judul pembeli vs pemberi.",
+    "implemented": "snapshot-bound title correction; original title, Arabic and meaning retained"
   },
   {
     "id": 122,
