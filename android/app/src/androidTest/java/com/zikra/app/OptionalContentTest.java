@@ -92,7 +92,9 @@ public final class OptionalContentTest extends InstrumentationTestCase {
       assertTrue(list.getChildCount() > 0 && list.getChildCount() < 20);
       getInstrumentation().runOnMainSync(() -> list.getChildAt(0).findViewById(R.id.duaExpand).performClick());
       assertTrue(list.getChildAt(0).findViewById(R.id.duaListen).isEnabled());
-      assertTrue(((TextView) list.getChildAt(0).findViewById(R.id.duaSource)).getText().toString().contains("equran.id"));
+      assertEquals(android.view.View.GONE, list.getChildAt(0).findViewById(R.id.duaSourceDetails).getVisibility());
+      getInstrumentation().runOnMainSync(() -> list.getChildAt(0).findViewById(R.id.duaSourceToggle).performClick());
+      assertTrue(((TextView) list.getChildAt(0).findViewById(R.id.duaSourceDetails)).getText().toString().contains("equran.id"));
       UiEvidence.capture(getInstrumentation(), "Dua-Library-Rain-Source");
       getInstrumentation().runOnMainSync(() -> search.setText("zzzz-no-such-prayer"));
       assertEquals(0, list.getChildCount());

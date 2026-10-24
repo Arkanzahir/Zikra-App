@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.zikra.app.discovery.DuaSelection;
 import com.zikra.app.ui.FeatureHeader;
+import com.zikra.app.ui.DuaReadingUi;
 import java.util.List;
 import java.util.Locale;
 
@@ -92,10 +93,8 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
       ((TextView) card.findViewById(R.id.duaTitle)).setText(duas.get(i).title);
       ((TextView) card.findViewById(R.id.duaRowCategory)).setText(CATEGORY_NAMES.get(duas.get(i).category).toUpperCase(Locale.ROOT));
       ((TextView) card.findViewById(R.id.duaSubtitle)).setText(duas.get(i).reference);
-      ((TextView) card.findViewById(R.id.duaArabic)).setText(duas.get(i).arabic);
-      ((TextView) card.findViewById(R.id.duaTranslation)).setText(
-          "Latin bantu\n" + duas.get(i).latin + "\n\nArti\n" + duas.get(i).meaning);
-      ((TextView) card.findViewById(R.id.duaSource)).setText(duas.get(i).sourceText());
+      DuaReadingUi.bind(card, duas.get(i).arabic, duas.get(i).latin, duas.get(i).meaning,
+          duas.get(i).reference, duas.get(i).sourceText());
       listenButtons[i] = card.findViewById(R.id.duaListen);
       listenButtons[i].setText(R.string.dua_library_tts);
       listenButtons[i].setOnClickListener(view -> playDua(index));
@@ -118,7 +117,7 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
       final int category = i;
       TextView chip = new TextView(this);
       chip.setText(CATEGORY_NAMES.get(i));
-      chip.setTextSize(14);
+      chip.setTextSize(13);
       chip.setGravity(Gravity.CENTER);
       chip.setPadding(dp(15), 0, dp(15), 0);
       chip.setMinHeight(dp(48));
@@ -170,7 +169,12 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
   private int rowIcon(int category) {
     if (category == 2) return R.drawable.ic_book;
     if (category == 3) return R.drawable.ic_shield;
+    if (category == 4) return R.drawable.dua_ic_meal;
+    if (category == 5) return R.drawable.ic_moon;
+    if (category == 6) return R.drawable.ic_home;
+    if (category == 7) return R.drawable.home_ic_qibla;
     if (category == 8) return R.drawable.dua_ic_rain;
+    if (category == 9) return R.drawable.ic_sun;
     return R.drawable.home_ic_dua;
   }
 
@@ -219,10 +223,11 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
     for (int i = 0; i < categoryChips.length; i++) {
       boolean selected = i == selectedCategory;
       GradientDrawable background = new GradientDrawable();
-      background.setColor(Color.parseColor(selected ? "#15332F" : "#EDF1E9"));
-      background.setCornerRadius(dp(22));
+      background.setColor(getColor(selected ? R.color.daily_ink : android.R.color.transparent));
+      background.setCornerRadius(dp(14));
+      if (!selected) background.setStroke(dp(1), getColor(R.color.daily_line));
       categoryChips[i].setBackground(background);
-      categoryChips[i].setTextColor(Color.parseColor(selected ? "#FFFFFF" : "#52665F"));
+      categoryChips[i].setTextColor(getColor(selected ? android.R.color.white : R.color.dua_text_secondary));
       categoryChips[i].setSelected(selected);
     }
   }

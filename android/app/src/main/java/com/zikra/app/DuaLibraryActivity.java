@@ -15,6 +15,7 @@ import com.zikra.app.discovery.DuaReview;
 import com.zikra.app.discovery.DuaCatalogRepository;
 import com.zikra.app.discovery.HadithSearch;
 import com.zikra.app.ui.FeatureHeader;
+import com.zikra.app.ui.DuaReadingUi;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -123,10 +124,8 @@ public final class DuaLibraryActivity extends BaseActivity {
       ((TextView) card.findViewById(R.id.duaTitle)).setText(displayTitle);
       ((TextView) card.findViewById(R.id.duaRowCategory)).setText(entry.group);
       ((TextView) card.findViewById(R.id.duaSubtitle)).setText("EQuran · " + entry.number);
-      ((TextView) card.findViewById(R.id.duaArabic)).setText(entry.arabic);
-      ((TextView) card.findViewById(R.id.duaTranslation)).setText(
-          (entry.latin.isEmpty() ? "" : entry.latin + "\n\n") + entry.meaning);
-      ((TextView) card.findViewById(R.id.duaSource)).setText(reviewNote(entry) + entry.reference + "\n\nhttps://equran.id/api/doa/" + entry.number);
+      DuaReadingUi.bind(card, entry.arabic, entry.latin, entry.meaning, "EQuran.id · " + entry.number,
+          reviewNote(entry) + entry.reference + "\n\nhttps://equran.id/api/doa/" + entry.number);
       ((android.widget.ImageView) card.findViewById(R.id.duaRowIcon)).setImageResource(R.drawable.home_ic_dua);
       Button audio = card.findViewById(R.id.duaListen); audio.setText(R.string.dua_library_tts); audio.setEnabled(true);
       audio.setOnClickListener(v -> {

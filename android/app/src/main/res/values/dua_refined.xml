@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dua_text_secondary">#53675D</color>
+    <color name="dua_library_surface">#EAF0E5</color>
+    <color name="dua_arabic_surface">#F8F1E2</color>
+    <color name="dua_arabic_edge">#E9DDC3</color>
+    <color name="dua_icon_surface">#EDF2E8</color>
+    <string name="dua_refined_hero">Doa untuk\nhari ini.</string>
+    <string name="dua_refined_eyebrow">BACA, PAHAMI, AMALKAN</string>
+    <string name="dua_refined_library">Koleksi Doa &amp; Dzikir</string>
+    <string name="dua_refined_library_hint">Unduh bacaan tambahan untuk dibaca luring.</string>
+    <string name="dua_refined_library_access">Buka koleksi doa dan dzikir tambahan</string>
+    <string name="dua_refined_selection">Pilihan harian</string>
+    <string name="dua_refined_offline">Tersedia tanpa internet</string>
+    <string name="dua_latin_label">LATIN BANTU</string>
+    <string name="dua_meaning_label">ARTI</string>
+    <string name="dua_source_show">Sumber &amp; catatan</string>
+    <string name="dua_source_hide">Tutup catatan</string>
+    <style name="DuaSectionLabel" parent="DailyCaption">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textColor">@color/dua_bronze</item>
+    </style>
+</resources>

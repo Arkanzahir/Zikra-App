@@ -140,6 +140,13 @@ public final class DailyDesignReleaseTest extends InstrumentationTestCase {
     assertEquals(View.VISIBLE, first.findViewById(R.id.duaContent).getVisibility());
     assertTrue(
         ((TextView) first.findViewById(R.id.duaSource)).getText().toString().contains("20:114"));
+    assertEquals(View.GONE, first.findViewById(R.id.duaSourceDetails).getVisibility());
+    assertTrue(((TextView) first.findViewById(R.id.duaLatin)).getText().toString().contains("Rabbi"));
+    getInstrumentation().runOnMainSync(() -> first.findViewById(R.id.duaSourceToggle).performClick());
+    assertEquals(View.VISIBLE, first.findViewById(R.id.duaSourceDetails).getVisibility());
+    assertTrue(((TextView) first.findViewById(R.id.duaSourceDetails)).getText().toString().contains("quran.com/20/114"));
+    getInstrumentation().runOnMainSync(() -> first.findViewById(R.id.duaSourceToggle).performClick());
+    assertEquals(View.GONE, first.findViewById(R.id.duaSourceDetails).getVisibility());
     capture("DailyDuaExpanded");
     getInstrumentation()
         .runOnMainSync(
