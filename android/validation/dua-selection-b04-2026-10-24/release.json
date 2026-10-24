@@ -1,0 +1,39 @@
+{
+  "checked": "2026-10-24",
+  "versionName": "1.7.2",
+  "versionCode": 20,
+  "distribution": "debug beta; content validation remains open",
+  "productionCommit": "91c87398c848b1acfa6f63c383b4f0dacc6a7a64",
+  "apkFile": "Zikra-Content-v1.7.2-beta-debug.apk",
+  "bytes": 31298734,
+  "sha256": "4ef1acfed5648ce481a6b5d9e204d4e5aa44946be4582ae1b30cda8f35b303ac",
+  "below100MillionBytes": true,
+  "unit": {
+    "tests": 113,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 3
+  },
+  "lint": {
+    "Warning": 698
+  },
+  "bundledSelectionCount": 14,
+  "selectionResourceSha256": "c9c254f07fb88a83b81ea0d6f734ad5bf9a5e9285c575c0ff37ceef5461ac154",
+  "optionalDuaCount": 225,
+  "nativeTests": "No new emulator/phone run; 1.7.0 native proof remains historical.",
+  "b01Complete": false,
+  "b04Complete": false,
+  "emailSent": false,
+  "DuaSelectionTest": {
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "DuaReviewTest": {
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+}

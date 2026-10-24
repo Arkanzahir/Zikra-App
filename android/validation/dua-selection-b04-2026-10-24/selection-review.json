@@ -1,0 +1,187 @@
+{
+  "revision": "2026-10-24.1",
+  "entries": [
+    {
+      "id": "daily:study",
+      "title": "Sebelum belajar",
+      "category": 2,
+      "kind": "quran",
+      "sourceUrl": "https://quran.com/20/114",
+      "sourceName": "Pilihan bawaan Zikra; rujukan tercantum di atas.",
+      "origin": null,
+      "contentSha256": "9e4ed647f89b00851ded6a9234b4893d777762fc9880ab199b147a8c9fe3a710",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    },
+    {
+      "id": "daily:rain",
+      "title": "Ketika hujan turun",
+      "category": 8,
+      "kind": "hadith",
+      "sourceUrl": "https://sunnah.com/bukhari:1032",
+      "sourceName": "Pilihan bawaan Zikra; rujukan tercantum di atas.",
+      "origin": null,
+      "contentSha256": "a6d5bff10e10451e62a78d617ab8f2a71d82cda9ca762a5a77ba6a6f96c37dae",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    },
+    {
+      "id": "daily:goodness",
+      "title": "Kebaikan dunia dan akhirat",
+      "category": 1,
+      "kind": "quran",
+      "sourceUrl": "https://quran.com/2/201",
+      "sourceName": "Pilihan bawaan Zikra; rujukan tercantum di atas.",
+      "origin": null,
+      "contentSha256": "249255408da7855cfe21ea8461ebecba4401fc4adcefcbc847ec699c057b08ca",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    },
+    {
+      "id": "daily:calamity",
+      "title": "Saat tertimpa musibah",
+      "category": 3,
+      "kind": "hadith",
+      "sourceUrl": "https://sunnah.com/muslim:918a",
+      "sourceName": "Pilihan bawaan Zikra; rujukan tercantum di atas.",
+      "origin": null,
+      "contentSha256": "bb1a774b988274d0939cfe696d61860d1cc94f2a431df29626a32074c89d5552",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    },
+    {
+      "id": "daily:sleep",
+      "title": "Sebelum tidur",
+      "category": 5,
+      "kind": "hadith",
+      "sourceUrl": "https://sunnah.com/bukhari:6320",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/1",
+      "origin": {
+        "provider": "equran",
+        "number": 1,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "contentSha256": "59a5b7bc0cbf541783817ee687ca12d4ef57767ad681208b25c6687e12618100",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    },
+    {
+      "id": "daily:wake",
+      "title": "Bangun tidur",
+      "category": 5,
+      "kind": "hadith",
+      "sourceUrl": "https://sunnah.com/bukhari:6312",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/6",
+      "origin": {
+        "provider": "equran",
+        "number": 6,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "contentSha256": "2e56543ca3c703f79c1ae6f92d4361dbba63cad92223a1a01f79dbd92f013c96",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    },
+    {
+      "id": "daily:before-meal",
+      "title": "Sebelum makan",
+      "category": 4,
+      "kind": "hadith",
+      "sourceUrl": "https://sunnah.com/bukhari:5376",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/135",
+      "origin": {
+        "provider": "equran",
+        "number": 135,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "contentSha256": "54891ee88c932f20001108c4e8fa2e8721adc0e482936421a8047632cadb2cef",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    },
+    {
+      "id": "daily:after-meal",
+      "title": "Setelah makan",
+      "category": 4,
+      "kind": "hadith",
+      "sourceUrl": "https://sunnah.com/tirmidhi:3458",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/139",
+      "origin": {
+        "provider": "equran",
+        "number": 139,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "contentSha256": "935a0050ae0ff39bf985bede3d94321d20f3a6dbdad3a66597614aef971f9f00",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    },
+    {
+      "id": "daily:leave-home",
+      "title": "Keluar rumah",
+      "category": 6,
+      "kind": "hadith",
+      "sourceUrl": "https://sunnah.com/abudawud:5095",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/128",
+      "origin": {
+        "provider": "equran",
+        "number": 128,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "contentSha256": "137dbcfd5eab7ddd13121745fc118238c325b54a689fbd00cca3b9617a2312d9",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    },
+    {
+      "id": "daily:enter-home",
+      "title": "Masuk rumah",
+      "category": 6,
+      "kind": "hadith",
+      "sourceUrl": "https://sunnah.com/muslim:2018a",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/129",
+      "origin": {
+        "provider": "equran",
+        "number": 129,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "contentSha256": "7b222b3d6c50922c6185e111420078af6d34d94fd6edc022618a7db2ce997199",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    },
+    {
+      "id": "daily:travel",
+      "title": "Ketika bepergian",
+      "category": 7,
+      "kind": "hadith",
+      "sourceUrl": "https://sunnah.com/muslim:1342",
+      "sourceName": "Teks/arti: EQuran.id · https://equran.id/api/doa/51",
+      "origin": {
+        "provider": "equran",
+        "number": 51,
+        "snapshotSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b"
+      },
+      "contentSha256": "689d894bbbb253f47bcc4807ccfc469a28cbac307f885c95db27a4869cfd21c2",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    },
+    {
+      "id": "daily:morning",
+      "title": "Dzikir ketika pagi",
+      "category": 9,
+      "kind": "hadith",
+      "sourceUrl": "https://hadeethenc.com/id/browse/hadith/5490",
+      "sourceName": "Lafal Arab: HadeethEnc 5490; arti ringkas Indonesia disusun untuk Zikra.",
+      "origin": null,
+      "contentSha256": "c0667621ae0743437d9563dab24bd8ceed702024e6aa10abd3715d99b173e343",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    },
+    {
+      "id": "daily:evening",
+      "title": "Dzikir ketika petang",
+      "category": 9,
+      "kind": "hadith",
+      "sourceUrl": "https://hadeethenc.com/id/browse/hadith/5490",
+      "sourceName": "Lafal Arab: HadeethEnc 5490; arti ringkas Indonesia disusun untuk Zikra.",
+      "origin": null,
+      "contentSha256": "3542333856c0b7dd137bf5d6f4eb0a48590c0c64d77f5a4556050babd7c656ac",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    },
+    {
+      "id": "daily:thunder",
+      "title": "Ketika mendengar guruh / petir",
+      "category": 8,
+      "kind": "athar",
+      "sourceUrl": "https://sunnah.com/adab:723",
+      "sourceName": "Bacaan atsar sahabat; arti ringkas Indonesia disusun untuk Zikra.",
+      "origin": null,
+      "contentSha256": "ec69510bdc7885220ebc5e700bd7da3209bb72412bf880f3302cd10c9dc49bdf",
+      "scope": "Initial wording/context and meaning review; not certification by a religious reviewer."
+    }
+  ]
+}

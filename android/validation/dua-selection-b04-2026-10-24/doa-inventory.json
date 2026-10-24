@@ -1,0 +1,2868 @@
+{
+  "sourceUrl": "https://equran.id/api/doa",
+  "sourceBytes": 283848,
+  "sourceSha256": "a6e29c9c7bf88d586b1e1e9acdd98090b1b122cb72133846bac5b35d4933ff0b",
+  "sourceCount": 227,
+  "displayableCount": 225,
+  "excludedIds": [
+    42,
+    144
+  ],
+  "initialSampleCount": 12,
+  "unreviewedDisplayableCount": 213,
+  "groups": {
+    "Bacaan Bila Kagum Terhadap Sesuatu": 5,
+    "Bacaan Terkait Adzan": 3,
+    "Beberapa Adab Dan Keutamaan": 13,
+    "Beberapa Doa Terkait Shalat": 6,
+    "Doa Berlindung Dari Empat Hal": 1,
+    "Doa Berlindung Dari Keburukan": 25,
+    "Doa Berlindung Dari Kecelakaan Dan Kematian Yang Mengerikan": 2,
+    "Doa Berlindung Dari Orang Zalim Dan Orang Kafir": 2,
+    "Doa Berlindung Dari Syirik": 1,
+    "Doa Berlindung dari setan": 2,
+    "Doa Berpakaian": 3,
+    "Doa Bertemu Musuh Dan Penguasa": 5,
+    "Doa Jenazah": 6,
+    "Doa Keluar Dan Masuk Rumah": 4,
+    "Doa Kepada Anak Yang Baru Lahir": 2,
+    "Doa Memohon Ampun, Rahmat Dan Kebaikan Lainnya": 12,
+    "Doa Memohon Ilmu": 4,
+    "Doa Memohon Kebaikan": 29,
+    "Doa Memohon Kebaikan Dan Berlindung Dari Keburukan": 11,
+    "Doa Memohon Keteguhan Hati": 1,
+    "Doa Menghadapi Fenomena Alam": 4,
+    "Doa Menjelang Wafat": 1,
+    "Doa Perjalanan": 10,
+    "Doa Perlindungan": 3,
+    "Doa Pernikahan": 3,
+    "Doa Saat Mendapat Kabar": 4,
+    "Doa Saat Sakit": 2,
+    "Doa Saat Sedih dan Sulit": 3,
+    "Doa Saat Wudhu": 2,
+    "Doa Sebelum dan Sesudah Tidur": 7,
+    "Doa Terkait Harta dan Hutang": 5,
+    "Doa Terkait Istri Dan Anak": 7,
+    "Doa Terkait Majelis": 4,
+    "Doa Terkait Makan": 6,
+    "Doa Terkait Orang Tua": 3,
+    "Doa Terkait Puasa": 2,
+    "Doa Terkait Ramadhan": 1,
+    "Doa di Kamar Mandi": 2,
+    "Doa memohon akhlak mulia": 3,
+    "Doa memohon surga dan berlindung dari neraka": 3,
+    "Doa untuk Orang Sakit": 1,
+    "Istighfar Dan Taubat": 3,
+    "Lafal Dzikir Dan Keutamaannya": 7,
+    "Ucapan Terkait Hari Raya.": 2
+  },
+  "exactArabicDuplicates": [
+    [
+      10,
+      56,
+      129,
+      135
+    ],
+    [
+      15,
+      148
+    ],
+    [
+      29,
+      198
+    ],
+    [
+      58,
+      59,
+      197
+    ],
+    [
+      161,
+      219
+    ],
+    [
+      183,
+      200
+    ],
+    [
+      204,
+      205
+    ]
+  ],
+  "limits": [
+    "Field completeness and duplicate checks are automated, not validation of religious meaning or authenticity.",
+    "Initial sample comparison is not a complete harakat, translation or chain review.",
+    "Repeated Arabic in different contexts is retained rather than automatically deduplicated."
+  ],
+  "entries": [
+    {
+      "id": 1,
+      "title": "Doa Sebelum Tidur 1",
+      "group": "Doa Sebelum dan Sesudah Tidur",
+      "sourceFingerprint": "a312be76058e4d37e0e56c4de0055362f523a7916aa321d3530bb3a3dadf7a21",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "initial_sample_comparison",
+      "comparisonUrl": "https://sunnah.com/bukhari:6320"
+    },
+    {
+      "id": 2,
+      "title": "Doa Sebelum Tidur 2",
+      "group": "Doa Sebelum dan Sesudah Tidur",
+      "sourceFingerprint": "8145597203744380d3829ecdc560864561e2ad4d69181b7d036da0278e202f1d",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/320686431364755"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 3,
+      "title": "Doa Bila Takut Dan Kesepian Ketika Tidur",
+      "group": "Doa Sebelum dan Sesudah Tidur",
+      "sourceFingerprint": "553875f954269c352218889a32fc21ec04fc8179c05d8d9ee95ae4e04933fc4c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 4,
+      "title": "Doa Membalikkan Tubuh Ketika Tidur Malam",
+      "group": "Doa Sebelum dan Sesudah Tidur",
+      "sourceFingerprint": "8647a1da81a1d74f6bafdf43f6739d4331611f40d17cbc6a8b47a1d42a3ca8d2",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 5,
+      "title": "Doa Bila Terjaga Di Malam Hari",
+      "group": "Doa Sebelum dan Sesudah Tidur",
+      "sourceFingerprint": "52f8ccf280331323e46685a51543b6318cd498aee97b526c6086198700de69e6",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 6,
+      "title": "Doa Bangun Tidur 1",
+      "group": "Doa Sebelum dan Sesudah Tidur",
+      "sourceFingerprint": "e38beae72f57b70e3675893dadde7fcfa46e5fa56d879163fedfd03210af4c04",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "initial_sample_comparison",
+      "comparisonUrl": "https://sunnah.com/bukhari:6312"
+    },
+    {
+      "id": 7,
+      "title": "Doa Bangun Tidur 2",
+      "group": "Doa Sebelum dan Sesudah Tidur",
+      "sourceFingerprint": "26ffdcb489a154db551dee2282c0aa5cbd05f024a264e81cf4c7e120e11d4a8d",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 8,
+      "title": "Doa Masuk Kamar Mandi",
+      "group": "Doa di Kamar Mandi",
+      "sourceFingerprint": "a3cba5ad36e86bf589f2af7d7dc90aa2b48a670536f4fc5df8e275f68bb4820b",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 9,
+      "title": "Doa Keluar Kamar Mandi",
+      "group": "Doa di Kamar Mandi",
+      "sourceFingerprint": "4ce81a41ffe47cb87fa87fc89282a7c7be55e6e60af80122588a4bc64f44ae46",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 10,
+      "title": "Doa Sebelum Wudhu",
+      "group": "Doa Saat Wudhu",
+      "sourceFingerprint": "968a062e419c747d4fb5e4d0845c60792c29277089ec50e68ffbe1b00cd149d5",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 11,
+      "title": "Doa Setelah Wudhu",
+      "group": "Doa Saat Wudhu",
+      "sourceFingerprint": "8509a2a3da3eb613e4deef0c560104e5405e6aea7554068275793e770de174c3",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 12,
+      "title": "Doa Mengenakan Pakaian",
+      "group": "Doa Berpakaian",
+      "sourceFingerprint": "fa67514cdfb60d1c01e4778fa019801e3c703f08a7709dc2b5e413da02b72f8d",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 13,
+      "title": "Doa Mengenakan Pakaian Baru",
+      "group": "Doa Berpakaian",
+      "sourceFingerprint": "ef95c839c9dd039f7fcd44d6a990c151e165dee1b56934e0a5899ec189f1d6b3",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 14,
+      "title": "Doa Melepas/Meletekkan Pakaian",
+      "group": "Doa Berpakaian",
+      "sourceFingerprint": "0c1a064c06b996d8733af733f7f526285cb9fdc9cad849677ceb702e9e0e16b6",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 15,
+      "title": "Doa berlindung dari keburukan",
+      "group": "Doa Perlindungan",
+      "sourceFingerprint": "d4b27ab8f8f366175fd6c6e50e49b9cd2c46bd075782b118e650bf4681ab94ae",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 16,
+      "title": "Doa berlindung dari sifat malas. lemah, pikun, kikir dan siksa kubur",
+      "group": "Doa Perlindungan",
+      "sourceFingerprint": "fdcb8bb467ae5cc20d3dd13ac262e0aa4b7dbe08fc665d0df9f5a96d6f9da78f",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 17,
+      "title": "Doa berlindung dari syirik",
+      "group": "Doa Perlindungan",
+      "sourceFingerprint": "e4ecd17fbf420ea78300e9c77e0ded4725eeb2aac6820afd14c958314d8f09d8",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 18,
+      "title": "Doa ketika angin ribut, halilintar dan hujan",
+      "group": "Doa Menghadapi Fenomena Alam",
+      "sourceFingerprint": "88a82df458a0e89ad9ed4340462cf722db19ad34e91e3a469df96ac9bf49ad14",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "initial_sample_comparison",
+      "comparisonUrl": "https://sunnah.com/abudawud:5097"
+    },
+    {
+      "id": 19,
+      "title": "Doa minta hujan",
+      "group": "Doa Menghadapi Fenomena Alam",
+      "sourceFingerprint": "946bdc2e22b5658077454ca2d6fe65ad16625e3ff81690bc54e89b9f2584a77d",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 20,
+      "title": "Doa ketika hujan",
+      "group": "Doa Menghadapi Fenomena Alam",
+      "sourceFingerprint": "1ab612312d815d856ca5735b07954b75b2f6cb1d830dc326a754e834872238d5",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/188127331287333"
+      ],
+      "review": "initial_sample_comparison",
+      "comparisonUrl": "https://sunnah.com/bukhari:1032"
+    },
+    {
+      "id": 21,
+      "title": "Doa Ketika Hujan Lebat, Atau Agar Hujan Berhenti",
+      "group": "Doa Menghadapi Fenomena Alam",
+      "sourceFingerprint": "5788e11f7a4c7195999a214b670836efbe94691fc84be1938df6051d08ee2ec7",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/19836-doa-saat-banjir-melanda-dan-hujan-tak-kunjung-reda.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 22,
+      "title": "Doa Kepada Pengantin",
+      "group": "Doa Pernikahan",
+      "sourceFingerprint": "f6ed439d8a9c37755b7d3e88fdc4e8b8d043ddadc53d049d3cb605c9ac3121e5",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://muslim.or.id/22459-bila-di-undang-ke-walimah-nikah.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 23,
+      "title": "Doa Pengantin Pria Kepada Pasangannya",
+      "group": "Doa Pernikahan",
+      "sourceFingerprint": "fd7f11f3ecc204cbfc695c0a8872b7559b7599bfbcd5e09c92e82735161cccf7",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 24,
+      "title": "Doa Bersetubuh (Jima')",
+      "group": "Doa Pernikahan",
+      "sourceFingerprint": "611d650af524738e05902b79999dbcde51dee7c7577da5158b26d8575da9892f",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://www.facebook.com/doa.dzikir.shahih.harian/posts/357411314358933"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 25,
+      "title": "Doa Ketika Sakit",
+      "group": "Doa Saat Sakit",
+      "sourceFingerprint": "eaf649eeff17e0b116d0fc2ed60449fc533d1decd2312af7294ea8c5c46ea653",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/225870794179653"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 26,
+      "title": "Doa Nabi Ayyub ketika sakit",
+      "group": "Doa Saat Sakit",
+      "sourceFingerprint": "8ee1d0bba9ddb6f998a885c7f28bf5df1e4531dcd7d47eec0d3b200718db4540",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 27,
+      "title": "Doa Kepada Orang Sakit",
+      "group": "Doa untuk Orang Sakit",
+      "sourceFingerprint": "8fd1b2af5eb35a1374ef8e29273840e766485d1b05370f2514e61090a60bec18",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/24268-orang-tua-pintu-surga-paling-tengah.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 28,
+      "title": "Doa ketika sakit menjelang kematian/tanpa harapan hidup",
+      "group": "Doa Menjelang Wafat",
+      "sourceFingerprint": "c43b905d06d9e59f3454aebe441b6d4cc76a0dac14203da5f76e77be0ca5015c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/235659089867490"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 29,
+      "title": "Mengajari (Talqin) Orang Yang Akan Meninggal Dunia",
+      "group": "Doa Jenazah",
+      "sourceFingerprint": "c79c5ee6132e06723af858ae61e4cdb90807b417410e1b4a296714aa7e2512ed",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/243017882464944"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 30,
+      "title": "Doa Memejamkan Mata Jenazah",
+      "group": "Doa Jenazah",
+      "sourceFingerprint": "7da98b1d3b46c4c6cd265728e5a6b001daf5c5e2df8035a8ee4558561a9ecc43",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 31,
+      "title": "Doa Belasungkawa (Ta'ziyah)",
+      "group": "Doa Jenazah",
+      "sourceFingerprint": "c6dba92330540599bdbca2bc2746d5f099eea57964605a2ac19e05d3d73a91b3",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 32,
+      "title": "Doa Memasukkan Jenazah Ke Liang Kubur",
+      "group": "Doa Jenazah",
+      "sourceFingerprint": "493171691923fca7a55269202edf72dd9a3fee2b43c471cb2c835e1db7fe733a",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 33,
+      "title": "Doa Setelah Jenazah Dimakamkan",
+      "group": "Doa Jenazah",
+      "sourceFingerprint": "73c8663398403b5965ab6af83257d7dde0a251e8cbe969676b2414c80693fc7d",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/263488677084531"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 34,
+      "title": "Doa Ziarah Kubur",
+      "group": "Doa Jenazah",
+      "sourceFingerprint": "8844b0efe20eb47e75fa7f74ebf7e53de56eda15be39ccaa93b0c867c4023b4b",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 35,
+      "title": "Doa Ketika Sedih, Gundah Atau Galau",
+      "group": "Doa Saat Sedih dan Sulit",
+      "sourceFingerprint": "fdeb20b170a3bbfb425bab7607a67276a8ecaa6da3aab52d71aa1b0d1cd4549b",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 36,
+      "title": "Doa Ketika Mengalami Kesulitan / Minta diberi Kemudahan",
+      "group": "Doa Saat Sedih dan Sulit",
+      "sourceFingerprint": "812c432316dc6445b58fd343510ec174c06532f6880c68dc0431f935c5cbe6bf",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 37,
+      "title": "Doa Nabi Yunus Ketika Mengalami Kesulitan",
+      "group": "Doa Saat Sedih dan Sulit",
+      "sourceFingerprint": "2dc019d79f67fd655926f706cf8e62ed98c70fae1131da09c1a2ebd872851b3f",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/220655811367818"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 38,
+      "title": "Doa Bila Tertimpa Musibah",
+      "group": "Doa Saat Mendapat Kabar",
+      "sourceFingerprint": "4da17e853f42a4ee51d43a8fb8b957292505831bd6584b765486e518e4e49eb2",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 39,
+      "title": "Doa Bila Melihat Orang Lain Tertimpa Musibah, Cobaan Atau Penyakit",
+      "group": "Doa Saat Mendapat Kabar",
+      "sourceFingerprint": "6b70b0d13dc21038fc72c9d9664343a8453a374b155259165ce64fe26db38e76",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/14975-doa-ketika-melihat-yang-lain-tertimpa-musibah-atau-penyakit.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 40,
+      "title": "Bacaan Bila Ada Sesuatu Yang  Menyusahkan",
+      "group": "Doa Saat Mendapat Kabar",
+      "sourceFingerprint": "73605a0752df7865c770524871c6c75cee9ebc25335c31d32c8f5a38641f9204",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 41,
+      "title": "Bacaan Bila Ada Sesuatu Yang Menyenangkan",
+      "group": "Doa Saat Mendapat Kabar",
+      "sourceFingerprint": "e615ab15cdbe858163ae1ce1c4cd7979d6bd0be630ed6c293073b998994a249c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 42,
+      "title": "Bila Ada Sesuatu Yang Menggembirakan",
+      "group": "Doa Saat Mendapat Kabar",
+      "sourceFingerprint": "ded91157d11b65cb9b03cb6bfeab8c7719a0bed786c185a0f8c0ae08e764b097",
+      "displayable": false,
+      "fieldIssues": [
+        "missing_arabic_or_meaning"
+      ],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 43,
+      "title": "Doa agar terbebas hutang",
+      "group": "Doa Terkait Harta dan Hutang",
+      "sourceFingerprint": "8de751667684394c82150f4f1f2baab0c1677c8d1d7d28d1be57f857d94b7298",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 44,
+      "title": "Doa Kepada Orang Yang Menawarkan Hartanya Untukmu",
+      "group": "Doa Terkait Harta dan Hutang",
+      "sourceFingerprint": "c94bdbaa7b84a471b012d0e61db234b3c402df1ea79f6987fc2c636b4a1dadc7",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 45,
+      "title": "Doa Kepada Orang Yang Meminjami Ketika Membayar Hutang",
+      "group": "Doa Terkait Harta dan Hutang",
+      "sourceFingerprint": "e6c5d4efc97f8d65080f793f9df0a27afb5417845979b591c02fc27679237b2f",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 46,
+      "title": "Doa Ketika Sempit Rizki",
+      "group": "Doa Terkait Harta dan Hutang",
+      "sourceFingerprint": "cad78285f2ed8f52c8b2fb52912ece6aa4b399102105fdc23bdda8756af76b8f",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://pengusahamuslim.com/doa-sempit-rizki-1674"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 47,
+      "title": "Doa Ketika Orang-Orang Telah Sibuk Dengan Harta",
+      "group": "Doa Terkait Harta dan Hutang",
+      "sourceFingerprint": "d5d26515a2b021eca580af801e8633a0c2611d9e68d5eac5b16dbb4c9c0dd969",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://bbg-alilmu.com/archives/25195"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 48,
+      "title": "Doa Naik Kendaraan",
+      "group": "Doa Perjalanan",
+      "sourceFingerprint": "c14af87db93c769ee788fcd1bfe97890a26ccff41f111474a9ac0323fca8046a",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "initial_sample_comparison",
+      "comparisonUrl": "https://sunnah.com/abudawud:2602"
+    },
+    {
+      "id": 49,
+      "title": "Doa Musafir Kepada Orang Yang Ditinggalkan",
+      "group": "Doa Perjalanan",
+      "sourceFingerprint": "14041dae1dd387ec6d5ae905179cdfdd438e558d5e238808a41a5743e9646ff9",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 50,
+      "title": "Doa Orang Mukim Kepada Musafir",
+      "group": "Doa Perjalanan",
+      "sourceFingerprint": "e13130544288df09adafd3360ca6da0017530393e9cb807244b9e792c5a87ae6",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 51,
+      "title": "Doa Bepergian",
+      "group": "Doa Perjalanan",
+      "sourceFingerprint": "11ae015073d005bb2278c9911c62986bad46173ab0380b98259799f1a338eb1e",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "initial_sample_comparison",
+      "comparisonUrl": "https://sunnah.com/muslim:1342"
+    },
+    {
+      "id": 52,
+      "title": "Doa Musafir Menjelang Subuh",
+      "group": "Doa Perjalanan",
+      "sourceFingerprint": "096d7bb949f28ec82aee6b6c4e2e2d7f479f515a449e0885761d14f83e91d465",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 53,
+      "title": "Doa Singgah Di Suatu Tempat, Baik Dalam Bepergian Ataupun Tidak",
+      "group": "Doa Perjalanan",
+      "sourceFingerprint": "e860a4c0035d06b92ce44a5776d6c015d1bc70ba54f952ab02d2fe5b3b346f9e",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/19063-dzikir-dan-doa-mohon-perlindungan-dari-bahaya.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 54,
+      "title": "Doa Masuk Desa Atau Kota",
+      "group": "Doa Perjalanan",
+      "sourceFingerprint": "e1df3242756d5f3397740a19957bcdd606aed9cb907c9e67ba0fa18910cc5953",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 55,
+      "title": "Doa Masuk Pasar, Mall, Terminal, Bandara Dan Pusat Keramaian Lainnya",
+      "group": "Doa Perjalanan",
+      "sourceFingerprint": "ac1142e94c32999b25d48cb2104929aa56b5762f96d9fff6a2d53fff1c6dd020",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/146376235462443"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 56,
+      "title": "Doa Bila Binatang Atau Kendaraan Tergelincir",
+      "group": "Doa Perjalanan",
+      "sourceFingerprint": "6960bbb1b3bbf34a96b8d5917fcc633f3167b9be92494abb1200dcc990d3010d",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 57,
+      "title": "Doa Pulang Dari Bepergian",
+      "group": "Doa Perjalanan",
+      "sourceFingerprint": "433e8629514ef9043ff2a4abb1b14ef5cbe97a5bf2cd084cde7e9fdb3da899da",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 58,
+      "title": "Doa Berlindung/Menghilangkan Gangguan Setan",
+      "group": "Doa Berlindung dari setan",
+      "sourceFingerprint": "9a8cd5af3514f84a584f1b887f90deefcbd3b5b3d80ec43148eecaedafa07e8a",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 59,
+      "title": "Doa Menghilangkan Gangguan Setan Ketika Shalat Atau Membaca Al-Qur'an",
+      "group": "Doa Berlindung dari setan",
+      "sourceFingerprint": "d28cc2c5aeffc9f0a5c5446e2167a05b8de63d2c1d148d8da14582a191c9c9b6",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 60,
+      "title": "Doa Memohon Surga Dan Berlindung Dari Neraka",
+      "group": "Doa memohon surga dan berlindung dari neraka",
+      "sourceFingerprint": "a2d81934a5368dd950b6203a7d17fa545248b94224d79079cb535cb01715dcfa",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/belajar-islam/tafsir-al-quran/3504-sifat-ibadurrahman-3-berlindung-dari-siksa-neraka.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 61,
+      "title": "Doa Memohon Surga, Berlindung Dari Neraka Dan Mohon Takdir Baik",
+      "group": "Doa memohon surga dan berlindung dari neraka",
+      "sourceFingerprint": "70b93f4308420932c6041ffe29f32ebafa605a5f9f7e260104c453914b93c9ef",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/belajar-islam/tafsir-al-quran/3699-sifat-ibadurrahman-8-akhir-yang-mulia-bagi-ibadurrahman.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 62,
+      "title": "Doa Berlindung Dari Neraka",
+      "group": "Doa memohon surga dan berlindung dari neraka",
+      "sourceFingerprint": "b459c771b20c6239bbed8f85aacb9dc363485a354e610b6414f6ca00c9b539e2",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26031-doa-doa-dari-al-quran-2.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 63,
+      "title": "Doa Memohon Akhlak Mulia",
+      "group": "Doa memohon akhlak mulia",
+      "sourceFingerprint": "37cd253735cd5d8e3b4cfdc5a69d77e6065420bc23f8508bcc10cdefa054126f",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 64,
+      "title": "Doa Memohon Akhlak Dan Amal Yang Baik",
+      "group": "Doa memohon akhlak mulia",
+      "sourceFingerprint": "f3e4df74da843aecf378ff9ca008b2d43052608a1eccce0111606022edd9622c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 65,
+      "title": "Doa Berlindung Dari Kemungkaran Akhlak, Amal Dan Hawa Nafsu",
+      "group": "Doa memohon akhlak mulia",
+      "sourceFingerprint": "896062af2acbfce30b5cf1eac6c5577639e0b498c89a1eff7714f5bdef64c33c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/belajar-islam/amalan/3078-doa-berlindung-dari-akhlak-amal-dan-hawa-nafsu-yang-mungkar.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 66,
+      "title": "Doa Memohon Ampun diri sendiri dan orang tua (Doa Nabil Ibrahim)",
+      "group": "Doa Terkait Orang Tua",
+      "sourceFingerprint": "8a24f0f9b8671c611d7c09a3ab5cd6e13f447b9d755b75c24dc8e334457f34dc",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 67,
+      "title": "Doa Memohon Ampun Untuk Diri Sendiri, Orang Tua Dan Kaum Mukminin (Doa Nabi Nuh)",
+      "group": "Doa Terkait Orang Tua",
+      "sourceFingerprint": "3f2e83d2419d71f920886832cee1bcc54db2e308f9cc5a514a5f506000f3a89a",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 68,
+      "title": "Doa Memohon Kasih Sayang Untuk Orang Tua",
+      "group": "Doa Terkait Orang Tua",
+      "sourceFingerprint": "c53cbe1e1c8162e474bf6c690b8880020c831058cfe827936df4de188323dc8e",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 69,
+      "title": "Doa Memohon Istri Dan Anak Sebagai Penyenang Hati",
+      "group": "Doa Terkait Istri Dan Anak",
+      "sourceFingerprint": "71ac3ea4d87ada4a2a53d85a8e103436734d1d825d0d8e77d272cdbc4a9d3c55",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/belajar-islam/tafsir-al-quran/3690-sifat-ibadurrahman-7-meminta-anugerah-istri-dan-anak-sebagai-penyejuk-mata.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 70,
+      "title": "Doa Memohon Banyak Harta, Anak, Panjang Umur, Dibaguskan Amal Dan Diampuni Dosa (Doa Nabi Muhammad)",
+      "group": "Doa Terkait Istri Dan Anak",
+      "sourceFingerprint": "d7781583cb631a4e74184b147077b4c05eed5ad58309abb047f574d93dd77208",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/amalan/doa-minta-kaya-dan-lepas-dari-utang-10221.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 71,
+      "title": "Doa Memohon Anak Shaleh (Doa Nabi Ibrahim)",
+      "group": "Doa Terkait Istri Dan Anak",
+      "sourceFingerprint": "4c433e4398751e598e4f4f3a1308b0f967988452ff97bd634c6a48033e9f6e48",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/belajar-islam/keluarga/3437-doa-meminta-anak-yang-sholeh.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 72,
+      "title": "Doa Memohon Keturunan (Doa Nabi Dzakariya)",
+      "group": "Doa Terkait Istri Dan Anak",
+      "sourceFingerprint": "98c9645a4f9864e7b7397e5f4d72035f4d00759d6b7ae6e8a40bf187c171f8b2",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 73,
+      "title": "Doa Agar Menjadi Hamba Yang Bersyukur, Agar Bisa Beramal Shaleh Dan Minta Anak Shaleh",
+      "group": "Doa Terkait Istri Dan Anak",
+      "sourceFingerprint": "5549bd94384b1dab3d2c0f3fef0b80ddca0677df1902dddbed43af604a7e6014",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/belajar-islam/keluarga/3437-doa-meminta-anak-yang-sholeh.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 74,
+      "title": "Ucapan Selamat Kepada Orang Yang Dikaruniai Anak Dan Balasannya",
+      "group": "Doa Terkait Istri Dan Anak",
+      "sourceFingerprint": "b6b969d8058cf68fa8674d65f2fd75dbc28916eddeecc7be47cb7c7edfaba180",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 75,
+      "title": "Doa Agar Anak Terjaga Dari Zina",
+      "group": "Doa Terkait Istri Dan Anak",
+      "sourceFingerprint": "38ccd8b40ade1960a6dc2b992d26101eab3d12185c4e28cb78b60935e65fc778",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.salamdakwah.com/artikel/3283-zina-itu-adalah-hutang-tebusannya-ada-pada-keluargamu-sendiri",
+        "http://www.salamdakwah.com/artikel/5170-jangan-dianggap-biasa-anak-yang-sudah-tidak-perawan"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 76,
+      "title": "Doa Perlindungan Kepada Anak (Doa Istri Imran)",
+      "group": "Doa Kepada Anak Yang Baru Lahir",
+      "sourceFingerprint": "5d0ea829c4b141121df3f8909c0f0d3523c50ce22f9cbdaa512b94b43387124c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/18705-doa-untuk-bayi-yang-baru-lahir.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 77,
+      "title": "Doa Perlindungan Kepada Anak (Doa Nabi Muhammad)",
+      "group": "Doa Kepada Anak Yang Baru Lahir",
+      "sourceFingerprint": "c24cdde114b8f0b231ad844980f998c59c162d483b9d738eb168961c06510f6b",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://bbg-alilmu.com/archives/35100",
+        "https://konsultasisyariah.com/18705-doa-untuk-bayi-yang-baru-lahir.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 78,
+      "title": "Doa Memohon Keteguhan Hati",
+      "group": "Doa Memohon Keteguhan Hati",
+      "sourceFingerprint": "87a77979ea97da48cceb0207e422e4807c0596ad8e5f1a06da0f1723bd7dc3ab",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/amalan/kiat-agar-semangat-tidak-kendor-dalam-belajar-islam-3315"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 79,
+      "title": "Doa Memohon Ampun Dan Rahmat",
+      "group": "Doa Memohon Ampun, Rahmat Dan Kebaikan Lainnya",
+      "sourceFingerprint": "0dbbec62be86874f7dfe1b512e08dcba459f3b4f0afaa6c6123d4769ca565431",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26012-doa-doa-dari-al-quran-1.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 80,
+      "title": "Doa Memohon Ampun Dan Rahmat (Doa Nabi Adam)",
+      "group": "Doa Memohon Ampun, Rahmat Dan Kebaikan Lainnya",
+      "sourceFingerprint": "9336b01022b2b14854954d288cee8ac16fa912b1e255d02ee46713a10d851ba4",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26012-doa-doa-dari-al-quran-1.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 81,
+      "title": "Doa Memohon Ampun (Doa Nabi Musa)",
+      "group": "Doa Memohon Ampun, Rahmat Dan Kebaikan Lainnya",
+      "sourceFingerprint": "015b253e98d22d2d33bc434d715003655eb93795e9fb9c2b3ef38160040e0fa7",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26012-doa-doa-dari-al-quran-1.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 82,
+      "title": "Doa Memohon Ampun, Rahmat, Petunjuk, Keselamatan Dan Rizki",
+      "group": "Doa Memohon Ampun, Rahmat Dan Kebaikan Lainnya",
+      "sourceFingerprint": "90f256d62fe77dfc578c44ef26b674d13da58bcd1a076c02173bc53be66137d8",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/belajar-islam/amalan/3002-doa-meminta-kesehatan-dan-kelapangan-rizki.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 83,
+      "title": "Doa Memohon Ampun, Rahmat, Keselamatan Dan Rizki",
+      "group": "Doa Memohon Ampun, Rahmat Dan Kebaikan Lainnya",
+      "sourceFingerprint": "a89f99e53deeb391fb9d79eebe50cef1535859f1c16f33624c9923cbe3238488",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/belajar-islam/amalan/3002-doa-meminta-kesehatan-dan-kelapangan-rizki.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 84,
+      "title": "Doa Memohon Ampun, Teguh Pendirian Dan Pertolongan Terhadap Orang Kafir",
+      "group": "Doa Memohon Ampun, Rahmat Dan Kebaikan Lainnya",
+      "sourceFingerprint": "9f9c3eec4eaf65af2014eef3286af19b2df46a0d1e2a30ba72354b39368fc83a",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/amalan/kiat-agar-semangat-tidak-kendor-dalam-belajar-islam-3315"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 85,
+      "title": "Doa Memohon Ampun Dalam Segala Hal",
+      "group": "Doa Memohon Ampun, Rahmat Dan Kebaikan Lainnya",
+      "sourceFingerprint": "a73c462e7581ef76d14b0f8fd0f4db6ed56ceea5dce4770aaca0e82bdac11d4c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/21758-kumpulan-doa-nabi-shallallahu-alaihi-wa-sallam.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 86,
+      "title": "Doa Memohon Ampun Dan Berlindung Dari Neraka",
+      "group": "Doa Memohon Ampun, Rahmat Dan Kebaikan Lainnya",
+      "sourceFingerprint": "ff1b9366a02f3730f08fbd24bd649b6159e2eedcd27d2fb518f7251d6448a920",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26012-doa-doa-dari-al-quran-1.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 87,
+      "title": "Doa Memohon Ampun, Dihapuskan Kesalahan Dan Agar Tidak Dihinakan Pada Hari Kiamat",
+      "group": "Doa Memohon Ampun, Rahmat Dan Kebaikan Lainnya",
+      "sourceFingerprint": "e1d29b15235b21ec6f76ed9c6ea9b409049587bcd60d58889ea8032430c31d1c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26012-doa-doa-dari-al-quran-1.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 88,
+      "title": "Doa Memohon Ampun Untuk Diri Sendiri Dan Kaum Mukminin, Dan Agar Tidak Dengki Kepada Orang Beriman",
+      "group": "Doa Memohon Ampun, Rahmat Dan Kebaikan Lainnya",
+      "sourceFingerprint": "68add4ce4ce9676103e7663038d78d91ba018d58f3ce5dbbe33d253baf9797d9",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26012-doa-doa-dari-al-quran-1.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 89,
+      "title": "Doa Memohon Ampun Pada Hari Pembalasan",
+      "group": "Doa Memohon Ampun, Rahmat Dan Kebaikan Lainnya",
+      "sourceFingerprint": "f9cc591c723e9a40231f474278681fcbd19aa152de3266684fca0d675892e32c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://almanhaj.or.id/11462-doa-meminta-ampun-pada-hari-pembalasan.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 90,
+      "title": "Doa Memohon Ampun, Rahmat, Dan Ditetapkan Kebaikan Di Dunia Dan Akhirat (Doa Nabi Musa)",
+      "group": "Doa Memohon Ampun, Rahmat Dan Kebaikan Lainnya",
+      "sourceFingerprint": "101f06a065ff5895e3f93f00f92ca7aff14330d09ae23eb1f38c2d785dfed77c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://almanhaj.or.id/7219-para-nabi-pun-bertaubat-menyoal-mashumnya-para-nabi.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 91,
+      "title": "Doa Berlindung Dari Syirik",
+      "group": "Doa Berlindung Dari Syirik",
+      "sourceFingerprint": "a0fd0175692125bb4dfb7e98a5009811ba9b6a5ad7fca33d3ff1aac996fd8cf1",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 92,
+      "title": "Doa Berlindung Dari Empat Hal",
+      "group": "Doa Berlindung Dari Empat Hal",
+      "sourceFingerprint": "7cc2a60312c5e63a2b118c52cff09f608d4a1cbe7ad0b6ef4273e257f147cc0b",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 93,
+      "title": "Doa Berlindung Dari Kecelakaan Dan Kematian Yang Mengerikan",
+      "group": "Doa Berlindung Dari Kecelakaan Dan Kematian Yang Mengerikan",
+      "sourceFingerprint": "bcc4a1ae074964316704596178395f626d8f731ab9e7b0054518cd8791ae8d3a",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/15114-doa-agar-tidak-mati-mengerikan.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 94,
+      "title": "Doa Agar Tidak Disesatkan Setan Menjelang Kematian",
+      "group": "Doa Berlindung Dari Kecelakaan Dan Kematian Yang Mengerikan",
+      "sourceFingerprint": "a3d5b54942a2e63941b1166f4200fc3b2dde6891192f648bb4c906b7e733843b",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/26531-setan-menggoda-manusia-ketika-sakaratul-maut.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 95,
+      "title": "Doa Memohon Ilmu 1",
+      "group": "Doa Memohon Ilmu",
+      "sourceFingerprint": "496d4f8bf3e331d542383d0b90819ce06f6a74d4170d7dded0f9e13d1684ce4f",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "initial_sample_comparison",
+      "comparisonUrl": "https://quran.com/20/114"
+    },
+    {
+      "id": 96,
+      "title": "Doa Memohon Ilmu 2",
+      "group": "Doa Memohon Ilmu",
+      "sourceFingerprint": "811109d3e416464781ca6da504788eb2cdc09e4f79daf946905b91640a42e549",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.salamdakwah.com/baca-artikel/memohon-ilmu-yang-bermanfaat-1.html"
+      ],
+      "review": "initial_sample_comparison",
+      "comparisonUrl": "https://sunnah.com/ibnmajah:251"
+    },
+    {
+      "id": 97,
+      "title": "Doa Memohon Ilmu Yang Bermanfaat Dan Berlindung Dari Ilmu Yang Tidak Bermanfaat",
+      "group": "Doa Memohon Ilmu",
+      "sourceFingerprint": "54ce7336704284dc86780ebe8bfc08096dc711f49b4a8cb6d45230042d475ae1",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.salamdakwah.com/baca-artikel/memohon-ilmu-yang-bermanfaat-1.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 98,
+      "title": "Doa Agar Paham Tentang Agama",
+      "group": "Doa Memohon Ilmu",
+      "sourceFingerprint": "f80c3f0c57e7d0edb558ae09b0e62f40f40ce09f3470e3fd9e4867817018d5b9",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslimah.or.id/9591-wanita-dan-majelis-ilmu.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 99,
+      "title": "Doa Agar Diri Dan Keluarga Tetap Mendirikan Shalat (Doa Nabi Ibrahim)",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "c523830fb7520be4f9e3cfde14b5df96be16212e6742e06187b92ec8c15e1dd3",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 100,
+      "title": "Doa Agar Menjadi Hamba Yang Bersyukur Dan Agar Bisa Beramal Shaleh (Doa Nabi Sulaiman)",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "8e15601231ca1210a80391aedf3a3c4a204162043dcfb52efdc39c6dcb880f3e",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://www.facebook.com/photo.php?fbid=287408304641699&set=a.128972147151983.21826.113035155412349&type=1"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 101,
+      "title": "Doa Memohon Petunjuk, Ketakwaan, 'Afaf (Terjaga) Dan Ghina (Merasa Cukup)",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "34e6507240546bb90ff7dffdd62cae0a4f9055c06fa738848e2ad28d20cce886",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 102,
+      "title": "Doa Memohon Ketakwaan dan Jiwa yang Suci",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "31e2bca4987de759760506869c8afa02a6c310f5b7f496121f20f0b9dd34a34e",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://www.facebook.com/photo.php?fbid=563403433708850&set=a.128398600542671.21609.113035155412349&type=1"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 103,
+      "title": "Doa Agar Dilapangkan hati dan Dimudahkan Urusan dan Ucapan (Doa Nabu Musa)",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "963f3a81d8dec76266ec0b6138b50116bb3c0e50a12f21a0765fc327ac36ebdb",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 104,
+      "title": "Doa Memperbaiki Urusan Agama dan Dunia",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "a6d581fa5ed9c198068974c43fc2560fdb951e56c9cdbbc2e9239ec89995ca07",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 105,
+      "title": "Doa Melihat Hilal ( Bulan Tanggal Satu)",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "72d1ad6797c019742b662cc879b27292936420c8a60a7d7335ffc01fd4aaf718",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 106,
+      "title": "Doa Melihat Permulaan Buah",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "d8676237520ce8260862d8feb99970b024f58c16230ddb0a9e5d31fa52bc5400",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 107,
+      "title": "Doa Memohon Hisab yang Mudah",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "5abab4ea89c7610ccb0eea9dfc4b0313b40286b7cbd2deed945e0c2186a02e7a",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/amalan/ya-allah-hisablah-aku-dengan-hisab-yang-mudah-1511"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 108,
+      "title": "Doa Agar Ucapan Terjaga Saat Marah maupun Ridha",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "ad0f4eb513bcee4e1b67b0f4c0e0904d50ffade2f04bd696789e892ff68a6de6",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 109,
+      "title": "Doa Memohon Melihat Wajah Allah Swt.",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "77c9eb20267e186d734a3039ca9c6a01e0517c8ed7ae782368636eec95882bc0",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/21758-kumpulan-doa-nabi-shallallahu-alaihi-wa-sallam.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 110,
+      "title": "Doa Agar Mencintai dan Dicintai Allah",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "25b8658ac7f7a4137be4b19708bbdcff7033c671929a1580363d068fd2c2bf80",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/21758-kumpulan-doa-nabi-shallallahu-alaihi-wa-sallam.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 111,
+      "title": "Doa Memohon Banyak Kebaikan",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "7bf212a1368d09cd37513913a548d28f49702385e313e1e759639f3c1d6e44a7",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 112,
+      "title": "Doa Agar Diterima Amal Ibadah dan taubat (Doa Nabi Ibrahim)",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "e17dec6fcb0c0e52cf89c5f6ff14b18b945d8c087118c72ec87774bccb0a17ea",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26031-doa-doa-dari-al-quran-2.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 113,
+      "title": "Doa Agar Tergolong Orang Beriman (Doa Nabi Ibrahim)",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "3eae394858c1a9f3814cbf6db5b07909afc9525e20bfbbaa7178d994d89e65de",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26012-doa-doa-dari-al-quran-1.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 114,
+      "title": "Doa Agar Bertawakal Hanya Kepada Allah",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "9f5e9d1835ebe6843a312cd7483f352c8bd54dcf4d76e67bbc02fdda594a8338",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26031-doa-doa-dari-al-quran-2.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 115,
+      "title": "Doa Agar Disempurnakan Cahayanya dan Memohon Ampun",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "500f0d74b91da5b07ff631856d79ac02b92ce4e1812e3300b618a12957b59aaa",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26031-doa-doa-dari-al-quran-2.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 116,
+      "title": "Doa Memohon Rahmat dan Petunjuk",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "9291b2bbae61dfda28db8c372137cc19631a214fb98d45568ad0080171754ae2",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26031-doa-doa-dari-al-quran-2.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 117,
+      "title": "Doa Agar Diwafatkan Dalam Keadaan Islam dan Tergolong Orang Saleh (Doa Nabi Yusuf)",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "7d5b79e9e99dbe583cb0e264e8642a4533041af609a6bee1c63b3f71e453980d",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://www.facebook.com/doa.dzikir.shahih.harian/photos/a.443228542443876.1073741825.145491612217572/611879738912088/?type=1"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 118,
+      "title": "Doa Memohon Petunjuk dan Kebenaran",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "dfbb8611f4720a0b97b40eb708b79e6855c44cc6bcd4c1b64b9dcf065ac9d424",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 119,
+      "title": "Doa Memohon Kesabaran dan Agar Diwafatkan Dalam Keadaan Muslim",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "e38b5a3cac6c492c552202b02e4702cb32cb63c42ab3a91f0ae8e7cb13ebd187",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 120,
+      "title": "Doa Memohon Dihidupkan Jika Itu Baik, dan Dimatikan Jika Itu Baik",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "c28ce3c100feb8c3de215f4985c2be34d102d67c5cd148b6082ba5143faa7f6e",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/43190-hukum-berdoa-mengharapkan-kematian.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 121,
+      "title": "Doa Memohon Keteguhan, Petunjuk Sekaligus Sebagai pembeli Petunjuk",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "380db7f08e5a580667356890af14077052b901f25023d31022ebd8576c9063f4",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://almanhaj.or.id/11433-doa-agar-tegar-dan-menerangi-manusia-dengan-kebaikan.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 122,
+      "title": "Doa Memohon Keimanan, Keyakinan, dan Pemahaman",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "bb3a923a81ef0c67c9a8afe918500032e425f8f999633408fd17e8ecd0f8a18a",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslimah.or.id/9591-wanita-dan-majelis-ilmu.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 123,
+      "title": "Doa Memohon Keteguhan Di Atas Agama Islam",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "b930f531d37fb0f9db238ef5c5b14823c67806f51eca88531b8f7256d28b4a57",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://yufidia.com/5027-doa-memohon-keteguhan-di-atas-islam.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 124,
+      "title": "Doa Memohon Iman Yang Tidak Lepas, Nikmat yang Tidak Habis, dan Menyertai Nabi Muhammad di Surga",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "dbab235375279c51db067498c996b754862b2633d727d7dafa8964d2709f22e6",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/23644-20-doa-dan-dzikir-saat-wabah-corona-melanda.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 125,
+      "title": "Doa Memohon Qona'ah (Merasa Cukup)",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "bb0b403128a700a8be6f3429d32a94d3b35c1bedc48d28b357ff1fd605d93173",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://bbg-alilmu.com/wp-content/uploads/2015/06/qona-ah.jpg"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 126,
+      "title": "Doa Agar Dibimbing Ke Jalan yang Benar (Doa Nabi Musa)",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "1ac6689b3167b4a357188e053c802ca76f3a495921622aa16c8e6e32b136f568",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 127,
+      "title": "Doa Ketika Sangat Butuh Sesuatu Ataupun Pertolongan Dari Allah (Doa Nabi Musa)",
+      "group": "Doa Memohon Kebaikan",
+      "sourceFingerprint": "0b1cbcc43c1c293537303a418d65b5b8aac3707e9a2869ce57e42d99432a2032",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 128,
+      "title": "Doa Keluar Rumah",
+      "group": "Doa Keluar Dan Masuk Rumah",
+      "sourceFingerprint": "1937309ef46deb305e3faa04232c5b94c95e3e1c335fb37bbf192fd202a9c092",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/22104-doa-agar-dijamin-aman-ketika-keluar-rumah.html"
+      ],
+      "review": "initial_sample_comparison",
+      "comparisonUrl": "https://sunnah.com/abudawud:5095"
+    },
+    {
+      "id": 129,
+      "title": "Doa Masuk Rumah 1 (Bismillah)",
+      "group": "Doa Keluar Dan Masuk Rumah",
+      "sourceFingerprint": "29f9d62b776b9022095fea0a7949bc31232b540bd32f427a9cc697ed0e4f56d5",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/28306-baca-doa-ini-agar-setan-tidak-masuk-rumah-anda.html"
+      ],
+      "review": "initial_sample_comparison",
+      "comparisonUrl": "https://sunnah.com/muslim:2018a"
+    },
+    {
+      "id": 130,
+      "title": "Doa Masuk Rumah 2 (Salam)",
+      "group": "Doa Keluar Dan Masuk Rumah",
+      "sourceFingerprint": "98f40d72c42c900e4fbec1b153b3e817c1cd4d4c92492025814f9be1738f1dfb",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://asysyariah.com/menyebarkan-salam",
+        "https://rumaysho.com/6006-doa-masuk-rumah.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 131,
+      "title": "Doa Masuk Rumah Ketika Tidak Ada Orang",
+      "group": "Doa Keluar Dan Masuk Rumah",
+      "sourceFingerprint": "f3269188f554f96804232ece48467bc0496bdf71721c03a86f9ca9ee0aa1b91f",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/6018-mengucapkan-salam-pada-rumah-kosong.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 132,
+      "title": "Bacaan Setelah Adzan 1 (Bersaksi) - Lafal 1",
+      "group": "Bacaan Terkait Adzan",
+      "sourceFingerprint": "b401053a79e0e49c96c43bd011f28786a28eb343a7c76c21c8f43ca5f2e68c75",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/10008-5-amalan-ketika-mendengar-azan.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 133,
+      "title": "Bacaan Setelah Adzan 1 (Bersaksi) - Lafal 2",
+      "group": "Bacaan Terkait Adzan",
+      "sourceFingerprint": "e6eb6da891c40c573d23af44cf334a9fc6d6b8d3a42159a94d6596dfde3e2338",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/10008-5-amalan-ketika-mendengar-azan.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 134,
+      "title": "Bacaan Setelah Adzan 2 (Memohonkan Wasilah)",
+      "group": "Bacaan Terkait Adzan",
+      "sourceFingerprint": "7df6ff0c0ad9e49e243557088625c7e6d034ced8bf655402eaa05593c56551f9",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/10008-5-amalan-ketika-mendengar-azan.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 135,
+      "title": "Doa Sebelum Makan",
+      "group": "Doa Terkait Makan",
+      "sourceFingerprint": "c5aac24f00a5a27ea75ff4df1e0a337060a962bd8c39fd1ef636bd3af1427f5c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/1114-sebelum-makan-bacalah-bismillah.html"
+      ],
+      "review": "initial_sample_comparison",
+      "comparisonUrl": "https://sunnah.com/bukhari:5376"
+    },
+    {
+      "id": 136,
+      "title": "Bila Lupa Membaca Doa Sebelum Makan",
+      "group": "Doa Terkait Makan",
+      "sourceFingerprint": "a5b5da084f562152033ff850f1b7bb09ed7e324a4bb6daf6eedc2905ac363dee",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/3712-lupa-membaca-bismillah-di-awal-makan.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 137,
+      "title": "Doa Bila Diberi Rezeki Berupa Makanan",
+      "group": "Doa Terkait Makan",
+      "sourceFingerprint": "839c4a38ffb718590eb31f8ef359801bd34ff9bcc07ac0e8df3a02ae324b7e6b",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/1114-sebelum-makan-bacalah-bismillah.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 138,
+      "title": "Doa Minum Susu",
+      "group": "Doa Terkait Makan",
+      "sourceFingerprint": "5fcbe83f15b98621b2d2b335d94024f73334ca5088d143b5770a5c3e540a845a",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/1114-sebelum-makan-bacalah-bismillah.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 139,
+      "title": "Doa Setelah Makan",
+      "group": "Doa Terkait Makan",
+      "sourceFingerprint": "baf12d0972ec1ba32eaa4aad2da62184752ea465cb2e430ceb86730e485df096",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/6048-do-setelah-makan.html"
+      ],
+      "review": "initial_sample_comparison",
+      "comparisonUrl": "https://sunnah.com/tirmidhi:3458"
+    },
+    {
+      "id": 140,
+      "title": "Doa Bila Diberi Makan Oleh Orang Lain",
+      "group": "Doa Terkait Makan",
+      "sourceFingerprint": "c3cb32c98c3d3b26602fec8e76a2ceccde709e55700f4cad8348d3d6539b71b6",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/270589506374448"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 141,
+      "title": "Doa Berbuka Puasa",
+      "group": "Doa Terkait Puasa",
+      "sourceFingerprint": "158ea7d52417be6f5e30f0c71652e61b33fc2d83b48c299554af2fa6f6ebc319",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/268514896581909"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 142,
+      "title": "Doa Berbuka Puasa Di Tempat Orang Lain",
+      "group": "Doa Terkait Puasa",
+      "sourceFingerprint": "1628f971a15898135bbe08fca1c1f51ee5db66502a176ba3acde0fd3eb39a451",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/270896109677121"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 143,
+      "title": "Doa Malam Lailatul Qadar",
+      "group": "Doa Terkait Ramadhan",
+      "sourceFingerprint": "71c535cf578efae5b244ab82660bd8a234e2cff7787e41c8190bb77368601761",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/273965022703563"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 144,
+      "title": "Lafal Takbir Hari Raya 1 (Dari Ibnu Mas'ud)",
+      "group": "Ucapan Terkait Hari Raya.",
+      "sourceFingerprint": "9750a74faaab38e85c1f6b3f67569c92b186c2450a6426da3150434e423b8d9c",
+      "displayable": false,
+      "fieldIssues": [
+        "missing_reference"
+      ],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 145,
+      "title": "Ucapan Selamat Hari Raya",
+      "group": "Ucapan Terkait Hari Raya.",
+      "sourceFingerprint": "ef4b5a3f7b85ce47b55d6e1dc538ef90cade68bd072385d0dfca55d4bd0db2ab",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://muslimah.or.id/fikih/ucapan-selamat-di-hari-raya.html",
+        "http://www.konsultasisyariah.com/ucapan-selamat-idul-fitri"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 146,
+      "title": "Doa Menyembelih Hewan Kurban",
+      "group": "Ucapan Terkait Hari Raya.",
+      "sourceFingerprint": "94a4c08d4b60a91e140093b9faa5e72199862989140a6414e75e13d4255af15c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 147,
+      "title": "Doa Menolak Firasat Buruk/Sial",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "aaf07d7ebe5422a178c8e7c3944f494465a693f8149e6e875339f00e0fad1dea",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 148,
+      "title": "Doa Berlindung Dari Hilangnya Nikmat, Berubahnya Kesehatan/Keselamatan, Siksa Dan Murka Allah",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "6821e6cb9a84a7510cd50317c73b46d94420bb42a3c8c2bd1f2341a8d03b755e",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 149,
+      "title": "Doa Berlindung Dari Beratnya Cobaan, Kesengsaraan Yang Hebat, Keburukan Takdir Dan Kegembiraan Musuh",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "d0438292417421bcf733dfbbab620f8f922c2442d9c0e376a2a2f67ed51477b6",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 150,
+      "title": "Doa Berlindung Dari Sifat Lemah, Malas, Pengecut Dan Pikun",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "3c793855e3714fc1ec223196c33bd5cc8c2e26d435b36e89669c75c6cd9a723e",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://www.facebook.com/permalink.php?story_fbid=431129640269564&id=113035155412349"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 151,
+      "title": "Doa Berlindung Dari Sifat Malas, Pengecut/Lemahnya Hati, Pikun/Usia Tua Dan Kikir",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "7d5978774f43595a6386416da8d9ee01fa31cc10fc2c26ada2b6b500596b3956",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 152,
+      "title": "Doa Berlindung Dari Sifat Lemah, Malas, Pengecut, Pikun, Kikir, Siksa Kubur Dan Fitnah Kehidupan Dan Kematian",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "ac663129146e533511e806c5998a7ee74c4ed3b19ece9a2ed2cc6df5bbbd7bff",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 153,
+      "title": "Doa Berlindung Dari Sifat Malas, Pikun, Dosa, Hutang, Fitnah Dan Azab Kubur, Fitnah Dan Azab Neraka, Fitnah Kekayaan Dan Kemiskinan Dan Fitnah Dajjal",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "58919f10d1508de6413f66640d651e81b98df92c9bfd02de7f74ae57bf1ddef2",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/21758-kumpulan-doa-nabi-shallallahu-alaihi-wa-sallam.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 154,
+      "title": "Doa Berlindung Dari Sifat Pengecut, Pikun, Fitnah Dunia Dan Azab Kubur",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "9faab0d00c5b5178b33eed4479bfcea4af2e59ffdc55517622f2cf94ad477721",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/21758-kumpulan-doa-nabi-shallallahu-alaihi-wa-sallam.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 155,
+      "title": "Doa Berlindung Dari Keburukan Amal",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "a029999cda56786b890e423d18047da389dc95cb5fe671fcee589eda006bf034",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/21758-kumpulan-doa-nabi-shallallahu-alaihi-wa-sallam.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 156,
+      "title": "Doa Agar Musibah Tidak Menimpa Agama Dan Agar Dunia Bukan Sebagai Tujuan",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "469c12a1abc31a679ad8fe918365339f19c4668ecf8721fcdb44097c9edd7e46",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://abufawaz.wordpress.com/2013/02/01/musibah-terbesar-adalah-musibah-yang-menimpa-agama-seorang-hamba"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 157,
+      "title": "Doa Berlindung Dari Keburukan Anggota Badan",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "c872b16dca62ae3b9eaeea198c9666b5865bdbd0b87f631b3a8c5453abac44f9",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 158,
+      "title": "Doa Berlindung Dari Kesusahan, Kesedihan, Lemah, Malas, Kikir, Penakut, Lilitan Hutang Dan Penindasan Orang",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "87d35a79da2c95543975547e8a3119cf08c3ed3ea52595a367ba204cc26b7dd5",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 159,
+      "title": "Doa Berlindung Dari Kesusahan, Kesedihan, Lemah, Malas, Penakut, Kikir, Lilitan Hutang Dan Penguasaan Orang",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "a57aabd5fa41af203b3c52109983b221fcbcfb2ab29349e3548ba014433ac07a",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://www.facebook.com/doa.dzikir.shahih.harian/videos/719535888146472"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 160,
+      "title": "Doa Berlindung Dari Fitnah Dan Azab Neraka, Dan Keburukan Kekayaan Dan Kemiskinan",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "82cb582b1247f4b7aeb37a8da1ac68357504f4592173db5391cfa156887b1684",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/1105-doa-berlindung-dari-keburukan-kaya-dan-miskin.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 161,
+      "title": "Doa Ketika Dihadang Atau Diancam Orang Jahat",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "a2894c74a6e21d65218742539aaca0e950504b463126426c131ee41be29f8c40",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/22286-doa-ketika-dihadang-perampok.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 162,
+      "title": "Doa Berlindung Dari Setan, Binatang Berbisa dan 'Ain (Pandangan Mata Jahat)",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "b841f00679395781a4d1171b17dc0e1364cc9c6234f956be3c78345f8fa3ad6d",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://bbg-alilmu.com/archives/35100"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 163,
+      "title": "Doa Berlindung Dari Keburukan Tetangga, Istri, Anak, Harta Dan Teman Dekat",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "33770cbf3e2f1d4e6ac625a64c92ec461e9b8be15f68cdec33111a318e48701b",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://www.facebook.com/permalink.php?story_fbid=514443478604846&id=113035155412349"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 164,
+      "title": "Doa Berlindung Dari Hari, Malam, Waktu, Teman dan Tetangga Yang Buruk",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "22d29a6c02e9ff1bb1cbdfac981b125da65c679f686dd316f2be65918eafcb2c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://bbg-alilmu.com/archives/11747"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 165,
+      "title": "Doa Berlindung Dari Lapar Dan Khianat",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "6a4764629685478b889d3b0da9c04c3ff096b694c1607569229a5522fcb3a9f0",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://almanhaj.or.id/9771-doa-meminta-perlindungan-dari-kelaparan-dan-khianat.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 166,
+      "title": "Doa Bila Khawatir Hal Buruk Menimpa",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "bceae2179b9829a92499273c93c14dd7df431b29c2a7060ff2a4c6afc4cde18c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://almanhaj.or.id/9745-doa-saat-khawatir-hal-buruk-menimpa.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 167,
+      "title": "Doa Berlindung Dari Kefakiran, Kekufuran, Kefasikan, Kedurhakaan, Kemunafikan, Sum'ah Dan Riya'",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "2952d4b0d9493e4522230fc4e9739f059ee8b204aeb3b3c18755694c7db3cdbd",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/29265-doa-perlindungan-dari-kekufuran-munafik.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 168,
+      "title": "Doa Berlindung Dari Kekufuran, Kefakiran Dan Azab Kubur",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "be9aaaf41dd4f85f49ab1a6bb330fe2356d2df54558176dbf2dc894caa46fab7",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/29265-doa-perlindungan-dari-kekufuran-munafik.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 169,
+      "title": "Doa Berlindung Dari Penyakit Kulit/Belang, Gila, Kusta Dan Penyakit Berbahaya Lainnya",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "c83c328c8acf25d5e8656ab8b8b96897457e605f5f68b205280cc3e819ff83cc",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/21766-doa-meminta-perlindungan-dari-penyakit-kulit-gila-dan-berbagai-penyakit-jelek.html",
+        "https://yufidia.com/4860-doa-mohon-dilindungi-dari-penyakit-berbahaya.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 170,
+      "title": "Doa Berlindung Dari Kefakiran, Kekurangan, Kehinaan, Dan Dari Menzalimi Atau Dizalimi",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "a7e343f9daf485b177e600c09f9cb071db5a8e0460b1ce6e511158fd370a444c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://bbg-alilmu.com/archives/10722"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 171,
+      "title": "Doa Berlindung Dari Fitnah Dan Siksa Neraka, Fitnah Dan Siksa Kubur, Fitnah Kekayaan Dan Kefakiran, Dan Fitnah Dajjal",
+      "group": "Doa Berlindung Dari Keburukan",
+      "sourceFingerprint": "86b058745f70454f2633f5394ef0a31c68e5a8fe2acd9204eb408ee2ca0af84a",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://yufidia.com/5876-doa-berlindung-dari-fitnah-harta.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 172,
+      "title": "Doa Sapu Jagad",
+      "group": "Doa Memohon Kebaikan Dan Berlindung Dari Keburukan",
+      "sourceFingerprint": "0b6c16d6ed969850cb5ecdb281f042c4dee71d210b10eab2951fdb6c6731a00a",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/19550-doa-sapu-jagat-paling-sering-dibaca-nabi.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 173,
+      "title": "Doa Agar Setiap Urusan Berakhir Baik",
+      "group": "Doa Memohon Kebaikan Dan Berlindung Dari Keburukan",
+      "sourceFingerprint": "8e1079648f8d39b74bf4b71f98ddf95988594a3c886b5c98931ea29972a98700",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/belajar-islam/amalan/3284-doa-agar-baik-dalam-amalan-akhir.html",
+        "https://www.facebook.com/doa.dzikir.shahih.harian/photos/pb.145491612217572.-2207520000.1437500130./659391974160864"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 174,
+      "title": "Doa Memohon Kesabaran, Teguh Pendirian Dan Pertolongan Terhadap Orang Kafir",
+      "group": "Doa Memohon Kebaikan Dan Berlindung Dari Keburukan",
+      "sourceFingerprint": "b03bdc67f094be841423f080c56f0562ab0623f91dfcbbe6d29f0ff0ddf02a7d",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/amalan/kiat-agar-semangat-tidak-kendor-dalam-belajar-islam-3315"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 175,
+      "title": "Doa Berlindung Dari Kesesatan Dan Memohon Rahmat",
+      "group": "Doa Memohon Kebaikan Dan Berlindung Dari Keburukan",
+      "sourceFingerprint": "627302ea30dc629620dc4a5afd4672f35903870169103a343fdbb6b8ec1f0ecd",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://rumaysho.com/amalan/kiat-agar-semangat-tidak-kendor-dalam-belajar-islam-3315"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 176,
+      "title": "Doa Agar Mudah Melakukan Kebaikan, Meninggalkan Kemungkaran, Mencintai Orang Miskin Dan Berlindung Dari Fitnah",
+      "group": "Doa Memohon Kebaikan Dan Berlindung Dari Keburukan",
+      "sourceFingerprint": "0bfb3683525364c8d43a49783d03f86447e936de1956dfcf063bed392667fb67",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/25877-doa-perlindungan-dari-fitnah.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 177,
+      "title": "Doa Agar Mudah Melakukan Kebaikan, Meninggalkan Kemungkaran, Mencintai Orang Miskin, Memohon Ampun Dan Rahmat Dan Berlindung Dari Fitnah",
+      "group": "Doa Memohon Kebaikan Dan Berlindung Dari Keburukan",
+      "sourceFingerprint": "b4d0fef30968982913e2f6ec99d1cf9f0e99da1cc13d1202b50aee9a8df131c6",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/21758-kumpulan-doa-nabi-shallallahu-alaihi-wa-sallam.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 178,
+      "title": "Doa Meminta Segala Sesuatu Yang Pernah Diminta Nabi",
+      "group": "Doa Memohon Kebaikan Dan Berlindung Dari Keburukan",
+      "sourceFingerprint": "ec285c52ec99efbbc07ed448923915f0472dca6dcaf8a333e6da750faac50a0b",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/21758-kumpulan-doa-nabi-shallallahu-alaihi-wa-sallam.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 179,
+      "title": "Doa Berlindung Dari Memohon Yang Tidak Diketahui, Serta Memohon Ampun Dan Rahmat (Doa Nabi Nuh)",
+      "group": "Doa Memohon Kebaikan Dan Berlindung Dari Keburukan",
+      "sourceFingerprint": "c9bab6ec0ed814073f4bf7db411284fcb56092cb8e89767a65c402a45ff7acaa",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26012-doa-doa-dari-al-quran-1.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 180,
+      "title": "Doa Memohon Agar Tidak Dihukum Dan Dibebani Yang Berat, Serta Memohon Maaf, Ampun, Rahmat Dan Pertolongan Terhadap Orang Kafir",
+      "group": "Doa Memohon Kebaikan Dan Berlindung Dari Keburukan",
+      "sourceFingerprint": "ec0bd662020ae6f6b30e59b54a7600950dd238e46289a54781bea76f0e94f00f",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26012-doa-doa-dari-al-quran-1.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 181,
+      "title": "Doa Memohon Keamanan Negeri Dan Berlindung Dari Syirik (Doa Nabi Ibrahim)",
+      "group": "Doa Memohon Kebaikan Dan Berlindung Dari Keburukan",
+      "sourceFingerprint": "9ccc23dfbe6b6cf412991e65e9a3f6af1e613e75c0aa4e706e2b86a1119199ca",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26031-doa-doa-dari-al-quran-2.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 182,
+      "title": "Doa Agar Kaum Muslimin Disatukan Hatinya, Diberi Petunjuk Dan Keselamatan, Dijauhkan Dari Perbuatan Keji, Diberkahi Diri Dan Keluarga, Diterima Taubat Dan Dijadikan Hamba Yang Bersyukur",
+      "group": "Doa Memohon Kebaikan Dan Berlindung Dari Keburukan",
+      "sourceFingerprint": "7bdf722a0738fb4991ef66bc93a6f53e8e47312a9eb190a2798090779fa1ae1f",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://rumaysho.com/16229-khutbah-jumat-ya-allah-satukanlah-hati-kami.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 183,
+      "title": "Bacaan Bila Kagum Terhadap Sesuatu 1",
+      "group": "Bacaan Bila Kagum Terhadap Sesuatu",
+      "sourceFingerprint": "745d1a6bc1629d9403de7701047ed85d153e681c05ea2207b5143ca8ef85bd05",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 184,
+      "title": "Bacaan Bila Kagum Terhadap Sesuatu 2",
+      "group": "Bacaan Bila Kagum Terhadap Sesuatu",
+      "sourceFingerprint": "5e2ee1f35715d3e351e596c846b3560f0e0df287c28a4b411c97495189dce860",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 185,
+      "title": "Bacaan Bila Kagum Terhadap Sesuatu 3",
+      "group": "Bacaan Bila Kagum Terhadap Sesuatu",
+      "sourceFingerprint": "ae770d306a4e345b74dee2205842bfe93ee838c29e9ca87755d2fbb40d322668",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/24593-kapan-kita-mengucapkan-subhanallah-dan-masyaallah.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 186,
+      "title": "Bacaan Bila Perkara Dunia Membuat Takjub",
+      "group": "Bacaan Bila Kagum Terhadap Sesuatu",
+      "sourceFingerprint": "b57f1adb7697a0b6758de58fe59487a3dc7f918001b5b2f045788e130ffc91bc",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/21680-sunnah-yang-terlupakan-ucapan-innal-aisya-aisyul-akhirah.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 187,
+      "title": "Bacaan Agar Tidak Terpedaya Kenikmatan Dan Kemewahan Dunia",
+      "group": "Bacaan Bila Kagum Terhadap Sesuatu",
+      "sourceFingerprint": "0fd52afd67f4da7c0c7df4075f4115df07a2e324789f9d28a82ebec61a53b5e9",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://bbg-alilmu.com/archives/9939"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 188,
+      "title": "Pujian Kepada Allah Sebelum Berdoa",
+      "group": "Beberapa Adab Dan Keutamaan",
+      "sourceFingerprint": "f2b4a365037fa762a25c571952dcbe3cca9135e9252febb7d5e68539590666b7",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://bbg-alilmu.com/archives/19074",
+        "https://konsultasisyariah.com/4677-bagaimana-cara-memuji-allah-dan-bersalawat-sebelum-berdoa.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 189,
+      "title": "Doa Bersin",
+      "group": "Beberapa Adab Dan Keutamaan",
+      "sourceFingerprint": "8e4beca42f262e60a162455165faded8a930bd613173e745f983f1225faaef3c",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 190,
+      "title": "Doa Bila Orang Kafir Bersin Lalu Memuji Allah",
+      "group": "Beberapa Adab Dan Keutamaan",
+      "sourceFingerprint": "1ce13b47865ce66e803dbc0a440f35e36eb35802cc4f5a40e938d8da1f1eb23b",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 191,
+      "title": "Doa Kepada Orang Yang Berbuat Baik Kepadamu",
+      "group": "Beberapa Adab Dan Keutamaan",
+      "sourceFingerprint": "09118a1d4ed9ec7dde84a477ce05b2d1cabc52cef9646fbeb4fd8b2cde47d44f",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://muslim.or.id/akhlaq-dan-nasehat/jazakallah-khoiron-membalas-orang-lain-yang-berbuat-baik.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 192,
+      "title": "Jawaban Kepada Orang Yang Berkata: Ghafarallaahu Laka",
+      "group": "Beberapa Adab Dan Keutamaan",
+      "sourceFingerprint": "b657e8d05d28fc5e95801fb6e3f174c7f89e61d8c4f379d5b3d9aba59fb2bbae",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 193,
+      "title": "Jawaban Kepada Orang Yang Berkata: Uhibbuka Fillaah",
+      "group": "Beberapa Adab Dan Keutamaan",
+      "sourceFingerprint": "a8b20c31175acb362d3535f04d1d55ba0c035d27e9ab5968052865eb0b1c0db1",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 194,
+      "title": "Jawaban Kepada Orang Yang Berkata: Baarakallaahu Fiika",
+      "group": "Beberapa Adab Dan Keutamaan",
+      "sourceFingerprint": "c50263c2a63e1f1fc198e37fc29aa004018e40ad7eeea881325d7fe581545be4",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 195,
+      "title": "Doa Kepada Orang Yang Anda Caci",
+      "group": "Beberapa Adab Dan Keutamaan",
+      "sourceFingerprint": "5b29c1572e4a3bcef5bf92b341b49e41c05173e8f9ca40860ba12168d207e4d5",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 196,
+      "title": "Doa Bila Dipuji Orang",
+      "group": "Beberapa Adab Dan Keutamaan",
+      "sourceFingerprint": "793aada86f62cbda92742ba322842852a3ff573f018f57b5e1e27e30c7eeb2c1",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 197,
+      "title": "Doa Ketika Marah",
+      "group": "Beberapa Adab Dan Keutamaan",
+      "sourceFingerprint": "75493f8af764c20fc281762e3d16475b69bcf887bdc20528fc3650e192d54262",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 198,
+      "title": "Bacaan Ketika Takut",
+      "group": "Beberapa Adab Dan Keutamaan",
+      "sourceFingerprint": "e0a50fe3cf5855ac558a91fcd94a5e8e3c4842eaf740e0bc097298dbc894b35d",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 199,
+      "title": "Jawaban Kepada Orang Kafir Yang Mengucapkan Salam",
+      "group": "Beberapa Adab Dan Keutamaan",
+      "sourceFingerprint": "1e338e299619e3ca7bbd8b40d0216f6a39d32c324e554e426596148577314454",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 200,
+      "title": "Ucapan Ketika Melihat Kemungkaran",
+      "group": "Beberapa Adab Dan Keutamaan",
+      "sourceFingerprint": "3158a2a6b3cdaa69cf7ff5b2b8dfcb34af7a1a74abed6b3f7b6e9ee4e7385e67",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/21710-mengucapkan-subhanallah-ketika-melihat-kemungkaran.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 201,
+      "title": "Doa Istighfar/Taubat 1",
+      "group": "Istighfar Dan Taubat",
+      "sourceFingerprint": "7663ecd606420a9e5643e25320f04a8efa7e30fdbcf7892b1de03ff5052928fd",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 202,
+      "title": "Doa Istighfar/Taubat 2",
+      "group": "Istighfar Dan Taubat",
+      "sourceFingerprint": "239566bde9855bfd135f2ba4eb79a1254fddc78af63d314cd51c82aba77f2aed",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 203,
+      "title": "Doa Istighfar/Taubat 3",
+      "group": "Istighfar Dan Taubat",
+      "sourceFingerprint": "55d74dfa660810ec26beb4b2dfbdcc5025fa027cd0ab95c4e52836c0c6e3ec74",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://www.facebook.com/permalink.php?story_fbid=340569015961100&id=113035155412349"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 204,
+      "title": "Lafal Dzikir 1",
+      "group": "Lafal Dzikir Dan Keutamaannya",
+      "sourceFingerprint": "d8e34172799538ab7c208daa838afe36615e52d19025d026b05f244e5e5e0215",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 205,
+      "title": "Lafal Dzikir 2 (Tasbih Malaikat)",
+      "group": "Lafal Dzikir Dan Keutamaannya",
+      "sourceFingerprint": "3e7d27884db6f22e4854317931a52a52f496f57fa19efbf320f7a9a16e424d0f",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 206,
+      "title": "Lafal Dzikir 3 (Dua Kalimat Yang Ringan Di Lisan, Berat Di Timbangan)",
+      "group": "Lafal Dzikir Dan Keutamaannya",
+      "sourceFingerprint": "10528534bfe5c9f3147dd735cfd43d88fd3bce436431ef7248e7a31a7d51e110",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 207,
+      "title": "Lafal Dzikir 4 (Pohon Kurma Di Surga)",
+      "group": "Lafal Dzikir Dan Keutamaannya",
+      "sourceFingerprint": "7a649d727e8aafbbfc22890695b647b04cb94b0b2bacf7e209e4911ea7123d0f",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 208,
+      "title": "Lafal Dzikir 5",
+      "group": "Lafal Dzikir Dan Keutamaannya",
+      "sourceFingerprint": "d9993a94e496ee87998887624594938812d533d67e46b2dbfa5b69254f806464",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 209,
+      "title": "Lafal Dzikir 6 (Doa Dan Dzikir Terbaik)",
+      "group": "Lafal Dzikir Dan Keutamaannya",
+      "sourceFingerprint": "5ed03893e9255b9b5dbb5e348211976f0e5c087ce8fa0a855c0df966381561a8",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 210,
+      "title": "Lafal Dzikir 7 (Pahalanya Lebih Besar Daripada Dzikir Sehari Semalam)",
+      "group": "Lafal Dzikir Dan Keutamaannya",
+      "sourceFingerprint": "c8c48c9e6f9355a2b04443a3a5faf20b173c136469eb0a86bacd5526183fa5ad",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://jilbab.or.id/archives/2153-berdzikir-sekali-mendapat-pahala-berdzikir-sepanjang-malam-dan-siang-hari",
+        "http://www.madinatulquran.or.id/dzikir-yang-sangat-dahsyat-pahalanya"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 211,
+      "title": "Khutbah Hajah (Doa Pembuka Majelis)",
+      "group": "Doa Terkait Majelis",
+      "sourceFingerprint": "2528dc0bdb4dd9438a85a617a6c11e8df7484d7238c4b486648b7aa79ae3910e",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://almanhaj.or.id/1348-akad-nikah-khutbah-nikah-mahar-maskawin.html,",
+        "https://almanhaj.or.id/3230-syarat-rukun-dan-kewajiban-dalam-aqad-nikah.html",
+        "https://khotbahjumat.com/mukaddimah-khutbah-jumat"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 212,
+      "title": "Doa Dalam Majelis",
+      "group": "Doa Terkait Majelis",
+      "sourceFingerprint": "9384962a734d33ff706130952e3a6873fa8a86c10b67e8af903491b8667b6254",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 213,
+      "title": "Doa Penceramah/Pembicara Kepada Dirinya Dan Peserta Majelis",
+      "group": "Doa Terkait Majelis",
+      "sourceFingerprint": "81aabaf3564ac0690d0599b57ae6b267706058c1a080905bd274c1bf6832daed",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 214,
+      "title": "Doa Kafaratul Majelis (Penghapus Dosa Majelis)",
+      "group": "Doa Terkait Majelis",
+      "sourceFingerprint": "eca7ead521010f52cb96e977ac92e39b9df534c5b31fa98fba2c512b38285ce7",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/24008-baca-dzikir-ini-agar-tidak-menyesal.html",
+        "https://rumaysho.com/13241-keutamaan-doa-kafaratul-majelis.html",
+        "https://rumaysho.com/17134-doa-kafaratul-majelis.html,"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 215,
+      "title": "Doa Bertemu Musuh Dan Penguasa",
+      "group": "Doa Bertemu Musuh Dan Penguasa",
+      "sourceFingerprint": "5104dd71a0feaf2a5d883466a64e0eaddb2a652306450da3e9dc31d5486aa433",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 216,
+      "title": "Doa Bila Takut Kezaliman Penguasa",
+      "group": "Doa Bertemu Musuh Dan Penguasa",
+      "sourceFingerprint": "02c6e0a6008add8007e9848aed9266716ed4e006f90256e5abb58720be35fb65",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 217,
+      "title": "Doa Untuk Mengalahkan Musuh",
+      "group": "Doa Bertemu Musuh Dan Penguasa",
+      "sourceFingerprint": "04598d3dafc852a181bd6923812f217bc2de9bc41bf8b7509670ff2f0ac89b05",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 218,
+      "title": "Doa Untuk Mengalahkan Musuh Dan Memohon Kemenangan",
+      "group": "Doa Bertemu Musuh Dan Penguasa",
+      "sourceFingerprint": "8dc1d97d854a06d563e5974128e801104448f89260e5c6020778f6995b724e68",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://khotbahjumat.com/5149-meminta-kemenangan-dengan-doa.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 219,
+      "title": "Doa Bila Takut Kepada Suatu Kaum",
+      "group": "Doa Bertemu Musuh Dan Penguasa",
+      "sourceFingerprint": "39f85624322adb530edf2d3e0e912152a7ac2499ebbbabfbd7c60f3e7c351253",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 220,
+      "title": "Doa Berlindung Dari Orang Zalim (Doa Nabi Musa)",
+      "group": "Doa Berlindung Dari Orang Zalim Dan Orang Kafir",
+      "sourceFingerprint": "c695d2519f40d26647dacdd22cd3e4c218053a6c3cf5361bde7df244eebae535",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26031-doa-doa-dari-al-quran-2.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 221,
+      "title": "Doa Berlindung Dari Keburukan Orang Kafir (Doa Nabi Ibrahim)",
+      "group": "Doa Berlindung Dari Orang Zalim Dan Orang Kafir",
+      "sourceFingerprint": "c4d6f817c59a6a90e7edcdc0395c9bfc3cacaebcdb2e94c6eb9f277ccd45e659",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://muslim.or.id/26031-doa-doa-dari-al-quran-2.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 222,
+      "title": "Doa Sujud Tilawah",
+      "group": "Beberapa Doa Terkait Shalat",
+      "sourceFingerprint": "161519e1b2c740ffa3939353a3b1617b3d582b626995560992944608aef911f2",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 223,
+      "title": "Doa Qunut Witir",
+      "group": "Beberapa Doa Terkait Shalat",
+      "sourceFingerprint": "3928789c386323d3fc016e625a1bd0d112b0d1a817945e98e28a94d8378637bd",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/272729346160464"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 224,
+      "title": "Doa Di Akhir Shalat Witir",
+      "group": "Beberapa Doa Terkait Shalat",
+      "sourceFingerprint": "056ba6e73b3e099523ed4bdb0a6580d5d74e9236f27cac63eecd93c1afec5899",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/271923406241058"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 225,
+      "title": "Bacaan Setelah Salam Shalat Witir",
+      "group": "Beberapa Doa Terkait Shalat",
+      "sourceFingerprint": "0b975000eec579c5e3d1c5b5f688334381ab28987b0c0d3c782e704b16177ac8",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.facebook.com/doa.dzikir.shahih.harian/posts/271175212982544"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 226,
+      "title": "Doa Setelah Shalat Istikharah",
+      "group": "Beberapa Doa Terkait Shalat",
+      "sourceFingerprint": "eeda6d9e2c2dc292b8686b217b5fa450874e7133c62c5a4ef25c3adc1837dadd",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "https://konsultasisyariah.com/8754-tata-cara-shalat-istikharah.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    },
+    {
+      "id": 227,
+      "title": "Doa Setelah Shalat Dhuha",
+      "group": "Beberapa Doa Terkait Shalat",
+      "sourceFingerprint": "d0e80a6797366add46ae51a405675d36988507d2edb64092e5f9655a1a13cf8d",
+      "displayable": true,
+      "fieldIssues": [],
+      "referenceUrls": [
+        "http://www.salamdakwah.com/baca-pertanyaan/dzikir-sholat-dhuha.html"
+      ],
+      "review": "not_individually_reviewed",
+      "comparisonUrl": null
+    }
+  ]
+}
