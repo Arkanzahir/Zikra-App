@@ -37,7 +37,7 @@ Empat metode instrumentasi pada APK final lulus (**11,749 detik**):
 3. Membuka isi Doa beserta sumber Taha 20:114, pencarian kosong/pulih tanpa memerlukan layanan suara.
 4. Nama Profil kosong ditolak; nama valid tersimpan, muncul kembali setelah Activity dibuka ulang, serta caption progres tugas berasal dari alur Study.
 
-Log: [build](build.txt), [instrumentasi](instrumentation.txt), [hash sumber/APK](release.json). Buffer crash kosong sesudah tes. Satu emulator memakai RAM 1536 MB dan dua core; sudah ditutup setelah screenshot diambil. Tidak menggunakan HP pengguna.
+Log: [build](build.txt), [instrumentasi](instrumentation.txt), [hash sumber/APK](release.json). Buffer crash kosong sesudah tes. Satu emulator diberi parameter RAM 1536 MB dan dua core, tetapi log gambar Android 37.1 menunjukkan RAM dinaikkan otomatis menjadi 4096 MB. Emulator sudah ditutup setelah screenshot diambil. Tidak menggunakan HP pengguna. Koreksi kapasitas ini diketahui saat pemeriksaan [revisi Profil 1.6.1](../profile-background-2026-10-24/README.md).
 
 APK lokal: `D:\Download\Zikra-App-main\Zikra-Daily-v1.6.0-debug.apk`, **31.242.144 byte**.
 

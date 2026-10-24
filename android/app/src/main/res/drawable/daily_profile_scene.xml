@@ -1,9 +1,44 @@
-<?xml version='1.0' encoding='utf-8'?>
-<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="1dp" android:height="1dp" android:viewportWidth="360" android:viewportHeight="240">
-    <path android:fillColor="@color/daily_mint" android:pathData="M0,0H360V240H0Z" />
-    <group android:translateY="30">
-        <path android:fillColor="#10BD914C" android:pathData="M0,105L72,99L82,158L0,173Z M289,143L360,134L360,192L282,198Z" />
-        <path android:fillColor="@android:color/transparent" android:strokeColor="#21728669" android:strokeWidth="1.1" android:pathData="M0,161L75,153L75,160L0,168 M15,166L15,211 M66,162L66,205 M4,145L4,154L50,150L50,141Z M8,135L8,144L55,140L55,131Z M12,125L12,134L49,130L49,121Z M32,120L31,93L47,67L42,61L23,90 M47,67L61,83L41,87L47,67 M31,93L24,117 M20,120L44,117 M286,173L360,164 M291,175L291,207 M345,168L345,203 M302,159L350,154L350,163L302,168Z M307,147L351,143L351,152L307,156Z M316,135L351,132L351,141L316,144Z M300,128L294,80L330,76L336,125Z M302,88L324,85 M303,95L325,92 M304,102L326,99" />
-        <path android:fillColor="@android:color/transparent" android:strokeColor="#1ABD914C" android:strokeWidth="0.65" android:pathData="M0,215H360 M0,219H360 M0,224H360" />
-    </group>
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="1dp"
+    android:height="1dp"
+    android:viewportWidth="360"
+    android:viewportHeight="220">
+
+    <!-- A quiet reading room. Keep the central identity area free of objects. -->
+    <path android:fillColor="#DCE5D5" android:pathData="M0,0H360V220H0Z" />
+    <path android:fillColor="#CAD8C5" android:pathData="M0,0H80V104H0Z M289,0H360V106H289Z" />
+    <path android:fillColor="#F2EAD7" android:pathData="M128,54a52,52 0,1 0,104 0a52,52 0,1 0,-104 0" />
+    <path android:fillColor="@android:color/transparent" android:strokeColor="#B7C7AD"
+        android:strokeWidth="1" android:pathData="M18,0V88 M48,0V88 M77,0V88 M299,0V87 M329,0V87" />
+
+    <!-- Cloth bindings and warm paper edges on the left shelf. -->
+    <path android:fillColor="#65816A" android:pathData="M-5,22L10,19L23,81L8,84Z" />
+    <path android:fillColor="#97685C" android:pathData="M15,17L31,14L43,81L27,84Z" />
+    <path android:fillColor="#B18C50" android:pathData="M42,29L58,28L63,82L47,83Z" />
+    <path android:fillColor="#F6EACD" android:pathData="M57,32L61,32L66,80L62,81Z" />
+    <path android:fillColor="@android:color/transparent" android:strokeColor="#E9D7A8"
+        android:strokeWidth="1.1" android:pathData="M0,32L9,30 M7,66L17,64 M21,29L29,27 M27,66L35,64 M46,40L55,39 M49,70L58,69" />
+    <path android:fillColor="#7B8062" android:pathData="M0,85H77V91H0Z" />
+    <path android:fillColor="#A8B49A" android:pathData="M0,91H72V95H0Z" />
+
+    <!-- A brass task lamp: solid forms remain visible at phone scale. -->
+    <path android:fillColor="@android:color/transparent" android:strokeColor="#617B66"
+        android:strokeWidth="2" android:strokeLineCap="round"
+        android:pathData="M313,91H343 M329,90V59L314,37L325,22" />
+    <path android:fillColor="#B98C43" android:pathData="M324,20C331,18 338,22 339,29L346,42L316,49L318,34C317,28 319,23 324,20Z" />
+    <path android:fillColor="#E5C57F" android:pathData="M316,49L346,42L347,46L316,53Z" />
+    <path android:fillColor="#879775" android:pathData="M314,91Q329,84 345,91V95H314Z" />
+
+    <!-- Low objects frame the copy rather than running behind it. -->
+    <path android:fillColor="#C6B595" android:pathData="M0,198Q79,189 126,200Q226,211 360,195V220H0Z" />
+    <path android:fillColor="#6E896F" android:pathData="M0,171L40,167L43,182L0,186Z" />
+    <path android:fillColor="#F5EBD5" android:pathData="M0,175L36,171L38,179L0,183Z" />
+    <path android:fillColor="#AD8D57" android:pathData="M0,186L52,181L54,192L0,197Z" />
+    <path android:fillColor="#F3E9D3" android:pathData="M0,189L48,185L49,190L0,194Z" />
+    <path android:fillColor="#A5B59A" android:pathData="M316,171L357,174L352,201L311,197Z" />
+    <path android:fillColor="#F7F0DF" android:pathData="M320,167L358,170L354,195L316,192Z" />
+    <path android:fillColor="@android:color/transparent" android:strokeColor="#B7B79C"
+        android:strokeWidth="0.8" android:pathData="M325,175L349,177 M324,181L348,183 M323,187L342,189" />
+    <path android:fillColor="#687D65" android:pathData="M344,181L347,180L357,202L354,204Z" />
 </vector>

@@ -1,3 +1,5 @@
+> **Latar Profil 1.6.1 — 24 Oktober 2026:** buku, lampu dan meja berwarna menggantikan garis latar yang terlalu samar. [Screenshot native dan pemeriksaan terarah](android/validation/profile-background-2026-10-24/README.md).
+
 > **Halaman harian 1.6.0 — 24 Oktober 2026:** onboarding tiga ilustrasi, sampul koleksi dan halaman baca Hadis, Doa Harian berilustrasi, serta Profil berlatar halus dengan nama yang bisa diubah dan progres asli. [Screenshot native, empat tes Android dan batas](android/validation/daily-native-2026-10-24/README.md). Hadis tetap tujuh kutipan lokal; belum kitab lengkap atau API Hadis.
 
 > **Protector 1.5.0 — 23 Oktober 2026:** desain preview diterapkan ke APK native: cuaca berlapis/animasi, fase bulan pendekatan tanggal, peta episentrum interaktif dan Shakemap BMKG. [Screenshot APK, tes, dan batas](android/validation/protector-native-2026-10-23/README.md).
