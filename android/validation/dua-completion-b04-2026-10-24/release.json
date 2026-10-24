@@ -1,7 +1,7 @@
 {
   "versionName": "1.7.6",
   "versionCode": 24,
-  "sourceCommit": "pending_scoped_commit",
+  "sourceCommit": "b3f13f31e6c9ad77b9abe5ef765e7861b5f3619b",
   "apkBytes": 31319928,
   "apkSha256": "7dc808e6280ac4f4182f4bda89ceae43c88eb0329e25dd8baa3f2caaed0f5b57",
   "sizeLimitBytes": 100000000,
@@ -62,5 +62,6 @@
   "physicalPhoneTested": false,
   "hadithMaintainerReply": "No incoming message in sent clarification thread when checked 24 October 2026",
   "completedAtUtc": "2026-10-24T17:00:32.237290+00:00",
-  "completedDateWib": "2026-10-25"
+  "completedDateWib": "2026-10-25",
+  "apkFileName": "Zikra-Content-v1.7.6-beta-debug.apk"
 }

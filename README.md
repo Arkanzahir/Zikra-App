@@ -1,4 +1,4 @@
-> **Konten beta 1.7.5 — 24 Oktober 2026:** [Koreksi tampilan/judul Doa dan bukti](android/validation/b-final-review-2026-10-24/README.md). Source `d439db2`, APK 31,1 MB; tiga tes snapshot dan empat tes alat lulus, build/lint tanpa error, tanpa emulator/HP. Pertanyaan sumber Hadis terkirim dengan izin pengguna; B01/B04 tetap terbuka. Pencocokan 78 lafal adalah calon pembanding, bukan validasi menyeluruh.
+> **B04 selesai editorial/integrasi — 25 Oktober 2026:** [Bukti beta 1.7.6 dan batas](android/validation/dua-completion-b04-2026-10-24/README.md). Source `b3f13f3`, APK 31,3 MB; 14 pilihan bawaan + 225 tambahan, 33 penanganan, 10 tes Doa/2 native lulus. Data baru/berubah ditandai Belum ditinjau. B01 Hadis masih menunggu klarifikasi; bukan sertifikasi seluruh konten atau rilis publik.
 
 > **Desain Hadis 1.7.4 — 24 Oktober 2026:** [Katalog/reader, screenshot dan batas](android/validation/hadith-refined-2026-10-24/README.md). Kitab ringkas/adaptif, pencarian di atas, sumber sebelum Arab dan Aa di toolbar. Satu metode native pada font 100%/200% lulus; build/lint tanpa error, emulator ditutup. Isi/ID tetap; B01/B04/F03 belum ditutup. Source `0c9827d`, APK 31,3 MB.
 
