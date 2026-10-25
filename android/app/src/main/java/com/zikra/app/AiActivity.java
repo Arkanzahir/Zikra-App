@@ -22,6 +22,8 @@ import com.zikra.app.assistant.ConversationStore;
 import com.zikra.app.assistant.AssistantNetwork;
 import com.zikra.app.assistant.AssistantAttachments;
 import com.zikra.app.assistant.AssistantCameraProvider;
+import com.zikra.app.assistant.GeneratedImages;
+import com.zikra.app.assistant.ImageGenerationClient;
 import com.zikra.app.assistant.OfflineAssistant;
 import com.zikra.app.assistant.AssistantSelection;
 import com.zikra.app.assistant.TaskProposal;
@@ -67,6 +69,13 @@ public final class AiActivity extends BaseActivity {
   private boolean keyboardVisible;
   private AlertDialog selectionDialog, taskDialog, sourceDialog;
   private JSONObject pendingVerse;
+  private ImageGenerationClient imageClient;
+  private GeneratedImages generatedImages;
+  private boolean imageAvailable,imageMode,generatingImage;
+  private long imageCapabilityAt;
+  private String imageCapabilityEndpoint="";
+  private String[] pendingImageExport;
+  private static final int EXPORT_IMAGE=4201;
 
 
   @Override protected void onCreate(Bundle state) {
@@ -90,24 +99,30 @@ public final class AiActivity extends BaseActivity {
     connection=new com.zikra.app.assistant.AssistantConnection(this);
     routingMode=preferences.getString("assistant_mode_v2",connection.configured()&&!connection.online()?"offline":"auto");
     onlineClient=new OnlineAssistantClient();
+    imageClient=new ImageGenerationClient();generatedImages=new GeneratedImages(this);
     conversations=new ConversationStore(this);
     network=new AssistantNetwork(this,()->{
       if(isFinishing()||isDestroyed())return;
       gatewayFailure=null;updateMode();
-      if(waiting&&!network.validated()){onlineClient.cancel();showOnlineFailure(OnlineAssistantClient.Failure.NETWORK);}
+      refreshImageCapability();
+      if(waiting&&!network.validated()){boolean image=generatingImage;cancelImageWork();onlineClient.cancel();if(image)imageFailure("image_network");else showOnlineFailure(OnlineAssistantClient.Failure.NETWORK);}
     });
     pageRoot=findViewById(R.id.aiRoot);input=findViewById(R.id.aiInput);
     input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(OfflineAssistant.MAX_INPUT_LENGTH)});
     thread=findViewById(R.id.aiChatThread);scroll=findViewById(R.id.aiScroll);
     restoreHistory();
+    imageMode=preferences.getBoolean("assistant_image_draft:"+chatId,false);
     attachmentReader=new AssistantAttachments(this);restoreAttachment();
     if(state!=null){String uri=state.getString("camera_uri");if(uri!=null){cameraUri=android.net.Uri.parse(uri);cameraChat=state.getString("camera_chat");}}
     if(state!=null&&chatId.equals(state.getString("chat_id",chatId)))input.setText(state.getString("draft",input.getText().toString()));
     findViewById(R.id.aiMode).setOnClickListener(v->chooseMode());
-    findViewById(R.id.aiRetry).setOnClickListener(v->requestOnline());
+    findViewById(R.id.aiRetry).setOnClickListener(v->{JSONObject last=messages.optJSONObject(messages.length()-1);if(last!=null&&last.optBoolean("image_generation"))showImageConsent();else requestOnline();});
     findViewById(R.id.aiSend).setOnClickListener(v->{if(waiting)cancelOnline();else sendMessage();});
     findViewById(R.id.aiVoice).setOnClickListener(v->beginVoice());
     findViewById(R.id.aiAttach).setOnClickListener(v->showAttachmentPicker());
+    findViewById(R.id.aiTopicImage).setOnClickListener(v->enterImageMode());
+    findViewById(R.id.aiImageMode).setOnClickListener(v->{if(!waiting){imageMode=false;persistConversation();updateImageMode();}});
+    if(state!=null){String c=state.getString("image_export_chat"),i=state.getString("image_export_id"),m=state.getString("image_export_mime");if(c!=null&&i!=null&&m!=null)pendingImageExport=new String[]{c,i,m};}
     configureVoiceAvailability();
     findViewById(R.id.aiChatTile).setOnClickListener(v->focusComposer());
     findViewById(R.id.aiTopicStudy).setOnClickListener(v->composeTopic("Bantu susun rencana belajar untuk hari ini"));
@@ -120,9 +135,101 @@ public final class AiActivity extends BaseActivity {
     pageRoot.getViewTreeObserver().addOnGlobalLayoutListener(keyboardLayoutListener);
     int chapter=getIntent().getIntExtra("tadabbur_chapter",0),verse=getIntent().getIntExtra("tadabbur_verse",0);
     if(chapter>=1&&chapter<=114&&verse>=1&&verse<=286){
+      imageMode=false;updateImageMode();
       try{pendingVerse=new JSONObject().put("chapter",chapter).put("number",verse);}catch(JSONException ignored){}
       if(state==null)input.setText("Jelaskan makna surah "+chapter+" ayat "+verse+" berdasarkan sumber tafsir.");
     }
+  }
+
+  private void refreshImageCapability(){
+    if(imageClient==null||network==null)return;
+    if(!effectiveOnline()){imageAvailable=false;imageCapabilityAt=0;imageCapabilityEndpoint="";updateImageMode();return;}
+    long now=android.os.SystemClock.elapsedRealtime();String endpoint=connection.endpoint();
+    if(endpoint.equals(imageCapabilityEndpoint)&&now-imageCapabilityAt<60000)return;
+    imageCapabilityAt=now;imageCapabilityEndpoint=endpoint;
+    imageClient.capabilities(connection,ready->{if(isDestroyed()||!endpoint.equals(connection.endpoint()))return;imageAvailable=ready&&effectiveOnline();updateImageMode();});
+  }
+  private void updateImageMode(){
+    if(findViewById(R.id.aiTopicImage)==null)return;
+    findViewById(R.id.aiTopicImage).setVisibility(imageAvailable?View.VISIBLE:View.GONE);
+    findViewById(R.id.aiTopicHifz).setVisibility(imageAvailable?View.GONE:View.VISIBLE);
+    findViewById(R.id.aiImageMode).setVisibility(imageMode&&!keyboardVisible?View.VISIBLE:View.GONE);
+    if(input!=null)input.setHint(imageMode?getString(R.string.ai_images_input):keyboardVisible?"Pesan…":getString(R.string.ai_refresh_input));
+  }
+  private void enterImageMode(){
+    if(waiting)return;
+    if(!imageAvailable){toast(getString(R.string.ai_images_unavailable));refreshImageCapability();return;}
+    if(attachment!=null||importingAttachment){toast(getString(R.string.ai_images_no_attachment));return;}
+    imageMode=true;pendingVerse=null;getIntent().removeExtra("tadabbur_chapter");getIntent().removeExtra("tadabbur_verse");
+    updateImageMode();persistConversation();focusComposer();
+  }
+  private void cancelImageWork(){if(imageClient!=null)imageClient.cancel();if(generatedImages!=null)generatedImages.cancel();generatingImage=false;}
+  private void sendImageMessage(){
+    if(!effectiveOnline()){toast(getString(R.string.ai_images_online));return;}
+    if(!imageAvailable){toast(getString(R.string.ai_images_unavailable));return;}
+    if(attachment!=null||importingAttachment){toast(getString(R.string.ai_images_no_attachment));return;}
+    String prompt=input.getText().toString().trim();if(prompt.length()<3){input.setError(getString(R.string.ai_images_prompt));return;}
+    if(messages.length()>MAX_MESSAGES-2||messages.toString().length()+30000>ConversationStore.MAX_CHAT_CHARS){toast(getString(R.string.ai_images_full));return;}
+    if(!generatedImages.canAccept()){toast(getString(R.string.ai_images_full));return;}
+    addToHistory("user",prompt,"online");try{messages.getJSONObject(messages.length()-1).put("image_generation",true);}catch(JSONException ignored){}
+    input.setText("");persistConversation();renderConversation();showImageConsent();
+  }
+  private void showImageConsent(){
+    if(waiting||selectionDialog!=null&&selectionDialog.isShowing())return;
+    JSONObject row=messages.optJSONObject(messages.length()-1);if(row==null||!"user".equals(row.optString("role"))||!row.optBoolean("image_generation"))return;
+    if(!effectiveOnline()){imageFailure("image_network");return;}
+    if(!generatedImages.canAccept()){toast(getString(R.string.ai_images_full));return;}
+    String prompt=row.optString("text");TextView review=new TextView(this);review.setText(getString(R.string.ai_images_consent)+"\n\n"+prompt);review.setTextSize(16);review.setPadding(dp(20),dp(12),dp(20),dp(16));ScrollView content=new ScrollView(this);content.addView(review);
+    selectionDialog=new AlertDialog.Builder(this).setTitle(R.string.ai_images_review).setView(content).setPositiveButton(R.string.ai_images_start,(dialog,which)->generateImage(prompt)).setNegativeButton(R.string.ai_images_cancel,(dialog,which)->showCancelled()).create();
+    selectionDialog.setOnCancelListener(dialog->showCancelled());selectionDialog.show();
+  }
+  private void generateImage(String prompt){
+    if(waiting)return;if(!effectiveOnline()){imageFailure("image_network");return;}
+    final String expected=chatId;generatingImage=true;setWaiting(true);findViewById(R.id.aiRetry).setVisibility(View.GONE);
+    ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(input.getWindowToken(),0);input.clearFocus();
+    ((TextView)findViewById(R.id.aiRequestStatus)).setText(R.string.ai_images_working);
+    final String attemptId=java.util.UUID.randomUUID().toString();try{JSONObject current=messages.optJSONObject(messages.length()-1);if(current!=null)current.put("image_request_id",attemptId);}catch(JSONException ignored){}persistConversation();
+    try{imageClient.generate(connection,prompt,attemptId,new ImageGenerationClient.Result(){
+      public void complete(GeneratedImages.Data data){if(!expected.equals(chatId)||isDestroyed())return;
+        ((TextView)findViewById(R.id.aiRequestStatus)).setText(R.string.ai_images_saving);
+        generatedImages.save(expected,data,new GeneratedImages.Result(){
+          public void saved(String id,String mime){if(!expected.equals(chatId)||isDestroyed())return;generatingImage=false;setWaiting(false);
+            addToHistory("assistant",getString(R.string.ai_images_caption),"online");try{messages.getJSONObject(messages.length()-1).put("image_id",id).put("image_mime",mime).put("image_width",data.width).put("image_height",data.height);}catch(JSONException ignored){}
+            persistConversation();renderConversation();scroll.post(()->scroll.smoothScrollTo(0,thread.getBottom()));}
+          public void failed(){imageFailure("image_storage");}
+        });
+      }
+      public void failed(String error){if(expected.equals(chatId))imageFailure(error);}
+    });}catch(Exception unavailable){imageFailure("image_provider_unavailable");}
+  }
+  private void imageFailure(String error){
+    if(isDestroyed()||isFinishing())return;generatingImage=false;setWaiting(false);int id;
+    switch(error){case "image_user_quota":id=R.string.ai_images_user_quota;break;case "image_global_quota":case "image_provider_quota":id=R.string.ai_images_global_quota;break;case "image_timeout":id=R.string.ai_images_timeout;break;case "image_network":id=R.string.ai_images_network;break;case "image_storage":id=R.string.ai_images_full;break;default:id=R.string.ai_images_failed;}
+    ((TextView)findViewById(R.id.aiRequestStatus)).setText(id);findViewById(R.id.aiRequestStatus).setVisibility(View.VISIBLE);findViewById(R.id.aiRetry).setVisibility(View.VISIBLE);
+  }
+  private void imageInChat(LinearLayout card,JSONObject item){
+    LinearLayout.LayoutParams cardSize=(LinearLayout.LayoutParams)card.getLayoutParams();cardSize.width=LinearLayout.LayoutParams.MATCH_PARENT;card.setLayoutParams(cardSize);
+    String id=item.optString("image_id"),mime=item.optString("image_mime"),chat=chatId;
+    android.graphics.Bitmap thumbnail=generatedImages.thumbnail(chat,id,mime);
+    if(thumbnail==null){TextView missing=new TextView(this);missing.setText(R.string.ai_images_missing);card.addView(missing);return;}
+    android.widget.ImageView image=new android.widget.ImageView(this);image.setImageBitmap(thumbnail);image.setAdjustViewBounds(true);image.setContentDescription(getString(R.string.ai_images_caption));image.setFocusable(true);image.setOnClickListener(v->previewGeneratedImage(chat,id,mime));
+    LinearLayout.LayoutParams size=new LinearLayout.LayoutParams(-1,-2);size.topMargin=dp(12);card.addView(image,size);
+    card.addView(historyButton(getString(R.string.ai_images_save),()->saveGeneratedImage(chat,id,mime)));
+    card.addView(historyButton(getString(R.string.ai_images_share),()->shareGeneratedImage(chat,id,mime)));
+  }
+  private void previewGeneratedImage(String chat,String id,String mime){
+    android.graphics.Bitmap bitmap=generatedImages.preview(chat,id,mime);if(bitmap==null){toast(getString(R.string.ai_images_missing));return;}
+    android.widget.ImageView image=new android.widget.ImageView(this);image.setImageBitmap(bitmap);image.setAdjustViewBounds(true);ScrollView content=new ScrollView(this);content.addView(image);
+    sourceDialog=new AlertDialog.Builder(this).setTitle(R.string.ai_images_caption).setView(content).setPositiveButton(R.string.ai_images_close,null).create();sourceDialog.setOnDismissListener(dialog->bitmap.recycle());sourceDialog.show();
+  }
+  private void saveGeneratedImage(String chat,String id,String mime){
+    try{GeneratedImages.imageFile(this,chat,id,mime);pendingImageExport=new String[]{chat,id,mime};
+      Intent save=new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType(mime).putExtra(Intent.EXTRA_TITLE,"Zikra-"+id.substring(0,8)+(mime.equals("image/png")?".png":".jpg"));startActivityForResult(save,EXPORT_IMAGE);
+    }catch(RuntimeException unavailable){pendingImageExport=null;toast(getString(R.string.ai_images_picker_unavailable));}
+  }
+  private void shareGeneratedImage(String chat,String id,String mime){
+    try{android.net.Uri uri=generatedImages.shareUri(chat,id,mime);Intent share=new Intent(Intent.ACTION_SEND).setType(mime).putExtra(Intent.EXTRA_STREAM,uri).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);share.setClipData(android.content.ClipData.newRawUri(getString(R.string.ai_images_caption),uri));startActivity(Intent.createChooser(share,getString(R.string.ai_images_share)));}
+    catch(RuntimeException unavailable){toast(getString(R.string.ai_images_picker_unavailable));}
   }
 
 
@@ -154,6 +261,7 @@ public final class AiActivity extends BaseActivity {
     findViewById(R.id.aiPrivacyNote).setVisibility(visible?View.GONE:View.VISIBLE);
     findViewById(R.id.aiVoiceStatus).setVisibility(visible?View.GONE:View.VISIBLE);
     input.setMaxLines(visible?3:5);input.setHint(visible?"Pesan…":getString(R.string.ai_refresh_input));
+    updateImageMode();
     if(attachment!=null)renderAttachment();
     if (visible) scroll.post(() -> scroll.smoothScrollTo(0, thread.getBottom()));
   }
@@ -168,6 +276,7 @@ public final class AiActivity extends BaseActivity {
 
   private void persistConversation() {
     if(conversations==null||chatId==null||input==null)return;
+    preferences.edit().putBoolean("assistant_image_draft:"+chatId,imageMode).apply();
     try{conversations.save(chatId,messages,input.getText().toString());}
     catch(RuntimeException error){toast("Percakapan belum tersimpan. Periksa ruang perangkat sebelum keluar.");}
   }
@@ -221,11 +330,13 @@ public final class AiActivity extends BaseActivity {
     final AlertDialog[] dialog=new AlertDialog[1];
     String[] labels={"Kamera","Galeri","Dokumen"};
     for(int i=0;i<labels.length;i++){final int action=i;panel.addView(historyButton(labels[i],()->{dialog[0].dismiss();pickAttachment(action);}));}
+    if(imageAvailable)panel.addView(historyButton(getString(R.string.ai_images_create),()->{dialog[0].dismiss();enterImageMode();}));
     dialog[0]=new AlertDialog.Builder(this).setTitle("Tambahkan lampiran").setView(panel).setNegativeButton("Batal",null).create();
     clearDialog=dialog[0];dialog[0].show();android.view.Window window=dialog[0].getWindow();if(window!=null){window.setGravity(Gravity.BOTTOM);window.setLayout(-1,-2);}
   }
 
   private void pickAttachment(int action) {
+    imageMode=false;updateImageMode();persistConversation();
     try{
       if(action==0){
         Intent camera=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -261,10 +372,11 @@ public final class AiActivity extends BaseActivity {
   }
 
   private void selectConversation(String id) {
-    persistConversation();onlineClient.cancel();setWaiting(false);
+    persistConversation();onlineClient.cancel();cancelImageWork();setWaiting(false);
     if(selectionDialog!=null)selectionDialog.dismiss();
     ConversationStore.Chat chat=conversations.get(id);if(chat==null)return;
     chatId=chat.id;messages=chat.messages;input.setText(chat.draft);visibleMessages=40;
+    imageMode=preferences.getBoolean("assistant_image_draft:"+chatId,false);updateImageMode();
     pendingVerse=null;gatewayFailure=null;preferences.edit().putString("assistant_active_chat",chatId).apply();
     getIntent().removeExtra("tadabbur_chapter");getIntent().removeExtra("tadabbur_verse");
     findViewById(R.id.aiRetry).setVisibility(View.GONE);closeHistory();renderConversation();
@@ -273,7 +385,7 @@ public final class AiActivity extends BaseActivity {
   }
 
   private void newConversation() {
-    if(messages.length()==0&&input.length()==0&&attachment==null){closeHistory();return;}
+    if(messages.length()==0&&input.length()==0&&attachment==null){imageMode=false;updateImageMode();persistConversation();closeHistory();return;}
     persistConversation();
     try{ConversationStore.Chat chat=conversations.create();selectConversation(chat.id);}
     catch(IllegalStateException limit){toast(limit.getMessage());}
@@ -319,11 +431,11 @@ public final class AiActivity extends BaseActivity {
       if(index==0){EditText field=new EditText(this);field.setText(title);field.setSelectAllOnFocus(true);field.setFilters(new InputFilter[]{new InputFilter.LengthFilter(80)});
         clearDialog=new AlertDialog.Builder(this).setTitle("Ubah judul").setView(field).setPositiveButton("Simpan",(d,w)->{try{conversations.rename(id,field.getText().toString());closeHistory();showHistory();}catch(IllegalArgumentException invalid){toast("Judul tidak boleh kosong.");}}).setNegativeButton("Batal",null).show();
       }else{clearDialog=new AlertDialog.Builder(this).setTitle("Hapus percakapan ini?").setMessage("Hanya percakapan ini yang dihapus dari perangkat.").setPositiveButton("Hapus",(d,w)->{
-        boolean current=id.equals(chatId);if(current){onlineClient.cancel();setWaiting(false);}
-        conversations.delete(id);attachmentReader.deleteConversation(id);closeHistory();
+        boolean current=id.equals(chatId);if(current){onlineClient.cancel();cancelImageWork();setWaiting(false);}
+        conversations.delete(id);attachmentReader.deleteConversation(id);generatedImages.deleteChat(id);preferences.edit().remove("assistant_image_draft:"+id).apply();closeHistory();
         if(current){if(selectionDialog!=null)selectionDialog.dismiss();chatId=null;pendingVerse=null;gatewayFailure=null;visibleMessages=40;
           getIntent().removeExtra("tadabbur_chapter");getIntent().removeExtra("tadabbur_verse");findViewById(R.id.aiRetry).setVisibility(View.GONE);
-          restoreHistory();renderConversation();restoreAttachment();}showHistory();
+          restoreHistory();imageMode=preferences.getBoolean("assistant_image_draft:"+chatId,false);renderConversation();restoreAttachment();}showHistory();
       }).setNegativeButton("Batal",null).show();}
     }).show();
   }
@@ -364,6 +476,7 @@ public final class AiActivity extends BaseActivity {
       if("assistant".equals(item.optString("role")))appendAssistantExtras(item);
     }
     updateMode();
+    updateImageMode();
   }
 
   private void bubble(String role, String message) {
@@ -424,6 +537,7 @@ public final class AiActivity extends BaseActivity {
 
   private void sendMessage() {
     if (waiting) return;
+    if(imageMode){sendImageMessage();return;}
     if(importingAttachment){toast("Lampiran masih disiapkan. Belum ada berkas yang dikirim.");return;}
     if(attachment!=null&&!effectiveOnline()){toast("Foto dan dokumen memerlukan internet serta layanan online. Lampiran tetap draf.");return;}
     findViewById(R.id.aiRequestStatus).setVisibility(View.GONE);
@@ -493,11 +607,11 @@ public final class AiActivity extends BaseActivity {
     modeDialog=new AlertDialog.Builder(this).setTitle("Mode Zikra AI")
       .setItems(new String[]{"Otomatis","Online","Offline · panduan lokal","Pengaturan koneksi"},(dialog,index)->{
         if(index==3){configureGateway();return;}
-        onlineClient.cancel();setWaiting(false);gatewayFailure=null;
+        onlineClient.cancel();cancelImageWork();setWaiting(false);gatewayFailure=null;
         routingMode=new String[]{"auto","online","offline"}[index];
         preferences.edit().putString("assistant_mode_v2",routingMode).apply();
         if(index==2)connection.offline();else if(connection.configured())connection.activate();else configureGateway();
-        updateMode();
+        updateMode();imageCapabilityAt=0;refreshImageCapability();
       }).show();
   }
 
@@ -684,7 +798,7 @@ public final class AiActivity extends BaseActivity {
   }
 
   private void cancelOnline() {
-    onlineClient.cancel(); setWaiting(false); showCancelled();
+    onlineClient.cancel();cancelImageWork();setWaiting(false);showCancelled();
   }
 
   private void showCancelled() {
@@ -695,6 +809,7 @@ public final class AiActivity extends BaseActivity {
 
   private void appendAssistantExtras(JSONObject item) {
     LinearLayout card = (LinearLayout) ((LinearLayout) thread.getChildAt(thread.getChildCount() - 1)).getChildAt(0);
+    if(item.has("image_id"))imageInChat(card,item);
     JSONObject proposal = item.optJSONObject("proposal");
     if (proposal != null) {
       boolean applied;
@@ -816,6 +931,7 @@ public final class AiActivity extends BaseActivity {
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
+    if(requestCode==EXPORT_IMAGE){String[] selected=pendingImageExport;pendingImageExport=null;if(resultCode==RESULT_OK&&data!=null&&selected!=null)generatedImages.copyTo(selected[0],selected[1],selected[2],data.getData(),()->toast(getString(R.string.ai_images_saved)),()->toast(getString(R.string.ai_images_export_failed)));return;}
     if(requestCode==CAPTURE_PHOTO){android.net.Uri uri=cameraUri;cameraUri=null;if(resultCode==RESULT_OK&&uri!=null&&chatId.equals(cameraChat))importAttachment(uri);else AssistantCameraProvider.discard(this,uri);return;}
     if(requestCode==PICK_PHOTO||requestCode==PICK_DOCUMENT){if(resultCode==RESULT_OK&&data!=null)importAttachment(data.getData());return;}
     if (requestCode != VOICE_REQUEST || isFinishing()) return;
@@ -846,6 +962,7 @@ public final class AiActivity extends BaseActivity {
   protected void onSaveInstanceState(Bundle state) {
     state.putString("draft", input.getText().toString());
     state.putString("chat_id",chatId);persistConversation();
+    if(pendingImageExport!=null){state.putString("image_export_chat",pendingImageExport[0]);state.putString("image_export_id",pendingImageExport[1]);state.putString("image_export_mime",pendingImageExport[2]);}
     if(cameraUri!=null){state.putString("camera_uri",cameraUri.toString());state.putString("camera_chat",cameraChat);}
     super.onSaveInstanceState(state);
   }
@@ -853,12 +970,13 @@ public final class AiActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    if(network!=null){network.start();updateMode();}
+    if(network!=null){network.start();updateMode();refreshImageCapability();}
   }
 
   @Override
   protected void onPause() {
     if (onlineClient != null) onlineClient.cancel();
+    cancelImageWork();
     if (waiting) { setWaiting(false); showCancelled(); }
     persistConversation();
     if(network!=null)network.close();
@@ -880,6 +998,7 @@ public final class AiActivity extends BaseActivity {
     if (taskDialog != null) taskDialog.dismiss();
     if (sourceDialog != null) sourceDialog.dismiss();
     if (onlineClient != null) onlineClient.close();
+    if(imageClient!=null)imageClient.close();if(generatedImages!=null)generatedImages.close();
     if(network!=null)network.close();
     if(conversations!=null)conversations.close();
     if(attachmentReader!=null)attachmentReader.close();

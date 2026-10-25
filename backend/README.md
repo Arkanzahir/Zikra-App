@@ -138,6 +138,43 @@ tanpa konfigurasi itu foto/PDF ditolak `vision_unavailable`, tanpa balasan palsu
 Model teks tetap memakai `FEATHERLESS_MODEL`. Gateway tidak menyimpan lampiran;
 kebijakan penyimpanan provider/platform tetap perlu diperiksa sebelum publik.
 
+## Gambar Cloudflare — C09
+
+`GET /v1/capabilities` memerlukan token instalasi dan mengembalikan ketersediaan
+gambar. `POST /v1/images` menerima **hanya** `prompt` (3–1.000 karakter) dan
+`requestId` UUIDv4; body maksimal 4.096 byte. Profil, riwayat dan lampiran tidak
+diteruskan. Cloudflare dipanggil lewat HTTPS REST dengan model FLUX.1 Schnell,
+4 langkah tetap, tanpa pemilihan model/host oleh klien atau fallback berbayar.
+Integrasi ini memakai handler Vercel/Redis; mode CLI privat tetap menyediakan
+chat tanpa mengaktifkan gambar.
+
+Konfigurasi tambahan server-only: `CLOUDFLARE_ACCOUNT_ID`,
+`CLOUDFLARE_API_TOKEN`, `ZIKRA_IMAGES_ENABLED=true`, dan
+`ZIKRA_IMAGES_FREE_PLAN_CONFIRMED=true`. Flag konfirmasi dipakai setelah operator
+memastikan paket Workers Free; kode tidak mengubah paket/billing. Jika konfigurasi
+gambar hilang/salah, kemampuan gambar mati sementara chat tetap tersedia.
+Gunakan token khusus Workers AI sesuai template resmi, bukan Global API Key.
+
+Redis Lua atomik memakai waktu UTC: maksimal **3 percobaan per instalasi per
+hari dan 20 total aplikasi per hari**. ID permintaan yang sama tidak memanggil
+provider ulang. Batas chat/lease sebelumnya tetap berlaku. Percobaan dicatat
+sebelum inference, tidak dikembalikan setelah batal/timeout/error yang status
+pemakaiannya tidak pasti. Klien meminta konfirmasi lagi untuk percobaan baru;
+tidak ada auto-retry atau auto-kirim ketika jaringan pulih. Kegagalan Redis
+menolak permintaan. Reset UTC00:00 = WIB07:00. Kuota Cloudflare juga dibagi dengan
+pemakaian lain pada akun; batas aplikasi bukan janji ketersediaan provider.
+
+Respons gambar inline JPEG/PNG base64 canonical, maksimal 2.000.000 byte,
+64–1.536 piksel per sisi dan ≤2.100.000 piksel. Tidak mengembalikan URL eksternal.
+Android memeriksa hasil decode, menyimpan file privat/ref di chat (maks32MB),
+dan hanya mengekspor/membagikan saat dipilih pengguna. Tidak membundel model
+atau provider key di APK. Gambar diberi label ilustrasi buatan AI. Fitur ini
+text-to-image; bukan editor foto atau jaminan tulisan/hasil selalu akurat.
+
+Rujukan: [Cloudflare REST](https://developers.cloudflare.com/workers-ai/get-started/rest-api/),
+[FLUX.1 Schnell](https://developers.cloudflare.com/workers-ai/models/flux-1-schnell/),
+[kuota/harga](https://developers.cloudflare.com/workers-ai/platform/pricing/).
+
 Mode private memakai kuota socket di memori yang hilang saat restart. Mode
 installation dengan file memakai identitas token yang dapat dicabut dan kuota persisten
 per instalasi, satu proses/satu replika. Vercel memakai Redis bersama dengan

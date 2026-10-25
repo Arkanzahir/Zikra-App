@@ -5,6 +5,8 @@
 !api
 !api/health.js
 !api/assistant.js
+!api/images.js
+!api/capabilities.js
 !server.mjs
 !config.mjs
 !access.mjs
@@ -13,3 +15,4 @@
 !assistant-contract.mjs
 !tafsir.mjs
 !attachments.mjs
+!image-generation.mjs

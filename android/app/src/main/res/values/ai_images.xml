@@ -1,0 +1,29 @@
+<resources>
+  <string name="ai_images_create">Buat gambar</string>
+  <string name="ai_images_input">Gambar…</string>
+  <string name="ai_images_mode">Buat gambar · kembali ke chat ✕</string>
+  <string name="ai_images_caption">Ilustrasi buatan AI</string>
+  <string name="ai_images_unavailable">Fitur gambar belum tersedia. Chat tetap dapat digunakan.</string>
+  <string name="ai_images_online">Membuat gambar memerlukan internet dan layanan online.</string>
+  <string name="ai_images_no_attachment">Simpan atau hapus draf lampiran dahulu sebelum beralih ke gambar.</string>
+  <string name="ai_images_prompt">Tuliskan gambar yang ingin kamu buat</string>
+  <string name="ai_images_review">Tinjau pembuatan gambar</string>
+  <string name="ai_images_consent">Hanya deskripsi ini yang dikirim ke layanan pembuat gambar. Profil, riwayat dan lampiran tidak ikut. Batas 3 percobaan per perangkat per hari, dengan kuota total 20 percobaan per hari untuk seluruh pengguna aplikasi. Percobaan yang sudah diproses dapat tetap mengurangi kuota meskipun dibatalkan atau gagal. Reset pukul 07.00 WIB.</string>
+  <string name="ai_images_start">Buat gambar</string>
+  <string name="ai_images_cancel">Batal</string>
+  <string name="ai_images_working">Sedang membuat gambar…</string>
+  <string name="ai_images_saving">Menyimpan hasil di percakapan…</string>
+  <string name="ai_images_full">Penyimpanan gambar penuh (32 MB). Hapus percakapan bergambar dahulu.</string>
+  <string name="ai_images_failed">Gambar belum berhasil dibuat. Deskripsi tetap di percakapan; percobaan baru memerlukan konfirmasi.</string>
+  <string name="ai_images_user_quota">Batas 3 percobaan gambar hari ini sudah tercapai. Coba setelah pukul 07.00 WIB berikutnya.</string>
+  <string name="ai_images_global_quota">Kuota gambar bersama sedang habis. Chat tetap tersedia; coba lagi besok.</string>
+  <string name="ai_images_timeout">Pembuatan gambar melewati batas waktu. Percobaan mungkin sudah memakai kuota; tidak diulang otomatis.</string>
+  <string name="ai_images_network">Internet terputus. Tidak ada percobaan ulang otomatis; deskripsi tetap tersimpan.</string>
+  <string name="ai_images_missing">Berkas gambar tidak ditemukan di perangkat.</string>
+  <string name="ai_images_save">Simpan gambar</string>
+  <string name="ai_images_share">Bagikan gambar</string>
+  <string name="ai_images_close">Tutup</string>
+  <string name="ai_images_saved">Gambar disimpan ke lokasi pilihanmu.</string>
+  <string name="ai_images_export_failed">Gambar belum tersimpan. Pilih lokasi lain atau periksa ruang penyimpanan.</string>
+  <string name="ai_images_picker_unavailable">Aplikasi untuk menyimpan atau membagikan gambar belum tersedia.</string>
+</resources>

@@ -1,7 +1,7 @@
 const object=(v,allowed)=>v&&typeof v==='object'&&!Array.isArray(v)&&Object.keys(v).every(k=>allowed.includes(k));
 export class AttachmentError extends Error {constructor(code,status=400){super(code);this.status=status;}}
 export const ATTACHMENT_BODY_LIMIT=2*1024*1024;
-function dimensions(bytes,mime){
+export function imageDimensions(bytes,mime){
  if(mime==='image/png'){
   if(bytes.length<33||!bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))||bytes.toString('ascii',12,16)!=='IHDR')throw new AttachmentError('invalid_attachment');
   return [bytes.readUInt32BE(16),bytes.readUInt32BE(20)];
@@ -40,7 +40,7 @@ export function prepareAttachments(value,visionModel){
    if(!object(image,['mime','data'])||!['image/jpeg','image/png'].includes(image.mime)||typeof image.data!=='string'||image.data.length>490000||image.data.length%4!==0||! /^[A-Za-z0-9+/]+={0,2}$/.test(image.data))throw new AttachmentError('invalid_attachment');
    const bytes=Buffer.from(image.data,'base64');total+=bytes.length;
    if(bytes.length>360000||total>1080000||bytes.toString('base64')!==image.data)throw new AttachmentError('invalid_attachment',413);
-   const [width,height]=dimensions(bytes,image.mime);
+   const [width,height]=imageDimensions(bytes,image.mime);
    if(width<1||height<1||width>1600||height>1600||width*height>2100000)throw new AttachmentError('invalid_attachment',413);
    parts.push({type:'text',text:'Halaman/gambar '+(index+1)+' dari '+file.pages});
    parts.push({type:'image_url',image_url:{url:'data:'+image.mime+';base64,'+image.data}});

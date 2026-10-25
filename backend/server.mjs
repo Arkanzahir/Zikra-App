@@ -6,6 +6,7 @@ import { InstallationAccess } from './access.mjs';
 import { validateSelection, selectedPrompt, providerReply } from './assistant-contract.mjs';
 import { loadTafsir } from './tafsir.mjs';
 import {prepareAttachments,attachToMessages,AttachmentError,ATTACHMENT_BODY_LIMIT} from './attachments.mjs';
+import {ImageError,IMAGE_USER_DAILY,IMAGE_GLOBAL_DAILY} from './image-generation.mjs';
 
 const SYSTEM = 'Kamu Pendamping Zikra. Jawab dalam bahasa Indonesia yang singkat dan membantu. '
   + 'Bantu rencana belajar, rutinitas, dan hafalan. Jangan mengklaim telah mengubah tugas atau timer. '
@@ -69,7 +70,7 @@ async function boundedJson(stream, limit, signal) {
 
 export function createRequestHandler({ apiKey, model, visionModel, clientToken, fetchImpl = fetch, now = Date.now,
   providerTimeoutMs = 35000, accessMode = 'private', clientsFile, usageFile, dailyLimit,
-  sourceFetchImpl = fetch, accessStore }) {
+  sourceFetchImpl = fetch, accessStore, imageService }) {
   if (!['private', 'installation'].includes(accessMode)) throw new ConfigError('Invalid access mode.');
   if (accessMode === 'private') validateCredentials({ apiKey, model, visionModel, clientToken });
   else validateProvider({ apiKey, model, visionModel });
@@ -89,16 +90,20 @@ export function createRequestHandler({ apiKey, model, visionModel, clientToken, 
     };
     // Health reveals no configuration or credentials.
     if (req.method === 'GET' && req.url === '/health') return reply(200, { status: 'ok' });
-    if (req.method !== 'POST' || req.url !== '/v1/assistant') return reply(404, { error: 'not_found' });
+    const imageRequest=req.method==='POST'&&req.url==='/v1/images';
+    const capabilities=req.method==='GET'&&req.url==='/v1/capabilities';
+    if (!imageRequest&&!capabilities&&(req.method !== 'POST' || req.url !== '/v1/assistant')) return reply(404, { error: 'not_found' });
     let identity = null;
     try {
       identity = installation ? await installation.identify(req.headers.authorization)
         : (equalToken(req.headers.authorization, `Bearer ${clientToken}`) ? req.socket.remoteAddress || 'unknown' : null);
     } catch { return reply(503, { error: 'access_unavailable' }); }
     if (!identity) return reply(401, { error: 'unauthorized' });
+    if(capabilities)return reply(200,{imageGeneration:!!imageService,imageUserDaily:IMAGE_USER_DAILY,imageGlobalDaily:IMAGE_GLOBAL_DAILY});
+    if(imageRequest&&!imageService)return reply(503,{error:'image_unavailable'});
     if (!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type'] || ''))
       return reply(415, { error: 'json_required' });
-    const requestLimit=req.headers['x-zikra-attachments']==='1'?ATTACHMENT_BODY_LIMIT:BODY_LIMIT;
+    const requestLimit=imageRequest?4096:req.headers['x-zikra-attachments']==='1'?ATTACHMENT_BODY_LIMIT:BODY_LIMIT;
     if (Number(req.headers['content-length'] || 0) > requestLimit)
       return reply(413, { error: 'too_large' });
     // Trust the socket, never caller-supplied X-Forwarded-For. Intended for one private client.
@@ -145,6 +150,7 @@ export function createRequestHandler({ apiKey, model, visionModel, clientToken, 
         if (error instanceof InputError) return reply(error.status, { error: error.message });
         throw error;
       }
+      if(imageRequest){try{return reply(200,await imageService.generate(body,identity,controller.signal));}catch(error){if(error instanceof ImageError)return reply(error.status,{error:error.message});throw error;}}
       const messages = validateMessages(body?.messages);
       if(!body?.attachments&&Buffer.byteLength(JSON.stringify(body),'utf8')>BODY_LIMIT)return reply(413,{error:'too_large'});
       if (!messages) return reply(400, { error: 'invalid_messages' });

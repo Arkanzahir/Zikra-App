@@ -59,8 +59,8 @@ test('Vercel entry points pin paths and deployment excludes private config and a
   assert.equal(config.functions['api/*.js'].supportsCancellation, true);
   assert.equal(config.functions['api/*.js'].maxDuration, 60);
   assert.deepEqual(config.rewrites, [{ source: '/health', destination: '/api/health' },
-    { source: '/v1/assistant', destination: '/api/assistant' }]);
-  for (const [entry, path] of [['health', '/health'], ['assistant', '/v1/assistant']])
+    { source: '/v1/assistant', destination: '/api/assistant' },{source:'/v1/images',destination:'/api/images'},{source:'/v1/capabilities',destination:'/api/capabilities'}]);
+  for (const [entry, path] of [['health', '/health'], ['assistant', '/v1/assistant'],['images','/v1/images'],['capabilities','/v1/capabilities']])
     assert.ok(readFileSync(new URL(`./api/${entry}.js`, import.meta.url), 'utf8').includes(`req.url = '${path}'`));
   const allowlist = readFileSync(new URL('./.vercelignore', import.meta.url), 'utf8');
   assert.equal(allowlist.split(/\r?\n/)[0], '*');
@@ -92,6 +92,16 @@ async function issue(redis, prefix = 'zikra:v1:') {
   return { id, token, hash };
 }
 const integration = { skip: !process.env.ZIKRA_REDIS_TEST_PYTHON, timeout: 15000 };
+
+test('image Lua: atomic per-installation/global limits, idempotency, UTC reset and corrupt-state rejection',integration,async t=>{
+  const redis=await fixture(t),{RESERVE_IMAGE}=await import('./image-generation.mjs');
+  const reserve=(id,nonce=randomUUID())=>redis.command(['EVAL',RESERVE_IMAGE,3,'images:global','images:user:'+id,'images:req:'+id+':'+nonce]);
+  const id=randomUUID(),nonce=randomUUID();assert.deepEqual(await reserve(id,nonce),[1]);assert.deepEqual(await reserve(id,nonce),[-1]);
+  const parallel=await Promise.all(Array.from({length:10},()=>reserve(id)));assert.equal(parallel.filter(x=>x[0]===1).length,2);assert.ok(parallel.filter(x=>x[0]===0).every(x=>x[1]==='image_user_quota'));
+  for(let i=0;i<17;i++)assert.deepEqual(await reserve(randomUUID()),[1]);assert.deepEqual(await reserve(randomUUID()),[0,'image_global_quota']);
+  await redis.command(['HSET','images:global','day',0,'count',99]);await redis.command(['HSET','images:user:'+id,'day',0,'count',99]);assert.deepEqual(await reserve(id),[1]);
+  await redis.command(['HSET','images:global','day','invalid']);await assert.rejects(reserve(randomUUID()));
+});
 
 test('production Lua: quotas and revocation persist across new Vercel instances', integration, async t => {
   const redis = await fixture(t), client = await issue(redis);

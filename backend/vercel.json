@@ -7,6 +7,8 @@
   },
   "rewrites": [
     { "source": "/health", "destination": "/api/health" },
-    { "source": "/v1/assistant", "destination": "/api/assistant" }
+    { "source": "/v1/assistant", "destination": "/api/assistant" },
+    { "source": "/v1/images", "destination": "/api/images" },
+    { "source": "/v1/capabilities", "destination": "/api/capabilities" }
   ]
 }
