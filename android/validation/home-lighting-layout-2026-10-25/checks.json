@@ -1,0 +1,78 @@
+{
+  "unit": [
+    {
+      "name": "com.zikra.app.sky.SkyDayTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.zikra.app.sky.SkyPaletteTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "sourceCommit": "b282fd86924357e2fe8700dd073f7c7a9cd68133",
+  "nativeExecutions": 6,
+  "nativeUniqueMethods": 3,
+  "nativeFailures": 0,
+  "methods": [
+    "HomeRefreshTest#testHomeEmptyAndRealAgendaScrollNavigation",
+    "HomeRefreshTest#testSkyDayNightPhaseAndOffscreenMotion",
+    "FoundationExperienceTest#testNarrowHomeAtTwoHundredPercentKeepsActionsAboveDock"
+  ],
+  "fontScales": [
+    1.0,
+    2.0
+  ],
+  "captures": [
+    "720x1600, normal/200%",
+    "720x1392, reference ratio",
+    "640x1440, narrow 320dp/200%"
+  ],
+  "build": "assembleDebug + assembleDebugAndroidTest + lintDebug successful; one worker/768MiB heap; emulator stopped during build",
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 721
+  },
+  "logs": [
+    {
+      "path": "logs/native-100.txt",
+      "passed": 2,
+      "originalPrivateSha256": "682ee250194205de60891f95c188b0fb6598297c257ca972b618e73c24404f74",
+      "publicSha256": "2303ffb0a6810b57a2fc0f01bf62f0295f1730284436676217b8682f8f43ed67"
+    },
+    {
+      "path": "logs/native-200.txt",
+      "passed": 2,
+      "originalPrivateSha256": "6b0b8d23b9d60bd723f272e2276b6a8d1f7688bdd84f18973600c0e784b92fa9",
+      "publicSha256": "d09c4068cf8f9baba30b04e5c15760a25014e708752086c0b4edf56570eef08c"
+    },
+    {
+      "path": "logs/native-narrow.txt",
+      "passed": 1,
+      "originalPrivateSha256": "8c8f596eafd8af6c32cb1ad6123739a66a624aca0d00a9de61680a5f3b46d39b",
+      "publicSha256": "fa6bdf9031d3875ce6df2cf51d350b27214a2dc359a0981e2de75d2b922f8ac5"
+    },
+    {
+      "path": "logs/native-reference-frame.txt",
+      "passed": 1,
+      "originalPrivateSha256": "3dc7c7da2c69dc62990ffd56bd3e00aa7ed434c2e1206d92cac7838bd62c64d5",
+      "publicSha256": "89eef2b2cd9606634b33519d6a0bae1e73458fb6ccb16b4ed9912dbab42f0327"
+    },
+    {
+      "path": "logs/build.txt",
+      "passed": null,
+      "originalPrivateSha256": "1a0d6ea902b45266888ad59859ac120bd214ed1dd30042b22042e32a419d93e5",
+      "publicSha256": "5e37139c86cc7789fe640d26636ef995a41a4f7737918437fce25ed282a8107e"
+    }
+  ],
+  "logNormalization": "CR/LF and trailing whitespace only; raw private SHA-256 recorded",
+  "fixtures": "Synthetic Surabaya, Al-Kahf12, tasks and Clock12:30/20:00 with lunar fraction .18/1; not live provider/astronomical output",
+  "scope": "Home composition/gradient, actual window-emission pixels day/night, reflow and existing Home actions; targeted Sky unit regressions only",
+  "physicalPhoneModified": false
+}

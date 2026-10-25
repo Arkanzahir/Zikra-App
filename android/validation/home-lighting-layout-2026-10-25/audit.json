@@ -1,0 +1,18 @@
+{
+  "scope": "known current secret values, tracked/source/evidence files and all uncompressed app APK entries; not historical secret certification",
+  "sourceFilesScanned": 1752,
+  "sourceSecretMatches": 0,
+  "apkEntriesScanned": 419,
+  "apkSecretMatches": 0,
+  "privateOrTestEntriesInAppApk": 0,
+  "protectedUnchanged": {
+    "projectHandoff": true,
+    "privateEnv": true,
+    "audioArchive": true,
+    "oldApk181": true,
+    "audioStash": true
+  },
+  "apkBytes": 36594943,
+  "apkSha256": "76a1367d52354fc24757b71221347766c7d2912160a1527015ffe1417ffc26b3",
+  "passed": true
+}

@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-25",
+  "versionName": "1.9.4",
+  "versionCode": 31,
+  "variant": "debug",
+  "sourceCommit": "b282fd86924357e2fe8700dd073f7c7a9cd68133",
+  "apkFilename": "Zikra-Home-v1.9.4-beta-debug.apk",
+  "apkBytes": 36594943,
+  "apkSha256": "76a1367d52354fc24757b71221347766c7d2912160a1527015ffe1417ffc26b3",
+  "under100000000Bytes": true,
+  "sqliteVersion": 4,
+  "physicallyInstalled": false,
+  "previous193Preserved": true,
+  "signerCertificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b"
+}

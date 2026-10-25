@@ -1,0 +1,7 @@
+{
+  "path": "design/approved-2026-10-25-home-alignment/reference-board.png",
+  "sha256": "c3228a1e304084474ca241268653f261730d28b65bddc58af01f492bc1d00df6",
+  "decision": "User: thinner gradient panel and placement closer to supplied board; mosque lamps off by day and on at night; latest shortcut icons retained",
+  "implementation": "Layout measured against supplied board; separate unlit daytime artwork and illuminated master, crossfaded at local dawn/dusk; not pixel-identity certification",
+  "scope": "Home composition, panel and mosque illumination; brand master and latest shortcut shapes untouched"
+}

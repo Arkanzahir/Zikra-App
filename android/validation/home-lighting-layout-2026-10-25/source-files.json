@@ -1,0 +1,46 @@
+{
+  "sourceCommit": "b282fd86924357e2fe8700dd073f7c7a9cd68133",
+  "scope": "Eight changed build/layout/art/test files; full source recoverable by commit",
+  "files": [
+    {
+      "path": "android/app/build.gradle",
+      "gitBlob": "f79358119b1ef69c08941f70e473f92e91a8c2ac",
+      "sha256": "2d5c92a28116a61efd01325ed043d61e237f1c299bc2fd38783e42ac43ebdf98"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/HomeRefreshTest.java",
+      "gitBlob": "2cb26bd3b6bd2a923f91fd0e654a5fa6c2710cdd",
+      "sha256": "e7baf6ac19fa33857befb31077f3b62587d46e8dd54badb369e5dbe09d5f9683"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/HomeActivity.java",
+      "gitBlob": "17b45c381799daec755c1cc3cd7af6850cf43510",
+      "sha256": "8aec15a39966469e9c7830c948caa55d82dc73b37fd22de215e04d501e899e1c"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/sky/HomeSkyView.java",
+      "gitBlob": "c0e6fac4fb8b8516f31fa86de4f58eef9e314788",
+      "sha256": "6c6c6dba310732337b28b99d532eb8ce27d785178afa7f47e5ff85d06c187d72"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/home_al_qibli_day_unlit.png",
+      "gitBlob": "d76e683b66cbe2e52b34519dc72a3ee2cbce8fc7",
+      "sha256": "24f31e12b2884c46d91d31f29a802fd2a17e5ee3e4cc3a2e5d8e722e8b60a9b4"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_prayer_strip.xml",
+      "gitBlob": "75334be086b87329187181eb85ac4dc20a4519ea",
+      "sha256": "cca66418dced7b9b602a4ecf003bed4e4b33bace4c133825fb9976158bc4db18"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_home.xml",
+      "gitBlob": "6c475c86e70a891b6c8e5b62b516f8daf6660cec",
+      "sha256": "6dac36919d305509f9a1b5ad5523bfdedb01f5dd6a4f7ec3514bacb68e466468"
+    },
+    {
+      "path": "android/app/src/main/res/values/home_refresh.xml",
+      "gitBlob": "02662920db8f7e63fa028416c17d4a46f0529b1b",
+      "sha256": "7b8720c8452b5f48ec88a3bd70e0d800799c422adb91344f110d70afb89dcbfb"
+    }
+  ]
+}
