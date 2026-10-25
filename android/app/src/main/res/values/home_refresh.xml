@@ -33,5 +33,9 @@
     <item>Maghrib</item>
     <item>Isya</item>
   </string-array>
-  <color name="home_prayer_separator">#26FFFFFF</color>
+  <color name="home_prayer_separator">#1FFFFFFF</color>
+  <color name="home_prayer_panel_top">#10383B</color>
+  <color name="home_prayer_panel_bottom">#05272B</color>
+  <color name="home_prayer_panel_border">#24FFFFFF</color>
+  <color name="home_prayer_active">#F5CC65</color>
 </resources>

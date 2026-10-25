@@ -439,12 +439,12 @@ public final class HomeActivity extends BaseActivity {
         slot.getChildAt(3).setVisibility(active ? android.view.View.VISIBLE : android.view.View.INVISIBLE);
         slot.setBackgroundResource(0);
         ((ImageView) slot.getChildAt(1))
-            .setColorFilter(getColor(active ? R.color.camel : R.color.home_prayer_text));
+            .setColorFilter(getColor(active ? R.color.home_prayer_active : R.color.home_prayer_text));
         ((TextView) slot.getChildAt(0))
-            .setTextColor(getColor(active ? R.color.camel : R.color.home_prayer_text));
+            .setTextColor(getColor(active ? R.color.home_prayer_active : R.color.home_prayer_text));
         ((TextView) slot.getChildAt(2)).setText(timetable.time(i).replace(':', '.'));
         ((TextView) slot.getChildAt(2))
-            .setTextColor(getColor(active ? R.color.camel : R.color.white));
+            .setTextColor(getColor(active ? R.color.home_prayer_active : R.color.white));
         slot.setContentDescription(
             prayerNames[i]
                 + " "
