@@ -1,0 +1,30 @@
+{
+  "dateWib": "2026-10-25",
+  "device": "POCO F7",
+  "androidApi": 36,
+  "appVersion": "1.8.1",
+  "appVersionCode": 26,
+  "appApkSourceCommit": "196a8d284e7f4617e0e3d981e69758e3e35582a5",
+  "testHarnessCommit": "41c7b1446c67293ed91282b56a4d3f048f2f0450",
+  "backendSourceCommit": "9438aa4",
+  "origin": "https://zikra-ai.vercel.app",
+  "physicalPhoneTested": true,
+  "nativeTestMethodsPassed": 1,
+  "nativeDurationSeconds": 26.384,
+  "networkMocked": false,
+  "laptopOffTested": false,
+  "actualMicrophoneTested": false,
+  "C05Complete": true,
+  "entireStageCComplete": false,
+  "publicRelease": false,
+  "providerKeyRotated": false,
+  "apkBytes": 31181560,
+  "apkSha256": "8650b9cc12d2d7e061dd0730e4f6e03f3e1767924a5b60271a6c1cd0a900e87b",
+  "proof": [
+    "native-result.txt",
+    "native/phone-live.json",
+    "preservation.json",
+    "test-opt-in.json",
+    "audit.json"
+  ]
+}

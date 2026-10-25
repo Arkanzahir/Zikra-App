@@ -1,0 +1,5 @@
+{
+  "standardTestApkContainsPhoneClass": false,
+  "optInTestApkContainsPhoneClass": true,
+  "productionApkByteUnchanged": true
+}

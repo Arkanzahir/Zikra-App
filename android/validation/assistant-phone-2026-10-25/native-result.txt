@@ -1,0 +1,5 @@
+com.zikra.app.assistant.PhoneAssistantTest:.
+Test results for InstrumentationTestRunner=.
+Time: 26.384
+
+OK (1 test)

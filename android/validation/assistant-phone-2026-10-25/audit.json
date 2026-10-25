@@ -1,0 +1,16 @@
+{
+  "scope": "known current secret values in tracked working tree/evidence and uncompressed app APK; not all historical secrets",
+  "filesScanned": 1568,
+  "knownSecretMatches": 0,
+  "apkEntries": 399,
+  "apkSecretMatches": 0,
+  "phoneFixtureStringsInAppApk": 0,
+  "protectedUnchanged": {
+    "projectHandoff": true,
+    "privateEnv": true,
+    "audioArchive": true,
+    "appApk": true,
+    "audioStash": true
+  },
+  "passed": true
+}

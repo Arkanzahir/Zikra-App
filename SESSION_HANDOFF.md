@@ -68,11 +68,13 @@ prasyarat. Key/env privat tidak diubah; provider key tetap hanya di server.
   revokasi/counter bertahan deploy ulang, storage korup 503 tanpa provider.
   Redis menyimpan hash/UUID/counter/lease, tanpa percakapan. Mode file/VPS tetap
   satu proses/replika; mode Vercel memakai kuota/lease atomik bersama.
-  C02/C05 [ ] untuk HP/laptop mati dan operasional yang tersisa.
+  C02 [ ] untuk laptop mati/operasional; C05 [x] untuk alur HP nyata.
+  Jangan menyamakan penutupan C05 dengan seluruh C02/C.
 - C03 native: preview per request, default hanya pesan saat ini; opt-in nama,
   10 tugas/tenggat, perhitungan salat/zona, riwayat online dan izin proposal.
   Loading/batal/retry/error spesifik dan label online teruji dengan respons
-  terkendali. Belum APK → HTTPS permanen → provider dari HP, C03 [ ].
+  terkendali; inti alur HP kini lulus pada C05. C03 [ ] untuk cakupan mode/
+  konfigurasi manual dan timeout UI yang belum ditutup penuh.
   **Lanjutan terbaru:** [1.8.1 pada emulator ke hosting nyata lulus](android/validation/assistant-hosted-emulator-2026-10-25/README.md),
   3 metode live + 6 regresi terkendali, 14 unit AI dan lint 0 error/716 warning.
   Token salah, jaringan putus/retry, batal, proposal ditinjau/disimpan sekali serta
@@ -92,13 +94,23 @@ prasyarat. Key/env privat tidak diubah; provider key tetap hanya di server.
 - C06: penjelasan privasi dikte, hasil tetap draf, batal/hasil salah/batas teks
   teruji. Recognizer emulator ada, **mikrofon/dikte layanan nyata belum diuji**;
   callback tes disimulasikan. C06 [ ], Vision tetap setelah rilis pertama.
+- **C05 [x], 25 Oktober:** pengguna mengizinkan uji HP POCO F7/API 36, APK 1.8.1.
+  [Satu metode HP nyata lulus](android/validation/assistant-phone-2026-10-25/README.md):
+  chat online, token salah/retry, kuota server sintetis, batal, Wi-Fi putus/pulih.
+  Tidak ada profil/tugas/riwayat asli dikirim, tidak ada interceptor/mock jaringan.
+  Tujuh file asli cocok hash setelah dipulihkan; helper/input sementara dihapus,
+  Wi-Fi/data dipulihkan. Koneksi AI baru ditinggalkan terenkripsi/siap online;
+  sebelumnya belum dikonfigurasi. Source APK tetap `196a8d2`, harness `41c7b14`.
+  Identifier HP dan arsip/XML privat hanya di `.local/phone-c05`, jangan dipush.
+  HP saat itu terhubung lewat USB; jangan menganggap koneksi masih ada tanpa
+  memeriksa ADB. Tidak menjalankan emulator atau menguji mikrofon nyata.
 - 26 tes Node lulus; 118 unit Android = 114 lulus/4 skip, tidak disamakan semua
   lulus. Enam native AI + 11 migrasi + dua metode font 200% lulus; lint 0 error /
   716 warning. Build satu worker/heap 1.024 MiB. Emulator dimatikan; image
   menaikkan RAM aktual sekitar 4 GB walau request 1.536 MiB.
 
 C01 selesai persiapan konfigurasi, dengan [keputusan terbaru dan bukti penutupan](android/validation/assistant-c-2026-10-25/key-decision-2026-10-25.md).
-C05 berikutnya memakai endpoint yang sudah ada dan HP; jangan menganggap probe
+Untuk pengujian lanjutan HP, pakai endpoint yang sudah ada; jangan menganggap probe
 komputer atau screenshot interceptor sebagai bukti C05. Token instalasi aktif
 tersimpan privat di `.local/vercel-client.env`, tanpa nilai di Git/chat; konfigurasi
 Redis yang ditarik ada di `.local/vercel-production.env` (key provider sensitive
@@ -125,4 +137,4 @@ sudah ada; jangan menyebut seluruh adzan tersedia pada APK ini.
 - Build hemat RAM, tes sesuai perubahan; tutup emulator setelah dipakai. Dokumen saja tidak memerlukan build/emulator. Petunjuk: `android/BUILDING.md`.
 - Lingkungan lokal: JDK `C:\Users\Lenovo\.jdks\jbr-17.0.14`, SDK `E:\AndroidSDK`, Gradle cache `E:\.gradle`. Gunakan `git -c safe.directory=D:/Download/Zikra-App-main/Zikra-App-main` bila diperlukan.
 
-Handoff `83312da` adalah baseline dokumentasi lama. Backend Vercel `9438aa4` sudah terpasang dengan key yang ada; APK terbaru 1.8.1. C, B01 serta rilis publik tetap belum ditutup. Tidak memeriksa email ulang atau memasang APK pada HP fisik. Checkpoint tetap lokal sampai push dibuktikan.
+Handoff `83312da` adalah baseline dokumentasi lama. Backend Vercel `9438aa4` sudah terpasang dengan key yang ada; APK terbaru 1.8.1 sudah dipasang pada HP sebagai pembaruan dari 1.1, dan C05 selesai. C secara keseluruhan, B01 serta rilis publik belum ditutup. Tidak memeriksa email ulang. Checkpoint tetap lokal sampai push dibuktikan.

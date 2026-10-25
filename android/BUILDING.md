@@ -93,6 +93,13 @@ karena build AI ini berhasil.
 
 ## Pengingat sholat
 
+Uji HP opt-in C05 memakai `assembleDebugAndroidTest -PzikraPhoneTests=true`, lalu
+kelas `com.zikra.app.assistant.PhoneAssistantTest` dipilih eksplisit. Hanya jalankan
+pada HP yang pemiliknya mengizinkan, setelah cadangan data privat dan file izin/
+credential disiapkan di app-private storage. Tes memutus jaringan sebentar;
+riwayat/jaringan dipulihkan dan helper dibersihkan. [Bukti dan batas](validation/assistant-phone-2026-10-25/README.md).
+Suite standar tidak menyertakan kelas ini dan APK aplikasi tidak berubah.
+
 Buka Jadwal Sholat melalui strip waktu atau tombol bel Home, lalu aktifkan **Pengingat sholat**. Android 13+ menampilkan permintaan izin notifikasi. Untuk Android 12+, tombol **Atur ketepatan pengingat** membuka akses alarm tepat waktu; jika tidak diizinkan, aplikasi tetap memakai alarm yang ketepatannya dapat dipengaruhi penghematan daya sistem. Pilihan per sholat diatur lewat ikon bel pada baris jadwal.
 
 `PrayerRemindersTest` memakai layanan alarm/notifikasi perangkat sungguhan dan memberikan izin notifikasi melalui UiAutomation pada perangkat uji jika dibutuhkan. Tes memverifikasi jadwal aktif/nonaktif dan receiver notifikasi dengan broadcast uji, bukan menunggu waktu sholat sebenarnya.

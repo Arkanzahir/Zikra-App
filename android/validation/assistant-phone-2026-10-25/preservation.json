@@ -1,0 +1,12 @@
+{
+  "scope": "private phone app-state restore before final app relaunch; new AI gateway connection is intentional",
+  "originalFilesChecked": 7,
+  "originalFileHashesMatch": true,
+  "originalGatewayConfigurationExisted": false,
+  "gatewayNowEncrypted": true,
+  "networkFlagsRestored": true,
+  "privateInputRemoved": true,
+  "temporaryTestPackageRemoved": true,
+  "phoneSerialPublished": false,
+  "passed": true
+}

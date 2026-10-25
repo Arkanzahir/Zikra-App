@@ -1,0 +1,19 @@
+{
+  "scope": "physical-phone-APK-Vercel-Featherless-real-no-interceptor",
+  "physicalPhoneTested": true,
+  "actualMicrophoneTested": false,
+  "laptopOffTested": false,
+  "personalContextUploaded": false,
+  "quotaFixtureSeededToDailyLimit": true,
+  "gatewayConfiguredBefore": false,
+  "hostedReplyDisplayed": true,
+  "wrongTokenNoFallback": true,
+  "retryAfterCorrectToken": true,
+  "actualServerQuotaShown": true,
+  "cancelNoLateReplyObserved": true,
+  "actualNetworkLossNoFallback": true,
+  "retryAfterNetworkRestored": true,
+  "consentContextOffByDefault": true,
+  "networkFlagsRestored": true,
+  "passed": true
+}
