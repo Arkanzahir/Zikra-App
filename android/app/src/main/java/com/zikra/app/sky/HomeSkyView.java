@@ -24,8 +24,12 @@ public final class HomeSkyView extends View implements SensorEventListener {
   private final Shader sunGlow = new RadialGradient(0, 0, 1,
       new int[] {0x60FFE4A5, 0x00FFE4A5}, null, Shader.TileMode.CLAMP);
   private final Bitmap landscape;
+  private final Bitmap dayLandscape;
   private final RectF landscapeBounds = new RectF();
+  private final RectF dayLandscapeBounds = new RectF();
   private final Paint landscapePaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+  private final Paint dayLandscapePaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+  private float nightBlend;
   private Shader backdrop;
   private int backdropWidth, backdropHeight;
   private final AmbientMotionPolicy policy;
@@ -46,6 +50,8 @@ public final class HomeSkyView extends View implements SensorEventListener {
     landscape =
         BitmapFactory.decodeResource(
             c.getResources(), R.drawable.home_al_qibli_foreground, bitmapOptions);
+    dayLandscape = BitmapFactory.decodeResource(
+        c.getResources(), R.drawable.home_al_qibli_day_unlit, bitmapOptions);
     clouds = BitmapFactory.decodeResource(c.getResources(), R.drawable.home_cloud_bank, bitmapOptions);
     sensors = (SensorManager) c.getSystemService(Context.SENSOR_SERVICE);
     gravity = sensors == null ? null : sensors.getDefaultSensor(Sensor.TYPE_GRAVITY);
@@ -185,11 +191,17 @@ public final class HomeSkyView extends View implements SensorEventListener {
         cloudColor = color;
         cloudPaint.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
       }
-      float brightness = .38f + .62f * SkyPalette.daylight(day, time);
-      float warm = .65f * (1 - SkyPalette.daylight(day, time));
+      float daylight = SkyPalette.daylight(day, time);
+      nightBlend = 1 - daylight;
+      float brightness = .38f + .62f * daylight;
+      float warm = .65f * nightBlend;
       landscapePaint.setColorFilter(new ColorMatrixColorFilter(new float[] {
           brightness + warm,0,-warm,0,0, warm * .6f,brightness,-warm * .6f,0,0,
           0,0,brightness + .03f * (1-brightness),0,0, 0,0,0,1,0}));
+      float dayBrightness = .55f + .45f * daylight;
+      dayLandscapePaint.setColorFilter(new ColorMatrixColorFilter(new float[] {
+          dayBrightness,0,0,0,0, 0,dayBrightness,0,0,0,
+          0,0,dayBrightness,0,0, 0,0,0,1,0}));
     }
     paint.setShader(backdrop);
     paint.setAlpha(255);
@@ -240,10 +252,20 @@ public final class HomeSkyView extends View implements SensorEventListener {
     c.save();
     c.translate(offsetX * 3 * u, offsetY * 1.5f * u - Math.min(scrollOffset, h) * .015f);
     float imageHeight = w * landscape.getHeight() / landscape.getWidth();
-    landscapeBounds.set(-2 * u, h - imageHeight - 52 * u, w + 42 * u, h - 48 * u);
+    landscapeBounds.set(-2 * u, h - imageHeight - 24 * u, w + 42 * u, h - 20 * u);
     paint.setColor(0xFF123C39); paint.setAlpha(255);
-    c.drawRect(0, h - 60 * u, w, h + 4 * u, paint);
-    c.drawBitmap(landscape, null, landscapeBounds, landscapePaint);
+    c.drawRect(0, h - 32 * u, w, h + 4 * u, paint);
+    // The daytime artwork has no artificial lamp glow; align its generated horizon to the master.
+    if (nightBlend < 1) {
+      dayLandscapeBounds.set(landscapeBounds);
+      dayLandscapeBounds.offset(0, imageHeight * .029f);
+      c.drawBitmap(dayLandscape, null, dayLandscapeBounds, dayLandscapePaint);
+    }
+    // Thirty-minute twilight blend follows the same local sunrise/sunset as the sky.
+    if (nightBlend > 0) {
+      landscapePaint.setAlpha(Math.round(255 * nightBlend));
+      c.drawBitmap(landscape, null, landscapeBounds, landscapePaint);
+    }
     c.restore();
     paint.setShader(textShade); paint.setAlpha(255);
     c.drawRect(0, 0, w, h, paint); paint.setShader(null);

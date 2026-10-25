@@ -72,9 +72,11 @@ public final class HomeActivity extends BaseActivity {
     LinearLayout brand = findViewById(R.id.homeRoot).findViewWithTag("zikraBrand");
     android.view.View symbol = brand.getChildAt(0);
     symbol.setLayoutParams(new LinearLayout.LayoutParams(dp(58), dp(58)));
+    symbol.setScaleX(1.16f); symbol.setScaleY(1.16f);
+    symbol.setTranslationX(-dp(4.5f)); symbol.setTranslationY(dp(3));
     TextView wordmark = (TextView) brand.getChildAt(1);
     wordmark.setTypeface(android.graphics.Typeface.create("serif", android.graphics.Typeface.BOLD));
-    wordmark.setTextSize(26);
+    wordmark.setTextSize(24);
     LinearLayout.LayoutParams brandParams = (LinearLayout.LayoutParams) brand.getLayoutParams();
     brandParams.leftMargin = -dp(6); brand.setLayoutParams(brandParams);
     LinearLayout.LayoutParams wordParams = (LinearLayout.LayoutParams) wordmark.getLayoutParams();

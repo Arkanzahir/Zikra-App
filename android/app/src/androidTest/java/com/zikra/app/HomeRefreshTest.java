@@ -180,6 +180,7 @@ public final class HomeRefreshTest extends InstrumentationTestCase {
     int changed = Math.max(changedPixels(motionBefore, motionMiddle), changedPixels(motionBefore, motionAfter));
     assertTrue("Cloud region actually changes on the display", changed > 10);
     awaitSkyFrame(sky, true);
+    int dayWarmLamps = illuminatedWindowPixels(sky);
     capture("sky-day");
     getInstrumentation().runOnMainSync(() -> {
       setHomeTime(home, day, java.time.LocalTime.of(20,0));
@@ -195,6 +196,9 @@ public final class HomeRefreshTest extends InstrumentationTestCase {
         next.time.format(java.time.format.DateTimeFormatter.ofPattern("HH.mm", java.util.Locale.ROOT)),
         ((TextView) firstPrayer.getChildAt(2)).getText().toString());
     awaitSkyFrame(sky, false);
+    int nightWarmLamps = illuminatedWindowPixels(sky);
+    assertTrue("Artificial window glow appears at night and is absent in daylight",
+        nightWarmLamps > Math.max(10, dayWarmLamps * 2));
     capture("sky-crescent");
     com.zikra.app.sky.SkyDay full = new com.zikra.app.sky.SkyDay(day.date, day.rise, day.noon, day.set, 1, true, false);
     getInstrumentation().runOnMainSync(() -> sky.setSky(full, java.time.LocalTime.of(20,0)));
@@ -224,6 +228,8 @@ public final class HomeRefreshTest extends InstrumentationTestCase {
       File proof = new File(context.getExternalFilesDir(null), "validation/Refresh-motion-" + scale + ".json");
       try (java.io.FileOutputStream out = new java.io.FileOutputStream(proof)) {
         out.write(new org.json.JSONObject().put("cloudRegionPixelsChanged", changed)
+            .put("dayWarmLampPixels", dayWarmLamps).put("nightWarmLampPixels", nightWarmLamps)
+            .put("nightHasMoreLampEmission", true)
             .put("reducedMotionRegionIdentical", true).put("actualDisplayScreenshots", true)
             .toString().getBytes(StandardCharsets.UTF_8));
       }
@@ -248,6 +254,26 @@ public final class HomeRefreshTest extends InstrumentationTestCase {
       if (daytime ? brightness > 70 : brightness < 60) return;
     } while (android.os.SystemClock.uptimeMillis() < deadline);
     fail("Display must render the requested " + (daytime ? "day" : "night") + " frame before capture");
+  }
+
+  private int illuminatedWindowPixels(android.view.View sky) {
+    int[] position = new int[2];
+    getInstrumentation().runOnMainSync(() -> sky.getLocationOnScreen(position));
+    android.graphics.Bitmap screen = getInstrumentation().getUiAutomation().takeScreenshot();
+    assertNotNull("Actual display for lamp comparison", screen);
+    float w = sky.getWidth(), u = w / 400f, sceneHeight = w * 2f / 3f + 4 * u;
+    int left = Math.max(0, Math.round(position[0] - 2 * u + .43f * (w + 44 * u)));
+    int right = Math.min(screen.getWidth(), Math.round(position[0] - 2 * u + .96f * (w + 44 * u)));
+    float sceneTop = position[1] + sky.getHeight() - w * 2f / 3f - 24 * u;
+    int top = Math.max(0, Math.round(sceneTop + .72f * sceneHeight));
+    int bottom = Math.min(screen.getHeight(), Math.round(sceneTop + .84f * sceneHeight));
+    int count = 0;
+    for (int y = top; y < bottom; y++) for (int x = left; x < right; x++) {
+      int pixel = screen.getPixel(x, y);
+      int r = android.graphics.Color.red(pixel), g = android.graphics.Color.green(pixel), b = android.graphics.Color.blue(pixel);
+      if (r > 110 && r > g * 1.45f && g > b * 1.5f) count++;
+    }
+    screen.recycle(); return count;
   }
 
   private int[] cloudPixels(HomeActivity home, android.view.View sky) {
