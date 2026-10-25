@@ -78,3 +78,12 @@ lampiran foto/PDF/DOCX/TXT sudah diterapkan serta diuji ke provider lewat Vercel
 tetapi C03/C07 tetap terbuka untuk gerbang yang tersisa. C09 generasi gambar belum
 tersedia, Gemini API baru kandidat tanpa aktivasi biaya. [Bukti dan batas](android/validation/ai-home-refresh-2026-10-25/README.md).
 Ini checkpoint beta, tidak mengubah cakupan wajib rilis publik atau menutup C/F/G.
+
+**26 Oktober, beta1.9.6:** pengguna memilih Cloudflare Workers AI Free untuk C09,
+memasukkan token secara lokal dan mengonfirmasi paket Free. C09 kini selesai
+sebatas beta: FLUX.1 Schnell nyata dari APK lewat Vercel, prompt-only consent,
+kuota3 per instalasi/20 total per hari, dedup/batal/error, riwayat/preview/save/share
+privat dan batas installer dibuktikan. Ini menggantikan status antrean C09/Gemini
+sebagai kandidat di atas. [Bukti dan batas](android/validation/image-generation-2026-10-26/README.md).
+Tidak mengaktifkan billing atau menambah Worker/hosting/database baru. Pengujian
+pemilih tujuan/share app di HP tetap G02; C lain dan rilis publik belum ditutup.

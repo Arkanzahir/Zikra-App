@@ -233,3 +233,56 @@ timeout/konfigurasi UI, C02 operasional/laptop mati, C04 jadwal/akurasi, C06 dik
 fisik, B01 sumber Gading, D02a adzan dan F/G/publik tetap terbuka. UI04 keseluruhan
 belum ditutup. Checkpoint lokal; belum push dibuktikan. Jangan membuat ulang
 hosting/database atau mengubah key/env. Fixture Redis sintetis live sudah dihapus.
+
+## Checkpoint terbaru — C09 Cloudflare Free, beta1.9.6
+
+26 Oktober: pengguna memilih opsi gratis Cloudflare, login sendiri, membuat token
+Workers AI dan menyimpannya di `.local/cloudflare.env`, lalu mengonfirmasi Workers
+Free. **C09 [x] untuk beta**; status belum ada layanan gambar pada catatan1.9.5
+di atas kini historis. Runtime `717a9c5`, harness keyboard `1c42900`.
+[Bukti/source/hash dan batas](android/validation/image-generation-2026-10-26/README.md).
+
+- FLUX.1 Schnell nyata berhasil **APK → Vercel → Cloudflare**, JPEG1024×1024
+  didecode/disimpan/ditampilkan. + atau saran **Buat gambar**, draf mode terpisah,
+  tinjauan prompt saja, hasil berlabel ilustrasi AI, preview/save/share dan riwayat
+  lokal. Tidak auto-kirim ketika jaringan pulih; profil/history/lampiran tidak ikut
+  request gambar. Text-to-image, belum edit foto atau janji hasil selalu akurat.
+- Model/4 langkah tetap, Redis Lua3 percobaan/instalasi/hari dan20 total/hari,
+  nonce dedup, reset UTC00/WIB07, fail-closed ketika kuota rusak/Redis gagal.
+  Batal/gagal/timeout dapat memakai percobaan; retry perlu konfirmasi baru.
+  Cloudflare Free juga memiliki kuota akun bersama. Tidak ada paid fallback atau
+  perubahan billing/paket. Token hanya backend, bukan APK/Git.
+- Hasil privat maksimal32MB; metadata JSON hanya ref. Save memakai pemilih dokumen
+  Android; share memakai chooser + URI read-only. Provider test-export **hanya di
+  APK helper tes**, bukan app. Validasi MIME/decode/dimensi/base64/path dan batas2MB;
+  penghapusan chat membersihkan file, termasuk AtomicFile `.new`/`.bak` terputus.
+- Hosting existing `https://zikra-ai.vercel.app`, deployment
+  `Du6X24ysdLE3Zc6Ua6A6Q5Nt6CLR`; immutable
+  `https://zikra-1i4jk6stt-arkanzahir86-3257s-projects.vercel.app`.
+  Tambahan `/v1/images` dan `/v1/capabilities` terautentikasi. Kode handler
+  Vercel/Redis; CLI privat tetap chat. Tidak membuat proyek/database/Worker baru,
+  tidak mengganti key Featherless atau token instalasi pengguna.
+
+APK folder luar **`Zikra-AI-v1.9.6-beta-debug.apk`**, code33, **37.013.519 byte**,
+SHA-256 `dc55e1e817f17dece0765d06b434b846291d53663fde6220adb05a899ff67c80`.
+Signer debug sama, SQLite utama4/chat1; APK1.9.5/lama tetap.47 backend lulus termasuk
+Lua asli di fakeredis/Lupa lokal (bukan konkurensi Upstash produksi),19 eksekusi
+native/18 metode unik lulus;116 unit lulus/4 skip,lint0 error/753 warning. Ekspor
+byte nyata melalui provider fixture terpisah; chooser/save-picker diintersep,
+tidak mengirim ke aplikasi pihak ketiga. Pemilihan tujuan aktual/share app di HP
+tetap G02. Probe Upstash langsung dari komputer timeout; alur Vercel nyata lulus.
+Prefix probe sintetis terpisah berttl48jam, cleanup langsung tidak terkonfirmasi;
+tidak ada profil/prompt/data pengguna pada prefix itu atau perubahan registry.
+
+Tes awal bermasalah pada chaining Intent void, filter MIME/category, layar emulator
+tertidur dan startup resize/jaringan fixture. Tidak dihitung lulus. Build/filter,
+layar aktif/fokus dan assertion IME benar-benar terbuka dipertajam; font200% lebar
+dan sempit kemudian lulus.10 file asli emulator pulih cocok hash; helper/marker
+dihapus, font/ukuran/jaringan/stay-awake/setting keyboard kembali, emulator ditutup.
+HP tidak diubah. WIP PROJECT_HANDOFF.md/env lama/stash/audio/master logo/aset malam
+dan APK lama dipertahankan; audit nilai rahasia terarah bersih.
+
+C01/C05/C08/C09 selesai hanya lingkupnya. C02/C03/C04/C06/C07, sumber Hadis B01,
+adzan D02a, UI04 keseluruhan/F/G dan publik tetap terbuka. Jangan menyebut semua C
+selesai. Tidak memakai Gemini atau mengaktifkan billing. Checkpoint lokal sampai
+push dibuktikan; jangan mengulang hosting/proyek dari nol atau mencetak env privat.
