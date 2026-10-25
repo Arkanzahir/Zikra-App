@@ -38,4 +38,8 @@
   <color name="home_prayer_panel_bottom">#05272B</color>
   <color name="home_prayer_panel_border">#24FFFFFF</color>
   <color name="home_prayer_active">#F5CC65</color>
+  <color name="home_shortcut_ink">#0C3834</color>
+  <color name="home_shortcut_needle">#30675D</color>
+  <color name="home_shortcut_mint">#DFF3EB</color>
+  <color name="home_shortcut_gold">#FAEED2</color>
 </resources>

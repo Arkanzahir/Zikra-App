@@ -1,0 +1,6 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="48dp" android:height="48dp" android:viewportWidth="48" android:viewportHeight="48">
+    <path android:pathData="M24,4 A20,20 0,1 0,24,44 A20,20 0,1 0,24,4 M24,8 L24,11 M24,37 L24,40 M8,24 L11,24 M37,24 L40,24" android:fillColor="#00000000" android:strokeColor="@color/home_shortcut_ink" android:strokeWidth="2.2" android:strokeLineCap="round" />
+    <path android:pathData="M34,14 L27.5,27.5 L14,34 L20.5,20.5 Z" android:fillColor="@color/home_shortcut_ink" android:strokeColor="@color/home_shortcut_ink" android:strokeWidth="1.6" android:strokeLineJoin="round" />
+    <path android:pathData="M34,14 L24,24 L20.5,20.5 Z" android:fillColor="@color/home_shortcut_needle" />
+    <path android:pathData="M24,21.5 A2.5,2.5 0,1 0,24,26.5 A2.5,2.5 0,1 0,24,21.5" android:fillColor="@color/home_shortcut_mint" />
+</vector>
