@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import okhttp3.*;
 import org.json.*;
 
@@ -46,6 +47,7 @@ public final class OnlineAssistantClient implements AutoCloseable {
   private final Handler main = new Handler(Looper.getMainLooper());
   private Call active;
   private int generation;
+  private final AtomicBoolean closed = new AtomicBoolean();
 
   public static JSONArray context(JSONArray stored) throws JSONException {
     ArrayList<JSONObject> chosen = new ArrayList<>();
@@ -69,6 +71,7 @@ public final class OnlineAssistantClient implements AutoCloseable {
   }
 
   public void send(AssistantConnection connection, JSONObject body, Result result) throws Exception {
+    if (closed.get()) throw new IOException("Assistant client is closed");
     cancel();
     int token = generation;
     String code = connection.accessCode(), endpoint = connection.endpoint();
@@ -169,9 +172,15 @@ public final class OnlineAssistantClient implements AutoCloseable {
 
   @Override
   public void close() {
+    if (!closed.compareAndSet(false, true)) return;
     cancel();
     main.removeCallbacksAndMessages(null);
-    http.connectionPool().evictAll();
-    http.dispatcher().executorService().shutdown();
+    // Closing an idle TLS socket can write close_notify; never do that on the UI thread.
+    Thread cleanup = new Thread(() -> {
+      try { http.connectionPool().evictAll(); }
+      finally { http.dispatcher().executorService().shutdown(); }
+    }, "Zikra-AI-cleanup");
+    cleanup.setDaemon(true);
+    cleanup.start();
   }
 }
