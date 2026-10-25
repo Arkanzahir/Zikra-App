@@ -13,14 +13,20 @@ import java.time.*;
 /** Quiet layered sky; bounded 30fps, no allocations/network/Binder reads in each frame. */
 public final class HomeSkyView extends View implements SensorEventListener {
   private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-  private final Path cloud = new Path(), moon = new Path();
+  private final Path moon = new Path();
+  private final Bitmap clouds;
+  private final RectF cloudBounds = new RectF();
+  private final Paint cloudPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+  private final Rect visible = new Rect();
+  private int paletteMinute = -1, cloudColor;
+  private float scrollOffset;
+  private Shader textShade;
+  private final Shader sunGlow = new RadialGradient(0, 0, 1,
+      new int[] {0x60FFE4A5, 0x00FFE4A5}, null, Shader.TileMode.CLAMP);
   private final Bitmap landscape;
   private final RectF landscapeBounds = new RectF();
   private final Paint landscapePaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-  private final ColorFilter nightLandscape =
-      new PorterDuffColorFilter(0xFF9ABDB2, PorterDuff.Mode.MULTIPLY);
   private Shader backdrop;
-  private boolean backdropDay;
   private int backdropWidth, backdropHeight;
   private final AmbientMotionPolicy policy;
   private final SensorManager sensors;
@@ -39,7 +45,8 @@ public final class HomeSkyView extends View implements SensorEventListener {
     bitmapOptions.inSampleSize = 2;
     landscape =
         BitmapFactory.decodeResource(
-            c.getResources(), R.drawable.home_mosque_landscape_v2, bitmapOptions);
+            c.getResources(), R.drawable.home_al_qibli_foreground, bitmapOptions);
+    clouds = BitmapFactory.decodeResource(c.getResources(), R.drawable.home_cloud_bank, bitmapOptions);
     sensors = (SensorManager) c.getSystemService(Context.SENSOR_SERVICE);
     gravity = sensors == null ? null : sensors.getDefaultSensor(Sensor.TYPE_GRAVITY);
     policy =
@@ -49,18 +56,13 @@ public final class HomeSkyView extends View implements SensorEventListener {
               syncSensor();
               invalidate();
             });
-    cloud.moveTo(0, 18);
-    cloud.cubicTo(5, 7, 20, 8, 25, 12);
-    cloud.cubicTo(28, -5, 50, -4, 56, 9);
-    cloud.cubicTo(70, 0, 85, 8, 87, 17);
-    cloud.cubicTo(106, 12, 112, 23, 110, 28);
-    cloud.cubicTo(74, 32, 24, 32, 0, 28);
-    cloud.close();
     com.zikra.app.location.LocationPoint point = com.zikra.app.location.LocationStore.current(c);
     setSky(SkyDay.estimate(LocalDate.now(point.zone), point), LocalTime.now(point.zone));
   }
 
   public void setSky(SkyDay value, LocalTime localTime) {
+    if (day == null || !day.date.equals(value.date) || !day.rise.equals(value.rise)
+        || !day.set.equals(value.set)) paletteMinute = -1;
     day = value;
     time = localTime;
     // Normalized lunar terminator. Orientation is illustrative; the lit fraction follows the
@@ -81,7 +83,7 @@ public final class HomeSkyView extends View implements SensorEventListener {
   }
 
   public boolean isMotionRunning() {
-    return running && isShown() && hasWindowFocus() && policy.enabled();
+    return running && isShown() && hasWindowFocus() && getLocalVisibleRect(visible) && policy.enabled();
   }
 
   public boolean isDaytime() {
@@ -137,14 +139,16 @@ public final class HomeSkyView extends View implements SensorEventListener {
   @Override
   public void onAccuracyChanged(Sensor s, int accuracy) {}
 
+  public void setScrollOffset(float pixels) {
+    scrollOffset = pixels;
+    invalidate();
+  }
+
   private void cloud(Canvas c, float x, float y, float scale, int alpha) {
-    c.save();
-    c.translate(x, y);
-    c.scale(scale, scale);
-    paint.setColor(0xFF9ABFB0);
-    paint.setAlpha(alpha);
-    c.drawPath(cloud, paint);
-    c.restore();
+    float width = getWidth() * scale, height = width * clouds.getHeight() / clouds.getWidth();
+    cloudBounds.set(x, y, x + width, y + height);
+    cloudPaint.setAlpha(alpha);
+    c.drawBitmap(clouds, null, cloudBounds, cloudPaint);
   }
 
   @Override
@@ -166,22 +170,26 @@ public final class HomeSkyView extends View implements SensorEventListener {
       offsetY += (aimY - offsetY) * .10f;
     } else offsetX = offsetY = 0;
     float w = getWidth(), h = getHeight(), u = w / 400f;
-    if (backdrop == null
-        || backdropDay != light
-        || backdropWidth != getWidth()
-        || backdropHeight != getHeight()) {
-      backdropDay = light;
-      backdropWidth = getWidth();
-      backdropHeight = getHeight();
-      backdrop =
-          new LinearGradient(
-              0,
-              0,
-              w,
-              h,
-              light ? 0xFF143F37 : 0xFF102E2D,
-              light ? 0xFF547665 : 0xFF193D37,
-              Shader.TileMode.CLAMP);
+    int minute = time.toSecondOfDay() / 60;
+    if (backdrop == null || paletteMinute != minute
+        || backdropWidth != getWidth() || backdropHeight != getHeight()) {
+      paletteMinute = minute;
+      backdropWidth = getWidth(); backdropHeight = getHeight();
+      backdrop = new LinearGradient(0, 0, w, h, SkyPalette.top(day, time),
+          SkyPalette.horizon(day, time), Shader.TileMode.CLAMP);
+      textShade = new LinearGradient(0, 0, w, 0,
+          new int[] {0xAA082F32, 0x70082F32, 0x00082F32}, new float[] {0, .48f, 1},
+          Shader.TileMode.CLAMP);
+      int color = SkyPalette.cloud(day, time);
+      if (color != cloudColor) {
+        cloudColor = color;
+        cloudPaint.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+      }
+      float brightness = .38f + .62f * SkyPalette.daylight(day, time);
+      float warm = .65f * (1 - SkyPalette.daylight(day, time));
+      landscapePaint.setColorFilter(new ColorMatrixColorFilter(new float[] {
+          brightness + warm,0,-warm,0,0, warm * .6f,brightness,-warm * .6f,0,0,
+          0,0,brightness + .03f * (1-brightness),0,0, 0,0,0,1,0}));
     }
     paint.setShader(backdrop);
     paint.setAlpha(255);
@@ -189,40 +197,17 @@ public final class HomeSkyView extends View implements SensorEventListener {
     paint.setShader(null);
     if (light) {
       float progress = day.sunProgress(time),
-          x = w * (.68f + .22f * progress),
+          x = w * (.84f + .10f * progress),
           y = h * .34f - h * .08f * (float) Math.sin(Math.PI * progress);
-      paint.setColor(0xFFEDC581);
-      paint.setAlpha(20);
-      c.drawCircle(x, y, 24 * u, paint);
-      paint.setAlpha(230);
-      c.drawCircle(x, y, 17 * u, paint);
       c.save();
-      c.rotate(t * .7f, x, y);
-      paint.setAlpha(40);
-      paint.setStrokeWidth(u);
-      for (int i = 0; i < 12; i++) {
-        double a = i * Math.PI / 6;
-        c.drawLine(
-            x + (float) Math.cos(a) * 21 * u,
-            y + (float) Math.sin(a) * 21 * u,
-            x + (float) Math.cos(a) * 24 * u,
-            y + (float) Math.sin(a) * 24 * u,
-            paint);
-      }
+      c.translate(x + offsetX * 3 * u, y + offsetY * 2 * u);
+      c.save(); c.scale(38 * u, 38 * u);
+      paint.setShader(sunGlow); paint.setAlpha(255);
+      c.drawCircle(0, 0, 1, paint);
+      paint.setShader(null); c.restore();
+      paint.setColor(0xFFFFE9AE);
+      c.drawCircle(0, 0, 15 * u, paint);
       c.restore();
-      paint.setAlpha(255);
-      cloud(
-          c,
-          w * .72f + offsetX * 5 * u + (float) Math.sin(t * .15) * 8 * u,
-          h * .38f + offsetY * 2 * u,
-          .62f * u,
-          66);
-      cloud(
-          c,
-          w * .01f + offsetX * 9 * u + (float) Math.sin(t * .11) * 10 * u,
-          h * .40f,
-          .8f * u,
-          45);
     } else {
       for (int i = 0; i < 19; i++) {
         float x = w * ((i * 43 + 23) % 367) / 400f, y = h * (.25f + ((i * 31) % 47) / 170f);
@@ -235,8 +220,8 @@ public final class HomeSkyView extends View implements SensorEventListener {
       }
       c.save();
       c.translate(
-          w * .84f + offsetX * 5 * u,
-          h * .31f + offsetY * 3 * u + (float) Math.sin(t * .12f) * 2 * u);
+          w * .87f + offsetX * 5 * u,
+          h * .26f + offsetY * 3 * u + (float) Math.sin(t * .12f) * 2 * u);
       c.rotate(-18 + (float) Math.sin(t * .045f) * 6);
       c.scale(17 * u * (day.waxing ? 1 : -1), 17 * u);
       paint.setColor(0xFF63756A);
@@ -246,21 +231,22 @@ public final class HomeSkyView extends View implements SensorEventListener {
       paint.setAlpha(230);
       c.drawPath(moon, paint);
       c.restore();
-      cloud(
-          c,
-          w * .58f + offsetX * 7 * u + (float) Math.sin(t * .10) * 15 * u,
-          h * .42f,
-          .8f * u,
-          34);
-      cloud(c, w * .70f + (float) Math.sin(t * .07f) * 24 * u, h * .57f, 1.1f * u, 22);
     }
+    float drift = (float) Math.sin(t * .025f);
+    cloud(c, w * .33f + drift * 12 * u + offsetX * 4 * u,
+        h * .23f + offsetY * 2 * u - Math.min(scrollOffset, h) * .025f, .60f, light ? 190 : 95);
+    cloud(c, w * .18f + (float) Math.sin(t * .018f + 2) * 16 * u + offsetX * 8 * u,
+        h * .39f - Math.min(scrollOffset, h) * .045f, .72f, light ? 120 : 58);
     c.save();
-    c.translate(offsetX * 3 * u, offsetY * 1.5f * u);
+    c.translate(offsetX * 3 * u, offsetY * 1.5f * u - Math.min(scrollOffset, h) * .015f);
     float imageHeight = w * landscape.getHeight() / landscape.getWidth();
-    landscapeBounds.set(0, h - imageHeight, w, h);
-    landscapePaint.setColorFilter(light ? null : nightLandscape);
+    landscapeBounds.set(-2 * u, h - imageHeight - 52 * u, w + 42 * u, h - 48 * u);
+    paint.setColor(0xFF123C39); paint.setAlpha(255);
+    c.drawRect(0, h - 60 * u, w, h + 4 * u, paint);
     c.drawBitmap(landscape, null, landscapeBounds, landscapePaint);
     c.restore();
+    paint.setShader(textShade); paint.setAlpha(255);
+    c.drawRect(0, 0, w, h, paint); paint.setShader(null);
     if (animate) postInvalidateDelayed(33);
   }
 }

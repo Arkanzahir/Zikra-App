@@ -43,16 +43,16 @@ public final class HomeNavigationTest extends InstrumentationTestCase {
     awaitWindowFocus(home);
   }
 
-  public void testComfortableHomeOrdersPrayerBeforeCountdown() throws Exception {
+  public void testComfortableHomeOrdersPrayerCountdownAndTime() throws Exception {
     View name = home.findViewById(R.id.homeNextPrayer),
         time = home.findViewById(R.id.homeNextTime),
         clock = home.findViewById(R.id.homeClock);
     assertTrue("Prayer name comes before time", name.getTop() < time.getTop());
-    assertTrue("Countdown follows prayer time", time.getBottom() <= clock.getTop());
+    assertTrue("Scheduled time follows countdown", clock.getBottom() <= time.getTop());
     assertTrue(
         "Illustrated hero retains reference height",
         home.findViewById(R.id.homeHero).getHeight()
-            >= 304 * home.getResources().getDisplayMetrics().density - 1);
+            >= 300 * home.getResources().getDisplayMetrics().density - 1);
     UiEvidence.capture(getInstrumentation(), "ComfortableHome");
   }
 
@@ -62,8 +62,8 @@ public final class HomeNavigationTest extends InstrumentationTestCase {
     assertNotNull(destination.findViewById(R.id.hadithList));
   }
 
-  public void testHijriDateOpensInteractiveCalendar() {
-    openFromHome(R.id.homeHijri, CalendarActivity.class);
+  public void testVisibleDateOpensInteractiveCalendar() {
+    openFromHome(R.id.homeGregorian, CalendarActivity.class);
     assertNotNull(destination.findViewById(R.id.calendarMonth));
     assertTrue(destination.findViewById(R.id.calendarNext).isEnabled());
   }

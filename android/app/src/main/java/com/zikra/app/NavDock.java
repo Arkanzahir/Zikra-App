@@ -32,9 +32,10 @@ public final class NavDock {
     }
     View dock = activity.getLayoutInflater().inflate(R.layout.view_nav_dock, root, false);
     dock.setTag("zikraDock");
+    int baseHeight = activity instanceof HomeActivity ? 56 : 64;
     int height =
         activity.dp(
-            64
+            baseHeight
                 + 32
                     * Math.max(
                         0f,
@@ -43,7 +44,7 @@ public final class NavDock {
     LinearLayout items = dock.findViewById(R.id.navItems);
     State state = new State();
     state.content = root.getChildAt(0);
-    state.extraInset = height - activity.dp(64);
+    state.extraInset = height - activity.dp(baseHeight);
     items.setTag(state);
     add(
         activity,
@@ -132,7 +133,9 @@ public final class NavDock {
     row.setContentDescription(label);
     row.setSelected(key.equals(selected));
     ImageView glyph = row.findViewById(R.id.navDestinationIcon);
-    glyph.setImageResource(icon);
+    glyph.setImageResource(page instanceof HomeActivity && key.equals("home")
+        ? R.drawable.home_nav_active
+        : page instanceof HomeActivity && key.equals("study") ? R.drawable.home_ic_hifz : icon);
     TextView text = row.findViewById(R.id.navDestinationLabel);
     boolean largeType = page.getResources().getConfiguration().fontScale >= 1.5f;
     text.setText(key.equals("ai") && largeType ? "Zikra\nAI" : label);
@@ -144,6 +147,15 @@ public final class NavDock {
     text.setTypeface(
         text.getTypeface(),
         key.equals(selected) ? android.graphics.Typeface.BOLD : android.graphics.Typeface.NORMAL);
+    if (page instanceof HomeActivity) {
+      android.view.ViewGroup.LayoutParams glyphParams = glyph.getLayoutParams();
+      glyphParams.width = page.dp(36); glyphParams.height = page.dp(28); glyph.setLayoutParams(glyphParams);
+      glyph.setPadding(page.dp(8), page.dp(4), page.dp(8), page.dp(4));
+      row.setPadding(0, 0, 0, page.dp(largeType ? 10 : 14));
+      text.setAutoSizeTextTypeUniformWithConfiguration(9, 10, 1, android.util.TypedValue.COMPLEX_UNIT_SP);
+      LinearLayout.LayoutParams textParams = (LinearLayout.LayoutParams) text.getLayoutParams();
+      textParams.topMargin = page.dp(2); text.setLayoutParams(textParams);
+    }
     View indicator = row.findViewById(R.id.navDestinationIndicator);
     indicator.setVisibility(View.GONE);
     glyph.setBackgroundResource(key.equals(selected) ? R.drawable.concept_mint_card : 0);

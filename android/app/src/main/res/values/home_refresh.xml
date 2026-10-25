@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="refresh_home_rhythm">Ruang harimu</string>
+  <string name="refresh_home_rhythm_caption">Satu langkah baik, setiap hari.</string>
+  <string name="refresh_home_agenda">Agenda berikutnya</string>
+  <string name="refresh_home_agenda_all">Lihat semua  →</string>
+  <string name="refresh_home_empty_title">Ada yang ingin dituntaskan?</string>
+  <string name="refresh_home_empty_caption">Belum ada tugas belajar yang terbuka. Tambahkan rencana di Study.</string>
+  <string name="refresh_home_agenda_count">%1$d tugas belajar belum selesai</string>
+  <string name="refresh_home_no_deadline">Belum ada tenggat · buka Study</string>
+  <string name="refresh_home_deadline">Tenggat %1$s · buka Study</string>
+  <string name="refresh_home_focus">Beri ruang untuk fokus</string>
+  <string name="refresh_home_focus_caption">Jauhkan distraksi sebentar. Mulai satu sesi untuk tujuanmu.</string>
+  <string name="refresh_home_focus_action">Mulai sesi  →</string>
+  <string name="refresh_home_end">Pelan-pelan, tetap bertumbuh.</string>
+  <string name="refresh_home_start_reading">Mulai membaca</string>
+  <string name="refresh_home_towards">Menuju %1$s</string>
+  <string name="refresh_home_at">Pukul %1$s</string>
+  <string name="refresh_home_tomorrow">Besok · %1$s</string>
+  <string name="refresh_home_shortcut_quran">Quran</string>
+  <string name="refresh_home_shortcut_dua">Doa</string>
+  <string name="refresh_home_shortcut_qibla">Kiblat</string>
+  <string name="refresh_home_shortcut_hifz">Hifz</string>
+  <string name="refresh_home_shortcut_ai">Zikra AI</string>
+  <string name="refresh_home_shortcut_protector">Protector</string>
+  <string name="refresh_home_shortcut_study">Study</string>
+  <string name="refresh_home_shortcut_hadith">Hadis</string>
+  <string-array name="home_prayer_labels">
+    <item>Subuh</item>
+    <item>Terbit</item>
+    <item>Zuhur</item>
+    <item>Asar</item>
+    <item>Maghrib</item>
+    <item>Isya</item>
+  </string-array>
+</resources>

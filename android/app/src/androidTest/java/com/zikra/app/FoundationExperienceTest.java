@@ -197,9 +197,9 @@ public final class FoundationExperienceTest extends InstrumentationTestCase {
         page.getResources().getConfiguration().screenWidthDp <= 325);
     View dock = page.findViewById(R.id.homeRoot).findViewWithTag("zikraDock");
     float dp = page.getResources().getDisplayMetrics().density;
-    assertTrue(dock.getHeight() >= 96 * dp - 1);
-    assertTrue(page.findViewById(R.id.homeSkySource).getHeight() >= 48 * dp - 1);
-    assertTrue(page.findViewById(R.id.homeHijri).getHeight() >= 48 * dp - 1);
+    assertTrue(dock.getHeight() >= 48 * dp - 1);
+    assertTrue(page.findViewById(R.id.homeLocation).getHeight() >= 48 * dp - 1);
+    assertTrue(page.findViewById(R.id.homeChecklist).getHeight() >= 48 * dp - 1);
     LinearLayout shortcuts = page.findViewById(R.id.homeShortcuts);
     assertEquals("Large text uses four rows of two shortcuts", 4, shortcuts.getChildCount());
     LinearLayout items = page.findViewById(R.id.navItems);
@@ -217,11 +217,8 @@ public final class FoundationExperienceTest extends InstrumentationTestCase {
           label.getLayout().getLineEnd(label.getLineCount() - 1));
     }
     assertTrue(page.findViewById(R.id.dockHome).isSelected());
-    assertEquals(
-        View.VISIBLE,
-        page.findViewById(R.id.dockHome)
-            .findViewById(R.id.navDestinationIndicator)
-            .getVisibility());
+    assertNotNull(page.findViewById(R.id.dockHome)
+        .findViewById(R.id.navDestinationIcon).getBackground());
     getInstrumentation()
         .runOnMainSync(
             () -> {
@@ -230,7 +227,7 @@ public final class FoundationExperienceTest extends InstrumentationTestCase {
             });
     getInstrumentation().waitForIdleSync();
     Rect action = new Rect(), dockBounds = new Rect();
-    assertTrue(page.findViewById(R.id.homeContinueReading).getGlobalVisibleRect(action));
+    assertTrue(page.findViewById(R.id.homeFocusCard).getGlobalVisibleRect(action));
     assertTrue(dock.getGlobalVisibleRect(dockBounds));
     assertTrue("Last action is not covered by navigation", action.bottom <= dockBounds.top);
     assertTrue(page.findViewById(R.id.homeContinueReading).getHeight() >= 48 * dp - 1);

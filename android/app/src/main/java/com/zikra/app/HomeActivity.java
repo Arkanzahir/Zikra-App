@@ -23,7 +23,9 @@ import java.util.Locale;
 
 public final class HomeActivity extends BaseActivity {
   private LocationPoint location = LocationPoint.INITIAL;
+  private java.time.Clock clock = java.time.Clock.systemUTC();
   private ZikraDbHelper db;
+  private String[] prayerNames;
   private com.zikra.app.sky.HomeSkyView sky;
   private com.zikra.app.sky.SkyRepository skyRepository;
   private com.zikra.app.sky.SkyDay skyDay;
@@ -65,12 +67,56 @@ public final class HomeActivity extends BaseActivity {
       return;
     }
     setContentView(R.layout.activity_home);
+    prayerNames = getResources().getStringArray(R.array.home_prayer_labels);
     findViewById(R.id.homeFocusCard).setOnClickListener(v -> open(FocusTimerActivity.class));
+    LinearLayout brand = findViewById(R.id.homeRoot).findViewWithTag("zikraBrand");
+    android.view.View symbol = brand.getChildAt(0);
+    symbol.setLayoutParams(new LinearLayout.LayoutParams(dp(58), dp(58)));
+    TextView wordmark = (TextView) brand.getChildAt(1);
+    wordmark.setTypeface(android.graphics.Typeface.create("serif", android.graphics.Typeface.BOLD));
+    wordmark.setTextSize(26);
+    LinearLayout.LayoutParams brandParams = (LinearLayout.LayoutParams) brand.getLayoutParams();
+    brandParams.leftMargin = -dp(6); brand.setLayoutParams(brandParams);
+    LinearLayout.LayoutParams wordParams = (LinearLayout.LayoutParams) wordmark.getLayoutParams();
+    wordParams.leftMargin = dp(4); wordmark.setLayoutParams(wordParams);
+    findViewById(R.id.homeHero).setOnLongClickListener(v -> {
+      findViewById(R.id.homeSkySource).performClick(); return true;
+    });
     adaptHomeForTextSize();
     NavDock.attach(this, findViewById(R.id.homeRoot), "home");
     setupScreen("Zikra");
+    getWindow().setNavigationBarColor(android.graphics.Color.TRANSPARENT);
+    if (android.os.Build.VERSION.SDK_INT >= 30) getWindow().setDecorFitsSystemWindows(false);
+    android.view.View homeRoot = findViewById(R.id.homeRoot);
+    homeRoot.setBackgroundColor(getColor(R.color.pine));
+    findViewById(R.id.homeScroll).setBackgroundColor(getColor(R.color.studio_cream));
+    homeRoot.setOnApplyWindowInsetsListener((view, insets) -> {
+      int top = android.os.Build.VERSION.SDK_INT >= 30
+          ? insets.getInsets(android.view.WindowInsets.Type.statusBars()).top : insets.getSystemWindowInsetTop();
+      int bottom = android.os.Build.VERSION.SDK_INT >= 30
+          ? insets.getInsets(android.view.WindowInsets.Type.navigationBars()).bottom : insets.getSystemWindowInsetBottom();
+      view.setPadding(0, top, 0, bottom > dp(30) ? bottom : 0);
+      return insets;
+    });
+    homeRoot.requestApplyInsets();
+    getWindow().getDecorView().setSystemUiVisibility(
+        android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            | android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            | android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     db = new ZikraDbHelper(this);
     sky = findViewById(R.id.homeSky);
+    findViewById(R.id.homeHero).addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+      int wanted = Math.max(dp(1), bottom - top - dp(14));
+      if (sky.getLayoutParams().height != wanted) {
+        android.view.ViewGroup.LayoutParams params = sky.getLayoutParams();
+        params.height = wanted; sky.setLayoutParams(params);
+      }
+    });
+    android.widget.ScrollView homeScroll = findViewById(R.id.homeScroll);
+    homeScroll.setOnScrollChangeListener((v, x, y, oldX, oldY) -> {
+      sky.setScrollOffset(y);
+      sky.setRunning(y < findViewById(R.id.homeHero).getBottom());
+    });
     skyRepository = new com.zikra.app.sky.SkyRepository(this);
     entrancePlayed = state != null && state.getBoolean("entrance_played", false);
     entrancePolicy =
@@ -140,6 +186,7 @@ public final class HomeActivity extends BaseActivity {
                 startActivity(
                     new android.content.Intent(this, QuranActivity.class)
                         .putExtra(QuranActivity.EXTRA_RESUME_READING, true)));
+    findViewById(R.id.homeAgendaAll).setOnClickListener(v -> open(StudyActivity.class));
     findViewById(R.id.homeLocation).setOnClickListener(v -> open(LocationActivity.class));
     findViewById(R.id.homePrayerStrip).setOnClickListener(v -> open(PrayerActivity.class));
   }
@@ -159,7 +206,10 @@ public final class HomeActivity extends BaseActivity {
     ((TextView) findViewById(R.id.homeLocationLabel)).setText(location.label.split(",")[0] + " ⌄");
     findViewById(R.id.homeLocation)
         .setContentDescription("Lokasi " + location.caption() + ". Ketuk untuk mengubah.");
-    sky.setRunning(true);
+    sky.post(() -> {
+      android.widget.ScrollView homeScroll = findViewById(R.id.homeScroll);
+      sky.setRunning(homeScroll.getScrollY() < findViewById(R.id.homeHero).getBottom());
+    });
     entrancePolicy.start();
     if (!entrancePlayed) {
       entrancePlayed = true;
@@ -173,8 +223,11 @@ public final class HomeActivity extends BaseActivity {
       }
     }
     updateProgress();
+    updateAgenda();
     PrayerReminders.sync(this);
     SharedPreferences p = getSharedPreferences("zikra_preferences", MODE_PRIVATE);
+    ((TextView) findViewById(R.id.homeReadingLabel)).setText(p.contains("last_surah")
+            ? R.string.reference_continue : R.string.refresh_home_start_reading);
     ((TextView) findViewById(R.id.homeLastRead))
         .setText(p.getString("last_surah", "Al-Fatihah") + " · Ayat " + p.getInt("last_ayah", 1));
     findViewById(R.id.homeContinueReading)
@@ -203,6 +256,61 @@ public final class HomeActivity extends BaseActivity {
     ((SegmentedProgressView) findViewById(R.id.homeProgressTicks)).setProgress(done, total);
   }
 
+  private void updateAgenda() {
+    java.util.List<com.zikra.app.data.Task> tasks = new java.util.ArrayList<>();
+    for (com.zikra.app.data.Task task : db.getTasks())
+      if (ZikraDbHelper.CATEGORY_STUDY.equals(task.category) && !task.completed) tasks.add(task);
+    tasks.sort(java.util.Comparator
+        .comparingLong((com.zikra.app.data.Task task) -> task.dueAt > 0 ? task.dueAt : Long.MAX_VALUE)
+        .thenComparingLong(task -> task.id));
+    LinearLayout container = findViewById(R.id.homeAgendaItems);
+    container.removeAllViews();
+    ((TextView) findViewById(R.id.homeAgendaCount)).setText(tasks.isEmpty()
+        ? getString(R.string.refresh_home_empty_title)
+        : getString(R.string.refresh_home_agenda_count, tasks.size()));
+    if (tasks.isEmpty()) {
+      TextView empty = new TextView(this);
+      empty.setText(R.string.refresh_home_empty_caption);
+      empty.setTextSize(14);
+      empty.setTextColor(getColor(R.color.muted));
+      empty.setPadding(dp(16), dp(20), dp(16), dp(20));
+      container.addView(empty);
+      return;
+    }
+    for (int i = 0; i < Math.min(3, tasks.size()); i++) {
+      com.zikra.app.data.Task task = tasks.get(i);
+      if (i > 0) {
+        android.view.View divider = new android.view.View(this);
+        divider.setBackgroundColor(getColor(R.color.concept_line));
+        LinearLayout.LayoutParams line = new LinearLayout.LayoutParams(-1, dp(1));
+        line.setMargins(dp(16), 0, dp(16), 0);
+        container.addView(divider, line);
+      }
+      LinearLayout row = new LinearLayout(this);
+      row.setOrientation(LinearLayout.VERTICAL);
+      row.setPadding(dp(16), dp(16), dp(16), dp(16));
+      row.setMinimumHeight(dp(64));
+      TextView title = new TextView(this);
+      title.setText(task.title);
+      title.setTextSize(16);
+      title.setTextColor(getColor(R.color.pine));
+      title.setTypeface(title.getTypeface(), android.graphics.Typeface.BOLD);
+      row.addView(title);
+      TextView detail = new TextView(this);
+      detail.setTextSize(13);
+      detail.setTextColor(getColor(R.color.muted));
+      detail.setPadding(0, dp(6), 0, 0);
+      detail.setText(task.dueAt == 0 ? getString(R.string.refresh_home_no_deadline)
+          : getString(R.string.refresh_home_deadline, java.time.Instant.ofEpochMilli(task.dueAt)
+              .atZone(location.zone).format(DateTimeFormatter.ofPattern("d MMM, HH:mm", Locale.forLanguageTag("id-ID")))));
+      row.addView(detail);
+      row.setBackgroundResource(android.R.drawable.list_selector_background);
+      row.setFocusable(true);
+      row.setOnClickListener(v -> open(StudyActivity.class));
+      container.addView(row, new LinearLayout.LayoutParams(-1, -2));
+    }
+  }
+
   /** Keep times readable and reflow shortcuts instead of shrinking the user's larger text. */
   private void adaptHomeForTextSize() {
     float scale = getResources().getConfiguration().fontScale;
@@ -229,8 +337,8 @@ public final class HomeActivity extends BaseActivity {
   }
 
   private void updateClock() {
-    if (!LocationStore.today(this).equals(progressDate)) updateProgress();
-    ZonedDateTime now = ZonedDateTime.now(location.zone);
+    if (!LocationStore.today(this).equals(progressDate)) { updateProgress(); updateAgenda(); }
+    ZonedDateTime now = ZonedDateTime.now(clock).withZoneSameInstant(location.zone);
     loadSky(false);
     if (skyDay != null) sky.setSky(skyDay, now.toLocalTime());
     int hour = now.getHour();
@@ -272,23 +380,20 @@ public final class HomeActivity extends BaseActivity {
                 + " H");
     PrayerSchedule.NextPrayer event = PrayerSchedule.nextAfter(now, location);
     int next = event == null ? -1 : event.index;
-    PrayerSchedule.Day timetable = PrayerSchedule.forDate(now.toLocalDate(), location);
+    PrayerSchedule.Day timetable = PrayerSchedule.forDate(
+        event == null ? now.toLocalDate() : event.time.toLocalDate(), location);
     if (event == null) {
       ((TextView) findViewById(R.id.homeNextPrayer)).setText("—");
       ((TextView) findViewById(R.id.homeNextTime)).setText("");
       ((TextView) findViewById(R.id.homeClock)).setText("—");
-      ((TextView) findViewById(R.id.homeCountdown))
-          .setText("Jadwal belum tersedia untuk lokasi ini");
+      ((TextView) findViewById(R.id.homeCountdown)).setText("Jadwal belum tersedia untuk lokasi ini");
     } else {
-      ((TextView) findViewById(R.id.homeNextPrayer)).setText(PrayerSchedule.NAMES[next]);
-      ((TextView) findViewById(R.id.homeNextTime))
-          .setText(
-              getString(
-                  R.string.layout_prayer_time,
-                  event.time.toLocalDate().isAfter(now.toLocalDate())
-                      ? getString(R.string.concept_tomorrow)
-                      : getString(R.string.layout_today),
-                  event.time.format(DateTimeFormatter.ofPattern("HH.mm", Locale.ROOT))));
+      ((TextView) findViewById(R.id.homeNextPrayer)).setText(getString(
+          R.string.refresh_home_towards, prayerNames[next]));
+      ((TextView) findViewById(R.id.homeNextTime)).setText(getString(
+          event.time.toLocalDate().isAfter(now.toLocalDate())
+              ? R.string.refresh_home_tomorrow : R.string.refresh_home_at,
+          event.time.format(DateTimeFormatter.ofPattern("HH.mm", Locale.ROOT))));
       long seconds = Math.max(0, java.time.Duration.between(now, event.time).getSeconds());
       ((TextView) findViewById(R.id.homeClock))
           .setText(
@@ -298,7 +403,7 @@ public final class HomeActivity extends BaseActivity {
       String interval =
           minutes >= 60 ? (minutes / 60 + " jam " + minutes % 60 + " menit") : (minutes + " menit");
       String content =
-          PrayerSchedule.NAMES[next]
+          prayerNames[next]
               + (event.time.toLocalDate().isAfter(now.toLocalDate()) ? " besok" : "")
               + " tinggal "
               + interval
@@ -331,16 +436,16 @@ public final class HomeActivity extends BaseActivity {
       for (int i = 0; i < PRAYER_SLOTS.length; i++) {
         LinearLayout slot = findViewById(PRAYER_SLOTS[i]);
         boolean active = i == next;
-        slot.setBackgroundResource(active ? R.drawable.concept_gold_button : 0);
+        slot.setBackgroundResource(0);
         ((ImageView) slot.getChildAt(1))
             .setColorFilter(getColor(active ? R.color.camel : R.color.home_prayer_text));
         ((TextView) slot.getChildAt(0))
-            .setTextColor(getColor(active ? R.color.pine : R.color.home_prayer_text));
-        ((TextView) slot.getChildAt(2)).setText(timetable.time(i));
+            .setTextColor(getColor(active ? R.color.camel : R.color.home_prayer_text));
+        ((TextView) slot.getChildAt(2)).setText(timetable.time(i).replace(':', '.'));
         ((TextView) slot.getChildAt(2))
-            .setTextColor(getColor(active ? R.color.pine : R.color.white));
+            .setTextColor(getColor(active ? R.color.camel : R.color.white));
         slot.setContentDescription(
-            PrayerSchedule.NAMES[i]
+            prayerNames[i]
                 + " "
                 + timetable.time(i)
                 + (active ? ", sholat berikutnya" : ""));
@@ -349,7 +454,7 @@ public final class HomeActivity extends BaseActivity {
   }
 
   private void loadSky(boolean force) {
-    java.time.LocalDate date = java.time.LocalDate.now(location.zone);
+    java.time.LocalDate date = ZonedDateTime.now(clock).withZoneSameInstant(location.zone).toLocalDate();
     if (!force && date.equals(requestedSkyDate)) return;
     requestedSkyDate = date;
     skyRepository.load(
@@ -358,7 +463,7 @@ public final class HomeActivity extends BaseActivity {
         location,
         day -> {
           skyDay = day;
-          sky.setSky(day, java.time.LocalTime.now(location.zone));
+          sky.setSky(day, ZonedDateTime.now(clock).withZoneSameInstant(location.zone).toLocalTime());
           findViewById(R.id.homeSkySource)
               .setContentDescription(
                   "Langit · "
