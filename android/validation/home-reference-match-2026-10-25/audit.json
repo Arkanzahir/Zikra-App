@@ -1,6 +1,6 @@
 {
   "scope": "known current secret values, tracked/source/evidence files and all uncompressed app APK entries; not historical secret certification",
-  "sourceFilesScanned": 1633,
+  "sourceFilesScanned": 1635,
   "sourceSecretMatches": 0,
   "apkEntriesScanned": 408,
   "apkSecretMatches": 0,

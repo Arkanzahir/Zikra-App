@@ -23,6 +23,8 @@ Countdown, jadwal, lokasi, bacaan terakhir, progres dan agenda pada aplikasi mem
 - Gulir, bacaan terakhir, agenda kosong/berisi, tujuan Study/fokus, brand di bawah status bar, label dock terjangkau dan jadwal besok diperiksa.
 - Gerak awan dibuktikan dengan perbedaan piksel pada screenshot layar nyata selama 4,8 detik: [100%](motion-100.json), [200%](motion-200.json). Area tetap identik ketika animasi sistem dimatikan. Render juga berhenti saat offscreen dan dilanjutkan saat terlihat. Ini bukan pengukuran baterai HP.
 
+Harness tambahan `4c64d80` menunggu perubahan terang/gelap pada piksel layar nyata sebelum menangkap frame siang/malam. Pemeriksaan visual menemukan satu capture rasio acuan masih menampilkan frame sebelumnya walau state model sudah malam; capture diulang dengan guard ini. Source runtime APK tetap `6bdf360`; perubahan hanya pada helper pengujian. Log publik dinormalisasi CR/LF/spasi akhir, hash salinan asli privat dicatat di checks.
+
 [Preservasi](preservation.json): sepuluh file data internal asli emulator dipulihkan dan cocok SHA-256; marker sementara dihapus, font 1,0 dan ukuran layar sebelumnya dipulihkan, helper dihapus, emulator ditutup. Kandidat ini **tidak dipasang pada HP fisik**. Backup asli privat tetap di `.local/`; tidak masuk laporan publik.
 
 ## APK dan batas

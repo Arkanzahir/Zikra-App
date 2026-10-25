@@ -74,8 +74,9 @@
     },
     {
       "path": "android/app/src/androidTest/java/com/zikra/app/HomeRefreshTest.java",
-      "gitBlob": "1d395054a7b429f9e4ddf234630375a3e03465c3",
-      "workingFileSha256": "d51d9e38f001a3ffe13b8ce63088a48b4d22f1610baea5f6ea0d5d0edd95963e"
+      "gitBlob": "109073ce6084fd8cd40d6980f91d959142e4a615",
+      "workingFileSha256": "7a390785cf58b5b89d76a2e2b3354b9e41910473ad4f9d82c542b3033594462d",
+      "commitOverride": "4c64d8003aa0844a8feaad72701d836a538b842d"
     },
     {
       "path": "android/app/src/androidTest/java/com/zikra/app/LiveQariPlaybackTest.java",
@@ -2913,5 +2914,10 @@
       "gitBlob": "3be38aa2c4e793943612025c6cf82181b99a91d0",
       "workingFileSha256": "ab22072033320a29b0f47d6c0c0f4433c1d3dc5eca2cc0da8a880742fe65aa9c"
     }
-  ]
+  ],
+  "testHarnessOverlay": {
+    "commit": "4c64d8003aa0844a8feaad72701d836a538b842d",
+    "path": "android/app/src/androidTest/java/com/zikra/app/HomeRefreshTest.java",
+    "description": "Only native capture harness changed after APK runtime checkpoint; APK app source unchanged."
+  }
 }

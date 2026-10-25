@@ -13,5 +13,6 @@
   "signerCertificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
   "status": "Home reference correction candidate for review; UI04 overall and public release remain open",
   "aiRuntimeRedesigned": false,
-  "physicallyInstalledThisCandidate": false
+  "physicallyInstalledThisCandidate": false,
+  "testHarnessCommit": "4c64d8003aa0844a8feaad72701d836a538b842d"
 }

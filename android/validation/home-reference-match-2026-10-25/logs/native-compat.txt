@@ -32,7 +32,7 @@ INSTRUMENTATION_RESULT: stream=
 
 Test results for InstrumentationTestRunner=.
 
-Time: 2.377
+Time: 2.478
 
 
 

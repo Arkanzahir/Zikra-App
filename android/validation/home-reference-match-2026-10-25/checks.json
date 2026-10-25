@@ -80,34 +80,46 @@
       },
       {
         "path": "logs/native-100.txt",
-        "originalPrivateSha256": "27efd5285356dc732f5c3cf612b03606860027bd3d95636a1822bcdd38c6cfb3",
-        "publicSha256": "2158f2c2b8a0be1cf0597fd28e408517d7328b64c3430c540eeb4c544305fa84"
+        "originalPrivateSha256": "722bdba25bd386e1f3d3677c0900bb92fb72cbd474a3a85d25e594180b65d321",
+        "publicSha256": "8789831ab32ead581b5e8e700371c2305e67a2ead0af3acaf68ea85a4a97dbcd"
       },
       {
         "path": "logs/native-200.txt",
-        "originalPrivateSha256": "63a093e81168f23605b4c198055cb61abc0b766ad7f35a9d83ba491440c86f54",
-        "publicSha256": "d539fcb37356b15acc78fde468b805c338ca1702d16f16cadba9f2cdd69be2c1"
-      },
-      {
-        "path": "logs/native-calendar.txt",
-        "originalPrivateSha256": "04eeeaccd86e66cb68992371fcac88f9c963dee7b2487f755083e64caafe9bfc",
-        "publicSha256": "6a127712151afccaa78c6537f81caf7868ee9630c70d70be4aa2912fb7b2816b"
+        "originalPrivateSha256": "80010a5c05fca9357f490948d31089a8b9b50b6e758a31168f4d471e9530f71b",
+        "publicSha256": "2b2731491bf60e3d5c1ed10dc5379690414f5d7ca77b48e30ef314bcd6f57708"
       },
       {
         "path": "logs/native-compat.txt",
-        "originalPrivateSha256": "dfa0bc3d823ab314983ddafae2adc97dc2ea248ea935b044dd6bb070188eff73",
-        "publicSha256": "204a62011c0069c95a23c0a31e2adaa03f80a9a93de28ce77d334ab5720a0c11"
+        "originalPrivateSha256": "eb0d356d59ad55464212ad05318509e0e11b85f5ed638276176b981f2d646ee6",
+        "publicSha256": "baaed4e50d30eae9b114d34757b268b093e7b0f562fa905c36478c570b317d40"
+      },
+      {
+        "path": "logs/native-calendar.txt",
+        "originalPrivateSha256": "55c3245af6fcc104049d3685ed99c306d12cc35544b19fc856c1de4e3fb99218",
+        "publicSha256": "76f1e77ea737bdd05a5986354c0efe747610f82cc7754ffbbd51f2a42ccb444a"
       },
       {
         "path": "logs/native-narrow.txt",
-        "originalPrivateSha256": "05a2aab9bf3a28f7b2013c9a3adc1a564566c6541a7d38c29c2582297b401cb2",
-        "publicSha256": "ea6b43b4318a6e4fec5d6e3a3baa125ea459a2d137ae50c575eef1af24b1e49f"
+        "originalPrivateSha256": "d694610d0624e0ef5fb1c54a645bbc5ecfa915d5940fe0a52cc443bfb62f0430",
+        "publicSha256": "ef3cd177f9e344e2ca99ef2dd83d9a79d88a985d280b2e3724d2c400d328c3e2"
       },
       {
         "path": "logs/native-reference-frame.txt",
-        "originalPrivateSha256": "cfb0645ce3a7a3c2adab0694731748fb4d456e563d1be39878adf4022b7a5493",
-        "publicSha256": "fdcafb9ff3ad1db5c568a994bc338bcf19156b12a4b86b4badde99b86d5c73e5"
+        "originalPrivateSha256": "e479d7650411b7bcbc4ad6923cdf69391cf28298159f990a7283cdb35dceccab",
+        "publicSha256": "7a4779d4244bc69503970de499a732548f8ae9a16b7e86473a40e47a5cca5adf"
+      },
+      {
+        "path": "logs/harness-build.txt",
+        "originalPrivateSha256": "e0c23d959dfb4a7fa59f53daf0ccfb37d8f9d84e5aeca1880cb532d06a2ad187",
+        "publicSha256": "f5b0e4c0a7d10424c01e087f45f3959f8a591d3abf2b289b574ee19e3d85e808"
+      },
+      {
+        "path": "logs/harness-lint.txt",
+        "originalPrivateSha256": "dfeed82a19c1dbff49b9557590d51458b17eacee46eaa344e99d007ff88ec36d",
+        "publicSha256": "362932c78ecf24be5c8bda4ccf0a0bf87d2b14e8c11de43046f90213cae9882d"
       }
     ]
-  }
+  },
+  "testHarnessCommit": "4c64d8003aa0844a8feaad72701d836a538b842d",
+  "renderedFrameGuard": "Before day/night capture, poll actual display brightness in a quiet sky region until requested state is rendered; model state alone is insufficient."
 }
