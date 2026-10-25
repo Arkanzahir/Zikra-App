@@ -1,0 +1,28 @@
+{
+  "reference": "design/concepts/home-al-aqsa-day-night-review-2026-10-25-v5.png",
+  "referenceSha256": "c3228a1e304084474ca241268653f261730d28b65bddc58af01f492bc1d00df6",
+  "assetOrigin": "built-in image_gen, reconstructed from reviewed Home illustration; not extracted pixel-identical original layers",
+  "assets": [
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/home_al_qibli_foreground.png",
+      "sha256": "1fedfc7a3eab18615822cb95a153293c325900ff7fd51984c3033ce234e57a90",
+      "bytes": 2090635,
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "fullyTransparentPixels": 846454,
+      "partialAlphaPixels": 726410
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/home_cloud_bank.png",
+      "sha256": "02e89d45aafcf2e6764e46c85630b41e11cbdc50ef2fb5e497d59e54f160abdd",
+      "bytes": 1116630,
+      "width": 2172,
+      "height": 724,
+      "mode": "RGBA",
+      "fullyTransparentPixels": 932234,
+      "partialAlphaPixels": 640294
+    }
+  ],
+  "logoMasterUnchanged": true
+}

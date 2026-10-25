@@ -1,0 +1,2917 @@
+{
+  "sourceCommit": "6bdf360c0c6d6f12f06353e321e7d598777c28a7",
+  "normalization": "Git blob IDs compare with path-specific Git normalization; raw working-file SHA-256 also recorded. AI LF/CRLF differences have no semantic diff.",
+  "files": [
+    {
+      "path": "android/app/build.gradle",
+      "gitBlob": "c8be6f908c30584f89ebd97c9120ae9425b779f0",
+      "workingFileSha256": "e24fcbb876ea8492781703cf5a898383276a98a3591e26b81d9b18f4a196c563"
+    },
+    {
+      "path": "android/app/src/androidTest/assets/openmeteo-sukolilo.json",
+      "gitBlob": "a3979836ca245c3b46df89369ee64f0477ee9860",
+      "workingFileSha256": "35ec8901d60891c81a704c1500e365a337244c908c0835db6f34b18efe24bdc1"
+    },
+    {
+      "path": "android/app/src/androidTest/assets/quran-baqarah-page6.json",
+      "gitBlob": "bfb046377e71e1e8bbd457e09152cf2ea8142fc8",
+      "workingFileSha256": "add81ac76190430b227410f05f70ad88306e4db7635ab8ab90d25092733b0769"
+    },
+    {
+      "path": "android/app/src/androidTest/assets/quran-mulk.json",
+      "gitBlob": "74cd2897d602385fb73d00357082ecfabe761f3f",
+      "workingFileSha256": "5ad0af2fbebb7adfab91b50be052f7a22ae0627f731c03ecd98310658dbbab49"
+    },
+    {
+      "path": "android/app/src/androidTest/assets/usno-sukolilo-2026-10-18.json",
+      "gitBlob": "9593a6df7945f8aa6a2cca976b9b9d2e36cd1fc0",
+      "workingFileSha256": "c6f45566b97eb56e1c87e654c1ad2c2cb7898631de7d656c76d1ebde783c3390"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/AcademicFeaturesTest.java",
+      "gitBlob": "5dd73cdfe5fac0bbcca7072f15bb94171830eb9e",
+      "workingFileSha256": "7005555d839bd64493ff7b62e17b1438be1e965d0bf2cf643e839ab2af0c94d9"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/AudioTransferTest.java",
+      "gitBlob": "f69b715dd53516b489d0b9c299da071c8bd3ec23",
+      "workingFileSha256": "960f90d40a1f54ec1f0ac5a67dfabd6b1db842930e36fa788c9afe15aab95fe6"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/CrossFeatureIntegrationTest.java",
+      "gitBlob": "8647bd3aef9a61b06574f98ad839c22aaf47dcee",
+      "workingFileSha256": "6ddeb29dbdff48eb8c48fbbfc4477e78f5e4a8159bb7c8d25ef4cabae386676a"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/DailyDesignReleaseTest.java",
+      "gitBlob": "b9b12036eced20948a25404516e6f08edff11199",
+      "workingFileSha256": "f175b32d3e7d2d0e9bc42733cc5e955fc2693521d54d4e2931fa2091feb6ccd8"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/DeviceLocationTest.java",
+      "gitBlob": "d3ffbfe72cc3e990700672d0427985afb3d6158d",
+      "workingFileSha256": "a1048c257e84fa37d9fb4f7d47df81f2b4e1429586848d1abe6ebb968369411b"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/FocusMotionTest.java",
+      "gitBlob": "e518b7599b7dc9b70357020a72a394bf3eee9981",
+      "workingFileSha256": "e80aabdacb8b35ef2ea362e1970b7eac3c6b5c42816ff4fc61cc4746f46c3368"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/FoundationExperienceTest.java",
+      "gitBlob": "40ab98ed2093785963dadff4ea0e9343934f2733",
+      "workingFileSha256": "94a9dd2cbf4059d729a987a8e8d54ee524b1dcbbe2d00ef5e41bf4eda2936d14"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/HadithContentTest.java",
+      "gitBlob": "7bd9316c534eb16d0a121170d7484af15149ad82",
+      "workingFileSha256": "4282eaa7baa0670606c4550263dd4586aa4b1d833c07894b89a007b5d915ead0"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/HomeNavigationTest.java",
+      "gitBlob": "ee0f0eaf470ff9eb47ee6f52e57bc18f037a629f",
+      "workingFileSha256": "fbdb3857cc3628cbbbd9d1d152f2034149d88d3daac2961bb874166fb8734298"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/HomeRefreshTest.java",
+      "gitBlob": "1d395054a7b429f9e4ddf234630375a3e03465c3",
+      "workingFileSha256": "d51d9e38f001a3ffe13b8ce63088a48b4d22f1610baea5f6ea0d5d0edd95963e"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/LiveQariPlaybackTest.java",
+      "gitBlob": "492da1aaec38fcc082be498dbe0ffd3c331a4175",
+      "workingFileSha256": "7aa64b7974bec65782be5ea6cb48a16ec7d03402a35e8dcfc4eed4a3bf7b8d0f"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/LocationIntegrationTest.java",
+      "gitBlob": "3be2082e7dc0999c897c1acecde6878fc575bdba",
+      "workingFileSha256": "bb14bacf8bbe7e0ec4920aac6f44124ab6226e092478efc36c9a01a5259f856d"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/LocationLiveTest.java",
+      "gitBlob": "8dbdafa5fed61b324ba3d065bbdff98df37275ee",
+      "workingFileSha256": "6b1a6b01e40021c821fe05c9c674d1a1a2680f4254bde3f896475d91e98c86e4"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/LocationPickerStateTest.java",
+      "gitBlob": "a574b5f713f87feb9b1f7f6b67a52ab285f88ae0",
+      "workingFileSha256": "7a545f5467786869dfb88e838443dca0ae313b9a36e8e3aea4bdac475d453928"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/MushafReaderTest.java",
+      "gitBlob": "7be19079d59e72ec82f123534397192949b49258",
+      "workingFileSha256": "7859e466a997292d2c85ba25f7e48d0a8e988bdad4a9cbb6e29e930dfc37d721"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/NativeFlowTest.java",
+      "gitBlob": "d7dc79b44f53266b5cb48b178849779d6e01f642",
+      "workingFileSha256": "1fe66fe99656282d5e04eb2820143a7377b2d584634b3ab17e10b2be870f7b99"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/NativePolishTest.java",
+      "gitBlob": "25d8ed49eae0614e051c363912adaf80a43f7c6d",
+      "workingFileSha256": "e42b9a6685bae52d9a17980dd52e77828a4713a21745dd3c37e27f9938e844b9"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/NearbyDesignTest.java",
+      "gitBlob": "3cdff895f72e89a48726256821809e5fb423aaa8",
+      "workingFileSha256": "40a197c88a6ae1e905c9a49782816fec9a9e76a4058dc66fbb242a6969f14417"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/OnboardingParallaxTest.java",
+      "gitBlob": "6276c8b9dc2a1219e7aa4f6b7ee306cc163937a7",
+      "workingFileSha256": "8f43a4ba8ea3e6392576dbffa06b168727eadb36015545c89656e4e432c41040"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/OptionalContentTest.java",
+      "gitBlob": "f22931e95cc4a9135438b34e4a9e6a25705d0caa",
+      "workingFileSha256": "a9d740c36c86f43e6d17afd5a1a5e194ac59fded2a7a7542a994d09292059d62"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/QualityJourneyTest.java",
+      "gitBlob": "c34ef2adf3ae8e7c7d84e8321bcf19442969ccf6",
+      "workingFileSha256": "8a13f0db130c02f607e546c2c37f477f56da77d5f8ebd049187a9dd7fc401016"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/QuranAudioTest.java",
+      "gitBlob": "6a809ecaf0408e025ef3f12e2544abd49ba091f2",
+      "workingFileSha256": "96dcfd59c4e73c5a85eb52baae733f02335ec2953c1eec6ca1c57f7e9e8bb91f"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/QuranDesignTest.java",
+      "gitBlob": "98441de79603412d95288fe6a3114628e63351ed",
+      "workingFileSha256": "08a970063e903c286afd41adac67a53b8ccfb68b6d919cb83d943d42f7c6f04e"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/RebuiltHomeTest.java",
+      "gitBlob": "a75a62d351409f983ac7fbe09a194132587d8084",
+      "workingFileSha256": "579ae72466cfe7b95b89af8e1a75773e9ccdbc8ad237649d11b9ee058ac31f13"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/RebuiltOnboardingTest.java",
+      "gitBlob": "baa2f365763aa835eeb89a5068d08b974b4073d5",
+      "workingFileSha256": "957999fda1ebb51c0d07c8e93543379ad5861feb20b9f75cb34dec4e06311f32"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/RebuiltQuranTest.java",
+      "gitBlob": "742d88d721c6d25e36bf881e43dde19c1c5842f6",
+      "workingFileSha256": "59159d12d0a03a53441e1c4192a70a6801c3ef8de47653d3fb0a3b41cb41c7e2"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/RebuiltWeatherTest.java",
+      "gitBlob": "1c6573becd175250894acbe19c3b0e16a198d4cf",
+      "workingFileSha256": "36336fae7761a08cfdff051537f7fcaa1822f6679fbb02763a4a3c56ecb65ab3"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/ReferenceFlowTest.java",
+      "gitBlob": "c0fbb2bc038effdfbfb231555ea4abdb10ba80d3",
+      "workingFileSha256": "1322b7156b79d5e79ebe733a51de3396ae6f70b526d0c00bd46f7d0489663c12"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/SafetyReliabilityTest.java",
+      "gitBlob": "c965208cc70913342bc5f106215797ce262bc624",
+      "workingFileSha256": "5abae34af75b9a296a929977b9635e7aef4328ac20e082105f38e987c15e6ab2"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/StaticOnboardingTest.java",
+      "gitBlob": "d1a0f989fec1d639e4a0dd6b62f9e49afb435b67",
+      "workingFileSha256": "05eb1557d3784040a61a2a3e8b2ca9012fc7f8eb12fcc66951956b587372e4e5"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/StudyRecoveryTest.java",
+      "gitBlob": "6d1282666e218d327fe85769cf26427bb010a059",
+      "workingFileSha256": "611c3f6b09b3b5afb82162748d50793305d95dbaba9bc19f262e1164b1fafaa0"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/UiEvidence.java",
+      "gitBlob": "74321fd22df814a625a9bf2c376091bbb7aaacad",
+      "workingFileSha256": "fc04ae3118748fc20a1ffa2874ed2439cb35a42c7f8731aa3d1978eea392fa62"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/UtilitiesPolishTest.java",
+      "gitBlob": "f679b7300fce885519c2698383d45ddb8ba4cb46",
+      "workingFileSha256": "e4d0baa44a671b254c9005544b6b70012e9c21a226d596e1304f3c40a1e16af3"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/assistant/AssistantIntegrationTest.java",
+      "gitBlob": "2fbc3a7704958e3bdc55d7936c03aa171b542275",
+      "workingFileSha256": "1094c7b657ade885ad72d9461155c2f83856c64c82cf6cda4ea53bbe501c981e"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/data/HifzRecoveryStorageTest.java",
+      "gitBlob": "038c9dac271179daf9cc1384fc84e728dfa80dfd",
+      "workingFileSha256": "e1ca2c618d12f4ec7f52ebd1078bae5e6d9ea5c62fb4a5241f1280564134acd4"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/data/ZikraDbHelperTest.java",
+      "gitBlob": "2ad8bfbcf0d627456f694c9c5262c03315ea6ceb",
+      "workingFileSha256": "9dc02b46d204a6cc141ace2839e6be0c34072a399d929d611f80fdf0a4117327"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/reminders/LocationAlarmTest.java",
+      "gitBlob": "5dcabb98dfde37e26df8d3a105bccdd76597bb9d",
+      "workingFileSha256": "9887858ca6d9f6d6ab2341f16279e41c1cbe2e8ec4463ef7c36d467875db1a4b"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/reminders/PrayerRemindersTest.java",
+      "gitBlob": "1a620bada68aac931974e76a07fdb87a88100415",
+      "workingFileSha256": "2818a681f09b6a5d26589ac2d82d24da83af4fa3f5b53ccef22a1344b630de14"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/safety/BmkgDesignTest.java",
+      "gitBlob": "7e5618ac61ff526ca9d032ca456e0092c4aa21ef",
+      "workingFileSha256": "b27a85a0fbf95e43b31398c46b13b428163f05df955c1001a8221ddb30afaae8"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/safety/BmkgNativeTest.java",
+      "gitBlob": "2256d9fd83af9d1224f06b382db23e06ce74218e",
+      "workingFileSha256": "b8b22799da8ef898739489ca65f2e9ff91a0764954d4ef3a3d7c237849805622"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/safety/BmkgParserTest.java",
+      "gitBlob": "05148d2f2b54479a2fba1e7aefc2eaf8c11ba5e9",
+      "workingFileSha256": "4fd5fc1472afde9f77f22bdd49f77c2bd0c6216f398d1123c0222726e11ff876"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/safety/BmkgTransportTest.java",
+      "gitBlob": "1682144bd7985da32e9bdc58396b5bed2e144424",
+      "workingFileSha256": "25f2756fd1b143ee972ee12598e96b4f0b1e48f359bdccd62311aca963a1af69"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/safety/ProtectorReleaseTest.java",
+      "gitBlob": "4d5f0c2ff6683bdb766375f880452c38effaa588",
+      "workingFileSha256": "3398cbc69ee4bf4eecd143511f80797d31c9d7c12c68fd69bda8b29733a89b6f"
+    },
+    {
+      "path": "android/app/src/hostedTest/java/com/zikra/app/assistant/HostedAssistantTest.java",
+      "gitBlob": "769a370d1afbc76f527c872012bc3f9a00cc8970",
+      "workingFileSha256": "1a5f97554484e8c9026106451df7e169131b7b4a2cc76355cb1306e9e109e0bb"
+    },
+    {
+      "path": "android/app/src/main/AndroidManifest.xml",
+      "gitBlob": "4a7c66bf91d68d09f58cc1f280c8521e95fd29b4",
+      "workingFileSha256": "b40aa39f0d3c87404dd0ff71e7e04ccde6d2bdaa7bfc513795d3917ec91b9e50"
+    },
+    {
+      "path": "android/app/src/main/assets/licenses/osmdroid-APACHE-2.0.txt",
+      "gitBlob": "183393ca46e64349ffc61b72453cc750cc5c3cd5",
+      "workingFileSha256": "89cc887be62b290b5ae036288a349de1979a22cc2801b0b4c6a336e65c35cd35"
+    },
+    {
+      "path": "android/app/src/main/assets/licenses/protector-roboto-ofl.txt",
+      "gitBlob": "65a3057b1f24b7425ccf7c94a3e092d42b08e4eb",
+      "workingFileSha256": "7fc71631cf5ad1c89cfbf004f08d40731c8b881d8e895b4997877e3c5359d270"
+    },
+    {
+      "path": "android/app/src/main/assets/licenses/protector-weather.txt",
+      "gitBlob": "b4e5b6c5f510d044cbe0b268009215ebdf692425",
+      "workingFileSha256": "517c5b73437dc76b25b26c9bc88faba1442d1c3506e6fa02b2fe4948123e4978"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/AiActivity.java",
+      "gitBlob": "69fbea5ddc8627e6fa6696e7266fe6662c0f7ed6",
+      "workingFileSha256": "5cb7584cf0a7b09fc19362bede7aaee5ea93ccdb7b8e9f96391a02c1b963e62b"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/BaseActivity.java",
+      "gitBlob": "57976709c51348ba02faf88ba2da74b86f0b44c0",
+      "workingFileSha256": "2655097cb184023f996982ec6e9df614f99b02bf68c496c3e491bd196283f108"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/CalendarActivity.java",
+      "gitBlob": "93ffc479eba424ea2d8c62a3c23579080a75f8b6",
+      "workingFileSha256": "3f2bd9f414c2af1f90a0bcae6784dd7ed33a117f6d68b013cb4c2d094e84a65c"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/DetailActivity.java",
+      "gitBlob": "99bd79552f8d09e9ee88cd51b222b07c16078fd8",
+      "workingFileSha256": "2759ad8b27485f68dc1750e13e18bfba2fced49e3823b684e5b1cc19668c71b1"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/DuaActivity.java",
+      "gitBlob": "937e2662d896405f0bae8233befbe95fbada84d1",
+      "workingFileSha256": "59b0a9370639d7ed26304019c5015f9b2c9e63bebfe1758df76ba0acc86cd03b"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/DuaLibraryActivity.java",
+      "gitBlob": "63e57a244ab114d05d231714fd357804fa9b26d0",
+      "workingFileSha256": "361bf0bdf2732780b559cc28f645d47e97ec846232647b0a8967f0d739f8cba4"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/EarthquakeActivity.java",
+      "gitBlob": "b8cf271bb523df620e1c175a99606292b954b7c8",
+      "workingFileSha256": "1288ebc0a59e49087628384e24b4d331d4aeed59b18fe6f29241a0556d6306b5"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/FocusTimerActivity.java",
+      "gitBlob": "fd18b98ce1bf1fa20f42b6b44260e81a2a727541",
+      "workingFileSha256": "81d83233f9a202fa5cf8e2efa6b718024bb853dcc92571f7e5470e5b19c836bf"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/HadithActivity.java",
+      "gitBlob": "95fdea9276d86edaf9b787913fdb51fc1bf3c058",
+      "workingFileSha256": "8a4b7ef950e99baef38e13033091eedc265baf278fa7e4ba15af2d8443cb76b0"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/HadithReaderActivity.java",
+      "gitBlob": "9fc61683ae5e989de26cbb6843150ffa8c15e2e9",
+      "workingFileSha256": "9d40cbd438a3a5539361afe7efb9b75d88c3668d6e783cb0664fae8563230169"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/HomeActivity.java",
+      "gitBlob": "741816446008b9edcffa3003d7cb7b5511b34e81",
+      "workingFileSha256": "9039be4283702ba33494dbacd925fe508e50dabc6ec88afe00293ef6178dc0a2"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/InfaqActivity.java",
+      "gitBlob": "0c7675014a3c0aa12f168672be4226c020322e00",
+      "workingFileSha256": "a8e69b4372aa28efb6b541b401eb100578124dfb109a729d188d12a10dd82770"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/LocationActivity.java",
+      "gitBlob": "05311a0f143f57956951bee16e293b90675cf03e",
+      "workingFileSha256": "1e8d20b227fc692c4c4ac136434ee17f97a5293a1f080447e92624cfc8abe4fb"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/MushafActivity.java",
+      "gitBlob": "c012bb607c82e2021d8f1ed3280aabea031b32e3",
+      "workingFileSha256": "08f3586606aaa2b101243a43a40ceb62c07039883ae5e996669e5625b42d15e7"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/NavDock.java",
+      "gitBlob": "24f89a13a12d1457c8439d72489f5b25202c8410",
+      "workingFileSha256": "54edcc75cab93f242fc67aed0b2e3cfad1188987e3b7c10713b5667fc9d3344a"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/NearbyMosquesActivity.java",
+      "gitBlob": "3e73f917783bf64587bf7b20708188fc5fc74952",
+      "workingFileSha256": "e7e9956f17eba86784a1615582b29f7b5f93829c5479095ad8ff49896ae38324"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/OnboardingActivity.java",
+      "gitBlob": "da570ae92c458c756d2c517ced9de6051f58024b",
+      "workingFileSha256": "5139121018ed06a434a6013071c6db016fdef336e35aa5c116189b38bfcc5a35"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/PrayerActivity.java",
+      "gitBlob": "10163329333d802e75e7f5c2da3b072a31a18489",
+      "workingFileSha256": "f9d555944b3d9a41b8a0245888ce29aa145e06c24e3cff1df1610686e8918c7c"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/PrayerSchedule.java",
+      "gitBlob": "3defe7b70e31d6ab12adb9e7283ac07848487870",
+      "workingFileSha256": "699429671fda6808014e26b26075f0aa0149c3eaf7f509a91ec72b3574f9c468"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ProfileActivity.java",
+      "gitBlob": "564da0038dd0cdf9d7540f7f80fdb7ac9718f521",
+      "workingFileSha256": "296faffce941a50d7d4087504e224c58150ea7dbb3589c78d311db51700525cf"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ProtectorActivity.java",
+      "gitBlob": "5b2efdd79554176689bab295b5e78f0caaf946d0",
+      "workingFileSha256": "595daa6d44db5bc73aa112c056b85a5bf89d614c135cb004f884cb4549907bac"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/QiblaActivity.java",
+      "gitBlob": "3d316c01467af713e25674d7c11e8edc1294de77",
+      "workingFileSha256": "bcd403c57cfd2e5d3f9451032e927ce3efa20738f946943b3b08e1937da7966a"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/QuranActivity.java",
+      "gitBlob": "4795ce74ce3d4e0de3d4676897aa2089af819411",
+      "workingFileSha256": "1af356adf8dfe5fa9e4858934ad6e8a2fa4df321ab7f7df1ce5b05b70eb36ab0"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/SplashActivity.java",
+      "gitBlob": "276255ee0972f2f907fc366feb8c2c5a9c3771e7",
+      "workingFileSha256": "09b4b9fad07819dd80a11e5d80fbc31e579059265b98b3690a519cc47401028a"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/StudyActivity.java",
+      "gitBlob": "5d66a47d0a92b2143ff24617e29d1a783d1ee462",
+      "workingFileSha256": "ccef6d8ccdb92592aa38fce31915b502bc95b6385e6fbc8be73afd39f96d53b5"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/WeatherActivity.java",
+      "gitBlob": "d3fbeb94d4c04bb03e9b9a563f474077ed120ba9",
+      "workingFileSha256": "4d0dbdbc2d6ff82f7aa67e52d07e52b2919399cae68a09c7da239848dae9720c"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/assistant/AssistantConnection.java",
+      "gitBlob": "e1ce4ca9d4323eed0adcbf455e5fde4d405646fd",
+      "workingFileSha256": "f9efc08b240199ae1c772c3df792d25ea95f82b5475476ae865ea7d36ab0584f"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/assistant/AssistantOrbView.java",
+      "gitBlob": "ad1a9f353a4007833d943b5f2acac306e9ef6e08",
+      "workingFileSha256": "fea3a6977d1e1057a85a5837079018b4479cc2ce40babfd8df0e4e5606c07954"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/assistant/AssistantSelection.java",
+      "gitBlob": "41fe36a7d252410255dbd0151a9b8141f2fc482f",
+      "workingFileSha256": "5ec538c048b0efde5c24764b2a0c7ede0354127017ce1c164efa31033ba6fb25"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/assistant/OfflineAssistant.java",
+      "gitBlob": "1a6d5f5a3c269fd2715035128635ee775997b24c",
+      "workingFileSha256": "57d4f712907edb4528f3ce393e03c20fecc9459d4ac4ed0825f6483c0c6915ac"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/assistant/OnlineAssistantClient.java",
+      "gitBlob": "778b0ca44dec7d423962e3ed9f344e7239fe0a4a",
+      "workingFileSha256": "6d046a92df333144698bb21af52bb590be7292e81287c20bd5b84317cf597312"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/assistant/TaskProposal.java",
+      "gitBlob": "0ce2bd6b970662d8d2977ba5202db918c520544b",
+      "workingFileSha256": "ac2cbc86677a2b764f473f7782f16551872bdef86befc368cfacb492a0e5e73f"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/assistant/VoiceDraft.java",
+      "gitBlob": "dcf12a3fb9c1f9d3797cc55931b70d1d1c2611a2",
+      "workingFileSha256": "db5c6ae6e5883c47d559c311d732db802948a279dc987d845cb5729b5a280fe6"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/audio/AudioFiles.java",
+      "gitBlob": "89889fe0550c96db56360d30c44581e4795eb902",
+      "workingFileSha256": "2e7666b458c395a1b69f300c8306b7b554a4b0b3c4fcc451e217e3e2201a2f0a"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/audio/AudioTransfer.java",
+      "gitBlob": "401233553767f9b30b36d5b8547f094309658872",
+      "workingFileSha256": "5ad54bfc4ec932f58d08c8a4ca606c32847b7a86ef19f8833f7034379dd28691"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/audio/CatalogAudioUi.java",
+      "gitBlob": "fb859389378db0a68482219fbd4c461efb920316",
+      "workingFileSha256": "89ebb5cc0164713a102c6fd85f0452b584bfac8f01f5355fa0685c4348121f1b"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/audio/QuranAudioService.java",
+      "gitBlob": "9d837827b87dd9f002ba6cccf03eef982e632501",
+      "workingFileSha256": "854c27b90ecc872229f2515354e5fd82f3e5dbc5a1cf72bad5babb0c4a124083"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/audio/QuranDownloadService.java",
+      "gitBlob": "ef6679935a484dc0d2903030cf20bf2533ea3656",
+      "workingFileSha256": "f7c94508d0a8e6eb296fe2b0546fe9bd38eb1197f8e7a4c2ac832fdd42255f19"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/audio/ReaderAudioUi.java",
+      "gitBlob": "8a24537bc7af62c4445a716204b600b8252c199a",
+      "workingFileSha256": "34b5ca6ab2ea78457c5c465ff35c7daeb203c10b70cdd73da891b46c819f400c"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/audio/Recitation.java",
+      "gitBlob": "232208f49fbaf4792ae9f9035dd79fd687b305e8",
+      "workingFileSha256": "a00606d9cfa26ebb72f1943ac64a7861f7d489d92c3aac72d2eb571fa8f22779"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/audio/RecitationQueue.java",
+      "gitBlob": "ccb73d974841101816349637d8e54edbbaf9a5b6",
+      "workingFileSha256": "867e9109c652dcbead8e0b45d431d90ea1afb7f0877e8e069d9155db2401a47c"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/audio/TimedAudioRepository.java",
+      "gitBlob": "5792ada2a1c0f578fc7f75ed2fd973ea616ed29f",
+      "workingFileSha256": "3fc871a04a7d05db3b90a5334ea926fb672d2d516f519464bdd4f9a1f636ae5f"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/audio/TimedRecitation.java",
+      "gitBlob": "a24f45ca0b6e2912dc89826cc051fe6e2ccc2b36",
+      "workingFileSha256": "83813cabdf00c79a7070e49e915d1e4819ae06e80193468ece4136147dc65e6a"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/data/HifzTarget.java",
+      "gitBlob": "0f97898eba976fa4e6ebd0994ac51bbee409a045",
+      "workingFileSha256": "37e20cc91f6bacb44983198bd35c4854acd9d75fb208a52377f413e32af295a1"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/data/Task.java",
+      "gitBlob": "59c0beac98bba3b84b87f3281611e12bb88de3ff",
+      "workingFileSha256": "679007d1b320168e31787f941116905cb2c96bc31f25ed08c0a22207f3d67dbf"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/data/ZikraDbHelper.java",
+      "gitBlob": "27d2de258c462949ee7aff450090b5ecc55e3f24",
+      "workingFileSha256": "18f6eb5a2c6fd4e9a3166be66a131535d9879105df6e735bdde9dc256ab912d5"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/discovery/DiscoveryUi.java",
+      "gitBlob": "9d0a4e9a59175390d45bc2d599ca2e30205bbaca",
+      "workingFileSha256": "5eb1acff6b60a7776377f58e88fa3628b01fe9e07922bb3376a40d0bcb76231e"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/discovery/DuaCatalog.java",
+      "gitBlob": "7c61c34e97859d219335e07c7f214ce1c9a80fd1",
+      "workingFileSha256": "257ed6e8adddcb709bf4db41a5bbb860435aac1574aa611386565f0b4d098fb3"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/discovery/DuaCatalogRepository.java",
+      "gitBlob": "2267633d6a073cc39b6e66167d16e3232d8e949d",
+      "workingFileSha256": "64a1eb07897d1fe3486fb53ba847a12f2302ef262214295605df0a849d853f1d"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/discovery/DuaReview.java",
+      "gitBlob": "5153ab1bc17fd70a6d11d29450781a3bd86adb2c",
+      "workingFileSha256": "ab42dc86fae49e618c3d3539cbcf34bd314b5febc2bf4b5d675d9dfb046fbc83"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/discovery/DuaSelection.java",
+      "gitBlob": "08e38180b622c6290a48d940d20e3fb838c4dff6",
+      "workingFileSha256": "7c62dc92227dc75b51b5551755827f2732eda198a77e19934c557dba942631a5"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/discovery/DuaSourceSnapshots.java",
+      "gitBlob": "6a1ddca7bc4756c616a020a619f0888d30e751f5",
+      "workingFileSha256": "4aee1bf623e94ecc86f6eca1ea88465dd4cb4804390230ab0878c62a7389c9ae"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/discovery/HadithCollection.java",
+      "gitBlob": "9a80c4ceeb257d79c476afb0cdc9224f2aa507d4",
+      "workingFileSha256": "d01fc5d354f5a52b41e887162d10e2097176188918fe9f0896270d9d411d8654"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/discovery/HadithSearch.java",
+      "gitBlob": "197025c956554a9b34dc7c50d6d9ad45b3f3f517",
+      "workingFileSha256": "e3eee16e6a870ea570bc0e040a072f0e44fc35cdcf427b8dcfdfe17780bb78db"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/discovery/HadithStore.java",
+      "gitBlob": "9826ebcde3338b69a0325ff20a3ec1353c66080d",
+      "workingFileSha256": "c1132d4c70da9ed342959cc70305ba456607383f40625f647cd5b08a7a7e6861"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/discovery/HijriCalendarModel.java",
+      "gitBlob": "2675b1481fabb1206ab3b34430a0086227296ffe",
+      "workingFileSha256": "abd6c4d550078acf43279ca0eec13b4d70cbf2a7ed833e7d119f20cbee89a7b4"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/discovery/LearningOrbitView.java",
+      "gitBlob": "f671ae72213413e56747d0a90b5ac9fc8c3bea86",
+      "workingFileSha256": "3d377b969853d91fe7d641e578844555f1c86a77990b2aca08f1b438f2ee3507"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/location/CitySearch.java",
+      "gitBlob": "ee58ee6b00f20eee776dd3b316ef664677caa010",
+      "workingFileSha256": "3b29ca8fff865d47e7146b222b0c8a57994b6b354e285e6447c7f77fabd4d28c"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/location/LocationPoint.java",
+      "gitBlob": "5e76c21f4b0c0633e642244fe53f0b95f0b5347d",
+      "workingFileSha256": "f49bc27849b159fc1f877b06cd60b6d0fd84be8aafc5e15bfd4c8ef33216fc21"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/location/LocationStore.java",
+      "gitBlob": "a8935112a73cfb32051bbc0d8e66b6d1c906aa19",
+      "workingFileSha256": "45d12a140f74f4e1ea77ef2d1614a39efdf0b7cd2bff1ad34555ac58b628de29"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/mosque/MosquePlace.java",
+      "gitBlob": "6842b8c2d16399cd8a4dd047bf3753bfb1fed45d",
+      "workingFileSha256": "a48d08c89fda39ed9042445a8e574e50403ee4b319ba315b049f3875567deb50"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/mosque/MosqueSearch.java",
+      "gitBlob": "1204f8f3d1a7c4e201ed03c2e51f0cbe3465e80f",
+      "workingFileSha256": "99434466c9024f2b7cd8a8ec0af62da204c316e60331ae32ddb51371a06eef44"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/ArabicWordMap.java",
+      "gitBlob": "c925cf004c1d8e0e8fae7614fcb9eca30afc43df",
+      "workingFileSha256": "8be626788f9afef9030a864cd7df2df6c4ed6df9fd429512018d2a450aacacff"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/CompassMath.java",
+      "gitBlob": "733eb7cc418fefeecdf8b8932571d0c05e2b1418",
+      "workingFileSha256": "a72ad1c0bca19bc94e3ace0e5a82c091f3ab10e4a9e757df47de81c4f2bbbf37"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/QiblaCompassView.java",
+      "gitBlob": "5841e15976eceb6a4d03b9338ab937e8b0677082",
+      "workingFileSha256": "f1fac2ba4c0c9ce6100771a3d8b2c3d14e83b1ec848b1ee737d7aba975848f8f"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/QuranChapters.java",
+      "gitBlob": "15cf2e218053b962b6a3927055357c44dd982d93",
+      "workingFileSha256": "227fa6c9535dda3340b7618692773183b17ba03e5523c269d4cf77edb6953ce5"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/QuranPage.java",
+      "gitBlob": "9a997cc2ea7e03bb1053bb46b2aed51d625ed0ac",
+      "workingFileSha256": "1aab9e288b1af9a2366cfd616e7ef08f2efc04e33eb96f3b2e65676b5f40ecbe"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/QuranRepository.java",
+      "gitBlob": "5eeb74c472e8641fd76284b31a2a89815597ee9d",
+      "workingFileSha256": "d96eba8071379889f4b3c9a5bd52cf4099e098c5d9881a3a5b03e047a5e7661d"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/SurahData.java",
+      "gitBlob": "bad886d4e6e401e62c727d30877086825a58ae27",
+      "workingFileSha256": "3020336dbfee3190d5b230218ecc04da46b0f9d52f0fa5ae13d3fec6df17b3d9"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/SurahSearch.java",
+      "gitBlob": "09b4c88e1f17c6384aae797820f831f6ff07e51d",
+      "workingFileSha256": "fa491cae66429e11b25da11a881d1173599678ce38f94be811afa983c49cc265"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/mushaf/BasmalahRenderer.java",
+      "gitBlob": "7bde02b7fe8b77d076e9b57b846effeea551b11e",
+      "workingFileSha256": "175e268e6d50b1baf19a3b5a3fe8a4ce49b3e47acdb53e7fea0c5dfc976c210d"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/mushaf/MushafDocument.java",
+      "gitBlob": "7060f5ad758d9ec207981eca9fb974f70bc06d66",
+      "workingFileSha256": "3939e1f8a669c3517ef3406853df2de6d42553eaf14290e3d1bb3283b7096efa"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/mushaf/MushafIndex.java",
+      "gitBlob": "afca6b3e50d4433260e5ba1b0a9ef11a63c2e0ab",
+      "workingFileSha256": "d14544d1fc84014153b2a2441ac0d2199899fc69d98e469deb705a917c3cfe36"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/mushaf/MushafOrnaments.java",
+      "gitBlob": "23f98a6507a77e6c316571484d48ca27134b62a5",
+      "workingFileSha256": "5b3c4d6c3469a3199d36e59fc41b50505d5a7639f522c63f868e0374dac42364"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/mushaf/MushafPage.java",
+      "gitBlob": "0820fc0cfb1c07736206243447e876c2b5e634a5",
+      "workingFileSha256": "73b7205639671a389a10d35677e9b17b6c1328e99917ad2beb1ec439b5afd287"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/mushaf/MushafPageView.java",
+      "gitBlob": "2458636b1e5ef126634452ce7919111b033662fc",
+      "workingFileSha256": "d0dafd327663191aeb79cab85414440644c20f9ccdee235f04c1a953e772b921"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/mushaf/MushafRepository.java",
+      "gitBlob": "80a09a5a2620f66f44a9e7a4d7a55abe22fc1e29",
+      "workingFileSha256": "801cfdc757d77b3e3610b3803f30db4c10d343ca7bcfc8fd31396d72a5c9907e"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/mushaf/QcfCanvasFont.java",
+      "gitBlob": "76853c7c3ef1cdc836596bd54cd0e3dcf6de20b7",
+      "workingFileSha256": "c4e9d7ad18d6a86ee94d84745c2e62ba3af8fafb4b9cb7fbaed83dffefed6dab"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/mushaf/QcfGlyphMetrics.java",
+      "gitBlob": "3b9d04b3d224f6f140f9eb748beade3243d139ac",
+      "workingFileSha256": "b204d54ae365651a21714d6d49a937aebad0016de88b2c7835291099fef4c3ad"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/mushaf/SurahHeadingFont.java",
+      "gitBlob": "33946ece9dbf5251a0d5cd51256c1183f3240baf",
+      "workingFileSha256": "93f9f8372020a61b9bbf50a41b406cda34711ce75f2a8ef769dab298e0194d0c"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reading/mushaf/WordTimeline.java",
+      "gitBlob": "6cbd54b143b0baa62a2f34f7960b00fcaabc67e9",
+      "workingFileSha256": "34c871a461c5dec72409de29ab47782b13ff3e21af1259e7de4c8460e5e211de"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reminders/PrayerAlarmReceiver.java",
+      "gitBlob": "d74bb71de4182cd7e43cb701834f3f538cb2aaa7",
+      "workingFileSha256": "6693ced95280f3079c17845adab56d81f0a28a01cba3595020c8eff59c03cf13"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reminders/PrayerReminders.java",
+      "gitBlob": "3ee82958fb2f8c8ba8714aac8d40957c8b083a64",
+      "workingFileSha256": "0ac278dc03e9517304417ef2431732385d1302d0acd2d88c8d4716210d45056b"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/reminders/PrayerRescheduleReceiver.java",
+      "gitBlob": "d1e0a0db98354e4dceaa0246b38a50e479e9e058",
+      "workingFileSha256": "c176943839b1c473602761f5ec00e8b775c1790a1c1101b2a8b148caed0ce8a2"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/BmkgClient.java",
+      "gitBlob": "4e47bdc40a05092ac3ec1ad895a83f472efc813c",
+      "workingFileSha256": "8a58c48242859f0fd7c97f23721513f7e648b5788945af8ea06c58a224d23571"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/BmkgParser.java",
+      "gitBlob": "c698fd8166bab63b1bb3e4a5a32bcd2e353d8a1b",
+      "workingFileSha256": "27e2bee809ea372c8017df2ddd313d4e745dbe0b47e176834578bebf557af222"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/EarthquakeMapView.java",
+      "gitBlob": "1752661ec7c9ea633a2c298f94e14fdabf281cef",
+      "workingFileSha256": "1b872de8e96472f0d9d4a936e2f4ba3a4da79ac0dbac2ccfce609e20bcf7b447"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/ForecastSelector.java",
+      "gitBlob": "2017f3c6b57f80f1fc74435e67f8e58ce535c603",
+      "workingFileSha256": "f0d3716c342bf7e3baf5ed389507672950bab8c3774e76b278d6b48029096ad7"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/IndonesiaMapView.java",
+      "gitBlob": "ce464717be2d503b212d8596c6cc11730a40b49d",
+      "workingFileSha256": "f22c2a6822f5c03383c0454c27c4d680ce8b49138a013b7301081243d2d4894a"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/MoonPhase.java",
+      "gitBlob": "9872b7a66b4cd0c48ad46f8ccaa076b7fcf1c652",
+      "workingFileSha256": "9bdce957e945816340aa61dd34f9a662efd0192d2e176b26e97d47e55151ac48"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/OpenMeteoClient.java",
+      "gitBlob": "812967ee4f52314475b57abf13aaaa6f0e6b03c7",
+      "workingFileSha256": "64299e792c73dc222259d23e5d71efa0d9dbaf9c763b180c9181c8aa4ea6627c"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/OpenMeteoParser.java",
+      "gitBlob": "e54fd5ecac8477f4e6ecf6c1f42adf97196dce66",
+      "workingFileSha256": "0323d857352348d39435c5ffd7d9f05097c652f5581bbef34603365f6e95bd06"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/ProtectorChrome.java",
+      "gitBlob": "1ceb9f4bd00992f24ed624c148269ae6bb6c6ccb",
+      "workingFileSha256": "7f63eedbd085f702b8383a8cd592617324338e4531a41e9ae484f7170696f99c"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/ProtectorWeatherView.java",
+      "gitBlob": "b4d6227e3125da66e2e26de566aea62c86ae1a7a",
+      "workingFileSha256": "a10ea878c884fa5b0ca8bdf67a4543b13bca147050d7ff56c96e813aa96ddf1e"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/ShakemapLoader.java",
+      "gitBlob": "5aa7bad6c14c498b1da2b86d28ae65234f08dc20",
+      "workingFileSha256": "f2393fb051c3adf70dbdbe0684326834e4f51c12410745040ebb1418ae479b10"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/TemperatureChartView.java",
+      "gitBlob": "9b94e241342276643d59ab40d5f5125725fee32b",
+      "workingFileSha256": "353bc8d1ad7adbc15b6a8b398473a7ba6d8f948338e67f94ad29c26bba7e3120"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/WeatherArtworkView.java",
+      "gitBlob": "5d37b1ccbe27fe39fca812efd777c3edd416571c",
+      "workingFileSha256": "50f0adafb7d25b964bcb9302800ad5a85019164b84e8046f7bd06463ab9ec3d3"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/WeatherCode.java",
+      "gitBlob": "48211cb9c57f50ab08365bd277487953d5baae6d",
+      "workingFileSha256": "0bb14b79bc32c77253533a3b096f05e0628f097c6cadcaa32511c6f47d1a4923"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/safety/WeatherSymbols.java",
+      "gitBlob": "be4cf6e80bf94b0ed8490a96e40c5407752bfe6c",
+      "workingFileSha256": "00ead5db7d79ef8f16f29d540eaceaca7d5dc23c8a8d86de45db318694db9b78"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/sky/HomeSkyView.java",
+      "gitBlob": "02675aafd04d6a5f30c942710bd87f712308f20b",
+      "workingFileSha256": "af3f0c309dffad1d70764964b73e19253733bddcdfb6da84b0e5c221efb3ee94"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/sky/MosqueSkyPainter.java",
+      "gitBlob": "75ca057eae1b3c9d1485fe474cd0b8312c59bc73",
+      "workingFileSha256": "d507b3157b7be29e5726271696cb23e192a1ba77b2e01ff312d47014cd40ba3a"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/sky/SkyDay.java",
+      "gitBlob": "90d07b297efeee6f08d79d8bdade247e2a806eec",
+      "workingFileSha256": "1f7d557a18a72e98d345381ad630585de402ae9a3bf84d2a3a323c09677d80ed"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/sky/SkyPalette.java",
+      "gitBlob": "b8bc877832c09c3b81f6783ebe97f81adba99f55",
+      "workingFileSha256": "982ffe56a5fe82d153c38d9991e102f90364270fdba2a82e4dafd930a1db4f13"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/sky/SkyRepository.java",
+      "gitBlob": "c8fc63bf1d9ddaf3c83236b96c3a3d51a13798fe",
+      "workingFileSha256": "a3070ecfc8662c0f1f73a84dd724d3aa56109b827975baeb5ad8c5319d6c3616"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/study/FocusAlarmReceiver.java",
+      "gitBlob": "a8553d1e7f8d5f9425fa18a50a3c0c4fa7d98ffc",
+      "workingFileSha256": "a7286764184f9a996952e6c7f84dd52be04a3ac01d5d1e72d0a709825e327229"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/study/FocusClock.java",
+      "gitBlob": "9b9953ef04c0185c63de989245bca0e2048cbc64",
+      "workingFileSha256": "bb69d1e5b5eb3a683fbe3155cf18bc54df42bf177fbda64522cbf7a681bbd529"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/study/FocusTimer.java",
+      "gitBlob": "f17f3c1ca92137d14f1b390c5e4aad05a0c7cfe0",
+      "workingFileSha256": "19610e8d3f18f584c869cd2731bc43d28a0a07d8162723aaa1953d10e477a42b"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/study/ScheduleEditor.java",
+      "gitBlob": "65a4cce9e65d6bf339f372b5cb014bce2568ac68",
+      "workingFileSha256": "307b79d2ea36d82c8bf7c11d2082b79ef87a6afda1102abdce7061320f2d4215"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/study/StudyAlarmReceiver.java",
+      "gitBlob": "321a4671c59ad15837da08b6481094bf995bf0ef",
+      "workingFileSha256": "2d5054e137e0d9033c2c651b4a26e494ea47996c3fd8f5da0060fa890272113c"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/study/StudyReminders.java",
+      "gitBlob": "03973619670924bc93f501fa750468e8c77831b6",
+      "workingFileSha256": "9b21944d53d96a3f88216a88acf66311add5575d184350941106e56f385b8cb2"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/study/SurahCatalog.java",
+      "gitBlob": "fec26d69303b4da69b0029adc06a2db95379a7aa",
+      "workingFileSha256": "4503eb646fa661fe6b14a7323c7fa10c053e5384f641b31abae0592a00bae9a0"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ui/AmbientMotionPolicy.java",
+      "gitBlob": "54bf3e5397a9e354e6a10afa8c7767fdb713fa35",
+      "workingFileSha256": "de5a9fc26b0d51846e1e52445d858a4f3631787328dceb511446876127111f87"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ui/BookCoverView.java",
+      "gitBlob": "b9e75ba6336eeb3342ea1f8f680b37975da8d1f2",
+      "workingFileSha256": "429174efaff9baaea6bd9cc812e6bb1eaa4eadb5bcae8b0f442433d40b8dcd31"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ui/CurvedShortcutLayout.java",
+      "gitBlob": "a91b5860c25ccbcad8386806b50c341678c7cdb2",
+      "workingFileSha256": "22465992860eed75a6ef211189d353afbac9a6643825d2fec18bdd4a2aac58bf"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ui/DailyUi.java",
+      "gitBlob": "fe74d9717eb585d153527848d92d7577cd75a7d8",
+      "workingFileSha256": "3c4ec3b498cee46e890972df310dc76ebf703aff2da4e8bdabc045aa63105c54"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ui/DuaReadingUi.java",
+      "gitBlob": "186325dc52abc94ad3b3901651742e15dffe0377",
+      "workingFileSha256": "fefef1182259141831ea24c0aa6ec42c65c09dcbb688bf2fabe91b5e17cdd6ac"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ui/FeatureHeader.java",
+      "gitBlob": "4d60453ab66ecce36f11437a877b1ec030530b63",
+      "workingFileSha256": "e12c44b8b72566059e1d93776349240a35236868faca462c91e0cd4f34368835"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ui/FocusGardenView.java",
+      "gitBlob": "2e981fa7654fea15850f2e01c72a9e4819650b1b",
+      "workingFileSha256": "764d3df49c9357a8e7f602e9d5a095e3e8ab52f2e28d541f0cf592efc102e970"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ui/FocusRingView.java",
+      "gitBlob": "666aca007159c6a40b743be41be52e812ff444d7",
+      "workingFileSha256": "78df611c9c6e776ddf6a61869e47daba023b339b372dfc52a9d344ecc6d3895e"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ui/HifzEditor.java",
+      "gitBlob": "bc3f9547f22de1869783f537bd46594d46be2cb4",
+      "workingFileSha256": "3e92ce810c1d820248698c9fce7bdced29bbbe8a00e4d732c17588932ff13140"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ui/OnboardingParallax.java",
+      "gitBlob": "7c96f329f7af4f2141443a274fe7aec1a11c750d",
+      "workingFileSha256": "c8186bc78386e603644024424d0d60d1dbe9a6f7e0dac5536d4eb12cd3f96d3a"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ui/SegmentedProgressView.java",
+      "gitBlob": "29ba709bb5e04af35c2ad0f2a00df39d4c8d9a86",
+      "workingFileSha256": "9d887193a4987c89061c4c3b0f5661c4a80519a3a28021fb78a18c33e6939467"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ui/StudyScenePainter.java",
+      "gitBlob": "5102359f4c1f6be869409ea5429cfcffcb72e860",
+      "workingFileSha256": "7e542f0c469c274c397f46cced0129274b1f73240ae2306ee2d5709566d15843"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/ui/StudySceneView.java",
+      "gitBlob": "e2abf081444011bbebb314aea02dae7ea6a8b3eb",
+      "workingFileSha256": "57dc50648fec4bc925b73082e076b5f7cdc4fa050758a7fc7d388f1b5c0eeff5"
+    },
+    {
+      "path": "android/app/src/main/res/anim/quran_sheet_in.xml",
+      "gitBlob": "4b21bfb083f14f23ee0a341c5dcaebc190b42dcb",
+      "workingFileSha256": "7297eddbdb5e4df8d5914c0ba97bcd1c79427db05248916ff9932d7ab1f3ba35"
+    },
+    {
+      "path": "android/app/src/main/res/anim/quran_sheet_out.xml",
+      "gitBlob": "52f8d94e34e280efe2535050910680852d58bc46",
+      "workingFileSha256": "a14e6ec99b0ff630aef4afd0d63db3c4a39af619c142f178fa0e6b5da33ed438"
+    },
+    {
+      "path": "android/app/src/main/res/color/nearby_tab_text.xml",
+      "gitBlob": "dcbc887e16136aa47521b9e6c51595a3d2f3edf6",
+      "workingFileSha256": "18e0fdbf3b30b2ca8affe7fbeea478d9b6f6136c304d5326bb13011a2ed25a42"
+    },
+    {
+      "path": "android/app/src/main/res/color/protector_button_text.xml",
+      "gitBlob": "a42a57defcdfc987da51b278aa868a78e2a40ef9",
+      "workingFileSha256": "b5f283b190dbb8a56784a5cacbcd554faadeb5f422b7b57517fbaba7b80c4a83"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/daily_books.png",
+      "gitBlob": "3b27ea28eb1b4270d7ec93b2cf505ad7bff0ee0c",
+      "workingFileSha256": "283156f75944eda6f4f583a0be4ecac98e0939f4635c0071262b8850b120e697"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/daily_onboarding_read.png",
+      "gitBlob": "a2196ac981f6a09493cac256fb88129711e69f7f",
+      "workingFileSha256": "b52387448444fe6f655691ecb0889ff536ec962d70dc9c2e3f98945bf77bad77"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/daily_onboarding_study.png",
+      "gitBlob": "5f4f2a87ac7ba2bc513354d1eca3f2fabcb7a88a",
+      "workingFileSha256": "5150843cc4f9ab083e286f922f041c99b7ba75694d2fcf7242dbd037246cc71d"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/daily_onboarding_welcome.png",
+      "gitBlob": "87960b1946f2bfc92cce790e206ebf4fa1bff012",
+      "workingFileSha256": "25a55c0e61c45ed225ccfb251ae754545b839297fd8627768b4cfc3d2c5f814b"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/daily_window.png",
+      "gitBlob": "cf746f829cb5e1cf276fdc5f4b1228eee2a1f054",
+      "workingFileSha256": "513c4ff68c9dc9107718e8b925b77a8a42e5efbb53917b732d46c3ce39773a94"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/home_al_qibli_foreground.png",
+      "gitBlob": "98aeb8f835c03d3208df63da5c144dfbdcd94069",
+      "workingFileSha256": "1fedfc7a3eab18615822cb95a153293c325900ff7fd51984c3033ce234e57a90"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/home_cloud_bank.png",
+      "gitBlob": "080f1e0b268e4dff47141927cb522ed55ba1bb8a",
+      "workingFileSha256": "02e89d45aafcf2e6764e46c85630b41e11cbdc50ef2fb5e497d59e54f160abdd"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/home_mosque_landscape_v2.png",
+      "gitBlob": "19f7e90542b7e64856d81753159f629dc6eca7c0",
+      "workingFileSha256": "21e91a30aa3350f4f11c64d72db30a11001bd2b5030de744a5981e5f97647f94"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/home_mosque_silhouette.png",
+      "gitBlob": "577381d271b250b1854c111380162577515db250",
+      "workingFileSha256": "085dee0d51c46e3921a7031ef2fa1b0de331361c66810b2d2fae9a051b40c944"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/mushaf_teal_reference.jpg",
+      "gitBlob": "1d3c0653319f97ba7c84e7ec65da39ecdf6c47a3",
+      "workingFileSha256": "55331951b9c14189f3e9e74537c2cd8f79f43353855d7a86d21cd95e822bd1eb"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/onboarding_prayer_static.webp",
+      "gitBlob": "321a7336fe8aec490d3f084a56669e332d6e65bd",
+      "workingFileSha256": "791686aa6dcb2d7112131a2ac08eab8e383a481254074460d50246c710ac97b3"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/onboarding_quran_static.webp",
+      "gitBlob": "e1fa5c3adf75d832e48ba01a6aa1f5c7a97d9d0f",
+      "workingFileSha256": "4682c3e687248821641d2ba78b6bc2180a13203f36f2e687cf31e3790149d257"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/onboarding_study_static.webp",
+      "gitBlob": "866349ee7184763a033e33b5233b964c6b7fc5b0",
+      "workingFileSha256": "762cda9dae004b90b4cd144f7f1ad48c8d02cee8eb73598346f776c301dd4262"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/protector_city.png",
+      "gitBlob": "6fa2dfdae871149ae76c1bab80fb27dcf3cdaa16",
+      "workingFileSha256": "92cdbdf880340bc3f5f4b13634230e29c98d966b1d51c82fddd56fe946c5107e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/protector_clouds.png",
+      "gitBlob": "35b6b77695648ba92b0324913004685ddb7f194a",
+      "workingFileSha256": "207766da2fde9f96a0645583baf2b54f3572e4b9adfb4e9f2c5da235d056f394"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/protector_storm.png",
+      "gitBlob": "670453cffdb274ecf634b4ef8c533b0a1d26d91f",
+      "workingFileSha256": "b40317f798c2a6aeee496764f8382c2d1129c6653686dce6c1cf67f03925cce7"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/study_drinking_arm_v2.png",
+      "gitBlob": "078ef67c50edc0a20dbf99c89e1d0eaad6ddcb3e",
+      "workingFileSha256": "9d73182c047b6b710289ce25fb88f844d123267cdd3cebf23dedcf16331e928e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/study_room_v2.png",
+      "gitBlob": "675e39e9ac9e42341c3d7147c0319615e1e7a54d",
+      "workingFileSha256": "542afb422f6e538016a5c1d09034c943b1df0f1c290b5e1dbd30e978edd09cd5"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/study_student_poses_v2.png",
+      "gitBlob": "b0fcbfd753a1087bee884dee4a62fc5c71d6f2d2",
+      "workingFileSha256": "8b5c7ec8bd6d5eeca18e700cd84191acfe61f8bc9c546dfe5e97089681379b17"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/study_writing_arm_v2.png",
+      "gitBlob": "9fcf9f538e64a8191408c69efc751661b0764745",
+      "workingFileSha256": "6f5e83b2b1cede1eb408483498fe3771bbba591aca81e6aeae87e6504219bcb8"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/zikra_symbol_pine.png",
+      "gitBlob": "20c0feee06423707d13914f7e31337d2b1a5bb5c",
+      "workingFileSha256": "0ad69fdd3cfdcd88f089baf01e1024a67e24af8ceb295903c2d4b2c4cd7bdc4e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-nodpi/zikra_symbol_white.png",
+      "gitBlob": "2b18ac595db8261ed6e50ab5e026a2a9fb2a179c",
+      "workingFileSha256": "a81c4bc1fd77c9937f0b4e16a30dad42aaa6b50e947414a173f97681f182ad95"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/agenda_category.xml",
+      "gitBlob": "1c5366acde1b685181e1e46d1ae5acdc2987360e",
+      "workingFileSha256": "dba5cc48e41f0b6ffd0fdafc884168acbe58141239d6410f0ec890848173f300"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/agenda_feature.xml",
+      "gitBlob": "c1b814a966e9341ca1744b3e271784b09c860e4b",
+      "workingFileSha256": "45c769cba6474f7528e2d5ff61569d719e48d870d64a1ad73aed63865f57b4fb"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/agenda_feature_action.xml",
+      "gitBlob": "82507a53fa95b67b62e4d6df2dfbb5a294ce0819",
+      "workingFileSha256": "944d447e9338ebb0baf9acd7948b7bdf06fe9202adb5f5ea2fd91057b7fae587"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ai_background.xml",
+      "gitBlob": "ab273b34b4a1ab28aaf10eeb22fb46b0a113f267",
+      "workingFileSha256": "6ebb8e38befe5e4577f1c478809756bbf0fc5c676b068244b0b3be983703b85b"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ai_circle.xml",
+      "gitBlob": "26d908849abfcffb959e9eacef19c81fd2b7c52e",
+      "workingFileSha256": "899118e8884208463f6a98e68742b4e4fcf20f61dd8f891ebe91278867f4f850"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ai_pill.xml",
+      "gitBlob": "af2fa509679a736a14756b1e9373402d54930f59",
+      "workingFileSha256": "fef126246a846b19bd374f4797af5d784ffc67db130d6f63a479101eafb5ba99"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ai_primary.xml",
+      "gitBlob": "ae9599081235d87b28e6aeb9bebea053d903cb18",
+      "workingFileSha256": "b6c8506b36856f978ac0d435a1a18975316d3233813265e5fefc45cee07fd22e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ai_reset.xml",
+      "gitBlob": "c8404217c59e5d8514a10a4dec438f3a218956a5",
+      "workingFileSha256": "eb7e184ffd640890dba604be6894e15d3f37171403bdc7ad65eecd3e037054ae"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ai_send.xml",
+      "gitBlob": "458b557c2ea4765345f6c6ddec76e5cb6bd84692",
+      "workingFileSha256": "ad8dedbf22631659d73f9b629843c2615e09144d1a330a507e7189fd1ab4da2a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ai_tile.xml",
+      "gitBlob": "7ff27152ca6f9e5be14d33a364375dd00d1af6ea",
+      "workingFileSha256": "590e49c4e6e2ada10e84e0c8930d9a70bbcf12d1b0edf2fdb948e86780648526"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/app_icon.png",
+      "gitBlob": "f51c37a2d6b0acfd700ccec03433fcca02f0fd18",
+      "workingFileSha256": "f0a7224516cb4585d4f9917c11d4007cf8b3aacb7ee5eef1d15f274d2819fb6f"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/audio_download.xml",
+      "gitBlob": "56233d7d855a80d7c0a49c19b6b8e1bda733889b",
+      "workingFileSha256": "de7a452934365fdc467a41d00f6342fd2b8ba63a65bf24fced372928fd79a096"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/audio_expand.xml",
+      "gitBlob": "d93ecd038c2d6d6519b5be93477999f83dfcb761",
+      "workingFileSha256": "e8ddb860b7fc1813c725e47890ffd2adb892725a5cf7cb841a21fa1fcb27d09a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/audio_next.xml",
+      "gitBlob": "bf95b3c1647233f46b1c480a1bfc7ac8babf114a",
+      "workingFileSha256": "bd5e8213c4077aef01ec931f2865ded4c8308423b5587c6c2974726ebb5fbe4e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/audio_pause.xml",
+      "gitBlob": "063bad949fcee1563d9125e6a38e6c216b8eb981",
+      "workingFileSha256": "d96c6fcdfb1c945d2c0bfc6a1dde9c608cc95accf5c4a3a0bcd36f26e43cf0b9"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/audio_play.xml",
+      "gitBlob": "63a52d773f36dc51790a3608953c1bc07e4fc1e7",
+      "workingFileSha256": "fa13f1303cf66eb9e858e0137d6265ab2b4bc2bd13cc47ebb439a9e7e6783575"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/audio_previous.xml",
+      "gitBlob": "4cacae4b658357d31e12f7aae34a7cd1a82cbc87",
+      "workingFileSha256": "1672ef884a30426705cddb24577f4dfbf2fb9e0f0e25f83b6eba918ad298171e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/audio_range.xml",
+      "gitBlob": "eb11c2d554ffbcb8cf374bd8341ca9f993a552c9",
+      "workingFileSha256": "7f0837bd8f52442cec77e30e40268a5ecc8f63c9fd23d6d90004940514a28aa3"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/audio_repeat.xml",
+      "gitBlob": "1a6c89e70b8ae81b73fc1ffa5b35ec02864eae91",
+      "workingFileSha256": "6fa39f56fe6091bc7ed67a1627338aa359cb76955dc0c8ce71ba2b3253e07075"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/audio_stop.xml",
+      "gitBlob": "f027917a555a092914d1cdb190c86b3ab820c71c",
+      "workingFileSha256": "a57843ec5596a84f9bd14589022282c9fbe917648cd12f65f89c0e56974bc704"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_ai.xml",
+      "gitBlob": "b3d25bd6990e23fa480c7da8772ca2e0d12b2ee3",
+      "workingFileSha256": "e6311882c43634e3cb7d0c9f16529a47e84cce3d310f7df289677b4745ecabcf"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_amber.xml",
+      "gitBlob": "46f832f5093a579f17b27a9f7bb0487fa1b10958",
+      "workingFileSha256": "8f7d912cef0a6bcc5b1538591a43ff8389d85aeaf1cdae1d37c64182133ec868"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_card.xml",
+      "gitBlob": "3469df55d1af662c7c883ce0c47ee71bf16c8f7b",
+      "workingFileSha256": "aadcdafc6ccadbf652adce489bfabb93ea283f1868ebe64abdf121187da5e415"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_countdown.xml",
+      "gitBlob": "c19a58d4f05323b481d22455f7bbe2f4367f9042",
+      "workingFileSha256": "ec99d54036fca32f516f3bced80ab159b97cfdae1e60dbe45cd8865a2c2698c3"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_dock.xml",
+      "gitBlob": "3d81d9683cb0b52d6841b187c6e1dabcab6bf91e",
+      "workingFileSha256": "9e1a4643641441f081786ee7fe8427a645569900aaccf3419b0af55bcade6748"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_focus_stage.xml",
+      "gitBlob": "0eba59a452cd9cdc28f10847d2bf654510d70f7c",
+      "workingFileSha256": "bf2f17c3d1a0fbbe00da9fa037dd5ec670aac2a92a95345c667505712f302adf"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_home_hero.xml",
+      "gitBlob": "b744cc7f4879f876ce9304b29777420fd9bdfbd3",
+      "workingFileSha256": "072e45c57140b4de2ca8f9861c8b63d6252acf17105d0ee28fd061ff721bfa03"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_input.xml",
+      "gitBlob": "33c6396c5ca6512f7e5885fa97bac9e7d27e5cd1",
+      "workingFileSha256": "8377f2c41949d07638dfc87b204e4a93c043ddb396030873ea98083e1751b60f"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_location_outline.xml",
+      "gitBlob": "e2038eae45bf8b7f72299f0db38fc79fc8b128fe",
+      "workingFileSha256": "7da00f4d0c4c8e13f0adc500298aae693c9ff2953344c16739284a1e0d500acf"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_location_selected.xml",
+      "gitBlob": "9bbf359ca75a119d5b1570b26ce441e563d86b60",
+      "workingFileSha256": "3a088166e832102d8e47f6684c9cc5aebcfcbb22af063f1cc266d8f247c0e4fe"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_mushaf_play.xml",
+      "gitBlob": "76987b4d352f3f9610981afbca6aeaa9ab10a16a",
+      "workingFileSha256": "e14e925f1b725cd2996d1d9adf8f29361996cb0e21ab01df04f29979908d2533"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_nearby_card.xml",
+      "gitBlob": "2d5f45527f7d427d754673ca1519dc9b89dcc592",
+      "workingFileSha256": "3703d891a6cfb30df122b742df51df326e62a77d32d8c1cac8687f9620080330"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_nearby_panel.xml",
+      "gitBlob": "7ffb6c25f10e0fe2d746770d6b99ca7505ebf04a",
+      "workingFileSha256": "d1345a13f89ed0378fb4b27dfbde7c151929d7d86d2a6c91c7d37260b433e04b"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_nearby_tab.xml",
+      "gitBlob": "9e53845850a120372035d7cbea3da46f17e87ff5",
+      "workingFileSha256": "ae4ac731147326b5dd1c38896439bf36b4973770b366dac51fed52f9b8647269"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_pine.xml",
+      "gitBlob": "023e9e95ab8d0f67e413c1728e62cdb0ddf6bcf8",
+      "workingFileSha256": "4982313702e9e2ab95b0fb6364a6a5fc3e59967b3388a807027b59f08bb9ac7c"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/bg_soft_mint.xml",
+      "gitBlob": "0c83df5704b295d54de28c00e050d2d9097913a9",
+      "workingFileSha256": "c16c16bd8730c0c4e623f5273101fef9d217cdde09b8567fe8870c445bb19ae6"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/brandmark.png",
+      "gitBlob": "37f5019d2ac59d7a4d071366cc2dd1814b259bce",
+      "workingFileSha256": "dec6c50da17c5e44b3db276bf4017d4c723f84dd754929482e09200b3a5c3c3d"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/brandmark_white.png",
+      "gitBlob": "e53a0fbecceaa7a5147f6e5cfcf27ccb403276d5",
+      "workingFileSha256": "ef37650eb1a8e33e9fd3c6e14e79d30cb07faf17e19e9678e50aaccbf2498c16"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/calendar_card.xml",
+      "gitBlob": "8934c8cbe1270e6f34d398788836c24e61299994",
+      "workingFileSha256": "8bee3c653499fe4316f40019c7e6a482d773796e94f108c4a652d9b1b0163ad5"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/circle_blue.xml",
+      "gitBlob": "bf616cc566773f513ed5700bd9edede9cd1610e9",
+      "workingFileSha256": "9ea3738ff2dadc5699d34fbdeb777938792ca299d56ad60c2e2f946b241420a7"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/circle_coral.xml",
+      "gitBlob": "d297a10fde7b91f7a27757181f4981287aea5d61",
+      "workingFileSha256": "4ae83ecfbd7c65abd360c727c0b5c1ed5af60cc81c6866d2861cede99ae959aa"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/circle_glass.xml",
+      "gitBlob": "d572deec9d1340311f953f9babff8168991a753f",
+      "workingFileSha256": "baa50f631b1294b12d0279fb2c194f9e3df7ae1b95ab0b0d29d464d9cf75406d"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/circle_gold.xml",
+      "gitBlob": "774b1ca9f9ee6234eeb81c59565fa7243b58f027",
+      "workingFileSha256": "ae46d46dcd98bbf10e739a4c20f2cfccc69aea740b60c70792b93b41c880685e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/circle_mint.xml",
+      "gitBlob": "98a5c277540b4046ce5007a2e136cdaae669c1ac",
+      "workingFileSha256": "40f74ced0710d3085d616c10e4a53ddedae91078e6b11d7a3b98bd4d0bd017eb"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/circle_violet.xml",
+      "gitBlob": "e1d2e467b4a622d86a3e26e0d130dbb17c4314d0",
+      "workingFileSha256": "a54b4b42440d7119d641090f99ed6a1e413434300642a387ee86138fbb2ecc96"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/concept_gold_button.xml",
+      "gitBlob": "50205a1c103f2c29ec1cf71cb3888b5440bc7ca0",
+      "workingFileSha256": "6948276213159a118be81809769081b091741a3a8ed90a44707ae80d16a3b67e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/concept_gold_card.xml",
+      "gitBlob": "d35733222132d5001da2900d6e4a1847f5a901d3",
+      "workingFileSha256": "5da9b65f0cd2bdd72d390d0e20041daecde6f45204d3c524f84ba2e3037e9bf7"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/concept_mint_card.xml",
+      "gitBlob": "cda2928a7f2decde3197e83cd16af7c3ae3f29b0",
+      "workingFileSha256": "db2bd7d11dde1323c79b18371f165114c46994c6127052a8bac6d5fe6f8610ea"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/concept_paper_card.xml",
+      "gitBlob": "8a7d679886725ec5d623743bc0e54c8a50d6a433",
+      "workingFileSha256": "3b9656f243cd3da0db0c4cd4f782dab1732ab9f8a16d97a8508eead7c40da83d"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/concept_pine_button.xml",
+      "gitBlob": "0e3192c48343074fa9c9659c7abbdb0ce0e6bc59",
+      "workingFileSha256": "1eaf37382929f62d3115ff4edca8d93b4fa3fe8ec7eadc970f1e9f00b0b8ede6"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/concept_selected_day.xml",
+      "gitBlob": "c0ca4df46000cbb9ee7b6d4ec24e05a99270af06",
+      "workingFileSha256": "95f9c861e0b57a6f2d610d0cfbc175ad6f04bf71fb929daeeff1ffe7263c993e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/concept_violet_card.xml",
+      "gitBlob": "a6bb11bb933086af5a4229050ab0252aa15fe88e",
+      "workingFileSha256": "e42f6a4c3975cbea6bdb4650ce7b1345abe4f12f9fedd8e0ffb885864e282f04"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/daily_gold_card.xml",
+      "gitBlob": "6e334354a0d0d40d0211d2419f827b6020fea97f",
+      "workingFileSha256": "86831c2ec3eb2a8ac3fdf53f7d72bb2f5850392652b0fa802aca59110dd00884"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/daily_hero_scrim.xml",
+      "gitBlob": "ae7baf18fe7eeff2a679809e86ea25af2542bba4",
+      "workingFileSha256": "239cfc6e99a7a56cf4616edf8927ca62271270488fb6dc8127880d947bd84efd"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/daily_mint_card.xml",
+      "gitBlob": "af0eb78a47f260bb71d1ba8e76162067fd352c1c",
+      "workingFileSha256": "6f66ba3857a3acd00c7d894af6c4b153fa343f71d974cd7e9109f6d15cc842d0"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/daily_paper_card.xml",
+      "gitBlob": "65ab238d9a319cb495f164e7546cced430e6bf5a",
+      "workingFileSha256": "44cdbe1083af66866903410a88e507d406b3614c1065281ab78ab30035c35433"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/daily_pine_card.xml",
+      "gitBlob": "ede89cd47606643ae5dd5baf5f9ddf05465d496e",
+      "workingFileSha256": "c78cc92fb0c0f0656b50413c9bcb500b3396af45bf8bc636fe062cf3804f3aed"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/daily_profile_paper.xml",
+      "gitBlob": "f1bc040147d7bc3e6d16d8b9441887da1cf44fda",
+      "workingFileSha256": "93aa1ae40b57b60ea72897d1d9c7f4ea86cfd092e714c55297f30b203505f331"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/daily_profile_scene.xml",
+      "gitBlob": "15f598f6c5ed47deec6a0d3e7b30abf58f97873b",
+      "workingFileSha256": "277287a239e9ad638064f9f7cc062dd0264613102a8120d3ca12d54b73a27621"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/daily_white_card.xml",
+      "gitBlob": "7a838d97dc659b7abf42599218284b10a08e26c8",
+      "workingFileSha256": "1902781fef2e46ac5a3d12da30723f23f6c7946eeef04c5b876278a5009d08b0"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/dua_arabic_surface.xml",
+      "gitBlob": "80b181f6e735528d00a5ba8eae1770ef628b5e8e",
+      "workingFileSha256": "d69667283f2eedfdf96756e1d9f67555fe6188c89126c36d3f2b2a73a9e85ee0"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/dua_entry_background.xml",
+      "gitBlob": "95057e5048244457f1fde609a170cf0c77b836d9",
+      "workingFileSha256": "03648db107f848f872fe0652614abb5c4f13792e84526c9bc4bc935f44be5d62"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/dua_ic_meal.xml",
+      "gitBlob": "4a22e02e047f7d95caeb6540295f4824b85846b0",
+      "workingFileSha256": "65a5b735ed45f889eb2208c8be8dacf7245b9c0379e30a1cdab5db3ea042a232"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/dua_ic_rain.xml",
+      "gitBlob": "8696338fe1141dbf4d26de6b5dc2e05649426e37",
+      "workingFileSha256": "4f78a142770bd55e9e209c75902bb047436369b4d66a01129e3ee4ea0d3ed52e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/dua_icon_surface.xml",
+      "gitBlob": "422d96d262be6261c030a74270e88e98acaad6c8",
+      "workingFileSha256": "7e14b017bfb04f743a215f9a3ed461d2543230d42c13851328cbd1a95b16db78"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/dua_library_surface.xml",
+      "gitBlob": "bf4ed3d674e6fd4acc1c5870eb7b44b15a043932",
+      "workingFileSha256": "3580e48f0b97389003cd87b32bfdec0c0d0937b1e7dfb747e89882b934ad6538"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/hadith_book_background.xml",
+      "gitBlob": "849520de71c9cc2dafdf4a528c9d9d01f00af0b2",
+      "workingFileSha256": "b31a02d5b6863f050de35df3d59c373ca086091c8b40e6b3b509d050196d49c0"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/hadith_hero.xml",
+      "gitBlob": "256935984377807789663d43da60cf22be962c77",
+      "workingFileSha256": "edfdbd1afbd0de68d589be4ed13ed3e90220892c7c3a0dc8f8a600169028051f"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/hifz_chevron.xml",
+      "gitBlob": "1e7019068ea460b0f5c4d899f5df623e40b64b3a",
+      "workingFileSha256": "023051a7214188b1a4062f7b447c19a37fd0ad4b98184ca5bfa77f110901fa33"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/hifz_number.xml",
+      "gitBlob": "31cb478f0c7e83184c0b5e69dde0add28afdb704",
+      "workingFileSha256": "45a5dfa3ad3d34fbd6b93eefdad68a7a28102e618b417ab9d68b2ed94b70250a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/hifz_summary.xml",
+      "gitBlob": "2ce7a31e44c8390d59f190dd51e945a9b7bc79cd",
+      "workingFileSha256": "6d920773af8530414cd26f3e9e3446c27d672df805680361ee27ee3cb2cab655"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_cta.xml",
+      "gitBlob": "6505f3bd2d6fa210d50f3403e5d4b8cd1962e75c",
+      "workingFileSha256": "ff2a000de9673b3851cfd6b3d46c3ed31d90a0c7c5ba90e6ce59e725cd0de57d"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_hero_ornaments.xml",
+      "gitBlob": "a3c89e5f00229f4fb659e8c8d3db33518791bcb3",
+      "workingFileSha256": "ad3829b1564a048a321cef6f15da67924290b5e157d80a8bfa90cd8bdd607f73"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_ic_ai.xml",
+      "gitBlob": "fddea8a08374665cb27b13f3b738dcc6dd59effa",
+      "workingFileSha256": "cfc6844111ac13bf992e1ff1306893e812c336fdb939fc1fce9c74b1d679ae86"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_ic_chevron.xml",
+      "gitBlob": "f2483ca62d06824062db2744023a08451c8eaea5",
+      "workingFileSha256": "8acab4fe576fa13359a89b0f049161d72f0c5b28931ff4b98235f5b9c5dac523"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_ic_dua.xml",
+      "gitBlob": "b9ec32821232ecc2865de4a324e295f42c55fc82",
+      "workingFileSha256": "d9b6347a603a13a9a5325983fac86ac9e23e55c81b7d8332e04fb8f2dd44ab3f"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_ic_hadith.xml",
+      "gitBlob": "522ac4c70549ed55ff8af0cbfa2cb41fd4c657a5",
+      "workingFileSha256": "fcd9c5c3c00ab2ae486258447b164eecf06f1ec0b67c3da5342bc033017d0129"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_ic_hifz.xml",
+      "gitBlob": "e0cb25d18b7121b02e76d12d1e30f888b43dd0ae",
+      "workingFileSha256": "38fddbd06f161400d0c73ab4245d109c50c5add09d8c0ee2b54398dc6a7a70b0"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_ic_prayer.xml",
+      "gitBlob": "264cd41b837cc1493a67f5382668c34b2b865e5e",
+      "workingFileSha256": "5d61830ff3a5d3209d2c7af2167ce6714cb3e5898ffc7be9df538f8738cd9ea5"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_ic_protector.xml",
+      "gitBlob": "5ad51f1867d3c6b1ca7ab6d83e9e34c40e7f4ab8",
+      "workingFileSha256": "d7fb222ec663a26cf4799e4c80e9fe0948cb3852cbced46d03e1989e757399f1"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_ic_qibla.xml",
+      "gitBlob": "1a5e08427881a078e464f23be2057bb5823ea67d",
+      "workingFileSha256": "4a94fb1e071182fe1fa948cc78f664123e0dd9e6daed32dd8bb8b12232f2b3ce"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_ic_quran.xml",
+      "gitBlob": "da7fa174e3298c3aafd8041e337672fcfc31312c",
+      "workingFileSha256": "aba09d68880d853ba06784f71393cb4c25470d6c419b7cac7931d164dc87b95e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_ic_study.xml",
+      "gitBlob": "6493899f49c84167b44f1aff487d9e7955e19cc5",
+      "workingFileSha256": "f57c320a637149a6bdda07c9149e108cfc997a9d4d7519890f4a2652175fa490"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_location_pin.xml",
+      "gitBlob": "d9639fbd83d448d388daf4366570039ec3671215",
+      "workingFileSha256": "e26b0dd7260272febc713cc174b3100aeaf2d6fecc9b891a42c5895492d8b118"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_nav_active.xml",
+      "gitBlob": "212e241a9c354f5ad16aeb7bf677250fce35ac9a",
+      "workingFileSha256": "59ae4d40c9ef64a65dc56eafd29a6655cc3dd69586621960a5e5dcb3c6dd6bd2"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_prayer_active_dot.xml",
+      "gitBlob": "8d2c740a846b10ab16cd7ae857d33c27396397ac",
+      "workingFileSha256": "f5102ecfdd75f2aade92cd351bee752ba3a46971a128e524b1c19425de691a69"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_prayer_afternoon.xml",
+      "gitBlob": "b50aafe2fc7d3474f6bd9633d604438eb32d3ac0",
+      "workingFileSha256": "a83b45d9d2c424cd211bf998994a84bbccedc7f32466e923e6bb434c6b253028"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_prayer_divider.xml",
+      "gitBlob": "e1f855ae11028aad74a845cd5362da00856ceaa8",
+      "workingFileSha256": "c650a1761a7550da515fb5b3defee8c299be810787de550117831a26c3ae1c1f"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_prayer_moon.xml",
+      "gitBlob": "746897166a8e01f177b23275b04dfab98f7013bd",
+      "workingFileSha256": "69d99510bbd53db10e5fa36610b803b11bf355f997d202da9d3433ca15d61213"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_prayer_strip.xml",
+      "gitBlob": "71357b3c615bc6f839ac473e28e9dad00badcbf4",
+      "workingFileSha256": "fa290e5592e485915d7e44a6167d70f49915ad6e9d367a308044747742bd6e60"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_prayer_sun.xml",
+      "gitBlob": "5c0689812de0e2bea718270d22fa53c626f7cf3a",
+      "workingFileSha256": "fc9349aceca421e22c82efe6e3906c3892ebf41fd8180e1aa32b579a31a57f17"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_prayer_sunrise.xml",
+      "gitBlob": "f5a41d81df38502b8d1df84be7f1db51bf98bebd",
+      "workingFileSha256": "6d059401f49369a06cf9144091c1ba4db1d9d5f48856c08829d0cfeec6b0d603"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_prayer_sunset.xml",
+      "gitBlob": "5a4fca445e7dcd6fe05232212a63cbff15caba33",
+      "workingFileSha256": "a92c3c312a695ee6c98ab4a8d735a6bc29f5dc0175b02f63529375e5387c1fe9"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_shortcut_ripple.xml",
+      "gitBlob": "fe856fbc514d04e874ad8d207ffd26873cb10028",
+      "workingFileSha256": "ec8c82eb052d1e0fda6eb31b1dea0d6ea259ebde16516a22bd2d59c3c5dec6d4"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_arrow.xml",
+      "gitBlob": "03b8c95d990eca0c05c402ec0a04144defb63e38",
+      "workingFileSha256": "96e4b65297c5e00c408cb918759873dbe3706ea5d4bc91bc228d25d9f281c215"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_back.xml",
+      "gitBlob": "ad7b377e5d02b8221b1451e0d7a1d86845734d38",
+      "workingFileSha256": "3debe310654627ea28a1d7bfc59a76fa31f8a7f370fd68669df38821bcb6a974"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_bell.xml",
+      "gitBlob": "9dba6635fe0455eed484f3432239763426119a18",
+      "workingFileSha256": "3d1a62f159607968a70a6cbdb8a4b002f8b90ccbd937e8929e864628cb59dc68"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_book.xml",
+      "gitBlob": "b94d849a4032155265b0e1a8061eb88bcc30aff1",
+      "workingFileSha256": "b2c635d53bdc1adfc3f1a4e2b19299c1ef3e50188dc1b9a9a728782b0ef531b9"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_check.xml",
+      "gitBlob": "43fecf011739bead617269fbe649e6c019869758",
+      "workingFileSha256": "4954412fe3227d5804910d60e7e11c2140d82e502d58188309fe4514db82fc32"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_compass.xml",
+      "gitBlob": "65f3367d8e7ef0aaab6083087e4f7add6311d554",
+      "workingFileSha256": "83132239589865bb03caf7be4e920d1d34102b61fd32bedc1de8bb4cf6a7f2e1"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_donate.xml",
+      "gitBlob": "f09172b8becc86108356398d82892d96d5cd454b",
+      "workingFileSha256": "149dbc0158bb93ac0ede511c6d329e98d1c3abe8049aa98b26f85252ad67a52d"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_graduation.xml",
+      "gitBlob": "029ad4acedfe1687dc436a1ef21f22bfb4b2df02",
+      "workingFileSha256": "9e7bcf486fb1754141045a9013dd1de59ac0a1217ed9052835a368f24c9972a3"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_heart.xml",
+      "gitBlob": "c4c35351820eea11cee015da24def7824e1ddaab",
+      "workingFileSha256": "24eb54869ed6f688b8840f00e96e0d71e42dcdd49ab2d01b321122ce4ba9066b"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_home.xml",
+      "gitBlob": "291be9668b42d54a311487960b256dc06d2adb19",
+      "workingFileSha256": "70986bc42c89b6cea2442cbe0c46294ccbbde5391260f56878f3ee178e5f5225"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_mic.xml",
+      "gitBlob": "08e9b91444199ea2ccebd941ad3e6e705d1b40e5",
+      "workingFileSha256": "b7049776a069adb972fea73674c65ec69d728503f58018bbce40f04d4071b665"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_moon.xml",
+      "gitBlob": "442f13d6bd42479b04b9e3e15b546fb026fbebcb",
+      "workingFileSha256": "890748306449b5c5af46b3a3d3108e0f6e15505682ebf10c99a548c4afa35a70"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_nearby_info.xml",
+      "gitBlob": "109ca683768d623b990da80f4bbdfe1fc14f80d7",
+      "workingFileSha256": "7bc568a826d8987be35d66441fd9c1e34f5b44cbe9914c693e56281aab5d8746"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_nearby_pin.xml",
+      "gitBlob": "9cb0e40154e9059b05efead7ac96f3668565baae",
+      "workingFileSha256": "99a1c135045e1f0f0a4c8e89ab96fe16e532109c2e0e37cca11b7ab40c0513fa"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_nearby_route.xml",
+      "gitBlob": "f09395ef096ba0f9aa2f1e7f0ccb5e597b8dfabb",
+      "workingFileSha256": "f37209461de7c447089701d08a42ce086d5f2e26820da7773dd4de990331ff7d"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_nearby_search.xml",
+      "gitBlob": "0cc402d3409972cc16cc1b95416646af7df8e130",
+      "workingFileSha256": "8ccfb9048c2707534a7073958ce0ce982555a6a97e82e9c7e19a505dfa81dfea"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_notification_prayer.xml",
+      "gitBlob": "f35b201652e2471369f39daa83b837eefe9cc908",
+      "workingFileSha256": "b9e967eac4d457a06753b714b25e7101cd9a73d01d3e2d06b92867c16f341907"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_pin.xml",
+      "gitBlob": "f198de1f1a0dbec0cbfc4f5dba68cc0653848a07",
+      "workingFileSha256": "98220ef69b89403081a5c550968ef145a7c63a6c4dbcb409c90f662201699fc0"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_plus.xml",
+      "gitBlob": "95db1b58f1f94b16195fdb0c9a58bf3e67597f92",
+      "workingFileSha256": "be26563cbf234de991cd63ec14c3b74db96e9087fd094882fcc9a37b47d06b57"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_shield.xml",
+      "gitBlob": "fa633cad6b9a4ed80abcb5523040cfd21d88405c",
+      "workingFileSha256": "04ea4c1da68422bdba4f2d7419432ec8c172583cbd9e04640fde17613fc602a9"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_spark.xml",
+      "gitBlob": "fd9b91a84432d1dea4385f5add5710dc2ce8a48b",
+      "workingFileSha256": "16ea025764191cd8e1da9abeb9aeacb29198b472f825b5d50d2f3b226b82a1b8"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_sun.xml",
+      "gitBlob": "702c9fcbb4e1d14171f38dc88a23a24c0bd16e21",
+      "workingFileSha256": "c6e600ab49d456bafabd076005ef9bcea107df639f59219dc4afa2a8ae6ac768"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_tasks.xml",
+      "gitBlob": "dc5987a391ce4a39f43f1a4ed2867635729e035c",
+      "workingFileSha256": "b8f3ecb10cb4e0317bb9b4f6ea670668b5696a08c13641ad39b468d38ffff10a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_user.xml",
+      "gitBlob": "f0dccc13dea99d9acdcec05fbba2c90281c15552",
+      "workingFileSha256": "6f3590bc78e62627e508aafc93057a1b4d5830c697ccb9aff8eb2fe575548e77"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/layout_agenda_timeline.xml",
+      "gitBlob": "3f5831d21ba9cc21d6dae0a0d1cc445a11949c03",
+      "workingFileSha256": "825d419b32c08f81554457f029499d1d9154eaffd93d9dbbb52186944ee0345c"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/mosque_pin.xml",
+      "gitBlob": "eeae3994baabbec1fc9834601190f8206c1546c8",
+      "workingFileSha256": "d97e5b83f91d9ab067d7d1a204edffd1a51181af36b4dd65d81cb06d170b50bc"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/mosque_silhouette.xml",
+      "gitBlob": "7565a10d0233be38f0ec6617fff7c95249470292",
+      "workingFileSha256": "1c5adf68564412ceb4fc98bd363a8e9d439b0e1fc4ceb4185efa360bd1d84ced"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/onboard_card.xml",
+      "gitBlob": "6932b25eeae623028a9a034f824039ea6b7f807b",
+      "workingFileSha256": "64ca6c5bf7cf28d2078d2d81081918b62a8c3e31dd64263a21c3e73589dcf311"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/onboard_icon_gold.xml",
+      "gitBlob": "c0f5748a55a1e72a62015104209948b9a8799e94",
+      "workingFileSha256": "0258e06993336db6407fec72cab01ad8bafde23856caf970637f2101b4170ae9"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/onboard_icon_mint.xml",
+      "gitBlob": "85fc91443da18e5835482c514d341a6a2d560f11",
+      "workingFileSha256": "0c763ce90648668cd3d0f2e995ebd493e38e81659423cc0cea78b29e887b9bcf"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/onboard_icon_violet.xml",
+      "gitBlob": "d589c766ed954ab69e20e724369bb1b31671ce8b",
+      "workingFileSha256": "34ca8d3fe72f38b0510b6a3d27a9f07cc096128c2e33c9e89aead4db60080707"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/onboard_primary.xml",
+      "gitBlob": "90e8651e5259e0e30294fdab1e259452061e9a6f",
+      "workingFileSha256": "cdbff3edf2e981a4f2f581f355ae828016848c193097d2a33d018bc653bc2657"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/prayer_bg_active.xml",
+      "gitBlob": "d8619ce0591da68cf3498bb0494af4440b4ab37d",
+      "workingFileSha256": "13380dc5ac2baa4daad49f0efc3f03f677630e3bad4c7ebc9adc1249c549e925"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/prayer_bg_green.xml",
+      "gitBlob": "867060172446fae2b3ef5e3e01ada917ae9fdbb7",
+      "workingFileSha256": "2864042a9cb0095d6cefe7b8f9a8c2874db312817c477780dc9670f5ab8e6f2d"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/prayer_bg_hero.xml",
+      "gitBlob": "e172c632a80de7d1043aed907182552fa90415c9",
+      "workingFileSha256": "17f4aafd2fea211098763abda58c488f140b81d8ba08bc89206f9c5e6a9ca500"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/prayer_bg_row.xml",
+      "gitBlob": "13913d264d1e306794ccdab7c7efb50ae827157e",
+      "workingFileSha256": "47bc9a8639692ba0f97db7c5e0d24865ef5633cca615b9323678ba7f62f5b8bf"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/prayer_bg_tabs.xml",
+      "gitBlob": "381b0fda0829171aa3de85d350b423632bcec9d6",
+      "workingFileSha256": "95985e6a6aa4b7d764cd16184d2c62b3ecb016735eabb3f9344026ac794410d5"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/profile_avatar.xml",
+      "gitBlob": "c34e314e0b05e012bb5fe096eec77d052cecf4ac",
+      "workingFileSha256": "4942b3efe95511bb802c681ab886277b2837ab889323b07b5bbdc429842971f6"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/profile_header.xml",
+      "gitBlob": "c5497343d5e9d638096cdf9c4b87d7a9c7b65039",
+      "workingFileSha256": "1922289f0fe3471a031a3c9c45a5e80b8861cd35ebb7e46ee68ead805b2d1c92"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/profile_header_badge.xml",
+      "gitBlob": "5e21b610e119b72fb4083753a07d5515706bf455",
+      "workingFileSha256": "56e951bb37b9e84da94e952a4cacfb776426e54789eb4daa9da223d613ab4432"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_action_blue.xml",
+      "gitBlob": "ba59423fca1b60284061908124b24995ff2e83c9",
+      "workingFileSha256": "aab5b66e9d61868d021b0b21825d71eec5af12315464006ceb17f521620d3761"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_bg_outline.xml",
+      "gitBlob": "46f10252ceebadfd1dab6d2e0f535cd2ebcdbab6",
+      "workingFileSha256": "992b8b6163cbcf9f05101b57400f8f025e2722641efca0b5d8c8588870204979"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_bg_soft_coral.xml",
+      "gitBlob": "35c970b866f7f39f5ab6e36a3b41d10e2b9ac7fb",
+      "workingFileSha256": "8102529236879e91f2fb933485babac5cc2bbec3d54d48893b0280c1b864af21"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_bg_soft_mint.xml",
+      "gitBlob": "8cd39c23273fbd8a67cdcbe34d7e01aa146bb580",
+      "workingFileSha256": "06091d7375b13b4f21561fc2c2971bd0e322558794ef9e7e483721eeac6ed4fb"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_circle_white.xml",
+      "gitBlob": "963c124aaacf28fcfb44775a67d7ddd2b65dc972",
+      "workingFileSha256": "e642b63800e6b8cf8a744eecddfa9ffa2f8746dfd5ec60b4849e71b41f42f418"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_dock_bg.xml",
+      "gitBlob": "8af70e8f30ff739f5edccdd1e9b0cce4403bcc92",
+      "workingFileSha256": "8f522f0d5216ec827e1464cc7bcfddfadec85ff6f3c9112693233a6fbab830ff"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_forecast_card.xml",
+      "gitBlob": "359393adae6c7ae265e4a8d9263c32514c17e0c1",
+      "workingFileSha256": "4365d7e0b900c1cd1bfdbd9ee7ba5bbd6318f3517902fd1ada6191f7ca86f753"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_glass.xml",
+      "gitBlob": "28e89692d8ed76f2f36ec4dfb7d652606d470ed2",
+      "workingFileSha256": "514bd7c32a4590c4d69a3b4405ba1a806297bb68091f98d6d93ea0179c518f0e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_ic_chevron.xml",
+      "gitBlob": "48ebfcff1be30a56fdfd87c45e044149312c0282",
+      "workingFileSha256": "cffdd6fc215b8830706c3063e0b531c0e73769de20b8b58ce91ee48feb2b08e4"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_ic_clock.xml",
+      "gitBlob": "26ae09c8aacf6d87a226df86f1800af4095c5a84",
+      "workingFileSha256": "0b2b2f4dedbb1f38965a191af7078029994145ab077c5ba4e3cceaa3f41b2299"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_ic_refresh.xml",
+      "gitBlob": "8a8572673e06b116b185e2877f7765b7bd440139",
+      "workingFileSha256": "ba606396dc7b69f7ec082bf5499529ab982ec6e3ba65c19ee8b581c0ac6083e9"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_ic_warning.xml",
+      "gitBlob": "f04d7768e13b2da5230ce39094e4a2f8cfe38b20",
+      "workingFileSha256": "54570333ca04f25a4442445bac7b8ea2f296985aeaf4400377faaf7e56bcf9d0"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_nav_bg.xml",
+      "gitBlob": "1ea26748316ebf7f2856f98f8dd3ab3a4ecf479b",
+      "workingFileSha256": "b94e90ef98c41101327e90f0eb7c7a305b6dbef5b296515e2628b1a7a5664a8b"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_reference_outline.xml",
+      "gitBlob": "985f840187200ca50e09e5a409607cf1893aac23",
+      "workingFileSha256": "e192a62cd8ab435e359f6c026a36ad257f83ab1137072a22ae47e65f35b011a3"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_reference_selected.xml",
+      "gitBlob": "64cc3c3b41625e7e50cc8079a42eeebac3f4cb82",
+      "workingFileSha256": "25fe37238dd9c4a24bad29495368b27d1d1be9a59100d14ea2df2fb454805102"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_reference_sheet.xml",
+      "gitBlob": "f8ac1cb2a85b8f2c22ce4b64cca99d8ed0c8244b",
+      "workingFileSha256": "64bcac964cc13d94f9bc089b6efd5fe826f048f6a090b0d9c31a956c4f33cb19"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_reference_update.xml",
+      "gitBlob": "28bd7f0c1e227f82ba9f88958178326def2d958a",
+      "workingFileSha256": "daa0470e3de8db644c3e343a59288f0526ac94eb95a7da1e0e1061196f6bae7b"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_soft_card.xml",
+      "gitBlob": "61238ae41a252a1376aa0f071c368f6a31ddbf2a",
+      "workingFileSha256": "06ffe8dd17b6f0d68246a6d9f8e1275997e7f6a5f887cdec406cf49c10ca1321"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_tag_blue.xml",
+      "gitBlob": "f255fbc47ec1073513a15109e43535694e708193",
+      "workingFileSha256": "bb969b63ef6e16d04bd9f6c7cdcc900fee51861bd960d84003cf1880f97bc451"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_tag_mint.xml",
+      "gitBlob": "a2587d7dbc0989698868b7339d7a564a82046295",
+      "workingFileSha256": "35fae47861b964056cf817d0036b459c95cb474c069358b4076ef762b6a18989"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_warning.xml",
+      "gitBlob": "4d25f010a324b9a2710de316b0b278a68fa9ec07",
+      "workingFileSha256": "c5fb4ca7c9eb74fc80db818007617d5e71397958a01fb290439844418c2a4ae2"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_weather_bg.xml",
+      "gitBlob": "0956eb8246ac8f0bc20f5c2c16f2d8b49e94c811",
+      "workingFileSha256": "1f679cddbafbf62e60843833661be0b85716b2db2136769aa5c2e0d0b1e84825"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/protector_white_card.xml",
+      "gitBlob": "f0a28b714bab40a8bb53d034bc2bd1c6665ab6c3",
+      "workingFileSha256": "63219a79f314bd0001fea5e62c68ad00b0de71c5f8c9342ffff5cd1d0513c822"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/qibla_bg_green.xml",
+      "gitBlob": "73e92f3ba3b436732c7b00e30cb3e5499b53a909",
+      "workingFileSha256": "6098cee2925314a9e1bef0b806b39ca957d2bf5885d7ce8df14ddae11ec8ee5d"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/qibla_bg_instruction.xml",
+      "gitBlob": "57d5356809ec75ea4d64add56c6b96bef44d4d6b",
+      "workingFileSha256": "9296f1179233ae1a205b5a4d3d38f4ba452a1f6a3ff0446d74202d42fe2f3958"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/qibla_bg_nearby.xml",
+      "gitBlob": "49381286a16620dbc6904d7fc3de87c1b46e1d6c",
+      "workingFileSha256": "05e1cf0bba004d7d651bdc198b67312cff867c425629c84177741f806ec716fe"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/qibla_ic_info.xml",
+      "gitBlob": "68bf6da3af502b6289d79318278828aff3b9459a",
+      "workingFileSha256": "9de8e8e3bfaeefccfb826527e4549d9743c4e04079b158cb21a8cd8214866c3f"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/qibla_ic_location.xml",
+      "gitBlob": "600948ceb60cd0114afc36d8e51b73cf99dc0986",
+      "workingFileSha256": "b41a9aaa1918625eeebb5ea67b7923147dfa57c79a3ab2d649e7f2d9de5284ee"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/qibla_ic_mosque.xml",
+      "gitBlob": "7929769d5ee7834c2d5a455fe769b9df37f6487e",
+      "workingFileSha256": "d9d8abb3725350c6dd8afd3935c81e33f0c1f0d209cc8510c7e2b4737dfe85f4"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/quake_ic_wave.xml",
+      "gitBlob": "8fa95780109467571920e66891b9eb8162ca9f5e",
+      "workingFileSha256": "74e7af176657466f219f930ed09dcaa6b83f43ed780d01cc7dc50ec44098b525"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/quake_sheet_bg.xml",
+      "gitBlob": "a40a4c656e0c6f7fc4aee4676281e40a09020043",
+      "workingFileSha256": "07ffda3e86bbe302aa4dcd3737881c52514b06a9ae1f75e2058c02b33d9f6ed1"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/quake_stat_bg.xml",
+      "gitBlob": "16ce3ba7855b0db2d98ee98f938fa6f910808143",
+      "workingFileSha256": "06dbdffa2c75deed9a8bd4edc53f5c113bf4458e03a569dcd09ae4c4fa8e2e92"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/quran_resume_background.xml",
+      "gitBlob": "5580d38e7853bdd25b4c05e8e2c28c54c3eb039f",
+      "workingFileSha256": "e569799fc7f50c40ccd921c44b21cd2cbdb24d47c99d641850e4ddb49b43a2e5"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/quran_surah_header.xml",
+      "gitBlob": "84f1280b385c99320ea5a45fac8e97c5054ef9ba",
+      "workingFileSha256": "9f269c3e2377b1baa1ef8d76f2bf97251ac53abbb2633761951f4d76cd0436a2"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reader_heading_corner.xml",
+      "gitBlob": "4c07f8c37a61f857fd4fe7d453eb8b1302a870cb",
+      "workingFileSha256": "2bff145c1daefc6061c0bd709c7b5fbcb877b58a0fbb5fa4004065af98b3b00a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reader_heading_flourish.xml",
+      "gitBlob": "e7ed65c527834b0a823b56b1931b09016b32f037",
+      "workingFileSha256": "85913be71c1a5549af84798a6b4701b890d1177097c05ef323c350b2b948bec6"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reader_heading_frame.xml",
+      "gitBlob": "41e88f14051041e2e8522516168ab1666d5f4ff4",
+      "workingFileSha256": "9c1d2b0a549c299af96434b3f3734ea5468fe0b52bb0145ee74ef2b572175e8a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_amber.xml",
+      "gitBlob": "dee3d65950a444d59077c3b071d137d8401decdb",
+      "workingFileSha256": "8eaf24e854ceb67b1144d9d481c58c21eae7c9d63523ec0c51e7d08fbbbca2c0"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_audio_speaker.xml",
+      "gitBlob": "a166bfd924424700a2140a9aa3ba22b2145f3251",
+      "workingFileSha256": "1f8c67557fc697296d3a86643d740bfa508c37030450dc405e90d64cc909e2ba"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_dua_banner.xml",
+      "gitBlob": "a984f15a60192099d6d5e04df0bfe29badababf1",
+      "workingFileSha256": "cd89778162cb171af0a713e1bef29dacbe6112ff81d287db2f075132ba46edef"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_ic_adjust.xml",
+      "gitBlob": "f4140231e2aa2a4b2cbebf89ef8e71f54c5db05c",
+      "workingFileSha256": "256df45dd748e4ce350735d1d74a20c1be8ede803e6906b444804057261cd74e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_ic_bookmark.xml",
+      "gitBlob": "634071c16a270899f2a95c13c41180c94f73cd93",
+      "workingFileSha256": "1433d01ed3cab7c61266029d8e6afff5fb8557bb3312ef928cc30ca5d15c3b95"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_ic_bookmark_filled.xml",
+      "gitBlob": "48661e2792ee53251d9918f8c2251aec66d1c4a6",
+      "workingFileSha256": "d01de72a640f885240d1ad012cbd8ba382212e902eacf2c1624f896eefe4b20a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_ic_close.xml",
+      "gitBlob": "b32d5a4ba6c2ac7bb91c1e417af22f3bd3b99d19",
+      "workingFileSha256": "ae3063f34107f0a30b0667306f4735054ffebfc0e28844264c730e022d32237a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_ic_search.xml",
+      "gitBlob": "3566cc31578469d30034efaaa6b96ea672f9141a",
+      "workingFileSha256": "8bb68f494e15034aa3c6e71fdffcd74a945c341e72edd36d0f16b0aab0f21d84"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_ic_text_size.xml",
+      "gitBlob": "c3eef3db1aec770dae86ef60d0d90234e5d93d66",
+      "workingFileSha256": "65a1900991bb2c0f7df71b4aaf44688ab7b1a3973a3cac023c76cbd109cfeb9a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_mint_card.xml",
+      "gitBlob": "c3e677faee6dd35ceec37be4934b0726927a73b4",
+      "workingFileSha256": "98dfb0751218b7244401c8e6068b3f2a9cb1a20eea1e1e5d83d99c8216a3b24b"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_number.xml",
+      "gitBlob": "f099d43341bfdcf87a6b35f5058a67835521d4e9",
+      "workingFileSha256": "b79962dcc43d8e30dfde1ae00ced5a0e5db454b8e532fb48ddd45382181b1a8d"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_open_book.xml",
+      "gitBlob": "5d1dcea831ea96ab07ebeafbfd3d75edde6bbdd9",
+      "workingFileSha256": "42dfb69a6be3e1c0b4332a2eaf9e164a9964fb4dc6e43e8e8c766956519454c0"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_pine_card.xml",
+      "gitBlob": "4cc2ef9ca36f2090e7db62aa3cec08a3a8e84a54",
+      "workingFileSha256": "c966f59c961c64a8712a078b6dfeb37df6932371a5db7139dc6961addb0bbf7c"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_search.xml",
+      "gitBlob": "60009e5a4e322fa1d320dc5308ea9c7dcc126641",
+      "workingFileSha256": "bb64a42dab884e53f5a59205b4423f3c803530dd7543a58139b99abad5ad32de"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_surah_number.xml",
+      "gitBlob": "844b6373049f16da30a3a9130f9198e1ce05b6d7",
+      "workingFileSha256": "bb17cc2305bac39e126e77eda019362c723af3d54fb19d905f283453543cc311"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reading_white_card.xml",
+      "gitBlob": "8934c8cbe1270e6f34d398788836c24e61299994",
+      "workingFileSha256": "8bee3c653499fe4316f40019c7e6a482d773796e94f108c4a652d9b1b0163ad5"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reference_gold_card.xml",
+      "gitBlob": "d87b90e2801a1da832b994a651f166259d802807",
+      "workingFileSha256": "0b705700b342c6e11f7eb0118835f2c03138697d0a72cc11c1728c2453248f2b"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reference_mint_card.xml",
+      "gitBlob": "38bd0e12069ca4bd5f88d976f303f51c60772d50",
+      "workingFileSha256": "b85eb3941b89e3b902ef9e7eaa612b58844aad4b5d2fa97e622391ed2676aff7"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reference_paper_action.xml",
+      "gitBlob": "c79aaeb4606401d94c4a38f8e81f85333ec48cff",
+      "workingFileSha256": "a5d884eed54e33ad8954850debfd7c602c2daf02be8755d43d599d84b93267da"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reference_quran_book.xml",
+      "gitBlob": "e633180c78dd81bf6005c646cfc0ad3571d2515e",
+      "workingFileSha256": "6eb405a15f3a3f01681bacaa76bcbab2c6b32b9adb88891717564e4ab7b67bf2"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reference_quran_hero.xml",
+      "gitBlob": "bdc5567a89543e96a27bdb73a63f4d97bd1f6fad",
+      "workingFileSha256": "ddccca35149a89ace897535f5699bb74e0dc46832d447efaaf00896c69280369"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reference_schedule_panel.xml",
+      "gitBlob": "c0c2f8f26f22164bdf4125ed99a2e4d2dec8ab05",
+      "workingFileSha256": "4e412f09eb8a38bf09f33eb488b2f67a2f17ee725e3fbf100c7f4d3914669b8a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/reference_target.xml",
+      "gitBlob": "1675015b0422ff0d1b04c1eedbdbfa791982352d",
+      "workingFileSha256": "408931176a5ea482bde559e478142b3d306763e2c90c50c42c9d836908225997"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/refresh_mint.xml",
+      "gitBlob": "2ad8a677a4dd4bf909e626a9e0cf7701c62e2b67",
+      "workingFileSha256": "7b7a7e494ec7ee2fff621e1665481be98f954591c3bf0a2a4c07c72faede05c2"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/refresh_outline.xml",
+      "gitBlob": "2758864de8cfb9219a9eedad0dd60c91bbe1838b",
+      "workingFileSha256": "ef03fbc81a8199bd81bbb7bfdefa3807d69b382720afd68939f12e64232bf91a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/studio_books.xml",
+      "gitBlob": "d98eae3f4494ab84a503044295a5da361850673f",
+      "workingFileSha256": "7f0511e79fa07e707720c5e82d743b6ba48ded13bd5d8c0231504b91e229c282"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/studio_focus_stage.xml",
+      "gitBlob": "b5d3f44d8f5ce4b66c8cecd07b8289024896beef",
+      "workingFileSha256": "99b6dd956b3eac4fe19d66f8a2fc604539dadb8005379ccba92e3e4f6d03a6d8"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/studio_gold_button.xml",
+      "gitBlob": "9b3123264969bab80e0d90d7fbfa7115014fdfe4",
+      "workingFileSha256": "7f3d9d560a15c13bc0db8bb12930ff9a436e444425fcc7e1fa5ee02d95f119b7"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/studio_gold_card.xml",
+      "gitBlob": "ab7ff35690d297b71456fddb7dc22143304cfbcd",
+      "workingFileSha256": "7eb28963ea10b68f467155d836ece3ec2cfb4d558f1568a373a76495b6ad01b7"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/studio_hero.xml",
+      "gitBlob": "3c90e6bbd381ac50bfe0e71d167a8418b0544bb7",
+      "workingFileSha256": "4753a0718a29276dab54cfc276a7d8c1db309ce2c39d0b4c381cd8f625acf121"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/studio_icon_blue.xml",
+      "gitBlob": "da07b0fb7e719e44160dd1174222de25f0e2ee33",
+      "workingFileSha256": "1b5482a547c2b4babe1134283cea1282edb35812214e3668d39bc4c347b5053e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/studio_icon_gold.xml",
+      "gitBlob": "687189f0a314ad124ef8092fbf03aca710dca276",
+      "workingFileSha256": "592ad2a47637ddb8fa382670eaf83813fdda5517f0ae20740c93c4f2661bc6ff"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/studio_icon_mint.xml",
+      "gitBlob": "6787a2f2024ebe6eace6e3db15b65887fd410ae5",
+      "workingFileSha256": "1c4b60e4b91fc6d907e04aeb97a52bc5e68d75af406ebf1e009b40de14b9dd05"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/studio_icon_violet.xml",
+      "gitBlob": "5f9113b46950e0f058763e3363e5a206cb622596",
+      "workingFileSha256": "3e16463e995f7e44a8ac0696f70c691f3a1500dbf79e01fd10aea7ab3c709c23"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/studio_quran_book.xml",
+      "gitBlob": "afa002ab661af989bfdd40ab1674ebb8e39e0cd4",
+      "workingFileSha256": "3390de1949d54faf877edfa427e18781616f5a53cd9c0aac1a311f6df1d95b6f"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/studio_sage_card.xml",
+      "gitBlob": "ba1dd8de667ca911b0fb3b77392cb20707acb18e",
+      "workingFileSha256": "223b1b5723b41815c7b343c30ada51a74c1794a60576e8e0b807bd555908efc8"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/studio_violet_card.xml",
+      "gitBlob": "25415f2cfa975d755345c80d1c349cb8f0c6cefa",
+      "workingFileSha256": "83671975ed604ab567dda02289b448374ff5c3567d4524c772a32c7d92ae3480"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/study_choice.xml",
+      "gitBlob": "39e70f9602a02d789f0818a78684f66d22c9b559",
+      "workingFileSha256": "d29b6e4e6e77b4251b8dd98ec6eacd2ae712019215a77c42e6b5d67c9d01b184"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/study_close.xml",
+      "gitBlob": "46eca6192c0018dbe223616836f803921992044f",
+      "workingFileSha256": "a35e8000bf2187321a1c0204848d747d7c0b7c5bc169a421a0a95a700302aeab"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/study_dot.xml",
+      "gitBlob": "c280b2e1973d4744c31d169af65f860cd1094ead",
+      "workingFileSha256": "d405ee6da735962a69f47ab0a3097cb34066df4da7dc2fa77ec7eccd37c48ae9"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/study_ic_more.xml",
+      "gitBlob": "959921272261780876e39f221f2dd033602dce47",
+      "workingFileSha256": "e4f2f73e677c196c01c9391d023e2cf62410f98eeded4961fb55f079e09d310a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/study_input.xml",
+      "gitBlob": "387a95c2e3d400d7836fd12ac44bdee92a8dad3a",
+      "workingFileSha256": "b62a4861c0e92963651a2bcb2a9d5143883735ccbe08cea6fbf6a75f108b83d8"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/study_row.xml",
+      "gitBlob": "dff728456cd67b8896c5435e31143e4a9d6a13d4",
+      "workingFileSha256": "c343001db63d394e4da1e0e99e33da80d7b2e12ce4ca70bc6eee4fc8bd592bad"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/study_scene_hero.xml",
+      "gitBlob": "562d39452b0f9442831314e582911015be28fe0d",
+      "workingFileSha256": "6e4b61b0197a86f897ea0fcd924f45354cd75c7bb416405ab05a8665244e9082"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/study_scene_rest_note.xml",
+      "gitBlob": "11d1aebbee8b95fa5491d1611cc9a38adfa69de1",
+      "workingFileSha256": "f17006d111960fbb85fcb82945fc7ab29ef2f6719722f2643b1939364b2c3ec8"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/study_scene_settings_icon.xml",
+      "gitBlob": "c124acef62679cfd3f2887599a3f879ad129689c",
+      "workingFileSha256": "9f480f3119b382250e7f871f06b8c91f9d18f13850b128880e6ea84b3dfeb378"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/study_sheet.xml",
+      "gitBlob": "3974c6be4223567e447e096748571e913a3a12ab",
+      "workingFileSha256": "3c67492efcdc4151b068293e252782a4198449e98098282112b0450d65fcc55e"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/study_summary.xml",
+      "gitBlob": "c6edf069dfebaf6b79203323739398629e2b6cff",
+      "workingFileSha256": "2d1003d027178e368d1721187696584e292ad18b78b74c3ab554e1fac651c76b"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/study_tabs_bg.xml",
+      "gitBlob": "e39fbbc377b03fcf70710dbb6f835d6a6657a6a5",
+      "workingFileSha256": "cd26c2ace934c83929a076fa11263d42502e4bfe11ea7efcb92eae127a18ea50"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/study_tag_bg.xml",
+      "gitBlob": "74a3efb1ce5158ed7adc06bcc1183d1bafa97134",
+      "workingFileSha256": "1977f72491b38847bf8f1a88b95a97d63d6761f7ffcf9884a66ad56858c645a5"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/weather_chart_bg.xml",
+      "gitBlob": "d4391b604af1dfbe3adf5f7f125288e61770a366",
+      "workingFileSha256": "d38c0f83b2a5d94dcbcc53481b2d1b221514b0916498dac6ec80757988de53e5"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/weather_hero_bg.xml",
+      "gitBlob": "5887da3b1fe8ff5f5c5c9121f047b82105853a66",
+      "workingFileSha256": "df5cbda9bea83137967d6e0ac2af11f0442d8eeea23d09b655fd27ce5edaf428"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/weather_ic_cloud.xml",
+      "gitBlob": "9aee7a2bda0d7659c39018ae48ab64a20032b746",
+      "workingFileSha256": "5cf082909cef40f94219a621ef8ecb99011b6e9ef35451a9a2120739fb176085"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/weather_ic_drop.xml",
+      "gitBlob": "8ec43819cdce997d88d35bfb6aeefa5fc962bc4d",
+      "workingFileSha256": "afd4aaa48f95b27d5664da71cb85daef35d930c9f60ab597d82a8e1b2d5d1927"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/weather_ic_wind.xml",
+      "gitBlob": "c77de3a338daf0ac5ad73b78cc72686a2bc689be",
+      "workingFileSha256": "a49cee30d1a38cd70db050690a2dbabfdfe90e84dd27cec73309149cede296df"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/weather_symbol_cloud.xml",
+      "gitBlob": "4fdebddd77194c790591b683c77a8dd575f033c9",
+      "workingFileSha256": "765dbf3f8d5d126536202ee9e78c7e94ba819f85501c0288b7f2ff89e03538be"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/weather_symbol_fair.xml",
+      "gitBlob": "7ae6c23259a644b7769e610e977ac40289660ab7",
+      "workingFileSha256": "e4dfbf5e2f19f01a3da92b9249bd9b0436cbe6025ecd758bfa95f1f415ec9e4b"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/weather_symbol_rain.xml",
+      "gitBlob": "60d2428335e49b78f695b1e1526752ef7608e1ad",
+      "workingFileSha256": "99de1b3abd30e12c1745e078063aad123e8e059fa5d25b83a3ccaca792711de9"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/weather_symbol_storm.xml",
+      "gitBlob": "212e2b24137540c6b0af7f08a3c663122391d75d",
+      "workingFileSha256": "197f17f2bf0f8dca5aa800fdcf72803491fa0c33504a01d52e9ea31ac7f49327"
+    },
+    {
+      "path": "android/app/src/main/res/font/plus_jakarta_sans.ttf",
+      "gitBlob": "0cb13a998ed525ba226d911b10d6c4c4f923a961",
+      "workingFileSha256": "89b3fb38aa0d275d7a731d0d817a4f1622b316b4d7fbdedcf02ee9099ff68bc8"
+    },
+    {
+      "path": "android/app/src/main/res/font/protector_roboto.ttf",
+      "gitBlob": "5522a368d9072fd88c299916e61fcff369949061",
+      "workingFileSha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_ai.xml",
+      "gitBlob": "f02c5bb945ecf4c695f5c14760c25ab79730f6e7",
+      "workingFileSha256": "be0b8f6910625068f277790971fb67f687e474c20d4fc58e5fbee00a680ed32b"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_calendar.xml",
+      "gitBlob": "75da81132cf91543feeaa53382303a2266ba9204",
+      "workingFileSha256": "6481fe4881aa5234832761bfb67f086c16e0e510ceeda7d2735e2a04a425ad54"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_detail.xml",
+      "gitBlob": "96fc725090d38d7183b94d70d4820d2848e0a00f",
+      "workingFileSha256": "26a1e101590f6f7db9cb51d539348c375c854dcb6cba3dea9c0ba2241310046a"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_dua.xml",
+      "gitBlob": "b70c274e11a98e556f4b5058114f11d88a37a71c",
+      "workingFileSha256": "dfc167b00546c8a9faebbc9879aee5bc757642e1396e00f604339e32facdbc8a"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_dua_library.xml",
+      "gitBlob": "b4358d546fff5c014c9040858398d0636fe31f11",
+      "workingFileSha256": "362af55ac10a2a5ac3dc446441eea8273ea868e00058a681ac2f259dbacdf3a1"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_earthquake.xml",
+      "gitBlob": "478b0fd2ebea9d01b3f1571a23d5e19165fe90ec",
+      "workingFileSha256": "a6ed45026b68f73de7efcd7940bae118fc8011c8d10ea144e44049feae7c2448"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_focus_timer.xml",
+      "gitBlob": "eac9dc179c63e5498a79c21f1c2bd12404bcbe85",
+      "workingFileSha256": "c1684fecce8571d21cf2369e2a4cf4187ca59ecbaf580c03fdc9dfda48efa18b"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_hadith.xml",
+      "gitBlob": "cc1ae6b82137bafe0ae3d910c43fb8acd8c40dc9",
+      "workingFileSha256": "0903451f0f4d6b50c9aa52cb227fd402ba00f90d140a5177681d81978f84e26a"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_hadith_reader.xml",
+      "gitBlob": "7f16e6004a1630bab14b105dac6317f2e3d83119",
+      "workingFileSha256": "114496bcb9147a4cdda5cd8716fe0a83dc4a99df4adcdd0a66bae87ec6b5e67d"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_home.xml",
+      "gitBlob": "64ba45faf8bfbc6e41f0363b075ad822974aaee9",
+      "workingFileSha256": "b699b3bd98e030be1b0ab1f97b6a2650a239d4f2b69d6e8c6f44501869cbb205"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_infaq.xml",
+      "gitBlob": "93a5af84fc101f00805cba6d73f9d064ddcb4523",
+      "workingFileSha256": "97d6cb25a5fdd6b0fde36b45f5a86cd101e3cc07b51a4970c029e397bf1c0fb6"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_location.xml",
+      "gitBlob": "31e84e86392b8ddc6302f910727f65f9e5e8070b",
+      "workingFileSha256": "d02d6c2e9e52d0eeed1a5ce12df81814b7110dad30d314d9f9599c9af4fcac8f"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_mushaf.xml",
+      "gitBlob": "43eed053a7cac525b22d7c5c111f1b767b196721",
+      "workingFileSha256": "8149f5616121b89295502bd9749ad9d322a6040ccbd49fcd42423d6aaa5e1f5e"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_nearby_mosques.xml",
+      "gitBlob": "7e4e63390a320059e09ef5666b928a0bb3ec62fd",
+      "workingFileSha256": "86b9e2ac2f0fc2e207c5c05103fa64f7bc53cd46cd7c626311ce2da25158442a"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_onboarding.xml",
+      "gitBlob": "c84e9e06742e77a698d9c3ecd59071d1265b5214",
+      "workingFileSha256": "be213c36b993b7ffc4af7ef2971abfba4c626b95c1b4cdfd00f02f29daeae6e5"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_prayer.xml",
+      "gitBlob": "fe9b917f7e1b1360af29e458660909bd26fda9f6",
+      "workingFileSha256": "f57835114f06cc0740840c3c94bcb9fea25166b1da6cec88ff155ed5c126abd9"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_profile.xml",
+      "gitBlob": "d0aadf868046d7d7ef6e6fc7b9c1513c9713c4b2",
+      "workingFileSha256": "54195fbc3f0bd4c8ddb06eaf177e35c758f189d599785a07b97921464d2f4824"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_protector.xml",
+      "gitBlob": "f8c1a60d67abfe023a3bcbb543dd31c4e53f0ede",
+      "workingFileSha256": "6f5548423e8cd42a79fa6415d1b87b1202eee4f2dc54e97221356429f4fd62cb"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_qibla.xml",
+      "gitBlob": "a94a1703e91cd248a3932b142d716f6d45f86f6e",
+      "workingFileSha256": "32dcc8dd190cbcb5599beacbd5903be4e7d2a0ba17dfa65887d24d7735a36e22"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_quran.xml",
+      "gitBlob": "549e6678050964ad7743f67c38507d58cefcaf8a",
+      "workingFileSha256": "849b3bd352c2e9c461ac8347302483d0291ba3c35ae95deb28f8945678fdb70f"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_splash.xml",
+      "gitBlob": "7b88567733a8005bd30cc964dc3c7ba5386bd3de",
+      "workingFileSha256": "0cf2cd5101bd69395ea0a35c41f1643f0b7c3e010f4bbf142f137b35f07172e8"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_study.xml",
+      "gitBlob": "91891255206c3af2880f4088fd2c58e29a1f94a2",
+      "workingFileSha256": "0ea45a60998110ba062aeecc7d932ab484826e995f4672182295e4ebf304fcb4"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_weather.xml",
+      "gitBlob": "b8a76904bb3c72cdcf04f5e318af4191770792d2",
+      "workingFileSha256": "669530f12538ee0869b559813b141b52b41ca63c6caa1d2c86a43c58c7981009"
+    },
+    {
+      "path": "android/app/src/main/res/layout/agenda_completed.xml",
+      "gitBlob": "b91e07b728e630e6b150f0f0f8e60d1bfc53f059",
+      "workingFileSha256": "0f91ee87e157764d342f004f97571477c664b0250a0787f71d14b88a5ec817d0"
+    },
+    {
+      "path": "android/app/src/main/res/layout/dialog_about_zikra.xml",
+      "gitBlob": "6691a0479388fdc9c8f743f1e155a221b699d286",
+      "workingFileSha256": "a48be5135abbf69019b1963f28d6e77cdfbd7f2e3a53d0b709ada470e848f367"
+    },
+    {
+      "path": "android/app/src/main/res/layout/hadith_item.xml",
+      "gitBlob": "99973d3865fe1439c5197b53a86af1e2c5eeb64c",
+      "workingFileSha256": "53ab75ea5813eacca9e70c816f587f774b3dcd2498cfc9a098ae59186eb4f636"
+    },
+    {
+      "path": "android/app/src/main/res/layout/hifz_surah_row.xml",
+      "gitBlob": "475b0bb27a7324f0939977c26e062480db866102",
+      "workingFileSha256": "b94d37b8b179b0b35f57d7e70e157b0a5b042522e571c2d2546be3f7de6836c9"
+    },
+    {
+      "path": "android/app/src/main/res/layout/hifz_surah_selected.xml",
+      "gitBlob": "474fe0ac733c6039423af08d53b6d43eb0366b5e",
+      "workingFileSha256": "d2c3edb61b304dc26fc0feb73a94c1ea2b5643381928a61ce3da0b4ebf5fa64f"
+    },
+    {
+      "path": "android/app/src/main/res/layout/item_hifz_target.xml",
+      "gitBlob": "b2eb6e14fb3ca9a368719081bee66567a8b5b038",
+      "workingFileSha256": "a552f56d704fbf6e9f4cb8a119a7b8104d9d55e516eed90a5c4e98a796520010"
+    },
+    {
+      "path": "android/app/src/main/res/layout/item_nav_destination.xml",
+      "gitBlob": "3beb6cda068e3ad567e499701eb6d60f694208bb",
+      "workingFileSha256": "5879551fea9eb273bcfe0c2226ab71783bf8fa2134c42a645b99e61c67a4113f"
+    },
+    {
+      "path": "android/app/src/main/res/layout/item_nearby_mosque.xml",
+      "gitBlob": "abba351e7e8cdf04d1dd2a3e36f60a9127817920",
+      "workingFileSha256": "b72dc01805227bcca68d1e3535971f472a20b9e32b22c94b646fffc003c94c08"
+    },
+    {
+      "path": "android/app/src/main/res/layout/item_study_scene_task.xml",
+      "gitBlob": "e14947e7c79bf2da961cabe25557b147d2972a0b",
+      "workingFileSha256": "579e4cf68dbaf46db3f0ac484f7f0886cd29159f416a7315f87e9e5c80a10a5d"
+    },
+    {
+      "path": "android/app/src/main/res/layout/item_task.xml",
+      "gitBlob": "346d7352294a063c5f9d37cfe806dc511dfe89ae",
+      "workingFileSha256": "08b5920d36a7e003bf2fb29a68d4fc75024fbcdf94fdd82979a7d84af8fa913b"
+    },
+    {
+      "path": "android/app/src/main/res/layout/onboarding_interest_item.xml",
+      "gitBlob": "3e06d46bdf6d48db251d639948837796b5218dd6",
+      "workingFileSha256": "1413e2646c73540141234ea23c446609f80eb75ab98a6454509e282c7f4b130d"
+    },
+    {
+      "path": "android/app/src/main/res/layout/prayer_day.xml",
+      "gitBlob": "d42d62b99fabc31992949df85cb8830e5f18f5e1",
+      "workingFileSha256": "a5233b0b15c5f83399c63705db4d30dfabcc9f2d927231297266b3322f058744"
+    },
+    {
+      "path": "android/app/src/main/res/layout/prayer_item.xml",
+      "gitBlob": "696ec3d78f8566b7038b446d50c21d4186e3323a",
+      "workingFileSha256": "69a987aaa3f21b1676b118883573df5d2908ececeb034ee967be3c09d6472923"
+    },
+    {
+      "path": "android/app/src/main/res/layout/protector_navigation.xml",
+      "gitBlob": "e6c26f7c218ddb7829d44a36bcbc7bbcf4a2f215",
+      "workingFileSha256": "2d8a9365ccd598c9dfd69ce746858a4889b491653c1c78f47c3825350e526fd3"
+    },
+    {
+      "path": "android/app/src/main/res/layout/protector_toolbar.xml",
+      "gitBlob": "a3f3eb4c37d3af1e24d13e0b0dbffe5ae431d688",
+      "workingFileSha256": "6bc6a489ed06feccf6a373534a8a9b58b2f5aa318fa2a834115cc38af80bda99"
+    },
+    {
+      "path": "android/app/src/main/res/layout/quran_audio_options.xml",
+      "gitBlob": "e0c578a0cf72cde1a9ebe584ab2404cbc7a3e0ce",
+      "workingFileSha256": "6c225e434c9c319758c330ccdb58d99659e6e67c4a1d6bf5ae34d797481a9b4a"
+    },
+    {
+      "path": "android/app/src/main/res/layout/quran_reading_settings.xml",
+      "gitBlob": "a69d6a1e119a83db98d63c899a71ba9f01ac1d55",
+      "workingFileSha256": "fc8af303591d48c72180f98b89a7de687c19b6fa6d26f72e34fbb9a537c58aca"
+    },
+    {
+      "path": "android/app/src/main/res/layout/reading_item_ayah.xml",
+      "gitBlob": "17c892d5b8aff01cf19f90a8c44c102480f758d6",
+      "workingFileSha256": "32e14ecf4269bb2117f008b134528c9429a9a05b4b428cb7cba89c3dbe081105"
+    },
+    {
+      "path": "android/app/src/main/res/layout/reading_item_dua.xml",
+      "gitBlob": "3ec71fdc1f8906fa9c5adb6d65e34f030737312a",
+      "workingFileSha256": "85640695589e3d9742bc1fe9d283b50a6451051c2994e1c844071e2b002b5f16"
+    },
+    {
+      "path": "android/app/src/main/res/layout/reading_item_surah.xml",
+      "gitBlob": "042abba3f83d335f47c61e0716e2edb9befd8272",
+      "workingFileSha256": "1797cec30db7fdcc8553ba59197fdd97868717c23767b281cf5385a91c44f43c"
+    },
+    {
+      "path": "android/app/src/main/res/layout/study_agenda_header.xml",
+      "gitBlob": "b8fd07ba5d6bc79b9db4db52a35e1d85263b7e7e",
+      "workingFileSha256": "7f8ba883c082c37bd696aad3ad85639e696bb442f506d6be7cd5bdfa3bc36181"
+    },
+    {
+      "path": "android/app/src/main/res/layout/study_dialog_task.xml",
+      "gitBlob": "b928c90062cb06ea668fd8c21edf5d24c71ef6a6",
+      "workingFileSha256": "7288fc8ab8d18061cb3c65c3fe08f67e74ae0a11224be59f4d037c14146031ec"
+    },
+    {
+      "path": "android/app/src/main/res/layout/study_item_day.xml",
+      "gitBlob": "6856585c07ae8613a8c36ca802f82718c3eae9ab",
+      "workingFileSha256": "a4466d9818abfc5a9d048f2dfe974f0af060130ac173d1cdd09a22500dc58cab"
+    },
+    {
+      "path": "android/app/src/main/res/layout/view_feature_header.xml",
+      "gitBlob": "de59ff18e553b3396605ca4bdd5e553ed043e4a9",
+      "workingFileSha256": "f984a8e2631afd3f95d03785609982c22fdeb59a958f9fe43baae49cad5d6bec"
+    },
+    {
+      "path": "android/app/src/main/res/layout/view_mushaf_audio.xml",
+      "gitBlob": "7e459c4010f68496d8565807fd84512961c58d6f",
+      "workingFileSha256": "05177fd9f806b0e710fe721a67ba8fe87a8275467931e9f2f9598dd02d5a9fe7"
+    },
+    {
+      "path": "android/app/src/main/res/layout/view_nav_dock.xml",
+      "gitBlob": "694245da3039f8589569ab6421518a75f057f2e2",
+      "workingFileSha256": "6e4faca178f5db75467c310257fff208cbc1e80a50aca7be173a259d9b1fe6fc"
+    },
+    {
+      "path": "android/app/src/main/res/layout/view_quran_audio.xml",
+      "gitBlob": "b242d3e9daf7b0c945a9394d450a27161e9fe1af",
+      "workingFileSha256": "6f85e1467556e5702444a0b39add7f4ce91dea37aca7d69eb8869b6a298068ce"
+    },
+    {
+      "path": "android/app/src/main/res/layout/view_quran_catalog_audio.xml",
+      "gitBlob": "94340654fbc0752a4c6a82d3db87aeb863a4c3a8",
+      "workingFileSha256": "edd0c59ea9bad730a334c00afbfe2e41e81f0c14926b5ed4e600fb7290a6a24b"
+    },
+    {
+      "path": "android/app/src/main/res/layout/view_study_schedule.xml",
+      "gitBlob": "73a1b013fe053d5728d6268961d3c96a87c47ece",
+      "workingFileSha256": "399bd14777c9577e5d877b183713b5bb4e42c1560b2e22e7f4102c3c298766c0"
+    },
+    {
+      "path": "android/app/src/main/res/layout/view_zikra_brand.xml",
+      "gitBlob": "5e5ecd9d708b321cc1adc945ba18813ba4252e77",
+      "workingFileSha256": "dbb11d2b955df3d187b935d2a3287bb4784a07c01289516dd64bda038163358a"
+    },
+    {
+      "path": "android/app/src/main/res/layout/weather_forecast_item.xml",
+      "gitBlob": "29f8f5fe07d9d87d953d0797516d6934d22eeb05",
+      "workingFileSha256": "c6731849be82db7125e5afb10ef23af95a24e4885459e10432ec68613f3cdb46"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+      "gitBlob": "96573875419ff3d1bd853dba81ae5668bf7a4b55",
+      "workingFileSha256": "6e1bd2f3ca3dd2c34afa60dd470cc7dff8c0b690adaffc5be8e999975fb06434"
+    },
+    {
+      "path": "android/app/src/main/res/raw/dua_selected.json",
+      "gitBlob": "70f4d899798b5488f40cce4577074296348b4057",
+      "workingFileSha256": "c9c254f07fb88a83b81ea0d6f734ad5bf9a5e9285c575c0ff37ceef5461ac154"
+    },
+    {
+      "path": "android/app/src/main/res/raw/hadith_source_notice.txt",
+      "gitBlob": "c41dac1d66e6a2c3f77129a7d9e12fb127a9af67",
+      "workingFileSha256": "b986f7d9dae37e518af530bc9f5e13381dea6e637fc3723b0875e57bc6eb4fbb"
+    },
+    {
+      "path": "android/app/src/main/res/raw/plus_jakarta_sans_license.txt",
+      "gitBlob": "ea69b0ca12a02556c436680ea0a159efb7a748fa",
+      "workingFileSha256": "995c7199cab65954f545996326755daee7b63cc6b42b06c13da1f9502ab08a99"
+    },
+    {
+      "path": "android/app/src/main/res/raw/protector_indonesia.geojson",
+      "gitBlob": "bab7ea053d6d5adbf8e7bf1af269697cd8e0b918",
+      "workingFileSha256": "569fd21af17a972e8d3247f1f1b5271326816a76f61d85858ead3849d6aca849"
+    },
+    {
+      "path": "android/app/src/main/res/raw/protector_map_attribution.txt",
+      "gitBlob": "9ac5a5ff9c0f34fac70f8e0e30fa4b4283f0e6b6",
+      "workingFileSha256": "977b10a51784e2d221dfcfb50424b4974dcbe920401de5b39a01d832c2928f3e"
+    },
+    {
+      "path": "android/app/src/main/res/raw/quran_chapters.json",
+      "gitBlob": "ada71011e6a90d820a0c0a1e28ff5bcde7899583",
+      "workingFileSha256": "8cc261d89da02768c0fb539f07d0d82bf2e2cf52aea1e8190129b5b72f5aaf12"
+    },
+    {
+      "path": "android/app/src/main/res/values-h600dp/onboarding_static.xml",
+      "gitBlob": "0550b775ff78d557819eced6263b267ea7374f07",
+      "workingFileSha256": "3698d2a60ba1b4e32ae4ecbd2107a50b88f49f5a2bb82d97d885059090b73273"
+    },
+    {
+      "path": "android/app/src/main/res/values-h740dp/home_dimensions.xml",
+      "gitBlob": "27454acc6f921872561b676cd7bf4b7c74fa4df7",
+      "workingFileSha256": "ea0130e0b17b500705a09e606c65e469777f96ddd8227ea0c2e4a1dfc370b6df"
+    },
+    {
+      "path": "android/app/src/main/res/values-h740dp/onboarding_dimensions.xml",
+      "gitBlob": "8a196fe22acd69f9771ba30509312c27964f4d8f",
+      "workingFileSha256": "355a329e6b7d7f74b32cde0ba4b93d6b831262a312a85e4399eb1b861894e7fb"
+    },
+    {
+      "path": "android/app/src/main/res/values-h740dp/onboarding_static.xml",
+      "gitBlob": "0907ef0b8df28599c8ccc83144c238f14fb6849c",
+      "workingFileSha256": "a77e1419bd349f7064fcdb112bb7142e1adfcbacba66920f71d442a812f74569"
+    },
+    {
+      "path": "android/app/src/main/res/values-h740dp/protector_dimensions.xml",
+      "gitBlob": "62513587262ac62d88035805a25675a9aa135de8",
+      "workingFileSha256": "437c1df6868365e194818746e8ebd9e2e7cbf5ad0bfe07bff1f8933a27aa0a11"
+    },
+    {
+      "path": "android/app/src/main/res/values-h740dp/qibla_dimensions.xml",
+      "gitBlob": "53c6a6f12f70831adc66f407c3abd2700c48a398",
+      "workingFileSha256": "f2186eebc3a10985f17cf33defe55038363a6af7ede53c381feea6490109b5b6"
+    },
+    {
+      "path": "android/app/src/main/res/values-h900dp/onboarding_static.xml",
+      "gitBlob": "d43be42afcdec46fd5ac7d2dd5f779dee919fad9",
+      "workingFileSha256": "c91cba918523a8e4b97c50295bb0e88a093e2841d5f19c90a13494600460d4c3"
+    },
+    {
+      "path": "android/app/src/main/res/values-v27/study_refresh.xml",
+      "gitBlob": "30f5ac91c1f873fc9a073cbede73a324e8246d02",
+      "workingFileSha256": "f6b23323524c0da5a2b480b4d8f36ecea8ef1437f277156025c9d00806cfa11b"
+    },
+    {
+      "path": "android/app/src/main/res/values-v27/styles.xml",
+      "gitBlob": "bb84169d5ba6b46fa7c9e7c7cee66a5bf9949d04",
+      "workingFileSha256": "8e6a4b79e601698ad4ed75396b64997063cc482a600ffbe1cf240677ef808142"
+    },
+    {
+      "path": "android/app/src/main/res/values-v31/branding.xml",
+      "gitBlob": "971b4f21db573106c4588ba730b8cfe8a617d370",
+      "workingFileSha256": "614fea27626f7eb379134d5e35c60937cf84790c29423d13cabffe2b05d7ac6a"
+    },
+    {
+      "path": "android/app/src/main/res/values-v35/styles.xml",
+      "gitBlob": "ff50afece82044f5f4a83ec3cc9102883f391750",
+      "workingFileSha256": "76f2d0884b8a0ebea71296bf468b456a21bc28c7afc35905f7d69486ae68b73c"
+    },
+    {
+      "path": "android/app/src/main/res/values/agenda.xml",
+      "gitBlob": "460590245a22f80fd61c8b117f0e07de37342f11",
+      "workingFileSha256": "66c4fd9c2fbb0c4c392457a9df7832c1a47909c9d4e95ed56935aa6e3fde31d3"
+    },
+    {
+      "path": "android/app/src/main/res/values/assistant_online.xml",
+      "gitBlob": "ea8b1a48eb1294439c8044b4bb5ef230da1fdc54",
+      "workingFileSha256": "1bf7d4cedc99741e75d09818221d5c84b6bf9a2744cc0dd3f66aec47d9429438"
+    },
+    {
+      "path": "android/app/src/main/res/values/branding.xml",
+      "gitBlob": "3714a0eb419249bf992162dd89d367567b6bfe45",
+      "workingFileSha256": "48c2247d898a44488e7b3e469854cea94a0cd2fa69b4cbc6a6f12aec3045825a"
+    },
+    {
+      "path": "android/app/src/main/res/values/catalog_audio.xml",
+      "gitBlob": "c63132daa6be7fa6d3b92861c1da89c308969270",
+      "workingFileSha256": "9297b10f1b2b70f223b51580517a0bfa5433b316fb779ab6a9af516abfa4168e"
+    },
+    {
+      "path": "android/app/src/main/res/values/colors.xml",
+      "gitBlob": "e67c1adb28e82a9d9250cfffdc518c5509bde69f",
+      "workingFileSha256": "439aaea1942acf7f21eaaee1f2baba9059b8279e251a3f1be9898049bf08b93e"
+    },
+    {
+      "path": "android/app/src/main/res/values/concept_colors.xml",
+      "gitBlob": "27b43270c37ebe2ffe61256eee723729d02bc237",
+      "workingFileSha256": "3f1780d43ae8d73a0b93782b373edf12a43c0502bebaaf7c0e1a85286574a31d"
+    },
+    {
+      "path": "android/app/src/main/res/values/concept_strings.xml",
+      "gitBlob": "0fa1ca1f65df77df5b795fdc739ed0474f43b736",
+      "workingFileSha256": "58d895ef5f275c691390a67ea526fa2cdf72a3143eb4557a81dafc2217b1087e"
+    },
+    {
+      "path": "android/app/src/main/res/values/daily_design.xml",
+      "gitBlob": "3ccce178e63a974475f1824519ea668b9ab9a564",
+      "workingFileSha256": "1d32b3a13e1421df4bf90e10f56d819aaff1c99b86cb4664ea49d3383b6719eb"
+    },
+    {
+      "path": "android/app/src/main/res/values/dimens.xml",
+      "gitBlob": "d69ccf4d2c6f88474c1323de1be244e89a6456d8",
+      "workingFileSha256": "685d29f3a0b594add7d1bfa528f482aed2f2074652d47262aed5adee82cd873f"
+    },
+    {
+      "path": "android/app/src/main/res/values/dua_collection.xml",
+      "gitBlob": "17583911bbd75358d75a1e12eb7ab5919cb14500",
+      "workingFileSha256": "967d6b17f941e606e34a98aa241c1fde952080e5e77f3a467a5d38481f38c295"
+    },
+    {
+      "path": "android/app/src/main/res/values/dua_library.xml",
+      "gitBlob": "66065b106fa9d7512b3a41485ed0c2e74868fb55",
+      "workingFileSha256": "4e6241bfdf7e69734301fd2e69b256d61da06e4390c6e8eeb2c5e9e04f3fed28"
+    },
+    {
+      "path": "android/app/src/main/res/values/dua_refined.xml",
+      "gitBlob": "9698a751c7a08609508ec69948e382829d7261ef",
+      "workingFileSha256": "678828eb5338bf5167054eac288ea3df7e809b79068d4206292b04551f93c4b8"
+    },
+    {
+      "path": "android/app/src/main/res/values/dua_review.xml",
+      "gitBlob": "e0a94036d3860705c8acaf8730b4fe1d92b7ed42",
+      "workingFileSha256": "219a71345dc5bde56420775184f3b8502ae1b447177698b47a0cc5d54589b483"
+    },
+    {
+      "path": "android/app/src/main/res/values/feature_header_ids.xml",
+      "gitBlob": "92a2703f4007f53545b4f8f5ddb70099c7d4b237",
+      "workingFileSha256": "d2dec021b8234f11bad56fbccfeec4c5fa330d7361edcfe2a515d497573c6a7c"
+    },
+    {
+      "path": "android/app/src/main/res/values/focus_motion.xml",
+      "gitBlob": "055bf1b39ca396d1d8a7d0e5fa075f33e9d36adf",
+      "workingFileSha256": "87423ca89f9e3db710a9d187f7b4b138a353180e0727c991a1289d3376821082"
+    },
+    {
+      "path": "android/app/src/main/res/values/hadith_content.xml",
+      "gitBlob": "5e3a59b01b2c7557a1cffd0358bf3701f3c6cb1e",
+      "workingFileSha256": "00d3967dc06e432db40029d59814aeded904bbf4c03955fbed26ac52b04554d6"
+    },
+    {
+      "path": "android/app/src/main/res/values/hadith_refined.xml",
+      "gitBlob": "97fc3179d504e6ac33d3c5022d034b3d6ba9cb7f",
+      "workingFileSha256": "b40d0d1b090aaea152a3fc45e951cb1b65e51a182400c49cd703583081c12070"
+    },
+    {
+      "path": "android/app/src/main/res/values/hifz_resources.xml",
+      "gitBlob": "f1eaa0fcff6006dfdbe8315f25e677ca82bc75b5",
+      "workingFileSha256": "ef2c0aaf07dff059f89037fec63bf457a750f8cc7f5daf96929166e3b36aa7ab"
+    },
+    {
+      "path": "android/app/src/main/res/values/home.xml",
+      "gitBlob": "c1744cb143552d9efb6bff2412929e75ee308ca5",
+      "workingFileSha256": "d92ae2138168004583d52800185bcc6f2f6d37e4ad086e2764cb287cc55b338a"
+    },
+    {
+      "path": "android/app/src/main/res/values/home_dimensions.xml",
+      "gitBlob": "fef7264ecd2fd5dc9ce88e7acc4870be93755fcc",
+      "workingFileSha256": "19cef84f8d7ab7ed57f8239f320f39e2b5ad2f60e297ec10e6c6144000cda58a"
+    },
+    {
+      "path": "android/app/src/main/res/values/home_refresh.xml",
+      "gitBlob": "ee2c1f0e8e1a12ee13bcfac2c7233a9c66017375",
+      "workingFileSha256": "44b1069b39b53a33aeb890ff8674674ad3a9b1dc2ad014d227612f16be4bf315"
+    },
+    {
+      "path": "android/app/src/main/res/values/layout_alignment.xml",
+      "gitBlob": "aca752250394772df7a6bcfed74e902e5f6e0d96",
+      "workingFileSha256": "2ddfba62c06d90001d32d7d3905b775da68590916a1578b54f9d2b2acfa21ebb"
+    },
+    {
+      "path": "android/app/src/main/res/values/mushaf.xml",
+      "gitBlob": "fe5b1520ae91008b2687cf5b55184289d178ff4d",
+      "workingFileSha256": "713badda856c66d62c6e99472fe510779955c43acbbedd937aad126c66599db2"
+    },
+    {
+      "path": "android/app/src/main/res/values/navigation_recovery.xml",
+      "gitBlob": "53f5f87455c2b123ec1a666caac2e535ea8ad40b",
+      "workingFileSha256": "692c658a678bd392c61bf7e4f0f34da1a3cccf872e86aa2659aec5b03feecbd1"
+    },
+    {
+      "path": "android/app/src/main/res/values/nearby.xml",
+      "gitBlob": "17e2f866669c704aa16a5025d712103cacdc2a86",
+      "workingFileSha256": "62d9af1ad7432a81faf6dc6de59c0bf880ad6df5e0fc1d22280baf8cf31f6493"
+    },
+    {
+      "path": "android/app/src/main/res/values/onboarding_design.xml",
+      "gitBlob": "ad1fd66186a2a40c0b598d955040d098b64fe8fa",
+      "workingFileSha256": "9c90e78c5778a4d839c66f1b3b4ca68ae835ea5be32d368b607198cbc03cdbf1"
+    },
+    {
+      "path": "android/app/src/main/res/values/onboarding_static.xml",
+      "gitBlob": "e1e42fbe174e50a30428aaa6ef0678993ec1f56f",
+      "workingFileSha256": "08652ace506b81a797f92a88dc25368336f270d35d6261471165da228bd60ed3"
+    },
+    {
+      "path": "android/app/src/main/res/values/protector_design.xml",
+      "gitBlob": "3c12b08f6d53092bf04676a1dcd5d559384372a4",
+      "workingFileSha256": "ba0796a777e204746d4eef1eb2fc32d8c282bf43952fc1a86e95380f2c9fc270"
+    },
+    {
+      "path": "android/app/src/main/res/values/protector_reference.xml",
+      "gitBlob": "afc283b5d25dbc66b56da6f97b17f0c34af5eade",
+      "workingFileSha256": "8061966d07f04c156e4f67738e50001e94a7c845f8e68a3b39a48a120439f7cd"
+    },
+    {
+      "path": "android/app/src/main/res/values/protector_styles.xml",
+      "gitBlob": "2603ae5149d4ef089ff270908198c4e31dce8787",
+      "workingFileSha256": "c8c494ef3c46bcb896573e252ac12460168d71857cc36a7c3414c90111533da4"
+    },
+    {
+      "path": "android/app/src/main/res/values/qibla_dimensions.xml",
+      "gitBlob": "41f63f920b2a24d450f1b918c57e698c96fda75a",
+      "workingFileSha256": "0111caa56842c0d1009c37b1e124a99a489b656198ab3221f55c69f849449cd6"
+    },
+    {
+      "path": "android/app/src/main/res/values/quran_audio.xml",
+      "gitBlob": "5883c3c1b1081bd7cd5d28ddf33561f2f8f93feb",
+      "workingFileSha256": "c593a02dccac4edce30a8663f1b91db0fa6800fd64eb1b8c8d3e146bf712c022"
+    },
+    {
+      "path": "android/app/src/main/res/values/quran_design.xml",
+      "gitBlob": "456a488b53e763cc195ebfb39e4f60d5de345496",
+      "workingFileSha256": "ef8b8e3dce6645c42e38888d48019aa669907b856161af767a5a041bc5e008e3"
+    },
+    {
+      "path": "android/app/src/main/res/values/quran_reading.xml",
+      "gitBlob": "67354c528b618beffbc29835c8bdc6a9e6146feb",
+      "workingFileSha256": "c2dc19015a02e91f6d54a81e833f5a693e2800483f4f5b0d3afaaffd37f09874"
+    },
+    {
+      "path": "android/app/src/main/res/values/reader_fold.xml",
+      "gitBlob": "89571f6a9453675e6ae4ab1c3eeeab7e580c6952",
+      "workingFileSha256": "02d61427af4e717870d9c7d683b45017907bf12ff9587be4d227d0e808c1f2d7"
+    },
+    {
+      "path": "android/app/src/main/res/values/reading_styles.xml",
+      "gitBlob": "a8043509cbf7a35431fac38727a8b80548bc08e5",
+      "workingFileSha256": "43c301b857a4f88fda31d32175b8e742a0707257b2253bf2a30a5984106af2da"
+    },
+    {
+      "path": "android/app/src/main/res/values/reference_fidelity.xml",
+      "gitBlob": "73d8058ffe44ffcdbf05da3f195bb49601251903",
+      "workingFileSha256": "9242a2cb6a0064dc0ac62af0cf477790912836bf9ef401023686665327e83fba"
+    },
+    {
+      "path": "android/app/src/main/res/values/safety_ids.xml",
+      "gitBlob": "783b395fbf304f6d8c995b4421dc1ad5dafca47b",
+      "workingFileSha256": "b28ebfe047afee553a09ecb06673bcfd2a53e8315d8c9201beb895d652a34507"
+    },
+    {
+      "path": "android/app/src/main/res/values/strings.xml",
+      "gitBlob": "d7b5446d22073f570e93d5d9dab66b2edd02c156",
+      "workingFileSha256": "3d2b4dce74535ab3e470310200b2e8ef0af69d72054f0bf582e4ecaa7ed10288"
+    },
+    {
+      "path": "android/app/src/main/res/values/study_refresh.xml",
+      "gitBlob": "7e945b5317b22e0a0fb920590c2ef37de2cc7f4b",
+      "workingFileSha256": "602c4d60930a178f4a067cf408bf79d0be9e8131a79a1699690cb685bf4b8f49"
+    },
+    {
+      "path": "android/app/src/main/res/values/study_resources.xml",
+      "gitBlob": "1e7b8fdabeeda5265acd025d92d6bb6fc32e92c4",
+      "workingFileSha256": "e3d81af9ab0c32f96aa908479814c14e2f7c7e3c4bb23ed8ce214ff0c899ba02"
+    },
+    {
+      "path": "android/app/src/main/res/values/study_scene.xml",
+      "gitBlob": "2b87d2c0b0ca6bb3e05469cd11c84014390a3d9b",
+      "workingFileSha256": "099e54b62e13711061be3e3a641a5905b7298ff7eb3b5bbbcb702b00a0a49348"
+    },
+    {
+      "path": "android/app/src/main/res/values/styles.xml",
+      "gitBlob": "a8be2455594847eb357e53c19c396ea9319a2b5e",
+      "workingFileSha256": "05e2043e53c4af73e3f49b3a736f969046d71d64ee31760044c7ddf62cbc2b19"
+    },
+    {
+      "path": "android/app/src/phoneTest/java/com/zikra/app/assistant/PhoneAssistantTest.java",
+      "gitBlob": "72d88690fecc9c7f3e1881b7ccd78305548e0e61",
+      "workingFileSha256": "b500fd307b7ca5f9cf3ca634f8ddde6d061983ebefb061c4124a18e6ec270c5b"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/PrayerScheduleTest.java",
+      "gitBlob": "006eaf1931289498ed8945087320bc625ceb07de",
+      "workingFileSha256": "53d8316c28d7d82938d7827b062b614b2821714aa62624166f18ca56cd02208f"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/assistant/AssistantGatewayTest.java",
+      "gitBlob": "16e13f0cdbf5d30fc00adb53fe2254d4abe340d2",
+      "workingFileSha256": "ec1e43272f6c1deacf2c2d5f48194ce3b4787a3ea00a708d3f3070868d840598"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/assistant/AssistantSelectionTest.java",
+      "gitBlob": "1290abeefb36e2cd55badefc7f1cfa1f73c24965",
+      "workingFileSha256": "df1077d3b54afa5b33b4a5e5986f7e4b6629616edfc25e3bc0305eb40b73d57c"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/assistant/OfflineAssistantTest.java",
+      "gitBlob": "76e6295bd01fc5bf96ce38c372cb18d49ef3af79",
+      "workingFileSha256": "e3f430e9869c3d5cada18a80bf600a2bb43481bddff611c3f52bebb4f126d519"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/audio/RecitationTest.java",
+      "gitBlob": "4eae96486edec8374c09440defe72ff065d49463",
+      "workingFileSha256": "6f8b7130618a911ebe32ff875d7937b50de929b17925ac9e1d3c9af60b369238"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/audio/TimedRecitationTest.java",
+      "gitBlob": "b79c6560bfd089a9bf20a7c658f245d0eb01aaa7",
+      "workingFileSha256": "6d0cafd9b07be7564c5341217bcdfe485d882b91c788d7688ad66d06da9a3b87"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/discovery/DuaCatalogTest.java",
+      "gitBlob": "8ee950db55d545bb9a5d6cf59819ca542a8a1e24",
+      "workingFileSha256": "5f3315cfd6e04c36925fb4c2c73902f8b349c3e538920e807f2d0e76c38e9901"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/discovery/DuaReviewTest.java",
+      "gitBlob": "01759cb9f19dd4b132c1ed5f7a0c727610c126a5",
+      "workingFileSha256": "c201d0b3575797f8c300fe9ee337211c684712714768d7dd3ec91dee8ab0cf91"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/discovery/DuaSelectionTest.java",
+      "gitBlob": "96d2511873044d79403e656cc7f5308897d0afc5",
+      "workingFileSha256": "d0a030502acb5f6290ddac2cac8a171fc272a13a3658efc5dc69a06a9922e3d6"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/discovery/HadithSearchTest.java",
+      "gitBlob": "794e7e1b3719e9fbcf64d0eb975079dc85c54009",
+      "workingFileSha256": "83dc562b869007bf808c6182071f4403649cc83cb6840a4636fe4eaa40daa0c8"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/discovery/HijriCalendarModelTest.java",
+      "gitBlob": "9270dc032aef2b4ea24a2ee0867d5cf5cbad4748",
+      "workingFileSha256": "d32137c08e1b86bca59165099975594a33313deec382492510eb3a3713069b5e"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/location/LocationPointTest.java",
+      "gitBlob": "eb95cc7b5e865e1aa03a233121050e735d2d2b9e",
+      "workingFileSha256": "c423986e831039641a5432ea50a23a32d4c3e55fa99a9909756cf5b217becc2f"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/reading/ArabicWordMapTest.java",
+      "gitBlob": "246869d2d36f19f8831c4fb07923428905c30f63",
+      "workingFileSha256": "25f92abb078bacd0b59d9d33fd3be64b67b21b5168a3ca56396fa6b84c1048ac"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/reading/CompassMathTest.java",
+      "gitBlob": "1630b7cebbddd2b55364b8d9c87b351dbab869b9",
+      "workingFileSha256": "5a223b4e4184015d872135305d5339daf29331eb747bac82256733b2ce312ca9"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/reading/SurahSearchTest.java",
+      "gitBlob": "05f6c09f1cfb12ec6a5175a7358aaeed7051c922",
+      "workingFileSha256": "1d2f8ae118111b50df021e7e9dbdf85c0547402d84b7d00bc4da74e829dd90c1"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/reading/mushaf/MushafDocumentTest.java",
+      "gitBlob": "a9ce8ef114d07e5f5225f5bafcc44ca8c847154e",
+      "workingFileSha256": "b53ad2a018a7eb154d3116f8e26bcc2d6a3a8b7981a33f01c26d5ef3d16eaae3"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/reading/mushaf/MushafFoundationTest.java",
+      "gitBlob": "1f74bc70d2c6dca919b5d4b7a19878045a0e1b49",
+      "workingFileSha256": "1a71ead3654f95111c4deac68ce45e815126c73bb9be11b6d9face55737f5409"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/reading/mushaf/QcfGlyphMetricsTest.java",
+      "gitBlob": "e70f1da9dcad6641df0514abba5f5766b5ef0a3b",
+      "workingFileSha256": "93eeba0b300abf1cb24c5a1a375966ad2e616ddddf00cd377af3d0cd1200d0e4"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/safety/ForecastSelectorTest.java",
+      "gitBlob": "7ca1d8cfcfc7f958ff2992b4bc9fda94c4f3652a",
+      "workingFileSha256": "b5eb40efba83a8a4d528e00ea75a8854e967184a0b2fd055f185131e6449eb1a"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/safety/ProtectorDataTest.java",
+      "gitBlob": "f519ae1186ebd5bfa323ae4b8d9335f088d8fb17",
+      "workingFileSha256": "33491fd0bf44ba0cef45f8c0166def9e39ebd797e6ac05c8e8ab86bbc394af22"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/safety/WeatherCodeTest.java",
+      "gitBlob": "75c5791fee3f719f82e573b37f6c60f14bdd8464",
+      "workingFileSha256": "ca9317259842093b6bd8f30387c1cbafcd1ed5804145f6bef0aef2a58aada466"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/sky/SkyDayTest.java",
+      "gitBlob": "0ff12c56fa094e303b41a452191591fbb33e23ba",
+      "workingFileSha256": "35c93783d71a9141d154116b27369bb77862177292b3a5d11b4bc1d6d5feaebf"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/sky/SkyPaletteTest.java",
+      "gitBlob": "6f25e5ff05a768fa04e1998303aecd189a574484",
+      "workingFileSha256": "e90126e812c973d643c4a8c850f3513701aa24d18af96513d1437e35231fc0d6"
+    },
+    {
+      "path": "android/app/src/test/java/com/zikra/app/study/FocusClockTest.java",
+      "gitBlob": "1cf221a286783dd6f1cb146c508f4f038face9f9",
+      "workingFileSha256": "a09bc28179417a88c85b71a4227febc5f9a3dc5fe4dd014506510eef2b2188c9"
+    },
+    {
+      "path": "android/build.gradle",
+      "gitBlob": "5b7ccba7c566afb5057eaea1b10b99b083851fe4",
+      "workingFileSha256": "c3c0cf04da0fc239f391c774554d97d890018ab6e37e87cc62f6070d0c8c9909"
+    },
+    {
+      "path": "android/gradle.properties",
+      "gitBlob": "00f3bfc064415ae966f3c6817e3146d471b72b12",
+      "workingFileSha256": "315df7dbcd820558a753933f3af6de4301c53a5a2ac0fc08e4b5b13df2f9c111"
+    },
+    {
+      "path": "android/gradle/wrapper/gradle-wrapper.jar",
+      "gitBlob": "2c3521197d7c4586c843d1d3e9090525f1898cde",
+      "workingFileSha256": "498495120a03b9a6ab5d155f5de3c8f0d986a449153702fb80fc80e134484f17"
+    },
+    {
+      "path": "android/gradle/wrapper/gradle-wrapper.properties",
+      "gitBlob": "68e8816d71c98108f09712e252a7df785202e889",
+      "workingFileSha256": "dc0c4f45f299ac2d51077dd1587e619128d091816ad9170d535a23694ddf355b"
+    },
+    {
+      "path": "android/gradlew",
+      "gitBlob": "f5feea6d6b116baaca5a2642d4d9fa1f47d574a7",
+      "workingFileSha256": "a3648413b47ef77af21d5ebc36c687c7d103aaef3e17f33de7d4f080a6f300a3"
+    },
+    {
+      "path": "android/gradlew.bat",
+      "gitBlob": "9b42019c7915b971238526075306ffba3b666dd5",
+      "workingFileSha256": "57931b17dd228e5c24dac90e815d0bf82477e831a4618dfab4136f5446b42a9f",
+      "comparison": "Same text after CRLF/LF normalization; legacy committed line endings differ from current clean filter"
+    },
+    {
+      "path": "android/settings.gradle",
+      "gitBlob": "3be38aa2c4e793943612025c6cf82181b99a91d0",
+      "workingFileSha256": "ab22072033320a29b0f47d6c0c0f4433c1d3dc5eca2cc0da8a880742fe65aa9c"
+    }
+  ]
+}

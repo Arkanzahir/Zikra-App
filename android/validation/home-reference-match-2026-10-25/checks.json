@@ -1,0 +1,113 @@
+{
+  "date": "2026-10-25",
+  "sourceCommit": "6bdf360c0c6d6f12f06353e321e7d598777c28a7",
+  "variant": "debug",
+  "build": "assembleDebug + assembleDebugAndroidTest + lintDebug successful; 1 worker, 768 MiB heap, emulator stopped during build",
+  "nativeExecutions": 8,
+  "nativeUniqueMethods": 5,
+  "native": [
+    {
+      "log": "logs/native-100.txt",
+      "passed": 2,
+      "failures": 0
+    },
+    {
+      "log": "logs/native-200.txt",
+      "passed": 2,
+      "failures": 0
+    },
+    {
+      "log": "logs/native-compat.txt",
+      "passed": 1,
+      "failures": 0
+    },
+    {
+      "log": "logs/native-calendar.txt",
+      "passed": 1,
+      "failures": 0
+    },
+    {
+      "log": "logs/native-narrow.txt",
+      "passed": 1,
+      "failures": 0
+    },
+    {
+      "log": "logs/native-reference-frame.txt",
+      "passed": 1,
+      "failures": 0
+    }
+  ],
+  "unit": [
+    {
+      "name": "com.zikra.app.sky.SkyDayTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.zikra.app.sky.SkyPaletteTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 721
+  },
+  "emulator": {
+    "api": 37,
+    "primaryCapturePixels": "720x1600",
+    "referenceCapturePixels": "720x1392",
+    "narrowCapturePixels": "640x1440",
+    "fontScales": [
+      1.0,
+      2.0
+    ]
+  },
+  "fixture": "Isolated synthetic Surabaya, Al-Kahf ayat 12 and Study tasks. Fixed Clock at 12:30/20:00 with SkyDay phase 0.18/1.0 for comparison screenshots. Not live astronomical/provider output.",
+  "physicalPhoneTestedThisCandidate": false,
+  "logNormalization": {
+    "description": "Public copies normalize CR/LF and trailing whitespace only; private originals retained with SHA-256 receipts.",
+    "files": [
+      {
+        "path": "logs/build.txt",
+        "originalPrivateSha256": "0a04383b836baccd095c01ef2feeb760cec86c704ec2e8960b2707a7ba7057d3",
+        "publicSha256": "3e0a2fcabb81748ae930eb1f6a26895248c0c25c93a2ad6a65df4d676bc42784"
+      },
+      {
+        "path": "logs/native-100.txt",
+        "originalPrivateSha256": "27efd5285356dc732f5c3cf612b03606860027bd3d95636a1822bcdd38c6cfb3",
+        "publicSha256": "2158f2c2b8a0be1cf0597fd28e408517d7328b64c3430c540eeb4c544305fa84"
+      },
+      {
+        "path": "logs/native-200.txt",
+        "originalPrivateSha256": "63a093e81168f23605b4c198055cb61abc0b766ad7f35a9d83ba491440c86f54",
+        "publicSha256": "d539fcb37356b15acc78fde468b805c338ca1702d16f16cadba9f2cdd69be2c1"
+      },
+      {
+        "path": "logs/native-calendar.txt",
+        "originalPrivateSha256": "04eeeaccd86e66cb68992371fcac88f9c963dee7b2487f755083e64caafe9bfc",
+        "publicSha256": "6a127712151afccaa78c6537f81caf7868ee9630c70d70be4aa2912fb7b2816b"
+      },
+      {
+        "path": "logs/native-compat.txt",
+        "originalPrivateSha256": "dfa0bc3d823ab314983ddafae2adc97dc2ea248ea935b044dd6bb070188eff73",
+        "publicSha256": "204a62011c0069c95a23c0a31e2adaa03f80a9a93de28ce77d334ab5720a0c11"
+      },
+      {
+        "path": "logs/native-narrow.txt",
+        "originalPrivateSha256": "05a2aab9bf3a28f7b2013c9a3adc1a564566c6541a7d38c29c2582297b401cb2",
+        "publicSha256": "ea6b43b4318a6e4fec5d6e3a3baa125ea459a2d137ae50c575eef1af24b1e49f"
+      },
+      {
+        "path": "logs/native-reference-frame.txt",
+        "originalPrivateSha256": "cfb0645ce3a7a3c2adab0694731748fb4d456e563d1be39878adf4022b7a5493",
+        "publicSha256": "fdcafb9ff3ad1db5c568a994bc338bcf19156b12a4b86b4badde99b86d5c73e5"
+      }
+    ]
+  }
+}
