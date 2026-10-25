@@ -1,0 +1,45 @@
+{
+  "sourceCommit": "a24ab66b38e314d8eb5a8b9be87aa132be4b58b0",
+  "nativeExecutions": 3,
+  "nativeUniqueMethods": 1,
+  "method": "HomeRefreshTest#testSkyDayNightPhaseAndOffscreenMotion",
+  "fontScales": [
+    1.0,
+    2.0
+  ],
+  "captures": [
+    "720x1600, normal/200% font",
+    "720x1392, reference ratio"
+  ],
+  "build": "assembleDebug + assembleDebugAndroidTest + lintDebug successful; 1 worker/768 MiB heap with emulator stopped",
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 721
+  },
+  "logNormalization": "CR/LF and trailing whitespace only; private raw SHA-256 recorded",
+  "logs": [
+    {
+      "path": "logs/native-100.txt",
+      "originalPrivateSha256": "e86b5e2d6e9f8022e6ef0a8ec06f1f450cf5487ca8790967d3ad9a9ada7f964f",
+      "publicSha256": "ec78dbcc84acb5bd61215da09573782a47a19573190df60f8a270faf4bf09948"
+    },
+    {
+      "path": "logs/native-200.txt",
+      "originalPrivateSha256": "a87afeeb1debf765041b431ac41b66736263de82b3aa524ebdd53fd3251c3b9f",
+      "publicSha256": "1429cb8629353639f88903a5b0fcabc02de0e4e6eb0dc4f26a4c63f980c3925b"
+    },
+    {
+      "path": "logs/native-reference.txt",
+      "originalPrivateSha256": "0c70e539790154cda1bda5a313be7117d9cca5d2ccada7695dbf1d669b02387a",
+      "publicSha256": "b2a9f202830da83539a9177c6727038bf243f2bee7c399446b5b9b05c23ef323"
+    },
+    {
+      "path": "logs/build.txt",
+      "originalPrivateSha256": "2c0710cfad636005b815917c99b7176969f3e39918c8b1f0d442211f4518b0db",
+      "publicSha256": "1a3c9103cc587df9017fb24c5cb8258a1e28424fc4c51ded14241688a6ee1a9f"
+    }
+  ],
+  "fixtures": "Fixed Clock 12:30/20:00, synthetic Surabaya and lunar fraction .18/1; not live astronomical output",
+  "scope": "Prayer strip appearance only; previous functional suite is historical, not rerun or recounted here."
+}

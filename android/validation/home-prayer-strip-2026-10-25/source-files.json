@@ -1,0 +1,46 @@
+{
+  "sourceCommit": "a24ab66b38e314d8eb5a8b9be87aa132be4b58b0",
+  "scope": "Files changed in the prayer-strip correction; complete tree recoverable from commit",
+  "files": [
+    {
+      "path": "android/app/build.gradle",
+      "gitBlob": "1fbb1ade61d4805d728863f1b1f57871892922e0",
+      "sha256": "06d0e0674ed8da2e3e2ac86726e8b151bd10c5e7a82d004bdd5c13edefad845e"
+    },
+    {
+      "path": "android/app/src/main/java/com/zikra/app/HomeActivity.java",
+      "gitBlob": "f0b198f0c08c84bf56353f99bfb682e18de798ad",
+      "sha256": "9ad727b7567dd7d948789e782e2b8a4d9cfae6506ee1a0244f10c80d8a6c8ce6"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_prayer_active_dot.xml",
+      "gitBlob": "29d5939c727a358aea0d443c04814aef249c1dc4",
+      "sha256": "658b4b001315fdc8196a109a436f3e7b190f88cabd3fee77b84738fe846be6f8"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_prayer_divider.xml",
+      "gitBlob": "b976e7739b8b24bab44c8e64fc5bed6b49689c56",
+      "sha256": "cf8b90e11e0c63ae70227eeaab213e3e661dfed849da6dc543eff4778fa8fc32"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_prayer_strip.xml",
+      "gitBlob": "f17d6edfe944993d57bc5a1b3e68a93595eae78a",
+      "sha256": "8358effd13349efa302ed2c9c47c8e6706bc9d816c943902b2d1ce92bcc9d184"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_home.xml",
+      "gitBlob": "0b36330eccb3e49066135567706a490105f29097",
+      "sha256": "06f97e048cca395111a38f05d0e5a13eaf0f3d8588bc85c9c75a900bf0d3a8c7"
+    },
+    {
+      "path": "android/app/src/main/res/values/home.xml",
+      "gitBlob": "026248e39f5e7c6442b529f8bfc4a4706ac4879a",
+      "sha256": "dfbbeb47769588757ee3f494ea632f0982176ff704320f7c00a9b11a7c430fe8"
+    },
+    {
+      "path": "android/app/src/main/res/values/home_refresh.xml",
+      "gitBlob": "cf2fc580f637cbf5626990d290ae5db91f2a6918",
+      "sha256": "c560c55bfcbce231409ede165e6ea13ece1829acb09ce8f748d03783aab42869"
+    }
+  ]
+}

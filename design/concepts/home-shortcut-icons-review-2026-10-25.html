@@ -1,0 +1,76 @@
+<style>
+#zikra-shortcuts-redesign .shortcut-stage{min-height:292px;display:flex;align-items:center;justify-content:center;padding:20px 12px;box-sizing:border-box}
+#zikra-shortcuts-redesign .shortcut-product{--shortcut-radius:17px;--shortcut-icon:27px;--shortcut-gap:16px;width:100%;max-width:390px;box-sizing:border-box;padding:24px 12px;background:#F8F7F1;color:#173C36;border-radius:24px;font-family:Roboto,Arial,sans-serif;color-scheme:light}
+#zikra-shortcuts-redesign .shortcut-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:4px;row-gap:var(--shortcut-gap)}
+#zikra-shortcuts-redesign .shortcut-button{appearance:none;border:0;background:transparent;color:inherit;font:inherit;font-size:12px;font-weight:500;line-height:1.3;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:9px;min-width:0;min-height:80px;padding:2px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+#zikra-shortcuts-redesign .shortcut-glyph{position:relative;display:flex;align-items:center;justify-content:center;width:54px;height:54px;flex:0 0 54px;border-radius:var(--shortcut-radius);background:#E1EDE5;color:#214A40;box-shadow:inset 0 1px 0 #FFFFFF80,inset 0 0 0 1px #234D3C05;transition:transform .14s ease,background .14s ease}
+#zikra-shortcuts-redesign .shortcut-glyph>svg{width:var(--shortcut-icon)!important;height:var(--shortcut-icon)!important;stroke-width:1.65!important}
+#zikra-shortcuts-redesign .shortcut-ai .shortcut-glyph{background:#214B43;color:#F9F6E8;box-shadow:inset 0 1px 0 #FFFFFF17}
+#zikra-shortcuts-redesign .shortcut-ai .shortcut-glyph:after{content:"";position:absolute;right:9px;top:9px;width:4px;height:4px;border-radius:50%;background:#EBD18C}
+#zikra-shortcuts-redesign .shortcut-warm .shortcut-glyph{background:#F0E8D7;color:#705E38}
+#zikra-shortcuts-redesign .shortcut-button:active .shortcut-glyph{transform:scale(.94)}
+#zikra-shortcuts-redesign .shortcut-label{white-space:nowrap}
+#zikra-shortcuts-redesign .shortcut-product[data-style="cards"]{--shortcut-radius:14px;--shortcut-icon:26px;--shortcut-gap:10px;padding:20px 12px}
+#zikra-shortcuts-redesign [data-style="cards"] .shortcut-grid{column-gap:8px}
+#zikra-shortcuts-redesign [data-style="cards"] .shortcut-button{min-height:92px;justify-content:center;gap:10px;border:1px solid #E5E7DB;border-radius:var(--shortcut-radius);background:#FFFEF8;padding:10px 2px}
+#zikra-shortcuts-redesign [data-style="cards"] .shortcut-glyph{width:32px;height:32px;flex-basis:32px;background:transparent;color:#244A40;box-shadow:none;border-radius:0}
+#zikra-shortcuts-redesign [data-style="cards"] .shortcut-ai{background:#E6EEE7;border-color:#D4E1D5}
+#zikra-shortcuts-redesign [data-style="cards"] .shortcut-ai .shortcut-glyph:after{right:0;top:0;background:#B89853}
+@media(prefers-reduced-motion:reduce){#zikra-shortcuts-redesign .shortcut-glyph{transition:none}}
+@media(max-width:350px){#zikra-shortcuts-redesign .shortcut-stage{padding:16px 4px}#zikra-shortcuts-redesign .shortcut-product{padding-left:8px;padding-right:8px}#zikra-shortcuts-redesign .shortcut-glyph{width:50px;height:50px;flex-basis:50px}#zikra-shortcuts-redesign .shortcut-label{font-size:11px}}
+</style>
+<div id="zikra-shortcuts-redesign" class="viz-carousel viz-dotted-background" aria-label="Pilihan desain ikon pintasan Zikra" data-previous-label="Sebelumnya" data-next-label="Berikutnya">
+  <section data-variant="Lembut" aria-label="Pintasan dengan ikon senada dan wadah membulat">
+    <div class="shortcut-stage">
+      <div class="shortcut-product" data-style="soft" aria-label="Ikon Lembut">
+        <div class="shortcut-grid" aria-label="Delapan pintasan Home">
+          <button class="shortcut-button cursor-interaction" type="button" aria-label="Quran"><span class="shortcut-glyph"><i data-lucide="book-open-text" aria-hidden="true"></i></span><span class="shortcut-label">Quran</span></button>
+          <button class="shortcut-button shortcut-warm cursor-interaction" type="button" aria-label="Doa"><span class="shortcut-glyph"><i data-lucide="hand-heart" aria-hidden="true"></i></span><span class="shortcut-label">Doa</span></button>
+          <button class="shortcut-button cursor-interaction" type="button" aria-label="Kiblat"><span class="shortcut-glyph"><i data-lucide="compass" aria-hidden="true"></i></span><span class="shortcut-label">Kiblat</span></button>
+          <button class="shortcut-button cursor-interaction" type="button" aria-label="Hifz, hafalan"><span class="shortcut-glyph"><i data-lucide="book-check" aria-hidden="true"></i></span><span class="shortcut-label">Hifz</span></button>
+          <button class="shortcut-button shortcut-ai cursor-interaction" type="button" aria-label="Zikra AI"><span class="shortcut-glyph"><i data-lucide="message-circle-more" aria-hidden="true"></i></span><span class="shortcut-label">Zikra AI</span></button>
+          <button class="shortcut-button cursor-interaction" type="button" aria-label="Protector"><span class="shortcut-glyph"><i data-lucide="shield-check" aria-hidden="true"></i></span><span class="shortcut-label">Protector</span></button>
+          <button class="shortcut-button cursor-interaction" type="button" aria-label="Study"><span class="shortcut-glyph"><i data-lucide="graduation-cap" aria-hidden="true"></i></span><span class="shortcut-label">Study</span></button>
+          <button class="shortcut-button shortcut-warm cursor-interaction" type="button" aria-label="Hadis"><span class="shortcut-glyph"><i data-lucide="scroll-text" aria-hidden="true"></i></span><span class="shortcut-label">Hadis</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section data-variant="Kartu ringkas" aria-label="Pintasan dalam kartu kecil" hidden>
+    <div class="shortcut-stage">
+      <div class="shortcut-product" data-style="cards" aria-label="Ikon Kartu ringkas">
+        <div class="shortcut-grid" aria-label="Delapan pintasan Home">
+          <button class="shortcut-button cursor-interaction" type="button" aria-label="Quran"><span class="shortcut-glyph"><i data-lucide="book-open-text" aria-hidden="true"></i></span><span class="shortcut-label">Quran</span></button>
+          <button class="shortcut-button cursor-interaction" type="button" aria-label="Doa"><span class="shortcut-glyph"><i data-lucide="hand-heart" aria-hidden="true"></i></span><span class="shortcut-label">Doa</span></button>
+          <button class="shortcut-button cursor-interaction" type="button" aria-label="Kiblat"><span class="shortcut-glyph"><i data-lucide="compass" aria-hidden="true"></i></span><span class="shortcut-label">Kiblat</span></button>
+          <button class="shortcut-button cursor-interaction" type="button" aria-label="Hifz, hafalan"><span class="shortcut-glyph"><i data-lucide="book-check" aria-hidden="true"></i></span><span class="shortcut-label">Hifz</span></button>
+          <button class="shortcut-button shortcut-ai cursor-interaction" type="button" aria-label="Zikra AI"><span class="shortcut-glyph"><i data-lucide="message-circle-more" aria-hidden="true"></i></span><span class="shortcut-label">Zikra AI</span></button>
+          <button class="shortcut-button cursor-interaction" type="button" aria-label="Protector"><span class="shortcut-glyph"><i data-lucide="shield-check" aria-hidden="true"></i></span><span class="shortcut-label">Protector</span></button>
+          <button class="shortcut-button cursor-interaction" type="button" aria-label="Study"><span class="shortcut-glyph"><i data-lucide="graduation-cap" aria-hidden="true"></i></span><span class="shortcut-label">Study</span></button>
+          <button class="shortcut-button cursor-interaction" type="button" aria-label="Hadis"><span class="shortcut-glyph"><i data-lucide="scroll-text" aria-hidden="true"></i></span><span class="shortcut-label">Hadis</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+(() => {
+  const root = document.getElementById('zikra-shortcuts-redesign');
+  root.querySelectorAll('.shortcut-product').forEach(product => {
+    const cardStyle = product.dataset.style === 'cards';
+    const state = { radius: cardStyle ? 14 : 17, iconSize: cardStyle ? 26 : 27, rowGap: cardStyle ? 10 : 16 };
+    function render() {
+      product.style.setProperty('--shortcut-radius', state.radius + 'px');
+      product.style.setProperty('--shortcut-icon', state.iconSize + 'px');
+      product.style.setProperty('--shortcut-gap', state.rowGap + 'px');
+    }
+    render();
+    if (globalThis.Tweak) {
+      const tweak = new Tweak({ container: product, onChange: render });
+      tweak.addSlider(state, 'radius', { label: 'Sudut ikon', min: 10, max: 25, unit: 'px' });
+      tweak.addSlider(state, 'iconSize', { label: 'Ukuran simbol', min: 24, max: 30, unit: 'px' });
+      tweak.addSlider(state, 'rowGap', { label: 'Jarak baris', min: 8, max: 24, unit: 'px' });
+    }
+  });
+})();
+</script>
