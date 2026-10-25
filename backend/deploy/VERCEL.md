@@ -98,8 +98,9 @@ jangan menghapus registry untuk memaksa layanan kembali bekerja.
 - [ ] Resource Redis benar-benar Free; auto upgrade/eviction mati, konfigurasi
   production terpisah dari preview. Tentukan backup/retensi dan prosedur pemulihan
   tanpa menyalin raw token ke laporan.
-- [ ] Build/paket fungsi bersih; HTTPS endpoint nyata health 200, tanpa token 401,
+- [x] Build/paket fungsi bersih; HTTPS endpoint nyata health 200, tanpa token 401,
   model nyata 200, token salah/dicabut 401 dan quota 429 tanpa bocoran respons.
+  Terpenuhi 25 Oktober; [receipt HTTPS/akses](../../android/validation/backend-vercel-2026-10-25/README.md).
 - [ ] Quota/revokasi/lease lintas dua fungsi dan redeploy benar-benar bekerja
   pada Redis/Vercel nyata; fixture Lua lokal saja belum cukup.
 - [ ] Cancellation/timeout/retry dan pemulihan Redis/kuota diperiksa pada platform.

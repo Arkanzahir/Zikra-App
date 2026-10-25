@@ -1,0 +1,71 @@
+{
+  "sourceCommit": "9438aa4",
+  "scope": "Vercel runtime and deployment configuration; raw SHA256 plus Git LF comparison",
+  "files": [
+    {
+      "path": "backend/package.json",
+      "sha256": "d64f8e30ec50e44a7ce0b7002a4547ac1d071dd0902ca38f3401b55bb2e75238",
+      "matchesSourceCommit": true
+    },
+    {
+      "path": "backend/package-lock.json",
+      "sha256": "2737ddb717d5e03097f6be75b382505b1e1027a2e266e50a403c29a6260cfedc",
+      "matchesSourceCommit": true
+    },
+    {
+      "path": "backend/vercel.json",
+      "sha256": "487a58574fe0c763be4325f67778dc5c8416c8b3826f531cb76985e98208f67f",
+      "matchesSourceCommit": true
+    },
+    {
+      "path": "backend/.vercelignore",
+      "sha256": "98c2532ffa68d9f4d471077ee393187071f4d41a6200c5b4ed6e7e40d3f32add",
+      "matchesSourceCommit": true
+    },
+    {
+      "path": "backend/api/health.js",
+      "sha256": "8b1bcee37a188e924a3acfe67d3ee144686e2e036bbedb27e59b23b2cc78a51d",
+      "matchesSourceCommit": true
+    },
+    {
+      "path": "backend/api/assistant.js",
+      "sha256": "6312b0830d08d144aab4563d954556d9041c9b6a539a713f1625e48ee19e9ef7",
+      "matchesSourceCommit": true
+    },
+    {
+      "path": "backend/server.mjs",
+      "sha256": "aa445fc865691276e52fa819890f6bae88828e5888aa414a33e67815b4ab8f49",
+      "matchesSourceCommit": true
+    },
+    {
+      "path": "backend/config.mjs",
+      "sha256": "ad004655f8b857c42a840d2d326bcb279e26763dbcfe55eec1607a215ffa75f0",
+      "matchesSourceCommit": true
+    },
+    {
+      "path": "backend/access.mjs",
+      "sha256": "1bc2cd5b45d94581a011b7701d6a0aa18457d04f8d8da0407c72d47de3789e6a",
+      "matchesSourceCommit": true
+    },
+    {
+      "path": "backend/redis-access.mjs",
+      "sha256": "01a9773749802ac0553bccdd1af2bffa391f011eb9cf1fdc71b66c525e0e7e9e",
+      "matchesSourceCommit": true
+    },
+    {
+      "path": "backend/vercel-handler.mjs",
+      "sha256": "859a849eeae0e1306e2ac127c423c55446c1ffc7a8575b10910a3e201a339aaf",
+      "matchesSourceCommit": true
+    },
+    {
+      "path": "backend/assistant-contract.mjs",
+      "sha256": "102306afc60fa2c4e39941bb8ff37d8e93ea8c84a67c3c7ecaa192b663633ff4",
+      "matchesSourceCommit": true
+    },
+    {
+      "path": "backend/tafsir.mjs",
+      "sha256": "d0ccc762f55d1a6281ac49237308e457cb82b7205d2f7a25e8eb2bec877c184f",
+      "matchesSourceCommit": true
+    }
+  ]
+}

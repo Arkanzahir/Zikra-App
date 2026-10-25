@@ -12,6 +12,7 @@
 
 - Parent pekerjaan C lanjutan: `20c21fc` (checkpoint lokal C01), handoff yang sudah dipush sebelumnya `83312da`. Source checkpoint kandidat lihat [receipt C](android/validation/assistant-c-2026-10-25/release.json); gunakan Git log aktual, jangan menganggap checkpoint lokal sudah dipush.
 - Source kandidat 1.8.0: **`7982e10e0df98f9b2ee9ca01fa9d89c058363280`**, disimpan lokal; receipt dokumentasi adalah commit penerus, belum push.
+- Source backend Vercel: **`9438aa4`**, checkpoint lokal; dua deployment production berhasil, [receipt hosting/uji](android/validation/backend-vercel-2026-10-25/deployment.json). Source APK tetap `7982e10`; jangan menyamakan commit backend dengan APK.
 - Aplikasi **1.8.0 beta / versionCode 25**, SQLite v4. APK debug, belum signed release publik.
 - APK lokal: `D:\Download\Zikra-App-main\Zikra-AI-v1.8.0-beta-debug.apk`.
 - Ukuran **31.362.014 byte**; SHA-256 `77ed491b65e2519758412bdbe44bc07d494a282ca8a3dda0d7ac5d55bd15a5c1`.
@@ -46,18 +47,27 @@ File utama B04: `DuaReview.java`, `DuaSourceSnapshots.java`, `DuaCatalog.java` d
 - Jangan mengirim email duplikat atau menunggu secara aktif tanpa pekerjaan. Modul independen bisa lanjut. Jangan memasukkan identitas Gmail pengguna, ID thread atau receipt privat ke Git.
 - Bukti: [audit sumber](android/validation/hadith-source-2026-10-24/README.md), [review sumber](android/validation/source-review-b-2026-10-24/README.md), [riwayat klarifikasi terkirim](android/validation/b-final-review-2026-10-24/README.md). Bagian awal laporan lama bersifat historis; B04 terbaru ada pada laporan penyelesaiannya.
 
-## Pekerjaan aktif: C — kode lokal siap, hosting/HP dan dependensi belum ditutup
+## Pekerjaan aktif: C — backend Vercel online, APK/HP dan operasional belum ditutup
 
 Pengguna meminta melanjutkan seluruh C dan menambahkan tugas pengingat adzan.
-Keputusan 25 Oktober: **belum ada hosting; siapkan paket deploy dahulu**.
+Keputusan awal 25 Oktober adalah paket deploy dahulu; keputusan terbaru:
+**gunakan Vercel**, setelah pengguna memilih tidak melanjutkan verifikasi kartu Oracle.
 Keputusan terbaru pengguna: **pakai key yang sudah ada; syarat rotasi dibatalkan**,
 menggantikan keputusan menunda sebelumnya. Jangan meminta rotasi ulang sebagai
 prasyarat. Key/env privat tidak diubah; provider key tetap hanya di server.
 
 [Bukti/source/checklist C](android/validation/assistant-c-2026-10-25/README.md):
-- C02 source: token unik per instalasi, revoke, kuota persisten; satu proses/replika.
-  [Paket Docker/Compose/Caddy dan runbook](backend/deploy/README.md) tersedia,
-  **belum dijalankan/deploy**. Tidak ada akun/VPS/domain/biaya dibuat. C02/C05 [ ].
+- C02: **backend sudah online** `https://zikra-ai.vercel.app`; endpoint Android
+  `https://zikra-ai.vercel.app/v1/assistant`, health `/health`. Vercel Hobby,
+  Upstash Redis Free di `sin1`, tidak perlu kartu; autoUpgrade/eviction/prodPack
+  terkonfirmasi false. Pengguna sudah menyelesaikan login CLI/ketentuan; jangan
+  meminta persetujuan yang sama lagi. [Bukti hosting](android/validation/backend-vercel-2026-10-25/README.md)
+  dan [runbook Vercel](backend/deploy/VERCEL.md): HTTPS publik tanpa bypass/login
+  Vercel health 200, tanpa token/dicabut 401, Featherless nyata 200, kuota 429,
+  revokasi/counter bertahan deploy ulang, storage korup 503 tanpa provider.
+  Redis menyimpan hash/UUID/counter/lease, tanpa percakapan. Mode file/VPS tetap
+  satu proses/replika; mode Vercel memakai kuota/lease atomik bersama.
+  C02/C05 [ ] untuk HP/laptop mati dan operasional yang tersisa.
 - C03 native: preview per request, default hanya pesan saat ini; opt-in nama,
   10 tugas/tenggat, perhitungan salat/zona, riwayat online dan izin proposal.
   Loading/batal/retry/error spesifik dan label online teruji dengan respons
@@ -77,10 +87,14 @@ prasyarat. Key/env privat tidak diubah; provider key tetap hanya di server.
   menaikkan RAM aktual sekitar 4 GB walau request 1.536 MiB.
 
 C01 selesai persiapan konfigurasi, dengan [keputusan terbaru dan bukti penutupan](android/validation/assistant-c-2026-10-25/key-decision-2026-10-25.md).
-C05 butuh server permanen dan HP; jangan menganggap probe localhost
-atau screenshot interceptor sebagai bukti C05. Lanjutkan dari source ini, bukan
-membuat ulang gateway/UI. Pilih layanan/domain ketika pengguna siap, uji paket
-secara nyata, lalu lakukan rantai APK/HP dan dikte. Konteks jadwal kelas mengikuti
+C05 berikutnya memakai endpoint yang sudah ada dan HP; jangan menganggap probe
+komputer atau screenshot interceptor sebagai bukti C05. Token instalasi aktif
+tersimpan privat di `.local/vercel-client.env`, tanpa nilai di Git/chat; konfigurasi
+Redis yang ditarik ada di `.local/vercel-production.env` (key provider sensitive
+berisi placeholder `[SENSITIVE]`, jangan menimpa key asli dari file ini).
+`.local/featherless.env` asli tetap dipertahankan. Jangan menerbitkan ulang token
+atau membuat database/proyek duplikat. Lanjutkan dari source ini, lalu lakukan
+rantai APK/HP dan dikte, pemantauan/backup/retensi platform. Konteks jadwal kelas mengikuti
 D04; jangan mengarang data jadwal untuk mencentang C04.
 
 **D02a ditambahkan, belum diimplementasikan:** sakelar utama + pilihan per salat
@@ -100,4 +114,4 @@ sudah ada; jangan menyebut seluruh adzan tersedia pada APK ini.
 - Build hemat RAM, tes sesuai perubahan; tutup emulator setelah dipakai. Dokumen saja tidak memerlukan build/emulator. Petunjuk: `android/BUILDING.md`.
 - Lingkungan lokal: JDK `C:\Users\Lenovo\.jdks\jbr-17.0.14`, SDK `E:\AndroidSDK`, Gradle cache `E:\.gradle`. Gunakan `git -c safe.directory=D:/Download/Zikra-App-main/Zikra-App-main` bila diperlukan.
 
-Handoff `83312da` adalah baseline dokumentasi lama. Checkpoint C berikutnya berisi kode/backend/APK dan bukti di atas; C, B01 serta rilis publik tetap belum ditutup. Tidak memeriksa email ulang atau memasang APK pada HP fisik.
+Handoff `83312da` adalah baseline dokumentasi lama. Backend Vercel `9438aa4` sudah terpasang dengan key yang ada; APK tetap 1.8.0. C, B01 serta rilis publik tetap belum ditutup. Tidak memeriksa email ulang atau memasang APK pada HP fisik. Checkpoint tetap lokal sampai push dibuktikan.

@@ -1,5 +1,10 @@
 # C — AI native, konteks, tindakan dan paket deploy
 
+**Lanjutan terbaru:** [backend Vercel sudah online](../backend-vercel-2026-10-25/README.md),
+Hobby + Upstash Free; health/provider/kuota/revokasi/redeploy nyata lulus.
+Catatan awal tanpa hosting di bawah bersifat historis. APK tetap 1.8.0 dari
+`7982e10`; source backend yang dihosting `9438aa4`, bukan APK baru.
+
 25 Oktober 2026 (WIB). Baseline `20c21fc`; kandidat **1.8.0 beta / versionCode 25**,
 SQLite v4, unduhan awal **31.362.014 byte**. [Receipt source/APK/uji](release.json).
 Source kandidat: **`7982e10`**; checkpoint lokal, belum dipush pada akhir sesi ini.
@@ -13,10 +18,10 @@ konfigurasi; key tidak diganti, receipt terdahulu tetap mencatat fakta saat diuj
 | ID | Bagian yang sudah dibuktikan | Status / sisa pemeriksaan |
 | --- | --- | --- |
 | C01 | Validasi env, health/restart dan completion privat; mode private tetap kompatibel, mode installation tersedia | Selesai persiapan konfigurasi 25 Oktober; syarat rotasi dibatalkan pengguna, [bukti penutupan](key-decision-2026-10-25.md). Hosting nyata tetap C02 |
-| C02 | Token unik per instalasi, pencabutan, kuota per instalasi yang bertahan restart diuji di Node; paket Docker/Compose/Caddy dan runbook tersedia | Belum ada akun/VPS/domain; Docker tidak tersedia lokal. Image/proxy/TLS/boot/restart permanen/laptop mati belum diuji |
+| C02 | Vercel Hobby + Upstash Free sudah online; HTTPS/provider 200, akses/revokasi 401, kuota 429, counter/revokasi bertahan redeploy | HP/laptop mati, pemantauan/backup/retensi dan failure/cancellation platform belum lengkap; [bukti terbaru](../backend-vercel-2026-10-25/README.md) |
 | C03 | Native online/offline, preview izin per request, loading, batal, retry, label online dan sanitasi error terarah lulus | Alur native memakai respons jaringan terkendali; belum APK → HTTPS hosting permanen → provider |
 | C04 | Nama/tugas/tenggat/perhitungan salat hanya saat dipilih; proposal ditinjau dan disimpan sekali; edit stale/selesai ditolak; Tadabbur mengambil sumber nyata | Jadwal kelas mingguan belum tersedia pada D04 dan tidak dikarang/dikirim sebagai data palsu; integrasi end-to-end setelah C02/C03 dan pemeriksaan cakupan konteks masih perlu |
-| C05 | Probe gateway lokal → provider nyata tersimpan terpisah | Tidak ada HP terhubung; tidak ada hosting. Belum diuji rantai HP/HTTPS, putus koneksi/kuota nyata dan laptop mati |
+| C05 | Probe gateway lokal dan HTTPS Vercel → provider nyata tersimpan terpisah | Belum diuji rantai APK/HP, putus koneksi dan laptop mati; probe komputer tidak menggantikan HP |
 | C06 | Persetujuan layanan suara, hasil jadi draf, batal/kosong/tipe hasil salah serta batas 500 UTF-16 diperiksa; Vision tetap ditunda | Recognizer terdeteksi pada emulator, tetapi mikrofon/dikte layanan nyata belum diuji; hasil balik dalam tes disimulasikan, jangan disebut rekaman suara nyata |
 
 ## Perubahan aplikasi

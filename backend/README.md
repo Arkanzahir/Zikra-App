@@ -5,8 +5,11 @@ dilanjutkan dengan [alur C03/C04/C06 dan bukti](../android/validation/assistant-
 Usulan tugas terstruktur dan Tadabbur bersumber telah menerima completion nyata
 melalui gateway privat lokal. Mode akses per instalasi, pencabutan dan kuota
 persisten tersedia di source, dengan [paket deploy](deploy/README.md).
-**Belum dihosting**, belum dibuktikan APK → hosting → provider dari HP.
-Pengguna memilih siapkan paket dulu dan memakai key yang sudah ada. Syarat
+**Sudah dihosting di Vercel** pada `https://zikra-ai.vercel.app` dengan Upstash Free;
+[bukti HTTPS/provider/akses/redeploy](../android/validation/backend-vercel-2026-10-25/README.md).
+Endpoint Android `/v1/assistant`, health `/health`. Rantai APK dari HP belum dibuktikan.
+[Runbook Vercel](deploy/VERCEL.md) menjadi jalur aktif; paket Docker/VPS tetap alternatif.
+Pengguna memilih Vercel dan memakai key yang sudah ada. Syarat
 rotasi dibatalkan sesuai [keputusan terbaru](../android/validation/assistant-c-2026-10-25/key-decision-2026-10-25.md).
 
 Alur sasaran: Android → backend HTTPS → Featherless. Mode offline Android tetap
@@ -19,9 +22,10 @@ jawaban lokal. Model AI tidak dibundel ke APK.
 
 ## Konfigurasi privat
 
-Node.js 22+ tanpa dependensi npm tambahan. Untuk hosting pilih rilis LTS yang
-masih dipelihara dan patch keamanan terbaru; runtime lokal yang diuji v22.17.0
-bukan sertifikasi patch runtime produksi.
+Tanpa dependensi npm runtime tambahan; hosting Vercel dipin Node 24.x, uji Node
+24.22.1 lulus. CLI privat lama juga diperiksa pada Node 22.17.0; hasil tersebut
+bukan sertifikasi patch runtime produksi. Konfigurasi file di bawah khusus
+gateway privat/VPS; Vercel memakai env Redis dan handler tanpa `listen()`.
 
 | Variabel | Validasi / fungsi |
 | --- | --- |
@@ -124,8 +128,9 @@ besar 413; JSON/isi client salah 400; tipe salah 415; token salah 401; provider
 Pembatalan klien membatalkan fetch provider.
 
 Mode private memakai kuota socket di memori yang hilang saat restart. Mode
-installation memakai identitas token yang dapat dicabut dan kuota persisten
-per instalasi, satu proses/satu replika. Keduanya tidak mempercayai
+installation dengan file memakai identitas token yang dapat dicabut dan kuota persisten
+per instalasi, satu proses/satu replika. Vercel memakai Redis bersama dengan
+counter/lease Lua atomik lintas fungsi; lihat runbook Vercel. Semua mode mengabaikan
 `X-Forwarded-For`. Jangan menambah replika pada volume file yang sama tanpa
 database/koordinasi kuota transaksional bersama yang diperiksa ulang.
 

@@ -1,0 +1,10 @@
+{
+  "scope": "runtime-log-sample-from-new-Zikra-project; not all platform/provider logs or retention settings",
+  "querySucceeded": true,
+  "knownSecretMatches": 0,
+  "rawLogsKeptPrivately": true,
+  "stdoutJsonLines": 1,
+  "passed": true,
+  "runtimeRecordsReturned": 0,
+  "queryWindowMinutes": 10
+}

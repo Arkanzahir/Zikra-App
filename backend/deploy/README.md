@@ -1,4 +1,8 @@
-# Paket deploy Zikra — belum dihosting
+# Paket deploy VPS/Docker Zikra — alternatif, belum dijalankan
+
+**Jalur aktif:** pengguna kemudian memilih Vercel. Backend sudah online dengan
+Upstash Free; [runbook Vercel](VERCEL.md) dan [bukti hosting](../../android/validation/backend-vercel-2026-10-25/README.md).
+Bagian berikut adalah persiapan VPS/Docker sebelumnya, bukan status hosting terbaru.
 
 Pengguna memilih **siapkan paket dahulu**, 25 Oktober 2026. Belum ada akun hosting,
 VPS, domain atau biaya yang disetujui. Tidak ada resource cloud dibuat. C02/C05

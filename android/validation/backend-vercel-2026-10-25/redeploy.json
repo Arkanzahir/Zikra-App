@@ -1,0 +1,8 @@
+{
+  "scope": "actual-Vercel-redeploy-with-shared-Upstash; synthetic-only; laptop-on-no-phone-claim",
+  "health": true,
+  "quotaPreserved": true,
+  "revocationPreserved": true,
+  "corruption503": true,
+  "passed": true
+}

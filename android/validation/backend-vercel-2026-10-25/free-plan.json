@@ -1,0 +1,14 @@
+{
+  "status": "available",
+  "plan": "free",
+  "paymentMethodRequired": false,
+  "preauthorizationAmount": 0,
+  "metadata": {
+    "primaryRegion": "sin1",
+    "autoUpgrade": false,
+    "eviction": false,
+    "prodPack": false
+  },
+  "source": "read-only Vercel storage API; secret and account identifiers excluded",
+  "passed": true
+}

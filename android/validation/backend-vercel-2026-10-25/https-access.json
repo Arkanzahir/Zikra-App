@@ -1,0 +1,19 @@
+{
+  "scope": "actual-Vercel-HTTPS-and-Upstash; synthetic installation; no-phone-claim",
+  "statuses": [
+    400,
+    400,
+    400,
+    400,
+    400,
+    400,
+    400,
+    400,
+    400,
+    400
+  ],
+  "quota": true,
+  "revoked": true,
+  "persistentCount": true,
+  "passed": true
+}
