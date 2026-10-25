@@ -1,0 +1,14 @@
+*
+!package.json
+!package-lock.json
+!vercel.json
+!api
+!api/health.js
+!api/assistant.js
+!server.mjs
+!config.mjs
+!access.mjs
+!redis-access.mjs
+!vercel-handler.mjs
+!assistant-contract.mjs
+!tafsir.mjs

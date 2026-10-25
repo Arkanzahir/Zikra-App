@@ -1,0 +1,9 @@
+{
+  "scope": "actual-Upstash-REST-and-production-Lua; synthetic namespace; no hosted-function claim",
+  "ping": true,
+  "quotaAcrossInstances": true,
+  "revoked": true,
+  "globalSlots": true,
+  "syntheticKeysExpire": true,
+  "passed": true
+}

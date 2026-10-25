@@ -168,6 +168,26 @@ test('client disconnect aborts provider work', { timeout: 5000 }, async t => {
   })]);
   await response;
 });
+
+test('a stalled request body times out before a distributed lease can expire', { timeout: 5000 }, async t => {
+  let released = false;
+  const send = await setup(t, () => assert.fail('provider called for partial JSON'), {
+    providerTimeoutMs: 40, accessMode: 'installation', accessStore: {
+      identify: async () => 'synthetic-client',
+      acquire: async () => ({ allowed: true, lease: 'synthetic-lease' }),
+      release: async () => { released = true; }
+    }
+  });
+  const status = await new Promise((resolve, reject) => {
+    const request = http.request(send.url, { method: 'POST', headers: {
+      Authorization: `Bearer ${token}`, 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked'
+    } }, response => {
+      response.resume(); response.on('end', () => { resolve(response.statusCode); request.destroy(); });
+    });
+    request.on('error', reject); request.write('{"messages":[');
+  });
+  assert.equal(status, 504); assert.ok(released);
+});
 test('rate limit prevents unlimited upstream requests', async t => {
   let requests = 0;
   let time = 0;

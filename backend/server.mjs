@@ -37,34 +37,47 @@ class InputError extends Error {
   constructor(message, status) { super(message); this.status = status; }
 }
 
-async function boundedJson(stream, limit) {
+async function boundedJson(stream, limit, signal) {
   let count = 0;
   const chunks = [];
   // Keep the request socket alive long enough to return a controlled 413.
   const source = stream.iterator ? stream.iterator({ destroyOnReturn: false }) : stream;
-  for await (const chunk of source) {
-    count += chunk.length;
-    if (count > limit) {
-      throw new InputError('too_large', 413);
+  const iterator = source[Symbol.asyncIterator]();
+  let abort, ended = false;
+  const aborted = signal && new Promise((_resolve, reject) => {
+    abort = () => reject(signal.reason ?? new Error('aborted'));
+    signal.addEventListener('abort', abort, { once: true });
+    if (signal.aborted) abort();
+  });
+  try {
+    while (true) {
+      const next = await (aborted ? Promise.race([iterator.next(), aborted]) : iterator.next());
+      if (next.done) { ended = true; break; }
+      count += next.value.length;
+      if (count > limit) throw new InputError('too_large', 413);
+      chunks.push(next.value);
     }
-    chunks.push(chunk);
+  } finally {
+    if (abort) signal.removeEventListener('abort', abort);
+    if (!ended) Promise.resolve(iterator.return?.()).catch(() => {});
   }
   try { return JSON.parse(Buffer.concat(chunks).toString('utf8')); }
   catch { throw new InputError('invalid_json', 400); }
 }
 
-export function createGateway({ apiKey, model, clientToken, fetchImpl = fetch, now = Date.now,
+export function createRequestHandler({ apiKey, model, clientToken, fetchImpl = fetch, now = Date.now,
   providerTimeoutMs = 35000, accessMode = 'private', clientsFile, usageFile, dailyLimit,
-  sourceFetchImpl = fetch }) {
+  sourceFetchImpl = fetch, accessStore }) {
   if (!['private', 'installation'].includes(accessMode)) throw new ConfigError('Invalid access mode.');
   if (accessMode === 'private') validateCredentials({ apiKey, model, clientToken });
   else validateProvider({ apiKey, model });
   const installation = accessMode === 'installation'
-    ? new InstallationAccess({ clientsFile, usageFile, dailyLimit }) : null;
+    ? accessStore ?? new InstallationAccess({ clientsFile, usageFile, dailyLimit }) : null;
+  const distributed = typeof installation?.acquire === 'function';
   const counters = new Map();
   let active = 0;
   const activeClients = new Map();
-  const server = http.createServer(async (req, res) => {
+  return async (req, res) => {
     const reply = (status, value) => {
       if (res.destroyed || res.writableEnded) return;
       if (!req.complete) res.setHeader('Connection', 'close');
@@ -77,7 +90,7 @@ export function createGateway({ apiKey, model, clientToken, fetchImpl = fetch, n
     if (req.method !== 'POST' || req.url !== '/v1/assistant') return reply(404, { error: 'not_found' });
     let identity = null;
     try {
-      identity = installation ? installation.identify(req.headers.authorization)
+      identity = installation ? await installation.identify(req.headers.authorization)
         : (equalToken(req.headers.authorization, `Bearer ${clientToken}`) ? req.socket.remoteAddress || 'unknown' : null);
     } catch { return reply(503, { error: 'access_unavailable' }); }
     if (!identity) return reply(401, { error: 'unauthorized' });
@@ -86,19 +99,32 @@ export function createGateway({ apiKey, model, clientToken, fetchImpl = fetch, n
     if (Number(req.headers['content-length'] || 0) > BODY_LIMIT)
       return reply(413, { error: 'too_large' });
     // Trust the socket, never caller-supplied X-Forwarded-For. Intended for one private client.
-    const ip = identity, time = now();
-    for (const [key, window] of counters) if (time - window.start > 60000) counters.delete(key);
-    let window = counters.get(ip);
-    if (!window) { window = { start: time, count: 0 }; counters.set(ip, window); }
-    if (++window.count > 10 || active >= 2 || (installation && activeClients.get(identity))) {
-      res.setHeader('Retry-After', '60'); return reply(429, { error: 'try_later' });
-    }
-    if (installation) {
+    let lease;
+    if (distributed) {
       try {
-        if (!installation.consume(identity, time)) {
-          res.setHeader('Retry-After', '60'); return reply(429, { error: 'quota_exceeded' });
+        const grant = await installation.acquire(identity, req.headers.authorization);
+        if (!grant.allowed) {
+          if (grant.status === 429) res.setHeader('Retry-After', '60');
+          return reply(grant.status, { error: grant.error });
         }
+        lease = grant.lease;
       } catch { return reply(503, { error: 'access_unavailable' }); }
+    }
+    const ip = identity, time = now();
+    if (!distributed) {
+      for (const [key, window] of counters) if (time - window.start > 60000) counters.delete(key);
+      let window = counters.get(ip);
+      if (!window) { window = { start: time, count: 0 }; counters.set(ip, window); }
+      if (++window.count > 10 || active >= 2 || (installation && activeClients.get(identity))) {
+        res.setHeader('Retry-After', '60'); return reply(429, { error: 'try_later' });
+      }
+      if (installation) {
+        try {
+          if (!installation.consume(identity, time)) {
+            res.setHeader('Retry-After', '60'); return reply(429, { error: 'quota_exceeded' });
+          }
+        } catch { return reply(503, { error: 'access_unavailable' }); }
+      }
     }
     active++;
     activeClients.set(identity, (activeClients.get(identity) || 0) + 1);
@@ -106,9 +132,12 @@ export function createGateway({ apiKey, model, clientToken, fetchImpl = fetch, n
     const timeout = setTimeout(() => controller.abort(), providerTimeoutMs);
     const closed = () => { if (!res.writableEnded) controller.abort(); };
     res.on('close', closed);
+    const requestError = () => controller.abort();
+    req.on('error', requestError);
+    if (res.destroyed) controller.abort();
     try {
       let body;
-      try { body = await boundedJson(req, BODY_LIMIT); }
+      try { body = await boundedJson(req, BODY_LIMIT, controller.signal); }
       catch (error) {
         if (error instanceof InputError) return reply(error.status, { error: error.message });
         throw error;
@@ -139,7 +168,7 @@ export function createGateway({ apiKey, model, clientToken, fetchImpl = fetch, n
           { error: upstream.status === 429 ? 'provider_busy' : 'provider_unavailable' });
       }
       let data;
-      try { data = await boundedJson(upstream.body, 128 * 1024); }
+      try { data = await boundedJson(upstream.body, 128 * 1024, controller.signal); }
       catch (error) {
         if (controller.signal.aborted) throw error;
         return reply(502, { error: 'invalid_provider_response' });
@@ -152,10 +181,19 @@ export function createGateway({ apiKey, model, clientToken, fetchImpl = fetch, n
       reply(controller.signal.aborted ? 504 : 502, { error: 'provider_unavailable' });
     } finally {
       clearTimeout(timeout); res.off('close', closed); active--;
+      req.off('error', requestError);
       const remaining = activeClients.get(identity) - 1;
       if (remaining) activeClients.set(identity, remaining); else activeClients.delete(identity);
+      if (lease) {
+        try { await installation.release(identity, lease); }
+        catch { /* A bounded lease expires even when Redis becomes unavailable. */ }
+      }
     }
-  });
+  };
+}
+
+export function createGateway(options) {
+  const server = http.createServer(createRequestHandler(options));
   server.requestTimeout = 15000;
   server.headersTimeout = 10000;
   server.maxConnections = 16;
