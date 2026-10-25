@@ -1,0 +1,6 @@
+{
+  "standardTestApkContainsHostedClass": false,
+  "optInTestApkContainsHostedClass": true,
+  "liveJavaUnchangedSinceNativeRun": true,
+  "appApkUnchangedByTestSourceSetSplit": true
+}

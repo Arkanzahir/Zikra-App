@@ -1,0 +1,32 @@
+{
+  "dateWib": "2026-10-25",
+  "versionName": "1.8.1 beta",
+  "versionCode": 26,
+  "databaseVersion": 4,
+  "sourceCommit": "196a8d284e7f4617e0e3d981e69758e3e35582a5",
+  "runtimeFixCommit": "0cf582d",
+  "backendCommit": "9438aa4",
+  "apkFile": "Zikra-AI-v1.8.1-beta-debug.apk",
+  "apkBytes": 31181560,
+  "apkSha256": "8650b9cc12d2d7e061dd0730e4f6e03f3e1767924a5b60271a6c1cd0a900e87b",
+  "under100000000Bytes": true,
+  "publicRelease": false,
+  "entireStageCComplete": false,
+  "physicalPhoneTested": false,
+  "laptopOffTested": false,
+  "actualMicrophoneTested": false,
+  "providerKeyRotated": false,
+  "origin": "https://zikra-ai.vercel.app",
+  "proof": [
+    "checks.json",
+    "hosted-native.txt",
+    "controlled-native.txt",
+    "native/conversation.json",
+    "native/network.json",
+    "native/actions-source.json",
+    "device-preservation.json",
+    "secret-preservation-apk.json",
+    "test-opt-in.json"
+  ],
+  "contentReviewPending": "Tadabbur 1:2 summary phrase about Basmalah; source metadata correctness does not certify summary accuracy"
+}

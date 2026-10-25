@@ -1,0 +1,15 @@
+{
+  "unitSuites": 3,
+  "unitTests": 14,
+  "unitFailures": 0,
+  "unitErrors": 0,
+  "unitSkipped": 0,
+  "controlledNativeMethodsPassed": 6,
+  "hostedNativeMethodsPassed": 3,
+  "lintErrors": 0,
+  "lintWarnings": 716,
+  "emulatorApi": 37,
+  "physicalPhoneTested": false,
+  "emulatorStopped": true,
+  "actualMicrophoneTested": false
+}

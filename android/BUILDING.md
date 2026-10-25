@@ -75,6 +75,15 @@ Sensor rotasi, cahaya, akselerometer, getaran, aplikasi WhatsApp/Maps, pengenal 
 
 ## Checkpoint AI 1.8.0 beta
 
+Lanjutan 1.8.1 beta/code 26 memperbaiki crash ketika socket TLS online ditutup
+dari UI thread. [Uji APK → Vercel nyata pada emulator](validation/assistant-hosted-emulator-2026-10-25/README.md)
+terpisah dari respons terkendali. Tes live hanya disertakan dengan
+`assembleDebugAndroidTest -PzikraHostedTests=true`, lalu pilih kelas
+`com.zikra.app.assistant.HostedAssistantTest` secara eksplisit. Kredensial gateway
+dibaca dari file privat emulator yang dipasang setelah instalasi; tidak ada
+credential di APK/source/argumen tes. Suite native biasa tidak memerlukan env
+live atau melakukan request provider dari kelas live tersebut.
+
 Kandidat 1.8.0 beta (versionCode 25) menambah SQLite v4 untuk receipt tindakan
 AI yang sudah ditinjau. Migrasi dari v3 menambah tabel, tanpa reset task/Hifz;
 jangan memaksa downgrade ke APK lama setelah database naik. Alur AI/deploy dan

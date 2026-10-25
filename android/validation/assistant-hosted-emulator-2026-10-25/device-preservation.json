@@ -1,0 +1,7 @@
+{
+  "scope": "original emulator app files after force-stop and private archive restore",
+  "originalFiles": 8,
+  "originalFileHashesMatch": true,
+  "privateInputAbsent": true,
+  "crashBufferEmptyAfterFix": true
+}

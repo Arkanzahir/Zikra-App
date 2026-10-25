@@ -1,0 +1,10 @@
+{
+  "scope": "emulator-APK-HTTPS-Vercel-Featherless-real-no-network-interceptor",
+  "physicalPhoneTested": false,
+  "actualMicrophoneTested": false,
+  "realProposalRequiresReview": true,
+  "doubleSaveCreatesOneTask": true,
+  "sourcedTadabbur": true,
+  "testTaskRemoved": true,
+  "passed": true
+}

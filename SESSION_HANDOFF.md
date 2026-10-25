@@ -12,10 +12,11 @@
 
 - Parent pekerjaan C lanjutan: `20c21fc` (checkpoint lokal C01), handoff yang sudah dipush sebelumnya `83312da`. Source checkpoint kandidat lihat [receipt C](android/validation/assistant-c-2026-10-25/release.json); gunakan Git log aktual, jangan menganggap checkpoint lokal sudah dipush.
 - Source kandidat 1.8.0: **`7982e10e0df98f9b2ee9ca01fa9d89c058363280`**, disimpan lokal; receipt dokumentasi adalah commit penerus, belum push.
-- Source backend Vercel: **`9438aa4`**, checkpoint lokal; dua deployment production berhasil, [receipt hosting/uji](android/validation/backend-vercel-2026-10-25/deployment.json). Source APK tetap `7982e10`; jangan menyamakan commit backend dengan APK.
-- Aplikasi **1.8.0 beta / versionCode 25**, SQLite v4. APK debug, belum signed release publik.
-- APK lokal: `D:\Download\Zikra-App-main\Zikra-AI-v1.8.0-beta-debug.apk`.
-- Ukuran **31.362.014 byte**; SHA-256 `77ed491b65e2519758412bdbe44bc07d494a282ca8a3dda0d7ac5d55bd15a5c1`.
+- Kandidat terbaru **1.8.1 beta / code 26** memperbaiki crash TLS saat keluar AI. [Receipt source/uji emulator nyata](android/validation/assistant-hosted-emulator-2026-10-25/release.json); gunakan source commit pada receipt ini untuk APK terbaru, bukan backend atau APK 1.8.0 lama.
+- Source backend Vercel: **`9438aa4`**, checkpoint lokal; dua deployment production berhasil, [receipt hosting/uji](android/validation/backend-vercel-2026-10-25/deployment.json). APK 1.8.0 pada receipt hosting memakai `7982e10`; APK terbaru mengikuti receipt 1.8.1. Jangan menyamakan commit backend dengan APK.
+- Aplikasi **1.8.1 beta / versionCode 26**, SQLite v4. APK debug, belum signed release publik.
+- APK lokal: `D:\Download\Zikra-App-main\Zikra-AI-v1.8.1-beta-debug.apk`; 1.8.0 tetap dipertahankan.
+- Ukuran **31.181.560 byte**; SHA-256 `8650b9cc12d2d7e061dd0730e4f6e03f3e1767924a5b60271a6c1cd0a900e87b`.
 - [Bukti C/tes/screenshot/batas](android/validation/assistant-c-2026-10-25/README.md). Baseline konten **1.7.6 beta / code 24** (`b3f13f3`) dan APK lamanya dipertahankan; [receipt B04](android/validation/dua-completion-b04-2026-10-24/release.json).
 
 ## Status rencana: B hanya menyisakan B01
@@ -72,12 +73,22 @@ prasyarat. Key/env privat tidak diubah; provider key tetap hanya di server.
   10 tugas/tenggat, perhitungan salat/zona, riwayat online dan izin proposal.
   Loading/batal/retry/error spesifik dan label online teruji dengan respons
   terkendali. Belum APK → HTTPS permanen → provider dari HP, C03 [ ].
+  **Lanjutan terbaru:** [1.8.1 pada emulator ke hosting nyata lulus](android/validation/assistant-hosted-emulator-2026-10-25/README.md),
+  3 metode live + 6 regresi terkendali, 14 unit AI dan lint 0 error/716 warning.
+  Token salah, jaringan putus/retry, batal, proposal ditinjau/disimpan sekali serta
+  sumber Tadabbur nyata diperiksa. 1.8.0 sempat crash saat menutup TLS di UI thread;
+  1.8.1 memindahkan pembersihan socket ke worker tanpa bypass StrictMode/TLS.
+  Data emulator dipulihkan (8 file asli cocok hash), input token sementara
+  dihapus, Wi-Fi/data dipulihkan, emulator ditutup. Bukan HP fisik/C05.
 - C04: proposal tambah/edit Study perlu review; SQLite v4 receipt + mutasi atomik
   mencegah duplikasi, menolak edit stale/tugas selesai. Tidak otomatis mengubah
   progres/reminder. Menu ayat Quran → Tanya makna mengambil petikan tafsir EQuran
   (sumber Kemenag menurut dokumentasinya), ringkasan dan teks sumber dibedakan;
   sumber gagal tidak diganti tebakan. Provider privat nyata proposal/Tadabbur 200.
   Jadwal kelas belum tersedia sebelum D04; integrasi end-to-end masih perlu, C04 [ ].
+  Pada uji emulator terbaru proposal/sumber telah melewati hosting nyata, tetapi
+  frasa Basmalah pada ringkasan ayat 1:2 perlu tinjauan isi. Jangan mencentang
+  akurasi ringkasan berdasarkan kecocokan metadata sumber saja; lihat laporan.
 - C06: penjelasan privasi dikte, hasil tetap draf, batal/hasil salah/batas teks
   teruji. Recognizer emulator ada, **mikrofon/dikte layanan nyata belum diuji**;
   callback tes disimulasikan. C06 [ ], Vision tetap setelah rilis pertama.
@@ -114,4 +125,4 @@ sudah ada; jangan menyebut seluruh adzan tersedia pada APK ini.
 - Build hemat RAM, tes sesuai perubahan; tutup emulator setelah dipakai. Dokumen saja tidak memerlukan build/emulator. Petunjuk: `android/BUILDING.md`.
 - Lingkungan lokal: JDK `C:\Users\Lenovo\.jdks\jbr-17.0.14`, SDK `E:\AndroidSDK`, Gradle cache `E:\.gradle`. Gunakan `git -c safe.directory=D:/Download/Zikra-App-main/Zikra-App-main` bila diperlukan.
 
-Handoff `83312da` adalah baseline dokumentasi lama. Backend Vercel `9438aa4` sudah terpasang dengan key yang ada; APK tetap 1.8.0. C, B01 serta rilis publik tetap belum ditutup. Tidak memeriksa email ulang atau memasang APK pada HP fisik. Checkpoint tetap lokal sampai push dibuktikan.
+Handoff `83312da` adalah baseline dokumentasi lama. Backend Vercel `9438aa4` sudah terpasang dengan key yang ada; APK terbaru 1.8.1. C, B01 serta rilis publik tetap belum ditutup. Tidak memeriksa email ulang atau memasang APK pada HP fisik. Checkpoint tetap lokal sampai push dibuktikan.

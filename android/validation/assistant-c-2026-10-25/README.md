@@ -1,5 +1,8 @@
 # C — AI native, konteks, tindakan dan paket deploy
 
+**APK terbaru:** [1.8.1 beta memperbaiki crash TLS dan lulus uji hosting nyata pada emulator](../assistant-hosted-emulator-2026-10-25/README.md).
+Receipt/screenshot 1.8.0 di bawah dipertahankan sebagai snapshot sebelumnya.
+
 **Lanjutan terbaru:** [backend Vercel sudah online](../backend-vercel-2026-10-25/README.md),
 Hobby + Upstash Free; health/provider/kuota/revokasi/redeploy nyata lulus.
 Catatan awal tanpa hosting di bawah bersifat historis. APK tetap 1.8.0 dari
