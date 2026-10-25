@@ -38,6 +38,9 @@ android {
     if (project.findProperty('zikraHostedTests') == 'true') {
         sourceSets.androidTest.java.srcDir 'src/hostedTest/java'
     }
+    if (project.findProperty('zikraPhoneTests') == 'true') {
+        sourceSets.androidTest.java.srcDir 'src/phoneTest/java'
+    }
 }
 
 dependencies {
