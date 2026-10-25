@@ -34,6 +34,10 @@ android {
         abortOnError true
         checkReleaseBuilds true
     }
+
+    if (project.findProperty('zikraHostedTests') == 'true') {
+        sourceSets.androidTest.java.srcDir 'src/hostedTest/java'
+    }
 }
 
 dependencies {
