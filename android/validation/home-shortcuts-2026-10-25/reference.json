@@ -1,0 +1,7 @@
+{
+  "path": "design/approved-2026-10-25-home-shortcuts/reference.png",
+  "sha256": "f65e70f0d225cfb818092bab30c786a14daa591f8a28ebfc02a92770d8418cfe",
+  "decision": "User: jadi kekgituaja; supplied outline icons with mint/cream circles supersede assistant proposals",
+  "implementation": "Native VectorDrawable shapes redrawn from supplied raster reference; not original source layers or pixel-identity certification",
+  "scope": "Eight Home shortcuts only; brand master untouched"
+}

@@ -1,0 +1,71 @@
+{
+  "sourceCommit": "1cace78b05c1bc3521e8e97dd64ca827c93c1b92",
+  "scope": "Thirteen changed build/layout/resource files; full source recoverable by commit",
+  "files": [
+    {
+      "path": "android/app/build.gradle",
+      "gitBlob": "401ed05108a14113af0f7fb19edc217c1bab48e5",
+      "sha256": "b9fdc7dc8421bd3c9318c80ee51658d8a8d06208f3c730c248c95d16b793d29c"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_shortcut_circle_gold.xml",
+      "gitBlob": "d50df554fe7356c2027d081e45ba8abfa2208f6e",
+      "sha256": "853652932dd6588dd25aa7f8e24d5ad6d8edce95027525ec3ac7222bad8460dd"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_shortcut_circle_mint.xml",
+      "gitBlob": "6c0f3038f25189b53018e7f7de76bcae94baff7c",
+      "sha256": "601c85459dfc2f3f05670408675f1e9057f87c5c03488fe36d32cd43d5b037f4"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_shortcut_ref_ai.xml",
+      "gitBlob": "19ade6d40d2f4aa52782026c1400f1a31c44742a",
+      "sha256": "585e194a7771a1e64fa98f061fd1f99ca0d51161ca9e7e99191e26b6e2579e93"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_shortcut_ref_dua.xml",
+      "gitBlob": "51f1c63c8348ee328cbd5e3da19a8e0c41288a5a",
+      "sha256": "c5d7ee481a592e73fa4ad4940d461d6501ac9fdb471e29c544a2db4625a75819"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_shortcut_ref_hadith.xml",
+      "gitBlob": "b25d6bba91a1a6b5bd0bc4115524db404f6b227e",
+      "sha256": "fd3682bf9863dfef0e2c3b496fb3db50e7d78b2b1c484ea07a96f17e464ddfe6"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_shortcut_ref_hifz.xml",
+      "gitBlob": "d0ec226bc7daba2ce5aba8965d15f4f59eb6c953",
+      "sha256": "b65500e4615469bf8ae30e92e65f2ce706c146f5ed1a383ae59ffa4d02bea210"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_shortcut_ref_protector.xml",
+      "gitBlob": "22e27e7f6cfa7410521647c24526554aa3bb2e17",
+      "sha256": "e24ed30bec0ec8d58ceaa0d9956938f2936a2b5ac366d5e80deda9b852163949"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_shortcut_ref_qibla.xml",
+      "gitBlob": "abb7dde72437998058d9268822f4917992d43e6a",
+      "sha256": "10c9385431bdaf8b5c428124e00e28eb41b67a29783a6076cb75bebe26a519ce"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_shortcut_ref_quran.xml",
+      "gitBlob": "fd89945574d414e3eec837cbec4680733a3218a7",
+      "sha256": "326793326f7cf70b9d6112a72ee6bcf875597a748d202d412e68a810fced2b21"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/home_shortcut_ref_study.xml",
+      "gitBlob": "bb7563be0ee2d8c1c4e2de43f4da52550be4cc91",
+      "sha256": "a2b57b4b7af1bfe88348d02227126de8913112697e0a164b011e4818193f0688"
+    },
+    {
+      "path": "android/app/src/main/res/layout/activity_home.xml",
+      "gitBlob": "97f2061ff16b6ec2e4983bfc9c14a51b5691ee76",
+      "sha256": "f14a698c9e4023b3eb2d46bf89d33b8fff05a517eedaa1b5c8c13ac5c203f65c"
+    },
+    {
+      "path": "android/app/src/main/res/values/home_refresh.xml",
+      "gitBlob": "16eec213f97ad44a228035cc4ddb456fa9016af3",
+      "sha256": "0c59ab3b76fc8b00b7922060900d35e14b21b232ac4c56fc8d701ea10258742f"
+    }
+  ]
+}

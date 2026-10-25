@@ -1,0 +1,62 @@
+{
+  "sourceCommit": "1cace78b05c1bc3521e8e97dd64ca827c93c1b92",
+  "nativeExecutions": 6,
+  "nativeUniqueMethods": 3,
+  "nativeFailures": 0,
+  "methods": [
+    "HomeRefreshTest#testHomeEmptyAndRealAgendaScrollNavigation",
+    "HomeRefreshTest#testSkyDayNightPhaseAndOffscreenMotion",
+    "FoundationExperienceTest#testNarrowHomeAtTwoHundredPercentKeepsActionsAboveDock"
+  ],
+  "fontScales": [
+    1.0,
+    2.0
+  ],
+  "captures": [
+    "720x1600, normal/200%",
+    "720x1392, reference ratio",
+    "640x1440, narrow 320dp/200%"
+  ],
+  "build": "assembleDebug + assembleDebugAndroidTest + lintDebug successful; one worker/768MiB heap; emulator stopped during build",
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 721
+  },
+  "logs": [
+    {
+      "path": "logs/native-100.txt",
+      "passed": 2,
+      "originalPrivateSha256": "ae48abf1862006decc698d4710d5dcb72f5c0184bc3d3cf5799d5b67bc12ad82",
+      "publicSha256": "fec7558778e5016c7d36b949fc23b73ba119fc43dffc65c1ac3b452e833b7ca3"
+    },
+    {
+      "path": "logs/native-200.txt",
+      "passed": 2,
+      "originalPrivateSha256": "60418f6f757b585f5471e05724e5b27da6a4c040e5cd5830a32612dddab7a0cf",
+      "publicSha256": "fd62c99e144f7c8b77b1d420831987da6f43b0ee73e982fae2f52cf37ef7587f"
+    },
+    {
+      "path": "logs/native-narrow.txt",
+      "passed": 1,
+      "originalPrivateSha256": "581de053b1eb7d855986f2cf59d0903ed77b5f39b5e9bc7d895901c6f4294ac4",
+      "publicSha256": "d239706afc6fdb0999ab35fa06a7c6a182d841f2ab7324f76012c7bce2dc99ed"
+    },
+    {
+      "path": "logs/native-reference-frame.txt",
+      "passed": 1,
+      "originalPrivateSha256": "61c6a2ff515e3809490d50a09d1e33ce6a757ac575a1990f128f41bb45ce3966",
+      "publicSha256": "25da9794f2b3dc150eb9723e63ec5012bbe2042969a22bf79ecb7bd4fd133a3c"
+    },
+    {
+      "path": "logs/build.txt",
+      "passed": null,
+      "originalPrivateSha256": "b10fb315f90eb63efb75a1d3857cb4573d72ff15b9df06bb287b30c647304987",
+      "publicSha256": "de9aa48a84231379a123ade1d765dddcd20fb8b59a6ba1b259b2054045865886"
+    }
+  ],
+  "logNormalization": "CR/LF and trailing whitespace only; raw private SHA-256 recorded",
+  "fixtures": "Synthetic Surabaya, Al-Kahf12, tasks and Clock12:30/20:00 with lunar fraction .18/1; not live provider/astronomical output",
+  "scope": "Visual resources, layout/reflow and existing Home actions; no new logic unit tests or blanket release claim",
+  "physicalPhoneModified": false
+}
