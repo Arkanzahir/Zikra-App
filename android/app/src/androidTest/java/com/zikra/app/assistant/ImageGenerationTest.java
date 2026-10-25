@@ -36,7 +36,8 @@ public final class ImageGenerationTest extends InstrumentationTestCase {
   private void set(String key,Object value)throws Exception{Field f=AiActivity.class.getDeclaredField(key);f.setAccessible(true);f.set(activity,value);}
   private void call(String key,Class<?>[] types,Object... args){try{Method m=AiActivity.class.getDeclaredMethod(key,types);m.setAccessible(true);m.invoke(activity,args);}catch(Exception e){throw new RuntimeException(e);}}
   private void call(String key){call(key,new Class<?>[]{});}
-  private void launch()throws Exception{waitFor(()->new AssistantNetwork(context,()->{}).validated());activity=(AiActivity)getInstrumentation().startActivitySync(new Intent(context,AiActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));getInstrumentation().waitForIdleSync();waitFor(()->activity.hasWindowFocus());SystemClock.sleep(700);}
+  private void launch()throws Exception{launch(true);}
+  private void launch(boolean online)throws Exception{if(online)waitFor(()->new AssistantNetwork(context,()->{}).validated());activity=(AiActivity)getInstrumentation().startActivitySync(new Intent(context,AiActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));getInstrumentation().waitForIdleSync();for(int i=0;i<300&&!activity.hasWindowFocus();i++)SystemClock.sleep(100);assertTrue("Activity window must be foreground",activity.hasWindowFocus());SystemClock.sleep(700);}
   private void close(){if(activity!=null){ui(activity::finish);activity=null;}}
   private JSONArray rows()throws Exception{return (JSONArray)get("messages");}
   private void waitFor(Callable<Boolean> condition)throws Exception{for(int i=0;i<120;i++){if(condition.call())return;SystemClock.sleep(100);}fail("Expected image state not reached");}
@@ -90,10 +91,11 @@ public final class ImageGenerationTest extends InstrumentationTestCase {
   }
 
   public void testImageComposerAtLargeTextHasWholeSendAndAttachmentTargets()throws Exception{
-    launch();set("imageAvailable",true);ui(()->call("enterImageMode"));
+    launch(false);set("imageAvailable",true);ui(()->call("enterImageMode"));
     EditText editor=activity.findViewById(R.id.aiInput);int[] point=new int[2];ui(()->editor.getLocationOnScreen(point));
     long time=SystemClock.uptimeMillis();float x=point[0]+editor.getWidth()/2f,y=point[1]+Math.min(editor.getHeight()/2f,32*context.getResources().getDisplayMetrics().density);
     android.view.MotionEvent down=android.view.MotionEvent.obtain(time,time,android.view.MotionEvent.ACTION_DOWN,x,y,0),up=android.view.MotionEvent.obtain(time,time+60,android.view.MotionEvent.ACTION_UP,x,y,0);
+    down.setSource(android.view.InputDevice.SOURCE_TOUCHSCREEN);up.setSource(android.view.InputDevice.SOURCE_TOUCHSCREEN);
     getInstrumentation().getUiAutomation().injectInputEvent(down,true);getInstrumentation().getUiAutomation().injectInputEvent(up,true);down.recycle();up.recycle();
     ui(()->((android.view.inputmethod.InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(editor,android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT));
     waitFor(()->activity.getWindow().getDecorView().getRootWindowInsets()!=null&&activity.getWindow().getDecorView().getRootWindowInsets().isVisible(WindowInsets.Type.ime()));SystemClock.sleep(600);shot("composer");
