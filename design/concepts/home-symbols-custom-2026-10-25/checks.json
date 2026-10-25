@@ -1,0 +1,27 @@
+{
+  "type": "Browser-rendered vector concept, not Android APK",
+  "widths": [
+    {
+      "width": 320,
+      "icons": 8,
+      "overflow": false,
+      "clipped": false
+    },
+    {
+      "width": 390,
+      "icons": 8,
+      "overflow": false,
+      "clipped": false
+    },
+    {
+      "width": 760,
+      "icons": 8,
+      "overflow": false,
+      "clipped": false
+    }
+  ],
+  "iconsPerLayout": 8,
+  "homeGlyphCssPixels": 34,
+  "scriptErrors": [],
+  "productionAppChanged": false
+}
