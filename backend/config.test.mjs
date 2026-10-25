@@ -7,6 +7,14 @@ import { ConfigError, readConfig } from './config.mjs';
 const env = { FEATHERLESS_API_KEY: 'synthetic-provider-key-for-testing',
   FEATHERLESS_MODEL: 'test/model', ZIKRA_CLIENT_TOKEN: 'private-test-code-32-characters-long' };
 
+test('vision configuration is optional, exact and never substitutes the text model',()=>{
+  assert.equal(readConfig(env).visionModel,undefined);
+  const config=readConfig({...env,FEATHERLESS_VISION_MODEL:'Qwen/Qwen2.5-VL-7B-Instruct'});
+  assert.equal(config.visionModel,'Qwen/Qwen2.5-VL-7B-Instruct');assert.equal(config.model,'test/model');
+  for(const value of ['', 'model with spaces', 'https://example.test/model', 'model\r\nheader'])
+    assert.throws(()=>readConfig({...env,FEATHERLESS_VISION_MODEL:value}),ConfigError);
+});
+
 test('private config defaults to loopback and validates explicit bind', () => {
   const config = readConfig(env);
   assert.equal(config.host, '127.0.0.1');

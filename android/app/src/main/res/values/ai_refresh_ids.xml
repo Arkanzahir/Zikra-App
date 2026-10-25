@@ -1,0 +1,6 @@
+<resources>
+  <item name="aiHistoryOverlay" type="id" />
+  <item name="aiHistorySearch" type="id" />
+  <item name="aiHistoryList" type="id" />
+  <item name="aiAttachmentPreview" type="id" />
+</resources>

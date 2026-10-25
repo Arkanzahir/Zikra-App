@@ -127,6 +127,17 @@ besar 413; JSON/isi client salah 400; tipe salah 415; token salah 401; provider
 429 tetap 429; body provider rusak/terlalu besar menjadi 502; timeout 504.
 Pembatalan klien membatalkan fetch provider.
 
+Lampiran terpilih memakai header `X-Zikra-Attachments: 1` dan batas body 2 MiB;
+pesan tanpa lampiran tetap 48 KiB. Satu foto atau PDF maksimal tiga halaman
+dikirim sebagai gambar JPEG/PNG tervalidasi (360.000 byte per gambar, dimensi
+maksimal 1.600 piksel). DOCX/TXT yang sudah diurai perangkat dikirim sebagai teks
+maksimal 12.000 karakter. Gateway menolak URL gambar eksternal, nama/path tidak
+aman, MIME/base64/dimensi salah; isi lampiran diperlakukan sebagai data pengguna.
+Set `FEATHERLESS_VISION_MODEL` hanya pada backend setelah akses model nyata diuji;
+tanpa konfigurasi itu foto/PDF ditolak `vision_unavailable`, tanpa balasan palsu.
+Model teks tetap memakai `FEATHERLESS_MODEL`. Gateway tidak menyimpan lampiran;
+kebijakan penyimpanan provider/platform tetap perlu diperiksa sebelum publik.
+
 Mode private memakai kuota socket di memori yang hilang saat restart. Mode
 installation dengan file memakai identitas token yang dapat dicabut dan kuota persisten
 per instalasi, satu proses/satu replika. Vercel memakai Redis bersama dengan

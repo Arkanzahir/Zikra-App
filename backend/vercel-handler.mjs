@@ -3,7 +3,7 @@ import { RedisAccess, RedisRest, readRedisConfig } from './redis-access.mjs';
 import { createRequestHandler } from './server.mjs';
 
 export function readVercelConfig(env = process.env) {
-  const config = { apiKey: env.FEATHERLESS_API_KEY, model: env.FEATHERLESS_MODEL };
+  const config = { apiKey: env.FEATHERLESS_API_KEY, model: env.FEATHERLESS_MODEL, visionModel: env.FEATHERLESS_VISION_MODEL };
   validateProvider(config);
   const redis = readRedisConfig(env), dailyLimit = Number(env.ZIKRA_DAILY_LIMIT ?? '100');
   if (!Number.isInteger(dailyLimit) || dailyLimit < 1 || dailyLimit > 1000)

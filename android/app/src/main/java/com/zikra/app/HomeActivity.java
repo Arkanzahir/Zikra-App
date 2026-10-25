@@ -72,8 +72,8 @@ public final class HomeActivity extends BaseActivity {
     LinearLayout brand = findViewById(R.id.homeRoot).findViewWithTag("zikraBrand");
     android.view.View symbol = brand.getChildAt(0);
     symbol.setLayoutParams(new LinearLayout.LayoutParams(dp(58), dp(58)));
-    symbol.setScaleX(1.16f); symbol.setScaleY(1.16f);
-    symbol.setTranslationX(-dp(4.5f)); symbol.setTranslationY(dp(3));
+    symbol.setScaleX(1.20f); symbol.setScaleY(1.20f);
+    symbol.setTranslationX(-dp(4.5f)); symbol.setTranslationY(dp(4));
     TextView wordmark = (TextView) brand.getChildAt(1);
     wordmark.setTypeface(android.graphics.Typeface.create("serif", android.graphics.Typeface.BOLD));
     wordmark.setTextSize(24);
@@ -81,6 +81,11 @@ public final class HomeActivity extends BaseActivity {
     brandParams.leftMargin = -dp(6); brand.setLayoutParams(brandParams);
     LinearLayout.LayoutParams wordParams = (LinearLayout.LayoutParams) wordmark.getLayoutParams();
     wordParams.leftMargin = dp(4); wordmark.setLayoutParams(wordParams);
+    android.graphics.Typeface headingFace=android.os.Build.VERSION.SDK_INT>=28
+        ?android.graphics.Typeface.create(android.graphics.Typeface.create("sans-serif",android.graphics.Typeface.NORMAL),600,false)
+        :android.graphics.Typeface.create("sans-serif-medium",android.graphics.Typeface.NORMAL);
+    for(int textId:new int[]{R.id.homeGreeting,R.id.homeClock,R.id.homeRhythmTitle,R.id.homeLastRead})
+      ((TextView)findViewById(textId)).setTypeface(headingFace);
     findViewById(R.id.homeHero).setOnLongClickListener(v -> {
       findViewById(R.id.homeSkySource).performClick(); return true;
     });

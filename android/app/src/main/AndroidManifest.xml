@@ -18,6 +18,7 @@
     <uses-feature android:name="android.hardware.sensor.light" android:required="false" />
     <uses-feature android:name="android.hardware.sensor.compass" android:required="false" />
     <queries>
+        <intent><action android:name="android.media.action.IMAGE_CAPTURE" /></intent>
         <intent><action android:name="android.intent.action.TTS_SERVICE" /></intent>
         <intent><action android:name="android.speech.action.RECOGNIZE_SPEECH" /></intent>
         <intent><action android:name="android.intent.action.DIAL" /><data android:scheme="tel" /></intent>
@@ -25,6 +26,7 @@
         <intent><action android:name="android.intent.action.VIEW" /><data android:scheme="geo" /></intent>
     </queries>
     <application android:allowBackup="false" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher" android:supportsRtl="true" android:theme="@style/Theme.Zikra" android:usesCleartextTraffic="false">
+        <provider android:name=".assistant.AssistantCameraProvider" android:authorities="${applicationId}.assistant.camera" android:exported="false" android:grantUriPermissions="true" />
         <service android:name=".audio.QuranAudioService" android:exported="false" android:foregroundServiceType="mediaPlayback" />
         <service android:name=".audio.QuranDownloadService" android:exported="false" android:foregroundServiceType="dataSync" />
         <uses-library android:name="android.test.runner" android:required="false" />
@@ -47,7 +49,7 @@
         <activity android:name=".WeatherActivity" android:exported="false" />
         <activity android:name=".EarthquakeActivity" android:exported="false" />
         <activity android:name=".ProfileActivity" android:exported="false" />
-        <activity android:name=".AiActivity" android:exported="false" />
+        <activity android:name=".AiActivity" android:exported="false" android:theme="@style/Theme.Zikra.Assistant" />
         <activity android:name=".InfaqActivity" android:exported="false" />
         <activity android:name=".PrayerActivity" android:exported="false" />
         <activity android:name=".DuaActivity" android:exported="false" />

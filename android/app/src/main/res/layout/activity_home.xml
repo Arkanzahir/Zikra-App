@@ -104,13 +104,13 @@
           </LinearLayout>
         </LinearLayout>
       </LinearLayout>
-      <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="20dp" android:layout_marginTop="8dp" android:text="@string/refresh_home_rhythm" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/pine" android:accessibilityHeading="true" />
-      <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="20dp" android:layout_marginTop="2dp" android:layout_marginBottom="8dp" android:text="@string/refresh_home_rhythm_caption" android:textSize="12sp" android:textColor="@color/muted" />
+      <TextView android:id="@+id/homeRhythmTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="20dp" android:layout_marginTop="8dp" android:text="@string/refresh_home_rhythm" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/home_body_ink" android:accessibilityHeading="true" />
+      <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="20dp" android:layout_marginTop="2dp" android:layout_marginBottom="8dp" android:text="@string/refresh_home_rhythm_caption" android:textSize="12sp" android:textColor="@color/home_body_muted" />
       <LinearLayout android:id="@+id/homeContinueReading" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="60dp" android:paddingVertical="8dp" android:layout_marginHorizontal="20dp" android:layout_marginTop="0dp" android:paddingHorizontal="14dp" android:gravity="center_vertical" android:background="@drawable/refresh_mint" android:clickable="true" android:focusable="true">
         <ImageView android:layout_width="40dp" android:layout_height="40dp" android:padding="8dp" android:background="@drawable/studio_icon_mint" android:src="@drawable/ic_book" android:tint="@color/pine" android:importantForAccessibility="no" />
         <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="12dp" android:orientation="vertical">
           <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/homeReadingLabel" android:text="@string/reference_continue" android:textColor="@color/pine" android:textSize="11sp" android:textStyle="normal" />
-          <TextView android:id="@+id/homeLastRead" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:textColor="@color/pine" android:textSize="15sp" android:textStyle="bold" />
+          <TextView android:id="@+id/homeLastRead" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:textColor="@color/home_body_ink" android:textSize="16sp" android:textStyle="bold" />
         </LinearLayout>
         <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/home_ic_chevron" android:tint="@color/muted" android:importantForAccessibility="no" />
       </LinearLayout>

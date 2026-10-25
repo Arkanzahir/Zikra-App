@@ -43,4 +43,6 @@
   <color name="home_shortcut_needle">#30675D</color>
   <color name="home_shortcut_mint">#DFF3EB</color>
   <color name="home_shortcut_gold">#FAEED2</color>
+  <color name="home_body_ink">#0F2D34</color>
+  <color name="home_body_muted">#6D7782</color>
 </resources>

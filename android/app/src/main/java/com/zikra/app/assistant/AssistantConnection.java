@@ -30,6 +30,14 @@ public final class AssistantConnection {
     return prefs.getBoolean("online", false) && !endpoint().isEmpty();
   }
 
+  public boolean configured() {
+    return !endpoint().isEmpty() && prefs.contains("access") && prefs.contains("iv");
+  }
+
+  public void activate() {
+    if (configured()) prefs.edit().putBoolean("online", true).apply();
+  }
+
   public void offline() {
     prefs.edit().putBoolean("online", false).apply();
   }
@@ -48,7 +56,7 @@ public final class AssistantConnection {
         && accessCode.length() >= 32
         && accessCode.length() <= 256
         && accessCode.matches("[A-Za-z0-9._~+/=\\-]+")
-        && !accessCode.startsWith("sk-");
+        && !accessCode.startsWith("sk-") && !accessCode.startsWith("AIza");
   }
 
   private SecretKey key(boolean create) throws Exception {

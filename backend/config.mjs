@@ -3,23 +3,24 @@ import { isAbsolute } from 'node:path';
 
 export class ConfigError extends Error {}
 
-export function validateProvider({ apiKey, model }) {
+export function validateProvider({ apiKey, model, visionModel }) {
   // Reject whitespace/control characters before constructing provider headers.
   if (typeof apiKey !== 'string' || !/^[!-~]{16,512}$/.test(apiKey))
     throw new ConfigError('Invalid FEATHERLESS_API_KEY.');
   if (typeof model !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9._/-]{0,199}$/.test(model))
     throw new ConfigError('Invalid FEATHERLESS_MODEL.');
+  if(visionModel!==undefined&&visionModel!==null&&(typeof visionModel!=='string'||! /^[A-Za-z0-9][A-Za-z0-9._/-]{0,199}$/.test(visionModel)))throw new ConfigError('Invalid FEATHERLESS_VISION_MODEL.');
 }
 
-export function validateCredentials({ apiKey, model, clientToken }) {
-  validateProvider({ apiKey, model });
+export function validateCredentials({ apiKey, model, visionModel, clientToken }) {
+  validateProvider({ apiKey, model, visionModel });
   if (typeof clientToken !== 'string' || !/^[A-Za-z0-9._~+\/=-]{32,256}$/.test(clientToken)
       || clientToken.startsWith('sk-') || clientToken === apiKey)
     throw new ConfigError('Invalid ZIKRA_CLIENT_TOKEN; use a separate random 32+ character token.');
 }
 
 export function readConfig(env = process.env) {
-  const config = { apiKey: env.FEATHERLESS_API_KEY, model: env.FEATHERLESS_MODEL,
+  const config = { apiKey: env.FEATHERLESS_API_KEY, model: env.FEATHERLESS_MODEL, visionModel: env.FEATHERLESS_VISION_MODEL,
     clientToken: env.ZIKRA_CLIENT_TOKEN, host: env.HOST ?? '127.0.0.1',
     port: Number(env.PORT ?? '8787'), accessMode: env.ZIKRA_ACCESS_MODE ?? 'private' };
   if (config.accessMode === 'private') validateCredentials(config);

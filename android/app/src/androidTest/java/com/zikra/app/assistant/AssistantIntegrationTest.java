@@ -35,6 +35,8 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
         getInstrumentation().getUiAutomation().executeShellCommand("getprop ro.kernel.qemu"))) {
       assertEquals("Emulator-only fixtures", "1", new String(stream.readAllBytes(), StandardCharsets.UTF_8).trim());
     }
+    assertTrue("Host backup/isolation required",new File(context.getFilesDir(),"ai-refresh-test-authorized").isFile());
+    context.deleteDatabase("assistant_chats.db");
     for (String name : new String[] {"zikra_preferences", "assistant_gateway"})
       originals.put(name, new HashMap<>(context.getSharedPreferences(name, 0).getAll()));
     context.getSharedPreferences("zikra_preferences", 0).edit().putBoolean("onboarding_complete", true)
@@ -44,6 +46,8 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
 
   @Override protected void tearDown() throws Exception {
     if (activity != null) getInstrumentation().runOnMainSync(() -> activity.finish());
+    getInstrumentation().waitForIdleSync();
+    context.deleteDatabase("assistant_chats.db");
     for (Map.Entry<String, Map<String, ?>> prefs : originals.entrySet()) {
       SharedPreferences.Editor editor = context.getSharedPreferences(prefs.getKey(), 0).edit().clear();
       for (Map.Entry<String, ?> entry : prefs.getValue().entrySet()) {
