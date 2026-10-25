@@ -149,8 +149,10 @@ public final class NavDock {
         key.equals(selected) ? android.graphics.Typeface.BOLD : android.graphics.Typeface.NORMAL);
     if (page instanceof HomeActivity) {
       android.view.ViewGroup.LayoutParams glyphParams = glyph.getLayoutParams();
-      glyphParams.width = page.dp(36); glyphParams.height = page.dp(28); glyph.setLayoutParams(glyphParams);
-      glyph.setPadding(page.dp(8), page.dp(4), page.dp(8), page.dp(4));
+      glyphParams.width = page.dp(key.equals("home") ? 28 : 36);
+      glyphParams.height = page.dp(28); glyph.setLayoutParams(glyphParams);
+      int horizontalPadding = page.dp(key.equals("home") ? 4 : 8);
+      glyph.setPadding(horizontalPadding, page.dp(4), horizontalPadding, page.dp(4));
       row.setPadding(0, 0, 0, page.dp(largeType ? 10 : 14));
       text.setAutoSizeTextTypeUniformWithConfiguration(9, 10, 1, android.util.TypedValue.COMPLEX_UNIT_SP);
       LinearLayout.LayoutParams textParams = (LinearLayout.LayoutParams) text.getLayoutParams();

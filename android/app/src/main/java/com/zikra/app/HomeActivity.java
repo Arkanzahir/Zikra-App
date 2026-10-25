@@ -203,7 +203,7 @@ public final class HomeActivity extends BaseActivity {
       prayerDisplayDate = null;
     }
     location = selected;
-    ((TextView) findViewById(R.id.homeLocationLabel)).setText(location.label.split(",")[0] + " ⌄");
+    ((TextView) findViewById(R.id.homeLocationLabel)).setText(location.label.split(",")[0]);
     findViewById(R.id.homeLocation)
         .setContentDescription("Lokasi " + location.caption() + ". Ketuk untuk mengubah.");
     sky.post(() -> {
@@ -436,6 +436,7 @@ public final class HomeActivity extends BaseActivity {
       for (int i = 0; i < PRAYER_SLOTS.length; i++) {
         LinearLayout slot = findViewById(PRAYER_SLOTS[i]);
         boolean active = i == next;
+        slot.getChildAt(3).setVisibility(active ? android.view.View.VISIBLE : android.view.View.INVISIBLE);
         slot.setBackgroundResource(0);
         ((ImageView) slot.getChildAt(1))
             .setColorFilter(getColor(active ? R.color.camel : R.color.home_prayer_text));

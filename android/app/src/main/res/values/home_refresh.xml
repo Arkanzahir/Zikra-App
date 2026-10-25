@@ -33,4 +33,5 @@
     <item>Maghrib</item>
     <item>Isya</item>
   </string-array>
+  <color name="home_prayer_separator">#26FFFFFF</color>
 </resources>
