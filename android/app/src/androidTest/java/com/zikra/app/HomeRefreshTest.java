@@ -179,6 +179,7 @@ public final class HomeRefreshTest extends InstrumentationTestCase {
     int[] motionAfter = cloudPixels(home, sky);
     int changed = Math.max(changedPixels(motionBefore, motionMiddle), changedPixels(motionBefore, motionAfter));
     assertTrue("Cloud region actually changes on the display", changed > 10);
+    awaitSkyFrame(sky, true);
     capture("sky-day");
     getInstrumentation().runOnMainSync(() -> {
       setHomeTime(home, day, java.time.LocalTime.of(20,0));
@@ -193,10 +194,14 @@ public final class HomeRefreshTest extends InstrumentationTestCase {
     assertEquals("Highlighted Subuh uses next day's time",
         next.time.format(java.time.format.DateTimeFormatter.ofPattern("HH.mm", java.util.Locale.ROOT)),
         ((TextView) firstPrayer.getChildAt(2)).getText().toString());
+    awaitSkyFrame(sky, false);
     capture("sky-crescent");
     com.zikra.app.sky.SkyDay full = new com.zikra.app.sky.SkyDay(day.date, day.rise, day.noon, day.set, 1, true, false);
     getInstrumentation().runOnMainSync(() -> sky.setSky(full, java.time.LocalTime.of(20,0)));
-    getInstrumentation().waitForIdleSync(); capture("sky-full-moon");
+    getInstrumentation().waitForIdleSync();
+    android.os.SystemClock.sleep(400);
+    awaitSkyFrame(sky, false);
+    capture("sky-full-moon");
     ScrollView scroll = home.findViewById(R.id.homeScroll);
     getInstrumentation().runOnMainSync(() -> scroll.scrollTo(0, scroll.getChildAt(0).getHeight()));
     getInstrumentation().waitForIdleSync();
@@ -225,6 +230,24 @@ public final class HomeRefreshTest extends InstrumentationTestCase {
     } finally {
       shell("settings put global animator_duration_scale " + (old.matches("[0-9.]+") ? old : "1"));
     }
+  }
+
+  private void awaitSkyFrame(android.view.View sky, boolean daytime) {
+    int[] position = new int[2];
+    getInstrumentation().runOnMainSync(() -> sky.getLocationOnScreen(position));
+    long deadline = android.os.SystemClock.uptimeMillis() + 5000;
+    do {
+      android.os.SystemClock.sleep(150);
+      android.graphics.Bitmap screen = getInstrumentation().getUiAutomation().takeScreenshot();
+      assertNotNull("Rendered sky screenshot", screen);
+      int pixel = screen.getPixel(position[0] + sky.getWidth()/2,
+          position[1] + Math.round(sky.getHeight() * .05f));
+      screen.recycle();
+      int brightness = (android.graphics.Color.red(pixel) + android.graphics.Color.green(pixel)
+          + android.graphics.Color.blue(pixel)) / 3;
+      if (daytime ? brightness > 70 : brightness < 60) return;
+    } while (android.os.SystemClock.uptimeMillis() < deadline);
+    fail("Display must render the requested " + (daytime ? "day" : "night") + " frame before capture");
   }
 
   private int[] cloudPixels(HomeActivity home, android.view.View sky) {
