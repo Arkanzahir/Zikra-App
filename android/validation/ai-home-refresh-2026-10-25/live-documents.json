@@ -1,0 +1,12 @@
+[
+  {
+    "kind": "text",
+    "status": 200,
+    "codeRead": true
+  },
+  {
+    "kind": "docx",
+    "status": 200,
+    "codeRead": true
+  }
+]

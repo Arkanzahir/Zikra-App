@@ -71,3 +71,10 @@ Ini adalah penundaan berdasarkan kewenangan yang diberikan pengguna pada 24 Okto
 Pengguna menyetujui Home Al-Aqsa siang/malam dan meminta foto/file ditambahkan, sehingga penundaan Vision pada keputusan 24 Oktober tidak lagi berlaku untuk kebutuhan lampiran ini. AI otomatis memakai ketersediaan internet dan hasil layanan, dengan status jelas dan opsi panduan offline terbatas. Persetujuan Home bukan bukti runtime; C07, C03 dan UI04 tetap terbuka. [Keputusan terbaru](design/concepts/home-approved-ai-auto-attachments-2026-10-25.md).
 
 Permintaan lanjutan menambahkan riwayat beberapa chat lokal (C08) serta kreasi gambar online (C09). Keduanya tetap antrean dengan kriteria uji di implementation plan; rendering gambar memerlukan layanan/model/akses/biaya yang dibuktikan sebelum tersedia. [Konsep dan batas](design/concepts/ai-history-creation-review-2026-10-25-v4.md). Koreksi Home 1.9.1 sudah mempunyai [bukti native](android/validation/home-reference-match-2026-10-25/README.md), tetapi bukan bukti implementasi fitur AI tersebut atau penutupan UI04/F/G.
+
+**Status terbaru 1.9.5/sourcea5d070a:** C08 riwayat lokal sudah selesai dengan bukti
+migrasi/native/consent; menggantikan status antrean C08 di atas. AI otomatis dan
+lampiran foto/PDF/DOCX/TXT sudah diterapkan serta diuji ke provider lewat Vercel,
+tetapi C03/C07 tetap terbuka untuk gerbang yang tersisa. C09 generasi gambar belum
+tersedia, Gemini API baru kandidat tanpa aktivasi biaya. [Bukti dan batas](android/validation/ai-home-refresh-2026-10-25/README.md).
+Ini checkpoint beta, tidak mengubah cakupan wajib rilis publik atau menutup C/F/G.

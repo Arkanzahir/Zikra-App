@@ -1,0 +1,6 @@
+{
+  "health": 200,
+  "unauthorized": 401,
+  "invalidAttachment": 400,
+  "invalidError": "invalid_attachment"
+}

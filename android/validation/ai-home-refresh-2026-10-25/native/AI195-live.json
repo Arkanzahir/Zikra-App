@@ -1,0 +1,19 @@
+{
+  "scope": "Synthetic photo\/scanned PDF, APK to actual Vercel to provider; emulator, no physical camera claim",
+  "results": [
+    {
+      "kind": "photo",
+      "arithmeticCorrect": true,
+      "numbersOnlyInsideImage": true,
+      "actualVercel": true,
+      "interceptorUsed": false
+    },
+    {
+      "kind": "scanned-pdf",
+      "arithmeticCorrect": true,
+      "numbersOnlyInsideImage": true,
+      "actualVercel": true,
+      "interceptorUsed": false
+    }
+  ]
+}

@@ -184,3 +184,52 @@ APK `Zikra-Home-v1.9.3-beta-debug.apk` di folder luar, **34.408.836 byte**, SHA-
 Pengguna meminta gradasi/posisi mengikuti [acuan ini](design/approved-2026-10-25-home-alignment/README.md) serta lampu padam siang/menyala malam. Sudah dibuat **1.9.4/code31**, source `b282fd8`: panel56dp dengan atas transparan/tengah-bawah opak untuk menghindari seam cream, angka medium; hero/masjid/teks/logo/pintasan/bacaan dirapikan. Ikon pilihan terbaru tetap. Aset siang baru tanpa glow dibuat dengan built-in image_gen; master malam tidak ditimpa. Renderer memilih/crossfade menurut daylight lokasi, bitmap cached; bukan identik per piksel. [Bukti native, source, aset/prompt dan batas](android/validation/home-lighting-layout-2026-10-25/README.md).
 
 APK `Zikra-Home-v1.9.4-beta-debug.apk`, **36.594.943 byte**, SHA-256 `76a1367d52354fc24757b71221347766c7d2912160a1527015ffe1417ffc26b3`;1.9.3 tetap, signer sama, SQLite4.6 eksekusi native/3 metode unik+5 unit Sky lulus; lint0 error/721 warning. Piksel glow lampu aktual1 siang vs2.469 malam (100%);1 vs2.376 (200%). Ini proksi visual/fixture, bukan fotometri/fase astronomi/seluruh twilight.10 file emulator dipulihkan cocok hash, font/ukuran dikembalikan/helper dihapus, emulator ditutup, HP tidak diubah. WIP/env/stash tetap; audit nilai rahasia saat ini bersih. UI04/AI/C/B01/D02a/F/G/publik tetap terbuka. Source checkpoint lokal, belum push dibuktikan.
+
+## Checkpoint terbaru — AI dan Home 1.9.5, C08 selesai
+
+Menggantikan status runtime AI lama di catatan sebelumnya. Pengguna meminta AI
+dikerjakan serta ketebalan teks/ukuran logo Home disesuaikan. **Source `a5d070a`,
+beta1.9.5/code32** sudah dibuat. [Bukti, screenshot dan batas lengkap](android/validation/ai-home-refresh-2026-10-25/README.md).
+
+- UI AI krem/pine/mint, riwayat/chat baru, mode Otomatis/Online/Offline,
+  + Kamera/Galeri/Dokumen, preview/hapus/consent per request. Offline tetap aturan,
+  bukan model generatif. Network callback tidak auto-send draf; error layanan jelas.
+- C08 **[x]**: SQLite chat terpisah v1, migrasi history preference sekali tanpa
+  hilang metadata, buat/pilih/cari judul/rename/batal-hapus/hapus/reopen dan draf
+  per chat lulus native. Batas40 chat/200 pesan/128.000 karakter tidak silent eviction.
+  SQLite utama tetap4. Chat lain tidak ikut konteks otomatis.
+- Foto JPG/PNG/WebP, PDF ≤3 halaman, DOCX/TXT ≤12.000 karakter, sumber ≤8MB dan
+  penyimpanan lampiran25MB. Normalisasi/EXIF/PDF/arsip/mime/dimensi/URL diperiksa;
+  kamera melalui grant URI privat, tanpa izin file luas. C07 **masih [ ]** untuk
+  kamera/picker/izin pada HP dan variasi OCR. Native provider kamera sintetis dan
+  parser lulus; bukan kamera fisik.
+- Backend vision sudah dipasang pada proyek Vercel lama, ID
+  `GXHBqWcUXxyy5SZFSLFzkpcUpYpZ`, alias `https://zikra-ai.vercel.app`.
+  `FEATHERLESS_VISION_MODEL=Qwen/Qwen2.5-VL-7B-Instruct` hanya server; model teks
+  lama/key asli tidak diganti. Foto/PDF scan sintetis berhasil APK → Vercel →
+  provider nyata, tanpa interceptor; TXT/DOCX nyata berhasil. Endpoint daftar
+  model Featherless sempat404; akses dibuktikan lewat completion langsung.
+- Akurasi bukan selesai: satu percobaan tidak menampilkan jawaban, berikutnya
+  menjawab hitungan43 tetapi melewatkan kode referensi. Tes live terakhir membuktikan
+  hitungan pada gambar/PDF saja; jangan mengklaim seluruh OCR/instruksi selalu benar.
+- Home: bobot judul/countdown/bacaan600, ukuran bacaan/warna dan proporsi simbol
+  resmi dirapikan. Ikon/aset/siang-malam yang disetujui tetap. Bukan pixel-identical.
+
+APK folder luar `Zikra-AI-v1.9.5-beta-debug.apk`, **37.175.496 byte**, SHA-256
+`a25f0db2ac004721c4a531aab044920a6a28add5f16f2fa2cdb34828f55ab13f`.
+Signer sama baseline, APK1.9.4/lama tetap.15 eksekusi native pada APK final
+(13 metode unik);4 eksekusi Home/live pada build tepat sebelum fix khusus keyboard.
+116 unit lulus/4 skip,36 Node lulus/4 skip,lint0 error/752 warning. Screenshot
+menemukan tombol terpotong pada font200% walau tes awal lulus sebagian; sudah
+difix, tes tinggi penuh dan screenshot200%/sempit lulus.10 file emulator pulih
+cocok hash/font/ukuran/jaringan kembali/helper dihapus/emulator ditutup. HP tidak
+diubah. Audit nilai rahasia terarah bersih; WIP/env/stash/audio dipertahankan.
+
+Pengguna bertanya Gemini/AI Studio untuk gambar. **C09 [ ]**, belum key/akses/biaya
+gambar terpilih. Dokumentasi Google yang ditinjau tidak memberi Free Tier untuk
+model image-generation API; jangan menyamakan web gratis dengan API gratis atau
+mengaktifkan billing. Belum memasang tombol palsu. C03 Wi-Fi tanpa internet/
+timeout/konfigurasi UI, C02 operasional/laptop mati, C04 jadwal/akurasi, C06 dikte
+fisik, B01 sumber Gading, D02a adzan dan F/G/publik tetap terbuka. UI04 keseluruhan
+belum ditutup. Checkpoint lokal; belum push dibuktikan. Jangan membuat ulang
+hosting/database atau mengubah key/env. Fixture Redis sintetis live sudah dihapus.
