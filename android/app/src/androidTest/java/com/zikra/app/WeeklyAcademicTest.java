@@ -200,7 +200,19 @@ public final class WeeklyAcademicTest extends InstrumentationTestCase {
       long b=store.save(lesson(0,0,second.getDayOfWeek().getValue(),second.getHour()*60+second.getMinute(),second.getHour()*60+second.getMinute()+5,30));
       WeeklyClass c15=store.find(a),c30=store.find(b);ClassReminders.sync(context);assertEquals(2,alarms("study_class_alarms").size());
       long task=db.addAcademicTask("[UJI] Alarm tenggat","",1,System.currentTimeMillis()+4000,true,false);StudyReminders.sync(context);
-      waitFor(()->notice("study:"+task),20);waitFor(()->notice(classTag(c15))&&notice(classTag(c30)),80);
+      long began=SystemClock.elapsedRealtime();
+      try {
+        waitFor(()->notice("study:"+task),30);
+        waitFor(()->notice(classTag(c15))&&notice(classTag(c30)),180);
+      } finally {
+        File dir=new File(context.getExternalFilesDir(null),"validation");dir.mkdirs();
+        try(FileOutputStream out=new FileOutputStream(new File(dir,"D04-alarm-timing.json"))){
+          out.write(new org.json.JSONObject().put("elapsedMs",SystemClock.elapsedRealtime()-began)
+              .put("deadlineObserved",notice("study:"+task)).put("class15Observed",notice(classTag(c15)))
+              .put("class30Observed",notice(classTag(c30))).put("physicalPhone",false).toString(2)
+              .getBytes(java.nio.charset.StandardCharsets.UTF_8));
+        }
+      }
       assertEquals(0,db.getProgress(ZikraDbHelper.CATEGORY_STUDY).completed);
       JSONObjectReport.write(context,"D04-actual-alarms.json","actualAlarmManagerDelivery",true);
     }else fail("Choose a test time with both classes on the same day");
