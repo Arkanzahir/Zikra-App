@@ -313,3 +313,14 @@ C04 mengikuti D04. B01 diperiksa26 Oktober melalui Gmail: thread masih hanya ema
 terkirim24 Oktober; pencarian termasuk spam/sampah tidak menemukan balasan domain
 Gading. Tidak mengirim follow-up baru atau memasukkan ID Gmail ke Git.
 Memori permanen masih usulan; D02a/UI04/F/G dan rilis publik belum selesai.
+
+## Lanjutan — HP terputus, C06 ditunda pembuktiannya
+
+Pengguna memilih **lanjut tanpa HP dahulu** setelah ADB tidak lagi mendeteksi
+perangkat. `PhoneVoiceTest` opt-in sudah dikompilasi dengan flag phoneTests,
+[bukti persiapan dan batas](android/validation/assistant-c06-2026-10-26/README.md).
+Belum menjalankan mikrofon/recognizer fisik. Percobaan driver berhenti sebelum
+isolasi/install; data/pengaturan HP tidak diubah, APK terakhir teramati code26.
+Backup12 berkas privat tetap ada dan harus diverifikasi ulang saat HP kembali.
+C06/C07 tetap terbuka. Pekerjaan aktif beralih ke C02 operasional tanpa HP;
+uji laptop mati tetap membutuhkan perangkat lain. Jangan menyalakan paket berbayar.
