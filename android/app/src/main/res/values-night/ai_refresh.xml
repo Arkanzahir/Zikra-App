@@ -3,10 +3,14 @@
   <color name="ai_refresh_muted">#B2BEB7</color><color name="ai_refresh_mint">#293E34</color>
   <color name="ai_refresh_paper">#242C28</color><color name="ai_refresh_line">#38433D</color>
   <color name="ai_refresh_accent">#A4D7BE</color><color name="ai_refresh_on_accent">#123B2E</color>
-  <style name="Theme.Zikra.Assistant" parent="android:style/Theme.Material.NoActionBar">
+  <style name="Theme.Zikra.Assistant" parent="Theme.Zikra">
     <item name="android:fontFamily">@font/protector_roboto</item>
     <item name="android:colorAccent">@color/ai_refresh_accent</item>
     <item name="android:windowBackground">@color/ai_refresh_surface</item>
     <item name="android:windowSoftInputMode">adjustResize</item>
+    <item name="android:colorBackground">@color/ai_refresh_surface</item>
+    <item name="android:textColorPrimary">@color/ai_refresh_ink</item>
+    <item name="android:textColorSecondary">@color/ai_refresh_muted</item>
+    <item name="android:alertDialogTheme">@android:style/Theme.Material.Dialog.Alert</item>
   </style>
 </resources>

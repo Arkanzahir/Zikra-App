@@ -137,6 +137,14 @@ public final class AiRefreshTest extends InstrumentationTestCase {
 
   public void testBalancedPanelsKeepDraftAndCancelWithoutSend()throws Exception{
     new AssistantConnection(context).offline();context.getSharedPreferences("zikra_preferences",0).edit().putString("assistant_mode_v2","offline").commit();launch();
+    if(Build.VERSION.SDK_INT>=30){
+      android.graphics.Insets bars=activity.getWindow().getDecorView().getRootWindowInsets().getInsets(WindowInsets.Type.systemBars());
+      android.graphics.Rect header=new android.graphics.Rect(),composer=new android.graphics.Rect();
+      assertTrue(activity.findViewById(R.id.utilitiesHeader).getGlobalVisibleRect(header));
+      assertTrue(activity.findViewById(R.id.aiComposer).getGlobalVisibleRect(composer));
+      assertTrue("Header below system status bar",header.top>=bars.top);
+      assertTrue("Composer above system navigation",composer.bottom<=activity.getWindow().getDecorView().getHeight()-bars.bottom);
+    }
     assertFalse(activity.findViewById(R.id.aiSend).isEnabled());
     ui(()->((EditText)activity.findViewById(R.id.aiInput)).setText("Draf sintetis tetap di perangkat"));
     ui(()->activity.findViewById(R.id.aiAttach).performClick());
