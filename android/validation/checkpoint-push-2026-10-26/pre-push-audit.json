@@ -1,0 +1,24 @@
+{
+  "scope": "Known current private values including new backup key in tracked/new source/evidence, app APK and Git objects reachable from local HEAD but not origin/main; not all possible historical secret detection",
+  "sourceFilesScanned": 1950,
+  "sourceSecretMatches": 0,
+  "apkSecretMatches": 0,
+  "privateAppEntries": 0,
+  "historyObjectsScanned": 1018,
+  "historySecretMatches": 0,
+  "historyBase": "83312da70f953ede53eab54a099df93790d44b41",
+  "historyThroughCommit": "ee2b7514790cdd43ab6f4e4da42c2fb3fe57e608",
+  "backupFilesIgnoredByGit": true,
+  "adminAndMonitorExcludedFromDeployment": true,
+  "protectedUnchanged": {
+    "projectHandoff": true,
+    "providerEnv": true,
+    "audioArchive": true,
+    "audioStash": true,
+    "approvedLogo": true,
+    "nightArt": true,
+    "apk197": true,
+    "previousApk196": true
+  },
+  "passed": true
+}

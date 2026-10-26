@@ -81,3 +81,7 @@ luar layanan Redis, bukan backup/sinkronisasi chat HP. Lihat
 
 [Hash source operator](source-files.json) mengikat kode/tool/konfigurasi workflow;
 runtime cloud tetap deployment C09 sebelumnya, tidak ada redeploy pada pekerjaan ini.
+
+Pembaruan26 Oktober setelah checkpoint ee2b751: [push dan workflow](../checkpoint-push-2026-10-26/README.md)
+sudah diverifikasi di GitHub (state active); hasil job belum diverifikasi.
+Status workflow lokal pada catatan sebelumnya bersifat historis. C02 tetap[ ].

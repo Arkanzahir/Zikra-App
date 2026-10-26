@@ -1,0 +1,7 @@
+{
+  "httpStatus": 200,
+  "workflowPresent": true,
+  "workflowState": "active",
+  "workflowUrl": "https://github.com/Arkanzahir/Zikra-App/blob/main/.github/workflows/backend-health.yml",
+  "successfulRunVerified": false
+}

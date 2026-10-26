@@ -139,3 +139,7 @@ Rujukan diperiksa 25 Oktober 2026:
 [integrasi CLI](https://vercel.com/docs/cli/integration),
 [Upstash REST](https://upstash.com/docs/redis/features/restapi),
 [Upstash Free](https://upstash.com/pricing/redis).
+
+Pembaruan26 Oktober setelah checkpoint ee2b751: [push dan workflow](../../android/validation/checkpoint-push-2026-10-26/README.md)
+sudah diverifikasi di GitHub (state active); hasil job belum diverifikasi.
+Status workflow lokal pada catatan sebelumnya bersifat historis. C02 tetap[ ].

@@ -359,3 +359,20 @@ mati. C06/C07 menunggu HP; helper C06 baru build, belum mikrofon. C04 membutuhka
 D04. C01/C03/C05/C08/C09[x] sesuai lingkup, B01/D02a/UI04/F/G/publik tetap terbuka.
 APK terbaru tetap1.9.7/code34,37.218.400 byte/source249b523; jangan rebuild untuk
 dokumen/tool operator. Emulator sudah mati; HP tidak diisolasi/diupdate/dihapus.
+
+## Checkpoint terbaru — sudah dipush ke GitHub, 26 Oktober2026
+
+Pengguna meminta push terlebih dahulu. **35 commit pekerjaan83312da..ee2b751
+berhasil dipush ke origin/main**; ref remote diverifikasi sama dengan HEAD.
+[Bukti push/audit/workflow](android/validation/checkpoint-push-2026-10-26/README.md).
+Ini menggantikan catatan belum-push sebelumnya. WIP PROJECT_HANDOFF.md, stash,
+konfigurasi/key/backup privat dan prototipe lama tetap lokal/tidak diikutkan.
+Audit sebelum push:486 path,1018 objek Git baru, nol nilai rahasia yang diketahui
+pada source/evidence/APK; bukan jaminan semua secret historis. Working tree dan
+stash/hash WIP identik sebelum/sesudah push.
+
+Workflow backend-health sudah ada di GitHub dengan state active menurut API,
+tetapi belum ada hasil job sukses yang diverifikasi. Jangan menyebut C02/seluruh C
+atau rilis publik selesai; HP/laptop mati dan timeout cloud panjang masih gerbang.
+Proyek Vercel tidak terhubung Git, tidak ada redeploy atau rilis APK publik pada
+push ini. APK1.9.7/source249b523 tetap lokal37.218.400 byte; HP terakhir code26.

@@ -122,3 +122,7 @@ uji dibersihkan. Ini membuktikan drill, bukan switchover bencana penuh.
 
 C02 tetap menunggu aktivasi monitor yang dibuktikan, timeout cloud yang relevan
 dan uji HP saat laptop mati. Uji PC/backup/probe tidak menggantikan pemeriksaan itu.
+
+Pembaruan26 Oktober setelah checkpoint ee2b751: [push dan workflow](../../android/validation/checkpoint-push-2026-10-26/README.md)
+sudah diverifikasi di GitHub (state active); hasil job belum diverifikasi.
+Status workflow lokal pada catatan sebelumnya bersifat historis. C02 tetap[ ].
