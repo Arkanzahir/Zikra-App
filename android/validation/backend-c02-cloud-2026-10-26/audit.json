@@ -1,6 +1,6 @@
 {
   "scope": "Known current private values, preview fixture credential and revoked CLI automation bypass in tracked/new backend/CI/evidence source and APK; not all possible historical secrets",
-  "sourceFilesScanned": 1969,
+  "sourceFilesScanned": 1970,
   "sourceSecretMatches": 0,
   "apkSecretMatches": 0,
   "privateAppEntries": 0,
@@ -17,6 +17,6 @@
     "previousApk196": true
   },
   "passed": true,
-  "sourceBaseCommit": "922d36aeecf80202fc575965f5dca33003d95124",
+  "sourceBaseCommit": "8ae9f00c72e129baf82e8eddd4f48fb1d130043d",
   "previewCredentialsIncludedInAudit": true
 }

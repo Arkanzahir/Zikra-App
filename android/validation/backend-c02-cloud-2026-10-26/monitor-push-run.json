@@ -1,0 +1,71 @@
+{
+  "scope": "push-triggered GitHub-hosted monitor with pinned checkout Node24 and sparse checkout",
+  "runId": 40277773046,
+  "url": "https://github.com/Arkanzahir/Zikra-App/actions/runs/40277773046",
+  "headSha": "8ae9f00c72e129baf82e8eddd4f48fb1d130043d",
+  "event": "push",
+  "checkoutCommit": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+  "jobs": [
+    {
+      "id": 121424096693,
+      "name": "health",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Check HTTPS and Redis access denial without inference",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        }
+      ]
+    }
+  ],
+  "probe": {
+    "scope": "https-liveness-and-redis-authentication-no-inference",
+    "checkedAt": "2026-10-26T06:05:12.617Z",
+    "origin": "https://zikra-ai.vercel.app",
+    "liveness": {
+      "status": 200,
+      "passed": true,
+      "durationMs": 1128
+    },
+    "redisAccess": {
+      "status": 401,
+      "unknownCredentialDenied": true,
+      "durationMs": 1186
+    },
+    "inferenceChecked": false,
+    "credentialsRequired": false,
+    "passed": true
+  },
+  "persistCredentialsFalse": true,
+  "sparseCheckoutObserved": true,
+  "node20Warning": false,
+  "scheduledExecutionObserved": false,
+  "passed": true
+}

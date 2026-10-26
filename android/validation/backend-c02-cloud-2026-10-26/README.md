@@ -96,5 +96,7 @@ persist-credentials:false. Sparse checkout mengambil hanya berkas probe; push
 pada main yang mengubah workflow/probe juga memicu health check, selain jadwal
 empat kali sehari dan pemicu manual. Tidak ada pemicu pull_request_target atau
 credential produksi/GitHub secret baru. [Metadata versi/hash](monitor-maintenance.json).
-Hasil job untuk konfigurasi baru akan ditambahkan setelah push; jangan menyamakan
-run manual pada922d36a dengan pengujian pin baru.
+[Job otomatis setelah push](monitor-push-run.json), run40277773046 pada8ae9f00,
+**success**: checkout pin baru/sparse checkout/persist-credentials:false teramati;
+probe kembali200/401, tanpa peringatan Node20 pada log job. Run manual pada922d36a
+tetap bukti historis yang terpisah. Invocation schedule belum diamati.

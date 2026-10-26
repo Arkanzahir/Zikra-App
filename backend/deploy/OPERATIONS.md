@@ -135,3 +135,6 @@ Status workflow lokal pada catatan sebelumnya bersifat historis. C02 tetap[ ].
 Lanjutan26 Oktober: [monitor sukses dan timeout preview cloud](../../android/validation/backend-c02-cloud-2026-10-26/README.md).
 Preview dan automation bypass baru CLI sudah dibersihkan; jangan menyuplai credential
 production pada fixture atau menganggap fixture sebagai outage provider sebenarnya.
+
+Konfigurasi Node24/sparse/pemicu push sudah lulus [run40277773046](../../android/validation/backend-c02-cloud-2026-10-26/monitor-push-run.json).
+Uji HP/laptop mati tetap mengikuti [prosedur terpisah](../../android/validation/backend-c02-cloud-2026-10-26/PHONE_LAPTOP_OFF.md), belum dijalankan.
