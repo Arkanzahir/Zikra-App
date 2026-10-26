@@ -87,13 +87,19 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
     ui(()->restored.getButton(AlertDialog.BUTTON_NEGATIVE).performClick());assertEquals(PrayerMode.NOTIFICATION,PrayerSettings.mode(context,2));
     LinearLayout fresh=page.findViewById(R.id.prayerRows);ui(()->fresh.getChildAt(1).findViewById(R.id.prayerRowBell).performClick());AlertDialog save=(AlertDialog)field(page,"modeDialog");
     ui(()->{save.getListView().performItemClick(save.getListView().getChildAt(2),2,2);save.getButton(AlertDialog.BUTTON_POSITIVE).performClick();});assertEquals(PrayerMode.VIBRATE,PrayerSettings.mode(context,2));
-    View preview=page.findViewById(R.id.prayerAudioPreview);ui(()->preview.requestRectangleOnScreen(new android.graphics.Rect(0,0,preview.getWidth(),preview.getHeight()),true));assertTrue(preview.getGlobalVisibleRect(new android.graphics.Rect()));shot("settings");
+    View preview=page.findViewById(R.id.prayerAudioPreview);ViewParent ancestor=preview.getParent();
+    while(!(ancestor instanceof ScrollView))ancestor=ancestor.getParent();ScrollView scroll=(ScrollView)ancestor;
+    ui(()->scroll.scrollTo(0,Math.max(0,preview.getTop()-12)));assertTrue(preview.getGlobalVisibleRect(new android.graphics.Rect()));shot("settings");
   }
   public void testNotificationAndVibrateChannelsNeverStartAudio()throws Exception{
     // Explicit app broadcasts can be deferred for cached UIDs; real background alarms have a separate test.
     launch(PrayerActivity.class);
     for(PrayerMode mode:new PrayerMode[]{PrayerMode.NOTIFICATION,PrayerMode.VIBRATE}){
-      enable(2,mode);context.getSystemService(NotificationManager.class).cancel(7302);Intent event=planned(2,System.currentTimeMillis()-1000);context.sendBroadcast(event);waitFor(()->notice(7302)!=null);
+      enable(2,mode);context.getSystemService(NotificationManager.class).cancel(7302);Intent event=planned(2,System.currentTimeMillis()-1000);
+      assertTrue("Invalid fixture before broadcast: "+mode,PrayerReminders.valid(context,event));
+      context.sendBroadcast(event);waitFor(()->notice(7302)!=null);
+      // The visible notice precedes deliver()'s finally/sync; finish that broadcast before the next fixture.
+      getInstrumentation().waitForIdleSync();
       assertEquals(mode==PrayerMode.VIBRATE?PrayerReminders.VIBRATE:PrayerReminders.CHANNEL,notice(7302).getNotification().getChannelId());assertFalse(AdhanService.state().active);
       if(mode==PrayerMode.VIBRATE){NotificationChannel channel=context.getSystemService(NotificationManager.class).getNotificationChannel(PrayerReminders.VIBRATE);assertNull(channel.getSound());assertTrue(channel.shouldVibrate());}
     }
