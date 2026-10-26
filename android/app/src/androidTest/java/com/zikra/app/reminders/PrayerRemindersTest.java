@@ -21,6 +21,7 @@ import java.util.Collections;
 public final class PrayerRemindersTest extends InstrumentationTestCase {
   private Context context;
   private SharedPreferences prefs;
+  private android.app.Activity page;
   private final Map<String, Object> old = new HashMap<>();
 
   @Override
@@ -75,6 +76,9 @@ public final class PrayerRemindersTest extends InstrumentationTestCase {
   }
 
   public void testReceiverPostsRealNotificationAndIgnoresDuplicateAndFutureEvents() {
+    page=getInstrumentation().startActivitySync(new android.content.Intent(context,com.zikra.app.PrayerActivity.class)
+        .addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK|android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK));
+    getInstrumentation().waitForIdleSync();
     long epoch = System.currentTimeMillis() - 1000;
     android.content.Intent planned=PrayerReminders.alarmIntent(context,2,epoch);String slot=planned.getStringExtra("slot");
     context.getSharedPreferences(PrayerReminders.PLAN,0).edit().putLong("e:"+slot,epoch)
@@ -112,6 +116,7 @@ public final class PrayerRemindersTest extends InstrumentationTestCase {
 
   @Override
   protected void tearDown() throws Exception {
+    if(page!=null)getInstrumentation().runOnMainSync(page::finish);
     prefs.edit().putBoolean("reminder_enabled", false).commit();
     PrayerReminders.sync(context);
     SharedPreferences.Editor edit = prefs.edit();

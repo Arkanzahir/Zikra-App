@@ -90,6 +90,8 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
     View preview=page.findViewById(R.id.prayerAudioPreview);ui(()->preview.requestRectangleOnScreen(new android.graphics.Rect(0,0,preview.getWidth(),preview.getHeight()),true));assertTrue(preview.getGlobalVisibleRect(new android.graphics.Rect()));shot("settings");
   }
   public void testNotificationAndVibrateChannelsNeverStartAudio()throws Exception{
+    // Explicit app broadcasts can be deferred for cached UIDs; real background alarms have a separate test.
+    launch(PrayerActivity.class);
     for(PrayerMode mode:new PrayerMode[]{PrayerMode.NOTIFICATION,PrayerMode.VIBRATE}){
       enable(2,mode);context.getSystemService(NotificationManager.class).cancel(7302);Intent event=planned(2,System.currentTimeMillis()-1000);context.sendBroadcast(event);waitFor(()->notice(7302)!=null);
       assertEquals(mode==PrayerMode.VIBRATE?PrayerReminders.VIBRATE:PrayerReminders.CHANNEL,notice(7302).getNotification().getChannelId());assertFalse(AdhanService.state().active);

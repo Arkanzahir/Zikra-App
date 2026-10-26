@@ -112,6 +112,7 @@ public final class AdhanService extends Service {
     next.setOnPreparedListener(ready->{
       if(run!=generation||player!=ready)return;
       prepared=true;check();if(player!=ready)return;
+      try{
       if(!preview&&!PrayerAlarmPlan.timely(epoch,System.currentTimeMillis(),PrayerAlarmPlan.MAX_AUDIO_AGE)){finish(getString(R.string.adhan_late),true);return;}
       if(ready.getDuration()<=0||ready.getDuration()>MAX_PLAY_MS){finish(getString(R.string.adhan_unavailable),true);return;}
       focus=new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT).setAudioAttributes(attributes())
@@ -126,6 +127,7 @@ public final class AdhanService extends Service {
       if(!preview&&PrayerSettings.prefs(this).getBoolean(PrayerSettings.PAUSE_FOCUS,false))com.zikra.app.study.FocusTimer.pauseForAdhan(this);
       status=preview?getString(R.string.adhan_preview_title):getString(R.string.adhan_playing,PrayerSchedule.NAMES[index]);
       publish();getSystemService(NotificationManager.class).notify(NOTICE,notification());
+      }catch(SecurityException|IllegalStateException failure){finish(getString(R.string.adhan_unavailable),true);}
     });
     next.setOnCompletionListener(done->{if(run==generation)finish(getString(R.string.adhan_finished),false);});
     next.setOnErrorListener((failed,what,extra)->{if(run==generation)finish(getString(R.string.adhan_unavailable),true);return true;});
