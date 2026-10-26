@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-27",
+  "versionName": "1.9.11",
+  "versionCode": 38,
+  "sourceCommit": "f39bff2366661ad3a6317105a9200ae44c4a438c",
+  "artifact": "Zikra-Adzan-v1.9.11-beta-debug.apk",
+  "bytes": 41355968,
+  "sha256": "fd582cfcda447c257e43191e2c18537d909d005d51104deff44b4a40b396f0b5",
+  "initialDownloadBelow100000000Bytes": true,
+  "certificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "signing": "debug; same certificate as 1.9.10",
+  "schema": {
+    "main": 5,
+    "chat": 1,
+    "weeklyClasses": 2
+  },
+  "unit": {
+    "tests": 138,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 778
+  },
+  "native": [
+    {
+      "name": "native-legacy-notifications",
+      "passed": true,
+      "tests": 2
+    },
+    {
+      "name": "native-adhan-main",
+      "passed": true,
+      "tests": 9
+    },
+    {
+      "name": "native-real-alarm",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "native-dnd",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "native-large-text",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "native-denied",
+      "passed": true,
+      "tests": 1
+    }
+  ],
+  "nativeExecutions": 15,
+  "nativeUniqueMethods": 14,
+  "physicalPhoneModified": false,
+  "providerRequests": false,
+  "D02Complete": false,
+  "D02aComplete": false,
+  "reasonOpen": "Physical phone audio, real reboot/vendor battery behavior and source/redistribution provenance remain unverified",
+  "screenshots": {
+    "native/native-adhan-main-D02-focus-paused-100.png": "d7b8bbaa39b8d21ed569fd14433dec850c388c9643825fefd51074afc5f454b7",
+    "native/native-adhan-main-D02-mode-draft-100.png": "02e6b6a25c3d183a3919c67480aebd15c50082279bf883d3254e47d01636613f",
+    "native/native-adhan-main-D02-playing-makkah-100.png": "416b5cc2c045514c0f11ed7655fecc5ab09852c85672c3941a69c32018ef3e7a",
+    "native/native-adhan-main-D02-settings-100.png": "2803b2d0146c0406f7eb4eb98512312ede39f291695daba40cfb18916fc8bdfd",
+    "native/native-large-text-D02-mode-draft-200.png": "353ba0e3357209c8e6d20133d2242bc876651224964f3b39cb849ebd51b8253c",
+    "native/native-large-text-D02-settings-200.png": "02f842284328b20b43255e3006f9380c03e3de985e144c3d5b0be02ba9e19a82"
+  }
+}

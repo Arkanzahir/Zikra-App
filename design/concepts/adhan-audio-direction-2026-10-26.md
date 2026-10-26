@@ -1,6 +1,27 @@
 # Audio adzan — arah yang dipilih pengguna
 
-## Pilihan aktif terbaru — Adzan-Misyari-Rasyid.mp3
+## Pilihan aktif 27 Oktober — pasangan Subuh dan Mecca
+
+Pengguna memberikan **fajr_128_44.mp3 untuk Subuh** dan
+**mecca_56_22 (1).mp3 untuk Dzuhur/Ashar/Maghrib/Isya**, menggantikan pilihan
+Misyari sebelumnya agar karakter rekaman serupa. Subuh tidak lagi menunggu
+pilihan file. Nama/pemakaian mengikuti keputusan pengguna, bukan verifikasi
+identitas muazin atau lafaz dari metadata.
+
+- Subuh: 2.996.349byte, sekitar3:07; SHA256
+  `106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530`.
+- Mecca: 1.423.360byte, sekitar3:23; SHA256
+  `43ade766272ff9c89c86908959df6ddd7f3a34961897caf09f965a3841e1bcd2`.
+  Byte identik dengan file Mecca terdahulu. Semua asli/salinan lama tetap.
+- Pemutar lokal, mode per salat, preview/stop, audio focus dan jeda timer disiapkan
+  pada beta privat1.9.11. Audio hanya dari aset debug generated dengan properti
+  lokal, binary tidak masuk Git/release. [Bukti dan batas terbaru](../../android/validation/prayer-adhan-d02-2026-10-27/README.md).
+- D02/D02a tetap[ ] untuk suara/reboot/Doze/vendor HP dan sumber/ketentuan
+  redistribusi. Pemilihan file tidak membuktikan hak distribusi atau audit lafaz.
+
+Bagian berikut adalah riwayat yang digantikan keputusan terbaru.
+
+## Riwayat pilihan — Adzan-Misyari-Rasyid.mp3
 
 Pengguna memberikan **Adzan-Misyari-Rasyid.mp3** lalu memilihnya dengan “itu aja
 ga si bagus itu”. Berkas ini menggantikan mecca_56_22.mp3 sebagai pilihan aktif

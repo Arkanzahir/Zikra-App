@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.zikra.app.reminders.PrayerModesPlanTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-26T17:56:18" time="0.007">
+  <properties />
+  <testcase name="oldPreferencesAndUnknownModesNeverEnableAdhan" classname="com.zikra.app.reminders.PrayerModesPlanTest" time="0.001" />
+  <testcase name="sevenCityDatesHaveUniquePrayerSlotsWithoutSunrise" classname="com.zikra.app.reminders.PrayerModesPlanTest" time="0.003" />
+  <testcase name="selectedZoneAndMissingPolarEventsArePreserved" classname="com.zikra.app.reminders.PrayerModesPlanTest" time="0.002" />
+  <testcase name="futureAndOverdueAudioAreRejectedWithoutChangingNoticeWindow" classname="com.zikra.app.reminders.PrayerModesPlanTest" time="0.0" />
+  <system-out />
+  <system-err />
+</testsuite>

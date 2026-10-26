@@ -630,3 +630,48 @@ Nama muazin hanya berasal dari nama berkas; asal/lisensi distribusi/lafaz Subuh
 belum diverifikasi. Jangan memakai label Makkah/lisensi Commons dari kandidat
 lama untuk file ini. Belum ada runtime/APK baru; D02/D02a masih[ ], APK1.9.10.
 [Pilihan aktif](design/concepts/adhan-audio-direction-2026-10-26.md).
+
+
+## D02/D02a beta privat — pasangan audio terbaru, 27 Oktober2026
+
+Keputusan pengguna terbaru mengganti Misyari: **fajr_128_44.mp3 untuk Subuh** dan
+**mecca_56_22 (1).mp3 untuk empat salat lainnya**. Pemilihan Subuh sudah jelas;
+jangan menanyakan pilihan yang sama lagi. File Mecca baru identik dengan file
+Mecca lama. Semua asli/salinan Misyari/manifest lama/stash tetap tersimpan.
+
+Runtime adzan1.9.11/code38: sakelar utama + adzan/notifikasi/getar/mati per salat,
+plan tujuh tanggal kota, deduplikasi/revisi/kota/izin/batas keterlambatan,
+pemutar aset lokal foreground/audio focus/stop, opsi jeda timer fokus dan senyap
+selama kelas. Tidak memerlukan backend. Baseline mode lama tetap notifikasi/mati;
+tidak otomatis memilih adzan. Home/AI yang disetujui tetap utuh, schema5/1/2.
+
+Source kandidat **f39bff2366661ad3a6317105a9200ae44c4a438c**, runtime utama0e6686d
+(d39f4b3 dasar), harness akhirf39bff2. APK lokal folder luar:
+**Zikra-Adzan-v1.9.11-beta-debug.apk**, **41.355.968byte**, SHA256
+`fd582cfcda447c257e43191e2c18537d909d005d51104deff44b4a40b396f0b5`.
+Debug signer sama dengan1.9.10; APK lama tidak ditimpa. Audio tidak masuk Git;
+debug generated assets mengambil dua salinan privat lewat properti build
+`zikraAdhanAudio`/`zikraFajrAudio`. Build tanpa properti tidak membundel rekaman dan
+UI menjelaskan audio belum tersedia; sourceSet release tidak mengambil aset privat.
+
+**134 unit lulus/4 skip,15 eksekusi native/14 metode unik lulus**,lint0 error/
+778 warning. Dua MP3 nyata didekode/posisi maju, alarm exact+4detik fixture saat
+layar noninteraktif/jaringan mati, stop/sesi lama, focus Quran sintetis,
+jeda timer/tugas tidak selesai, mode/getar/notifikasi/mati/DND/izin ditolak,
+draft/recreation/font200%320dp teruji. Pemanggilan receiver BOOT terkontrol bukan
+reboot nyata. Emulator tanpa audio host; belum bukti kualitas suara terdengar.
+Percobaan gagal dan perbaikan dependency/harness dicatat di bukti, tidak disembunyikan.
+
+[Receipt/source/hash/hasil/screenshot/audit/batas](android/validation/prayer-adhan-d02-2026-10-27/README.md).
+Baseline emulator10file0byte cocok hash dipulihkan, pengaturan DND/ringer/izin/
+jaringan/font/tema/ukuran pulih, helper dihapus, emulator ditutup. Bukan bukti
+upgrade HP berisi. HP tidak diubah/provider tidak dipanggil. WIP PROJECT_HANDOFF,
+stash/arsip/env privat, desain dan APK lama cocok hash; nilai rahasia saat ini
+tidak ditemukan pada source/evidence/APK (bukan audit seluruh sejarah Git).
+
+**D02/D02a tetap[ ]**: perlu suara/getar/channel/reboot/Doze/vendor dan perubahan
+jam/zona/upgrade berisi pada HP, audit lafaz Subuh penuh serta asal/ketentuan
+redistribusi kedua rekaman. Pengguna sebelumnya memilih lanjut tanpa HP; jangan
+meminta sambungan berulang. D01 juga masih menunggu HP; D04 tetap selesai beta.
+C02/C04/C07/B01/D03/D05/D06/E/F/G dan publik tidak ditutup oleh hasil ini.
+Checkpoint ini lokal; jangan mengklaim perubahan baru sudah dipush.
