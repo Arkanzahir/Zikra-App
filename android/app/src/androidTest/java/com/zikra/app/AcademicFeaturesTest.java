@@ -278,7 +278,7 @@ public final class AcademicFeaturesTest extends InstrumentationTestCase {
             root.layout(0, 0, width, root.getMeasuredHeight());
             for (int id :
                 layout == R.layout.activity_focus_timer
-                    ? new int[] {R.id.focusPlay, R.id.focusReset}
+                    ? new int[] {R.id.focusPlay, R.id.focusEnd}
                     : new int[] {R.id.agenda_feature_check, R.id.agenda_feature_action}) {
               android.view.View view = root.findViewById(id);
               android.graphics.Rect rect = new android.graphics.Rect();

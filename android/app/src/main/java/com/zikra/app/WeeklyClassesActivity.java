@@ -179,6 +179,8 @@ public final class WeeklyClassesActivity extends BaseActivity {
         .setNegativeButton(R.string.weekly_cancel, null).setPositiveButton(R.string.weekly_save, null).create();
     editor = dialog;
     dialog.setOnShowListener(v -> {
+      dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.pine));
+      dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.pine));
       dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(button -> save());
       dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
           | WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -231,7 +233,14 @@ public final class WeeklyClassesActivity extends BaseActivity {
         }).show();
   }
   private void error(int resource) {
-    if (form != null) ((TextView) form.findViewById(R.id.weeklyError)).setText(resource);
+    if (form == null) return;
+    TextView message=form.findViewById(R.id.weeklyError);
+    message.setText(resource);
+    message.post(()->{
+      if(!message.isAttachedToWindow())return;
+      message.requestRectangleOnScreen(new android.graphics.Rect(0,0,message.getWidth(),message.getHeight()),true);
+      message.announceForAccessibility(message.getText());
+    });
   }
   private String text(int id) { return ((EditText) form.findViewById(id)).getText().toString(); }
   public static String clock(int minute) { return String.format(Locale.ROOT, "%02d.%02d", minute / 60, minute % 60); }

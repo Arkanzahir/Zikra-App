@@ -147,7 +147,11 @@ public final class WeeklyAcademicTest extends InstrumentationTestCase {
     AlertDialog save=editor;ui(()->save.getButton(AlertDialog.BUTTON_POSITIVE).performClick());assertEquals(1,store.all().size());WeeklyClass item=store.all().get(0);assertEquals("Ruang A",item.room);assertEquals(15,item.reminderMinutes);shot("weekly-list");
     ui(()->page.findViewById(R.id.weeklyAdd).performClick());AlertDialog conflict=(AlertDialog)field("editor");
     ui(()->{((EditText)conflict.findViewById(R.id.weeklyTitle)).setText("[UJI] Bentrok");conflict.getButton(AlertDialog.BUTTON_POSITIVE).performClick();});
-    assertTrue(conflict.isShowing());assertEquals(1,store.all().size());assertTrue(((TextView)conflict.findViewById(R.id.weeklyError)).length()>0);shot("weekly-conflict");ui(()->conflict.getButton(AlertDialog.BUTTON_NEGATIVE).performClick());
+    assertTrue(conflict.isShowing());assertEquals(1,store.all().size());assertTrue(((TextView)conflict.findViewById(R.id.weeklyError)).length()>0);
+    waitFor(()->{android.graphics.Rect visible=new android.graphics.Rect();return conflict.findViewById(R.id.weeklyError).getGlobalVisibleRect(visible)&&visible.height()>0;},5);
+    android.graphics.Rect saveBox=new android.graphics.Rect();assertTrue(conflict.getButton(AlertDialog.BUTTON_POSITIVE).getGlobalVisibleRect(saveBox));
+    assertEquals(conflict.getButton(AlertDialog.BUTTON_POSITIVE).getHeight(),saveBox.height());
+    shot("weekly-conflict");ui(()->conflict.getButton(AlertDialog.BUTTON_NEGATIVE).performClick());
     ui(()->{ListView list=page.findViewById(R.id.weeklyList);list.performItemClick(list.getChildAt(0),0,item.id);});
     AlertDialog edit=(AlertDialog)field("editor");ui(()->edit.findViewById(R.id.weeklyDelete).performClick());AlertDialog delete=(AlertDialog)field("deleteDialog");AlertDialog decline=delete;ui(()->decline.getButton(AlertDialog.BUTTON_NEGATIVE).performClick());assertEquals(1,store.all().size());
     ui(()->edit.findViewById(R.id.weeklyDelete).performClick());delete=(AlertDialog)field("deleteDialog");AlertDialog confirm=delete;ui(()->confirm.getButton(AlertDialog.BUTTON_POSITIVE).performClick());assertTrue(store.all().isEmpty());assertTrue(alarms("study_class_alarms").isEmpty());
@@ -224,6 +228,17 @@ public final class WeeklyAcademicTest extends InstrumentationTestCase {
     StudyReminders.sync(context);assertEquals(130,db.getTasks().size());assertEquals(128,alarms("study_alarm_ids").size());assertTrue(context.getSharedPreferences("study_alarm_ids",0).getBoolean("limited",false));assertFalse(alarms("study_alarm_ids").contains(ids.get(128)+":0"));
     db.setCompleted(ids.get(0),true);StudyReminders.sync(context);assertTrue(alarms("study_alarm_ids").contains(ids.get(128)+":0"));assertEquals(130,db.getTasks().size());
   }
+  public void testCityZoneChangeReschedulesWithoutRewritingClasses(){
+    LocationPoint before=LocationStore.current(context);String target=before.zone.getId().equals("Asia/Jayapura")?"Asia/Jakarta":"Asia/Jayapura";
+    int day=LocationStore.today(context).plusDays(1).getDayOfWeek().getValue();
+    long id=store.save(lesson(0,0,day,480,540,30));WeeklyClass item=store.find(id);ClassReminders.sync(context);
+    String old=id+"|"+item.revision+"|"+before.zone.getId();assertTrue(alarms("study_class_alarms").contains(old));
+    try{
+      LocationStore.save(context,new LocationPoint(-2.5,140.7,target,"[UJI] Kota pilihan","manual",System.currentTimeMillis(),-1));
+      assertFalse(alarms("study_class_alarms").contains(old));assertTrue(alarms("study_class_alarms").contains(id+"|"+item.revision+"|"+target));
+      assertEquals(item.startMinute,store.find(id).startMinute);assertEquals(item.revision,store.find(id).revision);
+    }finally{LocationStore.save(context,before);}
+  }
 
   public void testDeniedNotificationKeepsRecordsWithoutScheduling()throws Exception {
     assertFalse("Host revokes notification permission before this isolated case",StudyReminders.permitted(context));
@@ -231,6 +246,14 @@ public final class WeeklyAcademicTest extends InstrumentationTestCase {
     long task=db.addAcademicTask("[UJI] Izin ditolak","Matematika",1,System.currentTimeMillis()+3600000,true,true);
     StudyReminders.sync(context);assertTrue(alarms("study_class_alarms").isEmpty());assertTrue(alarms("study_alarm_ids").isEmpty());assertNotNull(store.find(id));assertEquals("[UJI] Izin ditolak",task(task).title);
     launch(WeeklyClassesActivity.class);assertTrue(((TextView)page.findViewById(R.id.weeklyHint)).getText().toString().contains("belum diizinkan"));shot("permission-denied");
+  }
+  public void testInexactPermissionFallbackKeepsLocalSchedule()throws Exception {
+    assertTrue(StudyReminders.permitted(context));assertFalse("Host denies exact alarm permission",StudyAlarmPolicy.exact(context));
+    int day=LocationStore.today(context).plusDays(1).getDayOfWeek().getValue();
+    store.save(lesson(0,0,day,480,540,15));
+    db.addAcademicTask("[UJI] Pengingat tanpa izin alarm tepat","",1,System.currentTimeMillis()+3600000,true,false);
+    StudyReminders.sync(context);assertEquals(1,alarms("study_class_alarms").size());assertEquals(1,alarms("study_alarm_ids").size());
+    launch(WeeklyClassesActivity.class);assertTrue(((TextView)page.findViewById(R.id.weeklyHint)).getText().toString().contains("tertunda"));shot("inexact-permission");
   }
   private static final class JSONObjectReport {
     static void write(Context context,String name,String field,boolean value)throws Exception{
