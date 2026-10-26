@@ -1,6 +1,29 @@
 # Audio adzan — arah yang dipilih pengguna
 
-## Pilihan rekaman terbaru — file dari pengguna
+## Pilihan aktif terbaru — Adzan-Misyari-Rasyid.mp3
+
+Pengguna memberikan **Adzan-Misyari-Rasyid.mp3** lalu memilihnya dengan “itu aja
+ga si bagus itu”. Berkas ini menggantikan mecca_56_22.mp3 sebagai pilihan aktif
+D02/D02a. File Makkah lama tetap disimpan sebagai riwayat, bukan diputar bersama
+atau dimasukkan otomatis sebagai pilihan kedua. Jangan memaksakan label lokasi
+Makkah pada berkas baru tanpa sumber yang membuktikannya.
+
+- Durasi metadata232,0195625detik (sekitar3menit52detik),3.713.152byte,
+  128kbps/stereo/44.100Hz menurut Windows Shell.
+- SHA256 `545da9c890916ce918ed0e82df9b5e37169aafd638cdb3dfe61d41caa39b016f`.
+- Salinan siap integrasi privat:
+  `.local/d02-audio-20261026/selected/adhan_misyari_user.mp3`.
+  Hash sama dengan sumber; kedua file asli dan salinan Makkah lama tetap utuh.
+  selection.json menunjuk pilihan baru, receipt sebelumnya di history/.
+- “Misyari Rasyid” berasal dari nama berkas pengguna; identitas muazin, sumber
+  distribusi dan lafaz Subuh belum dibuktikan melalui pemeriksaan isi/metadata.
+  Jangan menempelkan lisensi kandidat Commons pada berkas ini.
+- Belum ada kode pemutar/alarm atau APK baru dari pergantian pilihan audio.
+  D02/D02a tetap[ ]; versi khusus Subuh belum dikonfirmasi.
+
+Bagian selanjutnya adalah riwayat keputusan yang sudah digantikan.
+
+## Riwayat pilihan — mecca_56_22.mp3
 
 Pengguna kemudian memberikan **mecca_56_22.mp3** dan meminta “pake ini aja”.
 File ini menggantikan kandidat Commons Makkah2013 untuk pekerjaan D02/D02a.

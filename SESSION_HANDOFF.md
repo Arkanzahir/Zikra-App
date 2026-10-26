@@ -617,3 +617,16 @@ Commons untuk berkas berbeda ini; muazin/sumber distribusi/lafaz Subuh belum
 dibuktikan. Receipt privat selection.json, [pilihan aktif dan batas](design/concepts/adhan-audio-direction-2026-10-26.md).
 Belum ada kode pemutar/service/adzan/alarm atau APK baru dari pemilihan ini;
 APK tetap1.9.10/source292deb8. D02/D02a[ ], Subuh khusus belum dikonfirmasi.
+
+## Pilihan audio diganti — Adzan-Misyari-Rasyid.mp3
+
+Pengguna memilih Adzan-Misyari-Rasyid.mp3 (“itu aja ga si bagus itu”), menggantikan
+mecca_56_22.mp3. Pilihan aktif .local/d02-audio-20261026/selection.json menunjuk
+selected/adhan_misyari_user.mp3; receipt sebelumnya di history/. Kedua file asal
+serta salinan Makkah lama tetap utuh/cocok hash, tidak diunggah atau dimasukkan Git.
+Durasi232,0195625detik,3.713.152byte,128kbps/stereo44.100Hz. SHA256
+545da9c890916ce918ed0e82df9b5e37169aafd638cdb3dfe61d41caa39b016f.
+Nama muazin hanya berasal dari nama berkas; asal/lisensi distribusi/lafaz Subuh
+belum diverifikasi. Jangan memakai label Makkah/lisensi Commons dari kandidat
+lama untuk file ini. Belum ada runtime/APK baru; D02/D02a masih[ ], APK1.9.10.
+[Pilihan aktif](design/concepts/adhan-audio-direction-2026-10-26.md).
