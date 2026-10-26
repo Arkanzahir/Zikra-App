@@ -128,6 +128,7 @@ public final class AiActivity extends BaseActivity {
     findViewById(R.id.aiTopicStudy).setOnClickListener(v->composeTopic("Bantu susun rencana belajar untuk hari ini"));
     findViewById(R.id.aiTopicHifz).setOnClickListener(v->composeTopic("Bantu susun target hafalan Al-Quran"));
     findViewById(R.id.aiNetworkNote).setVisibility(getResources().getConfiguration().fontScale>1.3f?View.GONE:View.VISIBLE);
+    if(getResources().getConfiguration().fontScale>1.3f)((TextView)findViewById(R.id.aiMode)).setMaxWidth(Integer.MAX_VALUE);
     renderConversation();
     NavDock.attach(this,pageRoot,"ai");
     if(android.os.Build.VERSION.SDK_INT>=30){pageRoot.setOnApplyWindowInsetsListener((view,insets)->{refreshKeyboardLayout(insets);return insets;});pageRoot.requestApplyInsets();}
@@ -154,7 +155,8 @@ public final class AiActivity extends BaseActivity {
     findViewById(R.id.aiTopicImage).setVisibility(imageAvailable?View.VISIBLE:View.GONE);
     findViewById(R.id.aiTopicHifz).setVisibility(imageAvailable?View.GONE:View.VISIBLE);
     findViewById(R.id.aiImageMode).setVisibility(imageMode&&!keyboardVisible?View.VISIBLE:View.GONE);
-    if(input!=null)input.setHint(imageMode?getString(R.string.ai_images_input):keyboardVisible?"Pesan…":getString(R.string.ai_refresh_input));
+    if(input!=null)input.setHint(getString(imageMode?R.string.ai_images_input:
+        keyboardVisible||getResources().getConfiguration().fontScale>1.3f?R.string.assistant_short_input:R.string.ai_refresh_input));
   }
   private void enterImageMode(){
     if(waiting)return;
@@ -260,7 +262,7 @@ public final class AiActivity extends BaseActivity {
     NavDock.setVisible(pageRoot, !visible);
     findViewById(R.id.aiPrivacyNote).setVisibility(visible?View.GONE:View.VISIBLE);
     findViewById(R.id.aiVoiceStatus).setVisibility(visible?View.GONE:View.VISIBLE);
-    input.setMaxLines(visible?3:5);input.setHint(visible?"Pesan…":getString(R.string.ai_refresh_input));
+    input.setMaxLines(visible?3:5);
     updateImageMode();
     if(attachment!=null)renderAttachment();
     if (visible) scroll.post(() -> scroll.smoothScrollTo(0, thread.getBottom()));
@@ -597,7 +599,14 @@ public final class AiActivity extends BaseActivity {
     if(gatewayFailure!=null&&network.validated()&&online)status="Layanan bermasalah";
     ((TextView)findViewById(R.id.aiMode)).setText(prefix+status+" ⌄");
     findViewById(R.id.aiMode).setBackgroundResource(online?R.drawable.refresh_mint:R.drawable.reference_gold_card);
-    ((TextView)findViewById(R.id.aiNetworkNote)).setText(!network.validated()?"Internet tidak tersedia":!connection.configured()?"Layanan belum tersambung":gatewayFailure!=null?"Perlu coba lagi":"Internet tersedia");
+    int note;
+    switch(network.state()){
+      case CAPTIVE_PORTAL: note=R.string.assistant_network_login;break;
+      case UNVALIDATED: note=R.string.assistant_network_unvalidated;break;
+      case OFFLINE: note=R.string.assistant_network_offline;break;
+      default: note=!connection.configured()?R.string.assistant_gateway_unconfigured:gatewayFailure!=null?R.string.assistant_gateway_retry:R.string.assistant_network_available;
+    }
+    ((TextView)findViewById(R.id.aiNetworkNote)).setText(note);
     findViewById(R.id.aiOfflineNotice).setVisibility(!online&&messages.length()==0?View.VISIBLE:View.GONE);
     ((TextView)findViewById(R.id.aiPrivacyNote)).setText(online?R.string.ai_refresh_privacy:R.string.ai_refresh_local_privacy);
   }
@@ -607,7 +616,9 @@ public final class AiActivity extends BaseActivity {
     modeDialog=new AlertDialog.Builder(this).setTitle("Mode Zikra AI")
       .setItems(new String[]{"Otomatis","Online","Offline · panduan lokal","Pengaturan koneksi"},(dialog,index)->{
         if(index==3){configureGateway();return;}
+        boolean pending=waiting;
         onlineClient.cancel();cancelImageWork();setWaiting(false);gatewayFailure=null;
+        if(pending)showCancelled();
         routingMode=new String[]{"auto","online","offline"}[index];
         preferences.edit().putString("assistant_mode_v2",routingMode).apply();
         if(index==2)connection.offline();else if(connection.configured())connection.activate();else configureGateway();
@@ -654,9 +665,14 @@ public final class AiActivity extends BaseActivity {
                         connection.save(
                             endpoint.getText().toString().trim(),
                             access.getText().toString().trim());
+                        boolean pending=waiting;
+                        onlineClient.cancel();cancelImageWork();setWaiting(false);
+                        if(selectionDialog!=null&&selectionDialog.isShowing())selectionDialog.dismiss();
+                        if(pending)showCancelled();
                         if("offline".equals(routingMode))routingMode="auto";
                         preferences.edit().putString("assistant_mode_v2",routingMode).apply();gatewayFailure=null;
                         updateMode();
+                        imageCapabilityAt=0;refreshImageCapability();
                         modeDialog.dismiss();
                       } catch (Exception invalid) {
                         endpoint.setError(getString(R.string.concept_ai_backend_invalid));
@@ -795,6 +811,7 @@ public final class AiActivity extends BaseActivity {
     ((TextView) findViewById(R.id.aiRequestStatus)).setText(message);
     findViewById(R.id.aiRequestStatus).setVisibility(View.VISIBLE);
     findViewById(R.id.aiRetry).setVisibility(View.VISIBLE);
+    revealRequestStatus();
   }
 
   private void cancelOnline() {
@@ -805,6 +822,17 @@ public final class AiActivity extends BaseActivity {
     TextView status = findViewById(R.id.aiRequestStatus);
     status.setText(R.string.assistant_cancelled); status.setVisibility(View.VISIBLE);
     findViewById(R.id.aiRetry).setVisibility(View.VISIBLE);
+    revealRequestStatus();
+  }
+
+  private void revealRequestStatus() {
+    scroll.getViewTreeObserver().addOnGlobalLayoutListener(new android.view.ViewTreeObserver.OnGlobalLayoutListener(){
+      @Override public void onGlobalLayout(){
+        if(scroll.getViewTreeObserver().isAlive())scroll.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        if(!isFinishing()&&!isDestroyed())scroll.smoothScrollTo(0,scroll.getChildAt(0).getBottom());
+      }
+    });
+    scroll.requestLayout();
   }
 
   private void appendAssistantExtras(JSONObject item) {

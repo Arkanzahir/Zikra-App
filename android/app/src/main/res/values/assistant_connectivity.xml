@@ -1,0 +1,9 @@
+<resources>
+    <string name="assistant_short_input">Pesan…</string>
+    <string name="assistant_network_login">Wi-Fi perlu login</string>
+    <string name="assistant_network_unvalidated">Tersambung tanpa internet</string>
+    <string name="assistant_network_offline">Internet tidak tersedia</string>
+    <string name="assistant_network_available">Internet tersedia</string>
+    <string name="assistant_gateway_unconfigured">Layanan belum tersambung</string>
+    <string name="assistant_gateway_retry">Perlu coba lagi</string>
+</resources>

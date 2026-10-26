@@ -122,7 +122,10 @@ public final class OnlineAssistantClient implements AutoCloseable {
                   }
                 }
               }
-            } catch (IOException | JSONException ignored) {
+            } catch (IOException error) {
+              failure = error instanceof java.io.InterruptedIOException ? Failure.TIMEOUT : Failure.NETWORK;
+            } catch (JSONException invalid) {
+              // Preserve the HTTP error when a gateway error page is not JSON.
             }
             String finalAnswer = answer;
             JSONObject finalProposal = proposal, finalSource = source;

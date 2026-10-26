@@ -65,15 +65,16 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
   }
 
   public void testNativeClientMapsSuccessAuthQuotaTimeoutServerAndMalformedWithoutFallback() throws Exception {
-    int[] codes = {200, 401, 429, 504, 502, 503, 200, 200};
+    int[] codes = {200, 401, 429, 504, 502, 503, 200, 200, 502, 401};
     OnlineAssistantClient.Failure[] failures = {null, OnlineAssistantClient.Failure.UNAUTHORIZED,
       OnlineAssistantClient.Failure.QUOTA, OnlineAssistantClient.Failure.TIMEOUT,
       OnlineAssistantClient.Failure.SERVER, OnlineAssistantClient.Failure.SOURCE,
-      OnlineAssistantClient.Failure.INVALID_RESPONSE, OnlineAssistantClient.Failure.INVALID_RESPONSE};
+      OnlineAssistantClient.Failure.INVALID_RESPONSE, OnlineAssistantClient.Failure.INVALID_RESPONSE,
+      OnlineAssistantClient.Failure.SERVER, OnlineAssistantClient.Failure.UNAUTHORIZED};
     for (int i = 0; i < codes.length; i++) {
       final int code = codes[i];
       final String json = i == 5 ? "{\"error\":\"source_unavailable\"}" : i == 6 ? "{"
-          : i == 7 ? "{\"reply\":42,\"provider\":\"featherless\"}"
+          : i == 7 ? "{\"reply\":42,\"provider\":\"featherless\"}" : i >= 8 ? "<html>Gateway error</html>"
           : "{\"reply\":\"Synthetic reply\",\"provider\":\"featherless\"}";
       OkHttpClient http = new OkHttpClient.Builder().addInterceptor(chain -> {
         assertEquals("https", chain.request().url().scheme());
