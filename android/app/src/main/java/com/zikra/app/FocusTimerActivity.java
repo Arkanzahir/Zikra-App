@@ -219,6 +219,8 @@ public final class FocusTimerActivity extends BaseActivity {
   }
 
   private void render() {
+    FocusClock saved=FocusTimer.load(this);
+    if(saved.session!=clock.session)clock=saved;
     clock.update(SystemClock.elapsedRealtime(), FocusTimer.boot(this));
     long seconds = (clock.remaining + 999) / 1000;
     String time = String.format(Locale.ROOT, "%02d:%02d", seconds / 60, seconds % 60);
@@ -268,6 +270,8 @@ public final class FocusTimerActivity extends BaseActivity {
       text(R.id.focusHint, R.string.design_focus_motion_off);
     else if (notificationsAllowed && (clock.breakPhase || paused))
       text(R.id.focusHint, R.string.study_scene_rest_hint);
+    if(!clock.running&&getSharedPreferences(FocusTimer.PREFS,0).getLong("adhan_pause_session",-1)==clock.session)
+      text(R.id.focusHint,R.string.adhan_focus_paused);
     findViewById(R.id.focusHint)
         .setBackgroundResource(clock.breakPhase ? R.drawable.study_scene_rest_note : 0);
     findViewById(R.id.focusHint).setPadding(dp(12), dp(10), dp(12), dp(10));
@@ -375,6 +379,8 @@ public final class FocusTimerActivity extends BaseActivity {
     play.setScaleY(1);
     handler.removeCallbacks(tick);
     if (clock != null) {
+      FocusClock saved=FocusTimer.load(this);
+      if(saved.session!=clock.session)clock=saved;
       clock.update(SystemClock.elapsedRealtime(), FocusTimer.boot(this));
       FocusTimer.save(this, clock);
     }

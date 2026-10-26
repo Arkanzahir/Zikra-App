@@ -13,6 +13,8 @@ import android.test.InstrumentationTestCase;
 import com.zikra.app.PrayerSchedule;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.Collections;
 
 /** Exercises real AlarmManager identities and NotificationManager delivery on Android. */
 @SuppressWarnings("deprecation")
@@ -52,11 +54,11 @@ public final class PrayerRemindersTest extends InstrumentationTestCase {
   }
 
   private PendingIntent pending(int index) {
-    return PendingIntent.getBroadcast(
-        context,
-        PrayerReminders.REQUEST_BASE + index,
-        PrayerReminders.alarmIntent(context, index, 0),
-        PendingIntent.FLAG_NO_CREATE | PendingIntent.FLAG_IMMUTABLE);
+    SharedPreferences plan=context.getSharedPreferences(PrayerReminders.PLAN,0);
+    for(String slot:plan.getStringSet("ids",Collections.emptySet()))if(slot.endsWith("_"+index))return PendingIntent.getBroadcast(
+        context,0,PrayerReminders.alarmIntent(context,index,plan.getLong("e:"+slot,0)),PendingIntent.FLAG_NO_CREATE|PendingIntent.FLAG_IMMUTABLE);
+    return null;
+
   }
 
   public void testFiveAlarmsRespectPerPrayerAndMasterSwitches() {
@@ -74,6 +76,10 @@ public final class PrayerRemindersTest extends InstrumentationTestCase {
 
   public void testReceiverPostsRealNotificationAndIgnoresDuplicateAndFutureEvents() {
     long epoch = System.currentTimeMillis() - 1000;
+    android.content.Intent planned=PrayerReminders.alarmIntent(context,2,epoch);String slot=planned.getStringExtra("slot");
+    context.getSharedPreferences(PrayerReminders.PLAN,0).edit().putLong("e:"+slot,epoch)
+        .putString("l:"+slot,com.zikra.app.location.LocationStore.current(context).key())
+        .putLong("r:"+slot,PrayerSettings.revision(context)).putStringSet("ids",Collections.singleton(slot)).commit();
     context.sendBroadcast(PrayerReminders.alarmIntent(context, 2, epoch));
     StatusBarNotification posted = awaitNotification(PrayerReminders.NOTIFICATION_BASE + 2);
     assertEquals("Waktu Dzuhur", posted.getNotification().extras.getString("android.title"));

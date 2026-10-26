@@ -100,4 +100,10 @@ public final class FocusTimer {
     FocusClock clock = load(c);
     schedule(c, clock);
   }
+  public static void pauseForAdhan(Context c) {
+    FocusClock timer=load(c);
+    if(!timer.running)return;
+    timer.pause(SystemClock.elapsedRealtime(),boot(c));schedule(c,timer);
+    c.getSharedPreferences(PREFS,0).edit().putLong("adhan_pause_session",timer.session).commit();
+  }
 }

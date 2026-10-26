@@ -21,7 +21,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import com.zikra.app.location.LocationPoint;
 import com.zikra.app.location.LocationStore;
-import com.zikra.app.reminders.PrayerReminders;
+import com.zikra.app.reminders.*;
+import android.app.AlertDialog;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
@@ -52,6 +53,7 @@ public final class PrayerActivity extends BaseActivity {
             renderRows();
           }
           renderCountdown();
+          updateAudioUi();
           clock.postDelayed(this, 1000);
         }
       };
@@ -63,6 +65,8 @@ public final class PrayerActivity extends BaseActivity {
   private boolean weekMode;
   private int previousNext = -1;
   private boolean applyingMaster;
+  private AlertDialog modeDialog, previewDialog;
+  private int editingPrayer=-1, draftMode, pendingPreview=-1;
   private static final int REQUEST_NOTIFICATIONS = 401;
 
   @Override
@@ -135,12 +139,22 @@ public final class PrayerActivity extends BaseActivity {
             return;
           }
           preferences.edit().putBoolean("reminder_enabled", enabled).apply();
+          if(!enabled)AdhanService.stop(this);
           PrayerReminders.sync(this);
           renderRows();
           updateReminderUi();
         });
     findViewById(R.id.prayerAlarmSettings).setOnClickListener(view -> openReminderSettings());
+    Switch pause=findViewById(R.id.prayerPauseFocus), quiet=findViewById(R.id.prayerQuietClasses);
+    pause.setChecked(preferences.getBoolean(PrayerSettings.PAUSE_FOCUS,false));
+    quiet.setChecked(preferences.getBoolean(PrayerSettings.QUIET_CLASSES,false));
+    pause.setOnCheckedChangeListener((v,on)->preferences.edit().putBoolean(PrayerSettings.PAUSE_FOCUS,on).apply());
+    quiet.setOnCheckedChangeListener((v,on)->{preferences.edit().putBoolean(PrayerSettings.QUIET_CLASSES,on).apply();AdhanService.stopIfInvalid();});
+    findViewById(R.id.prayerAudioPreview).setOnClickListener(v->previewDialog=new AlertDialog.Builder(this)
+        .setTitle(R.string.adhan_preview).setItems(R.array.adhan_preview_choices,(dialog,choice)->preview(choice==1?0:2)).show());
+    findViewById(R.id.prayerAudioStop).setOnClickListener(v->{AdhanService.stop(this);updateAudioUi();});
     selectMode(weekMode);
+    if(state!=null&&state.getInt("editing_prayer",-1)>=0){draftMode=state.getInt("draft_mode");showMode(state.getInt("editing_prayer"),true);}
     NavDock.attach(this, (FrameLayout) findViewById(R.id.prayerRoot), "prayer");
   }
 
@@ -179,6 +193,7 @@ public final class PrayerActivity extends BaseActivity {
   protected void onSaveInstanceState(Bundle state) {
     state.putString("selected_date", selectedDate.toString());
     state.putBoolean("week_mode", weekMode);
+    if(modeDialog!=null&&modeDialog.isShowing()){state.putInt("editing_prayer",editingPrayer);state.putInt("draft_mode",draftMode);}
     super.onSaveInstanceState(state);
   }
 
@@ -274,6 +289,13 @@ public final class PrayerActivity extends BaseActivity {
       final int index = PRAYER_INDEXES[item];
       LinearLayout row =
           (LinearLayout) getLayoutInflater().inflate(R.layout.prayer_item, rows, false);
+      if(getResources().getConfiguration().fontScale>=1.5f){
+        TextView time=row.findViewById(R.id.prayerRowTime);
+        ((android.view.ViewGroup)time.getParent()).removeView(time);
+        LinearLayout column=(LinearLayout)row.findViewById(R.id.prayerRowName).getParent();
+        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(-1,-2);params.topMargin=dp(4);
+        column.addView(time,1,params);
+      }
       row.setBackgroundResource(
           today
                   && upcoming != null
@@ -286,31 +308,47 @@ public final class PrayerActivity extends BaseActivity {
       ((ImageView) row.findViewById(R.id.prayerRowIcon))
           .setImageResource(index == 0 || index == 5 ? R.drawable.ic_moon : R.drawable.ic_sun);
       ImageButton bell = row.findViewById(R.id.prayerRowBell);
-      boolean enabled = preferences.getBoolean(key, true);
-      bell.setAlpha(master && enabled ? 1f : .3f);
-      bell.setSelected(enabled);
-      bell.setContentDescription(
-          "Preferensi pengingat "
-              + PrayerSchedule.NAMES[index]
-              + (master && enabled ? " aktif" : " nonaktif"));
-      bell.setOnClickListener(
-          view -> {
-            boolean enabledNow = !preferences.getBoolean(key, true);
-            preferences.edit().putBoolean(key, enabledNow).apply();
-            renderRows();
-            PrayerReminders.sync(this);
-            updateReminderUi();
-            toast(
-                "Pilihan "
-                    + PrayerSchedule.NAMES[index]
-                    + " disimpan"
-                    + (PrayerReminders.enabled(this)
-                        ? "."
-                        : ". Aktifkan pengingat untuk menerima notifikasi."));
-          });
+      PrayerMode mode=PrayerSettings.mode(this,index);
+      String label=getResources().getStringArray(R.array.prayer_mode_choices)[mode.ordinal()];
+      ((TextView)row.findViewById(R.id.prayerRowMode)).setText(label);
+      bell.setAlpha(master&&mode!=PrayerMode.OFF?1f:.3f);bell.setSelected(mode!=PrayerMode.OFF);
+      bell.setImageResource(mode==PrayerMode.ADHAN?R.drawable.reading_audio_speaker:R.drawable.ic_bell);
+      bell.setContentDescription(getString(R.string.adhan_mode_title,PrayerSchedule.NAMES[index])+" · "+label);
+      bell.setOnClickListener(view->showMode(index,false));row.setOnClickListener(view->showMode(index,false));
       rows.addView(row);
     }
     previousNext = next;
+  }
+
+  private void showMode(int index,boolean restoring) {
+    if(!PrayerSchedule.isPrayer(index))return;
+    editingPrayer=index;if(!restoring)draftMode=PrayerSettings.mode(this,index).ordinal();
+    modeDialog=new AlertDialog.Builder(this).setTitle(getString(R.string.adhan_mode_title,PrayerSchedule.NAMES[index]))
+        .setSingleChoiceItems(R.array.prayer_mode_choices,draftMode,(dialog,choice)->draftMode=choice)
+        .setNegativeButton(R.string.weekly_cancel,null).setPositiveButton(R.string.weekly_save,null).create();
+    modeDialog.setOnShowListener(dialog->modeDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{
+      PrayerMode selected=PrayerMode.values()[draftMode];
+      if(selected==PrayerMode.ADHAN&&!AdhanAsset.available(this,index)){toast(getString(R.string.adhan_audio_missing));return;}
+      PrayerSettings.setMode(this,index,selected);modeDialog.dismiss();editingPrayer=-1;
+      PrayerReminders.sync(this);renderRows();updateReminderUi();
+    }));modeDialog.show();
+  }
+  private void preview(int index) {
+    if(!AdhanAsset.available(this,index)){toast(getString(R.string.adhan_audio_missing));return;}
+    if(Build.VERSION.SDK_INT>=33&&checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED){
+      pendingPreview=index;requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS},402);return;
+    }
+    if(!AdhanService.preview(this,index))toast(getString(R.string.adhan_unavailable));
+  }
+  private void updateAudioUi() {
+    AdhanService.State state=AdhanService.state();boolean present=AdhanAsset.available(this,0)&&AdhanAsset.available(this,2);
+    findViewById(R.id.prayerAudioStop).setVisibility(state.active?View.VISIBLE:View.GONE);
+    findViewById(R.id.prayerAudioPreview).setEnabled(present&&!state.active);
+    String message=!state.status.isEmpty()?state.status:getString(present?R.string.adhan_audio_label:R.string.adhan_audio_missing);
+    TextView label=findViewById(R.id.prayerAudioStatus);if(!message.contentEquals(label.getText()))label.setText(message);
+  }
+  @Override protected void onDestroy(){
+    if(modeDialog!=null)modeDialog.dismiss();if(previewDialog!=null)previewDialog.dismiss();super.onDestroy();
   }
 
   private void renderCountdown() {
@@ -398,6 +436,10 @@ public final class PrayerActivity extends BaseActivity {
   @Override
   public void onRequestPermissionsResult(int request, String[] permissions, int[] grants) {
     super.onRequestPermissionsResult(request, permissions, grants);
+    if(request==402){int index=pendingPreview;pendingPreview=-1;
+      if(grants.length>0&&grants[0]==PackageManager.PERMISSION_GRANTED&&PrayerSchedule.isPrayer(index))preview(index);
+      else toast(getString(R.string.adhan_permission_needed));return;
+    }
     if (request == REQUEST_NOTIFICATIONS) {
       preferences
           .edit()

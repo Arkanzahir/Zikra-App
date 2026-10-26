@@ -1,0 +1,35 @@
+<resources>
+  <string-array name="prayer_mode_choices"><item>Adzan penuh</item><item>Notifikasi biasa</item><item>Getar saja</item><item>Mati</item></string-array>
+  <string name="adhan_mode_title">Pengingat %1$s</string>
+  <string name="adhan_settings_hint">Ketuk pilihan pada setiap waktu salat. Pilihan tetap tersimpan saat pengingat utama mati.</string>
+  <string name="adhan_audio_label">Makkah · 3:23 / Subuh · 3:07 · tersedia offline</string>
+  <string-array name="adhan_preview_choices"><item>Adzan Makkah</item><item>Adzan Subuh</item></string-array>
+  <string name="adhan_audio_missing">Audio adzan belum tersedia pada versi ini. Pilih notifikasi biasa atau getar.</string>
+  <string name="adhan_preview">Dengarkan adzan</string>
+  <string name="adhan_stop">Hentikan adzan</string>
+  <string name="adhan_preview_title">Pratinjau adzan</string>
+  <string name="adhan_playing">Memutar adzan %1$s</string>
+  <string name="adhan_preparing">Menyiapkan adzan…</string>
+  <string name="adhan_stopped">Adzan dihentikan.</string>
+  <string name="adhan_finished">Adzan selesai.</string>
+  <string name="adhan_unavailable">Audio belum dapat diputar. Pengingat biasa tetap tersedia.</string>
+  <string name="adhan_interrupted">Adzan berhenti karena audio dipakai layanan lain.</string>
+  <string name="adhan_silent_device">Adzan tidak diputar saat perangkat senyap, Jangan Ganggu, atau volume alarm nol.</string>
+  <string name="adhan_focus_denied">Audio sedang digunakan layanan lain. Coba lagi setelah selesai.</string>
+  <string name="adhan_permission_needed">Izinkan notifikasi untuk pengingat dan pemutar adzan.</string>
+  <string name="adhan_late">Pengingat terlambat. Adzan tidak diputar ulang.</string>
+  <string name="adhan_pause_focus">Jeda timer fokus saat adzan berbunyi</string>
+  <string name="adhan_pause_hint">Timer tetap dijeda sampai kamu melanjutkannya. Tugas tidak ditandai selesai.</string>
+  <string name="adhan_focus_paused">Timer dijeda saat adzan. Lanjutkan jika sudah siap.</string>
+  <string name="adhan_quiet_classes">Pengingat senyap selama kelas</string>
+  <string name="adhan_quiet_hint">Saat jam kelas dari Study, pengingat tampil tanpa suara/getar dan adzan tidak diputar.</string>
+  <string name="adhan_sound_note">Adzan mengikuti volume alarm, mode senyap/Jangan Ganggu, izin notifikasi dan batas Android. Pengingat dapat tertunda atau tampil sebagai notifikasi biasa bila sistem membatasi pemutar.</string>
+  <string name="adhan_fajr_title">Gunakan rekaman ini untuk Subuh?</string>
+  <string name="adhan_fajr_note">Rekaman khusus Subuh belum dikonfirmasi. Kamu dapat memakai rekaman pilihan ini atau mempertahankan notifikasi biasa.</string>
+  <string name="adhan_use_selected">Pakai rekaman pilihan</string>
+  <string name="adhan_channel_normal">Notifikasi salat</string>
+  <string name="adhan_channel_vibrate">Salat · getar saja</string>
+  <string name="adhan_channel_quiet">Salat · senyap</string>
+  <string name="adhan_channel_playback">Pemutar adzan</string>
+  <string name="adhan_schedule_note">Pengingat tujuh hari ke depan disiapkan lokal dan diperbarui setelah perubahan waktu, kota, izin atau aplikasi dibuka. Ketepatan tetap mengikuti perangkat.</string>
+</resources>

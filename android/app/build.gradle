@@ -14,8 +14,8 @@ android {
         applicationId 'com.zikra.app'
         minSdk 26
         targetSdk 35
-        versionCode 37
-        versionName '1.9.10'
+        versionCode 38
+        versionName '1.9.11'
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
 
@@ -41,7 +41,34 @@ android {
     if (project.findProperty('zikraPhoneTests') == 'true') {
         sourceSets.androidTest.java.srcDir 'src/phoneTest/java'
     }
+    androidResources.noCompress += ['mp3']
 }
+
+// Private beta audio is supplied explicitly; it is not copied into source control or release builds.
+def adhanSource = providers.gradleProperty('zikraAdhanAudio')
+def fajrSource = providers.gradleProperty('zikraFajrAudio')
+def prepareAdhanAudio = tasks.register('prepareDebugAdhanAudio') {
+    inputs.property('source', adhanSource.orElse(''))
+    inputs.property('fajrSource', fajrSource.orElse(''))
+    if (adhanSource.isPresent()) inputs.file(file(adhanSource.get()))
+    if (fajrSource.isPresent()) inputs.file(file(fajrSource.get()))
+    outputs.dir(layout.buildDirectory.dir('generated/adhanAssets'))
+    doLast {
+        def root = layout.buildDirectory.get().asFile.canonicalFile.toPath()
+        def destination = layout.buildDirectory.dir('generated/adhanAssets').get().asFile.canonicalFile
+        if (!destination.toPath().startsWith(root)) throw new GradleException('Invalid generated audio path')
+        delete(destination)
+        [selected: adhanSource, fajr: fajrSource].each { name, provider ->
+            if (provider.isPresent()) {
+                def source = file(provider.get())
+                if (!source.isFile() || source.length() == 0 || source.length() > 10000000)
+                    throw new GradleException('Expected a local audio file below 10 MB')
+                copy { from source; into new File(destination, 'adhan'); rename { name + '.mp3' } }
+            }
+        }
+    }
+}
+android.sourceSets.debug.assets.srcDir(prepareAdhanAudio)
 
 dependencies {
     // OkHttp 3.x and Okio 1.x are Java, including their runtime dependencies.

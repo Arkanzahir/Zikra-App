@@ -250,6 +250,22 @@
                     android:layout_marginBottom="8dp"
                     android:textSize="12sp"
                     android:textColor="@color/muted" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/adhan_settings_hint" android:textSize="12sp" android:textColor="@color/muted" />
+                <Button android:id="@+id/prayerAudioPreview" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:minHeight="52dp" android:layout_marginTop="12dp" android:text="@string/adhan_preview"
+                    android:textAllCaps="false" android:background="@drawable/prayer_bg_row" android:textColor="@color/pine" />
+                <Button android:id="@+id/prayerAudioStop" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:minHeight="52dp" android:text="@string/adhan_stop" android:textAllCaps="false" android:visibility="gone"
+                    android:background="@drawable/prayer_bg_row" android:textColor="@color/pine" />
+                <TextView android:id="@+id/prayerAudioStatus" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textSize="12sp" android:textColor="@color/muted" android:paddingVertical="8dp" android:accessibilityLiveRegion="polite" />
+                <Switch android:id="@+id/prayerPauseFocus" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:minHeight="52dp" android:text="@string/adhan_pause_focus" android:textSize="14sp" android:textColor="@color/pine" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/adhan_pause_hint" android:textSize="12sp" android:textColor="@color/muted" />
+                <Switch android:id="@+id/prayerQuietClasses" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:minHeight="52dp" android:text="@string/adhan_quiet_classes" android:textSize="14sp" android:textColor="@color/pine" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/adhan_quiet_hint" android:textSize="12sp" android:textColor="@color/muted" />
                 <TextView
                     android:id="@+id/prayerAlarmSettings"
                     android:layout_width="match_parent"
@@ -267,11 +283,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/design_prayer_sound_note"
+                    android:text="@string/adhan_sound_note"
                     android:textSize="14sp"
                     android:layout_marginBottom="16dp"
                     android:lineSpacingExtra="4dp"
                     android:textColor="@color/muted" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/adhan_schedule_note" android:textSize="12sp" android:textColor="@color/muted" android:layout_marginBottom="12dp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

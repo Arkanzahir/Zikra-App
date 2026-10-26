@@ -29,6 +29,7 @@
         <provider android:name=".assistant.AssistantCameraProvider" android:authorities="${applicationId}.assistant.camera" android:exported="false" android:grantUriPermissions="true" />
         <provider android:name=".assistant.GeneratedImageProvider" android:authorities="${applicationId}.assistant.images" android:exported="false" android:grantUriPermissions="true" />
         <service android:name=".audio.QuranAudioService" android:exported="false" android:foregroundServiceType="mediaPlayback" />
+        <service android:name=".reminders.AdhanService" android:exported="false" android:foregroundServiceType="mediaPlayback" />
         <service android:name=".audio.QuranDownloadService" android:exported="false" android:foregroundServiceType="dataSync" />
         <uses-library android:name="android.test.runner" android:required="false" />
         <receiver android:name=".reminders.PrayerAlarmReceiver" android:exported="false" />
