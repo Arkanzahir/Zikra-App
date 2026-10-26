@@ -1,5 +1,26 @@
 # Audio adzan — arah yang dipilih pengguna
 
+## Pilihan rekaman terbaru — file dari pengguna
+
+Pengguna kemudian memberikan **mecca_56_22.mp3** dan meminta “pake ini aja”.
+File ini menggantikan kandidat Commons Makkah2013 untuk pekerjaan D02/D02a.
+Pilihan bukan lagi sekadar gaya Makkah; berkas spesifik sudah dipilih pengguna.
+
+- Durasi metadata203,2587142detik (sekitar3menit23detik),1.423.360byte,
+  MPEG audio56kbps/stereo/22.050Hz menurut Windows Shell.
+- SHA256 `43ade766272ff9c89c86908959df6ddd7f3a34961897caf09f965a3841e1bcd2`.
+- Salinan siap integrasi disimpan privat di
+  `.local/d02-audio-20261026/selected/adhan_makkah.mp3`; hash sama dan file asal
+  tidak diubah. Metadata/receipt privat di selection.json pada direktori tersebut.
+- Nama muazin, asal rekaman/izin distribusi dan keberadaan lafaz khusus Subuh
+  belum dibuktikan dari metadata. Jangan menempelkan lisensi kandidat Commons
+  pada file berbeda ini. Untuk uji lokal gunakan pilihan pengguna ini; verifikasi
+  distribusi tetap bagian gerbang rilis D02. Tidak mengunggah berkas ke layanan lain.
+- Belum ada service/alarm pemutar adzan atau APK baru dari pemilihan ini.
+  D02/D02a tetap[ ]; file Subuh khusus belum ditentukan/dikonfirmasi.
+
+Bagian kandidat di bawah merupakan riwayat penelitian, bukan pilihan aktif.
+
 26 Oktober2026: pengguna menolak kandidat “Beautiful adhan” unggahan
 Adam-synagda, kemudian memilih **adzan Makkah**. Jangan memakai kandidat yang
 ditolak sebagai audio bawaan. Pilihan ini menetapkan arah suara/asal, belum

@@ -602,3 +602,18 @@ Makkah2013 memiliki metadata CC BY3.0 dan preview, tetapi kualitas/kelengkapan
 belum didengar/dikunci. Jangan mengatribusikan muazin dari dugaan. Rekaman Subuh
 Makkah belum dipilih. Belum ada audio dimasukkan APK atau D02/D02a dicentang;
 APK tetap1.9.10/source292deb8. Tidak perlu build untuk catatan keputusan ini.
+
+## Audio dipilih pengguna — mecca_56_22.mp3
+
+Pengguna memberikan D:\Download\mecca_56_22.mp3 dan meminta dipakai. Ini mengganti
+status sebelumnya yang belum memilih rekaman spesifik dan mengganti kandidat
+Commons Makkah2013. Salinan privat siap integrasi:
+.local/d02-audio-20261026/selected/adhan_makkah.mp3,203,2587142detik,
+1.423.360byte,56kbps/stereo22.050Hz. SHA256
+43ade766272ff9c89c86908959df6ddd7f3a34961897caf09f965a3841e1bcd2.
+Metadata Windows Shell; hash asal/salinan sama dan asal utuh. Tidak mengunggah
+berkas ke layanan lain atau memasukkan binernya ke Git. Jangan memakai lisensi
+Commons untuk berkas berbeda ini; muazin/sumber distribusi/lafaz Subuh belum
+dibuktikan. Receipt privat selection.json, [pilihan aktif dan batas](design/concepts/adhan-audio-direction-2026-10-26.md).
+Belum ada kode pemutar/service/adzan/alarm atau APK baru dari pemilihan ini;
+APK tetap1.9.10/source292deb8. D02/D02a[ ], Subuh khusus belum dikonfirmasi.
