@@ -2,6 +2,11 @@ name: Zikra backend health
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/backend-health.yml'
+      - 'backend/operations-health.mjs'
   schedule:
     - cron: '17 */6 * * *'
 
@@ -17,8 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, verified 2026-10-26
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1, Node 24, verified 2026-10-26
         with:
           persist-credentials: false
+          sparse-checkout: backend/operations-health.mjs
+          sparse-checkout-cone-mode: false
       - name: Check HTTPS and Redis access denial without inference
         run: node backend/operations-health.mjs https://zikra-ai.vercel.app

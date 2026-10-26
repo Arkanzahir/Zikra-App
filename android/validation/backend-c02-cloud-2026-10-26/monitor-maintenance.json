@@ -1,0 +1,24 @@
+{
+  "scope": "maintenance of monitoring workflow after manual run on old pin",
+  "checkoutRelease": "v7.0.1",
+  "checkoutCommit": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+  "checkoutRuntime": "node24",
+  "verifiedFrom": [
+    "https://api.github.com/repos/actions/checkout/git/ref/tags/v7.0.1",
+    "https://github.com/actions/checkout/blob/3d3c42e5aac5ba805825da76410c181273ba90b1/action.yml"
+  ],
+  "contentsPermission": "read",
+  "persistCredentials": false,
+  "sparseCheckout": [
+    "backend/operations-health.mjs"
+  ],
+  "pushBranches": [
+    "main"
+  ],
+  "pushPaths": [
+    ".github/workflows/backend-health.yml",
+    "backend/operations-health.mjs"
+  ],
+  "workflowSha256": "70e92a823ef83347c8e8b61f5cff2d3e2abcd58d7df2da96aaef80b5905933fb",
+  "newRunVerified": false
+}

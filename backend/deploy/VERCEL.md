@@ -112,17 +112,20 @@ jangan menghapus registry untuk memaksa layanan kembali bekerja.
   Bukti25 Oktober Redis/HTTPS/redeploy tetap berlaku; kode akses bersama tidak
   berubah. Gambar C09 memiliki bukti dan batas tersendiri, bukan klaim seluruh
   inferensi gambar sudah diuji paralel pada cloud.
-- [ ] Cancellation/timeout/retry dan pemulihan Redis/kuota diperiksa pada platform.
-  Tinjau log/observability/retensi Vercel dan Upstash; jangan menyalakan pencatatan
-  header Authorization, environment atau isi chat dalam tracing/log drain.
-  Cancel nyata26 Oktober: lease teramati, client abort dan pelepasan325ms sebelum
-  expiry55 detik, retry malformed400 tanpa inference kedua. Bukan jaminan biaya
-  provider dibatalkan; timeout provider/cloud panjang masih belum dibuktikan.
-- [ ] Pantau endpoint dan kegagalan layanan tanpa mencatat payload. Uji dari HP
-  dengan laptop pengembang mati, lalu rantai APK → HTTPS → provider. C05 dan
-  seluruh C tidak otomatis selesai ketika endpoint sudah tersedia.
-  Probe tokenless HTTPS+lookup Redis lulus; workflow GitHub disiapkan lokal,
-  belum aktif sebelum default branch menerima perubahan. HP/laptop mati belum.
+- [x] Cancellation/timeout/retry dan pemulihan Redis/kuota diperiksa sesuai batas
+  bukti platform. Abort cloud26 Oktober melepas lease Redis nyata325ms; retry
+  malformed400 tanpa inference kedua. Restore namespace terpisah dan kuota/revokasi
+  nyata ada pada laporan25–26 Oktober. Deadline default35 detik di preview Vercel
+  memberi504 sebelum header/saat body macet, abort socket dan retry200; upstream
+  HTTP loopback terkontrol/store memori, bukan outage Featherless atau lease Redis
+  nyata pada kasus preview. Sampel runtime0 record tidak mensertifikasi seluruh
+  observability/log. [Bukti dan batas](../../android/validation/backend-c02-cloud-2026-10-26/README.md).
+- [x] Monitor endpoint tanpa payload dijalankan dari GitHub: health200 dan Redis401,
+  run40273711756/job121411875130 success. Empat jadwal harian dikonfigurasi; job yang
+  dibuktikan dipicu manual, bukan invocation schedule atau jaminan alert/SLA.
+- [ ] Uji dari HP dengan laptop pengembang mati: APK → HTTPS → provider nyata.
+  C05 sebelumnya memakai laptop hidup; runner GitHub/preview tidak menggantikan
+  kasus HP ini. C02/seluruh C dan rilis publik tetap terbuka.
 
 ## Uji lokal
 

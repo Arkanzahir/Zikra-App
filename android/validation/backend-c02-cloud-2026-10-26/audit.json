@@ -1,0 +1,22 @@
+{
+  "scope": "Known current private values, preview fixture credential and revoked CLI automation bypass in tracked/new backend/CI/evidence source and APK; not all possible historical secrets",
+  "sourceFilesScanned": 1969,
+  "sourceSecretMatches": 0,
+  "apkSecretMatches": 0,
+  "privateAppEntries": 0,
+  "backupFilesIgnoredByGit": true,
+  "adminAndMonitorExcludedFromDeployment": true,
+  "protectedUnchanged": {
+    "projectHandoff": true,
+    "providerEnv": true,
+    "audioArchive": true,
+    "audioStash": true,
+    "approvedLogo": true,
+    "nightArt": true,
+    "apk197": true,
+    "previousApk196": true
+  },
+  "passed": true,
+  "sourceBaseCommit": "922d36aeecf80202fc575965f5dca33003d95124",
+  "previewCredentialsIncludedInAudit": true
+}

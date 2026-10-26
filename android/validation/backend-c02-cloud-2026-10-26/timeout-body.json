@@ -1,0 +1,27 @@
+{
+  "scope": "production-handler-in-cloud-runtime-with-controlled-loopback-http-upstream",
+  "stage": "body",
+  "checkedAt": "2026-10-26T05:25:28.339Z",
+  "deadlineMs": 35000,
+  "usesProductionDefaultDeadline": true,
+  "timeout": {
+    "status": 504,
+    "sanitizedError": true,
+    "elapsedMs": 35006,
+    "abortObserved": true,
+    "upstreamSocketClosed": true,
+    "callsBeforeRetry": 1,
+    "released": true
+  },
+  "explicitRetry": {
+    "status": 200,
+    "upstreamCallsTotal": 2,
+    "releasesTotal": 2,
+    "capacityAvailable": true
+  },
+  "delayedUpstreamWrites": 0,
+  "externalInferenceRequests": 0,
+  "productionRedisUsed": false,
+  "productionDeploymentModified": false,
+  "passed": true
+}

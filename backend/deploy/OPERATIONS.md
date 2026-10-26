@@ -21,7 +21,11 @@ ditolak, tiap probe/decode dibatasi10 detik dan4KiB.
 Workflow `.github/workflows/backend-health.yml` menyiapkan pemeriksaan empat kali
 sehari serta pemicu manual. Checkout dipin SHA, permission hanya contents:read,
 credential Git tidak disimpan dan tidak ada secret GitHub yang dibutuhkan.
-**Belum aktif sebelum file berada pada default branch GitHub dan Actions diaktifkan.**
+Checkout v7.0.1 dipin pada SHA resmi dan memakai Node24. Hanya berkas probe yang
+di-checkout; push ke main yang mengubah workflow/probe ikut memicu pemeriksaan.
+**Sudah aktif di default branch; pemicu manual berhasil26 Oktober2026.**
+[Bukti job/probe](../../android/validation/backend-c02-cloud-2026-10-26/README.md);
+invocation terjadwal belum diamati.
 Jadwal bukan jaminan SLA/notifikasi; periksa hasil gagal melalui Actions sesuai
 preferensi notifikasi akun. Probe tidak membuktikan kuota/model/provider siap.
 
@@ -120,9 +124,14 @@ uji dibersihkan. Ini membuktikan drill, bukan switchover bencana penuh.
   Fitur/syarat paket harus diperiksa sebelum dipilih. Tidak menyalakan backup
   berbayar, memasukkan kartu atau menaikkan paket pada pekerjaan ini.
 
-C02 tetap menunggu aktivasi monitor yang dibuktikan, timeout cloud yang relevan
-dan uji HP saat laptop mati. Uji PC/backup/probe tidak menggantikan pemeriksaan itu.
+C02 tetap menunggu uji HP saat laptop mati. Monitor manual dan mekanisme timeout
+35 detik dalam preview cloud sudah dibuktikan dengan batas fixture yang dijelaskan
+pada laporan terbaru. Uji PC/backup/probe tidak menggantikan pemeriksaan itu.
 
 Pembaruan26 Oktober setelah checkpoint ee2b751: [push dan workflow](../../android/validation/checkpoint-push-2026-10-26/README.md)
 sudah diverifikasi di GitHub (state active); hasil job belum diverifikasi.
 Status workflow lokal pada catatan sebelumnya bersifat historis. C02 tetap[ ].
+
+Lanjutan26 Oktober: [monitor sukses dan timeout preview cloud](../../android/validation/backend-c02-cloud-2026-10-26/README.md).
+Preview dan automation bypass baru CLI sudah dibersihkan; jangan menyuplai credential
+production pada fixture atau menganggap fixture sebagai outage provider sebenarnya.

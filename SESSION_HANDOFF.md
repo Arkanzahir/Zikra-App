@@ -376,3 +376,43 @@ tetapi belum ada hasil job sukses yang diverifikasi. Jangan menyebut C02/seluruh
 atau rilis publik selesai; HP/laptop mati dan timeout cloud panjang masih gerbang.
 Proyek Vercel tidak terhubung Git, tidak ada redeploy atau rilis APK publik pada
 push ini. APK1.9.7/source249b523 tetap lokal37.218.400 byte; HP terakhir code26.
+
+## Checkpoint terbaru — C02 monitor dan deadline cloud terbukti, HP masih menunggu
+
+26 Oktober 2026: pengguna menyetujui melanjutkan C02 setelah push922d36a.
+[Hasil/source/hash/batas](android/validation/backend-c02-cloud-2026-10-26/README.md).
+Monitor dipicu dari Actions memakai akun yang sudah login; run40273711756/job121411875130
+success pada922d36a. Log probe GitHub membuktikan health200/lookup Redis menolak401,
+tanpa token aktif/kuota/inference. Jadwal empat kali sehari dikonfigurasi, belum
+ada invocation schedule yang diamati. Tidak menjanjikan SLA/alert selalu diterima.
+
+Preview Vercel Node24.x/maxDuration60 menjalankan handler asli melalui server HTTP
+loopback dan upstream lambat terkontrol. Deadline default35000 tidak dipendekkan:
+504 sebelum header35037ms dan saat body parsial35006ms; abort/soket tutup, satu
+panggilan sebelum retry, kapasitas dilepas dan retry eksplisit200 lulus. Upstream
+bukan Featherless, access store fixture memori; tidak mengklaim outage provider
+atau lease Redis nyata dari kasus ini. Bukti Redis/provider nyata sebelumnya tetap.
+60 tes backend lulus/0 skip. Fixture/tes dikecualikan paket production; tidak ada
+perubahan runtime/API Android atau APK baru. APK tetap1.9.7/code34,37218400 byte.
+
+Preview dpl_6x1o6rHroxto9qxP4VC6RcttLkuA dihapus/URL404. CLI curl sempat membuat
+satu automation bypass proyek; hanya yang baru itu dicabut tanpa regenerate,
+bypass lama tetap. Env/node/retensi/proteksi dan ID production C09 tetap; probe
+setelah cleanup kembali200/401. Tidak menyuplai credential provider/Redis pada
+preview, tidak menjalankan inference atau mengaktifkan billing. Token tes, header,
+metadata akun/paket/output CLI tetap privat di .local/operations-c02-next/; folder
+ACL operator/SYSTEM/admin. WIP PROJECT_HANDOFF.md/stash/audio/desain/env/APK lama
+harus tetap utuh. Jangan memakai CLI curl lagi setelah cleanup tanpa mencatat dan
+membersihkan automation bypass yang mungkin dibuat otomatis.
+
+C02 tetap[ ]: HP pada jaringan nyata saat laptop mati belum tersedia. Pengguna
+terakhir memilih lanjut tanpa HP; jangan mengulang permintaan sambung berulang.
+C06/C07 juga menunggu perangkat, C04 mengikuti D04. C01/C03/C05/C08/C09 selesai
+sesuai lingkup, bukan seluruh C. B01, D02a/UI04/F/G dan publik tetap terbuka.
+
+
+Lanjutan setelah pengguna meminta bekerja kembali: monitor dipelihara dengan
+checkout v7.0.1/Node24 pin resmi3d3c42e, sparse checkout hanya probe, serta pemicu
+push pada main untuk perubahan workflow/probe. Run manual lama tetap historis;
+job baru harus diverifikasi setelah push sebelum disebut lulus. Checkpoint C02
+sebelumnya yang sempat tertunda akan disertakan; tidak menyentuh browser lagi.

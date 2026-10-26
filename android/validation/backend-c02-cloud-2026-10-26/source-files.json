@@ -1,0 +1,55 @@
+{
+  "scope": "exact source hashes; fixture copies runtime modules without modifying production deployment",
+  "baseCommit": "922d36aeecf80202fc575965f5dca33003d95124",
+  "runtimeModified": false,
+  "files": [
+    {
+      "path": "backend/server.mjs",
+      "sha256": "d73b07d48ca1ad431d1ac3150f741fc656badcc68cfb40b50d1ea9e164a999ff"
+    },
+    {
+      "path": "backend/config.mjs",
+      "sha256": "b71ada7fb123e4d7753e348dcadd45b965f6b05f8497d403fa19251d5198309f"
+    },
+    {
+      "path": "backend/access.mjs",
+      "sha256": "1bc2cd5b45d94581a011b7701d6a0aa18457d04f8d8da0407c72d47de3789e6a"
+    },
+    {
+      "path": "backend/assistant-contract.mjs",
+      "sha256": "102306afc60fa2c4e39941bb8ff37d8e93ea8c84a67c3c7ecaa192b663633ff4"
+    },
+    {
+      "path": "backend/tafsir.mjs",
+      "sha256": "d0ccc762f55d1a6281ac49237308e457cb82b7205d2f7a25e8eb2bec877c184f"
+    },
+    {
+      "path": "backend/attachments.mjs",
+      "sha256": "b4aa92e03afa7d1b81d196ab4e368140958358c9c8d1ad7465403e76fb6e0740"
+    },
+    {
+      "path": "backend/image-generation.mjs",
+      "sha256": "8791ca43812e45c8c10c97758104e5fa20dfdce60b55d58cca2fc609c48f1075"
+    },
+    {
+      "path": "backend/test-support/cloud-timeout-fixture.mjs",
+      "sha256": "2a6fe6845cefcac2e88b11e52ef10866a2063fe4cc21ff7dd7391c67389e8a4e"
+    },
+    {
+      "path": "backend/test-support/cloud-timeout-api.mjs",
+      "sha256": "1729d68880924517edc26f07ad643202b1f15474413ac444727d674f5a15ad99"
+    },
+    {
+      "path": "backend/cloud-timeout.test.mjs",
+      "sha256": "a20b48b66f788b9a4e0707a8fc361aa535d49888ecc1055717a04fc53bb1082e"
+    },
+    {
+      "path": ".github/workflows/backend-health.yml",
+      "sha256": "ec6bf7e1cae17178867ac2ee08d8d169cb0ed78e14daf6bd1bff14efdaf71dab"
+    },
+    {
+      "path": "backend/.vercelignore",
+      "sha256": "941a503eb9b388fc0ead318c963eabb6668913723d8c2bf8f24ddbef8c988b3a"
+    }
+  ]
+}

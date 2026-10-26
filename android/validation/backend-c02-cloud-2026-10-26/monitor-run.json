@@ -1,0 +1,51 @@
+{
+  "scope": "manual GitHub-hosted monitor execution; not yet proof of scheduled invocation",
+  "verifiedAt": "2026-10-26T05:24:28.088Z",
+  "run": {
+    "id": 40273711756,
+    "url": "https://github.com/Arkanzahir/Zikra-App/actions/runs/40273711756",
+    "event": "workflow_dispatch",
+    "status": "completed",
+    "conclusion": "success",
+    "headSha": "922d36aeecf80202fc575965f5dca33003d95124",
+    "startedAt": "2026-10-26T05:20:42Z",
+    "updatedAt": "2026-10-26T05:21:02Z"
+  },
+  "jobs": [
+    {
+      "id": 121411875130,
+      "name": "health",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Check HTTPS and Redis access denial without inference",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "scheduledExecutionObserved": false,
+  "passed": true
+}
