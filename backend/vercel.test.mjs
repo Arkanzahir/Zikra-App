@@ -2,9 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import http from 'node:http';
 import { once } from 'node:events';
-import { spawn } from 'node:child_process';
-import { createInterface } from 'node:readline';
-import { fileURLToPath } from 'node:url';
+import { redisFixture as fixture } from './test-support/redis-fixture.mjs';
 import { randomBytes, randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { createVercelHandler, readVercelConfig } from './vercel-handler.mjs';
@@ -67,24 +65,6 @@ test('Vercel entry points pin paths and deployment excludes private config and a
   assert.ok(!allowlist.includes('!.env')); assert.ok(!allowlist.includes('!*.mjs'));
 });
 
-async function fixture(t) {
-  const child = spawn(process.env.ZIKRA_REDIS_TEST_PYTHON,
-    [fileURLToPath(new URL('./test-support/redis-fixture.py', import.meta.url))],
-    { stdio: ['pipe', 'pipe', 'pipe'], windowsHide: true });
-  const pending = [];
-  const fail = () => { while (pending.length) pending.shift().reject(new Error('Redis fixture unavailable')); };
-  child.on('error', fail); child.on('exit', fail);
-  const lines = createInterface({ input: child.stdout });
-  lines.on('line', line => {
-    const request = pending.shift(); if (!request) return;
-    const data = JSON.parse(line);
-    if (data.error) request.reject(new Error('access_unavailable')); else request.resolve(data.result);
-  });
-  t.after(() => { child.stdin.end(); child.kill(); lines.close(); });
-  return { command: args => new Promise((resolve, reject) => {
-    pending.push({ resolve, reject }); child.stdin.write(JSON.stringify(args) + '\n');
-  }) };
-}
 async function issue(redis, prefix = 'zikra:v1:') {
   const token = randomBytes(32).toString('hex'), id = randomUUID(), hash = tokenHash(token);
   assert.equal(await redis.command(['EVAL', ISSUE, 2, `${prefix}client:${hash}`, `${prefix}installation:${id}`,
