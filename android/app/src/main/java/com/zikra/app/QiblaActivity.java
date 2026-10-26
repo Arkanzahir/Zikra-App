@@ -7,6 +7,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
@@ -15,8 +17,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.zikra.app.reading.CompassMath;
+import com.zikra.app.reading.CompassReading;
 import com.zikra.app.reading.QiblaCompassView;
-import java.util.Locale;
 
 public class QiblaActivity extends BaseActivity implements SensorEventListener {
   private float qiblaBearing;
@@ -29,16 +31,23 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
   private final float[] remapped = new float[9];
   private final float[] orientation = new float[3];
   private float declination;
-  private float heading;
-  private boolean receivedHeading;
+  private final CompassReading reading = new CompassReading();
+  private final Handler clock = new Handler(Looper.getMainLooper());
+  private boolean listening;
+  private AlertDialog calibrationDialog;
+  private final Runnable freshnessCheck = new Runnable() {
+    @Override public void run() {
+      if(!listening)return;
+      renderReading(SystemClock.elapsedRealtime());
+      clock.postDelayed(this,500);
+    }
+  };
   private boolean aligned;
   private long lastHaptic = -2000;
-  private long lastStatus;
   private long lastSensorRender;
   private String lastStatusText = "";
   private int lastAnnouncementState = -1;
   private long lastAnnouncementAt;
-  private int sensorAccuracy = SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM;
 
   @Override
   protected void onCreate(Bundle state) {
@@ -71,7 +80,7 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
     findViewById(R.id.qiblaCalibrate)
         .setOnClickListener(
             view ->
-                new AlertDialog.Builder(this)
+                calibrationDialog = new AlertDialog.Builder(this)
                     .setTitle("Kalibrasi kompas")
                     .setMessage(
                         "Gerakkan ponsel membentuk angka 8 beberapa kali. Lepaskan casing bermagnet"
@@ -114,11 +123,11 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
   }
 
   private void showMissingSensor() {
-    sensorStatus.setText(
-        "Sensor kompas tidak tersedia. Gunakan panduan "
-            + Math.round(qiblaBearing)
-            + "° dari utara sejati; arah pada diagram"
-            + " bersifat statis.");
+    aligned=false;compass.setHeading(0,false);
+    sensorStatus.setText(getString(R.string.qibla_no_sensor,Math.round(qiblaBearing)));
+    sensorStatus.setTextColor(getColor(R.color.pine));
+    lastStatusText="";
+    compass.setContentDescription(getString(R.string.qibla_static_description,Math.round(qiblaBearing)));
   }
 
   @Override
@@ -126,34 +135,39 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
     super.onResume();
     updateLocation();
     if (rotationSensor == null) showMissingSensor();
-    receivedHeading = false;
+    reading.reset();
     aligned = false;
     lastSensorRender = 0;
-    lastStatus = 0;
     lastStatusText = "";
     lastAnnouncementState = -1;
     compass.setHeading(0, false);
-    sensorAccuracy = SensorManager.SENSOR_STATUS_UNRELIABLE;
-    if (rotationSensor != null) sensorStatus.setText("Menunggu sensor · pegang ponsel mendatar.");
-    if (rotationSensor != null && !sensorManager.registerListener(this, rotationSensor, 100_000)) {
-      rotationSensor = null;
-      showMissingSensor();
-    }
+    listening=false;
+    try { listening=rotationSensor!=null&&sensorManager.registerListener(this,rotationSensor,100_000); }
+    catch(SecurityException unavailable){listening=false;}
+    clock.removeCallbacks(freshnessCheck);
+    if(listening){renderReading(SystemClock.elapsedRealtime());clock.postDelayed(freshnessCheck,500);}
+    else showMissingSensor();
   }
 
   @Override
   protected void onPause() {
+    listening=false;clock.removeCallbacks(freshnessCheck);reading.reset();
+    aligned=false;compass.setHeading(0,false);
     if (sensorManager != null) sensorManager.unregisterListener(this);
+    renderReading(SystemClock.elapsedRealtime());
     super.onPause();
   }
 
   @Override
   public void onSensorChanged(SensorEvent event) {
-    if (event.sensor.getType() != Sensor.TYPE_ROTATION_VECTOR) return;
+    if (!listening||event==null||event.sensor==null||event.sensor.getType()!=Sensor.TYPE_ROTATION_VECTOR) return;
     long now = SystemClock.elapsedRealtime();
     // Bound redraws to 10 Hz; stable readings must not keep the UI rendering.
-    if (receivedHeading && now - lastSensorRender < 100) return;
+    if (lastSensorRender>0 && now-lastSensorRender<100) return;
     lastSensorRender = now;
+    if(!CompassReading.validVector(event.values)){
+      reading.invalidate();renderReading(now);return;
+    }
     SensorManager.getRotationMatrixFromVector(rotation, event.values);
     int axisX = SensorManager.AXIS_X;
     int axisY = SensorManager.AXIS_Y;
@@ -168,60 +182,71 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
       axisX = SensorManager.AXIS_MINUS_Y;
       axisY = SensorManager.AXIS_X;
     }
-    SensorManager.remapCoordinateSystem(rotation, axisX, axisY, remapped);
+    if(!SensorManager.remapCoordinateSystem(rotation,axisX,axisY,remapped)){
+      reading.invalidate();renderReading(now);return;
+    }
     SensorManager.getOrientation(remapped, orientation);
     float trueHeading = CompassMath.normalize((float) Math.toDegrees(orientation[0]) + declination);
-    heading = receivedHeading ? CompassMath.smooth(heading, trueHeading, 0.2f) : trueHeading;
-    receivedHeading = true;
+    boolean flat=Float.isFinite(orientation[1])&&Float.isFinite(orientation[2])
+        &&Math.abs(orientation[1])<=Math.PI/4&&Math.abs(orientation[2])<=Math.PI/4;
+    reading.accept(trueHeading,qiblaBearing,event.accuracy>=SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM,
+        flat,event.timestamp/1_000_000L,now);
+    renderReading(now);
+  }
+
+  private void renderReading(long now) {
+    CompassReading.Status state=reading.status(now);
+    boolean live=state==CompassReading.Status.LIVE;
+    float heading=live?reading.heading():0;
     float distance = Math.abs(CompassMath.delta(qiblaBearing, heading));
-    boolean nextAligned =
-        sensorAccuracy >= SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM
-            && distance <= (aligned ? 8f : 5f);
+    boolean nextAligned=reading.aligned(now);
     if (nextAligned && !aligned && now - lastHaptic >= 2000) {
       Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
       if (vibrator != null && vibrator.hasVibrator())
         vibrator.vibrate(VibrationEffect.createOneShot(70, VibrationEffect.DEFAULT_AMPLITUDE));
       lastHaptic = now;
     }
-    boolean stateChanged = nextAligned != aligned;
     aligned = nextAligned;
     compass.setHeading(heading, aligned);
-    if (stateChanged || now - lastStatus > 350) {
       String text;
-      if (sensorAccuracy < SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM)
-        text = "Akurasi sensor rendah · kalibrasi kompas terlebih dahulu";
-      else if (aligned) text = "✓ Sejajar dengan arah Kiblat · " + Math.round(qiblaBearing) + "°";
+      if(!live){
+        int message=state==CompassReading.Status.STALE?R.string.qibla_stale
+            :state==CompassReading.Status.INVALID?R.string.qibla_invalid
+            :state==CompassReading.Status.TILTED?R.string.qibla_tilted
+            :state==CompassReading.Status.LOW_ACCURACY?R.string.qibla_low_accuracy:R.string.qibla_waiting;
+        text=getString(message);
+      }
+      else if (aligned) text=getString(R.string.qibla_aligned,Math.round(qiblaBearing));
       else
-        text =
-            String.format(
-                Locale.forLanguageTag("id-ID"),
-                "Sensor aktif · arah ponsel %.0f° · putar %.0f° %s",
-                heading,
-                distance,
-                CompassMath.delta(qiblaBearing, heading) >= 0 ? "ke kanan" : "ke kiri");
+        text=getString(R.string.qibla_live,heading,distance,
+            getString(CompassMath.delta(qiblaBearing,heading)>=0?R.string.qibla_right:R.string.qibla_left));
       if (!text.equals(lastStatusText)) {
         sensorStatus.setText(text);
         sensorStatus.setTextColor(getColor(aligned ? R.color.sage_active : R.color.pine));
         lastStatusText = text;
+        compass.setContentDescription(live?getString(R.string.qibla_live_description,Math.round(qiblaBearing),Math.round(heading))
+            :getString(R.string.qibla_static_description,Math.round(qiblaBearing)));
       }
       // Continuous headings remain readable but should not flood TalkBack.
-      int state =
-          sensorAccuracy < SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM ? 0 : aligned ? 2 : 1;
-      if (state != lastAnnouncementState && now - lastAnnouncementAt >= 2500) {
-        if (state != 1)
-          sensorStatus.announceForAccessibility(
-              state == 2
-                  ? "Sejajar dengan arah kiblat"
-                  : "Akurasi sensor rendah. Kalibrasi kompas.");
-        lastAnnouncementState = state;
+      int announcement=live?(aligned?2:1):state.ordinal()+3;
+      if (announcement!=lastAnnouncementState&&now-lastAnnouncementAt>=2500) {
+        if(announcement!=1)sensorStatus.announceForAccessibility(text);
+        lastAnnouncementState=announcement;
         lastAnnouncementAt = now;
       }
-      lastStatus = now;
-    }
   }
 
   @Override
   public void onAccuracyChanged(Sensor sensor, int accuracy) {
-    sensorAccuracy = accuracy;
+    if(listening&&sensor!=null&&sensor.getType()==Sensor.TYPE_ROTATION_VECTOR
+        &&accuracy<SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM){
+      reading.downgradeAccuracy();renderReading(SystemClock.elapsedRealtime());
+    }
+  }
+
+  @Override protected void onDestroy(){
+    clock.removeCallbacksAndMessages(null);
+    if(calibrationDialog!=null)calibrationDialog.dismiss();
+    super.onDestroy();
   }
 }

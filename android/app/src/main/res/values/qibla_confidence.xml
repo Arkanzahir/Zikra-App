@@ -1,0 +1,14 @@
+<resources>
+  <string name="qibla_waiting">Menunggu sensor · pegang ponsel mendatar. Diagram masih statis.</string>
+  <string name="qibla_stale">Pembacaan sensor terhenti. Diagram statis; buka ulang Kiblat atau periksa sensor.</string>
+  <string name="qibla_invalid">Pembacaan sensor belum valid. Diagram statis; coba kalibrasi kompas.</string>
+  <string name="qibla_low_accuracy">Akurasi sensor rendah. Diagram statis; kalibrasi dan jauhi magnet/logam.</string>
+  <string name="qibla_tilted">Pegang ponsel mendatar dengan layar menghadap atas. Diagram masih statis.</string>
+  <string name="qibla_no_sensor">Sensor kompas tidak tersedia. Diagram statis menunjukkan %1$d° dari utara sejati, bukan arah ponsel.</string>
+  <string name="qibla_aligned">Sejajar dengan arah Kiblat · %1$d°</string>
+  <string name="qibla_live">Sensor aktif · arah ponsel %1$.0f° · putar %2$.0f° %3$s</string>
+  <string name="qibla_right">ke kanan</string>
+  <string name="qibla_left">ke kiri</string>
+  <string name="qibla_static_description">Diagram statis Kiblat %1$d derajat dari utara sejati; bukan pembacaan arah ponsel.</string>
+  <string name="qibla_live_description">Kompas Kiblat %1$d derajat dari utara sejati. Arah ponsel %2$d derajat.</string>
+</resources>

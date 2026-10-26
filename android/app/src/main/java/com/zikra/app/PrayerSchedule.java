@@ -145,6 +145,8 @@ public final class PrayerSchedule {
     for (int iteration = 0; iteration < 4; iteration++) {
       double[] position = solar(julian + utc / 1440);
       double declination = position[0];
+      // A geometric shadow-ratio Asr needs the solar centre above the horizon.
+      if(asr&&Math.abs(point.latitude-declination)>=90)return Double.NaN;
       double target =
           asr
               ? degrees(

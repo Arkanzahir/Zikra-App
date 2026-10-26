@@ -16,6 +16,7 @@ public class QiblaCompassView extends View {
   private float bearing = 294f;
 
   public void setBearing(float bearing) {
+    if(!Float.isFinite(bearing))return;
     this.bearing = CompassMath.normalize(bearing);
     invalidate();
   }
@@ -27,6 +28,7 @@ public class QiblaCompassView extends View {
   }
 
   public void setHeading(float heading, boolean aligned) {
+    if(!Float.isFinite(heading))return;
     if (Math.abs(CompassMath.delta(this.heading, heading)) < 0.15f && this.aligned == aligned)
       return;
     this.heading = heading;
