@@ -99,6 +99,7 @@ public final class ImageGenerationTest extends InstrumentationTestCase {
     getInstrumentation().getUiAutomation().injectInputEvent(down,true);getInstrumentation().getUiAutomation().injectInputEvent(up,true);down.recycle();up.recycle();
     ui(()->((android.view.inputmethod.InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(editor,android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT));
     waitFor(()->activity.getWindow().getDecorView().getRootWindowInsets()!=null&&activity.getWindow().getDecorView().getRootWindowInsets().isVisible(WindowInsets.Type.ime()));SystemClock.sleep(600);shot("composer");
+    assertEquals("Welcome yields space to the keyboard",View.GONE,activity.findViewById(R.id.aiWelcome).getVisibility());
     for(int id:new int[]{R.id.aiSend,R.id.aiAttach}){View v=activity.findViewById(id);Rect rect=new Rect();assertTrue(v.getGlobalVisibleRect(rect));assertEquals(v.getHeight(),rect.height());}
   }
 

@@ -256,6 +256,7 @@ public final class AiActivity extends BaseActivity {
   private void updateKeyboardLayout(boolean visible) {
     if (keyboardVisible == visible) return;
     keyboardVisible = visible;
+    findViewById(R.id.aiWelcome).setVisibility(!visible&&messages.length()==0?View.VISIBLE:View.GONE);
     findViewById(R.id.aiVoiceStatus).setVisibility(visible?View.GONE:View.VISIBLE);
     input.setMaxLines(visible?3:4);
     updateMode();
@@ -461,7 +462,7 @@ public final class AiActivity extends BaseActivity {
 
   private void renderConversation() {
     thread.removeAllViews();
-    findViewById(R.id.aiWelcome).setVisibility(messages.length()==0?View.VISIBLE:View.GONE);
+    findViewById(R.id.aiWelcome).setVisibility(!keyboardVisible&&messages.length()==0?View.VISIBLE:View.GONE);
     int first=Math.max(0,messages.length()-visibleMessages);
     if(first>0){TextView earlier=historyButton("Lihat pesan sebelumnya",()->{visibleMessages+=40;renderConversation();});thread.addView(earlier);}
     for(int i=first;i<messages.length();i++){
