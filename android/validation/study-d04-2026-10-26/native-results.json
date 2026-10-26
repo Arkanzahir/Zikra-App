@@ -1,0 +1,27 @@
+[
+  {
+    "name": "native-d04-offline",
+    "passed": true,
+    "tests": 13
+  },
+  {
+    "name": "native-academic-regression",
+    "passed": true,
+    "tests": 7
+  },
+  {
+    "name": "native-inexact-alarm",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "native-editor-200",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "native-notification-denied",
+    "passed": true,
+    "tests": 1
+  }
+]

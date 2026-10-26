@@ -490,3 +490,54 @@ UI04/F03/G dan publik belum ditutup menyeluruh. C01/C03/C05/C06/C08/C09 selesai
 sesuai lingkup; C02 laptop mati, C04/D04 dan C07 tetap terbuka. B01 masih menunggu
 klarifikasi sumber; email tidak diperiksa/dikirim ulang. D04 yang disisihkan tetap
 ada pada arsip privat; jangan mencampurkannya ke build AI atau menyebutnya selesai.
+
+## Checkpoint terbaru — D04 dilanjutkan dan selesai beta1.9.9
+
+26 Oktober2026: pengguna meminta eksekusi berikutnya dengan caveman. Arsip D04
+28 berkas dipulihkan setelah hash/base diperiksa; baseline AI Seimbang tetap.
+Runtime `a743bb20516b21fc3244d97da7b3253ad5c3e138`, harness akhir
+`2edb00468f3183e6f158bfc4c4dc1db1cb6fd9c3`.
+[Bukti/source/hash/percobaan/batas](android/validation/study-d04-2026-10-26/README.md).
+
+D04[x]: jenjang SMP/SMA/Mahasiswa/Umum opsional di onboarding/Study/Profil,
+istilah dan SKS lokal; tugas mapel/prioritas/urutan tenggat/kalender; jadwal
+mingguan dengan ruang/pengajar, bentrok/revisi/batas64; ringkasan kelas di Home;
+alarm H-15/H-30 dan tenggat H-1/Hari-H opt-in. Maksimal128 alarm tenggat aktif,
+sisanya tetap tersimpan/dipromosi. Izin exact opsional dengan fallback inexact
+dan penjelasan penundaan. Notifikasi membuka hari kelas yang tepat.
+SQLite utama5/chat1/jadwal2; migrasi aditif, tidak reset data.
+
+APK lokal **D:\Download\Zikra-App-main\Zikra-Study-v1.9.9-beta-debug.apk**,
+**37.084.364byte**, SHA256
+`ba410d6c3484f41c9d0092841e08c132da26c53ece57e9570dce9b5f07cf5e26`.
+Signer debug sama dengan1.9.8, di bawah100MB. APK1.9.7/1.9.8 tetap.
+Ini paket uji lokal, belum dipasang HP atau rilis publik.
+
+123 unit lulus/4 skip; lint0 error/773 warning. Native akhir23 eksekusi/22
+metode unik lulus, termasuk AlarmManager nyata tanpa jaringan untuk tenggat dan
+dua lead kelas. Observasi terakhir22943ms untuk tiga notifikasi; bukan jaminan
+latensi umum. H-1/Hari-H memakai delivery terkontrol/aturan kalender, bukan
+menunggu satu hari nyata. Timer background/pause/recreation, progres nyata,
+migrasi v4 dan jadwal v1 berisi, perubahan kota/zona, stale/duplikat/kapasitas,
+fallback exact ditolak, notifikasi ditolak dan editor200% diperiksa.
+Percobaan sebelumnya gagal karena salah tombol kalender di skrip, assertion
+focusReset tersembunyi pada tes lama, dan timeout observasi alarm80detik.
+Putaran akhir mencatat tiap observasi dengan jendela180detik; tidak mengubah
+kebijakan runtime atau menetapkan penyebab timeout sebagai fakta.
+
+Sepuluh berkas baseline emulator ternyata0byte; dipulihkan cocok hash. Jangan
+memakai preservasi tersebut sebagai bukti upgrade data nyata HP. Kasus migrasi
+positif memakai SQLite sintetis berisi. Izin/jaringan/font/IME/wake/ukuran/tema
+dikembalikan dan diverifikasi, helper dihapus, emulator ditutup. HP tidak dipakai.
+Audit nilai rahasia yang dikenal source/evidence/APK nol temuan. WIP
+PROJECT_HANDOFF.md, stash/arsip audio, env, logo/art dan source AiActivity sama.
+Cadangan/draf asli tetap .local/study-d04/; arsip/log setiap percobaan terpisah
+di .local/study-d04-resume-20261026/. Jangan menimpa data asli dengan fixture.
+
+Berikutnya **C04**: preview/opt-in/minimisasi konteks jenjang/jadwal kelas,
+review tindakan AI dengan metadata baru, hosting end-to-end dan telaah Tadabbur
+yang tersisa. Jadwal belum dikirim ke AI. Tidak otomatis memulai kerja C lain
+atau menandai seluruh C selesai. C02 HP saat laptop mati, C07 cakupan lampiran,
+B01 sumber, D02/D02a adzan/jeda fokus, E/F/G dan publik tetap terbuka.
+Email tidak diperiksa/dikirim; hosting/provider/billing tidak diubah. Checkpoint
+kerja AI/D04 tersimpan lokal; **belum dipush** setelah5cdba1a.

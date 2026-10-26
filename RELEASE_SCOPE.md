@@ -87,3 +87,10 @@ privat dan batas installer dibuktikan. Ini menggantikan status antrean C09/Gemin
 sebagai kandidat di atas. [Bukti dan batas](android/validation/image-generation-2026-10-26/README.md).
 Tidak mengaktifkan billing atau menambah Worker/hosting/database baru. Pengujian
 pemilih tujuan/share app di HP tetap G02; C lain dan rilis publik belum ditutup.
+
+**26 Oktober2026, beta1.9.9:** D04 selesai untuk implementasi/uji beta jadwal
+akademik lokal, jenjang/istilah/SKS, prioritas/deadline, alarm kelas dan tenggat,
+serta regresi timer/progres nyata. [Bukti dan batas](android/validation/study-d04-2026-10-26/README.md).
+HP/Doze/reboot/vendor tetap G02, jeda fokus karena adzan tetap D02/D02a;
+konteks jadwal ke AI tetap C04 dengan opt-in. Tidak menutup publik, C02/C07/B01
+atau menganggap preservasi baseline emulator kosong sebagai upgrade data HP.

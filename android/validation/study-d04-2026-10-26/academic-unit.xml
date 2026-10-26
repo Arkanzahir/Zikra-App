@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.study.AcademicScheduleTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-26T14:46:19" hostname="LAPTOP-C0PN7S52" time="0.008">
+  <properties/>
+  <testcase name="deadlineStagesUseLocalDayAndNeverAlertBeforeTheirTrigger" classname="com.zikra.app.study.AcademicScheduleTest" time="0.001"/>
+  <testcase name="nextWeeklyReminderUsesCityClockAndRollsOnlyAfterTheLeadPasses" classname="com.zikra.app.study.AcademicScheduleTest" time="0.002"/>
+  <testcase name="overlapsRejectOnlyIntersectingTimesOnTheSameDay" classname="com.zikra.app.study.AcademicScheduleTest" time="0.0"/>
+  <testcase name="midnightLeadAndZoneChangesKeepTheClassDay" classname="com.zikra.app.study.AcademicScheduleTest" time="0.001"/>
+  <testcase name="rejectsInvalidDaysRangesLeadAndControlCharacters" classname="com.zikra.app.study.AcademicScheduleTest" time="0.001"/>
+  <testcase name="orderingPrioritizesDeadlineThenPriorityWithStableIds" classname="com.zikra.app.study.AcademicScheduleTest" time="0.002"/>
+  <testcase name="earlyDeadlineUsesMidnightAndDstDayIsNotAssumedToBe24Hours" classname="com.zikra.app.study.AcademicScheduleTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

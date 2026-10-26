@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-26",
+  "versionName": "1.9.9",
+  "versionCode": 36,
+  "sourceCommit": "2edb00468f3183e6f158bfc4c4dc1db1cb6fd9c3",
+  "artifact": "Zikra-Study-v1.9.9-beta-debug.apk",
+  "bytes": 37084364,
+  "sha256": "ba410d6c3484f41c9d0092841e08c132da26c53ece57e9570dce9b5f07cf5e26",
+  "initialDownloadBelow100000000Bytes": true,
+  "schema": {
+    "main": 5,
+    "chat": 1,
+    "weeklyClasses": 2
+  },
+  "signing": "debug; verified, same certificate as 1.9.8",
+  "unit": {
+    "tests": 127,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 773
+  },
+  "nativePhases": [
+    {
+      "name": "native-d04-offline",
+      "passed": true,
+      "tests": 13
+    },
+    {
+      "name": "native-academic-regression",
+      "passed": true,
+      "tests": 7
+    },
+    {
+      "name": "native-inexact-alarm",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "native-editor-200",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "native-notification-denied",
+      "passed": true,
+      "tests": 1
+    }
+  ],
+  "nativeExecutions": 23,
+  "nativeUniqueMethods": 22,
+  "physicalPhoneModified": false,
+  "providerRequests": false,
+  "actualOfflineAlarmDelivery": true,
+  "screenshots": {
+    "native/native-academic-regression-AcademicDeadlineDraft.png": "1213adbd4ea0a0f65fa9049fa9c7809f29052c20d2c8976a94acfb4d686a869e",
+    "native/native-academic-regression-AcademicFocusPaused.png": "f75872288a922f4205ddcc81016281ca3fcec3c282da1867d3f72474514b6c61",
+    "native/native-academic-regression-AcademicFocusRunning.png": "92d8460a2dff46363812e2aae4c361929209244fbc94431b8d3fce228bca7599",
+    "native/native-academic-regression-AcademicStudyWithDeadline.png": "0e4ca612608a99c970a998c96a6e839db4eebc86338a385439356fdf068113c0",
+    "native/native-d04-offline-D04-calendar-priority-100.png": "abb21ed16970afd1b05ddc289bf3a0c4be322da3c62ad21c2a2987c1eace2783",
+    "native/native-d04-offline-D04-college-credits-100.png": "fb360c28917eba1b39606391f635f0ab0635e8cb08dcac31d4f0c89d47c61908",
+    "native/native-d04-offline-D04-home-summary-100.png": "37a82f8b7c2a127f9cbf9ced5626e142c02fc1482c95687b71787e52149b9379",
+    "native/native-d04-offline-D04-weekly-conflict-100.png": "45b867176703769fb9022a72ab21f297b1f13ac25c6f0f170595f5a9b4539b71",
+    "native/native-d04-offline-D04-weekly-list-100.png": "412326d536ee025c9de92abbdde81e7d2593914730269225219079d962028531",
+    "native/native-editor-200-D04-weekly-conflict-200.png": "fa538d7d6c59961b856545e9c128853a281d81eababdd5dc5f27154438cbae6d",
+    "native/native-editor-200-D04-weekly-list-200.png": "b082adf5618c5b969e7ba79328b8c2f64fd02911672b8ffb6062abd65e8667f3",
+    "native/native-inexact-alarm-D04-inexact-permission-100.png": "8150729f18d86f752daed8cd0491200b7fc77d72dd35a07b1bbbffcc79e4f195",
+    "native/native-notification-denied-D04-permission-denied-100.png": "e3949c747608618c657c547a8d0a3658bb320e7ad37c49a04a3e234fdb678cdf"
+  },
+  "notClosed": [
+    "C02 laptop-off phone test",
+    "C04 AI class context",
+    "C07 full attachment validation",
+    "B01 source clarification",
+    "D02/D02a adzan and focus pause",
+    "F/G/public release"
+  ],
+  "certificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "runtimeSourceCommit": "a743bb20516b21fc3244d97da7b3253ad5c3e138"
+}

@@ -1,0 +1,30 @@
+{
+  "attempts": [
+    {
+      "source": "a3fd378",
+      "result": "failed in harness at calendar method after two successful methods",
+      "reason": "Script clicked the date label instead of the calendar action; fixed to use real action and assert picker exists",
+      "preserved": true
+    },
+    {
+      "source": "16ceba3",
+      "result": "12 new native methods passed; regression stopped after four passes",
+      "reason": "Legacy accessibility test expected hidden focusReset to be a touch target; now checks visible focusEnd. Conflict message also scrolled into view after screenshot review",
+      "preserved": true
+    },
+    {
+      "source": "a743bb2",
+      "result": "12 of 13 new methods passed; actual alarm observation exceeded the 80 second class timeout",
+      "reason": "Timeout alone does not identify the cause. Android documents allow-while-idle batching; the retry records each observation and permits 180 seconds without changing the runtime alarm policy",
+      "preserved": true
+    },
+    {
+      "source": "2edb00468f3183e6f158bfc4c4dc1db1cb6fd9c3",
+      "result": "all final phases passed",
+      "tests": 23,
+      "preserved": true
+    }
+  ],
+  "initialSetup": "First emulator lookup occurred before app availability; no data isolation or fixture mutation occurred before failure. APK installed before snapshot on the subsequent attempt.",
+  "baselineEmptyFiles": "All ten baseline non-cache emulator files were zero bytes. Equality checks protect that captured baseline; positive migration tests use populated synthetic SQLite records and do not prove an update on a real user phone."
+}
