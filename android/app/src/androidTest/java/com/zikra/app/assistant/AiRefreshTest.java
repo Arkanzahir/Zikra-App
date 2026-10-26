@@ -152,7 +152,9 @@ public final class AiRefreshTest extends InstrumentationTestCase {
     assertEquals(0,rows().length());UiEvidence.capture(getInstrumentation(),"AI198-attachments");
     ui(attachments::cancel);assertEquals("Draf sintetis tetap di perangkat",((EditText)activity.findViewById(R.id.aiInput)).getText().toString());
     ui(()->activity.findViewById(R.id.toolbarBack).performClick());
-    assertNotNull(activity.findViewById(R.id.aiHistoryOverlay));UiEvidence.capture(getInstrumentation(),"AI198-history");
+    assertNotNull(activity.findViewById(R.id.aiHistoryOverlay));
+    if(Build.VERSION.SDK_INT>=30){boolean dark=(activity.getResources().getConfiguration().uiMode&android.content.res.Configuration.UI_MODE_NIGHT_MASK)==android.content.res.Configuration.UI_MODE_NIGHT_YES;int light=activity.getWindow().getInsetsController().getSystemBarsAppearance()&WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS;assertEquals("History retains status bar contrast",dark?0:WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,light);}
+    UiEvidence.capture(getInstrumentation(),"AI198-history");
     ui(()->call("closeHistory"));assertEquals(0,rows().length());
     assertEquals("Draf sintetis tetap di perangkat",((EditText)activity.findViewById(R.id.aiInput)).getText().toString());
     ui(()->((EditText)activity.findViewById(R.id.aiInput)).setText(""));UiEvidence.capture(getInstrumentation(),"AI198-welcome");

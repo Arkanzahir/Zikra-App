@@ -86,9 +86,7 @@ public final class AiActivity extends BaseActivity {
     findViewById(R.id.aiClear).setOnClickListener(v->newConversation());
     getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     getWindow().setStatusBarColor(getColor(R.color.ai_refresh_surface));
-    boolean dark=(getResources().getConfiguration().uiMode&android.content.res.Configuration.UI_MODE_NIGHT_MASK)==android.content.res.Configuration.UI_MODE_NIGHT_YES;
-    getWindow().setNavigationBarColor(getColor(R.color.ai_refresh_surface));
-    getWindow().getDecorView().setSystemUiVisibility(dark?0:View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR|View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+    updateSystemBars();
     preferences=getSharedPreferences("zikra_preferences",MODE_PRIVATE);
     connection=new com.zikra.app.assistant.AssistantConnection(this);
     routingMode=preferences.getString("assistant_mode_v2",connection.configured()&&!connection.online()?"offline":"auto");
@@ -238,6 +236,21 @@ public final class AiActivity extends BaseActivity {
   private void configureVoiceAvailability() {
     boolean available=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).resolveActivity(getPackageManager())!=null;
     findViewById(R.id.aiVoice).setVisibility(available?View.VISIBLE:View.GONE);
+  }
+
+  private void updateSystemBars() {
+    boolean dark=(getResources().getConfiguration().uiMode&android.content.res.Configuration.UI_MODE_NIGHT_MASK)==android.content.res.Configuration.UI_MODE_NIGHT_YES;
+    getWindow().setStatusBarColor(getColor(R.color.ai_refresh_surface));
+    getWindow().setNavigationBarColor(getColor(R.color.ai_refresh_surface));
+    if(android.os.Build.VERSION.SDK_INT>=30){
+      android.view.WindowInsetsController controller=getWindow().getInsetsController();
+      if(controller!=null){int mask=android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS|android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS;controller.setSystemBarsAppearance(dark?0:mask,mask);}
+    }else getWindow().getDecorView().setSystemUiVisibility(dark?0:View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR|View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+  }
+
+  @Override public void onWindowFocusChanged(boolean focused) {
+    super.onWindowFocusChanged(focused);
+    if(focused)updateSystemBars();
   }
 
 
@@ -422,7 +435,7 @@ public final class AiActivity extends BaseActivity {
     };
     search.addTextChangedListener(new android.text.TextWatcher(){public void beforeTextChanged(CharSequence text,int start,int count,int after){}public void onTextChanged(CharSequence text,int start,int before,int count){update.run();}public void afterTextChanged(android.text.Editable text){}});
     findViewById(R.id.aiPage).setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
-    panel.setFocusableInTouchMode(true);pageRoot.addView(overlay,new FrameLayout.LayoutParams(-1,-1));panel.requestFocus();update.run();
+    panel.setFocusableInTouchMode(true);pageRoot.addView(overlay,new FrameLayout.LayoutParams(-1,-1));panel.requestFocus();update.run();overlay.post(this::updateSystemBars);
   }
 
   private void showChatActions(String id,String title) {
