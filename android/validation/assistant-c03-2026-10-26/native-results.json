@@ -1,0 +1,25 @@
+{
+  "executions": 19,
+  "uniqueMethods": 17,
+  "methods": [
+    "com.zikra.app.assistant.AiRefreshTest#testAutoNetworkChangeNeverUploadsDraft",
+    "com.zikra.app.assistant.AssistantConnectivityTest#testAbsentAndEmptyCapabilitiesDoNotCountAsInternet",
+    "com.zikra.app.assistant.AssistantConnectivityTest#testBackgroundCancelsWithoutAppendingLateReply",
+    "com.zikra.app.assistant.AssistantConnectivityTest#testBodyReadFailuresStayDistinctFromMalformedReply",
+    "com.zikra.app.assistant.AssistantConnectivityTest#testCallDeadlineShowsTimeoutAndRetryNeedsFreshConsent",
+    "com.zikra.app.assistant.AssistantConnectivityTest#testGatewayValidationAndSaveSuppressOldReply",
+    "com.zikra.app.assistant.AssistantConnectivityTest#testManualModesPersistAndDoNotUploadDraft",
+    "com.zikra.app.assistant.AssistantConnectivityTest#testModeChangeCancelsPendingReplyAndKeepsRetry",
+    "com.zikra.app.assistant.AssistantConnectivityTest#testUnvalidatedWifiAndRecoveryNeverUploadDraft",
+    "com.zikra.app.assistant.AssistantIntegrationTest#testActualReviewDoesNotSaveUntilConfirmedAndDoubleTapDoesNotDuplicate",
+    "com.zikra.app.assistant.AssistantIntegrationTest#testActualScreenLoadingCancelRetryAndOnlineLabel",
+    "com.zikra.app.assistant.AssistantIntegrationTest#testCancellationSuppressesLateNativeCallback",
+    "com.zikra.app.assistant.AssistantIntegrationTest#testConsentDefaultsCancelAndVoiceResultsRemainDrafts",
+    "com.zikra.app.assistant.AssistantIntegrationTest#testNativeClientMapsSuccessAuthQuotaTimeoutServerAndMalformedWithoutFallback",
+    "com.zikra.app.assistant.AssistantIntegrationTest#testVersionThreeUpgradeAndReviewedActionsAreAtomicOnceAndRejectStaleOrCompletedTasks",
+    "com.zikra.app.assistant.ImageGenerationTest#testImageComposerAtLargeTextHasWholeSendAndAttachmentTargets",
+    "com.zikra.app.assistant.ImageGenerationTest#testQuotaCancelAndNewChatSuppressLateImage"
+  ],
+  "providerInferenceCalls": 0,
+  "physicalPhoneTested": false
+}

@@ -1,0 +1,77 @@
+{
+  "method": "Android NetworkMonitor localhost validation URLs, following AOSP CTS; synthetic probe service, actual Android capabilities/callbacks",
+  "scenarios": [
+    {
+      "scenario": "CAPTIVE_PORTAL",
+      "nativePassed": true,
+      "recoveryTriggered": true
+    },
+    {
+      "scenario": "UNVALIDATED",
+      "nativePassed": true,
+      "recoveryTriggered": true
+    }
+  ],
+  "probes": [
+    {
+      "mode": "CAPTIVE_PORTAL",
+      "path": "/http"
+    },
+    {
+      "mode": "CAPTIVE_PORTAL",
+      "path": "/https"
+    },
+    {
+      "mode": "CAPTIVE_PORTAL",
+      "path": "/http"
+    },
+    {
+      "mode": "CAPTIVE_PORTAL",
+      "path": "/https"
+    },
+    {
+      "mode": "CAPTIVE_PORTAL",
+      "path": "/https"
+    },
+    {
+      "mode": "CAPTIVE_PORTAL",
+      "path": "/http"
+    },
+    {
+      "mode": "UNVALIDATED",
+      "path": "/http"
+    },
+    {
+      "mode": "UNVALIDATED",
+      "path": "/https"
+    },
+    {
+      "mode": "UNVALIDATED",
+      "path": "/fallback"
+    },
+    {
+      "mode": "UNVALIDATED",
+      "path": "/https"
+    },
+    {
+      "mode": "UNVALIDATED",
+      "path": "/http"
+    },
+    {
+      "mode": "UNVALIDATED",
+      "path": "/fallback"
+    },
+    {
+      "mode": "UNVALIDATED",
+      "path": "/https"
+    },
+    {
+      "mode": "UNVALIDATED",
+      "path": "/http"
+    },
+    {
+      "mode": "UNVALIDATED",
+      "path": "/fallback"
+    }
+  ]
+}

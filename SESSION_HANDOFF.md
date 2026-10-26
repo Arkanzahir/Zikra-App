@@ -286,3 +286,30 @@ C01/C05/C08/C09 selesai hanya lingkupnya. C02/C03/C04/C06/C07, sumber Hadis B01,
 adzan D02a, UI04 keseluruhan/F/G dan publik tetap terbuka. Jangan menyebut semua C
 selesai. Tidak memakai Gemini atau mengaktifkan billing. Checkpoint lokal sampai
 push dibuktikan; jangan mengulang hosting/proyek dari nol atau mencetak env privat.
+
+## Checkpoint terbaru — C03 selesai, lanjut C06 di HP
+
+26 Oktober2026: C03[x], beta1.9.7/code34, source `249b523` lokal.
+[Bukti/receipt/source/hash](android/validation/assistant-c03-2026-10-26/README.md).
+Mode/koneksi/batal/timeout/retry, Wi-Fi tanpa VALIDATED dan portal Android nyata
+(probe localhost AOSP), font200%/layar sempit/keyboard lulus19 eksekusi native/
+17 metode unik;116 unit lulus/4 skip,lint0 error/753 warning.10 berkas emulator dan
+pengaturan pulih, helper dihapus/emulator ditutup. WIP/env/stash/audio/aset tetap.
+APK `Zikra-AI-v1.9.7-beta-debug.apk` di folder luar,37.218.400 byte;
+SHA256 `686101f643a13b49ec9ff05623a8b52c8ea3e9f2f1689763ee24ee7d952ea833`.
+Signer debug sama; SQLite utama4/chat1. Backend tidak diubah/deploy ulang.
+
+Pengguna meminta eksekusi berurutan dengan clean code/security, lalu mengonfirmasi
+HP terhubung/terbuka. Read-only probe menemukan satu HP API36, APK lama code26 dan
+recognizer tersedia.12 berkas asli dicadangkan privat ke `.local/phone-c06/`;
+`original.tar`/`original-hashes.json`/`device-private.json` tidak boleh dicetak atau
+masuk Git. HP belum diisolasi, belum dipasang APK baru, belum dites mikrofon pada
+checkpoint ini. Jangan menganggap backup lama C05 sebagai keadaan HP terkini.
+Aktif berikutnya C06: cadangan baru diverifikasi dahulu, tidak mengunggah profil/
+percakapan asli. Bukti mic harus recognizer/mikrofon nyata, bukan callback simulasi.
+
+C01/C03/C05/C08/C09 selesai sesuai lingkup. C02/C04/C06/C07 tetap terbuka;
+C04 mengikuti D04. B01 diperiksa26 Oktober melalui Gmail: thread masih hanya email
+terkirim24 Oktober; pencarian termasuk spam/sampah tidak menemukan balasan domain
+Gading. Tidak mengirim follow-up baru atau memasukkan ID Gmail ke Git.
+Memori permanen masih usulan; D02a/UI04/F/G dan rilis publik belum selesai.
