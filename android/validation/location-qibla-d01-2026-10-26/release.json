@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-26",
+  "versionName": "1.9.10",
+  "versionCode": 37,
+  "sourceCommit": "292deb862cf6f45e0a171a5305206fd670caa0e5",
+  "artifact": "Zikra-Core-v1.9.10-beta-debug.apk",
+  "bytes": 36704401,
+  "sha256": "70ea2a5d8736b7069b694395b19d7e07820f7258f0a38ac008e80a456988967c",
+  "initialDownloadBelow100000000Bytes": true,
+  "certificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "signing": "debug; verified, same certificate as 1.9.9",
+  "schema": {
+    "main": 5,
+    "chat": 1,
+    "weeklyClasses": 2
+  },
+  "unit": {
+    "tests": 134,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 770
+  },
+  "native": [
+    {
+      "name": "native-d01-offline",
+      "passed": true,
+      "tests": 5
+    },
+    {
+      "name": "native-large-text",
+      "passed": true,
+      "tests": 1
+    }
+  ],
+  "nativeExecutions": 6,
+  "nativeUniqueMethods": 5,
+  "physicalPhoneModified": false,
+  "providerRequests": false,
+  "D01Complete": false,
+  "reasonOpen": "Physical sensor heading, rotation, calibration and real GPS/approximate permission behavior still need a phone",
+  "screenshots": {
+    "native/native-d01-offline-D01-accuracy-low-100.png": "cf3b1c7b889075dbdd93d9c0537935899242ec2e346b7b26349f47dce9456503",
+    "native/native-d01-offline-D01-calibration-100.png": "924d7dfd36335b19dddae85874721eedc2702c5b30f89712d819b2eea4a6d88b",
+    "native/native-d01-offline-D01-missing-static-100.png": "0f86be0941573dd889e3ec5fbc2ea7bead4a0fe32495867bbd062ec431825ef5",
+    "native/native-d01-offline-D01-prayer-wit-100.png": "b1a641862bae44d5c41d29407351d4c1ad541d68d20a75ddf7281bfb75f9f1fd",
+    "native/native-d01-offline-D01-stale-static-100.png": "3ced58ba8ab054c16978f3db651917461aca22ab67d1546a1b066f68f6682b41",
+    "native/native-d01-offline-D01-week-restored-100.png": "f9b017f6adde7c08497fce86dc7650f72c1aef40efe2aada5602142dfac543cd",
+    "native/native-large-text-D01-calibration-200.png": "35472161d9021b69785a914766341896298f8b491eb99383c2a44257f1d6f214",
+    "native/native-large-text-D01-missing-static-200.png": "e6fa3a2bbd3c92aa7a826598da5687e29e5930e0d3b08629b0e79c34158889fb"
+  }
+}

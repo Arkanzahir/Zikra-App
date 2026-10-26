@@ -1,0 +1,12 @@
+[
+  {
+    "name": "native-d01-offline",
+    "passed": true,
+    "tests": 5
+  },
+  {
+    "name": "native-large-text",
+    "passed": true,
+    "tests": 1
+  }
+]

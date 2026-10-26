@@ -541,3 +541,54 @@ atau menandai seluruh C selesai. C02 HP saat laptop mati, C07 cakupan lampiran,
 B01 sumber, D02/D02a adzan/jeda fokus, E/F/G dan publik tetap terbuka.
 Email tidak diperiksa/dikirim; hosting/provider/billing tidak diubah. Checkpoint
 kerja AI/D04 tersimpan lokal; **belum dipush** setelah5cdba1a.
+
+## Checkpoint terbaru — pengguna memprioritaskan bagian D; D01 masih parsial
+
+26 Oktober2026: pengguna bertanya bagian D yang belum dan meminta eksekusi.
+Prioritas beralih dari C04 ke D01. D04 tetap[x]; D01/D02/D02a/D03/D05/D06[ ].
+Source `292deb862cf6f45e0a171a5305206fd670caa0e5`, beta1.9.10/code37.
+[Bukti dan gerbang tersisa](android/validation/location-qibla-d01-2026-10-26/README.md).
+
+CompassReading menjaga timestamp monotonic/umur3detik, invalid/low-accuracy/tilt
+serta urutan sampel. Watchdog500ms membatalkan sejajar ketika event berhenti;
+callback akurasi rendah langsung menghapus alignment. Diagram statis dilabeli
+jelas. Resume menunggu bacaan baru, pause melepas sensor/handler, dialog kalibrasi
+ditutup saat Activity hancur. View menolak heading non-finite. Batas45derajat
+kemiringan adalah kebijakan UI yang masih memerlukan review sensor HP/vendor.
+
+Jadwal salat dibandingkan dengan Astral3.2 pada45 tanggal-kota/270 peristiwa:
+261 waktu dalam toleransi2menit dan9 peristiwa tidak tersedia cocok. Bukan
+jadwal resmi Kemenag atau model astronomi sepenuhnya independen. Bug Ashar kutub
+ketika matahari tidak melewati horizon positif kini menghasilkan—. Oracle awal
+juga dirapikan agar deklinasi dievaluasiUTC dan memeriksa keberadaan matahari;
+kesalahan lokasi kerja generator awal dicatat. Metode20/18/shadow1/ihtiyati tetap.
+Generator/fixture/hash/rujukan primer tersimpan pada bukti; Astral hanya dependency
+verifikasi privat, tidak masuk APK.
+
+130 unit lulus/4 skip, lint0 error/770 warning. Native5 metode/6 eksekusi lulus:
+izin fine/coarse benar-benar ditolak dan Wi-Fi/data mati tetapi tiga kota manual
+tersimpan/recreate dan Home/Prayer/Qibla konsisten; kalender/pekan pulih; akurasi
+rendah/tilt/invalid/watchdog dan kalibrasi font100%/200% diperiksa. Input heading
+native terkontrol, sensor hilang dipaksa pada fixture; tidak mengklaim kalibrasi
+atau arah fisik. HP tidak terhubung/tidak disentuh; jangan menutup D01.
+
+APK **D:\Download\Zikra-App-main\Zikra-Core-v1.9.10-beta-debug.apk**,
+**36.704.401byte**, SHA256
+`70ea2a5d8736b7069b694395b19d7e07820f7258f0a38ac008e80a456988967c`.
+Debug signer sama, SQLite utama5/chat1/jadwal2, belum dipasang HP/publik.
+APK1.9.7/1.9.8/1.9.9 tetap. WIP PROJECT_HANDOFF.md/stash/arsip/env/AI/aset tetap
+cocok hash; audit nilai rahasia dikenal source/evidence/APK nol temuan, payload
+uji D01 tidak dikemas. Konfigurasi provider/hosting/billing tidak diubah.
+
+Baseline emulator10 berkas semuanya0byte dipulihkan cocok hash, bukan bukti
+upgrade data berisi pada HP. Izin fine/coarse/notifikasi/exact, jaringan,
+font/IME/wake/tema/ukuran dipulihkan dan diverifikasi; helper dihapus/emulator
+tertutup. Cadangan/log/draft di .local/d01-20261026/, jangan menimpa asli.
+
+D01 tersisa HP untuk GPS/approximate, akurasi arah/kalibrasi/magnet dan empat
+rotasi. Pengguna sebelumnya memilih lanjut tanpa HP; jangan meminta sambung
+berulang. Bagian D yang belum: D01, D02/D02a adzan/pilihan mode/jeda fokus,
+D03 Quran/audio, D05 Hifz/jurnal, D06 migrasi menyeluruh. Persiapan independen
+berikutnya D02/D02a; D01 tetap menunggu pembuktian HP, bukan centang selesai.
+C02 laptop mati/C04/C07/B01/E/F/G/publik tetap terbuka, email tidak diperiksa/
+dikirim. Seluruh checkpoint baru masih lokal; belum push setelah5cdba1a.

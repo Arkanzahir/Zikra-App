@@ -1,0 +1,20 @@
+{
+  "referenceImplementation": "Astral 3.2",
+  "independentImplementationNotIndependentAstronomicalModel": true,
+  "officialTimetable": false,
+  "cities": 9,
+  "sampleDays": 45,
+  "eventsChecked": 270,
+  "finiteReferenceEvents": 261,
+  "missingEventsChecked": 9,
+  "toleranceMinutes": 2,
+  "fixtureSha256": "4f3712ae1fb4ec57191ffeb4bf72bb48a735f3b57c891c6e06304bfd6a8fda6e",
+  "generatorSha256": "c17432cec4645f5a516df7f024f83d5e147394d595bb635b6a6a233be62ed8f5",
+  "astralSunSourceSha256": "7d06eded37ac53062b70a2c764248132dbf44f97aca5095edeefc05e0d302e23",
+  "applicationMethod": "Sea level, geometric altitudes -20/-0.833/noon/Asr shadow1/-0.833/-18; ceil minute, +2 except sunrise",
+  "sources": [
+    "https://gml.noaa.gov/grad/solcalc/calcdetails.html",
+    "https://astral.readthedocs.io/en/latest/package.html#astral.sun.time_at_elevation"
+  ],
+  "initialFailure": "Polar-winter Asr appeared below the geometric horizon. App now returns missing when solar noon cannot produce a positive shadow altitude. Generator also checks above-horizon existence and evaluates declination in UTC."
+}

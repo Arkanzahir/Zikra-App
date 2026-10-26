@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.zikra.app.PrayerReferenceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-26T15:29:34" time="0.028">
+  <properties />
+  <testcase name="matchesSeparateAstralImplementationAcrossCitiesSeasonsAndLeapDay" classname="com.zikra.app.PrayerReferenceTest" time="0.028" />
+  <system-out />
+  <system-err />
+</testsuite>

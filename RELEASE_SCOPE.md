@@ -94,3 +94,9 @@ serta regresi timer/progres nyata. [Bukti dan batas](android/validation/study-d0
 HP/Doze/reboot/vendor tetap G02, jeda fokus karena adzan tetap D02/D02a;
 konteks jadwal ke AI tetap C04 dengan opt-in. Tidak menutup publik, C02/C07/B01
 atau menganggap preservasi baseline emulator kosong sebagai upgrade data HP.
+
+**26 Oktober2026, beta1.9.10:** D01 masih parsial. Guard kepercayaan sensor Kiblat
+serta Ashar kutub diperbaiki dan diuji emulator/rujukan hitungan; sensor/GPS/arah
+fisik masih memerlukan HP. [Bukti/batas](android/validation/location-qibla-d01-2026-10-26/README.md).
+Tidak menutup D01 atau D02/D02a/D03/D05/D06/publik dan tidak mengubah jadwal
+menjadi feed resmi Kemenag. Prioritas terbaru pengguna mengarah bagian D.
