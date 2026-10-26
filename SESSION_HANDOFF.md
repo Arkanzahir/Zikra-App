@@ -592,3 +592,13 @@ D03 Quran/audio, D05 Hifz/jurnal, D06 migrasi menyeluruh. Persiapan independen
 berikutnya D02/D02a; D01 tetap menunggu pembuktian HP, bukan centang selesai.
 C02 laptop mati/C04/C07/B01/E/F/G/publik tetap terbuka, email tidak diperiksa/
 dikirim. Seluruh checkpoint baru masih lokal; belum push setelah5cdba1a.
+
+## Keputusan audio terbaru — Makkah
+
+Pengguna menolak kandidat Beautiful adhan (Adam-synagda) lalu memilih **adzan
+Makkah**. [Keputusan dan kandidat](design/concepts/adhan-audio-direction-2026-10-26.md).
+Ini memilih arah audio; belum memilih satu rekaman/nama muazin. Kandidat Commons
+Makkah2013 memiliki metadata CC BY3.0 dan preview, tetapi kualitas/kelengkapan
+belum didengar/dikunci. Jangan mengatribusikan muazin dari dugaan. Rekaman Subuh
+Makkah belum dipilih. Belum ada audio dimasukkan APK atau D02/D02a dicentang;
+APK tetap1.9.10/source292deb8. Tidak perlu build untuk catatan keputusan ini.
