@@ -1,0 +1,16 @@
+{
+  "scope": "operator tools/tests/workflow; unchanged Vercel runtime is not redeployed",
+  "sourceHashes": {
+    "backend/operations-health.mjs": "02e38a1fe9555675aa0c823abf1e0ff11576212969074a7b6f7579aea8c834d5",
+    "backend/operations-health.test.mjs": "ae1471a7309c9a1eb6832aed611695a7bc80ea71a458cfbbcfe8984fcd1735a2",
+    "backend/registry-backup.mjs": "15aa7c570d0a3ea1b4208761acb2009a8173aee37ec7846a40ce892b1e6c4d19",
+    "backend/registry-backup-admin.mjs": "c5308a0dd075852435cea7a4d23603391a7a01f7c77c1320e8c14d64dfb6ac89",
+    "backend/registry-backup.test.mjs": "9d264e4211eaaeb764fc0da698d693a81a7e8b2b9eb22b766202b65034621423",
+    "backend/test-support/redis-fixture.mjs": "ed1ae054a37212206493965a5cc34db90875d1033670990bd79909c95a0005ca",
+    "backend/vercel.test.mjs": "093e0b7002d8bd4aa1008eda8de90054160c6589fb56a3616bdac26cb23d488a",
+    "backend/.vercelignore": "941a503eb9b388fc0ead318c963eabb6668913723d8c2bf8f24ddbef8c988b3a",
+    "backend/vercel.json": "9a5a7299953b7008283f18ea95f6dee4ebb1b47639c13ea295ef9c8f86531bdf",
+    ".github/workflows/backend-health.yml": "ec6bf7e1cae17178867ac2ee08d8d169cb0ed78e14daf6bd1bff14efdaf71dab"
+  },
+  "sourceCommit": "12d0fffe1ceb3848d5457b92c50573dc3fe85858"
+}

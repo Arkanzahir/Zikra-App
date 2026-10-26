@@ -1,0 +1,18 @@
+{
+  "scope": "https-liveness-and-redis-authentication-no-inference",
+  "checkedAt": "2026-10-26T01:47:05.003Z",
+  "origin": "https://zikra-ai.vercel.app",
+  "liveness": {
+    "status": 200,
+    "passed": true,
+    "durationMs": 1198
+  },
+  "redisAccess": {
+    "status": 401,
+    "unknownCredentialDenied": true,
+    "durationMs": 1667
+  },
+  "inferenceChecked": false,
+  "credentialsRequired": false,
+  "passed": true
+}

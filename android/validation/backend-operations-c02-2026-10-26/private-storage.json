@@ -1,0 +1,6 @@
+{
+  "scope": "New operator backup/key/log directory only",
+  "aclRestrictedToOperatorSystemAdministrators": true,
+  "existingUserPrivateConfigAclChanged": false,
+  "secretValuesPublished": false
+}

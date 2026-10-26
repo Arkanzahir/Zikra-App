@@ -1,7 +1,9 @@
 # Vercel + Upstash — C02
 
 Keputusan pengguna 25 Oktober 2026: gunakan Vercel. Proyek `zikra-ai` telah dibuat
-di akun Hobby; backend disiapkan sebagai dua Vercel Functions Node 24.x.
+di akun Hobby; backend kini memakai empat entry function Node 24.x untuk health,
+assistant, capabilities dan images. [Runbook operasional/backup](OPERATIONS.md)
+memuat lanjutan26 Oktober; keberadaan workflow lokal bukan monitor yang sudah aktif.
 Status deployment dan bukti terbaru: [laporan C02](../../android/validation/backend-vercel-2026-10-25/README.md).
 Jangan menganggap proyek dibuat atau build berhasil sebagai hosting AI yang bekerja.
 
@@ -10,8 +12,9 @@ Jangan menganggap proyek dibuat atau build berhasil sebagai hosting AI yang beke
 Android → HTTPS Vercel `/v1/assistant` → Featherless. Provider key yang sudah ada
 tetap hanya dalam environment server; tidak dimasukkan ke Android/Git/image.
 `GET /health` hanya liveness minimal, bukan kesiapan Redis/model/kuota.
-Alias `/api/health` dan `/api/assistant` menuju fungsi yang sama; metode tetap
-dibatasi. Tidak membutuhkan domain berbayar, memakai subdomain `.vercel.app`.
+Alias `/api/health` dan `/api/assistant` menuju entry masing-masing; metode tetap
+dibatasi. Capabilities dan images mempunyai entry terpisah yang mematok path.
+Tidak membutuhkan domain berbayar, memakai subdomain `.vercel.app`.
 
 Vercel tidak memakai file registry/usage lokal. Redis menyimpan hash token,
 UUID instalasi/status dicabut, pemetaan UUID→hash, counter dan lease acak.
@@ -95,20 +98,31 @@ jangan menghapus registry untuk memaksa layanan kembali bekerja.
 
 ## Bukti sebelum menutup C02/C05
 
-- [ ] Resource Redis benar-benar Free; auto upgrade/eviction mati, konfigurasi
+- [x] Resource Redis benar-benar Free; auto upgrade/eviction mati, konfigurasi
   production terpisah dari preview. Tentukan backup/retensi dan prosedur pemulihan
-  tanpa menyalin raw token ke laporan.
+  tanpa menyalin raw token ke laporan. Diperiksa26 Oktober: Free/false dan secret
+  production-only melalui API; backup lokal AES-GCM serta drill Upstash nyata
+  lulus. Cadence/retensi30 hari adalah prosedur operator manual, bukan scheduler
+  backup aktif. [Bukti operasi](../../android/validation/backend-operations-c02-2026-10-26/README.md).
 - [x] Build/paket fungsi bersih; HTTPS endpoint nyata health 200, tanpa token 401,
   model nyata 200, token salah/dicabut 401 dan quota 429 tanpa bocoran respons.
   Terpenuhi 25 Oktober; [receipt HTTPS/akses](../../android/validation/backend-vercel-2026-10-25/README.md).
-- [ ] Quota/revokasi/lease lintas dua fungsi dan redeploy benar-benar bekerja
+- [x] Quota/revokasi/lease lintas dua fungsi dan redeploy benar-benar bekerja
   pada Redis/Vercel nyata; fixture Lua lokal saja belum cukup.
+  Bukti25 Oktober Redis/HTTPS/redeploy tetap berlaku; kode akses bersama tidak
+  berubah. Gambar C09 memiliki bukti dan batas tersendiri, bukan klaim seluruh
+  inferensi gambar sudah diuji paralel pada cloud.
 - [ ] Cancellation/timeout/retry dan pemulihan Redis/kuota diperiksa pada platform.
   Tinjau log/observability/retensi Vercel dan Upstash; jangan menyalakan pencatatan
   header Authorization, environment atau isi chat dalam tracing/log drain.
+  Cancel nyata26 Oktober: lease teramati, client abort dan pelepasan325ms sebelum
+  expiry55 detik, retry malformed400 tanpa inference kedua. Bukan jaminan biaya
+  provider dibatalkan; timeout provider/cloud panjang masih belum dibuktikan.
 - [ ] Pantau endpoint dan kegagalan layanan tanpa mencatat payload. Uji dari HP
   dengan laptop pengembang mati, lalu rantai APK → HTTPS → provider. C05 dan
   seluruh C tidak otomatis selesai ketika endpoint sudah tersedia.
+  Probe tokenless HTTPS+lookup Redis lulus; workflow GitHub disiapkan lokal,
+  belum aktif sebelum default branch menerima perubahan. HP/laptop mati belum.
 
 ## Uji lokal
 

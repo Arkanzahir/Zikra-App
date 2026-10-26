@@ -1,0 +1,8 @@
+{
+  "scope": "Vercel credential target metadata only; values never serialized",
+  "querySucceeded": true,
+  "credentialVariablesFound": 3,
+  "productionOnly": true,
+  "credentialValuesPublished": false,
+  "gitIntegrationConfigured": false
+}

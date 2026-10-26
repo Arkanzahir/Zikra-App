@@ -1,0 +1,15 @@
+{
+  "scope": "real-Vercel-client-abort-and-lease-release; laptop stays on",
+  "personalContextUploaded": false,
+  "syntheticPromptOnly": true,
+  "providerRequestMayHaveStarted": true,
+  "providerBillingCancellationGuaranteed": false,
+  "leaseObserved": true,
+  "releasedBeforeLeaseExpiry": true,
+  "retryInference": false,
+  "abortAt": "2026-10-26T02:10:11.687Z",
+  "fetchAborted": true,
+  "releaseObservedWithinMs": 325,
+  "explicitMalformedRetryStatus": 400,
+  "passed": true
+}

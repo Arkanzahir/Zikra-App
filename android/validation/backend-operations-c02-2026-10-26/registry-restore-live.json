@@ -1,0 +1,16 @@
+{
+  "scope": "real-Upstash-encrypted-registry-backup-and-isolated-restore",
+  "encryptedBackupBytes": 408,
+  "encryptedBackupSha256": "1cd3d28f55d68411a6e5a7affff48878692b2692ecebf4e282cf2638cca959d4",
+  "backupAuthenticated": true,
+  "originalRegistryModified": false,
+  "liveDeploymentSwitched": false,
+  "providerInferenceCalls": 0,
+  "targetCleanupConfirmed": true,
+  "sourceRegistryUnchanged": true,
+  "originalActiveCredentialStillValid": true,
+  "restoredCredentialDenied": true,
+  "currentDayImageQuotaSealed": true,
+  "restoredInstallations": 1,
+  "passed": true
+}

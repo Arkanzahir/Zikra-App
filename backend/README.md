@@ -7,13 +7,16 @@ melalui gateway privat lokal. Mode akses per instalasi, pencabutan dan kuota
 persisten tersedia di source, dengan [paket deploy](deploy/README.md).
 **Sudah dihosting di Vercel** pada `https://zikra-ai.vercel.app` dengan Upstash Free;
 [bukti HTTPS/provider/akses/redeploy](../android/validation/backend-vercel-2026-10-25/README.md).
-Endpoint Android `/v1/assistant`, health `/health`. Rantai APK dari HP belum dibuktikan.
+Endpoint Android `/v1/assistant`, health `/health`. Rantai APK1.8.1 dari HP sudah
+[dibuktikan pada C05](../android/validation/assistant-phone-2026-10-25/README.md);
+APK1.9.7/C03 mempunyai [bukti emulator terarah](../android/validation/assistant-c03-2026-10-26/README.md).
 [Runbook Vercel](deploy/VERCEL.md) menjadi jalur aktif; paket Docker/VPS tetap alternatif.
 Pengguna memilih Vercel dan memakai key yang sudah ada. Syarat
 rotasi dibatalkan sesuai [keputusan terbaru](../android/validation/assistant-c-2026-10-25/key-decision-2026-10-25.md).
 
-Alur sasaran: Android → backend HTTPS → Featherless. Mode offline Android tetap
-default; online mengirim pesan saat ini, atau riwayat online bila dipilih
+Alur sasaran: Android → backend HTTPS → Featherless. Android kini default Otomatis
+menurut konfigurasi/internet tervalidasi, dengan override manual dan panduan lokal
+ketika offline. Online mengirim pesan saat ini, atau riwayat online bila dipilih
 (maksimal 24 pesan / 16.000 karakter). Nama, maksimal 10 tugas/tenggat dan
 perhitungan salat/zona hanya dikirim lewat pilihan eksplisit per request dengan
 preview. Tidak mengirim koordinat GPS, profil, tugas atau berkas otomatis.

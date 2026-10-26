@@ -324,3 +324,38 @@ isolasi/install; data/pengaturan HP tidak diubah, APK terakhir teramati code26.
 Backup12 berkas privat tetap ada dan harus diverifikasi ulang saat HP kembali.
 C06/C07 tetap terbuka. Pekerjaan aktif beralih ke C02 operasional tanpa HP;
 uji laptop mati tetap membutuhkan perangkat lain. Jangan menyalakan paket berbayar.
+
+## Checkpoint terbaru — C02 operasional tanpa HP
+
+26 Oktober2026, source operator `12d0fff` lokal; runtime Vercel tetap deployment
+C09 sebelumnya, tidak redeploy. [Bukti/runbook](android/validation/backend-operations-c02-2026-10-26/README.md).
+58 tes backend lulus/0 skip, termasuk Lua asli melalui fixture bersama lokal.
+Probe production HTTPS200+lookup Redis menolak401 tanpa token aktif/kuota/inference
+lulus. Backup registry AES-256-GCM dibuat privat, restore Upstash nyata hanya ke
+namespace baru; seluruh impor revoked, kuota gambar target disegel hari berjalan,
+source/credential asli tetap, key target dibersihkan. Abort request cloud diamati:
+lease lepas325ms, retry malformed400 tanpa inference kedua. Request pertama dapat
+memakai provider, dua percobaan aplikasi terhitung; bukan jaminan pembatalan biaya.
+
+API read-only memastikan Hobby/Node24.x/Upstash Free, autoUpgrade/eviction/prodPack
+false, credential production-only, expiration deployment30 hari. Sampel runtime
+10 menit berisi0 record; jangan memperluasnya jadi jaminan seluruh log/tracing.
+Kebijakan operator mingguan/30 hari manual, bukan scheduler backup aktif. Kunci/
+blob/namespace/response log/raw metadata tetap di `.local/operations-c02/` dengan
+ACL operator/SYSTEM/admin; tidak menyalin nilainya ke Git/APK/chat. Tidak mengganti
+key Featherless/token instalasi, database atau paket, tidak menyalakan paid feature.
+
+Workflow `.github/workflows/backend-health.yml` baru lokal: empat kali sehari,
+checkout dipin, contents:read, tanpa secret dan tanpa inference. **Belum aktif
+sebelum push/default branch/Actions**; proyek Vercel tidak terhubung Git, deploy
+Vercel berbeda dari push GitHub. Pertanyaan status GitHub pengguna diperiksa fetch:
+`origin/main` masih83312da, kala itu33 commit lokal belum dipush. Jangan mengklaim
+push/merge/rilis tanpa hasil nyata. WIP PROJECT_HANDOFF.md/prototipe lama tidak
+ikut checkpoint ini. Audit nilai rahasia yang diketahui mencakup source/APK dan
+objek Git baru sejak origin/main, bukan deteksi semua kemungkinan secret historis.
+
+C02 masih[ ]: monitor aktif/bukti job, timeout cloud panjang dan HP saat laptop
+mati. C06/C07 menunggu HP; helper C06 baru build, belum mikrofon. C04 membutuhkan
+D04. C01/C03/C05/C08/C09[x] sesuai lingkup, B01/D02a/UI04/F/G/publik tetap terbuka.
+APK terbaru tetap1.9.7/code34,37.218.400 byte/source249b523; jangan rebuild untuk
+dokumen/tool operator. Emulator sudah mati; HP tidak diisolasi/diupdate/dihapus.
