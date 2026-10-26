@@ -1,0 +1,24 @@
+{
+  "contrastAttempt": [
+    {
+      "name": "light-100",
+      "passed": true,
+      "tests": "1"
+    },
+    {
+      "name": "dark-100",
+      "passed": true,
+      "tests": "1"
+    },
+    {
+      "name": "narrow-200-keyboard",
+      "passed": false,
+      "tests": null
+    }
+  ],
+  "lastKeyboardAttempt": "Process crashed before a method result",
+  "rootCauseEstablished": false,
+  "sameApkKeyboardRerunPassed": true,
+  "crashLogFromRerunEmpty": true,
+  "appOriginalFilesRestoredAfterBothAttempts": true
+}

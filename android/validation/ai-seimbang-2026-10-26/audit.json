@@ -1,0 +1,17 @@
+{
+  "scope": "Known current private key/token/account/Redis endpoint values in tracked/source/evidence files and all uncompressed app APK entries; not a certification of all historical secrets",
+  "sourceFilesScanned": 1967,
+  "sourceSecretMatches": 0,
+  "apkSecretMatches": 0,
+  "privateOrTestApkEntries": 0,
+  "protectedUnchanged": {
+    "userWip": true,
+    "providerEnv": true,
+    "audioArchive": true,
+    "audioStash": true,
+    "approvedLogo": true,
+    "nightArt": true,
+    "previousApk197": true
+  },
+  "passed": true
+}

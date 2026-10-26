@@ -451,3 +451,42 @@ AI atau akses HP. Belum menerapkan desain AI baru. Pengguna meminta referensi du
 implementasi menunggu pilihannya. C07 baru laporan manual kamera dari pengguna,
 bukan penutupan semua kasus picker/grant/dokumen/OCR. C02 laptop mati, C04, B01,
 D02a/UI04/F/G dan publik tetap terbuka. Tidak ada proses uji HP aktif lagi.
+
+## Checkpoint terbaru — AI Seimbang diterapkan,1.9.8 beta
+
+26 Oktober2026: pengguna menyetujui referensi **Seimbang**, meminta footer peringatan
+di bawah composer dihapus, lalu menyetujui eksekusi. Ini menggantikan status menunggu
+pilihan AI pada paragraf sebelumnya. [Acuan yang diterima](design/concepts/ai-seimbang-approved-2026-10-26.md)
+dan [bukti native/receipt/batas](android/validation/ai-seimbang-2026-10-26/README.md).
+
+Source aplikasi **89874e41fd0f7b849bd290b816db725b385af425**,1.9.8/code35,
+SQLite utama4/chat1. Header/status/empat pintasan, jawaban lebih lega, composer
+multiline, sheet lampiran dan sidebar ringkas diterapkan; tema terang/malam dan
+kontras system bar diperbaiki. Sapaan disembunyikan selama keyboard aktif.
+Footer yang ditolak pengguna dihapus. Konfirmasi pengiriman/pilihan konteks tetap.
+Backend, key/token/kuota, memori lokal dan Home tidak diubah.
+
+APK lokal **D:\Download\Zikra-App-main\Zikra-AI-v1.9.8-beta-debug.apk**,
+**36.864.590 byte**, SHA256
+`3fd5e6d611571daf07afbf7bf206cb100a0dd6df528808b252af391895e649a6`.
+Signer debug sama dengan1.9.7; pasang sebagai pembaruan, jangan hapus data lama.
+APK1.9.7 dipertahankan. Bukan signed public release atau APK yang sudah dipasang HP.
+
+116 unit lulus/4 skip, lint0 error/764 warning. Native chat/riwayat/consent/cancel/
+proposal sebelumnya lulus dengan fixture/interceptor; final menguji panel terang,
+panel malam dan composer640×1280/font200% dengan **IME benar-benar terlihat**.
+Satu percobaan instrumentasi keyboard crash tanpa hasil metode; pada APK sama,
+pengulangan lulus. Lihat native-retry.json; jangan mengklaim akar crash telah
+ditetapkan atau semua percobaan mulus. Tidak ada inference/provider live baru.
+
+Data asli emulator10 berkas dipulihkan cocok hash, helper dihapus, pengaturan
+font/keyboard/wake/ukuran/tema dikembalikan dan emulator ditutup. HP fisik tidak
+disentuh. Audit nilai rahasia yang diketahui source/evidence/APK nol temuan;
+bukan sertifikasi seluruh riwayat Git. WIP PROJECT_HANDOFF.md, stash/arsip audio,
+env, logo/aset Home dan APK1.9.7 tetap. Checkpoint AI dan bukti C06 disimpan lokal;
+**belum dipush** setelah checkpoint5cdba1a.
+
+UI04/F03/G dan publik belum ditutup menyeluruh. C01/C03/C05/C06/C08/C09 selesai
+sesuai lingkup; C02 laptop mati, C04/D04 dan C07 tetap terbuka. B01 masih menunggu
+klarifikasi sumber; email tidak diperiksa/dikirim ulang. D04 yang disisihkan tetap
+ada pada arsip privat; jangan mencampurkannya ke build AI atau menyebutnya selesai.

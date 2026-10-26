@@ -1,0 +1,146 @@
+{
+  "date": "2026-10-26",
+  "versionName": "1.9.8",
+  "versionCode": 35,
+  "sourceCommit": "89874e41fd0f7b849bd290b816db725b385af425",
+  "artifact": "Zikra-AI-v1.9.8-beta-debug.apk",
+  "bytes": 36864590,
+  "sha256": "3fd5e6d611571daf07afbf7bf206cb100a0dd6df528808b252af391895e649a6",
+  "initialDownloadBelow100000000Bytes": true,
+  "signing": "debug; same certificate as 1.9.7",
+  "certificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "schema": {
+    "main": 4,
+    "chat": 1
+  },
+  "unit": {
+    "tests": 120,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 764
+  },
+  "nativePhases": [
+    {
+      "phase": "initial",
+      "source": "5283647",
+      "suites": [
+        {
+          "name": "light-100",
+          "passed": true,
+          "tests": "3"
+        },
+        {
+          "name": "assistant-regression",
+          "passed": true,
+          "tests": "6"
+        },
+        {
+          "name": "dark-100",
+          "passed": true,
+          "tests": "1"
+        },
+        {
+          "name": "narrow-200-keyboard",
+          "passed": true,
+          "tests": "1"
+        }
+      ]
+    },
+    {
+      "phase": "system-bars",
+      "source": "5c46f1a",
+      "suites": [
+        {
+          "name": "light-100",
+          "passed": true,
+          "tests": "1"
+        },
+        {
+          "name": "dark-100",
+          "passed": true,
+          "tests": "1"
+        },
+        {
+          "name": "narrow-200-keyboard",
+          "passed": true,
+          "tests": "1"
+        }
+      ]
+    },
+    {
+      "phase": "keyboard",
+      "source": "bab5dfb",
+      "suites": [
+        {
+          "name": "light-100",
+          "passed": true,
+          "tests": "1"
+        },
+        {
+          "name": "dark-100",
+          "passed": true,
+          "tests": "1"
+        },
+        {
+          "name": "narrow-200-keyboard",
+          "passed": true,
+          "tests": "1"
+        }
+      ]
+    },
+    {
+      "phase": "final-contrast",
+      "source": "89874e41fd0f7b849bd290b816db725b385af425",
+      "suites": [
+        {
+          "name": "light-100",
+          "passed": true,
+          "tests": "1"
+        },
+        {
+          "name": "dark-100",
+          "passed": true,
+          "tests": "1"
+        },
+        {
+          "name": "narrow-200-keyboard",
+          "passed": true,
+          "tests": "1"
+        }
+      ]
+    }
+  ],
+  "finalNativeExecutions": 3,
+  "finalKeyboardRequiresVisibleIme": true,
+  "physicalPhoneModified": false,
+  "providerRequestsInThisValidation": false,
+  "nativeRetryEvidence": "native-retry.json",
+  "screenshots": {
+    "dark-100-AI198-attachments.png": "5237b29bece4fb02faa2050aea56eae1ce2366d79dc87f6addb35fc85276ddd5",
+    "dark-100-AI198-history.png": "ed363ccbc40b9aaf0c549d86ff0f5c33922c9ed15526c69854413b1e6e07c49a",
+    "dark-100-AI198-welcome.png": "fa388b22f219c66dc0c3126665ea5bf5ed23a4bad357a8bac31fd20ea2e77246",
+    "light-100-AI195-attachment-100.png": "f232cb9c91bc99b70751f5f96483dedb75e65561b035087b931947618d72b9be",
+    "light-100-AI195-chat-100.png": "580fe401f9998335c19d319f5c2f8e9084ac8a445915ad880fcad93cc340f2de",
+    "light-100-AI195-consent-100.png": "fd0817d94ba82370aef2f4d7abd7b6a05bdfb8d843886c51632ef28ec99fae29",
+    "light-100-AI195-history-100.png": "6d00f3f0663bf8d11a5d317c0aa6846d34d893ef850079aa422d8a46d09cb4c5",
+    "light-100-AI195-history-renamed-100.png": "b288632d02cdaa68fc0486427726eff514b7851a62e6e47b91f0b00178d3bf5f",
+    "light-100-AI195-preview-100.png": "f4bd24c7ee9f53449539907765bc11490d8f37f46c02d51c2044c28d0be59e2b",
+    "light-100-AI195-welcome-100.png": "0e22275013337b631f10b65535b45db551ccb6b49d4d222e0e0871f31a1a568b",
+    "light-100-AI198-attachments.png": "8982c9c2ab332912baec865cd7f693fdb169c1b3bac7d1d7c377fa9e0328f1b3",
+    "light-100-AI198-history.png": "939dca49a2152e84edc2240134537ba08eb4759508a59a06bb69c1a71aa71258",
+    "light-100-AI198-welcome.png": "294d4057cdfcaf6202e892745d30cd9d2b96c1c347920364a775ae31c2748f86",
+    "narrow-200-ImageC09-composer-200.png": "345881edc97492fb9317922247d369c495b1b59647bb10634c1226a96c2d2b8b"
+  },
+  "notClosed": [
+    "UI04 overall",
+    "F/G/public release",
+    "C02 laptop-off phone test",
+    "C04/D04",
+    "C07 physical picker/OCR",
+    "B01 source clarification"
+  ]
+}
