@@ -135,6 +135,21 @@ public final class AiRefreshTest extends InstrumentationTestCase {
   }
   private EditText findEdit(View view){if(view instanceof EditText)return (EditText)view;if(view instanceof ViewGroup)for(int i=0;i<((ViewGroup)view).getChildCount();i++){EditText found=findEdit(((ViewGroup)view).getChildAt(i));if(found!=null)return found;}return null;}
 
+  public void testBalancedPanelsKeepDraftAndCancelWithoutSend()throws Exception{
+    new AssistantConnection(context).offline();context.getSharedPreferences("zikra_preferences",0).edit().putString("assistant_mode_v2","offline").commit();launch();
+    assertFalse(activity.findViewById(R.id.aiSend).isEnabled());
+    ui(()->((EditText)activity.findViewById(R.id.aiInput)).setText("Draf sintetis tetap di perangkat"));
+    ui(()->activity.findViewById(R.id.aiAttach).performClick());
+    AlertDialog attachments=(AlertDialog)field("clearDialog");assertTrue(attachments.isShowing());
+    assertEquals(0,rows().length());UiEvidence.capture(getInstrumentation(),"AI198-attachments");
+    ui(attachments::cancel);assertEquals("Draf sintetis tetap di perangkat",((EditText)activity.findViewById(R.id.aiInput)).getText().toString());
+    ui(()->activity.findViewById(R.id.toolbarBack).performClick());
+    assertNotNull(activity.findViewById(R.id.aiHistoryOverlay));UiEvidence.capture(getInstrumentation(),"AI198-history");
+    ui(()->call("closeHistory"));assertEquals(0,rows().length());
+    assertEquals("Draf sintetis tetap di perangkat",((EditText)activity.findViewById(R.id.aiInput)).getText().toString());
+    ui(()->((EditText)activity.findViewById(R.id.aiInput)).setText(""));UiEvidence.capture(getInstrumentation(),"AI198-welcome");
+  }
+
   public void testConsentAttachmentIsolationAndClearOnlyAfterSuccess()throws Exception{
     assertTrue("Validated internet needed",new AssistantNetwork(context,()->{}).validated());launch();
     AtomicInteger calls=new AtomicInteger();AtomicReference<JSONObject> captured=new AtomicReference<>();

@@ -29,7 +29,7 @@ import com.zikra.app.assistant.AssistantSelection;
 import com.zikra.app.assistant.TaskProposal;
 import com.zikra.app.assistant.OnlineAssistantClient;
 import com.zikra.app.data.ZikraDbHelper;
-import com.zikra.app.ui.FeatureHeader;
+import com.zikra.app.ui.AssistantUi;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,20 +81,14 @@ public final class AiActivity extends BaseActivity {
   @Override protected void onCreate(Bundle state) {
     super.onCreate(state);
     setContentView(R.layout.activity_ai);
-    FeatureHeader header=findViewById(R.id.utilitiesHeader);
-    header.bind(R.id.toolbarBack,R.id.detailTitle,R.id.featureSubtitle,R.id.aiClear,
-        getString(R.string.ai_refresh_title),"",R.drawable.ai_refresh_new,getString(R.string.ai_refresh_new));
     setupScreen(getString(R.string.ai_refresh_title));
-    header.setSurfaceColor(getColor(R.color.ai_refresh_surface));
-    header.heading().setTypeface(Typeface.create("sans-serif-medium",Typeface.NORMAL));
-    header.findViewById(R.id.featureSubtitle).setVisibility(View.GONE);
-    ((android.widget.ImageButton)header.back()).setImageResource(R.drawable.ai_refresh_history);
-    header.back().setContentDescription(getString(R.string.ai_refresh_history));
-    header.back().setOnClickListener(v->showHistory());
-    header.action().setOnClickListener(v->newConversation());
+    findViewById(R.id.toolbarBack).setOnClickListener(v->showHistory());
+    findViewById(R.id.aiClear).setOnClickListener(v->newConversation());
     getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     getWindow().setStatusBarColor(getColor(R.color.ai_refresh_surface));
-    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR|View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+    boolean dark=(getResources().getConfiguration().uiMode&android.content.res.Configuration.UI_MODE_NIGHT_MASK)==android.content.res.Configuration.UI_MODE_NIGHT_YES;
+    getWindow().setNavigationBarColor(getColor(R.color.ai_refresh_surface));
+    getWindow().getDecorView().setSystemUiVisibility(dark?0:View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR|View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     preferences=getSharedPreferences("zikra_preferences",MODE_PRIVATE);
     connection=new com.zikra.app.assistant.AssistantConnection(this);
     routingMode=preferences.getString("assistant_mode_v2",connection.configured()&&!connection.online()?"offline":"auto");
@@ -120,6 +114,13 @@ public final class AiActivity extends BaseActivity {
     findViewById(R.id.aiSend).setOnClickListener(v->{if(waiting)cancelOnline();else sendMessage();});
     findViewById(R.id.aiVoice).setOnClickListener(v->beginVoice());
     findViewById(R.id.aiAttach).setOnClickListener(v->showAttachmentPicker());
+    findViewById(R.id.aiTools).setOnClickListener(v->showAttachmentPicker());
+    findViewById(R.id.aiTopicAttachment).setOnClickListener(v->showAttachmentPicker());
+    input.addTextChangedListener(new android.text.TextWatcher(){
+      public void beforeTextChanged(CharSequence text,int start,int count,int after){}
+      public void onTextChanged(CharSequence text,int start,int before,int count){updateSendAvailability();}
+      public void afterTextChanged(android.text.Editable text){}
+    });
     findViewById(R.id.aiTopicImage).setOnClickListener(v->enterImageMode());
     findViewById(R.id.aiImageMode).setOnClickListener(v->{if(!waiting){imageMode=false;persistConversation();updateImageMode();}});
     if(state!=null){String c=state.getString("image_export_chat"),i=state.getString("image_export_id"),m=state.getString("image_export_mime");if(c!=null&&i!=null&&m!=null)pendingImageExport=new String[]{c,i,m};}
@@ -127,10 +128,7 @@ public final class AiActivity extends BaseActivity {
     findViewById(R.id.aiChatTile).setOnClickListener(v->focusComposer());
     findViewById(R.id.aiTopicStudy).setOnClickListener(v->composeTopic("Bantu susun rencana belajar untuk hari ini"));
     findViewById(R.id.aiTopicHifz).setOnClickListener(v->composeTopic("Bantu susun target hafalan Al-Quran"));
-    findViewById(R.id.aiNetworkNote).setVisibility(getResources().getConfiguration().fontScale>1.3f?View.GONE:View.VISIBLE);
-    if(getResources().getConfiguration().fontScale>1.3f)((TextView)findViewById(R.id.aiMode)).setMaxWidth(Integer.MAX_VALUE);
     renderConversation();
-    NavDock.attach(this,pageRoot,"ai");
     if(android.os.Build.VERSION.SDK_INT>=30){pageRoot.setOnApplyWindowInsetsListener((view,insets)->{refreshKeyboardLayout(insets);return insets;});pageRoot.requestApplyInsets();}
     keyboardLayoutListener=()->refreshKeyboardLayout(pageRoot.getRootWindowInsets());
     pageRoot.getViewTreeObserver().addOnGlobalLayoutListener(keyboardLayoutListener);
@@ -152,11 +150,13 @@ public final class AiActivity extends BaseActivity {
   }
   private void updateImageMode(){
     if(findViewById(R.id.aiTopicImage)==null)return;
-    findViewById(R.id.aiTopicImage).setVisibility(imageAvailable?View.VISIBLE:View.GONE);
-    findViewById(R.id.aiTopicHifz).setVisibility(imageAvailable?View.GONE:View.VISIBLE);
+    findViewById(R.id.aiTopicImage).setVisibility(View.VISIBLE);
+    findViewById(R.id.aiTopicImage).setEnabled(imageAvailable);
+    findViewById(R.id.aiTopicImage).setAlpha(imageAvailable?1f:.45f);
+    findViewById(R.id.aiTopicHifz).setVisibility(View.GONE);
     findViewById(R.id.aiImageMode).setVisibility(imageMode&&!keyboardVisible?View.VISIBLE:View.GONE);
     if(input!=null)input.setHint(getString(imageMode?R.string.ai_images_input:
-        keyboardVisible||getResources().getConfiguration().fontScale>1.3f?R.string.assistant_short_input:R.string.ai_refresh_input));
+        keyboardVisible||getResources().getConfiguration().fontScale>1.3f?R.string.assistant_short_input:R.string.ai_balanced_input));
   }
   private void enterImageMode(){
     if(waiting)return;
@@ -256,13 +256,9 @@ public final class AiActivity extends BaseActivity {
   private void updateKeyboardLayout(boolean visible) {
     if (keyboardVisible == visible) return;
     keyboardVisible = visible;
-    findViewById(R.id.aiPage)
-        .setPadding(
-            0, 0, 0, visible ? 0 : getResources().getDimensionPixelSize(R.dimen.ai_refresh_dock));
-    NavDock.setVisible(pageRoot, !visible);
-    findViewById(R.id.aiPrivacyNote).setVisibility(visible?View.GONE:View.VISIBLE);
     findViewById(R.id.aiVoiceStatus).setVisibility(visible?View.GONE:View.VISIBLE);
-    input.setMaxLines(visible?3:5);
+    input.setMaxLines(visible?3:4);
+    updateMode();
     updateImageMode();
     if(attachment!=null)renderAttachment();
     if (visible) scroll.post(() -> scroll.smoothScrollTo(0, thread.getBottom()));
@@ -298,16 +294,16 @@ public final class AiActivity extends BaseActivity {
   private void renderAttachment() {
     LinearLayout holder=findViewById(R.id.aiAttachmentDraft);holder.removeAllViews();
     holder.setVisibility(attachment!=null||importingAttachment?View.VISIBLE:View.GONE);
+    updateSendAvailability();
     if(importingAttachment){TextView progress=new TextView(this);progress.setText("Menyiapkan lampiran di perangkat…");progress.setTextSize(13);progress.setPadding(dp(12),dp(10),dp(12),dp(10));holder.addView(progress);return;}
     if(attachment==null)return;
-    LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER_VERTICAL);row.setPadding(dp(10),dp(8),0,dp(8));row.setBackgroundResource(R.drawable.refresh_mint);
+    LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER_VERTICAL);row.setPadding(dp(8),dp(4),0,dp(4));row.setBackground(AssistantUi.surface(this,R.color.ai_refresh_surface,16,false));
     android.graphics.Bitmap thumb=attachment.thumbnail();if(thumb!=null){android.widget.ImageView photo=new android.widget.ImageView(this);photo.setImageBitmap(thumb);photo.setScaleType(android.widget.ImageView.ScaleType.CENTER_CROP);photo.setContentDescription("Preview lampiran "+attachment.name);row.addView(photo,new LinearLayout.LayoutParams(dp(44),dp(44)));}
     TextView label=new TextView(this);label.setText(attachment.summary()+"\nBelum dikirim");label.setTextSize(12);label.setMaxLines(keyboardVisible?1:3);label.setEllipsize(android.text.TextUtils.TruncateAt.END);label.setPadding(dp(10),0,dp(6),0);label.setTextColor(getColor(R.color.ai_refresh_ink));
     label.setMinHeight(dp(48));label.setGravity(Gravity.CENTER_VERTICAL);label.setFocusable(true);label.setClickable(true);label.setContentDescription("Lihat lampiran "+attachment.name);label.setId(R.id.aiAttachmentPreview);label.setOnClickListener(v->previewAttachment(attachment));
     row.addView(label,new LinearLayout.LayoutParams(0,-2,1));
-    TextView remove=historyButton("✕",()->{attachmentReader.clearDraft(chatId,true);attachment=null;renderAttachment();});remove.setGravity(Gravity.CENTER);remove.setEnabled(!waiting);remove.setContentDescription("Hapus lampiran "+attachment.name);
+    android.widget.ImageButton remove=AssistantUi.icon(this,R.drawable.reading_ic_close,"Hapus lampiran "+attachment.name,()->{attachmentReader.clearDraft(chatId,true);attachment=null;renderAttachment();});remove.setEnabled(!waiting);
     row.addView(remove,new LinearLayout.LayoutParams(dp(48),dp(48)));holder.addView(row);
-    TextView note=new TextView(this);note.setText(R.string.ai_refresh_attach_note);note.setTextSize(11);note.setPadding(dp(8),dp(5),dp(8),dp(5));note.setTextColor(getColor(R.color.ai_refresh_muted));note.setVisibility(keyboardVisible?View.GONE:View.VISIBLE);holder.addView(note);
   }
 
   private void previewAttachment(AssistantAttachments.Draft draft){
@@ -327,14 +323,8 @@ public final class AiActivity extends BaseActivity {
 
   private void showAttachmentPicker() {
     if(waiting||importingAttachment){toast("Tunggu proses selesai atau batalkan permintaan dahulu.");return;}
-    LinearLayout panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(dp(16),dp(4),dp(16),dp(16));
-    TextView note=new TextView(this);note.setText("1 lampiran per pesan · maksimum 8 MB\nFoto JPG/PNG/WebP, PDF sampai 3 halaman, DOCX/TXT sampai 12.000 karakter. Pilihan tetap draf sampai kamu mengirim.");note.setTextSize(13);note.setPadding(dp(8),dp(8),dp(8),dp(12));panel.addView(note);
-    final AlertDialog[] dialog=new AlertDialog[1];
-    String[] labels={"Kamera","Galeri","Dokumen"};
-    for(int i=0;i<labels.length;i++){final int action=i;panel.addView(historyButton(labels[i],()->{dialog[0].dismiss();pickAttachment(action);}));}
-    if(imageAvailable)panel.addView(historyButton(getString(R.string.ai_images_create),()->{dialog[0].dismiss();enterImageMode();}));
-    dialog[0]=new AlertDialog.Builder(this).setTitle("Tambahkan lampiran").setView(panel).setNegativeButton("Batal",null).create();
-    clearDialog=dialog[0];dialog[0].show();android.view.Window window=dialog[0].getWindow();if(window!=null){window.setGravity(Gravity.BOTTOM);window.setLayout(-1,-2);}
+    clearDialog=AssistantUi.attachments(this,imageAvailable,this::pickAttachment,this::enterImageMode);
+    AssistantUi.bottomSheet(clearDialog,this);
   }
 
   private void pickAttachment(int action) {
@@ -371,6 +361,7 @@ public final class AiActivity extends BaseActivity {
 
   private void closeHistory() {
     if(historyOverlay!=null){pageRoot.removeView(historyOverlay);historyOverlay=null;}
+    findViewById(R.id.aiPage).setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_AUTO);
   }
 
   private void selectConversation(String id) {
@@ -395,20 +386,24 @@ public final class AiActivity extends BaseActivity {
 
   private void showHistory() {
     if(historyOverlay!=null)return;persistConversation();
+    ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(input.getWindowToken(),0);
+    input.clearFocus();
     FrameLayout overlay=new FrameLayout(this);historyOverlay=overlay;overlay.setId(R.id.aiHistoryOverlay);
     overlay.setBackgroundColor(0x66000000);overlay.setOnClickListener(v->closeHistory());
     LinearLayout panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);
-    panel.setPadding(dp(16),dp(12),dp(12),dp(16));panel.setBackgroundColor(getColor(R.color.ai_refresh_surface));panel.setClickable(true);
+    panel.setPadding(dp(14),dp(12),dp(14),dp(20));panel.setBackground(AssistantUi.surface(this,R.color.ai_refresh_surface,24,false));panel.setClickable(true);
     FrameLayout.LayoutParams panelSize=new FrameLayout.LayoutParams(Math.min(dp(360),getResources().getDisplayMetrics().widthPixels*9/10),-1,Gravity.START);
     overlay.addView(panel,panelSize);
     LinearLayout heading=new LinearLayout(this);heading.setGravity(Gravity.CENTER_VERTICAL);
-    TextView title=new TextView(this);title.setText(R.string.ai_refresh_history);title.setTextSize(20);title.setTextColor(getColor(R.color.ai_refresh_ink));title.setTypeface(Typeface.create("sans-serif-medium",Typeface.NORMAL));
-    heading.addView(title,new LinearLayout.LayoutParams(0,-2,1));heading.addView(historyButton("✕",this::closeHistory),new LinearLayout.LayoutParams(dp(48),dp(48)));panel.addView(heading);
-    EditText search=new EditText(this);search.setId(R.id.aiHistorySearch);search.setHint(R.string.ai_refresh_search);search.setSingleLine(true);search.setTextSize(16);search.setMinHeight(dp(48));search.setInputType(android.text.InputType.TYPE_CLASS_TEXT);panel.addView(search,new LinearLayout.LayoutParams(-1,-2));
-    panel.addView(historyButton("＋ Chat baru",this::newConversation),new LinearLayout.LayoutParams(-1,-2));
+    TextView title=new TextView(this);title.setText(R.string.ai_refresh_title);title.setTextSize(20);title.setTextColor(getColor(R.color.ai_refresh_ink));title.setTypeface(Typeface.create("sans-serif-medium",Typeface.NORMAL));title.setPadding(dp(10),0,0,0);if(android.os.Build.VERSION.SDK_INT>=28)title.setAccessibilityHeading(true);
+    heading.addView(title,new LinearLayout.LayoutParams(0,-2,1));heading.addView(AssistantUi.icon(this,R.drawable.reading_ic_close,getString(R.string.ai_balanced_close),this::closeHistory));panel.addView(heading);
+    EditText search=new EditText(this);search.setId(R.id.aiHistorySearch);search.setHint(R.string.ai_refresh_search);search.setSingleLine(true);search.setTextSize(16);search.setTextColor(getColor(R.color.ai_refresh_ink));search.setHintTextColor(getColor(R.color.ai_refresh_muted));search.setPadding(dp(12),dp(10),dp(12),dp(10));search.setBackground(AssistantUi.surface(this,R.color.ai_refresh_paper,15,false));search.setCompoundDrawablesWithIntrinsicBounds(R.drawable.reading_ic_search,0,0,0);search.setCompoundDrawablePadding(dp(8));search.setMinHeight(dp(48));search.setInputType(android.text.InputType.TYPE_CLASS_TEXT);
+    LinearLayout.LayoutParams searchSize=new LinearLayout.LayoutParams(-1,-2);searchSize.topMargin=dp(12);searchSize.bottomMargin=dp(12);panel.addView(search,searchSize);
+    TextView newChat=historyButton(getString(R.string.ai_balanced_new_chat),this::newConversation);newChat.setBackground(AssistantUi.surface(this,R.color.ai_refresh_paper,14,true));newChat.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ai_refresh_plus,0,0,0);newChat.setCompoundDrawablePadding(dp(10));panel.addView(newChat,new LinearLayout.LayoutParams(-1,-2));
     ScrollView listScroll=new ScrollView(this);LinearLayout list=new LinearLayout(this);list.setId(R.id.aiHistoryList);list.setOrientation(LinearLayout.VERTICAL);listScroll.addView(list);
     panel.addView(listScroll,new LinearLayout.LayoutParams(-1,0,1));
-    TextView local=new TextView(this);local.setText(R.string.ai_refresh_local_storage);local.setTextSize(12);local.setTextColor(getColor(R.color.ai_refresh_muted));local.setPadding(dp(12),dp(12),0,0);panel.addView(local);
+    panel.addView(historyButton(getString(R.string.ai_balanced_settings),()->{closeHistory();chooseMode();}));
+    TextView local=new TextView(this);local.setText(R.string.ai_balanced_local_storage);local.setTextSize(12);local.setTextColor(getColor(R.color.ai_refresh_muted));local.setPadding(dp(12),dp(8),0,0);panel.addView(local);
     Runnable update=()->{
       list.removeAllViews();java.time.LocalDate today=java.time.LocalDate.now();String group="";
       for(ConversationStore.Chat chat:conversations.list(search.getText().toString())) {
@@ -417,15 +412,16 @@ public final class AiActivity extends BaseActivity {
         if(!next.equals(group)){TextView date=new TextView(this);date.setText(next);date.setTextSize(12);date.setTextColor(getColor(R.color.ai_refresh_muted));date.setPadding(dp(12),dp(18),0,dp(6));list.addView(date);group=next;}
         LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER_VERTICAL);
         if(chat.id.equals(chatId)){GradientDrawable bg=new GradientDrawable();bg.setColor(getColor(R.color.ai_refresh_mint));bg.setCornerRadius(dp(12));row.setBackground(bg);}
-        TextView item=historyButton(chat.title,()->selectConversation(chat.id));item.setMaxLines(2);item.setEllipsize(android.text.TextUtils.TruncateAt.END);
+        TextView item=historyButton(chat.title,()->selectConversation(chat.id));item.setMaxLines(1);item.setEllipsize(android.text.TextUtils.TruncateAt.END);
         row.addView(item,new LinearLayout.LayoutParams(0,-2,1));
         TextView more=historyButton("⋮",()->showChatActions(chat.id,chat.title));more.setContentDescription("Pilihan percakapan "+chat.title);more.setGravity(Gravity.CENTER);
-        row.addView(more,new LinearLayout.LayoutParams(dp(48),dp(56)));list.addView(row,new LinearLayout.LayoutParams(-1,-2));
+        row.addView(more,new LinearLayout.LayoutParams(dp(48),dp(48)));list.addView(row,new LinearLayout.LayoutParams(-1,-2));
       }
       if(list.getChildCount()==0){TextView empty=new TextView(this);empty.setText("Belum ada percakapan yang cocok.");empty.setTextSize(14);empty.setPadding(dp(12),dp(20),dp(12),0);list.addView(empty);}
     };
     search.addTextChangedListener(new android.text.TextWatcher(){public void beforeTextChanged(CharSequence text,int start,int count,int after){}public void onTextChanged(CharSequence text,int start,int before,int count){update.run();}public void afterTextChanged(android.text.Editable text){}});
-    pageRoot.addView(overlay,new FrameLayout.LayoutParams(-1,-1));update.run();
+    findViewById(R.id.aiPage).setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
+    panel.setFocusableInTouchMode(true);pageRoot.addView(overlay,new FrameLayout.LayoutParams(-1,-1));panel.requestFocus();update.run();
   }
 
   private void showChatActions(String id,String title) {
@@ -490,14 +486,13 @@ public final class AiActivity extends BaseActivity {
     LinearLayout row = new LinearLayout(this);
     row.setGravity(user ? Gravity.END : Gravity.START);
     LinearLayout.LayoutParams rowParams = new LinearLayout.LayoutParams(-1, -2);
-    rowParams.bottomMargin = dp(12);
+    rowParams.bottomMargin = dp(24);
     row.setLayoutParams(rowParams);
     LinearLayout card = new LinearLayout(this);
     card.setOrientation(LinearLayout.VERTICAL);
-    card.setPadding(dp(15), dp(13), dp(15), dp(14));
-    LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(-2, -2);
+    card.setPadding(user?dp(15):0, user?dp(12):0, user?dp(15):0, user?dp(12):0);
+    LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(user?-2:-1, -2);
     if (user) cardParams.leftMargin = dp(32);
-    else cardParams.rightMargin = dp(18);
     card.setLayoutParams(cardParams);
     GradientDrawable background = new GradientDrawable();
     background.setColor(getColor(user ? R.color.ai_refresh_mint : R.color.ai_refresh_paper));
@@ -512,7 +507,7 @@ public final class AiActivity extends BaseActivity {
           user ? dp(19) : dp(5),
           user ? dp(19) : dp(5)
         });
-    card.setBackground(background);
+    if(user)card.setBackground(background);
     if (!user) {
       TextView label = new TextView(this);
       label.setText(
@@ -520,7 +515,7 @@ public final class AiActivity extends BaseActivity {
               ? R.string.concept_ai_cloud_label
               : R.string.concept_ai_local_label);
       label.setTextSize(12);
-      label.setTextColor(Color.parseColor("#52665F"));
+      label.setTextColor(getColor(R.color.ai_refresh_accent));
       label.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
       label.setPadding(0, 0, 0, dp(7));
       card.addView(label);
@@ -529,10 +524,10 @@ public final class AiActivity extends BaseActivity {
     body.setText(message);
     body.setTextSize(16);
     body.setLineSpacing(dp(4), 1f);
-    body.setTextColor(getColor(R.color.pine));
+    body.setTextColor(getColor(R.color.ai_refresh_ink));
     body.setTextIsSelectable(true);
     card.addView(body);
-    if(!user){TextView copy=new TextView(this);copy.setText(R.string.ai_refresh_copy);copy.setTextSize(12);copy.setTextColor(getColor(R.color.ai_refresh_muted));copy.setMinHeight(dp(48));copy.setGravity(Gravity.CENTER_VERTICAL);copy.setPadding(0,dp(4),dp(12),0);copy.setOnClickListener(v->{((android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(android.content.ClipData.newPlainText("Zikra AI",message));toast("Teks disalin");});card.addView(copy);}
+    if(!user)card.addView(AssistantUi.icon(this,R.drawable.ai_balanced_copy,getString(R.string.ai_balanced_copy),()->{((android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(android.content.ClipData.newPlainText("Zikra AI",message));toast("Teks disalin");}));
     row.addView(card);
     thread.addView(row);
   }
@@ -598,7 +593,6 @@ public final class AiActivity extends BaseActivity {
     String status=online?"Online":"Offline";
     if(gatewayFailure!=null&&network.validated()&&online)status="Layanan bermasalah";
     ((TextView)findViewById(R.id.aiMode)).setText(prefix+status+" ⌄");
-    findViewById(R.id.aiMode).setBackgroundResource(online?R.drawable.refresh_mint:R.drawable.reference_gold_card);
     int note;
     switch(network.state()){
       case CAPTIVE_PORTAL: note=R.string.assistant_network_login;break;
@@ -607,8 +601,8 @@ public final class AiActivity extends BaseActivity {
       default: note=!connection.configured()?R.string.assistant_gateway_unconfigured:gatewayFailure!=null?R.string.assistant_gateway_retry:R.string.assistant_network_available;
     }
     ((TextView)findViewById(R.id.aiNetworkNote)).setText(note);
-    findViewById(R.id.aiOfflineNotice).setVisibility(!online&&messages.length()==0?View.VISIBLE:View.GONE);
-    ((TextView)findViewById(R.id.aiPrivacyNote)).setText(online?R.string.ai_refresh_privacy:R.string.ai_refresh_local_privacy);
+    findViewById(R.id.aiNetworkNote).setVisibility(!keyboardVisible&&gatewayFailure!=null?View.VISIBLE:View.GONE);
+    findViewById(R.id.aiOfflineNotice).setVisibility(!online&&!keyboardVisible?View.VISIBLE:View.GONE);
   }
 
 
@@ -689,7 +683,13 @@ public final class AiActivity extends BaseActivity {
     TextView status = findViewById(R.id.aiRequestStatus);
     status.setText(value ? R.string.concept_ai_pending : R.string.concept_ai_failed);
     status.setVisibility(value ? View.VISIBLE : View.GONE);
-    findViewById(R.id.aiAttach).setEnabled(!value);renderAttachment();
+    findViewById(R.id.aiAttach).setEnabled(!value);findViewById(R.id.aiTools).setEnabled(!value);renderAttachment();
+  }
+
+  private void updateSendAvailability() {
+    if(input==null)return;
+    boolean available=waiting||!importingAttachment&&(input.length()>0||attachment!=null);
+    View send=findViewById(R.id.aiSend);send.setEnabled(available);send.setAlpha(available?1f:.35f);
   }
 
   private void requestOnline() {

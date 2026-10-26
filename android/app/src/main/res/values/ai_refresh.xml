@@ -1,12 +1,12 @@
 <resources>
   <dimen name="ai_refresh_dock">64dp</dimen>
   <string name="ai_refresh_local_privacy">Panduan lokal · berbasis aturan.</string>
-  <color name="ai_refresh_surface">#FAF9F5</color>
-  <color name="ai_refresh_ink">#153B35</color>
-  <color name="ai_refresh_muted">#62736B</color>
-  <color name="ai_refresh_mint">#E1F1E8</color>
-  <color name="ai_refresh_paper">#F2F1EB</color>
-  <color name="ai_refresh_line">#DEE5DB</color>
+  <color name="ai_refresh_surface">#FDFDFB</color>
+  <color name="ai_refresh_ink">#20332E</color>
+  <color name="ai_refresh_muted">#68766F</color>
+  <color name="ai_refresh_mint">#E8F2ED</color>
+  <color name="ai_refresh_paper">#F2F5F1</color>
+  <color name="ai_refresh_line">#E2E8E2</color>
   <color name="ai_refresh_sand">#FAEED7</color>
   <string name="ai_refresh_title">Zikra AI</string>
   <string name="ai_refresh_new">Chat baru</string>

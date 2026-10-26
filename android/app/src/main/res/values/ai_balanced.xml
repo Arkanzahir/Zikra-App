@@ -1,0 +1,25 @@
+<resources>
+  <color name="ai_refresh_accent">#164F40</color><color name="ai_refresh_on_accent">#FFFFFF</color>
+  <string name="ai_balanced_initial_mode">Otomatis · Offline ⌄</string>
+  <string name="ai_balanced_welcome_first">Ada yang ingin</string><string name="ai_balanced_welcome_second">kamu pahami?</string>
+  <string name="ai_balanced_caption">Mulai dari pertanyaan kecil.\nKita bahas sampai lebih jelas.</string>
+  <string name="ai_balanced_attachment">Bahas lampiran</string><string name="ai_balanced_hifz">Target hafalan</string>
+  <string name="ai_balanced_offline">Panduan lokal aktif · jawaban lebih terbatas</string>
+  <string name="ai_balanced_input">Tanyakan apa saja…</string><string name="ai_balanced_tools">Alat</string>
+  <string name="ai_balanced_voice">Ubah suara menjadi draf teks</string><string name="ai_balanced_send">Kirim pesan</string>
+  <string name="ai_balanced_close">Tutup</string><string name="ai_balanced_camera">Kamera</string><string name="ai_balanced_gallery">Galeri</string><string name="ai_balanced_document">Dokumen</string>
+  <string name="ai_balanced_add_attachment">Tambahkan lampiran</string><string name="ai_balanced_file_limits">Format &amp; batas ukuran</string>
+  <string name="ai_balanced_file_details">1 lampiran, maksimal 8 MB.\nJPG, PNG, WebP · PDF sampai 3 halaman · DOCX/TXT sampai 12.000 karakter. Pilihan tetap draf sampai kamu mengirim.</string>
+  <string name="ai_balanced_new_chat">Percakapan baru</string><string name="ai_balanced_local_storage">Riwayat tersimpan di perangkat</string>
+  <string name="ai_balanced_settings">Mode &amp; pengaturan AI</string><string name="ai_balanced_copy">Salin jawaban</string>
+  <style name="AiIconButton">
+    <item name="android:layout_width">48dp</item><item name="android:layout_height">48dp</item><item name="android:padding">13dp</item>
+    <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item><item name="android:tint">@color/ai_refresh_ink</item>
+  </style>
+  <style name="AiPrompt">
+    <item name="android:layout_width">0dp</item><item name="android:layout_weight">1</item><item name="android:layout_height">wrap_content</item>
+    <item name="android:minHeight">52dp</item><item name="android:padding">10dp</item><item name="android:gravity">center_vertical</item>
+    <item name="android:textSize">13sp</item><item name="android:textColor">@color/ai_refresh_ink</item><item name="android:drawablePadding">8dp</item>
+    <item name="android:background">@drawable/ai_refresh_suggestion</item><item name="android:clickable">true</item><item name="android:focusable">true</item>
+  </style>
+</resources>
