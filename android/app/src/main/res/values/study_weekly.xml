@@ -1,4 +1,15 @@
 <resources>
+    <string name="study_level_choose">Jenjang belajar</string>
+    <string name="study_level_note">Opsional. Menyesuaikan istilah Study dan disimpan di perangkat.</string>
+    <string name="study_course_college">Mata kuliah</string>
+    <string name="study_course_school">Mata pelajaran</string>
+    <string name="study_teacher_college">Dosen (opsional)</string>
+    <string name="study_teacher_school">Guru (opsional)</string>
+    <string name="study_credits">SKS (opsional, 1–30)</string>
+    <string name="study_credits_value">%1$d SKS</string>
+    <string name="study_credits_invalid">Isi SKS 1–30 atau kosongkan.</string>
+    <string-array name="study_levels"><item>Siswa SMP</item><item>Siswa SMA</item><item>Mahasiswa</item><item>Umum</item></string-array>
+    <string-array name="study_level_picker"><item>Pilih nanti</item><item>Siswa SMP</item><item>Siswa SMA</item><item>Mahasiswa</item><item>Umum</item></string-array>
     <string name="weekly_title">Jadwal kelas</string>
     <string name="weekly_subtitle">Rencana mingguan, tersimpan di perangkat.</string>
     <string name="weekly_add">Tambah kelas</string>

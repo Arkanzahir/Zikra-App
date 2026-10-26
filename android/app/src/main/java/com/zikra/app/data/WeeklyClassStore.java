@@ -17,7 +17,7 @@ public final class WeeklyClassStore extends SQLiteOpenHelper {
 
   public WeeklyClassStore(Context context) { this(context, "study-schedule.db"); }
   public WeeklyClassStore(Context context, String name) {
-    super(context.getApplicationContext(), name, null, 1);
+    super(context.getApplicationContext(), name, null, 2);
   }
   @Override public void onCreate(SQLiteDatabase db) {
     db.execSQL("CREATE TABLE weekly_classes (id INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -25,11 +25,13 @@ public final class WeeklyClassStore extends SQLiteOpenHelper {
         + "weekday INTEGER NOT NULL CHECK(weekday BETWEEN 1 AND 7),"
         + "start_minute INTEGER NOT NULL CHECK(start_minute>=0),"
         + "end_minute INTEGER NOT NULL CHECK(end_minute>start_minute AND end_minute<=1439),"
-        + "reminder_minutes INTEGER NOT NULL CHECK(reminder_minutes IN (0,15,30)))");
+        + "reminder_minutes INTEGER NOT NULL CHECK(reminder_minutes IN (0,15,30)),"
+        + "credits INTEGER NOT NULL DEFAULT 0 CHECK(credits BETWEEN 0 AND 30))");
     db.execSQL("CREATE INDEX weekly_classes_day ON weekly_classes(weekday,start_minute)");
   }
   @Override public void onUpgrade(SQLiteDatabase db, int from, int to) {
-    throw new IllegalStateException("Unsupported schedule migration");
+    if(from==1&&to==2)db.execSQL("ALTER TABLE weekly_classes ADD COLUMN credits INTEGER NOT NULL DEFAULT 0 CHECK(credits BETWEEN 0 AND 30)");
+    else throw new IllegalStateException("Unsupported schedule migration");
   }
   public List<WeeklyClass> all() {
     List<WeeklyClass> result = new ArrayList<>();
@@ -62,6 +64,7 @@ public final class WeeklyClassStore extends SQLiteOpenHelper {
       v.put("title", item.title); v.put("room", item.room); v.put("teacher", item.teacher);
       v.put("weekday", item.weekday); v.put("start_minute", item.startMinute);
       v.put("end_minute", item.endMinute); v.put("reminder_minutes", item.reminderMinutes);
+      v.put("credits", item.credits);
       long id = item.id;
       if (id == 0) id = db.insertOrThrow("weekly_classes", null, v);
       else if (db.update("weekly_classes", v, "id=? AND revision=?",
@@ -78,6 +81,7 @@ public final class WeeklyClassStore extends SQLiteOpenHelper {
         c.getLong(c.getColumnIndexOrThrow("revision")), c.getString(c.getColumnIndexOrThrow("title")),
         c.getString(c.getColumnIndexOrThrow("room")), c.getString(c.getColumnIndexOrThrow("teacher")),
         c.getInt(c.getColumnIndexOrThrow("weekday")), c.getInt(c.getColumnIndexOrThrow("start_minute")),
-        c.getInt(c.getColumnIndexOrThrow("end_minute")), c.getInt(c.getColumnIndexOrThrow("reminder_minutes")));
+        c.getInt(c.getColumnIndexOrThrow("end_minute")), c.getInt(c.getColumnIndexOrThrow("reminder_minutes")),
+        c.getInt(c.getColumnIndexOrThrow("credits")));
   }
 }

@@ -24,6 +24,7 @@ import com.zikra.app.data.WeeklyClass;
 import com.zikra.app.data.WeeklyClassStore;
 import com.zikra.app.location.LocationStore;
 import com.zikra.app.study.ClassReminders;
+import com.zikra.app.study.EducationLevel;
 import com.zikra.app.study.StudyAlarmPolicy;
 import com.zikra.app.study.StudyReminders;
 import com.zikra.app.ui.FeatureHeader;
@@ -86,6 +87,7 @@ public final class WeeklyClassesActivity extends BaseActivity {
     out.putString("class_title", text(R.id.weeklyTitle));
     out.putString("class_room", text(R.id.weeklyRoom));
     out.putString("class_teacher", text(R.id.weeklyTeacher));
+    out.putString("class_credits", text(R.id.weeklyCredits));
     out.putInt("class_day", ((Spinner) form.findViewById(R.id.weeklyDay)).getSelectedItemPosition());
     out.putInt("class_lead", ((Spinner) form.findViewById(R.id.weeklyLead)).getSelectedItemPosition());
   }
@@ -144,12 +146,16 @@ public final class WeeklyClassesActivity extends BaseActivity {
   private void edit(WeeklyClass item, Bundle saved) {
     if (editor != null) editor.dismiss();
     form = getLayoutInflater().inflate(R.layout.dialog_weekly_class, null);
+    ((TextView)form.findViewById(R.id.weeklyCourseLabel)).setText(EducationLevel.courseLabel(this));
+    ((TextView)form.findViewById(R.id.weeklyTeacherLabel)).setText(EducationLevel.teacherLabel(this));
+    form.findViewById(R.id.weeklyCreditsGroup).setVisibility(EducationLevel.college(this)?View.VISIBLE:View.GONE);
     draftId = item == null ? 0 : item.id; draftRevision = item == null ? 0 : item.revision;
     startMinute = item == null ? 8 * 60 : item.startMinute;
     endMinute = item == null ? 9 * 60 : item.endMinute;
     ((EditText) form.findViewById(R.id.weeklyTitle)).setText(item == null ? "" : item.title);
     ((EditText) form.findViewById(R.id.weeklyRoom)).setText(item == null ? "" : item.room);
     ((EditText) form.findViewById(R.id.weeklyTeacher)).setText(item == null ? "" : item.teacher);
+    ((EditText) form.findViewById(R.id.weeklyCredits)).setText(item == null || item.credits == 0 ? "" : Integer.toString(item.credits));
     ((Spinner) form.findViewById(R.id.weeklyDay)).setSelection((item == null ? selectedDay : item.weekday) - 1);
     ((Spinner) form.findViewById(R.id.weeklyLead)).setSelection(item == null ? 0
         : item.reminderMinutes == 30 ? 2 : item.reminderMinutes == 15 ? 1 : 0);
@@ -159,6 +165,7 @@ public final class WeeklyClassesActivity extends BaseActivity {
       ((EditText) form.findViewById(R.id.weeklyTitle)).setText(saved.getString("class_title", ""));
       ((EditText) form.findViewById(R.id.weeklyRoom)).setText(saved.getString("class_room", ""));
       ((EditText) form.findViewById(R.id.weeklyTeacher)).setText(saved.getString("class_teacher", ""));
+      ((EditText) form.findViewById(R.id.weeklyCredits)).setText(saved.getString("class_credits", ""));
       ((Spinner) form.findViewById(R.id.weeklyDay)).setSelection(saved.getInt("class_day"));
       ((Spinner) form.findViewById(R.id.weeklyLead)).setSelection(saved.getInt("class_lead"));
     }
@@ -194,11 +201,14 @@ public final class WeeklyClassesActivity extends BaseActivity {
   private void save() {
     if (editor == null || !editor.isShowing()) return;
     try {
+      String creditsText=text(R.id.weeklyCredits).trim();
+      int credits=creditsText.isEmpty()?0:Integer.parseInt(creditsText);
+      if(!creditsText.isEmpty()&&(credits<1||credits>30)){error(R.string.study_credits_invalid);return;}
       int choice = ((Spinner) form.findViewById(R.id.weeklyLead)).getSelectedItemPosition();
       WeeklyClass item = new WeeklyClass(draftId, draftRevision, text(R.id.weeklyTitle),
           text(R.id.weeklyRoom), text(R.id.weeklyTeacher),
           ((Spinner) form.findViewById(R.id.weeklyDay)).getSelectedItemPosition() + 1,
-          startMinute, endMinute, choice == 2 ? 30 : choice == 1 ? 15 : 0);
+          startMinute, endMinute, choice == 2 ? 30 : choice == 1 ? 15 : 0, credits);
       store.save(item); editor.dismiss(); refresh(); ClassReminders.sync(this);
       if (item.reminderMinutes > 0 && Build.VERSION.SDK_INT >= 33
           && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED)
@@ -248,6 +258,7 @@ public final class WeeklyClassesActivity extends BaseActivity {
       detail.setPadding(0, dp(6), 0, 0);
       detail.setText(clock(item.startMinute) + "–" + clock(item.endMinute)
           + (item.room.isEmpty() ? "" : " · " + item.room)
+          + (!EducationLevel.college(WeeklyClassesActivity.this)||item.credits==0?"":" · "+getString(R.string.study_credits_value,item.credits))
           + (item.teacher.isEmpty() ? "" : "\n" + item.teacher));
       return row;
     }

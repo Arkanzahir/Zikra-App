@@ -11,12 +11,17 @@ import java.time.temporal.TemporalAdjusters;
 public final class WeeklyClass {
   public final long id, revision;
   public final String title, room, teacher;
-  public final int weekday, startMinute, endMinute, reminderMinutes;
+  public final int weekday, startMinute, endMinute, reminderMinutes, credits;
 
   public WeeklyClass(long id, long revision, String title, String room, String teacher,
       int weekday, int startMinute, int endMinute, int reminderMinutes) {
+    this(id,revision,title,room,teacher,weekday,startMinute,endMinute,reminderMinutes,0);
+  }
+  public WeeklyClass(long id, long revision, String title, String room, String teacher,
+      int weekday, int startMinute, int endMinute, int reminderMinutes, int credits) {
     if (id < 0 || revision < 0 || weekday < 1 || weekday > 7 || startMinute < 0
         || startMinute >= endMinute || endMinute > 1439
+        || credits < 0 || credits > 30
         || (reminderMinutes != 0 && reminderMinutes != 15 && reminderMinutes != 30))
       throw new IllegalArgumentException("Invalid weekly class");
     this.id = id; this.revision = revision;
@@ -25,6 +30,7 @@ public final class WeeklyClass {
     this.teacher = label(teacher, 100, false);
     this.weekday = weekday; this.startMinute = startMinute;
     this.endMinute = endMinute; this.reminderMinutes = reminderMinutes;
+    this.credits = credits;
   }
 
   public static String label(String value, int max, boolean required) {

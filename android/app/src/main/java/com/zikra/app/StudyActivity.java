@@ -55,6 +55,7 @@ public final class StudyActivity extends BaseActivity {
   private LocalDate displayedDay;
   private LocalDate selectedAgendaDay;
   private Dialog editorDialog;
+  private AlertDialog educationDialog;
   private android.app.DatePickerDialog agendaDateDialog;
   private View editorView;
   private Task editorTask;
@@ -136,6 +137,9 @@ public final class StudyActivity extends BaseActivity {
       ((TextView) findViewById(R.id.study_add)).setText("Tambah ibadah");
     }
     if (!diaryMode && !ibadahMode) {
+      TextView level=agendaHeader.findViewById(R.id.studyEducation);
+      level.setVisibility(View.VISIBLE);level.setText(EducationLevel.label(this));
+      level.setOnClickListener(v->educationDialog=EducationLevel.choose(this,()->level.setText(EducationLevel.label(this))));
       agendaHeader.findViewById(R.id.studyWeeklyClasses).setVisibility(View.VISIBLE);
       agendaHeader.findViewById(R.id.studyWeeklyClasses)
           .setOnClickListener(v -> open(WeeklyClassesActivity.class));
@@ -251,6 +255,7 @@ public final class StudyActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    if(agendaHeader!=null)((TextView)agendaHeader.findViewById(R.id.studyEducation)).setText(EducationLevel.label(this));
     renderDate();
     refreshTasks();
     handler.removeCallbacks(dayCheck);
@@ -284,6 +289,7 @@ public final class StudyActivity extends BaseActivity {
 
   @Override
   protected void onDestroy() {
+    if(educationDialog!=null)educationDialog.dismiss();
     handler.removeCallbacksAndMessages(null);
     if (editorDialog != null) editorDialog.dismiss();
     if (catalog != null) catalog.close();

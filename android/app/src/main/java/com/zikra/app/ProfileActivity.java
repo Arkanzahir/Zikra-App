@@ -83,6 +83,8 @@ public final class ProfileActivity extends BaseActivity {
                 ? View.GONE
                 : View.VISIBLE);
     rows.removeAllViews();
+    row(getString(R.string.study_level_choose),com.zikra.app.study.EducationLevel.label(this),
+        R.drawable.ic_graduation,()->profileDialog=com.zikra.app.study.EducationLevel.choose(this,this::render));
     row(
         "Pengingat sholat",
         "Waktu dan preferensi notifikasi",

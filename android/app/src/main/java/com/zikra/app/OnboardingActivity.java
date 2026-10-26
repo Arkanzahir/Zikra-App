@@ -34,6 +34,8 @@ public final class OnboardingActivity extends BaseActivity {
     super.onCreate(state);
     step = state == null ? 0 : Math.max(0, Math.min(2, state.getInt("step")));
     setContentView(R.layout.activity_onboarding);
+    ((android.widget.Spinner)findViewById(R.id.onboardLevel)).setSelection(state==null
+        ?com.zikra.app.study.EducationLevel.selected(this)+1:state.getInt("education_draft",0));
     titles = getResources().getStringArray(R.array.onboarding_titles);
     captions = getResources().getStringArray(R.array.onboarding_captions);
     eyebrows = getResources().getStringArray(R.array.onboarding_eyebrows);
@@ -69,6 +71,7 @@ public final class OnboardingActivity extends BaseActivity {
   }
 
   private void render() {
+    findViewById(R.id.onboardEducation).setVisibility(step==2?View.VISIBLE:View.GONE);
     ((TextView) findViewById(R.id.onboardEyebrow)).setText(eyebrows[step]);
     ((TextView) findViewById(R.id.onboardTitle)).setText(titles[step]);
     ((TextView) findViewById(R.id.onboardDescription)).setText(captions[step]);
@@ -115,6 +118,8 @@ public final class OnboardingActivity extends BaseActivity {
   }
 
   private void complete() {
+    int level=((android.widget.Spinner)findViewById(R.id.onboardLevel)).getSelectedItemPosition()-1;
+    if(level>=0)com.zikra.app.study.EducationLevel.save(this,level);
     getSharedPreferences("zikra_preferences", MODE_PRIVATE)
         .edit()
         .putBoolean("onboarding_complete", true)
@@ -173,6 +178,7 @@ public final class OnboardingActivity extends BaseActivity {
   @Override
   protected void onSaveInstanceState(Bundle state) {
     state.putInt("step", step);
+    state.putInt("education_draft",((android.widget.Spinner)findViewById(R.id.onboardLevel)).getSelectedItemPosition());
     super.onSaveInstanceState(state);
   }
 

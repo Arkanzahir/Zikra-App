@@ -13,6 +13,11 @@
                 <TextView android:id="@+id/onboardTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/onboarding_title_study" android:textSize="28sp" android:textStyle="bold" android:letterSpacing="-0.025" android:lineSpacingExtra="2dp" android:textColor="@color/pine" />
                 <TextView android:id="@+id/onboardDescription" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:textSize="14sp" android:lineSpacingExtra="5dp" android:textColor="@color/onboarding_muted" android:text="@string/onboarding_caption_study" />
                 <TextView android:id="@+id/dailyOnboardFeature" style="@style/DailyCaption" android:layout_marginTop="20dp" android:padding="12dp" android:background="@drawable/daily_mint_card" android:text="@string/daily_onboard_feature_welcome" />
+                <LinearLayout android:id="@+id/onboardEducation" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="16dp" android:visibility="gone">
+                    <TextView style="@style/StudyLabel" android:text="@string/study_level_choose" android:labelFor="@id/onboardLevel" />
+                    <Spinner android:id="@+id/onboardLevel" style="@style/StudyInput" android:entries="@array/study_level_picker" />
+                    <TextView style="@style/DailyCaption" android:text="@string/study_level_note" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

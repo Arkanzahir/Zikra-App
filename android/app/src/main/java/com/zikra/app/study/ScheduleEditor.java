@@ -31,6 +31,7 @@ public final class ScheduleEditor {
     reminder = root.findViewById(R.id.studyReminder);
     advance = root.findViewById(R.id.studyAdvanceReminder);
     root.findViewById(R.id.studyAcademicDetails).setVisibility(View.VISIBLE);
+    ((TextView)root.findViewById(R.id.studySubjectLabel)).setText(EducationLevel.courseLabel(activity));
     subject = root.findViewById(R.id.studySubject);
     priority = root.findViewById(R.id.studyPriority);
     subject.setText(task == null ? "" : task.subject);

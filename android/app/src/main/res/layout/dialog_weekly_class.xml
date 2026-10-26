@@ -2,7 +2,7 @@
     android:layout_width="match_parent" android:layout_height="wrap_content" android:fillViewport="true">
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
         android:orientation="vertical" android:padding="20dp">
-        <TextView style="@style/StudyLabel" android:text="@string/weekly_course" android:labelFor="@id/weeklyTitle" />
+        <TextView android:id="@+id/weeklyCourseLabel" style="@style/StudyLabel" android:text="@string/weekly_course" android:labelFor="@id/weeklyTitle" />
         <EditText android:id="@+id/weeklyTitle" style="@style/StudyInput" android:inputType="textCapSentences"
             android:maxLength="100" android:singleLine="true" />
         <TextView style="@style/StudyLabel" android:layout_marginTop="12dp" android:text="@string/weekly_day" android:labelFor="@id/weeklyDay" />
@@ -12,8 +12,12 @@
         <Button android:id="@+id/weeklyEnd" style="@style/NearbyButton" android:layout_width="match_parent" />
         <TextView style="@style/StudyLabel" android:layout_marginTop="12dp" android:text="@string/weekly_room" android:labelFor="@id/weeklyRoom" />
         <EditText android:id="@+id/weeklyRoom" style="@style/StudyInput" android:inputType="textCapSentences" android:maxLength="100" android:singleLine="true" />
-        <TextView style="@style/StudyLabel" android:layout_marginTop="12dp" android:text="@string/weekly_teacher" android:labelFor="@id/weeklyTeacher" />
+        <TextView android:id="@+id/weeklyTeacherLabel" style="@style/StudyLabel" android:layout_marginTop="12dp" android:text="@string/weekly_teacher" android:labelFor="@id/weeklyTeacher" />
         <EditText android:id="@+id/weeklyTeacher" style="@style/StudyInput" android:inputType="textPersonName" android:maxLength="100" android:singleLine="true" />
+        <LinearLayout android:id="@+id/weeklyCreditsGroup" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="12dp">
+            <TextView style="@style/StudyLabel" android:text="@string/study_credits" android:labelFor="@id/weeklyCredits" />
+            <EditText android:id="@+id/weeklyCredits" style="@style/StudyInput" android:inputType="number" android:maxLength="2" android:singleLine="true" />
+        </LinearLayout>
         <TextView style="@style/StudyLabel" android:layout_marginTop="12dp" android:text="@string/weekly_reminder" android:labelFor="@id/weeklyLead" />
         <Spinner android:id="@+id/weeklyLead" style="@style/StudyInput" android:entries="@array/weekly_reminder_choices" />
         <TextView android:id="@+id/weeklyError" android:layout_width="match_parent" android:layout_height="wrap_content"

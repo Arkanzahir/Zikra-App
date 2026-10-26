@@ -85,6 +85,42 @@ public final class WeeklyAcademicTest extends InstrumentationTestCase {
     assertEquals(64,store.all().size());
   }
 
+  public void testScheduleV1UpgradeKeepsClassAndDefaultsCredits()throws Exception {
+    String name="d04-weekly-v1.db";context.deleteDatabase(name);
+    try(SQLiteDatabase old=context.openOrCreateDatabase(name,0,null)){
+      old.execSQL("CREATE TABLE weekly_classes(id INTEGER PRIMARY KEY AUTOINCREMENT,revision INTEGER NOT NULL,title TEXT NOT NULL,room TEXT NOT NULL,teacher TEXT NOT NULL,weekday INTEGER NOT NULL,start_minute INTEGER NOT NULL,end_minute INTEGER NOT NULL,reminder_minutes INTEGER NOT NULL)");
+      old.execSQL("INSERT INTO weekly_classes VALUES(42,7,'Kelas lama','A1','Pengajar',1,480,540,15)");old.setVersion(1);
+    }
+    try(WeeklyClassStore upgraded=new WeeklyClassStore(context,name)){
+      WeeklyClass old=upgraded.find(42);assertNotNull(old);assertEquals(7,old.revision);assertEquals(0,old.credits);assertEquals("Kelas lama",old.title);
+      upgraded.save(new WeeklyClass(old.id,old.revision,old.title,old.room,old.teacher,old.weekday,old.startMinute,old.endMinute,old.reminderMinutes,3));
+      assertEquals(3,upgraded.find(42).credits);assertEquals(2,upgraded.getReadableDatabase().getVersion());
+    }finally{context.deleteDatabase(name);}
+  }
+
+  public void testEducationOnboardingAndCollegeCreditsPreserveData()throws Exception {
+    context.getSharedPreferences("zikra_preferences",0).edit().remove("education_level").commit();
+    launch(OnboardingActivity.class);
+    ui(()->{page.findViewById(R.id.onboardContinue).performClick();page.findViewById(R.id.onboardContinue).performClick();((Spinner)page.findViewById(R.id.onboardLevel)).setSelection(3);});
+    recreate();assertEquals(3,((Spinner)page.findViewById(R.id.onboardLevel)).getSelectedItemPosition());
+    android.app.Instrumentation.ActivityMonitor monitor=getInstrumentation().addMonitor(HomeActivity.class.getName(),null,false);
+    try{ui(()->page.findViewById(R.id.onboardContinue).performClick());page=getInstrumentation().waitForMonitorWithTimeout(monitor,15000);assertNotNull(page);}finally{getInstrumentation().removeMonitor(monitor);}
+    assertTrue(EducationLevel.college(context));launch(StudyActivity.class);
+    assertEquals("Mahasiswa",((TextView)page.findViewById(R.id.studyEducation)).getText().toString());
+    ui(()->page.findViewById(R.id.studyEducation).performClick());AlertDialog chooser=(AlertDialog)field("educationDialog");
+    ui(()->{chooser.getListView().performItemClick(chooser.getListView().getChildAt(0),0,0);chooser.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();});assertTrue(EducationLevel.college(context));
+    launch(WeeklyClassesActivity.class);ui(()->page.findViewById(R.id.weeklyAdd).performClick());AlertDialog editor=(AlertDialog)field("editor");
+    assertEquals("Mata kuliah",((TextView)editor.findViewById(R.id.weeklyCourseLabel)).getText().toString());
+    assertEquals(View.VISIBLE,editor.findViewById(R.id.weeklyCreditsGroup).getVisibility());
+    ui(()->{((EditText)editor.findViewById(R.id.weeklyTitle)).setText("[UJI] Kalkulus");((EditText)editor.findViewById(R.id.weeklyCredits)).setText("3");});
+    recreate();AlertDialog restored=(AlertDialog)field("editor");assertEquals("3",((EditText)restored.findViewById(R.id.weeklyCredits)).getText().toString());
+    ui(()->restored.getButton(AlertDialog.BUTTON_POSITIVE).performClick());assertEquals(3,store.all().get(0).credits);shot("college-credits");
+    EducationLevel.save(context,1);WeeklyClass item=store.all().get(0);
+    ui(()->{ListView list=page.findViewById(R.id.weeklyList);list.performItemClick(list.getChildAt(0),0,item.id);});AlertDialog school=(AlertDialog)field("editor");
+    assertEquals("Mata pelajaran",((TextView)school.findViewById(R.id.weeklyCourseLabel)).getText().toString());assertEquals(View.GONE,school.findViewById(R.id.weeklyCreditsGroup).getVisibility());
+    ui(()->school.getButton(AlertDialog.BUTTON_POSITIVE).performClick());assertEquals(3,store.all().get(0).credits);
+  }
+
   public void testTaskMetadataSortingAndCalendarSelectionSurviveReopen()throws Exception {
     ZoneId zone=LocationStore.current(context).zone;LocalDate today=LocationStore.today(context);
     long due=today.plusDays(1).atTime(18,0).atZone(zone).toInstant().toEpochMilli();
@@ -93,8 +129,9 @@ public final class WeeklyAcademicTest extends InstrumentationTestCase {
     long later=db.addAcademicTask("[UJI] Lusa","Kimia",2,due+86400000L,false,false);
     assertEquals("Matematika",task(high).subject);assertEquals(2,task(high).priority);assertTrue(task(high).advanceReminder);
     List<Task> ordered=db.getTasks();ordered.sort(TaskOrder.ACADEMIC);assertEquals(high,ordered.get(0).id);assertEquals(low,ordered.get(1).id);
-    launch(StudyActivity.class);ui(()->page.findViewById(R.id.study_date).performClick());
+    launch(StudyActivity.class);ui(()->((com.zikra.app.ui.FeatureHeader)page.findViewById(R.id.sharedFeatureHeader)).action().performClick());
     DatePickerDialog date=(DatePickerDialog)field("agendaDateDialog");LocalDate chosen=today.plusDays(1);
+    assertNotNull("Calendar action opens picker",date);
     ui(()->{date.updateDate(chosen.getYear(),chosen.getMonthValue()-1,chosen.getDayOfMonth());date.getButton(AlertDialog.BUTTON_POSITIVE).performClick();});
     assertEquals(chosen,field("selectedAgendaDay"));recreate();assertEquals(chosen,field("selectedAgendaDay"));shot("calendar-priority");
     assertTrue(db.updateAcademicTask(low,"[UJI] Diubah","Biologi",1,0,false,false));assertEquals("Biologi",task(low).subject);assertFalse(task(low).advanceReminder);
