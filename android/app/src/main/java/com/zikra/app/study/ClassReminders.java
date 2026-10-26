@@ -101,7 +101,11 @@ public final class ClassReminders {
       manager.createNotificationChannel(new NotificationChannel(CHANNEL,
           c.getString(R.string.weekly_channel), NotificationManager.IMPORTANCE_DEFAULT));
       PendingIntent open = PendingIntent.getActivity(c, 8102,
-          new Intent(c, WeeklyClassesActivity.class), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+          new Intent(c, WeeklyClassesActivity.class)
+              .setData(new Uri.Builder().scheme("zikra").authority("study")
+                  .appendPath("class-view").appendPath(key).build())
+              .putExtra("weekday", item.weekday),
+          PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
       manager.notify("class:" + key, 1, new Notification.Builder(c, CHANNEL)
           .setSmallIcon(R.drawable.ic_nearby_info).setAutoCancel(true).setOnlyAlertOnce(true)
           .setVisibility(Notification.VISIBILITY_PRIVATE)

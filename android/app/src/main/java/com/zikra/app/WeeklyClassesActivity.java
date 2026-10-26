@@ -54,7 +54,7 @@ public final class WeeklyClassesActivity extends BaseActivity {
     getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     store = new WeeklyClassStore(this);
-    selectedDay = saved == null ? LocationStore.today(this).getDayOfWeek().getValue()
+    selectedDay = saved == null ? getIntent().getIntExtra("weekday", LocationStore.today(this).getDayOfWeek().getValue())
         : saved.getInt("selected_day", 1);
     if (selectedDay < 1 || selectedDay > 7) selectedDay = 1;
     ListView list = findViewById(R.id.weeklyList); list.setAdapter(adapter);

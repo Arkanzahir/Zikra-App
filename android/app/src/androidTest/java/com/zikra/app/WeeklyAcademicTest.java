@@ -125,6 +125,15 @@ public final class WeeklyAcademicTest extends InstrumentationTestCase {
     assertTrue(text(summary).contains("[UJI] Kelas hari ini"));assertFalse(text(summary).contains("[UJI] Kelas besok"));assertTrue(text(summary).contains("08.00"));
     assertEquals(before,db.getProgress(ZikraDbHelper.CATEGORY_STUDY).completed);shot("home-summary");
   }
+  public void testNotificationOpensRequestedWeekdayAndRetainsSelection()throws Exception {
+    int day=LocationStore.today(context).getDayOfWeek().getValue()%7+1;
+    store.save(new WeeklyClass(0,0,"[UJI] Kelas dari notifikasi","","",day,480,540,0));
+    page=getInstrumentation().startActivitySync(new Intent(context,WeeklyClassesActivity.class)
+        .putExtra("weekday",day).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+    getInstrumentation().waitForIdleSync();assertEquals(day,field("selectedDay"));
+    assertTrue(text(page.findViewById(R.id.weeklyList)).contains("[UJI] Kelas dari notifikasi"));
+    recreate();assertEquals(day,field("selectedDay"));
+  }
   private String text(View view){String value=view instanceof TextView?((TextView)view).getText().toString():"";if(view instanceof ViewGroup)for(int i=0;i<((ViewGroup)view).getChildCount();i++)value+=" "+text(((ViewGroup)view).getChildAt(i));return value;}
 
   public void testTaskReminderStagesDeduplicateAndCompletionCancels()throws Exception {
