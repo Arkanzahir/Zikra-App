@@ -1,0 +1,57 @@
+<resources>
+    <string name="weekly_title">Jadwal kelas</string>
+    <string name="weekly_subtitle">Rencana mingguan, tersimpan di perangkat.</string>
+    <string name="weekly_add">Tambah kelas</string>
+    <string name="weekly_new">Kelas baru</string>
+    <string name="weekly_edit">Ubah kelas</string>
+    <string name="weekly_empty">Belum ada kelas pada hari ini.</string>
+    <string name="weekly_more">%1$d kelas lainnya · buka jadwal untuk melihat semuanya.</string>
+    <string name="weekly_read_failed">Jadwal belum dapat dibaca. Data tidak dihapus.</string>
+    <string name="weekly_settings_unavailable">Pengaturan belum dapat dibuka. Atur notifikasi dan alarm melalui pengaturan aplikasi.</string>
+    <string name="weekly_task_alarm_limit">Pengingat aktif dibatasi pada 128 waktu terdekat; sisanya dijadwalkan setelah pengingat sebelumnya selesai.</string>
+    <string name="weekly_course">Pelajaran / mata kuliah</string>
+    <string name="weekly_room">Ruang / lokasi (opsional)</string>
+    <string name="weekly_teacher">Pengajar / dosen (opsional)</string>
+    <string name="weekly_day">Hari</string>
+    <string name="weekly_time">Waktu kelas</string>
+    <string name="weekly_start">Mulai %1$s</string>
+    <string name="weekly_end">Selesai %1$s</string>
+    <string name="weekly_reminder">Pengingat sebelum kelas</string>
+    <string name="weekly_zone">Zona %1$s. Waktu mengikuti kota pilihan.</string>
+    <string name="weekly_permission_off">Notifikasi belum diizinkan. Jadwal tetap tersimpan.</string>
+    <string name="weekly_inexact">Pengingat dapat tertunda oleh sistem atau penghemat daya.</string>
+    <string name="weekly_exact">Alarm tepat waktu diizinkan. Tetap mengikuti pengaturan notifikasi dan perangkat.</string>
+    <string name="weekly_alarm_settings">Atur izin alarm tepat waktu</string>
+    <string name="weekly_notification_settings">Atur izin notifikasi</string>
+    <string name="weekly_invalid">Isi nama kelas dan pilih jam selesai setelah jam mulai pada hari yang sama.</string>
+    <string name="weekly_overlap">Waktu bertabrakan dengan kelas lain. Ubah hari atau jamnya.</string>
+    <string name="weekly_stale">Jadwal sudah berubah atau dihapus. Buka ulang sebelum menyimpan.</string>
+    <string name="weekly_full">Maksimal 64 kelas mingguan. Hapus jadwal yang tidak digunakan.</string>
+    <string name="weekly_save_failed">Jadwal belum tersimpan. Coba lagi.</string>
+    <string name="weekly_delete">Hapus kelas</string>
+    <string name="weekly_delete_confirm">Hapus “%1$s” dari jadwal mingguan dan batalkan pengingatnya?</string>
+    <string name="weekly_save">Simpan</string>
+    <string name="weekly_cancel">Batal</string>
+    <string name="weekly_notice_title">Kelas %1$d menit lagi</string>
+    <string name="weekly_notice_body">%1$s · %2$s</string>
+    <string name="weekly_channel">Pengingat kelas</string>
+    <string name="weekly_today">Kelas hari ini</string>
+    <string name="weekly_open">Lihat jadwal kelas</string>
+    <string name="weekly_task_subject">Pelajaran / mata kuliah (opsional)</string>
+    <string name="weekly_task_priority">Prioritas</string>
+    <string name="weekly_task_details">%1$s · Prioritas %2$s</string>
+    <string name="weekly_task_priority_only">Prioritas %1$s</string>
+    <string name="weekly_task_advance">Juga ingatkan H-1 dan Hari-H</string>
+    <string name="weekly_task_advance_hint">H-1 pada jam yang sama. Hari-H satu jam sebelum tenggat, paling awal 00.00. Tenggat tepat 00.00 cukup diingatkan saat tenggat. Waktu yang sudah lewat tidak dikirim ulang.</string>
+    <string name="weekly_task_notice_day_before">Tugas besok</string>
+    <string name="weekly_task_notice_day_of">Tugas hari ini</string>
+    <string name="weekly_task_notice_due">Tenggat tugas</string>
+    <string-array name="weekly_days">
+        <item>Senin</item><item>Selasa</item><item>Rabu</item><item>Kamis</item>
+        <item>Jumat</item><item>Sabtu</item><item>Minggu</item>
+    </string-array>
+    <string-array name="weekly_reminder_choices">
+        <item>Mati</item><item>15 menit sebelum kelas</item><item>30 menit sebelum kelas</item>
+    </string-array>
+    <string-array name="weekly_priorities"><item>Rendah</item><item>Sedang</item><item>Tinggi</item></string-array>
+</resources>

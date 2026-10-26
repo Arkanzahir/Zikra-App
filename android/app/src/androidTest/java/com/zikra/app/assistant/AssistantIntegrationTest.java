@@ -136,7 +136,7 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
       TaskProposal addition = new TaskProposal(ID, "add_task", "Reviewed addition", 0, 0, "", 0);
       long created;
       try (ZikraDbHelper db = new ZikraDbHelper(context, name, Clock.systemUTC())) {
-        assertEquals(4, db.getReadableDatabase().getVersion()); assertEquals(3, db.getTasks().size());
+        assertEquals(5, db.getReadableDatabase().getVersion()); assertEquals(3, db.getTasks().size());
         created = db.applyReviewedProposal(addition);
         assertEquals(created, db.applyReviewedProposal(addition)); assertEquals(4, db.getTasks().size());
       }

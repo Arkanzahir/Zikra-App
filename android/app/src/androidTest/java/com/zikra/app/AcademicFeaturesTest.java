@@ -96,7 +96,7 @@ public final class AcademicFeaturesTest extends InstrumentationTestCase {
       assertEquals(5, task.hifz.lastVerse);
       assertEquals(0, task.dueAt);
       assertFalse(task.reminder);
-      assertEquals(4, upgraded.getReadableDatabase().getVersion());
+      assertEquals(5, upgraded.getReadableDatabase().getVersion());
       long id =
           upgraded.addAcademicTask("[DATA UJI] Tenggat", System.currentTimeMillis() + 600000, true);
       assertEquals(2, upgraded.getTasks().size());
@@ -152,7 +152,7 @@ public final class AcademicFeaturesTest extends InstrumentationTestCase {
         context
             .getSharedPreferences("study_alarm_ids", 0)
             .getStringSet("ids", Collections.emptySet())
-            .contains(Long.toString(found.id)));
+            .contains(found.id+":0"));
     UiEvidence.capture(getInstrumentation(), "AcademicStudyWithDeadline");
   }
 

@@ -127,7 +127,7 @@ public final class ZikraDbHelperTest extends AndroidTestCase {
                 + "(41,'2026-10-14','Legacy example','Study',1),"
                 + "(42,'2026-10-14','Legacy ibadah','Ibadah',1)");
     reopenAt("2026-10-15T17:01:00Z");
-    assertEquals(4, db.getReadableDatabase().getVersion());
+    assertEquals(5, db.getReadableDatabase().getVersion());
     assertEquals(1, db.getTotalCount());
     assertEquals(41, find(41).id);
     assertEquals("Legacy example", find(41).title);

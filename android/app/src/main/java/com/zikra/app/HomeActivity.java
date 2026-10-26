@@ -264,12 +264,12 @@ public final class HomeActivity extends BaseActivity {
   }
 
   private void updateAgenda() {
+    com.zikra.app.study.ClassSummary.bind(this, findViewById(R.id.homeClasses));
+    findViewById(R.id.homeClassesOpen).setOnClickListener(v -> open(WeeklyClassesActivity.class));
     java.util.List<com.zikra.app.data.Task> tasks = new java.util.ArrayList<>();
     for (com.zikra.app.data.Task task : db.getTasks())
       if (ZikraDbHelper.CATEGORY_STUDY.equals(task.category) && !task.completed) tasks.add(task);
-    tasks.sort(java.util.Comparator
-        .comparingLong((com.zikra.app.data.Task task) -> task.dueAt > 0 ? task.dueAt : Long.MAX_VALUE)
-        .thenComparingLong(task -> task.id));
+    tasks.sort(com.zikra.app.study.TaskOrder.ACADEMIC);
     LinearLayout container = findViewById(R.id.homeAgendaItems);
     container.removeAllViews();
     ((TextView) findViewById(R.id.homeAgendaCount)).setText(tasks.isEmpty()

@@ -136,6 +136,9 @@ public final class StudyActivity extends BaseActivity {
       ((TextView) findViewById(R.id.study_add)).setText("Tambah ibadah");
     }
     if (!diaryMode && !ibadahMode) {
+      agendaHeader.findViewById(R.id.studyWeeklyClasses).setVisibility(View.VISIBLE);
+      agendaHeader.findViewById(R.id.studyWeeklyClasses)
+          .setOnClickListener(v -> open(WeeklyClassesActivity.class));
       ((TextView) agendaHeader.findViewById(R.id.study_heading))
           .setText(R.string.layout_study_heading);
       agendaHeader.findViewById(R.id.study_scope_hint).setVisibility(View.GONE);
@@ -402,8 +405,7 @@ public final class StudyActivity extends BaseActivity {
     // Keep user insertion order within each group; structured Hifz targets precede legacy notes.
     if (diaryMode) filtered.sort(Comparator.comparing(task -> task.hifz == null));
     if (!diaryMode && !ibadahMode)
-      filtered.sort(
-          Comparator.comparingLong(task -> task.dueAt == 0 ? Long.MAX_VALUE : task.dueAt));
+      filtered.sort(TaskOrder.ACADEMIC);
     List<Task> pending = new ArrayList<>(), done = new ArrayList<>();
     for (Task task : filtered) (task.completed ? done : pending).add(task);
     featuredTask =
@@ -419,7 +421,10 @@ public final class StudyActivity extends BaseActivity {
     bindFeatured();
     if (!diaryMode && !ibadahMode)
       agendaHeader.findViewById(R.id.agenda_feature).setVisibility(View.GONE);
-    if (!diaryMode && !ibadahMode) StudyReminders.sync(this);
+    if (!diaryMode && !ibadahMode) {
+      StudyReminders.sync(this);
+      agendaHeader.findViewById(R.id.studyReminderLimit).setVisibility(getSharedPreferences("study_alarm_ids",0).getBoolean("limited",false)?View.VISIBLE:View.GONE);
+    }
     int completed = done.size(), total = filtered.size();
     int percent = total == 0 ? 0 : Math.round(100f * completed / total);
     ((TextView) agendaHeader.findViewById(R.id.study_percent))
@@ -657,17 +662,19 @@ public final class StudyActivity extends BaseActivity {
                   if (scheduleEditor != null) {
                     if (!scheduleEditor.valid()) return;
                     if (saveAsNew[0])
-                      db.addAcademicTask(value, scheduleEditor.dueAt(), scheduleEditor.reminder());
+                      db.addAcademicTask(value, scheduleEditor.subject(), scheduleEditor.priority(),
+                          scheduleEditor.dueAt(), scheduleEditor.reminder(), scheduleEditor.advanceReminder());
                     else
                       saved =
                           db.updateAcademicTask(
-                              task.id, value, scheduleEditor.dueAt(), scheduleEditor.reminder());
+                              task.id, value, scheduleEditor.subject(), scheduleEditor.priority(),
+                              scheduleEditor.dueAt(), scheduleEditor.reminder(), scheduleEditor.advanceReminder());
                   } else {
                     if (saveAsNew[0]) db.addTask(value, selected);
                     else saved = db.updateTask(task.id, value, selected);
                   }
                 }
-              } catch (android.database.sqlite.SQLiteException error) {
+              } catch (android.database.sqlite.SQLiteException | IllegalArgumentException error) {
                 TextView status = editor.findViewById(R.id.study_editor_status);
                 status.setText(R.string.planner_save_failed);
                 status.setVisibility(View.VISIBLE);
@@ -960,8 +967,8 @@ public final class StudyActivity extends BaseActivity {
               : task.category.equals(ZikraDbHelper.CATEGORY_IBADAH)
                   ? R.string.study_category_ibadah
                   : R.string.study_category_study);
-      if (!diaryMode && !ibadahMode && task.dueAt > 0)
-        detail.setText("Tenggat · " + ScheduleEditor.label(StudyActivity.this, task.dueAt));
+      if (!diaryMode && !ibadahMode)
+        detail.setText(ScheduleEditor.details(StudyActivity.this, task));
       if (!diaryMode && !ibadahMode) {
         tag.setText(
             task.completed

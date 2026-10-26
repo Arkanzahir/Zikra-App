@@ -17,7 +17,7 @@ import java.util.List;
  * New days start empty: only explicit user actions create tasks or prayer templates.
  */
 public final class ZikraDbHelper extends SQLiteOpenHelper {
-  private static final int VERSION = 4;
+  private static final int VERSION = 5;
   public static final String CATEGORY_STUDY = "Study";
   public static final String CATEGORY_IBADAH = "Ibadah";
   public static final String CATEGORY_HIFZ = "Hifz";
@@ -59,6 +59,7 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
     addHifzColumns(db);
     addAcademicColumns(db);
     addAssistantReceipts(db);
+    addAcademicDetails(db);
   }
 
   @Override
@@ -68,6 +69,13 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
     if (oldVersion < 2) addHifzColumns(db);
     if (oldVersion < 3) addAcademicColumns(db);
     if (oldVersion < 4) addAssistantReceipts(db);
+    if (oldVersion < 5) addAcademicDetails(db);
+  }
+
+  private static void addAcademicDetails(SQLiteDatabase db) {
+    db.execSQL("ALTER TABLE tasks ADD COLUMN subject TEXT NOT NULL DEFAULT ''");
+    db.execSQL("ALTER TABLE tasks ADD COLUMN priority INTEGER NOT NULL DEFAULT 1 CHECK(priority BETWEEN 0 AND 2)");
+    db.execSQL("ALTER TABLE tasks ADD COLUMN advance_reminder INTEGER NOT NULL DEFAULT 0 CHECK(advance_reminder IN (0,1))");
   }
 
   private static void addAssistantReceipts(SQLiteDatabase db) {
@@ -98,7 +106,10 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
       } else {
         ContentValues values = new ContentValues();
         values.put("title", proposal.title); values.put("due_at", proposal.dueAt);
-        if (proposal.dueAt == 0) values.put("study_reminder", 0);
+        if (proposal.dueAt == 0) {
+          values.put("study_reminder", 0);
+          values.put("advance_reminder", 0);
+        }
         if (db.update("tasks", values,
             "id=? AND category=? AND completed=0 AND title=? AND due_at=?",
             new String[] {Long.toString(proposal.taskId), CATEGORY_STUDY,
@@ -145,7 +156,7 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
               "hifz_first",
               "hifz_last",
               "due_at",
-              "study_reminder"
+              "study_reminder", "subject", "priority", "advance_reminder"
             },
             ACTIVE_TASKS,
             new String[] {day},
@@ -161,7 +172,7 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
                 cursor.getInt(3) == 1,
                 readTarget(cursor),
                 cursor.getLong(9),
-                cursor.getInt(10) == 1));
+                cursor.getInt(10) == 1, cursor.getString(11), cursor.getInt(12), cursor.getInt(13) == 1));
       }
     }
     return tasks;
@@ -210,12 +221,37 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
         == 1;
   }
 
+  public long addAcademicTask(String title, String subject, int priority, long dueAt,
+      boolean reminder, boolean advance) {
+    ContentValues values = academicDetails(title, subject, priority, dueAt, reminder, advance);
+    values.put("task_date", today()); values.put("completed", 0);
+    return databaseForDay(today()).insertOrThrow("tasks", null, values);
+  }
+
+  public boolean updateAcademicTask(long id, String title, String subject, int priority,
+      long dueAt, boolean reminder, boolean advance) {
+    return databaseForDay(today()).update("tasks",
+        academicDetails(title, subject, priority, dueAt, reminder, advance),
+        "id=? AND category=?", new String[] {Long.toString(id), CATEGORY_STUDY}) == 1;
+  }
+
+  private static ContentValues academicDetails(String title, String subject, int priority,
+      long dueAt, boolean reminder, boolean advance) {
+    if (priority < 0 || priority > 2 || (advance && !reminder))
+      throw new IllegalArgumentException("Invalid academic details");
+    ContentValues values = academicValues(title, dueAt, reminder);
+    values.put("subject", WeeklyClass.label(subject, 100, false));
+    values.put("priority", priority); values.put("advance_reminder", advance ? 1 : 0);
+    return values;
+  }
+
   private static ContentValues academicValues(String title, long dueAt, boolean reminder) {
     if (dueAt < 0 || (reminder && dueAt == 0))
       throw new IllegalArgumentException("Tenggat tidak valid");
     ContentValues values = taskValues(title, CATEGORY_STUDY);
     values.put("due_at", dueAt);
     values.put("study_reminder", reminder ? 1 : 0);
+    if (!reminder) values.put("advance_reminder", 0);
     return values;
   }
 

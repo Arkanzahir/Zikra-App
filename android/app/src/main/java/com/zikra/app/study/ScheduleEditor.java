@@ -17,6 +17,9 @@ public final class ScheduleEditor {
   private final View root;
   private long due;
   private final Switch reminder;
+  private final Switch advance;
+  private final EditText subject;
+  private final Spinner priority;
   private Dialog picker;
   private boolean restoring;
 
@@ -26,12 +29,21 @@ public final class ScheduleEditor {
     due = task == null ? 0 : task.dueAt;
     root.findViewById(R.id.studySchedule).setVisibility(View.VISIBLE);
     reminder = root.findViewById(R.id.studyReminder);
+    advance = root.findViewById(R.id.studyAdvanceReminder);
+    root.findViewById(R.id.studyAcademicDetails).setVisibility(View.VISIBLE);
+    subject = root.findViewById(R.id.studySubject);
+    priority = root.findViewById(R.id.studyPriority);
+    subject.setText(task == null ? "" : task.subject);
+    priority.setSelection(task == null ? 1 : task.priority);
+    advance.setChecked(task != null && task.advanceReminder);
     reminder.setChecked(task != null && task.reminder);
     reminder.setOnCheckedChangeListener(
         (v, checked) -> {
+          if (!checked) advance.setChecked(false);
           if (checked && !restoring) permission.run();
           render();
         });
+    advance.setOnCheckedChangeListener((button,checked)->render());
     root.findViewById(R.id.studyDeadline).setOnClickListener(v -> choose());
     root.findViewById(R.id.studyDeadlineClear)
         .setOnClickListener(
@@ -84,6 +96,7 @@ public final class ScheduleEditor {
         .setText(due == 0 ? "Atur tenggat (opsional)" : label(activity, due));
     root.findViewById(R.id.studyDeadlineClear).setVisibility(due == 0 ? View.GONE : View.VISIBLE);
     reminder.setEnabled(due > 0);
+    advance.setEnabled(due > 0 && reminder.isChecked());
     ((TextView) root.findViewById(R.id.studyScheduleHint))
         .setText(
             !reminder.isChecked()
@@ -92,6 +105,8 @@ public final class ScheduleEditor {
                     ? "Pengingat sekitar waktu tenggat; dapat tertunda oleh sistem/penghemat daya."
                     : "Notifikasi belum diizinkan. Tenggat tetap disimpan; aktifkan notifikasi"
                         + " aplikasi agar pengingat dapat tampil.");
+    if(reminder.isChecked()&&advance.isChecked())((TextView)root.findViewById(R.id.studyScheduleHint)).append("\n"+activity.getString(R.string.weekly_task_advance_hint));
+    if(activity.getSharedPreferences("study_alarm_ids",0).getBoolean("limited",false))((TextView)root.findViewById(R.id.studyScheduleHint)).append("\n"+activity.getString(R.string.weekly_task_alarm_limit));
   }
 
   public boolean valid() {
@@ -113,15 +128,33 @@ public final class ScheduleEditor {
     return reminder.isChecked();
   }
 
+  public String subject() { return subject.getText().toString(); }
+  public int priority() { return priority.getSelectedItemPosition(); }
+  public boolean advanceReminder() { return reminder() && advance.isChecked(); }
+
+  public static String details(android.content.Context context, Task task) {
+    String[] priorities = context.getResources().getStringArray(R.array.weekly_priorities);
+    String info = task.subject.isEmpty()
+        ? context.getString(R.string.weekly_task_priority_only, priorities[task.priority])
+        : context.getString(R.string.weekly_task_details, task.subject, priorities[task.priority]);
+    return label(context, task.dueAt) + "\n" + info;
+  }
+
   public void save(Bundle state) {
     state.putLong("study_due", due);
     state.putBoolean("study_reminder", reminder());
+    state.putBoolean("study_advance", advanceReminder());
+    state.putString("study_subject", subject());
+    state.putInt("study_priority", priority());
   }
 
   public void restore(Bundle state) {
     due = state.getLong("study_due", due);
     restoring = true;
     reminder.setChecked(state.getBoolean("study_reminder", false));
+    advance.setChecked(state.getBoolean("study_advance", false));
+    subject.setText(state.getString("study_subject", ""));
+    priority.setSelection(state.getInt("study_priority", 1));
     restoring = false;
     render();
   }

@@ -186,6 +186,7 @@
                 android:maxLines="4"
                 android:maxLength="200"
                 android:gravity="top|start" />
+            <include layout="@layout/view_academic_details" />
             <include layout="@layout/view_study_schedule" />
             <TextView
                 android:id="@+id/study_editor_category_label"

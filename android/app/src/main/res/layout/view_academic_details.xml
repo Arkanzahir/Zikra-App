@@ -1,0 +1,10 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/studyAcademicDetails" android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone"
+    android:layout_marginTop="16dp">
+    <TextView style="@style/StudyLabel" android:text="@string/weekly_task_subject" android:labelFor="@id/studySubject" />
+    <EditText android:id="@+id/studySubject" style="@style/StudyInput" android:maxLength="100"
+        android:singleLine="true" android:inputType="textCapSentences" />
+    <TextView style="@style/StudyLabel" android:layout_marginTop="12dp" android:text="@string/weekly_task_priority" android:labelFor="@id/studyPriority" />
+    <Spinner android:id="@+id/studyPriority" style="@style/StudyInput" android:entries="@array/weekly_priorities" />
+</LinearLayout>

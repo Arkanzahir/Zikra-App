@@ -132,6 +132,19 @@
         <LinearLayout android:id="@+id/homeAgendaItems" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="vertical" android:background="@drawable/refresh_outline" />
         <TextView android:id="@+id/homeAgendaAll" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:gravity="center_vertical" android:text="@string/refresh_home_agenda_all" android:textSize="14sp" android:textColor="@color/studio_teal" android:textStyle="bold" android:clickable="true" android:focusable="true" android:background="?android:attr/selectableItemBackground" />
       </LinearLayout>
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:layout_marginHorizontal="20dp" android:layout_marginTop="12dp" android:orientation="vertical">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/weekly_today" android:textSize="20sp" android:textStyle="bold"
+            android:textColor="@color/pine" android:accessibilityHeading="true" />
+        <LinearLayout android:id="@+id/homeClasses" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="12dp"
+            android:orientation="vertical" android:background="@drawable/refresh_outline" />
+        <TextView android:id="@+id/homeClassesOpen" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:minHeight="48dp" android:gravity="center_vertical" android:text="@string/weekly_open"
+            android:textSize="14sp" android:textColor="@color/studio_teal" android:clickable="true" android:focusable="true"
+            android:background="?android:attr/selectableItemBackground" />
+      </LinearLayout>
       <LinearLayout android:id="@+id/homeFocusCard" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="20dp" android:layout_marginTop="16dp" android:layout_marginBottom="16dp" android:orientation="horizontal" android:gravity="center_vertical" android:padding="20dp" android:background="@drawable/studio_hero" android:clickable="true" android:focusable="true" android:foreground="?android:attr/selectableItemBackground">
         <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
           <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/refresh_home_focus" android:textSize="21sp" android:textColor="@color/white" android:textStyle="bold" />

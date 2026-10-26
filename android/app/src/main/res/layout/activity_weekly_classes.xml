@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@color/studio_cream">
+    <com.zikra.app.ui.FeatureHeader android:id="@+id/weeklyHeader"
+        android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp" android:text="@string/weekly_subtitle"
+        android:textSize="14sp" android:textColor="@color/concept_muted" />
+    <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:scrollbars="none" android:layout_marginTop="12dp">
+        <LinearLayout android:id="@+id/weeklyDays" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:orientation="horizontal"
+            android:paddingHorizontal="12dp" />
+    </HorizontalScrollView>
+    <ListView android:id="@+id/weeklyList" android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1" android:paddingHorizontal="16dp"
+        android:paddingBottom="12dp" android:divider="@color/concept_line" android:dividerHeight="1dp" />
+    <TextView android:id="@+id/weeklyHint" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:paddingHorizontal="20dp"
+        android:textSize="12sp" android:textColor="@color/concept_muted" android:accessibilityLiveRegion="polite" />
+    <Button android:id="@+id/weeklyPermissions" style="@style/NearbyButton"
+        android:layout_width="match_parent" android:layout_marginHorizontal="16dp"
+        android:background="?android:attr/selectableItemBackground" android:text="@string/weekly_alarm_settings" />
+    <Button android:id="@+id/weeklyAdd" style="@style/StudyButton"
+        android:layout_width="match_parent" android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="16dp" android:background="@drawable/bg_pine"
+        android:text="@string/weekly_add" android:textColor="@color/white" />
+</LinearLayout>
