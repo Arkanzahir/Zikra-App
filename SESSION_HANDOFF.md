@@ -425,3 +425,29 @@ Ref GitHub cocok HEAD pada push; status WIP/stash identik baseline privat sebelu
 C02 cloud. [Panduan HP/laptop mati](android/validation/backend-c02-cloud-2026-10-26/PHONE_LAPTOP_OFF.md)
 disiapkan tanpa menandai uji tersebut lulus. C02 masih[ ]; browser tidak disentuh,
 tidak ada APK/deploy production baru atau penutupan C lain/publik.
+
+
+## Checkpoint terbaru — C06 fisik lulus; pengguna meminta referensi AI dahulu
+
+C06[x] pada APK1.9.7/code34/API36: dua metode native final lulus. Recognizer nyata
+cancel/consent, dikte29 karakter, tetap draf/tidak auto-kirim/pulih setelah reopen.
+Bukti JSON dan pemulihan12 berkas ada pada laporan C06. Helper dihapus, main app
+1.9.7 tetap terpasang. Hambatan fokus awal diatasi lewat launcher resmi sebelum
+instrumentation; satu helper install gagal tetapi data dipulihkan sebelum ulang.
+Data asli/profil/chat tidak dikirim; transkrip/serial/arsip/log tetap privat.
+
+D04 sempat dimulai ketika pengguna meminta kerja tanpa HP. Prioritas lalu beralih
+ke uji HP, kemudian pengguna menyatakan kamera sudah dicoba dan meminta referensi
+AI sebelum eksekusi. D04 belum dibangun/diuji dan tidak dicentang.28 berkas milik
+pekerjaan D04 disimpan lengkap dan diverifikasi pada .local/study-d04/paused-sources/
+dan d04-paused-source.zip (manifest SHA tersedia). Hanya perubahan D04 milik agent
+yang disisihkan; source app kembali checkpoint5cdba1a. WIP PROJECT_HANDOFF.md,
+stash/arsip audio dan prototipe lama tetap. Jangan menganggap D04 siap; ClassSummary
+masih perlu diimplementasikan saat melanjutkan arsip tersebut.
+
+Referensi AI interaktif Fokus/Studio berada di direktori visualisasi thread,
+zikra-ai-reference.html. Chat/riwayat/lampiran adalah data contoh, tanpa jaringan
+AI atau akses HP. Belum menerapkan desain AI baru. Pengguna meminta referensi dulu;
+implementasi menunggu pilihannya. C07 baru laporan manual kamera dari pengguna,
+bukan penutupan semua kasus picker/grant/dokumen/OCR. C02 laptop mati, C04, B01,
+D02a/UI04/F/G dan publik tetap terbuka. Tidak ada proses uji HP aktif lagi.

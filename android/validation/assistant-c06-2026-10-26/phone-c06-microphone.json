@@ -1,0 +1,13 @@
+{
+  "physicalPhone": true,
+  "androidApi": 36,
+  "realExternalRecognizer": true,
+  "fabricatedActivityResult": false,
+  "spokenTestPhraseMatched": true,
+  "recognizedCharacters": 29,
+  "boundedDraft": true,
+  "draftSurvivesReopen": true,
+  "aiMessagesSent": 0,
+  "rawTranscriptIncluded": false,
+  "passed": true
+}

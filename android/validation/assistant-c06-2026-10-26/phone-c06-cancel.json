@@ -1,0 +1,8 @@
+{
+  "physicalPhone": true,
+  "realRecognizerStarted": true,
+  "consentDeclineKeptDraft": true,
+  "externalCancelKeptDraft": true,
+  "aiMessagesSent": 0,
+  "passed": true
+}
