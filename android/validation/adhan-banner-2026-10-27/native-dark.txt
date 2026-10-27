@@ -1,0 +1,25 @@
+INSTRUMENTATION_STATUS: class=com.zikra.app.reminders.AdhanIntegrationTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.zikra.app.reminders.AdhanIntegrationTest:
+INSTRUMENTATION_STATUS: test=testShadeKeepsStopControlAfterBanner
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: ui_stop_ready=notification-shade:1.0
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.reminders.AdhanIntegrationTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testShadeKeepsStopControlAfterBanner
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+Test results for InstrumentationTestRunner=.
+Time: 14.168
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1

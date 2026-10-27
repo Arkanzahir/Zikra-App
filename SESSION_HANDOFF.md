@@ -675,3 +675,36 @@ redistribusi kedua rekaman. Pengguna sebelumnya memilih lanjut tanpa HP; jangan
 meminta sambungan berulang. D01 juga masih menunggu HP; D04 tetap selesai beta.
 C02/C04/C07/B01/D03/D05/D06/E/F/G dan publik tidak ditutup oleh hasil ini.
 Checkpoint ini lokal; jangan mengklaim perubahan baru sudah dipush.
+
+
+## Banner adzan disetujui dan diterapkan — 27 Oktober2026, beta1.9.12
+
+Pengguna menyetujui [konsep](design/concepts/adhan-banner-2026-10-27.md) banner
+atas layar/tombol berhenti. Runtime AdhanNotification terpisah, kanal HIGH baru
+untuk otomatis/LOW lama untuk preview, dekorasi sistem, compact CTA mint dan
+satu action native pada heads-up/expanded. Font>=150% compact labelStop dan
+contentDescription penuh, expanded tetapHentikan adzan. Pengaturan kanal dibuka
+dari Waktu Sholat; blok kanal lama/baru, DND/izin/senyap tetap dihormati. Tidak ada
+overlay/full-screen intent/izin baru; isi publik kartu hanya salat/status.
+
+Source **73ff1b25c642b1ffb2847ec11b16259439a6861e**, APK lokal folder luar
+**Zikra-Adzan-v1.9.12-beta-debug.apk**, **41.333.887byte**, SHA256
+`d505fb59613c0f1f5331019473a3a3eef5064f40ed645a38ea4f59301f1bf8df`. Signer debug sama; schema5/1/2; dua MP3 pilihan Subuh/Mecca tetap privat
+melalui properti build debug, tidak dimasukkan Git/release. APK1.9.11 tetap utuh.
+**134 unit lulus/4 skip,20 native/17 metode unik lulus**,lint0 error/780 warning.
+4 kasus memakai screenshot UI asli + adb input tap terarah, lalu native mengecek
+player berhenti/kartu hilang/stop tanpa buka Activity;16 kasus lain otomatis.
+Timeout aksi aksesibilitas emulator sementara120.000ms untuk uji sentuh, bukan
+durasi default produk; nilai awal dikembalikan. Putaran/node gagal dan perapian
+duplikasi CTA dicatat, tidak menyamakan gambar konsep dengan bukti runtime.
+
+[Receipt/screenshot/input/hasil/preservasi/audit/batas](android/validation/adhan-banner-2026-10-27/README.md).
+Baseline10berkas0byte cocok hash pulih; jaringan/font/ukuran/tema/DND/ringer/izin/
+heads-up/timeoutaksesibilitas pulih, helper dihapus, emulator ditutup; HP/provider
+tidak disentuh. WIP/stash/env/desain/APK lama dipertahankan dan nilai rahasia
+saat ini bersih pada source/evidence/APK. Checkpoint lokal, belum push baru.
+
+D02/D02a tetap[ ] untuk HP (pop-up vendor, suara/getar, lock/reboot/Doze,
+perubahan jam-zona, upgrade berisi) dan asal/ketentuan rekaman/lafaz penuh Subuh.
+D01 fisik juga terbuka. D03 berikutnya dapat dikerjakan tanpa mengklaim gerbang
+HP telah selesai; B01/C02/C04/C07/D05/D06/E/F/G/publik tetap sesuai checklist.

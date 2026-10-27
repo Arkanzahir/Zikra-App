@@ -1,0 +1,62 @@
+[
+  {
+    "phase": "native-banner",
+    "visibleStage": "banner-heads-up",
+    "physicalTapCenter": [
+      280,
+      210
+    ],
+    "frame": "banner-heads-up-100.png",
+    "frameSize": [
+      1080,
+      2400
+    ],
+    "actionRegionEdges": 933,
+    "evidence": "Coordinates from reviewed screenshots of the same layout; verified rendered action region then adb input tap; native player/notification assertions follow"
+  },
+  {
+    "phase": "native-banner",
+    "visibleStage": "notification-shade",
+    "physicalTapCenter": [
+      280,
+      645
+    ],
+    "frame": "notification-shade-100.png",
+    "frameSize": [
+      1080,
+      2400
+    ],
+    "actionRegionEdges": 908,
+    "evidence": "Coordinates from reviewed screenshots of the same layout; verified rendered action region then adb input tap; native player/notification assertions follow"
+  },
+  {
+    "phase": "native-large-text",
+    "visibleStage": "notification-shade",
+    "physicalTapCenter": [
+      355,
+      825
+    ],
+    "frame": "notification-shade-200.png",
+    "frameSize": [
+      640,
+      1280
+    ],
+    "actionRegionEdges": 1213,
+    "evidence": "Coordinates from reviewed screenshots of the same layout; verified rendered action region then adb input tap; native player/notification assertions follow"
+  },
+  {
+    "phase": "native-dark",
+    "visibleStage": "notification-shade",
+    "physicalTapCenter": [
+      280,
+      645
+    ],
+    "frame": "notification-shade-dark-100.png",
+    "frameSize": [
+      1080,
+      2400
+    ],
+    "actionRegionEdges": 961,
+    "evidence": "Coordinates from reviewed screenshots of the same layout; verified rendered action region then adb input tap; native player/notification assertions follow"
+  }
+]

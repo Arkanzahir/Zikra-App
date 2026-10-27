@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-27",
+  "versionName": "1.9.12",
+  "versionCode": 39,
+  "sourceCommit": "73ff1b25c642b1ffb2847ec11b16259439a6861e",
+  "artifact": "Zikra-Adzan-v1.9.12-beta-debug.apk",
+  "bytes": 41333887,
+  "sha256": "d505fb59613c0f1f5331019473a3a3eef5064f40ed645a38ea4f59301f1bf8df",
+  "initialDownloadBelow100000000Bytes": true,
+  "certificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "signing": "debug; same certificate as 1.9.10",
+  "schema": {
+    "main": 5,
+    "chat": 1,
+    "weeklyClasses": 2
+  },
+  "unit": {
+    "tests": 138,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 780
+  },
+  "native": [
+    {
+      "name": "native-banner",
+      "passed": true,
+      "tests": 2
+    },
+    {
+      "name": "native-legacy-notifications",
+      "passed": true,
+      "tests": 2
+    },
+    {
+      "name": "native-adhan-main",
+      "passed": true,
+      "tests": 10
+    },
+    {
+      "name": "native-real-alarm",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "native-dnd",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "native-large-text",
+      "passed": true,
+      "tests": 2
+    },
+    {
+      "name": "native-dark",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "native-denied",
+      "passed": true,
+      "tests": 1
+    }
+  ],
+  "nativeExecutions": 20,
+  "nativeUniqueMethods": 17,
+  "visualInputCases": 4,
+  "inputMethod": "Observed layouts and verified rendered action region followed by adb input taps; UI cases did not invoke stop PendingIntent directly",
+  "visualTestInteractiveTimeoutMs": 120000,
+  "physicalPhoneModified": false,
+  "providerRequests": false,
+  "D02Complete": false,
+  "D02aComplete": false,
+  "reasonOpen": "Physical phone audio, real reboot/vendor battery behavior and source/redistribution provenance remain unverified",
+  "screenshots": {
+    "native/native-adhan-main-D02-focus-paused-100.png": "551445da24cf9ac04665dc7833e66685f934251c8da56d21675e48ca11ce1fac",
+    "native/native-adhan-main-D02-mode-draft-100.png": "9acaad3a9ee7ebfde9500970faaf72fba3a497a1a1873ea95f72d70c70401310",
+    "native/native-adhan-main-D02-playing-makkah-100.png": "a96e3dfe491745b5bd2d59417f8eb98dd2cc3c7147fa79ea59981071550a16ab",
+    "native/native-adhan-main-D02-settings-100.png": "93d103f9ba5a8b0b0e1626aac29a2173da20f0814d23d6621208ef6747ec68f4",
+    "native/native-banner-D02-banner-heads-up-100.png": "0d44524558b6005918daec4e416678c5612ac85f4afa20888f685e5678218a26",
+    "native/native-banner-D02-notification-shade-100.png": "2140cf7f9dcddb286dd9b49de2ff52b4a4366f8cf247c1895756fc9ba998982c",
+    "native/native-dark-D02-notification-shade-100.png": "578f1b4917cc088af5e33677c3defa993ae42979076b7b34ab618fa4987a3ab0",
+    "native/native-large-text-D02-mode-draft-200.png": "fb7010921903b5d8884ee1a57110b88724d6d1ff2be560d94358cfbba4746194",
+    "native/native-large-text-D02-notification-shade-200.png": "a986fb2165528856561b1806eb5911de97bb9e66b2e4b0788d58c4adea373691",
+    "native/native-large-text-D02-settings-200.png": "c5926a66a63dfeec0a3a2bcf851c4192af35635156ff87040ca5318eb1178d35"
+  }
+}

@@ -2,6 +2,9 @@
 
 ## Pilihan aktif 27 Oktober — pasangan Subuh dan Mecca
 
+Beta1.9.12 meneruskan pasangan yang sama dengan banner dan kontrol berhenti;
+[receipt/tampilan/batas terbaru](../../android/validation/adhan-banner-2026-10-27/README.md).
+
 Pengguna memberikan **fajr_128_44.mp3 untuk Subuh** dan
 **mecca_56_22 (1).mp3 untuk Dzuhur/Ashar/Maghrib/Isya**, menggantikan pilihan
 Misyari sebelumnya agar karakter rekaman serupa. Subuh tidak lagi menunggu

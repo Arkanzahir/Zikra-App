@@ -1,0 +1,42 @@
+[
+  {
+    "name": "native-banner",
+    "passed": true,
+    "tests": 2
+  },
+  {
+    "name": "native-legacy-notifications",
+    "passed": true,
+    "tests": 2
+  },
+  {
+    "name": "native-adhan-main",
+    "passed": true,
+    "tests": 10
+  },
+  {
+    "name": "native-real-alarm",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "native-dnd",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "native-large-text",
+    "passed": true,
+    "tests": 2
+  },
+  {
+    "name": "native-dark",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "native-denied",
+    "passed": true,
+    "tests": 1
+  }
+]
