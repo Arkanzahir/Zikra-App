@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="horizontal" android:gravity="center_vertical" android:paddingVertical="4dp">
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_weight="1" android:orientation="vertical" android:paddingEnd="8dp">
+        <TextView android:id="@+id/adhanNotificationTitle" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:textSize="15sp" android:textStyle="bold" android:textColor="@color/adhan_notification_text"
+            android:maxLines="1" android:ellipsize="end" />
+        <TextView android:id="@+id/adhanNotificationBody" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="2dp" android:textSize="12sp" android:textColor="@color/adhan_notification_muted"
+            android:maxLines="1" android:ellipsize="end" />
+    </LinearLayout>
+    <TextView android:id="@+id/adhanNotificationStop" android:layout_width="112dp" android:layout_height="wrap_content"
+        android:minHeight="48dp" android:gravity="center" android:paddingHorizontal="10dp" android:paddingVertical="8dp"
+        android:background="@drawable/bg_adhan_notification_stop" android:text="@string/adhan_stop" android:textSize="13sp"
+        android:textColor="@color/adhan_notification_action" android:textStyle="bold" android:maxLines="2"
+        android:clickable="true" android:focusable="true" />
+</LinearLayout>

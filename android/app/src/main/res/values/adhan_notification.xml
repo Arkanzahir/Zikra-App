@@ -1,0 +1,6 @@
+<resources>
+    <color name="adhan_notification_text">#15332F</color>
+    <color name="adhan_notification_muted">#586C63</color>
+    <color name="adhan_notification_action">#153F35</color>
+    <color name="adhan_notification_button">#E1F0E8</color>
+</resources>

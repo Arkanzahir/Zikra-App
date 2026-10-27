@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.widget.RemoteViews;
 import com.zikra.app.PrayerActivity;
 import com.zikra.app.PrayerSchedule;
 import com.zikra.app.R;
@@ -43,11 +44,15 @@ public final class AdhanNotification {
     Notification.Action action = new Notification.Action.Builder(
         android.graphics.drawable.Icon.createWithResource(context, R.drawable.ic_adhan_stop),
         context.getString(R.string.adhan_stop), stop).build();
+    RemoteViews compact = content(context, R.layout.notification_adhan_compact, title, status);
+    compact.setOnClickPendingIntent(R.id.adhanNotificationStop, stop);
     Notification.Builder builder = new Notification.Builder(context, preview ? PrayerReminders.PLAYBACK : CHANNEL)
         .setSmallIcon(R.drawable.ic_notification_prayer)
         .setColor(context.getColor(R.color.pine))
         .setContentTitle(title).setContentText(status)
-        .setStyle(new Notification.BigTextStyle().bigText(status))
+        .setStyle(new Notification.DecoratedCustomViewStyle())
+        .setCustomContentView(compact).setCustomHeadsUpContentView(compact)
+        .setCustomBigContentView(content(context, R.layout.notification_adhan_expanded, title, status))
         .setCategory(preview ? Notification.CATEGORY_TRANSPORT : Notification.CATEGORY_ALARM)
         // Only the prayer name/playback state is shown; no profile, city or personal schedule.
         .setVisibility(Notification.VISIBILITY_PUBLIC)
@@ -56,5 +61,12 @@ public final class AdhanNotification {
     if (Build.VERSION.SDK_INT >= 31)
       builder.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE);
     return builder.build();
+  }
+
+  private static RemoteViews content(Context context, int layout, String title, String body) {
+    RemoteViews views = new RemoteViews(context.getPackageName(), layout);
+    views.setTextViewText(R.id.adhanNotificationTitle, title);
+    views.setTextViewText(R.id.adhanNotificationBody, body);
+    return views;
   }
 }

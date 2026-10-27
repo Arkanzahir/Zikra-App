@@ -1,0 +1,8 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:paddingVertical="4dp">
+    <TextView android:id="@+id/adhanNotificationTitle" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:textSize="16sp" android:textStyle="bold" android:textColor="@color/adhan_notification_text" />
+    <TextView android:id="@+id/adhanNotificationBody" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="4dp" android:textSize="13sp" android:textColor="@color/adhan_notification_muted" />
+</LinearLayout>

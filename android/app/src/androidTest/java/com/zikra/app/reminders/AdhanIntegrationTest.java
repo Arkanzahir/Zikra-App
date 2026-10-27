@@ -191,6 +191,12 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
     shell("cmd statusbar collapse");AccessibilityServiceInfo info=getInstrumentation().getUiAutomation().getServiceInfo();
     info.flags=flags;getInstrumentation().getUiAutomation().setServiceInfo(info);
   }
+  private void systemShot(String name)throws Exception{
+    File dir=new File(context.getExternalFilesDir(null),"validation");assertTrue(dir.isDirectory()||dir.mkdirs());
+    String suffix=context.getResources().getConfiguration().fontScale>1.9?"200":"100";
+    try(InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(getInstrumentation().getUiAutomation().executeShellCommand("screencap -p"));
+        OutputStream out=new FileOutputStream(new File(dir,"D02-"+name+"-"+suffix+".png"))){in.transferTo(out);}
+  }
   public void testBannerStopIsVisibleOverLauncherAndStopsWithoutOpeningApp()throws Exception{
     launch(PrayerActivity.class);int flags=inspectSystemWindows();
     try{
@@ -202,7 +208,8 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
       PendingIntent operation=PendingIntent.getBroadcast(context,0,event,PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
       context.getSystemService(AlarmManager.class).setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,event.getLongExtra(PrayerReminders.EXTRA_EPOCH,0),operation);
       shell("input keyevent 3");waitFor(()->AdhanService.state().playing);
-      waitFor(()->systemAction(context.getString(R.string.adhan_stop))!=null);shot("banner-heads-up");
+      SystemClock.sleep(300);systemShot("banner-before-check");
+      waitFor(()->systemAction(context.getString(R.string.adhan_stop))!=null);systemShot("banner-heads-up");
       Notification notification=notice(7400).getNotification();assertEquals(AdhanNotification.CHANNEL,notification.getChannelId());
       assertEquals("Waktu Maghrib",notification.extras.getString(Notification.EXTRA_TITLE));
       assertNull(notification.fullScreenIntent);assertEquals(Notification.VISIBILITY_PUBLIC,notification.visibility);
@@ -219,7 +226,8 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
       assertTrue((notification.flags&Notification.FLAG_ONLY_ALERT_ONCE)!=0);assertNull(notification.deleteIntent);
       shell("input keyevent 3");SystemClock.sleep(6500);assertNotNull(notice(7400));assertTrue(AdhanService.state().playing);
       assertTrue(getInstrumentation().getUiAutomation().performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS));
-      waitFor(()->systemAction(context.getString(R.string.adhan_stop))!=null);shot("notification-shade");
+      SystemClock.sleep(500);systemShot("shade-before-check");
+      waitFor(()->systemAction(context.getString(R.string.adhan_stop))!=null);systemShot("notification-shade");
       clickSystemAction(context.getString(R.string.adhan_stop));waitFor(()->!AdhanService.state().active);assertNull(notice(7400));
     }finally{restoreSystemWindows(flags);}
   }
