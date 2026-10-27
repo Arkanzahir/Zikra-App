@@ -17,8 +17,8 @@ import okhttp3.*;
 public final class QuranDownloadService extends Service {
   public static final String PREFS = "quran_audio_download";
   public static volatile boolean running;
-  private static final String CHANNEL = "quran_downloads";
-  private static final int ID = 7302;
+  static final String CHANNEL = "quran_downloads";
+  static final int ID = 7500;
   private final ExecutorService worker = Executors.newSingleThreadExecutor();
   private final Handler main = new Handler(Looper.getMainLooper());
   private final OkHttpClient http =
@@ -35,9 +35,18 @@ public final class QuranDownloadService extends Service {
   @Override
   public void onCreate() {
     super.onCreate();
+    clearLegacyDownload(getSystemService(NotificationManager.class));
     getSystemService(NotificationManager.class)
         .createNotificationChannel(
             new NotificationChannel(CHANNEL, "Unduhan Quran", NotificationManager.IMPORTANCE_LOW));
+  }
+
+  static void clearLegacyDownload(NotificationManager manager) {
+    for (android.service.notification.StatusBarNotification active :
+        manager.getActiveNotifications())
+      if (active.getId() == 7302
+          && active.getTag() == null
+          && CHANNEL.equals(active.getNotification().getChannelId())) manager.cancel(7302);
   }
 
   @Override

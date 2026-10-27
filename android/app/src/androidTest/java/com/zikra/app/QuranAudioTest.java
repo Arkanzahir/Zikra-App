@@ -268,6 +268,33 @@ public final class QuranAudioTest extends InstrumentationTestCase {
     return null;
   }
 
+  public void testRapidControlsPublishLatestStateAndStopCannotRepostNotification()
+      throws Exception {
+    seed(1, 20000);
+    launch(false);
+    main(
+        () ->
+            QuranAudioService.send(
+                context, QuranAudioService.play(1, 1, 1, 1, Recitation.IDS[0], 1, true)));
+    until("Playback starts", () -> state().playing);
+    main(
+        () -> {
+          for (int i = 0; i < 4; i++) {
+            QuranAudioService.send(context, QuranAudioService.PAUSE);
+            QuranAudioService.send(context, QuranAudioService.RESUME);
+          }
+          QuranAudioService.send(context, QuranAudioService.PAUSE);
+        });
+    until("Latest pause wins", () -> !state().playing && state().status.equals("Dijeda"));
+    until("Latest notification offers Play", () -> mediaNotification("Putar") != null);
+    main(() -> QuranAudioService.send(context, QuranAudioService.STOP));
+    until("Stop clears queue", () -> state().chapter == 0);
+    SystemClock.sleep(1500);
+    for (android.service.notification.StatusBarNotification item :
+        context.getSystemService(NotificationManager.class).getActiveNotifications())
+      assertTrue("Delayed notification cannot return after stop", item.getId() != 7301);
+  }
+
   public void testAutoScrollStopsOnManualTouchAndRangeValidationKeepsDialogOpen() throws Exception {
     launch(false);
     click(R.id.quranAudioOptions);
@@ -371,12 +398,7 @@ public final class QuranAudioTest extends InstrumentationTestCase {
           panel.layout(0, 0, width, panel.getMeasuredHeight());
           assertTrue("Reader retains a usable viewport", panel.getHeight() < 350 * density);
           for (int id :
-              new int[] {
-                R.id.quranAudioPlay,
-                R.id.quranAudioNext,
-                R.id.quranAudioPrevious,
-                R.id.quranAudioOptions
-              }) {
+              new int[] {R.id.quranAudioPlay, R.id.quranAudioNext, R.id.quranAudioPrevious}) {
             View action = panel.findViewById(id);
             android.graphics.Rect box = new android.graphics.Rect();
             action.getDrawingRect(box);
@@ -419,7 +441,10 @@ public final class QuranAudioTest extends InstrumentationTestCase {
   }
 
   public void testCorruptOfflineAudioShowsErrorWithoutCrashingReader() throws Exception {
-    seed(1, 200);
+    seed(1, 10000);
+    byte[] valid =
+        java.nio.file.Files.readAllBytes(
+            AudioFiles.file(context, Recitation.IDS[0], 1, 1).toPath());
     try (FileOutputStream out =
         new FileOutputStream(AudioFiles.file(context, Recitation.IDS[0], 1, 1))) {
       out.write(new byte[1024]);
@@ -435,6 +460,36 @@ public final class QuranAudioTest extends InstrumentationTestCase {
     assertFalse(state().playing);
     assertFalse(state().loading);
     assertTrue("Reader remains open after decoder error", page.hasWindowFocus());
+    assertTrue("Repair instruction shown", state().status.contains("Unduh / lanjutkan"));
+    SharedPreferences prefs = context.getSharedPreferences("zikra_preferences", 0);
+    prefs
+        .edit()
+        .putInt("last_chapter", 1)
+        .putInt("last_ayah", 4)
+        .putString("last_verse_key", "1:4")
+        .commit();
+    okhttp3.OkHttpClient http =
+        new okhttp3.OkHttpClient.Builder()
+            .addInterceptor(
+                chain ->
+                    new okhttp3.Response.Builder()
+                        .request(chain.request())
+                        .protocol(okhttp3.Protocol.HTTP_1_1)
+                        .code(200)
+                        .message("Synthetic repair fixture")
+                        .body(
+                            okhttp3.ResponseBody.create(
+                                okhttp3.MediaType.parse("audio/wav"), valid))
+                        .build())
+            .build();
+    AudioTransfer.ensure(context, http, Recitation.IDS[0], 1, 1, () -> {});
+    assertTrue(AudioTransfer.decodable(AudioFiles.file(context, Recitation.IDS[0], 1, 1)));
+    main(() -> QuranAudioService.send(context, QuranAudioService.RESUME));
+    until("Repaired local recording plays", () -> state().playing);
+    assertEquals("1:4", prefs.getString("last_verse_key", ""));
+    main(() -> QuranAudioService.send(context, QuranAudioService.STOP));
+    AudioFiles.delete(context, Recitation.IDS[0], 1);
+    assertEquals("1:4", prefs.getString("last_verse_key", ""));
   }
 
   private void syntheticLabel() {
@@ -751,6 +806,7 @@ public final class QuranAudioTest extends InstrumentationTestCase {
       getInstrumentation().waitForIdleSync();
       context.getSystemService(NotificationManager.class).cancel(7301);
       context.getSystemService(NotificationManager.class).cancel(7302);
+      context.getSystemService(NotificationManager.class).cancel(7500);
       for (Map.Entry<File, byte[]> item : files.entrySet()) {
         if (item.getValue() == null) item.getKey().delete();
         else

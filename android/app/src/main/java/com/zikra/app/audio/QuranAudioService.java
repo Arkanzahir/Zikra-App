@@ -94,6 +94,14 @@ public final class QuranAudioService extends Service {
   private boolean wordSync, fetching, buffering, seeking;
   private volatile boolean destroyed;
   private volatile int audioGeneration;
+  private boolean foregroundActive;
+  private long lastNotificationAt;
+  private final Runnable refreshNotification =
+      () -> {
+        if (destroyed || queue == null) return;
+        lastNotificationAt = SystemClock.uptimeMillis();
+        getSystemService(NotificationManager.class).notify(NOTIFICATION, notification());
+      };
   private WordTimeline timeline;
   private List<String> timedWords = java.util.Collections.emptyList();
   private String recordingSha256;
@@ -273,10 +281,20 @@ public final class QuranAudioService extends Service {
   }
 
   private void foreground() {
+    if (foregroundActive) return;
+    main.removeCallbacks(refreshNotification);
+    lastNotificationAt = SystemClock.uptimeMillis();
     if (Build.VERSION.SDK_INT >= 29)
       startForeground(
           NOTIFICATION, notification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
     else startForeground(NOTIFICATION, notification());
+    foregroundActive = true;
+  }
+
+  private void endForeground(int flags) {
+    foregroundActive = false;
+    if (flags == STOP_FOREGROUND_REMOVE) main.removeCallbacks(refreshNotification);
+    stopForeground(flags);
   }
 
   private void prepare() {
@@ -291,6 +309,7 @@ public final class QuranAudioService extends Service {
       fetching = true;
       main.postDelayed(prepareTimeout, 45000);
       int token = audioGeneration, chapter = queue.chapter, verse = queue.verse;
+      long request = timedAudio.generation();
       String qari = reciter;
       publish(true);
       audioWorker.execute(
@@ -298,7 +317,7 @@ public final class QuranAudioService extends Service {
             if (destroyed || token != audioGeneration) return;
             TimedAudioRepository.Clip clip = null;
             try {
-              clip = timedAudio.load(qari, chapter, verse);
+              clip = timedAudio.load(qari, chapter, verse, request);
             } catch (Exception unavailable) {
               // Existing downloads/stream remain playable, with ayah highlighting only.
             }
@@ -314,6 +333,9 @@ public final class QuranAudioService extends Service {
   }
 
   private void preparePlayer(TimedAudioRepository.Clip clip) {
+    File downloaded = AudioFiles.file(this, reciter, queue.chapter, queue.verse);
+    boolean localDownload =
+        clip == null && AudioFiles.available(this, reciter, queue.chapter, queue.verse);
     MediaPlayer next = new MediaPlayer();
     player = next;
     next.setAudioAttributes(attributes());
@@ -361,22 +383,25 @@ public final class QuranAudioService extends Service {
             status = "Rentang selesai · progres hafalan ditandai sendiri di Diary Hifz";
             abandonFocus();
             publish(true);
-            stopForeground(STOP_FOREGROUND_DETACH);
+            endForeground(STOP_FOREGROUND_DETACH);
           }
         });
     next.setOnErrorListener(
         (p, what, extra) -> {
           if (player == p)
-            error("Audio tidak dapat diputar. Coba lagi atau periksa unduhan dan koneksi.");
+            error(
+                localDownload
+                    ? "Unduhan audio tidak dapat diputar. Buka Audio offline lalu Unduh / lanjutkan"
+                        + " untuk memperbaiki."
+                    : "Audio tidak dapat diputar. Coba lagi atau periksa unduhan dan koneksi.");
           return true;
         });
     try {
-      File file = AudioFiles.file(this, reciter, queue.chapter, queue.verse);
       next.setDataSource(
           clip != null
               ? clip.file.getAbsolutePath()
-              : AudioFiles.available(this, reciter, queue.chapter, queue.verse)
-                  ? file.getAbsolutePath()
+              : localDownload
+                  ? downloaded.getAbsolutePath()
                   : Recitation.url(reciter, queue.chapter, queue.verse));
       next.prepareAsync();
       main.postDelayed(prepareTimeout, 45000);
@@ -416,7 +441,7 @@ public final class QuranAudioService extends Service {
       wantPlay = false;
       status = "Audio sedang dipakai aplikasi lain. Ketuk putar untuk mencoba lagi.";
       publish(true);
-      stopForeground(STOP_FOREGROUND_DETACH);
+      endForeground(STOP_FOREGROUND_DETACH);
       return;
     }
     try {
@@ -451,14 +476,14 @@ public final class QuranAudioService extends Service {
     status = "Dijeda";
     publish(true);
     // Keep transient interruptions in foreground so Android 15 can resume in background.
-    if (abandon) stopForeground(STOP_FOREGROUND_DETACH);
+    if (abandon) endForeground(STOP_FOREGROUND_DETACH);
   }
 
   private void skip(int direction) {
     if (queue != null && queue.skip(direction)) prepare();
     else {
       publish(true);
-      if (!wantPlay) stopForeground(STOP_FOREGROUND_DETACH);
+      if (!wantPlay) endForeground(STOP_FOREGROUND_DETACH);
     }
   }
 
@@ -473,7 +498,7 @@ public final class QuranAudioService extends Service {
       return;
     }
     publish(true);
-    if (!wantPlay) stopForeground(STOP_FOREGROUND_DETACH);
+    if (!wantPlay) endForeground(STOP_FOREGROUND_DETACH);
   }
 
   private void error(String message) {
@@ -483,7 +508,7 @@ public final class QuranAudioService extends Service {
     status = message;
     abandonFocus();
     publish(true);
-    stopForeground(STOP_FOREGROUND_DETACH);
+    endForeground(STOP_FOREGROUND_DETACH);
   }
 
   private void abandonFocus() {
@@ -515,7 +540,7 @@ public final class QuranAudioService extends Service {
     abandonFocus();
     session.setActive(false);
     publish(false);
-    stopForeground(STOP_FOREGROUND_REMOVE);
+    endForeground(STOP_FOREGROUND_REMOVE);
     stopSelf();
   }
 
@@ -556,7 +581,12 @@ public final class QuranAudioService extends Service {
                 state.position,
                 state.playing ? 1 : 0)
             .build());
-    if (notify) getSystemService(NotificationManager.class).notify(NOTIFICATION, notification());
+    if (notify) {
+      main.removeCallbacks(refreshNotification);
+      main.postDelayed(
+          refreshNotification,
+          Math.max(150, lastNotificationAt + 1000 - SystemClock.uptimeMillis()));
+    }
     for (Listener l : new ArrayList<>(listeners)) l.changed(state);
   }
 
@@ -610,6 +640,7 @@ public final class QuranAudioService extends Service {
   @Override
   public void onDestroy() {
     destroyed = true;
+    main.removeCallbacks(refreshNotification);
     releasePlayer();
     audioWorker.execute(timedAudio::close);
     audioWorker.shutdown();

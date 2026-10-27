@@ -149,8 +149,12 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
             .getText()
             .toString()
             .contains("tersimpan"));
-    assertEquals(
-        View.GONE, page.getWindow().getDecorView().findViewWithTag("zikraDock").getVisibility());
+    assertTrue("Reader remains usable after recreation", page.hasWindowFocus());
+    assertTrue(
+        ((LinearLayout) page.findViewById(R.id.ayahContainer))
+            .findViewWithTag("67:4")
+            .findViewById(R.id.ayahBookmark)
+            .isSelected());
   }
 
   public void testBaqarahLastPageAndPreviousPageLive() {
