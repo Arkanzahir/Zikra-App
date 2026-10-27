@@ -54,7 +54,7 @@ public final class PrayerReminders {
         .putExtra(EXTRA_INDEX,index).putExtra(EXTRA_EPOCH,epoch).putExtra("slot",key)
         .putExtra("location_key",LocationStore.current(c).key()).putExtra("revision",PrayerSettings.revision(c));
   }
-  public static void sync(Context c){
+  public static synchronized void sync(Context c){
     createChannel(c);AdhanService.stopIfInvalid();
     SharedPreferences plan=c.getSharedPreferences(PLAN,0);Set<String> old=new HashSet<>(plan.getStringSet("ids",Collections.emptySet()));
     Map<String,PrayerAlarmPlan.Entry> next=new LinkedHashMap<>();LocationPoint point=LocationStore.current(c);long now=System.currentTimeMillis();
@@ -97,7 +97,7 @@ public final class PrayerReminders {
     return plan.getLong("e:"+key,-1)==epoch&&LocationStore.current(c).key().equals(plan.getString("l:"+key,""))
         &&plan.getLong("r:"+key,-1)==PrayerSettings.revision(c);
   }
-  static void deliver(Context c,Intent intent){
+  static synchronized void deliver(Context c,Intent intent){
     try{
       if(!valid(c,intent))return;
       int index=intent.getIntExtra(EXTRA_INDEX,-1);long epoch=intent.getLongExtra(EXTRA_EPOCH,0);SharedPreferences prefs=PrayerSettings.prefs(c);

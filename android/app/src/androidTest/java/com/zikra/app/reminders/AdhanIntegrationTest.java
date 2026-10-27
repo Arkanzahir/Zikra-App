@@ -113,6 +113,13 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
     long epoch=System.currentTimeMillis()-1000;PrayerReminders.deliver(context,planned(2,epoch));waitFor(()->notice(7302)!=null);long first=notice(7302).getPostTime();PrayerReminders.deliver(context,planned(2,epoch));assertEquals(first,notice(7302).getPostTime());
     PrayerSettings.prefs(context).edit().putBoolean("reminder_enabled",false).commit();PrayerReminders.deliver(context,planned(3,System.currentTimeMillis()-1000));assertNull(notice(7303));assertFalse(AdhanService.state().active);
   }
+  public void testTurningOffCancelsAnExistingVibrateNotice()throws Exception{
+    launch(PrayerActivity.class);enable(2,PrayerMode.VIBRATE);
+    Intent event=planned(2,System.currentTimeMillis()-1000);ui(()->PrayerReminders.deliver(context,event));
+    waitFor(()->notice(7302)!=null);
+    ui(()->{PrayerSettings.setMode(context,2,PrayerMode.OFF);PrayerReminders.sync(context);});
+    assertEquals(PrayerMode.OFF,PrayerSettings.mode(context,2));waitFor(()->notice(7302)==null);
+  }
   public void testTwoSelectedMp3TracksDecodeAndStopActionsAreBoundToSession()throws Exception{
     launch(PrayerActivity.class);assertEquals("43ade766272ff9c89c86908959df6ddd7f3a34961897caf09f965a3841e1bcd2",digest(2));assertEquals("106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530",digest(0));
     ui(()->assertTrue(AdhanService.preview(context,2)));waitFor(()->AdhanService.state().playing);assertTrue(AdhanService.state().duration>195000&&AdhanService.state().duration<210000);
