@@ -811,3 +811,20 @@ D05[x] untuk beta terarah. D06 berikutnya memeriksa storage/migrasi/preservasi
 pembaruan data berisi, termasuk faith.db baru, tanpa cloud sync yang ditunda A02.
 Uji HP tetap ditunda; jangan meminta sambungan berulang. D01/D02/D02a/G02 fisik,
 B01/C02/C04/C07/E/F/G dan publik tetap sesuai checklist dan tidak ditutup D05.
+
+
+## GitHub disinkronkan — 27 Oktober2026
+
+Pengguna menegaskan semua checkpoint perubahan proyek harus dipush, termasuk
+pekerjaan berikutnya. Aturan ini dicatat pada AGENTS.md.35 commit dari
+origin/main5cdba1a sampai c0a19e4 berhasil dipush fast-forward; ls-remote
+memastikan main=`c0a19e4c9c90dd0ec6aaab3d6157e9f98d2458b6`. Seluruh386 versi
+blob baru (24.416.677byte, terbesar1.785.388byte) diperiksa: tidak ada nilai
+privat kini, pola credential yang terdeteksi atau berkas privat/generated
+yang membutuhkan penanganan. Ini bukan audit sejarah lama di remote.
+
+PROJECT_HANDOFF.md WIP, stash/arsip audio, env, draf desain/prototipe lama dan
+cache tidak di-commit. APK/audio privat tidak dikirim ke GitHub. Dokumen ini
+adalah checkpoint penerus catatan push tersebut dan ikut dipush; verifikasi
+HEAD remote lagi saat melanjutkan. D05 tetap selesai beta; D06 berikutnya,
+uji HP/B01/C02/C04/C07 dan gerbang publik tetap sesuai checklist.
