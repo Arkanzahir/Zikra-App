@@ -260,6 +260,14 @@
                     android:background="@drawable/prayer_bg_row" android:textColor="@color/pine" />
                 <TextView android:id="@+id/prayerAudioStatus" android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:textSize="12sp" android:textColor="@color/muted" android:paddingVertical="8dp" android:accessibilityLiveRegion="polite" />
+                <TextView android:id="@+id/prayerBannerSettings" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:minHeight="52dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:paddingVertical="12dp"
+                    android:layout_marginTop="4dp" android:background="@drawable/prayer_bg_row" android:clickable="true" android:focusable="true"
+                    android:text="@string/adhan_banner_settings" android:textSize="14sp" android:textColor="@color/pine"
+                    android:drawableEnd="@drawable/home_ic_chevron" android:drawablePadding="12dp" />
+                <TextView android:id="@+id/prayerBannerHint" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" android:layout_marginBottom="16dp" android:text="@string/adhan_banner_hint"
+                    android:textSize="12sp" android:textColor="@color/muted" />
                 <Switch android:id="@+id/prayerPauseFocus" android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:minHeight="52dp" android:text="@string/adhan_pause_focus" android:textSize="14sp" android:textColor="@color/pine" />
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/adhan_pause_hint" android:textSize="12sp" android:textColor="@color/muted" />

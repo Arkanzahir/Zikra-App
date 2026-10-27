@@ -32,6 +32,7 @@ public final class PrayerReminders {
     quiet.setSound(null,null);quiet.enableVibration(false);manager.createNotificationChannel(quiet);
     NotificationChannel player=new NotificationChannel(PLAYBACK,c.getString(R.string.adhan_channel_playback),NotificationManager.IMPORTANCE_LOW);
     player.setSound(null,null);player.enableVibration(false);manager.createNotificationChannel(player);
+    AdhanNotification.createChannel(c);
   }
   public static boolean canNotify(Context c){
     return (Build.VERSION.SDK_INT<33||c.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)==PackageManager.PERMISSION_GRANTED)
@@ -103,7 +104,7 @@ public final class PrayerReminders {
       if(prefs.getLong("prayer_delivered_"+index,-1)==epoch)return;
       PrayerMode mode=PrayerSettings.mode(c,index);boolean quiet=PrayerAudioPolicy.quietClass(c);
       boolean audio=mode==PrayerMode.ADHAN&&!quiet&&PrayerAudioPolicy.deviceAllowsSound(c)&&AdhanAsset.available(c,index)
-          &&channelAllowed(c,PLAYBACK)&&PrayerAlarmPlan.timely(epoch,System.currentTimeMillis(),PrayerAlarmPlan.MAX_AUDIO_AGE);
+          &&AdhanNotification.allowed(c,false)&&PrayerAlarmPlan.timely(epoch,System.currentTimeMillis(),PrayerAlarmPlan.MAX_AUDIO_AGE);
       if(audio){
         prefs.edit().putLong("prayer_delivered_"+index,epoch).commit();
         if(!AdhanService.fromAlarm(c,intent))post(c,index,epoch,PrayerMode.NOTIFICATION,false,c.getString(R.string.adhan_unavailable));

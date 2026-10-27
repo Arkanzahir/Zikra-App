@@ -31,5 +31,13 @@
   <string name="adhan_channel_vibrate">Salat · getar saja</string>
   <string name="adhan_channel_quiet">Salat · senyap</string>
   <string name="adhan_channel_playback">Pemutar adzan</string>
+  <string name="adhan_channel_banner">Adzan · banner dan kontrol</string>
+  <string name="adhan_channel_banner_description">Banner saat adzan mulai dan tombol berhenti selama pemutaran. Suara berasal dari rekaman adzan, tanpa nada notifikasi tambahan.</string>
+  <string name="adhan_notification_title">Waktu %1$s</string>
+  <string name="adhan_notification_playing">Adzan sedang diputar</string>
+  <string name="adhan_banner_settings">Pengaturan banner adzan</string>
+  <string name="adhan_banner_hint">Izinkan notifikasi mengambang atau pop-up agar tombol berhenti mudah dijangkau. Bentuk banner mengikuti HP. Saat banner hilang, kontrol tetap ada di panel notifikasi.</string>
+  <string name="adhan_banner_blocked">Kategori notifikasi adzan dimatikan. Aktifkan kembali untuk pemutaran adzan; notifikasi biasa tetap mengikuti pilihan dan izin lainnya.</string>
+  <string name="adhan_settings_unavailable">Pengaturan tidak tersedia pada perangkat ini.</string>
   <string name="adhan_schedule_note">Pengingat tujuh hari ke depan disiapkan lokal dan diperbarui setelah perubahan waktu, kota, izin atau aplikasi dibuka. Ketepatan tetap mengikuti perangkat.</string>
 </resources>

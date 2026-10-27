@@ -145,6 +145,7 @@ public final class PrayerActivity extends BaseActivity {
           updateReminderUi();
         });
     findViewById(R.id.prayerAlarmSettings).setOnClickListener(view -> openReminderSettings());
+    findViewById(R.id.prayerBannerSettings).setOnClickListener(view -> openBannerSettings());
     Switch pause=findViewById(R.id.prayerPauseFocus), quiet=findViewById(R.id.prayerQuietClasses);
     pause.setChecked(preferences.getBoolean(PrayerSettings.PAUSE_FOCUS,false));
     quiet.setChecked(preferences.getBoolean(PrayerSettings.QUIET_CLASSES,false));
@@ -346,6 +347,15 @@ public final class PrayerActivity extends BaseActivity {
     findViewById(R.id.prayerAudioPreview).setEnabled(present&&!state.active);
     String message=!state.status.isEmpty()?state.status:getString(present?R.string.adhan_audio_label:R.string.adhan_audio_missing);
     TextView label=findViewById(R.id.prayerAudioStatus);if(!message.contentEquals(label.getText()))label.setText(message);
+    ((TextView)findViewById(R.id.prayerBannerHint)).setText(
+        !PrayerReminders.canNotify(this)?R.string.adhan_permission_needed:
+        PrayerReminders.channelAllowed(this,AdhanNotification.CHANNEL)?R.string.adhan_banner_hint:R.string.adhan_banner_blocked);
+  }
+  private void openBannerSettings(){
+    PrayerReminders.createChannel(this);
+    Intent intent=new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
+        .putExtra(Settings.EXTRA_APP_PACKAGE,getPackageName()).putExtra(Settings.EXTRA_CHANNEL_ID,AdhanNotification.CHANNEL);
+    try{startActivity(intent);}catch(ActivityNotFoundException unavailable){toast(getString(R.string.adhan_settings_unavailable));}
   }
   @Override protected void onDestroy(){
     if(modeDialog!=null)modeDialog.dismiss();if(previewDialog!=null)previewDialog.dismiss();super.onDestroy();

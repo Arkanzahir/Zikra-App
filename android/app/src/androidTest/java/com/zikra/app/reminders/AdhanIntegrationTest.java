@@ -7,6 +7,9 @@ import android.os.*;
 import android.service.notification.StatusBarNotification;
 import android.test.InstrumentationTestCase;
 import android.view.*;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.accessibility.AccessibilityWindowInfo;
+import android.accessibilityservice.AccessibilityServiceInfo;
 import android.widget.*;
 import com.zikra.app.*;
 import com.zikra.app.audio.*;
@@ -163,5 +166,61 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
   public void testDndSuppressesAdhanWithoutChangingDevicePolicy()throws Exception{
     assertTrue(NotificationManager.INTERRUPTION_FILTER_ALL!=context.getSystemService(NotificationManager.class).getCurrentInterruptionFilter());
     enable(2,PrayerMode.ADHAN);PrayerReminders.deliver(context,planned(2,System.currentTimeMillis()-1000));waitFor(()->notice(7302)!=null);assertEquals(PrayerReminders.QUIET,notice(7302).getNotification().getChannelId());assertFalse(AdhanService.state().active);
+  }
+
+  private AccessibilityNodeInfo systemAction(String text){
+    for(AccessibilityWindowInfo window:getInstrumentation().getUiAutomation().getWindows()){
+      AccessibilityNodeInfo root=window.getRoot();
+      if(root==null||!"com.android.systemui".contentEquals(root.getPackageName()))continue;
+      for(AccessibilityNodeInfo node:root.findAccessibilityNodeInfosByText(text))
+        if(node.getText()!=null&&text.equalsIgnoreCase(node.getText().toString())&&node.isVisibleToUser())return node;
+    }
+    return null;
+  }
+  private void clickSystemAction(String text)throws Exception{
+    waitFor(()->systemAction(text)!=null);AccessibilityNodeInfo node=systemAction(text);
+    while(node!=null&&!node.isClickable())node=node.getParent();
+    assertNotNull("System action must be clickable",node);assertTrue(node.performAction(AccessibilityNodeInfo.ACTION_CLICK));
+  }
+  private int inspectSystemWindows(){
+    android.app.UiAutomation automation=getInstrumentation().getUiAutomation();AccessibilityServiceInfo info=automation.getServiceInfo();
+    int before=info.flags;info.flags|=AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS|AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS;
+    automation.setServiceInfo(info);return before;
+  }
+  private void restoreSystemWindows(int flags)throws Exception{
+    shell("cmd statusbar collapse");AccessibilityServiceInfo info=getInstrumentation().getUiAutomation().getServiceInfo();
+    info.flags=flags;getInstrumentation().getUiAutomation().setServiceInfo(info);
+  }
+  public void testBannerStopIsVisibleOverLauncherAndStopsWithoutOpeningApp()throws Exception{
+    launch(PrayerActivity.class);int flags=inspectSystemWindows();
+    try{
+      NotificationManager manager=context.getSystemService(NotificationManager.class);
+      assertEquals(NotificationManager.IMPORTANCE_LOW,manager.getNotificationChannel(PrayerReminders.PLAYBACK).getImportance());
+      NotificationChannel channel=manager.getNotificationChannel(AdhanNotification.CHANNEL);
+      assertEquals(NotificationManager.IMPORTANCE_HIGH,channel.getImportance());assertNull(channel.getSound());assertFalse(channel.shouldVibrate());
+      enable(4,PrayerMode.ADHAN);Intent event=planned(4,System.currentTimeMillis()+3000);
+      PendingIntent operation=PendingIntent.getBroadcast(context,0,event,PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
+      context.getSystemService(AlarmManager.class).setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,event.getLongExtra(PrayerReminders.EXTRA_EPOCH,0),operation);
+      shell("input keyevent 3");waitFor(()->AdhanService.state().playing);
+      waitFor(()->systemAction(context.getString(R.string.adhan_stop))!=null);shot("banner-heads-up");
+      Notification notification=notice(7400).getNotification();assertEquals(AdhanNotification.CHANNEL,notification.getChannelId());
+      assertEquals("Waktu Maghrib",notification.extras.getString(Notification.EXTRA_TITLE));
+      assertNull(notification.fullScreenIntent);assertEquals(Notification.VISIBILITY_PUBLIC,notification.visibility);
+      clickSystemAction(context.getString(R.string.adhan_stop));waitFor(()->!AdhanService.state().active);assertNull(notice(7400));
+      assertFalse("Stop must not bring PrayerActivity to foreground",shell("dumpsys activity activities").lines()
+          .anyMatch(line->line.contains("topResumedActivity")&&line.contains("com.zikra.app")));
+    }finally{restoreSystemWindows(flags);}
+  }
+  public void testShadeKeepsStopControlForQuietPreview()throws Exception{
+    launch(PrayerActivity.class);int flags=inspectSystemWindows();
+    try{
+      ui(()->AdhanService.preview(context,0));waitFor(()->AdhanService.state().playing);
+      Notification notification=notice(7400).getNotification();assertEquals(PrayerReminders.PLAYBACK,notification.getChannelId());
+      assertTrue((notification.flags&Notification.FLAG_ONLY_ALERT_ONCE)!=0);assertNull(notification.deleteIntent);
+      shell("input keyevent 3");SystemClock.sleep(6500);assertNotNull(notice(7400));assertTrue(AdhanService.state().playing);
+      assertTrue(getInstrumentation().getUiAutomation().performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS));
+      waitFor(()->systemAction(context.getString(R.string.adhan_stop))!=null);shot("notification-shade");
+      clickSystemAction(context.getString(R.string.adhan_stop));waitFor(()->!AdhanService.state().active);assertNull(notice(7400));
+    }finally{restoreSystemWindows(flags);}
   }
 }

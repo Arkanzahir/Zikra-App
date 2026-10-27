@@ -7,7 +7,6 @@ import android.content.res.AssetFileDescriptor;
 import android.media.*;
 import android.net.Uri;
 import android.os.*;
-import com.zikra.app.PrayerActivity;
 import com.zikra.app.PrayerSchedule;
 import com.zikra.app.R;
 import com.zikra.app.location.LocationStore;
@@ -16,7 +15,7 @@ import java.util.Objects;
 /** One bounded local recording. Never resumes playback after focus loss, process death or boot. */
 public final class AdhanService extends Service {
   private static final String PLAY="adhan.play", PREVIEW="adhan.preview", STOP="adhan.stop";
-  private static final int NOTICE=7400;
+  private static final int NOTICE=AdhanNotification.ID;
   private static final long MAX_PLAY_MS=300000;
   private static volatile AdhanService active;
   public static final class State {
@@ -37,6 +36,10 @@ public final class AdhanService extends Service {
     catch(SecurityException|IllegalStateException blocked){return false;}
   }
   public static void stop(Context c){c.stopService(new Intent(c,AdhanService.class));}
+  static Intent stopIntent(Context c,String token){
+    return new Intent(c,AdhanService.class).setAction(STOP)
+        .setData(Uri.parse("zikra://adhan/stop/"+Uri.encode(token))).putExtra("token",token);
+  }
   public static void stopIfInvalid(){AdhanService current=active;if(current!=null)current.main.post(current::check);}
 
   private final Handler main=new Handler(Looper.getMainLooper());
@@ -77,7 +80,7 @@ public final class AdhanService extends Service {
     if(player!=null&&nextToken.equals(token))return START_NOT_STICKY;
     release();preview=nextPreview;index=nextIndex;epoch=nextEpoch;token=nextToken;
     locationKey=command.getStringExtra("location_key");revision=command.getLongExtra("revision",-1);began=SystemClock.elapsedRealtime();
-    if(!validAlarm()||!PrayerReminders.channelAllowed(this,PrayerReminders.PLAYBACK)||!AdhanAsset.available(this,index)){
+    if(!validAlarm()||!AdhanNotification.allowed(this,preview)||!AdhanAsset.available(this,index)){
       finish(getString(R.string.adhan_unavailable),true);return START_NOT_STICKY;
     }
     if(!PrayerAudioPolicy.deviceAllowsSound(this)||PrayerAudioPolicy.quietClass(this)){
@@ -101,7 +104,7 @@ public final class AdhanService extends Service {
   }
   private void check(){
     if(player==null)return;
-    if(!validAlarm()||!PrayerReminders.channelAllowed(this,PrayerReminders.PLAYBACK)
+    if(!validAlarm()||!AdhanNotification.allowed(this,preview)
         ||!PrayerAudioPolicy.deviceAllowsSound(this)||PrayerAudioPolicy.quietClass(this)
         ||SystemClock.elapsedRealtime()-began>MAX_PLAY_MS)finish(getString(R.string.adhan_stopped),false);
   }
@@ -125,7 +128,7 @@ public final class AdhanService extends Service {
       try{ready.start();}
       catch(IllegalStateException failed){finish(getString(R.string.adhan_unavailable),true);return;}
       if(!preview&&PrayerSettings.prefs(this).getBoolean(PrayerSettings.PAUSE_FOCUS,false))com.zikra.app.study.FocusTimer.pauseForAdhan(this);
-      status=preview?getString(R.string.adhan_preview_title):getString(R.string.adhan_playing,PrayerSchedule.NAMES[index]);
+      status=getString(R.string.adhan_notification_playing);
       publish();getSystemService(NotificationManager.class).notify(NOTICE,notification());
       }catch(SecurityException|IllegalStateException failure){finish(getString(R.string.adhan_unavailable),true);}
     });
@@ -137,13 +140,7 @@ public final class AdhanService extends Service {
     }catch(java.io.IOException|IllegalStateException|IllegalArgumentException failed){finish(getString(R.string.adhan_unavailable),true);}
   }
   private Notification notification(){
-    Intent stop=new Intent(this,AdhanService.class).setAction(STOP).setData(Uri.parse("zikra://adhan/stop/"+Uri.encode(token))).putExtra("token",token);
-    PendingIntent stopAction=PendingIntent.getService(this,7401,stop,PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
-    PendingIntent open=PendingIntent.getActivity(this,7400,new Intent(this,PrayerActivity.class),PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
-    return new Notification.Builder(this,PrayerReminders.PLAYBACK).setSmallIcon(R.drawable.ic_notification_prayer)
-        .setContentTitle(preview?getString(R.string.adhan_preview_title):getString(R.string.adhan_playing,PrayerSchedule.NAMES[index]))
-        .setContentText(status).setVisibility(Notification.VISIBILITY_PRIVATE).setOnlyAlertOnce(true).setOngoing(true)
-        .setContentIntent(open).addAction(new Notification.Action.Builder(null,getString(R.string.adhan_stop),stopAction).build()).build();
+    return AdhanNotification.create(this,index,preview,token,status);
   }
   private void publish(){
     int position=0,duration=0;boolean playing=false;
