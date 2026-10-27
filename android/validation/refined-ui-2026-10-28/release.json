@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-28",
+  "versionName": "1.9.15",
+  "versionCode": 42,
+  "bytes": 41621231,
+  "sha256": "897b4854a195994f27176064678b3d88bd7c9e8b576541fbd3aa3831bf247728",
+  "sourceCommit": "c68bdde2660f04ffc6e75e31cc0df983e62a9cff",
+  "sourceAppTree": "dc9325b1c7ae405d5ca3d495cc9d1728b446bd40",
+  "artifact": "Zikra-Refined-v1.9.15-beta-debug.apk",
+  "initialDownloadBelow100000000Bytes": true,
+  "certificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "signing": "debug; same signer as1.9.14",
+  "schema": {
+    "main": 5,
+    "chat": 1,
+    "weeklyClasses": 2,
+    "faithJournal": 1
+  },
+  "unit": {
+    "tests": 147,
+    "passed": 143,
+    "skipped": 4,
+    "failures": 0,
+    "errors": 0
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 815
+  },
+  "nativeExecutions": 18,
+  "nativeUniqueMethods": 12,
+  "finalNativeAttempt": 3,
+  "native": [
+    {
+      "name": "keystore-baseline",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "upgrade-seed-1914",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "upgrade-1914-to-1915",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "upgrade-process-restart",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "native-normal",
+      "passed": true,
+      "tests": 5
+    },
+    {
+      "name": "native-navigation",
+      "passed": true,
+      "tests": 2
+    },
+    {
+      "name": "native-large-text",
+      "passed": true,
+      "tests": 3
+    },
+    {
+      "name": "native-dark",
+      "passed": true,
+      "tests": 3
+    },
+    {
+      "name": "keystore-restore",
+      "passed": true,
+      "tests": 1
+    }
+  ],
+  "preservation": {
+    "originalInternalFiles": 10,
+    "originalInternalHashesMatch": true,
+    "originalExternalFiles": 126,
+    "originalExternalHashesMatch": true,
+    "settingsRestored": true,
+    "displayRestored": true,
+    "helperRemoved": true,
+    "physicalPhoneModified": false,
+    "keystoreRestored": true
+  },
+  "audioEntriesComparedTo1914": 2,
+  "previousAudioBytesMatch": true,
+  "publicRedistributionAudioCleared": false,
+  "physicalPhoneModified": false,
+  "googleLoginImplemented": false,
+  "cloudSyncImplemented": false,
+  "customAdminDashboardImplemented": false,
+  "publicRelease": false,
+  "globalFComplete": false,
+  "screenshots": {
+    "native/native-dark/REFINED-calendar-selected.png": "e264d2e976e2d352350dab8f5e9d2bd2e545daadace88f968181c5106ce3b9a8",
+    "native/native-dark/REFINED-hifz-empty.png": "e33ff8a64be2c57def2bb198a81f0d8bd7a6ce576aa6d907f594a84edc93db4e",
+    "native/native-dark/REFINED-hifz-target.png": "a28651b2e219559d70e833703921c5f10019b1e5b861624d4ac8e36fd92446c2",
+    "native/native-dark/REFINED-profile-personal.png": "b9a4b7580706ef3844611f70432bff9e1147f8e179f0de9e4871a6985e844c1b",
+    "native/native-dark/REFINED-profile-preferences.png": "39ce700c219e5fc383e2db3fcbea76c52418109cf4470dc9a95e74e7c99b5f8e",
+    "native/native-dark/REFINED-profile-week.png": "e624d398d40ae8d0929e2d5a1a3fb6712d3b30c7636fd247e1b89d5ecf231568",
+    "native/native-large-text/REFINED-calendar-selected.png": "94e9d5ea0c65bfbd90b936f22ced4a4f550da2a1dd7a4879e10cc93c23eef163",
+    "native/native-large-text/REFINED-hifz-empty.png": "01a378fd6f29c1953d4fdf876332c327098851033055176ed1ab0e5bca1b541e",
+    "native/native-large-text/REFINED-hifz-target.png": "f46d120f41f2a1843f7cbf3c09dd4a1b5a22a610095d479fe4c343cfcd9d56f7",
+    "native/native-large-text/REFINED-profile-personal.png": "124e88126c615fdd67929cb9bebe41f4b739eb47221d52302be0d1542155ffeb",
+    "native/native-large-text/REFINED-profile-preferences.png": "cafcae19a4022b0ba196e87b020bcf53561143f59f10ed31a38409b9aa8e6e53",
+    "native/native-large-text/REFINED-profile-week.png": "1413fbd8f616f6d479649c7ea92053ce29c96a5c6d3a04e97bca8ff46cd65395",
+    "native/native-normal/REFINED-calendar-selected.png": "aa2a67fc01acf1a8d4c3a3865bb491fe65e1a44b78ae2e0fce124dbb155f7300",
+    "native/native-normal/REFINED-hifz-empty.png": "6d6ad0b88e76b2efeaa0fabb4e724587828d01c67d3734533fe2fc1a20bb1a54",
+    "native/native-normal/REFINED-hifz-target.png": "84a2eade77f75e7b2fd7f3a5634d07a50f159c46dcf96c2518e3599c044cebe4",
+    "native/native-normal/REFINED-home-clock-sky.png": "ab9c0fb1f26f4795a1164feb60146204c38c6d973d032fa879740eb6a1ba74db",
+    "native/native-normal/REFINED-home-worship.png": "d1c50863e4735e76c00c2fd732b29cde3460af19167c34d4c442423512f71e5a",
+    "native/native-normal/REFINED-profile-personal.png": "6c8256582d99144e8f131f68a4818722afe023a56aa9f475b70c1a3adf22bed7",
+    "native/native-normal/REFINED-profile-preferences.png": "9bf6b31820b02ed0a0d36ff977eb8fefb33ab217aaf7394ccd55bf4d2cefabe7",
+    "native/native-normal/REFINED-profile-week.png": "c743d64999ce6a988c687d54820a461020cd3ead0d4a73fe6265afa71df6343e"
+  },
+  "limits": [
+    "Targeted native emulator beta; user has not reviewed new APK",
+    "Font200%/320dp and dark repetitions cover Profile/Calendar/Hifz, not the whole application",
+    "No physical sensor/audio/vendor battery tests in this checkpoint",
+    "No guarantee of cloud backup after uninstall or phone loss",
+    "Known-current-secret scan does not certify older Git history"
+  ]
+}

@@ -9,7 +9,7 @@ Hifz/kalender/Profil ditata ulang, logo dipoles dan delapan simbol fitur asli
 disatukan lewat alias. Header Hifz ringkas hijau, kalender terang, Profil
 identitas pribadi; bukan semua layar memakai hero hijau yang sama.
 
-**Runtime terbaru1.9.15/code42**, APK lokal folder luar
+**Runtime terbaru1.9.15/code42/sourcec68bdde2660f04ffc6e75e31cc0df983e62a9cff**, APK lokal folder luar
 `Zikra-Refined-v1.9.15-beta-debug.apk`, **41,621,231byte**, SHA256
 `897b4854a195994f27176064678b3d88bd7c9e8b576541fbd3aa3831bf247728`. [Source/receipt/gambar/batas](android/validation/refined-ui-2026-10-28/README.md).
 143 unit lulus/4 skip,18 eksekusi/12 metode native unik lulus,lint0 error/815

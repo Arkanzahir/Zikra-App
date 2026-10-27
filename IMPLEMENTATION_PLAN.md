@@ -1,5 +1,7 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+**Checkpoint terbaru28 Oktober2026:** beta1.9.15/code42/source`c68bdde2660f04ffc6e75e31cc0df983e62a9cff`; [bukti/receipt/batas revisi harian](android/validation/refined-ui-2026-10-28/README.md). Paragraf baseline bertanggal di bawah adalah riwayat; checklist mengikuti bukti terbaru.
+
 Dibuat 24 Oktober; diperbarui **25 Oktober 2026 (WIB)**. Kandidat Home terbaru: **1.9.4 beta / code 31**, [koreksi gradasi/posisi dan lampu siang-malam](android/validation/home-lighting-layout-2026-10-25/README.md). Kandidat AI yang telah diuji HP tetap **1.8.1 / code 26**, [APK → hosting nyata](android/validation/assistant-hosted-emulator-2026-10-25/README.md); runtime AI belum didesain ulang pada 1.9.1. Kandidat sebelumnya dipertahankan. Baseline konten B04 tetap 1.7.6 (`b3f13f3`), [receipt](android/validation/dua-completion-b04-2026-10-24/release.json). A04 tetap checkpoint 1.6.3 (`2b291ff`); UI01 tetap 1.6.2.
 
 Dokumen ini menjadi **checklist pengerjaan aktif**. [PRD](ZIKRA_PRD.md) tetap menjadi daftar kebutuhan produk; [rencana lama](design/IMPROVEMENT_PLAN.md) dan laporan validasi adalah riwayat. Jika kebutuhan lama berbeda dengan keputusan terbaru pengguna, catat keputusan beserta alasannya di sini.
