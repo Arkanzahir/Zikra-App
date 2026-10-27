@@ -1,0 +1,40 @@
+{
+  "checkedUtc": "2026-10-27T03:14:27.637Z",
+  "results": [
+    {
+      "name": "chapters",
+      "url": "https://api.quran.com/api/v4/chapters?language=id",
+      "http": 200,
+      "bytes": 30698,
+      "sha256": "8cc261d89da02768c0fb539f07d0d82bf2e2cf52aea1e8190129b5b72f5aaf12",
+      "topKeys": [
+        "chapters"
+      ],
+      "count": 114
+    },
+    {
+      "name": "recitations",
+      "url": "https://api.quran.com/api/v4/resources/recitations?language=id",
+      "http": 200,
+      "bytes": 1710,
+      "sha256": "3fb2b190841213906c802f78fc360e663fbbfc225ff2f41efaf702a8e08c6ba8",
+      "topKeys": [
+        "recitations"
+      ],
+      "count": 12
+    },
+    {
+      "name": "meta",
+      "url": "https://api.alquran.cloud/v1/meta",
+      "http": 200,
+      "bytes": 53035,
+      "sha256": "9444749ea0b261054d4f744d4aec38286e666b25f1cf8aa78ce0a24f789caa5c",
+      "topKeys": [
+        "code",
+        "status",
+        "data"
+      ],
+      "count": 114
+    }
+  ]
+}

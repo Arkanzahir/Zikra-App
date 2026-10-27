@@ -1,0 +1,28 @@
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.zikra.app.QuranAudioTest:
+INSTRUMENTATION_STATUS: test=testLiveReaderWordColorUsesDecodedAudioAndFollowsNextAyah
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: different_word_offsets=2
+INSTRUMENTATION_STATUS: duration_ms=4624
+INSTRUMENTATION_STATUS: next_verse=3
+INSTRUMENTATION_STATUS: recording=Live Alafasy Quran.com timed recording
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testLiveReaderWordColorUsesDecodedAudioAndFollowsNextAyah
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+Test results for InstrumentationTestRunner=.
+Time: 13.203
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1

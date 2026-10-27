@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf8'?>
+<testsuite name="com.zikra.app.audio.TimedAudioRepositoryTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-27T03:39:26" time="0.187">
+  <properties />
+  <testcase name="cancelAfterAudioReadCannotWriteStaleCache" classname="com.zikra.app.audio.TimedAudioRepositoryTest" time="0.149" />
+  <testcase name="cancellationBeforeWorkerStartsRejectsQueuedTicket" classname="com.zikra.app.audio.TimedAudioRepositoryTest" time="0.007" />
+  <testcase name="closeDoesNotWaitForStalledNetworkAndCannotPublishLateClip" classname="com.zikra.app.audio.TimedAudioRepositoryTest" time="0.009" />
+  <testcase name="cancelBetweenMetadataCallsPreventsNextRequestAndAllowsRetry" classname="com.zikra.app.audio.TimedAudioRepositoryTest" time="0.007" />
+  <testcase name="cacheStaysBoundedAndInvalidIdentityNeverUsesNetwork" classname="com.zikra.app.audio.TimedAudioRepositoryTest" time="0.013" />
+  <system-out />
+  <system-err />
+</testsuite>

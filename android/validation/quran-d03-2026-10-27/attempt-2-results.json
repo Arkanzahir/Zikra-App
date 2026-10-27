@@ -1,0 +1,12 @@
+[
+  {
+    "name": "native-offline-player",
+    "passed": false,
+    "tests": null
+  },
+  {
+    "name": "native-reader-live",
+    "passed": true,
+    "tests": 2
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "reciter": "ar.alafasy",
+    "verse": "1:1",
+    "globalVerse": 1,
+    "url": "https:\/\/cdn.islamic.network\/quran\/audio\/128\/ar.alafasy\/1.mp3",
+    "bytes": 146830,
+    "sha256": "c0d5ba887523e64b5cf7db8f26a6ddd3936b1ac9286f133e258f0dd7f6b7353e",
+    "durationMs": 6087,
+    "positionMs": 148
+  },
+  {
+    "reciter": "ar.alafasy",
+    "verse": "114:6",
+    "globalVerse": 6236,
+    "url": "https:\/\/cdn.islamic.network\/quran\/audio\/128\/ar.alafasy\/6236.mp3",
+    "bytes": 132620,
+    "sha256": "fc9430b5eb4b40eb96fa8c99ea1e3b44daae4030f2106d3fcfa603493b2ea77a",
+    "durationMs": 8255,
+    "positionMs": 116
+  },
+  {
+    "reciter": "ar.husary",
+    "verse": "1:1",
+    "globalVerse": 1,
+    "url": "https:\/\/cdn.islamic.network\/quran\/audio\/128\/ar.husary\/1.mp3",
+    "bytes": 82558,
+    "sha256": "74bedd2a73d9c49a6b80c7113cb20724ac18fac9e458b479bd6d9b96131098c4",
+    "durationMs": 5128,
+    "positionMs": 130
+  },
+  {
+    "reciter": "ar.husary",
+    "verse": "114:6",
+    "globalVerse": 6236,
+    "url": "https:\/\/cdn.islamic.network\/quran\/audio\/128\/ar.husary\/6236.mp3",
+    "bytes": 140061,
+    "sha256": "98362b0dec00996306fe897b3cfb43ac8fdde45b10c227ee2638081c51781108",
+    "durationMs": 8498,
+    "positionMs": 127
+  },
+  {
+    "reciter": "ar.minshawi",
+    "verse": "1:1",
+    "globalVerse": 1,
+    "url": "https:\/\/cdn.islamic.network\/quran\/audio\/128\/ar.minshawi\/1.mp3",
+    "bytes": 79540,
+    "sha256": "0e4b59c7f85ebdb67f5ebcbc4538d0281cd545f888ad12b27eadd95a831bd9f0",
+    "durationMs": 4971,
+    "positionMs": 127
+  },
+  {
+    "reciter": "ar.minshawi",
+    "verse": "114:6",
+    "globalVerse": 6236,
+    "url": "https:\/\/cdn.islamic.network\/quran\/audio\/128\/ar.minshawi\/6236.mp3",
+    "bytes": 81212,
+    "sha256": "9ca4be5f81947c72e3a20a7a72c0354e0e5a297c0a824a295237dda32759fe86",
+    "durationMs": 5076,
+    "positionMs": 133
+  }
+]

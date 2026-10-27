@@ -1,0 +1,2458 @@
+{
+  "checkedUtc": "2026-10-27T03:36:09.077Z",
+  "scope": "Identity, counts, pagination and nonempty text; not editorial or phonetic certification.",
+  "sources": [
+    {
+      "name": "chapters",
+      "url": "https://api.quran.com/api/v4/chapters?language=id",
+      "sha256": "8cc261d89da02768c0fb539f07d0d82bf2e2cf52aea1e8190129b5b72f5aaf12"
+    },
+    {
+      "name": "recitations",
+      "url": "https://api.quran.com/api/v4/resources/recitations?language=id",
+      "sha256": "3fb2b190841213906c802f78fc360e663fbbfc225ff2f41efaf702a8e08c6ba8"
+    },
+    {
+      "name": "meta",
+      "url": "https://api.alquran.cloud/v1/meta",
+      "sha256": "9444749ea0b261054d4f744d4aec38286e666b25f1cf8aa78ce0a24f789caa5c"
+    },
+    {
+      "name": "cdn-editions",
+      "url": "https://api.alquran.cloud/v1/edition/format/audio",
+      "sha256": "204d9af49a7f6d8311c8808f8e5a05e8a3cfb2ff32dd2a62c9fdbe60af2264c3"
+    }
+  ],
+  "catalog": [
+    {
+      "chapter": 1,
+      "count": 7,
+      "independentCount": 7,
+      "matches": true
+    },
+    {
+      "chapter": 2,
+      "count": 286,
+      "independentCount": 286,
+      "matches": true
+    },
+    {
+      "chapter": 3,
+      "count": 200,
+      "independentCount": 200,
+      "matches": true
+    },
+    {
+      "chapter": 4,
+      "count": 176,
+      "independentCount": 176,
+      "matches": true
+    },
+    {
+      "chapter": 5,
+      "count": 120,
+      "independentCount": 120,
+      "matches": true
+    },
+    {
+      "chapter": 6,
+      "count": 165,
+      "independentCount": 165,
+      "matches": true
+    },
+    {
+      "chapter": 7,
+      "count": 206,
+      "independentCount": 206,
+      "matches": true
+    },
+    {
+      "chapter": 8,
+      "count": 75,
+      "independentCount": 75,
+      "matches": true
+    },
+    {
+      "chapter": 9,
+      "count": 129,
+      "independentCount": 129,
+      "matches": true
+    },
+    {
+      "chapter": 10,
+      "count": 109,
+      "independentCount": 109,
+      "matches": true
+    },
+    {
+      "chapter": 11,
+      "count": 123,
+      "independentCount": 123,
+      "matches": true
+    },
+    {
+      "chapter": 12,
+      "count": 111,
+      "independentCount": 111,
+      "matches": true
+    },
+    {
+      "chapter": 13,
+      "count": 43,
+      "independentCount": 43,
+      "matches": true
+    },
+    {
+      "chapter": 14,
+      "count": 52,
+      "independentCount": 52,
+      "matches": true
+    },
+    {
+      "chapter": 15,
+      "count": 99,
+      "independentCount": 99,
+      "matches": true
+    },
+    {
+      "chapter": 16,
+      "count": 128,
+      "independentCount": 128,
+      "matches": true
+    },
+    {
+      "chapter": 17,
+      "count": 111,
+      "independentCount": 111,
+      "matches": true
+    },
+    {
+      "chapter": 18,
+      "count": 110,
+      "independentCount": 110,
+      "matches": true
+    },
+    {
+      "chapter": 19,
+      "count": 98,
+      "independentCount": 98,
+      "matches": true
+    },
+    {
+      "chapter": 20,
+      "count": 135,
+      "independentCount": 135,
+      "matches": true
+    },
+    {
+      "chapter": 21,
+      "count": 112,
+      "independentCount": 112,
+      "matches": true
+    },
+    {
+      "chapter": 22,
+      "count": 78,
+      "independentCount": 78,
+      "matches": true
+    },
+    {
+      "chapter": 23,
+      "count": 118,
+      "independentCount": 118,
+      "matches": true
+    },
+    {
+      "chapter": 24,
+      "count": 64,
+      "independentCount": 64,
+      "matches": true
+    },
+    {
+      "chapter": 25,
+      "count": 77,
+      "independentCount": 77,
+      "matches": true
+    },
+    {
+      "chapter": 26,
+      "count": 227,
+      "independentCount": 227,
+      "matches": true
+    },
+    {
+      "chapter": 27,
+      "count": 93,
+      "independentCount": 93,
+      "matches": true
+    },
+    {
+      "chapter": 28,
+      "count": 88,
+      "independentCount": 88,
+      "matches": true
+    },
+    {
+      "chapter": 29,
+      "count": 69,
+      "independentCount": 69,
+      "matches": true
+    },
+    {
+      "chapter": 30,
+      "count": 60,
+      "independentCount": 60,
+      "matches": true
+    },
+    {
+      "chapter": 31,
+      "count": 34,
+      "independentCount": 34,
+      "matches": true
+    },
+    {
+      "chapter": 32,
+      "count": 30,
+      "independentCount": 30,
+      "matches": true
+    },
+    {
+      "chapter": 33,
+      "count": 73,
+      "independentCount": 73,
+      "matches": true
+    },
+    {
+      "chapter": 34,
+      "count": 54,
+      "independentCount": 54,
+      "matches": true
+    },
+    {
+      "chapter": 35,
+      "count": 45,
+      "independentCount": 45,
+      "matches": true
+    },
+    {
+      "chapter": 36,
+      "count": 83,
+      "independentCount": 83,
+      "matches": true
+    },
+    {
+      "chapter": 37,
+      "count": 182,
+      "independentCount": 182,
+      "matches": true
+    },
+    {
+      "chapter": 38,
+      "count": 88,
+      "independentCount": 88,
+      "matches": true
+    },
+    {
+      "chapter": 39,
+      "count": 75,
+      "independentCount": 75,
+      "matches": true
+    },
+    {
+      "chapter": 40,
+      "count": 85,
+      "independentCount": 85,
+      "matches": true
+    },
+    {
+      "chapter": 41,
+      "count": 54,
+      "independentCount": 54,
+      "matches": true
+    },
+    {
+      "chapter": 42,
+      "count": 53,
+      "independentCount": 53,
+      "matches": true
+    },
+    {
+      "chapter": 43,
+      "count": 89,
+      "independentCount": 89,
+      "matches": true
+    },
+    {
+      "chapter": 44,
+      "count": 59,
+      "independentCount": 59,
+      "matches": true
+    },
+    {
+      "chapter": 45,
+      "count": 37,
+      "independentCount": 37,
+      "matches": true
+    },
+    {
+      "chapter": 46,
+      "count": 35,
+      "independentCount": 35,
+      "matches": true
+    },
+    {
+      "chapter": 47,
+      "count": 38,
+      "independentCount": 38,
+      "matches": true
+    },
+    {
+      "chapter": 48,
+      "count": 29,
+      "independentCount": 29,
+      "matches": true
+    },
+    {
+      "chapter": 49,
+      "count": 18,
+      "independentCount": 18,
+      "matches": true
+    },
+    {
+      "chapter": 50,
+      "count": 45,
+      "independentCount": 45,
+      "matches": true
+    },
+    {
+      "chapter": 51,
+      "count": 60,
+      "independentCount": 60,
+      "matches": true
+    },
+    {
+      "chapter": 52,
+      "count": 49,
+      "independentCount": 49,
+      "matches": true
+    },
+    {
+      "chapter": 53,
+      "count": 62,
+      "independentCount": 62,
+      "matches": true
+    },
+    {
+      "chapter": 54,
+      "count": 55,
+      "independentCount": 55,
+      "matches": true
+    },
+    {
+      "chapter": 55,
+      "count": 78,
+      "independentCount": 78,
+      "matches": true
+    },
+    {
+      "chapter": 56,
+      "count": 96,
+      "independentCount": 96,
+      "matches": true
+    },
+    {
+      "chapter": 57,
+      "count": 29,
+      "independentCount": 29,
+      "matches": true
+    },
+    {
+      "chapter": 58,
+      "count": 22,
+      "independentCount": 22,
+      "matches": true
+    },
+    {
+      "chapter": 59,
+      "count": 24,
+      "independentCount": 24,
+      "matches": true
+    },
+    {
+      "chapter": 60,
+      "count": 13,
+      "independentCount": 13,
+      "matches": true
+    },
+    {
+      "chapter": 61,
+      "count": 14,
+      "independentCount": 14,
+      "matches": true
+    },
+    {
+      "chapter": 62,
+      "count": 11,
+      "independentCount": 11,
+      "matches": true
+    },
+    {
+      "chapter": 63,
+      "count": 11,
+      "independentCount": 11,
+      "matches": true
+    },
+    {
+      "chapter": 64,
+      "count": 18,
+      "independentCount": 18,
+      "matches": true
+    },
+    {
+      "chapter": 65,
+      "count": 12,
+      "independentCount": 12,
+      "matches": true
+    },
+    {
+      "chapter": 66,
+      "count": 12,
+      "independentCount": 12,
+      "matches": true
+    },
+    {
+      "chapter": 67,
+      "count": 30,
+      "independentCount": 30,
+      "matches": true
+    },
+    {
+      "chapter": 68,
+      "count": 52,
+      "independentCount": 52,
+      "matches": true
+    },
+    {
+      "chapter": 69,
+      "count": 52,
+      "independentCount": 52,
+      "matches": true
+    },
+    {
+      "chapter": 70,
+      "count": 44,
+      "independentCount": 44,
+      "matches": true
+    },
+    {
+      "chapter": 71,
+      "count": 28,
+      "independentCount": 28,
+      "matches": true
+    },
+    {
+      "chapter": 72,
+      "count": 28,
+      "independentCount": 28,
+      "matches": true
+    },
+    {
+      "chapter": 73,
+      "count": 20,
+      "independentCount": 20,
+      "matches": true
+    },
+    {
+      "chapter": 74,
+      "count": 56,
+      "independentCount": 56,
+      "matches": true
+    },
+    {
+      "chapter": 75,
+      "count": 40,
+      "independentCount": 40,
+      "matches": true
+    },
+    {
+      "chapter": 76,
+      "count": 31,
+      "independentCount": 31,
+      "matches": true
+    },
+    {
+      "chapter": 77,
+      "count": 50,
+      "independentCount": 50,
+      "matches": true
+    },
+    {
+      "chapter": 78,
+      "count": 40,
+      "independentCount": 40,
+      "matches": true
+    },
+    {
+      "chapter": 79,
+      "count": 46,
+      "independentCount": 46,
+      "matches": true
+    },
+    {
+      "chapter": 80,
+      "count": 42,
+      "independentCount": 42,
+      "matches": true
+    },
+    {
+      "chapter": 81,
+      "count": 29,
+      "independentCount": 29,
+      "matches": true
+    },
+    {
+      "chapter": 82,
+      "count": 19,
+      "independentCount": 19,
+      "matches": true
+    },
+    {
+      "chapter": 83,
+      "count": 36,
+      "independentCount": 36,
+      "matches": true
+    },
+    {
+      "chapter": 84,
+      "count": 25,
+      "independentCount": 25,
+      "matches": true
+    },
+    {
+      "chapter": 85,
+      "count": 22,
+      "independentCount": 22,
+      "matches": true
+    },
+    {
+      "chapter": 86,
+      "count": 17,
+      "independentCount": 17,
+      "matches": true
+    },
+    {
+      "chapter": 87,
+      "count": 19,
+      "independentCount": 19,
+      "matches": true
+    },
+    {
+      "chapter": 88,
+      "count": 26,
+      "independentCount": 26,
+      "matches": true
+    },
+    {
+      "chapter": 89,
+      "count": 30,
+      "independentCount": 30,
+      "matches": true
+    },
+    {
+      "chapter": 90,
+      "count": 20,
+      "independentCount": 20,
+      "matches": true
+    },
+    {
+      "chapter": 91,
+      "count": 15,
+      "independentCount": 15,
+      "matches": true
+    },
+    {
+      "chapter": 92,
+      "count": 21,
+      "independentCount": 21,
+      "matches": true
+    },
+    {
+      "chapter": 93,
+      "count": 11,
+      "independentCount": 11,
+      "matches": true
+    },
+    {
+      "chapter": 94,
+      "count": 8,
+      "independentCount": 8,
+      "matches": true
+    },
+    {
+      "chapter": 95,
+      "count": 8,
+      "independentCount": 8,
+      "matches": true
+    },
+    {
+      "chapter": 96,
+      "count": 19,
+      "independentCount": 19,
+      "matches": true
+    },
+    {
+      "chapter": 97,
+      "count": 5,
+      "independentCount": 5,
+      "matches": true
+    },
+    {
+      "chapter": 98,
+      "count": 8,
+      "independentCount": 8,
+      "matches": true
+    },
+    {
+      "chapter": 99,
+      "count": 8,
+      "independentCount": 8,
+      "matches": true
+    },
+    {
+      "chapter": 100,
+      "count": 11,
+      "independentCount": 11,
+      "matches": true
+    },
+    {
+      "chapter": 101,
+      "count": 11,
+      "independentCount": 11,
+      "matches": true
+    },
+    {
+      "chapter": 102,
+      "count": 8,
+      "independentCount": 8,
+      "matches": true
+    },
+    {
+      "chapter": 103,
+      "count": 3,
+      "independentCount": 3,
+      "matches": true
+    },
+    {
+      "chapter": 104,
+      "count": 9,
+      "independentCount": 9,
+      "matches": true
+    },
+    {
+      "chapter": 105,
+      "count": 5,
+      "independentCount": 5,
+      "matches": true
+    },
+    {
+      "chapter": 106,
+      "count": 4,
+      "independentCount": 4,
+      "matches": true
+    },
+    {
+      "chapter": 107,
+      "count": 7,
+      "independentCount": 7,
+      "matches": true
+    },
+    {
+      "chapter": 108,
+      "count": 3,
+      "independentCount": 3,
+      "matches": true
+    },
+    {
+      "chapter": 109,
+      "count": 6,
+      "independentCount": 6,
+      "matches": true
+    },
+    {
+      "chapter": 110,
+      "count": 3,
+      "independentCount": 3,
+      "matches": true
+    },
+    {
+      "chapter": 111,
+      "count": 5,
+      "independentCount": 5,
+      "matches": true
+    },
+    {
+      "chapter": 112,
+      "count": 4,
+      "independentCount": 4,
+      "matches": true
+    },
+    {
+      "chapter": 113,
+      "count": 5,
+      "independentCount": 5,
+      "matches": true
+    },
+    {
+      "chapter": 114,
+      "count": 6,
+      "independentCount": 6,
+      "matches": true
+    }
+  ],
+  "reciters": [
+    {
+      "id": 7,
+      "cdnEdition": "ar.alafasy",
+      "name": "Mishari Rashid al-`Afasy",
+      "style": null,
+      "cdnName": "Alafasy",
+      "cdnApiType": "versebyverse",
+      "cdnDocumentation": "https://alquran.cloud/cdn",
+      "metadataNote": null
+    },
+    {
+      "id": 6,
+      "cdnEdition": "ar.husary",
+      "name": "Mahmoud Khalil Al-Husary",
+      "style": null,
+      "cdnName": "Husary",
+      "cdnApiType": "versebyverse",
+      "cdnDocumentation": "https://alquran.cloud/cdn",
+      "metadataNote": null
+    },
+    {
+      "id": 9,
+      "cdnEdition": "ar.minshawi",
+      "name": "Mohamed Siddiq al-Minshawi",
+      "style": "Murattal",
+      "cdnName": "Minshawi",
+      "cdnApiType": "translation",
+      "cdnDocumentation": "https://alquran.cloud/cdn",
+      "metadataNote": "API type differs from official CDN documentation, which lists this edition as Murattal. Never reuse Quran.com word timing for these CDN bytes."
+    }
+  ],
+  "pages": [
+    {
+      "chapter": 1,
+      "page": 1,
+      "count": 7,
+      "file": "chapter-1-page-1.json",
+      "bytes": 2888,
+      "sha256": "fb153d24ea0c631a395b2a55f6f1e202d83c36bd9cd76682d36c9f507e930261",
+      "verses": 7
+    },
+    {
+      "chapter": 2,
+      "page": 1,
+      "count": 286,
+      "file": "chapter-2-page-1.json",
+      "bytes": 35334,
+      "sha256": "ceeb77f326c930a69fc147753e6332f1ad1054a9091824c9dc7d031cec3c9cd8",
+      "verses": 50
+    },
+    {
+      "chapter": 2,
+      "page": 2,
+      "count": 286,
+      "file": "chapter-2-page-2.json",
+      "bytes": 42472,
+      "sha256": "8f5afbca7341b74e68ac2a4660df85fcf61d85475366d9239226c90a2310bba5",
+      "verses": 50
+    },
+    {
+      "chapter": 2,
+      "page": 3,
+      "count": 286,
+      "file": "chapter-2-page-3.json",
+      "bytes": 44091,
+      "sha256": "ee851e1d0fc09e175bb44759437ecdf9de9d2819a8fe5e44dbb5e3c7621c22b9",
+      "verses": 50
+    },
+    {
+      "chapter": 2,
+      "page": 4,
+      "count": 286,
+      "file": "chapter-2-page-4.json",
+      "bytes": 45446,
+      "sha256": "c971541cab99f6c9407ad42513d3cc37885d0e935be2ae36b92782c67f5b7aad",
+      "verses": 50
+    },
+    {
+      "chapter": 2,
+      "page": 5,
+      "count": 286,
+      "file": "chapter-2-page-5.json",
+      "bytes": 52113,
+      "sha256": "dc442c5b29dfce8871abcea37ed8e33a057716f7fbcab918fc7d46a510f9a831",
+      "verses": 50
+    },
+    {
+      "chapter": 2,
+      "page": 6,
+      "count": 286,
+      "file": "chapter-2-page-6.json",
+      "bytes": 41738,
+      "sha256": "add81ac76190430b227410f05f70ad88306e4db7635ab8ab90d25092733b0769",
+      "verses": 36
+    },
+    {
+      "chapter": 3,
+      "page": 1,
+      "count": 200,
+      "file": "chapter-3-page-1.json",
+      "bytes": 40025,
+      "sha256": "d9291eebb320eb51567cbbb491e52c65b3c9e6343a7a84bc32edcfe20d24f5fe",
+      "verses": 50
+    },
+    {
+      "chapter": 3,
+      "page": 2,
+      "count": 200,
+      "file": "chapter-3-page-2.json",
+      "bytes": 37509,
+      "sha256": "999aaa678d63ae8c20572afc8bfc7e7c0df4bfa741aa2e982f833fa9d8522208",
+      "verses": 50
+    },
+    {
+      "chapter": 3,
+      "page": 3,
+      "count": 200,
+      "file": "chapter-3-page-3.json",
+      "bytes": 37480,
+      "sha256": "d4f2c710d3529e37af5086e1004e42c1fae7cf9699f555ccf17621c65db84024",
+      "verses": 50
+    },
+    {
+      "chapter": 3,
+      "page": 4,
+      "count": 200,
+      "file": "chapter-3-page-4.json",
+      "bytes": 44828,
+      "sha256": "0063d114747cad03df44cff6bc3c6d5d997f962051c84eaf72b2e80c3c01a5da",
+      "verses": 50
+    },
+    {
+      "chapter": 4,
+      "page": 1,
+      "count": 176,
+      "file": "chapter-4-page-1.json",
+      "bytes": 52071,
+      "sha256": "dab7e6026770ee1f72ba281d492c1f6cf44662ca729cf897315edfc83fed1781",
+      "verses": 50
+    },
+    {
+      "chapter": 4,
+      "page": 2,
+      "count": 176,
+      "file": "chapter-4-page-2.json",
+      "bytes": 46789,
+      "sha256": "ca2b59bbed9fcd8372fb61f9d64c8282fecafd57b8e30e52bcd08d57f6abb4b5",
+      "verses": 50
+    },
+    {
+      "chapter": 4,
+      "page": 3,
+      "count": 176,
+      "file": "chapter-4-page-3.json",
+      "bytes": 42949,
+      "sha256": "54580b385f6af31b3755322ed4a988c3e4dc0fed56c4c73108031acaa4b7fc2b",
+      "verses": 50
+    },
+    {
+      "chapter": 4,
+      "page": 4,
+      "count": 176,
+      "file": "chapter-4-page-4.json",
+      "bytes": 23565,
+      "sha256": "0798209f839ba685af2cdb3ba67528ace3cbbe11f8cdd52009c588971906d615",
+      "verses": 26
+    },
+    {
+      "chapter": 5,
+      "page": 1,
+      "count": 120,
+      "file": "chapter-5-page-1.json",
+      "bytes": 54179,
+      "sha256": "3a694c48d7e721753dfdec083f61c5d12197ea6b53eb0a81ef0b114fc37658b6",
+      "verses": 50
+    },
+    {
+      "chapter": 5,
+      "page": 2,
+      "count": 120,
+      "file": "chapter-5-page-2.json",
+      "bytes": 45255,
+      "sha256": "37796d089fe19a2e98c3c16ac0293e16e69b3a9693dc7710b2425b2df03e0ed9",
+      "verses": 50
+    },
+    {
+      "chapter": 5,
+      "page": 3,
+      "count": 120,
+      "file": "chapter-5-page-3.json",
+      "bytes": 20098,
+      "sha256": "605f948cdbcc12bc01136d31800c6110d541dfc7ea1046c24819414795718c55",
+      "verses": 20
+    },
+    {
+      "chapter": 6,
+      "page": 1,
+      "count": 165,
+      "file": "chapter-6-page-1.json",
+      "bytes": 37670,
+      "sha256": "52dcf77f5c27ad7d7b443af39d0bccf48e1ec2dc4fd6a55332a0fbb80241c734",
+      "verses": 50
+    },
+    {
+      "chapter": 6,
+      "page": 2,
+      "count": 165,
+      "file": "chapter-6-page-2.json",
+      "bytes": 43581,
+      "sha256": "77b165f55f7568be936e541a88785459ca474afd9e96cbb544da5e40427ce41f",
+      "verses": 50
+    },
+    {
+      "chapter": 6,
+      "page": 3,
+      "count": 165,
+      "file": "chapter-6-page-3.json",
+      "bytes": 42917,
+      "sha256": "cac355d57ac39b7e7e238f23b8ff94d0c93dfd285d00195528b06873412e9ff3",
+      "verses": 50
+    },
+    {
+      "chapter": 6,
+      "page": 4,
+      "count": 165,
+      "file": "chapter-6-page-4.json",
+      "bytes": 13586,
+      "sha256": "1551c9d3e0e70d95b9524624d3d68ea3b66967a3b5b53b20d373eefb0c528ff6",
+      "verses": 15
+    },
+    {
+      "chapter": 7,
+      "page": 1,
+      "count": 206,
+      "file": "chapter-7-page-1.json",
+      "bytes": 37821,
+      "sha256": "8f88819bd28b326915a02fa9302a9c7b1cb3e53147bb964eee4cf3956fa5d332",
+      "verses": 50
+    },
+    {
+      "chapter": 7,
+      "page": 2,
+      "count": 206,
+      "file": "chapter-7-page-2.json",
+      "bytes": 38576,
+      "sha256": "5508f491de14824433b44309d3dd23aba550cbcf0e41101f13e081436c4936d1",
+      "verses": 50
+    },
+    {
+      "chapter": 7,
+      "page": 3,
+      "count": 206,
+      "file": "chapter-7-page-3.json",
+      "bytes": 36417,
+      "sha256": "791c243a99c4f9be58f0c9488c1dc4f43b012a48eb57b3b9b92523cad8ac7bd9",
+      "verses": 50
+    },
+    {
+      "chapter": 7,
+      "page": 4,
+      "count": 206,
+      "file": "chapter-7-page-4.json",
+      "bytes": 42667,
+      "sha256": "3b11df8340d746fea1b7fdc9fe6da1f83bf868831c5c39c0c810cb704028e785",
+      "verses": 50
+    },
+    {
+      "chapter": 7,
+      "page": 5,
+      "count": 206,
+      "file": "chapter-7-page-5.json",
+      "bytes": 4185,
+      "sha256": "618ee876f524a48eaef6c749561940502bc1b0724883035e4af55aa6d77788fd",
+      "verses": 6
+    },
+    {
+      "chapter": 8,
+      "page": 1,
+      "count": 75,
+      "file": "chapter-8-page-1.json",
+      "bytes": 39534,
+      "sha256": "5d26289a5a92aa9ab26191c62a230b28d946d3f25cb95481dc622ef8c1c5454d",
+      "verses": 50
+    },
+    {
+      "chapter": 8,
+      "page": 2,
+      "count": 75,
+      "file": "chapter-8-page-2.json",
+      "bytes": 19962,
+      "sha256": "8537f6e094ae89322aafb245ff675f8f2b02a325842db37045b805ee715ec9f4",
+      "verses": 25
+    },
+    {
+      "chapter": 9,
+      "page": 1,
+      "count": 129,
+      "file": "chapter-9-page-1.json",
+      "bytes": 44294,
+      "sha256": "04f465e5203656d4161e19323d724a99a542e2ac011e65710415e23efe03d46f",
+      "verses": 50
+    },
+    {
+      "chapter": 9,
+      "page": 2,
+      "count": 129,
+      "file": "chapter-9-page-2.json",
+      "bytes": 43745,
+      "sha256": "0808a69652e8d81261c28b422d36b3313d563858204dd29ac496be743a0a38ee",
+      "verses": 50
+    },
+    {
+      "chapter": 9,
+      "page": 3,
+      "count": 129,
+      "file": "chapter-9-page-3.json",
+      "bytes": 25770,
+      "sha256": "5c7091758acf2e85277b18cff91050a10e23f109abdd639f72dcb3565cc9d7b7",
+      "verses": 29
+    },
+    {
+      "chapter": 10,
+      "page": 1,
+      "count": 109,
+      "file": "chapter-10-page-1.json",
+      "bytes": 41799,
+      "sha256": "169814b5255512469ab8721ee79a85ffda4865ad448f072949fabfb1086a1bb7",
+      "verses": 50
+    },
+    {
+      "chapter": 10,
+      "page": 2,
+      "count": 109,
+      "file": "chapter-10-page-2.json",
+      "bytes": 35930,
+      "sha256": "0701349c4ee0b2ecb5357078acae9f65fc587aeea6d59947ae4c588e97638bde",
+      "verses": 50
+    },
+    {
+      "chapter": 10,
+      "page": 3,
+      "count": 109,
+      "file": "chapter-10-page-3.json",
+      "bytes": 6770,
+      "sha256": "0a894113af34c6c5dd5581aeb9e82830662b46f66778662a7a950c6ba94b8111",
+      "verses": 9
+    },
+    {
+      "chapter": 11,
+      "page": 1,
+      "count": 123,
+      "file": "chapter-11-page-1.json",
+      "bytes": 38594,
+      "sha256": "eb736974618bb7c1efdcb83ed11e49994ff397384ce08b48c8faaf438e78aa9c",
+      "verses": 50
+    },
+    {
+      "chapter": 11,
+      "page": 2,
+      "count": 123,
+      "file": "chapter-11-page-2.json",
+      "bytes": 36317,
+      "sha256": "8348f6cb19ed3cf95dd4daed58e67f9c656e7e0f71bfe9b48c742c543d5139bf",
+      "verses": 50
+    },
+    {
+      "chapter": 11,
+      "page": 3,
+      "count": 123,
+      "file": "chapter-11-page-3.json",
+      "bytes": 15608,
+      "sha256": "26b3050fc9df6a4b81b682709e1afb9f60e505108e5700eb267c1dcc8e504538",
+      "verses": 23
+    },
+    {
+      "chapter": 12,
+      "page": 1,
+      "count": 111,
+      "file": "chapter-12-page-1.json",
+      "bytes": 37859,
+      "sha256": "442426cf7332e422c27c18911a35659cbe1f9063fb58c62ca3237cf1d03dba6f",
+      "verses": 50
+    },
+    {
+      "chapter": 12,
+      "page": 2,
+      "count": 111,
+      "file": "chapter-12-page-2.json",
+      "bytes": 37612,
+      "sha256": "d3d34b47323d7ffb715fbd8b28258442d7a2a89b9559ca2f3b6b3eeda9d6ac91",
+      "verses": 50
+    },
+    {
+      "chapter": 12,
+      "page": 3,
+      "count": 111,
+      "file": "chapter-12-page-3.json",
+      "bytes": 8127,
+      "sha256": "9a318b41583bbda9fb2a8d7187310ffaf774cbac1256ce9f2f1f00cbcca54012",
+      "verses": 11
+    },
+    {
+      "chapter": 13,
+      "page": 1,
+      "count": 43,
+      "file": "chapter-13-page-1.json",
+      "bytes": 37439,
+      "sha256": "c0a8eee20d5bde28c1a7d6315770dd7361c66fcd8b11b906c3c720eabe962c47",
+      "verses": 43
+    },
+    {
+      "chapter": 14,
+      "page": 1,
+      "count": 52,
+      "file": "chapter-14-page-1.json",
+      "bytes": 38363,
+      "sha256": "c38e8128d36719dc18b3a7a839afd8935c852b45e16c3dd0eb321a9fa6b8a185",
+      "verses": 50
+    },
+    {
+      "chapter": 14,
+      "page": 2,
+      "count": 52,
+      "file": "chapter-14-page-2.json",
+      "bytes": 1368,
+      "sha256": "148f56894e50b05fd49369fe30a80a8a480ddaf3dd7fbb0d129d683306f33525",
+      "verses": 2
+    },
+    {
+      "chapter": 15,
+      "page": 1,
+      "count": 99,
+      "file": "chapter-15-page-1.json",
+      "bytes": 24776,
+      "sha256": "9ec97a336029a24c2213c3a971a4ae212f15dc326e9d499203a1b8cd1b5b7499",
+      "verses": 50
+    },
+    {
+      "chapter": 15,
+      "page": 2,
+      "count": 99,
+      "file": "chapter-15-page-2.json",
+      "bytes": 23494,
+      "sha256": "a875a76e7f794e018ce511950e98203b4311b344fd603f4ffa5c94b9a4c4435d",
+      "verses": 49
+    },
+    {
+      "chapter": 16,
+      "page": 1,
+      "count": 128,
+      "file": "chapter-16-page-1.json",
+      "bytes": 33950,
+      "sha256": "1130d82f0a38d04940d067c61aece8376b62cb1ae0a793223fea2d900e205dd9",
+      "verses": 50
+    },
+    {
+      "chapter": 16,
+      "page": 2,
+      "count": 128,
+      "file": "chapter-16-page-2.json",
+      "bytes": 37751,
+      "sha256": "3c720004857c21d979e7a89e0da61b45808df005563ee265e9f9789328e81b1d",
+      "verses": 50
+    },
+    {
+      "chapter": 16,
+      "page": 3,
+      "count": 128,
+      "file": "chapter-16-page-3.json",
+      "bytes": 19669,
+      "sha256": "fd03beda04c384245f0a7170114fa8bc70e707d8c5a1a50d58b4d7f4bacfb108",
+      "verses": 28
+    },
+    {
+      "chapter": 17,
+      "page": 1,
+      "count": 111,
+      "file": "chapter-17-page-1.json",
+      "bytes": 34344,
+      "sha256": "a18599064a9dd7277738e5cbd4c04c3b3ae773f64862fa6db70415eb478cdfb3",
+      "verses": 50
+    },
+    {
+      "chapter": 17,
+      "page": 2,
+      "count": 111,
+      "file": "chapter-17-page-2.json",
+      "bytes": 36211,
+      "sha256": "dba6c2ccf89320cb5e554df020a07d2112accfe82993eed9e24d73a597cea831",
+      "verses": 50
+    },
+    {
+      "chapter": 17,
+      "page": 3,
+      "count": 111,
+      "file": "chapter-17-page-3.json",
+      "bytes": 7751,
+      "sha256": "b0277819c858eaa600f676b1b449dffe225939b649818fead74312c95646c641",
+      "verses": 11
+    },
+    {
+      "chapter": 18,
+      "page": 1,
+      "count": 110,
+      "file": "chapter-18-page-1.json",
+      "bytes": 39001,
+      "sha256": "508a0b522aaf15e5dbc69ed4bec5c97a941df92188e3fa27879ecdce74cc0b45",
+      "verses": 50
+    },
+    {
+      "chapter": 18,
+      "page": 2,
+      "count": 110,
+      "file": "chapter-18-page-2.json",
+      "bytes": 33079,
+      "sha256": "2fc90e5fa0a53204eed252b978bc5f17a846abac4979e7cb9689add2b4c556a8",
+      "verses": 50
+    },
+    {
+      "chapter": 18,
+      "page": 3,
+      "count": 110,
+      "file": "chapter-18-page-3.json",
+      "bytes": 6622,
+      "sha256": "8df124af6204d5ba894972ffda7844c9b81a7025e4e1fdae06e08fcc9c57ee10",
+      "verses": 10
+    },
+    {
+      "chapter": 19,
+      "page": 1,
+      "count": 98,
+      "file": "chapter-19-page-1.json",
+      "bytes": 28844,
+      "sha256": "c9f7aacff9730d655aab121286301f68ac15de96f01e3ca75f116aee6be3478a",
+      "verses": 50
+    },
+    {
+      "chapter": 19,
+      "page": 2,
+      "count": 98,
+      "file": "chapter-19-page-2.json",
+      "bytes": 27119,
+      "sha256": "d9605ecacaa400677156228ba2ac8cec41c00acc40e681f41d689242292ac952",
+      "verses": 48
+    },
+    {
+      "chapter": 20,
+      "page": 1,
+      "count": 135,
+      "file": "chapter-20-page-1.json",
+      "bytes": 24308,
+      "sha256": "7c15b209b09e0ba4abcda1d459c0a388f42a5e192ac71b3d721b778d632dc743",
+      "verses": 50
+    },
+    {
+      "chapter": 20,
+      "page": 2,
+      "count": 135,
+      "file": "chapter-20-page-2.json",
+      "bytes": 31560,
+      "sha256": "440de7b08e7329494a1e077c5a52b9ea4c461733508b02c775d570c03c224c04",
+      "verses": 50
+    },
+    {
+      "chapter": 20,
+      "page": 3,
+      "count": 135,
+      "file": "chapter-20-page-3.json",
+      "bytes": 21873,
+      "sha256": "e8a5c1b4e10e1387cb01d8e2c8df43d453c4502488c96722d29455d304dcb0f6",
+      "verses": 35
+    },
+    {
+      "chapter": 21,
+      "page": 1,
+      "count": 112,
+      "file": "chapter-21-page-1.json",
+      "bytes": 30931,
+      "sha256": "81f0744e1f134fde78d7b9b86d56c055ef77ebf8c5364c0c623b88ff39acc621",
+      "verses": 50
+    },
+    {
+      "chapter": 21,
+      "page": 2,
+      "count": 112,
+      "file": "chapter-21-page-2.json",
+      "bytes": 29595,
+      "sha256": "c72f8c893b46ff5fcc77ec7f4f045f3b5d3a239d0f1a3c274e29d89a1914335f",
+      "verses": 50
+    },
+    {
+      "chapter": 21,
+      "page": 3,
+      "count": 112,
+      "file": "chapter-21-page-3.json",
+      "bytes": 7119,
+      "sha256": "57492d9679febe56e8598ee8a7672c2322409ba8f0e889b0ac97e90afad9f5d1",
+      "verses": 12
+    },
+    {
+      "chapter": 22,
+      "page": 1,
+      "count": 78,
+      "file": "chapter-22-page-1.json",
+      "bytes": 38091,
+      "sha256": "5976f1204984b97659e3237ad4c0ff2b60c464492c01f7ddac9954542d92d566",
+      "verses": 50
+    },
+    {
+      "chapter": 22,
+      "page": 2,
+      "count": 78,
+      "file": "chapter-22-page-2.json",
+      "bytes": 20885,
+      "sha256": "3a53336a3a4884a662de49d690dfbfbf6bffbdc1f9035e5142df5f01fc7edadd",
+      "verses": 28
+    },
+    {
+      "chapter": 23,
+      "page": 1,
+      "count": 118,
+      "file": "chapter-23-page-1.json",
+      "bytes": 27859,
+      "sha256": "08c08682fc2b3ea8ac03fe827ee62d18cff1b180149d2a55fb4981879fe8cda2",
+      "verses": 50
+    },
+    {
+      "chapter": 23,
+      "page": 2,
+      "count": 118,
+      "file": "chapter-23-page-2.json",
+      "bytes": 26657,
+      "sha256": "996903e83763eba666421def16f20e0ebda4d9d0b25e667d0e200bd33deb75be",
+      "verses": 50
+    },
+    {
+      "chapter": 23,
+      "page": 3,
+      "count": 118,
+      "file": "chapter-23-page-3.json",
+      "bytes": 9804,
+      "sha256": "f2020ed074e7016cc7252c02c2021d2153b46c062e08c1a8bd0edcb8ed52a646",
+      "verses": 18
+    },
+    {
+      "chapter": 24,
+      "page": 1,
+      "count": 64,
+      "file": "chapter-24-page-1.json",
+      "bytes": 42504,
+      "sha256": "d0e6bdde3b0788b78b7ea98f4e2dc485905b60b9283efb4a5b7deb63a693c9f4",
+      "verses": 50
+    },
+    {
+      "chapter": 24,
+      "page": 2,
+      "count": 64,
+      "file": "chapter-24-page-2.json",
+      "bytes": 16046,
+      "sha256": "2d87b2e7b06e713f231a10f63de5cf6124ad6db9bd868735bde286d5245301b3",
+      "verses": 14
+    },
+    {
+      "chapter": 25,
+      "page": 1,
+      "count": 77,
+      "file": "chapter-25-page-1.json",
+      "bytes": 32429,
+      "sha256": "f6114ebce30006feb561560bbe2acba67f073ec9004f88207485ad707877cc28",
+      "verses": 50
+    },
+    {
+      "chapter": 25,
+      "page": 2,
+      "count": 77,
+      "file": "chapter-25-page-2.json",
+      "bytes": 16626,
+      "sha256": "1233db849173a5a69904a58988d51839f8ec75f7f2c986b2d9723db4a7e1dd90",
+      "verses": 27
+    },
+    {
+      "chapter": 26,
+      "page": 1,
+      "count": 227,
+      "file": "chapter-26-page-1.json",
+      "bytes": 24517,
+      "sha256": "634bedc7b3374443235fa6e4b85fc0754a53b215ae6d8c28942abc50be4098f4",
+      "verses": 50
+    },
+    {
+      "chapter": 26,
+      "page": 2,
+      "count": 227,
+      "file": "chapter-26-page-2.json",
+      "bytes": 21383,
+      "sha256": "cc4b159a905f5da1674002076694c35ee48cf366b377ae657b3d90fbc91d3332",
+      "verses": 50
+    },
+    {
+      "chapter": 26,
+      "page": 3,
+      "count": 227,
+      "file": "chapter-26-page-3.json",
+      "bytes": 21367,
+      "sha256": "d7fc62ad57dd4158d807a6ff48a49fd8146018261a42155c30b42b5007d91804",
+      "verses": 50
+    },
+    {
+      "chapter": 26,
+      "page": 4,
+      "count": 227,
+      "file": "chapter-26-page-4.json",
+      "bytes": 22372,
+      "sha256": "1ab95146dd4cd3425f19c4dbb38f096baf254ae4338823be7be81bd54b0ccf4d",
+      "verses": 50
+    },
+    {
+      "chapter": 26,
+      "page": 5,
+      "count": 227,
+      "file": "chapter-26-page-5.json",
+      "bytes": 11903,
+      "sha256": "29c07672eaedf7f9eac7a02f7bc48539dfcd9cc1e3699f3414cabd3433f3814b",
+      "verses": 27
+    },
+    {
+      "chapter": 27,
+      "page": 1,
+      "count": 93,
+      "file": "chapter-27-page-1.json",
+      "bytes": 33080,
+      "sha256": "f5cf1df6b49ac669831f2d70a96cf3f3be03a0785d9e5e03a1272187b0736d39",
+      "verses": 50
+    },
+    {
+      "chapter": 27,
+      "page": 2,
+      "count": 93,
+      "file": "chapter-27-page-2.json",
+      "bytes": 27645,
+      "sha256": "a1e85172c66518be6b1c8feb4592259507231321cde41d9e47f037222a5abc8b",
+      "verses": 43
+    },
+    {
+      "chapter": 28,
+      "page": 1,
+      "count": 88,
+      "file": "chapter-28-page-1.json",
+      "bytes": 39091,
+      "sha256": "9976fec5e981fb73b1cb539c8688b49c6213b975048a40e2c1e217e29fb2010d",
+      "verses": 50
+    },
+    {
+      "chapter": 28,
+      "page": 2,
+      "count": 88,
+      "file": "chapter-28-page-2.json",
+      "bytes": 28915,
+      "sha256": "247e388630e6cb12c095ba0c3638fdceb19d30516795da842587a657aceee1da",
+      "verses": 38
+    },
+    {
+      "chapter": 29,
+      "page": 1,
+      "count": 69,
+      "file": "chapter-29-page-1.json",
+      "bytes": 36567,
+      "sha256": "72d637070eb2f55d5519f3dd8e3c09457c37f91709651e0ee30f3fe679bbda05",
+      "verses": 50
+    },
+    {
+      "chapter": 29,
+      "page": 2,
+      "count": 69,
+      "file": "chapter-29-page-2.json",
+      "bytes": 13089,
+      "sha256": "2f4696592392e17348287d23d77dfa38288aa4fd083e147ae56a003e54070e8c",
+      "verses": 19
+    },
+    {
+      "chapter": 30,
+      "page": 1,
+      "count": 60,
+      "file": "chapter-30-page-1.json",
+      "bytes": 34787,
+      "sha256": "c2bbd9013fc93fcba1afd90f94de569d4ff4d4714dbd9af730edd146a7287083",
+      "verses": 50
+    },
+    {
+      "chapter": 30,
+      "page": 2,
+      "count": 60,
+      "file": "chapter-30-page-2.json",
+      "bytes": 7002,
+      "sha256": "5035d5805e45249d2f5929f29bc2ee74e5d131eb2cb333914d8e303d064a98d0",
+      "verses": 10
+    },
+    {
+      "chapter": 31,
+      "page": 1,
+      "count": 34,
+      "file": "chapter-31-page-1.json",
+      "bytes": 25104,
+      "sha256": "30f97b23bad8d2398ce8875ad99f485358b957daf834839f0660b5ed6fbf25cf",
+      "verses": 34
+    },
+    {
+      "chapter": 32,
+      "page": 1,
+      "count": 30,
+      "file": "chapter-32-page-1.json",
+      "bytes": 19614,
+      "sha256": "0328d9b0e3481d88e03264a9e1e6d725b624205798c710f48a2e5921bc7bd883",
+      "verses": 30
+    },
+    {
+      "chapter": 33,
+      "page": 1,
+      "count": 73,
+      "file": "chapter-33-page-1.json",
+      "bytes": 41726,
+      "sha256": "38da762eb1a1f35de13b54dda22cc7699ab423eed9247ec816ee1f3b35ad6b90",
+      "verses": 50
+    },
+    {
+      "chapter": 33,
+      "page": 2,
+      "count": 73,
+      "file": "chapter-33-page-2.json",
+      "bytes": 18668,
+      "sha256": "514cf42233437e8e9e0b3e050e23ffd6e88e231a91910ff4476d4f7937f0d0c3",
+      "verses": 23
+    },
+    {
+      "chapter": 34,
+      "page": 1,
+      "count": 54,
+      "file": "chapter-34-page-1.json",
+      "bytes": 39166,
+      "sha256": "2343bfb826919bb522f721faf16c887988c4b39d6e09a0ac6a19e3fa31f83749",
+      "verses": 50
+    },
+    {
+      "chapter": 34,
+      "page": 2,
+      "count": 54,
+      "file": "chapter-34-page-2.json",
+      "bytes": 2596,
+      "sha256": "e003305c69ed63c3cb20ecdb3e3fc6b4937e2e6d0817c52a59c5e5560ac7ac1e",
+      "verses": 4
+    },
+    {
+      "chapter": 35,
+      "page": 1,
+      "count": 45,
+      "file": "chapter-35-page-1.json",
+      "bytes": 35725,
+      "sha256": "77829e7eb3ff636404a75743f4335d398e669c049062567cb7b8d6d11f8bf109",
+      "verses": 45
+    },
+    {
+      "chapter": 36,
+      "page": 1,
+      "count": 83,
+      "file": "chapter-36-page-1.json",
+      "bytes": 27229,
+      "sha256": "066e68305fc501641220a3056aa0fcacc27100d5fa3bea616300fe53f593b77e",
+      "verses": 50
+    },
+    {
+      "chapter": 36,
+      "page": 2,
+      "count": 83,
+      "file": "chapter-36-page-2.json",
+      "bytes": 17740,
+      "sha256": "e50204429ce759a31ad998ae9ed00e37193b3518ddd8b2d0fb09569314f85ac5",
+      "verses": 33
+    },
+    {
+      "chapter": 37,
+      "page": 1,
+      "count": 182,
+      "file": "chapter-37-page-1.json",
+      "bytes": 21512,
+      "sha256": "cb36903d97c5da4c948fcaa7054240aa9623c291866a21e8a4388b6598019731",
+      "verses": 50
+    },
+    {
+      "chapter": 37,
+      "page": 2,
+      "count": 182,
+      "file": "chapter-37-page-2.json",
+      "bytes": 21142,
+      "sha256": "917917035033c96fd1690cfcf49af364e8de322fa48a5f9946028441f240cbd5",
+      "verses": 50
+    },
+    {
+      "chapter": 37,
+      "page": 3,
+      "count": 182,
+      "file": "chapter-37-page-3.json",
+      "bytes": 21922,
+      "sha256": "94875603b36d654edfb43f4efb819d8ce0d2aa91a0be63a65ea96c164c34fe7f",
+      "verses": 50
+    },
+    {
+      "chapter": 37,
+      "page": 4,
+      "count": 182,
+      "file": "chapter-37-page-4.json",
+      "bytes": 13190,
+      "sha256": "8acc0394375c6e8f9b4994f89aaa07bda85b6273573c59a8e7cbee0970398ba8",
+      "verses": 32
+    },
+    {
+      "chapter": 38,
+      "page": 1,
+      "count": 88,
+      "file": "chapter-38-page-1.json",
+      "bytes": 28776,
+      "sha256": "c0dea634e2c57340081d2e91eac6e727faeb3b4c2eff990bf0c20f64751a7586",
+      "verses": 50
+    },
+    {
+      "chapter": 38,
+      "page": 2,
+      "count": 88,
+      "file": "chapter-38-page-2.json",
+      "bytes": 18089,
+      "sha256": "82739cebcbc4d3b4010a88db11017e2d8de51c0e686364423041d6981d0c6914",
+      "verses": 38
+    },
+    {
+      "chapter": 39,
+      "page": 1,
+      "count": 75,
+      "file": "chapter-39-page-1.json",
+      "bytes": 37848,
+      "sha256": "f653bced0d5150c6277ef65b40ef686a1e03767b247f6b91001418e68587923b",
+      "verses": 50
+    },
+    {
+      "chapter": 39,
+      "page": 2,
+      "count": 75,
+      "file": "chapter-39-page-2.json",
+      "bytes": 17844,
+      "sha256": "ce97b054c78aa06aad7efa910d95c1ebb82e81879eda9c780033bcfd37188885",
+      "verses": 25
+    },
+    {
+      "chapter": 40,
+      "page": 1,
+      "count": 85,
+      "file": "chapter-40-page-1.json",
+      "bytes": 36141,
+      "sha256": "d6d4713cd8d10e3a67788fab7d41b5b06d2f59aa2686d3e03e651d09cc5d942d",
+      "verses": 50
+    },
+    {
+      "chapter": 40,
+      "page": 2,
+      "count": 85,
+      "file": "chapter-40-page-2.json",
+      "bytes": 23485,
+      "sha256": "8d583546cf755df1a0e063407976e832ca81f6f54a0a13ec0046447a1220bebc",
+      "verses": 35
+    },
+    {
+      "chapter": 41,
+      "page": 1,
+      "count": 54,
+      "file": "chapter-41-page-1.json",
+      "bytes": 36432,
+      "sha256": "e837b7205e9e792c6f2fe5735655dff39921fc8f406f7fbbf6d839d2d5d3ac85",
+      "verses": 50
+    },
+    {
+      "chapter": 41,
+      "page": 2,
+      "count": 54,
+      "file": "chapter-41-page-2.json",
+      "bytes": 2854,
+      "sha256": "8267969fd49354f71224aab98b1e1222def8f9b9ae9232b116333f6969d7d2b5",
+      "verses": 4
+    },
+    {
+      "chapter": 42,
+      "page": 1,
+      "count": 53,
+      "file": "chapter-42-page-1.json",
+      "bytes": 37211,
+      "sha256": "d82e2899c4a345289349ae136a8a193e64f0566539747dc3a57a0090291bbd52",
+      "verses": 50
+    },
+    {
+      "chapter": 42,
+      "page": 2,
+      "count": 53,
+      "file": "chapter-42-page-2.json",
+      "bytes": 2682,
+      "sha256": "1d96e3c54290f0c229d5f97380c37e5357731a8a5fafd0694cf1c786f0a57ed7",
+      "verses": 3
+    },
+    {
+      "chapter": 43,
+      "page": 1,
+      "count": 89,
+      "file": "chapter-43-page-1.json",
+      "bytes": 29708,
+      "sha256": "c1c140f8d1b6069594081f95c09bf490fc159d9c27d4ed760e3f0213007dace2",
+      "verses": 50
+    },
+    {
+      "chapter": 43,
+      "page": 2,
+      "count": 89,
+      "file": "chapter-43-page-2.json",
+      "bytes": 21455,
+      "sha256": "6c0367a0bffb4e2861bbefc5ba365585fe6b1a077341d3c98ef6a79329acb76a",
+      "verses": 39
+    },
+    {
+      "chapter": 44,
+      "page": 1,
+      "count": 59,
+      "file": "chapter-44-page-1.json",
+      "bytes": 22619,
+      "sha256": "9113810cc5fe928d3de9eb990f894097652e88a42f9940f3cf1d960b8f36a65c",
+      "verses": 50
+    },
+    {
+      "chapter": 44,
+      "page": 2,
+      "count": 59,
+      "file": "chapter-44-page-2.json",
+      "bytes": 4035,
+      "sha256": "d2d64d23efa63439c8965eb48181203f0a0f6f2d61713a47f900e1917915763e",
+      "verses": 9
+    },
+    {
+      "chapter": 45,
+      "page": 1,
+      "count": 37,
+      "file": "chapter-45-page-1.json",
+      "bytes": 24866,
+      "sha256": "87ec52acdaf91f71223695bf8dfbeb6146611b92d31e4a4eeecfc030a86137ab",
+      "verses": 37
+    },
+    {
+      "chapter": 46,
+      "page": 1,
+      "count": 35,
+      "file": "chapter-46-page-1.json",
+      "bytes": 29162,
+      "sha256": "39df22d25b032c308abd49298bd5e9c6221637d4c34e31db06992d02863684a7",
+      "verses": 35
+    },
+    {
+      "chapter": 47,
+      "page": 1,
+      "count": 38,
+      "file": "chapter-47-page-1.json",
+      "bytes": 27558,
+      "sha256": "04342c6b97112c53d549228082a26bf74d8b6cb21f0efb78308a9577a6889240",
+      "verses": 38
+    },
+    {
+      "chapter": 48,
+      "page": 1,
+      "count": 29,
+      "file": "chapter-48-page-1.json",
+      "bytes": 25385,
+      "sha256": "64db538188f0f5cb3d3e71beb91bd5a5763518eb228e1683773ac0529bb679ae",
+      "verses": 29
+    },
+    {
+      "chapter": 49,
+      "page": 1,
+      "count": 18,
+      "file": "chapter-49-page-1.json",
+      "bytes": 15748,
+      "sha256": "33195e297182dc20d6ec8d5ce0dc0763de8a00d8fb904e8f8de1fbe3128ea521",
+      "verses": 18
+    },
+    {
+      "chapter": 50,
+      "page": 1,
+      "count": 45,
+      "file": "chapter-50-page-1.json",
+      "bytes": 23293,
+      "sha256": "580d9ae4f5a283060b0de86badda04efe8ddc5d7d8311523623d15f425c7cdfe",
+      "verses": 45
+    },
+    {
+      "chapter": 51,
+      "page": 1,
+      "count": 60,
+      "file": "chapter-51-page-1.json",
+      "bytes": 22435,
+      "sha256": "bb6065cb6ebca0122d96fca6fbd64b8fd02be87799aba16ac48e2ef46e565a3e",
+      "verses": 50
+    },
+    {
+      "chapter": 51,
+      "page": 2,
+      "count": 60,
+      "file": "chapter-51-page-2.json",
+      "bytes": 5060,
+      "sha256": "9f058e589b25a3e9fcbe3ccc9ae4af4fe6d261100b970374a16b7cc19af47796",
+      "verses": 10
+    },
+    {
+      "chapter": 52,
+      "page": 1,
+      "count": 49,
+      "file": "chapter-52-page-1.json",
+      "bytes": 22847,
+      "sha256": "40998cc700fdbd5abff7dd335e710be4b4d62a8ab4d78a82827fbd41a2b49c9f",
+      "verses": 49
+    },
+    {
+      "chapter": 53,
+      "page": 1,
+      "count": 62,
+      "file": "chapter-53-page-1.json",
+      "bytes": 22744,
+      "sha256": "e51c78757b19f141fe497e2065033288b5659a1a087599cffd12ead25f71d996",
+      "verses": 50
+    },
+    {
+      "chapter": 53,
+      "page": 2,
+      "count": 62,
+      "file": "chapter-53-page-2.json",
+      "bytes": 4781,
+      "sha256": "041d07f231303f1e9244fe373d6faa3681d936cb5831e7776266405d2a9120d6",
+      "verses": 12
+    },
+    {
+      "chapter": 54,
+      "page": 1,
+      "count": 55,
+      "file": "chapter-54-page-1.json",
+      "bytes": 23709,
+      "sha256": "b32d1b36d5f5f646c6d788ab0ff1110540a4481e003367fc4028697ffaeb065b",
+      "verses": 50
+    },
+    {
+      "chapter": 54,
+      "page": 2,
+      "count": 55,
+      "file": "chapter-54-page-2.json",
+      "bytes": 2229,
+      "sha256": "99acc4a721026b084a0108c0d588e49369b481c6891dc5e5c93c8a02498fac40",
+      "verses": 5
+    },
+    {
+      "chapter": 55,
+      "page": 1,
+      "count": 78,
+      "file": "chapter-55-page-1.json",
+      "bytes": 20605,
+      "sha256": "84184cf74be700cba48853b0fbcb256eb5ef5703a49d71e134b2ce53fb04a071",
+      "verses": 50
+    },
+    {
+      "chapter": 55,
+      "page": 2,
+      "count": 78,
+      "file": "chapter-55-page-2.json",
+      "bytes": 11489,
+      "sha256": "83e9662feb6270feeea35ac402344a72e29826b337456d86235c6c13f1c86c13",
+      "verses": 28
+    },
+    {
+      "chapter": 56,
+      "page": 1,
+      "count": 96,
+      "file": "chapter-56-page-1.json",
+      "bytes": 19021,
+      "sha256": "b25d2108a378febd11e7d7a035273e5d21ceb091dc84b5311e7a88d02274c73f",
+      "verses": 50
+    },
+    {
+      "chapter": 56,
+      "page": 2,
+      "count": 96,
+      "file": "chapter-56-page-2.json",
+      "bytes": 18684,
+      "sha256": "865046ccdda12d2c52cba6509c11a5027c53294757cea9f91266ce226a6390d0",
+      "verses": 46
+    },
+    {
+      "chapter": 57,
+      "page": 1,
+      "count": 29,
+      "file": "chapter-57-page-1.json",
+      "bytes": 25392,
+      "sha256": "36a8b6129d26731c5f3a40591b5d96b6af4e40ef6dff7cbe3089f2c257804674",
+      "verses": 29
+    },
+    {
+      "chapter": 58,
+      "page": 1,
+      "count": 22,
+      "file": "chapter-58-page-1.json",
+      "bytes": 20770,
+      "sha256": "57c78f100b609825e433d9b2fee1dffa4ecdc47140dcd71e3b0ea6bc8bcf5262",
+      "verses": 22
+    },
+    {
+      "chapter": 59,
+      "page": 1,
+      "count": 24,
+      "file": "chapter-59-page-1.json",
+      "bytes": 20445,
+      "sha256": "0513c16694e6cc895d012a1d723fccaff48b984847a720828f5ba0a84b51b084",
+      "verses": 24
+    },
+    {
+      "chapter": 60,
+      "page": 1,
+      "count": 13,
+      "file": "chapter-60-page-1.json",
+      "bytes": 14886,
+      "sha256": "5859ecebc3cef799f25915ab40991b0dd952013313410954e290857a4ea079bd",
+      "verses": 13
+    },
+    {
+      "chapter": 61,
+      "page": 1,
+      "count": 14,
+      "file": "chapter-61-page-1.json",
+      "bytes": 10526,
+      "sha256": "18b114d9efe63fbab284ae7c2aba4e898714f3d1647945a0d313ffb436e2e2b6",
+      "verses": 14
+    },
+    {
+      "chapter": 62,
+      "page": 1,
+      "count": 11,
+      "file": "chapter-62-page-1.json",
+      "bytes": 8234,
+      "sha256": "f6eb012e42916153a8311c2353841a23be896b697d8ad0a93e9b8643729c9166",
+      "verses": 11
+    },
+    {
+      "chapter": 63,
+      "page": 1,
+      "count": 11,
+      "file": "chapter-63-page-1.json",
+      "bytes": 8883,
+      "sha256": "a0de8ba110744931a5070164850b58518562e54c9d220fed00a9fba12e189e1e",
+      "verses": 11
+    },
+    {
+      "chapter": 64,
+      "page": 1,
+      "count": 18,
+      "file": "chapter-64-page-1.json",
+      "bytes": 12555,
+      "sha256": "d52f4e0dad927ef2db4ae9f1c1f8fcbd1dce52c6544bc1cecb1a0b64b860c236",
+      "verses": 18
+    },
+    {
+      "chapter": 65,
+      "page": 1,
+      "count": 12,
+      "file": "chapter-65-page-1.json",
+      "bytes": 12237,
+      "sha256": "f1572228e4b1c93c5f3a27d13d969f45f3d26f14e8638a5a1da07f2cf4d450ed",
+      "verses": 12
+    },
+    {
+      "chapter": 66,
+      "page": 1,
+      "count": 12,
+      "file": "chapter-66-page-1.json",
+      "bytes": 11209,
+      "sha256": "c0438bc3dfc2a632de62cf427638eb8b3f969f48f4cf777921e029fb65db7c3d",
+      "verses": 12
+    },
+    {
+      "chapter": 67,
+      "page": 1,
+      "count": 30,
+      "file": "chapter-67-page-1.json",
+      "bytes": 17925,
+      "sha256": "5ad0af2fbebb7adfab91b50be052f7a22ae0627f731c03ecd98310658dbbab49",
+      "verses": 30
+    },
+    {
+      "chapter": 68,
+      "page": 1,
+      "count": 52,
+      "file": "chapter-68-page-1.json",
+      "bytes": 22666,
+      "sha256": "2fb87ec67a5e625d4e8d1322461c16360d80537c9013a319dd257f4ead03f492",
+      "verses": 50
+    },
+    {
+      "chapter": 68,
+      "page": 2,
+      "count": 52,
+      "file": "chapter-68-page-2.json",
+      "bytes": 1241,
+      "sha256": "0e822f8eb28d534071901c5efd724bb61f8f99e44bb718e13dba81d39a554b3c",
+      "verses": 2
+    },
+    {
+      "chapter": 69,
+      "page": 1,
+      "count": 52,
+      "file": "chapter-69-page-1.json",
+      "bytes": 21402,
+      "sha256": "deabf2fdd30a4664878c06403a92268d6ef1473f8ff69afa0fb61e86db40f576",
+      "verses": 50
+    },
+    {
+      "chapter": 69,
+      "page": 2,
+      "count": 52,
+      "file": "chapter-69-page-2.json",
+      "bytes": 869,
+      "sha256": "23a9eb1ec4ca4fdd481d155aa5d69176aad30deeb39829ba43fdfac758e27f86",
+      "verses": 2
+    },
+    {
+      "chapter": 70,
+      "page": 1,
+      "count": 44,
+      "file": "chapter-70-page-1.json",
+      "bytes": 18578,
+      "sha256": "6df8c04ee7258e1c52d8d7e3577e705cc3e33b7b8b6eba7f08f0ac603df448b9",
+      "verses": 44
+    },
+    {
+      "chapter": 71,
+      "page": 1,
+      "count": 28,
+      "file": "chapter-71-page-1.json",
+      "bytes": 14483,
+      "sha256": "d317426dcc0c02fefc2423344362bdb02a6cdb228976db068de3ccfe1e80a489",
+      "verses": 28
+    },
+    {
+      "chapter": 72,
+      "page": 1,
+      "count": 28,
+      "file": "chapter-72-page-1.json",
+      "bytes": 16147,
+      "sha256": "bc0762ebe7cb800b5e3485679f713077960c6b2927953524b5c2452a327ec6d8",
+      "verses": 28
+    },
+    {
+      "chapter": 73,
+      "page": 1,
+      "count": 20,
+      "file": "chapter-73-page-1.json",
+      "bytes": 11454,
+      "sha256": "f347750fa736919cb3edec27b87856834e56097b8c611585ac2c121711341cc4",
+      "verses": 20
+    },
+    {
+      "chapter": 74,
+      "page": 1,
+      "count": 56,
+      "file": "chapter-74-page-1.json",
+      "bytes": 20060,
+      "sha256": "f286fc2ef50df0086186f4d00593349ce4cfd3def5aa7dae769184abb3908723",
+      "verses": 50
+    },
+    {
+      "chapter": 74,
+      "page": 2,
+      "count": 56,
+      "file": "chapter-74-page-2.json",
+      "bytes": 2672,
+      "sha256": "6022d271dc854ae2e6d52da00db56958e971434a015a84e6229021a78e747afd",
+      "verses": 6
+    },
+    {
+      "chapter": 75,
+      "page": 1,
+      "count": 40,
+      "file": "chapter-75-page-1.json",
+      "bytes": 15660,
+      "sha256": "ca8b31abb3d3bb9b9cf51849deedc045f76663e470a781fab85f1eb226a38110",
+      "verses": 40
+    },
+    {
+      "chapter": 76,
+      "page": 1,
+      "count": 31,
+      "file": "chapter-76-page-1.json",
+      "bytes": 16069,
+      "sha256": "2067c104f005998680c25e7f95f51f1e674392517487ef42aabbb21098540e20",
+      "verses": 31
+    },
+    {
+      "chapter": 77,
+      "page": 1,
+      "count": 50,
+      "file": "chapter-77-page-1.json",
+      "bytes": 19882,
+      "sha256": "8811c1f4c218ba0f0b694dbe2929e82050432cae9d982023a31825e5d764f1a0",
+      "verses": 50
+    },
+    {
+      "chapter": 78,
+      "page": 1,
+      "count": 40,
+      "file": "chapter-78-page-1.json",
+      "bytes": 16288,
+      "sha256": "b910894e6685a7fa164da2ad8596f64a03bfd6cc240bdc840e1a9615319aceaa",
+      "verses": 40
+    },
+    {
+      "chapter": 79,
+      "page": 1,
+      "count": 46,
+      "file": "chapter-79-page-1.json",
+      "bytes": 18248,
+      "sha256": "0ec10e5d12f40407c7fb52162aa551adce0c5be44244853eb55a482af0056fa0",
+      "verses": 46
+    },
+    {
+      "chapter": 80,
+      "page": 1,
+      "count": 42,
+      "file": "chapter-80-page-1.json",
+      "bytes": 15496,
+      "sha256": "fb74e3d4d30e1f7e3c02e66dddb5dfc443ef0aeee433d162c94dbf5f4a769e5d",
+      "verses": 42
+    },
+    {
+      "chapter": 81,
+      "page": 1,
+      "count": 29,
+      "file": "chapter-81-page-1.json",
+      "bytes": 10857,
+      "sha256": "49947768444e46fb96f978aa34c2aeb0c38f1428185f70830ba1ef4e03981253",
+      "verses": 29
+    },
+    {
+      "chapter": 82,
+      "page": 1,
+      "count": 19,
+      "file": "chapter-82-page-1.json",
+      "bytes": 7579,
+      "sha256": "95d293cb0efaa527d293d5eea98b86f944cd0c4c319a192639c17e36c9fca524",
+      "verses": 19
+    },
+    {
+      "chapter": 83,
+      "page": 1,
+      "count": 36,
+      "file": "chapter-83-page-1.json",
+      "bytes": 15236,
+      "sha256": "daab8a21373ce031b626c2f1dabec673c905d04bad44c6d214d45e40acdab59d",
+      "verses": 36
+    },
+    {
+      "chapter": 84,
+      "page": 1,
+      "count": 25,
+      "file": "chapter-84-page-1.json",
+      "bytes": 9911,
+      "sha256": "863e846d2144deabad77f1a386f606d3b42115e285e867180af43bcb22212ea0",
+      "verses": 25
+    },
+    {
+      "chapter": 85,
+      "page": 1,
+      "count": 22,
+      "file": "chapter-85-page-1.json",
+      "bytes": 9168,
+      "sha256": "62ad3536b8c72c668e8b96e0636cb6fc7bdf47a35c0974c03e9bcb19b1a90a93",
+      "verses": 22
+    },
+    {
+      "chapter": 86,
+      "page": 1,
+      "count": 17,
+      "file": "chapter-86-page-1.json",
+      "bytes": 6481,
+      "sha256": "25635459471d523f448bf6d00008759ea1f339861afba1a7a602e8225577d6b2",
+      "verses": 17
+    },
+    {
+      "chapter": 87,
+      "page": 1,
+      "count": 19,
+      "file": "chapter-87-page-1.json",
+      "bytes": 7334,
+      "sha256": "ae6fa40d74c9459a1a7a4089b2c38523af9b73aebc23a55372620c1392377957",
+      "verses": 19
+    },
+    {
+      "chapter": 88,
+      "page": 1,
+      "count": 26,
+      "file": "chapter-88-page-1.json",
+      "bytes": 9601,
+      "sha256": "4c78b09cb7bbd79e4c7fe2e25231c7b155f2da98e4179c8b4c148596d15d148e",
+      "verses": 26
+    },
+    {
+      "chapter": 89,
+      "page": 1,
+      "count": 30,
+      "file": "chapter-89-page-1.json",
+      "bytes": 12271,
+      "sha256": "867d8a1a34a73aea19ea991e2ddd9e41b3dcbab03a333d1e38c890bc70333f4f",
+      "verses": 30
+    },
+    {
+      "chapter": 90,
+      "page": 1,
+      "count": 20,
+      "file": "chapter-90-page-1.json",
+      "bytes": 7836,
+      "sha256": "7afcffa2a3f1824b2101e2d4abca4d64a4853baaeea9b066bfb9a1a886043da5",
+      "verses": 20
+    },
+    {
+      "chapter": 91,
+      "page": 1,
+      "count": 15,
+      "file": "chapter-91-page-1.json",
+      "bytes": 5817,
+      "sha256": "07a4347fc844fec1820a6d07c529dad0517a5b1f78007a4257324dfd6af21d45",
+      "verses": 15
+    },
+    {
+      "chapter": 92,
+      "page": 1,
+      "count": 21,
+      "file": "chapter-92-page-1.json",
+      "bytes": 8048,
+      "sha256": "8fa88ad78865d16bc663c63442690a75ef49dd4cc9e3613f3d16ded8dbc9cfde",
+      "verses": 21
+    },
+    {
+      "chapter": 93,
+      "page": 1,
+      "count": 11,
+      "file": "chapter-93-page-1.json",
+      "bytes": 4480,
+      "sha256": "f15b715520832931658047ce3bde1d15201f7fd193c8c859260cb4d44c8c0692",
+      "verses": 11
+    },
+    {
+      "chapter": 94,
+      "page": 1,
+      "count": 8,
+      "file": "chapter-94-page-1.json",
+      "bytes": 3067,
+      "sha256": "2d2c71f05bfc0d158793ad8397bafa9bc6af70b1fa235f222b088e9f6984152a",
+      "verses": 8
+    },
+    {
+      "chapter": 95,
+      "page": 1,
+      "count": 8,
+      "file": "chapter-95-page-1.json",
+      "bytes": 3361,
+      "sha256": "b99345272767d1c38d785d68108c93e2319edbe11549b797a6d1a7b46b9c95c2",
+      "verses": 8
+    },
+    {
+      "chapter": 96,
+      "page": 1,
+      "count": 19,
+      "file": "chapter-96-page-1.json",
+      "bytes": 7404,
+      "sha256": "a3e9b1ea79e5c126af5712fb309a22d700db35f672ee76797e542c374a7ed900",
+      "verses": 19
+    },
+    {
+      "chapter": 97,
+      "page": 1,
+      "count": 5,
+      "file": "chapter-97-page-1.json",
+      "bytes": 2205,
+      "sha256": "4b6cb255d1ed67db756227bcaae533f33947656c3da161f083028f3b71592001",
+      "verses": 5
+    },
+    {
+      "chapter": 98,
+      "page": 1,
+      "count": 8,
+      "file": "chapter-98-page-1.json",
+      "bytes": 5082,
+      "sha256": "0f47cc7598023478cdfdfe94c66cf6f39ab170eb4562d6302dfcc84fa0711366",
+      "verses": 8
+    },
+    {
+      "chapter": 99,
+      "page": 1,
+      "count": 8,
+      "file": "chapter-99-page-1.json",
+      "bytes": 3452,
+      "sha256": "e22e370d98d416c4ce8ca924e30bb7e5f704951359752bb85508ac1a5027ce40",
+      "verses": 8
+    },
+    {
+      "chapter": 100,
+      "page": 1,
+      "count": 11,
+      "file": "chapter-100-page-1.json",
+      "bytes": 4280,
+      "sha256": "bf9778e8eb88863e397d57d83a7b05ffaecef7ba6ddd5033c70f3e2fc8a6a9df",
+      "verses": 11
+    },
+    {
+      "chapter": 101,
+      "page": 1,
+      "count": 11,
+      "file": "chapter-101-page-1.json",
+      "bytes": 4030,
+      "sha256": "964532d9bc37aa9b1032b021506f56bbafb8a04ece5ca4267e4b405bb2232899",
+      "verses": 11
+    },
+    {
+      "chapter": 102,
+      "page": 1,
+      "count": 8,
+      "file": "chapter-102-page-1.json",
+      "bytes": 3174,
+      "sha256": "d129bde82b54129286d4fe21a1f898ab96eb6352acd54302f01046d4e08b1b97",
+      "verses": 8
+    },
+    {
+      "chapter": 103,
+      "page": 1,
+      "count": 3,
+      "file": "chapter-103-page-1.json",
+      "bytes": 1356,
+      "sha256": "e8e19bfc974c7bd685b3b3d77c525a864d68e608b5e70ec097c5d49ff3d43d53",
+      "verses": 3
+    },
+    {
+      "chapter": 104,
+      "page": 1,
+      "count": 9,
+      "file": "chapter-104-page-1.json",
+      "bytes": 3482,
+      "sha256": "11fc86bddc0f562f1942e789bc9617efcf1080bd740fc611bcb42f5ea04ddc3b",
+      "verses": 9
+    },
+    {
+      "chapter": 105,
+      "page": 1,
+      "count": 5,
+      "file": "chapter-105-page-1.json",
+      "bytes": 2173,
+      "sha256": "d9d9ce9edd67aafcc1f1c939654772551ac9546741bcbc6cdaef47ca2d7b0cea",
+      "verses": 5
+    },
+    {
+      "chapter": 106,
+      "page": 1,
+      "count": 4,
+      "file": "chapter-106-page-1.json",
+      "bytes": 1768,
+      "sha256": "2d615070498c7d3462c0451abd46c821f93f1a8c63aa7601ac5917e847460d71",
+      "verses": 4
+    },
+    {
+      "chapter": 107,
+      "page": 1,
+      "count": 7,
+      "file": "chapter-107-page-1.json",
+      "bytes": 2713,
+      "sha256": "09aac22fcd106ceffbd6545079d70ea4a9e93803ba5979e9107553e561ac4bf3",
+      "verses": 7
+    },
+    {
+      "chapter": 108,
+      "page": 1,
+      "count": 3,
+      "file": "chapter-108-page-1.json",
+      "bytes": 1311,
+      "sha256": "e5d445b010f0faf6c0e0cbdbed5dbab841ddb444c35768fa7e948af6aa19a77a",
+      "verses": 3
+    },
+    {
+      "chapter": 109,
+      "page": 1,
+      "count": 6,
+      "file": "chapter-109-page-1.json",
+      "bytes": 2361,
+      "sha256": "26cacff792e1a214c96d83e35f2a3c233434fb619a5dfcae472c56958103ec39",
+      "verses": 6
+    },
+    {
+      "chapter": 110,
+      "page": 1,
+      "count": 3,
+      "file": "chapter-110-page-1.json",
+      "bytes": 1430,
+      "sha256": "b7aeb290e37cc23a0e7f05d22a6776794df414689790554a6a42947ea19f1566",
+      "verses": 3
+    },
+    {
+      "chapter": 111,
+      "page": 1,
+      "count": 5,
+      "file": "chapter-111-page-1.json",
+      "bytes": 2052,
+      "sha256": "80c9edd40bda0bd27acfff7de5f22f9fab24116aa1ee6f10d75f2fd8715abaa3",
+      "verses": 5
+    },
+    {
+      "chapter": 112,
+      "page": 1,
+      "count": 4,
+      "file": "chapter-112-page-1.json",
+      "bytes": 1522,
+      "sha256": "8d13326ab6b0eb3ed72783c7d9d533396eddac60050a3602a264379fddda62df",
+      "verses": 4
+    },
+    {
+      "chapter": 113,
+      "page": 1,
+      "count": 5,
+      "file": "chapter-113-page-1.json",
+      "bytes": 2008,
+      "sha256": "7cded70561b584290c0c7c07caaf8a13993d8efd01c4cd13618d863cc4e752d9",
+      "verses": 5
+    },
+    {
+      "chapter": 114,
+      "page": 1,
+      "count": 6,
+      "file": "chapter-114-page-1.json",
+      "bytes": 2181,
+      "sha256": "8f23ae3735b5b7271c08978a0eb124a3c59b90bc84690620f5a61ebf8b5415ae",
+      "verses": 6
+    }
+  ],
+  "totalVerses": 6236,
+  "errors": 0
+}

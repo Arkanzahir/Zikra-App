@@ -1,0 +1,187 @@
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=
+com.zikra.app.QuranAudioTest:
+INSTRUMENTATION_STATUS: test=testHifzRangeRepeatsRealPlaybackAndStopsAtChosenLastAyah
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testHifzRangeRepeatsRealPlaybackAndStopsAtChosenLastAyah
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testNotificationPauseFocusAndScreenOffBackgroundPlayback
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stack=junit.framework.AssertionFailedError: Paused notification offers Play
+	at com.zikra.app.QuranAudioTest.until(QuranAudioTest.java:76)
+	at com.zikra.app.QuranAudioTest.testNotificationPauseFocusAndScreenOffBackgroundPlayback(QuranAudioTest.java:225)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:569)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2655)
+
+INSTRUMENTATION_STATUS: stream=
+Failure in testNotificationPauseFocusAndScreenOffBackgroundPlayback:
+junit.framework.AssertionFailedError: Paused notification offers Play
+	at com.zikra.app.QuranAudioTest.until(QuranAudioTest.java:76)
+	at com.zikra.app.QuranAudioTest.testNotificationPauseFocusAndScreenOffBackgroundPlayback(QuranAudioTest.java:225)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:569)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2655)
+
+INSTRUMENTATION_STATUS: test=testNotificationPauseFocusAndScreenOffBackgroundPlayback
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testAutoScrollStopsOnManualTouchAndRangeValidationKeepsDialogOpen
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testAutoScrollStopsOnManualTouchAndRangeValidationKeepsDialogOpen
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testOfflineDownloadResumesUsingCompletedFilesAndIgnoresPartialFiles
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testOfflineDownloadResumesUsingCompletedFilesAndIgnoresPartialFiles
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testPlayerControlsRemainReachableAt200PercentText
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testPlayerControlsRemainReachableAt200PercentText
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testBrowsingAnotherSurahKeepsBackgroundAudioVisibleAndCanReturnToIt
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testBrowsingAnotherSurahKeepsBackgroundAudioVisibleAndCanReturnToIt
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testCorruptOfflineAudioShowsErrorWithoutCrashingReader
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testCorruptOfflineAudioShowsErrorWithoutCrashingReader
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testCatalogMiniPlayerControlsAudibleQueueAndReturnsToItsVerse
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testCatalogMiniPlayerControlsAudibleQueueAndReturnsToItsVerse
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testFollowAyahResumesAfterTouchAndColorsActiveVerse
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testFollowAyahResumesAfterTouchAndColorsActiveVerse
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testCatalogMiniPlayerAtLargeTextAndNight
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testCatalogMiniPlayerAtLargeTextAndNight
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testFoldedPanelFreesReadingSpacePersistsAndKeepsPlayback
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: screenshot_note=ReaderFoldedPlayingSynthetic: TimeoutException
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.QuranAudioTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=11
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testFoldedPanelFreesReadingSpacePersistsAndKeepsPlayback
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+Test results for InstrumentationTestRunner=..F.........
+Time: 76.594
+
+FAILURES!!!
+Tests run: 11,  Failures: 1,  Errors: 0
+
+
+INSTRUMENTATION_CODE: -1

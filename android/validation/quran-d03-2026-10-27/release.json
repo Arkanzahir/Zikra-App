@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-27",
+  "versionName": "1.9.13",
+  "versionCode": 40,
+  "sourceCommit": "d7ac65a161b0da4b9371d5d1c79c0901cc628ae9",
+  "artifact": "Zikra-Quran-v1.9.13-beta-debug.apk",
+  "bytes": 41200618,
+  "sha256": "740faa1804667311cd59a64b201ecae370bed83d89862bdd94bcc933c299994c",
+  "initialDownloadBelow100000000Bytes": true,
+  "certificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "signing": "debug; same signer as 1.9.12",
+  "schema": {
+    "main": 5,
+    "chat": 1,
+    "weeklyClasses": 2
+  },
+  "unit": {
+    "tests": 143,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 780
+  },
+  "nativeExecutions": 25,
+  "nativeUniqueMethods": 25,
+  "native": [
+    {
+      "name": "native-corpus",
+      "passed": true,
+      "tests": 1,
+      "attempt": 3
+    },
+    {
+      "name": "native-offline-player",
+      "passed": true,
+      "tests": 12,
+      "attempt": 3
+    },
+    {
+      "name": "native-cdn-live",
+      "passed": true,
+      "tests": 1,
+      "attempt": 3
+    },
+    {
+      "name": "native-reader-live",
+      "passed": true,
+      "tests": 2,
+      "attempt": 3
+    },
+    {
+      "name": "native-word-reader-live",
+      "passed": true,
+      "tests": 1,
+      "attempt": 3
+    },
+    {
+      "name": "native-mushaf-live",
+      "passed": true,
+      "tests": 3,
+      "attempt": 3
+    },
+    {
+      "name": "native-notification-transfer",
+      "passed": true,
+      "tests": 5,
+      "attempt": 4
+    }
+  ],
+  "physicalPhoneModified": false,
+  "aiProviderRequests": false,
+  "publicQuranProviderRequests": true,
+  "D03TechnicalBetaComplete": true,
+  "publicRelease": false,
+  "limitations": [
+    "API37 emulator with host audio disabled; not audible/phonetic or phone proof",
+    "Mechanical identity/text completeness audit, not human editorial review of 6236 ayahs",
+    "QCF word timing belongs only to its exact recording; durable CDN offline audio falls back to ayah highlighting",
+    "Mushaf/font samples, not every font/page; per-ayah offline packages remain distinct",
+    "D01/D02 physical checks, D06 populated upgrade, B01 and public gates remain open"
+  ],
+  "screenshots": {
+    "Mushaf-Night-Zoom-200.png": "288a71ec26e5109c7d21b52d483fece63eb19af20417047ab03112348cfb71d4",
+    "Mushaf-Word-ar.alafasy.png": "4ca512734164c44da7c8c797093ac0e52d7d60f33deb6005e557d391b3b547c8",
+    "Mushaf-Word-ar.husary.png": "fae0934ad19c2745fc31be31510303a0a8dd1498ef9d147540c384f56e675d05",
+    "Mushaf-Word-ar.minshawi.png": "60944b077532082a1551781c9eba13c502424f36bfe935d14146fb069057957b",
+    "Mushaf-Word-Next-Page.png": "e64df3505155752512d5481a9b9dcbf7c04bab7bf61580cdfcf34b753f06f29e",
+    "QuranCatalogMiniLargeNightSynthetic.png": "987e8c94eff63679c351f47374bd682dd5cdadfac57f7d964062dba3b78eaa26",
+    "QuranPlayerSyntheticAudioTest.png": "addb66f15519570df92bc03648ad7f46c313c8f8511317483dcb12e9fa1a1e85",
+    "QuranReaderLiveNextAyah.png": "74a0b3dc94e6761ddde9580ae5dc0dcf957feca9fc0e5cfbbab7e2c3327c2b70",
+    "QuranReaderLiveWordColor.png": "fba085f847242e6d8c9e2fda3d96d5ad9e38b229d5efa9e82bdff40e32d907f0",
+    "RebuiltQuranMulk.png": "cf1474f1587d06c3dd08fe4f07b22f9f40c98fa7f8c11ae6babc1a1c1d5ede65"
+  },
+  "finalNativePreservationAttempts": [
+    3,
+    4
+  ]
+}

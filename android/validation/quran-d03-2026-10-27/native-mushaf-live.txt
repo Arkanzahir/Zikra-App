@@ -1,0 +1,51 @@
+INSTRUMENTATION_STATUS: class=com.zikra.app.MushafReaderTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+com.zikra.app.MushafReaderTest:
+INSTRUMENTATION_STATUS: test=testWordHighlightUsesActualAudioForAllThreeQaris
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.MushafReaderTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testWordHighlightUsesActualAudioForAllThreeQaris
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.MushafReaderTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testWordHighlightFollowsNextAyahToNextPageAndClearsOnStop
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.MushafReaderTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testWordHighlightFollowsNextAyahToNextPageAndClearsOnStop
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.MushafReaderTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testActualPageFontsNavigationNightAndZoom
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.MushafReaderTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testActualPageFontsNavigationNightAndZoom
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+Test results for InstrumentationTestRunner=...
+Time: 37.915
+
+OK (3 tests)
+
+
+INSTRUMENTATION_CODE: -1

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "native-corpus",
+    "passed": true,
+    "tests": 1,
+    "attempt": 3
+  },
+  {
+    "name": "native-offline-player",
+    "passed": true,
+    "tests": 12,
+    "attempt": 3
+  },
+  {
+    "name": "native-cdn-live",
+    "passed": true,
+    "tests": 1,
+    "attempt": 3
+  },
+  {
+    "name": "native-reader-live",
+    "passed": true,
+    "tests": 2,
+    "attempt": 3
+  },
+  {
+    "name": "native-word-reader-live",
+    "passed": true,
+    "tests": 1,
+    "attempt": 3
+  },
+  {
+    "name": "native-mushaf-live",
+    "passed": true,
+    "tests": 3,
+    "attempt": 3
+  },
+  {
+    "name": "native-notification-transfer",
+    "passed": true,
+    "tests": 5,
+    "attempt": 4
+  }
+]

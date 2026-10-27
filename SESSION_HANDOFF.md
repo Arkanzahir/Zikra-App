@@ -708,3 +708,52 @@ D02/D02a tetap[ ] untuk HP (pop-up vendor, suara/getar, lock/reboot/Doze,
 perubahan jam-zona, upgrade berisi) dan asal/ketentuan rekaman/lafaz penuh Subuh.
 D01 fisik juga terbuka. D03 berikutnya dapat dikerjakan tanpa mengklaim gerbang
 HP telah selesai; B01/C02/C04/C07/D05/D06/E/F/G/publik tetap sesuai checklist.
+
+
+## D03 selesai teknis beta — 27 Oktober2026,1.9.13
+
+Pengguna menunda uji HP dan meminta lanjut pekerjaan lain. D03 dilanjutkan:
+114 surah/6.236 ayat/190 halaman sumber (4.079.394byte snapshot privat) lolos
+pemetaan/paginasi/kelengkapan dan parser produksi Android. Source
+**d7ac65a161b0da4b9371d5d1c79c0901cc628ae9**, APK lokal folder luar
+**Zikra-Quran-v1.9.13-beta-debug.apk**, **41.200.618byte**, SHA256
+`740faa1804667311cd59a64b201ecae370bed83d89862bdd94bcc933c299994c`.
+Signer debug sama1.9.12/schema5/1/2. Dua MP3 adzan privat dan96 entry media
+kandidat sebelumnya utuh; APK lama tidak ditimpa. Checkpoint baru lokal, belum push.
+
+Pembatalan TimedAudioRepository memakai tiket sebelum antrean, cek antartahap/
+sebelum cache,40detik gabungan/max3rekaman; lock tidak menunggu jaringan. Close
+sebelumnya memang sudah di worker, bukan bug UI close. Stash prefetch A03
+ditinjau dan dipertahankan, tidak digabung tanpa pembuktian. Unduhan pindah
+notifikasi7302→7500; migrasi kanal lama tidak menghapus Dzuhur. Media refresh
+disatukan/foreground tidak dipromosikan berulang, Stop membatalkan refresh
+tertunda. Decoder lokal rusak memberi petunjuk Unduh/lanjutkan; repair/delete
+audio menjaga bookmark. Home/AI/logo/aset yang disetujui tidak diubah.
+
+**139 unit lulus/4 skip,25 metode native unik lulus,lint0 error/780 warning.**
+Dua belas kasus player termasuk rapid controls/stop, focus/background/screenoff,
+seek/repeat, manual/follow scroll, 200%/malam, offline/partial/corrupt/repair dan
+bookmark. Tiga rekaman1:1 Quran.com didekode/timing/seek kata2/4/1; enam CDN
+1:1+114:6 pada3qari diunduh/decode/reuse tanpa HTTP/pemutar file lokal. Reader
+word asli1:2→3 dan Mushaf lintas ayat/halaman/font/zoom teruji. Putaran gagal
+historis dan perbaikan selector/harness transaksi notifikasi dicatat; final
+25 berasal attempt3 ditambah migrasi/transfer attempt4 dengan APK produksi sama.
+
+[Receipt/hash/source/bukti/gambar/batas](android/validation/quran-d03-2026-10-27/README.md).
+10berkas asli emulator0byte cocok hash pulih, pengaturan dipulihkan/helper
+dihapus/emulator ditutup. Bukan bukti upgrade HP berisi. WIP PROJECT_HANDOFF,
+stash/arsip/env/desain/APK/audio asli utuh; nilai rahasia kini tidak ditemukan
+pada source/evidence/APK, bukan audit semua sejarah Git. Raw corpus/MP3 sampel
+tidak dibundel Git/APK. CLI ulang: tools/audit-quran-d03.mjs, default .local/quran-d03-audit.
+
+D03[x] hanya beta teknis sesuai batas: bukan penelaahan editorial/fonetik setiap
+ayat/rekaman atau bukti suara terdengar; emulator -no-audio. API CDN menyebut
+ar.minshawi type translation, docs resminya Murattal128; perbedaan dicatat, tidak
+menyamakan byte/timing dengan Quran.com. Audio CDN offline sorotan ayat; cache
+font/halaman Mushaf bukan paket604halaman offline. Empat surah bawaan lokal
+tetap terpisah dari snapshot Quran.com. Empat unit skip: satu katalog Doa, satu Mushaf dan dua metrik font host.
+
+**Jangan meminta HP berulang**; pengguna menunda. D01/D02/D02a/G02 fisik, D06
+upgrade berisi, C02/C04/C07/B01 serta D05/E/F/G/publik masih mengikuti checklist.
+Berikutnya D05 ibadah/Hifz/progres nyata; jangan otomatis menganggap audio selesai
+berarti target hafalan selesai. Tidak ada email/provider AI/push baru pada putaran ini.

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "native-corpus",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "native-notification-transfer",
+    "passed": true,
+    "tests": 5
+  },
+  {
+    "name": "native-offline-player",
+    "passed": false,
+    "tests": null
+  },
+  {
+    "name": "native-reader-live",
+    "passed": false,
+    "tests": null
+  },
+  {
+    "name": "native-word-reader-live",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "native-mushaf-live",
+    "passed": true,
+    "tests": 3
+  }
+]
