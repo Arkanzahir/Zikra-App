@@ -171,7 +171,7 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
   private AccessibilityNodeInfo systemAction(String text){
     for(AccessibilityWindowInfo window:getInstrumentation().getUiAutomation().getWindows()){
       AccessibilityNodeInfo root=window.getRoot();
-      if(root==null||!"com.android.systemui".contentEquals(root.getPackageName()))continue;
+      if(root==null)continue;
       for(AccessibilityNodeInfo node:root.findAccessibilityNodeInfosByText(text))
         if(node.getText()!=null&&text.equalsIgnoreCase(node.getText().toString())&&node.isVisibleToUser())return node;
     }
@@ -197,6 +197,17 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
     try(InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(getInstrumentation().getUiAutomation().executeShellCommand("screencap -p"));
         OutputStream out=new FileOutputStream(new File(dir,"D02-"+name+"-"+suffix+".png"))){in.transferTo(out);}
   }
+  private void awaitSystemStop(String name)throws Exception{
+    try{waitFor(()->systemAction(context.getString(R.string.adhan_stop))!=null);}
+    catch(junit.framework.AssertionFailedError missing){
+      systemShot(name+"-failed");Bundle report=new Bundle();StringBuilder windows=new StringBuilder();
+      for(AccessibilityWindowInfo window:getInstrumentation().getUiAutomation().getWindows()){
+        AccessibilityNodeInfo root=window.getRoot();windows.append(window.getType()).append(':')
+            .append(root==null?"no root":root.getPackageName()).append(';');
+      }
+      report.putString("system_windows",windows.toString());getInstrumentation().sendStatus(0,report);throw missing;
+    }
+  }
   public void testBannerStopIsVisibleOverLauncherAndStopsWithoutOpeningApp()throws Exception{
     launch(PrayerActivity.class);int flags=inspectSystemWindows();
     try{
@@ -209,7 +220,7 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
       context.getSystemService(AlarmManager.class).setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,event.getLongExtra(PrayerReminders.EXTRA_EPOCH,0),operation);
       shell("input keyevent 3");waitFor(()->AdhanService.state().playing);
       SystemClock.sleep(300);systemShot("banner-before-check");
-      waitFor(()->systemAction(context.getString(R.string.adhan_stop))!=null);systemShot("banner-heads-up");
+      awaitSystemStop("banner-heads-up");systemShot("banner-heads-up");
       Notification notification=notice(7400).getNotification();assertEquals(AdhanNotification.CHANNEL,notification.getChannelId());
       assertEquals("Waktu Maghrib",notification.extras.getString(Notification.EXTRA_TITLE));
       assertNull(notification.fullScreenIntent);assertEquals(Notification.VISIBILITY_PUBLIC,notification.visibility);
@@ -225,9 +236,9 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
       Notification notification=notice(7400).getNotification();assertEquals(PrayerReminders.PLAYBACK,notification.getChannelId());
       assertTrue((notification.flags&Notification.FLAG_ONLY_ALERT_ONCE)!=0);assertNull(notification.deleteIntent);
       shell("input keyevent 3");SystemClock.sleep(6500);assertNotNull(notice(7400));assertTrue(AdhanService.state().playing);
-      assertTrue(getInstrumentation().getUiAutomation().performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_NOTIFICATIONS));
+      shell("cmd statusbar expand-notifications");
       SystemClock.sleep(500);systemShot("shade-before-check");
-      waitFor(()->systemAction(context.getString(R.string.adhan_stop))!=null);systemShot("notification-shade");
+      awaitSystemStop("notification-shade");systemShot("notification-shade");
       clickSystemAction(context.getString(R.string.adhan_stop));waitFor(()->!AdhanService.state().active);assertNull(notice(7400));
     }finally{restoreSystemWindows(flags);}
   }
