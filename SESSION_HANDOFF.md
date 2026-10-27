@@ -1,5 +1,9 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
+## Arahan visual terbaru27 Oktober2026 — referensi dahulu
+
+Pengguna memperjelas: **delapan ikon fitur dipertahankan**, logo utama bulan/bintang/Quran boleh dipoles; Hifz, kalender dan Profil perlu tampilan lebih matang. Home jam lokal dan awan juga dibahas. [Referensi interaktif/batas](design/concepts/zikra-refined-2026-10-27/README.md) sudah dibuat, seluruh isi contoh; belum diterapkan atau diterima sebagai desain final. Tidak mengganti logo yang disetujui dengan eksplorasi Quran–Z. Jangan menjalankan perubahan native besar sebelum tanggapan atas referensi. Runtime/APK tetap1.9.14; status D dan B01/publik tidak berubah.
+
 ## Status terbaru27 Oktober2026 — D dahulu
 
 [Ringkasan penutupan D dan sisa gerbang](android/validation/d-closeout-2026-10-27/README.md).

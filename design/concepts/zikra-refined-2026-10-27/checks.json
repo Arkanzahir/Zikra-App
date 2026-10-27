@@ -1,0 +1,113 @@
+{
+  "checks": [
+    {
+      "screen": "home",
+      "visible": true
+    },
+    {
+      "screen": "hifz",
+      "visible": true
+    },
+    {
+      "screen": "calendar",
+      "visible": true
+    },
+    {
+      "screen": "profile",
+      "visible": true
+    },
+    {
+      "screen": "logo",
+      "visible": true
+    },
+    {
+      "calendarSelectionChanges": true
+    },
+    {
+      "calendarNextMonth": true
+    },
+    {
+      "calendarToday": true
+    },
+    {
+      "ibadahToggle": true
+    },
+    {
+      "cloudsActuallyMove": true
+    },
+    {
+      "hifzEmpty": true
+    },
+    {
+      "addTargetExample": true
+    },
+    {
+      "hifzNotes": true
+    },
+    {
+      "profileExampleEdit": true
+    },
+    {
+      "logoSelection": true
+    },
+    {
+      "dayPreviewUpdatesClock": true
+    },
+    {
+      "reducedMotionHonored": true
+    },
+    {
+      "allPagesFitNarrowWidth": true
+    },
+    {
+      "allImagesLoaded": true
+    }
+  ],
+  "widths": [
+    {
+      "screen": "home",
+      "client": 286,
+      "scroll": 286
+    },
+    {
+      "screen": "hifz",
+      "client": 286,
+      "scroll": 286
+    },
+    {
+      "screen": "calendar",
+      "client": 286,
+      "scroll": 286
+    },
+    {
+      "screen": "profile",
+      "client": 286,
+      "scroll": 286
+    },
+    {
+      "screen": "logo",
+      "client": 286,
+      "scroll": 286
+    }
+  ],
+  "browserErrors": [],
+  "passed": true,
+  "scope": "Browser reference only; not native Android validation or design acceptance",
+  "referenceSha256": "006880ef58b997bec260ed462992db7ca693efb127345a57d8bce36b0021967e",
+  "viewports": [
+    {
+      "width": 900,
+      "height": 1100,
+      "phoneWidth": 390
+    },
+    {
+      "width": 320,
+      "height": 1100,
+      "phoneWidth": 288
+    }
+  ],
+  "featureIconGeometryPreserved": true,
+  "runtimeAppChanged": false,
+  "productionLogoChanged": false,
+  "userDataUsed": false
+}

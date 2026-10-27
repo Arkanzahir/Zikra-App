@@ -1,0 +1,50 @@
+[
+  {
+    "name": "quran",
+    "sourceSha256": "326793326f7cf70b9d6112a72ee6bcf875597a748d202d412e68a810fced2b21",
+    "originalPathDataPreserved": true,
+    "groupCount": 0
+  },
+  {
+    "name": "dua",
+    "sourceSha256": "c5d7ee481a592e73fa4ad4940d461d6501ac9fdb471e29c544a2db4625a75819",
+    "originalPathDataPreserved": true,
+    "groupCount": 1
+  },
+  {
+    "name": "qibla",
+    "sourceSha256": "10c9385431bdaf8b5c428124e00e28eb41b67a29783a6076cb75bebe26a519ce",
+    "originalPathDataPreserved": true,
+    "groupCount": 0
+  },
+  {
+    "name": "hifz",
+    "sourceSha256": "b65500e4615469bf8ae30e92e65f2ce706c146f5ed1a383ae59ffa4d02bea210",
+    "originalPathDataPreserved": true,
+    "groupCount": 0
+  },
+  {
+    "name": "ai",
+    "sourceSha256": "585e194a7771a1e64fa98f061fd1f99ca0d51161ca9e7e99191e26b6e2579e93",
+    "originalPathDataPreserved": true,
+    "groupCount": 0
+  },
+  {
+    "name": "protector",
+    "sourceSha256": "e24ed30bec0ec8d58ceaa0d9956938f2936a2b5ac366d5e80deda9b852163949",
+    "originalPathDataPreserved": true,
+    "groupCount": 0
+  },
+  {
+    "name": "study",
+    "sourceSha256": "a2b57b4b7af1bfe88348d02227126de8913112697e0a164b011e4818193f0688",
+    "originalPathDataPreserved": true,
+    "groupCount": 0
+  },
+  {
+    "name": "hadith",
+    "sourceSha256": "fd3682bf9863dfef0e2c3b496fb3db50e7d78b2b1c484ea07a96f17e464ddfe6",
+    "originalPathDataPreserved": true,
+    "groupCount": 0
+  }
+]
