@@ -7,6 +7,7 @@
   <string name="adhan_audio_missing">Audio adzan belum tersedia pada versi ini. Pilih notifikasi biasa atau getar.</string>
   <string name="adhan_preview">Dengarkan adzan</string>
   <string name="adhan_stop">Hentikan adzan</string>
+  <string name="adhan_stop_short">Stop</string>
   <string name="adhan_preview_title">Pratinjau adzan</string>
   <string name="adhan_playing">Memutar adzan %1$s</string>
   <string name="adhan_preparing">Menyiapkan adzan…</string>

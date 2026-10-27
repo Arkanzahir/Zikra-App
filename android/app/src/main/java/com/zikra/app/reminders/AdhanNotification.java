@@ -45,6 +45,11 @@ public final class AdhanNotification {
         android.graphics.drawable.Icon.createWithResource(context, R.drawable.ic_adhan_stop),
         context.getString(R.string.adhan_stop), stop).build();
     RemoteViews compact = content(context, R.layout.notification_adhan_compact, title, status);
+    if (context.getResources().getConfiguration().fontScale >= 1.5f) {
+      compact.setTextViewText(R.id.adhanNotificationStop, context.getString(R.string.adhan_stop_short));
+      compact.setViewVisibility(R.id.adhanNotificationBody, android.view.View.GONE);
+    }
+    compact.setContentDescription(R.id.adhanNotificationStop, context.getString(R.string.adhan_stop));
     compact.setOnClickPendingIntent(R.id.adhanNotificationStop, stop);
     Notification.Builder builder = new Notification.Builder(context, preview ? PrayerReminders.PLAYBACK : CHANNEL)
         .setSmallIcon(R.drawable.ic_notification_prayer)

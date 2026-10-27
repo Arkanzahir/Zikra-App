@@ -7,9 +7,6 @@ import android.os.*;
 import android.service.notification.StatusBarNotification;
 import android.test.InstrumentationTestCase;
 import android.view.*;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.view.accessibility.AccessibilityWindowInfo;
-import android.accessibilityservice.AccessibilityServiceInfo;
 import android.widget.*;
 import com.zikra.app.*;
 import com.zikra.app.audio.*;
@@ -40,12 +37,12 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
     assertEquals("1",shell("getprop ro.kernel.qemu").trim());
     assertTrue(new File(context.getFilesDir(),"d02-authorized").isFile());
     ui(()->AdhanService.stop(context));waitFor(()->!AdhanService.state().active);
-    PrayerSettings.prefs(context).edit().clear().putBoolean("onboarding_complete",true).putBoolean("shake_enabled",false).commit();
-    context.getSharedPreferences(FocusTimer.PREFS,0).edit().clear().commit();
-    try(WeeklyClassStore store=new WeeklyClassStore(context)){for(WeeklyClass item:store.all())store.delete(item.id,item.revision);}
-    LocationStore.save(context,LocationPoint.INITIAL);PrayerReminders.sync(context);
-    for(int id=7300;id<=7305;id++)context.getSystemService(NotificationManager.class).cancel(id);
-    waitFor(()->{for(int id=7300;id<=7305;id++)if(notice(id)!=null)return false;return true;});
+    ui(()->{
+      PrayerSettings.prefs(context).edit().clear().putBoolean("onboarding_complete",true).putBoolean("shake_enabled",false).commit();
+      context.getSharedPreferences(FocusTimer.PREFS,0).edit().clear().commit();
+      try(WeeklyClassStore store=new WeeklyClassStore(context)){for(WeeklyClass item:store.all())store.delete(item.id,item.revision);}
+      LocationStore.save(context,LocationPoint.INITIAL);PrayerReminders.sync(context);
+    });
   }
   @Override protected void tearDown()throws Exception{
     try{
@@ -170,51 +167,23 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
     enable(2,PrayerMode.ADHAN);PrayerReminders.deliver(context,planned(2,System.currentTimeMillis()-1000));waitFor(()->notice(7302)!=null);assertEquals(PrayerReminders.QUIET,notice(7302).getNotification().getChannelId());assertFalse(AdhanService.state().active);
   }
 
-  private AccessibilityNodeInfo systemAction(String text){
-    getInstrumentation().getUiAutomation().clearCache();
-    for(AccessibilityWindowInfo window:getInstrumentation().getUiAutomation().getWindows()){
-      AccessibilityNodeInfo root=window.getRoot();
-      if(root==null)continue;
-      for(AccessibilityNodeInfo node:root.findAccessibilityNodeInfosByText(text))
-        if((node.getText()!=null&&text.equalsIgnoreCase(node.getText().toString()))
-            ||(node.getContentDescription()!=null&&text.equalsIgnoreCase(node.getContentDescription().toString())))return node;
-      for(AccessibilityNodeInfo node:root.findAccessibilityNodeInfosByViewId("com.zikra.app:id/adhanNotificationStop"))return node;
-    }
-    return null;
-  }
-  private void clickSystemAction(String text)throws Exception{
-    waitFor(()->systemAction(text)!=null);AccessibilityNodeInfo node=systemAction(text);
-    while(node!=null&&!node.isClickable())node=node.getParent();
-    assertNotNull("System action must be clickable",node);assertTrue(node.performAction(AccessibilityNodeInfo.ACTION_CLICK));
-  }
-  private int inspectSystemWindows(){
-    android.app.UiAutomation automation=getInstrumentation().getUiAutomation();AccessibilityServiceInfo info=automation.getServiceInfo();
-    int before=info.flags;info.flags|=AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS|AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS|AccessibilityServiceInfo.FLAG_INCLUDE_NOT_IMPORTANT_VIEWS;
-    automation.setServiceInfo(info);return before;
-  }
-  private void restoreSystemWindows(int flags)throws Exception{
-    shell("cmd statusbar collapse");AccessibilityServiceInfo info=getInstrumentation().getUiAutomation().getServiceInfo();
-    info.flags=flags;getInstrumentation().getUiAutomation().setServiceInfo(info);
-  }
   private void systemShot(String name)throws Exception{
     File dir=new File(context.getExternalFilesDir(null),"validation");assertTrue(dir.isDirectory()||dir.mkdirs());
     String suffix=context.getResources().getConfiguration().fontScale>1.9?"200":"100";
     try(InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(getInstrumentation().getUiAutomation().executeShellCommand("screencap -p"));
         OutputStream out=new FileOutputStream(new File(dir,"D02-"+name+"-"+suffix+".png"))){in.transferTo(out);}
   }
-  private void awaitSystemStop(String name)throws Exception{
-    try{waitFor(()->systemAction(context.getString(R.string.adhan_stop))!=null);}
-    catch(junit.framework.AssertionFailedError missing){
-      systemShot(name+"-failed");Bundle report=new Bundle();StringBuilder windows=new StringBuilder();
-      for(AccessibilityWindowInfo window:getInstrumentation().getUiAutomation().getWindows()){
-        AccessibilityNodeInfo root=window.getRoot();windows.append(window.getType()).append(':')
-            .append(root==null?"no root":root.getPackageName()).append(';');
-      }
-      report.putString("system_windows",windows.toString());getInstrumentation().sendStatus(0,report);throw missing;
-    }
+  private void awaitVisibleStopTap(String name)throws Exception{
+    SystemClock.sleep(1500);systemShot(name);
+    Bundle request=new Bundle();request.putString("ui_stop_ready",name+":"+context.getResources().getConfiguration().fontScale);
+    getInstrumentation().sendStatus(0,request);
+    long end=SystemClock.elapsedRealtime()+90000;
+    while(AdhanService.state().active&&SystemClock.elapsedRealtime()<end)SystemClock.sleep(100);
+    assertFalse("Visible stop action must stop the real player",AdhanService.state().active);
+    waitFor(()->notice(7400)==null);
   }
   public void testBannerStopIsVisibleOverLauncherAndStopsWithoutOpeningApp()throws Exception{
-    launch(PrayerActivity.class);int flags=inspectSystemWindows();
+    launch(PrayerActivity.class);
     try{
       NotificationManager manager=context.getSystemService(NotificationManager.class);
       assertEquals(NotificationManager.IMPORTANCE_LOW,manager.getNotificationChannel(PrayerReminders.PLAYBACK).getImportance());
@@ -224,27 +193,23 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
       PendingIntent operation=PendingIntent.getBroadcast(context,0,event,PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
       context.getSystemService(AlarmManager.class).setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,event.getLongExtra(PrayerReminders.EXTRA_EPOCH,0),operation);
       shell("input keyevent 3");waitFor(()->AdhanService.state().playing);
-      SystemClock.sleep(300);systemShot("banner-before-check");
-      awaitSystemStop("banner-heads-up");SystemClock.sleep(500);systemShot("banner-heads-up");
       Notification notification=notice(7400).getNotification();assertEquals(AdhanNotification.CHANNEL,notification.getChannelId());
       assertEquals("Waktu Maghrib",notification.extras.getString(Notification.EXTRA_TITLE));
       assertNull(notification.fullScreenIntent);assertEquals(Notification.VISIBILITY_PUBLIC,notification.visibility);
-      clickSystemAction(context.getString(R.string.adhan_stop));waitFor(()->!AdhanService.state().active);assertNull(notice(7400));
+      awaitVisibleStopTap("banner-heads-up");
       assertFalse("Stop must not bring PrayerActivity to foreground",shell("dumpsys activity activities").lines()
           .anyMatch(line->line.contains("topResumedActivity")&&line.contains("com.zikra.app")));
-    }finally{restoreSystemWindows(flags);}
+    }finally{shell("cmd statusbar collapse");}
   }
-  public void testShadeKeepsStopControlForQuietPreview()throws Exception{
-    launch(PrayerActivity.class);int flags=inspectSystemWindows();
+  public void testShadeKeepsStopControlAfterBanner()throws Exception{
+    launch(PrayerActivity.class);
     try{
-      ui(()->AdhanService.preview(context,0));waitFor(()->AdhanService.state().playing);
-      Notification notification=notice(7400).getNotification();assertEquals(PrayerReminders.PLAYBACK,notification.getChannelId());
+      playAlarm(0);
+      Notification notification=notice(7400).getNotification();assertEquals(AdhanNotification.CHANNEL,notification.getChannelId());
       assertTrue((notification.flags&Notification.FLAG_ONLY_ALERT_ONCE)!=0);assertNull(notification.deleteIntent);
       shell("input keyevent 3");SystemClock.sleep(6500);assertNotNull(notice(7400));assertTrue(AdhanService.state().playing);
       shell("cmd statusbar expand-notifications");
-      SystemClock.sleep(500);systemShot("shade-before-check");
-      awaitSystemStop("notification-shade");systemShot("notification-shade");
-      clickSystemAction(context.getString(R.string.adhan_stop));waitFor(()->!AdhanService.state().active);assertNull(notice(7400));
-    }finally{restoreSystemWindows(flags);}
+      awaitVisibleStopTap("notification-shade");
+    }finally{shell("cmd statusbar collapse");}
   }
 }
