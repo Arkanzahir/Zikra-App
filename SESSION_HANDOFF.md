@@ -1,5 +1,18 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
+## Status terbaru27 Oktober2026 — D dahulu
+
+[Ringkasan penutupan D dan sisa gerbang](android/validation/d-closeout-2026-10-27/README.md).
+
+- Git main D06 sudah dipush `71d3e4c`; checkpoint berikutnya gunakan Git log/remote aktual.
+- D03/D04/D05/D06 selesai teknis beta. Runtime/APK terbaru tetap1.9.14/code41/source5288e03,41.592.382byte; perubahan berikut ini helper/bukti saja.
+- [D06](android/validation/storage-d06-2026-10-27/README.md): tiga upgrade/reinstall APK asli dengan fixture terisi,11 eksekusi native; data asli emulator dipulihkan.
+- [D02 sistem](android/validation/prayer-system-d02-2026-10-27/README.md): reboot kernel nyata memulihkan24 alarm sebelum test/sync dibuka; pengiriman alarm actual saat forced deep idle/layar mati/offline berhasil,4 native lulus.
+- [Sumber audio](android/validation/adhan-source-d02-2026-10-27/README.md): dua MP3 pengguna cocok exact-hash dengan berkas penerbit; ketentuan redistribusi dan lafaz penuh belum terbukti.
+- **D01/D02/D02a tetap[ ]**: HP untuk GPS/approximate/magnet/rotasi, suara/getar/senyap/kanal dan baterai vendor/layar mati lama; audio untuk lafaz/ketentuan distribusi. Pengguna menunda HP; jangan berulang meminta sambungan. Selesaikan D dahulu, jangan beralih ke E.
+- Semua checkpoint terverifikasi commit/push origin/main. WIP PROJECT_HANDOFF/stash/audio/env/desain disetujui tetap dipertahankan. B01 dan publik tetap belum selesai.
+
+
 ## Mulai di sini
 
 - Root Git: `D:\Download\Zikra-App-main\Zikra-App-main`, bukan folder pembungkusnya. Remote: `https://github.com/Arkanzahir/Zikra-App.git`, branch `main`.

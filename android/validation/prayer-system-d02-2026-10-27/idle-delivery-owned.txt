@@ -1,0 +1,16 @@
+Forced idle after actual delivery:
+mForceIdle=true
+mScreenOn=false
+mState=IDLE mLightState=OVERRIDE
+mWakefulness=Asleep
+
+Owned service:
+* ServiceRecord{430fdce u0 com.zikra.app/.reminders.AdhanService c:com.zikra.app}
+intent={act=adhan.play dat=zikra://prayer/2026-10-27_2 cmp=com.zikra.app/.reminders.AdhanService}
+infoAllowStartForeground=[callingPackage: com.zikra.app; callingUid: 10230; uidState: RCVR; uidBFSL: n/a; BFGS denied: false; intent: Intent { act=adhan.play dat=zikra://prayer/... flg=0x10 xflg=0x4 cmp=com.zikra.app/.reminders.AdhanService (has extras) }; code:ALARM_MANAGER_WHILE_IDLE; tempAllowListReason:<5c4a464 com.zikra.app.PRAYER_2/u0/0x2055,reasonCode:ALARM_MANAGER_WHILE_IDLE,duration:10000,callingUid:10230>; allowWiu:-1; targetSdkVersion:35; callerTargetSdkVersion:35; startForegroundCount:0; bindFromPackage:null; isBindService:false]
+isForeground=true foregroundId=7400 types=0x00000002 foregroundNoti=Notification(channel=zikra_adhan_alerts shortcut=null contentView=com.zikra.app/0x7f090025 vibrate=null sound=null defaults=0 flags=ONGOING_EVENT|ONLY_ALERT_ONCE|NO_CLEAR|FOREGROUND_SERVICE color=0xff15332f category=alarm actions=1 vis=PUBLIC template=android.app.Notification$DecoratedCustomViewStyle)
+lastActivity=-926ms restartTime=-926ms createdFromFg=false
+startRequested=true delayedStop=false stopIfKilled=true callStart=true lastStartId=1
+
+Owned notification:
+NotificationRecord(0x09e90ea7: pkg=com.zikra.app user=UserHandle{0} id=7400 tag=null importance=4 key=0|com.zikra.app|7400|null|10230: Notification(channel=zikra_adhan_alerts shortcut=null contentView=com.zikra.app/0x7f090025 vibrate=null sound=null defaults=0 flags=ONGOING_EVENT|ONLY_ALERT_ONCE|NO_CLEAR|FOREGROUND_SERVICE color=0xff15332f category=alarm actions=1 vis=PUBLIC template=android.app.Notification$DecoratedCustomViewStyle))

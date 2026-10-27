@@ -1,0 +1,28 @@
+{
+  "beforeReboot": {
+    "plannedSlots": 24,
+    "allFourModesStored": true
+  },
+  "realKernelReboot": true,
+  "systemAlarmsPresentBeforeTestProcess": true,
+  "afterReboot": {
+    "plannedSlots": 24,
+    "modesRetained": true,
+    "pendingIdentitiesExist": true,
+    "resyncInvokedByTest": false,
+    "audioNotResumedAfterBoot": true
+  },
+  "idleArm": {
+    "scheduledEpoch": 1793109333649,
+    "armedAtElapsed": 88780,
+    "usesActualAlarmManager": true
+  },
+  "deepIdleBeforeAlarm": true,
+  "deliveryWhileForcedIdle": true,
+  "foregroundAdhanServiceAfterAlarm": true,
+  "adhanNotificationPresent": true,
+  "wifiAndDataOff": true,
+  "actualSystemPendingPrayerAlarmsAfterReboot": 24,
+  "screenNoninteractiveAfterDelivery": true,
+  "deepIdleAfterDelivery": true
+}

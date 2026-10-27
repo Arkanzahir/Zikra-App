@@ -1,0 +1,191 @@
+    RTC_WAKEUP #23: Alarm{5f4aa9c type 0 origWhen 1793133900000 whenElapsed 24680120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_0
+      type=RTC_WAKEUP origWhen=2026-10-28 03:45:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+6h49m57s909ms app_standby=-687ms device_idle=-- battery_saver=-687ms
+      whenElapsed=+6h49m57s909ms maxWhenElapsed=+6h49m57s909ms
+      operation=PendingIntent{5d05ca5: PendingIntentRecord{28fe87a com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #25: Alarm{877582b type 0 origWhen 1793160900000 whenElapsed 51680121 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_2
+      type=RTC_WAKEUP origWhen=2026-10-28 11:15:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+14h19m57s910ms app_standby=-674ms device_idle=-- battery_saver=-674ms
+      whenElapsed=+14h19m57s910ms maxWhenElapsed=+14h19m57s910ms
+      operation=PendingIntent{3efd488: PendingIntentRecord{90f1e21 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #26: Alarm{5241246 type 0 origWhen 1793172480000 whenElapsed 63260120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_3
+      type=RTC_WAKEUP origWhen=2026-10-28 14:28:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+17h32m57s909ms app_standby=-671ms device_idle=-- battery_saver=-671ms
+      whenElapsed=+17h32m57s909ms maxWhenElapsed=+17h32m57s909ms
+      operation=PendingIntent{6114c07: PendingIntentRecord{ef1b134 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #27: Alarm{31e7b5d type 0 origWhen 1793187420000 whenElapsed 78200120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_5
+      type=RTC_WAKEUP origWhen=2026-10-28 18:37:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+21h41m57s909ms app_standby=-668ms device_idle=-- battery_saver=-668ms
+      whenElapsed=+21h41m57s909ms maxWhenElapsed=+21h41m57s909ms
+      operation=PendingIntent{47f0cd2: PendingIntentRecord{c6ca1a3 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #37: Alarm{a92aca0 type 0 origWhen 1793220300000 whenElapsed 111080120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_0
+      type=RTC_WAKEUP origWhen=2026-10-29 03:45:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+1d6h49m57s909ms app_standby=-660ms device_idle=-- battery_saver=-660ms
+      whenElapsed=+1d6h49m57s909ms maxWhenElapsed=+1d6h49m57s909ms
+      operation=PendingIntent{4cc7059: PendingIntentRecord{31d241e com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #38: Alarm{19db4ff type 0 origWhen 1793247300000 whenElapsed 138080120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_2
+      type=RTC_WAKEUP origWhen=2026-10-29 11:15:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+1d14h19m57s909ms app_standby=-597ms device_idle=-- battery_saver=-597ms
+      whenElapsed=+1d14h19m57s909ms maxWhenElapsed=+1d14h19m57s909ms
+      operation=PendingIntent{985f2cc: PendingIntentRecord{3cab915 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #39: Alarm{cf3642a type 0 origWhen 1793258940000 whenElapsed 149720120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_3
+      type=RTC_WAKEUP origWhen=2026-10-29 14:29:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+1d17h33m57s909ms app_standby=-339ms device_idle=-- battery_saver=-339ms
+      whenElapsed=+1d17h33m57s909ms maxWhenElapsed=+1d17h33m57s909ms
+      operation=PendingIntent{ea2a21b: PendingIntentRecord{4856fb8 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #40: Alarm{52ad191 type 0 origWhen 1793273820000 whenElapsed 164600120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_5
+      type=RTC_WAKEUP origWhen=2026-10-29 18:37:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+1d21h41m57s909ms app_standby=-291ms device_idle=-- battery_saver=-291ms
+      whenElapsed=+1d21h41m57s909ms maxWhenElapsed=+1d21h41m57s909ms
+      operation=PendingIntent{63b98f6: PendingIntentRecord{43f44f7 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #41: Alarm{3fdcf64 type 0 origWhen 1793306640000 whenElapsed 197420120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_0
+      type=RTC_WAKEUP origWhen=2026-10-30 03:44:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+2d6h48m57s909ms app_standby=-277ms device_idle=-- battery_saver=-277ms
+      whenElapsed=+2d6h48m57s909ms maxWhenElapsed=+2d6h48m57s909ms
+      operation=PendingIntent{399f5cd: PendingIntentRecord{b004e82 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #42: Alarm{1993993 type 0 origWhen 1793333700000 whenElapsed 224480120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_2
+      type=RTC_WAKEUP origWhen=2026-10-30 11:15:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+2d14h19m57s909ms app_standby=-273ms device_idle=-- battery_saver=-273ms
+      whenElapsed=+2d14h19m57s909ms maxWhenElapsed=+2d14h19m57s909ms
+      operation=PendingIntent{87a7dd0: PendingIntentRecord{d5d21c9 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #43: Alarm{b68d0ce type 0 origWhen 1793345340000 whenElapsed 236120120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_3
+      type=RTC_WAKEUP origWhen=2026-10-30 14:29:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+2d17h33m57s909ms app_standby=-269ms device_idle=-- battery_saver=-269ms
+      whenElapsed=+2d17h33m57s909ms maxWhenElapsed=+2d17h33m57s909ms
+      operation=PendingIntent{893dbef: PendingIntentRecord{dd1a6fc com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #44: Alarm{60d1185 type 0 origWhen 1793360220000 whenElapsed 251000120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_5
+      type=RTC_WAKEUP origWhen=2026-10-30 18:37:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+2d21h41m57s909ms app_standby=-267ms device_idle=-- battery_saver=-267ms
+      whenElapsed=+2d21h41m57s909ms maxWhenElapsed=+2d21h41m57s909ms
+      operation=PendingIntent{c52bda: PendingIntentRecord{bec480b com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #46: Alarm{51036e8 type 0 origWhen 1793393040000 whenElapsed 283820120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_0
+      type=RTC_WAKEUP origWhen=2026-10-31 03:44:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+3d6h48m57s909ms app_standby=-262ms device_idle=-- battery_saver=-262ms
+      whenElapsed=+3d6h48m57s909ms maxWhenElapsed=+3d6h48m57s909ms
+      operation=PendingIntent{8124101: PendingIntentRecord{75a2ba6 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #48: Alarm{31559e7 type 0 origWhen 1793420100000 whenElapsed 310880120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_2
+      type=RTC_WAKEUP origWhen=2026-10-31 11:15:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+3d14h19m57s909ms app_standby=-245ms device_idle=-- battery_saver=-245ms
+      whenElapsed=+3d14h19m57s909ms maxWhenElapsed=+3d14h19m57s909ms
+      operation=PendingIntent{125d994: PendingIntentRecord{1e0ec3d com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #49: Alarm{8ed5c32 type 0 origWhen 1793431800000 whenElapsed 322580120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_3
+      type=RTC_WAKEUP origWhen=2026-10-31 14:30:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+3d17h34m57s909ms app_standby=-223ms device_idle=-- battery_saver=-223ms
+      whenElapsed=+3d17h34m57s909ms maxWhenElapsed=+3d17h34m57s909ms
+      operation=PendingIntent{fd3ad83: PendingIntentRecord{250fb00 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #50: Alarm{af50f39 type 0 origWhen 1793446680000 whenElapsed 337460121 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_5
+      type=RTC_WAKEUP origWhen=2026-10-31 18:38:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+3d21h42m57s910ms app_standby=-200ms device_idle=-- battery_saver=-200ms
+      whenElapsed=+3d21h42m57s910ms maxWhenElapsed=+3d21h42m57s910ms
+      operation=PendingIntent{411097e: PendingIntentRecord{1999edf com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #51: Alarm{c4ac72c type 0 origWhen 1793479380000 whenElapsed 370160120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_0
+      type=RTC_WAKEUP origWhen=2026-11-01 03:43:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+4d6h47m57s909ms app_standby=-194ms device_idle=-- battery_saver=-194ms
+      whenElapsed=+4d6h47m57s909ms maxWhenElapsed=+4d6h47m57s909ms
+      operation=PendingIntent{c8e65f5: PendingIntentRecord{c303f8a com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #52: Alarm{2a349fb type 0 origWhen 1793506500000 whenElapsed 397280120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_2
+      type=RTC_WAKEUP origWhen=2026-11-01 11:15:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+4d14h19m57s909ms app_standby=-182ms device_idle=-- battery_saver=-182ms
+      whenElapsed=+4d14h19m57s909ms maxWhenElapsed=+4d14h19m57s909ms
+      operation=PendingIntent{3332a18: PendingIntentRecord{a2c6c71 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #53: Alarm{e5aca56 type 0 origWhen 1793518200000 whenElapsed 408980120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_3
+      type=RTC_WAKEUP origWhen=2026-11-01 14:30:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+4d17h34m57s909ms app_standby=-169ms device_idle=-- battery_saver=-169ms
+      whenElapsed=+4d17h34m57s909ms maxWhenElapsed=+4d17h34m57s909ms
+      operation=PendingIntent{ad28ad7: PendingIntentRecord{b3ccfc4 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #54: Alarm{5ca5ead type 0 origWhen 1793533080000 whenElapsed 423860120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_5
+      type=RTC_WAKEUP origWhen=2026-11-01 18:38:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+4d21h42m57s909ms app_standby=-149ms device_idle=-- battery_saver=-149ms
+      whenElapsed=+4d21h42m57s909ms maxWhenElapsed=+4d21h42m57s909ms
+      operation=PendingIntent{6d135e2: PendingIntentRecord{44afd73 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #55: Alarm{7192430 type 0 origWhen 1793565780000 whenElapsed 456560120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_0
+      type=RTC_WAKEUP origWhen=2026-11-02 03:43:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+5d6h47m57s909ms app_standby=-140ms device_idle=-- battery_saver=-140ms
+      whenElapsed=+5d6h47m57s909ms maxWhenElapsed=+5d6h47m57s909ms
+      operation=PendingIntent{bdb38a9: PendingIntentRecord{350ce2e com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #56: Alarm{dcdfdcf type 0 origWhen 1793592900000 whenElapsed 483680120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_2
+      type=RTC_WAKEUP origWhen=2026-11-02 11:15:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+5d14h19m57s909ms app_standby=-136ms device_idle=-- battery_saver=-136ms
+      whenElapsed=+5d14h19m57s909ms maxWhenElapsed=+5d14h19m57s909ms
+      operation=PendingIntent{124535c: PendingIntentRecord{305b665 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #57: Alarm{e1f9f3a type 0 origWhen 1793604660000 whenElapsed 495440120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_3
+      type=RTC_WAKEUP origWhen=2026-11-02 14:31:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+5d17h35m57s909ms app_standby=-122ms device_idle=-- battery_saver=-122ms
+      whenElapsed=+5d17h35m57s909ms maxWhenElapsed=+5d17h35m57s909ms
+      operation=PendingIntent{6d6a7eb: PendingIntentRecord{b514948 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
+
+    RTC_WAKEUP #58: Alarm{ba053e1 type 0 origWhen 1793619480000 whenElapsed 510260120 com.zikra.app}
+      tag=*walarm*:com.zikra.app.PRAYER_5
+      type=RTC_WAKEUP origWhen=2026-11-02 18:38:00.000 window=0 exactAllowReason=permission repeatInterval=0 count=0 flags=0x5
+      policyWhenElapsed: requester=+5d21h42m57s909ms app_standby=-57ms device_idle=-- battery_saver=-57ms
+      whenElapsed=+5d21h42m57s909ms maxWhenElapsed=+5d21h42m57s909ms
+      operation=PendingIntent{dd87506: PendingIntentRecord{175d7c7 com.zikra.app broadcastIntent}}
+      idle-options=Bundle[{android.pendingIntent.backgroundActivityAllowed=2, android:broadcast.temporaryAppAllowlistReasonCode=302, android:broadcast.temporaryAppAllowlistDuration=10000, android:broadcast.temporaryAppAllowlistReason=, android:broadcast.temporaryAppAllowlistType=0, android:broadcast.flags=8}]
