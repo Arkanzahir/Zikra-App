@@ -1,5 +1,12 @@
 > **GitHub tersinkron — 27 Oktober2026:** seluruh35 checkpoint proyek sampai D05/beta1.9.14 berhasil dipush ke `main`, diverifikasi pada `c0a19e4c9c90dd0ec6aaab3d6157e9f98d2458b6`. Catatan “belum push” di bawah bersifat historis. Checkpoint berikutnya wajib dipush setelah verifikasi; WIP/konfigurasi privat tetap lokal.
 
+> **Kandidat harian1.9.15 — 28 Oktober2026:** Home jam lokal/awan/tanda ibadah,
+> Hifz, kalender dan Profil personal, logo dipoles dan simbol fitur asli bersama.
+> 143 unit lulus/4 skip,18 eksekusi native lulus; upgrade berisi1.9.14 dan
+> preservasi emulator teruji. APK debug41,4MB tersedia lokal folder pembungkus;
+> [source/receipt/gambar/batas](android/validation/refined-ui-2026-10-28/README.md).
+> Akun Google/sync/admin belum dibuat; D fisik/audio, B01 dan publik tetap terbuka.
+
 > **Beta1.9.14 — 27 Oktober2026:** [D05 jurnal/Hifz/target khatam selesai teknis terarah](android/validation/faith-d05-2026-10-27/README.md). Jurnal bertanggal, latihan, ayat unik30/90/365,114 surah luring dan ringkasan Home/Profil.143 unit lulus/4 skip,23 native/21 metode unik;lint0 error/780 warning, APK41.592.382byte. HP ditunda; D06, B01 dan gerbang fisik/publik tetap terbuka. Checkpoint baru lokal, belum push.
 
 > **Beta1.9.13 — 27 Oktober2026:** [D03 Quran/audio selesai teknis terarah](android/validation/quran-d03-2026-10-27/README.md). Audit114 surah/6.236 ayat/190 halaman,139 unit lulus/4 skip,25 native unik lulus; APK debug41.200.618byte. Pembatalan audio, notifikasi media/unduhan dan perbaikan offline/bookmark dirapikan. HP ditunda; D01/D02/D02a/D06/G02, B01 dan publik tetap terbuka. Checkpoint baru masih lokal, belum push.

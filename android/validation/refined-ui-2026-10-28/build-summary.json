@@ -1,0 +1,32 @@
+{
+  "tests": 147,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 4,
+  "passed": 143,
+  "suiteCount": 30,
+  "skippedCases": [
+    {
+      "suite": "com.zikra.app.discovery.DuaReviewTest",
+      "case": "auditedRealCatalogueAppliesOnlyTheReviewedCorrections"
+    },
+    {
+      "suite": "com.zikra.app.reading.mushaf.MushafDocumentTest",
+      "case": "actualHostSnapshotsParseWithoutBundlingContentInTests"
+    },
+    {
+      "suite": "com.zikra.app.reading.mushaf.QcfGlyphMetricsTest",
+      "case": "originalFontKeepsPositiveAdvancesForUnicodeCombiningCodes"
+    },
+    {
+      "suite": "com.zikra.app.reading.mushaf.QcfGlyphMetricsTest",
+      "case": "threeDigitMedallionsKeepTheirSourceGlyphAdvance"
+    }
+  ],
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 815,
+    "Information": 0
+  }
+}

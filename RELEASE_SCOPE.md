@@ -102,3 +102,10 @@ Tidak menutup D01 atau D02/D02a/D03/D05/D06/publik dan tidak mengubah jadwal
 menjadi feed resmi Kemenag. Prioritas terbaru pengguna mengarah bagian D.
 
 **27 Oktober2026, D06:** pembaruan APK asli1.7.6/1.9.13 ke1.9.14 serta reinstall terbaru mempertahankan fixture terisi (tugas/target/bookmark/nama/lokasi/pengaturan/AI, kelas dan jurnal bila tersedia). Selesai teknis penyimpanan lokal beta; bukan cloud backup/sinkronisasi/uninstall/downgrade/HP/publik. [Bukti dan batas](android/validation/storage-d06-2026-10-27/README.md). Prioritas pengguna: selesaikan D sebelum E; D01/D02/D02a tetap terbuka.
+
+**28 Oktober2026, beta1.9.15:** atas permintaan pengguna, subset penyelarasan
+Home/Hifz/kalender/Profil dan logo/ikon diterapkan dengan data nyata. [Bukti
+native/upgrade/source dan batas](android/validation/refined-ui-2026-10-28/README.md).
+Bukan perubahan keputusan penundaan akun/cloud atau penutupan F global/publik.
+Google login dan dashboard admin dibahas sebagai kemungkinan lanjutan; belum
+ada otorisasi implementasi/layanan baru atau sinkronisasi data pengguna.

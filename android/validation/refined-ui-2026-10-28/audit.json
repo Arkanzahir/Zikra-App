@@ -1,0 +1,30 @@
+{
+  "scope": "Known current private key/token/account/Redis endpoint values in tracked/source/evidence files and all uncompressed app APK entries; not a certification of all historical secrets",
+  "sourceFilesScanned": 2295,
+  "sourceSecretMatches": 0,
+  "apkSecretMatches": 0,
+  "d02TestPayloadMatches": 0,
+  "privateOrTestApkEntries": 0,
+  "protectedUnchanged": {
+    "fajrOriginal": true,
+    "meccaOriginal": true,
+    "misyariOriginal": true,
+    "userWip": true,
+    "providerEnv": true,
+    "audioArchive": true,
+    "audioStash": true,
+    "approvedLogo": true,
+    "nightArt": true,
+    "approvedAiSource": true,
+    "previousApk1914": true,
+    "previousApk1913": true,
+    "previousApk1912": true,
+    "previousApk1911": true,
+    "previousApk1910": true,
+    "previousApk199": true,
+    "previousApk198": true,
+    "previousApk197": true,
+    "approvedFeatureGlyphs": true
+  },
+  "passed": true
+}

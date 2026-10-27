@@ -117,6 +117,14 @@ sidebar ringkas; tema terang/malam. [Bukti, APK dan batas](android/validation/ai
 Ini penutupan implementasi desain AI sebatas beta; UI04/F01/F03 keseluruhan belum
 dicentang. HP1.9.8, C02/C04/C07, B01 dan gerbang publik tetap mengikuti checklist.
 
+**28 Oktober2026 — penerapan subset atas permintaan pengguna:** beta1.9.15
+memoles logo yang diterima, mempertahankan simbol delapan fitur lewat alias,
+menata Hifz/kalender/Profil ruang pribadi, menambah jam lokal dan tanda ibadah
+nyata di Home serta memperjelas gerak awan.143 unit/18 eksekusi native lulus;
+upgrade1.9.14 berisi dan teks200%/malam tiga halaman dibuktikan. [Bukti/source/receipt/batas](android/validation/refined-ui-2026-10-28/README.md).
+F01–F04 keseluruhan tetap[ ]; belum semua layar/HP/performa atau penerimaan
+visual APK. Google login/sync/admin baru diskusi, tidak diimplementasikan.
+
 - [ ] **F01 — Bekukan panduan visual berdasarkan referensi yang diterima.** Catat font, ukuran/jarak, ikon, warna, radius dan keluarga ilustrasi per konteks; bedakan variasi fungsi yang disengaja dari gaya yang bertabrakan. Pertahankan logo dan referensi yang sudah disetujui. Hasil: dokumen acuan + daftar layar yang perlu diselaraskan.
 - [ ] **F02 — Selaraskan seluruh layar dan teks.** Periksa Home, Quran/reader/Mushaf, Study/fokus/break/Hifz, AI, Protector/peta, Hadis/reader, Doa, Profil, salat, Kiblat, lokasi/masjid, kalender dan pengaturan. Rapikan ruang kosong, kartu berulang, orb/dekorasi generik serta kalimat template. Gunakan isi nyata, bukan statistik contoh.
 - [ ] **F03 — Ukuran layar, teks besar dan aksesibilitas.** Kontrol tetap terjangkau, target sentuh memadai, Arab/Indonesia tidak terpotong, kontras dan label aksesibel. Periksa font besar, tema yang tersedia, keyboard, dialog, loading/kosong/gagal dan scroll. Simpan screenshot native pada ukuran yang diuji.
@@ -264,3 +272,5 @@ Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | ta
 | 27 Oktober2026 | F01/F02 referensi revisi, belum implementasi | Arahan pengguna: ikon fitur tetap, logo bulan/bintang/Quran dipoles; Hifz/kalender/Profil ditata ulang, Home jam lokal/awan. Referensi interaktif lima tab, browser320px/900px dan state terarah lulus; seluruh data contoh. Aset/source Android/APK tidak diubah, belum penerimaan visual dan tidak menutup F/D/B01/publik. | [Referensi dan batas](design/concepts/zikra-refined-2026-10-27/README.md) |
 
 | 28 Oktober2026 | F01/F02 keputusan logo dan konsistensi ikon | Logo dipoles disetujui; simbol delapan fitur tetap dan harus sama di seluruh halaman. Referensi Profil/dock/Hifz/lanjut baca dikoreksi memakai ikon Home; tindakan umum tetap dibedakan. Belum penerapan native atau persetujuan seluruh layar, F01/F02 tetap[ ]. | [Referensi/aturan/batas](design/concepts/zikra-refined-2026-10-27/README.md) |
+
+| 28 Oktober2026 | F01–F04 subset beta1.9.15 | Logo dipoles/ikon asli konsisten, Profil personal, Hifz/kalender/Home jam dan gerak.143 unit/4 skip,18 native/12 metode unik lulus;lint0 error/815 warning. Upgrade berisi1.9.14 dan preservasi lulus; HP tidak diubah. F global/D01/D02/D02a/B01/C/publik tidak otomatis ditutup. | [Receipt/source/gambar/batas](android/validation/refined-ui-2026-10-28/README.md) |

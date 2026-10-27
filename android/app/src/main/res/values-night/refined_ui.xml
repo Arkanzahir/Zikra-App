@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <color name="refined_background">#101E19</color>
+    <color name="refined_surface">#192D24</color>
+    <color name="refined_ink">#EDF7EF</color>
+    <color name="refined_muted">#B1C6B9</color>
+    <color name="refined_primary">#185447</color>
+    <color name="refined_on_primary">#F7FCF8</color>
+    <color name="refined_soft">#254236</color>
+    <color name="refined_line">#365244</color>
+    <color name="refined_track">#526F60</color>
+    <color name="refined_brand_caption">#D4E8DB</color>
+</resources>

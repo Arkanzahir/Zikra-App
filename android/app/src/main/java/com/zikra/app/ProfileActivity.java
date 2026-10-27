@@ -29,22 +29,31 @@ public final class ProfileActivity extends BaseActivity {
     ((FeatureHeader) findViewById(R.id.utilitiesHeader))
         .bind(R.id.toolbarBack, R.id.detailTitle, R.id.featureSubtitle, 0, "Profil", null, 0, null);
     setupScreen("Profil");
-    getWindow().setStatusBarColor(0xFFFFFFFF);
-    getWindow().setNavigationBarColor(0xFFF8F9F4);
-    getWindow()
-        .getDecorView()
-        .setSystemUiVisibility(
-            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-    com.zikra.app.ui.DailyUi.chrome(this, R.color.daily_mint);
+    com.zikra.app.ui.RefinedUi.chrome(this, findViewById(R.id.utilitiesHeader), true);
     db = new ZikraDbHelper(this);
     preferences = getSharedPreferences("zikra_preferences", MODE_PRIVATE);
     rows = findViewById(R.id.profileRows);
     findViewById(R.id.profileProgressCard).setOnClickListener(v -> open(StudyActivity.class));
     findViewById(R.id.dailyProfileEdit).setOnClickListener(v -> editName());
+    findViewById(R.id.profileReadingCard)
+        .setOnClickListener(
+            v ->
+                startActivity(
+                    new Intent(this, QuranActivity.class)
+                        .putExtra(QuranActivity.EXTRA_RESUME_READING, true)));
+    findViewById(R.id.profileWeekCard).setOnClickListener(v -> open(FaithActivity.class));
+    findViewById(R.id.profileHifzCard)
+        .setOnClickListener(
+            v ->
+                startActivity(
+                    new Intent(this, StudyActivity.class)
+                        .putExtra("category", ZikraDbHelper.CATEGORY_HIFZ)));
+
     findViewById(R.id.dailyProfileQuran).setOnClickListener(v -> open(QuranActivity.class));
     findViewById(R.id.dailyProfileHadith).setOnClickListener(v -> open(HadithActivity.class));
     findViewById(R.id.dailyProfileDua).setOnClickListener(v -> open(DuaActivity.class));
     NavDock.attach(this, (FrameLayout) findViewById(R.id.profileRoot), "profile");
+    NavDock.setNightMode(findViewById(R.id.profileRoot), com.zikra.app.ui.RefinedUi.dark(this));
   }
 
   @Override
@@ -66,76 +75,110 @@ public final class ProfileActivity extends BaseActivity {
                 ? "Z"
                 : name.substring(0, name.offsetByCodePoints(0, 1))
                     .toUpperCase(java.util.Locale.ROOT));
+    ((TextView) findViewById(R.id.profileRoleCaption)).setText(roleLabel());
+    boolean hasReading = preferences.contains("last_surah");
+    ((TextView) findViewById(R.id.profileReadingLabel))
+        .setText(
+            hasReading ? R.string.refined_profile_reading : R.string.refined_profile_start_reading);
+    ((TextView) findViewById(R.id.profileLastRead))
+        .setText(
+            getString(
+                R.string.refined_reading_reference,
+                preferences.getString("last_surah", "Al-Fatihah"),
+                preferences.getInt("last_ayah", 1)));
+    com.zikra.app.faith.FaithSummary faith = com.zikra.app.faith.FaithSummary.load(this, db);
+    TextView week = findViewById(R.id.profileWeekCount);
+    week.setText(
+        !faith.available
+            ? getString(R.string.faith_unavailable)
+            : faith.week == 0
+                ? getString(R.string.refined_profile_week_empty)
+                : getString(R.string.refined_profile_week_count, faith.week));
+    com.zikra.app.ui.ActivityWeekView days = findViewById(R.id.profileWeekDays);
+    days.setVisibility(faith.available ? View.VISIBLE : View.GONE);
+    if (faith.available) days.setDays(faith.days, com.zikra.app.location.LocationStore.today(this));
     ZikraDbHelper.Progress progress = db.getProgress(ZikraDbHelper.CATEGORY_STUDY);
     ((TextView) findViewById(R.id.profileProgressPercent))
-        .setText(progress.completed + " / " + progress.total);
+        .setText(
+            progress.total == 0
+                ? getString(R.string.refined_profile_tasks)
+                : getString(R.string.refined_count, progress.completed, progress.total));
     ((ProgressBar) findViewById(R.id.profileProgress)).setProgress(progress.percent);
+    findViewById(R.id.profileProgress)
+        .setVisibility(progress.total == 0 ? View.GONE : View.VISIBLE);
     ((TextView) findViewById(R.id.profileProgressCaption))
         .setText(
             progress.total == 0
-                ? "Belum ada tugas akademik. Tambahkan di Study Hub."
-                : progress.completed + " dari " + progress.total + " tugas akademik selesai");
-    ((TextView) findViewById(R.id.profileRoleCaption)).setText(roleLabel());
-    findViewById(R.id.profileRoleCaption)
-        .setVisibility(
-            preferences.getString("user_role", "").isEmpty()
-                    && preferences.getString("education_level", "").isEmpty()
-                ? View.GONE
-                : View.VISIBLE);
+                ? getString(R.string.refined_profile_no_tasks)
+                : getString(
+                    R.string.refined_profile_study_count, progress.completed, progress.total));
+    ((TextView) findViewById(R.id.profileHifzCount))
+        .setText(
+            !faith.available
+                ? getString(R.string.faith_unavailable)
+                : faith.hifzTotal == 0
+                    ? getString(R.string.refined_profile_hifz)
+                    : getString(R.string.refined_count, faith.hifzDone, faith.hifzTotal));
+    ((TextView) findViewById(R.id.profileHifzCaption))
+        .setText(
+            !faith.available
+                ? getString(R.string.faith_unavailable)
+                : faith.hifzTotal == 0
+                    ? getString(R.string.refined_profile_no_hifz)
+                    : getString(R.string.refined_hifz_count, faith.hifzDone, faith.hifzTotal));
     rows.removeAllViews();
-    com.zikra.app.faith.FaithSummary faith = com.zikra.app.faith.FaithSummary.load(this, db);
-    row(getString(R.string.faith_title), faith.available
-        ? getString(R.string.faith_summary, faith.streak, faith.week)
-          + (faith.plan == null ? "" : " · " + faith.read + "/6.236 ayat")
-        : getString(R.string.faith_unavailable), R.drawable.ic_book, () -> open(FaithActivity.class));
-    row(getString(R.string.study_level_choose),com.zikra.app.study.EducationLevel.label(this),
-        R.drawable.ic_graduation,()->profileDialog=com.zikra.app.study.EducationLevel.choose(this,this::render));
     row(
-        "Pengingat sholat",
-        "Waktu dan preferensi notifikasi",
+        getString(R.string.study_level_choose),
+        com.zikra.app.study.EducationLevel.label(this),
+        R.drawable.feature_icon_study,
+        () -> profileDialog = com.zikra.app.study.EducationLevel.choose(this, this::render));
+    row(
+        getString(R.string.refined_prayer_preferences),
+        getString(R.string.refined_prayer_detail),
         R.drawable.ic_bell,
         () -> open(PrayerActivity.class));
     row(
-        "Lokasi",
+        getString(R.string.refined_location),
         com.zikra.app.location.LocationStore.current(this).caption(),
-        R.drawable.ic_compass,
+        R.drawable.home_location_pin,
         () -> open(LocationActivity.class));
     row(
-        "Bantuan & keselamatan",
-        "Protector dan informasi darurat",
-        R.drawable.ic_shield,
-        () -> open(ProtectorActivity.class));
-    row(
-        "Bacaan terakhir",
-        preferences.getString("last_surah", "Al-Fatihah")
-            + " · Ayat "
-            + preferences.getInt("last_ayah", 1),
-        R.drawable.ic_book,
-        () -> open(QuranActivity.class));
-    row(
-        "Masjid terdekat",
-        "Temukan tempat singgah di sekitarmu",
-        R.drawable.ic_compass,
-        () -> open(NearbyMosquesActivity.class));
-    row(
-        "Kalender Hijriah",
-        "Tanggal dan hari istimewa",
-        R.drawable.ic_moon,
+        getString(R.string.refined_calendar_title),
+        getString(R.string.refined_calendar_detail),
+        R.drawable.ai_balanced_calendar,
         () -> open(CalendarActivity.class));
     row(
-        "Kenali Zikra",
-        "Belajar, ibadah dan hafalan sehari-hari",
-        R.drawable.ic_graduation,
+        getString(R.string.refined_settings),
+        getString(R.string.refined_settings_detail),
+        R.drawable.study_scene_settings_icon,
+        this::settings);
+    TextView group = new TextView(this);
+    group.setText(R.string.refined_profile_other);
+    group.setTextSize(16);
+    group.setTextColor(getColor(R.color.refined_ink));
+    group.setTypeface(group.getTypeface(), android.graphics.Typeface.BOLD);
+    group.setPadding(0, dp(22), 0, dp(8));
+    if (android.os.Build.VERSION.SDK_INT >= 28) group.setAccessibilityHeading(true);
+    rows.addView(group);
+    row(
+        getString(R.string.refined_safety),
+        getString(R.string.refined_safety_detail),
+        R.drawable.feature_icon_protector,
+        () -> open(ProtectorActivity.class));
+    row(
+        getString(R.string.refined_mosques),
+        getString(R.string.refined_mosques_detail),
+        R.drawable.qibla_ic_mosque,
+        () -> open(NearbyMosquesActivity.class));
+    row(
+        getString(R.string.refined_intro),
+        getString(R.string.refined_intro_detail),
+        R.drawable.qibla_ic_info,
         () -> startActivity(new Intent(this, OnboardingActivity.class).putExtra("edit", true)));
     row(
-        "Pengaturan",
-        "Bantuan cepat dengan gerakan perangkat",
-        R.drawable.ic_compass,
-        this::settings);
-    row(
-        "Tentang Zikra",
-        "Teman ibadah dan belajar",
-        R.drawable.ic_spark,
+        getString(R.string.refined_about),
+        getString(R.string.refined_about_detail),
+        R.drawable.qibla_ic_info,
         () ->
             profileDialog =
                 new AlertDialog.Builder(this)
@@ -146,13 +189,13 @@ public final class ProfileActivity extends BaseActivity {
 
   private String roleLabel() {
     String role = preferences.getString("user_role", "");
-    if ("Teacher".equals(role)) return "Pengajar";
-    if ("Parents".equals(role)) return "Orang tua";
+    if ("Teacher".equals(role)) return getString(R.string.refined_role_teacher);
+    if ("Parents".equals(role)) return getString(R.string.refined_role_parent);
     String level = preferences.getString("education_level", "");
-    if (!level.isEmpty()) return level + " · profil lokal";
+    if (!level.isEmpty()) return getString(R.string.refined_role_level, level);
     return "Student".equals(role)
-        ? "Pelajar · profil lokal"
-        : "Profil lokal · tersimpan di perangkat";
+        ? getString(R.string.refined_role_student)
+        : getString(R.string.refined_role_local);
   }
 
   private void row(String title, String subtitle, int icon, Runnable action) {
@@ -166,7 +209,7 @@ public final class ProfileActivity extends BaseActivity {
     row.setBackgroundResource(android.R.drawable.list_selector_background);
     ImageView glyph = new ImageView(this);
     glyph.setImageResource(icon);
-    glyph.setColorFilter(0xFF659B86);
+    glyph.setColorFilter(getColor(R.color.refined_ink));
     row.addView(glyph, new LinearLayout.LayoutParams(dp(22), dp(22)));
     LinearLayout copy = new LinearLayout(this);
     copy.setOrientation(LinearLayout.VERTICAL);
@@ -176,23 +219,23 @@ public final class ProfileActivity extends BaseActivity {
     TextView heading = new TextView(this);
     heading.setText(title);
     heading.setTextSize(14);
-    heading.setTextColor(0xFF15332F);
+    heading.setTextColor(getColor(R.color.refined_ink));
     copy.addView(heading);
     TextView detail = new TextView(this);
     detail.setText(subtitle);
     detail.setTextSize(12);
-    detail.setTextColor(0xFF52665F);
+    detail.setTextColor(getColor(R.color.refined_muted));
     detail.setPadding(0, dp(5), 0, 0);
     copy.addView(detail);
     TextView arrow = new TextView(this);
     arrow.setText("›");
     arrow.setTextSize(22);
-    arrow.setTextColor(0xFF9CAD9F);
+    arrow.setTextColor(getColor(R.color.refined_muted));
     row.addView(arrow);
     row.setOnClickListener(v -> action.run());
     rows.addView(row);
     View divider = new View(this);
-    divider.setBackgroundColor(getColor(R.color.daily_line));
+    divider.setBackgroundColor(getColor(R.color.refined_line));
     rows.addView(divider, new LinearLayout.LayoutParams(-1, dp(1)));
   }
 

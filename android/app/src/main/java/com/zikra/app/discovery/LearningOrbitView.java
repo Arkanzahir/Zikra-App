@@ -68,12 +68,12 @@ public final class LearningOrbitView extends View implements SensorEventListener
   public LearningOrbitView(Context context, AttributeSet attrs) {
     super(context, attrs);
     int[] resources = {
-      R.drawable.ic_graduation,
-      R.drawable.home_ic_quran,
-      R.drawable.home_ic_ai,
-      R.drawable.home_ic_dua,
-      R.drawable.home_ic_study,
-      R.drawable.home_ic_protector
+      R.drawable.feature_icon_study,
+      R.drawable.feature_icon_quran,
+      R.drawable.feature_icon_ai,
+      R.drawable.feature_icon_dua,
+      R.drawable.feature_icon_study,
+      R.drawable.feature_icon_protector
     };
     for (int i = 0; i < icons.length; i++) {
       icons[i] = context.getDrawable(resources[i]).mutate();

@@ -244,10 +244,10 @@ public final class HomeSkyView extends View implements SensorEventListener {
       c.drawPath(moon, paint);
       c.restore();
     }
-    float drift = (float) Math.sin(t * .025f);
-    cloud(c, w * .33f + drift * 12 * u + offsetX * 4 * u,
+    float drift = (float) Math.sin(t * .08f);
+    cloud(c, w * .33f + drift * 24 * u + offsetX * 4 * u,
         h * .23f + offsetY * 2 * u - Math.min(scrollOffset, h) * .025f, .60f, light ? 190 : 95);
-    cloud(c, w * .18f + (float) Math.sin(t * .018f + 2) * 16 * u + offsetX * 8 * u,
+    cloud(c, w * .18f + (float) Math.sin(t * .055f + 2) * 32 * u + offsetX * 8 * u,
         h * .39f - Math.min(scrollOffset, h) * .045f, .72f, light ? 120 : 58);
     c.save();
     c.translate(offsetX * 3 * u, offsetY * 1.5f * u - Math.min(scrollOffset, h) * .015f);

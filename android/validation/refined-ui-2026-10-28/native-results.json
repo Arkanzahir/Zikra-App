@@ -1,0 +1,47 @@
+[
+  {
+    "name": "keystore-baseline",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "upgrade-seed-1914",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "upgrade-1914-to-1915",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "upgrade-process-restart",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "native-normal",
+    "passed": true,
+    "tests": 5
+  },
+  {
+    "name": "native-navigation",
+    "passed": true,
+    "tests": 2
+  },
+  {
+    "name": "native-large-text",
+    "passed": true,
+    "tests": 3
+  },
+  {
+    "name": "native-dark",
+    "passed": true,
+    "tests": 3
+  },
+  {
+    "name": "keystore-restore",
+    "passed": true,
+    "tests": 1
+  }
+]

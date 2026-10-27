@@ -133,7 +133,7 @@ public final class DuaLibraryActivity extends BaseActivity {
               : R.string.dua_review_source_label, entry.number);
       DuaReadingUi.bind(card, entry.arabic, entry.latin, entry.meaning, sourceLabel,
           reviewNote(entry) + entry.reference + "\n\nhttps://equran.id/api/doa/" + entry.number);
-      ((android.widget.ImageView) card.findViewById(R.id.duaRowIcon)).setImageResource(R.drawable.home_ic_dua);
+      ((android.widget.ImageView) card.findViewById(R.id.duaRowIcon)).setImageResource(R.drawable.feature_icon_dua);
       Button audio = card.findViewById(R.id.duaListen); audio.setText(R.string.dua_library_tts); audio.setEnabled(true);
       audio.setOnClickListener(v -> {
         if (!voiceReady) { toast(getString(R.string.dua_library_voice_unavailable)); return; }

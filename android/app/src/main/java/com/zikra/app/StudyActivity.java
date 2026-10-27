@@ -60,6 +60,7 @@ public final class StudyActivity extends BaseActivity {
   private View editorView;
   private Task editorTask;
   private HifzEditor hifzEditor;
+  private com.zikra.app.ui.HifzHeader refinedHifz;
   private ScheduleEditor scheduleEditor;
   private SurahCatalog catalog;
   private List<Chapter> chapters = SurahCatalog.local();
@@ -67,7 +68,8 @@ public final class StudyActivity extends BaseActivity {
       new Runnable() {
         @Override
         public void run() {
-          if (!com.zikra.app.location.LocationStore.today(StudyActivity.this).equals(displayedDay)) {
+          if (!com.zikra.app.location.LocationStore.today(StudyActivity.this)
+              .equals(displayedDay)) {
             renderDate();
             refreshTasks();
           }
@@ -140,11 +142,16 @@ public final class StudyActivity extends BaseActivity {
       ((TextView) findViewById(R.id.study_add)).setText("Tambah ibadah");
     }
     if (!diaryMode && !ibadahMode) {
-      TextView level=agendaHeader.findViewById(R.id.studyEducation);
-      level.setVisibility(View.VISIBLE);level.setText(EducationLevel.label(this));
-      level.setOnClickListener(v->educationDialog=EducationLevel.choose(this,()->level.setText(EducationLevel.label(this))));
+      TextView level = agendaHeader.findViewById(R.id.studyEducation);
+      level.setVisibility(View.VISIBLE);
+      level.setText(EducationLevel.label(this));
+      level.setOnClickListener(
+          v ->
+              educationDialog =
+                  EducationLevel.choose(this, () -> level.setText(EducationLevel.label(this))));
       agendaHeader.findViewById(R.id.studyWeeklyClasses).setVisibility(View.VISIBLE);
-      agendaHeader.findViewById(R.id.studyWeeklyClasses)
+      agendaHeader
+          .findViewById(R.id.studyWeeklyClasses)
           .setOnClickListener(v -> open(WeeklyClassesActivity.class));
       ((TextView) agendaHeader.findViewById(R.id.study_heading))
           .setText(R.string.layout_study_heading);
@@ -230,6 +237,19 @@ public final class StudyActivity extends BaseActivity {
             : ibadahMode ? R.string.planner_ibadah_scope : R.string.planner_study_scope);
     ((TextView) agendaHeader.findViewById(R.id.agenda_feature_caption))
         .setText(ibadahMode ? R.string.planner_continue_today : R.string.agenda_continue);
+    if (diaryMode) {
+      refinedHifz =
+          new com.zikra.app.ui.HifzHeader(this, agendaHeader, () -> showEditor(null, null));
+      findViewById(R.id.studyPageRoot).setBackgroundColor(getColor(R.color.refined_background));
+      findViewById(R.id.study_screen_tagline).setVisibility(View.GONE);
+      ((TextView) findViewById(R.id.study_screen_title)).setText(R.string.study_category_hifz);
+      com.zikra.app.ui.RefinedUi.chrome(this, findViewById(R.id.sharedFeatureHeader), true);
+      NavDock.setVisible(findViewById(R.id.studyPageRoot), false);
+      findViewById(R.id.study_root).setPadding(0, 0, 0, 0);
+      list.setDividerHeight(dp(12));
+      findViewById(R.id.study_add).setBackgroundResource(R.drawable.refined_primary_button);
+      ((TextView) findViewById(R.id.study_add)).setTextColor(getColor(R.color.refined_on_primary));
+    }
     if (state != null && state.getBoolean("editor_open", false)) {
       long id = state.getLong("editor_task_id", -1);
       Task saved = null;
@@ -258,7 +278,9 @@ public final class StudyActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    if(agendaHeader!=null)((TextView)agendaHeader.findViewById(R.id.studyEducation)).setText(EducationLevel.label(this));
+    if (agendaHeader != null)
+      ((TextView) agendaHeader.findViewById(R.id.studyEducation))
+          .setText(EducationLevel.label(this));
     renderDate();
     refreshTasks();
     handler.removeCallbacks(dayCheck);
@@ -292,7 +314,7 @@ public final class StudyActivity extends BaseActivity {
 
   @Override
   protected void onDestroy() {
-    if(educationDialog!=null)educationDialog.dismiss();
+    if (educationDialog != null) educationDialog.dismiss();
     handler.removeCallbacksAndMessages(null);
     if (editorDialog != null) editorDialog.dismiss();
     if (catalog != null) catalog.close();
@@ -302,7 +324,10 @@ public final class StudyActivity extends BaseActivity {
   }
 
   private void chooseAgendaDay() {
-    LocalDate selected = selectedAgendaDay == null ? com.zikra.app.location.LocationStore.today(StudyActivity.this) : selectedAgendaDay;
+    LocalDate selected =
+        selectedAgendaDay == null
+            ? com.zikra.app.location.LocationStore.today(StudyActivity.this)
+            : selectedAgendaDay;
     agendaDateDialog =
         new android.app.DatePickerDialog(
             this,
@@ -405,7 +430,8 @@ public final class StudyActivity extends BaseActivity {
                 .atZone(com.zikra.app.location.LocationStore.current(StudyActivity.this).zone)
                 .toLocalDate();
         if (!due.equals(selectedAgendaDay)
-            && !(selectedAgendaDay.equals(com.zikra.app.location.LocationStore.today(StudyActivity.this))
+            && !(selectedAgendaDay.equals(
+                    com.zikra.app.location.LocationStore.today(StudyActivity.this))
                 && due.isBefore(selectedAgendaDay)
                 && !task.completed)) continue;
       }
@@ -413,8 +439,7 @@ public final class StudyActivity extends BaseActivity {
     }
     // Keep user insertion order within each group; structured Hifz targets precede legacy notes.
     if (diaryMode) filtered.sort(Comparator.comparing(task -> task.hifz == null));
-    if (!diaryMode && !ibadahMode)
-      filtered.sort(TaskOrder.ACADEMIC);
+    if (!diaryMode && !ibadahMode) filtered.sort(TaskOrder.ACADEMIC);
     List<Task> pending = new ArrayList<>(), done = new ArrayList<>();
     for (Task task : filtered) (task.completed ? done : pending).add(task);
     featuredTask =
@@ -432,7 +457,12 @@ public final class StudyActivity extends BaseActivity {
       agendaHeader.findViewById(R.id.agenda_feature).setVisibility(View.GONE);
     if (!diaryMode && !ibadahMode) {
       StudyReminders.sync(this);
-      agendaHeader.findViewById(R.id.studyReminderLimit).setVisibility(getSharedPreferences("study_alarm_ids",0).getBoolean("limited",false)?View.VISIBLE:View.GONE);
+      agendaHeader
+          .findViewById(R.id.studyReminderLimit)
+          .setVisibility(
+              getSharedPreferences("study_alarm_ids", 0).getBoolean("limited", false)
+                  ? View.VISIBLE
+                  : View.GONE);
     }
     int completed = done.size(), total = filtered.size();
     int percent = total == 0 ? 0 : Math.round(100f * completed / total);
@@ -463,6 +493,12 @@ public final class StudyActivity extends BaseActivity {
     agendaHeader
         .findViewById(R.id.ibadah_template)
         .setVisibility(ibadahMode && total == 0 ? View.VISIBLE : View.GONE);
+    if (refinedHifz != null) {
+      refinedHifz.show(completed, total, featuredTask != null);
+      findViewById(R.id.study_add).setVisibility(total == 0 ? View.GONE : View.VISIBLE);
+      ((TextView) agendaHeader.findViewById(R.id.study_section))
+          .setText(R.string.refined_hifz_targets);
+    }
     if (ibadahMode)
       empty.setText(
           total > 0
@@ -549,7 +585,8 @@ public final class StudyActivity extends BaseActivity {
 
   private void loadCatalog() {
     chapters = new ArrayList<>();
-    for (com.zikra.app.reading.QuranChapters.Chapter chapter : com.zikra.app.reading.QuranChapters.all(this))
+    for (com.zikra.app.reading.QuranChapters.Chapter chapter :
+        com.zikra.app.reading.QuranChapters.all(this))
       chapters.add(new Chapter(chapter.id, chapter.name, chapter.count));
     catalogLoading = false;
     if (hifzEditor != null) hifzEditor.catalog(chapters, false, this::loadCatalog);
@@ -656,13 +693,23 @@ public final class StudyActivity extends BaseActivity {
                   if (scheduleEditor != null) {
                     if (!scheduleEditor.valid()) return;
                     if (saveAsNew[0])
-                      db.addAcademicTask(value, scheduleEditor.subject(), scheduleEditor.priority(),
-                          scheduleEditor.dueAt(), scheduleEditor.reminder(), scheduleEditor.advanceReminder());
+                      db.addAcademicTask(
+                          value,
+                          scheduleEditor.subject(),
+                          scheduleEditor.priority(),
+                          scheduleEditor.dueAt(),
+                          scheduleEditor.reminder(),
+                          scheduleEditor.advanceReminder());
                     else
                       saved =
                           db.updateAcademicTask(
-                              task.id, value, scheduleEditor.subject(), scheduleEditor.priority(),
-                              scheduleEditor.dueAt(), scheduleEditor.reminder(), scheduleEditor.advanceReminder());
+                              task.id,
+                              value,
+                              scheduleEditor.subject(),
+                              scheduleEditor.priority(),
+                              scheduleEditor.dueAt(),
+                              scheduleEditor.reminder(),
+                              scheduleEditor.advanceReminder());
                   } else {
                     if (saveAsNew[0]) db.addTask(value, selected);
                     else saved = db.updateTask(task.id, value, selected);
@@ -943,7 +990,11 @@ public final class StudyActivity extends BaseActivity {
           task.completed && !diaryMode
               ? title.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG
               : title.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
-      title.setTextColor(getColor(task.completed ? R.color.study_secondary : R.color.pine));
+      title.setTextColor(
+          getColor(
+              diaryMode
+                  ? R.color.refined_ink
+                  : task.completed ? R.color.study_secondary : R.color.pine));
       detail.setText(
           task.category.equals(ZikraDbHelper.CATEGORY_HIFZ)
               ? R.string.study_daily_hifz
@@ -952,7 +1003,7 @@ public final class StudyActivity extends BaseActivity {
                   : R.string.study_daily_study);
       int accent =
           ZikraDbHelper.CATEGORY_HIFZ.equals(task.category)
-              ? 0xFF8B622F
+              ? getColor(R.color.refined_muted)
               : ZikraDbHelper.CATEGORY_IBADAH.equals(task.category) ? 0xFF42715D : 0xFF15332F;
       tag.setTextColor(accent);
       View marker = row.findViewById(R.id.agenda_category_marker);
@@ -975,6 +1026,7 @@ public final class StudyActivity extends BaseActivity {
                     : getString(R.string.layout_no_deadline));
       }
       if (diaryMode) {
+        detail.setTextColor(getColor(R.color.refined_muted));
         HifzTarget target = task.hifz;
         title.setText(target == null ? task.title : target.chapterName);
         tag.setText(target == null ? R.string.hifz_legacy : R.string.hifz_kind);

@@ -1,0 +1,23 @@
+{
+  "seed": {
+    "version": "1.9.14",
+    "versionCode": 41,
+    "databaseCount": 5,
+    "privateFileCount": 2,
+    "hasChats": true,
+    "hasFaith": true,
+    "hasEncryptedGateway": true,
+    "hasPrayerModes": true
+  },
+  "seedVersion": "1.9.14",
+  "currentVersion": "1.9.15",
+  "originalRowsAndValuesPreserved": true,
+  "originalPreferenceValuesPreserved": true,
+  "durableFileHashesMatch": true,
+  "legacyHistoryImportedOnce": true,
+  "gatewayDecryptionAfterUpgrade": true,
+  "databaseCountBefore": 5,
+  "warmedActivities": 12,
+  "faithWasPopulated": true,
+  "processRestartPreserved": true
+}

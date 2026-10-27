@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <color name="refined_background">#F1F6F2</color>
+    <color name="refined_surface">#FFFFFF</color>
+    <color name="refined_ink">#153C33</color>
+    <color name="refined_muted">#536D61</color>
+    <color name="refined_primary">#185447</color>
+    <color name="refined_on_primary">#F7FCF8</color>
+    <color name="refined_soft">#E2EEE5</color>
+    <color name="refined_line">#D5E3D9</color>
+    <color name="refined_track">#B8CDBF</color>
+    <color name="refined_brand_caption">#D4E8DB</color>
+    <item name="feature_icon_quran" type="drawable">@drawable/home_shortcut_ref_quran</item>
+    <item name="feature_icon_dua" type="drawable">@drawable/home_shortcut_ref_dua</item>
+    <item name="feature_icon_qibla" type="drawable">@drawable/home_shortcut_ref_qibla</item>
+    <item name="feature_icon_hifz" type="drawable">@drawable/home_shortcut_ref_hifz</item>
+    <item name="feature_icon_ai" type="drawable">@drawable/home_shortcut_ref_ai</item>
+    <item name="feature_icon_protector" type="drawable">@drawable/home_shortcut_ref_protector</item>
+    <item name="feature_icon_study" type="drawable">@drawable/home_shortcut_ref_study</item>
+    <item name="feature_icon_hadith" type="drawable">@drawable/home_shortcut_ref_hadith</item>
+    <string name="refined_profile_space">Ruang pribadimu</string>
+    <string name="refined_profile_local">Tersimpan di perangkatmu</string>
+    <string name="refined_profile_reading">Bacaan terakhirmu</string>
+    <string name="refined_profile_start_reading">Mulai membaca Al-Quran</string>
+    <string name="refined_profile_week">Aktivitas 7 hari terakhir</string>
+    <string name="refined_profile_week_detail">Dari catatan bacaan, latihan, dan ibadah.</string>
+    <string name="refined_profile_week_count">%1$d dari 7 hari tercatat</string>
+    <string name="refined_profile_week_empty">Belum ada aktivitas tercatat. Mulai satu langkah hari ini.</string>
+    <string name="refined_profile_day_recorded">%1$s, aktivitas tercatat</string>
+    <string name="refined_profile_day_empty">%1$s, belum ada catatan</string>
+    <string name="refined_profile_goals">Langkah berikutnya</string>
+    <string name="refined_profile_tasks">Rencana belajar</string>
+    <string name="refined_profile_saved">Simpananmu</string>
+    <string name="refined_profile_preferences">Atur sesuai caramu</string>
+    <string name="refined_profile_other">Bantuan &amp; lainnya</string>
+    <string name="refined_profile_hifz">Target hafalan</string>
+    <string name="refined_profile_no_tasks">Belum ada tugas. Atur rencanamu di Study.</string>
+    <string name="refined_profile_no_hifz">Mulai target hafalan pertamamu.</string>
+    <string name="refined_hifz_today">Hafalan hari ini</string>
+    <string name="refined_hifz_targets">Target hafalan</string>
+    <string name="refined_hifz_empty_title">Mulai hafalan pertamamu</string>
+    <string name="refined_hifz_empty_detail">Pilih surah dan beberapa ayat yang ingin kamu jaga. Mulai sesuai kemampuanmu.</string>
+    <string name="refined_hifz_notes">Catatan &amp; latihan</string>
+    <string name="refined_hifz_count">%1$d dari %2$d target selesai</string>
+    <string name="refined_hifz_pending">Belum selesai</string>
+    <string name="refined_hifz_done">Selesai</string>
+    <string name="refined_worship_heading">Ibadah hari ini</string>
+    <string name="refined_worship_item">%1$s, %2$s</string>
+    <string name="refined_worship_more">Lihat semua %1$d target</string>
+    <string name="refined_calendar_estimate">Perkiraan Umm al-Qura</string>
+    <string name="refined_calendar_note">Penetapan hari besar mengikuti keputusan resmi setempat.</string>
+    <string name="refined_calendar_today">Hari ini</string>
+    <string name="refined_calendar_selected">Tanggal dipilih</string>
+    <string name="refined_settings">Pengaturan</string>
+    <string name="refined_about">Tentang Zikra</string>
+    <string name="refined_count">%1$d / %2$d</string>
+    <string name="refined_week">Pekan ini</string>
+    <string name="refined_reading_reference">%1$s · Ayat %2$d</string>
+    <string name="refined_profile_study_count">%1$d dari %2$d rencana belajar selesai</string>
+    <item name="hifzEmptyAdd" type="id" />
+    <string name="refined_prayer_preferences">Pengingat salat</string>
+    <string name="refined_prayer_detail">Adzan, notifikasi, dan waktu tenang</string>
+    <string name="refined_location">Lokasi &amp; waktu</string>
+    <string name="refined_calendar_title">Kalender Hijriah</string>
+    <string name="refined_calendar_detail">Tanggal dan hari istimewa</string>
+    <string name="refined_settings_detail">Bantuan cepat dengan gerakan perangkat</string>
+    <string name="refined_safety">Bantuan &amp; keselamatan</string>
+    <string name="refined_safety_detail">Protector dan informasi darurat</string>
+    <string name="refined_mosques">Masjid terdekat</string>
+    <string name="refined_mosques_detail">Temukan tempat singgah di sekitarmu</string>
+    <string name="refined_intro">Kenali Zikra</string>
+    <string name="refined_intro_detail">Belajar, ibadah dan hafalan sehari-hari</string>
+    <string name="refined_about_detail">Teman ibadah dan belajar</string>
+    <string-array name="refined_weekdays_short">
+        <item>Sn</item>
+        <item>Sl</item>
+        <item>Rb</item>
+        <item>Km</item>
+        <item>Jm</item>
+        <item>Sb</item>
+        <item>Mg</item>
+    </string-array>
+    <string name="refined_role_teacher">Pengajar</string>
+    <string name="refined_role_parent">Orang tua</string>
+    <string name="refined_role_level">%1$s · profil lokal</string>
+    <string name="refined_role_student">Pelajar · profil lokal</string>
+    <string name="refined_role_local">Profil lokal · tersimpan di perangkat</string>
+    <string name="refined_worship_empty">Mulai dari satu ibadah yang ingin kamu jaga.</string>
+    <string name="refined_worship_count">%1$d dari %2$d ibadah selesai</string>
+</resources>
