@@ -107,7 +107,7 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
     }
   }
   public void testOffFutureStaleCityAndDuplicatesAreRejected()throws Exception{
-    enable(2,PrayerMode.OFF);PrayerReminders.deliver(context,planned(2,System.currentTimeMillis()-1000));assertNull(notice(7302));
+    enable(2,PrayerMode.OFF);PrayerReminders.deliver(context,planned(2,System.currentTimeMillis()-1000));waitFor(()->notice(7302)==null);
     enable(2,PrayerMode.NOTIFICATION);PrayerReminders.deliver(context,planned(2,System.currentTimeMillis()+60000));assertNull(notice(7302));
     Intent old=planned(2,System.currentTimeMillis()-1000);LocationStore.save(context,new LocationPoint(-5.1477,119.4327,"Asia/Makassar","[UJI] Makassar","manual",0,-1));PrayerReminders.deliver(context,old);assertNull(notice(7302));
     long epoch=System.currentTimeMillis()-1000;PrayerReminders.deliver(context,planned(2,epoch));waitFor(()->notice(7302)!=null);long first=notice(7302).getPostTime();PrayerReminders.deliver(context,planned(2,epoch));assertEquals(first,notice(7302).getPostTime());
