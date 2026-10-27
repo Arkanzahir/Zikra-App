@@ -56,7 +56,8 @@ public final class AdhanNotification {
         .setColor(context.getColor(R.color.pine))
         .setContentTitle(title).setContentText(status)
         .setStyle(new Notification.DecoratedCustomViewStyle())
-        .setCustomContentView(compact).setCustomHeadsUpContentView(compact)
+        .setCustomContentView(compact)
+        .setCustomHeadsUpContentView(content(context, R.layout.notification_adhan_expanded, title, status))
         .setCustomBigContentView(content(context, R.layout.notification_adhan_expanded, title, status))
         .setCategory(preview ? Notification.CATEGORY_TRANSPORT : Notification.CATEGORY_ALARM)
         // Only the prayer name/playback state is shown; no profile, city or personal schedule.
