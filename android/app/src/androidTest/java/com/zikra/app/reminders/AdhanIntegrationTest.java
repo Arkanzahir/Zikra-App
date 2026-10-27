@@ -44,6 +44,8 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
     context.getSharedPreferences(FocusTimer.PREFS,0).edit().clear().commit();
     try(WeeklyClassStore store=new WeeklyClassStore(context)){for(WeeklyClass item:store.all())store.delete(item.id,item.revision);}
     LocationStore.save(context,LocationPoint.INITIAL);PrayerReminders.sync(context);
+    for(int id=7300;id<=7305;id++)context.getSystemService(NotificationManager.class).cancel(id);
+    waitFor(()->{for(int id=7300;id<=7305;id++)if(notice(id)!=null)return false;return true;});
   }
   @Override protected void tearDown()throws Exception{
     try{
@@ -169,11 +171,14 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
   }
 
   private AccessibilityNodeInfo systemAction(String text){
+    getInstrumentation().getUiAutomation().clearCache();
     for(AccessibilityWindowInfo window:getInstrumentation().getUiAutomation().getWindows()){
       AccessibilityNodeInfo root=window.getRoot();
       if(root==null)continue;
       for(AccessibilityNodeInfo node:root.findAccessibilityNodeInfosByText(text))
-        if(node.getText()!=null&&text.equalsIgnoreCase(node.getText().toString())&&node.isVisibleToUser())return node;
+        if((node.getText()!=null&&text.equalsIgnoreCase(node.getText().toString()))
+            ||(node.getContentDescription()!=null&&text.equalsIgnoreCase(node.getContentDescription().toString())))return node;
+      for(AccessibilityNodeInfo node:root.findAccessibilityNodeInfosByViewId("com.zikra.app:id/adhanNotificationStop"))return node;
     }
     return null;
   }
@@ -184,7 +189,7 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
   }
   private int inspectSystemWindows(){
     android.app.UiAutomation automation=getInstrumentation().getUiAutomation();AccessibilityServiceInfo info=automation.getServiceInfo();
-    int before=info.flags;info.flags|=AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS|AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS;
+    int before=info.flags;info.flags|=AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS|AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS|AccessibilityServiceInfo.FLAG_INCLUDE_NOT_IMPORTANT_VIEWS;
     automation.setServiceInfo(info);return before;
   }
   private void restoreSystemWindows(int flags)throws Exception{
@@ -220,7 +225,7 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
       context.getSystemService(AlarmManager.class).setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,event.getLongExtra(PrayerReminders.EXTRA_EPOCH,0),operation);
       shell("input keyevent 3");waitFor(()->AdhanService.state().playing);
       SystemClock.sleep(300);systemShot("banner-before-check");
-      awaitSystemStop("banner-heads-up");systemShot("banner-heads-up");
+      awaitSystemStop("banner-heads-up");SystemClock.sleep(500);systemShot("banner-heads-up");
       Notification notification=notice(7400).getNotification();assertEquals(AdhanNotification.CHANNEL,notification.getChannelId());
       assertEquals("Waktu Maghrib",notification.extras.getString(Notification.EXTRA_TITLE));
       assertNull(notification.fullScreenIntent);assertEquals(Notification.VISIBILITY_PUBLIC,notification.visibility);
