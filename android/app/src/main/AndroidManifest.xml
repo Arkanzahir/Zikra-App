@@ -51,6 +51,7 @@
         <activity android:name=".WeatherActivity" android:exported="false" />
         <activity android:name=".EarthquakeActivity" android:exported="false" />
         <activity android:name=".ProfileActivity" android:exported="false" />
+        <activity android:name=".FaithActivity" android:exported="false" />
         <activity android:name=".WeeklyClassesActivity" android:exported="false" />
         <receiver android:name=".study.ClassAlarmReceiver" android:exported="false" />
         <activity android:name=".AiActivity" android:exported="false" android:theme="@style/Theme.Zikra.Assistant" />

@@ -261,6 +261,13 @@ public final class HomeActivity extends BaseActivity {
     findViewById(R.id.homeProgressTicks)
         .setVisibility(total == 0 ? android.view.View.GONE : android.view.View.VISIBLE);
     ((SegmentedProgressView) findViewById(R.id.homeProgressTicks)).setProgress(done, total);
+    com.zikra.app.faith.FaithSummary faith = com.zikra.app.faith.FaithSummary.load(this, db);
+    TextView journal = findViewById(R.id.homeFaithSummary);
+    journal.setText(getString(R.string.faith_title) + "\n" + (faith.available
+        ? getString(R.string.faith_summary, faith.streak, faith.week)
+          + (faith.plan == null ? "" : " · " + faith.read + "/6.236 ayat")
+        : getString(R.string.faith_unavailable)));
+    journal.setOnClickListener(v -> open(FaithActivity.class));
   }
 
   private void updateAgenda() {

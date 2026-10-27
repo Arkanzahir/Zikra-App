@@ -128,6 +128,9 @@ public final class StudyActivity extends BaseActivity {
       catalog = new SurahCatalog();
       loadCatalog();
     }
+    View journal = agendaHeader.findViewById(R.id.studyFaithJournal);
+    journal.setVisibility(diaryMode || ibadahMode ? View.VISIBLE : View.GONE);
+    journal.setOnClickListener(v -> startActivity(new Intent(this, FaithActivity.class)));
     if (ibadahMode) {
       ((TextView) findViewById(R.id.study_screen_title)).setText("Checklist ibadah");
       ((TextView) findViewById(R.id.study_screen_tagline))
@@ -545,26 +548,11 @@ public final class StudyActivity extends BaseActivity {
   }
 
   private void loadCatalog() {
-    if (catalog == null || catalogLoading || chapters.size() == 114) return;
-    catalogLoading = true;
-    if (hifzEditor != null) hifzEditor.catalog(chapters, true, this::loadCatalog);
-    catalog.load(
-        new SurahCatalog.Result() {
-          @Override
-          public void ready(List<Chapter> values) {
-            chapters = values;
-            catalogLoading = false;
-            if (hifzEditor != null)
-              hifzEditor.catalog(chapters, false, StudyActivity.this::loadCatalog);
-          }
-
-          @Override
-          public void failed() {
-            catalogLoading = false;
-            if (hifzEditor != null)
-              hifzEditor.catalog(chapters, false, StudyActivity.this::loadCatalog);
-          }
-        });
+    chapters = new ArrayList<>();
+    for (com.zikra.app.reading.QuranChapters.Chapter chapter : com.zikra.app.reading.QuranChapters.all(this))
+      chapters.add(new Chapter(chapter.id, chapter.name, chapter.count));
+    catalogLoading = false;
+    if (hifzEditor != null) hifzEditor.catalog(chapters, false, this::loadCatalog);
   }
 
   private static String canonical(HifzTarget target) {
@@ -780,10 +768,13 @@ public final class StudyActivity extends BaseActivity {
                 ? "Ubah target"
                 : ibadahMode ? "Ubah ibadah" : getString(R.string.study_edit));
     menu.getMenu().add(0, 2, 1, R.string.study_delete);
+    if (diaryMode && task.hifz != null) menu.getMenu().add(0, 4, 3, R.string.faith_record_practice);
     if (!diaryMode && !ibadahMode) menu.getMenu().add(0, 3, 2, R.string.concept_focus_action);
     menu.setOnMenuItemClickListener(
         item -> {
-          if (item.getItemId() == 3)
+          if (item.getItemId() == 4)
+            startActivity(new Intent(this, FaithActivity.class).putExtra("target", task.id));
+          else if (item.getItemId() == 3)
             startActivity(new Intent(this, FocusTimerActivity.class).putExtra("task", task.id));
           else if (item.getItemId() == 1) showEditor(task, null);
           else

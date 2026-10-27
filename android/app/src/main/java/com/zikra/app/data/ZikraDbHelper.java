@@ -380,6 +380,17 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
     return getProgress().completed;
   }
 
+  /** Historical local-date worship records; reading never creates/checks a task. */
+  public java.util.Map<LocalDate, Progress> worshipHistory() {
+    java.util.Map<LocalDate, Progress> result = new java.util.TreeMap<>();
+    try (Cursor c = getReadableDatabase().rawQuery(
+        "SELECT task_date,SUM(completed),COUNT(*) FROM tasks WHERE category=? GROUP BY task_date",
+        new String[] {CATEGORY_IBADAH})) {
+      while (c.moveToNext()) result.put(LocalDate.parse(c.getString(0)), new Progress(c.getInt(1), c.getInt(2)));
+    }
+    return result;
+  }
+
   public int getTotalCount() {
     return getProgress().total;
   }

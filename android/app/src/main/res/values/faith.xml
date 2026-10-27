@@ -1,0 +1,60 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <!-- Indonesian counted nouns do not inflect by quantity. -->
+  <string name="faith_title">Jurnal &amp; target Quran</string>
+  <string name="faith_tagline">Pelan-pelan, tetap tercatat.</string>
+  <string name="faith_summary" tools:ignore="PluralsCandidate">%1$d hari beruntun · %2$d/7 hari aktif</string>
+  <string name="faith_definition">Hari aktif berasal dari ibadah yang dicentang, latihan atau bacaan yang kamu catat. Catatan teks saja tidak menambah streak.</string>
+  <string name="faith_hifz_summary" tools:ignore="PluralsCandidate">Target hafalan: %1$d dari %2$d selesai. Latihan dicatat terpisah; audio tidak menandai target selesai.</string>
+  <string name="faith_khatam">Target khatam</string>
+  <string name="faith_no_plan">Pilih 30, 90 atau 365 hari. Progres dimulai dari bacaan yang kamu catat, bukan waktu berjalan.</string>
+  <string name="faith_plan_summary" tools:ignore="PluralsCandidate">%1$d / 6.236 ayat unik · %2$d%%\n%3$d hari · sejak %4$s\nSisa menuju target hari ini: %5$d ayat</string>
+  <string name="faith_plan_method">Pembagian berdasarkan jumlah ayat; panjang bacaan berbeda. Rentang yang tumpang tindih dihitung sekali. Bookmark dan audio tidak menambah progres.</string>
+  <string name="faith_plan_edit">Atur target</string>
+  <string name="faith_plan_new">Mulai target baru</string>
+  <string name="faith_plan_new_confirm">Arsipkan target sekarang dan mulai dari nol hari ini? Catatan serta bacaan target lama tetap tersimpan di riwayat.</string>
+  <string name="faith_plan_days">Durasi target</string>
+  <string name="faith_days" tools:ignore="PluralsCandidate">%1$d hari</string>
+  <string name="faith_open_next">Buka ayat berikutnya</string>
+  <string name="faith_plan_complete">Seluruh 6.236 ayat telah kamu catat pada target ini.</string>
+  <string name="faith_record_reading">Catat bacaan</string>
+  <string name="faith_record_practice">Catat latihan Hifz</string>
+  <string name="faith_day">Catatan harian</string>
+  <string name="faith_select_day">Pilih tanggal: %1$s</string>
+  <string name="faith_worship_day" tools:ignore="PluralsCandidate">Checklist ibadah tanggal ini: %1$d dari %2$d dicentang.</string>
+  <string name="faith_checklist">Buka checklist hari ini</string>
+  <string name="faith_note">Tulis jurnal</string>
+  <string name="faith_empty_note">Belum ada catatan harian.</string>
+  <string name="faith_history">Riwayat tanggal ini</string>
+  <string name="faith_empty_history">Belum ada bacaan atau latihan tercatat. Pilih tanggal lain untuk melihat riwayat.</string>
+  <string name="faith_entry_title">%1$s · %2$s</string>
+  <string name="faith_reading_label">Bacaan</string>
+  <string name="faith_archived">Target lama · riwayat tetap tersimpan</string>
+  <string name="faith_practice_label">Latihan Hifz</string>
+  <string name="faith_range">Ayat %1$d–%2$d · %3$s</string>
+  <string name="faith_entry_hint">Catatan opsional, misalnya bagian yang perlu diulang (maksimal 1.000 karakter)</string>
+  <string name="faith_note_hint">Refleksi pribadi (maksimal 1.000 karakter). Tersimpan hanya di perangkat.</string>
+  <string name="faith_note_label">Catatan (opsional)</string>
+  <string name="faith_explicit">Simpan setelah kamu benar-benar membaca atau berlatih. Tidak ada penilaian hafalan otomatis.</string>
+  <string name="faith_edit">Ubah catatan</string>
+  <string name="faith_delete">Hapus catatan</string>
+  <string name="faith_delete_confirm">Hapus catatan ini? Progres dan hari aktif akan dihitung ulang. Target, bookmark dan catatan lain tetap ada.</string>
+  <string name="faith_saved">Catatan tersimpan</string>
+  <string name="faith_stale">Catatan berubah. Buka kembali riwayat sebelum melanjutkan.</string>
+  <string name="faith_unavailable">Jurnal belum dapat dibaca. Data tidak dihapus; coba buka kembali.</string>
+  <string name="faith_save">Simpan</string>
+  <string name="faith_cancel">Batal</string>
+  <string name="faith_surah">Surah</string>
+  <string name="faith_catalog_item" tools:ignore="PluralsCandidate">%1$d. %2$s · %3$d ayat</string>
+  <string name="faith_first">Ayat awal</string>
+  <string name="faith_last">Ayat akhir</string>
+  <item name="faithSummary" type="id"/><item name="faithPlanSummary" type="id"/>
+  <item name="faithPlanEdit" type="id"/><item name="faithPlanNew" type="id"/>
+  <item name="faithDate" type="id"/><item name="faithRead" type="id"/>
+  <item name="faithPractice" type="id"/><item name="faithNote" type="id"/>
+  <item name="faithEntries" type="id"/><item name="faithNext" type="id"/>
+  <item name="faithNoteText" type="id"/><item name="faithWorship" type="id"/>
+  <item name="faithEditorSurah" type="id"/><item name="faithEditorFirst" type="id"/>
+  <item name="faithEditorLast" type="id"/><item name="faithEditorNote" type="id"/>
+  <item name="faithEditorError" type="id"/><item name="faithEditorDays" type="id"/>
+  <item name="faithEditorSave" type="id"/><item name="faithEditorCancel" type="id"/>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+  <com.zikra.app.ui.FeatureHeader android:id="@+id/utilitiesHeader"
+      android:layout_width="match_parent" android:layout_height="wrap_content" />
+  <ScrollView android:id="@+id/faithScroll" android:layout_width="match_parent"
+      android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true"
+      android:clipToPadding="false" android:paddingHorizontal="20dp" android:paddingBottom="24dp">
+    <LinearLayout android:id="@+id/faithContent" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="vertical" />
+  </ScrollView>
+</LinearLayout>

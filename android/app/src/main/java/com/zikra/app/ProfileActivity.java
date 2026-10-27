@@ -83,6 +83,11 @@ public final class ProfileActivity extends BaseActivity {
                 ? View.GONE
                 : View.VISIBLE);
     rows.removeAllViews();
+    com.zikra.app.faith.FaithSummary faith = com.zikra.app.faith.FaithSummary.load(this, db);
+    row(getString(R.string.faith_title), faith.available
+        ? getString(R.string.faith_summary, faith.streak, faith.week)
+          + (faith.plan == null ? "" : " · " + faith.read + "/6.236 ayat")
+        : getString(R.string.faith_unavailable), R.drawable.ic_book, () -> open(FaithActivity.class));
     row(getString(R.string.study_level_choose),com.zikra.app.study.EducationLevel.label(this),
         R.drawable.ic_graduation,()->profileDialog=com.zikra.app.study.EducationLevel.choose(this,this::render));
     row(
