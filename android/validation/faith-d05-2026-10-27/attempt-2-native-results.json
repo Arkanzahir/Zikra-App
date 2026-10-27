@@ -1,0 +1,17 @@
+[
+  {
+    "name": "native-storage",
+    "passed": true,
+    "tests": 10
+  },
+  {
+    "name": "native-journal",
+    "passed": true,
+    "tests": 8
+  },
+  {
+    "name": "native-large-keyboard",
+    "passed": true,
+    "tests": 2
+  }
+]

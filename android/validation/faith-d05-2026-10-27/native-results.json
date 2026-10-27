@@ -1,0 +1,26 @@
+[
+  {
+    "name": "native-storage",
+    "passed": true,
+    "tests": 10,
+    "attempt": 2
+  },
+  {
+    "name": "native-journal",
+    "passed": true,
+    "tests": 8,
+    "attempt": 2
+  },
+  {
+    "name": "native-large-keyboard",
+    "passed": true,
+    "tests": 2,
+    "attempt": 2
+  },
+  {
+    "name": "native-hifz-worship-regression",
+    "passed": true,
+    "tests": 3,
+    "attempt": 3
+  }
+]

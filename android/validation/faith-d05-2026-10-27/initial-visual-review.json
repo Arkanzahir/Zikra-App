@@ -1,0 +1,6 @@
+{
+  "nativeAssertionsPassed": true,
+  "visualReviewPassed": false,
+  "reason": "At 200% font the long note label and native AlertDialog custom view crowded the IME viewport; replace with compact labels, scrolling body and pinned action footer",
+  "apkSha256": "59be8401068818133d42bf21795177be9e37e8f251f2ff688dc648c1fdfa392c"
+}

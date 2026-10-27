@@ -1,3 +1,5 @@
+> **Checkpoint27Okt/1.9.14:** D05 selesai teknis beta, source5288e03; [bukti/batas](android/validation/faith-d05-2026-10-27/README.md), [handoff terbaru](SESSION_HANDOFF.md). Database jurnal faith.db v1 terpisah, schema utama5 tetap. UjiHP ditunda; berikutnyaD06 preservasi/migrasi. WIP/stash/env/desain/data lama dipertahankan, APK41.592.382byte lokal, belum push baru/publik.
+
 > **Checkpoint27Okt/1.9.13:** D03 selesai teknis beta, source d7ac65a; [bukti dan batas](android/validation/quran-d03-2026-10-27/README.md), [handoff terbaru](SESSION_HANDOFF.md). Uji HP ditunda pengguna. Catatan historis di bawah bukan status terkini AI/Quran. WIP/stash/env/desain/data tetap dipertahankan; APK41.200.618byte lokal, belum push baru/publik.
 
 > **Pindah chat — 25 Oktober 2026:** baca [SESSION_HANDOFF.md](SESSION_HANDOFF.md), `AGENTS.md`, rencana dan cakupan rilis. B02/B03 selesai teknis, B04 selesai editorial/integrasi, B01 menunggu klarifikasi. Pekerjaan independen berikutnya **C01: konfigurasi backend yang sudah ada**. `PROJECT_HANDOFF.md` lama masih WIP; pertahankan.

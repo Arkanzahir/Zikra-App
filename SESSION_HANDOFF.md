@@ -757,3 +757,57 @@ tetap terpisah dari snapshot Quran.com. Empat unit skip: satu katalog Doa, satu 
 upgrade berisi, C02/C04/C07/B01 serta D05/E/F/G/publik masih mengikuti checklist.
 Berikutnya D05 ibadah/Hifz/progres nyata; jangan otomatis menganggap audio selesai
 berarti target hafalan selesai. Tidak ada email/provider AI/push baru pada putaran ini.
+
+
+## D05 selesai teknis beta — 27 Oktober2026,1.9.14
+
+Pengguna meminta lanjut secepat dan seoptimal mungkin tanpa HP. D05 selesai
+teknis: FaithActivity/jurnal bertanggal, latihan Hifz sebagai snapshot, target
+khatam30/90/365 berdasarkan ayat unik, ubah/hapus/konfirmasi arsip, draf yang
+pulih setelah recreation, dan FaithSummary bersama Home/Profil. Editor target
+Hifz memakai114 metadata bundled tanpa HTTP. Centang target tetap manual;
+latihan tidak otomatis menyelesaikannya. Audio, bookmark, waktu dan jurnal teks
+saja tidak menambah bacaan atau hari aktif.
+
+Source **5288e033cf5d3e195177fe7538baf3c4bdd00398**, APK lokal folder luar
+**Zikra-Faith-v1.9.14-beta-debug.apk**, **41.592.382byte**, SHA256
+`70e2b24916fafb6beb634ef998dcff892c9070d356478544bbd875962f5652cd`.
+Signer debug sama1.9.13; schema main5/chat1/kelas2 tetap. Jurnal terpisah pada
+faith.db v1.96 entry media dan dua audio adzan privat identik1.9.13; APK lama
+dipertahankan. Checkpoint baru lokal, belum push baru atau rilis publik.
+
+FaithStore memakai transaksi/token idempotensi/revisi entri dan ID plan untuk
+formulir basi. Batas100 entri/tanggal,5.000total dan1.000unit UTF-16/catatan;
+tanggal/rentang divalidasi. Batas100 diuji, bukan uji beban5.000. Overlap tidak
+dihitung dua kali. Ubah durasi mempertahankan bacaan; siklus baru mengarsipkan
+tanpa menghapus riwayat. Tanggal selesai tidak direka dari flag Hifz lama.
+Tanggal historis tetap saat pindah zona, cakupan bacaan tidak hilang bila
+kalender lokal mundur, dan streak mengikuti tanggal lokal. Tidak mengunggah
+jurnal ke AI/server atau menambah akun/cloud sync. Activity tidak diekspor.
+
+**143 unit lulus/4 skip,23 eksekusi native/21 metode unik lulus,lint0 error/
+780 warning.** Tujuh FaithStorage + tiga HifzRecovery lama, delapan UI jurnal +
+dua pengulangan font200%/IME, tiga StudyRecovery untuk simpan/draf/rentang Hifz,
+target/reader dan template ibadah lintas hari. Semua dengan Wi-Fi/data mati.
+Metode bernama CatalogLive memakai metadata bundled; cancel voice adalah
+callback pengujian, bukan mikrofon baru. Empat skip opsional: satu katalog Doa,
+satu dokumen Mushaf dan dua metrik font. Putaran awal20 fungsi lulus namun
+DITOLAK visual karena editor terlalu padat dengan keyboard200%. Body bergulir,
+footer tetap, ukuran mengikuti IME dan label ringkas memperbaikinya; assertion
+Simpan di atas keyboard ditambah. Kandidat akhir direview gambarnya dan lulus23
+native. Riwayat pemeriksaan awal tidak dihitung sebagai kelulusan visual.
+
+[Receipt/source/hash/gambar/hasil/preservasi/batas](android/validation/faith-d05-2026-10-27/README.md).
+10 berkas asli internal emulator0byte pulih cocok hash, bukan upgrade HP berisi.
+Font/keyboard/tema/ukuran/jaringan/DND/ringer/izin lainnya dipulihkan, helper
+dihapus dan emulator ditutup. validation output dipindah/dikembalikan;
+screenshot editor legacy di agenda/ adalah output tes emulator. WIP
+PROJECT_HANDOFF, stash/arsip/env/desain AI/Home/logo/audio/APK lama cocok hash.
+Nilai rahasia yang diketahui bersih pada source/evidence/APK, bukan audit
+seluruh sejarah Git/G03. Home hanya menambah pintasan ringkasan di bawah kartu
+ibadah; hero dan ikon lama dipertahankan.
+
+D05[x] untuk beta terarah. D06 berikutnya memeriksa storage/migrasi/preservasi
+pembaruan data berisi, termasuk faith.db baru, tanpa cloud sync yang ditunda A02.
+Uji HP tetap ditunda; jangan meminta sambungan berulang. D01/D02/D02a/G02 fisik,
+B01/C02/C04/C07/E/F/G dan publik tetap sesuai checklist dan tidak ditutup D05.

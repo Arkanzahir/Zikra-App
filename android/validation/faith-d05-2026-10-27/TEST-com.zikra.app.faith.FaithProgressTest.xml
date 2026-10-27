@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf8'?>
+<testsuite name="com.zikra.app.faith.FaithProgressTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-27T11:19:00" time="0.004">
+  <properties />
+  <testcase name="everySupportedPlanDistributesExactly6236AyahsWithoutInventingReading" classname="com.zikra.app.faith.FaithProgressTest" time="0.001" />
+  <testcase name="globalNumberingRoundTripsAllAyahsIncludingBothBoundaries" classname="com.zikra.app.faith.FaithProgressTest" time="0.003" />
+  <testcase name="streakCrossesMonthAndAllowsTodayStillPendingButBreaksOnMissingDay" classname="com.zikra.app.faith.FaithProgressTest" time="0.0" />
+  <testcase name="overlappingRepeatedAndOutOfOrderRangesCountOnlyUniqueAyahs" classname="com.zikra.app.faith.FaithProgressTest" time="0.0" />
+  <system-out />
+  <system-err />
+</testsuite>

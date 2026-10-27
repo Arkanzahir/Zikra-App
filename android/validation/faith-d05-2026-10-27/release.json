@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-27",
+  "versionName": "1.9.14",
+  "versionCode": 41,
+  "sourceCommit": "5288e033cf5d3e195177fe7538baf3c4bdd00398",
+  "artifact": "Zikra-Faith-v1.9.14-beta-debug.apk",
+  "bytes": 41592382,
+  "sha256": "70e2b24916fafb6beb634ef998dcff892c9070d356478544bbd875962f5652cd",
+  "initialDownloadBelow100000000Bytes": true,
+  "certificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "signing": "debug; same signer as1.9.13",
+  "schema": {
+    "main": 5,
+    "chat": 1,
+    "weeklyClasses": 2,
+    "faithJournal": 1
+  },
+  "unit": {
+    "tests": 147,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4,
+    "passed": 143
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 780
+  },
+  "nativeExecutions": 23,
+  "nativeUniqueMethods": 21,
+  "native": [
+    {
+      "name": "native-storage",
+      "passed": true,
+      "tests": 10,
+      "attempt": 2
+    },
+    {
+      "name": "native-journal",
+      "passed": true,
+      "tests": 8,
+      "attempt": 2
+    },
+    {
+      "name": "native-large-keyboard",
+      "passed": true,
+      "tests": 2,
+      "attempt": 2
+    },
+    {
+      "name": "native-hifz-worship-regression",
+      "passed": true,
+      "tests": 3,
+      "attempt": 3
+    }
+  ],
+  "networkForNative": "Wi-Fi/data disabled; no AI/Quran inference/network requested",
+  "physicalPhoneModified": false,
+  "D05TechnicalBetaComplete": true,
+  "publicRelease": false,
+  "limits": {
+    "entriesTotal": 5000,
+    "entriesPerDate": 100,
+    "noteUtf16Units": 1000
+  },
+  "dataPreservationScope": "10 original internal app files, all empty; not populated phone upgrade proof. validation output directory moved aside/restored; legacy editor screenshots remain emulator test output in agenda/",
+  "definitions": {
+    "streak": "A completed ibadah item or explicit reading/practice entry on a local date; note alone and undated Hifz completion flag do not count",
+    "khatam": "Unique Hafs global ayahs in explicit reading records of active plan; overlaps count once, duration schedules recommendations only",
+    "timezone": "Recorded date remains unchanged; completed reading coverage survives moving to an earlier local date; future new entries are rejected"
+  },
+  "screenshots": {
+    "D05-empty-note.png": "ae396d2acc2ba983d2d11453ae1200d76e10860b8365b30178ab1c6c59e1b1d6",
+    "D05-keyboard-200.png": "9a0df8e5ededf64c041ff6df8d08b69c5146b18e41d9d0896e8a538e72ff8cff",
+    "D05-keyboard-draft.png": "809f01c31039684ba5081f5ca291f12a87c25367c7abbc11e1ce882f5b321894",
+    "D05-profile-summary.png": "c5b4725046bcb6a6825fcb1477599e8a4dc2a7203260f43fd7e4e93cf389ddb5",
+    "D05-recorded-reading.png": "b0ca6838fd129ca0a15eabb0c4a6a4bcb8ba37095cf3295f7d35cfead7768b76"
+  }
+}
