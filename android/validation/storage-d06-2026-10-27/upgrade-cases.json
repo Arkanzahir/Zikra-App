@@ -1,0 +1,77 @@
+[
+  {
+    "seedVersion": "1.7.6",
+    "currentVersion": "1.9.14",
+    "originalRowsAndValuesPreserved": true,
+    "originalPreferenceValuesPreserved": true,
+    "durableFileHashesMatch": true,
+    "legacyHistoryImportedOnce": true,
+    "gatewayDecryptionAfterUpgrade": true,
+    "databaseCountBefore": 2,
+    "warmedActivities": 12,
+    "faithWasPopulated": false,
+    "seed": {
+      "version": "1.7.6",
+      "versionCode": 24,
+      "databaseCount": 2,
+      "privateFileCount": 2,
+      "hasChats": false,
+      "hasFaith": false,
+      "hasEncryptedGateway": true,
+      "hasPrayerModes": false
+    },
+    "oldApkSha256": "7dc808e6280ac4f4182f4bda89ceae43c88eb0329e25dd8baa3f2caaed0f5b57",
+    "targetApkSha256": "70e2b24916fafb6beb634ef998dcff892c9070d356478544bbd875962f5652cd",
+    "processRestartPreserved": true
+  },
+  {
+    "seedVersion": "1.9.13",
+    "currentVersion": "1.9.14",
+    "originalRowsAndValuesPreserved": true,
+    "originalPreferenceValuesPreserved": true,
+    "durableFileHashesMatch": true,
+    "legacyHistoryImportedOnce": true,
+    "gatewayDecryptionAfterUpgrade": true,
+    "databaseCountBefore": 4,
+    "warmedActivities": 12,
+    "faithWasPopulated": false,
+    "seed": {
+      "version": "1.9.13",
+      "versionCode": 40,
+      "databaseCount": 4,
+      "privateFileCount": 2,
+      "hasChats": true,
+      "hasFaith": false,
+      "hasEncryptedGateway": true,
+      "hasPrayerModes": true
+    },
+    "oldApkSha256": "740faa1804667311cd59a64b201ecae370bed83d89862bdd94bcc933c299994c",
+    "targetApkSha256": "70e2b24916fafb6beb634ef998dcff892c9070d356478544bbd875962f5652cd",
+    "processRestartPreserved": true
+  },
+  {
+    "seedVersion": "1.9.14",
+    "currentVersion": "1.9.14",
+    "originalRowsAndValuesPreserved": true,
+    "originalPreferenceValuesPreserved": true,
+    "durableFileHashesMatch": true,
+    "legacyHistoryImportedOnce": true,
+    "gatewayDecryptionAfterUpgrade": true,
+    "databaseCountBefore": 5,
+    "warmedActivities": 12,
+    "faithWasPopulated": true,
+    "seed": {
+      "version": "1.9.14",
+      "versionCode": 41,
+      "databaseCount": 5,
+      "privateFileCount": 2,
+      "hasChats": true,
+      "hasFaith": true,
+      "hasEncryptedGateway": true,
+      "hasPrayerModes": true
+    },
+    "oldApkSha256": "70e2b24916fafb6beb634ef998dcff892c9070d356478544bbd875962f5652cd",
+    "targetApkSha256": "70e2b24916fafb6beb634ef998dcff892c9070d356478544bbd875962f5652cd",
+    "processRestartPreserved": true
+  }
+]

@@ -100,3 +100,5 @@ serta Ashar kutub diperbaiki dan diuji emulator/rujukan hitungan; sensor/GPS/ara
 fisik masih memerlukan HP. [Bukti/batas](android/validation/location-qibla-d01-2026-10-26/README.md).
 Tidak menutup D01 atau D02/D02a/D03/D05/D06/publik dan tidak mengubah jadwal
 menjadi feed resmi Kemenag. Prioritas terbaru pengguna mengarah bagian D.
+
+**27 Oktober2026, D06:** pembaruan APK asli1.7.6/1.9.13 ke1.9.14 serta reinstall terbaru mempertahankan fixture terisi (tugas/target/bookmark/nama/lokasi/pengaturan/AI, kelas dan jurnal bila tersedia). Selesai teknis penyimpanan lokal beta; bukan cloud backup/sinkronisasi/uninstall/downgrade/HP/publik. [Bukti dan batas](android/validation/storage-d06-2026-10-27/README.md). Prioritas pengguna: selesaikan D sebelum E; D01/D02/D02a tetap terbuka.

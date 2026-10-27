@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-27",
+  "scope": "D06 technical beta; actual APK upgrade on isolated populated emulator fixtures",
+  "runtimeSourceCommit": "5288e033cf5d3e195177fe7538baf3c4bdd00398",
+  "runtimeChanged": false,
+  "versionName": "1.9.14",
+  "versionCode": 41,
+  "artifact": "Zikra-Faith-v1.9.14-beta-debug.apk",
+  "bytes": 41592382,
+  "sha256": "70e2b24916fafb6beb634ef998dcff892c9070d356478544bbd875962f5652cd",
+  "certificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "nativeExecutions": 11,
+  "nativeUniqueMethods": 5,
+  "populatedUpgradeCases": 3,
+  "activitiesOpened": 36,
+  "network": "Wi-Fi/data disabled, no AI inference, dummy gateway at reserved .invalid domain",
+  "D06TechnicalBetaComplete": true,
+  "physicalPhoneModified": false,
+  "cloudSync": false,
+  "publicRelease": false,
+  "appUnitTestsRerun": false,
+  "reason": "Test-only addition; existing runtime/unit receipt unchanged, helper build/lint and actual upgrade cases run"
+}
