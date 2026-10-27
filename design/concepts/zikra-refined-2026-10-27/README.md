@@ -1,6 +1,7 @@
 # Referensi visual Zikra — 27 Oktober2026
 
-Status: **pratinjau untuk ditinjau**, belum persetujuan desain/implementasi native.
+Status: **logo dipoles disetujui pengguna28 Oktober2026**. Layar lainnya masih
+pratinjau untuk ditinjau; belum implementasi native.
 Arahan terbaru pengguna: delapan ikon fitur dipertahankan; logo utama dapat
 **dipoles** sambil mempertahankan identitas; Hifz, kalender Hijriah dan Profil
 perlu perbaikan lebih matang. Home memerlukan jam lokal dan gerak awan terlihat.
@@ -36,7 +37,7 @@ dari delapan VectorDrawable `home_shortcut_ref_*`, tidak menggambar simbol baru.
 penyajian konsep; source/aset Android tidak diubah.
 
 Ilustrasi masjid siang/malam/awan dipakai ulang dari aset yang disetujui. Salinan
-WebP diperkecil untuk referensi; sumber PNG tetap utuh. File referensi736KB,
+WebP diperkecil untuk referensi; sumber PNG tetap utuh. File referensi berada
 di bawah batas1MB untuk pratinjau percakapan. Ini bukan ukuran paket APK.
 
 ## Pemeriksaan dan batas
@@ -56,3 +57,17 @@ Runtime/APK1.9.14, seluruh source Android, logo disetujui, data pengguna, WIP,
 stash audio dan konfigurasi privat dipertahankan. Tidak ada build APK baru.
 UI04/F01–F04/D01/D02/D02a/B01 dan gerbang rilis publik tidak dicentang dari hasil
 referensi ini. Perubahan native menunggu tanggapan pengguna atas tampilannya.
+
+## Keputusan28 Oktober2026 — satu identitas ikon per fitur
+
+Pengguna menyetujui logo dipoles, dan meminta ikon fitur konsisten pada semua
+halaman. Bentuk asli Quran/Doa/Kiblat/Hifz/AI/Protector/Study/Hadis tetap acuan;
+[aturan ikon lintas halaman](FEATURE_ICON_RULES.md) mencatat sumber dan batasnya.
+Referensi diperbaiki: kartu simpanan Profil, navigasi bawah, lanjut membaca,
+keadaan Hifz kosong serta kartu target memakai simbol yang sama dengan Home.
+Ukuran mengikuti konteks; geometri sumber tetap sama. Panah, tambah, edit,
+pencarian, centang selesai dan bookmark sebagai tindakan tetap memakai ikon
+fungsinya. Bookmark tidak dipakai sebagai pengganti identitas fitur Hadis.
+
+Persetujuan logo tidak otomatis berarti seluruh layar sudah diterima atau
+perubahan native sudah diizinkan. F01/F02/F03/F04 tetap belum dicentang.

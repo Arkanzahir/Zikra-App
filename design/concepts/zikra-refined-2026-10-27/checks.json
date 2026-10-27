@@ -61,6 +61,9 @@
     },
     {
       "allImagesLoaded": true
+    },
+    {
+      "sharedFeatureIconShapes": true
     }
   ],
   "widths": [
@@ -90,10 +93,45 @@
       "scroll": 286
     }
   ],
+  "featureIcons": {
+    "quran": {
+      "placements": 5,
+      "identicalSource": true
+    },
+    "dua": {
+      "placements": 2,
+      "identicalSource": true
+    },
+    "qibla": {
+      "placements": 1,
+      "identicalSource": true
+    },
+    "hifz": {
+      "placements": 3,
+      "identicalSource": true
+    },
+    "ai": {
+      "placements": 3,
+      "identicalSource": true
+    },
+    "protector": {
+      "placements": 2,
+      "identicalSource": true
+    },
+    "study": {
+      "placements": 3,
+      "identicalSource": true
+    },
+    "hadith": {
+      "placements": 2,
+      "identicalSource": true
+    }
+  },
   "browserErrors": [],
   "passed": true,
-  "scope": "Browser reference only; not native Android validation or design acceptance",
-  "referenceSha256": "006880ef58b997bec260ed462992db7ca693efb127345a57d8bce36b0021967e",
+  "scope": "Browser reference only; not native Android validation or approval of all screens",
+  "date": "2026-10-28",
+  "referenceSha256": "e33cbb3bcd4174a8c483bb3fb7d5ea6030bca7f1703d2755432427a16a21175b",
   "viewports": [
     {
       "width": 900,
@@ -107,6 +145,7 @@
     }
   ],
   "featureIconGeometryPreserved": true,
+  "featureIconPlacementCount": 21,
   "runtimeAppChanged": false,
   "productionLogoChanged": false,
   "userDataUsed": false
