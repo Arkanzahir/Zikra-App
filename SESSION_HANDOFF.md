@@ -1,5 +1,44 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
+## Checkpoint aktif28 Oktober2026 — HP/adzan1.9.22
+
+Prioritas pengguna tetap **tuntaskan A–D dahulu**. POCO F7/API36 tersedia dan diuji
+pada sesi ini; bukan izin menganggap HP selalu tersedia pada sesi berikutnya.
+APK lokal folder luar `Zikra-Adzan-v1.9.22-beta-debug.apk`, code49,
+43.616.987byte, SHA256`935a155168899e4d9dacb18d95101e720cea256830b5f4dea1fb3fd2954da066`.
+Signer debug sama. [Bukti/receipt/preservasi/batas](android/validation/prayer-phone-2026-10-28/README.md).
+
+Pilihan terakhir pengguna: **Adzan-Misyari-Rasyid.mp3** untuk non-Subuh, Subuh
+`fajr_128_44.mp3` tetap. Pengguna menolak volume awal Alafasy2 meski uji engine
+lulus; preview normal30detik rekaman pengganti dikonfirmasi lebih stabil.
+Aset cocok byte/hash, hanya input debug privat, bukan izin redistribusi publik.
+Pemutaran utuh sebelumnya1.9.20 dibedakan dari preview/seek akhir1.9.22.
+MAY_DUCK kini volume20% sementara/berlanjut, GAIN kembali normal; fokus lebih
+kuat berhenti tanpa restart. Awal non-Subuh memakai kurva600ms; Subuh tidak.
+
+Bukti pagi alarm nyata+layar mati+Stop dihitung, bukan diminta ulang.20mode
+fisik1.9.21 dan30epoch rencana terakhir1.9.22 cocok cache Surabaya. Kasus awal
+harness sebelum Application.onCreate, ekspektasi waktu volume terlalu singkat,
+dan penantian activity existing dicatat; helper diperbaiki, bukan offset menit.
+25berkas awal/17tabel mempertahankan isi. Chat hanya berubah timestamp akses.
+Pengguna mengonfirmasi refresh GPS/izin; lokasi terbaru dipertahankan. Sistem
+lain, WIP PROJECT_HANDOFF, stash/arsip/env/desain/AI tetap; helper dibersihkan,
+Zikra dibuka lagi, tanpa uninstall utama. Semua backup/log mentah/GPS tetap privat.
+
+A selesai; B01 masih menunggu sumber, thread diperiksa28 Oktober tanpa balasan
+masuk, tidak mengirim pesan baru. C02 invocation monitor terjadwal sudah terbukti
+([run/probe](android/validation/backend-monitor-2026-10-28/README.md)); masih perlu
+uji HP dengan laptop mati. C04 konteks jadwal/jenjang+review Tadabbur dan C07
+sisa kamera/picker/OCR tetap[ ]. D02/D02a belum ditutup untuk ketentuan audio,
+sisa vendor/reboot/Doze/interaksi. D01/D03–D06 tetap selesai beta terarah.
+
+Masukan UI terbaru **belum dieksekusi pada checkpoint audio**: lampu malam terlalu
+samar, tema pilihan baru Home, AI belum punya dock navigasi bawah. Strip Home
+setelah Isya menampilkan besok tanpa label tanggal terlihat:28Okt Surabaya
+Maghrib17.26,29Okt17.27; cache HP benar. Perjelas tanggal, bukan kurangi menit.
+Pertahankan ikon/asset/desain disetujui dan jangan pindah ke E atau klaim publik.
+Semua checkpoint terverifikasi wajib audit/commit/push origin/main.
+
 ## Checkpoint aktif28 Oktober2026 — jadwal Kemenag melalui myQuran1.9.18
 
 > **Terbaru — jadwal beta1.9.18,28 Oktober2026:** Jadwal Kemenag melalui myQuran, cache bulan ini/berikutnya dan sumber bersama Home/countdown/alarm.1.098 waktu cocok pada enam kota-bulan,153 unit/4 skip dan10 native lulus;lint0 error/818 warning. APK40.746.251byte, source`df84753`. HP tidak diubah; bukan penutupan D02/B01/F/G/publik. [Bukti/receipt/batas](android/validation/prayer-source-2026-10-28/README.md).

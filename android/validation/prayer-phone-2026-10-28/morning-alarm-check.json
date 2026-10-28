@@ -1,0 +1,20 @@
+{
+  "physicalPhone": true,
+  "usesRealAlarmManager": true,
+  "mockTimeOrBroadcastUsed": false,
+  "passed": true,
+  "scheduledEpoch": 1793155566217,
+  "screenOffBeforeDelivery": true,
+  "keyguardLockedBeforeDelivery": true,
+  "scheduledAlarmDelivered": true,
+  "automaticPlayerStarted": true,
+  "deliveryLatenessMs": 303,
+  "notificationHasStopAction": true,
+  "serviceStoppedBeforeTimeout": true,
+  "originalPreferenceValuesRestored": true,
+  "playerStoppedAtCleanup": true,
+  "version": "1.9.15",
+  "audioSelectionAtTest": "Previous Makkah recording, not the later Alafasy recording",
+  "usbChargingAndInstrumentationPresent": true,
+  "realPrayerTimetableTrigger": false
+}

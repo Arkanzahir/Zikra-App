@@ -1,0 +1,19 @@
+{
+  "physicalPhone": true,
+  "oldVersion": "1.9.15",
+  "newVersion": "1.9.22",
+  "originalInternalFiles": 25,
+  "originalFilesMissing": 0,
+  "databaseTablesChecked": 17,
+  "allOriginalDatabaseContentPreserved": true,
+  "conversationAccessTimestampChangedWithoutContentChange": true,
+  "otherOriginalFilesPreserved": true,
+  "originalNonLocationNonDerivedPreferenceValuesPreserved": true,
+  "userConfirmedLocationAndPermissionUpdateKept": true,
+  "systemSettingsUnchanged": true,
+  "otherPermissionsUnchanged": true,
+  "batteryWhitelistUnchanged": true,
+  "helperRemoved": true,
+  "mainAppUninstalled": false,
+  "passed": true
+}

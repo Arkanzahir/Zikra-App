@@ -1,0 +1,28 @@
+{
+  "checkedDate": "2026-10-28",
+  "runId": 40639282296,
+  "event": "schedule",
+  "conclusion": "success",
+  "url": "https://github.com/Arkanzahir/Zikra-App/actions/runs/40639282296",
+  "headSha": "79a24b4b37a53bcb29da8188d551304de2f9e43f",
+  "jobId": 122653381408,
+  "probe": {
+    "scope": "https-liveness-and-redis-authentication-no-inference",
+    "checkedAt": "2026-10-28T05:39:45.028Z",
+    "origin": "https://zikra-ai.vercel.app",
+    "liveness": {
+      "status": 200,
+      "passed": true,
+      "durationMs": 742
+    },
+    "redisAccess": {
+      "status": 401,
+      "unknownCredentialDenied": true,
+      "durationMs": 1005
+    },
+    "inferenceChecked": false,
+    "credentialsRequired": false,
+    "passed": true
+  },
+  "laptopOffPhoneInferenceTested": false
+}

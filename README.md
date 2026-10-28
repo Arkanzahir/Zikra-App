@@ -1,5 +1,7 @@
 > **Terbaru — jadwal beta1.9.18,28 Oktober2026:** Jadwal Kemenag melalui myQuran, cache bulan ini/berikutnya dan sumber bersama Home/countdown/alarm.1.098 waktu cocok pada enam kota-bulan,153 unit/4 skip dan10 native lulus;lint0 error/818 warning. APK40.746.251byte, source`df84753`. HP tidak diubah; bukan penutupan D02/B01/F/G/publik. [Bukti/receipt/batas](android/validation/prayer-source-2026-10-28/README.md).
 
+> **Checkpoint HP/adzan28 Oktober2026 — beta1.9.22/code49:** rekaman non-Subuh terbaru pengguna, fokus/volume awal dan preservasi diuji. APK lokal43,6MB; [bukti, receipt dan batas](android/validation/prayer-phone-2026-10-28/README.md). B01/C02/C04/C07/D02/D02a/publik tetap mengikuti checklist; temuan UI terakhir belum dianggap diperbaiki.
+
 > **Terbaru — lokasi/langit Home1.9.17,28 Oktober2026:** Panah dan nama lokasi dapat disentuh, kota mengubah zona/jam/jadwal/countdown; awan realistis, parallax dan satu kubah.147 unit/4 skip,9 native lulus;lint0 error/821 warning. APK40.528.718byte, source`1da420a`; HP tidak diubah. [Bukti/receipt/batas](android/validation/home-location-sky-2026-10-28/README.md).
 
 > **Home Imersif1.9.16 — 28 Oktober2026:** Tema Home terang/gelap/perangkat, nama daerah saat memperbarui lokasi, kontras dan ikon launcher/notifikasi utuh, azan biasa Alafasy pilihan terbaru.146 unit/4 skip dan12 native akhir lulus,lint0 error/819 warning. APK41.430.239byte; source`38cb23a`. HP tidak diubah; jadwal lokal belum disamakan dengan jadwal resmi. [Bukti/source/hash/batas](android/validation/home-immersive-2026-10-28/README.md).

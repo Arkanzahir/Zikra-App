@@ -1,5 +1,7 @@
 > **Checkpoint27Okt/1.9.14:** D05 selesai teknis beta, source5288e03; [bukti/batas](android/validation/faith-d05-2026-10-27/README.md), [handoff terbaru](SESSION_HANDOFF.md). Database jurnal faith.db v1 terpisah, schema utama5 tetap. UjiHP ditunda; berikutnyaD06 preservasi/migrasi. WIP/stash/env/desain/data lama dipertahankan, APK41.592.382byte lokal, belum push baru/publik.
 
+> **Checkpoint HP/adzan28 Oktober2026 — beta1.9.22/code49:** rekaman non-Subuh terbaru pengguna, fokus/volume awal dan preservasi diuji. APK lokal43,6MB; [bukti, receipt dan batas](android/validation/prayer-phone-2026-10-28/README.md). B01/C02/C04/C07/D02/D02a/publik tetap mengikuti checklist; temuan UI terakhir belum dianggap diperbaiki.
+
 > **Kandidat harian1.9.15 — 28 Oktober2026:** Home jam lokal/awan/tanda ibadah,
 > Hifz, kalender dan Profil personal, logo dipoles dan simbol fitur asli bersama.
 > 143 unit lulus/4 skip,18 eksekusi native lulus; upgrade berisi1.9.14 dan

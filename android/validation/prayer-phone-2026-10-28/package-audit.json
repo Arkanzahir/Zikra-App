@@ -1,0 +1,39 @@
+{
+  "version": "1.9.22",
+  "versionCode": 49,
+  "apkBytes": 43616987,
+  "apkSha256": "935a155168899e4d9dacb18d95101e720cea256830b5f4dea1fb3fd2954da066",
+  "belowInitialDownloadLimit": true,
+  "privateValueScanPassed": true,
+  "privateAudio": {
+    "selected": {
+      "bytes": 3713152,
+      "sha256": "545da9c890916ce918ed0e82df9b5e37169aafd638cdb3dfe61d41caa39b016f",
+      "matchesUserSelectedFile": true
+    },
+    "fajr": {
+      "bytes": 2996349,
+      "sha256": "106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530",
+      "matchesUserSelectedFile": true
+    }
+  },
+  "protectedWipStashAssetsAndPrivateConfigurationPreserved": true,
+  "lint": {
+    "Warning": 818
+  },
+  "unitTests": {
+    "tests": 157,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4,
+    "passed": 153
+  },
+  "sourceFilesSha256": {
+    "android/app/build.gradle": "4157ea8d73b7fb96346e6f354a70377ca17668a37886a260398a79e71f4889a3",
+    "android/app/src/main/res/values/prayer_source.xml": "7d08565a333f519542deb5917ba12698fac852f5dc822f817d1928371978a661",
+    "android/app/src/main/java/com/zikra/app/reminders/AdhanService.java": "a1ad45e22a3875782af35cc9202cfd1408ebae08f16b5abb457b576a145b0bdf",
+    "android/app/src/androidTest/java/com/zikra/app/prayer/PrayerTimetableTest.java": "8c8397c22db70039b8bbcafdf34e37e1e3853320a7750530a85eb1bc07982d80",
+    "android/app/src/phoneTest/java/com/zikra/app/reminders/PhonePrayerModesTest.java": "08bbe2adc64820bd6fee57e2231a178268bb87070e2bd8299596fc7bf3b4fcac",
+    "android/app/src/phoneTest/java/com/zikra/app/reminders/PhonePrayerAlarmTest.java": "0cec16ae0cdab988c2219860571051c724413f718e2af4ce9fe6a80dfa96810d"
+  }
+}

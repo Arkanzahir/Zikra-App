@@ -3,11 +3,11 @@
     <item name="prayerSourceRegions" type="id" />
     <item name="prayerSourceClose" type="id" />
     <string name="prayer_source_title">Sumber jadwal salat</string>
-    <string name="prayer_source_cached">Jadwal · Kemenag via myQuran</string>
+    <string name="prayer_source_cached">Jadwal · Kemenag</string>
     <string name="prayer_source_local">Jadwal · hitungan lokal (cadangan)</string>
     <string name="prayer_source_choose_region">Wilayah belum dikenali; pilih kabupaten/kota jadwal.</string>
-    <string name="prayer_source_cached_detail">Kemenag melalui API myQuran\nWilayah jadwal: %1$s\nTersimpan: %2$s — %3$s\nDiperbarui: %4$s\n\nJadwal berlaku per kabupaten/kota, bukan hitungan tepat di koordinat GPS. Waktu dipakai apa adanya tanpa tambahan 2 menit. Data tersimpan tetap bekerja offline. Bulan berjalan dan berikutnya diperbarui saat internet tersedia. Sumber data: bimasislam.kemenag.go.id; penyedia: api.myquran.com.</string>
-    <string name="prayer_source_fallback_detail">%1$s\n\nJadwal acuan belum tersedia untuk tanggal, wilayah atau zona waktu ini. Saat ini Home, countdown dan alarm memakai hitungan lokal cadangan.\n\nSubuh 20°, Isya 18°, Asar bayangan 1×; pembulatan ke atas dan tambahan 2 menit kecuali terbit, asumsi dekat permukaan laut. Ini bukan jadwal resmi Kemenag.\n\nPerbarui saat online atau pilih wilayah yang benar. Hanya ID wilayah dan bulan dikirim ke myQuran, tanpa koordinat GPS atau data pribadi.</string>
+    <string name="prayer_source_cached_detail">Sumber: Kementerian Agama RI (Kemenag)\nWilayah jadwal: %1$s\nTersimpan: %2$s — %3$s\nDiperbarui: %4$s\n\nJadwal berlaku per kabupaten/kota, bukan hitungan tepat di koordinat GPS. Waktu dipakai apa adanya tanpa tambahan 2 menit. Data tersimpan tetap bekerja offline. Bulan berjalan dan berikutnya diperbarui saat internet tersedia. Rujukan: bimasislam.kemenag.go.id.</string>
+    <string name="prayer_source_fallback_detail">%1$s\n\nJadwal acuan belum tersedia untuk tanggal, wilayah atau zona waktu ini. Saat ini Home, countdown dan alarm memakai hitungan lokal cadangan.\n\nSubuh 20°, Isya 18°, Asar bayangan 1×; pembulatan ke atas dan tambahan 2 menit kecuali terbit, asumsi dekat permukaan laut. Ini bukan jadwal resmi Kemenag.\n\nPerbarui saat online atau pilih wilayah yang benar. Hanya ID wilayah dan bulan yang diminta layanan jadwal, tanpa koordinat GPS atau data pribadi.</string>
     <string name="prayer_source_update">Perbarui</string>
     <string name="prayer_source_updating">Memperbarui jadwal bulan ini dan berikutnya…</string>
     <string name="prayer_source_region">Pilih wilayah jadwal</string>

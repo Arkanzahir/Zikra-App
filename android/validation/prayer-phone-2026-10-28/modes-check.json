@@ -1,0 +1,110 @@
+{
+  "physicalPhone": true,
+  "modeCases": [
+    {
+      "prayerIndex": 0,
+      "mode": "ADHAN",
+      "passed": true
+    },
+    {
+      "prayerIndex": 0,
+      "mode": "NOTIFICATION",
+      "passed": true
+    },
+    {
+      "prayerIndex": 0,
+      "mode": "VIBRATE",
+      "passed": true
+    },
+    {
+      "prayerIndex": 0,
+      "mode": "OFF",
+      "passed": true
+    },
+    {
+      "prayerIndex": 2,
+      "mode": "ADHAN",
+      "passed": true
+    },
+    {
+      "prayerIndex": 2,
+      "mode": "NOTIFICATION",
+      "passed": true
+    },
+    {
+      "prayerIndex": 2,
+      "mode": "VIBRATE",
+      "passed": true
+    },
+    {
+      "prayerIndex": 2,
+      "mode": "OFF",
+      "passed": true
+    },
+    {
+      "prayerIndex": 3,
+      "mode": "ADHAN",
+      "passed": true
+    },
+    {
+      "prayerIndex": 3,
+      "mode": "NOTIFICATION",
+      "passed": true
+    },
+    {
+      "prayerIndex": 3,
+      "mode": "VIBRATE",
+      "passed": true
+    },
+    {
+      "prayerIndex": 3,
+      "mode": "OFF",
+      "passed": true
+    },
+    {
+      "prayerIndex": 4,
+      "mode": "ADHAN",
+      "passed": true
+    },
+    {
+      "prayerIndex": 4,
+      "mode": "NOTIFICATION",
+      "passed": true
+    },
+    {
+      "prayerIndex": 4,
+      "mode": "VIBRATE",
+      "passed": true
+    },
+    {
+      "prayerIndex": 4,
+      "mode": "OFF",
+      "passed": true
+    },
+    {
+      "prayerIndex": 5,
+      "mode": "ADHAN",
+      "passed": true
+    },
+    {
+      "prayerIndex": 5,
+      "mode": "NOTIFICATION",
+      "passed": true
+    },
+    {
+      "prayerIndex": 5,
+      "mode": "VIBRATE",
+      "passed": true
+    },
+    {
+      "prayerIndex": 5,
+      "mode": "OFF",
+      "passed": true
+    }
+  ],
+  "masterOffHasNoAlarmsOrNotice": true,
+  "notificationDoesNotStartAdhan": true,
+  "vibrateChannelHasNoSound": true,
+  "passed": true,
+  "version": "1.9.21"
+}

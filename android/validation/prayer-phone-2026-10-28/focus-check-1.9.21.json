@@ -1,0 +1,51 @@
+{
+  "physicalPhone": true,
+  "regularSoftStartAvailable": true,
+  "earlySoftStartGain": 0,
+  "fullGainAfterSoftStart": true,
+  "softStartSamples": [
+    {
+      "elapsedMs": 0,
+      "gain": 0
+    },
+    {
+      "elapsedMs": 104,
+      "gain": 0
+    },
+    {
+      "elapsedMs": 208,
+      "gain": 0.2184533327817917
+    },
+    {
+      "elapsedMs": 310,
+      "gain": 0.2184533327817917
+    },
+    {
+      "elapsedMs": 412,
+      "gain": 0.4369066655635834
+    },
+    {
+      "elapsedMs": 513,
+      "gain": 0.6553599834442139
+    },
+    {
+      "elapsedMs": 614,
+      "gain": 0.8738133311271667
+    },
+    {
+      "elapsedMs": 715,
+      "gain": 0.8738133311271667
+    },
+    {
+      "elapsedMs": 816,
+      "gain": 1
+    }
+  ],
+  "realAndroidFocusRequests": true,
+  "notificationDuckingContinuesPlayback": true,
+  "positionAdvancesDuringDucking": true,
+  "strongerTransientLossStops": true,
+  "focusGainDoesNotRestartStoppedAudio": true,
+  "passed": true,
+  "version": "1.9.21"
+}

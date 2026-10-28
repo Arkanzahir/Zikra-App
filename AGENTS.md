@@ -16,3 +16,7 @@ D06 selesai teknis beta dengan pembaruan APK berisi data; [bukti](android/valida
 ## Status28 Oktober2026 — sesi HP D01
 
 D01 selesai teknis beta terarah dengan [bukti fisik/manual/native/preservasi](android/validation/location-phone-d01-2026-10-28/README.md). Ini menggantikan status D01 terbuka pada catatan27 Oktober. D02/D02a tetap terbuka untuk pengujian yang tersisa dan ketentuan audio. HP disambungkan/diizinkan untuk sesi28 Oktober; jangan menganggap izin ini berarti otomatis tersedia pada sesi lain. Runtime tetap1.9.15; B01/C/E/F/G/publik tidak otomatis selesai.
+
+## Status HP28 Oktober2026 — beta1.9.22
+
+Prioritas terbaru pengguna tetap A–D dahulu. [Bukti HP/adzan terbaru](android/validation/prayer-phone-2026-10-28/README.md) menghitung uji pagi, mode/epoch, pilihan audio terakhir dan preservasi; D02/D02a tetap terbuka untuk ketentuan/sisa HP. C02 monitor terjadwal sudah teramati, laptop-mati tetap perlu. Masukan tema global/dock AI/lampu malam/tanggal strip belum diperbaiki oleh checkpoint audio; ikuti handoff. Jangan menimpa refresh lokasi/izin yang dikonfirmasi pengguna atau mengunggah chat/GPS/backup.

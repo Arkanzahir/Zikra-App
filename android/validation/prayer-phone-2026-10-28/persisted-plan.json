@@ -1,0 +1,10 @@
+{
+  "version": "1.9.22",
+  "physicalPhoneSnapshot": true,
+  "persistedAlarmSlotsChecked": 30,
+  "allEpochsMatchCachedSurabayaTable": true,
+  "allSignaturesOfficialSource": true,
+  "currentAndNextMonthRetained": true,
+  "coordinatesNotPublished": true,
+  "passed": true
+}

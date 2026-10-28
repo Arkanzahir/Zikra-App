@@ -1,0 +1,12 @@
+{
+  "physicalPhone": true,
+  "regionConfirmedByUser": true,
+  "region": "KOTA SURABAYA",
+  "displayNameConfirmedByUser": true,
+  "coordinatesAndZonePreserved": true,
+  "currentAndNextMonthAvailable": true,
+  "sourceLabel": "Jadwal \u00b7 Kemenag",
+  "passed": true,
+  "version": "1.9.19",
+  "scope": "Initial confirmed region selection; user later refreshed GPS and permissions, retained by final preservation check."
+}

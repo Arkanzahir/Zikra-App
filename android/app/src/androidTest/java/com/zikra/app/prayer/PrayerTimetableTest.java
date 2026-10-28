@@ -96,7 +96,7 @@ public final class PrayerTimetableTest extends InstrumentationTestCase {
     getInstrumentation().waitForIdleSync();
     assertTrue(((TextView)page.findViewById(R.id.homeNextTime)).getText().toString().contains("17.26"));
     assertEquals("00:01:00",((TextView)page.findViewById(R.id.homeClock)).getText().toString());
-    assertTrue(((TextView)page.findViewById(R.id.homeScheduleSource)).getText().toString().contains("myQuran"));
+    assertEquals("Jadwal · Kemenag",((TextView)page.findViewById(R.id.homeScheduleSource)).getText().toString());
     capture("home-offline.png");
     final android.app.AlertDialog[] dialog=new android.app.AlertDialog[1];
     getInstrumentation().runOnMainSync(()->dialog[0]=PrayerSourceDialog.show(page));

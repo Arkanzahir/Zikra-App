@@ -1,0 +1,11 @@
+{
+  "physicalPhone": true,
+  "previewSeconds": 30,
+  "simulatedFocusRequests": false,
+  "seekUsed": false,
+  "continuedPlaying": true,
+  "passed": true,
+  "version": "1.9.22",
+  "userConfirmedMoreStable": true,
+  "selectedAudioSha256": "545da9c890916ce918ed0e82df9b5e37169aafd638cdb3dfe61d41caa39b016f"
+}

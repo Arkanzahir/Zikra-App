@@ -1,0 +1,21 @@
+{
+  "physicalPhone": true,
+  "records": [
+    {
+      "prayerIndex": 2,
+      "durationMs": 232028,
+      "seekedNearEnd": true,
+      "fullRecordingPlayed": false,
+      "completionAndCleanup": true
+    },
+    {
+      "prayerIndex": 0,
+      "durationMs": 187272,
+      "seekedNearEnd": true,
+      "fullRecordingPlayed": false,
+      "completionAndCleanup": true
+    }
+  ],
+  "passed": true,
+  "version": "1.9.22"
+}
