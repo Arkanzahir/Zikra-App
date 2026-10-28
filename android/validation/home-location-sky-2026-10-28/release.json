@@ -1,0 +1,20 @@
+{
+  "version": "1.9.17",
+  "versionCode": 44,
+  "sourceCommit": "1da420a54c67d3d6d55e977aa1e01380ef29e48f",
+  "apkFile": "Zikra-Sky-Location-v1.9.17-beta-debug.apk",
+  "apkBytes": 40528718,
+  "apkSha256": "d1211764167ac1bca1daa53ac99907fa16a2464e00bbc073687250d44e0f3bc2",
+  "unitPassed": 147,
+  "unitSkipped": 4,
+  "nativePassed": 9,
+  "lintErrors": 0,
+  "lintWarnings": 821,
+  "releaseType": "private debug beta",
+  "physicalPhoneModified": false,
+  "prayerFormulaChanged": false,
+  "gpsUsesExistingExplicitAcquisitionFlow": true,
+  "newGpsAcquisitionTested": false,
+  "sameSignerAs1916": true,
+  "deviceBatteryMeasurementCompleted": false
+}

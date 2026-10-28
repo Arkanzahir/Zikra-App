@@ -1,6 +1,6 @@
 # Rencana implementasi Zikra menuju rilis publik
 
-**Checkpoint terbaru28 Oktober2026:** beta1.9.16/code43/source`38cb23a57e27861fca0f951a70f59dd4a7b12b65`; [bukti/receipt/batas Home Imersif](android/validation/home-immersive-2026-10-28/README.md). Paragraf baseline bertanggal di bawah adalah riwayat; checklist mengikuti bukti terbaru.
+**Checkpoint terbaru28 Oktober2026:** beta1.9.17/code44/source`1da420a54c67d3d6d55e977aa1e01380ef29e48f`; [bukti/receipt/batas lokasi dan langit Home](android/validation/home-location-sky-2026-10-28/README.md). Paragraf baseline bertanggal di bawah adalah riwayat; checklist mengikuti bukti terbaru.
 
 Dibuat 24 Oktober; diperbarui **25 Oktober 2026 (WIB)**. Kandidat Home terbaru: **1.9.4 beta / code 31**, [koreksi gradasi/posisi dan lampu siang-malam](android/validation/home-lighting-layout-2026-10-25/README.md). Kandidat AI yang telah diuji HP tetap **1.8.1 / code 26**, [APK → hosting nyata](android/validation/assistant-hosted-emulator-2026-10-25/README.md); runtime AI belum didesain ulang pada 1.9.1. Kandidat sebelumnya dipertahankan. Baseline konten B04 tetap 1.7.6 (`b3f13f3`), [receipt](android/validation/dua-completion-b04-2026-10-24/release.json). A04 tetap checkpoint 1.6.3 (`2b291ff`); UI01 tetap 1.6.2.
 
@@ -11,6 +11,10 @@ Dokumen ini menjadi **checklist pengerjaan aktif**. [PRD](ZIKRA_PRD.md) tetap me
 ## Revisi disetujui28 Oktober2026 — Home Imersif
 
 F01/F03 subset Home/lokasi/branding diterapkan pada1.9.16: tema Home eksplisit, kontras, nama daerah lewat Geocoder saat diminta, logo launcher/notifikasi utuh.146 unit/4 skip,12 native akhir lulus;lint0 error/819 warning, upgrade1.9.15 berisi terpelihara. F global tetap[ ]. **D02/D02a terbaru:** Alafasy pengguna menggantikan Makkah untuk azan biasa; rekaman Subuh tidak berubah. File hanya untuk build debug privat. Ketentuan audio dan sisa HP tetap terbuka; jadwal/rumus lokal tidak diubah. [Bukti dan batas](android/validation/home-immersive-2026-10-28/README.md).
+
+## Kelanjutan disetujui28 Oktober2026 — lokasi dan langit Home1.9.17
+
+Nama lokasi/panah membuka pemilih GPS atau kota manual yang sama; zona/jam/jadwal/countdown mengikuti pilihan. Langit referensi diterapkan: awan realistis/parallax sentuh, lintasan matahari, bulan/bintang, satu siluet masjid dan lampu terpisah.147 unit/4 skip,9 native akhir lulus;lint0 error/821 warning. Upgrade1.9.16 berisi terjaga. APK40.528.718byte, source`1da420a`. HP/GPS baru/baterai vendor belum diperiksa; F/G global dan sisa D02/D02a tidak ditutup. [Bukti dan batas](android/validation/home-location-sky-2026-10-28/README.md).
 
 ## Cara memakai checklist
 

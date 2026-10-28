@@ -1,6 +1,12 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
-## Checkpoint aktif28 Oktober2026 — Home Imersif1.9.16
+## Checkpoint aktif28 Oktober2026 — lokasi/langit Home1.9.17
+
+> **Terbaru — lokasi/langit Home1.9.17,28 Oktober2026:** Panah dan nama lokasi dapat disentuh, kota mengubah zona/jam/jadwal/countdown; awan realistis, parallax dan satu kubah.147 unit/4 skip,9 native lulus;lint0 error/821 warning. APK40.528.718byte, source`1da420a`; HP tidak diubah. [Bukti/receipt/batas](android/validation/home-location-sky-2026-10-28/README.md).
+
+APK lokal folder pembungkus: `Zikra-Sky-Location-v1.9.17-beta-debug.apk`. Pengguna menyetujui pemilih lokasi kemudian penerapan Android. GPS memakai alur eksplisit yang sudah ada; uji baru memakai kota publik offline. Awan native terbukti bergerak pada tampilan, sentuhan diprioritaskan atas sensor gravitasi, gerak berhenti saat jeda/tidak terlihat/kurangi animasi. Header tenang dengan countdown terlihat; satu bitmap masjid menghindari kubah ganda. Data fixture upgrade1.9.16 terpelihara, helper dihapus dan emulator khusus ditutup. Sumber/izin audio, pengujian GPS/baterai vendor dan F/G global tetap terbuka sesuai bukti. PROJECT_HANDOFF WIP/konfigurasi privat/stash/HP tidak disentuh.
+
+## Checkpoint sebelumnya28 Oktober2026 — Home Imersif1.9.16
 
 Status Git sesi ini: pengguna sudah mengizinkan push secara eksplisit.
 Source`38cb23a` dan receipt`388bc66` sudah dipush ke origin/main pada28 Oktober2026;

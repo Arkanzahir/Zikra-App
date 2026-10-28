@@ -1,3 +1,5 @@
+> **Terbaru — lokasi/langit Home1.9.17,28 Oktober2026:** Panah dan nama lokasi dapat disentuh, kota mengubah zona/jam/jadwal/countdown; awan realistis, parallax dan satu kubah.147 unit/4 skip,9 native lulus;lint0 error/821 warning. APK40.528.718byte, source`1da420a`; HP tidak diubah. [Bukti/receipt/batas](android/validation/home-location-sky-2026-10-28/README.md).
+
 > **Home Imersif1.9.16 — 28 Oktober2026:** Tema Home terang/gelap/perangkat, nama daerah saat memperbarui lokasi, kontras dan ikon launcher/notifikasi utuh, azan biasa Alafasy pilihan terbaru.146 unit/4 skip dan12 native akhir lulus,lint0 error/819 warning. APK41.430.239byte; source`38cb23a`. HP tidak diubah; jadwal lokal belum disamakan dengan jadwal resmi. [Bukti/source/hash/batas](android/validation/home-immersive-2026-10-28/README.md).
 
 > **GitHub tersinkron — 27 Oktober2026:** seluruh35 checkpoint proyek sampai D05/beta1.9.14 berhasil dipush ke `main`, diverifikasi pada `c0a19e4c9c90dd0ec6aaab3d6157e9f98d2458b6`. Catatan “belum push” di bawah bersifat historis. Checkpoint berikutnya wajib dipush setelah verifikasi; WIP/konfigurasi privat tetap lokal.
