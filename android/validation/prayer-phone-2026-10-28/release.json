@@ -1,0 +1,36 @@
+{
+  "version": "1.9.22",
+  "versionCode": 49,
+  "sourceCommit": "c94b020807d0b293729dd678146c5f9fa8384998",
+  "apkFile": "Zikra-Adzan-v1.9.22-beta-debug.apk",
+  "apkBytes": 43616987,
+  "apkSha256": "935a155168899e4d9dacb18d95101e720cea256830b5f4dea1fb3fd2954da066",
+  "installedPhoneHashMatchesCandidate": true,
+  "signerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "releaseType": "private debug beta",
+  "unit": {
+    "tests": 157,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4,
+    "passed": 153
+  },
+  "lintErrors": 0,
+  "lintWarnings": 818,
+  "finalPhoneChecks": [
+    "ordinary30secondPreviewAndUserConfirmedMoreStable",
+    "bothRecordingsCompletionAfterSeek",
+    "30PersistedAlarmEpochsMatchCachedSurabayaTable",
+    "originalDatabaseContentAndUserChangesPreserved"
+  ],
+  "separateEarlierEvidence": {
+    "1.9.15": "realAlarmManagerScreenOffAndUserStop",
+    "1.9.20": "fullPairPlaybackWithPreviousRegularAudio",
+    "1.9.21": "20ModesAndRealAudioFocusAndSoftStart"
+  },
+  "initialDownloadBelow100000000Bytes": true,
+  "allAtoDCompleted": false,
+  "audioRedistributionTermsConfirmed": false,
+  "selectedPrivateAudioSha256": "545da9c890916ce918ed0e82df9b5e37169aafd638cdb3dfe61d41caa39b016f",
+  "fajrPrivateAudioSha256": "106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530"
+}

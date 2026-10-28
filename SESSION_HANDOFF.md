@@ -6,7 +6,7 @@ Prioritas pengguna tetap **tuntaskan A–D dahulu**. POCO F7/API36 tersedia dan 
 pada sesi ini; bukan izin menganggap HP selalu tersedia pada sesi berikutnya.
 APK lokal folder luar `Zikra-Adzan-v1.9.22-beta-debug.apk`, code49,
 43.616.987byte, SHA256`935a155168899e4d9dacb18d95101e720cea256830b5f4dea1fb3fd2954da066`.
-Signer debug sama. [Bukti/receipt/preservasi/batas](android/validation/prayer-phone-2026-10-28/README.md).
+Source`c94b020807d0b293729dd678146c5f9fa8384998`; signer debug sama. [Bukti/receipt/preservasi/batas](android/validation/prayer-phone-2026-10-28/README.md).
 
 Pilihan terakhir pengguna: **Adzan-Misyari-Rasyid.mp3** untuk non-Subuh, Subuh
 `fajr_128_44.mp3` tetap. Pengguna menolak volume awal Alafasy2 meski uji engine

@@ -122,6 +122,8 @@ opens Home without waiting for a new Activity instance when an existing task
 can be reused. The final1.9.22 end check returned normally and passed; the old
 host timeout is not counted as a successful runner execution.
 
+[APK/source receipt](release.json). Source checkpoint`c94b020807d0b293729dd678146c5f9fa8384998`.
+
 ## Package and limits
 
 [Package audit](package-audit.json):43,616,987bytes, below100,000,000;
