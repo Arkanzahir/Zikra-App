@@ -1,0 +1,41 @@
+{
+  "apkBytes": 40528718,
+  "apkSha256": "d1211764167ac1bca1daa53ac99907fa16a2464e00bbc073687250d44e0f3bc2",
+  "unit": {
+    "tests": 151,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4,
+    "passed": 147
+  },
+  "lint": {
+    "Warning": 821
+  },
+  "cloudResourceSha256": "3d1a579a2792201f9a9363d9c9c98ad568054c5a8b0938c18e808fe80064cb62",
+  "privateAudio": {
+    "selected": {
+      "bytes": 639007,
+      "sha256": "b650e89a8141fa783da5947e2743e58d043ac29c982243761d4828b69aecb49d",
+      "matchesSelectedLocalFile": true
+    },
+    "fajr": {
+      "bytes": 2996349,
+      "sha256": "106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530",
+      "matchesSelectedLocalFile": true
+    }
+  },
+  "sourceFilesSha256": {
+    "android/app/build.gradle": "faf36ea801e01647ac88e8ba6c07c8b65c233e312d9d54d7f73a1c45f4319b92",
+    "android/app/src/main/java/com/zikra/app/HomeActivity.java": "773dea7f77b0312c8dc129ab015cca7ef122c16fc9361fd61570f51829baf22e",
+    "android/app/src/androidTest/java/com/zikra/app/HomeLocationSkyTest.java": "ab7fe8e1537b4dda85e966970ef666c13ce97885a32738d1b186f5e093d58b15",
+    "android/app/src/test/java/com/zikra/app/sky/SkyPaletteTest.java": "279b65c41a3e15ec6163431c5919c25c536a0dc25cc2d5608e7d718193ea1095",
+    "android/app/src/main/java/com/zikra/app/sky/HomeSkyView.java": "db0aa6a5caa7461ab1404695cf3f28d4988df42e0111c66ffaf2723a0f548f22",
+    "android/app/src/main/java/com/zikra/app/sky/SkyPalette.java": "50278f1c7342cedc443e9c7fb1a5f8a86bffe7f3efe0e424643c65ad401f4d51",
+    "android/app/src/main/java/com/zikra/app/PrayerSchedule.java": "550e9c92711199eaead520d7549b26b55a3348c11b62f7420941f496a4b83145",
+    "android/app/src/main/res/layout/activity_home.xml": "c670a346b2194f8badfdaf32e0d25d080235b9176b41bc4a7f6e1bbc275d013e",
+    "android/app/src/main/res/values/home_location_sky.xml": "b31d122a0ab0f10287ed3de8d44fd9ecec5123559815995d479ccf3751e05b01",
+    "android/app/src/main/res/drawable-nodpi/home_cloud_realistic.webp": "3d1a579a2792201f9a9363d9c9c98ad568054c5a8b0938c18e808fe80064cb62"
+  },
+  "renderFrameDelayMs": 33,
+  "newRasterAssetGeneratedThisCheckpoint": false
+}

@@ -25,5 +25,5 @@
       "sha256": "3d1a579a2792201f9a9363d9c9c98ad568054c5a8b0938c18e808fe80064cb62"
     }
   },
-  "status": "Reference asset; Android resources and APK unchanged."
+  "status": "Generated for the reference; later integrated into Android beta 1.9.17/code44 with user approval. See android/validation/home-location-sky-2026-10-28/README.md."
 }

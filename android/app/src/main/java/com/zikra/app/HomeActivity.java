@@ -266,7 +266,7 @@ public final class HomeActivity extends BaseActivity {
                     caption,
                     location.zoneLabel(java.time.Instant.now())));
     findViewById(R.id.homeLocation)
-        .setContentDescription("Lokasi " + location.caption() + ". Ketuk untuk mengubah.");
+        .setContentDescription(getString(R.string.home_location_choose, location.caption()));
     sky.post(
         () -> {
           android.widget.ScrollView homeScroll = findViewById(R.id.homeScroll);
@@ -419,6 +419,15 @@ public final class HomeActivity extends BaseActivity {
     TextView placeLabel = findViewById(R.id.homeLocationLabel);
     placeLabel.setMaxLines(Integer.MAX_VALUE);
     placeLabel.setEllipsize(null);
+    LinearLayout clockRow = (LinearLayout) findViewById(R.id.homeWallClock).getParent();
+    clockRow.setOrientation(LinearLayout.VERTICAL);
+    clockRow.setGravity(android.view.Gravity.START);
+    TextView zone = findViewById(R.id.homeWallZone);
+    LinearLayout.LayoutParams zoneParams = (LinearLayout.LayoutParams) zone.getLayoutParams();
+    zoneParams.leftMargin = zoneParams.rightMargin = 0;
+    zoneParams.setMarginStart(0);
+    zoneParams.topMargin = dp(4);
+    zone.setLayoutParams(zoneParams);
     LinearLayout shortcuts = findViewById(R.id.homeShortcuts);
     java.util.List<android.view.View> tiles = new java.util.ArrayList<>();
     for (int i = 0; i < shortcuts.getChildCount(); i++) {

@@ -1,0 +1,650 @@
+{
+  "surabaya": {
+    "label": "Sukolilo, Surabaya",
+    "zone": "WIB",
+    "offset": 7,
+    "days": {
+      "2026-10-27": {
+        "sky": {
+          "rise": 303,
+          "noon": 673,
+          "set": 1043,
+          "illumination": 0.9873752073969304,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            225,
+            "Subuh"
+          ],
+          [
+            675,
+            "Zuhur"
+          ],
+          [
+            868,
+            "Asar"
+          ],
+          [
+            1045,
+            "Maghrib"
+          ],
+          [
+            1117,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-28": {
+        "sky": {
+          "rise": 303,
+          "noon": 673,
+          "set": 1043,
+          "illumination": 0.9528084019441053,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            225,
+            "Subuh"
+          ],
+          [
+            675,
+            "Zuhur"
+          ],
+          [
+            868,
+            "Asar"
+          ],
+          [
+            1045,
+            "Maghrib"
+          ],
+          [
+            1117,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-29": {
+        "sky": {
+          "rise": 303,
+          "noon": 673,
+          "set": 1044,
+          "illumination": 0.8978199391035167,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            225,
+            "Subuh"
+          ],
+          [
+            675,
+            "Zuhur"
+          ],
+          [
+            869,
+            "Asar"
+          ],
+          [
+            1046,
+            "Maghrib"
+          ],
+          [
+            1117,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-30": {
+        "sky": {
+          "rise": 302,
+          "noon": 673,
+          "set": 1044,
+          "illumination": 0.8248897983624404,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            224,
+            "Subuh"
+          ],
+          [
+            675,
+            "Zuhur"
+          ],
+          [
+            869,
+            "Asar"
+          ],
+          [
+            1046,
+            "Maghrib"
+          ],
+          [
+            1117,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-31": {
+        "sky": {
+          "rise": 302,
+          "noon": 673,
+          "set": 1044,
+          "illumination": 0.7373071288201845,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            224,
+            "Subuh"
+          ],
+          [
+            675,
+            "Zuhur"
+          ],
+          [
+            870,
+            "Asar"
+          ],
+          [
+            1046,
+            "Maghrib"
+          ],
+          [
+            1118,
+            "Isya"
+          ]
+        ]
+      }
+    }
+  },
+  "jakarta": {
+    "label": "Jakarta",
+    "zone": "WIB",
+    "offset": 7,
+    "days": {
+      "2026-10-27": {
+        "sky": {
+          "rise": 328,
+          "noon": 697,
+          "set": 1066,
+          "illumination": 0.9873752073969304,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            250,
+            "Subuh"
+          ],
+          [
+            699,
+            "Zuhur"
+          ],
+          [
+            893,
+            "Asar"
+          ],
+          [
+            1068,
+            "Maghrib"
+          ],
+          [
+            1139,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-28": {
+        "sky": {
+          "rise": 328,
+          "noon": 697,
+          "set": 1066,
+          "illumination": 0.9528084019441053,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            250,
+            "Subuh"
+          ],
+          [
+            699,
+            "Zuhur"
+          ],
+          [
+            893,
+            "Asar"
+          ],
+          [
+            1068,
+            "Maghrib"
+          ],
+          [
+            1140,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-29": {
+        "sky": {
+          "rise": 328,
+          "noon": 697,
+          "set": 1066,
+          "illumination": 0.8978199391035167,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            250,
+            "Subuh"
+          ],
+          [
+            699,
+            "Zuhur"
+          ],
+          [
+            894,
+            "Asar"
+          ],
+          [
+            1068,
+            "Maghrib"
+          ],
+          [
+            1140,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-30": {
+        "sky": {
+          "rise": 327,
+          "noon": 697,
+          "set": 1066,
+          "illumination": 0.8248897983624404,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            249,
+            "Subuh"
+          ],
+          [
+            699,
+            "Zuhur"
+          ],
+          [
+            894,
+            "Asar"
+          ],
+          [
+            1068,
+            "Maghrib"
+          ],
+          [
+            1140,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-31": {
+        "sky": {
+          "rise": 327,
+          "noon": 697,
+          "set": 1066,
+          "illumination": 0.7373071288201845,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            249,
+            "Subuh"
+          ],
+          [
+            699,
+            "Zuhur"
+          ],
+          [
+            895,
+            "Asar"
+          ],
+          [
+            1068,
+            "Maghrib"
+          ],
+          [
+            1140,
+            "Isya"
+          ]
+        ]
+      }
+    }
+  },
+  "makassar": {
+    "label": "Makassar",
+    "zone": "WITA",
+    "offset": 8,
+    "days": {
+      "2026-10-27": {
+        "sky": {
+          "rise": 339,
+          "noon": 707,
+          "set": 1075,
+          "illumination": 0.9883458472665368,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            261,
+            "Subuh"
+          ],
+          [
+            709,
+            "Zuhur"
+          ],
+          [
+            903,
+            "Asar"
+          ],
+          [
+            1077,
+            "Maghrib"
+          ],
+          [
+            1148,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-28": {
+        "sky": {
+          "rise": 338,
+          "noon": 707,
+          "set": 1075,
+          "illumination": 0.9546704698683032,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            261,
+            "Subuh"
+          ],
+          [
+            709,
+            "Zuhur"
+          ],
+          [
+            904,
+            "Asar"
+          ],
+          [
+            1077,
+            "Maghrib"
+          ],
+          [
+            1148,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-29": {
+        "sky": {
+          "rise": 338,
+          "noon": 706,
+          "set": 1075,
+          "illumination": 0.900489455825259,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            261,
+            "Subuh"
+          ],
+          [
+            708,
+            "Zuhur"
+          ],
+          [
+            904,
+            "Asar"
+          ],
+          [
+            1077,
+            "Maghrib"
+          ],
+          [
+            1148,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-30": {
+        "sky": {
+          "rise": 338,
+          "noon": 706,
+          "set": 1075,
+          "illumination": 0.8282463686866541,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            260,
+            "Subuh"
+          ],
+          [
+            708,
+            "Zuhur"
+          ],
+          [
+            905,
+            "Asar"
+          ],
+          [
+            1077,
+            "Maghrib"
+          ],
+          [
+            1148,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-31": {
+        "sky": {
+          "rise": 338,
+          "noon": 706,
+          "set": 1075,
+          "illumination": 0.7411993714366636,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            260,
+            "Subuh"
+          ],
+          [
+            708,
+            "Zuhur"
+          ],
+          [
+            905,
+            "Asar"
+          ],
+          [
+            1077,
+            "Maghrib"
+          ],
+          [
+            1149,
+            "Isya"
+          ]
+        ]
+      }
+    }
+  },
+  "jayapura": {
+    "label": "Jayapura",
+    "zone": "WIT",
+    "offset": 9,
+    "days": {
+      "2026-10-27": {
+        "sky": {
+          "rise": 316,
+          "noon": 681,
+          "set": 1047,
+          "illumination": 0.9892781060117679,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            239,
+            "Subuh"
+          ],
+          [
+            683,
+            "Zuhur"
+          ],
+          [
+            880,
+            "Asar"
+          ],
+          [
+            1049,
+            "Maghrib"
+          ],
+          [
+            1120,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-28": {
+        "sky": {
+          "rise": 316,
+          "noon": 681,
+          "set": 1047,
+          "illumination": 0.9564968033556616,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            239,
+            "Subuh"
+          ],
+          [
+            683,
+            "Zuhur"
+          ],
+          [
+            881,
+            "Asar"
+          ],
+          [
+            1049,
+            "Maghrib"
+          ],
+          [
+            1120,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-29": {
+        "sky": {
+          "rise": 316,
+          "noon": 681,
+          "set": 1047,
+          "illumination": 0.903127496420783,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            238,
+            "Subuh"
+          ],
+          [
+            683,
+            "Zuhur"
+          ],
+          [
+            881,
+            "Asar"
+          ],
+          [
+            1049,
+            "Maghrib"
+          ],
+          [
+            1120,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-30": {
+        "sky": {
+          "rise": 315,
+          "noon": 681,
+          "set": 1047,
+          "illumination": 0.83157714076825,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            238,
+            "Subuh"
+          ],
+          [
+            683,
+            "Zuhur"
+          ],
+          [
+            881,
+            "Asar"
+          ],
+          [
+            1049,
+            "Maghrib"
+          ],
+          [
+            1120,
+            "Isya"
+          ]
+        ]
+      },
+      "2026-10-31": {
+        "sky": {
+          "rise": 315,
+          "noon": 681,
+          "set": 1047,
+          "illumination": 0.7450726571948849,
+          "waxing": false
+        },
+        "prayers": [
+          [
+            238,
+            "Subuh"
+          ],
+          [
+            683,
+            "Zuhur"
+          ],
+          [
+            882,
+            "Asar"
+          ],
+          [
+            1049,
+            "Maghrib"
+          ],
+          [
+            1120,
+            "Isya"
+          ]
+        ]
+      }
+    }
+  }
+}

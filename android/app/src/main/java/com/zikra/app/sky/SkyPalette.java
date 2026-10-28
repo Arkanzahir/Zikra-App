@@ -21,12 +21,25 @@ public final class SkyPalette {
   }
 
   public static int top(SkyDay day, LocalTime time) {
-    return blend(0xFF071F2D, 0xFF409AC0, daylight(day, time));
+    int base = blend(0xFF0A1931, 0xFF589DBD, daylight(day, time));
+    return blend(base, 0xFF5B638B, twilight(day, time) * .55f);
   }
 
   public static int horizon(SkyDay day, LocalTime time) {
-    int base = blend(0xFF153A46, 0xFFB0D4EB, daylight(day, time));
-    return blend(base, 0xFFD5B075, twilight(day, time) * .85f);
+    int base = blend(0xFF1E314C, 0xFFBAD9E3, daylight(day, time));
+    return blend(base, 0xFFF1AA74, twilight(day, time) * .85f);
+  }
+
+  public static float sunVisibility(SkyDay day, LocalTime time) {
+    int second = time.toSecondOfDay();
+    return clamp((second - day.rise.toSecondOfDay() + 420) / 600f)
+        * clamp((day.set.toSecondOfDay() - second + 420) / 600f);
+  }
+
+  public static float nightVisibility(SkyDay day, LocalTime time) {
+    int second = time.toSecondOfDay();
+    return Math.max(clamp((day.rise.toSecondOfDay() - second - 720) / 3480f),
+        clamp((second - day.set.toSecondOfDay() - 720) / 3480f));
   }
 
   public static int cloud(SkyDay day, LocalTime time) {

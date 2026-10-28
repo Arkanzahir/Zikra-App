@@ -1,0 +1,23 @@
+{
+  "cases": [
+    {
+      "time": "08:45:00",
+      "countdown": "02:30:00"
+    },
+    {
+      "time": "11:14:59",
+      "countdown": "00:00:01"
+    },
+    {
+      "time": "11:15:00",
+      "countdown": "03:13:00"
+    },
+    {
+      "time": "20:30:00",
+      "countdown": "07:15:00"
+    }
+  ],
+  "singleLandscapeBoundsAtFiveTimes": true,
+  "decodedBitmapBytes": 1923072,
+  "oldNightBitmapNotLoaded": true
+}

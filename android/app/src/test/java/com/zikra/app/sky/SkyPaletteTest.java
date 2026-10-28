@@ -36,4 +36,17 @@ public final class SkyPaletteTest {
       assertTrue(value >= 0 && value <= 1);
     }
   }
+
+  @Test public void celestialVisibilityFollowsSelectedLocalEvents() {
+    SkyDay early = day(6,18), late = day(8,20);
+    assertEquals(0, SkyPalette.sunVisibility(early, LocalTime.MIDNIGHT), .001);
+    assertEquals(1, SkyPalette.sunVisibility(early, LocalTime.NOON), .001);
+    assertEquals(0, SkyPalette.sunVisibility(early, LocalTime.of(19,0)), .001);
+    assertEquals(1, SkyPalette.nightVisibility(early, LocalTime.of(23,0)), .001);
+    assertEquals(0, SkyPalette.nightVisibility(early, LocalTime.NOON), .001);
+    assertTrue(SkyPalette.sunVisibility(early, LocalTime.of(7,0))
+        > SkyPalette.sunVisibility(late, LocalTime.of(7,0)));
+    assertTrue(SkyPalette.nightVisibility(early, LocalTime.of(19,0))
+        > SkyPalette.nightVisibility(late, LocalTime.of(19,0)));
+  }
 }

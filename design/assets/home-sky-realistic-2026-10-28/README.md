@@ -11,7 +11,7 @@ Referensi menampilkan dua lapis awan yang bergeser perlahan, parallax sentuh/kur
 
 Waktu matahari memakai contoh perhitungan lokal aplikasi tanggal 28 Oktober 2026 di titik awal publik Surabaya, bukan lokasi GPS pengguna. Arah gambar matahari, bintang, dan posisi bulan bersifat ilustratif, bukan arah kompas atau ephemeris bulan. Fase contoh bulan sekitar 95,3% menyusut. Awan dekoratif, bukan laporan cuaca.
 
-Status: **referensi desain dan aset saja**. Belum mengubah resource Android, versi aplikasi, APK, rumus jadwal salat, atau menutup checklist F04/G02. Belum ada bukti pemakaian RAM/baterai pada HP untuk efek ini.
+Status awal checkpoint ini adalah referensi desain dan aset. **Kelanjutan yang disetujui pengguna: kandidat Android1.9.17/code44 kini memakai aset dan langit yang diperbaiki**, lihat [bukti native, APK dan batas](../../../android/validation/home-location-sky-2026-10-28/README.md). Rumus jadwal tidak berubah; F04/G02 global dan pengukuran baterai HP tetap terbuka. Paragraf koreksi referensi di bawah mencatat tahap sebelumnya.
 
 ## Pemeriksaan referensi
 
@@ -32,3 +32,9 @@ Pemeriksaan browser diulang setelah koreksi: tepat satu gambar/siluet masjid den
 Hitung mundur yang terlewat saat merapikan referensi kembali tampil di bawah nama salat tujuan, dengan format `HH:MM:SS`. Nilainya berasal dari jam simulasi dan contoh jadwal yang sama, bukan angka tetap; ia berhenti saat simulasi dijeda dan berubah ketika penggeser/putar simulasi digunakan. Pada waktu salat tepat, tujuan beralih ke salat berikutnya; sesudah Isya menuju contoh Subuh besok.
 
 [Screenshot 08.45](preview-countdown.png) menunjukkan `02:30:00` menuju Zuhur11.15. Lima kasus selisih/batas (08.45,11.14,11.15,18.37,20.30), perubahan saat playback, keterbacaan pada tiga lebar layar dan pemeriksaan langit sebelumnya lulus di browser. Ini tetap referensi; tidak mengubah penghitung/jadwal pada APK.
+
+## Pemilih lokasi dan integrasi Android
+
+Nama lokasi dan panah ▾ kini membuka pilihan Sukolilo/Surabaya, Jakarta, Makassar dan Jayapura. [Data contoh](preview-cities.json) berasal dari `PrayerSchedule` dan `SkyDay` aplikasi pada koordinat publik tanggal27–31Oktober2026. Penggantian kota menjaga instant yang sama: WIB08.45→WITA09.45→WIT10.45; tanggal ikut berubah bila melewati tengah malam. Jadwal/target/countdown dan warna langit berubah berdasarkan pilihan, lalu disimpan sebagai state referensi. Tombol lokasi HP menjelaskan bahwa referensi tidak mengakses GPS, sedangkan APK memakai alur GPS yang sudah ada.
+
+Pemilih, tiga zona, pergantian tanggal, pembatalan/tutup, countdown, aset dan gerak lulus pada tiga lebar browser. [Tampilan pilihan](preview-location-picker.png), [Makassar](preview-location-makassar.png). Implementasi Android sudah diperiksa terpisah pada bukti1.9.17; hasil browser bukan pengganti uji APK.

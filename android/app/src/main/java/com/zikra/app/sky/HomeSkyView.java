@@ -10,93 +10,86 @@ import com.zikra.app.R;
 import com.zikra.app.ui.AmbientMotionPolicy;
 import java.time.*;
 
-/** Quiet layered sky; bounded 30fps, no allocations/network/Binder reads in each frame. */
+/** Location-clock illustration. One building silhouette; bounded 30fps, cached paints. */
 public final class HomeSkyView extends View implements SensorEventListener {
   private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-  private final Path moon = new Path();
-  private final Bitmap clouds;
-  private final RectF cloudBounds = new RectF();
   private final Paint cloudPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-  private final Rect visible = new Rect();
-  private int paletteMinute = -1, cloudColor;
-  private float scrollOffset;
-  private Shader textShade;
-  private final Shader sunGlow = new RadialGradient(0, 0, 1,
-      new int[] {0x60FFE4A5, 0x00FFE4A5}, null, Shader.TileMode.CLAMP);
-  private final Bitmap landscape;
-  private final Bitmap dayLandscape;
-  private final RectF landscapeBounds = new RectF();
-  private final RectF dayLandscapeBounds = new RectF();
   private final Paint landscapePaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-  private final Paint dayLandscapePaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-  private float nightBlend;
-  private Shader backdrop;
-  private int backdropWidth, backdropHeight;
+  private final RectF cloudBounds = new RectF(), landscapeBounds = new RectF();
+  private final Rect visible = new Rect();
+  private final Path moon = new Path();
+  private final Bitmap clouds, landscape;
+  private final Shader sunGlow = new RadialGradient(0, 0, 1,
+      new int[] {0x35FFF2C1, 0x0CFFF2C1, 0x00FFF2C1},
+      new float[] {0, .35f, 1}, Shader.TileMode.CLAMP);
+  private final Shader moonGlow = new RadialGradient(0, 0, 1.8f,
+      new int[] {0x16DCE8FF, 0x00DCE8FF}, null, Shader.TileMode.CLAMP);
+  private final Shader lunarDetail = new RadialGradient(-.24f, -.2f, .7f,
+      new int[] {0x19293C47, 0x00293C47}, null, Shader.TileMode.CLAMP);
+  private final Shader lampGlow = new RadialGradient(0, 0, 17,
+      new int[] {0x73FFC771, 0x30FFB354, 0x00FFAE4D},
+      new float[] {0, .35f, 1}, Shader.TileMode.CLAMP);
+  private static final float[] LAMP_X = {440, 493, 551, 616, 705, 744, 792, 841, 888};
   private final AmbientMotionPolicy policy;
   private final SensorManager sensors;
   private final Sensor gravity;
   private SkyDay day;
   private LocalTime time = LocalTime.NOON;
-  private boolean running, registered;
-  private float aimX, aimY, offsetX, offsetY;
-  private final long origin = SystemClock.uptimeMillis();
+  private boolean running, registered, touching;
+  private float aimX, aimY, offsetX, offsetY, scrollOffset, nightBlend;
+  private int paletteSecond = -1, backdropWidth, backdropHeight;
+  private Shader backdrop, textShade;
+  private long lastFrame, motionMillis;
 
-  public HomeSkyView(Context c, AttributeSet a) {
-    super(c, a);
+  public HomeSkyView(Context context, AttributeSet attributes) {
+    super(context, attributes);
     setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_NO);
-    BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-    bitmapOptions.inScaled = false;
-    bitmapOptions.inSampleSize = 2;
-    landscape =
-        BitmapFactory.decodeResource(
-            c.getResources(), R.drawable.home_al_qibli_foreground, bitmapOptions);
-    dayLandscape = BitmapFactory.decodeResource(
-        c.getResources(), R.drawable.home_al_qibli_day_unlit, bitmapOptions);
-    clouds = BitmapFactory.decodeResource(c.getResources(), R.drawable.home_cloud_bank, bitmapOptions);
-    sensors = (SensorManager) c.getSystemService(Context.SENSOR_SERVICE);
+    BitmapFactory.Options options = new BitmapFactory.Options();
+    options.inScaled = false;
+    options.inSampleSize = 2;
+    landscape = BitmapFactory.decodeResource(
+        context.getResources(), R.drawable.home_al_qibli_day_unlit, options);
+    clouds = BitmapFactory.decodeResource(
+        context.getResources(), R.drawable.home_cloud_realistic, options);
+    sensors = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
     gravity = sensors == null ? null : sensors.getDefaultSensor(Sensor.TYPE_GRAVITY);
-    policy =
-        new AmbientMotionPolicy(
-            c,
-            () -> {
-              syncSensor();
-              invalidate();
-            });
-    com.zikra.app.location.LocationPoint point = com.zikra.app.location.LocationStore.current(c);
+    policy = new AmbientMotionPolicy(context, () -> { syncSensor(); invalidate(); });
+    com.zikra.app.location.LocationPoint point =
+        com.zikra.app.location.LocationStore.current(context);
     setSky(SkyDay.estimate(LocalDate.now(point.zone), point), LocalTime.now(point.zone));
   }
 
   public void setSky(SkyDay value, LocalTime localTime) {
-    if (day == null || !day.date.equals(value.date) || !day.rise.equals(value.rise)
-        || !day.set.equals(value.set)) paletteMinute = -1;
+    boolean phaseChanged = day == null || day.illumination != value.illumination;
+    if (day != value) paletteSecond = -1;
     day = value;
     time = localTime;
-    // Normalized lunar terminator. Orientation is illustrative; the lit fraction follows the
-    // source.
-    moon.reset();
-    for (int i = 0; i <= 64; i++) {
-      float y = -1 + i / 32f, x = (float) Math.sqrt(Math.max(0, 1 - y * y));
-      if (i == 0) moon.moveTo(x, y);
-      else moon.lineTo(x, y);
+    if (phaseChanged) {
+      moon.reset();
+      for (int i = 0; i <= 64; i++) {
+        float y = -1 + i / 32f, x = (float) Math.sqrt(Math.max(0, 1 - y * y));
+        if (i == 0) moon.moveTo(x, y);
+        else moon.lineTo(x, y);
+      }
+      for (int i = 64; i >= 0; i--) {
+        float y = -1 + i / 32f;
+        moon.lineTo((float) ((1 - 2 * day.illumination)
+            * Math.sqrt(Math.max(0, 1 - y * y))), y);
+      }
+      moon.close();
     }
-    for (int i = 64; i >= 0; i--) {
-      float y = -1 + i / 32f,
-          x = (float) ((1 - 2 * day.illumination) * Math.sqrt(Math.max(0, 1 - y * y)));
-      moon.lineTo(x, y);
-    }
-    moon.close();
     invalidate();
   }
 
   public boolean isMotionRunning() {
-    return running && isShown() && hasWindowFocus() && getLocalVisibleRect(visible) && policy.enabled();
+    return running && isShown() && hasWindowFocus() && getLocalVisibleRect(visible)
+        && policy.enabled();
   }
 
-  public boolean isDaytime() {
-    return day.daytime(time);
-  }
+  public boolean isDaytime() { return day.daytime(time); }
 
   public void setRunning(boolean value) {
+    if (running == value) return;
     running = value;
     if (value) policy.start();
     else policy.stop();
@@ -104,12 +97,16 @@ public final class HomeSkyView extends View implements SensorEventListener {
     invalidate();
   }
 
-  public void observeTouch(MotionEvent e) {
-    if (e.getActionMasked() == MotionEvent.ACTION_UP
-        || e.getActionMasked() == MotionEvent.ACTION_CANCEL) aimX = aimY = 0;
+  public void observeTouch(MotionEvent event) {
+    if (event.getActionMasked() == MotionEvent.ACTION_UP
+        || event.getActionMasked() == MotionEvent.ACTION_CANCEL) {
+      touching = false;
+      aimX = aimY = 0;
+    }
     else {
-      aimX = (e.getX() / Math.max(1, getWidth()) - .5f) * 2;
-      aimY = (e.getY() / Math.max(1, getHeight()) - .5f) * 2;
+      touching = true;
+      aimX = Math.max(-1, Math.min(1, (event.getX() / Math.max(1, getWidth()) - .5f) * 2));
+      aimY = Math.max(-1, Math.min(1, (event.getY() / Math.max(1, getHeight()) - .5f) * 2));
     }
   }
 
@@ -117,158 +114,132 @@ public final class HomeSkyView extends View implements SensorEventListener {
     boolean active = isMotionRunning() && gravity != null;
     if (active && !registered)
       registered = sensors.registerListener(this, gravity, SensorManager.SENSOR_DELAY_UI);
-    if (!active && registered) {
-      sensors.unregisterListener(this);
-      registered = false;
-    }
+    if (!active && registered) { sensors.unregisterListener(this); registered = false; }
   }
 
-  @Override
-  public void onWindowFocusChanged(boolean focus) {
+  @Override public void onWindowFocusChanged(boolean focus) {
     super.onWindowFocusChanged(focus);
     syncSensor();
     invalidate();
   }
 
-  @Override
-  protected void onDetachedFromWindow() {
+  @Override protected void onDetachedFromWindow() {
     setRunning(false);
     super.onDetachedFromWindow();
   }
 
-  @Override
-  public void onSensorChanged(SensorEvent e) {
-    aimX = Math.max(-1, Math.min(1, -e.values[0] / 4));
-    aimY = Math.max(-1, Math.min(1, e.values[1] / 5));
+  @Override public void onSensorChanged(SensorEvent event) {
+    if (touching) return;
+    aimX = Math.max(-1, Math.min(1, -event.values[0] / 4));
+    aimY = Math.max(-1, Math.min(1, event.values[1] / 5));
   }
 
-  @Override
-  public void onAccuracyChanged(Sensor s, int accuracy) {}
+  @Override public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
-  public void setScrollOffset(float pixels) {
-    scrollOffset = pixels;
-    invalidate();
-  }
+  public void setScrollOffset(float pixels) { scrollOffset = pixels; invalidate(); }
 
-  private void cloud(Canvas c, float x, float y, float scale, int alpha) {
-    float width = getWidth() * scale, height = width * clouds.getHeight() / clouds.getWidth();
-    cloudBounds.set(x, y, x + width, y + height);
-    cloudPaint.setAlpha(alpha);
-    c.drawBitmap(clouds, null, cloudBounds, cloudPaint);
-  }
-
-  @Override
-  protected void onMeasure(int widthSpec, int heightSpec) {
-    // This background fills the hero's second layout pass; it never determines its height.
-    int height =
+  @Override protected void onMeasure(int widthSpec, int heightSpec) {
+    setMeasuredDimension(MeasureSpec.getSize(widthSpec),
         MeasureSpec.getMode(heightSpec) == MeasureSpec.EXACTLY
-            ? MeasureSpec.getSize(heightSpec)
-            : 0;
-    setMeasuredDimension(MeasureSpec.getSize(widthSpec), height);
+            ? MeasureSpec.getSize(heightSpec) : 0);
   }
 
-  @Override
-  protected void onDraw(Canvas c) {
-    boolean animate = isMotionRunning(), light = isDaytime();
-    float t = animate ? (SystemClock.uptimeMillis() - origin) / 1000f : 0;
+  private void cloud(Canvas canvas, float x, float y, float scale, int alpha) {
+    float width = getWidth() * scale;
+    cloudBounds.set(x, y, x + width, y + width * clouds.getHeight() / clouds.getWidth());
+    cloudPaint.setAlpha(alpha);
+    canvas.drawBitmap(clouds, null, cloudBounds, cloudPaint);
+  }
+
+  @Override protected void onDraw(Canvas canvas) {
+    boolean animate = isMotionRunning();
+    long now = SystemClock.uptimeMillis();
     if (animate) {
+      if (lastFrame != 0) motionMillis += Math.min(100, now - lastFrame);
+      lastFrame = now;
       offsetX += (aimX - offsetX) * .10f;
       offsetY += (aimY - offsetY) * .10f;
-    } else offsetX = offsetY = 0;
-    float w = getWidth(), h = getHeight(), u = w / 400f;
-    int minute = time.toSecondOfDay() / 60;
-    if (backdrop == null || paletteMinute != minute
+    } else { lastFrame = 0; offsetX = offsetY = 0; }
+    float t = motionMillis / 1000f, w = getWidth(), h = getHeight(), u = w / 400f;
+    int second = time.toSecondOfDay();
+    if (backdrop == null || paletteSecond != second
         || backdropWidth != getWidth() || backdropHeight != getHeight()) {
-      paletteMinute = minute;
+      paletteSecond = second;
       backdropWidth = getWidth(); backdropHeight = getHeight();
-      backdrop = new LinearGradient(0, 0, w, h, SkyPalette.top(day, time),
+      backdrop = new LinearGradient(0, 0, 0, h, SkyPalette.top(day, time),
           SkyPalette.horizon(day, time), Shader.TileMode.CLAMP);
       textShade = new LinearGradient(0, 0, w, 0,
-          new int[] {0xAA082F32, 0x70082F32, 0x00082F32}, new float[] {0, .48f, 1},
-          Shader.TileMode.CLAMP);
-      int color = SkyPalette.cloud(day, time);
-      if (color != cloudColor) {
-        cloudColor = color;
-        cloudPaint.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
-      }
+          new int[] {0x98082F32, 0x48082F32, 0x00082F32},
+          new float[] {0, .5f, 1}, Shader.TileMode.CLAMP);
+      cloudPaint.setColorFilter(new PorterDuffColorFilter(
+          SkyPalette.cloud(day, time), PorterDuff.Mode.MULTIPLY));
       float daylight = SkyPalette.daylight(day, time);
       nightBlend = 1 - daylight;
-      float brightness = .38f + .62f * daylight;
-      float warm = .65f * nightBlend;
+      float brightness = .43f + .57f * daylight;
       landscapePaint.setColorFilter(new ColorMatrixColorFilter(new float[] {
-          brightness + warm,0,-warm,0,0, warm * .6f,brightness,-warm * .6f,0,0,
-          0,0,brightness + .03f * (1-brightness),0,0, 0,0,0,1,0}));
-      float dayBrightness = .55f + .45f * daylight;
-      dayLandscapePaint.setColorFilter(new ColorMatrixColorFilter(new float[] {
-          dayBrightness,0,0,0,0, 0,dayBrightness,0,0,0,
-          0,0,dayBrightness,0,0, 0,0,0,1,0}));
+          brightness,0,0,0,0, 0,brightness,0,0,0, 0,0,brightness,0,0, 0,0,0,1,0}));
     }
-    paint.setShader(backdrop);
-    paint.setAlpha(255);
-    c.drawRect(0, 0, w, h, paint);
-    paint.setShader(null);
-    if (light) {
-      float progress = day.sunProgress(time),
-          x = w * (.84f + .10f * progress),
-          y = h * .34f - h * .08f * (float) Math.sin(Math.PI * progress);
-      c.save();
-      c.translate(x + offsetX * 3 * u, y + offsetY * 2 * u);
-      c.save(); c.scale(38 * u, 38 * u);
-      paint.setShader(sunGlow); paint.setAlpha(255);
-      c.drawCircle(0, 0, 1, paint);
-      paint.setShader(null); c.restore();
-      paint.setColor(0xFFFFE9AE);
-      c.drawCircle(0, 0, 15 * u, paint);
-      c.restore();
-    } else {
-      for (int i = 0; i < 19; i++) {
-        float x = w * ((i * 43 + 23) % 367) / 400f, y = h * (.25f + ((i * 31) % 47) / 170f);
-        // Keep the centre clock area quiet.
-        if (x > w * .25f && x < w * .75f && y > h * .38f) continue;
-        paint.setColor(0xFFF3DEB0);
-        paint.setAlpha((int) (34 + 13 * Math.sin(t * .6 + i)));
-        c.drawCircle(
-            x + offsetX * 3 * u, y + offsetY * 2 * u, (i % 3 == 0 ? 1.2f : .7f) * u, paint);
-      }
-      c.save();
-      c.translate(
-          w * .87f + offsetX * 5 * u,
-          h * .26f + offsetY * 3 * u + (float) Math.sin(t * .12f) * 2 * u);
-      c.rotate(-18 + (float) Math.sin(t * .045f) * 6);
-      c.scale(17 * u * (day.waxing ? 1 : -1), 17 * u);
-      paint.setColor(0xFF63756A);
-      paint.setAlpha(80);
-      c.drawCircle(0, 0, 1, paint);
-      paint.setColor(0xFFE7D9AF);
-      paint.setAlpha(230);
-      c.drawPath(moon, paint);
-      c.restore();
+    paint.setShader(backdrop); paint.setAlpha(255);
+    canvas.drawRect(0, 0, w, h, paint); paint.setShader(null);
+    float progress = day.sunProgress(time), elevation = (float) Math.sin(Math.PI * progress);
+    float sunX = w * (.17f + .71f * progress), sunY = h * (.76f - .47f * elevation);
+    float sunAlpha = SkyPalette.sunVisibility(day, time);
+    if (sunAlpha > 0) {
+      canvas.save(); canvas.translate(sunX + offsetX * 2 * u, sunY + offsetY * u);
+      canvas.save(); canvas.scale(47 * u, 47 * u);
+      paint.setShader(sunGlow); paint.setAlpha(Math.round(255 * sunAlpha));
+      canvas.drawCircle(0, 0, 1, paint); canvas.restore(); paint.setShader(null);
+      paint.setColor(elevation < .3f ? 0xFFFFD399 : 0xFFFFFBE3);
+      paint.setAlpha(Math.round(255 * sunAlpha));
+      canvas.drawCircle(0, 0, (7.5f + (1 - elevation)) * u, paint); canvas.restore();
     }
-    float drift = (float) Math.sin(t * .08f);
-    cloud(c, w * .33f + drift * 24 * u + offsetX * 4 * u,
-        h * .23f + offsetY * 2 * u - Math.min(scrollOffset, h) * .025f, .60f, light ? 190 : 95);
-    cloud(c, w * .18f + (float) Math.sin(t * .055f + 2) * 32 * u + offsetX * 8 * u,
-        h * .39f - Math.min(scrollOffset, h) * .045f, .72f, light ? 120 : 58);
-    c.save();
-    c.translate(offsetX * 3 * u, offsetY * 1.5f * u - Math.min(scrollOffset, h) * .015f);
-    float imageHeight = w * landscape.getHeight() / landscape.getWidth();
-    landscapeBounds.set(-2 * u, h - imageHeight - 24 * u, w + 42 * u, h - 20 * u);
-    paint.setColor(0xFF123C39); paint.setAlpha(255);
-    c.drawRect(0, h - 32 * u, w, h + 4 * u, paint);
-    // The daytime artwork has no artificial lamp glow; align its generated horizon to the master.
-    if (nightBlend < 1) {
-      dayLandscapeBounds.set(landscapeBounds);
-      dayLandscapeBounds.offset(0, imageHeight * .029f);
-      c.drawBitmap(dayLandscape, null, dayLandscapeBounds, dayLandscapePaint);
+    float night = SkyPalette.nightVisibility(day, time);
+    for (int i = 0; night > 0 && i < 24; i++) {
+      float x = w * (.51f + ((i * 43 + 23) % 46) / 100f);
+      float y = h * (.17f + ((i * 31) % 44) / 100f);
+      paint.setColor(0xFFEDF4FF); paint.setAlpha(Math.round(night * (85 + i % 5 * 22)));
+      canvas.drawCircle(x + offsetX * 2 * u, y + offsetY * u,
+          (i % 5 == 0 ? .8f : .5f) * u, paint);
     }
-    // Thirty-minute twilight blend follows the same local sunrise/sunset as the sky.
+    if (night > 0) {
+      canvas.save();
+      canvas.translate(w * .81f + offsetX * 2 * u, h * .26f + offsetY * 1.5f * u);
+      canvas.scale(9.5f * u * (day.waxing ? 1 : -1), 9.5f * u);
+      paint.setShader(moonGlow); paint.setAlpha(Math.round(255 * night));
+      canvas.drawCircle(0, 0, 1.8f, paint); paint.setShader(null);
+      paint.setColor(0xFFEBEDE8); paint.setAlpha(Math.round(242 * night));
+      canvas.drawPath(moon, paint); canvas.clipPath(moon);
+      paint.setShader(lunarDetail); paint.setAlpha(Math.round(255 * night));
+      canvas.drawCircle(0, 0, 1, paint); paint.setShader(null); canvas.restore();
+    }
+    float daylight = 1 - nightBlend;
+    cloud(canvas, w * .19f + (float) Math.sin(t * .055f) * 20 * u + offsetX * 4 * u,
+        h * .17f + offsetY * 2 * u - Math.min(scrollOffset, h) * .025f,
+        .91f, Math.round(255 * (.065f + .12f * daylight)));
+    cloud(canvas, w * .43f + (float) Math.sin(t * .08f) * 32 * u + offsetX * 9 * u,
+        h * .32f + offsetY * 4 * u - Math.min(scrollOffset, h) * .045f,
+        .83f, Math.round(255 * (.10f + .20f * daylight)));
+    canvas.save();
+    canvas.translate(-offsetX * 2 * u,
+        -offsetY * 1.4f * u - Math.min(scrollOffset, h) * .015f);
+    float sceneWidth = w * 1.025f;
+    float sceneHeight = sceneWidth * landscape.getHeight() / landscape.getWidth();
+    float left = (w - sceneWidth) / 2, top = h - sceneHeight + 9 * u;
+    landscapeBounds.set(left, top, left + sceneWidth, top + sceneHeight);
+    canvas.drawBitmap(landscape, null, landscapeBounds, landscapePaint);
     if (nightBlend > 0) {
-      landscapePaint.setAlpha(Math.round(255 * nightBlend));
-      c.drawBitmap(landscape, null, landscapeBounds, landscapePaint);
+      canvas.translate(left, top); canvas.scale(sceneWidth / 960, sceneHeight / 640);
+      for (float x : LAMP_X) {
+        canvas.save(); canvas.translate(x, x < 720 ? 484 : 486);
+        paint.setShader(lampGlow); paint.setAlpha(Math.round(255 * nightBlend));
+        canvas.drawCircle(0, 0, 17, paint); paint.setShader(null);
+        paint.setColor(0xFFFFDC9A); paint.setAlpha(Math.round(204 * nightBlend));
+        canvas.drawRect(-1, -2, 1, 2, paint); canvas.restore();
+      }
     }
-    c.restore();
+    canvas.restore();
     paint.setShader(textShade); paint.setAlpha(255);
-    c.drawRect(0, 0, w, h, paint); paint.setShader(null);
+    canvas.drawRect(0, 0, w, h, paint); paint.setShader(null);
     if (animate) postInvalidateDelayed(33);
   }
 }

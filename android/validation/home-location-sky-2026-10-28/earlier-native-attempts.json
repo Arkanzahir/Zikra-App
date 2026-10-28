@@ -1,0 +1,42 @@
+[
+  {
+    "checks": [
+      {
+        "label": "location-native",
+        "passed": false,
+        "tests": null
+      }
+    ],
+    "countedAsPassing": false
+  },
+  {
+    "checks": [
+      {
+        "label": "location-native",
+        "passed": false,
+        "tests": null
+      }
+    ],
+    "countedAsPassing": false
+  },
+  {
+    "checks": [
+      {
+        "label": "location-native",
+        "passed": false,
+        "tests": null
+      }
+    ],
+    "countedAsPassing": false
+  },
+  {
+    "checks": [
+      {
+        "label": "location-native",
+        "passed": false,
+        "tests": null
+      }
+    ],
+    "countedAsPassing": false
+  }
+]

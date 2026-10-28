@@ -1,0 +1,47 @@
+[
+  {
+    "label": "key-baseline",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "seed-1916",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "upgrade-1916-to-1917",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "upgrade-restart",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "location-native",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "clock-sky-native",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "motion-native",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "large-text-native",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "key-cleanup",
+    "passed": true,
+    "tests": 1
+  }
+]

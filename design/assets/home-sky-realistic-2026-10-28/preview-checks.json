@@ -1,5 +1,9 @@
 {
   "passed": true,
+  "locationPicker": true,
+  "threeTimeZones": true,
+  "locationMidnightRollover": true,
+  "gpsPreviewDoesNotAcquireLocation": true,
   "countdownCases": [
     {
       "minute": 525,
@@ -142,5 +146,5 @@
   "parallax": "translate3d(-1.835px, 1.27px, 0px) scale(1.025)",
   "independentClock": true,
   "toggles": true,
-  "source": "App local sky estimate for 2026-10-28 at the public initial Surabaya point; prayer times are examples; scene path, moon position and star field are illustrative."
+  "source": "Public Indonesian city examples, precomputed with app PrayerSchedule/SkyDay for 2026-10-27 through 31; scene path, moon position and star field are illustrative."
 }
