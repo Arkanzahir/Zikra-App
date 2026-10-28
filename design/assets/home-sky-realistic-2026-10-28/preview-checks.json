@@ -66,9 +66,49 @@
   "skyTransitions": true,
   "nightStars": true,
   "moonPixels": {
-    "lit": 10034,
+    "lit": 10348,
     "transparent": 5424
   },
+  "singleMosqueSilhouette": true,
+  "mosqueGeometry": [
+    {
+      "src": 167687,
+      "width": 399.75,
+      "height": 266.5,
+      "top": 130.5
+    },
+    {
+      "src": 167687,
+      "width": 399.75,
+      "height": 266.5,
+      "top": 130.5
+    },
+    {
+      "src": 167687,
+      "width": 399.75,
+      "height": 266.5,
+      "top": 130.5
+    },
+    {
+      "src": 167687,
+      "width": 399.75,
+      "height": 266.5,
+      "top": 130.5
+    },
+    {
+      "src": 167687,
+      "width": 399.75,
+      "height": 266.5,
+      "top": 130.5
+    },
+    {
+      "src": 167687,
+      "width": 399.75,
+      "height": 266.5,
+      "top": 130.5
+    }
+  ],
+  "independentFacadeLights": true,
   "cloudMotion": true,
   "parallax": "translate3d(-1.835px, 1.27px, 0px) scale(1.025)",
   "independentClock": true,
