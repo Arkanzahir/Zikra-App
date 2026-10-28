@@ -1,0 +1,22 @@
+{
+  "version": "1.9.18",
+  "versionCode": 45,
+  "sourceCommit": "df84753f9d0d2d67c3a787d2cb5b073bf6602cb1",
+  "apkFile": "Zikra-Prayer-v1.9.18-beta-debug.apk",
+  "apkBytes": 40746251,
+  "apkSha256": "c5fc144d97f48aec9d70c5aa27ee96f167397214cc7889f306a3c49d8e6b3792",
+  "signerCertificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "releaseType": "private debug beta",
+  "unitPassed": 153,
+  "unitSkipped": 4,
+  "nativePassed": 10,
+  "lintErrors": 0,
+  "lintWarnings": 818,
+  "provider": "myQuran v3, declares Kemenag Bimas Islam as source",
+  "directAuthenticatedKemenagApiUsed": false,
+  "publicOfficialComparisonEvents": 1098,
+  "currentAndNextMonthCached": true,
+  "importedTimesAdjustedAgain": false,
+  "newBuildPhysicalPhoneTested": false,
+  "physicalPhoneModified": false
+}

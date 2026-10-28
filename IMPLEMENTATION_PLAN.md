@@ -1,6 +1,6 @@
 # Rencana implementasi Zikra menuju rilis publik
 
-**Checkpoint terbaru28 Oktober2026:** beta1.9.17/code44/source`1da420a54c67d3d6d55e977aa1e01380ef29e48f`; [bukti/receipt/batas lokasi dan langit Home](android/validation/home-location-sky-2026-10-28/README.md). Paragraf baseline bertanggal di bawah adalah riwayat; checklist mengikuti bukti terbaru.
+**Checkpoint terbaru28 Oktober2026:** beta1.9.18/code45/source`df84753f9d0d2d67c3a787d2cb5b073bf6602cb1`; [bukti/receipt/batas jadwal Kemenag melalui myQuran](android/validation/prayer-source-2026-10-28/README.md). Paragraf baseline bertanggal di bawah adalah riwayat; checklist mengikuti bukti terbaru.
 
 Dibuat 24 Oktober; diperbarui **25 Oktober 2026 (WIB)**. Kandidat Home terbaru: **1.9.4 beta / code 31**, [koreksi gradasi/posisi dan lampu siang-malam](android/validation/home-lighting-layout-2026-10-25/README.md). Kandidat AI yang telah diuji HP tetap **1.8.1 / code 26**, [APK → hosting nyata](android/validation/assistant-hosted-emulator-2026-10-25/README.md); runtime AI belum didesain ulang pada 1.9.1. Kandidat sebelumnya dipertahankan. Baseline konten B04 tetap 1.7.6 (`b3f13f3`), [receipt](android/validation/dua-completion-b04-2026-10-24/release.json). A04 tetap checkpoint 1.6.3 (`2b291ff`); UI01 tetap 1.6.2.
 
@@ -15,6 +15,10 @@ F01/F03 subset Home/lokasi/branding diterapkan pada1.9.16: tema Home eksplisit, 
 ## Kelanjutan disetujui28 Oktober2026 — lokasi dan langit Home1.9.17
 
 Nama lokasi/panah membuka pemilih GPS atau kota manual yang sama; zona/jam/jadwal/countdown mengikuti pilihan. Langit referensi diterapkan: awan realistis/parallax sentuh, lintasan matahari, bulan/bintang, satu siluet masjid dan lampu terpisah.147 unit/4 skip,9 native akhir lulus;lint0 error/821 warning. Upgrade1.9.16 berisi terjaga. APK40.528.718byte, source`1da420a`. HP/GPS baru/baterai vendor belum diperiksa; F/G global dan sisa D02/D02a tidak ditutup. [Bukti dan batas](android/validation/home-location-sky-2026-10-28/README.md).
+
+## D01 tambahan disetujui28 Oktober2026 — jadwal Kemenag melalui myQuran1.9.18
+
+Mengganti prioritas jadwal lokal untuk wilayah Indonesia yang terpetakan: tabel myQuran v3 (menyatakan sumber Kemenag) divalidasi terhadap halaman publik Bimas Islam,1.098 nilai identik pada enam kota-bulan. Cache bulan berjalan/berikutnya, source bersama Home/countdown/alarm/konteks opt-in, tanpa tambahan menit pada impor, serta fallback lokal berlabel.153 unit/4 skip,10 native akhir lulus;lint0 error/818 warning. Upgrade1.9.17 berisi data uji terjaga. APK40.746.251byte/source`df84753`. D01 bukti sensor lama tetap berlaku dalam batasnya; bukan uji HP baru atau penutupan D02/D02a/C/B01/F/G/publik. [Bukti dan batas](android/validation/prayer-source-2026-10-28/README.md).
 
 ## Cara memakai checklist
 
@@ -307,3 +311,5 @@ Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | ta
 | 28 Oktober2026 | F01/F04 referensi langit lanjutan, belum native | Aset awan transparan imagegen, dua lapis gerak/parallax, matahari dan gradasi waktu, bulan/bintang dalam referensi interaktif. Koreksi masukan pengguna: satu siluet masjid menghilangkan kubah ganda; bulan lebih kecil dan halus, lampu fasad terpisah; hitung mundur HH:MM:SS dipulihkan mengikuti jam simulasi, termasuk pergantian salat/Subuh besok. Browser tiga lebar, lima kasus countdown dan geometri enam waktu lulus. Posisi bulan/lintasan tetap ilustrasi; bukan cuaca langsung. Tidak mengganti APK1.9.16 atau menutup F04/G02, menunggu keputusan desain sebelum integrasi Android. | [Aset, referensi dan batas](design/assets/home-sky-realistic-2026-10-28/README.md) |
 
 | 28 Oktober2026 | F01/F04 subset lokasi/langit beta1.9.17 | Panah/nama membuka pemilih nyata; kota mengubah zona/jam/jadwal/countdown. Awan realistis dua lapis, parallax sentuh diprioritaskan, lintasan matahari, bulan/bintang, satu siluet masjid dan lampu terpisah.147 unit/4 skip,9 native akhir lulus; lint0 error/821 warning. Upgrade1.9.16 berisi terjaga; HP tidak diubah, F/G global tetap terbuka. | [Bukti, APK dan batas](android/validation/home-location-sky-2026-10-28/README.md) |
+
+| 28 Oktober2026 | D01 tambahan beta1.9.18: acuan Kemenag via myQuran |1.098 nilai resmi cocok, cache dua bulan dan resolver bersama, stale alarm/dedup, offline/restart/font200%;153 unit/4 skip dan10 native lulus. Data upgrade1.9.17 utuh; HP tidak diubah. Gerbang lain tetap terbuka. | [Bukti/source/receipt](android/validation/prayer-source-2026-10-28/README.md) |

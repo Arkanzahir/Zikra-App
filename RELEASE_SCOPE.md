@@ -115,3 +115,5 @@ ada otorisasi implementasi/layanan baru atau sinkronisasi data pengguna.
 sehingga D01 ditutup teknis beta terarah. Perkiraan awal timeout lalu retry
 berhasil; acuan arah merupakan konfirmasi manual. [Bukti dan batas](android/validation/location-phone-d01-2026-10-28/README.md).
 Tidak menutup adzan/sumber audio/D02/D02a atau gerbang publik. APK tetap1.9.15.
+
+**28 Oktober2026, beta1.9.18:** pengguna memilih Kemenag sebagai acuan Indonesia. Tabel kota myQuran v3 (deklarasi sumber Kemenag) kini diprioritaskan setelah pembandingan enam kota-bulan langsung terhadap endpoint publik Bimas Islam. Cache dua bulan tetap offline dan konsumen Home/countdown/alarm memakai resolver sama; impor tidak diberi tambahan2menit. Wilayah/tanggal tanpa tabel valid memakai hitungan lokal cadangan yang dilabeli, tidak mengaku jadwal resmi. [Bukti/receipt/batas](android/validation/prayer-source-2026-10-28/README.md). Bukan akses API resmi terautentikasi atau verifikasi semua wilayah/tanggal; sumber audio, HP/vendor dan gerbang publik tetap mengikuti checklist.

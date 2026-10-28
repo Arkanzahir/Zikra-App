@@ -1,6 +1,14 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
-## Checkpoint aktif28 Oktober2026 — lokasi/langit Home1.9.17
+## Checkpoint aktif28 Oktober2026 — jadwal Kemenag melalui myQuran1.9.18
+
+> **Terbaru — jadwal beta1.9.18,28 Oktober2026:** Jadwal Kemenag melalui myQuran, cache bulan ini/berikutnya dan sumber bersama Home/countdown/alarm.1.098 waktu cocok pada enam kota-bulan,153 unit/4 skip dan10 native lulus;lint0 error/818 warning. APK40.746.251byte, source`df84753`. HP tidak diubah; bukan penutupan D02/B01/F/G/publik. [Bukti/receipt/batas](android/validation/prayer-source-2026-10-28/README.md).
+
+Pengguna menyetujui acuan Kemenag. API publik myQuran v3 dibandingkan langsung dengan endpoint publik halaman Bimas Islam pada Surabaya/Makassar/Jayapura Oktober–November2026:1.098 nilai identik. Bukan akses API Kemenag terautentikasi. Tabel kota tersimpan atomik dan dipakai semua konsumen PrayerSchedule; data impor tanpa +2 menit lagi. Cache saat offline/restart/pergantian bulan lulus. Tidak menebak nama GPS atau kabupaten/kota ambigu; pengguna dapat memilih wilayah jadwal, zona berbeda ditolak. Bulan yang hilang/rusak memakai hitungan lokal cadangan dengan label jelas. Job pembaruan12jam dapat ditunda OS; alarm tetap lokal.
+
+APK folder pembungkus: `Zikra-Prayer-v1.9.18-beta-debug.apk`,40.746.251byte, SHA256`c5fc144d97f48aec9d70c5aa27ee96f167397214cc7889f306a3c49d8e6b3792`. Source`df84753f9d0d2d67c3a787d2cb5b073bf6602cb1`; signer sama. Upgrade APK1.9.17 berisi lima DB/data uji dan12 pembukaan/restart terpelihara. Dialog teks200% dikoreksi setelah review; final action dapat digulir dan Close disentuh nyata. Helper dihapus, emulator khusus ditutup; HP tidak disentuh. Pengujian HP masih ditunda; jangan meminta sambungan berulang. B01/C/D02/D02a/F/G/publik tidak otomatis selesai. WIP PROJECT_HANDOFF, stash audio, artwork/AI dan env tetap cocok hash; MP3/APK/rahasia tidak masuk Git.
+
+## Checkpoint sebelumnya28 Oktober2026 — lokasi/langit Home1.9.17
 
 > **Terbaru — lokasi/langit Home1.9.17,28 Oktober2026:** Panah dan nama lokasi dapat disentuh, kota mengubah zona/jam/jadwal/countdown; awan realistis, parallax dan satu kubah.147 unit/4 skip,9 native lulus;lint0 error/821 warning. APK40.528.718byte, source`1da420a`; HP tidak diubah. [Bukti/receipt/batas](android/validation/home-location-sky-2026-10-28/README.md).
 
