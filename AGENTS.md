@@ -12,3 +12,7 @@
 ## Prioritas pengguna27 Oktober2026: tuntaskan D dahulu
 
 D06 selesai teknis beta dengan pembaruan APK berisi data; [bukti](android/validation/storage-d06-2026-10-27/README.md). D03/D04/D05 juga selesai teknis beta. D01/D02/D02a tetap terbuka untuk pemeriksaan fisik dan sumber/ketentuan audio. Jangan pindah ke E atau menyebut seluruh D/publik selesai; kerjakan bukti yang bisa dilakukan tanpa HP dahulu. Pengguna menunda HP: jangan berulang meminta sambungan. Semua checkpoint terverifikasi tetap commit/push origin/main; PROJECT_HANDOFF.md WIP tetap di luar commit.
+
+## Status28 Oktober2026 — sesi HP D01
+
+D01 selesai teknis beta terarah dengan [bukti fisik/manual/native/preservasi](android/validation/location-phone-d01-2026-10-28/README.md). Ini menggantikan status D01 terbuka pada catatan27 Oktober. D02/D02a tetap terbuka untuk pengujian yang tersisa dan ketentuan audio. HP disambungkan/diizinkan untuk sesi28 Oktober; jangan menganggap izin ini berarti otomatis tersedia pada sesi lain. Runtime tetap1.9.15; B01/C/E/F/G/publik tidak otomatis selesai.

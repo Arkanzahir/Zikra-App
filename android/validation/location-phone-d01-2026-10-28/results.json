@@ -1,0 +1,44 @@
+{
+  "manual": {
+    "headingChangesWithPhysicalMovement": true,
+    "tiltWarningAndRecovery": true,
+    "preciseZoneConfirmationReported": true,
+    "approximateFirstAttemptTimedOut": true,
+    "approximateRetryZoneConfirmationReported": true,
+    "knownLocalQiblaReferenceMatchesReported": true,
+    "method": "Direct user responses in this chat; these are manual observations, not automated assertions or calibrated angular measurements"
+  },
+  "rotation": {
+    "cases": [
+      {
+        "requestedRotation": 0,
+        "screenshotWidth": 1280,
+        "screenshotHeight": 2772,
+        "qiblaInForeground": true
+      },
+      {
+        "requestedRotation": 90,
+        "screenshotWidth": 2772,
+        "screenshotHeight": 1280,
+        "qiblaInForeground": true
+      },
+      {
+        "requestedRotation": 180,
+        "screenshotWidth": 1280,
+        "screenshotHeight": 2772,
+        "qiblaInForeground": true
+      },
+      {
+        "requestedRotation": 270,
+        "screenshotWidth": 2772,
+        "screenshotHeight": 1280,
+        "qiblaInForeground": true
+      }
+    ],
+    "rotationSettingsRestored": true
+  },
+  "nativeDiagnosticFinalExecutions": 1,
+  "coordinatesPublished": false,
+  "D01TechnicalBetaComplete": true,
+  "publicRelease": false
+}

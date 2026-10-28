@@ -1,0 +1,17 @@
+{
+  "versionName": "1.9.15",
+  "versionCode": 42,
+  "sourceCommit": "c68bdde2660f04ffc6e75e31cc0df983e62a9cff",
+  "artifact": "Zikra-Refined-v1.9.15-beta-debug.apk",
+  "bytes": 41621231,
+  "sha256": "897b4854a195994f27176064678b3d88bd7c9e8b576541fbd3aa3831bf247728",
+  "certificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "date": "2026-10-28",
+  "deviceModel": "POCO F7",
+  "androidApi": 36,
+  "productionCodeChanged": false,
+  "nativeDiagnosticMethods": 1,
+  "manualObservationsAreSeparate": true,
+  "D01TechnicalBetaComplete": true,
+  "publicRelease": false
+}

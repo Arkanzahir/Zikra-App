@@ -1,0 +1,19 @@
+{
+  "upgradeFrom": "1.9.7",
+  "upgradeTo": "1.9.15",
+  "mainAppUninstalled": false,
+  "originalInternalFilesBackedUp": 19,
+  "missingOriginalFiles": 0,
+  "databaseTablesCompared": 11,
+  "allOriginalRowsAndValuesPreserved": true,
+  "preferenceGroupsCompared": 8,
+  "allOriginalPreferenceValuesPreservedAfterLocationRestore": true,
+  "testLocationFileRestoredByteForByte": true,
+  "otherOriginalFilesUnchanged": true,
+  "rotationSettingsRestored": true,
+  "networkSettingsUnchanged": true,
+  "runtimePermissionGrantStatesRestored": true,
+  "helperRemoved": true,
+  "externalFileHashesCompared": false,
+  "rawCoordinatesOrSerialPublished": false
+}

@@ -1,5 +1,23 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
+## D01 fisik selesai beta28 Oktober2026
+
+Pengguna menyambungkan POCO F7/API36 dan membantu uji. APK1.9.7 diperbarui
+ke1.9.15 tanpa uninstall;19 berkas/APK lama dicadangkan privat. Sensor berputar,
+peringatan kemiringan/pulih dan acuan arah setempat dikonfirmasi pengguna.
+Lokasi presisi berhasil; Perkiraan awal timeout, setelah diagnostik foreground
+menerima fix network nonmock percobaan ulang UI berhasil. Empat rotasi nyata
+lulus pemeriksaan fokus/dimensi; bukan pengukuran sudut terkalibrasi.
+[Bukti native/manual/preservasi dan batas](android/validation/location-phone-d01-2026-10-28/README.md).
+
+D01 kini[x] untuk beta terarah, melengkapi hitungan/emulator lama. Semua nilai
+baris11 tabel lama dan delapan grup preferensi terpelihara setelah lokasi uji
+dipulihkan byte-for-byte; izin grant-state/rotasi/jaringan awal pulih, helper
+dihapus. Tidak membandingkan hash file eksternal. Raw lokasi/serial/layar/backup
+hanya di.local. Runtime/APK tetap1.9.15/sourcec68bdde. D02/D02a berikutnya;
+HP tersedia sesi ini, menggantikan penundaan HP untuk sesi ini saja.
+B01/C/E/F/G/publik tetap sesuai gerbang. WIP/stash/audio/env tidak diubah.
+
 ## Antrean akun/admin28 Oktober2026 — belum implementasi
 
 Pengguna meminta login dan fitur terkait dicatat pada bagian F untuk nanti.

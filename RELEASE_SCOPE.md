@@ -110,3 +110,8 @@ native/upgrade/source dan batas](android/validation/refined-ui-2026-10-28/README
 Bukan perubahan keputusan penundaan akun/cloud atau penutupan F global/publik.
 Google login dan dashboard admin dibahas sebagai kemungkinan lanjutan; belum
 ada otorisasi implementasi/layanan baru atau sinkronisasi data pengguna.
+
+**28 Oktober2026, D01:** bukti HP POCO F7/API36 melengkapi uji hitungan/emulator,
+sehingga D01 ditutup teknis beta terarah. Perkiraan awal timeout lalu retry
+berhasil; acuan arah merupakan konfirmasi manual. [Bukti dan batas](android/validation/location-phone-d01-2026-10-28/README.md).
+Tidak menutup adzan/sumber audio/D02/D02a atau gerbang publik. APK tetap1.9.15.

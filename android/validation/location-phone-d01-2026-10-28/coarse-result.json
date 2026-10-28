@@ -1,0 +1,30 @@
+{
+  "network": {
+    "available": true,
+    "enabled": true,
+    "cachedFixAvailable": true,
+    "cachedFixRecent": false,
+    "requestAccepted": true,
+    "freshNonMockFix": true
+  },
+  "gps": {
+    "available": true,
+    "enabled": true,
+    "cachedFixAvailable": true,
+    "cachedFixRecent": false,
+    "requestAccepted": true,
+    "freshNonMockFix": false
+  },
+  "fused": {
+    "available": true,
+    "enabled": true,
+    "cachedFixAvailable": true,
+    "cachedFixRecent": false,
+    "requestAccepted": true,
+    "freshNonMockFix": false
+  },
+  "fusedCurrentNonMockFix": false,
+  "savedLocationChanged": false,
+  "foregroundLocationActivity": true,
+  "coordinatesPublished": false
+}
