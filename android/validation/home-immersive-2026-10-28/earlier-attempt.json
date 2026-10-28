@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "name": "key-baseline",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "seed-1915",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "upgrade-1915-to-1916",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "upgrade-restart",
+      "passed": true,
+      "tests": 1
+    },
+    {
+      "name": "home-normal",
+      "passed": true,
+      "tests": 4
+    },
+    {
+      "name": "audio-and-notification",
+      "passed": false,
+      "tests": null
+    }
+  ],
+  "failureReason": "The host-assisted shade test waited for an external touch; this first runner did not send one. Not counted as passing."
+}

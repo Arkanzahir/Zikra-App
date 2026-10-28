@@ -1,12 +1,16 @@
 # Rencana implementasi Zikra menuju rilis publik
 
-**Checkpoint terbaru28 Oktober2026:** beta1.9.15/code42/source`c68bdde2660f04ffc6e75e31cc0df983e62a9cff`; [bukti/receipt/batas revisi harian](android/validation/refined-ui-2026-10-28/README.md). Paragraf baseline bertanggal di bawah adalah riwayat; checklist mengikuti bukti terbaru.
+**Checkpoint terbaru28 Oktober2026:** beta1.9.16/code43/source`38cb23a57e27861fca0f951a70f59dd4a7b12b65`; [bukti/receipt/batas Home Imersif](android/validation/home-immersive-2026-10-28/README.md). Paragraf baseline bertanggal di bawah adalah riwayat; checklist mengikuti bukti terbaru.
 
 Dibuat 24 Oktober; diperbarui **25 Oktober 2026 (WIB)**. Kandidat Home terbaru: **1.9.4 beta / code 31**, [koreksi gradasi/posisi dan lampu siang-malam](android/validation/home-lighting-layout-2026-10-25/README.md). Kandidat AI yang telah diuji HP tetap **1.8.1 / code 26**, [APK → hosting nyata](android/validation/assistant-hosted-emulator-2026-10-25/README.md); runtime AI belum didesain ulang pada 1.9.1. Kandidat sebelumnya dipertahankan. Baseline konten B04 tetap 1.7.6 (`b3f13f3`), [receipt](android/validation/dua-completion-b04-2026-10-24/release.json). A04 tetap checkpoint 1.6.3 (`2b291ff`); UI01 tetap 1.6.2.
 
 Dokumen ini menjadi **checklist pengerjaan aktif**. [PRD](ZIKRA_PRD.md) tetap menjadi daftar kebutuhan produk; [rencana lama](design/IMPROVEMENT_PLAN.md) dan laporan validasi adalah riwayat. Jika kebutuhan lama berbeda dengan keputusan terbaru pengguna, catat keputusan beserta alasannya di sini.
 
 **B04 selesai untuk kurasi editorial dan integrasi Doa; B01 menunggu balasan klarifikasi sumber Hadis.** [Bukti 1.7.6, catatan seluruh 227 ID, koreksi dan uji](android/validation/dua-completion-b04-2026-10-24/README.md). Doa tetap 14 pilihan bawaan + 225 bacaan tambahan setelah unduh, bukan penjumlahan bacaan unik. B02/B03 selesai teknis pada adaptor kandidat beta; Hadis tetap 7 kutipan bawaan + paket 6.638 Bukhari/4.930 Muslim. Identitas edisi/ketentuan konten Hadis belum ditutup. Penutupan B04 adalah pemeriksaan editorial Arab/arti/judul/rujukan dan alur aplikasi, bukan sertifikasi seluruh sanad/harakat atau pengesahan rilis publik. [Cakupan A02](RELEASE_SCOPE.md) tetap berlaku; tahap C–G belum dianggap selesai.
+
+## Revisi disetujui28 Oktober2026 — Home Imersif
+
+F01/F03 subset Home/lokasi/branding diterapkan pada1.9.16: tema Home eksplisit, kontras, nama daerah lewat Geocoder saat diminta, logo launcher/notifikasi utuh.146 unit/4 skip,12 native akhir lulus;lint0 error/819 warning, upgrade1.9.15 berisi terpelihara. F global tetap[ ]. **D02/D02a terbaru:** Alafasy pengguna menggantikan Makkah untuk azan biasa; rekaman Subuh tidak berubah. File hanya untuk build debug privat. Ketentuan audio dan sisa HP tetap terbuka; jadwal/rumus lokal tidak diubah. [Bukti dan batas](android/validation/home-immersive-2026-10-28/README.md).
 
 ## Cara memakai checklist
 
@@ -293,3 +297,5 @@ Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | ta
 | 28 Oktober2026 | F05–F08 antrean, belum dikerjakan | Pengguna meminta login Google dan fitur terkait masuk bagian F untuk nanti: akun opsional, cadangan/pemulihan pilihan pengguna, sinkronisasi, dashboard admin web. Seluruh checkbox tetap terbuka; penundaan akun/publik dan prioritas D tidak berubah. Tidak mengubah APK/backend atau mengunggah data. | [Antrean F05–F08](#tambahan-f--akun-dan-administrasi-antrean-lanjutan), [cakupan](RELEASE_SCOPE.md) |
 
 | 28 Oktober2026 | D01 selesai teknis beta terarah | Uji HP nyata1.9.15: sensor/kemiringan/acuan manual, presisi/Perkiraan retry, empat rotasi dan satu diagnostik native nonmock. Data/pengaturan awal dipelihara; kegagalan awal dan batas tetap dicatat. Runtime/source APK tetapc68bdde, D02/D02a/B01/C/E/F/G tetap mengikuti checklist. | [Bukti/preservasi/batas](android/validation/location-phone-d01-2026-10-28/README.md) |
+
+| 28 Oktober2026 | F01/F03 subset Home Imersif1.9.16 | Desain disetujui diterapkan; tema tersimpan, nama lokasi/kontras/font200%, logo utuh dan audio Alafasy.146 unit/4 skip,12 native akhir lulus; update1.9.15 berisi terjaga. HP, jadwal resmi dan gerbang publik belum diperluas. | [Bukti/source/receipt](android/validation/home-immersive-2026-10-28/README.md) |

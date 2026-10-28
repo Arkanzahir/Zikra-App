@@ -1,0 +1,16 @@
+{
+  "version": "1.9.16",
+  "versionCode": 43,
+  "sourceCommit": "38cb23a57e27861fca0f951a70f59dd4a7b12b65",
+  "apkFile": "Zikra-Immersive-v1.9.16-beta-debug.apk",
+  "apkBytes": 41430239,
+  "apkSha256": "201ce1316b74ebc973640637ef76a02c31de49c1986cc7970e23fff807840759",
+  "unitPassed": 146,
+  "unitSkipped": 4,
+  "nativePassed": 12,
+  "lintErrors": 0,
+  "lintWarnings": 819,
+  "phoneModified": false,
+  "releaseType": "private debug beta",
+  "prayerFormulaChanged": false
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "key-baseline",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "seed-1915",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "upgrade-1915-to-1916",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "upgrade-restart",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "home-normal",
+    "passed": true,
+    "tests": 4
+  },
+  {
+    "name": "audio-and-notification-final",
+    "passed": true,
+    "tests": 2
+  },
+  {
+    "name": "home-large-final",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "name": "key-cleanup",
+    "passed": true,
+    "tests": 1
+  }
+]

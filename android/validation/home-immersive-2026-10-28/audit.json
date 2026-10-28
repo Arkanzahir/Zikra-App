@@ -1,0 +1,44 @@
+{
+  "version": "1.9.16",
+  "versionCode": 43,
+  "apkBytes": 41430239,
+  "apkSha256": "201ce1316b74ebc973640637ef76a02c31de49c1986cc7970e23fff807840759",
+  "below100MB": true,
+  "audio": {
+    "normal": {
+      "matchesSuppliedFile": true,
+      "sha256": "b650e89a8141fa783da5947e2743e58d043ac29c982243761d4828b69aecb49d",
+      "bytes": 639007
+    },
+    "fajr": {
+      "matchesSuppliedFile": true,
+      "sha256": "106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530",
+      "bytes": 2996349
+    }
+  },
+  "approvedMasterAndFeatureGeometryUnchanged": {
+    "android/app/src/main/res/drawable/zikra_refined_white.xml": true,
+    "android/app/src/main/res/drawable/zikra_refined_pine.xml": true,
+    "android/app/src/main/res/drawable/home_shortcut_ref_quran.xml": true,
+    "android/app/src/main/res/drawable/home_shortcut_ref_dua.xml": true,
+    "android/app/src/main/res/drawable/home_shortcut_ref_qibla.xml": true,
+    "android/app/src/main/res/drawable/home_shortcut_ref_hifz.xml": true,
+    "android/app/src/main/res/drawable/home_shortcut_ref_ai.xml": true,
+    "android/app/src/main/res/drawable/home_shortcut_ref_protector.xml": true,
+    "android/app/src/main/res/drawable/home_shortcut_ref_study.xml": true,
+    "android/app/src/main/res/drawable/home_shortcut_ref_hadith.xml": true
+  },
+  "unitTests": {
+    "tests": 150,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4
+  },
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 819
+  },
+  "physicalPhoneModified": false,
+  "prayerCalculationUnchanged": true
+}

@@ -1,5 +1,17 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
+## Checkpoint aktif28 Oktober2026 — Home Imersif1.9.16
+
+Status Git sesi ini: source`38cb23a` dan receipt disimpan lokal. Push belum
+dilakukan: peninjauan persetujuan otomatis menolak publikasi ke origin/main
+karena memerlukan izin eksplisit pengguna untuk kode/laporan/screenshot ini.
+Jangan menyatakan checkpoint1.9.16 sudah berada di GitHub sebelum push dan
+verifikasi hash remote berhasil.
+
+> **Home Imersif1.9.16 — 28 Oktober2026:** Tema Home terang/gelap/perangkat, nama daerah saat memperbarui lokasi, kontras dan ikon launcher/notifikasi utuh, azan biasa Alafasy pilihan terbaru.146 unit/4 skip dan12 native akhir lulus,lint0 error/819 warning. APK41.430.239byte; source`38cb23a`. HP tidak diubah; jadwal lokal belum disamakan dengan jadwal resmi. [Bukti/source/hash/batas](android/validation/home-immersive-2026-10-28/README.md).
+
+Pengguna menyetujui referensi Imersif lalu meminta eksekusi. APK lokal folder pembungkus: `Zikra-Immersive-v1.9.16-beta-debug.apk`. Tema Home bawaan Terang, tombol setengah lingkaran kanan atas untuk mengganti. Suasana langit mengikuti waktu lokasi. Nama perangkat lama perlu Perbarui lokasi untuk mencari nama daerah; kegagalan geocoding tetap memakai label generik. Data upgrade1.9.15 berisi terbukti terjaga; emulator khusus sekali pakai ditutup. D02/D02a/F global/B01/C/E/G/publik tetap mengikuti checklist; audio privat tidak masuk Git. PROJECT_HANDOFF WIP tetap dipertahankan.
+
 ## D01 fisik selesai beta28 Oktober2026
 
 Pengguna menyambungkan POCO F7/API36 dan membantu uji. APK1.9.7 diperbarui

@@ -1,0 +1,12 @@
+{
+  "seedVersion": "1.9.15",
+  "currentVersion": "1.9.16",
+  "originalRowsAndValuesPreserved": true,
+  "originalPreferenceValuesPreserved": true,
+  "durableFileHashesMatch": true,
+  "legacyHistoryImportedOnce": true,
+  "gatewayDecryptionAfterUpgrade": true,
+  "databaseCountBefore": 5,
+  "warmedActivities": 12,
+  "faithWasPopulated": true
+}
