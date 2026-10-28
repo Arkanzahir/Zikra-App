@@ -1,5 +1,26 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
+## Referensi splash diminta pengguna28 Oktober2026 — belum native
+
+[Preview GIF/MP4/SVG dan interaktif](design/concepts/splash-motion-2026-10-28/README.md)
+mempertahankan logo asli dan Plus Jakarta Sans, gerak±1,1detik, tanpa logo
+bayangan/flash putih. Kontrol fase/keyboard/reduced motion dan dua ukuran browser
+teruji; browser override dipulihkan. Tidak mengubah Android, APK tetap1.9.22.
+
+Skill Figma dipakai: file https://www.figma.com/design/sRcHARfqt4E3OrGH13PgX6
+dibuat, font/motion diperiksa; library kompatibel Zikra tidak ada. Panggilan
+konstruksi ditolak kuota MCP Starter, sehingga canvas/prototype Figma **belum
+selesai**. Tidak upgrade atau bypass. Preview lokal bukan ekspor Figma.
+Ledger/skrip lanjutan privat di.local/splash-motion-20261028/figma-state.json
+serta figma-build.js; baca canvas dahulu jika melanjutkan saat kuota tersedia.
+Dua video pribadi/frame tetap.local, tidak diunggah/commit. Server preview lokal
+hanya folder public preview pada loopback; metadata PID/URL ada di.local.
+
+Pengguna kembali menanyakan tema dan dock AI: tema pilihan masih Home-only,
+AI belum punya dock bawah. Uji HP sebelumnya selesai terarah, bukan semua C/D.
+Hal-hal itu dan sumber/gerbang rilis tetap terbuka; jangan mengklaim diperbaiki
+oleh referensi splash. Tunggu tinjauan referensi sebelum mengubah launch native.
+
 ## Checkpoint aktif28 Oktober2026 — HP/adzan1.9.22
 
 Prioritas pengguna tetap **tuntaskan A–D dahulu**. POCO F7/API36 tersedia dan diuji

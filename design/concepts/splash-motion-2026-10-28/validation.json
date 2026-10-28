@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-28",
+  "deliverable": "local animated reference; Figma canvas construction not completed",
+  "figma": {
+    "fileCreated": true,
+    "fileUrl": "https://www.figma.com/design/sRcHARfqt4E3OrGH13PgX6",
+    "discoveryAndProductFontVerified": true,
+    "constructionCompleted": false,
+    "blocker": "Figma MCP Starter tool call limit",
+    "previewIsFigmaExport": false
+  },
+  "sourceVectorPathsMatchApprovedLogo": true,
+  "copiedFontMatchesExistingAppAsset": true,
+  "rasterImagesInsideStoryboardSvg": 0,
+  "gif": {
+    "frames": 29,
+    "durationMs": 2100,
+    "loopIsDemoOnly": true,
+    "stablePineBackgroundAcrossAllFrames": true
+  },
+  "browser": {
+    "narrowViewportHorizontalOverflow": false,
+    "desktopViewport": {
+      "width": 1024,
+      "height": 800
+    },
+    "desktopHorizontalOverflow": false,
+    "desktopDeviceAspectRatioAfterFix": 0.4620913805417388,
+    "expectedRatio": 0.46208530805687204,
+    "phaseButtonObservedMs": 700,
+    "phaseWordmarkOpacityObserved": 0.6387672455191007,
+    "reducedReplayTimeObservedMs": 1400,
+    "reducedWordmarkOpacityObserved": 1,
+    "keyboardHomeObservedMs": 0,
+    "keyboardEndObservedMs": 1400,
+    "fontFamilyObserved": "Plus Jakarta Sans",
+    "consoleErrorsAfterReload": 0,
+    "temporaryViewportOverrideReset": true
+  },
+  "androidRuntimeChanged": false,
+  "apkVersionRetained": "1.9.22",
+  "privateVideosAndFramesCommitted": false,
+  "artifacts": {
+    "mark-parts.json": {
+      "bytes": 607,
+      "sha256": "ef2fbcbb99917d9350e9b63c65b260e87cf4374e6460d02da3b4cea438447bf7"
+    },
+    "motion.json": {
+      "bytes": 2506,
+      "sha256": "970453e473306e7503e1c9887dbcce966897b54177c43f26489543db32b565b5"
+    },
+    "splash-final.png": {
+      "bytes": 13081,
+      "sha256": "4317e7333b2b81fadbae61f54ef6125d891fc1362b923aca64a2480112e541f2"
+    },
+    "splash-preview.gif": {
+      "bytes": 111588,
+      "sha256": "73e378df3bed8ee5d1e27132409213da9fec2bdce21df7e4d2aa71397653a638"
+    },
+    "splash-preview.mp4": {
+      "bytes": 24963,
+      "sha256": "b1c7dbb19f8787ab4f3de8a934e6b4a597c97f0b2f7dc3b623eeb25b44e27c9d"
+    },
+    "splash-static.svg": {
+      "bytes": 1331,
+      "sha256": "36000c02a2f8085bd9b4c30d4de90a0977bb797b63d73fc1f95ca6bc09f9370c"
+    },
+    "storyboard.png": {
+      "bytes": 57309,
+      "sha256": "8431a99709226a5ad577a2d8510a97185d18ae91a730cd57890ec5e6d820e722"
+    },
+    "storyboard.svg": {
+      "bytes": 6673,
+      "sha256": "933ea47994020c4566b468668018f125bb0b6c4116decf731a0cd252f733bdea"
+    },
+    "preview/index.html": {
+      "bytes": 2769,
+      "sha256": "e56fb0ce5c08fc9db74a1c9996ace05368dc1b995296d1c2c143d8d64de9095e"
+    },
+    "preview/plus_jakarta_sans.ttf": {
+      "bytes": 176288,
+      "sha256": "89b3fb38aa0d275d7a731d0d817a4f1622b316b4d7fbdedcf02ee9099ff68bc8"
+    },
+    "preview/preview.css": {
+      "bytes": 2272,
+      "sha256": "92d83b78e1835c34049115b6d281f9711fddef2bd89d5a61411e5ac37f4e3602"
+    },
+    "preview/preview.js": {
+      "bytes": 3690,
+      "sha256": "f59292f3c1120b09d239a94b3af9b8cc2ed564d5ad1a4df8f5300ffcc49706ac"
+    }
+  }
+}

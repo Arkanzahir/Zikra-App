@@ -1,0 +1,177 @@
+{
+  "canvas": {
+    "width": 390,
+    "height": 844,
+    "background": "#15332F"
+  },
+  "font": {
+    "family": "Plus Jakarta Sans",
+    "weight": 600,
+    "wordmarkSize": 44
+  },
+  "logo": {
+    "source": "../zikra-refined-2026-10-27/logos/logo-polished.svg",
+    "symbolSize": 112,
+    "originX": 80,
+    "originY": 366,
+    "initialShiftX": 58,
+    "wordmarkX": 120,
+    "wordmarkY": 72
+  },
+  "motionEndMs": 1120,
+  "previewEndMs": 1400,
+  "easing": "ease-out",
+  "reducedMotion": "Static final lockup; no delayed navigation",
+  "tracks": {
+    "markShift": [
+      [
+        0,
+        58
+      ],
+      [
+        200,
+        58
+      ],
+      [
+        820,
+        0
+      ]
+    ],
+    "wordOpacity": [
+      [
+        0,
+        0
+      ],
+      [
+        480,
+        0
+      ],
+      [
+        960,
+        1
+      ]
+    ],
+    "wordShift": [
+      [
+        0,
+        -10
+      ],
+      [
+        480,
+        -10
+      ],
+      [
+        960,
+        0
+      ]
+    ],
+    "moonOpacity": [
+      [
+        0,
+        0.65
+      ],
+      [
+        380,
+        1
+      ]
+    ],
+    "moonRotation": [
+      [
+        0,
+        -5
+      ],
+      [
+        500,
+        0
+      ]
+    ],
+    "bookOpacity": [
+      [
+        0,
+        0.35
+      ],
+      [
+        350,
+        1
+      ]
+    ],
+    "bookRotation": [
+      [
+        0,
+        6
+      ],
+      [
+        450,
+        0
+      ]
+    ],
+    "bookShift": [
+      [
+        0,
+        3
+      ],
+      [
+        450,
+        0
+      ]
+    ],
+    "sparkOpacity": [
+      [
+        0,
+        0.18
+      ],
+      [
+        260,
+        0.18
+      ],
+      [
+        580,
+        1
+      ],
+      [
+        780,
+        0.82
+      ],
+      [
+        1080,
+        1
+      ]
+    ],
+    "sparkScale": [
+      [
+        0,
+        0.65
+      ],
+      [
+        260,
+        0.65
+      ],
+      [
+        580,
+        1.08
+      ],
+      [
+        860,
+        1
+      ]
+    ],
+    "haloOpacity": [
+      [
+        0,
+        0
+      ],
+      [
+        680,
+        0.065
+      ],
+      [
+        1120,
+        0.04
+      ]
+    ]
+  },
+  "figma": {
+    "fileUrl": "https://www.figma.com/design/sRcHARfqt4E3OrGH13PgX6",
+    "status": "File created and inspected; canvas construction blocked by Starter MCP quota. Local preview is not a rendered Figma export."
+  }
+}
