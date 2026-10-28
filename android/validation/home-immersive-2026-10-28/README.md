@@ -6,9 +6,10 @@ memperbaiki kontras Home, nama lokasi, bingkai ikon dan pilihan audio.
 [hasil native akhir](native-results.json), [upgrade](upgrade.json),
 [isolasi emulator](preservation.json).
 
-Checkpoint source dan receipt tersimpan lokal. Push ke origin/main belum
-dilakukan karena peninjauan persetujuan otomatis meminta izin publikasi
-eksplisit pengguna; status ini tidak mengurangi hasil build/native di bawah.
+Pengguna mengizinkan publikasi secara eksplisit. Source`38cb23a` dan
+receipt`388bc66` sudah dipush ke origin/main pada28 Oktober2026; hash remote
+`388bc662c841994493b17ac2a2981231f15508e9` cocok saat verifikasi. Penolakan
+persetujuan otomatis sebelumnya sudah teratasi dengan izin pengguna.
 
 ## Hasil penerapan
 
