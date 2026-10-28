@@ -28,6 +28,8 @@
 #zikra-sun-preview .zs-clock{font-size:43px;line-height:1.25;font-weight:500;letter-spacing:-1.3px;margin-top:7px;font-variant-numeric:tabular-nums}
 #zikra-sun-preview .zs-clock small{font-size:12px;letter-spacing:0;margin-left:6px;color:#e2eee6}
 #zikra-sun-preview .zs-next{font-size:12px;color:#eff6ee;margin-top:8px;max-width:54%;line-height:1.7}
+#zikra-sun-preview .zs-countdown{font-size:25px;font-weight:500;line-height:1.35;letter-spacing:.3px;font-variant-numeric:tabular-nums;color:#fff;margin:2px 0}
+#zikra-sun-preview .zs-next-time{font-size:11px;color:#e7f0e8}
 #zikra-sun-preview .zs-prayers{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:13px 3px 14px;background:#173f3b;color:#d7e8df}
 #zikra-sun-preview .zs-prayers span{text-align:center;font-size:11px}
 #zikra-sun-preview .zs-prayers b{display:block;font-size:13px;font-weight:550;color:#fff;margin-top:3px;font-variant-numeric:tabular-nums}
@@ -57,7 +59,7 @@
           <div class="zs-brandbar"><div class="zs-brand"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9Inppa3JhLXBvbGlzaGVkLXRpdGxlIj4KICA8dGl0bGUgaWQ9Inppa3JhLXBvbGlzaGVkLXRpdGxlIj5aaWtyYSDDouKCrOKAnSBidWxhbiBkYW4gQWwtUXVyYW4gZGVuZ2FuIHByb3BvcnNpIGRpcGVyaGFsdXM8L3RpdGxlPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik00MC41IDcuNkMyNy4zIDMuMyAxNCAxMi43IDE0IDI2LjlDMTQgMzUuNyAxOC4yIDQxLjggMjQuNSA0NS4zQzI3LjkgNDYgMzAuMyA0Ny45IDMyIDUwLjRDMzMuOSA0Ny45IDM2LjYgNDYgNDAuMyA0NS4zQzQ3LjQgNDEuNiA1MS45IDM0LjcgNTIgMjYuOEM0OS4zIDM2LjcgNDEuNCA0Mi4xIDMyLjYgMzkuN0MyMy43IDM3LjMgMTkuMyAyOC44IDIxLjggMjAuMkMyNC4xIDEyLjMgMzEuOCA3LjQgNDAuNSA3LjZaIi8+CiAgPHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0iTTM4LjMgMTkuNEMzOS4zIDI0LjEgNDAuNSAyNS4zIDQ1LjIgMjYuM0M0MC41IDI3LjMgMzkuMyAyOC41IDM4LjMgMzMuMkMzNy4zIDI4LjUgMzYuMSAyNy4zIDMxLjQgMjYuM0MzNi4xIDI1LjMgMzcuMyAyNC4xIDM4LjMgMTkuNFoiLz4KICA8cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMTIuOCA0OC40QzIxLjUgNDcuNCAyOCA0OS44IDMxIDU1LjJWNTkuNkMyNi44IDU2LjMgMjAuMiA1NS4xIDEwLjggNTYuMkwxMi44IDQ4LjRaTTUxLjIgNDguNEM0Mi41IDQ3LjQgMzYgNDkuOCAzMyA1NS4yVjU5LjZDMzcuMiA1Ni4zIDQzLjggNTUuMSA1My4yIDU2LjJMNTEuMiA0OC40WiIvPgo8L3N2Zz4K" alt="">zikra</div><div class="zs-location"><b>Sukolilo, Surabaya</b><span>WIB</span></div></div>
           <p class="zs-date">Rabu, 28 Oktober</p>
           <div class="zs-clock"><span data-clock>11.39</span><small>WIB</small></div>
-          <p class="zs-next" data-next>Menuju Asar<br>14.28 · contoh jadwal</p>
+          <div class="zs-next" data-next><span data-next-label>Menuju Zuhur</span><div class="zs-countdown" data-countdown role="timer" aria-live="off" aria-label="Sisa waktu menuju Zuhur">02:30:00</div><span class="zs-next-time" data-next-time>11.15 · contoh jadwal</span></div>
         </div>
       </div>
       <div class="zs-prayers" aria-label="Contoh jadwal dari versi aplikasi"><span>Subuh<b>03.45</b></span><span>Zuhur<b>11.15</b></span><span>Asar<b>14.28</b></span><span>Maghrib<b>17.25</b></span><span>Isya<b>18.37</b></span></div>
@@ -82,7 +84,7 @@ const play=root.querySelector('[data-play]');
 const sample={"rise":303,"noon":673,"set":1043,"illumination":0.952808,"waxing":false};
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 let motionReduced=reduced.matches;
-let time=1230,playing=false,frame=0,last=0;
+let time=525,playing=false,frame=0,last=0;
 const design={size:15,glow:.85};
 const moon=root.querySelector('.zs-moon');
 const clouds=[...root.querySelectorAll('.zs-cloud')];
@@ -170,9 +172,14 @@ function render(announce=true){
   slider.value=Math.round(time);slider.setAttribute('aria-valuetext',format(time)+' WIB');
   const phase=time<sample.rise-70?'Malam':time<sample.rise?'Fajar':time<sample.rise+40?'Terbit':time>sample.set+60?'Malam':time>sample.set-55?'Senja':p<.3?'Pagi':p<.7?'Siang':'Sore';
   if(announce)root.querySelector('#zs-time-detail').textContent=phase+' · lintasan ilustrasi';
-  const next=[[225,'Subuh'],[675,'Zuhur'],[868,'Asar'],[1045,'Maghrib'],[1117,'Isya']].find(t=>t[0]>time);
-  const text=root.querySelector('[data-next]');
-  text.replaceChildren(document.createTextNode(next?'Menuju '+next[1]:'Menuju Subuh besok'),document.createElement('br'),document.createTextNode(next?format(next[0])+' · contoh jadwal':'Jadwal contoh'));
+  const nowSeconds=Math.floor(time*60+1e-6);
+  const next=[[225,'Subuh'],[675,'Zuhur'],[868,'Asar'],[1045,'Maghrib'],[1117,'Isya']].find(prayer=>prayer[0]*60>nowSeconds)||[1440+225,'Subuh'];
+  const tomorrow=next[0]>=1440,remaining=Math.max(0,next[0]*60-nowSeconds);
+  const countdown=[Math.floor(remaining/3600),Math.floor(remaining%3600/60),remaining%60].map(value=>String(value).padStart(2,'0')).join(':');
+  root.querySelector('[data-next-label]').textContent='Menuju '+next[1]+(tomorrow?' besok':'');
+  root.querySelector('[data-countdown]').textContent=countdown;
+  root.querySelector('[data-countdown]').setAttribute('aria-label','Sisa waktu menuju '+next[1]+(tomorrow?' besok':'')+': '+countdown);
+  root.querySelector('[data-next-time]').textContent=format(next[0])+(tomorrow?' · besok':'')+' · contoh jadwal';
   root.style.setProperty('--zs-glow',design.glow);
 }
 function stop(save=true){playing=false;cancelAnimationFrame(frame);last=0;play.textContent='Putar simulasi';render();if(save)store();}

@@ -23,6 +23,12 @@ Pemeriksaan akhir Edge headless lulus pada viewport 320/390/736 px: tidak ada ov
 
 Gambar siang dan malam sebelumnya memiliki siluet kubah yang berbeda dan ditumpuk; alpha gambar malam meninggalkan kubah siang terlihat di belakangnya. Referensi kini hanya memakai **satu gambar masjid** untuk seluruh waktu. Warna/kecerahan berubah dan lampu digambar terpisah di dalam fasad, tanpa gambar kubah kedua. Seluruh kelompok masjid/lampu bergerak bersama ketika parallax aktif. Resource Android lama belum diubah oleh koreksi referensi ini.
 
-Bulan dikurangi dari 23 menjadi 19 px; bayangan bola, noise dan pola kawah berulang dihapus, diganti permukaan hampir rata dengan bercak halus dan batas fase lembut. Ini ilustrasi, bukan foto atau ephemeris baru. Referensi dibuka pada malam bila belum ada pilihan jam tersimpan, agar koreksi mudah dibandingkan.
+Bulan dikurangi dari 23 menjadi 19 px; bayangan bola, noise dan pola kawah berulang dihapus, diganti permukaan hampir rata dengan bercak halus dan batas fase lembut. Ini ilustrasi, bukan foto atau ephemeris baru. Pilihan jam tersimpan dipertahankan; default terkini 08.45 agar hitung mundur mudah dibandingkan dengan masukan pengguna.
 
 Pemeriksaan browser diulang setelah koreksi: tepat satu gambar/siluet masjid dengan geometri identik pada 04.50, 11.39, 16.50, 17.23, 18.00 dan 20.30; lampu fasad hanya aktif saat gelap, bulan malam dan gerak tetap berfungsi. Screenshot siang/malam dan hasil pemeriksaan diperbarui. Seluruh pemeriksaan terarah lulus; belum persetujuan visual pengguna atau implementasi APK.
+
+## Hitung mundur dipulihkan
+
+Hitung mundur yang terlewat saat merapikan referensi kembali tampil di bawah nama salat tujuan, dengan format `HH:MM:SS`. Nilainya berasal dari jam simulasi dan contoh jadwal yang sama, bukan angka tetap; ia berhenti saat simulasi dijeda dan berubah ketika penggeser/putar simulasi digunakan. Pada waktu salat tepat, tujuan beralih ke salat berikutnya; sesudah Isya menuju contoh Subuh besok.
+
+[Screenshot 08.45](preview-countdown.png) menunjukkan `02:30:00` menuju Zuhur11.15. Lima kasus selisih/batas (08.45,11.14,11.15,18.37,20.30), perubahan saat playback, keterbacaan pada tiga lebar layar dan pemeriksaan langit sebelumnya lulus di browser. Ini tetap referensi; tidak mengubah penghitung/jadwal pada APK.
