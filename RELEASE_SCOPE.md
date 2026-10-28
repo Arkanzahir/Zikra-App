@@ -39,7 +39,8 @@ Beta boleh dibagikan untuk menguji hasil per modul setelah syarat dasarnya terpe
 
 | Fitur | Keputusan dan alasan | Jejak pekerjaan |
 | --- | --- | --- |
-| Akun/login, cloud backup dan sinkronisasi antar-HP | Ditunda agar model lokal stabil lebih dahulu. Tidak otomatis mengirim profil, jadwal, tugas dan bookmark ke server. Wajib menjaga data lokal/migrasi untuk rilis pertama; belum menjanjikan pemulihan ketika HP hilang | D06 bagian lokal tetap wajib; perlu rencana akun/identitas/konflik/hapus akun tersendiri saat dimulai |
+| Akun/login, cloud backup dan sinkronisasi antar-HP | Ditunda agar model lokal stabil lebih dahulu. Tidak otomatis mengirim profil, jadwal, tugas dan bookmark ke server. Wajib menjaga data lokal/migrasi untuk rilis pertama; belum menjanjikan pemulihan ketika HP hilang | D06 bagian lokal tetap wajib; pengguna28 Oktober meminta antrean F05–F07 untuk login opsional, cadangan/pemulihan dan sinkronisasi. Belum implementasi atau otomatis syarat rilis pertama |
+| Dashboard admin web khusus | Antrean lanjutan28 Oktober; mulai dari layanan/kuota/gangguan dan hak akses operator, tanpa akses bawaan ke chat/jurnal pribadi. Alat operator backend yang ada berbeda dari dashboard web | F08; belum membuat layanan baru atau mengaktifkan biaya |
 | Infaq/pembayaran | Di luar navigasi rilis pertama; jangan menyambungkan pembayaran atau membuat klaim donasi. Source panduan lama dipertahankan sampai keputusan pengembangan berikutnya; jangan hapus data/draft sebagai efek keputusan ini | Temuan Infaq A01; bukan kebutuhan inti PRD |
 | XP/badge, keuangan anak kos, mode Ramadan khusus | Tetap post-MVP sesuai PRD. Target khatam umum dan Pomodoro tetap wajib; tidak ditunda bersama fitur ini | Backlog PRD fase 2 |
 | Koleksi Hadis tambahan dan variasi ilustrasi provinsi | Dua koleksi dan keluarga aset yang disetujui lebih dahulu; tambah setelah sumber dan kinerja dasar andal | B01–B03/F04 untuk baseline; ekspansi sesudah rilis |

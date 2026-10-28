@@ -1,5 +1,20 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
+## Antrean akun/admin28 Oktober2026 — belum implementasi
+
+Pengguna meminta login dan fitur terkait dicatat pada bagian F untuk nanti.
+[F05–F08](IMPLEMENTATION_PLAN.md#tambahan-f--akun-dan-administrasi-antrean-lanjutan):
+Google login opsional/pengelolaan akun, cadangan/pemulihan pilihan pengguna,
+sinkronisasi antarperangkat, dashboard admin web. Semua tetap[ ]; tidak ada
+perubahan APK/server, layanan baru atau pengunggahan data. Akun/cloud tetap
+ditunda sesuai RELEASE_SCOPE; bukan otomatis syarat rilis pertama.
+
+Posisi aktif tetap penyelesaian D: D03/D04/D05/D06 selesai teknis beta,
+D01/D02/D02a terbuka untuk bukti HP dan sumber/ketentuan audio. Sebagian
+F01–F04 telah diterapkan di1.9.15; belum penyelarasan/pembuktian seluruh layar.
+B01, C02/C04/C07, E dan G tetap mengikuti checklist; jangan menandai semuanya
+selesai. Pengguna menunda HP, jangan meminta sambungan berulang.
+
 ## Penerapan revisi harian28 Oktober2026 — beta1.9.15
 
 Pengguna meminta eksekusi dan memilih Profil sebagai ruang pribadi: nama,

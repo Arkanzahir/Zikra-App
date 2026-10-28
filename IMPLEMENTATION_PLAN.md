@@ -132,6 +132,19 @@ visual APK. Google login/sync/admin baru diskusi, tidak diimplementasikan.
 - [ ] **F03 — Ukuran layar, teks besar dan aksesibilitas.** Kontrol tetap terjangkau, target sentuh memadai, Arab/Indonesia tidak terpotong, kontras dan label aksesibel. Periksa font besar, tema yang tersedia, keyboard, dialog, loading/kosong/gagal dan scroll. Simpan screenshot native pada ukuran yang diuji.
 - [ ] **F04 — Gerak dan performa visual.** Awan/celestial, orb dan karakter fokus/break berhenti saat layar tidak aktif serta menghormati pengaturan animasi/penghemat daya. Ukur penggunaan memori/baterai di HP; jangan mempertahankan animasi terus berjalan untuk dekorasi tersembunyi.
 
+### Tambahan F — akun dan administrasi, antrean lanjutan
+
+**Permintaan pengguna28 Oktober2026:** masukkan login dan fitur terkait ke
+tahap F, dikerjakan nanti setelah fitur inti stabil. Ini pencatatan pekerjaan,
+bukan implementasi sekarang atau checkbox selesai. F05–F08 adalah antrean
+lanjutan; belum otomatis menjadi syarat rilis publik pertama. Penundaan akun
+pada RELEASE_SCOPE tetap berlaku sampai keputusan pelaksanaan berikutnya.
+
+- [ ] **F05 — Login Google opsional dan pengelolaan akun.** Masuk/keluar dari Profil, identitas akun terverifikasi server, keadaan batal/gagal/luring dan akses tanpa login tetap jelas. Data lokal lama dipertahankan; perpindahan akun tidak membuka data akun lain. Sediakan alur penghapusan akun serta penjelasan data yang terpengaruh. Login saja tidak dianggap sudah membuat cadangan atau ingatan AI permanen.
+- [ ] **F06 — Cadangan dan pemulihan data pilihan pengguna.** Tentukan cakupan bookmark/bacaan terakhir, target Hifz/jurnal, Study/pengaturan dan riwayat AI dengan persetujuan terpisah yang jelas. Format berversi, batas ukuran, status cadangan, kegagalan dan pemulihan pada perangkat lain diuji. Riwayat/foto/file tidak otomatis diunggah karena pengguna login; key provider/token instalasi tidak masuk cadangan pengguna. Uji pemulihan data terisi tanpa menimpa data lokal diam-diam.
+- [ ] **F07 — Sinkronisasi antarperangkat.** Identitas item stabil, penggabungan data lokal sebelum login, konflik edit/hapus, deduplikasi, antrean luring dan coba ulang harus terdefinisi. Uji dua perangkat/akun terpisah serta logout/login tanpa kebocoran atau progres ganda. Bedakan sinkronisasi aktif dari cadangan F06; jangan menjanjikan semua data tersinkron sebelum skenario tersebut terbukti.
+- [ ] **F08 — Dashboard admin web.** Mulai dari status layanan, kuota/pemakaian AI agregat, pencabutan akses dan laporan gangguan tanpa isi pribadi. Autentikasi dan hak admin diperiksa di server, tindakan penting tercatat tanpa rahasia, akses nonadmin ditolak. Key provider tetap di server dan tidak ditampilkan pada browser. Membaca percakapan/jurnal pribadi bukan fitur admin bawaan. Hubungkan alat operator backend yang sudah ada setelah lingkup/hosting dashboard diputuskan; belum membuat layanan baru sekarang.
+
 ## G — Pembuktian sebelum rilis
 
 - [ ] **G01 — Uji alur pengguna lintas fitur.** Instal baru → onboarding/lokasi → Home → baca/putar Quran → Study/tugas → pengingat → Protector → Hadis/Doa → Profil → tutup/buka ulang. Uji juga pembaruan dari APK lama. Catat hasil per alur dan perbaiki bug sebelum mengulang bagian yang terdampak.
@@ -276,3 +289,5 @@ Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | ta
 | 28 Oktober2026 | F01/F02 keputusan logo dan konsistensi ikon | Logo dipoles disetujui; simbol delapan fitur tetap dan harus sama di seluruh halaman. Referensi Profil/dock/Hifz/lanjut baca dikoreksi memakai ikon Home; tindakan umum tetap dibedakan. Belum penerapan native atau persetujuan seluruh layar, F01/F02 tetap[ ]. | [Referensi/aturan/batas](design/concepts/zikra-refined-2026-10-27/README.md) |
 
 | 28 Oktober2026 | F01–F04 subset beta1.9.15 | Logo dipoles/ikon asli konsisten, Profil personal, Hifz/kalender/Home jam dan gerak.143 unit/4 skip,18 native/12 metode unik lulus;lint0 error/815 warning. Upgrade berisi1.9.14 dan preservasi lulus; HP tidak diubah. F global/D01/D02/D02a/B01/C/publik tidak otomatis ditutup. | [Receipt/source/gambar/batas](android/validation/refined-ui-2026-10-28/README.md) |
+
+| 28 Oktober2026 | F05–F08 antrean, belum dikerjakan | Pengguna meminta login Google dan fitur terkait masuk bagian F untuk nanti: akun opsional, cadangan/pemulihan pilihan pengguna, sinkronisasi, dashboard admin web. Seluruh checkbox tetap terbuka; penundaan akun/publik dan prioritas D tidak berubah. Tidak mengubah APK/backend atau mengunggah data. | [Antrean F05–F08](#tambahan-f--akun-dan-administrasi-antrean-lanjutan), [cakupan](RELEASE_SCOPE.md) |
