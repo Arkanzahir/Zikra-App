@@ -43,6 +43,7 @@ public final class HomeActivity extends BaseActivity {
   private java.time.LocalDate progressDate;
   private int activePrayer = -1;
   private java.time.LocalDate prayerDisplayDate;
+  private PrayerSchedule.Day displayedTimetable;
   private static final int[] PRAYER_SLOTS = {
     R.id.prayerSlot0, R.id.prayerSlot1, R.id.prayerSlot2,
     R.id.prayerSlot3, R.id.prayerSlot4, R.id.prayerSlot5
@@ -95,13 +96,7 @@ public final class HomeActivity extends BaseActivity {
     setContentView(R.layout.activity_home);
     findViewById(R.id.homeAppearance).setOnClickListener(v -> chooseAppearance());
     findViewById(R.id.homeScheduleSource)
-        .setOnClickListener(
-            v ->
-                new android.app.AlertDialog.Builder(this)
-                    .setTitle(R.string.home_schedule_method)
-                    .setMessage(R.string.home_schedule_explanation)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .show());
+        .setOnClickListener(v -> com.zikra.app.prayer.PrayerSourceDialog.show(this));
     prayerNames = getResources().getStringArray(R.array.home_prayer_labels);
     findViewById(R.id.homeFocusCard).setOnClickListener(v -> open(FocusTimerActivity.class));
     android.graphics.Typeface headingFace =
@@ -246,6 +241,7 @@ public final class HomeActivity extends BaseActivity {
   protected void onResume() {
     super.onResume();
     if (db == null) return;
+    com.zikra.app.prayer.PrayerTimetables.get(this).refresh(false, null);
     LocationPoint selected = LocationStore.current(this);
     if (!selected.key().equals(location.key())) {
       requestedSkyDate = null;
@@ -546,7 +542,10 @@ public final class HomeActivity extends BaseActivity {
                   + location.caption()
                   + ". Buka Jadwal Sholat untuk metode.");
     }
-    if (activePrayer != next || !timetable.date.equals(prayerDisplayDate)) {
+    ((TextView) findViewById(R.id.homeScheduleSource)).setText(
+        com.zikra.app.prayer.PrayerTimetables.get(this).caption(timetable.date, location));
+    if (activePrayer != next || !timetable.date.equals(prayerDisplayDate) || displayedTimetable != timetable) {
+      displayedTimetable = timetable;
       activePrayer = next;
       prayerDisplayDate = timetable.date;
       findViewById(R.id.homePrayerStrip)

@@ -63,7 +63,7 @@ public final class SkyDay {
   }
 
   public static SkyDay estimate(LocalDate date, com.zikra.app.location.LocationPoint point) {
-    PrayerSchedule.Day prayer = PrayerSchedule.forDate(date, point);
+    PrayerSchedule.Day prayer = PrayerSchedule.calculated(date, point);
     boolean available =
         prayer.at(1) != null
             && prayer.at(2) != null

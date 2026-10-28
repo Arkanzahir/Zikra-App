@@ -53,6 +53,13 @@ public final class PrayerActivity extends BaseActivity {
             renderRows();
           }
           renderCountdown();
+          PrayerSchedule.Day source = PrayerSchedule.forDate(selectedDate, location);
+          if (source != lastTimetableSource) {
+            lastTimetableSource = source;
+            renderRows();
+            renderWeek();
+            updateScheduleSource();
+          }
           updateAudioUi();
           clock.postDelayed(this, 1000);
         }
@@ -65,6 +72,15 @@ public final class PrayerActivity extends BaseActivity {
   private boolean weekMode;
   private int previousNext = -1;
   private boolean applyingMaster;
+  private PrayerSchedule.Day lastTimetableSource;
+
+  private void updateScheduleSource() {
+    TextView method = findViewById(R.id.prayerMethod);
+    method.setText(com.zikra.app.prayer.PrayerTimetables.get(this).caption(selectedDate, location));
+    method.setMinHeight(dp(48));
+    method.setFocusable(true);
+    method.setOnClickListener(v -> com.zikra.app.prayer.PrayerSourceDialog.show(this));
+  }
   private AlertDialog modeDialog, previewDialog;
   private int editingPrayer=-1, draftMode, pendingPreview=-1;
   private static final int REQUEST_NOTIFICATIONS = 401;
@@ -167,14 +183,14 @@ public final class PrayerActivity extends BaseActivity {
     location = selected;
     localZone = location.zone;
     ((TextView) findViewById(R.id.featureSubtitle)).setText(location.caption());
-    ((TextView) findViewById(R.id.prayerMethod))
-        .setText(
-            "Perhitungan "
-                + location.caption()
-                + ". Subuh 20°, Isya 18°, Ashar bayangan 1×; ihtiyati 2 menit (terbit tanpa"
-                + " ihtiyati). Asumsi dekat permukaan laut. Bukan jadwal resmi Kemenag; cocokkan"
-                + " dengan masjid setempat. Tanda — berarti peristiwa belum dapat dihitung untuk"
-                + " tanggal/lokasi ini.");
+    updateScheduleSource();
+    com.zikra.app.prayer.PrayerTimetables.get(this).refresh(false, () -> {
+      if (!isFinishing() && !isDestroyed()) {
+        renderRows();
+        renderWeek();
+        updateScheduleSource();
+      }
+    });
     PrayerReminders.sync(this);
     updateReminderUi();
     renderDates();

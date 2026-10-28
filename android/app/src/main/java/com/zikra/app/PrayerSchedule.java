@@ -11,10 +11,20 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Daily solar calculation for a selected coordinate and time zone. This is a calculation, not an
- * official timetable feed.
+ * Shared city-timetable selection with an explicit solar fallback for a coordinate and time zone.
+ * Every UI and alarm consumer uses the same selected daily values.
  */
 public final class PrayerSchedule {
+  public interface Timetable {
+    Day find(LocalDate date, LocationPoint point);
+  }
+
+  private static volatile Timetable timetable;
+
+  public static void setTimetable(Timetable value) {
+    timetable = value;
+  }
+
   public static final ZoneId ZONE = ZoneId.of("Asia/Jakarta");
   public static final double LATITUDE = -7.280, LONGITUDE = 112.790;
   public static final String[] NAMES = {"Subuh", "Terbit", "Dzuhur", "Ashar", "Maghrib", "Isya"};
@@ -32,11 +42,17 @@ public final class PrayerSchedule {
 
   public static final class Day {
     public final LocalDate date;
+    public final String source;
     private final LocalTime[] times;
 
     private Day(LocalDate date, LocalTime[] times) {
+      this(date, times, "local");
+    }
+
+    private Day(LocalDate date, LocalTime[] times, String source) {
       this.date = date;
-      this.times = times;
+      this.times = times.clone();
+      this.source = source;
     }
 
     public LocalTime at(int index) {
@@ -46,6 +62,17 @@ public final class PrayerSchedule {
     public String time(int index) {
       return at(index) == null ? "—" : TIME.format(at(index));
     }
+
+    public String signature() { return date + ":" + source + ":" + java.util.Arrays.toString(times); }
+  }
+
+  public static Day fromTimetable(LocalDate date, LocalTime[] times, String source) {
+    if (date == null || times == null || times.length != 6 || source == null)
+      throw new IllegalArgumentException("Timetable day");
+    for (int i = 0; i < times.length; i++)
+      if (times[i] == null || (i > 0 && !times[i].isAfter(times[i - 1])))
+        throw new IllegalArgumentException("Timetable order");
+    return new Day(date, times, source);
   }
 
   public static final class NextPrayer {
@@ -71,6 +98,13 @@ public final class PrayerSchedule {
   }
 
   public static synchronized Day forDate(LocalDate date, LocationPoint point) {
+    Timetable external = timetable;
+    Day selected = external == null ? null : external.find(date, point);
+    return selected == null ? calculated(date, point) : selected;
+  }
+
+  /** Solar events for illustration and the explicitly labelled fallback, independent of city tables. */
+  public static synchronized Day calculated(LocalDate date, LocationPoint point) {
     String key = date + ":" + point.key();
     Day cached = CACHE.get(key);
     if (cached != null) return cached;

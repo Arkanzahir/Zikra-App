@@ -1,0 +1,54 @@
+{
+  "apkBytes": 40746251,
+  "apkSha256": "c5fc144d97f48aec9d70c5aa27ee96f167397214cc7889f306a3c49d8e6b3792",
+  "unit": {
+    "tests": 157,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4,
+    "passed": 153
+  },
+  "lint": {
+    "Warning": 818
+  },
+  "nativePassed": 10,
+  "privateValueScanPassed": true,
+  "privateAudio": {
+    "assets/adhan/selected.mp3": {
+      "sha256": "b650e89a8141fa783da5947e2743e58d043ac29c982243761d4828b69aecb49d",
+      "bytes": 639007,
+      "matchesUserSelectedFile": true
+    },
+    "assets/adhan/fajr.mp3": {
+      "sha256": "106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530",
+      "bytes": 2996349,
+      "matchesUserSelectedFile": true
+    }
+  },
+  "protectedWipStashArtworkAiAndConfigurationUnchanged": true,
+  "sourceFilesSha256": {
+    "android/app/build.gradle": "27ee465711a9943124bf14928b2e2479099a8c1faa18bb5ee2ffd2090b5c6020",
+    "android/app/src/main/AndroidManifest.xml": "ee1b551d0372d207508a7434f87b882a78c075893f34662d003a8acb85a341a1",
+    "android/app/src/main/java/com/zikra/app/HomeActivity.java": "3a77454b59937c7e6e482e4f621608cc60b5509d042384332cd5f542c0564f39",
+    "android/app/src/main/java/com/zikra/app/PrayerActivity.java": "69da1707563a6bc531464608ce640d793f320499d962bfbd34997f716ff282fc",
+    "android/app/src/main/java/com/zikra/app/PrayerSchedule.java": "c5485333f093b6f0c3455b10b4718ac5f7c5598cc9df43348a6c99de23baf372",
+    "android/app/src/main/java/com/zikra/app/reminders/PrayerReminders.java": "f4a2db0c89d161ec1b20ffb202f9340650bcfd1fa99d68876d0e59e19f8afaf0",
+    "android/app/src/main/java/com/zikra/app/ZikraApplication.java": "ec8b0692801eb8598da5ad868f9519c0d4b079d496975c2367b8321933e7ef33",
+    "android/app/src/main/java/com/zikra/app/location/LocationStore.java": "5777f2516fb8bdd0431ab566474b02d3c0631ec00c6021a3e9e8d1601eadd32e",
+    "android/app/src/main/java/com/zikra/app/sky/SkyDay.java": "919c2f91769e8933033676a14d94e8d747aebe4d0705f45b8ecb864008db3198",
+    "android/app/src/main/res/values/prayer_source.xml": "e0843797fde06a041e52423824054dfdafec077edd714dcd5495d0795a514194",
+    "android/app/src/main/assets/prayer/regions-myquran-v3.json": "304929907d4ed4465f17dce5c691cee04a63ebb9f9611c232fcf2f275cc052ba",
+    "android/app/src/main/java/com/zikra/app/prayer/PrayerApi.java": "97fcc09b0c654941a401b27231645b328994c29bda784392efcfac859d4d2874",
+    "android/app/src/main/java/com/zikra/app/prayer/PrayerMonth.java": "4df69c3085ec93b5b310c0b13103baba4f8e4b5d872f6562a93d4d51593bf888",
+    "android/app/src/main/java/com/zikra/app/prayer/PrayerRefreshJob.java": "b797de8f70c3f5edca4a0b3fc4a1f71f37f7f443e0cdbeb3e3a9ae05eba395cc",
+    "android/app/src/main/java/com/zikra/app/prayer/PrayerRegion.java": "51b0d836479b21ea82f59e83f77738ada946468353c2272c733bb0aa7c3c292e",
+    "android/app/src/main/java/com/zikra/app/prayer/PrayerSourceDialog.java": "277ffecd615b717145fcb4a0761138295090f8ab4a7b819724e88e822f36db21",
+    "android/app/src/main/java/com/zikra/app/prayer/PrayerTimetables.java": "3036795cd2c26c2dba55cfbbc70ab53cb5f2a0da0e1ffce95d5562428f54c1cc"
+  },
+  "finalScreenshotsSha256": {
+    "home-offline.png": "46f2a4680be922448b553ab9f80721500eca00922f38bd5de1f41d4baf6ab991",
+    "large-home-offline.png": "6a7b72792f01052cef03b31e2d40978d5fb49538e21253844f1699b1af9319d7",
+    "large-source-offline.png": "76f6f0e632b94c0277d712d59ffcab17b58a748d40231b83b292da14b1173264",
+    "source-offline.png": "f2eae10e725edf1662e24985c3a5791281f16ebf02458cc4aa9e48a419260977"
+  }
+}

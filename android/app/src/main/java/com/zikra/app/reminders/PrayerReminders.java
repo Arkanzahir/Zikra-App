@@ -52,20 +52,23 @@ public final class PrayerReminders {
     return new Intent(c,PrayerAlarmReceiver.class).setAction("com.zikra.app.PRAYER_"+index)
         .setData(new Uri.Builder().scheme("zikra").authority("prayer").appendPath(key).build())
         .putExtra(EXTRA_INDEX,index).putExtra(EXTRA_EPOCH,epoch).putExtra("slot",key)
-        .putExtra("location_key",LocationStore.current(c).key()).putExtra("revision",PrayerSettings.revision(c));
+        .putExtra("location_key",LocationStore.current(c).key()).putExtra("revision",PrayerSettings.revision(c))
+        .putExtra("timetable_key",timetableKey(LocationStore.current(c),epoch));
   }
   public static synchronized void sync(Context c){
     createChannel(c);AdhanService.stopIfInvalid();
     SharedPreferences plan=c.getSharedPreferences(PLAN,0);Set<String> old=new HashSet<>(plan.getStringSet("ids",Collections.emptySet()));
     Map<String,PrayerAlarmPlan.Entry> next=new LinkedHashMap<>();LocationPoint point=LocationStore.current(c);long now=System.currentTimeMillis();
     if(enabled(c)&&canNotify(c)){
-      for(PrayerAlarmPlan.Entry entry:PrayerAlarmPlan.next(now,point))if(PrayerSettings.mode(c,entry.index)!=PrayerMode.OFF)next.put(entry.key,entry);
+      for(PrayerAlarmPlan.Entry entry:PrayerAlarmPlan.next(now,point))if(PrayerSettings.mode(c,entry.index)!=PrayerMode.OFF
+          &&!deliveredOnDate(c,entry.index,entry.epoch))next.put(entry.key,entry);
       for(String key:old)try{
         int index=Integer.parseInt(key.substring(key.lastIndexOf('_')+1));long epoch=plan.getLong("e:"+key,0);
         if(!next.containsKey(key)&&PrayerSchedule.isPrayer(index)&&PrayerSettings.mode(c,index)!=PrayerMode.OFF
             &&PrayerAlarmPlan.timely(epoch,now,PrayerAlarmPlan.MAX_NOTIFICATION_AGE)
             &&point.key().equals(plan.getString("l:"+key,""))&&plan.getLong("r:"+key,-1)==PrayerSettings.revision(c)
-            &&PrayerSettings.prefs(c).getLong("prayer_delivered_"+index,-1)!=epoch)next.put(key,new PrayerAlarmPlan.Entry(index,epoch,key));
+            &&timetableKey(point,epoch).equals(plan.getString("t:"+key,""))
+            &&!deliveredOnDate(c,index,epoch))next.put(key,new PrayerAlarmPlan.Entry(index,epoch,key));
       }catch(IllegalArgumentException malformed){ }
     }
     AlarmManager alarms=c.getSystemService(AlarmManager.class);SharedPreferences.Editor update=plan.edit();
@@ -74,10 +77,11 @@ public final class PrayerReminders {
         int index=Integer.parseInt(key.substring(split+1));PendingIntent operation=pending(c,intent(c,index,0,key),PendingIntent.FLAG_NO_CREATE);
         if(operation!=null){alarms.cancel(operation);operation.cancel();}
       }catch(IllegalArgumentException invalid){ }
-      update.remove("e:"+key).remove("l:"+key).remove("r:"+key);
+      update.remove("e:"+key).remove("l:"+key).remove("r:"+key).remove("t:"+key);
     }
     for(PrayerAlarmPlan.Entry entry:next.values()){
-      update.putLong("e:"+entry.key,entry.epoch).putString("l:"+entry.key,point.key()).putLong("r:"+entry.key,PrayerSettings.revision(c));
+      update.putLong("e:"+entry.key,entry.epoch).putString("l:"+entry.key,point.key()).putLong("r:"+entry.key,PrayerSettings.revision(c))
+          .putString("t:"+entry.key,timetableKey(point,entry.epoch));
       com.zikra.app.study.StudyAlarmPolicy.schedule(c,Math.max(now+1000,entry.epoch),pending(c,intent(c,entry.index,entry.epoch,entry.key),PendingIntent.FLAG_UPDATE_CURRENT));
     }
     update.putStringSet("ids",new HashSet<>(next.keySet())).commit();
@@ -92,7 +96,9 @@ public final class PrayerReminders {
     int index=intent.getIntExtra(EXTRA_INDEX,-1);long epoch=intent.getLongExtra(EXTRA_EPOCH,0);String key=intent.getStringExtra("slot");
     if(!PrayerSchedule.isPrayer(index)||key==null||!key.endsWith("_"+index)||!enabled(c)||!canNotify(c)
         ||PrayerSettings.mode(c,index)==PrayerMode.OFF||!LocationStore.current(c).key().equals(intent.getStringExtra("location_key"))
-        ||intent.getLongExtra("revision",-1)!=PrayerSettings.revision(c)||!PrayerAlarmPlan.timely(epoch,System.currentTimeMillis(),PrayerAlarmPlan.MAX_NOTIFICATION_AGE))return false;
+        ||intent.getLongExtra("revision",-1)!=PrayerSettings.revision(c)
+        ||!timetableKey(LocationStore.current(c),epoch).equals(intent.getStringExtra("timetable_key"))
+        ||!PrayerAlarmPlan.timely(epoch,System.currentTimeMillis(),PrayerAlarmPlan.MAX_NOTIFICATION_AGE))return false;
     SharedPreferences plan=c.getSharedPreferences(PLAN,0);
     return plan.getLong("e:"+key,-1)==epoch&&LocationStore.current(c).key().equals(plan.getString("l:"+key,""))
         &&plan.getLong("r:"+key,-1)==PrayerSettings.revision(c);
@@ -101,7 +107,7 @@ public final class PrayerReminders {
     try{
       if(!valid(c,intent))return;
       int index=intent.getIntExtra(EXTRA_INDEX,-1);long epoch=intent.getLongExtra(EXTRA_EPOCH,0);SharedPreferences prefs=PrayerSettings.prefs(c);
-      if(prefs.getLong("prayer_delivered_"+index,-1)==epoch)return;
+      if(deliveredOnDate(c,index,epoch))return;
       PrayerMode mode=PrayerSettings.mode(c,index);boolean quiet=PrayerAudioPolicy.quietClass(c);
       boolean audio=mode==PrayerMode.ADHAN&&!quiet&&PrayerAudioPolicy.deviceAllowsSound(c)&&AdhanAsset.available(c,index)
           &&AdhanNotification.allowed(c,false)&&PrayerAlarmPlan.timely(epoch,System.currentTimeMillis(),PrayerAlarmPlan.MAX_AUDIO_AGE);
@@ -110,6 +116,17 @@ public final class PrayerReminders {
         if(!AdhanService.fromAlarm(c,intent))post(c,index,epoch,PrayerMode.NOTIFICATION,false,c.getString(R.string.adhan_unavailable));
       }else if(post(c,index,epoch,mode,quiet,null))prefs.edit().putLong("prayer_delivered_"+index,epoch).commit();
     }finally{sync(c);}
+  }
+  static boolean deliveredOnDate(Context c,int index,long epoch){
+    long delivered=PrayerSettings.prefs(c).getLong("prayer_delivered_"+index,-1);
+    if(delivered<=0||epoch<=0)return false;
+    ZoneId zone=LocationStore.current(c).zone;
+    return Instant.ofEpochMilli(delivered).atZone(zone).toLocalDate()
+        .equals(Instant.ofEpochMilli(epoch).atZone(zone).toLocalDate());
+  }
+  private static String timetableKey(LocationPoint point,long epoch){
+    LocalDate date=Instant.ofEpochMilli(epoch).atZone(point.zone).toLocalDate();
+    return PrayerSchedule.forDate(date,point).signature();
   }
   static boolean post(Context c,int index,long epoch,PrayerMode mode,boolean quiet,String reason){
     if(!enabled(c)||PrayerSettings.mode(c,index)==PrayerMode.OFF)return false;

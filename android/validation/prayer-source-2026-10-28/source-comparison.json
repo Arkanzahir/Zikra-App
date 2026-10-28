@@ -1,0 +1,130 @@
+{
+  "checkedAt": "2026-10-28T10:18:32.180Z",
+  "provider": "myQuran v3",
+  "providerSourceDeclaration": {
+    "status": true,
+    "message": "success",
+    "data": {
+      "name": "Jadwal Sholat",
+      "desc": "API jadwal Sholat bersumber dari Kementrian Agama Indonesia",
+      "lang": "Indonesia",
+      "last_update": "25 November 2025",
+      "source": "bimasislam.kemenag.go.id"
+    }
+  },
+  "publicDataOnly": true,
+  "privateCoordinatesSent": false,
+  "records": [
+    {
+      "city": "KOTA SURABAYA",
+      "province": "JAWA TIMUR",
+      "period": "2026-10",
+      "days": 31,
+      "eventsCompared": 186,
+      "exactMatch": true,
+      "providerUrl": "https://api.myquran.com/v3/sholat/jadwal/4734ba6f3de83d861c3176a6273cac6d/2026-10",
+      "officialPage": "https://bimasislam.kemenag.go.id/jadwal-sholat",
+      "officialEndpoint": "https://bimasislam.kemenag.go.id/api/sihat/jadwal",
+      "fixtureSha256": "050a571e823821e6fb2a04eb6d76c20f6b0f11a1047bcb5a636a5fee646f813b",
+      "sample": {
+        "date": "2026-10-28",
+        "times": {
+          "subuh": "03:45",
+          "terbit": "05:00",
+          "dzuhur": "11:16",
+          "ashar": "14:28",
+          "maghrib": "17:26",
+          "isya": "18:37"
+        }
+      }
+    },
+    {
+      "city": "KOTA SURABAYA",
+      "province": "JAWA TIMUR",
+      "period": "2026-11",
+      "days": 30,
+      "eventsCompared": 180,
+      "exactMatch": true,
+      "providerUrl": "https://api.myquran.com/v3/sholat/jadwal/4734ba6f3de83d861c3176a6273cac6d/2026-11",
+      "officialPage": "https://bimasislam.kemenag.go.id/jadwal-sholat",
+      "officialEndpoint": "https://bimasislam.kemenag.go.id/api/sihat/jadwal",
+      "fixtureSha256": "0e81a158b3ec8d4b9618b76dc56f5fee6e959711924025d5a2d5ccbf833db29b",
+      "sample": null
+    },
+    {
+      "city": "KOTA MAKASSAR",
+      "province": "SULAWESI SELATAN",
+      "period": "2026-10",
+      "days": 31,
+      "eventsCompared": 186,
+      "exactMatch": true,
+      "providerUrl": "https://api.myquran.com/v3/sholat/jadwal/b7b16ecf8ca53723593894116071700c/2026-10",
+      "officialPage": "https://bimasislam.kemenag.go.id/jadwal-sholat",
+      "officialEndpoint": "https://bimasislam.kemenag.go.id/api/sihat/jadwal",
+      "fixtureSha256": "1f1ac01ac681a4a3bb72afce86af3bdd5c9274bf78031f13fdf8728c9d1f9e88",
+      "sample": {
+        "date": "2026-10-28",
+        "times": {
+          "subuh": "04:21",
+          "terbit": "05:35",
+          "dzuhur": "11:50",
+          "ashar": "15:04",
+          "maghrib": "17:58",
+          "isya": "19:08"
+        }
+      }
+    },
+    {
+      "city": "KOTA MAKASSAR",
+      "province": "SULAWESI SELATAN",
+      "period": "2026-11",
+      "days": 30,
+      "eventsCompared": 180,
+      "exactMatch": true,
+      "providerUrl": "https://api.myquran.com/v3/sholat/jadwal/b7b16ecf8ca53723593894116071700c/2026-11",
+      "officialPage": "https://bimasislam.kemenag.go.id/jadwal-sholat",
+      "officialEndpoint": "https://bimasislam.kemenag.go.id/api/sihat/jadwal",
+      "fixtureSha256": "bf1bf12afd5b27821cb68a8133a9e538aa6d591b461bddf1242a0717dec0665d",
+      "sample": null
+    },
+    {
+      "city": "KOTA JAYAPURA",
+      "province": "PAPUA",
+      "period": "2026-10",
+      "days": 31,
+      "eventsCompared": 186,
+      "exactMatch": true,
+      "providerUrl": "https://api.myquran.com/v3/sholat/jadwal/5b69b9cb83065d403869739ae7f0995e/2026-10",
+      "officialPage": "https://bimasislam.kemenag.go.id/jadwal-sholat",
+      "officialEndpoint": "https://bimasislam.kemenag.go.id/api/sihat/jadwal",
+      "fixtureSha256": "5023b7a530b4b5ad3cc660b862605ad51590d49e73248663a62ee808a8d282e8",
+      "sample": {
+        "date": "2026-10-28",
+        "times": {
+          "subuh": "03:59",
+          "terbit": "05:12",
+          "dzuhur": "11:25",
+          "ashar": "14:41",
+          "maghrib": "17:30",
+          "isya": "18:40"
+        }
+      }
+    },
+    {
+      "city": "KOTA JAYAPURA",
+      "province": "PAPUA",
+      "period": "2026-11",
+      "days": 30,
+      "eventsCompared": 180,
+      "exactMatch": true,
+      "providerUrl": "https://api.myquran.com/v3/sholat/jadwal/5b69b9cb83065d403869739ae7f0995e/2026-11",
+      "officialPage": "https://bimasislam.kemenag.go.id/jadwal-sholat",
+      "officialEndpoint": "https://bimasislam.kemenag.go.id/api/sihat/jadwal",
+      "fixtureSha256": "0061921a08ebfd94931b99014472b5b3454af26bac26a53ab8487eb2f9e73a6e",
+      "sample": null
+    }
+  ],
+  "eventsCompared": 1098,
+  "passed": true,
+  "scope": "Exact equality for six public city-months, not a claim that all dates/regions or provider availability are verified."
+}

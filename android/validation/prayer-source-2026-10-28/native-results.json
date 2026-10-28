@@ -1,0 +1,52 @@
+[
+  {
+    "label": "key-baseline",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "seed-1917",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "upgrade-1917-to-1918",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "upgrade-restart",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "live-api",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "offline-restart",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "fallback-invalid-cache",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "alarm-replacement-dedup",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "offline-large-text",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "label": "key-cleanup",
+    "passed": true,
+    "tests": 1
+  }
+]

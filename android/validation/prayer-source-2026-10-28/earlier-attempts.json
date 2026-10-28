@@ -1,0 +1,10 @@
+{
+  "countedAsFinalPasses": false,
+  "attempts": [
+    {"stage": "emulator preflight", "result": "temporary svc data failure before native execution", "resolution": "waited for the emulator service to become ready"},
+    {"stage": "first live native", "result": "local fallback instead of downloaded month", "resolution": "added direct API diagnostics and repaired forced-refresh coalescing"},
+    {"stage": "direct Android HTTP diagnostic", "result": "UnknownHostException while emulator DNS was not ready", "resolution": "waited for public DNS resolution without replacing HTTPS verification"},
+    {"stage": "large font visual review", "result": "dialog action clipping despite the earlier simple test passing", "resolution": "scrollable content and actions, visibility assertions and injected Close touch"},
+    {"stage": "host screenshot collection", "result": "repeated adb directory pull nested new files under old files", "resolution": "selected actual final captures and hashed final evidence"}
+  ]
+}

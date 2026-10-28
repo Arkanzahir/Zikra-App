@@ -51,6 +51,7 @@ public final class LocationStore {
         .putFloat("accuracy", point.accuracy)
         .apply();
     PrayerReminders.sync(context);
+    com.zikra.app.prayer.PrayerTimetables.get(context).refresh(false, null);
     com.zikra.app.study.StudyReminders.sync(context);
   }
 }
