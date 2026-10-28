@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "positions": [
+    {
+      "minute": 303,
+      "x": 17,
+      "y": 76,
+      "opacity": 0.7
+    },
+    {
+      "minute": 390,
+      "x": 25.3473,
+      "y": 59.0326,
+      "opacity": 1
+    },
+    {
+      "minute": 673,
+      "x": 52.5,
+      "y": 29,
+      "opacity": 1
+    },
+    {
+      "minute": 960,
+      "x": 80.0365,
+      "y": 59.7793,
+      "opacity": 1
+    },
+    {
+      "minute": 1043,
+      "x": 88,
+      "y": 76,
+      "opacity": 0.7
+    },
+    {
+      "minute": 1110,
+      "x": 88,
+      "y": 76,
+      "opacity": 0
+    }
+  ],
+  "widths": [
+    {
+      "viewportWidth": 320,
+      "width": 288,
+      "scroll": 288,
+      "broken": 0
+    },
+    {
+      "viewportWidth": 390,
+      "width": 358,
+      "scroll": 358,
+      "broken": 0
+    },
+    {
+      "viewportWidth": 736,
+      "width": 704,
+      "scroll": 704,
+      "broken": 0
+    }
+  ],
+  "errors": [],
+  "reduceState": {
+    "preference": true,
+    "disabled": true
+  },
+  "skyTransitions": true,
+  "nightStars": true,
+  "moonPixels": {
+    "lit": 10034,
+    "transparent": 5424
+  },
+  "cloudMotion": true,
+  "parallax": "translate3d(-1.835px, 1.27px, 0px) scale(1.025)",
+  "independentClock": true,
+  "toggles": true,
+  "source": "App local sky estimate for 2026-10-28 at the public initial Surabaya point; scene path, moon position and star field are illustrative."
+}

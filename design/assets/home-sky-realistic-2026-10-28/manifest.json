@@ -1,0 +1,29 @@
+{
+  "generator": "built-in imagegen",
+  "sourceFilename": "exec-264a47c1-e04e-4bca-ab27-8a4e6d8be557.png",
+  "masterDimensions": [
+    2172,
+    724
+  ],
+  "masterSha256": "3268a5971404fcb8dfcb95c3de849ee68e1c87f568f49c921abd7be287cd399c",
+  "transparentFraction": 0.6249,
+  "alphaExtrema": [
+    0,
+    253
+  ],
+  "files": {
+    "cloud-bank-preview.webp": {
+      "bytes": 55206,
+      "sha256": "61527c5a03a65d1298520c42914465cef2cf781e37e5e12d222faedfaa3e3a1c"
+    },
+    "cloud-bank-v1.png": {
+      "bytes": 1125787,
+      "sha256": "3268a5971404fcb8dfcb95c3de849ee68e1c87f568f49c921abd7be287cd399c"
+    },
+    "cloud-bank-v1.webp": {
+      "bytes": 85054,
+      "sha256": "3d1a579a2792201f9a9363d9c9c98ad568054c5a8b0938c18e808fe80064cb62"
+    }
+  },
+  "status": "Reference asset; Android resources and APK unchanged."
+}
