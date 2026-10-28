@@ -2,8 +2,8 @@
   <string-array name="prayer_mode_choices"><item>Adzan penuh</item><item>Notifikasi biasa</item><item>Getar saja</item><item>Mati</item></string-array>
   <string name="adhan_mode_title">Pengingat %1$s</string>
   <string name="adhan_settings_hint">Ketuk pilihan pada setiap waktu salat. Pilihan tetap tersimpan saat pengingat utama mati.</string>
-  <string name="adhan_audio_label">Makkah · 3:23 / Subuh · 3:07 · tersedia offline</string>
-  <string-array name="adhan_preview_choices"><item>Adzan Makkah</item><item>Adzan Subuh</item></string-array>
+  <string name="adhan_audio_label">Mishari Rashid Alafasy / Subuh · tersedia offline</string>
+  <string-array name="adhan_preview_choices"><item>Adzan Alafasy</item><item>Adzan Subuh</item></string-array>
   <string name="adhan_audio_missing">Audio adzan belum tersedia pada versi ini. Pilih notifikasi biasa atau getar.</string>
   <string name="adhan_preview">Dengarkan adzan</string>
   <string name="adhan_stop">Hentikan adzan</string>

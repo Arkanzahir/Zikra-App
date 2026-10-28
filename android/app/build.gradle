@@ -14,8 +14,8 @@ android {
         applicationId 'com.zikra.app'
         minSdk 26
         targetSdk 35
-        versionCode 42
-        versionName '1.9.15'
+        versionCode 43
+        versionName '1.9.16'
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
 
@@ -69,6 +69,8 @@ def prepareAdhanAudio = tasks.register('prepareDebugAdhanAudio') {
     }
 }
 android.sourceSets.debug.assets.srcDir(prepareAdhanAudio)
+// AGP must generate the selected private audio before it decides whether assets changed.
+tasks.matching { it.name == 'preDebugBuild' }.configureEach { dependsOn(prepareAdhanAudio) }
 
 dependencies {
     // OkHttp 3.x and Okio 1.x are Java, including their runtime dependencies.

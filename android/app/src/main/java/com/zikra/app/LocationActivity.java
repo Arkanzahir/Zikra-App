@@ -109,6 +109,9 @@ public final class LocationActivity extends BaseActivity {
   private void showCurrent() {
     LocationPoint p = LocationStore.current(this);
     ((TextView) findViewById(R.id.locationCurrent)).setText(p.label);
+    ((TextView) findViewById(R.id.locationAutomatic))
+        .setText(
+            "device".equals(p.source) ? R.string.location_refresh_device : R.string.location_auto);
     String source =
         p.source.equals("initial")
             ? "Lokasi awal; belum mengikuti posisimu"
@@ -325,12 +328,13 @@ public final class LocationActivity extends BaseActivity {
     stopTracking();
     int token = ++generation;
     setBusy(true);
-    status("Menyesuaikan zona waktu lokasi…");
+    status("Mencari nama daerah dan menyesuaikan zona waktu…");
     work.execute(
         () -> {
           if (!current(token)) return;
           try {
-            LocationPoint point = service.device(fix);
+            LocationPoint point =
+                com.zikra.app.location.DevicePlaceName.resolve(this, service.device(fix));
             runOnUiThread(
                 () -> {
                   if (current(token)) {

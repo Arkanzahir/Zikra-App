@@ -1,0 +1,10 @@
+<resources>
+    <string name="home_appearance">Tema Home</string>
+    <string-array name="home_appearance_choices"><item>Terang</item><item>Gelap</item><item>Ikuti perangkat</item></string-array>
+    <string name="home_schedule_source">Jadwal · perhitungan lokal ⓘ</string>
+    <string name="home_schedule_method">Sumber waktu salat</string>
+    <string name="home_schedule_explanation">Jadwal dihitung di perangkat dari koordinat dan zona waktu pilihanmu, bukan diambil dari API jadwal resmi.\n\nSubuh 20°, Isya 18°, Asar bayangan 1×. Hasil dibulatkan ke atas dengan tambahan kehati-hatian 2 menit, kecuali terbit.\n\nPerbedaan metode, titik lokasi, dan pembulatan dapat menghasilkan selisih. Jadwal ini belum disamakan dengan jadwal resmi Kemenag.</string>
+    <string name="home_place_caption">%1$s · %2$s</string>
+    <string name="location_name_lookup">Nama daerah memakai layanan geocoding perangkat bila tersedia. Jika gagal, koordinat tetap dapat digunakan.</string>
+    <string name="location_refresh_device">Perbarui lokasi perangkat</string>
+</resources>

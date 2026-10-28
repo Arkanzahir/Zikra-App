@@ -58,6 +58,32 @@ public final class HomeActivity extends BaseActivity {
       };
 
   @Override
+  protected void attachBaseContext(android.content.Context base) {
+    super.attachBaseContext(com.zikra.app.ui.HomeAppearance.wrap(base));
+  }
+
+  private void chooseAppearance() {
+    String[] choices = {"light", "dark", "system"};
+    String current = com.zikra.app.ui.HomeAppearance.selected(this);
+    int selected = java.util.Arrays.asList(choices).indexOf(current);
+    new android.app.AlertDialog.Builder(this)
+        .setTitle(R.string.home_appearance)
+        .setSingleChoiceItems(
+            R.array.home_appearance_choices,
+            selected,
+            (dialog, which) -> {
+              getSharedPreferences(com.zikra.app.ui.HomeAppearance.PREFS, MODE_PRIVATE)
+                  .edit()
+                  .putString(com.zikra.app.ui.HomeAppearance.KEY, choices[which])
+                  .apply();
+              dialog.dismiss();
+              recreate();
+            })
+        .setNegativeButton(android.R.string.cancel, null)
+        .show();
+  }
+
+  @Override
   protected void onCreate(Bundle state) {
     super.onCreate(state);
     if (!getSharedPreferences("zikra_preferences", MODE_PRIVATE)
@@ -67,16 +93,23 @@ public final class HomeActivity extends BaseActivity {
       return;
     }
     setContentView(R.layout.activity_home);
+    findViewById(R.id.homeAppearance).setOnClickListener(v -> chooseAppearance());
+    findViewById(R.id.homeScheduleSource)
+        .setOnClickListener(
+            v ->
+                new android.app.AlertDialog.Builder(this)
+                    .setTitle(R.string.home_schedule_method)
+                    .setMessage(R.string.home_schedule_explanation)
+                    .setPositiveButton(android.R.string.ok, null)
+                    .show());
     prayerNames = getResources().getStringArray(R.array.home_prayer_labels);
     findViewById(R.id.homeFocusCard).setOnClickListener(v -> open(FocusTimerActivity.class));
     android.graphics.Typeface headingFace =
         android.os.Build.VERSION.SDK_INT >= 28
             ? android.graphics.Typeface.create(
-                android.graphics.Typeface.create("sans-serif", android.graphics.Typeface.NORMAL),
-                600,
-                false)
+                getResources().getFont(R.font.plus_jakarta_sans), 600, false)
             : android.graphics.Typeface.create(
-                "sans-serif-medium", android.graphics.Typeface.NORMAL);
+                getResources().getFont(R.font.plus_jakarta_sans), android.graphics.Typeface.BOLD);
     for (int textId :
         new int[] {R.id.homeGreeting, R.id.homeClock, R.id.homeRhythmTitle, R.id.homeLastRead})
       ((TextView) findViewById(textId)).setTypeface(headingFace);
@@ -112,7 +145,9 @@ public final class HomeActivity extends BaseActivity {
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(
-            android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            (com.zikra.app.ui.RefinedUi.dark(this)
+                    ? 0
+                    : android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR)
                 | android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     db = new ZikraDbHelper(this);
@@ -219,7 +254,17 @@ public final class HomeActivity extends BaseActivity {
       prayerDisplayDate = null;
     }
     location = selected;
-    ((TextView) findViewById(R.id.homeLocationLabel)).setText(location.label.split(",")[0]);
+    String[] place = location.label.split(",", 3);
+    String caption = place.length > 1 ? place[1].trim() : "Lokasi pilihan";
+    if ("Lokasi perangkat".equals(location.label)) caption = "Perbarui nama daerah";
+    ((TextView) findViewById(R.id.homeLocationLabel))
+        .setText(
+            place[0].trim()
+                + "\n"
+                + getString(
+                    R.string.home_place_caption,
+                    caption,
+                    location.zoneLabel(java.time.Instant.now())));
     findViewById(R.id.homeLocation)
         .setContentDescription("Lokasi " + location.caption() + ". Ketuk untuk mengubah.");
     sky.post(
@@ -361,6 +406,19 @@ public final class HomeActivity extends BaseActivity {
     float scale = getResources().getConfiguration().fontScale;
     findViewById(R.id.homePrayerStrip).setMinimumWidth(dp(5 * 48 * Math.max(1f, scale)));
     if (scale <= 1.3f) return;
+    LinearLayout place = findViewById(R.id.homeLocation);
+    LinearLayout header = (LinearLayout) place.getParent();
+    LinearLayout heroContent = (LinearLayout) header.getParent();
+    header.removeView(place);
+    android.view.View spacer = new android.view.View(this);
+    header.addView(spacer, 1, new LinearLayout.LayoutParams(0, 1, 1));
+    LinearLayout.LayoutParams placeParams = new LinearLayout.LayoutParams(-1, -2);
+    placeParams.topMargin = dp(4);
+    heroContent.addView(place, 1, placeParams);
+    place.setGravity(android.view.Gravity.START | android.view.Gravity.CENTER_VERTICAL);
+    TextView placeLabel = findViewById(R.id.homeLocationLabel);
+    placeLabel.setMaxLines(Integer.MAX_VALUE);
+    placeLabel.setEllipsize(null);
     LinearLayout shortcuts = findViewById(R.id.homeShortcuts);
     java.util.List<android.view.View> tiles = new java.util.ArrayList<>();
     for (int i = 0; i < shortcuts.getChildCount(); i++) {

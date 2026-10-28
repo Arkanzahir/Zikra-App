@@ -14,6 +14,7 @@
                 </LinearLayout>
                 <Button android:id="@+id/locationAutomatic" style="@style/NearbyPrimary" android:layout_marginTop="16dp" android:text="@string/location_auto" />
                 <TextView style="@style/NearbyCaption" android:layout_marginTop="8dp" android:text="@string/location_privacy" />
+                <TextView style="@style/NearbyCaption" android:layout_marginTop="4dp" android:text="@string/location_name_lookup" />
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="12dp">
                     <ProgressBar android:id="@+id/locationProgress" style="?android:attr/progressBarStyleSmall" android:layout_width="24dp" android:layout_height="24dp" android:layout_marginEnd="10dp" android:indeterminateTint="@color/pine" android:visibility="gone" android:importantForAccessibility="no" />
                     <TextView android:id="@+id/locationStatus" style="@style/NearbyBody" android:layout_width="0dp" android:layout_weight="1" android:visibility="gone" android:accessibilityLiveRegion="polite" />

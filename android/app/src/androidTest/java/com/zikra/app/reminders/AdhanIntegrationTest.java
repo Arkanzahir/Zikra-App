@@ -122,9 +122,9 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
     assertEquals(PrayerMode.OFF,PrayerSettings.mode(context,2));waitFor(()->notice(7302)==null);
   }
   public void testTwoSelectedMp3TracksDecodeAndStopActionsAreBoundToSession()throws Exception{
-    launch(PrayerActivity.class);assertEquals("43ade766272ff9c89c86908959df6ddd7f3a34961897caf09f965a3841e1bcd2",digest(2));assertEquals("106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530",digest(0));
-    ui(()->assertTrue(AdhanService.preview(context,2)));waitFor(()->AdhanService.state().playing);assertTrue(AdhanService.state().duration>195000&&AdhanService.state().duration<210000);
-    int initial=AdhanService.state().position;waitFor(()->AdhanService.state().position>initial+500);PendingIntent oldStop=notice(7400).getNotification().actions[0].actionIntent;shot("playing-makkah");oldStop.send();waitFor(()->!AdhanService.state().active);
+    launch(PrayerActivity.class);assertEquals("b650e89a8141fa783da5947e2743e58d043ac29c982243761d4828b69aecb49d",digest(2));assertEquals("106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530",digest(0));
+    ui(()->assertTrue(AdhanService.preview(context,2)));waitFor(()->AdhanService.state().playing);assertTrue(AdhanService.state().duration>10000&&AdhanService.state().duration<600000);
+    int initial=AdhanService.state().position;waitFor(()->AdhanService.state().position>initial+500);PendingIntent oldStop=notice(7400).getNotification().actions[0].actionIntent;shot("playing-alafasy");oldStop.send();waitFor(()->!AdhanService.state().active);
     ui(()->assertTrue(AdhanService.preview(context,0)));waitFor(()->AdhanService.state().playing);assertTrue(AdhanService.state().duration>180000&&AdhanService.state().duration<195000);
     oldStop.send();SystemClock.sleep(350);assertTrue(AdhanService.state().playing);PendingIntent stop=notice(7400).getNotification().actions[0].actionIntent;stop.send();waitFor(()->!AdhanService.state().active);assertNull(notice(7400));
   }

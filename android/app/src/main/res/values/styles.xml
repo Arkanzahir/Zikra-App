@@ -37,6 +37,6 @@
         <item name="android:layout_marginTop">4dp</item>
     </style>
     <style name="Theme.Zikra.Home" parent="Theme.Zikra">
-        <item name="android:fontFamily">@font/protector_roboto</item>
+        <item name="android:fontFamily">@font/plus_jakarta_sans</item>
     </style>
 </resources>
