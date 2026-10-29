@@ -1,0 +1,17 @@
+{
+  "sourceCommit": "355350601f60bb8ba9f93d2e063e5d6b002dcd51",
+  "version": "1.9.26",
+  "versionCode": 53,
+  "apkBytes": 43857302,
+  "apkSha256": "f2b45e3982d076fb76fb06b2ebd00c1efae6e17f5c7915de56ea8586c92f181f",
+  "debugSignerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "unitPassed": 160,
+  "unitSkipped": 4,
+  "nativeFinalPassed": 4,
+  "nativeDevice": "isolated project emulator / API37.1",
+  "physicalPhoneUnchangedAtVersion": "1.9.25",
+  "lintErrors": 0,
+  "lintWarnings": 862,
+  "publicApiIntermittentFailureObserved": true,
+  "scope": "UI08 beta only; broader E04/A-D/F/G/public gates remain open"
+}

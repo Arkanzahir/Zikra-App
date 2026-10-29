@@ -89,3 +89,9 @@ pengaturan jaringan/font/animasi/viewport dikembalikan. Marker/helper/gambar
 uji di emulator dibersihkan, emulator ditutup. HP1.9.25 tidak dipasang/diubah.
 WIP PROJECT_HANDOFF, stash/arsip audio, env privat, artwork dan ikon asli tetap.
 Font Arab reader/gerbang B01/C02/C04/C07/D02/D02a/E/F/G tetap mengikuti plan.
+
+## Source/checkpoint
+
+[Receipt](receipt.json) mengikat source`355350601f60bb8ba9f93d2e063e5d6b002dcd51` dengan APK/uji.
+Commit receipt hanya dokumentasi. Hash remote diverifikasi sesudah push dan
+dilaporkan di chat; APK/MP3/data privat tetap lokal.
