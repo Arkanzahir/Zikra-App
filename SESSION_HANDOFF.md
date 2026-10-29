@@ -1,5 +1,12 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
+## UI06 selesai teknis beta1.9.24 — 29 Oktober2026
+
+Pengguna memperjelas agar dock AI/lampu malam/splash tidak dilewati sebelum C04. Ketiganya diterapkan: NavDock bersama dan IME/draf, fasad malam/refleksi mengikuti matahari lokasi (siang mati), splash native satu logo nominal400ms dengan warm/reduced-motion/power-save/pause guard. [Video/screenshot/bukti/batas](android/validation/ui-followup-2026-10-29/README.md).
+
+155 unit/4 skip,11 native/8 metode unik lulus; lint0 error/862 warning. Update APK1.9.23 aktual ke1.9.24 mempertahankan fixture profil/chat/draf. APK lokal folder pembungkus `Zikra-UI-v1.9.24-beta-debug.apk`,43.867.733byte; SHA256`8416d3756b92dd5af2e32635230c19b2656633865ac287acd2da7d2a4bc08fe1`. Signer sama; HP tidak diubah. Emulator khusus dipulihkan/ditutup, helper dihapus. WIP/stash/audio/konfigurasi privat/ikon/logo asli tetap. C04 berikutnya; A–D/F04/HP/publik belum selesai seluruhnya. Splash native mengikuti referensi lokal yang dipadatkan, tidak mengklaim canvas Figma selesai.
+
+
 ## Tema global1.9.23 — 29 Oktober2026
 
 Permintaan tema konsisten seluruh fitur diterapkan pada F03a: Home/Profil/Quran/Mushaf memakai satu pilihan terang/gelap/perangkat. BaseActivity membungkus konfigurasi dan memulihkan back stack; palet halaman/dialog/dock/input diselaraskan. Sakelar Quran tidak boleh mengembalikan pilihan lama saat restore. Draf AI dan pilihan Home lama terpelihara. Otomatis Quran mengikuti perangkat, bukan lux. [Bukti, preview, APK dan batas](android/validation/global-theme-2026-10-29/README.md).

@@ -1,0 +1,46 @@
+[
+  {
+    "label": "seed-1923",
+    "passed": true
+  },
+  {
+    "label": "upgrade-1923-1924",
+    "passed": true
+  },
+  {
+    "label": "location-clock-lamps",
+    "passed": true
+  },
+  {
+    "label": "launch-cold-warm-once",
+    "passed": true
+  },
+  {
+    "label": "launch-background-resume",
+    "passed": true
+  },
+  {
+    "label": "launch-reduced-motion",
+    "passed": true
+  },
+  {
+    "label": "launch-large-font",
+    "passed": true
+  },
+  {
+    "label": "ai-dock-keyboard",
+    "passed": true
+  },
+  {
+    "label": "ai-dock-keyboard-large",
+    "passed": true
+  },
+  {
+    "label": "global-theme-back-stack-regression",
+    "passed": true
+  },
+  {
+    "label": "launch-power-saver",
+    "passed": true
+  }
+]

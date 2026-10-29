@@ -26,17 +26,19 @@ public final class HomeSkyView extends View implements SensorEventListener {
       new int[] {0x16DCE8FF, 0x00DCE8FF}, null, Shader.TileMode.CLAMP);
   private final Shader lunarDetail = new RadialGradient(-.24f, -.2f, .7f,
       new int[] {0x19293C47, 0x00293C47}, null, Shader.TileMode.CLAMP);
-  private final Shader lampGlow = new RadialGradient(0, 0, 17,
-      new int[] {0x73FFC771, 0x30FFB354, 0x00FFAE4D},
+  private final Shader lampGlow = new RadialGradient(0, 0, 1,
+      new int[] {0xD9FFC771, 0x85FFB354, 0x00FFAE4D},
       new float[] {0, .35f, 1}, Shader.TileMode.CLAMP);
-  private static final float[] LAMP_X = {440, 493, 551, 616, 705, 744, 792, 841, 888};
+  private static final float[] LAMP_X = {430, 486, 548, 618, 706, 730, 792, 850, 911};
+  private final Shader reflectedLight = new RadialGradient(0,0,1,
+      new int[]{0x76FFC579,0x00FFB354},null,Shader.TileMode.CLAMP);
   private final AmbientMotionPolicy policy;
   private final SensorManager sensors;
   private final Sensor gravity;
   private SkyDay day;
   private LocalTime time = LocalTime.NOON;
   private boolean running, registered, touching;
-  private float aimX, aimY, offsetX, offsetY, scrollOffset, nightBlend;
+  private float aimX, aimY, offsetX, offsetY, scrollOffset, nightBlend, lampStrength;
   private int paletteSecond = -1, backdropWidth, backdropHeight;
   private Shader backdrop, textShade;
   private long lastFrame, motionMillis;
@@ -175,6 +177,7 @@ public final class HomeSkyView extends View implements SensorEventListener {
           SkyPalette.cloud(day, time), PorterDuff.Mode.MULTIPLY));
       float daylight = SkyPalette.daylight(day, time);
       nightBlend = 1 - daylight;
+      lampStrength = SkyPalette.lampVisibility(day,time);
       float brightness = .43f + .57f * daylight;
       landscapePaint.setColorFilter(new ColorMatrixColorFilter(new float[] {
           brightness,0,0,0,0, 0,brightness,0,0,0, 0,0,brightness,0,0, 0,0,0,1,0}));
@@ -227,14 +230,18 @@ public final class HomeSkyView extends View implements SensorEventListener {
     float left = (w - sceneWidth) / 2, top = h - sceneHeight + 9 * u;
     landscapeBounds.set(left, top, left + sceneWidth, top + sceneHeight);
     canvas.drawBitmap(landscape, null, landscapeBounds, landscapePaint);
-    if (nightBlend > 0) {
+    if (lampStrength > 0) {
       canvas.translate(left, top); canvas.scale(sceneWidth / 960, sceneHeight / 640);
       for (float x : LAMP_X) {
-        canvas.save(); canvas.translate(x, x < 720 ? 484 : 486);
-        paint.setShader(lampGlow); paint.setAlpha(Math.round(255 * nightBlend));
-        canvas.drawCircle(0, 0, 17, paint); paint.setShader(null);
-        paint.setColor(0xFFFFDC9A); paint.setAlpha(Math.round(204 * nightBlend));
-        canvas.drawRect(-1, -2, 1, 2, paint); canvas.restore();
+        canvas.save();canvas.translate(x,475);
+        canvas.save();canvas.scale(22,43);
+        paint.setShader(lampGlow);paint.setAlpha(Math.round(255*lampStrength));
+        canvas.drawCircle(0,0,1,paint);canvas.restore();paint.setShader(null);
+        paint.setColor(0xFFFFE4A8);paint.setAlpha(Math.round(245*lampStrength));
+        canvas.drawRoundRect(-1.4f,-3,1.4f,3,1,1,paint);
+        canvas.translate(0,34);canvas.scale(13,32);
+        paint.setShader(reflectedLight);paint.setAlpha(Math.round(180*lampStrength));
+        canvas.drawCircle(0,0,1,paint);paint.setShader(null);canvas.restore();
       }
     }
     canvas.restore();

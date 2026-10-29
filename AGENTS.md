@@ -24,3 +24,7 @@ Prioritas terbaru pengguna tetap A–D dahulu. [Bukti HP/adzan terbaru](android/
 ## Status29 Oktober2026 — tema global beta1.9.23
 
 Permintaan terbaru pengguna untuk tema konsisten lintas fitur selesai pada F03a dengan [bukti](android/validation/global-theme-2026-10-29/README.md). Home/Profil/Quran/Mushaf memakai satu pilihan; otomatis Quran mengikuti tema perangkat, bukan lux. Palet/dialog/dock/input dan restore sakelar reader diperbaiki; draf AI terpelihara.153 unit/4 skip dan9 native lulus; lint0 error/860 warning. HP tidak diubah; gerbang A–D/F03/publik, dock AI, lampu malam dan splash native tetap mengikuti handoff. Ini menggantikan status tema-belum-diperbaiki untuk checkpoint audio, tanpa menutup pekerjaan lainnya.
+
+## Status29 Oktober2026 — UI06 beta1.9.24
+
+Pengguna memprioritaskan dock AI, lampu masjid malam dan splash sebelum C04; ketiganya selesai teknis beta terarah dengan [bukti native/video/batas](android/validation/ui-followup-2026-10-29/README.md).155 unit/4 skip,11 native lulus; lint0 error/862 warning. HP belum diubah/diuji untuk versi ini; Figma canvas lama tetap belum selesai. C04 berikutnya; A–D/F04/G/publik tidak otomatis selesai. Tema global1.9.23 tetap dan regresi back stack/draf lulus. Pertahankan WIP, stash, data, konfigurasi privat dan desain/ikon asli; checkpoint tetap audit/commit/push.

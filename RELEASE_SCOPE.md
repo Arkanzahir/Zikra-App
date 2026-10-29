@@ -1,5 +1,8 @@
 # A02 — Cakupan penyelesaian Zikra
 
+> **29 Oktober2026 — UI06:** tiga tindak lanjut visual tersedia pada beta1.9.24: dock AI, lampu malam, splash native. [Bukti dan batas](android/validation/ui-followup-2026-10-29/README.md). Ini tidak menutup gerbang HP, A–D, F04/G02 atau publik.
+
+
 > **Checkpoint29 Oktober2026:** F03a tema global tersedia pada beta1.9.23, dengan uji emulator/kontras/draf/restart dan batas tertulis. [Bukti](android/validation/global-theme-2026-10-29/README.md). Pilihan aplikasi berlaku lintas halaman; langit tetap mengikuti waktu lokasi. Gerbang HP/vendor, aksesibilitas menyeluruh, sumber dan publik tidak ditutup oleh checkpoint ini.
 
 

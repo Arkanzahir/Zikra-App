@@ -1,5 +1,8 @@
 > **Terbaru — jadwal beta1.9.18,28 Oktober2026:** Jadwal Kemenag melalui myQuran, cache bulan ini/berikutnya dan sumber bersama Home/countdown/alarm.1.098 waktu cocok pada enam kota-bulan,153 unit/4 skip dan10 native lulus;lint0 error/818 warning. APK40.746.251byte, source`df84753`. HP tidak diubah; bukan penutupan D02/B01/F/G/publik. [Bukti/receipt/batas](android/validation/prayer-source-2026-10-28/README.md).
 
+> **Beta1.9.24 — 29 Oktober2026:** dock navigasi AI, lampu masjid malam, dan splash native telah diterapkan. [Preview/video, APK lokal, pemeriksaan dan batas](android/validation/ui-followup-2026-10-29/README.md). Ketiga koreksi mendahului C04; uji HP dan rilis publik tetap terbuka.
+
+
 > **Beta1.9.23 — tema global,29 Oktober2026:** pilihan terang/gelap/perangkat berlaku lintas fitur, termasuk Quran/Mushaf dan AI. Pengaturan di Home atau Profil → Tampilan aplikasi. [Bukti native, APK lokal dan batas](android/validation/global-theme-2026-10-29/README.md). Uji HP tema dan gerbang publik belum ditutup.
 
 

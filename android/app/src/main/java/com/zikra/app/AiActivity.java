@@ -100,6 +100,7 @@ public final class AiActivity extends BaseActivity {
       if(waiting&&!network.validated()){boolean image=generatingImage;cancelImageWork();onlineClient.cancel();if(image)imageFailure("image_network");else showOnlineFailure(OnlineAssistantClient.Failure.NETWORK);}
     });
     pageRoot=findViewById(R.id.aiRoot);input=findViewById(R.id.aiInput);
+    NavDock.attach(this,pageRoot,"ai");
     input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(OfflineAssistant.MAX_INPUT_LENGTH)});
     thread=findViewById(R.id.aiChatThread);scroll=findViewById(R.id.aiScroll);
     restoreHistory();
@@ -241,7 +242,7 @@ public final class AiActivity extends BaseActivity {
   private void updateSystemBars() {
     boolean dark=(getResources().getConfiguration().uiMode&android.content.res.Configuration.UI_MODE_NIGHT_MASK)==android.content.res.Configuration.UI_MODE_NIGHT_YES;
     getWindow().setStatusBarColor(getColor(R.color.ai_refresh_surface));
-    getWindow().setNavigationBarColor(getColor(R.color.ai_refresh_surface));
+    getWindow().setNavigationBarColor(keyboardVisible?getColor(R.color.ai_refresh_surface):NavDock.surfaceColor(this));
     if(android.os.Build.VERSION.SDK_INT>=30){
       android.view.WindowInsetsController controller=getWindow().getInsetsController();
       if(controller!=null){int mask=android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS|android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS;controller.setSystemBarsAppearance(dark?0:mask,mask);}
@@ -269,6 +270,9 @@ public final class AiActivity extends BaseActivity {
   private void updateKeyboardLayout(boolean visible) {
     if (keyboardVisible == visible) return;
     keyboardVisible = visible;
+    View page=findViewById(R.id.aiPage);
+    page.setPadding(page.getPaddingLeft(),page.getPaddingTop(),page.getPaddingRight(),visible?0:dp(64));
+    NavDock.setVisible(pageRoot,!visible);
     findViewById(R.id.aiWelcome).setVisibility(!visible&&messages.length()==0?View.VISIBLE:View.GONE);
     findViewById(R.id.aiVoiceStatus).setVisibility(visible?View.GONE:View.VISIBLE);
     input.setMaxLines(visible?3:4);

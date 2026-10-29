@@ -61,3 +61,7 @@ encoded MP4 phases, inspected the storyboard, tested browser replay/phase/
 keyboard/reduced-motion behavior and narrow/desktop overflow. A desktop aspect
 ratio defect was corrected and rechecked. The temporary browser viewport was
 reset. This does not close F01/F04 or any A–D/public-release gate.
+
+## Native follow-up29 October2026
+
+[Beta1.9.24 implementation and actual Android recording](../../../android/validation/ui-followup-2026-10-29/README.md) now provides a compact400ms transition, one mark through the system handoff, warm/reduced-motion/power-save skips and lifecycle guards. The original1.12s reference remains unchanged. This does not complete the Figma canvas or broad F04/G02/physical-device gates.

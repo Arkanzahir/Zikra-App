@@ -49,4 +49,24 @@ public final class SkyPaletteTest {
     assertTrue(SkyPalette.nightVisibility(early, LocalTime.of(19,0))
         > SkyPalette.nightVisibility(late, LocalTime.of(19,0)));
   }
+  @Test public void facadeLightsAreOffThroughoutLocalDayAndFadeAtTheEdges() {
+    SkyDay d=day(6,18);
+    for(int minute=360;minute<=1080;minute++)
+      assertEquals(0,SkyPalette.lampVisibility(d,LocalTime.ofSecondOfDay(minute*60)),.0001);
+    assertEquals(.5,SkyPalette.lampVisibility(d,LocalTime.of(18,10)),.001);
+    assertEquals(1,SkyPalette.lampVisibility(d,LocalTime.of(18,20)),.001);
+    assertEquals(.5,SkyPalette.lampVisibility(d,LocalTime.of(5,50)),.001);
+  }
+
+  @Test public void facadeLightsCrossMidnightAndUseSelectedSolarEvents() {
+    SkyDay d=day(6,18);
+    assertEquals(1,SkyPalette.lampVisibility(d,LocalTime.MIDNIGHT),.001);
+    assertEquals(1,SkyPalette.lampVisibility(d,LocalTime.of(23,59)),.001);
+    assertEquals(0,SkyPalette.lampVisibility(day(8,20),LocalTime.of(19,0)),.001);
+    assertEquals(1,SkyPalette.lampVisibility(day(8,20),LocalTime.of(21,0)),.001);
+    for(int second=0;second<86400;second+=17){
+      float light=SkyPalette.lampVisibility(d,LocalTime.ofSecondOfDay(second));
+      assertTrue(Float.isFinite(light) && light>=0 && light<=1);
+    }
+  }
 }

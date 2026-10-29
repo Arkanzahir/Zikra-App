@@ -42,6 +42,15 @@ public final class SkyPalette {
         clamp((second - day.set.toSecondOfDay() - 720) / 3480f));
   }
 
+  /** Facade lights fade only outside the selected location's daylight hours. */
+  public static float lampVisibility(SkyDay day, LocalTime time) {
+    if (day.daytime(time)) return 0;
+    int second=time.toSecondOfDay();
+    int sinceSet=(second-day.set.toSecondOfDay()+86400)%86400;
+    int untilRise=(day.rise.toSecondOfDay()-second+86400)%86400;
+    return clamp(Math.min(sinceSet,untilRise)/1200f);
+  }
+
   public static int cloud(SkyDay day, LocalTime time) {
     int base = blend(0xFF57737F, 0xFFF0F5ED, daylight(day, time));
     return blend(base, 0xFFE8C189, twilight(day, time) * .75f);

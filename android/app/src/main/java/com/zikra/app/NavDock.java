@@ -14,6 +14,10 @@ import java.util.List;
 public final class NavDock {
   private NavDock() {}
 
+  public static int surfaceColor(android.content.Context context) {
+    return com.zikra.app.ui.AppAppearance.dark(context) ? 0xFF142822 : 0xFFFFFFFF;
+  }
+
   private static final class State {
     final List<ImageView> icons = new ArrayList<>();
     final List<TextView> labels = new ArrayList<>();
@@ -143,7 +147,7 @@ public final class NavDock {
     text.setAutoSizeTextTypeUniformWithConfiguration(
         10, 12, 1, android.util.TypedValue.COMPLEX_UNIT_SP);
     text.setTypeface(
-        text.getTypeface(),
+        page.getResources().getFont(R.font.plus_jakarta_sans),
         key.equals(selected) ? android.graphics.Typeface.BOLD : android.graphics.Typeface.NORMAL);
     View indicator = row.findViewById(R.id.navDestinationIndicator);
     indicator.setVisibility(View.GONE);

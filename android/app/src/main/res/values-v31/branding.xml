@@ -2,7 +2,7 @@
 <resources>
     <style name="Theme.Zikra.Launch" parent="Theme.Zikra">
         <item name="android:windowSplashScreenBackground">@color/pine</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/zikra_refined_white</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_system_mark</item>
         <item name="android:windowBackground">@color/pine</item>
         <item name="android:statusBarColor">@color/pine</item>
         <item name="android:navigationBarColor">@color/pine</item>
