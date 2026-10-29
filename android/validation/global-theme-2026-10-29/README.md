@@ -35,3 +35,7 @@ Audio privat tetap rekaman biasa/Subuh pilihan pengguna, hanya untuk build debug
 Langit Home tetap mengikuti waktu lokasi; ilustrasi dan warna peta domain tidak dibalik secara paksa. Masih perlu penilaian tema pada HP/vendor nyata. Pada teks200% beberapa judul/label tetap membungkus dan strip jadwal Home dapat digulir; aksesibilitas seluruh produk F03 tetap terbuka. Checkpoint ini tidak menambahkan dock AI atau animasi splash native, tidak memperbaiki lampu malam, dan tidak menutup B01, C02/C04/C07, D02/D02a, E/F/G atau publik.
 
 Pemeliharaan: gunakan `ui/AppAppearance` dan role resource sesuai konteks; putih/pine merek tidak otomatis berarti surface/ink. Letakkan warna UI dalam resource siang/malam, bukan nilai tetap pada halaman. Hash source/push dicatat dalam receipt checkpoint.
+
+## Source dan push
+
+Source runtime/test/dokumentasi: `f1aafc4757fd7634dd23fa96071a7bc8ca656ea7`, dipush ke origin/main dan hash remote diverifikasi. [Receipt](receipt.json) mengikat source dengan APK lokal; pemeriksaan akhir dialog reader juga mengulang pembuatan ulang halaman kedua. Audit210 blob baru/6.032.688byte:0 temuan kredensial. Commit receipt setelah source ini hanya dokumentasi, bukan perubahan APK. Pemeriksaan hash remote receipt akhir dilaporkan pada chat sesudah push.

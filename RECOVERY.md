@@ -1,5 +1,8 @@
 > **Checkpoint27Okt/1.9.14:** D05 selesai teknis beta, source5288e03; [bukti/batas](android/validation/faith-d05-2026-10-27/README.md), [handoff terbaru](SESSION_HANDOFF.md). Database jurnal faith.db v1 terpisah, schema utama5 tetap. UjiHP ditunda; berikutnyaD06 preservasi/migrasi. WIP/stash/env/desain/data lama dipertahankan, APK41.592.382byte lokal, belum push baru/publik.
 
+> **29 Oktober2026 — checkpoint tema global:** source `f1aafc4757fd7634dd23fa96071a7bc8ca656ea7` sudah dipush dan diverifikasi. APK lokal folder pembungkus `Zikra-Theme-v1.9.23-beta-debug.apk`,44.070.983byte, SHA-256 `9aa208f726729127bd77f70dfc29abf0488015bfdd9699a88ab476f7baefd5d1`. [Bukti/receipt/batas](android/validation/global-theme-2026-10-29/README.md).153 unit/4 skip dan9 native lulus,lint0 error/860 warning; HP tidak diubah. PROJECT_HANDOFF WIP, stash audio dan konfigurasi privat tetap di luar commit. Tema HP terbaru belum diuji; gerbang A–D/F03/publik dan pekerjaan splash/dock AI/lampu mengikuti handoff, bukan otomatis selesai.
+
+
 > **Checkpoint HP/adzan28 Oktober2026 — beta1.9.22/code49:** rekaman non-Subuh terbaru pengguna, fokus/volume awal dan preservasi diuji. APK lokal43,6MB; [bukti, receipt dan batas](android/validation/prayer-phone-2026-10-28/README.md). B01/C02/C04/C07/D02/D02a/publik tetap mengikuti checklist; temuan UI terakhir belum dianggap diperbaiki.
 
 > **Kandidat harian1.9.15 — 28 Oktober2026:** Home jam lokal/awan/tanda ibadah,

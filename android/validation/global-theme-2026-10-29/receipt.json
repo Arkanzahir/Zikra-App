@@ -1,0 +1,26 @@
+{
+  "dateWib": "2026-10-29",
+  "sourceCommit": "f1aafc4757fd7634dd23fa96071a7bc8ca656ea7",
+  "sourceOriginMainVerified": true,
+  "version": "1.9.23",
+  "versionCode": 50,
+  "apkName": "Zikra-Theme-v1.9.23-beta-debug.apk",
+  "apkBytes": 44070983,
+  "apkSha256": "9aa208f726729127bd77f70dfc29abf0488015bfdd9699a88ab476f7baefd5d1",
+  "debugSignerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "unitPassed": 153,
+  "unitSkipped": 4,
+  "nativeRunsPassed": 9,
+  "nativeUniqueMethods": 6,
+  "lintErrors": 0,
+  "lintWarnings": 860,
+  "sourceHistoryAudit": {
+    "base": "a191c435d858d0322584cb52082fae0bd484af35",
+    "newBlobsScanned": 210,
+    "bytes": 6032688,
+    "findings": 0
+  },
+  "latestReaderChoiceAndSecondRecreationPassed": true,
+  "physicalPhoneThemeCheckPending": true,
+  "publicReleaseComplete": false
+}
