@@ -1,5 +1,19 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
+## UI08 visual ditolak — referensi baru saja,29 Oktober2026
++
++Pengguna merespons “jelek anjir” sesudah preview. Arah koreksi yang diambil:
++interior terlalu seperti lapisan kuning; jangan menganggap visual diterima.
++[Referensi image_gen/prompt/batas](design/concepts/mosque-lighting-review-2026-10-29/README.md)
++menunjukkan bukaan pintu pusat, lampu kecil dan bayangan/depth. Belum disetujui
++atau diintegrasikan. Detail bulan/langit/geometri pada hasil generatif tidak
++pixel-identik: jangan gunakan seluruh scene sebagai pengganti bitmap Home;
++pisahkan/selaraskan area lighting dan pertahankan celestial/parallax native.
++UI08 checkbox dibuka kembali untuk penerimaan visual; bukti teknis pencarian/
++cache tetap terarah. APK/source tetap1.9.26, HP1.9.25/USB dilepas. Tidak ada
++build/uji perangkat/lookup lokasi baru; WIP/ikon/artwork/env/stash tetap.
++
+
 ## UI08 kandidat1.9.26 — interior dan masjid terdekat,29 Oktober2026
 
 Pengguna melaporkan interior gelap dan pencarian gagal; tugas ini diprioritaskan

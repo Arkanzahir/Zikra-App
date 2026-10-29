@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-29",
+  "status": "visual reference only; not accepted or integrated",
+  "method": "built-in image_gen",
+  "image": {
+    "width": 1243,
+    "height": 1266,
+    "bytes": 1693627,
+    "sha256": "402576bda7a820fe52f5c75cce65adf72277b9817b1b9eb5e167d10c17d49cae"
+  },
+  "nativeRuntimeUnchanged": "1.9.26 / code53",
+  "physicalPhoneUnchanged": "1.9.25",
+  "outsideLightingDetailsNotPixelIdentical": true,
+  "requiresGeometryIsolationBeforeProduction": true,
+  "protectedWipPreserved": true
+}

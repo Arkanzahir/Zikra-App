@@ -36,3 +36,8 @@ Polesan splash800ms disetujui lalu diterapkan. [Bukti HP/preservasi/batas](andro
 ## Status29 Oktober2026 — UI08 kandidat1.9.26
 
 Interior lengkungan malam dan jalur pencarian masjid diperbaiki sesuai masukan pengguna, [bukti/keandalan/batas](android/validation/mosque-repair-2026-10-29/README.md).160 unit/4 skip dan4 native final emulatorAPI37.1 lulus;lint0 error/862 warning. VK Maps/Overpass dengan TLS bawaan dan cache bertanggal; satu lookup baru sempat gagal, tidak menjanjikan uptime API.31 berkas emulator dipulihkan cocok hash, helper/emulator dibersihkan/ditutup. HP tetap1.9.25/USB dilepas; jangan menyatakan26 sudah dipasang. Ikon/artwork/WIP/stash/env/audio tetap, font reader belum diubah. E04/A–D/F04/publik tetap punya gerbang terbuka.
+
++## Koreksi29 Oktober2026 — UI08 visual belum diterima
++
++Pengguna menolak preview UI08. Checkbox dibuka kembali untuk visual interior, bukti teknis pencarian/cache tetap terarah. [Referensi baru/prompt/batas](design/concepts/mosque-lighting-review-2026-10-29/README.md) hanya konsep image_gen; jangan mengganti bitmap Home penuh karena bulan/langit/geometri ikut berubah. Native/source tetap1.9.26, HP1.9.25. Aset asli/ikon/WIP/stash/env tidak disentuh; tunggu tinjauan arah visual sebelum integrasi baru.
++
