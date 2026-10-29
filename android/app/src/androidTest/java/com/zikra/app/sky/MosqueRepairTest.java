@@ -50,13 +50,21 @@ public final class MosqueRepairTest extends InstrumentationTestCase {
 
   public void testInteriorClipDayOffAndHomeNightRender() throws Exception {
     Bitmap base=Bitmap.createBitmap(960,640,Bitmap.Config.ARGB_8888);base.eraseColor(0xFF172524);
-    Bitmap dark=base.copy(Bitmap.Config.ARGB_8888,true),lit=base.copy(Bitmap.Config.ARGB_8888,true);
-    main(()->{MosqueInteriorLights lights=new MosqueInteriorLights();lights.draw(new Canvas(dark),0);lights.draw(new Canvas(lit),1);});
+    Bitmap dark=base.copy(Bitmap.Config.ARGB_8888,true),lit=base.copy(Bitmap.Config.ARGB_8888,true),half=base.copy(Bitmap.Config.ARGB_8888,true);
+    final MosqueInteriorLights[] lights=new MosqueInteriorLights[1];
+    main(()->{lights[0]=new MosqueInteriorLights(context);lights[0].draw(new Canvas(dark),0);lights[0].draw(new Canvas(lit),1);lights[0].draw(new Canvas(half),.5f);});
+    Bitmap band=(Bitmap)field(lights[0],"nightBand");assertNotNull("Approved doorway texture decoded",band);
+    assertEquals(703,band.getWidth());assertEquals(180,band.getHeight());
+    assertTrue("Only the cropped band is retained",band.getAllocationByteCount()<600000);
     assertTrue("No interior light during day",base.sameAs(dark));
     assertTrue("Warm light within main arch",Color.red(lit.getPixel(662,460))-Color.red(base.getPixel(662,460))>100);
+    assertTrue("Twilight blends the doorway gradually",Color.red(half.getPixel(662,460))>Color.red(base.getPixel(662,460))
+        &&Color.red(half.getPixel(662,460))<Color.red(lit.getPixel(662,460)));
+    for(int y=0;y<390;y+=30)for(int x=0;x<960;x+=30)
+      assertEquals("Reference sky is never drawn",base.getPixel(x,y),lit.getPixel(x,y));
     assertEquals("Stone pillar stays outside interior clip",base.getPixel(617,460),lit.getPixel(617,460));
     assertEquals("Occluded right opening stays unpainted below foliage",base.getPixel(926,490),lit.getPixel(926,490));
-    base.recycle();dark.recycle();lit.recycle();
+    base.recycle();dark.recycle();lit.recycle();half.recycle();
     for(int hour:new int[]{12,21}){
       final HomeSkyView[] sky=new HomeSkyView[1];Bitmap image=Bitmap.createBitmap(1080,1100,Bitmap.Config.ARGB_8888);
       main(()->{sky[0]=new HomeSkyView(context,null);sky[0].setSky(SkyDay.estimate(LocalDate.of(2026,10,29),LocationPoint.INITIAL),LocalTime.of(hour,0));sky[0].measure(View.MeasureSpec.makeMeasureSpec(1080,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(1100,View.MeasureSpec.EXACTLY));sky[0].layout(0,0,1080,1100);sky[0].draw(new Canvas(image));});

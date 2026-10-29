@@ -1,6 +1,8 @@
 # A02 — Cakupan penyelesaian Zikra
 
-> **Tinjauan visual UI08 dibuka kembali:** pengguna menolak tampilan cahaya interior1.9.26. [Referensi revisi](design/concepts/mosque-lighting-review-2026-10-29/README.md) tersedia untuk tinjauan, belum disetujui/diintegrasikan. APK tetap; bukti teknis pencarian/cache tidak berarti penerimaan visual.
+> **UI08 beta1.9.27 — 29 Oktober2026:** arah referensi disetujui pengguna dan tekstur pintu diterapkan pada arsitektur asli. Lampu siang mati/malam menyala, langit/parallax native tetap; 160 unit/4 skip dan4 native emulator lulus, lint0 error/862 warning. [Bukti dan batas](android/validation/mosque-approved-lighting-2026-10-29/README.md). APK45.336.132byte; HP tidak disentuh, belum diuji versi27. A–D/E04/F04/G/publik tetap belum selesai seluruhnya.
+
+> **Riwayat sebelum persetujuan1.9.27 — tinjauan UI08:** pengguna menolak tampilan cahaya interior1.9.26. [Referensi revisi](design/concepts/mosque-lighting-review-2026-10-29/README.md) tersedia untuk tinjauan, belum disetujui/diintegrasikan. APK tetap; bukti teknis pencarian/cache tidak berarti penerimaan visual.
 
 > **UI08 kandidat1.9.26 — 29 Oktober2026:** interior malam/siang dan pencarian masjid diperbaiki,160 unit/4 skip dan4 native final emulator lulus;lint0 error/862 warning. [Bukti, keandalan API dan batas](android/validation/mosque-repair-2026-10-29/README.md). APK43.857.302byte, HP tetap1.9.25; belum dipasang versi baru.
 

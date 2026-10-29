@@ -1,0 +1,130 @@
+{
+  "approvedByUser": "gas sudah bagus",
+  "date": "2026-10-29",
+  "source": "design/concepts/mosque-lighting-review-2026-10-29/lighting-reference.png",
+  "rawAsset": "android/app/src/main/res/raw/home_mosque_recess_reference.png",
+  "sourceSha256": "402576bda7a820fe52f5c75cce65adf72277b9817b1b9eb5e167d10c17d49cae",
+  "sourceDimensions": [
+    1243,
+    1266
+  ],
+  "decodedBand": [
+    540,
+    970,
+    1243,
+    1150
+  ],
+  "decodedDimensions": [
+    703,
+    180
+  ],
+  "retainedArgbBytes": 506160,
+  "fullSceneNotRendered": true,
+  "architectureCoordinateSpace": [
+    960,
+    640
+  ],
+  "columns": [
+    "centre",
+    "width",
+    "top",
+    "bottom",
+    "visibleBottom",
+    "sourceLeft",
+    "sourceTop",
+    "sourceRight",
+    "sourceBottom"
+  ],
+  "openings": [
+    [
+      450,
+      38,
+      425,
+      497,
+      497,
+      568,
+      1009,
+      614,
+      1110
+    ],
+    [
+      509,
+      42,
+      426,
+      497,
+      497,
+      644,
+      1009,
+      694,
+      1111
+    ],
+    [
+      570,
+      45,
+      426,
+      498,
+      498,
+      724,
+      1008,
+      777,
+      1111
+    ],
+    [
+      662,
+      61,
+      409,
+      499,
+      499,
+      826,
+      990,
+      909,
+      1113
+    ],
+    [
+      746,
+      44,
+      427,
+      499,
+      499,
+      966,
+      1009,
+      1019,
+      1112
+    ],
+    [
+      806,
+      44,
+      428,
+      499,
+      499,
+      1039,
+      1009,
+      1091,
+      1113
+    ],
+    [
+      866,
+      44,
+      428,
+      499,
+      499,
+      1119,
+      1010,
+      1172,
+      1113
+    ],
+    [
+      926,
+      39,
+      430,
+      499,
+      476,
+      1194,
+      1010,
+      1243,
+      1113
+    ]
+  ],
+  "lastOpeningClippedForFoliage": true,
+  "perFrameBitmapOrShaderAllocations": false
+}

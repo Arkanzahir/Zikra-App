@@ -1,0 +1,26 @@
+[
+  {
+    "class": "com.zikra.app.sky.MosqueRepairTest",
+    "method": "testInteriorClipDayOffAndHomeNightRender",
+    "label": "approved-texture",
+    "passed": true
+  },
+  {
+    "class": "com.zikra.app.UiFollowupTest",
+    "method": "testLampsNightDayAndThemeIndependent",
+    "label": "actual-home-day-night",
+    "passed": true
+  },
+  {
+    "class": "com.zikra.app.HomeLocationSkyTest",
+    "method": "testActualCloudMotionPauseOffscreenAndReducedMotion",
+    "label": "motion-parallax-regression",
+    "passed": true
+  },
+  {
+    "class": "com.zikra.app.NearbyDesignTest",
+    "method": "testFailedRefreshKeepsResultsAndFetchTime",
+    "label": "nearby-cache-regression",
+    "passed": true
+  }
+]

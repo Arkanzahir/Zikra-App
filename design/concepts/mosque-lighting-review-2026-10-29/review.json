@@ -1,6 +1,6 @@
 {
   "date": "2026-10-29",
-  "status": "visual reference only; not accepted or integrated",
+  "status": "approved visual direction; registered doorway textures integrated and emulator-tested in 1.9.27 / code54",
   "method": "built-in image_gen",
   "image": {
     "width": 1243,
@@ -8,9 +8,15 @@
     "bytes": 1693627,
     "sha256": "402576bda7a820fe52f5c75cce65adf72277b9817b1b9eb5e167d10c17d49cae"
   },
-  "nativeRuntimeUnchanged": "1.9.26 / code53",
-  "physicalPhoneUnchanged": "1.9.25",
+  "nativeRuntimeUnchanged": false,
+  "physicalPhoneUnchanged": true,
   "outsideLightingDetailsNotPixelIdentical": true,
-  "requiresGeometryIsolationBeforeProduction": true,
-  "protectedWipPreserved": true
+  "requiresGeometryIsolationBeforeProduction": false,
+  "protectedWipPreserved": true,
+  "approvalQuote": "gas sudah bagus",
+  "nativeRuntime": "1.9.27 / code54",
+  "lastPhysicalPhoneVersionTestedByAgent": "1.9.25",
+  "geometryIsolationImplemented": true,
+  "fullReferenceSceneUsedAsHome": false,
+  "evidence": "android/validation/mosque-approved-lighting-2026-10-29/README.md"
 }

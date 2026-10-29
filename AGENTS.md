@@ -37,7 +37,10 @@ Polesan splash800ms disetujui lalu diterapkan. [Bukti HP/preservasi/batas](andro
 
 Interior lengkungan malam dan jalur pencarian masjid diperbaiki sesuai masukan pengguna, [bukti/keandalan/batas](android/validation/mosque-repair-2026-10-29/README.md).160 unit/4 skip dan4 native final emulatorAPI37.1 lulus;lint0 error/862 warning. VK Maps/Overpass dengan TLS bawaan dan cache bertanggal; satu lookup baru sempat gagal, tidak menjanjikan uptime API.31 berkas emulator dipulihkan cocok hash, helper/emulator dibersihkan/ditutup. HP tetap1.9.25/USB dilepas; jangan menyatakan26 sudah dipasang. Ikon/artwork/WIP/stash/env/audio tetap, font reader belum diubah. E04/A–D/F04/publik tetap punya gerbang terbuka.
 
-+## Koreksi29 Oktober2026 — UI08 visual belum diterima
-+
-+Pengguna menolak preview UI08. Checkbox dibuka kembali untuk visual interior, bukti teknis pencarian/cache tetap terarah. [Referensi baru/prompt/batas](design/concepts/mosque-lighting-review-2026-10-29/README.md) hanya konsep image_gen; jangan mengganti bitmap Home penuh karena bulan/langit/geometri ikut berubah. Native/source tetap1.9.26, HP1.9.25. Aset asli/ikon/WIP/stash/env tidak disentuh; tunggu tinjauan arah visual sebelum integrasi baru.
-+
+## Riwayat sebelum persetujuan1.9.27 — UI08 visual belum diterima
+
+Pengguna menolak preview UI08. Checkbox dibuka kembali untuk visual interior, bukti teknis pencarian/cache tetap terarah. [Referensi baru/prompt/batas](design/concepts/mosque-lighting-review-2026-10-29/README.md) hanya konsep image_gen; jangan mengganti bitmap Home penuh karena bulan/langit/geometri ikut berubah. Native/source tetap1.9.26, HP1.9.25. Aset asli/ikon/WIP/stash/env tidak disentuh; tunggu tinjauan arah visual sebelum integrasi baru.
+
+## UI08 beta1.9.27 — referensi disetujui dan diterapkan,29 Oktober2026
+
+Pengguna menyetujui arah pencahayaan (“gas sudah bagus”). Tekstur pintu didaftarkan per bukaan ke arsitektur asli; hanya band703×180 sekitar506KB didecode. Glow pilar/pantulan diperkecil; siang mati/senja berangsur/malam menyala, tema tidak menentukan lampu. Langit/bulan/awan/bintang/parallax tetap native. [Bukti/registrasi/APK/batas](android/validation/mosque-approved-lighting-2026-10-29/README.md).160 unit/4 skip,4 native emulatorAPI37.1 lulus;lint0 error/862 warning. APK1.9.27/code54 lokal45.336.132byte, SHA256`0ab5cb0955b80fe28ac5edea488e639a92bc57947f54b9f967f412692132d1a5`.32 berkas emulator pulih cocok hash, pengaturan kembali/helper dibersihkan/emulator ditutup. HP tidak disentuh; terakhir diuji agen1.9.25, jangan klaim27 terpasang. Tidak ada lookup lokasi baru; kode pencarian26/batas API tetap. Artwork/ikon/WIP/stash/audio/env tetap. Font reader/C04 belum diubah; A–D/E04/F04/G/publik belum selesai seluruhnya. Ini menggantikan status visual-menunggu pada catatan di bawah.

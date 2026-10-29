@@ -1,0 +1,12 @@
+{
+  "unitPassed": 160,
+  "unitSkipped": 4,
+  "unitFailed": 0,
+  "lintErrors": 0,
+  "lintWarnings": 862,
+  "nativePassed": 4,
+  "nativeDevice": "isolated project emulator / API37.1",
+  "networkForNativeTests": "WiFi and mobile data disabled",
+  "mainBuild": "assembleDebug, assembleDebugAndroidTest, testDebugUnitTest, lintDebug",
+  "finalHelperBuildAndLintPassed": true
+}

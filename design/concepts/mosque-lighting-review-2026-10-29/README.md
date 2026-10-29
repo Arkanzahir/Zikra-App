@@ -1,5 +1,7 @@
 # Interior malam — revisi visual setelah penolakan
 
+**Status terbaru:** arah referensi disetujui pengguna (“gas sudah bagus”), lalu tekstur delapan bukaan diintegrasikan ke beta1.9.27. Hanya band pintu didecode dan setiap bukaan diclip ke arsitektur asli; seluruh scene generatif tidak dijadikan latar. [Bukti native dan batas](../../../android/validation/mosque-approved-lighting-2026-10-29/README.md). HP belum diuji versi27. Catatan berikut adalah riwayat pembuatan sebelum persetujuan.
+
 29 Oktober2026. Pengguna merespons “jelek anjir” sesudah preview UI08.
 Arah koreksi sesi ini adalah pencahayaan interior; **visual belum disetujui**.
 

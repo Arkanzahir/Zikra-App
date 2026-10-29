@@ -1,6 +1,6 @@
 # UI08 — Interior masjid dan pencarian terdekat
 
-> **Umpan balik terbaru:** visual interior ditolak pengguna. [Referensi revisi](../../../design/concepts/mosque-lighting-review-2026-10-29/README.md) belum diterapkan; bukti teknis di bawah bukan penerimaan visual.
+> **Riwayat visual1.9.26:** interior ini ditolak pengguna. Referensi berikutnya disetujui lalu diterapkan pada [beta1.9.27](../mosque-approved-lighting-2026-10-29/README.md). Bukti teknis pencarian/cache di bawah tetap sesuai lingkupnya.
 
 29 Oktober2026, kandidat **1.9.26/code53**. Pengguna memprioritaskan interior
 malam dan melaporkan pencarian masjid gagal. Selesai teknis beta terarah pada

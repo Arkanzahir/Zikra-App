@@ -1,0 +1,10 @@
+{
+  "cloudDisplayPixelsChanged": 24824,
+  "actualTouchParallaxResponded": true,
+  "touchPriorityOverGravity": true,
+  "realCountdownTicked": true,
+  "pausedClockAccumulatorStable": true,
+  "pausedDisplayRegionIdentical": true,
+  "offscreenStopsAndVisibleResumes": true,
+  "reducedMotionRegionIdentical": true
+}

@@ -15,7 +15,7 @@ public final class HomeSkyView extends View implements SensorEventListener {
   private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
   private final Paint cloudPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
   private final Paint landscapePaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
-  private final MosqueInteriorLights interiorLights = new MosqueInteriorLights();
+  private final MosqueInteriorLights interiorLights;
   private final RectF cloudBounds = new RectF(), landscapeBounds = new RectF();
   private final Rect visible = new Rect();
   private final Path moon = new Path();
@@ -46,6 +46,7 @@ public final class HomeSkyView extends View implements SensorEventListener {
 
   public HomeSkyView(Context context, AttributeSet attributes) {
     super(context, attributes);
+    interiorLights = new MosqueInteriorLights(context);
     setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_NO);
     BitmapFactory.Options options = new BitmapFactory.Options();
     options.inScaled = false;
@@ -236,13 +237,13 @@ public final class HomeSkyView extends View implements SensorEventListener {
       interiorLights.draw(canvas,lampStrength);
       for (float x : LAMP_X) {
         canvas.save();canvas.translate(x,475);
-        canvas.save();canvas.scale(22,43);
+        canvas.save();canvas.scale(7,14);
         paint.setShader(lampGlow);paint.setAlpha(Math.round(255*lampStrength));
         canvas.drawCircle(0,0,1,paint);canvas.restore();paint.setShader(null);
         paint.setColor(0xFFFFE4A8);paint.setAlpha(Math.round(245*lampStrength));
-        canvas.drawRoundRect(-1.4f,-3,1.4f,3,1,1,paint);
-        canvas.translate(0,34);canvas.scale(13,32);
-        paint.setShader(reflectedLight);paint.setAlpha(Math.round(180*lampStrength));
+        canvas.drawRoundRect(-.7f,-1.8f,.7f,1.8f,.5f,.5f,paint);
+        canvas.translate(0,34);canvas.scale(5,12);
+        paint.setShader(reflectedLight);paint.setAlpha(Math.round(70*lampStrength));
         canvas.drawCircle(0,0,1,paint);paint.setShader(null);canvas.restore();
       }
     }

@@ -1,18 +1,23 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
-## UI08 visual ditolak — referensi baru saja,29 Oktober2026
-+
-+Pengguna merespons “jelek anjir” sesudah preview. Arah koreksi yang diambil:
-+interior terlalu seperti lapisan kuning; jangan menganggap visual diterima.
-+[Referensi image_gen/prompt/batas](design/concepts/mosque-lighting-review-2026-10-29/README.md)
-+menunjukkan bukaan pintu pusat, lampu kecil dan bayangan/depth. Belum disetujui
-+atau diintegrasikan. Detail bulan/langit/geometri pada hasil generatif tidak
-+pixel-identik: jangan gunakan seluruh scene sebagai pengganti bitmap Home;
-+pisahkan/selaraskan area lighting dan pertahankan celestial/parallax native.
-+UI08 checkbox dibuka kembali untuk penerimaan visual; bukti teknis pencarian/
-+cache tetap terarah. APK/source tetap1.9.26, HP1.9.25/USB dilepas. Tidak ada
-+build/uji perangkat/lookup lokasi baru; WIP/ikon/artwork/env/stash tetap.
-+
+## UI08 beta1.9.27 — referensi disetujui dan diterapkan,29 Oktober2026
+
+Pengguna menyetujui arah pencahayaan (“gas sudah bagus”). Tekstur pintu didaftarkan per bukaan ke arsitektur asli; hanya band703×180 sekitar506KB didecode. Glow pilar/pantulan diperkecil; siang mati/senja berangsur/malam menyala, tema tidak menentukan lampu. Langit/bulan/awan/bintang/parallax tetap native. [Bukti/registrasi/APK/batas](android/validation/mosque-approved-lighting-2026-10-29/README.md).160 unit/4 skip,4 native emulatorAPI37.1 lulus;lint0 error/862 warning. APK1.9.27/code54 lokal45.336.132byte, SHA256`0ab5cb0955b80fe28ac5edea488e639a92bc57947f54b9f967f412692132d1a5`.32 berkas emulator pulih cocok hash, pengaturan kembali/helper dibersihkan/emulator ditutup. HP tidak disentuh; terakhir diuji agen1.9.25, jangan klaim27 terpasang. Tidak ada lookup lokasi baru; kode pencarian26/batas API tetap. Artwork/ikon/WIP/stash/audio/env tetap. Font reader/C04 belum diubah; A–D/E04/F04/G/publik belum selesai seluruhnya. Ini menggantikan status visual-menunggu pada catatan di bawah.
+
+
+## Riwayat sebelum persetujuan1.9.27 — UI08 visual ditolak
+
+Pengguna merespons “jelek anjir” sesudah preview. Arah koreksi yang diambil:
+interior terlalu seperti lapisan kuning; jangan menganggap visual diterima.
+[Referensi image_gen/prompt/batas](design/concepts/mosque-lighting-review-2026-10-29/README.md)
+menunjukkan bukaan pintu pusat, lampu kecil dan bayangan/depth. Belum disetujui
+atau diintegrasikan. Detail bulan/langit/geometri pada hasil generatif tidak
+pixel-identik: jangan gunakan seluruh scene sebagai pengganti bitmap Home;
+pisahkan/selaraskan area lighting dan pertahankan celestial/parallax native.
+UI08 checkbox dibuka kembali untuk penerimaan visual; bukti teknis pencarian/
+cache tetap terarah. APK/source tetap1.9.26, HP1.9.25/USB dilepas. Tidak ada
+build/uji perangkat/lookup lokasi baru; WIP/ikon/artwork/env/stash tetap.
+
 
 ## UI08 kandidat1.9.26 — interior dan masjid terdekat,29 Oktober2026
 
