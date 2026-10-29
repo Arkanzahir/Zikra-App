@@ -1,0 +1,27 @@
+{
+  "dateWib": "2026-10-29",
+  "sourceCommit": "f42859d6cf8cb827ee4832944da63289aa207d6d",
+  "sourcePushVerified": true,
+  "version": "1.9.24",
+  "versionCode": 51,
+  "apkName": "Zikra-UI-v1.9.24-beta-debug.apk",
+  "apkBytes": 43867733,
+  "apkSha256": "8416d3756b92dd5af2e32635230c19b2656633865ac287acd2da7d2a4bc08fe1",
+  "signerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "unitPassed": 155,
+  "unitSkipped": 4,
+  "nativeRunsPassed": 11,
+  "nativeUniqueMethods": 8,
+  "lintErrors": 0,
+  "lintWarnings": 862,
+  "sourceAudit": {
+    "base": "5e47ccaeff1a231c02a45e016023f563c285b1a2",
+    "blobsScanned": 45,
+    "bytes": 3256083,
+    "credentialFindings": 0
+  },
+  "physicalPhoneModified": false,
+  "hpVisualAndVendorValidationPending": true,
+  "allAtoDComplete": false,
+  "publicReleaseComplete": false
+}

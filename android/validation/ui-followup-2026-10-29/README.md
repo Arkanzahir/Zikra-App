@@ -29,3 +29,7 @@ APK lokal folder pembungkus: `Zikra-UI-v1.9.24-beta-debug.apk`. **43.867.733byte
 Uji HP/vendor nyata untuk tampilan, launch/performa/baterai dan alarm masih mengikuti gerbang masing-masing. API26–30 memiliki fallback tanpa SplashScreen API31 dan lolos build/lint; branch lama belum dieksekusi di emulator karena hanya image37.1 tersedia. Figma canvas lama tetap belum selesai karena kuota; checkpoint ini adalah implementasi Android dari referensi lokal dan tidak mengklaim file Figma selesai. Referensi1,12detik tetap sebagai riwayat; native sengaja lebih singkat. Cahaya fasad adalah ilustrasi, bukan kondisi lampu bangunan sebenarnya.
 
 A–D belum seluruhnya selesai. B01 masih menunggu sumber Hadis; C02/C04/C07, ketentuan/sisa HP D02/D02a dan gerbang E/F/G/publik tetap terbuka. C04 menjadi tindak lanjut setelah tiga koreksi ini, bukan menggantikannya. Untuk pemeliharaan: satu NavDock, satu shader/lampVisibility berdasarkan waktu lokasi, satu guard navigasi SplashActivity; jangan menambah timer/startActivity baru tanpa pengujian pause/recreation/animator0.
+
+## Source/push
+
+Source checkpoint `f42859d6cf8cb827ee4832944da63289aa207d6d` sudah dipush dan hash origin/main cocok. [Receipt](receipt.json) mengikat source/APK. Audit45 blob baru/3.256.083byte terhadap nilai privat yang diketahui dan pola kredensial:0temuan. Commit receipt sesudah source ini hanya dokumentasi; APK tidak berubah. Hash remote receipt akhir diperiksa lagi sesudah push dan dilaporkan di chat.
