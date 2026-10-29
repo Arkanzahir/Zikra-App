@@ -161,7 +161,7 @@ public final class AiRefreshTest extends InstrumentationTestCase {
   }
 
   public void testConsentAttachmentIsolationAndClearOnlyAfterSuccess()throws Exception{
-    assertTrue("Validated internet needed",new AssistantNetwork(context,()->{}).validated());launch();
+    launch();waitUntil(()->new AssistantNetwork(context,()->{}).validated());
     AtomicInteger calls=new AtomicInteger();AtomicReference<JSONObject> captured=new AtomicReference<>();
     OkHttpClient http=new OkHttpClient.Builder().addInterceptor(chain->{calls.incrementAndGet();okio.Buffer body=new okio.Buffer();chain.request().body().writeTo(body);try{captured.set(new JSONObject(body.readUtf8()));}catch(JSONException e){throw new IOException(e);}assertEquals("1",chain.request().header("X-Zikra-Attachments"));
       return new Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200).message("Synthetic").body(ResponseBody.create(MediaType.parse("application/json"),"{\"reply\":\"Jawaban uji lampiran\",\"provider\":\"featherless\"}")).build();}).build();
@@ -183,13 +183,16 @@ public final class AiRefreshTest extends InstrumentationTestCase {
   public void testAutoNetworkChangeNeverUploadsDraft()throws Exception{
     boolean wifi=shell("settings get global wifi_on").trim().equals("1"),data=shell("settings get global mobile_data").trim().equals("1");
     try{
-      launch();AtomicInteger requests=new AtomicInteger();((OnlineAssistantClient)field("onlineClient")).close();set("onlineClient",new OnlineAssistantClient(new OkHttpClient.Builder().addInterceptor(chain->{requests.incrementAndGet();throw new IOException("No request expected");}).build()));
+      launch();waitUntil(()->new AssistantNetwork(context,()->{}).validated());AtomicInteger requests=new AtomicInteger();((OnlineAssistantClient)field("onlineClient")).close();set("onlineClient",new OnlineAssistantClient(new OkHttpClient.Builder().addInterceptor(chain->{requests.incrementAndGet();throw new IOException("No request expected");}).build()));
+      AssistantAttachments.Draft attachment=decode((AssistantAttachments)field("attachmentReader"),"offline.png","image/png",image());
+      ui(()->{try{set("attachment",attachment);set("importingAttachment",false);}catch(Exception e){throw new RuntimeException(e);}call("renderAttachment");});
       ui(()->((EditText)activity.findViewById(R.id.aiInput)).setText("Tidak boleh terkirim otomatis"));
       shell("svc wifi disable");shell("svc data disable");waitUntil(()->!new AssistantNetwork(context,()->{}).validated());
       waitUntil(()->((TextView)activity.findViewById(R.id.aiMode)).getText().toString().contains("Offline"));assertEquals(0,requests.get());
       shot("offline");shell("svc wifi enable");waitUntil(()->new AssistantNetwork(context,()->{}).validated());
       waitUntil(()->((TextView)activity.findViewById(R.id.aiMode)).getText().toString().contains("Online"));assertEquals(0,requests.get());assertEquals(0,rows().length());
       assertEquals("Tidak boleh terkirim otomatis",((EditText)activity.findViewById(R.id.aiInput)).getText().toString());
+      assertSame("Network recovery retains the attachment draft",attachment,field("attachment"));
     }finally{shell("svc wifi "+(wifi?"enable":"disable"));shell("svc data "+(data?"enable":"disable"));}
   }
 

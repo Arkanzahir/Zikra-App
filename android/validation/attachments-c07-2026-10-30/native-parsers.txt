@@ -1,0 +1,5 @@
+com.zikra.app.assistant.AiRefreshTest:.
+Test results for InstrumentationTestRunner=.
+Time: 0.859
+
+OK (1 test)

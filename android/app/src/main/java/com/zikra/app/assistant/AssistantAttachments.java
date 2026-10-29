@@ -14,9 +14,7 @@ import java.nio.*;
 import java.nio.charset.*;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.zip.*;
 import org.json.*;
-import org.xmlpull.v1.XmlPullParser;
 
 /** One reviewed attachment per message. Original files/EXIF are never uploaded. */
 public final class AssistantAttachments implements AutoCloseable {
@@ -110,7 +108,7 @@ public final class AssistantAttachments implements AutoCloseable {
       }finally{temp.delete();}
     }else if(lower.endsWith(".docx")&&bytes.length>4&&bytes[0]==80&&bytes[1]==75){
       if(declared!=null&&!declared.equals("application/vnd.openxmlformats-officedocument.wordprocessingml.document")&&!declared.equals("application/zip")&&!declared.equals("application/octet-stream"))throw new IOException("Jenis DOCX tidak cocok.");
-      kind="docx";mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document";text=docx(bytes);
+      kind="docx";mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document";text=AssistantDocx.read(bytes,MAX_TEXT);
     }else if(lower.endsWith(".txt")&&(declared==null||declared.equals("text/plain")||declared.equals("application/octet-stream"))){
       kind="text";mime="text/plain";
       if(bytes.length>64000)throw new IOException("Teks terlalu panjang. Maksimal 12.000 karakter.");
@@ -120,25 +118,6 @@ public final class AssistantAttachments implements AutoCloseable {
     }else throw new IOException("Pilih foto JPG/PNG/WebP, PDF, DOCX atau TXT. Format ini belum didukung.");
     if(images.isEmpty()&&text.trim().isEmpty())throw new IOException("Tidak ada teks yang terbaca. Dokumen scan dapat dipilih sebagai PDF.");
     return new Draft(UUID.randomUUID().toString(),safeName(name),kind,mime,text,pages,bytes.length,images);
-  }
-  private static String docx(byte[] bytes)throws Exception {
-    byte[] document=null;int total=0,entries=0;
-    try(ZipInputStream zip=new ZipInputStream(new ByteArrayInputStream(bytes))){ZipEntry entry;
-      while((entry=zip.getNextEntry())!=null){if(++entries>200||entry.getName().contains("..")||entry.getName().startsWith("/")||entry.getName().contains("\\"))throw new IOException("Arsip DOCX tidak valid.");
-        byte[] value=bounded(zip,2_000_000);total+=value.length;if(total>4_000_000)throw new IOException("Isi DOCX terlalu besar.");
-        if(entry.getName().equals("word/document.xml")){if(document!=null)throw new IOException("DOCX tidak valid.");document=value;}
-      }
-    }
-    if(document==null)throw new IOException("Pilih DOCX yang berisi teks.");
-    String xml=new String(document,StandardCharsets.UTF_8);if(xml.contains("<!DOCTYPE")||xml.contains("<!ENTITY"))throw new IOException("Isi DOCX tidak didukung.");
-    XmlPullParser parser=Xml.newPullParser();parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES,true);parser.setInput(new StringReader(xml));
-    StringBuilder out=new StringBuilder();boolean text=false;int depth=0;
-    for(int event=parser.getEventType();event!=XmlPullParser.END_DOCUMENT;event=parser.next()){
-      if(event==XmlPullParser.START_TAG){if(++depth>64)throw new IOException("Struktur DOCX terlalu dalam.");text="t".equals(parser.getName());}
-      else if(event==XmlPullParser.TEXT&&text){out.append(parser.getText());if(out.length()>MAX_TEXT)throw new IOException("Teks DOCX maksimal 12.000 karakter.");}
-      else if(event==XmlPullParser.END_TAG){if("p".equals(parser.getName()))out.append('\n');text=false;depth--;}
-    }
-    String value=out.toString().trim();if(value.length()>MAX_TEXT)throw new IOException("Teks DOCX maksimal 12.000 karakter.");return value;
   }
   private static byte[] normalizeImage(byte[] bytes)throws Exception {
     BitmapFactory.Options bounds=new BitmapFactory.Options();bounds.inJustDecodeBounds=true;BitmapFactory.decodeByteArray(bytes,0,bytes.length,bounds);

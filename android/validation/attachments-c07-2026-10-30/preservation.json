@@ -1,0 +1,41 @@
+{
+  "ownedEmulatorOnly": true,
+  "originalInternalFiles": 32,
+  "allOriginalInternalFileHashesRestored": true,
+  "newInternalFixtureFilesRemoved": 2,
+  "settingsAndViewportRestored": true,
+  "privateLiveInputAndMarkersRemoved": true,
+  "knownHarnessScreenshotsCleaned": true,
+  "helperRemoved": true,
+  "emulatorClosed": true,
+  "phoneUntouched": true,
+  "noRealUserDataSentToProvider": true,
+  "sessions": [
+    {
+      "ownedEmulatorOnly": true,
+      "originalInternalFiles": 32,
+      "allOriginalInternalFileHashesRestored": true,
+      "newInternalFixtureFilesRemoved": 2,
+      "settingsAndViewportRestored": true,
+      "privateLiveInputAndMarkersRemoved": true,
+      "knownHarnessScreenshotsCleaned": true,
+      "helperRemoved": true,
+      "emulatorClosed": true,
+      "phoneUntouched": true,
+      "noRealUserDataSentToProvider": true
+    },
+    {
+      "ownedEmulatorOnly": true,
+      "originalInternalFiles": 32,
+      "allOriginalInternalFileHashesRestored": true,
+      "newInternalFixtureFilesRemoved": 2,
+      "settingsAndViewportRestored": true,
+      "privateLiveInputAndMarkersRemoved": true,
+      "knownHarnessScreenshotsCleaned": true,
+      "helperRemoved": true,
+      "emulatorClosed": true,
+      "phoneUntouched": true,
+      "noRealUserDataSentToProvider": true
+    }
+  ]
+}

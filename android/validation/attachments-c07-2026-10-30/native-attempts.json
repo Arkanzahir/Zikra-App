@@ -1,0 +1,58 @@
+[
+  {
+    "class": "com.zikra.app.assistant.AttachmentDocumentsTest",
+    "label": "native-documents",
+    "passed": true,
+    "count": 4,
+    "durationSeconds": 1.6
+  },
+  {
+    "class": "com.zikra.app.assistant.AiRefreshTest#testParsersPhotoPdfDocxTextAndHostileFiles",
+    "label": "native-parsers",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 1.6
+  },
+  {
+    "class": "com.zikra.app.assistant.AiRefreshTest#testCameraProviderImportRestoreAndDelete",
+    "label": "native-camera",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 1.0
+  },
+  {
+    "class": "com.zikra.app.assistant.AiRefreshTest#testConsentAttachmentIsolationAndClearOnlyAfterSuccess",
+    "label": "native-consent",
+    "passed": false,
+    "count": 0,
+    "durationSeconds": 0.7
+  },
+  {
+    "class": "com.zikra.app.assistant.AiRefreshTest#testConsentAttachmentIsolationAndClearOnlyAfterSuccess",
+    "label": "native-consent-retry",
+    "passed": false,
+    "count": 0,
+    "durationSeconds": 0.7
+  },
+  {
+    "class": "com.zikra.app.assistant.AiRefreshTest#testConsentAttachmentIsolationAndClearOnlyAfterSuccess",
+    "label": "native-consent-final",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 6.0
+  },
+  {
+    "class": "com.zikra.app.assistant.AiRefreshTest#testAutoNetworkChangeNeverUploadsDraft",
+    "label": "native-network-final",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 9.5
+  },
+  {
+    "class": "com.zikra.app.assistant.AttachmentDocumentsTest#testFailedAndCancelledImportKeepExistingDraft",
+    "label": "native-cancel-valid-final",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 3.7
+  }
+]

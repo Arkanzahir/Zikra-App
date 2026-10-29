@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: attachment isolation: only the last user message receives explicitly selected data
+ok 1 - attachment isolation: only the last user message receives explicitly selected data
+  ---
+  duration_ms: 2.8345
+  type: 'test'
+  ...
+# Subtest: document text remains user data, never a system message or an executable proposal
+ok 2 - document text remains user data, never a system message or an executable proposal
+  ---
+  duration_ms: 0.3719
+  type: 'test'
+  ...
+# Subtest: reject remote URLs, bad MIME/base64, unsafe names, oversized content and unsupported vision
+ok 3 - reject remote URLs, bad MIME/base64, unsafe names, oversized content and unsupported vision
+  ---
+  duration_ms: 1.4588
+  type: 'test'
+  ...
+# Subtest: reject oversized image dimensions before provider access
+ok 4 - reject oversized image dimensions before provider access
+  ---
+  duration_ms: 0.2959
+  type: 'test'
+  ...
+# Subtest: HTTP gateway uses the configured vision model and never forwards an invalid attachment
+ok 5 - HTTP gateway uses the configured vision model and never forwards an invalid attachment
+  ---
+  duration_ms: 86.5187
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 298.0288

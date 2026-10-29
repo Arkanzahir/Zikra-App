@@ -1,0 +1,14 @@
+{
+  "unitPassed": 163,
+  "unitSkipped": 4,
+  "unitFailed": 0,
+  "nativePassedMethods": 8,
+  "nativeEmulatorApi": "37.1",
+  "backendAttachmentPassed": 5,
+  "backendAttachmentSkipped": 0,
+  "lintErrors": 0,
+  "lintWarnings": 862,
+  "noLiveProviderInferenceThisCheckpoint": true,
+  "nativePassedExecutions": 9,
+  "nativeUniquePassedMethods": 8
+}

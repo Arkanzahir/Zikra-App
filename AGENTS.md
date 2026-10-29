@@ -1,5 +1,10 @@
 # Workflow proyek Zikra
 
+## C07 parsial beta1.9.30 — 30 Oktober2026
+
+Prioritas pengguna: pekerjaan terdekat A–D dahulu, lalu E. Parser DOCX kini menjaga tab/baris/kolom tabel, mendukung UTF-16 dan namespace Word strict/transitional, serta menolak DOCTYPE/entity dan anggaran berlebih. Dipisahkan menjadi AssistantDocx agar pengelola lampiran tetap terarah. [Bukti/APK/batas](android/validation/attachments-c07-2026-10-30/README.md):163 unit/4 skip,8 metode native emulatorAPI37.1 dan5 backend lampiran lulus;lint0 error/862 warning. Dua kegagalan prasyarat jaringan helper dicatat; helper diperbaiki agar memeriksa setelah Activity terbuka, jaringan produksi tetap. Draf gagal/batal dan foto saat putus/pulih tanpa auto-upload teruji.32 berkas asli emulator pulih cocok hash, settings/helper/marker dibersihkan/emulator ditutup. APK lokal `Zikra-Attachments-v1.9.30-beta-debug.apk`,45.465.323byte,SHA256`5fa27e7faa466dc4d56d42e99890156c571cd1fba121f0089eb2d78a5cd46661`,signer sama/0 credential dikenal. HP tidak disentuh, terakhir dibuktikan1.9.29. Tidak ada inference baru/backend deploy. C07 tetap[ ] untuk picker/grant/penolakan izin HP dan variasi OCR; C02 laptop mati/B01/D02/D02a/E/F/G/publik tetap terbuka. Sorotan UI10 ditunda, font/desain/ikon/artwork/audio/env/WIP/stash tetap. Semua checkpoint terverifikasi wajib audit/commit/push origin/main.
+
+
 - Sebelum melanjutkan fitur, baca `IMPLEMENTATION_PLAN.md`; gunakan sebagai checklist aktif dan baca laporan bukti untuk modul terkait. Catatan lama tidak mengalahkan status terbaru yang sudah dibuktikan.
 - Kerjakan satu ID aktif sampai syarat selesainya terpenuhi. Ketika selesai, centang item, tambahkan tanggal/tautan bukti, dan perbarui jurnal rencana bersama checkpoint kode.
 - Kode tersedia, build berhasil, mockup atau respons simulasi tidak otomatis berarti fitur selesai. Biarkan item belum dicentang bila masih membutuhkan pemeriksaan HP, sumber data, atau server produksi.
