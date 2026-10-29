@@ -1,5 +1,19 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
+## UI07 — polesan splash untuk tinjauan, 29 Oktober2026
+
+Pengguna memprioritaskan polesan splash. [Preview800ms/GIF/MP4/interaktif/bukti](design/concepts/splash-polish-2026-10-29/README.md)
+mempertahankan empat path/logo/font asli: gerak ringan Quran, sapuan bulan,
+pendar bintang sekali lalu wordmark. Browser1100/320px, kontrol fase/keyboard/
+reduced-motion dan state/geometri diperiksa. Ini preview sebelum integrasi;
+Android/APK **tetap1.9.24/code51**, runtime sourcef42859d, receipt12fc364.
+Belum ada penerimaan visual pengguna atau uji native polesan800ms. Jangan
+menyebut preview ini sudah terpasang. Tunggu tinjauan pengguna sebelum mengubah
+launch native; jika diterapkan, uji cold/warm/pause/reduced/system handoff dan
+preservasi lagi. Server loopback hanya folderpreview; metadata privat ada
+di.local/splash-polish-20261029/server.json. WIP/stash/env/artwork/ikon tetap;
+C04/A–D/F04/HP/publik tidak otomatis selesai.
+
 ## UI06 selesai teknis beta1.9.24 — 29 Oktober2026
 
 Pengguna memperjelas agar dock AI/lampu malam/splash tidak dilewati sebelum C04. Ketiganya diterapkan: NavDock bersama dan IME/draf, fasad malam/refleksi mengikuti matahari lokasi (siang mati), splash native satu logo nominal400ms dengan warm/reduced-motion/power-save/pause guard. [Video/screenshot/bukti/batas](android/validation/ui-followup-2026-10-29/README.md).

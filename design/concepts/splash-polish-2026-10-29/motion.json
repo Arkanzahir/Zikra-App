@@ -1,0 +1,15 @@
+{
+  "durationMs": 800,
+  "reviewHoldMs": 400,
+  "nativePlan": "Once on first launch, no review hold; reduced motion final lockup",
+  "logoSource": "../splash-motion-2026-10-28/mark-parts.json",
+  "font": "Plus Jakarta Sans 600",
+  "phases": {
+    "0": "original assembled logo",
+    "90": "gentle Quran fold/unfold",
+    "340": "moon rim and one star glint",
+    "420": "mark begins moving to wordmark",
+    "800": "unchanged final logo and wordmark"
+  },
+  "status": "Preview only; Android remains 1.9.24/400ms"
+}

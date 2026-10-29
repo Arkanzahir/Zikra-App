@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-29",
+  "scope": "UI07 design preview only; no Android/APK implementation",
+  "baselineCommit": "12fc36480cc57822c1e354500d8ff68f83080421",
+  "apkUnchanged": "1.9.24 / code 51",
+  "motion": {
+    "geometryMatchesOriginal": true,
+    "statesFinite": true,
+    "finalPoseRestoresOriginal": true,
+    "durationMs": 800,
+    "reviewHoldMs": 400
+  },
+  "browser": {
+    "desktop": {
+      "width": 1100,
+      "scrollWidth": 1100,
+      "word": "zikra",
+      "fonts": "loaded"
+    },
+    "mobile": {
+      "controls": [
+        {
+          "height": 48,
+          "label": "Putar ulang ↻"
+        },
+        {
+          "height": 48,
+          "label": "Lihat perlahan"
+        }
+      ],
+      "documentWidth": 305,
+      "font": "loaded",
+      "scene": {
+        "bottom": 595.4500389099121,
+        "height": 561.8500366210938,
+        "left": 25.600000381469727,
+        "right": 279.20000648498535,
+        "top": 33.60000228881836,
+        "width": 253.6000061035156,
+        "x": 25.600000381469727,
+        "y": 33.60000228881836
+      },
+      "viewport": 320
+    },
+    "comparison": {
+      "book": "translate(0 0) translate(31 55) rotate(0) scale(1 1) translate(-31 -55)",
+      "time": "0,16 s",
+      "variant": "true"
+    },
+    "keyboard": {
+      "output": "0,01 s",
+      "value": "10"
+    },
+    "slow": {
+      "book": "translate(0 -0.60127) translate(31 55) rotate(3.67442) scale(0.93307 1) translate(-31 -55)",
+      "time": "0,15 s"
+    },
+    "reducedMotion": {
+      "checked": true,
+      "timeMs": 800,
+      "wordOpacity": 1
+    },
+    "viewportRestored": true
+  },
+  "fontIdenticalToOriginal": true,
+  "preservation": {
+    "projectHandoffWip": true,
+    "audioStash": true,
+    "audioWipArchive": true,
+    "featherlessPrivateConfig": true,
+    "approvedLogoAndMosqueAsset": true,
+    "featureIconGeometry": true,
+    "androidContentUnchanged": true
+  },
+  "media": {
+    "browser-desktop.png": {
+      "bytes": 51905,
+      "sha256": "2899572601735fcde7103971fef336e74b6595fb04360e1b7ec85cfe38dde344"
+    },
+    "browser-mobile.png": {
+      "bytes": 40647,
+      "sha256": "05d905d632bec7bd100373c33bbda8a2aba2f2526e4e5a4a16c26e1f00b76412"
+    },
+    "final.png": {
+      "bytes": 9320,
+      "sha256": "3c23e8d8c422f0fc9f04cd8d99561623e123a1c483e29f5798a8984730f2ee05"
+    },
+    "splash-polished.gif": {
+      "bytes": 56463,
+      "sha256": "ffe56ac51204a980390d183249aff9b246c6d75e59ee31fdcb6a6ddc469eb94c"
+    },
+    "splash-polished.mp4": {
+      "bytes": 18624,
+      "sha256": "f974c34c70a76f3fe2ba8f34c6424492dcc022637738af11dc10d9b502177d31"
+    },
+    "storyboard.png": {
+      "bytes": 62429,
+      "sha256": "68ce60da4c7c27d087d6e50305e5cb05c0d706e628bbb20e51f6508d362171b6"
+    }
+  }
+}
