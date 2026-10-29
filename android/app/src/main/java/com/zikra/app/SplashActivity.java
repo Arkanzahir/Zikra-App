@@ -54,7 +54,7 @@ public final class SplashActivity extends Activity {
 
   private void animateBrand() {
     if(started)return;started=true;introShown=true;
-    animator=ValueAnimator.ofFloat(0,1);animator.setDuration(400);
+    animator=ValueAnimator.ofFloat(0,1);animator.setDuration(SplashBrandView.DURATION_MS);
     animator.setInterpolator(new LinearInterpolator());
     animator.addUpdateListener(value->brand.setProgress((float)value.getAnimatedValue()));
     animator.addListener(new AnimatorListenerAdapter(){

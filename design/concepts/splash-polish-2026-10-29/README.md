@@ -1,9 +1,9 @@
 # UI07 — Polesan splash, 29 Oktober 2026
 
-**Preview untuk ditinjau pengguna; belum masuk Android/APK.** Versi aplikasi
-tetap1.9.24/code51 dengan splash400ms pada source`f42859d`. Permintaan aktif:
-“coba poles splashnya terlebih dahulu”. Referensi ini memakai caveman dan
-frontend-design; mempertahankan bulan, bintang, lembar Quran dan font asli.
+**Referensi disetujui dan diterapkan pada beta1.9.25,29 Oktober2026.**
+[Bukti native HP, APK dan batas](../../../android/validation/splash-polish-2026-10-29/README.md).
+Media di folder ini tetap preview asli sebelum integrasi; pembanding400ms
+merujuk versi1.9.24 terdahulu. Empat path/logo/font dipertahankan.
 
 - [Animasi GIF](splash-polished.gif), [MP4](splash-polished.mp4).
 - [Storyboard](storyboard.png), [pose akhir](final.png).
@@ -49,8 +49,6 @@ GIF/MP4/storyboard berasal dari`svgAt()` yang sama dengan browser:36frame30fps,
 resvg-py0.5.0, Pillow dan ffmpeg lokal. FontTools4.60.1 membuat instans600
 privat untuk renderer; font sumber di preview tetap identik dengan aset asli.
 
-Tidak menjalankan build/emulator atau mengubah HP untuk referensi ini. Tidak
-ada uji handoff sistem Android baru atau penerimaan visual pengguna yang
-diklaim. Ini bukan ekspor/canvas Figma. Seluruh status F04/A–D/HP/publik tetap
+Pada tahap pembuatan referensi ini tidak menjalankan build/emulator atau mengubah HP. Hasil integrasi dan persetujuan setelah tahap referensi dicatat pada bukti native di atas. Ini bukan ekspor/canvas Figma. Seluruh status F04/A–D/HP/publik tetap
 mengikuti checklist. WIP, stash audio, artwork, ikon dan konfigurasi privat
 dipertahankan; video pribadi pengguna/MP3/APK tidak disertakan.

@@ -1,0 +1,21 @@
+{
+  "physicalPhoneApi": 36,
+  "fromVersion": "1.9.22",
+  "toVersion": "1.9.25",
+  "originalFiles": 32,
+  "missingOriginalFiles": 0,
+  "databaseTables": 17,
+  "allOriginalTableContentPreserved": true,
+  "originalPreferenceValuesPreserved": true,
+  "otherOriginalFileBytesPreserved": true,
+  "systemSettingsPreserved": true,
+  "permissionsPreserved": true,
+  "batteryWhitelistPreserved": true,
+  "helperRemoved": true,
+  "mainAppUninstalled": false,
+  "rawBackupAndVideoKeptPrivate": true,
+  "temporaryExternalFilesRemoved": true,
+  "protectedWipConfigArtworkHashesMatch": true,
+  "audioStashPreserved": true,
+  "approvedVectorAssetsUnchanged": true
+}

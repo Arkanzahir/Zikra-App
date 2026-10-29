@@ -28,3 +28,7 @@ Permintaan terbaru pengguna untuk tema konsisten lintas fitur selesai pada F03a 
 ## Status29 Oktober2026 — UI06 beta1.9.24
 
 Pengguna memprioritaskan dock AI, lampu masjid malam dan splash sebelum C04; ketiganya selesai teknis beta terarah dengan [bukti native/video/batas](android/validation/ui-followup-2026-10-29/README.md).155 unit/4 skip,11 native lulus; lint0 error/862 warning. HP belum diubah/diuji untuk versi ini; Figma canvas lama tetap belum selesai. C04 berikutnya; A–D/F04/G/publik tidak otomatis selesai. Tema global1.9.23 tetap dan regresi back stack/draf lulus. Pertahankan WIP, stash, data, konfigurasi privat dan desain/ikon asli; checkpoint tetap audit/commit/push.
+
+## Status29 Oktober2026 — UI07 beta1.9.25
+
+Polesan splash800ms disetujui lalu diterapkan. [Bukti HP/preservasi/batas](android/validation/splash-polish-2026-10-29/README.md):4 native API36,155 unit/4 skip lulus;lint0 error/862 warning. HP aktual1.9.22 diperbarui ke1.9.25;32 berkas/17 tabel/preferensi/izin/pengaturan terjaga, helper dibersihkan. USB kemudian dilepas; jangan menganggap tersedia. Lampu fasad sudah terlihat, interior lengkungan belum bercahaya. Font Arab terjemahan masih fallback HP, berbeda dari QCF Mushaf; keduanya bukan perubahan checkpoint splash. C04/A–D/F04/G/publik tetap terbuka, WIP/stash/env/ikon/artwork tetap.

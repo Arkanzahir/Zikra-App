@@ -11,5 +11,5 @@
     "420": "mark begins moving to wordmark",
     "800": "unchanged final logo and wordmark"
   },
-  "status": "Preview only; Android remains 1.9.24/400ms"
+  "status": "Approved and implemented natively in Android 1.9.25/code52; preview retains review-only hold"
 }

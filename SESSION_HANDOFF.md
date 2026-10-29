@@ -1,5 +1,25 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
+## UI07 selesai teknis beta1.9.25 — HP29 Oktober2026
+
+Pengguna menyetujui polesan dan mengizinkan uji USB. Splash800ms diterapkan:
+Quran/bulan/bintang/wordmark asli, tanpa hold preview, satu animator/navigasi
+dan guard lama. [Bukti HP/video/Canvas/preservasi/batas](android/validation/splash-polish-2026-10-29/README.md).
+155 unit/4 skip,4 native HP API36 lulus;lint0 error/862 warning. Pembaruan HP
+aktual1.9.22→1.9.25,32 berkas/17 tabel/nilai preferensi lama terjaga, izin/
+pengaturan/baterai sama. Helper/marker/gambar uji dibersihkan; pengguna mencabut
+USB sesudah uji. Jangan menganggap HP tetap tersedia. Tidak ada emulator.
+
+APK folder pembungkus`Zikra-Splash-v1.9.25-beta-debug.apk`,43.638.534byte,
+SHA256`a7f54e6233ef42ba8b12266099de47e8532bafa0d2d3e1b31924468cbadcf583`.
+Signer tetap; audio/WIP/stash/env/artwork/ikon dipertahankan. Masukan baru:
+lampu pilar/pantulan sudah terlihat di HP, interior lengkungan masih gelap;
+font Arab mode terjemahan fallback HP berbeda dari QCFv2 Mushaf. Belum ada
+perubahan interior/font pada checkpoint splash. Tindak lanjut C04 dan sisa
+A–D/F/G tetap mengikuti checklist; jangan klaim seluruh C/D/HP/publik selesai.
+Bagian preview800ms di bawah adalah riwayat sebelum persetujuan/integrasi.
+
+
 ## UI07 — polesan splash untuk tinjauan, 29 Oktober2026
 
 Pengguna memprioritaskan polesan splash. [Preview800ms/GIF/MP4/interaktif/bukti](design/concepts/splash-polish-2026-10-29/README.md)

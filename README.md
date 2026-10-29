@@ -1,3 +1,5 @@
+> **UI07 beta1.9.25 — 29 Oktober2026:** splash800ms disetujui dan lulus4 uji native HP API36.155 unit/4 skip,lint0 error/862 warning; update1.9.22 berisi terjaga. APK lokal folder pembungkus`Zikra-Splash-v1.9.25-beta-debug.apk`,43.638.534byte, SHA256`a7f54e6233ef42ba8b12266099de47e8532bafa0d2d3e1b31924468cbadcf583`. [Bukti/video/preservasi/batas](android/validation/splash-polish-2026-10-29/README.md). Seluruh A–D/F/G/publik belum otomatis selesai.
+
 > **Terbaru — jadwal beta1.9.18,28 Oktober2026:** Jadwal Kemenag melalui myQuran, cache bulan ini/berikutnya dan sumber bersama Home/countdown/alarm.1.098 waktu cocok pada enam kota-bulan,153 unit/4 skip dan10 native lulus;lint0 error/818 warning. APK40.746.251byte, source`df84753`. HP tidak diubah; bukan penutupan D02/B01/F/G/publik. [Bukti/receipt/batas](android/validation/prayer-source-2026-10-28/README.md).
 
 > **Beta1.9.24 — 29 Oktober2026:** dock navigasi AI, lampu masjid malam, dan splash native telah diterapkan. [Preview/video, APK lokal, pemeriksaan dan batas](android/validation/ui-followup-2026-10-29/README.md). Ketiga koreksi mendahului C04; uji HP dan rilis publik tetap terbuka.

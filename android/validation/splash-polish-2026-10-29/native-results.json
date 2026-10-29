@@ -1,0 +1,22 @@
+[
+  {
+    "label": "approved-phases",
+    "method": "testApprovedMotionRendersOriginalEndpointsAndDistinctPhases",
+    "passed": true
+  },
+  {
+    "label": "cold-warm-once",
+    "method": "testColdAndWarmNavigateOnce",
+    "passed": true
+  },
+  {
+    "label": "pause-resume",
+    "method": "testPausedIntroDoesNotNavigateInBackground",
+    "passed": true
+  },
+  {
+    "label": "reduced-motion",
+    "method": "testDisabledMotionSkipsAnimator",
+    "passed": true
+  }
+]
