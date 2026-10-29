@@ -45,7 +45,7 @@ public final class QuranAudioTest extends InstrumentationTestCase {
     super.setUp();
     context = getInstrumentation().getTargetContext();
     for (String name :
-        new String[] {"zikra_preferences", "quran_audio_options", QuranDownloadService.PREFS})
+        new String[] {"zikra_preferences", "quran_audio_options", QuranDownloadService.PREFS, com.zikra.app.ui.AppAppearance.PREFS})
       preferences.put(name, new HashMap<>(context.getSharedPreferences(name, 0).getAll()));
     context
         .getSharedPreferences("zikra_preferences", 0)
@@ -55,6 +55,8 @@ public final class QuranAudioTest extends InstrumentationTestCase {
         .putBoolean("reader_word_sync", false)
         .putString("reading_theme", "light")
         .commit();
+    context.getSharedPreferences(com.zikra.app.ui.AppAppearance.PREFS,0).edit()
+        .putString(com.zikra.app.ui.AppAppearance.KEY,"light").commit();
     context
         .getSharedPreferences("quran_audio_options", 0)
         .edit()
@@ -622,6 +624,8 @@ public final class QuranAudioTest extends InstrumentationTestCase {
           .edit()
           .putString("reading_theme", "dark")
           .commit();
+    context.getSharedPreferences(com.zikra.app.ui.AppAppearance.PREFS,0).edit()
+        .putString(com.zikra.app.ui.AppAppearance.KEY,"dark").commit();
       seed(1, 20000);
       launch(false);
       click(R.id.toolbarBack);

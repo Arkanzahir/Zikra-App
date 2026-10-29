@@ -41,8 +41,8 @@ public final class HadithActivity extends BaseActivity {
     ((FeatureHeader) findViewById(R.id.utilitiesHeader))
         .bind(R.id.toolbarBack, R.id.detailTitle, R.id.featureSubtitle, 0, "Hadis", null, 0, null);
     setupScreen("Hadis");
-    getWindow().setStatusBarColor(Color.parseColor("#F8F9F4"));
-    getWindow().setNavigationBarColor(Color.parseColor("#F8F9F4"));
+    getWindow().setStatusBarColor(getColor(R.color.ivory));
+    getWindow().setNavigationBarColor(getColor(R.color.ivory));
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(
@@ -191,7 +191,7 @@ public final class HadithActivity extends BaseActivity {
       boolean active = category.contentEquals(tab.getText());
       tab.setSelected(active);
       GradientDrawable background = new GradientDrawable();
-      background.setColor(getColor(active ? R.color.daily_ink : android.R.color.transparent));
+      background.setColor(getColor(active ? R.color.pine : android.R.color.transparent));
       background.setCornerRadius(dp(14));
       if (!active) background.setStroke(dp(1), getColor(R.color.daily_line));
       tab.setBackground(background);

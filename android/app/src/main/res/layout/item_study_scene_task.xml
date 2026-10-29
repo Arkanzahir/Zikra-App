@@ -22,7 +22,7 @@
             android:id="@+id/study_task_checkbox"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:buttonTint="@color/pine"
+            android:buttonTint="@color/app_accent"
             android:focusable="false" />
         <LinearLayout
             android:layout_width="0dp"
@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textColor="@color/pine"
+                android:textColor="@color/text"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/study_task_tag"
@@ -62,5 +62,5 @@
             android:contentDescription="@string/study_task_actions"
             android:rotation="180" />
     </LinearLayout>
-    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E2E6DE" android:importantForAccessibility="no" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/app_line_e2e6de" android:importantForAccessibility="no" />
 </LinearLayout>

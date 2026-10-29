@@ -58,30 +58,10 @@ public final class HomeActivity extends BaseActivity {
         }
       };
 
-  @Override
-  protected void attachBaseContext(android.content.Context base) {
-    super.attachBaseContext(com.zikra.app.ui.HomeAppearance.wrap(base));
-  }
+  private android.app.AlertDialog appearanceDialog;
 
   private void chooseAppearance() {
-    String[] choices = {"light", "dark", "system"};
-    String current = com.zikra.app.ui.HomeAppearance.selected(this);
-    int selected = java.util.Arrays.asList(choices).indexOf(current);
-    new android.app.AlertDialog.Builder(this)
-        .setTitle(R.string.home_appearance)
-        .setSingleChoiceItems(
-            R.array.home_appearance_choices,
-            selected,
-            (dialog, which) -> {
-              getSharedPreferences(com.zikra.app.ui.HomeAppearance.PREFS, MODE_PRIVATE)
-                  .edit()
-                  .putString(com.zikra.app.ui.HomeAppearance.KEY, choices[which])
-                  .apply();
-              dialog.dismiss();
-              recreate();
-            })
-        .setNegativeButton(android.R.string.cancel, null)
-        .show();
+    appearanceDialog = com.zikra.app.ui.AppAppearance.choose(this);
   }
 
   @Override
@@ -372,7 +352,7 @@ public final class HomeActivity extends BaseActivity {
       TextView title = new TextView(this);
       title.setText(task.title);
       title.setTextSize(16);
-      title.setTextColor(getColor(R.color.pine));
+      title.setTextColor(getColor(R.color.text));
       title.setTypeface(title.getTypeface(), android.graphics.Typeface.BOLD);
       row.addView(title);
       TextView detail = new TextView(this);
@@ -630,6 +610,7 @@ public final class HomeActivity extends BaseActivity {
 
   @Override
   protected void onDestroy() {
+    if (appearanceDialog != null) appearanceDialog.dismiss();
     if (skyRepository != null) skyRepository.close();
     if (db != null) db.close();
     super.onDestroy();

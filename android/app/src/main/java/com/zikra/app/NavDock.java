@@ -96,7 +96,7 @@ public final class NavDock {
         ProfileActivity.class,
         selected,
         R.id.dockProfile);
-    setNightMode(root, false);
+    setNightMode(root, com.zikra.app.ui.AppAppearance.dark(activity));
     setVisible(root, true);
   }
 

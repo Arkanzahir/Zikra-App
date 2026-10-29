@@ -1,5 +1,12 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
+## Tema global1.9.23 — 29 Oktober2026
+
+Permintaan tema konsisten seluruh fitur diterapkan pada F03a: Home/Profil/Quran/Mushaf memakai satu pilihan terang/gelap/perangkat. BaseActivity membungkus konfigurasi dan memulihkan back stack; palet halaman/dialog/dock/input diselaraskan. Sakelar Quran tidak boleh mengembalikan pilihan lama saat restore. Draf AI dan pilihan Home lama terpelihara. Otomatis Quran mengikuti perangkat, bukan lux. [Bukti, preview, APK dan batas](android/validation/global-theme-2026-10-29/README.md).
+
+153 unit/4 skip,9 eksekusi native terarah lulus; lint0 error/860 warning. APK1.9.23/code50 lokal `Zikra-Theme-v1.9.23-beta-debug.apk`,44.070.983byte; hash pada bukti. HP belum dipasang/diubah, emulator khusus ditutup. Audio stabil pilihan terakhir tetap; seluruh konfigurasi privat/data HP/WIP/stash/ikon disetujui dipertahankan. F03a selesai subset beta; F03/global aksesibilitas dan A–D/publik tidak otomatis selesai. Dock AI, lampu malam dan splash native tetap tindak lanjut terpisah; preview splash lama belum menjadi implementasi APK.
+
+
 ## Referensi splash diminta pengguna28 Oktober2026 — belum native
 
 [Preview GIF/MP4/SVG dan interaktif](design/concepts/splash-motion-2026-10-28/README.md)

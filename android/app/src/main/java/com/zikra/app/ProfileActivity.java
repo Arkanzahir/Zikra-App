@@ -127,6 +127,9 @@ public final class ProfileActivity extends BaseActivity {
                     ? getString(R.string.refined_profile_no_hifz)
                     : getString(R.string.refined_hifz_count, faith.hifzDone, faith.hifzTotal));
     rows.removeAllViews();
+    row(getString(R.string.app_appearance),
+        com.zikra.app.ui.AppAppearance.label(this), R.drawable.ic_home_appearance,
+        () -> profileDialog = com.zikra.app.ui.AppAppearance.choose(this));
     row(
         getString(R.string.study_level_choose),
         com.zikra.app.study.EducationLevel.label(this),
@@ -295,7 +298,7 @@ public final class ProfileActivity extends BaseActivity {
         "Diterapkan saat halaman dibuka kembali. Akses bantuan juga tersedia melalui Protector"
             + " BMKG.");
     explanation.setTextSize(14);
-    explanation.setTextColor(0xFF52665F);
+    explanation.setTextColor(getColor(R.color.refined_muted));
     explanation.setPadding(0, dp(16), 0, 0);
     content.addView(explanation);
     profileDialog =

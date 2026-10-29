@@ -47,7 +47,7 @@ public final class FeatureHeader extends LinearLayout {
   public void bindIds(int back, int title, int subtitle, int action) {
     this.back.setId(back);
     this.back.setImageDrawable(getContext().getDrawable(R.drawable.ic_back).mutate());
-    this.back.setImageTintList(android.content.res.ColorStateList.valueOf(0xFF15332F));
+    this.back.setImageTintList(android.content.res.ColorStateList.valueOf(getContext().getColor(R.color.text)));
     heading.setId(title);
     caption.setId(subtitle);
     if (action != 0) {

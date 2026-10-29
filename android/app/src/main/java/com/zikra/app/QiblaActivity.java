@@ -125,7 +125,7 @@ public class QiblaActivity extends BaseActivity implements SensorEventListener {
   private void showMissingSensor() {
     aligned=false;compass.setHeading(0,false);
     sensorStatus.setText(getString(R.string.qibla_no_sensor,Math.round(qiblaBearing)));
-    sensorStatus.setTextColor(getColor(R.color.pine));
+    sensorStatus.setTextColor(getColor(R.color.text));
     lastStatusText="";
     compass.setContentDescription(getString(R.string.qibla_static_description,Math.round(qiblaBearing)));
   }

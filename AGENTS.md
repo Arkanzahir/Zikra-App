@@ -20,3 +20,7 @@ D01 selesai teknis beta terarah dengan [bukti fisik/manual/native/preservasi](an
 ## Status HP28 Oktober2026 — beta1.9.22
 
 Prioritas terbaru pengguna tetap A–D dahulu. [Bukti HP/adzan terbaru](android/validation/prayer-phone-2026-10-28/README.md) menghitung uji pagi, mode/epoch, pilihan audio terakhir dan preservasi; D02/D02a tetap terbuka untuk ketentuan/sisa HP. C02 monitor terjadwal sudah teramati, laptop-mati tetap perlu. Masukan tema global/dock AI/lampu malam/tanggal strip belum diperbaiki oleh checkpoint audio; ikuti handoff. Jangan menimpa refresh lokasi/izin yang dikonfirmasi pengguna atau mengunggah chat/GPS/backup.
+
+## Status29 Oktober2026 — tema global beta1.9.23
+
+Permintaan terbaru pengguna untuk tema konsisten lintas fitur selesai pada F03a dengan [bukti](android/validation/global-theme-2026-10-29/README.md). Home/Profil/Quran/Mushaf memakai satu pilihan; otomatis Quran mengikuti tema perangkat, bukan lux. Palet/dialog/dock/input dan restore sakelar reader diperbaiki; draf AI terpelihara.153 unit/4 skip dan9 native lulus; lint0 error/860 warning. HP tidak diubah; gerbang A–D/F03/publik, dock AI, lampu malam dan splash native tetap mengikuti handoff. Ini menggantikan status tema-belum-diperbaiki untuk checkpoint audio, tanpa menutup pekerjaan lainnya.

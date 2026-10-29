@@ -4,16 +4,16 @@
         <com.zikra.app.ui.FeatureHeader android:id="@+id/utilitiesHeader" android:layout_width="match_parent" android:layout_height="wrap_content" />
         <ScrollView android:id="@+id/duaScroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:clipToPadding="false" android:paddingHorizontal="20dp" android:paddingBottom="112dp" android:scrollbars="none">
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
-                <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="152dp" android:background="@drawable/dua_arabic_surface" android:clipToOutline="true" android:layout_marginBottom="12dp">
-                    <ImageView android:layout_width="match_parent" android:layout_height="152dp" android:src="@drawable/daily_window" android:scaleType="centerCrop" android:importantForAccessibility="no" />
-                    <LinearLayout android:layout_width="190dp" android:layout_height="wrap_content" android:minHeight="152dp" android:orientation="vertical" android:gravity="center_vertical" android:padding="20dp">
-                        <TextView style="@style/DailyCaption" android:text="@string/dua_refined_eyebrow" android:textColor="@color/daily_ink" android:textSize="10sp" android:letterSpacing="0.09" />
-                        <TextView style="@style/DailyHeading" android:text="@string/dua_refined_hero" android:textSize="26sp" android:textColor="@color/daily_ink" android:layout_marginTop="10dp" />
+                <RelativeLayout android:id="@+id/duaHero" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="152dp" android:background="@drawable/dua_arabic_surface" android:clipToOutline="true" android:layout_marginBottom="12dp">
+                    <ImageView android:id="@+id/duaHeroImage" android:layout_width="match_parent" android:layout_height="0dp" android:layout_alignTop="@+id/duaHeroCopy" android:layout_alignBottom="@id/duaHeroCopy" android:src="@drawable/daily_window" android:scaleType="centerCrop" android:importantForAccessibility="no" />
+                    <LinearLayout android:id="@id/duaHeroCopy" android:layout_width="190dp" android:layout_height="wrap_content" android:minHeight="152dp" android:orientation="vertical" android:gravity="center_vertical" android:padding="20dp">
+                        <TextView style="@style/DailyCaption" android:text="@string/dua_refined_eyebrow" android:textColor="@color/pine" android:textSize="10sp" android:letterSpacing="0.09" />
+                        <TextView style="@style/DailyHeading" android:text="@string/dua_refined_hero" android:textSize="26sp" android:textColor="@color/pine" android:layout_marginTop="10dp" />
                     </LinearLayout>
-                </FrameLayout>
+                </RelativeLayout>
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:background="@drawable/reading_search" android:paddingHorizontal="15dp" android:layout_marginBottom="12dp" android:minHeight="56dp">
                     <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/reading_ic_search" android:importantForAccessibility="no" />
-                    <EditText android:id="@+id/duaSearch" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="10dp" android:background="@null" android:singleLine="true" android:inputType="text" android:imeOptions="actionDone" android:textSize="14sp" android:textColor="@color/pine" android:textColorHint="#52665F" android:hint="@string/daily_dua_search" android:importantForAutofill="no" android:contentDescription="Cari doa berdasarkan judul, teks Arab, atau arti" android:minHeight="56dp" />
+                    <EditText android:id="@+id/duaSearch" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="10dp" android:background="@null" android:singleLine="true" android:inputType="text" android:imeOptions="actionDone" android:textSize="14sp" android:textColor="@color/text" android:textColorHint="@color/app_ink_52665f" android:hint="@string/daily_dua_search" android:importantForAutofill="no" android:contentDescription="Cari doa berdasarkan judul, teks Arab, atau arti" android:minHeight="56dp" />
                 </LinearLayout>
                 <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none" android:layout_marginBottom="16dp" android:fillViewport="false">
                     <LinearLayout android:id="@+id/duaCategories" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="match_parent" android:gravity="center_vertical" />
@@ -37,7 +37,7 @@
                 <TextView android:id="@+id/duaEmpty" style="@style/ReadingBody" android:text="Belum ada doa yang sesuai. Coba kategori atau kata lainnya." android:paddingVertical="24dp" android:visibility="gone" />
                 <LinearLayout android:id="@+id/duaVoicePanel" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
                     <TextView style="@style/ReadingBody" android:id="@+id/duaVoiceStatus" android:text="Menyiapkan suara bahasa Arab…" android:textSize="14sp" android:layout_marginTop="10dp" android:layout_marginBottom="12dp" android:accessibilityLiveRegion="polite" />
-                    <Button android:id="@+id/duaInstallVoice" style="@style/ReadingButton" android:text="Pasang suara bahasa Arab" android:visibility="gone" android:layout_marginBottom="16dp" android:background="@drawable/reading_mint_card" android:textColor="@color/pine" android:layout_height="wrap_content" android:minHeight="48dp" android:paddingVertical="12dp" />
+                    <Button android:id="@+id/duaInstallVoice" style="@style/ReadingButton" android:text="Pasang suara bahasa Arab" android:visibility="gone" android:layout_marginBottom="16dp" android:background="@drawable/reading_mint_card" android:textColor="@color/text" android:layout_height="wrap_content" android:minHeight="48dp" android:paddingVertical="12dp" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

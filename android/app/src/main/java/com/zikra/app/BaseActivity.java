@@ -16,6 +16,13 @@ import android.widget.Toast;
 
 /** Shared native chrome and foreground-only, debounced shake emergency shortcut. */
 public abstract class BaseActivity extends Activity {
+  private String appliedAppearance;
+  private int appliedNightMode;
+
+  @Override
+  protected void attachBaseContext(android.content.Context base) {
+    super.attachBaseContext(com.zikra.app.ui.AppAppearance.wrap(base));
+  }
   private SensorManager motion;
   private Sensor acceleration;
   private long lastPeak, lastDialog;
@@ -46,6 +53,9 @@ public abstract class BaseActivity extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    appliedAppearance = com.zikra.app.ui.AppAppearance.selected(this);
+    appliedNightMode = getResources().getConfiguration().uiMode
+        & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
     motion = (SensorManager) getSystemService(SENSOR_SERVICE);
     if (motion != null) acceleration = motion.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
   }
@@ -54,7 +64,8 @@ public abstract class BaseActivity extends Activity {
     setTitle(title);
     getWindow().setStatusBarColor(getColor(R.color.pine));
     getWindow().setNavigationBarColor(getColor(R.color.background));
-    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+    getWindow().getDecorView().setSystemUiVisibility(
+        com.zikra.app.ui.AppAppearance.dark(this) ? 0 : View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     if (android.os.Build.VERSION.SDK_INT >= 29) getWindow().setNavigationBarContrastEnforced(false);
     int backId = getResources().getIdentifier("toolbarBack", "id", getPackageName());
     if (backId != 0 && findViewById(backId) != null)
@@ -64,12 +75,31 @@ public abstract class BaseActivity extends Activity {
   @Override
   protected void onResume() {
     super.onResume();
+    if (!com.zikra.app.ui.AppAppearance.selected(this).equals(appliedAppearance)
+        || com.zikra.app.ui.AppAppearance.resolvedNightMode(this) != appliedNightMode) {
+      recreate();
+      return;
+    }
     if (usesShakeShortcut()
         && motion != null
         && acceleration != null
         && getSharedPreferences("zikra_preferences", MODE_PRIVATE)
             .getBoolean("shake_enabled", true))
       motion.registerListener(shakeListener, acceleration, SensorManager.SENSOR_DELAY_UI);
+  }
+
+  @Override
+  protected void onPostResume() {
+    super.onPostResume();
+    int lightStatus = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+    int lightNavigation = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+    int flags = getWindow().getDecorView().getSystemUiVisibility() & ~(lightStatus | lightNavigation);
+    int status = getWindow().getStatusBarColor();
+    int navigation = getWindow().getNavigationBarColor();
+    if (android.graphics.Color.alpha(navigation) == 0) navigation = getColor(R.color.background);
+    if (android.graphics.Color.valueOf(status).luminance() > 0.5f) flags |= lightStatus;
+    if (android.graphics.Color.valueOf(navigation).luminance() > 0.5f) flags |= lightNavigation;
+    getWindow().getDecorView().setSystemUiVisibility(flags);
   }
 
   @Override

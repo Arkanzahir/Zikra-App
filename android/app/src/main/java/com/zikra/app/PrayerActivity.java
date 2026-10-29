@@ -102,7 +102,7 @@ public final class PrayerActivity extends BaseActivity {
             R.drawable.ic_compass,
             "Buka arah kiblat");
     setupScreen("Waktu Sholat");
-    getWindow().setStatusBarColor(Color.parseColor("#FCFDFB"));
+    getWindow().setStatusBarColor(getColor(R.color.ivory));
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(
@@ -218,8 +218,8 @@ public final class PrayerActivity extends BaseActivity {
     weekMode = week;
     todayTab.setBackgroundResource(week ? 0 : R.drawable.prayer_bg_green);
     weekTab.setBackgroundResource(week ? R.drawable.prayer_bg_green : 0);
-    todayTab.setTextColor(Color.parseColor(week ? "#53665E" : "#FFFFFF"));
-    weekTab.setTextColor(Color.parseColor(week ? "#FFFFFF" : "#53665E"));
+    todayTab.setTextColor(getColor(week ? R.color.muted : R.color.white));
+    weekTab.setTextColor(getColor(week ? R.color.white : R.color.muted));
     rows.setVisibility(week ? View.GONE : View.VISIBLE);
     weekSummary.setVisibility(week ? View.VISIBLE : View.GONE);
     renderDates();
@@ -243,8 +243,8 @@ public final class PrayerActivity extends BaseActivity {
       number.setText(Integer.toString(day.getDayOfMonth()));
       boolean selected = day.equals(selectedDate);
       item.setBackgroundResource(selected ? R.drawable.prayer_bg_green : 0);
-      name.setTextColor(Color.parseColor(selected ? "#DDEDE3" : "#53665E"));
-      number.setTextColor(Color.parseColor(selected ? "#FFFFFF" : "#2E4837"));
+      name.setTextColor(getColor(selected ? R.color.white : R.color.muted));
+      number.setTextColor(getColor(selected ? R.color.white : R.color.text));
       item.setContentDescription(day.format(DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy", ID)));
       item.setOnClickListener(
           view -> {
@@ -499,7 +499,7 @@ public final class PrayerActivity extends BaseActivity {
               + "    Isya  "
               + timetable.time(5));
       item.setTextSize(14);
-      item.setTextColor(Color.parseColor("#526F5C"));
+      item.setTextColor(getColor(R.color.muted));
       item.setLineSpacing(dp(5), 1);
       item.setPadding(dp(14), dp(11), dp(14), dp(11));
       item.setBackgroundResource(

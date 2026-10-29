@@ -1,0 +1,13 @@
+{
+  "physicalPhoneModified": false,
+  "realUserDataUsed": false,
+  "providerRequestsSent": false,
+  "protectedWipUnchanged": true,
+  "audioStashPreserved": true,
+  "privateConfigurationUnchanged": true,
+  "approvedLogoAndMosqueArtUnchanged": true,
+  "approvedFeatureGeometryUnchanged": true,
+  "helperRemoved": true,
+  "ownedEmulatorStopped": true,
+  "initialDownloadBelow100MB": true
+}

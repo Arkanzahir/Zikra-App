@@ -51,11 +51,7 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
       header.addView(actions, new LinearLayout.LayoutParams(-1, -2));
     }
     prefs = getSharedPreferences("zikra_preferences", MODE_PRIVATE);
-    night =
-        saved == null
-            ? prefs.getBoolean(
-                "mushaf_night", "dark".equals(prefs.getString("reading_theme", "light")))
-            : saved.getBoolean("night");
+    night = com.zikra.app.ui.AppAppearance.dark(this);
     zoom = Math.max(100, Math.min(200, prefs.getInt("mushaf_zoom", 100)));
     chapter =
         saved == null
@@ -461,9 +457,7 @@ public final class MushafActivity extends BaseActivity implements MushafPageView
                     prefs.edit().putInt("mushaf_zoom", zoom).apply();
                     applyZoom();
                   } else if (choice == 4) {
-                    night = !night;
-                    prefs.edit().putBoolean("mushaf_night", night).apply();
-                    palette();
+                    dialog = com.zikra.app.ui.AppAppearance.choose(this);
                   } else chooseVerse();
                 })
             .show();

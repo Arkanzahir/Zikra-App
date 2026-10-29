@@ -1,0 +1,14 @@
+{
+  "unit": {
+    "total": 157,
+    "passed": 153,
+    "skipped": 4,
+    "failures": 0,
+    "errors": 0
+  },
+  "lint": {
+    "Error": 0,
+    "Warning": 860,
+    "Fatal": 0
+  }
+}

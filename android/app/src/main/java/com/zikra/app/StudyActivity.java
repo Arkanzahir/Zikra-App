@@ -109,7 +109,7 @@ public final class StudyActivity extends BaseActivity {
         ibadahMode
             ? "Checklist ibadah"
             : getString(diaryMode ? R.string.study_hifz_title : R.string.study_title));
-    getWindow().setStatusBarColor(getColor(R.color.white));
+    getWindow().setStatusBarColor(getColor(R.color.app_surface));
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(

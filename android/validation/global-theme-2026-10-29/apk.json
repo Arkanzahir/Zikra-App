@@ -1,0 +1,13 @@
+{
+  "version": "1.9.23",
+  "versionCode": 50,
+  "bytes": 44070983,
+  "sha256": "9aa208f726729127bd77f70dfc29abf0488015bfdd9699a88ab476f7baefd5d1",
+  "below100MB": true,
+  "knownCredentialFindings": 0,
+  "privateAudioHashes": {
+    "selected": "545da9c890916ce918ed0e82df9b5e37169aafd638cdb3dfe61d41caa39b016f",
+    "fajr": "106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530"
+  },
+  "signerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b"
+}

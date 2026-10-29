@@ -28,14 +28,14 @@
                 android:paddingBottom="18dp">
                 <Button android:id="@+id/prayerLocation" android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:minHeight="48dp" android:text="Ubah lokasi"
-                    android:textAllCaps="false" android:textColor="@color/pine" />
+                    android:textAllCaps="false" android:textColor="@color/text" />
                 <TextView
                     android:id="@+id/prayerDateCaption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:textSize="12sp"
-                    android:textColor="#53665E" />
+                    android:textColor="@color/app_ink_53665e" />
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                         android:gravity="center"
                         android:text="Pekan ini"
                         android:textSize="14sp"
-                        android:textColor="#53665E"
+                        android:textColor="@color/app_ink_53665e"
                         android:clickable="true"
                         android:focusable="true"
                         android:minHeight="48dp"
@@ -109,7 +109,7 @@
                             android:layout_height="wrap_content"
                             android:text="Sholat selanjutnya"
                             android:textSize="12sp"
-                            android:textColor="#5B826E" />
+                            android:textColor="@color/app_ink_5b826e" />
                         <TextView
                             android:id="@+id/prayerNextName"
                             android:layout_width="match_parent"
@@ -118,7 +118,7 @@
                             android:text="Maghrib · 17:41"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:textColor="#214E3C" />
+                            android:textColor="@color/app_ink_214e3c" />
                         <TextView
                             android:id="@+id/prayerCountdown"
                             android:layout_width="match_parent"
@@ -126,7 +126,7 @@
                             android:layout_marginTop="7dp"
                             android:text="00:27:00"
                             android:textSize="27sp"
-                            android:textColor="#386B52"
+                            android:textColor="@color/app_ink_386b52"
                             android:fontFamily="sans-serif-light" />
                     </LinearLayout>
                 </FrameLayout>
@@ -148,14 +148,14 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_sun"
-                            android:tint="#8CAA97"
+                            android:tint="@color/app_ink_8caa97"
                             android:importantForAccessibility="no" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Terbit"
                             android:textSize="12sp"
-                            android:textColor="#53665E"
+                            android:textColor="@color/app_ink_53665e"
                             android:layout_marginTop="3dp" />
                         <TextView
                             android:id="@+id/prayerSunrise"
@@ -163,13 +163,13 @@
                             android:layout_height="wrap_content"
                             android:text="05:28"
                             android:textSize="12sp"
-                            android:textColor="#516F5E"
+                            android:textColor="@color/app_ink_516f5e"
                             android:layout_marginTop="3dp" />
                     </LinearLayout>
                     <View
                         android:layout_width="1dp"
                         android:layout_height="41dp"
-                        android:background="#E0E8E1" />
+                        android:background="@color/app_line_e0e8e1" />
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -180,14 +180,14 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_sun"
-                            android:tint="#8CAA97"
+                            android:tint="@color/app_ink_8caa97"
                             android:importantForAccessibility="no" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Maghrib"
                             android:textSize="12sp"
-                            android:textColor="#53665E"
+                            android:textColor="@color/app_ink_53665e"
                             android:layout_marginTop="3dp" />
                         <TextView
                             android:id="@+id/prayerSunset"
@@ -195,7 +195,7 @@
                             android:layout_height="wrap_content"
                             android:text="17:41"
                             android:textSize="12sp"
-                            android:textColor="#516F5E"
+                            android:textColor="@color/app_ink_516f5e"
                             android:layout_marginTop="3dp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -206,7 +206,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
                     android:text="Jadwal hari ini"
-                    android:textColor="#2B4636"
+                    android:textColor="@color/app_ink_2b4636"
                     android:textStyle="bold"
                     android:textSize="13sp" />
                 <LinearLayout
@@ -238,7 +238,7 @@
                     android:layout_marginTop="6dp"
                     android:text="Pengingat sholat"
                     android:textSize="14sp"
-                    android:textColor="#4D6A58"
+                    android:textColor="@color/app_ink_4d6a58"
                     android:buttonTint="@color/sage"
                     android:thumbTint="@color/sage"
                     android:minHeight="52dp"
@@ -254,25 +254,25 @@
                     android:text="@string/adhan_settings_hint" android:textSize="12sp" android:textColor="@color/muted" />
                 <Button android:id="@+id/prayerAudioPreview" android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:minHeight="52dp" android:layout_marginTop="12dp" android:text="@string/adhan_preview"
-                    android:textAllCaps="false" android:background="@drawable/prayer_bg_row" android:textColor="@color/pine" />
+                    android:textAllCaps="false" android:background="@drawable/prayer_bg_row" android:textColor="@color/text" />
                 <Button android:id="@+id/prayerAudioStop" android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:minHeight="52dp" android:text="@string/adhan_stop" android:textAllCaps="false" android:visibility="gone"
-                    android:background="@drawable/prayer_bg_row" android:textColor="@color/pine" />
+                    android:background="@drawable/prayer_bg_row" android:textColor="@color/text" />
                 <TextView android:id="@+id/prayerAudioStatus" android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:textSize="12sp" android:textColor="@color/muted" android:paddingVertical="8dp" android:accessibilityLiveRegion="polite" />
                 <TextView android:id="@+id/prayerBannerSettings" android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:minHeight="52dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:paddingVertical="12dp"
                     android:layout_marginTop="4dp" android:background="@drawable/prayer_bg_row" android:clickable="true" android:focusable="true"
-                    android:text="@string/adhan_banner_settings" android:textSize="14sp" android:textColor="@color/pine"
+                    android:text="@string/adhan_banner_settings" android:textSize="14sp" android:textColor="@color/text"
                     android:drawableEnd="@drawable/home_ic_chevron" android:drawablePadding="12dp" />
                 <TextView android:id="@+id/prayerBannerHint" android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:layout_marginTop="8dp" android:layout_marginBottom="16dp" android:text="@string/adhan_banner_hint"
                     android:textSize="12sp" android:textColor="@color/muted" />
                 <Switch android:id="@+id/prayerPauseFocus" android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:minHeight="52dp" android:text="@string/adhan_pause_focus" android:textSize="14sp" android:textColor="@color/pine" />
+                    android:minHeight="52dp" android:text="@string/adhan_pause_focus" android:textSize="14sp" android:textColor="@color/text" />
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/adhan_pause_hint" android:textSize="12sp" android:textColor="@color/muted" />
                 <Switch android:id="@+id/prayerQuietClasses" android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:minHeight="52dp" android:text="@string/adhan_quiet_classes" android:textSize="14sp" android:textColor="@color/pine" />
+                    android:minHeight="52dp" android:text="@string/adhan_quiet_classes" android:textSize="14sp" android:textColor="@color/text" />
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/adhan_quiet_hint" android:textSize="12sp" android:textColor="@color/muted" />
                 <TextView
                     android:id="@+id/prayerAlarmSettings"
@@ -302,7 +302,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/prayerMethod" android:text="Perhitungan lokasi pilihan. Subuh 20°, Isya 18°, Ashar bayangan 1×; ihtiyati 2 menit (terbit tanpa ihtiyati). Asumsi dekat permukaan laut. Ini hasil perhitungan, bukan jadwal resmi Kemenag; cocokkan dengan masjid setempat."
                     android:textSize="12sp"
-                    android:textColor="#53665E"
+                    android:textColor="@color/app_ink_53665e"
                     android:lineSpacingExtra="4dp" />
             </LinearLayout>
         </ScrollView>

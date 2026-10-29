@@ -105,7 +105,7 @@ public final class WeeklyClassesActivity extends BaseActivity {
       final int chosen = day;
       Button button = new Button(this); button.setText(labels[day - 1]);
       button.setTextSize(14); button.setAllCaps(false); button.setMinHeight(dp(48));
-      button.setTextColor(getColor(R.color.pine)); button.setBackgroundResource(R.drawable.weekly_day_choice);
+      button.setTextColor(getColor(R.color.text)); button.setBackgroundResource(R.drawable.weekly_day_choice);
       button.setSelected(day == selectedDay); button.setActivated(day == selectedDay);
       button.setOnClickListener(v -> { selectedDay = chosen; refresh(); });
       days.addView(button, new LinearLayout.LayoutParams(-2, -2));
@@ -179,8 +179,8 @@ public final class WeeklyClassesActivity extends BaseActivity {
         .setNegativeButton(R.string.weekly_cancel, null).setPositiveButton(R.string.weekly_save, null).create();
     editor = dialog;
     dialog.setOnShowListener(v -> {
-      dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.pine));
-      dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.pine));
+      dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.text));
+      dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.text));
       dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(button -> save());
       dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
           | WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -259,7 +259,7 @@ public final class WeeklyClassesActivity extends BaseActivity {
       TextView detail;
       if(row.getChildCount()==2){title=(TextView)row.getChildAt(0);detail=(TextView)row.getChildAt(1);}
       else {title=new TextView(WeeklyClassesActivity.this);detail=new TextView(WeeklyClassesActivity.this);row.addView(title);row.addView(detail);}
-      title.setTextSize(16); title.setTextColor(getColor(R.color.pine)); title.setTypeface(null, Typeface.BOLD);
+      title.setTextSize(16); title.setTextColor(getColor(R.color.text)); title.setTypeface(null, Typeface.BOLD);
       detail.setVisibility(rows.isEmpty()?View.GONE:View.VISIBLE);
       if (rows.isEmpty()) { title.setText(storageUnavailable?R.string.weekly_read_failed:R.string.weekly_empty); return row; }
       WeeklyClass item = rows.get(position); title.setText(item.title);

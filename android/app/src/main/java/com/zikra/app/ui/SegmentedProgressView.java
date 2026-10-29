@@ -29,7 +29,7 @@ public final class SegmentedProgressView extends View {
     float width = (getWidth() - 23 * gap) / 24f;
     int filled = total == 0 ? 0 : Math.round(24f * completed / total);
     for (int i = 0; i < 24; i++) {
-      paint.setColor(i < filled ? 0xFF15332F : 0xFFE6E9E7);
+      paint.setColor(getContext().getColor(i < filled ? com.zikra.app.R.color.text : com.zikra.app.R.color.app_track));
       float x = i * (width + gap);
       canvas.drawRoundRect(x, 0, x + width, getHeight(), 2, 2, paint);
     }

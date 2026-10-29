@@ -221,7 +221,7 @@ public final class LocationActivity extends BaseActivity {
           android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       row.setText(rowLabel);
       row.setTextSize(15);
-      row.setTextColor(getColor(R.color.pine));
+      row.setTextColor(getColor(R.color.text));
       row.setLineSpacing(dp(4), 1);
       row.setMinHeight(dp(64));
       row.setGravity(android.view.Gravity.CENTER_VERTICAL);

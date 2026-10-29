@@ -5,12 +5,12 @@
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="20dp" android:paddingTop="8dp" android:paddingBottom="24dp">
                 <TextView style="@style/NearbyBody" android:text="Jadwal sholat, cuaca, Kiblat, dan masjid mengikuti lokasi yang kamu pilih." />
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:orientation="vertical" android:padding="16dp" android:background="@drawable/bg_location_selected">
-                    <TextView style="@style/NearbyCaption" android:text="LOKASI AKTIF" android:letterSpacing="0.08" android:textColor="#D2DFD8" />
+                    <TextView style="@style/NearbyCaption" android:text="LOKASI AKTIF" android:letterSpacing="0.08" android:textColor="@color/app_ink_d2dfd8" />
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
                         <TextView android:id="@+id/locationCurrent" style="@style/NearbySection" android:layout_width="0dp" android:layout_weight="1" android:textSize="20sp" android:textColor="@color/white" />
                         <ImageButton android:id="@+id/locationMore" android:layout_width="48dp" android:layout_height="48dp" android:layout_marginStart="8dp" android:padding="12dp" android:background="?android:attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_nearby_info" android:tint="@color/white" android:contentDescription="@string/location_details_label" />
                     </LinearLayout>
-                    <TextView android:id="@+id/locationDetails" style="@style/NearbyBody" android:layout_marginTop="4dp" android:textSize="13sp" android:textColor="#D2DFD8" />
+                    <TextView android:id="@+id/locationDetails" style="@style/NearbyBody" android:layout_marginTop="4dp" android:textSize="13sp" android:textColor="@color/app_ink_d2dfd8" />
                 </LinearLayout>
                 <Button android:id="@+id/locationAutomatic" style="@style/NearbyPrimary" android:layout_marginTop="16dp" android:text="@string/location_auto" />
                 <TextView style="@style/NearbyCaption" android:layout_marginTop="8dp" android:text="@string/location_privacy" />
@@ -22,7 +22,7 @@
                 <Button android:id="@+id/locationSettings" style="@style/NearbyButton" android:visibility="gone" android:layout_marginTop="8dp" android:text="Pengaturan lokasi perangkat" />
                 <TextView style="@style/NearbySection" android:layout_marginTop="24dp" android:text="Atau pilih kota" />
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="12dp">
-                    <EditText android:id="@+id/locationQuery" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="56dp" android:hint="@string/location_search_hint" android:inputType="textCapWords" android:imeOptions="actionSearch" android:singleLine="true" android:maxLength="100" android:textSize="16sp" android:textColor="@color/pine" android:textColorHint="@color/onboarding_muted" android:padding="16dp" android:background="@drawable/bg_nearby_card" />
+                    <EditText android:id="@+id/locationQuery" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:minHeight="56dp" android:hint="@string/location_search_hint" android:inputType="textCapWords" android:imeOptions="actionSearch" android:singleLine="true" android:maxLength="100" android:textSize="16sp" android:textColor="@color/text" android:textColorHint="@color/onboarding_muted" android:padding="16dp" android:background="@drawable/bg_nearby_card" />
                     <ImageButton android:id="@+id/locationSearch" android:layout_width="56dp" android:layout_height="56dp" android:layout_marginStart="8dp" android:background="@drawable/bg_nearby_panel" android:src="@drawable/ic_nearby_search" android:padding="16dp" android:contentDescription="@string/location_search_label" />
                 </LinearLayout>
                 <TextView android:id="@+id/locationResultsLabel" style="@style/NearbyCaption" android:layout_marginTop="16dp" android:text="Pilihan kota offline · pusat kota" />

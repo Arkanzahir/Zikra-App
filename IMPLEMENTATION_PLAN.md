@@ -1,5 +1,8 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+> **29 Oktober2026 — F03a tema global1.9.23:** pilihan Home/Profil/Quran/Mushaf sama, palet siang/malam lintas halaman/dialog/dock/input, back stack/draf/restart teruji.153 unit/4 skip dan9 native lulus,lint0 error/860 warning; APK44.070.983byte. HP tidak diubah, ikon/audio/data/rahasia terpelihara. F03 keseluruhan dan gerbang lain tetap terbuka. [Bukti dan batas](android/validation/global-theme-2026-10-29/README.md).
+
+
 **Checkpoint terbaru28 Oktober2026:** beta1.9.22/code49; [bukti HP, audio pengganti, audit/preservasi dan batas](android/validation/prayer-phone-2026-10-28/README.md). Acuan tabel tetap [Kemenag melalui myQuran1.9.18](android/validation/prayer-source-2026-10-28/README.md). Paragraf baseline bertanggal di bawah adalah riwayat; checklist mengikuti bukti terbaru.
 
 Dibuat 24 Oktober; diperbarui **25 Oktober 2026 (WIB)**. Kandidat Home terbaru: **1.9.4 beta / code 31**, [koreksi gradasi/posisi dan lampu siang-malam](android/validation/home-lighting-layout-2026-10-25/README.md). Kandidat AI yang telah diuji HP tetap **1.8.1 / code 26**, [APK → hosting nyata](android/validation/assistant-hosted-emulator-2026-10-25/README.md); runtime AI belum didesain ulang pada 1.9.1. Kandidat sebelumnya dipertahankan. Baseline konten B04 tetap 1.7.6 (`b3f13f3`), [receipt](android/validation/dua-completion-b04-2026-10-24/release.json). A04 tetap checkpoint 1.6.3 (`2b291ff`); UI01 tetap 1.6.2.
@@ -143,6 +146,7 @@ visual APK. Google login/sync/admin baru diskusi, tidak diimplementasikan.
 - [ ] **F01 — Bekukan panduan visual berdasarkan referensi yang diterima.** Catat font, ukuran/jarak, ikon, warna, radius dan keluarga ilustrasi per konteks; bedakan variasi fungsi yang disengaja dari gaya yang bertabrakan. Pertahankan logo dan referensi yang sudah disetujui. Hasil: dokumen acuan + daftar layar yang perlu diselaraskan.
 - [ ] **F02 — Selaraskan seluruh layar dan teks.** Periksa Home, Quran/reader/Mushaf, Study/fokus/break/Hifz, AI, Protector/peta, Hadis/reader, Doa, Profil, salat, Kiblat, lokasi/masjid, kalender dan pengaturan. Rapikan ruang kosong, kartu berulang, orb/dekorasi generik serta kalimat template. Gunakan isi nyata, bukan statistik contoh.
 - [ ] **F03 — Ukuran layar, teks besar dan aksesibilitas.** Kontrol tetap terjangkau, target sentuh memadai, Arab/Indonesia tidak terpotong, kontras dan label aksesibel. Periksa font besar, tema yang tersedia, keyboard, dialog, loading/kosong/gagal dan scroll. Simpan screenshot native pada ukuran yang diuji.
+- [x] **F03a — Tema global lintas fitur.** Selesai subset beta29 Oktober2026, APK1.9.23: satu preferensi terang/gelap/perangkat, dialog/dock/input, pemulihan halaman lama/draf/restart dan reader.153 unit/4 skip,9 native lulus; [bukti/preview/batas](android/validation/global-theme-2026-10-29/README.md). Uji HP tema dan F03 keseluruhan tetap terbuka.
 - [ ] **F04 — Gerak dan performa visual.** Awan/celestial, orb dan karakter fokus/break berhenti saat layar tidak aktif serta menghormati pengaturan animasi/penghemat daya. Ukur penggunaan memori/baterai di HP; jangan mempertahankan animasi terus berjalan untuk dekorasi tersembunyi.
 
 ### Tambahan F — akun dan administrasi, antrean lanjutan
@@ -318,3 +322,5 @@ Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | ta
 |28 Oktober2026|D02/D02a checkpoint HP1.9.22|Mode/epoch/Stop/fokus, rekaman pengganti dan preservasi diperiksa; ketentuan audio/sisa vendor tetap terbuka. C02 monitor terjadwal teramati; B01 belum ada balasan. Tema lintas halaman/dock AI/lampu malam/label tanggal strip dicatat untuk tindak lanjut, belum diklaim diperbaiki.|[Bukti terarah](android/validation/prayer-phone-2026-10-28/README.md)|
 
 |28 Oktober2026|F01/F04 referensi splash diminta pengguna|Logo asli/Plus Jakarta Sans, animasi lokal±1,1detik, GIF/MP4/SVG dan kontrol replay/scrub/reduced motion. Figma file dibuat/discovery selesai, konstruksi ditolak kuota MCP Starter; tidak mengklaim canvas/prototype Figma selesai. APK tetap1.9.22, F01/F04/A–D/publik tidak dicentang.|[Preview, sumber dan batas](design/concepts/splash-motion-2026-10-28/README.md)|
+
+|29 Oktober2026|F03a tema global1.9.23|Satu pilihan di seluruh fitur, palet/dock/dialog/input dan restore reader diperbaiki.153 unit/4 skip,9 native lulus; lint0 error/860 warning. APK44.070.983byte, HP tidak diubah. F03/A–D/publik tetap mengikuti gerbang tersisa.|[Bukti dan batas](android/validation/global-theme-2026-10-29/README.md)|

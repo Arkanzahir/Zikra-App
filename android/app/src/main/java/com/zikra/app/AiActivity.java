@@ -858,7 +858,7 @@ public final class AiActivity extends BaseActivity {
       try (ZikraDbHelper db = new ZikraDbHelper(this)) { applied = db.assistantProposalApplied(proposal.optString("id")); }
       TextView review = new TextView(this);
       review.setText(applied ? R.string.assistant_task_saved : R.string.assistant_review_task);
-      review.setTextColor(getColor(R.color.pine)); review.setMinHeight(dp(48)); review.setGravity(Gravity.CENTER_VERTICAL);
+      review.setTextColor(getColor(R.color.text)); review.setMinHeight(dp(48)); review.setGravity(Gravity.CENTER_VERTICAL);
       if (!applied) { review.setOnClickListener(view -> reviewTask(proposal)); review.setFocusable(true); }
       card.addView(review);
     }
@@ -867,7 +867,7 @@ public final class AiActivity extends BaseActivity {
       TextView note = new TextView(this); note.setText(R.string.assistant_tafsir_note);
       note.setTextSize(12); note.setPadding(0, dp(8), 0, dp(4)); card.addView(note);
       TextView openSource = new TextView(this); openSource.setText(R.string.assistant_tafsir_original);
-      openSource.setTextColor(getColor(R.color.pine)); openSource.setMinHeight(dp(48)); openSource.setGravity(Gravity.CENTER_VERTICAL);
+      openSource.setTextColor(getColor(R.color.text)); openSource.setMinHeight(dp(48)); openSource.setGravity(Gravity.CENTER_VERTICAL);
       openSource.setFocusable(true); openSource.setOnClickListener(view -> showSource(source)); card.addView(openSource);
     }
   }

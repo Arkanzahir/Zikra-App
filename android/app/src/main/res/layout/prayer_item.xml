@@ -25,7 +25,7 @@
     <TextView
         android:id="@+id/prayerRowName"
         android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:textColor="#476650"
+        android:textColor="@color/app_ink_476650"
         android:textSize="15sp" />
     <TextView android:id="@+id/prayerRowMode" android:layout_width="match_parent" android:layout_height="wrap_content"
         android:textColor="@color/muted" android:textSize="12sp" android:layout_marginTop="4dp" />
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="6dp"
-        android:textColor="#31583F"
+        android:textColor="@color/app_ink_31583f"
         android:textSize="15sp" />
     <ImageButton
         android:id="@+id/prayerRowBell"

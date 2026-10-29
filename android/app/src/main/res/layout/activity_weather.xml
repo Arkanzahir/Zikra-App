@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/app_surface">
     <include
         layout="@layout/protector_toolbar" />
     <ScrollView
@@ -61,7 +61,7 @@
                         android:id="@+id/weatherDate"
                         android:gravity="center"
                         android:textSize="12sp"
-                        android:textColor="#345C50"
+                        android:textColor="@color/app_ink_345c50"
                         android:layout_marginTop="5dp" />
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -83,7 +83,7 @@
                             android:id="@+id/weatherTemperature"
                             android:layout_width="wrap_content"
                             android:textSize="58sp"
-                            android:textColor="#174A5E"
+                            android:textColor="@color/app_ink_174a5e"
                             android:fontFeatureSettings="tnum" />
                     </LinearLayout>
                     <TextView
@@ -100,7 +100,7 @@
                         android:id="@+id/weatherStatus"
                         android:gravity="center"
                         android:textSize="12sp"
-                        android:textColor="#345C50"
+                        android:textColor="@color/app_ink_345c50"
                         android:layout_marginTop="6dp" />
                     <Space
                         android:layout_width="1dp"
@@ -128,7 +128,7 @@
                                 android:layout_height="21dp"
                                 android:src="@drawable/weather_ic_drop"
                                 android:importantForAccessibility="no"
-                                android:tint="#316F83" />
+                                android:tint="@color/app_ink_316f83" />
                             <TextView
                                 style="@style/ProtectorMetric"
                                 android:text="—"
@@ -138,7 +138,7 @@
                             <TextView
                                 style="@style/ProtectorMetricCaption"
                                 android:text="Kelembapan"
-                                android:textColor="#345C50"
+                                android:textColor="@color/app_ink_345c50"
                                 android:layout_marginTop="4dp" />
                         </LinearLayout>
                         <LinearLayout
@@ -152,7 +152,7 @@
                                 android:layout_height="21dp"
                                 android:src="@drawable/weather_ic_wind"
                                 android:importantForAccessibility="no"
-                                android:tint="#316F83" />
+                                android:tint="@color/app_ink_316f83" />
                             <TextView
                                 style="@style/ProtectorMetric"
                                 android:text="—"
@@ -162,7 +162,7 @@
                             <TextView
                                 style="@style/ProtectorMetricCaption"
                                 android:text="Angin · km/jam"
-                                android:textColor="#345C50"
+                                android:textColor="@color/app_ink_345c50"
                                 android:layout_marginTop="4dp" />
                         </LinearLayout>
                         <LinearLayout
@@ -176,7 +176,7 @@
                                 android:layout_height="21dp"
                                 android:src="@drawable/ic_compass"
                                 android:importantForAccessibility="no"
-                                android:tint="#316F83" />
+                                android:tint="@color/app_ink_316f83" />
                             <TextView
                                 style="@style/ProtectorMetric"
                                 android:text="—"
@@ -186,7 +186,7 @@
                             <TextView
                                 style="@style/ProtectorMetricCaption"
                                 android:text="Arah angin"
-                                android:textColor="#345C50"
+                                android:textColor="@color/app_ink_345c50"
                                 android:layout_marginTop="4dp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -208,7 +208,7 @@
                     style="@style/ProtectorBody"
                     android:text="Per slot prakiraan · WIB"
                     android:textSize="12sp"
-                    android:textColor="#466456"
+                    android:textColor="@color/app_ink_466456"
                     android:layout_marginTop="4dp" />
                 <com.zikra.app.safety.TemperatureChartView
                     android:id="@+id/weatherChart"

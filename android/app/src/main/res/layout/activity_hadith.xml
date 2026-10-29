@@ -18,9 +18,9 @@
                     <LinearLayout android:layout_width="212dp" android:layout_height="wrap_content"
                         android:minHeight="96dp" android:orientation="vertical" android:gravity="center_vertical" android:padding="16dp">
                         <TextView style="@style/DailyCaption" android:text="@string/daily_hadith_eyebrow"
-                            android:textColor="@color/daily_sand" android:textSize="9sp" android:letterSpacing="0.08" />
+                            android:textColor="@color/refined_brand_caption" android:textSize="9sp" android:letterSpacing="0.08" />
                         <TextView style="@style/DailyHeading" android:text="@string/hadith_refined_hero"
-                            android:textSize="19sp" android:textColor="@color/daily_white" android:layout_marginTop="6dp" />
+                            android:textSize="19sp" android:textColor="@color/white" android:layout_marginTop="6dp" />
                     </LinearLayout>
                 </FrameLayout>
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"

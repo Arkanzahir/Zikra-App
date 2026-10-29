@@ -5,7 +5,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">28sp</item>
-        <item name="android:textColor">@color/pine</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
         <item name="android:fontFamily">@font/plus_jakarta_sans</item>
@@ -15,7 +15,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">12dp</item>
         <item name="android:textSize">13sp</item>
-        <item name="android:textColor">#6A7D75</item>
+        <item name="android:textColor">@color/muted</item>
         <item name="android:lineSpacingExtra">5dp</item>
         <item name="android:gravity">center</item>
     </style>
@@ -35,13 +35,13 @@
         <item name="android:layout_marginTop">12dp</item>
         <item name="android:textSize">17sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/pine</item>
+        <item name="android:textColor">@color/text</item>
     </style>
     <style name="OnboardLevelCaption">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:textSize">11sp</item>
-        <item name="android:textColor">#6A7D75</item>
+        <item name="android:textColor">@color/muted</item>
     </style>
 </resources>

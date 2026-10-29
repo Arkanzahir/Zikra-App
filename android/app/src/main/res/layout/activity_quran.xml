@@ -22,7 +22,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/ic_back"
-                android:tint="@color/pine"
+                android:tint="@color/text"
                 android:padding="13dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Kembali" />
@@ -35,7 +35,7 @@
                 android:gravity="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/pine" />
+                android:textColor="@color/text" />
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/reading_ic_search"
-                android:tint="@color/pine"
+                android:tint="@color/text"
                 android:padding="14dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Cari surah" />
@@ -75,7 +75,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/ic_book"
-                android:tint="@color/pine"
+                android:tint="@color/text"
                 android:padding="14dp"
                 android:visibility="gone"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
@@ -85,7 +85,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/study_scene_settings_icon"
-                android:tint="@color/pine"
+                android:tint="@color/text"
                 android:padding="14dp"
                 android:visibility="gone"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
@@ -190,7 +190,7 @@
                             android:inputType="text"
                             android:imeOptions="actionSearch"
                             android:textSize="14sp"
-                            android:textColor="@color/pine"
+                            android:textColor="@color/text"
                             android:textColorHint="@color/studio_tint_7e8f86"
                             android:hint="Nama atau nomor surah"
                             android:importantForAutofill="no" />
@@ -214,7 +214,7 @@
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:src="@drawable/ic_book"
-                            android:tint="@color/pine"
+                            android:tint="@color/text"
                             android:importantForAccessibility="no" />
                         <LinearLayout
                             android:layout_width="0dp"
@@ -236,14 +236,14 @@
                                 android:layout_marginTop="2dp"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
-                                android:textColor="@color/pine" />
+                                android:textColor="@color/text" />
                         </LinearLayout>
                         <ImageView
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            android:tint="@color/pine"
+                            android:tint="@color/text"
                             android:importantForAccessibility="no" />
                     </LinearLayout>
                     <LinearLayout
@@ -263,7 +263,7 @@
                             android:background="@drawable/reference_paper_action"
                             android:backgroundTint="@null"
                             android:text="@string/reference_open_mushaf"
-                            android:textColor="@color/pine"
+                            android:textColor="@color/text"
                             android:textSize="12sp"
                             android:textAllCaps="false"
                             android:textStyle="bold"
@@ -271,7 +271,7 @@
                             android:layout_weight="1"
                             android:drawableStart="@drawable/home_ic_quran"
                             android:drawablePadding="6dp"
-                            android:drawableTint="@color/pine" />
+                            android:drawableTint="@color/text" />
                         <Button
                             android:id="@+id/quranCatalogDownloads"
                             android:layout_width="0dp"
@@ -280,7 +280,7 @@
                             android:background="@drawable/reference_paper_action"
                             android:backgroundTint="@null"
                             android:text="@string/concept_quran_downloads"
-                            android:textColor="@color/pine"
+                            android:textColor="@color/text"
                             android:textSize="12sp"
                             android:textAllCaps="false"
                             android:paddingHorizontal="12dp"
@@ -290,7 +290,7 @@
                             android:layout_marginStart="10dp"
                             android:drawableStart="@drawable/audio_download"
                             android:drawablePadding="6dp"
-                            android:drawableTint="@color/pine" />
+                            android:drawableTint="@color/text" />
                     </LinearLayout>
                     <LinearLayout android:layout_width="match_parent" android:layout_height="44dp" android:gravity="center_vertical">
                         <TextView
@@ -300,7 +300,7 @@
                             android:gravity="center"
                             android:paddingHorizontal="6dp"
                             android:text="@string/concept_quran_surah"
-                            android:textColor="@color/pine"
+                            android:textColor="@color/text"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:layout_weight="1" />
@@ -391,7 +391,7 @@
                             android:gravity="center"
                             android:textDirection="rtl"
                             android:textSize="40sp"
-                            android:textColor="@color/pine"
+                            android:textColor="@color/text"
                             android:paddingVertical="8dp"
                             android:includeFontPadding="false" />
                         <ImageView
@@ -408,7 +408,7 @@
                             android:gravity="center"
                             android:textDirection="rtl"
                             android:textSize="25sp"
-                            android:textColor="@color/pine"
+                            android:textColor="@color/text"
                             android:text="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
                             android:paddingTop="4dp"
                             android:paddingBottom="4dp"
@@ -432,7 +432,7 @@
                             android:minHeight="48dp"
                             android:paddingHorizontal="6dp"
                             android:text="@string/layout_mushaf"
-                            android:textColor="@color/pine"
+                            android:textColor="@color/text"
                             android:textSize="11sp"
                             android:textAllCaps="false"
                             android:background="@drawable/reference_paper_action"
@@ -448,7 +448,7 @@
                             android:text="@string/layout_font"
                             android:textSize="11sp"
                             android:textAllCaps="false"
-                            android:textColor="@color/pine"
+                            android:textColor="@color/text"
                             android:background="@drawable/reference_paper_action"
                             android:layout_marginStart="6dp"
                             android:maxLines="4" />
@@ -459,7 +459,7 @@
                             android:minHeight="48dp"
                             android:paddingHorizontal="6dp"
                             android:text="@string/layout_audio"
-                            android:textColor="@color/pine"
+                            android:textColor="@color/text"
                             android:textSize="11sp"
                             android:textAllCaps="false"
                             android:background="@drawable/reference_paper_action"
@@ -517,7 +517,7 @@
                         android:text="@string/quran_jump"
                         android:textAllCaps="false"
                         android:textSize="14sp"
-                        android:textColor="@color/pine" />
+                        android:textColor="@color/text" />
                     <LinearLayout
                         android:id="@+id/ayahContainer"
                         android:layout_width="match_parent"
@@ -569,7 +569,7 @@
                         style="@style/ReadingButton"
                         android:text="Kembali ke daftar surah"
                         android:background="@drawable/quran_resume_background"
-                        android:textColor="@color/pine"
+                        android:textColor="@color/text"
                         android:layout_marginTop="16dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -598,7 +598,7 @@
                     android:minHeight="48dp"
                     android:gravity="center_vertical"
                     android:text="@string/reader_audio_folded"
-                    android:textColor="@color/pine"
+                    android:textColor="@color/text"
                     android:textSize="12sp"
                     android:maxLines="2"
                     android:ellipsize="end"
@@ -641,7 +641,7 @@
                         android:text="@string/design_auto_scroll"
                         android:textSize="11sp"
                         android:textAllCaps="false"
-                        android:textColor="@color/pine"
+                        android:textColor="@color/text"
                         android:background="?android:attr/selectableItemBackground" />
                     <Switch
                         android:id="@+id/quranWordFollow"
@@ -650,7 +650,7 @@
                         android:minHeight="48dp"
                         android:text="@string/layout_word_follow"
                         android:textSize="11sp"
-                        android:textColor="@color/pine"
+                        android:textColor="@color/text"
                         android:paddingHorizontal="8dp"
                         android:showText="false"
                         android:layout_weight="1" />

@@ -68,7 +68,7 @@ public final class MushafReaderTest extends InstrumentationTestCase {
   protected void setUp() throws Exception {
     super.setUp();
     context = getInstrumentation().getTargetContext();
-    for (String name : new String[] {"zikra_preferences", "quran_audio_options"})
+    for (String name : new String[] {"zikra_preferences", "quran_audio_options", com.zikra.app.ui.AppAppearance.PREFS})
       preferences.put(name, new HashMap<>(context.getSharedPreferences(name, 0).getAll()));
     context
         .getSharedPreferences("zikra_preferences", 0)
@@ -77,6 +77,8 @@ public final class MushafReaderTest extends InstrumentationTestCase {
         .putBoolean("shake_enabled", false)
         .putString("reading_theme", "light")
         .commit();
+    context.getSharedPreferences(com.zikra.app.ui.AppAppearance.PREFS,0).edit()
+        .putString(com.zikra.app.ui.AppAppearance.KEY,"light").commit();
   }
 
   public void testActualPageFontsNavigationNightAndZoom() throws Exception {
@@ -140,6 +142,14 @@ public final class MushafReaderTest extends InstrumentationTestCase {
     main(() -> page.findViewById(R.id.mushafZoom).performClick());
     AlertDialog night = (AlertDialog) field(page, "dialog");
     main(() -> night.getListView().performItemClick(null, 4, 4));
+    android.app.Instrumentation.ActivityMonitor appearance =
+        getInstrumentation().addMonitor(MushafActivity.class.getName(), null, false);
+    AlertDialog appearanceDialog = (AlertDialog) field(page, "dialog");
+    main(() -> appearanceDialog.getListView().performItemClick(null, 1, 1));
+    page = getInstrumentation().waitForMonitorWithTimeout(appearance, 30000);
+    getInstrumentation().removeMonitor(appearance);
+    assertNotNull(page);
+    loaded(562);
     assertTrue((Boolean) field(page, "night"));
     UiEvidence.capture(getInstrumentation(), "Mushaf-Night-Zoom-200");
     main(() -> page.findViewById(R.id.mushafPage).performClick());

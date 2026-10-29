@@ -400,7 +400,7 @@ public final class FaithActivity extends BaseActivity {
     action.setAllCaps(false);
     action.setTextSize(14);
     action.setMinHeight(dp(48));
-    action.setTextColor(getColor(R.color.pine));
+    action.setTextColor(getColor(R.color.text));
     action.setBackgroundResource(R.drawable.concept_mint_card);
     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, -2, 1);
     params.setMargins(dp(4), 0, dp(4), 0);
@@ -550,7 +550,7 @@ public final class FaithActivity extends BaseActivity {
     button.setText(text);
     button.setTextSize(14);
     button.setAllCaps(false);
-    button.setTextColor(getColor(R.color.pine));
+    button.setTextColor(getColor(R.color.text));
     button.setBackgroundResource(R.drawable.concept_mint_card);
     button.setMinimumHeight(dp(48));
     button.setId(id == 0 ? View.NO_ID : id);
@@ -576,7 +576,7 @@ public final class FaithActivity extends BaseActivity {
     EditText field = new EditText(this);
     field.setId(id);
     field.setTextSize(16);
-    field.setTextColor(getColor(R.color.pine));
+    field.setTextColor(getColor(R.color.text));
     field.setMinimumHeight(dp(48));
     field.setInputType(
         numeric

@@ -65,8 +65,8 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
     setupScreen("Doa Harian");
     findViewById(R.id.duaLibraryOpen).setOnClickListener(v -> startActivity(new Intent(this, DuaLibraryActivity.class)));
     NavDock.attach(this, (FrameLayout) findViewById(R.id.duaRoot), "home");
-    getWindow().setStatusBarColor(Color.parseColor("#F8F9F5"));
-    getWindow().setNavigationBarColor(Color.parseColor("#F8F9F5"));
+    getWindow().setStatusBarColor(getColor(R.color.ivory));
+    getWindow().setNavigationBarColor(getColor(R.color.ivory));
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(
@@ -223,7 +223,7 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
     for (int i = 0; i < categoryChips.length; i++) {
       boolean selected = i == selectedCategory;
       GradientDrawable background = new GradientDrawable();
-      background.setColor(getColor(selected ? R.color.daily_ink : android.R.color.transparent));
+      background.setColor(getColor(selected ? R.color.pine : android.R.color.transparent));
       background.setCornerRadius(dp(14));
       if (!selected) background.setStroke(dp(1), getColor(R.color.daily_line));
       categoryChips[i].setBackground(background);

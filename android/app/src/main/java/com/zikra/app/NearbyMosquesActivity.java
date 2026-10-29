@@ -357,7 +357,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
       TextView attribution = new TextView(this);
       attribution.setText("© OpenStreetMap contributors ↗");
       attribution.setTextSize(12);
-      attribution.setTextColor(getColor(R.color.pine));
+      attribution.setTextColor(getColor(R.color.text));
       attribution.setBackgroundColor(getColor(R.color.nearby_surface));
       attribution.setMinHeight(dp(48));
       attribution.setGravity(android.view.Gravity.CENTER_VERTICAL);

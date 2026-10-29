@@ -1,5 +1,5 @@
 <resources>
-    <string name="home_appearance">Tema Home</string>
+    <string name="home_appearance">Tampilan aplikasi</string>
     <string-array name="home_appearance_choices"><item>Terang</item><item>Gelap</item><item>Ikuti perangkat</item></string-array>
     <string name="home_schedule_source">Jadwal · perhitungan lokal ⓘ</string>
     <string name="home_schedule_method">Sumber waktu salat</string>

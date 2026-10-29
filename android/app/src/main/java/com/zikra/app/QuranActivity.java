@@ -3,10 +3,6 @@ package com.zikra.app;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,7 +24,7 @@ import android.widget.TextView;
 import com.zikra.app.reading.*;
 import java.util.List;
 
-public class QuranActivity extends BaseActivity implements SensorEventListener {
+public class QuranActivity extends BaseActivity {
   public static final String EXTRA_TARGET_CHAPTER = "target_chapter";
   public static final String EXTRA_TARGET_VERSE = "target_verse";
   public static final String EXTRA_RESUME_READING = "resume_reading";
@@ -42,17 +38,13 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   private int lastWord = -1;
   private boolean lastWordNight;
   private int rangeChapter, rangeFirst, rangeLast;
-  private SensorManager sensorManager;
-  private Sensor lightSensor;
   private SharedPreferences preferences;
   private LinearLayout ayahContainer;
   private Switch nightSwitch;
   private TextView lightStatus;
   private Spinner surahSelector;
   private boolean nightMode;
-  private boolean applyingSensor;
   private boolean manualOverride;
-  private float lastAmbientLux = Float.NaN;
   private List<QuranChapters.Chapter> chapters;
   private QuranRepository repository;
   private QuranPage loadedPage;
@@ -82,8 +74,6 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     arabicSize = Math.max(24, Math.min(44, preferences.getInt("reading_arabic_size", 32)));
     translationSize =
         Math.max(14, Math.min(24, preferences.getInt("reading_translation_size", 16)));
-    sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-    lightSensor = sensorManager == null ? null : sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
     ayahContainer = findViewById(R.id.ayahContainer);
     nightSwitch = findViewById(R.id.readingNightSwitch);
     lightStatus = findViewById(R.id.lightSensorStatus);
@@ -105,15 +95,8 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
         savedInstanceState != null
             ? savedInstanceState.getBoolean("reading_open")
             : getIntent().getBooleanExtra(EXTRA_RESUME_READING, false);
-    String theme = preferences.getString("reading_theme", "light");
-    nightMode =
-        savedInstanceState != null
-            ? savedInstanceState.getBoolean("night_mode")
-            : "dark".equals(theme);
-    manualOverride =
-        savedInstanceState != null
-            ? savedInstanceState.getBoolean("manual_override")
-            : !"auto".equals(theme);
+    nightMode = com.zikra.app.ui.AppAppearance.dark(this);
+    manualOverride = !"system".equals(com.zikra.app.ui.AppAppearance.selected(this));
     chapters = QuranChapters.all(this);
     repository = new QuranRepository(this);
     int lastId = preferences.getInt("last_chapter", 0);
@@ -244,25 +227,16 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
           @Override
           public void onNothingSelected(AdapterView<?> parent) {}
         });
+    // Global preferences are authoritative; restoring an old checkbox would undo the new theme.
+    nightSwitch.setSaveEnabled(false);
+    nightSwitch.setSaveFromParentEnabled(false);
     nightSwitch.setChecked(nightMode);
-    nightSwitch.setOnCheckedChangeListener(
-        (button, checked) -> {
-          if (!applyingSensor) {
-            manualOverride = true;
-            preferences.edit().putString("reading_theme", checked ? "dark" : "light").apply();
-          }
-          applyNightMode(checked);
-          updateSensorLabel();
-        });
-    nightSwitch.setOnLongClickListener(
-        view -> {
-          manualOverride = false;
-          preferences.edit().putString("reading_theme", "auto").apply();
-          applyAmbientLight();
-          updateSensorLabel();
-          toast("Mode cahaya otomatis diaktifkan kembali");
-          return true;
-        });
+    nightSwitch.setOnCheckedChangeListener((button, checked) ->
+        com.zikra.app.ui.AppAppearance.select(this, checked ? "dark" : "light"));
+    nightSwitch.setOnLongClickListener(view -> {
+      com.zikra.app.ui.AppAppearance.select(this, "system");
+      return true;
+    });
     rangeChapter = getIntent().getIntExtra(EXTRA_TARGET_CHAPTER, 0);
     if (rangeChapter < 1 || rangeChapter > 114) rangeChapter = selectedIndex + 1;
     int rangeCount = chapters.get(rangeChapter - 1).count;
@@ -901,15 +875,9 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
           String choice =
               checked == R.id.quranThemeDark
                   ? "dark"
-                  : checked == R.id.quranThemeAuto ? "auto" : "light";
-          preferences.edit().putString("reading_theme", choice).apply();
-          manualOverride = !"auto".equals(choice);
-          applyingSensor = true;
-          nightSwitch.setChecked("dark".equals(choice));
-          applyingSensor = false;
-          if (manualOverride) applyNightMode("dark".equals(choice));
-          else applyAmbientLight();
-          updateSensorLabel();
+                  : checked == R.id.quranThemeAuto ? "system" : "light";
+          readingDialog.dismiss();
+          com.zikra.app.ui.AppAppearance.select(this, choice);
         });
     bindReadingSize(
         settings, R.id.quranArabicSize, R.id.quranArabicSizeValue, R.id.quranArabicPreview, true);
@@ -1059,7 +1027,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     TextView range = new TextView(this);
     range.setText(getString(R.string.quran_jump_range, chapter.name, chapter.count));
     range.setTextSize(14);
-    range.setTextColor(getColor(R.color.pine));
+    range.setTextColor(getColor(R.color.text));
     content.addView(range, new LinearLayout.LayoutParams(-1, -2));
     EditText verse = new EditText(this);
     verse.setId(R.id.quranJumpInput);
@@ -1160,12 +1128,7 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
   }
 
   private void updateSensorLabel() {
-    lightStatus.setText(
-        lightSensor == null
-            ? "Sensor cahaya tidak tersedia. Gunakan sakelar mode malam."
-            : manualOverride
-                ? "Mode manual · tekan lama sakelar untuk kembali otomatis."
-                : "Cahaya otomatis · mode malam di bawah 10 lux, terang di atas 15 lux.");
+    lightStatus.setText(R.string.app_appearance_shared);
   }
 
   @Override
@@ -1176,17 +1139,11 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
       suspended = false;
       renderSurah(true);
     }
-    if (lightSensor != null
-        && !sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL)) {
-      lightSensor = null;
-      updateSensorLabel();
-    }
   }
 
   @Override
   protected void onPause() {
     if (audioUi != null) audioUi.pause();
-    if (sensorManager != null) sensorManager.unregisterListener(this);
     suspended = loading;
     repository.cancel();
     super.onPause();
@@ -1202,25 +1159,4 @@ public class QuranActivity extends BaseActivity implements SensorEventListener {
     super.onSaveInstanceState(state);
   }
 
-  @Override
-  public void onSensorChanged(SensorEvent event) {
-    if (event.sensor.getType() != Sensor.TYPE_LIGHT || event.values.length == 0) return;
-    lastAmbientLux = event.values[0];
-    applyAmbientLight();
-  }
-
-  private void applyAmbientLight() {
-    if (manualOverride || Float.isNaN(lastAmbientLux) || lastAmbientLux < 0f) return;
-    // Light sensors report only changes. Reuse the latest measurement when the
-    // user restores automatic mode, even if the room's light has not changed.
-    boolean next = nightMode ? lastAmbientLux <= 15f : lastAmbientLux < 10f;
-    if (next != nightMode) {
-      applyingSensor = true;
-      nightSwitch.setChecked(next);
-      applyingSensor = false;
-    }
-  }
-
-  @Override
-  public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 }

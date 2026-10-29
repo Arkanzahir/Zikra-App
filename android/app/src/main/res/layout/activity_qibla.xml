@@ -28,7 +28,7 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="24dp"
                 android:paddingBottom="20dp">
-                <Button android:id="@+id/qiblaLocation" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="Ubah lokasi" android:textAllCaps="false" android:textColor="@color/pine" />
+                <Button android:id="@+id/qiblaLocation" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="Ubah lokasi" android:textAllCaps="false" android:textColor="@color/text" />
                 <com.zikra.app.reading.QiblaCompassView
                     android:id="@+id/qiblaCompass"
                     android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                     android:id="@+id/qiblaBearing"
                     android:text="294°"
                     android:textSize="34sp"
-                    android:textColor="#20362D"
+                    android:textColor="@color/app_ink_20362d"
                     android:textStyle="bold"
                     android:fontFamily="@font/plus_jakarta_sans" />
                 <TextView
@@ -53,7 +53,7 @@
                     android:gravity="center"
                     android:text="Derajat dihitung dari utara sejati"
                     android:textSize="12sp"
-                    android:textColor="#53665E" />
+                    android:textColor="@color/app_ink_53665e" />
                 <Button
                     android:id="@+id/qiblaCalibrate"
                     android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                         android:layout_height="18dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/qibla_ic_info"
-                        android:tint="#96A39B"
+                        android:tint="@color/app_ink_96a39b"
                         android:importantForAccessibility="no" />
                     <TextView
                         android:id="@+id/qiblaSensorStatus"
@@ -89,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Menunggu sensor · pegang ponsel mendatar."
-                        android:textColor="#536C60"
+                        android:textColor="@color/app_ink_536c60"
                         android:textSize="12sp"
                         android:lineSpacingExtra="3dp"
                         android:minHeight="30dp"
@@ -104,7 +104,7 @@
                     android:text="Masjid di sekitar lokasi"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="#243B30" />
+                    android:textColor="@color/app_ink_243b30" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Masjid terdekat"
-                            android:textColor="#334C3F"
+                            android:textColor="@color/app_ink_334c3f"
                             android:textSize="13sp"
                             android:textStyle="bold" />
                         <TextView
@@ -140,7 +140,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:id="@+id/qiblaLocationLabel" android:text="Lokasi pilihan"
-                            android:textColor="#53665E"
+                            android:textColor="@color/app_ink_53665e"
                             android:textSize="12sp" />
                     </LinearLayout>
                     <TextView
@@ -162,7 +162,7 @@
                     android:layout_marginTop="12dp"
                     android:id="@+id/qiblaMethod" android:text="Arah dihitung dari lokasi pilihan. Jauhkan ponsel dari logam dan magnet."
                     android:textSize="12sp"
-                    android:textColor="#53665E"
+                    android:textColor="@color/app_ink_53665e"
                     android:lineSpacingExtra="3dp" />
             </LinearLayout>
         </ScrollView>

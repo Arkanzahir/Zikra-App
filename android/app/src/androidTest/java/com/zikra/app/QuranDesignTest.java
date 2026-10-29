@@ -28,7 +28,7 @@ public final class QuranDesignTest extends InstrumentationTestCase {
   protected void setUp() throws Exception {
     super.setUp();
     context = getInstrumentation().getTargetContext();
-    for (String name : new String[] {"zikra_preferences", "quran_audio_options"})
+    for (String name : new String[] {"zikra_preferences", "quran_audio_options", com.zikra.app.ui.AppAppearance.PREFS})
       saved.put(name, new HashMap<>(context.getSharedPreferences(name, 0).getAll()));
     font = Settings.System.getString(context.getContentResolver(), Settings.System.FONT_SCALE);
     context
@@ -41,6 +41,8 @@ public final class QuranDesignTest extends InstrumentationTestCase {
         .putString("last_surah", "Al-Fatihah")
         .putInt("last_ayah", 1)
         .commit();
+    context.getSharedPreferences(com.zikra.app.ui.AppAppearance.PREFS,0).edit()
+        .putString(com.zikra.app.ui.AppAppearance.KEY,"light").commit();
   }
 
   private void main(Runnable action) {
@@ -171,6 +173,8 @@ public final class QuranDesignTest extends InstrumentationTestCase {
         .edit()
         .putString("reading_theme", "dark")
         .commit();
+    context.getSharedPreferences(com.zikra.app.ui.AppAppearance.PREFS,0).edit()
+        .putString(com.zikra.app.ui.AppAppearance.KEY,"dark").commit();
     launch(true);
     click(R.id.quranAudioExpand);
     Rect play = new Rect(), dock = new Rect();
@@ -313,6 +317,8 @@ public final class QuranDesignTest extends InstrumentationTestCase {
         .edit()
         .putString("reading_theme", "dark")
         .commit();
+    context.getSharedPreferences(com.zikra.app.ui.AppAppearance.PREFS,0).edit()
+        .putString(com.zikra.app.ui.AppAppearance.KEY,"dark").commit();
     launch(true);
     assertTrue(page.getResources().getConfiguration().fontScale > 1.5f);
     UiEvidence.capture(getInstrumentation(), "QuranDesignNightLargeReader");

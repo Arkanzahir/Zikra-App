@@ -17,7 +17,7 @@ public final class DailyUi {
     page.getWindow()
         .getDecorView()
         .setSystemUiVisibility(
-            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+            AppAppearance.dark(page) ? 0 : View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     FeatureHeader header = page.findViewById(R.id.utilitiesHeader);
     if (header != null) {
       header.setSurfaceColor(page.getColor(color));

@@ -1,7 +1,7 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/quranAudioPanel" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="12dp" android:paddingTop="0dp" android:paddingBottom="0dp" android:background="@color/white" android:elevation="0dp" android:visibility="gone">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/quranAudioPanel" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="12dp" android:paddingTop="0dp" android:paddingBottom="0dp" android:background="@color/app_surface" android:elevation="0dp" android:visibility="gone">
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
 <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:paddingEnd="4dp">
-        <TextView android:id="@+id/quranAudioTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/pine" android:fontFamily="serif" android:textSize="11sp" android:maxLines="2" android:ellipsize="end" />
+        <TextView android:id="@+id/quranAudioTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/text" android:fontFamily="serif" android:textSize="11sp" android:maxLines="2" android:ellipsize="end" />
     <TextView android:id="@+id/quranAudioStatus" style="@style/NearbyCaption" android:textSize="10sp" android:maxLines="2" android:ellipsize="end" android:accessibilityLiveRegion="polite" />
 </LinearLayout>
         <ImageButton android:id="@+id/quranAudioPrevious" style="@style/QuranAudioControl" android:src="@drawable/audio_previous" android:contentDescription="@string/audio_previous" />

@@ -1,5 +1,8 @@
 > **Terbaru — jadwal beta1.9.18,28 Oktober2026:** Jadwal Kemenag melalui myQuran, cache bulan ini/berikutnya dan sumber bersama Home/countdown/alarm.1.098 waktu cocok pada enam kota-bulan,153 unit/4 skip dan10 native lulus;lint0 error/818 warning. APK40.746.251byte, source`df84753`. HP tidak diubah; bukan penutupan D02/B01/F/G/publik. [Bukti/receipt/batas](android/validation/prayer-source-2026-10-28/README.md).
 
+> **Beta1.9.23 — tema global,29 Oktober2026:** pilihan terang/gelap/perangkat berlaku lintas fitur, termasuk Quran/Mushaf dan AI. Pengaturan di Home atau Profil → Tampilan aplikasi. [Bukti native, APK lokal dan batas](android/validation/global-theme-2026-10-29/README.md). Uji HP tema dan gerbang publik belum ditutup.
+
+
 > **Checkpoint HP/adzan28 Oktober2026 — beta1.9.22/code49:** rekaman non-Subuh terbaru pengguna, fokus/volume awal dan preservasi diuji. APK lokal43,6MB; [bukti, receipt dan batas](android/validation/prayer-phone-2026-10-28/README.md). B01/C02/C04/C07/D02/D02a/publik tetap mengikuti checklist; temuan UI terakhir belum dianggap diperbaiki.
 
 > **Terbaru — lokasi/langit Home1.9.17,28 Oktober2026:** Panah dan nama lokasi dapat disentuh, kota mengubah zona/jam/jadwal/countdown; awan realistis, parallax dan satu kubah.147 unit/4 skip,9 native lulus;lint0 error/821 warning. APK40.528.718byte, source`1da420a`; HP tidak diubah. [Bukti/receipt/batas](android/validation/home-location-sky-2026-10-28/README.md).

@@ -37,7 +37,11 @@ public class QiblaCompassView extends View {
   }
 
   private void color(String hex) {
-    paint.setColor(Color.parseColor(hex));
+    int role = "#15332F".equals(hex) ? com.zikra.app.R.color.text
+        : "#FCFDFB".equals(hex) ? com.zikra.app.R.color.app_surface
+        : "#E8F2EC".equals(hex) || "#EFF5F0".equals(hex) || "#E0F5EA".equals(hex)
+            ? com.zikra.app.R.color.mint_pastel : 0;
+    paint.setColor(role == 0 ? Color.parseColor(hex) : getContext().getColor(role));
     paint.setStyle(Paint.Style.FILL);
   }
 

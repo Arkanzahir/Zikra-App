@@ -27,11 +27,11 @@
             android:src="@drawable/ic_home"
             android:importantForAccessibility="no"
             android:padding="3dp"
-            android:tint="@color/protector_blue" />
+            android:tint="@color/text" />
         <TextView
             style="@style/ProtectorTabLabel"
             android:text="Beranda"
-            android:textColor="@color/protector_blue"
+            android:textColor="@color/text"
             android:textStyle="bold" />
     </LinearLayout>
     <LinearLayout
@@ -52,11 +52,11 @@
             android:src="@drawable/ic_sun"
             android:importantForAccessibility="no"
             android:padding="3dp"
-            android:tint="#8492A6" />
+            android:tint="@color/app_ink_8492a6" />
         <TextView
             style="@style/ProtectorTabLabel"
             android:text="Cuaca"
-            android:textColor="#526570"
+            android:textColor="@color/app_ink_526570"
             android:textStyle="normal" />
     </LinearLayout>
     <LinearLayout
@@ -77,11 +77,11 @@
             android:src="@drawable/quake_ic_wave"
             android:importantForAccessibility="no"
             android:padding="3dp"
-            android:tint="#8492A6" />
+            android:tint="@color/app_ink_8492a6" />
         <TextView
             style="@style/ProtectorTabLabel"
             android:text="Gempa"
-            android:textColor="#526570"
+            android:textColor="@color/app_ink_526570"
             android:textStyle="normal" />
     </LinearLayout>
     <LinearLayout
@@ -102,11 +102,11 @@
             android:src="@drawable/ic_shield"
             android:importantForAccessibility="no"
             android:padding="3dp"
-            android:tint="#8492A6" />
+            android:tint="@color/app_ink_8492a6" />
         <TextView
             style="@style/ProtectorTabLabel"
             android:text="Bantuan"
-            android:textColor="#526570"
+            android:textColor="@color/app_ink_526570"
             android:textStyle="normal" />
     </LinearLayout>
 </LinearLayout>

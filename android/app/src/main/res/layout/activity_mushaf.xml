@@ -5,10 +5,10 @@
     <LinearLayout android:id="@+id/mushafHeader" android:layout_width="match_parent" android:layout_height="wrap_content"
         android:minHeight="48dp" android:paddingEnd="8dp" android:gravity="center_vertical" android:orientation="horizontal">
         <ImageButton android:id="@+id/toolbarBack" android:layout_width="48dp" android:layout_height="48dp"
-            android:src="@drawable/ic_back" android:tint="@color/pine" android:padding="14dp"
+            android:src="@drawable/ic_back" android:tint="@color/text" android:padding="14dp"
             android:background="?android:attr/selectableItemBackgroundBorderless" android:contentDescription="@string/mushaf_back" />
         <TextView android:id="@+id/mushafTitle" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
-            android:text="@string/mushaf_title" android:fontFamily="serif" android:textSize="16sp" android:textColor="@color/pine" />
+            android:text="@string/mushaf_title" android:fontFamily="serif" android:textSize="16sp" android:textColor="@color/text" />
         <Button android:id="@+id/mushafZoom" style="@style/MushafButton" android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="Aa" android:textAllCaps="false" android:contentDescription="@string/mushaf_options" />
         <Button android:id="@+id/mushafTranslation" style="@style/MushafButton" android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
     <LinearLayout android:id="@+id/mushafMetadataRow" android:layout_width="match_parent" android:layout_height="wrap_content"
         android:paddingHorizontal="20dp" android:paddingBottom="4dp" android:gravity="center_vertical" android:orientation="horizontal">
         <TextView android:id="@+id/mushafMetadata" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
-            android:fontFamily="serif" android:textColor="@color/pine" android:textSize="12sp" />
+            android:fontFamily="serif" android:textColor="@color/text" android:textSize="12sp" />
         <TextView android:id="@+id/mushafJuz" android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:fontFamily="serif" android:textColor="@color/muted" android:textSize="11sp" />
     </LinearLayout>

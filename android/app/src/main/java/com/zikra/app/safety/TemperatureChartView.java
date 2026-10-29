@@ -103,7 +103,7 @@ public final class TemperatureChartView extends View {
     super.onDraw(c);
     float w = getWidth(), h = getHeight();
     if (slots.isEmpty()) {
-      paint.setColor(0xFF5F7F8A);
+      paint.setColor(getContext().getColor(com.zikra.app.R.color.protector_muted));
       c.drawText("Belum ada prakiraan", w / 2, h / 2, paint);
       return;
     }
@@ -114,19 +114,19 @@ public final class TemperatureChartView extends View {
       c.drawLine(left, top + (bottom - top) * i / 2, right, top + (bottom - top) * i / 2, paint);
     paint.setStyle(Paint.Style.STROKE);
     paint.setStrokeWidth(dp(2));
-    paint.setColor(0xFF2C6D7D);
+    paint.setColor(getContext().getColor(com.zikra.app.R.color.protector_cyan_ink));
     c.drawPath(line, paint);
     paint.setStyle(Paint.Style.FILL);
     for (int i = 0; i < slots.size(); i++) {
       paint.setColor(Color.WHITE);
       c.drawCircle(xs[i], ys[i], dp(4), paint);
       paint.setStyle(Paint.Style.STROKE);
-      paint.setColor(0xFF2C6D7D);
+      paint.setColor(getContext().getColor(com.zikra.app.R.color.protector_cyan_ink));
       paint.setStrokeWidth(dp(1.5f));
       c.drawCircle(xs[i], ys[i], dp(4), paint);
       paint.setStyle(Paint.Style.FILL);
       c.drawText(labels[i], xs[i], ys[i] - dp(10), paint);
-      paint.setColor(0xFF5F7F8A);
+      paint.setColor(getContext().getColor(com.zikra.app.R.color.protector_muted));
       c.drawText(hours[i], xs[i], h - dp(7), paint);
     }
   }

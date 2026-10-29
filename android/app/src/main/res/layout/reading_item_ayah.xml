@@ -21,7 +21,7 @@
             android:background="@drawable/reading_surah_number"
             android:gravity="center"
             android:textSize="13sp"
-            android:textColor="#806337"
+            android:textColor="@color/app_ink_806337"
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="@string/layout_verse_actions" />
@@ -45,7 +45,7 @@
             android:lineSpacingExtra="8dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:textColor="@color/pine"
+            android:textColor="@color/text"
             android:layout_weight="1"
             android:layout_marginStart="4dp" />
     </LinearLayout>
@@ -56,14 +56,14 @@
         android:layout_height="wrap_content"
         android:gravity="start"
         android:textSize="11sp"
-        android:textColor="#806337"
+        android:textColor="@color/app_ink_806337"
         android:visibility="gone" />
     <TextView
         android:id="@+id/ayahAudioStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="11sp"
-        android:textColor="@color/pine"
+        android:textColor="@color/text"
         android:visibility="gone"
         android:layout_marginTop="3dp" />
     <TextView
@@ -72,21 +72,21 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:lineSpacingExtra="4dp"
-        android:textColor="#50665B"
+        android:textColor="@color/app_ink_50665b"
         android:layout_marginTop="12dp" />
     <View
         android:id="@+id/ayahDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
-        android:background="#E3E8E2" />
+        android:background="@color/app_line_e3e8e2" />
     <ImageButton
         android:id="@+id/ayahMore"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:padding="15dp"
         android:src="@drawable/study_ic_more"
-        android:tint="#586F62"
+        android:tint="@color/app_ink_586f62"
         android:contentDescription="Putar, tandai, salin atau bagikan ayat"
         android:background="?android:attr/selectableItemBackgroundBorderless"
         android:visibility="gone" />

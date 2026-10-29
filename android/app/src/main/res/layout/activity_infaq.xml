@@ -47,7 +47,7 @@
                         android:text="Kebaikan kecil, manfaat yang besar."
                         android:textSize="26sp"
                         android:textStyle="bold"
-                        android:textColor="@color/pine" />
+                        android:textColor="@color/text" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                     android:text="Mulai dari lingkungan terdekat"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/pine" />
+                    android:textColor="@color/text" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                         android:text="Masjid Manarul Ilmi ITS"
                         android:textSize="17sp"
                         android:textStyle="bold"
-                        android:textColor="@color/pine" />
+                        android:textColor="@color/text" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                         android:backgroundTint="@color/amber"
                         android:text="Petunjuk ke masjid"
                         android:textAllCaps="false"
-                        android:textColor="@color/pine"
+                        android:textColor="@color/text"
                         android:minHeight="52dp"
                         android:paddingVertical="12dp"
                         android:textSize="14sp" />

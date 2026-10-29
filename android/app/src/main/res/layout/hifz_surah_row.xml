@@ -9,5 +9,5 @@
     android:paddingVertical="12dp"
     android:fontFamily="@font/plus_jakarta_sans"
     android:textSize="14sp"
-    android:textColor="@color/pine"
+    android:textColor="@color/text"
     android:maxLines="2" />

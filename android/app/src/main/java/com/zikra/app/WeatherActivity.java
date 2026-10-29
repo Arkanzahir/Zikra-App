@@ -171,8 +171,8 @@ public final class WeatherActivity extends BaseActivity {
     View card = getLayoutInflater().inflate(R.layout.weather_forecast_item, parent, false);
     card.setBackgroundResource(
         selected ? R.drawable.protector_action_blue : R.drawable.protector_forecast_card);
-    int primary = Color.parseColor(selected ? "#FFFFFF" : "#15332F"),
-        secondary = Color.parseColor(selected ? "#F0F5FF" : "#526570");
+    int primary = getColor(selected ? R.color.white : R.color.text),
+        secondary = getColor(selected ? R.color.white : R.color.protector_muted);
     bindCard(
         card,
         R.id.forecastDate,

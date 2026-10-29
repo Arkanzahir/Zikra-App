@@ -2,7 +2,7 @@
     <style name="MushafButton" parent="android:style/Widget.Material.Button.Borderless">
         <item name="android:minHeight">48dp</item>
         <item name="android:minWidth">48dp</item>
-        <item name="android:textColor">@color/pine</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:stateListAnimator">@null</item>
@@ -45,7 +45,7 @@
     <string name="mushaf_verse_actions">Tindakan ayat</string>
     <string name="mushaf_choose_verse">Pilih ayat pada halaman</string>
     <string name="mushaf_zoom_label">Pembesaran halaman</string>
-    <string name="mushaf_night">Mode malam</string>
+    <string name="mushaf_night">Tampilan aplikasi</string>
     <string name="mushaf_bookmark">Tandai terakhir dibaca</string>
     <string name="mushaf_bookmarked">Bacaan terakhir disimpan</string>
     <string name="mushaf_jump_page">Lompat halaman</string>

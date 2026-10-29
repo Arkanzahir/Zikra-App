@@ -17,12 +17,17 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
   private Activity page;
   private SharedPreferences prefs;
   private Map<String, ?> original;
+  private SharedPreferences appearance;
+  private Map<String, ?> originalAppearance;
 
   @Override
   protected void setUp() throws Exception {
     super.setUp();
     prefs = getInstrumentation().getTargetContext().getSharedPreferences("zikra_preferences", 0);
     original = new HashMap<>(prefs.getAll());
+    appearance = getInstrumentation().getTargetContext().getSharedPreferences(com.zikra.app.ui.AppAppearance.PREFS,0);
+    originalAppearance = new HashMap<>(appearance.getAll());
+    appearance.edit().putString(com.zikra.app.ui.AppAppearance.KEY,"light").commit();
   }
 
   private void launch(Intent intent) {
@@ -174,16 +179,13 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
     launch(target(1, 1));
     awaitVerse("1:1");
     assertFalse(((Switch) page.findViewById(R.id.readingNightSwitch)).isChecked());
-    assertEquals(android.graphics.Color.WHITE, page.getWindow().getStatusBarColor());
+    assertEquals(page.getColor(R.color.concept_ivory), page.getWindow().getStatusBarColor());
     android.graphics.Rect bounds = new android.graphics.Rect();
     assertTrue(
         "Surah introduction remains visible on first verse",
         page.findViewById(R.id.surahMetadata).getGlobalVisibleRect(bounds));
-    assertTrue(
-        ((TextView) page.findViewById(R.id.surahMetadata))
-            .getText()
-            .toString()
-            .contains("Al-Fatihah"));
+    assertEquals(page.getString(R.string.layout_surah_meta,1,7),
+        ((TextView) page.findViewById(R.id.surahMetadata)).getText().toString());
     UiEvidence.capture(getInstrumentation(), "RebuiltQuranReaderLight");
     onMain(() -> page.findViewById(R.id.quranReadingOptions).performClick());
     getInstrumentation().waitForIdleSync();
@@ -195,33 +197,27 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
               new android.graphics.Rect(0, 0, dark.getWidth(), dark.getHeight()), true);
         });
     getInstrumentation().waitForIdleSync();
-    onMain(
-        () -> {
-          RadioButton dark = dialog("readingDialog").findViewById(R.id.quranThemeDark);
-          android.graphics.Rect visible = new android.graphics.Rect();
-          assertTrue(
-              "Night choice is reachable in the settings scroll",
-              dark.getGlobalVisibleRect(visible));
-          // CompoundButton can toggle through OnCheckedChangeListener while performClick()
-          // returns false when there is no separate OnClickListener. Verify its actual state.
-          dark.performClick();
-          assertTrue("Night option accepts user selection", dark.isChecked());
-          dialog("readingDialog").dismiss();
-        });
-    getInstrumentation().waitForIdleSync();
-    assertEquals("dark", prefs.getString("reading_theme", ""));
-    assertTrue(((Switch) page.findViewById(R.id.readingNightSwitch)).isChecked());
     Instrumentation.ActivityMonitor monitor =
         getInstrumentation().addMonitor(QuranActivity.class.getName(), null, false);
     try {
-      onMain(page::recreate);
+      onMain(() -> {
+        RadioButton dark=dialog("readingDialog").findViewById(R.id.quranThemeDark);
+        android.graphics.Rect visible=new android.graphics.Rect();
+        assertTrue("Night choice remains reachable",dark.getGlobalVisibleRect(visible));
+        dark.performClick();
+      });
       page = getInstrumentation().waitForMonitorWithTimeout(monitor, 30000);
       assertNotNull(page);
-    } finally {
-      getInstrumentation().removeMonitor(monitor);
-    }
-    awaitVerse("1:1");
+    } finally { getInstrumentation().removeMonitor(monitor); }
+    getInstrumentation().waitForIdleSync();
+    assertEquals("dark", appearance.getString(com.zikra.app.ui.AppAppearance.KEY, ""));
     assertTrue(((Switch) page.findViewById(R.id.readingNightSwitch)).isChecked());
+    awaitVerse("1:1");
+    recreateReader();
+    awaitVerse("1:1");
+    assertEquals("dark",appearance.getString(com.zikra.app.ui.AppAppearance.KEY,""));
+    assertTrue(((Switch) page.findViewById(R.id.readingNightSwitch)).isChecked());
+    UiEvidence.capture(getInstrumentation(), "RebuiltQuranReaderDark");
   }
 
   public void testArabicSearchAndReadableSizesSurviveRecreation() throws Exception {
@@ -342,6 +338,11 @@ public final class RebuiltQuranTest extends InstrumentationTestCase {
       else if (v instanceof Set) e.putStringSet(k, new HashSet<>((Set<String>) v));
     }
     e.commit();
+    SharedPreferences.Editor global = appearance.edit().clear();
+    for (Map.Entry<String, ?> value : originalAppearance.entrySet()) {
+      if (value.getValue() instanceof String) global.putString(value.getKey(), (String)value.getValue());
+    }
+    global.commit();
     super.tearDown();
   }
 }

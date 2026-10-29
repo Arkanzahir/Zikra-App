@@ -58,7 +58,7 @@
                 android:textSize="25sp"
                 android:letterSpacing="-0.025"
                 android:textStyle="bold"
-                android:textColor="@color/pine" />
+                android:textColor="@color/text" />
             <TextView
                 android:id="@+id/study_editor_description"
                 android:layout_width="match_parent"
@@ -108,7 +108,7 @@
                         android:text="@string/hifz_reload"
                         android:textSize="13sp"
                         android:textAllCaps="false"
-                        android:textColor="@color/pine" />
+                        android:textColor="@color/text" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -149,14 +149,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:textSize="12sp"
-                    android:textColor="#72562B" />
+                    android:textColor="@color/app_ink_72562b" />
                 <TextView
                     android:id="@+id/hifz_validation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:textSize="12sp"
-                    android:textColor="#A1392E"
+                    android:textColor="@color/app_ink_a1392e"
                     android:accessibilityLiveRegion="polite"
                     android:visibility="gone" />
             </LinearLayout>
@@ -169,7 +169,7 @@
                 android:text="@string/hifz_note_add"
                 android:textAllCaps="false"
                 android:textSize="13sp"
-                android:textColor="@color/pine"
+                android:textColor="@color/text"
                 android:visibility="gone" />
             <TextView
                 android:id="@+id/study_editor_title_label"
@@ -222,12 +222,12 @@
                 android:paddingHorizontal="8dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableStart="@drawable/ic_mic"
-                android:drawableTint="@color/pine"
+                android:drawableTint="@color/text"
                 android:drawablePadding="8dp"
                 android:text="@string/study_dictate"
                 android:textAllCaps="false"
                 android:textSize="13sp"
-                android:textColor="@color/pine" />
+                android:textColor="@color/text" />
             <TextView
                 android:id="@+id/study_editor_voice_hint"
                 android:layout_width="match_parent"
@@ -241,7 +241,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:textSize="14sp"
-                android:textColor="#A1392E"
+                android:textColor="@color/app_ink_a1392e"
                 android:accessibilityLiveRegion="polite"
                 android:visibility="gone" />
 
@@ -259,7 +259,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/study_row"
-                    android:textColor="@color/pine"
+                    android:textColor="@color/text"
                     android:text="@string/study_cancel" />
                 <Button
                     android:id="@+id/study_editor_save"

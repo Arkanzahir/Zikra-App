@@ -11,7 +11,7 @@
     <style name="QuranAudioControl">
         <item name="android:layout_width">48dp</item><item name="android:layout_height">48dp</item>
         <item name="android:padding">13dp</item><item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
-        <item name="android:tint">@color/pine</item>
+        <item name="android:tint">@color/text</item>
     </style>
     <item name="quranAudioReciter" type="id" /><item name="quranAudioRepeats" type="id" />
     <item name="quranAudioLoop" type="id" /><item name="quranAudioFollow" type="id" />

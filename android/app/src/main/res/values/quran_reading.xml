@@ -9,7 +9,7 @@
     <string name="quran_appearance">Tampilan</string>
     <string name="quran_light">Terang</string>
     <string name="quran_dark">Malam</string>
-    <string name="quran_auto">Otomatis sesuai cahaya</string>
+    <string name="quran_auto">Ikuti perangkat</string>
     <string name="quran_close">Tutup</string>
     <string name="quran_jump">Lompat ke ayat</string>
     <string name="quran_jump_hint">Nomor ayat</string>

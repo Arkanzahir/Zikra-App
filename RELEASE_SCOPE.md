@@ -1,5 +1,8 @@
 # A02 — Cakupan penyelesaian Zikra
 
+> **Checkpoint29 Oktober2026:** F03a tema global tersedia pada beta1.9.23, dengan uji emulator/kontras/draf/restart dan batas tertulis. [Bukti](android/validation/global-theme-2026-10-29/README.md). Pilihan aplikasi berlaku lintas halaman; langit tetap mengikuti waktu lokasi. Gerbang HP/vendor, aksesibilitas menyeluruh, sumber dan publik tidak ditutup oleh checkpoint ini.
+
+
 Keputusan: **24 Oktober 2026**. Pengguna mendelegasikan penetapan cakupan: “yang penting selesai saja dulu silahkan kamu tentukan dlu saja”. Rincian di bawah adalah keputusan pengerjaan berdasarkan delegasi tersebut, bukan klaim pengguna telah memilih setiap detail secara terpisah. Acuan pekerjaan: [implementation plan](IMPLEMENTATION_PLAN.md), [audit A01](android/validation/release-audit/FEATURE_MATRIX.md), [PRD](ZIKRA_PRD.md).
 
 Tujuan pertama adalah **rilis publik pertama Zikra yang lengkap dalam cakupan tertulis ini**, Android Java/XML, tanpa menambah desain/fitur baru di luar daftar selama penyelesaian. Beta adalah tahap pembuktian menuju tujuan itu, bukan pengganti rilis publik. Versi pengembangan yang sekarang 1.6.2 tidak diubah oleh keputusan dokumen ini; nomor versi distribusi final ditentukan pada G04 agar pembaruan Android tetap naik.

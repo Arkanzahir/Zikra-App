@@ -20,7 +20,7 @@ public final class CurvedShortcutLayout extends LinearLayout {
   public CurvedShortcutLayout(Context context, AttributeSet attrs) {
     super(context, attrs);
     density = getResources().getDisplayMetrics().density;
-    surface.setColor(Color.WHITE);
+    surface.setColor(context.getColor(com.zikra.app.R.color.app_surface));
     setWillNotDraw(false);
     setClipToOutline(false);
     setOutlineProvider(

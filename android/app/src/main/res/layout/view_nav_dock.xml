@@ -8,12 +8,12 @@
         android:id="@+id/navSurface"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white" />
+        android:background="@color/app_surface" />
     <View
         android:id="@+id/navDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#E5EBE7" />
+        android:background="@color/app_line_e5ebe7" />
     <LinearLayout
         android:id="@+id/navItems"
         android:layout_width="match_parent"

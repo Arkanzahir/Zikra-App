@@ -5,7 +5,7 @@
         android:state_enabled="false">
         <shape>
             <solid
-                android:color="#E9EEF5" />
+                android:color="@color/app_surface_e9eef5" />
             <corners
                 android:radius="14dp" />
         </shape>
