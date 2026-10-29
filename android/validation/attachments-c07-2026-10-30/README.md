@@ -65,3 +65,5 @@ Backup emulator/log mentah privat disimpan di `.local/attachment-c07-20261030`.
 
 Preview lokal sintetis: [lampiran](attachment.jpg), [foto](preview.jpg),
 [consent](consent.jpg), [offline](offline.jpg).
+
+Source runtime/helper `ec3f691e01fc628042ddc11b9d99eac7149e5d52`; [receipt/source hash](receipt.json).

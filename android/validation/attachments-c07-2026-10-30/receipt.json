@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-30",
+  "sourceCommit": "ec3f691e01fc628042ddc11b9d99eac7149e5d52",
+  "version": "1.9.30",
+  "versionCode": 57,
+  "apkName": "Zikra-Attachments-v1.9.30-beta-debug.apk",
+  "bytes": 45465323,
+  "sha256": "5fa27e7faa466dc4d56d42e99890156c571cd1fba121f0089eb2d78a5cd46661",
+  "signerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "sourceSha256": {
+    "android/app/build.gradle": "b0b6a045f2ad405fcb3463b5b7dd8b47930b3deda96559c4e33f561ef237d75d",
+    "android/app/src/main/java/com/zikra/app/assistant/AssistantAttachments.java": "c62978f314d193ac498248e27d5897191c5ae41611ef0f6dd7003c346279a0ce",
+    "android/app/src/main/java/com/zikra/app/assistant/AssistantDocx.java": "18446523770b8a7c117fa8a1cae03e4ef259c7a66c545460d82644c5ae401790",
+    "android/app/src/androidTest/java/com/zikra/app/assistant/AttachmentDocumentsTest.java": "fb5c5009f7519ceb4ef432627969e6621941332bdaafd6926e3afeccf6493b02",
+    "android/app/src/androidTest/java/com/zikra/app/assistant/AiRefreshTest.java": "1b19d094913d070d2c877197e7258e1751921c2da11e106e1184d77918620eb2"
+  },
+  "physicalPhoneUpdated": false,
+  "lastVerifiedPhoneVersion": "1.9.29",
+  "C07Complete": false,
+  "EStarted": false
+}
