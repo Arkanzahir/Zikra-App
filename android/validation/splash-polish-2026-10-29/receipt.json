@@ -1,0 +1,22 @@
+{
+  "sourceCommit": "231a6a089689440a8d20b41969a642b0e16e92a9",
+  "sourcePushedAndRemoteHashVerified": true,
+  "recordedAt": "2026-10-29T19:38:04.298377+07:00",
+  "version": "1.9.25",
+  "versionCode": 52,
+  "apkSha256": "a7f54e6233ef42ba8b12266099de47e8532bafa0d2d3e1b31924468cbadcf583",
+  "apkBytes": 43638534,
+  "debugSignerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "physicalUpgrade": "1.9.22 -> 1.9.25 / API36",
+  "unitPassed": 155,
+  "unitSkipped": 4,
+  "nativePassed": 4,
+  "lintErrors": 0,
+  "lintWarnings": 862,
+  "sourceAudit": {
+    "newBlobsScanned": 22,
+    "newBlobBytes": 1261636,
+    "knownPrivateOrCredentialPatternFindings": 0
+  },
+  "scope": "UI07 beta terarah; interior mosque, Arabic reader font and broader A-D/F/G/public gates remain open"
+}
