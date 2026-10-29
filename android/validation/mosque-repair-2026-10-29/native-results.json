@@ -1,0 +1,26 @@
+[
+  {
+    "class": "com.zikra.app.sky.MosqueRepairTest",
+    "method": "testInteriorClipDayOffAndHomeNightRender",
+    "label": "interior-final",
+    "passed": true
+  },
+  {
+    "class": "com.zikra.app.sky.MosqueRepairTest",
+    "method": "testLivePlacesListTilesAndStaleFallback",
+    "label": "live-map-cache-final",
+    "passed": true
+  },
+  {
+    "class": "com.zikra.app.NearbyDesignTest",
+    "method": "testFailedRefreshKeepsResultsAndFetchTime",
+    "label": "cache-refresh-regression",
+    "passed": true
+  },
+  {
+    "class": "com.zikra.app.NearbyDesignTest",
+    "method": "testRateLimitWithoutResultsShowsRetryAndKeepsLocation",
+    "label": "rate-limit-regression",
+    "passed": true
+  }
+]

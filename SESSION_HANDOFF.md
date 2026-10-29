@@ -1,5 +1,25 @@
 # Handoff aktif Zikra — 25 Oktober 2026 (WIB)
 
+## UI08 kandidat1.9.26 — interior dan masjid terdekat,29 Oktober2026
+
+Pengguna melaporkan interior gelap dan pencarian gagal; tugas ini diprioritaskan
+sebelum pekerjaan umum berikut. [Bukti, riwayat API, APK dan batas](android/validation/mosque-repair-2026-10-29/README.md).
+Mask/gradasi radial interior mengikuti lampStrength waktu lokasi; siang mati.
+POST Overpass dengan VK Maps pertama, fallback dua host lama, batas/cancel/
+429/406 dan cache30menit/cadangan7hari per lokasi. APIpublik tetap dapat gagal:
+lookup baru tanpa cache sempat gagal lalu retry terbatas lulus. Jangan klaim
+uptime/semua E04 selesai.160 unit/4 skip,4 native final emulatorAPI37.1 lulus;
+lint0 error/862 warning. Tiles jalan dan daftar60hasil API nyata diperiksa;
+data probe selalu titik INITIAL publik, bukan GPS HP. TLS bawaan Android tetap.
+
+APK lokalfolderpembungkus`Zikra-Mosque-v1.9.26-beta-debug.apk`,43.857.302byte,
+SHA256`f2b45e3982d076fb76fb06b2ebd00c1efae6e17f5c7915de56ea8586c92f181f`.
+HP **tetap1.9.25**, USB sudah dilepas dan tidak diminta ulang; versi26 baru
+diuji emulator.31 berkas emulator pulih hash/pengaturan kembali/helper dihapus/
+emulator ditutup. WIP/stash/audio/env/artwork/ikon tetap. Font Arab terjemahan
+belum diubah; B01/C02/C04/C07/D02/D02a/E/F/G/publik tetap menurut checklist.
+
+
 ## UI07 selesai teknis beta1.9.25 — HP29 Oktober2026
 
 Pengguna menyetujui polesan dan mengizinkan uji USB. Splash800ms diterapkan:

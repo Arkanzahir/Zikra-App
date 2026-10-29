@@ -186,9 +186,9 @@ public final class NearbyDesignTest extends InstrumentationTestCase {
             });
     click(R.id.mosquesRefresh);
     long until = SystemClock.uptimeMillis() + 10000;
-    while (!text(R.id.mosquesStatus).contains("Hasil sebelumnya")
+    while (!text(R.id.mosquesStatus).contains("Menampilkan hasil tersimpan")
         && SystemClock.uptimeMillis() < until) SystemClock.sleep(100);
-    assertTrue(text(R.id.mosquesStatus), text(R.id.mosquesStatus).contains("Hasil sebelumnya"));
+    assertTrue(text(R.id.mosquesStatus), text(R.id.mosquesStatus).contains("Menampilkan hasil tersimpan"));
     assertEquals(2, results().getChildCount());
     assertEquals(fetched, text(R.id.mosquesUpdated));
     assertEquals(View.GONE, page.findViewById(R.id.mosquesEmpty).getVisibility());

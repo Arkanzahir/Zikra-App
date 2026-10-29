@@ -1,0 +1,11 @@
+{
+  "finalNativePassed": 4,
+  "earlierFreshLookupFailed": true,
+  "earlierFailure": "Real places available assertion failed after cache was cleared",
+  "boundedRetryAfterPausePassed": true,
+  "earlierMapScreenshotCapturedBeforeFrameSettled": true,
+  "finalMapNoticeGoneAndRoadsVisuallyConfirmed": true,
+  "jvmDefaultTrustStoreMissingProviderChain": true,
+  "jvmSystemWindowsTrustVerifiedWithoutBypass": true,
+  "androidDefaultTrustVerifiedInNativeLookup": true
+}

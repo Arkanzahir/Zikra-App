@@ -1,0 +1,16 @@
+[
+  {
+    "host": "overpass.private.coffee",
+    "testLocation": "public built-in Sukolilo reference, not device GPS",
+    "error": "TimeoutError",
+    "detail": "The read operation timed out",
+    "seconds": 28.5
+  },
+  {
+    "host": "overpass-api.de",
+    "testLocation": "public built-in Sukolilo reference, not device GPS",
+    "error": "TimeoutError",
+    "detail": "The read operation timed out",
+    "seconds": 28.62
+  }
+]

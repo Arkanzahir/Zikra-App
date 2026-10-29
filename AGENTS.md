@@ -32,3 +32,7 @@ Pengguna memprioritaskan dock AI, lampu masjid malam dan splash sebelum C04; ket
 ## Status29 Oktober2026 — UI07 beta1.9.25
 
 Polesan splash800ms disetujui lalu diterapkan. [Bukti HP/preservasi/batas](android/validation/splash-polish-2026-10-29/README.md):4 native API36,155 unit/4 skip lulus;lint0 error/862 warning. HP aktual1.9.22 diperbarui ke1.9.25;32 berkas/17 tabel/preferensi/izin/pengaturan terjaga, helper dibersihkan. USB kemudian dilepas; jangan menganggap tersedia. Lampu fasad sudah terlihat, interior lengkungan belum bercahaya. Font Arab terjemahan masih fallback HP, berbeda dari QCF Mushaf; keduanya bukan perubahan checkpoint splash. C04/A–D/F04/G/publik tetap terbuka, WIP/stash/env/ikon/artwork tetap.
+
+## Status29 Oktober2026 — UI08 kandidat1.9.26
+
+Interior lengkungan malam dan jalur pencarian masjid diperbaiki sesuai masukan pengguna, [bukti/keandalan/batas](android/validation/mosque-repair-2026-10-29/README.md).160 unit/4 skip dan4 native final emulatorAPI37.1 lulus;lint0 error/862 warning. VK Maps/Overpass dengan TLS bawaan dan cache bertanggal; satu lookup baru sempat gagal, tidak menjanjikan uptime API.31 berkas emulator dipulihkan cocok hash, helper/emulator dibersihkan/ditutup. HP tetap1.9.25/USB dilepas; jangan menyatakan26 sudah dipasang. Ikon/artwork/WIP/stash/env/audio tetap, font reader belum diubah. E04/A–D/F04/publik tetap punya gerbang terbuka.

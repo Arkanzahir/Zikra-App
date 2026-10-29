@@ -1,5 +1,7 @@
 # A02 — Cakupan penyelesaian Zikra
 
+> **UI08 kandidat1.9.26 — 29 Oktober2026:** interior malam/siang dan pencarian masjid diperbaiki,160 unit/4 skip dan4 native final emulator lulus;lint0 error/862 warning. [Bukti, keandalan API dan batas](android/validation/mosque-repair-2026-10-29/README.md). APK43.857.302byte, HP tetap1.9.25; belum dipasang versi baru.
+
 > **UI07 beta1.9.25 — 29 Oktober2026:** splash800ms disetujui dan lulus4 uji native HP API36.155 unit/4 skip,lint0 error/862 warning; update1.9.22 berisi terjaga. APK lokal folder pembungkus`Zikra-Splash-v1.9.25-beta-debug.apk`,43.638.534byte, SHA256`a7f54e6233ef42ba8b12266099de47e8532bafa0d2d3e1b31924468cbadcf583`. [Bukti/video/preservasi/batas](android/validation/splash-polish-2026-10-29/README.md). Seluruh A–D/F/G/publik belum otomatis selesai.
 
 > **29 Oktober2026 — UI06:** tiga tindak lanjut visual tersedia pada beta1.9.24: dock AI, lampu malam, splash native. [Bukti dan batas](android/validation/ui-followup-2026-10-29/README.md). Ini tidak menutup gerbang HP, A–D, F04/G02 atau publik.

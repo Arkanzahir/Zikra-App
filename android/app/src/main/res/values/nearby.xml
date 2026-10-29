@@ -10,7 +10,7 @@
     <string name="nearby_no_results_title">Belum ada masjid yang ditemukan</string>
     <string name="nearby_no_results_body">Data dalam radius 3 km belum tersedia. Coba ubah lokasi atau cari di Google Maps.</string>
     <string name="nearby_error_title">Hasil belum bisa dimuat</string>
-    <string name="nearby_error_body">Periksa koneksi, lalu coba lagi. Kamu juga bisa mencari melalui Google Maps.</string>
+    <string name="nearby_error_body">Layanan pencarian belum bisa dijangkau. Coba lagi nanti atau cari melalui Google Maps.</string>
     <string name="nearby_retry">Coba lagi</string>
     <string name="nearby_rate_limit">Layanan sedang membatasi pencarian. Tunggu %1$d detik sebelum mencoba lagi.</string>
     <string name="nearby_rate_limit_title">Pencarian dibatasi sementara</string>
@@ -48,4 +48,7 @@
     <string name="nearby_map_retry">Muat ulang peta</string>
     <string name="nearby_map_wait">Tunggu sebentar sebelum memuat ulang peta.</string>
     <string name="nearby_map_ready">Peta dimuat bertahap. Ketuk penanda untuk memilih masjid.</string>
+    <string name="nearby_stale">Menampilkan hasil tersimpan. Layanan pencarian belum bisa dijangkau; tanggal pembaruan tercantum di bawah.</string>
+    <string name="nearby_service_unavailable">Layanan pencarian belum bisa dijangkau. Coba lagi nanti atau buka Google Maps.</string>
+    <string name="nearby_lookup_privacy">Koordinat lokasi pilihan dikirim ke layanan Overpass saat mencari.</string>
 </resources>

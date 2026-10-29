@@ -6,6 +6,7 @@
                 <TextView style="@style/NearbyCaption" android:text="LOKASI PENCARIAN" android:letterSpacing="0.08" />
                 <Button android:id="@+id/mosquesLocation" style="@style/NearbyButton" android:layout_marginTop="8dp" android:gravity="start|center_vertical" android:drawableStart="@drawable/ic_nearby_pin" android:drawablePadding="12dp" />
                 <TextView style="@style/NearbyCaption" android:layout_marginTop="10dp" android:text="@string/nearby_radius" />
+                <TextView style="@style/NearbyCaption" android:layout_marginTop="6dp" android:text="@string/nearby_lookup_privacy" />
                 <Button android:id="@+id/mosquesProvider" style="@style/NearbyButton" android:visibility="gone" />
                 <Button android:id="@+id/mosquesRefresh" style="@style/NearbyPrimary" android:layout_marginTop="16dp" android:text="@string/nearby_search" />
                 <RadioGroup android:id="@+id/mosquesViewMode" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="@drawable/bg_nearby_panel" android:padding="4dp" android:layout_marginTop="20dp" android:checkedButton="@id/mosquesListToggle">

@@ -130,7 +130,8 @@ public final class NearbyMosquesActivity extends BaseActivity {
                 "Data komunitas OpenStreetMap, dengan pencarian melalui Overpass. Kelengkapan tiap"
                     + " daerah berbeda dan layanan publik dapat dibatasi. Hasil diurutkan menurut"
                     + " jarak garis lurus; fasilitas dan jam jamaah perlu dikonfirmasi ke masjid."
-                    + " Peta dimuat hanya saat dibuka.")
+                    + " Peta dimuat hanya saat dibuka. Saat mencari, koordinat lokasi pilihan dikirim"
+                    + " ke server Overpass publik: VK Maps, Private.coffee atau FOSSGIS.")
             .setPositiveButton("Mengerti", null)
             .setNeutralButton(
                 "Sumber",
@@ -179,7 +180,8 @@ public final class NearbyMosquesActivity extends BaseActivity {
                   text(R.id.mosquesCount, found.size() + " tempat ditemukan");
                   text(
                       R.id.mosquesStatus,
-                      found.isEmpty()
+                      response.stale ? getString(R.string.nearby_stale)
+                          : found.isEmpty()
                           ? "Belum ada hasil dalam radius 3 km."
                           : "Terdekat lebih dulu · jarak garis lurus");
                   if (found.isEmpty())
@@ -214,7 +216,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
                               ? getString(
                                   R.string.nearby_rate_limit,
                                   (((MosqueSearch.RateLimited) e).retryAfterMs + 999) / 1000)
-                              : "Pencarian belum tersedia. Periksa koneksi dan coba lagi nanti.")
+                              : getString(R.string.nearby_service_unavailable))
                           + (places.isEmpty() ? "" : " Hasil sebelumnya tetap ditampilkan."));
                   if (places.isEmpty()) {
                     text(R.id.mosquesCount, getString(R.string.nearby_incomplete));

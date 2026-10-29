@@ -15,6 +15,7 @@ public final class HomeSkyView extends View implements SensorEventListener {
   private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
   private final Paint cloudPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
   private final Paint landscapePaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+  private final MosqueInteriorLights interiorLights = new MosqueInteriorLights();
   private final RectF cloudBounds = new RectF(), landscapeBounds = new RectF();
   private final Rect visible = new Rect();
   private final Path moon = new Path();
@@ -232,6 +233,7 @@ public final class HomeSkyView extends View implements SensorEventListener {
     canvas.drawBitmap(landscape, null, landscapeBounds, landscapePaint);
     if (lampStrength > 0) {
       canvas.translate(left, top); canvas.scale(sceneWidth / 960, sceneHeight / 640);
+      interiorLights.draw(canvas,lampStrength);
       for (float x : LAMP_X) {
         canvas.save();canvas.translate(x,475);
         canvas.save();canvas.scale(22,43);
