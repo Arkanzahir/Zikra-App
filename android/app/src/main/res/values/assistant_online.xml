@@ -1,12 +1,12 @@
 <resources>
     <string name="assistant_review_send">Tinjau sebelum mengirim</string>
-    <string name="assistant_send_note">Hanya data yang terlihat di bawah dikirim ke backend dan penyedia AI. Tidak ada profil, lokasi GPS, tugas atau berkas yang dikirim otomatis. Pilihan berlaku untuk satu pengiriman.</string>
+    <string name="assistant_send_note">Hanya pesan dan data pilihan di preview dikirim ke layanan Zikra serta penyedia AI. Pilihan berlaku sekali. Jadwal kelas tidak menyertakan guru, ruang, SKS, pengingat, atau koordinat.</string>
     <string name="assistant_select_name">Sertakan nama profil</string>
     <string name="assistant_select_tasks">Sertakan maksimal 10 tugas dan tenggat</string>
-    <string name="assistant_select_prayer">Sertakan perhitungan salat hari ini dan zona waktu</string>
+    <string name="assistant_select_prayer">Sertakan jadwal salat hari ini, sumber dan zona waktu</string>
     <string name="assistant_select_history">Sertakan riwayat chat online</string>
     <string name="assistant_select_proposals">Izinkan usulan tambah/edit tugas untuk ditinjau</string>
-    <string name="assistant_send_selected">Kirim pilihan ini</string>
+    <string name="assistant_send_selected">Kirim</string>
     <string name="assistant_cancel_send">Batalkan pengiriman</string>
     <string name="assistant_cancelled">Pengiriman dibatalkan. Pesan tetap di perangkat.</string>
     <string name="assistant_auth_failed">Akses backend tidak berlaku atau sudah dicabut. Periksa kode akses.</string>
@@ -22,7 +22,7 @@
     <string name="assistant_task_title">Judul tugas</string>
     <string name="assistant_task_due">Ubah tenggat</string>
     <string name="assistant_task_no_due">Tanpa tenggat</string>
-    <string name="assistant_save_task">Simpan ke Study</string>
+    <string name="assistant_save_task">Simpan</string>
     <string name="assistant_voice_consent">Dikte memakai layanan pengenal suara Android yang tersedia di perangkat. Pemrosesan suara mengikuti layanan tersebut dan dapat memakai internet. Zikra menerima teks untuk diperiksa; hasilnya tidak langsung dikirim ke AI.</string>
     <string name="assistant_voice_start">Mulai dikte</string>
     <string name="assistant_tafsir_note">Tadabbur hanya diringkas dari petikan sumber yang berhasil dimuat. Ringkasan AI bukan teks tafsir asli. Sumber dinyatakan berasal dari Kemenag oleh EQuran.id.</string>

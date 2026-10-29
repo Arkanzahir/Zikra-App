@@ -1,0 +1,13 @@
+{
+  "unitPassed": 163,
+  "unitSkipped": 4,
+  "unitFailed": 0,
+  "backendPassed": 69,
+  "backendSkipped": 0,
+  "backendFailed": 0,
+  "nativeFinalExecutions": 13,
+  "nativeFinalUniqueMethods": 10,
+  "nativeDevice": "isolated ZikraApproved emulator / API37.1",
+  "lintErrors": 0,
+  "lintWarnings": 862
+}

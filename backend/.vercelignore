@@ -13,6 +13,7 @@
 !redis-access.mjs
 !vercel-handler.mjs
 !assistant-contract.mjs
+!class-context.mjs
 !tafsir.mjs
 !attachments.mjs
 !image-generation.mjs

@@ -163,7 +163,8 @@ public final class OnlineAssistantClient implements AutoCloseable {
   public static JSONObject verifiedSource(JSONObject source, JSONObject verse) {
     if (source == null || verse == null) return null;
     int chapter = verse.optInt("chapter"), number = verse.optInt("number");
-    if (source.optInt("chapter") != chapter || source.optInt("number") != number
+    if (chapter < 1 || chapter > 114 || number < 1 || number > 286
+        || source.optInt("chapter") != chapter || source.optInt("number") != number
         || !("https://equran.id/tafsir/" + chapter).equals(source.optString("url"))
         || source.optString("text").trim().isEmpty() || source.optString("text").length() > 6000) return null;
     return source;

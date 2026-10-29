@@ -720,13 +720,14 @@ public final class AiActivity extends BaseActivity {
 
   private void showSelection() {
     if (selectionDialog != null && selectionDialog.isShowing()) return;
-    ScrollView container = new ScrollView(this);
+    ScrollView container = new com.zikra.app.ui.AssistantReviewScrollView(this);
     LinearLayout form = new LinearLayout(this);
     form.setOrientation(LinearLayout.VERTICAL); form.setPadding(dp(20), dp(8), dp(20), dp(16));
     container.addView(form);
     TextView note = new TextView(this); note.setText(R.string.assistant_send_note); form.addView(note);
     int[] labels = { R.string.assistant_select_name, R.string.assistant_select_tasks,
-      R.string.assistant_select_prayer, R.string.assistant_select_history, R.string.assistant_select_proposals };
+      R.string.assistant_select_prayer, R.string.assistant_select_history, R.string.assistant_select_proposals,
+      R.string.assistant_select_classes };
     android.widget.CheckBox[] choices = new android.widget.CheckBox[labels.length];
     for (int i = 0; i < labels.length; i++) {
       choices[i] = new android.widget.CheckBox(this); choices[i].setText(labels[i]);
@@ -740,7 +741,7 @@ public final class AiActivity extends BaseActivity {
     Runnable update = () -> {
       try {
         snapshot[0] = AssistantSelection.build(this, messages, choices[0].isChecked(), choices[1].isChecked(),
-            choices[2].isChecked(), choices[3].isChecked(), choices[4].isChecked(), pendingVerse);
+            choices[2].isChecked(), choices[3].isChecked(), choices[4].isChecked(), pendingVerse, choices[5].isChecked());
         if(attachment!=null)snapshot[0].put("attachments",new JSONArray().put(attachment.payload()));
         if(snapshot[0].toString().getBytes(java.nio.charset.StandardCharsets.UTF_8).length>2*1024*1024)throw new JSONException("Attachment budget");
         preview.setText(AssistantSelection.preview(snapshot[0])+(attachment==null?"":"\n\nLampiran yang akan dikirim: "+attachment.summary()+"\nFoto/PDF disiapkan sebagai gambar; DOCX/TXT sebagai teks. Data dikirim melalui layanan Zikra ke model pembaca."));
@@ -901,7 +902,7 @@ public final class AiActivity extends BaseActivity {
     });
     android.widget.Button clearDue = new android.widget.Button(this); clearDue.setText(R.string.assistant_task_no_due);
     clearDue.setOnClickListener(view -> { due[0] = 0; renderDue.run(); }); form.addView(clearDue); renderDue.run();
-    ScrollView scrollForm = new ScrollView(this); scrollForm.addView(form);
+    ScrollView scrollForm = new com.zikra.app.ui.AssistantReviewScrollView(this); scrollForm.addView(form);
     taskDialog = new AlertDialog.Builder(this).setTitle(R.string.assistant_review_task).setView(scrollForm)
         .setPositiveButton(R.string.assistant_save_task, null).setNegativeButton("Batal", null).create();
     taskDialog.setOnShowListener(dialog -> taskDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view -> {

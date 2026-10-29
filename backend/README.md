@@ -1,5 +1,7 @@
 # Gateway Featherless untuk Pendamping Zikra
 
+**C04 terbaru30 Oktober2026:** format kelas opt-in tersedia di production, tervalidasi strict, tanpa guru/ruang/SKS/GPS. Penanda source salat opsional menjaga kompatibilitas APK lama. [Kontrak, deployment dan bukti](../android/validation/assistant-context-c04-2026-10-30/README.md).69 tes backend tanpa skip;13 native/163 unit Android lulus dalam batas tertulis. Tidak mengganti env/key/plan.
+
 Status 25 Oktober 2026: [persiapan C01](../android/validation/backend-c01-2026-10-25/README.md)
 dilanjutkan dengan [alur C03/C04/C06 dan bukti](../android/validation/assistant-c-2026-10-25/README.md).
 Usulan tugas terstruktur dan Tadabbur bersumber telah menerima completion nyata

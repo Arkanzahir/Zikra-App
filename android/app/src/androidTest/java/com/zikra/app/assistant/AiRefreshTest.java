@@ -172,7 +172,7 @@ public final class AiRefreshTest extends InstrumentationTestCase {
     ui(()->activity.findViewById(R.id.aiAttachmentPreview).performClick());shot("preview");ui(()->{try{((AlertDialog)field("sourceDialog")).dismiss();}catch(Exception e){throw new RuntimeException(e);}});
     ui(()->{((EditText)activity.findViewById(R.id.aiInput)).setText("Baca kode uji");activity.findViewById(R.id.aiSend).performClick();});
     AlertDialog dialog=(AlertDialog)field("selectionDialog");assertTrue(dialog.isShowing());assertEquals(0,calls.get());
-    ArrayList<CheckBox> choices=new ArrayList<>();checks(dialog.getWindow().getDecorView(),choices);assertEquals(5,choices.size());for(CheckBox choice:choices)assertFalse(choice.isChecked());
+    ArrayList<CheckBox> choices=new ArrayList<>();checks(dialog.getWindow().getDecorView(),choices);assertEquals(6,choices.size());for(CheckBox choice:choices)assertFalse(choice.isChecked());
     shot("consent");ui(()->dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick());waitUntil(()->calls.get()==1&&rows().length()==2);
     assertEquals(0,captured.get().getJSONObject("context").length());assertEquals(1,captured.get().getJSONArray("messages").length());assertFalse(captured.get().toString().contains("PRIVATE-NOT-SELECTED"));
     assertEquals(1,captured.get().getJSONArray("attachments").length());assertNull(field("attachment"));

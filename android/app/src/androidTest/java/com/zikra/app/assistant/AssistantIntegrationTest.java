@@ -131,6 +131,17 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
         completed = db.addTask("Completed task", ZikraDbHelper.CATEGORY_STUDY); db.setCompleted(completed, true);
         db.addTask("Retained worship", ZikraDbHelper.CATEGORY_IBADAH);
         db.getWritableDatabase().execSQL("DROP TABLE assistant_actions");
+        // Rebuild the actual v3 task schema; changing user_version on a v5 table is not a migration fixture.
+        android.database.sqlite.SQLiteDatabase sql=db.getWritableDatabase();
+        sql.execSQL("ALTER TABLE tasks RENAME TO tasks_v5_fixture");
+        sql.execSQL("CREATE TABLE tasks (id INTEGER PRIMARY KEY AUTOINCREMENT,task_date TEXT NOT NULL,"
+            +"title TEXT NOT NULL,category TEXT NOT NULL CHECK(category IN ('Study','Ibadah','Hifz')),"
+            +"completed INTEGER NOT NULL DEFAULT 0 CHECK(completed IN (0,1)),hifz_chapter INTEGER,hifz_name TEXT,"
+            +"hifz_count INTEGER,hifz_first INTEGER,hifz_last INTEGER,due_at INTEGER NOT NULL DEFAULT 0,"
+            +"study_reminder INTEGER NOT NULL DEFAULT 0)");
+        String columns="id,task_date,title,category,completed,hifz_chapter,hifz_name,hifz_count,hifz_first,hifz_last,due_at,study_reminder";
+        sql.execSQL("INSERT INTO tasks ("+columns+") SELECT "+columns+" FROM tasks_v5_fixture");
+        sql.execSQL("DROP TABLE tasks_v5_fixture");sql.execSQL("CREATE INDEX tasks_date ON tasks(task_date,id)");
         db.getWritableDatabase().setVersion(3);
       }
       TaskProposal addition = new TaskProposal(ID, "add_task", "Reviewed addition", 0, 0, "", 0);
@@ -166,7 +177,7 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
     AlertDialog dialog = (AlertDialog) field(activity, "selectionDialog");
     assertTrue(dialog.isShowing());
     ArrayList<CheckBox> choices = new ArrayList<>(); findChecks(dialog.getWindow().getDecorView(), choices);
-    assertEquals(5, choices.size()); for (CheckBox choice : choices) assertFalse(choice.isChecked());
+    assertEquals(6, choices.size()); for (CheckBox choice : choices) assertFalse(choice.isChecked());
     assertFalse(allText(dialog.getWindow().getDecorView()).contains("PRIVATE-FIXTURE-NAME"));
     JSONObject request = AssistantSelection.build(context, (JSONArray) field(activity, "messages"), false, false, false, false, false, null);
     assertEquals(0, request.getJSONObject("context").length()); assertEquals(1, request.getJSONArray("messages").length());

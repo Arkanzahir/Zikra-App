@@ -1,0 +1,12 @@
+{
+  "version": "1.9.28",
+  "versionCode": 55,
+  "bytes": 45617459,
+  "sha256": "439c0c2cded30d38c97a4d31ef5918d7fa8398cbf2264791640d11f6d2346ab8",
+  "below100MB": true,
+  "knownCredentialFindings": 0,
+  "privateAudioHashes": {
+    "selected": "545da9c890916ce918ed0e82df9b5e37169aafd638cdb3dfe61d41caa39b016f",
+    "fajr": "106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530"
+  }
+}

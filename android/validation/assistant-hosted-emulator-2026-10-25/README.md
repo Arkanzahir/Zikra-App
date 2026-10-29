@@ -1,5 +1,7 @@
 # C03/C04 — APK ke Vercel/Featherless nyata pada emulator
 
+> **Tindak lanjut30 Oktober2026:** temuan ringkasan1:2 ditelaah pada [C04 beta1.9.28](../assistant-context-c04-2026-10-30/README.md); prompt membedakan konteks ayat sebelumnya dan dua sampel hosted baru diperiksa. Catatan di bawah adalah hasil25 Oktober, bukan status C04 terkini.
+
 25 Oktober 2026 (WIB). HP tidak terdeteksi saat mulai, sehingga pengguna meminta
 percobaan dilanjutkan di emulator. **Bukan bukti C05 dari HP fisik.** Backend tetap
 `https://zikra-ai.vercel.app`, source `9438aa4`; tidak mengubah key/provider/hosting.

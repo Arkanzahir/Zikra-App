@@ -1,0 +1,7 @@
+{
+  "health": 200,
+  "healthMinimal": true,
+  "unauthorized": 401,
+  "unauthorizedGeneric": true,
+  "privateConfigurationSuppliedAfterInstall": true
+}

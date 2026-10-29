@@ -1,0 +1,31 @@
+{
+  "scope": "emulator-APK-HTTPS-Vercel-Featherless-real-no-network-interceptor",
+  "physicalPhoneTested": false,
+  "actualMicrophoneTested": false,
+  "classesConsentHostedProposal": true,
+  "noTaskOrClassWriteWithoutReview": true,
+  "passed": true,
+  "samples": [
+    {
+      "verse": "1:2",
+      "sourceUrl": "https://equran.id/tafsir/1",
+      "sourceChars": 2126,
+      "sourceSha256": "c220846202733bc43f80c87141f554067bb0e5fb5fe78bf1c393f0aef0977624",
+      "sourceTruncated": false,
+      "modelReply": "Ayat 1:2 berarti Al-hamdu lilah yang memuji Allah karena segala nikmat dan sebagai pemilik serta pendidik seluruh alam.",
+      "editorialAssessment": "Ringkasan berfokus pada pujian kepada Allah, nikmat dan pemeliharaan seluruh alam. Tidak lagi menyatakan Basmalah sebagai isi ayat 1:2. Pembukaan petikan menyebut ayat sebelumnya sebagai konteks.",
+      "sampleMatchesSource": true
+    },
+    {
+      "verse": "113:1",
+      "sourceUrl": "https://equran.id/tafsir/113",
+      "sourceChars": 288,
+      "sourceSha256": "30b68a8e36f8a0f0e2b609f4b5243bba4f1d8aa863d72592681d72f0fda36d32",
+      "sourceTruncated": false,
+      "modelReply": "Ayat 113:1 memerintahkan kepada Nabi Muhammad dan kaum Muslimin untuk selalu berlindung kepada Tuhan.",
+      "editorialAssessment": "Ringkasan menyebut perintah berlindung kepada Tuhan, sesuai petikan. Tidak menambahkan kutipan hadis atau rujukan baru.",
+      "sampleMatchesSource": true
+    }
+  ],
+  "editorialScope": "Two observed samples and known previous 1:2 issue only; not certification of every verse or future model response."
+}

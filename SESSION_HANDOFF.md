@@ -1,4 +1,9 @@
-# Handoff aktif Zikra — 25 Oktober 2026 (WIB)
+# Handoff aktif Zikra — 30 Oktober 2026 (WIB)
+
+## C04 selesai teknis beta1.9.28 — 30 Oktober2026
+
+Konteks kelas sudah opt-in per pengiriman,7 hari kalender/maksimal10 kelas dari store asli, tanpa guru/ruang/SKS/koordinat/ID; preview snapshot, server strict dan usulan tugas tetap ditinjau/disimpan sekali. Penanda sumber salat kini sesuai Day tanpa mengubah tabel/alarm; APK lama tetap kompatibel. Dua Tadabbur hosted1:2/113:1 ditelaah, konteks Basmalah ayat sebelumnya dibedakan oleh prompt. Bukan jaminan seluruh ayat/model. [Bukti/hosting/APK/preservasi/batas](android/validation/assistant-context-c04-2026-10-30/README.md).163 unit/4 skip,69 backend tanpa skip,13 native akhir/10 unik lulus;lint0 error/862 warning. Dialog consent/review font200 diperbaiki lalu tombol diuji sentuhan nyata; kegagalan fixture v3 awal dicatat dan helper diperbaiki, migrasi produksi tidak berubah. APK lokal `Zikra-AI-v1.9.28-beta-debug.apk`,45.617.459byte,SHA256`439c0c2cded30d38c97a4d31ef5918d7fa8398cbf2264791640d11f6d2346ab8`. Backend Vercel diperbarui kode, alias READY dicek; env/key/plan tetap.32 berkas emulator pulih cocok hash, input/marker/helper dibersihkan/emulator ditutup; HP tidak disentuh, terakhir diuji agen1.9.25. WIP/stash/audio/env/aset/ikon tetap. UI09 font reader berikutnya; C02 laptop mati/C07/B01/D02/D02a/E/F/G/publik belum ditutup. Tidak membaca email baru atau mengubah status sumber B01.
+
 
 ## UI08 beta1.9.27 — referensi disetujui dan diterapkan,29 Oktober2026
 

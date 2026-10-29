@@ -1,0 +1,30 @@
+[
+  {
+    "class": "com.zikra.app.assistant.AssistantClassesTest",
+    "label": "native-accessible-font200",
+    "passed": true,
+    "count": 3,
+    "durationSeconds": 12.8
+  },
+  {
+    "class": "com.zikra.app.assistant.AssistantClassesTest",
+    "label": "native-accessible-default",
+    "passed": true,
+    "count": 3,
+    "durationSeconds": 12.6
+  },
+  {
+    "class": "com.zikra.app.assistant.AssistantIntegrationTest",
+    "label": "native-regression-accessible",
+    "passed": true,
+    "count": 6,
+    "durationSeconds": 10.1
+  },
+  {
+    "class": "com.zikra.app.assistant.HostedAssistantTest#testHostedClassesFromNativeConsentAndReviewedSourceSamples",
+    "label": "native-hosted-final",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 18.1
+  }
+]

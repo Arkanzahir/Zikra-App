@@ -153,11 +153,45 @@ public final class HostedAssistantTest extends InstrumentationTestCase {
     activity = (AiActivity) getInstrumentation().startActivitySync((intent == null ? new Intent(context, AiActivity.class) : intent).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     getInstrumentation().waitForIdleSync();
   }
+  public void testHostedClassesFromNativeConsentAndReviewedSourceSamples() throws Exception {
+    assertTrue("Host backup/isolation required",new File(context.getFilesDir(),"assistant-c04-authorized").isFile());
+    context.deleteDatabase("assistant_chats.db");context.deleteDatabase("study-schedule.db");
+    int before;try(ZikraDbHelper db=new ZikraDbHelper(context)){before=db.getTasks().size();}
+    long classId;
+    try(WeeklyClassStore store=new WeeklyClassStore(context)){
+      classId=store.save(new WeeklyClass(0,0,"[DATA UJI C04] Matematika","PRIVATE-ROOM","PRIVATE-TEACHER",
+          com.zikra.app.location.LocationStore.today(context).plusDays(1).getDayOfWeek().getValue(),480,540,0,3));
+    }
+    try {
+      open(null);draft("Dari jadwal yang saya sertakan, buat satu usulan tugas persiapan Matematika tanpa tenggat. Jangan simpan otomatis.",true,false);
+      AlertDialog dialog=(AlertDialog)field(activity,"selectionDialog");ArrayList<CheckBox> choices=new ArrayList<>();checks(dialog.getWindow().getDecorView(),choices);
+      getInstrumentation().runOnMainSync(()->choices.get(5).setChecked(true));getInstrumentation().waitForIdleSync();
+      screenshot("c04-consent-live.png");
+      getInstrumentation().runOnMainSync(()->dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick());waitReply();assertOnline();
+      JSONObject proposal=messages().getJSONObject(1).optJSONObject("proposal");assertNotNull("Real class-context proposal",proposal);
+      try(ZikraDbHelper db=new ZikraDbHelper(context)){assertEquals(before,db.getTasks().size());assertFalse(db.assistantProposalApplied(proposal.getString("id")));}
+      try(WeeklyClassStore store=new WeeklyClassStore(context)){assertEquals(1,store.find(classId).revision);}
+      proof.put("classesConsentHostedProposal",true).put("noTaskOrClassWriteWithoutReview",true);
+      screenshot("c04-class-reply-live.png");
+      JSONArray samples=new JSONArray();
+      for(int[] verse:new int[][]{{1,2},{113,1}}){
+        context.deleteDatabase("assistant_chats.db");
+        open(new Intent(context,AiActivity.class).putExtra("tadabbur_chapter",verse[0]).putExtra("tadabbur_verse",verse[1]));
+        draft("Ringkas hanya makna ayat "+verse[0]+":"+verse[1]+" dalam satu kalimat berdasarkan petikan; jangan bahas ayat lain atau menambah kutipan.",false,true);
+        waitReply();assertOnline();JSONObject answer=messages().getJSONObject(1),source=answer.getJSONObject("source");
+        assertEquals(verse[0],source.getInt("chapter"));assertEquals(verse[1],source.getInt("number"));
+        assertNotNull(OnlineAssistantClient.verifiedSource(source,new JSONObject().put("chapter",verse[0]).put("number",verse[1])));
+        samples.put(new JSONObject().put("chapter",verse[0]).put("verse",verse[1]).put("reply",answer.getString("text")).put("source",source));
+        screenshot("c04-tafsir-"+verse[0]+"-"+verse[1]+".png");
+      }
+      proof.put("sourceSamples",samples);writeProof("c04-hosted.json");
+    } finally {try(WeeklyClassStore store=new WeeklyClassStore(context)){WeeklyClass row=store.find(classId);if(row!=null)store.delete(row.id,row.revision);}}
+  }
   private void draft(String text, boolean proposals, boolean send) throws Exception {
     getInstrumentation().runOnMainSync(() -> { ((EditText) activity.findViewById(R.id.aiInput)).setText(text); activity.findViewById(R.id.aiSend).performClick(); });
     getInstrumentation().waitForIdleSync(); AlertDialog dialog = (AlertDialog) field(activity, "selectionDialog");
     assertTrue(dialog.isShowing()); ArrayList<CheckBox> checks = new ArrayList<>(); checks(dialog.getWindow().getDecorView(), checks);
-    assertEquals(5, checks.size()); for (CheckBox check : checks) assertFalse(check.isChecked());
+    assertEquals(6, checks.size()); for (CheckBox check : checks) assertFalse(check.isChecked());
     getInstrumentation().runOnMainSync(() -> { if (proposals) checks.get(4).setChecked(true); if (send) dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); });
     getInstrumentation().waitForIdleSync();
   }

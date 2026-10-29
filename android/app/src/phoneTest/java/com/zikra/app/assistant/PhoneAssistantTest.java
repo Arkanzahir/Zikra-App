@@ -128,7 +128,7 @@ public final class PhoneAssistantTest extends InstrumentationTestCase {
   private void draft(String text, boolean send) throws Exception {
     getInstrumentation().runOnMainSync(() -> { ((EditText) activity.findViewById(R.id.aiInput)).setText(text); activity.findViewById(R.id.aiSend).performClick(); });
     getInstrumentation().waitForIdleSync(); ArrayList<CheckBox> checks = new ArrayList<>();
-    findChecks(selection().getWindow().getDecorView(), checks); assertEquals(5, checks.size());
+    findChecks(selection().getWindow().getDecorView(), checks); assertEquals(6, checks.size());
     for (CheckBox check : checks) assertFalse(check.isChecked());
     JSONObject selected = AssistantSelection.build(context, messages(), false, false, false, false, false, null);
     assertEquals(0, selected.getJSONObject("context").length()); assertEquals(1, selected.getJSONArray("messages").length());
