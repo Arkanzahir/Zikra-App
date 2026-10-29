@@ -1,0 +1,14 @@
+[
+  {
+    "methods": 2,
+    "passedMethods": 1,
+    "errors": 1,
+    "cause": "Initial helper used Layout.getLineWidth, including invisible trailing whitespace; corrected to getLineMax for visible line extent. App/font did not change."
+  },
+  {
+    "methods": 2,
+    "passedMethods": 2,
+    "errors": 0,
+    "scope": "Final physical phone APK1.9.29; 264 detached layouts plus actual reader/settings"
+  }
+]

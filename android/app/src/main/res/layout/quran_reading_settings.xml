@@ -11,6 +11,7 @@
         <SeekBar android:id="@+id/quranArabicSize" android:layout_width="match_parent" android:layout_height="48dp"
             android:max="20" android:progressTint="@color/pine" android:thumbTint="@color/pine" />
         <TextView android:id="@+id/quranArabicPreview" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:fontFamily="@font/amiri_quran" android:includeFontPadding="true"
             android:text="ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ" android:textDirection="rtl" android:gravity="end"
             android:textColor="@color/text" android:paddingBottom="16dp" android:lineSpacingExtra="6dp" />
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"

@@ -1,0 +1,9 @@
+{
+  "userApprovedFontOnly": true,
+  "audioHighlightDeferredByUser": true,
+  "audioHighlightCodeUnchanged": true,
+  "builtinTextAndTranslationsUnchanged": true,
+  "mushafQcfFontAndCodeUnchanged": true,
+  "noBackendChanges": true,
+  "fontMatchesAcceptedPreview": true
+}

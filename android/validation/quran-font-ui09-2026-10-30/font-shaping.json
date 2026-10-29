@@ -1,0 +1,20 @@
+{
+  "nativeLayouts": 264,
+  "arabicSizes": [
+    24,
+    32,
+    44
+  ],
+  "configurationFontScales": [
+    1,
+    2
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "originalArabicAndTranslationUnchanged": true,
+  "wordMapStillMatches": true,
+  "systemFontSettingChanged": false,
+  "audioPlayed": false
+}

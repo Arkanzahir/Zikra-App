@@ -1,0 +1,9 @@
+{
+  "unitPassed": 163,
+  "unitSkipped": 4,
+  "unitFailed": 0,
+  "nativePhysicalPhoneMethods": 2,
+  "nativeFontLayouts": 264,
+  "lintErrors": 0,
+  "lintWarnings": 862
+}

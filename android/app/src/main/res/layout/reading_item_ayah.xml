@@ -36,6 +36,8 @@
             android:background="?android:attr/selectableItemBackgroundBorderless" />
         <TextView
             android:id="@+id/ayahArabic"
+            android:fontFamily="@font/amiri_quran"
+            android:includeFontPadding="true"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="end"

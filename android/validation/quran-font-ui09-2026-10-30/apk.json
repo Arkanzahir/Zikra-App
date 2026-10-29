@@ -1,0 +1,12 @@
+{
+  "version": "1.9.29",
+  "versionCode": 56,
+  "bytes": 45415563,
+  "sha256": "61389f725ad10c545eef0f11fa75d6f4639dbd9fda97cf320c231e50dc10457c",
+  "below100MB": true,
+  "knownCredentialFindings": 0,
+  "privateAudioHashes": {
+    "selected": "545da9c890916ce918ed0e82df9b5e37169aafd638cdb3dfe61d41caa39b016f",
+    "fajr": "106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530"
+  }
+}

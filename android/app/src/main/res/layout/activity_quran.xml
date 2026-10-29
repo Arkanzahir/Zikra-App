@@ -384,6 +384,7 @@
                         android:layout_marginBottom="8dp">
                         <TextView
                             android:id="@+id/surahArabicTitle"
+                            android:fontFamily="@font/amiri_quran"
                             android:layout_width="match_parent"
                             android:layout_weight="0"
                             android:layout_height="wrap_content"
@@ -393,7 +394,7 @@
                             android:textSize="40sp"
                             android:textColor="@color/text"
                             android:paddingVertical="8dp"
-                            android:includeFontPadding="false" />
+                            android:includeFontPadding="true" />
                         <ImageView
                             android:id="@+id/readerTitleFlourish"
                             android:layout_width="80dp"

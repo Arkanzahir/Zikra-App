@@ -1,0 +1,18 @@
+{
+  "physicalPhone": true,
+  "oldVersion": "1.9.25",
+  "newVersion": "1.9.29",
+  "originalInternalFiles": 32,
+  "missingOriginalFiles": 0,
+  "originalDatabaseTables": 17,
+  "allOriginalDatabaseContentPreserved": true,
+  "allOriginalNonDerivedPreferenceValuesPreserved": true,
+  "onlyDerivedAlarmPlanUpdated": true,
+  "systemSettingsUnchanged": true,
+  "permissionsUnchanged": true,
+  "batteryWhitelistUnchanged": true,
+  "helperRemoved": true,
+  "mainAppUninstalled": false,
+  "backupKeptPrivately": true,
+  "blindDatabaseRestorePerformed": false
+}

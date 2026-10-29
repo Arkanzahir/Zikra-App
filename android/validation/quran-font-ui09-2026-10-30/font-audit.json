@@ -1,0 +1,8 @@
+{
+  "fontFamily": "Amiri Quran",
+  "version": "Version 1.003",
+  "unitsPerEm": 1000,
+  "arabicCodepointsInBuiltinSource": 38,
+  "missingBuiltinArabicCodepoints": [],
+  "scope": "Four built-in surahs and their names only; not all Quran Unicode variants"
+}
