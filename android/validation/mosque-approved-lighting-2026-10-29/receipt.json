@@ -1,0 +1,20 @@
+{
+  "sourceCommit": "5715abb0650c1a16f115bf6d96ca2e344f493ac6",
+  "version": "1.9.27",
+  "versionCode": 54,
+  "apkBytes": 45336132,
+  "apkSha256": "0ab5cb0955b80fe28ac5edea488e639a92bc57947f54b9f967f412692132d1a5",
+  "debugSignerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "approvedReferenceSha256": "402576bda7a820fe52f5c75cce65adf72277b9817b1b9eb5e167d10c17d49cae",
+  "unitPassed": 160,
+  "unitSkipped": 4,
+  "nativeFinalPassed": 4,
+  "nativeDevice": "isolated project emulator / API37.1",
+  "nativeNetworkDisabled": true,
+  "physicalPhoneUntouched": true,
+  "lastPhysicalPhoneVersionTestedByAgent": "1.9.25",
+  "lintErrors": 0,
+  "lintWarnings": 862,
+  "newLocationLookup": false,
+  "scope": "UI08 approved visual direction integrated and beta emulator checks only; broader E04/A-D/F/G/public gates remain open"
+}
