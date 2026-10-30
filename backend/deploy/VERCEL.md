@@ -146,3 +146,24 @@ Rujukan diperiksa 25 Oktober 2026:
 Pembaruan26 Oktober setelah checkpoint ee2b751: [push dan workflow](../../android/validation/checkpoint-push-2026-10-26/README.md)
 sudah diverifikasi di GitHub (state active); hasil job belum diverifikasi.
 Status workflow lokal pada catatan sebelumnya bersifat historis. C02 tetap[ ].
+# Vision model checkpoint — 30 Oktober2026
+
+Production vision memakai `Qwen/Qwen3-VL-8B-Instruct` setelah enam sampel langsung
+dan tujuh request hosted sintetis lulus. [Bukti dan batas](../../android/validation/non-usb-closeout-2026-10-30/README.md).
+Ini menggantikan `Qwen/Qwen2.5-VL-7B-Instruct` yang mengalami kapasitas/timeout;
+model chat teks, provider key, Cloudflare generation, kuota, dan paket tetap.
+Tidak ada pergantian model otomatis per request atau pengiriman ke provider baru.
+
+Sebelum mengganti model berikutnya, periksa akses akun/ketentuan model serta uji
+foto jelas, kontras rendah, rotasi, scan tiga halaman dan gambar tanpa data.
+Katalog gagal tidak boleh dianggap daftar kosong. Model yang403/gated tidak
+diaktifkan dengan menerima ketentuan atas nama pemilik akun.
+
+Periksa bahwa `FEATHERLESS_VISION_MODEL` hanya bertarget production, simpan capture
+env **privat**, lalu update variabel itu saja dan deploy ulang. Bandingkan variabel
+aplikasi lain sebelum/sesudah; jangan mencetak key ke terminal. Verifikasi health,
+penolakan tanpa token dan inference sintetis melalui alias production.
+
+Pemulihan: kembalikan variabel model ke nilai sebelumnya yang direkam privat,
+redeploy, lalu ulangi probe health/akses. Nilai lama dapat tetap sibuk; rollback
+bukan janji ketersediaan provider. Jangan mengulang otomatis permintaan pengguna.

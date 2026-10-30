@@ -9,8 +9,8 @@ const env = { FEATHERLESS_API_KEY: 'synthetic-provider-key-for-testing',
 
 test('vision configuration is optional, exact and never substitutes the text model',()=>{
   assert.equal(readConfig(env).visionModel,undefined);
-  const config=readConfig({...env,FEATHERLESS_VISION_MODEL:'Qwen/Qwen2.5-VL-7B-Instruct'});
-  assert.equal(config.visionModel,'Qwen/Qwen2.5-VL-7B-Instruct');assert.equal(config.model,'test/model');
+  const config=readConfig({...env,FEATHERLESS_VISION_MODEL:'Qwen/Qwen3-VL-8B-Instruct'});
+  assert.equal(config.visionModel,'Qwen/Qwen3-VL-8B-Instruct');assert.equal(config.model,'test/model');
   for(const value of ['', 'model with spaces', 'https://example.test/model', 'model\r\nheader'])
     assert.throws(()=>readConfig({...env,FEATHERLESS_VISION_MODEL:value}),ConfigError);
 });
