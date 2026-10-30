@@ -76,6 +76,7 @@ public final class AiActivity extends BaseActivity {
   private String imageCapabilityEndpoint="";
   private String[] pendingImageExport;
   private static final int EXPORT_IMAGE=4201;
+  private boolean reviewNextSend;
 
 
   @Override protected void onCreate(Bundle state) {
@@ -113,7 +114,7 @@ public final class AiActivity extends BaseActivity {
     findViewById(R.id.aiSend).setOnClickListener(v->{if(waiting)cancelOnline();else sendMessage();});
     findViewById(R.id.aiVoice).setOnClickListener(v->beginVoice());
     findViewById(R.id.aiAttach).setOnClickListener(v->showAttachmentPicker());
-    findViewById(R.id.aiTools).setOnClickListener(v->showAttachmentPicker());
+    findViewById(R.id.aiTools).setOnClickListener(v->showMessageTools());
     findViewById(R.id.aiTopicAttachment).setOnClickListener(v->showAttachmentPicker());
     input.addTextChangedListener(new android.text.TextWatcher(){
       public void beforeTextChanged(CharSequence text,int start,int count,int after){}
@@ -343,6 +344,33 @@ public final class AiActivity extends BaseActivity {
     if(waiting||importingAttachment){toast("Tunggu proses selesai atau batalkan permintaan dahulu.");return;}
     clearDialog=AssistantUi.attachments(this,imageAvailable,this::pickAttachment,this::enterImageMode);
     AssistantUi.bottomSheet(clearDialog,this);
+  }
+
+  private void showMessageTools() {
+    if(waiting||importingAttachment){toast("Tunggu proses selesai atau batalkan dahulu.");return;}
+    clearDialog=new AlertDialog.Builder(this).setTitle("Alat Zikra AI")
+        .setItems(new String[]{"Tambahkan lampiran","Kirim dengan konteks…","Izin data AI"},(dialog,index)->{
+          if(index==0)showAttachmentPicker();
+          else if(index==2)showConsentSettings();
+          else {
+            if(imageMode){toast("Konteks tambahan tersedia untuk percakapan.");return;}
+            if(input.getText().toString().trim().isEmpty()&&attachment==null){toast("Tulis pesan atau pilih lampiran dahulu.");return;}
+            reviewNextSend=true;try{sendMessage();}finally{reviewNextSend=false;}
+          }
+        }).show();
+  }
+
+  private void showConsentSettings() {
+    boolean allowed=com.zikra.app.assistant.AssistantConsent.granted(preferences,connection.endpoint());
+    AlertDialog.Builder dialog=new AlertDialog.Builder(this).setTitle("Izin data AI")
+        .setMessage(allowed?"Pesan dan lampiran pilihanmu dapat dikirim saat kamu menekan Kirim. Profil, tugas, jadwal dan riwayat tambahan tetap harus dipilih lewat Alat → Kirim dengan konteks.":"Izin belum diberikan untuk layanan ini. Kamu akan diminta sekali saat mengirim pesan online pertama.")
+        .setNegativeButton("Tutup",null);
+    if(allowed)dialog.setPositiveButton("Cabut izin",(d,w)->{
+      onlineClient.cancel();cancelImageWork();if(waiting){setWaiting(false);showCancelled();}
+      if(selectionDialog!=null)selectionDialog.dismiss();
+      com.zikra.app.assistant.AssistantConsent.revoke(preferences);toast("Izin dicabut. Pesan berikutnya meminta izin lagi.");
+    });
+    modeDialog=dialog.show();
   }
 
   private void pickAttachment(int action) {
@@ -626,8 +654,9 @@ public final class AiActivity extends BaseActivity {
 
   private void chooseMode() {
     modeDialog=new AlertDialog.Builder(this).setTitle("Mode Zikra AI")
-      .setItems(new String[]{"Otomatis","Online","Offline · panduan lokal","Pengaturan koneksi"},(dialog,index)->{
+      .setItems(new String[]{"Otomatis","Online","Offline · panduan lokal","Pengaturan koneksi","Izin data AI"},(dialog,index)->{
         if(index==3){configureGateway();return;}
+        if(index==4){showConsentSettings();return;}
         boolean pending=waiting;
         onlineClient.cancel();cancelImageWork();setWaiting(false);gatewayFailure=null;
         if(pending)showCancelled();
@@ -715,7 +744,31 @@ public final class AiActivity extends BaseActivity {
         || !effectiveOnline()
         || messages.length() == 0
         || !"user".equals(messages.optJSONObject(messages.length() - 1).optString("role"))) return;
-    showSelection();
+    boolean review=reviewNextSend;reviewNextSend=false;
+    Runnable dispatch=()->{if(review)showSelection();else sendBasicOnline();};
+    if(com.zikra.app.assistant.AssistantConsent.granted(preferences,connection.endpoint()))dispatch.run();
+    else showBasicConsent(dispatch);
+  }
+
+  private void showBasicConsent(Runnable dispatch) {
+    if(selectionDialog!=null&&selectionDialog.isShowing())return;
+    String endpoint=connection.endpoint();
+    selectionDialog=new AlertDialog.Builder(this).setTitle("Mulai Zikra AI online")
+        .setMessage("Pesan dan lampiran yang kamu pilih dikirim ke layanan Zikra serta penyedia AI saat kamu menekan Kirim. Setelah setuju, pesan berikutnya langsung dikirim tanpa tinjauan berulang.\n\nProfil, tugas, jadwal dan riwayat tambahan tidak disertakan otomatis. Pilih lewat Alat → Kirim dengan konteks bila diperlukan. Izin bisa dicabut lewat Izin data AI.")
+        .setPositiveButton("Setuju & kirim",(dialog,which)->{
+          if(!endpoint.equals(connection.endpoint())){toast("Layanan berubah. Kirim ulang untuk meninjau izin.");return;}
+          selectionDialog.dismiss();com.zikra.app.assistant.AssistantConsent.accept(preferences,endpoint);dispatch.run();
+        }).setNegativeButton("Batal",(dialog,which)->showCancelled()).create();
+    selectionDialog.setOnCancelListener(dialog->showCancelled());selectionDialog.show();
+  }
+
+  private void sendBasicOnline() {
+    try {
+      JSONObject request=AssistantSelection.build(this,messages,false,false,false,false,false,pendingVerse,false);
+      if(attachment!=null)request.put("attachments",new JSONArray().put(attachment.payload()));
+      if(request.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8).length>2*1024*1024)throw new JSONException("Attachment budget");
+      sendOnline(request);
+    }catch(Exception unavailable){toast("Pesan atau lampiran belum dapat disiapkan. Periksa lalu coba lagi.");showCancelled();}
   }
 
   private void showSelection() {

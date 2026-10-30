@@ -1,0 +1,204 @@
+{
+  "oldVersion": "1.9.29",
+  "newVersion": "1.9.31",
+  "originalInternalFiles": 33,
+  "databaseTables": [
+    {
+      "database": "zikra.db",
+      "table": "android_metadata",
+      "originalRows": 1,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra.db",
+      "table": "checklist_days",
+      "originalRows": 9,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra.db",
+      "table": "tasks",
+      "originalRows": 5,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra.db",
+      "table": "assistant_actions",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra_hadith.db",
+      "table": "android_metadata",
+      "originalRows": 1,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra_hadith.db",
+      "table": "entries",
+      "originalRows": 7,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra_hadith.db",
+      "table": "packages",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra_hadith.db",
+      "table": "bookmarks",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "assistant_chats.db",
+      "table": "android_metadata",
+      "originalRows": 1,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "assistant_chats.db",
+      "table": "conversations",
+      "originalRows": 1,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "assistant_chats.db",
+      "table": "metadata",
+      "originalRows": 1,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "study-schedule.db",
+      "table": "android_metadata",
+      "originalRows": 1,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "study-schedule.db",
+      "table": "weekly_classes",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "faith.db",
+      "table": "android_metadata",
+      "originalRows": 1,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "faith.db",
+      "table": "plans",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "faith.db",
+      "table": "entries",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "faith.db",
+      "table": "day_notes",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    }
+  ],
+  "preferences": [
+    {
+      "group": "zikra_preferences.xml",
+      "changedOriginalKeys": [
+        "assistant_active_chat"
+      ],
+      "derivedAlarmPlan": false,
+      "unexpectedChangedKeys": []
+    },
+    {
+      "group": "study_alarm_ids.xml",
+      "changedOriginalKeys": [],
+      "derivedAlarmPlan": false,
+      "unexpectedChangedKeys": []
+    },
+    {
+      "group": "zikra_weather_openmeteo_v2.xml",
+      "changedOriginalKeys": [],
+      "derivedAlarmPlan": false,
+      "unexpectedChangedKeys": []
+    },
+    {
+      "group": "study_focus_timer.xml",
+      "changedOriginalKeys": [],
+      "derivedAlarmPlan": false,
+      "unexpectedChangedKeys": []
+    },
+    {
+      "group": "quran_audio_options.xml",
+      "changedOriginalKeys": [],
+      "derivedAlarmPlan": false,
+      "unexpectedChangedKeys": []
+    },
+    {
+      "group": "assistant_gateway.xml",
+      "changedOriginalKeys": [
+        "online"
+      ],
+      "derivedAlarmPlan": false,
+      "unexpectedChangedKeys": [
+        "online"
+      ]
+    },
+    {
+      "group": "zikra_sky.xml",
+      "changedOriginalKeys": [],
+      "derivedAlarmPlan": false,
+      "unexpectedChangedKeys": []
+    },
+    {
+      "group": "zikra_location.xml",
+      "changedOriginalKeys": [],
+      "derivedAlarmPlan": false,
+      "unexpectedChangedKeys": []
+    },
+    {
+      "group": "prayer_alarm_plan.xml",
+      "changedOriginalKeys": [],
+      "derivedAlarmPlan": true,
+      "unexpectedChangedKeys": []
+    },
+    {
+      "group": "study_class_alarms.xml",
+      "changedOriginalKeys": [],
+      "derivedAlarmPlan": false,
+      "unexpectedChangedKeys": []
+    },
+    {
+      "group": "zikra_home_appearance.xml",
+      "changedOriginalKeys": [],
+      "derivedAlarmPlan": false,
+      "unexpectedChangedKeys": []
+    },
+    {
+      "group": "prayer_timetable_source.xml",
+      "changedOriginalKeys": [],
+      "derivedAlarmPlan": false,
+      "unexpectedChangedKeys": []
+    },
+    {
+      "group": "zikra_mosques_osm.xml",
+      "changedOriginalKeys": [],
+      "derivedAlarmPlan": false,
+      "unexpectedChangedKeys": []
+    }
+  ],
+  "changedOtherOriginalFiles": [],
+  "missingOriginalFiles": [],
+  "systemSettingsPreserved": true,
+  "permissionsPreserved": true,
+  "batteryPolicyPreserved": true,
+  "helperRemoved": true,
+  "ownPublicFixturesRemoved": 4,
+  "userManualPdfChatPreserved": true,
+  "passed": false
+}

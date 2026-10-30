@@ -109,7 +109,7 @@ public final class AiRefreshTest extends InstrumentationTestCase {
   public void testNativeChatHistorySearchAndDraftSurviveReopen()throws Exception{
     new AssistantConnection(context).offline();context.getSharedPreferences("zikra_preferences",0).edit().putString("assistant_mode_v2","offline").commit();
     launch();shot("welcome");
-    ui(()->{((EditText)activity.findViewById(R.id.aiInput)).setText("Bantu rencana belajar");activity.findViewById(R.id.aiSend).performClick();});
+    ui(()->{((EditText)activity.findViewById(R.id.aiInput)).setText("Bantu rencana belajar");AssistantReviewFixture.click(activity,R.id.aiSend);});
     assertEquals(2,rows().length());String original=(String)field("chatId");shot("chat");
     ui(()->{((EditText)activity.findViewById(R.id.aiInput)).setText("Draf pertama");activity.findViewById(R.id.aiClear).performClick();});
     assertFalse(original.equals(field("chatId")));assertEquals(0,rows().length());
@@ -170,7 +170,7 @@ public final class AiRefreshTest extends InstrumentationTestCase {
     ui(()->{try{set("attachment",draft);set("importingAttachment",false);}catch(Exception e){throw new RuntimeException(e);}call("renderAttachment");});
     shot("attachment");assertEquals(0,calls.get());
     ui(()->activity.findViewById(R.id.aiAttachmentPreview).performClick());shot("preview");ui(()->{try{((AlertDialog)field("sourceDialog")).dismiss();}catch(Exception e){throw new RuntimeException(e);}});
-    ui(()->{((EditText)activity.findViewById(R.id.aiInput)).setText("Baca kode uji");activity.findViewById(R.id.aiSend).performClick();});
+    ui(()->{((EditText)activity.findViewById(R.id.aiInput)).setText("Baca kode uji");AssistantReviewFixture.click(activity,R.id.aiSend);});
     AlertDialog dialog=(AlertDialog)field("selectionDialog");assertTrue(dialog.isShowing());assertEquals(0,calls.get());
     ArrayList<CheckBox> choices=new ArrayList<>();checks(dialog.getWindow().getDecorView(),choices);assertEquals(6,choices.size());for(CheckBox choice:choices)assertFalse(choice.isChecked());
     shot("consent");ui(()->dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick());waitUntil(()->calls.get()==1&&rows().length()==2);

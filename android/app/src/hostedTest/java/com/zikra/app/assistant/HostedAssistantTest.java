@@ -82,7 +82,7 @@ public final class HostedAssistantTest extends InstrumentationTestCase {
     retry(); waitReply(); assertOnline(); proof.put("retryAfterCorrectingToken", true);
 
     open(null); draft("Berikan satu saran belajar singkat.", false, true);
-    getInstrumentation().runOnMainSync(() -> activity.findViewById(R.id.aiSend).performClick());
+    getInstrumentation().runOnMainSync(() -> AssistantReviewFixture.click(activity,R.id.aiSend));
     waitStatus(R.string.assistant_cancelled); Thread.sleep(600); getInstrumentation().waitForIdleSync();
     assertEquals(1, messages().length()); screenshot("cancel-live.png"); proof.put("cancelNoLateReplyObserved", true);
     writeProof("conversation.json");
@@ -188,7 +188,7 @@ public final class HostedAssistantTest extends InstrumentationTestCase {
     } finally {try(WeeklyClassStore store=new WeeklyClassStore(context)){WeeklyClass row=store.find(classId);if(row!=null)store.delete(row.id,row.revision);}}
   }
   private void draft(String text, boolean proposals, boolean send) throws Exception {
-    getInstrumentation().runOnMainSync(() -> { ((EditText) activity.findViewById(R.id.aiInput)).setText(text); activity.findViewById(R.id.aiSend).performClick(); });
+    getInstrumentation().runOnMainSync(() -> { ((EditText) activity.findViewById(R.id.aiInput)).setText(text); AssistantReviewFixture.click(activity,R.id.aiSend); });
     getInstrumentation().waitForIdleSync(); AlertDialog dialog = (AlertDialog) field(activity, "selectionDialog");
     assertTrue(dialog.isShowing()); ArrayList<CheckBox> checks = new ArrayList<>(); checks(dialog.getWindow().getDecorView(), checks);
     assertEquals(6, checks.size()); for (CheckBox check : checks) assertFalse(check.isChecked());
@@ -196,7 +196,7 @@ public final class HostedAssistantTest extends InstrumentationTestCase {
     getInstrumentation().waitForIdleSync();
   }
   private void retry() throws Exception {
-    getInstrumentation().runOnMainSync(() -> activity.findViewById(R.id.aiRetry).performClick()); getInstrumentation().waitForIdleSync();
+    getInstrumentation().runOnMainSync(() -> AssistantReviewFixture.click(activity,R.id.aiRetry)); getInstrumentation().waitForIdleSync();
     AlertDialog dialog = (AlertDialog) field(activity, "selectionDialog"); assertTrue(dialog.isShowing());
     getInstrumentation().runOnMainSync(() -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick());
   }

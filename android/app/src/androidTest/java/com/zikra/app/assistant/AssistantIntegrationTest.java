@@ -171,7 +171,7 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
     getInstrumentation().waitForIdleSync();
     getInstrumentation().runOnMainSync(() -> {
       ((EditText) activity.findViewById(R.id.aiInput)).setText("Synthetic private test message");
-      activity.findViewById(R.id.aiSend).performClick();
+      AssistantReviewFixture.click(activity,R.id.aiSend);
     });
     getInstrumentation().waitForIdleSync();
     AlertDialog dialog = (AlertDialog) field(activity, "selectionDialog");
@@ -220,10 +220,10 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
       assertTrue((Boolean) field(activity, "waiting"));
       assertEquals(context.getString(R.string.assistant_cancel_send), activity.findViewById(R.id.aiSend).getContentDescription());
       saveScreenshot("loading.png");
-      getInstrumentation().runOnMainSync(() -> activity.findViewById(R.id.aiSend).performClick());
+      getInstrumentation().runOnMainSync(() -> AssistantReviewFixture.click(activity,R.id.aiSend));
       release.countDown(); Thread.sleep(250); getInstrumentation().waitForIdleSync();
       assertFalse((Boolean) field(activity, "waiting")); assertEquals(1, ((JSONArray) field(activity, "messages")).length());
-      getInstrumentation().runOnMainSync(() -> activity.findViewById(R.id.aiRetry).performClick());
+      getInstrumentation().runOnMainSync(() -> AssistantReviewFixture.click(activity,R.id.aiRetry));
       getInstrumentation().waitForIdleSync();
       AlertDialog review = (AlertDialog) field(activity, "selectionDialog");
       getInstrumentation().runOnMainSync(() -> review.getButton(AlertDialog.BUTTON_POSITIVE).performClick());
@@ -292,7 +292,7 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
   }
   private void sendDraft(String value, boolean proposals) throws Exception {
     getInstrumentation().runOnMainSync(() -> {
-      ((EditText) activity.findViewById(R.id.aiInput)).setText(value); activity.findViewById(R.id.aiSend).performClick();
+      ((EditText) activity.findViewById(R.id.aiInput)).setText(value); AssistantReviewFixture.click(activity,R.id.aiSend);
     });
     getInstrumentation().waitForIdleSync();
     AlertDialog dialog = (AlertDialog) field(activity, "selectionDialog");

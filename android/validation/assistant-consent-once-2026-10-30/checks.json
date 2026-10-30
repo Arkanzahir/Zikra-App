@@ -1,0 +1,11 @@
+{
+  "unitPassed": 163,
+  "unitSkipped": 4,
+  "unitFailed": 0,
+  "lintErrors": 0,
+  "lintWarnings": 862,
+  "nativePhysicalUniqueMethods": 1,
+  "nativePhysicalSuccessfulExecutions": 3,
+  "syntheticRequestsPerFinalExecution": 4,
+  "liveInferenceForConsentTest": false
+}

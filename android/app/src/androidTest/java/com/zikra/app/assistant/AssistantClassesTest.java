@@ -91,7 +91,7 @@ public final class AssistantClassesTest extends InstrumentationTestCase {
     main(()->choices.get(5).setChecked(false));
     assertFalse(text(firstDialog.getWindow().getDecorView()).contains("[DATA UJI C04] Kalkulus"));
     main(()->firstDialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick());assertEquals(0,calls.get());
-    main(()->activity.findViewById(R.id.aiRetry).performClick());
+    main(()->AssistantReviewFixture.click(activity,R.id.aiRetry));
     AlertDialog dialog=(AlertDialog)field(activity,"selectionDialog");ArrayList<CheckBox> retried=choices(dialog);
     for(CheckBox choice:retried)assertFalse("Per-send consent resets",choice.isChecked());
     CheckBox classes=retried.get(5);main(()->classes.setChecked(true));
@@ -152,7 +152,7 @@ public final class AssistantClassesTest extends InstrumentationTestCase {
   private static com.zikra.app.ui.AssistantReviewScrollView findBody(View view){if(view instanceof com.zikra.app.ui.AssistantReviewScrollView)return (com.zikra.app.ui.AssistantReviewScrollView)view;if(view instanceof ViewGroup)for(int i=0;i<((ViewGroup)view).getChildCount();i++){com.zikra.app.ui.AssistantReviewScrollView body=findBody(((ViewGroup)view).getChildAt(i));if(body!=null)return body;}return null;}
 
   private AlertDialog compose()throws Exception {
-    main(()->{((EditText)activity.findViewById(R.id.aiInput)).setText("[DATA UJI] Buat usulan persiapan kelas yang saya sertakan, tanpa tenggat.");activity.findViewById(R.id.aiSend).performClick();});
+    main(()->{((EditText)activity.findViewById(R.id.aiInput)).setText("[DATA UJI] Buat usulan persiapan kelas yang saya sertakan, tanpa tenggat.");AssistantReviewFixture.click(activity,R.id.aiSend);});
     AlertDialog dialog=(AlertDialog)field(activity,"selectionDialog");assertNotNull("Validated network required for consent",dialog);assertTrue(dialog.isShowing());return dialog;
   }
   private void untilReply()throws Exception{

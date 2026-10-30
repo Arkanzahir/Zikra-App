@@ -1,0 +1,16 @@
+{
+  "scope": "Fresh final snapshot after guarded mode repair; original failed audit retained separately",
+  "originalInternalFiles": 33,
+  "baselineDatabaseTables": 17,
+  "allBaselineDatabaseContentPreserved": true,
+  "manualPdfChatContentPreserved": true,
+  "unexpectedPreferenceKeys": [],
+  "missingOriginalFiles": [],
+  "settingsPreserved": true,
+  "permissionsPreserved": true,
+  "batteryPolicyPreserved": true,
+  "latestReviewedMode": "online",
+  "helperRemoved": true,
+  "mainAppUninstalled": false,
+  "passed": true
+}

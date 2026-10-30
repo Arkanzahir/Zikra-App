@@ -1,0 +1,5 @@
+com.zikra.app.assistant.PhoneConsentTest:.
+Test results for InstrumentationTestRunner=.
+Time: 4.444
+
+OK (1 test)

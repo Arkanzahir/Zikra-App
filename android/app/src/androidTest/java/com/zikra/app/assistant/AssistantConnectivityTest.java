@@ -109,7 +109,7 @@ public final class AssistantConnectivityTest extends InstrumentationTestCase {
     assertEquals(1, rows().length()); assertEquals(1, calls.get());
     assertTrue(text(R.id.aiMode).contains("Layanan bermasalah"));
     shot("timeout");
-    ui(() -> activity.findViewById(R.id.aiRetry).performClick());
+    ui(() -> AssistantReviewFixture.click(activity,R.id.aiRetry));
     assertTrue(dialog("selectionDialog").isShowing()); assertEquals(1, calls.get());
     approve(); waitFor(() -> rows().length() == 2);
     assertEquals(2, calls.get()); assertEquals("online", rows().getJSONObject(1).getString("mode"));
@@ -130,7 +130,7 @@ public final class AssistantConnectivityTest extends InstrumentationTestCase {
     mode(1); assertEquals("online", prefMode()); assertTrue(text(R.id.aiMode).contains("Online"));
     mode(0); assertEquals("auto", prefMode()); assertTrue(text(R.id.aiMode).startsWith("Otomatis"));
     assertEquals(0, calls.get()); assertEquals(0, rows().length());
-    mode(2); ui(() -> activity.findViewById(R.id.aiSend).performClick());
+    mode(2); ui(() -> AssistantReviewFixture.click(activity,R.id.aiSend));
     assertEquals(2, rows().length()); assertEquals("offline", rows().getJSONObject(1).getString("mode"));
     assertEquals(0, calls.get()); shot("manual-offline");
   }
@@ -189,7 +189,7 @@ public final class AssistantConnectivityTest extends InstrumentationTestCase {
       assertEquals(View.VISIBLE,activity.findViewById(R.id.aiRetry).getVisibility());
       release.countDown();SystemClock.sleep(400);getInstrumentation().waitForIdleSync();
       assertEquals(1,rows().length());assertEquals(1,calls.get());shot("mode-cancel");
-      mode(1);ui(()->activity.findViewById(R.id.aiRetry).performClick());
+      mode(1);ui(()->AssistantReviewFixture.click(activity,R.id.aiRetry));
       assertTrue(dialog("selectionDialog").isShowing());assertEquals(1,calls.get());
       approve();waitFor(()->rows().length()==2);assertEquals(2,calls.get());
     }finally{release.countDown();}
@@ -227,7 +227,7 @@ public final class AssistantConnectivityTest extends InstrumentationTestCase {
     ui(() -> ((EditText) activity.findViewById(R.id.aiInput)).setText("Draf harus tetap lokal selama jaringan pulih"));
     assertTrue(text(R.id.aiMode).contains("Offline"));
     assertEquals(context.getString(expected.equals("CAPTIVE_PORTAL") ? R.string.assistant_network_login : R.string.assistant_network_unvalidated), text(R.id.aiNetworkNote));
-    mode(1); ui(() -> activity.findViewById(R.id.aiSend).performClick());
+    mode(1); ui(() -> AssistantReviewFixture.click(activity,R.id.aiSend));
     assertEquals(0, calls.get()); assertEquals(0, rows().length()); assertFalse(text(R.id.aiInput).isEmpty());
     mode(0); shot(expected.toLowerCase(java.util.Locale.ROOT));
     Files.write(new File(context.getFilesDir(), "assistant-c03-recover-ready").toPath(), expected.getBytes(StandardCharsets.UTF_8));
@@ -252,7 +252,7 @@ public final class AssistantConnectivityTest extends InstrumentationTestCase {
     waitFor(() -> activity.hasWindowFocus()); getInstrumentation().waitForIdleSync(); SystemClock.sleep(400);
   }
   private void close() { if (activity != null) { ui(activity::finish); activity = null; } }
-  private void compose(String text) { ui(() -> { ((EditText) activity.findViewById(R.id.aiInput)).setText(text); activity.findViewById(R.id.aiSend).performClick(); }); }
+  private void compose(String text) { ui(() -> { ((EditText) activity.findViewById(R.id.aiInput)).setText(text); AssistantReviewFixture.click(activity,R.id.aiSend); }); }
   private void approve() throws Exception { AlertDialog dialog = dialog("selectionDialog"); assertTrue(dialog.isShowing()); ui(() -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()); }
   private void mode(int position) throws Exception {
     ui(() -> activity.findViewById(R.id.aiMode).performClick()); AlertDialog dialog = dialog("modeDialog");

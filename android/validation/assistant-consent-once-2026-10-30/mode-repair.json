@@ -1,0 +1,11 @@
+{
+  "scope": "Guarded repair of two AI mode values only; does not replace the original failed preservation audit",
+  "userSaidOfflineWasNotTheirChange": true,
+  "restoredLastObservedSuccessfulOnlineChoice": true,
+  "routingMode": "online",
+  "gatewayOnline": true,
+  "otherPreferenceBytesUnchanged": true,
+  "originalFailedAuditRetained": true,
+  "backedUpBeforeRepair": true,
+  "databaseRestored": false
+}
