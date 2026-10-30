@@ -873,6 +873,7 @@ public final class AiActivity extends BaseActivity {
     switch (failure) {
       case UNAUTHORIZED: message = R.string.assistant_auth_failed; break;
       case QUOTA: message = R.string.assistant_quota_failed; break;
+      case BUSY: message = R.string.assistant_busy_failed; break;
       case TIMEOUT: message = R.string.assistant_timeout_failed; break;
       case NETWORK: message = R.string.assistant_network_failed; break;
       case SOURCE: message = R.string.assistant_source_failed; break;

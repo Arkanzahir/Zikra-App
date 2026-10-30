@@ -33,6 +33,10 @@ public class AssistantSelectionTest {
   @Test public void errorKindsAndSourceProvenanceDoNotTurnIntoOfflineAnswers() throws Exception {
     assertEquals(OnlineAssistantClient.Failure.UNAUTHORIZED, OnlineAssistantClient.failure(401, ""));
     assertEquals(OnlineAssistantClient.Failure.QUOTA, OnlineAssistantClient.failure(429, ""));
+    assertEquals(OnlineAssistantClient.Failure.BUSY, OnlineAssistantClient.failure(503, "provider_busy"));
+    assertEquals(OnlineAssistantClient.Failure.BUSY, OnlineAssistantClient.failure(429, "provider_busy"));
+    assertEquals(OnlineAssistantClient.Failure.UNAUTHORIZED, OnlineAssistantClient.failure(401, "provider_busy"));
+    assertEquals(OnlineAssistantClient.Failure.SERVER, OnlineAssistantClient.failure(503, "access_unavailable"));
     assertEquals(OnlineAssistantClient.Failure.TIMEOUT, OnlineAssistantClient.failure(504, ""));
     assertEquals(OnlineAssistantClient.Failure.SOURCE, OnlineAssistantClient.failure(503, "source_unavailable"));
     JSONObject verse = new JSONObject().put("chapter", 1).put("number", 2);

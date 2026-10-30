@@ -14,6 +14,7 @@
     <string name="assistant_timeout_failed">Waktu tunggu habis. Periksa koneksi lalu coba lagi.</string>
     <string name="assistant_network_failed">Backend tidak terhubung. Periksa internet lalu coba lagi.</string>
     <string name="assistant_server_failed">Backend atau penyedia belum tersedia. Coba lagi nanti.</string>
+    <string name="assistant_busy_failed">Layanan AI sedang penuh. Tunggu sekitar satu menit, lalu tekan Coba lagi.</string>
     <string name="assistant_response_failed">Balasan backend tidak valid. Belum ada jawaban online yang ditampilkan.</string>
     <string name="assistant_source_failed">Sumber tafsir belum tersedia. Tidak membuat kutipan atau tafsir pengganti. Coba lagi nanti.</string>
     <string name="assistant_review_task">Tinjau usulan tugas</string>

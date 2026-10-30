@@ -22,12 +22,13 @@ public final class OnlineAssistantClient implements AutoCloseable {
     default void failed(Failure failure) { failed(); }
   }
 
-  public enum Failure { UNAUTHORIZED, QUOTA, TIMEOUT, NETWORK, SERVER, INVALID_RESPONSE, SOURCE, ATTACHMENT }
+  public enum Failure { UNAUTHORIZED, QUOTA, BUSY, TIMEOUT, NETWORK, SERVER, INVALID_RESPONSE, SOURCE, ATTACHMENT }
 
   public static Failure failure(int status, String error) {
     if ("source_unavailable".equals(error)) return Failure.SOURCE;
     if(status==413||"vision_unavailable".equals(error)||"invalid_attachment".equals(error)||"unsupported_attachment".equals(error))return Failure.ATTACHMENT;
     if (status == 401 || status == 403) return Failure.UNAUTHORIZED;
+    if ((status == 429 || status == 503) && "provider_busy".equals(error)) return Failure.BUSY;
     if (status == 429) return Failure.QUOTA;
     if (status == 408 || status == 504) return Failure.TIMEOUT;
     return status >= 500 ? Failure.SERVER : Failure.INVALID_RESPONSE;

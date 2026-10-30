@@ -176,6 +176,7 @@ export function createRequestHandler({ apiKey, model, visionModel, clientToken, 
       });
       if (!upstream.ok) {
         await upstream.body?.cancel();
+        if (upstream.status === 429) res.setHeader('Retry-After', '60');
         return reply(upstream.status === 429 ? 429 : 502,
           { error: upstream.status === 429 ? 'provider_busy' : 'provider_unavailable' });
       }
@@ -185,6 +186,12 @@ export function createRequestHandler({ apiKey, model, visionModel, clientToken, 
         if (controller.signal.aborted) throw error;
         return reply(502, { error: 'invalid_provider_response' });
       }
+      if (data?.error?.code === 'capacity_exhausted') {
+        res.setHeader('Retry-After', '60');
+        return reply(503, { error: 'provider_busy' });
+      }
+      // Some upstream failures use HTTP 200. Never display a coexisting answer as success.
+      if (data?.error != null) return reply(502, { error: 'provider_unavailable' });
       const content = data?.choices?.[0]?.message?.content;
       if (typeof content !== 'string' || !content.trim() || content.length > 8000)
         return reply(502, { error: 'invalid_provider_response' });

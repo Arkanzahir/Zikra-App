@@ -118,7 +118,41 @@ test('provider 429 is mapped without leaking its body', async t => {
   const send = await setup(t, () => json({ secret: 'hidden' }, 429));
   const response = await send();
   assert.equal(response.status, 429);
+  assert.equal(response.headers.get('retry-after'), '60');
   assert.deepEqual(await response.json(), { error: 'provider_busy' });
+});
+
+test('HTTP 200 capacity error is sanitized, never retried automatically and releases its lease', async t => {
+  let calls = 0, releases = 0;
+  const send = await setup(t, () => {
+    calls++;
+    return json({ error: { code: 'capacity_exhausted', message: 'sensitive-provider-detail' },
+      choices: [{ message: { content: 'must not display' } }] });
+  }, { accessMode: 'installation', accessStore: {
+    identify: async () => 'synthetic-installation',
+    acquire: async () => ({ allowed: true, lease: 'synthetic-lease' }),
+    release: async (identity, lease) => {
+      assert.equal(identity, 'synthetic-installation');
+      assert.equal(lease, 'synthetic-lease');
+      releases++;
+    }
+  } });
+  const response = await send();
+  assert.equal(response.status, 503);
+  assert.equal(response.headers.get('retry-after'), '60');
+  assert.equal(response.headers.get('cache-control'), 'no-store');
+  assert.deepEqual(await response.json(), { error: 'provider_busy' });
+  assert.equal(calls, 1);
+  assert.equal(releases, 1);
+});
+
+test('other HTTP 200 provider errors cannot leak details or masquerade as an answer', async t => {
+  for (const error of [{ code: 'unknown', message: 'sensitive-detail' }, 'sensitive-detail']) {
+    const send = await setup(t, () => json({ error, choices: [{ message: { content: 'must not display' } }] }));
+    const response = await send();
+    assert.equal(response.status, 502);
+    assert.deepEqual(await response.json(), { error: 'provider_unavailable' });
+  }
 });
 
 test('provider timeout aborts work and releases capacity', async t => {
