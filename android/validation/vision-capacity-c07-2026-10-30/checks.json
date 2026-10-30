@@ -1,0 +1,19 @@
+{
+  "androidUnit": {
+    "tests": 167,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4
+  },
+  "lintErrors": 0,
+  "lintWarnings": 861,
+  "backendTests": 71,
+  "backendSkipped": 0,
+  "nativeTestsRun": false,
+  "phoneConnected": false,
+  "phoneChanged": false,
+  "hostedInitialStrictPasses": 2,
+  "hostedInitialCases": 4,
+  "hostedVisionReadinessPassed": false,
+  "C07Complete": false
+}

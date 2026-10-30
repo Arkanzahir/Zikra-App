@@ -1,0 +1,19 @@
+{
+  "scope": "One synthetic upstream diagnostic using the last recorded vision model; same system/attachment/budget/temperature. Current hosted model env not independently re-read, not an APK test",
+  "status": 200,
+  "durationMs": 12471,
+  "contentType": "application/json",
+  "responseBytes": 176,
+  "validJson": true,
+  "topLevelKeys": [
+    "error"
+  ],
+  "providerError": {
+    "message": "Qwen/Qwen2.5-VL-7B-Instruct is temporarily at capacity. Please try again shortly.",
+    "type": "server_error",
+    "code": "capacity_exhausted",
+    "param": null
+  },
+  "usage": null,
+  "reply": null
+}

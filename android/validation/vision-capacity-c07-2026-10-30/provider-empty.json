@@ -1,0 +1,10 @@
+{
+  "scope": "One synthetic upstream diagnostic using the last recorded vision model; same system/attachment/budget/temperature. Current hosted model env not independently re-read, not an APK test",
+  "status": 200,
+  "durationMs": 11187,
+  "contentType": "application/json",
+  "responseBytes": 175,
+  "validJson": true,
+  "usage": null,
+  "reply": null
+}

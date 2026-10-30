@@ -1,0 +1,124 @@
+[
+  {
+    "name": "photo-clear",
+    "request": {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Read the attached receipt. Return a JSON object with code and total. Use only the code and calculation visible in the image."
+        }
+      ],
+      "context": {},
+      "attachments": [
+        {
+          "name": "photo-clear.jpg",
+          "kind": "photo",
+          "mime": "image/jpeg",
+          "pages": 1,
+          "images": [
+            {
+              "mime": "image/jpeg"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "code": "ZK-7348",
+      "total": 36000
+    }
+  },
+  {
+    "name": "photo-low-contrast-skew",
+    "request": {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Read the attached receipt. Return a JSON object with code and total. Use only the code and calculation visible in the image."
+        }
+      ],
+      "context": {},
+      "attachments": [
+        {
+          "name": "photo-low-contrast-skew.jpg",
+          "kind": "photo",
+          "mime": "image/jpeg",
+          "pages": 1,
+          "images": [
+            {
+              "mime": "image/jpeg"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "code": "ZK-7348",
+      "total": 36000
+    }
+  },
+  {
+    "name": "scan-three-pages",
+    "request": {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Read all three attached pages. Return a JSON object with answers as an array, ordered by page. Calculate the expression shown on each page."
+        }
+      ],
+      "context": {},
+      "attachments": [
+        {
+          "name": "scan-three-pages.pdf",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "pages": 3,
+          "images": [
+            {
+              "mime": "image/jpeg"
+            },
+            {
+              "mime": "image/jpeg"
+            },
+            {
+              "mime": "image/jpeg"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "answers": [
+        23,
+        48,
+        57
+      ]
+    }
+  },
+  {
+    "name": "docx-text-tabs",
+    "request": {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Read the document. Return a JSON object with code, day, and time, using the exact values in the document."
+        }
+      ],
+      "context": {},
+      "attachments": [
+        {
+          "name": "word-tabs.docx",
+          "kind": "docx",
+          "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "pages": 1,
+          "text": "Kode ZK-4826\nMatematika\tSenin\n09.00"
+        }
+      ]
+    },
+    "expected": {
+      "code": "ZK-4826",
+      "day": "Senin",
+      "time": "09.00"
+    }
+  }
+]

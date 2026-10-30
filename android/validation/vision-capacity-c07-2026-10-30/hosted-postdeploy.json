@@ -1,0 +1,32 @@
+{
+  "startedAt": "2026-10-30T04:55:20.919Z",
+  "scope": "PC HTTPS to actual hosted gateway/provider; direct synthetic contract, not APK or physical picker",
+  "interceptorUsed": false,
+  "personalContextUploaded": false,
+  "retries": 0,
+  "results": [
+    {
+      "name": "photo-clear",
+      "expected": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "retryAfter": null,
+      "status": 504,
+      "provider": null,
+      "error": "provider_unavailable",
+      "reply": null,
+      "parsed": null,
+      "durationMs": 36470,
+      "vercelRequestId": "sin1::iad1::vwb6h-1793336119410-0b3395fdb13f",
+      "passed": false
+    }
+  ],
+  "cleanup": {
+    "temporaryRegistryUsageAndLeasesRemoved": true,
+    "originalInstallationNotModified": true,
+    "sharedGlobalKeyNotDeleted": true
+  },
+  "finishedAt": "2026-10-30T04:55:58.100Z",
+  "passed": false
+}

@@ -1,0 +1,49 @@
+{
+  "syntheticOnly": true,
+  "method": "Pillow-rendered JPEG pages supplied directly to the gateway contract; not Android PDF import",
+  "cases": [
+    {
+      "name": "photo-clear",
+      "expected": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "bodyBytes": 24571
+    },
+    {
+      "name": "photo-low-contrast-skew",
+      "expected": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "bodyBytes": 19595
+    },
+    {
+      "name": "scan-three-pages",
+      "expected": {
+        "answers": [
+          23,
+          48,
+          57
+        ]
+      },
+      "bodyBytes": 73434
+    },
+    {
+      "name": "docx-text-tabs",
+      "expected": {
+        "code": "ZK-4826",
+        "day": "Senin",
+        "time": "09.00"
+      },
+      "bodyBytes": 373
+    }
+  ],
+  "fixtureHashes": {
+    "photo-clear.jpg": "a79c8bf5ca4b384c1a42bb20dc10a4947ddd70e3dc922ad46f4419d78b5ebd2e",
+    "photo-low-contrast-skew.jpg": "be7f826b8a9de098663d2b2cbdc539576ccdf6fb630b6b376ca7d4f5720feb33",
+    "scan-page-1.jpg": "dd2ac5fa1aaf129efcf09c95da8756b914bd5712e5e3f90e3b0bce55500945be",
+    "scan-page-2.jpg": "dadd02260f3c1832bbe7f45e5d2bc9170e3cf10b261e4acec2340085b5d86e30",
+    "scan-page-3.jpg": "68fedf17f5f3f385d56dd70be487858837cfb500b9d91f402db1307bd8a23420"
+  }
+}
