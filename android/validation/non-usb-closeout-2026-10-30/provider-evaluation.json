@@ -1,0 +1,113 @@
+{
+  "scope": "Direct candidate provider, synthetic vision contracts, not hosted or Android picker",
+  "model": "Qwen/Qwen3-VL-8B-Instruct",
+  "startedAt": "2026-10-30T06:33:56.945Z",
+  "automaticRetries": 0,
+  "productionChanged": false,
+  "results": [
+    {
+      "name": "photo-clear",
+      "expected": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "status": 200,
+      "errorCode": null,
+      "reply": "{\n  \"code\": \"ZK-7348\",\n  \"total\": 36000\n}",
+      "parsed": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "passed": true,
+      "durationMs": 2207
+    },
+    {
+      "name": "photo-low-contrast-skew",
+      "expected": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "status": 200,
+      "errorCode": null,
+      "reply": "{\n  \"code\": \"ZK-7348\",\n  \"total\": 36000\n}",
+      "parsed": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "passed": true,
+      "durationMs": 1703
+    },
+    {
+      "name": "scan-three-pages",
+      "expected": {
+        "answers": [
+          23,
+          48,
+          57
+        ]
+      },
+      "status": 200,
+      "errorCode": null,
+      "reply": "{\n  \"answers\": [\n    23,\n    48,\n    57\n  ]\n}",
+      "parsed": {
+        "answers": [
+          23,
+          48,
+          57
+        ]
+      },
+      "passed": true,
+      "durationMs": 3935
+    },
+    {
+      "name": "blank-no-invented-receipt",
+      "expected": {
+        "code": null,
+        "total": null
+      },
+      "status": 200,
+      "errorCode": null,
+      "reply": "{\n  \"code\": null,\n  \"total\": null\n}",
+      "parsed": {
+        "code": null,
+        "total": null
+      },
+      "passed": true,
+      "durationMs": 1520
+    },
+    {
+      "name": "photo-rotated-90",
+      "expected": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "status": 200,
+      "errorCode": null,
+      "reply": "{\n  \"code\": \"ZK-7348\",\n  \"total\": 36000\n}",
+      "parsed": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "passed": true,
+      "durationMs": 1731
+    },
+    {
+      "name": "photo-clear-repeat",
+      "expected": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "status": 200,
+      "errorCode": null,
+      "reply": "{\n  \"code\": \"ZK-7348\",\n  \"total\": 36000\n}",
+      "parsed": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "passed": true,
+      "durationMs": 1486
+    }
+  ],
+  "passed": true,
+  "finishedAt": "2026-10-30T06:34:09.533Z"
+}

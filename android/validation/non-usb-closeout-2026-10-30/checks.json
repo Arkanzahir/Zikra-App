@@ -1,0 +1,15 @@
+{
+  "directVisionCasesPassed": 6,
+  "hostedCasesPassed": 7,
+  "backendTestsPassed": 72,
+  "backendSkipped": 0,
+  "nativeOrAndroidUnitLintRerun": false,
+  "newApkBuilt": false,
+  "phoneAccessed": false,
+  "phoneTestsDeferredByUser": true,
+  "C07HostedSampleGateSatisfied": true,
+  "C07Complete": false,
+  "C02LaptopOffTestComplete": false,
+  "D02AudioRedistributionConfirmed": false,
+  "B01ReplyReceived": false
+}

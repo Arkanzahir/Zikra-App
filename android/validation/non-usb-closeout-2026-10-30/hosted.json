@@ -1,0 +1,150 @@
+{
+  "startedAt": "2026-10-30T06:39:36.415Z",
+  "scope": "PC HTTPS to actual hosted gateway/provider; direct synthetic contract, not APK or physical picker",
+  "interceptorUsed": false,
+  "personalContextUploaded": false,
+  "retries": 0,
+  "results": [
+    {
+      "name": "photo-clear",
+      "expected": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "status": 200,
+      "provider": "featherless",
+      "error": null,
+      "reply": "{\n  \"code\": \"ZK-7348\",\n  \"total\": 36000\n}",
+      "parsed": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "durationMs": 4284,
+      "vercelRequestId": "sin1::iad1::vwb6h-1793342376878-62b8dd85a1ba",
+      "passed": true
+    },
+    {
+      "name": "photo-low-contrast-skew",
+      "expected": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "status": 200,
+      "provider": "featherless",
+      "error": null,
+      "reply": "{\n  \"code\": \"ZK-7348\",\n  \"total\": 36000\n}",
+      "parsed": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "durationMs": 2938,
+      "vercelRequestId": "sin1::iad1::vzkmr-1793342381043-5f4db650d625",
+      "passed": true
+    },
+    {
+      "name": "scan-three-pages",
+      "expected": {
+        "answers": [
+          23,
+          48,
+          57
+        ]
+      },
+      "status": 200,
+      "provider": "featherless",
+      "error": null,
+      "reply": "{\n  \"answers\": [\n    23,\n    48,\n    57\n  ]\n}",
+      "parsed": {
+        "answers": [
+          23,
+          48,
+          57
+        ]
+      },
+      "durationMs": 3071,
+      "vercelRequestId": "sin1::iad1::kns86-1793342383978-169e05d277c7",
+      "passed": true
+    },
+    {
+      "name": "blank-no-invented-receipt",
+      "expected": {
+        "code": null,
+        "total": null
+      },
+      "status": 200,
+      "provider": "featherless",
+      "error": null,
+      "reply": "{\n  \"code\": null,\n  \"total\": null\n}",
+      "parsed": {
+        "code": null,
+        "total": null
+      },
+      "durationMs": 2622,
+      "vercelRequestId": "sin1::iad1::bwsk5-1793342387055-f3f93f8a79ad",
+      "passed": true
+    },
+    {
+      "name": "photo-rotated-90",
+      "expected": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "status": 200,
+      "provider": "featherless",
+      "error": null,
+      "reply": "{\n  \"code\": \"ZK-7348\",\n  \"total\": 36000\n}",
+      "parsed": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "durationMs": 3161,
+      "vercelRequestId": "sin1::iad1::f49g9-1793342389686-c774b5f73462",
+      "passed": true
+    },
+    {
+      "name": "photo-clear-repeat",
+      "expected": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "status": 200,
+      "provider": "featherless",
+      "error": null,
+      "reply": "{\n  \"code\": \"ZK-7348\",\n  \"total\": 36000\n}",
+      "parsed": {
+        "code": "ZK-7348",
+        "total": 36000
+      },
+      "durationMs": 2644,
+      "vercelRequestId": "sin1::iad1::7tlpm-1793342392841-6c992b28846c",
+      "passed": true
+    },
+    {
+      "name": "docx-text-tabs",
+      "expected": {
+        "code": "ZK-4826",
+        "day": "Senin",
+        "time": "09.00"
+      },
+      "status": 200,
+      "provider": "featherless",
+      "error": null,
+      "reply": "```json\n{\n  \"code\": \"ZK-4826\",\n  \"day\": \"Senin\",\n  \"time\": \"09.00\"\n}\n```",
+      "parsed": {
+        "code": "ZK-4826",
+        "day": "Senin",
+        "time": "09.00"
+      },
+      "durationMs": 2136,
+      "vercelRequestId": "sin1::iad1::7tlpm-1793342395472-6ba0378d7a06",
+      "passed": true
+    }
+  ],
+  "cleanup": {
+    "temporaryRegistryUsageAndLeasesRemoved": true,
+    "originalInstallationNotModified": true,
+    "sharedGlobalKeyNotDeleted": true
+  },
+  "finishedAt": "2026-10-30T06:39:57.884Z",
+  "passed": true
+}

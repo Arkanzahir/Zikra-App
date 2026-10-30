@@ -1,5 +1,10 @@
 # Workflow proyek Zikra
 
+## C07 vision hosted tuntas terarah tanpa USB — 30 Oktober2026
+
+Pengguna sedang memakai HP; jangan akses/berulang meminta USB. Model vision production kini`Qwen/Qwen3-VL-8B-Instruct`, sourcekonfigurasi`43f821a554ab15d35eeb5f0f97ca9912c5134a83`, setelah6sampel langsung dan7request hosted200/strictpass;72backend/0skip lulus.[Bukti/rollout/monitor/mail/audio](android/validation/non-usb-closeout-2026-10-30/README.md). Hanya variabel vision diganti,19entri env aplikasi lain snapshot-sama(maskedsecret tidak didekripsi);key/modelchatteks/provider/kuota/paket tetap. DeploymentREADY,health200/tanpatoken401;tidak ada build/HP/Androidtest baru,APK tetap1.9.33/HP terakhir1.9.31. C07bagianhosted sampel terpenuhi tetapi parent[ ] untuk picker/grant/izin HP;hasil gagal lama tetap. Monitor3scheduleterbaru success;C02laptopmati belum. B01mail30Oktober belum ada balasan;D02izin audio belum,draf lokal belum dikirim. WIP/stash/audio/rahasia/aset/dataHP tetap;B01/C02/D02/D02a/E/F/G/publik/UI10/modeorangtua sesuai gerbang/penundaan. Audit/commit/push tetap wajib.
+
+
 ## C07 lanjutan tanpa HP — 30 Oktober2026
 
 Pengguna menunda HP; lanjut tanpa HP dan jangan berulang meminta USB. Source`61e16a41de22f0a2009b83acace1d0a0b6ba46ac` memperjelas HTTP503 upstream menjadi503/provider_busy,header60,tanpa auto-retry/body bocor.72backend/0skip lulus,server READY;[bukti aktual](android/validation/vision-reliability-c07-2026-10-30/README.md) menerima503/provider_busy dalam15.240ms, bukan foto berhasil. Model production Qwen2.5-VL-7B dibaca/dikonfirmasi,env tetap;API katalog404 dan kandidat Gemma403/perlu OAuth dicatat tanpa menerima ketentuan/mengganti model. **C07 tetap[ ].** Tidak ada Android/build/HP baru;APK lokal terakhir1.9.33,HP terakhir1.9.31. WIP/stash/audio/data/rahasia/aset tetap;C02/D02/D02a/B01/E/F/G/publik masih mengikuti gerbang terbuka,UI10/mode orang tua ditunda. Checkpoint terverifikasi tetap audit/commit/push.

@@ -1,0 +1,12 @@
+{
+  "previousVisionModel": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "nextVisionModel": "Qwen/Qwen3-VL-8B-Instruct",
+  "providerChanged": false,
+  "paidPlanChanged": false,
+  "keyRotation": false,
+  "baselineVerified": true,
+  "otherVariablesCompared": 19,
+  "envUpdated": true,
+  "unrelatedApplicationEnvUnchanged": true,
+  "envComparisonScope": "19 non-VERCEL application entries as returned by env pull; masked secret values not independently decrypted. Only the vision-variable update command was issued."
+}

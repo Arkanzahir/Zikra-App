@@ -1,5 +1,7 @@
 # Gateway Featherless untuk Pendamping Zikra
 
+**Vision production30Oktober2026:** `Qwen/Qwen3-VL-8B-Instruct` menggantikan model vision lama sesudah6direct/7hosted sampel strictpass;72tes backend lulus. Key/provider/modelchatteks/paket tetap;[bukti/rollout/batas](../android/validation/non-usb-closeout-2026-10-30/README.md). C07 keseluruhan tetap terbuka untuk HP.
+
 **Lanjutan30 Oktober2026:** HTTP503 upstream langsung juga503/provider_busy;72tes lulus dan503/header60 teramati pada hosted. Model aktif dikonfirmasi,vision masih belum siap;[bukti/katalog/alternatif/batas](../android/validation/vision-reliability-c07-2026-10-30/README.md). HP ditunda pengguna;env/model tetap.
 
 **30 Oktober2026 — C07 parsial:** error upstream200/capacity_exhausted kini503/provider_busy dan Retry-After60; error lain disanitasi, tanpa auto-retry.71tes lulus. Provider nyata masih mengalami kapasitas/timeout; [bukti dan batas](../android/validation/vision-capacity-c07-2026-10-30/README.md). C07 dan C02 belum ditutup.

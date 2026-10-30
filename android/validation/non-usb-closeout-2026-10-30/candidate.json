@@ -1,0 +1,13 @@
+{
+  "scope": "One synthetic photo via candidate upstream model, not hosted configuration or APK",
+  "model": "Qwen/Qwen3-VL-8B-Instruct",
+  "productionModelChanged": false,
+  "planChanged": false,
+  "automaticRetries": 0,
+  "startedAt": "2026-10-30T06:32:14.832Z",
+  "status": 200,
+  "errorCode": null,
+  "reply": "{\n  \"code\": \"ZK-7348\",\n  \"total\": 36000\n}",
+  "passed": true,
+  "durationMs": 2448
+}
