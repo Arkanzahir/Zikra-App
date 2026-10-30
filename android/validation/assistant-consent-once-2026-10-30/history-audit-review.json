@@ -1,0 +1,22 @@
+{
+  "automatedScanPassed": false,
+  "automatedFindingRetained": [
+    {
+      "path": "android/app/src/androidTest/java/com/zikra/app/assistant/AssistantConnectivityTest.java",
+      "blob": "77d27c3a5d1328c61ce8b36fdac3477689f6579b",
+      "reasons": [
+        "credential_pattern_review"
+      ]
+    }
+  ],
+  "manualReview": {
+    "classification": "Existing synthetic provider-key rejection fixture, unchanged from origin/main",
+    "valueSha256": "76b3e55ba4030d2e4fd8783fce05f95a210165b34173104e923f1c790141d045",
+    "alreadyPresentInRemoteBaseline": true,
+    "usedOnlyInInvalidConfigurationTestWithExampleTestEndpoint": true,
+    "notOneOfKnownPrivateValues": true
+  },
+  "allOtherNewBlobChecksPassed": true,
+  "passedAfterSpecificManualReview": true,
+  "scope": "Only this exact fixture/hash is reviewed; no general credential-pattern suppression"
+}

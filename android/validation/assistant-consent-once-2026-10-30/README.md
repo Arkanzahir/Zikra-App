@@ -87,3 +87,8 @@ belum menjadi bukti izin bundling aplikasi. Tidak mengirim pesan ke pihak lain.
 B01 tetap menunggu sumber; UI10 sorotan ditunda, E belum dimulai.
 
 Source runtime/helper `fd098bff92c4c80922b12d0668426e7bbb629e96`; [receipt/source hash](receipt.json).
+
+Audit commit menemukan satu pola credential pada fixture penolakan key sintetis
+yang sudah ada di origin/main. Temuan otomatis tetap disimpan; [review khusus
+berdasarkan hash/konteks](history-audit-review.json) membedakannya dari credential
+nyata. Tidak ada pengecualian umum pada scanner atau penghapusan temuannya.
