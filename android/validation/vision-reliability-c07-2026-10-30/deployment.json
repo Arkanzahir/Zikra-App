@@ -1,0 +1,29 @@
+{
+  "uploadedFiles": {
+    "package.json": "d64f8e30ec50e44a7ce0b7002a4547ac1d071dd0902ca38f3401b55bb2e75238",
+    "package-lock.json": "2737ddb717d5e03097f6be75b382505b1e1027a2e266e50a403c29a6260cfedc",
+    "vercel.json": "9a5a7299953b7008283f18ea95f6dee4ebb1b47639c13ea295ef9c8f86531bdf",
+    "api/health.js": "8b1bcee37a188e924a3acfe67d3ee144686e2e036bbedb27e59b23b2cc78a51d",
+    "api/assistant.js": "6312b0830d08d144aab4563d954556d9041c9b6a539a713f1625e48ee19e9ef7",
+    "api/images.js": "60951f1c03c110766d96b83f7ac2cf0434893cd9f2a56ef572c6cf8fc3689cd0",
+    "api/capabilities.js": "ab0835920bd45183c0be3123a336e152ff884d4fdfe7ff54ba68899f6d8a03f5",
+    "server.mjs": "99896ed7509b8d88d3363367072d792e58351d24c05f3639e708482ac9221591",
+    "config.mjs": "b71ada7fb123e4d7753e348dcadd45b965f6b05f8497d403fa19251d5198309f",
+    "access.mjs": "1bc2cd5b45d94581a011b7701d6a0aa18457d04f8d8da0407c72d47de3789e6a",
+    "redis-access.mjs": "01a9773749802ac0553bccdd1af2bffa391f011eb9cf1fdc71b66c525e0e7e9e",
+    "vercel-handler.mjs": "8d15840d8bf03039334a37ed33402bbd81689ef08bc80885c4675264e454c2ec",
+    "assistant-contract.mjs": "3493b5cc7524ffaea5c7b378d50215d5d37507f1ffafb913bbd7910f334c52f9",
+    "class-context.mjs": "4c6ac23f0f5a153906e04441e06bfebae319b5fce976c0e9691259e6151c419b",
+    "tafsir.mjs": "edf642d9dbbe5cb59f98230866eb804b6d3af7b72ee47f1c13ec1d7af2724471",
+    "attachments.mjs": "b4aa92e03afa7d1b81d196ab4e368140958358c9c8d1ad7465403e76fb6e0740",
+    "image-generation.mjs": "8791ca43812e45c8c10c97758104e5fa20dfdce60b55d58cca2fc609c48f1075"
+  },
+  "knownPrivateValueFindings": 0,
+  "success": true,
+  "secretFreeCliOutput": true,
+  "productionOrigin": "https://zikra-ai.vercel.app",
+  "deploymentUrl": "https://zikra-o79c62jjg-arkanzahir86-3257s-projects.vercel.app",
+  "deploymentId": "dpl_5Zrf68SppH6cXdoVV2NpVfydGKaz",
+  "readyState": "READY",
+  "envChanged": false
+}

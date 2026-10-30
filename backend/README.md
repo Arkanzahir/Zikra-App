@@ -1,5 +1,7 @@
 # Gateway Featherless untuk Pendamping Zikra
 
+**Lanjutan30 Oktober2026:** HTTP503 upstream langsung juga503/provider_busy;72tes lulus dan503/header60 teramati pada hosted. Model aktif dikonfirmasi,vision masih belum siap;[bukti/katalog/alternatif/batas](../android/validation/vision-reliability-c07-2026-10-30/README.md). HP ditunda pengguna;env/model tetap.
+
 **30 Oktober2026 — C07 parsial:** error upstream200/capacity_exhausted kini503/provider_busy dan Retry-After60; error lain disanitasi, tanpa auto-retry.71tes lulus. Provider nyata masih mengalami kapasitas/timeout; [bukti dan batas](../android/validation/vision-capacity-c07-2026-10-30/README.md). C07 dan C02 belum ditutup.
 
 **C04 terbaru30 Oktober2026:** format kelas opt-in tersedia di production, tervalidasi strict, tanpa guru/ruang/SKS/GPS. Penanda source salat opsional menjaga kompatibilitas APK lama. [Kontrak, deployment dan bukti](../android/validation/assistant-context-c04-2026-10-30/README.md).69 tes backend tanpa skip;13 native/163 unit Android lulus dalam batas tertulis. Tidak mengganti env/key/plan.

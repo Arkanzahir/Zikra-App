@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-30T06:17:07.448Z",
+  "readOnly": true,
+  "inferenceRequests": 0,
+  "planChanged": false,
+  "filteredCatalogError": 404,
+  "basicCatalogError": 404,
+  "returnedCatalogCount": 0,
+  "planLimits": {
+    "name": "Request Pricing",
+    "max_context_length": null,
+    "max_model_size": null,
+    "concurrency": 100
+  },
+  "catalogCandidates": [],
+  "details": [
+    {
+      "id": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "inspectionErrorStatus": 404
+    }
+  ]
+}

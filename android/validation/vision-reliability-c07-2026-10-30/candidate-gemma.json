@@ -1,0 +1,13 @@
+{
+  "scope": "One synthetic photo via candidate upstream model, not hosted configuration or APK",
+  "model": "google/gemma-3-12b-it",
+  "productionModelChanged": false,
+  "planChanged": false,
+  "automaticRetries": 0,
+  "startedAt": "2026-10-30T06:19:46.644Z",
+  "status": 403,
+  "errorCode": "model_gated_needs_oauth",
+  "reply": null,
+  "passed": false,
+  "durationMs": 930
+}

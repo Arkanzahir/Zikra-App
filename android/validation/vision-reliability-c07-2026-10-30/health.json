@@ -1,0 +1,15 @@
+{
+  "scope": "public-https-synthetic-no-phone-claim",
+  "origin": "https://zikra-ai.vercel.app",
+  "liveRequested": false,
+  "health": {
+    "status": 200,
+    "minimal": true
+  },
+  "unauthorized": {
+    "status": 401,
+    "generic": true
+  },
+  "completion": null,
+  "passed": true
+}

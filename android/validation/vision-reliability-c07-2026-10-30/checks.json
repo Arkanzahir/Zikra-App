@@ -1,0 +1,15 @@
+{
+  "backendPassed": 72,
+  "backendSkipped": 0,
+  "hostedBusyContractObserved": true,
+  "hostedPhotoAnswerPassed": false,
+  "C07Complete": false,
+  "androidCodeChanged": false,
+  "newApkBuilt": false,
+  "unitNativeLintRerun": false,
+  "phoneChanged": false,
+  "phoneDeferredByUser": true,
+  "productionModelChanged": false,
+  "planChanged": false,
+  "newTermsAccepted": false
+}
