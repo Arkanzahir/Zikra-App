@@ -1,0 +1,190 @@
+TAP version 13
+# Subtest: selected context rejects hidden fields, invalid prayer time and unconsented actions
+ok 1 - selected context rejects hidden fields, invalid prayer time and unconsented actions
+  ---
+  duration_ms: 65.5474
+  type: 'test'
+  ...
+# Subtest: edit can only propose a selected incomplete task and cannot complete/delete it
+ok 2 - edit can only propose a selected incomplete task and cannot complete/delete it
+  ---
+  duration_ms: 0.3173
+  type: 'test'
+  ...
+# Subtest: source failure never calls model; valid source is returned separately from model summary
+ok 3 - source failure never calls model; valid source is returned separately from model summary
+  ---
+  duration_ms: 45.8388
+  type: 'test'
+  ...
+# Subtest: attachment isolation: only the last user message receives explicitly selected data
+ok 4 - attachment isolation: only the last user message receives explicitly selected data
+  ---
+  duration_ms: 2.1636
+  type: 'test'
+  ...
+# Subtest: document text remains user data, never a system message or an executable proposal
+ok 5 - document text remains user data, never a system message or an executable proposal
+  ---
+  duration_ms: 0.3094
+  type: 'test'
+  ...
+# Subtest: reject remote URLs, bad MIME/base64, unsafe names, oversized content and unsupported vision
+ok 6 - reject remote URLs, bad MIME/base64, unsafe names, oversized content and unsupported vision
+  ---
+  duration_ms: 0.6653
+  type: 'test'
+  ...
+# Subtest: reject oversized image dimensions before provider access
+ok 7 - reject oversized image dimensions before provider access
+  ---
+  duration_ms: 0.2941
+  type: 'test'
+  ...
+# Subtest: HTTP gateway uses the configured vision model and never forwards an invalid attachment
+ok 8 - HTTP gateway uses the configured vision model and never forwards an invalid attachment
+  ---
+  duration_ms: 62.0077
+  type: 'test'
+  ...
+# Subtest: vision configuration is optional, exact and never substitutes the text model
+ok 9 - vision configuration is optional, exact and never substitutes the text model
+  ---
+  duration_ms: 2.1905
+  type: 'test'
+  ...
+# Subtest: private config defaults to loopback and validates explicit bind
+ok 10 - private config defaults to loopback and validates explicit bind
+  ---
+  duration_ms: 0.4397
+  type: 'test'
+  ...
+# Subtest: config rejects missing, control, whitespace and malformed values without echoing them
+ok 11 - config rejects missing, control, whitespace and malformed values without echoing them
+  ---
+  duration_ms: 4.7476
+  type: 'test'
+  ...
+# Subtest: CLI check validates without listening or exposing credentials; invalid startup exits nonzero
+ok 12 - CLI check validates without listening or exposing credentials; invalid startup exits nonzero
+  ---
+  duration_ms: 161.4316
+  type: 'test'
+  ...
+# Subtest: requires server credentials
+ok 13 - requires server credentials
+  ---
+  duration_ms: 1.2899
+  type: 'test'
+  ...
+# Subtest: rejects system injection roles and oversized histories
+ok 14 - rejects system injection roles and oversized histories
+  ---
+  duration_ms: 0.3902
+  type: 'test'
+  ...
+# Subtest: injects server system prompt, fixes model and keeps API key server-side
+ok 15 - injects server system prompt, fixes model and keeps API key server-side
+  ---
+  duration_ms: 57.3226
+  type: 'test'
+  ...
+# Subtest: unauthorized requests never reach provider
+ok 16 - unauthorized requests never reach provider
+  ---
+  duration_ms: 14.0181
+  type: 'test'
+  ...
+# Subtest: invalid inputs never reach provider
+ok 17 - invalid inputs never reach provider
+  ---
+  duration_ms: 5.0458
+  type: 'test'
+  ...
+# Subtest: provider error body is not leaked
+ok 18 - provider error body is not leaked
+  ---
+  duration_ms: 6.6619
+  type: 'test'
+  ...
+# Subtest: empty and oversized provider content is rejected
+ok 19 - empty and oversized provider content is rejected
+  ---
+  duration_ms: 7.502
+  type: 'test'
+  ...
+# Subtest: bounded provider response prevents memory growth
+ok 20 - bounded provider response prevents memory growth
+  ---
+  duration_ms: 5.8792
+  type: 'test'
+  ...
+# Subtest: health is liveness only and reveals no private configuration
+ok 21 - health is liveness only and reveals no private configuration
+  ---
+  duration_ms: 8.7651
+  type: 'test'
+  ...
+# Subtest: null, malformed JSON, wrong type and declared oversize are client errors
+ok 22 - null, malformed JSON, wrong type and declared oversize are client errors
+  ---
+  duration_ms: 18.0034
+  type: 'test'
+  ...
+# Subtest: chunked oversize returns 413 instead of dropping the request socket
+ok 23 - chunked oversize returns 413 instead of dropping the request socket
+  ---
+  duration_ms: 8.9405
+  type: 'test'
+  ...
+# Subtest: provider malformed JSON, null and thrown errors stay sanitized
+ok 24 - provider malformed JSON, null and thrown errors stay sanitized
+  ---
+  duration_ms: 11.1285
+  type: 'test'
+  ...
+# Subtest: provider 429 is mapped without leaking its body
+ok 25 - provider 429 is mapped without leaking its body
+  ---
+  duration_ms: 5.7085
+  type: 'test'
+  ...
+# Subtest: provider timeout aborts work and releases capacity
+ok 26 - provider timeout aborts work and releases capacity
+  ---
+  duration_ms: 41.923
+  type: 'test'
+  ...
+# Subtest: two active requests block a third
+ok 27 - two active requests block a third
+  ---
+  duration_ms: 16.4463
+  type: 'test'
+  ...
+# Subtest: client disconnect aborts provider work
+ok 28 - client disconnect aborts provider work
+  ---
+  duration_ms: 6.6389
+  type: 'test'
+  ...
+# Subtest: a stalled request body times out before a distributed lease can expire
+ok 29 - a stalled request body times out before a distributed lease can expire
+  ---
+  duration_ms: 48.3009
+  type: 'test'
+  ...
+# Subtest: rate limit prevents unlimited upstream requests
+ok 30 - rate limit prevents unlimited upstream requests
+  ---
+  duration_ms: 19.8044
+  type: 'test'
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 440.3013

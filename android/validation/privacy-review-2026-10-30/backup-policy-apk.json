@@ -1,0 +1,8 @@
+{
+  "allowBackup": false,
+  "legacyExcludedDomains": 9,
+  "cloudExcludedDomains": 9,
+  "deviceTransferExcludedDomains": 9,
+  "packagedApkChecked": true,
+  "actualOemTransferTested": false
+}

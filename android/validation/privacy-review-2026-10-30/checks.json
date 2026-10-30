@@ -1,0 +1,12 @@
+{
+  "buildAssembleDebug": true,
+  "lintErrors": 0,
+  "lintWarnings": 861,
+  "backendFocusedTestsPassed": 30,
+  "backendFocusedTestsSkipped": 0,
+  "sourceAndPackagedBackupPolicyChecked": true,
+  "actualOemTransferTested": false,
+  "phoneChanged": false,
+  "unitRerun": false,
+  "reasonUnitNotRepeated": "Only manifest/XML backup policy and version metadata changed; no Java runtime logic changed"
+}
