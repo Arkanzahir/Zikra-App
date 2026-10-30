@@ -176,9 +176,10 @@ export function createRequestHandler({ apiKey, model, visionModel, clientToken, 
       });
       if (!upstream.ok) {
         await upstream.body?.cancel();
-        if (upstream.status === 429) res.setHeader('Retry-After', '60');
-        return reply(upstream.status === 429 ? 429 : 502,
-          { error: upstream.status === 429 ? 'provider_busy' : 'provider_unavailable' });
+        const busy = upstream.status === 429 || upstream.status === 503;
+        if (busy) res.setHeader('Retry-After', '60');
+        return reply(busy ? upstream.status : 502,
+          { error: busy ? 'provider_busy' : 'provider_unavailable' });
       }
       let data;
       try { data = await boundedJson(upstream.body, 128 * 1024, controller.signal); }

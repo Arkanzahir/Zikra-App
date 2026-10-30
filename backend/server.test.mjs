@@ -122,6 +122,20 @@ test('provider 429 is mapped without leaking its body', async t => {
   assert.deepEqual(await response.json(), { error: 'provider_busy' });
 });
 
+test('provider HTTP 503 means busy, cancels the error body and leaves retry to the user', async t => {
+  let calls = 0, cancelled = false;
+  const send = await setup(t, () => {
+    calls++;
+    return new Response(new ReadableStream({ cancel() { cancelled = true; } }), { status: 503 });
+  });
+  const response = await send();
+  assert.equal(response.status, 503);
+  assert.equal(response.headers.get('retry-after'), '60');
+  assert.deepEqual(await response.json(), { error: 'provider_busy' });
+  assert.equal(calls, 1);
+  assert.equal(cancelled, true);
+});
+
 test('HTTP 200 capacity error is sanitized, never retried automatically and releases its lease', async t => {
   let calls = 0, releases = 0;
   const send = await setup(t, () => {
