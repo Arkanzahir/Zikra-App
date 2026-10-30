@@ -39,3 +39,5 @@ terbuka; tidak menyatakan seluruh APK kebal kebocoran.
 Batas yang dikonfirmasi tetap satu file8MB,PDF3halaman,DOCX/TXT12.000karakter,
 lampiran lokal25MB. Ini input lampiran; dokumen belum menjadi indeks RAG permanen.
 C02/C07/B01/D02/D02a/E/F/G/publik tidak ditutup oleh checkpoint ini.
+
+Source konfigurasi/helper `4f7aeaea9ad539da52a7d106fd60a8a9416c3504`; [receipt/hash source](receipt.json).

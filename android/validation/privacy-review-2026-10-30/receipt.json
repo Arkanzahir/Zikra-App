@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-30",
+  "sourceCommit": "4f7aeaea9ad539da52a7d106fd60a8a9416c3504",
+  "version": "1.9.32",
+  "versionCode": 59,
+  "apkName": "Zikra-Privacy-v1.9.32-beta-debug.apk",
+  "bytes": 45420244,
+  "sha256": "d616f0e6c80e44388ce4fc5104dcea0c63194d74ee4ca069806107e9c6747a2c",
+  "signerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "sourceSha256": {
+    "android/app/build.gradle": "fbb2e52979606dba92591a66a9dbd548283f90f6b22f8218dd65919cfab93f74",
+    "android/app/src/main/AndroidManifest.xml": "6a35e92686387e29f14b9195bebd36f39a3322d1c3fc34a312ffda82b52011ee",
+    "android/app/src/main/res/xml/backup_rules.xml": "cbe4bf54d411ad155f08c0669723b2f43bb795ee80a76cff378c33b77b3f577a",
+    "android/app/src/main/res/xml/data_extraction_rules.xml": "3745a741298362af0b832510fddcad4ef4e03459f8753d2d4c3478469c72052d",
+    "tools/audit_backup_rules.py": "6370312daaaa6684327708fa75950a2332b0839ebc4682d0a046be2034fb7985"
+  },
+  "phoneChanged": false,
+  "lastVerifiedInstalledPhoneVersion": "1.9.31",
+  "actualOemTransferTested": false,
+  "G03Complete": false,
+  "publicReleaseReady": false
+}
