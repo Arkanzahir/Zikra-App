@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-30",
+  "sourceCommit": "fd098bff92c4c80922b12d0668426e7bbb629e96",
+  "version": "1.9.31",
+  "versionCode": 58,
+  "apkName": "Zikra-AI-v1.9.31-beta-debug.apk",
+  "bytes": 45418699,
+  "sha256": "77f91b1d3846a194725308815940772573eb69401562894c6c75b3cc708aea4b",
+  "signerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "sourceSha256": {
+    "android/app/build.gradle": "e3b86220573856980e236dc2308e4551035bf192e6b95437948b4acda46d9196",
+    "android/app/src/main/java/com/zikra/app/AiActivity.java": "31776e67e8f4f1aed99cd59a119f5b3963e8dc488cd81933c501fa0c681836c5",
+    "android/app/src/main/java/com/zikra/app/assistant/AssistantConsent.java": "0901e3c82d21ce39f0977752af9a9090e37d7a6c9da3925fb1dc5d5292e53d49",
+    "android/app/src/phoneTest/java/com/zikra/app/assistant/PhoneConsentTest.java": "4e7b50736d3d8351bcf98ca3f3bc69f66599d3004b77e109944f3446c451b4b7"
+  },
+  "physicalPhoneUpdated": true,
+  "phoneFinalVersion": "1.9.31",
+  "initialModeAuditFindingRetained": true,
+  "modeRepairedAndRechecked": true,
+  "C02Complete": false,
+  "C07Complete": false,
+  "D02Complete": false,
+  "EStarted": false
+}

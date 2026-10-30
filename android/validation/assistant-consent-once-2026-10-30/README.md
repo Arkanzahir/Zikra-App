@@ -85,3 +85,5 @@ uji vendor/Doze/reboot/interaksi dan ketentuan redistribusi audio; halaman pener
 [masih menyatakan unduhan gratis](https://islamdownload.net/123801-download-suara-adzan.html),
 belum menjadi bukti izin bundling aplikasi. Tidak mengirim pesan ke pihak lain.
 B01 tetap menunggu sumber; UI10 sorotan ditunda, E belum dimulai.
+
+Source runtime/helper `fd098bff92c4c80922b12d0668426e7bbb629e96`; [receipt/source hash](receipt.json).
