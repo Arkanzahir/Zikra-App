@@ -7,6 +7,7 @@ import com.zikra.app.safety.BmkgClient;
 import com.zikra.app.safety.BmkgParser;
 import com.zikra.app.safety.EarthquakeMapView;
 import com.zikra.app.safety.ShakemapLoader;
+import com.zikra.app.safety.EarthquakeReport;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -18,7 +19,8 @@ public final class EarthquakeActivity extends BaseActivity {
   private ShakemapLoader shaking;
   private boolean shakingSelected;
   private BmkgParser.Earthquake earthquake;
-  private java.time.Instant retrievedAt;
+  private EarthquakeReport report;
+  private boolean pinned;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,13 @@ public final class EarthquakeActivity extends BaseActivity {
     findViewById(R.id.quakeSheet).getLayoutParams().height =
         Math.min(dp(320), Math.round(available * .44f));
     bmkg = new BmkgClient(this);
+    String snapshot = savedInstanceState == null ? getIntent().getStringExtra("quake_report")
+        : savedInstanceState.getString("quake_report");
+    if (snapshot != null) try {
+      show(EarthquakeReport.cached(snapshot, java.time.Instant.now()));
+      pinned = savedInstanceState == null || savedInstanceState.getBoolean("quake_pinned");
+    } catch (Exception invalid) { }
+
     findViewById(R.id.protectorRefresh).setOnClickListener(v -> refresh());
     findViewById(R.id.quakeSource)
         .setOnClickListener(
@@ -65,7 +74,7 @@ public final class EarthquakeActivity extends BaseActivity {
     super.onResume();
     if (!shakingSelected) map.resume();
     else shaking.load(earthquake == null ? "" : earthquake.shakemapUrl);
-    refresh();
+    if (!pinned || report == null || !report.usable(java.time.Instant.now())) refresh();
   }
 
   private void selectMap(boolean selected) {
@@ -99,7 +108,11 @@ public final class EarthquakeActivity extends BaseActivity {
   }
 
   private void refresh() {
+    pinned = false;
     bmkg.reset();
+    if (report != null && !report.usable(java.time.Instant.now())) {
+      report = null; earthquake = null; shaking.clear();
+    }
     text(
         R.id.quakeStatus,
         earthquake == null ? "Menghubungkan ke BMKG…" : sourceStatus() + "\nMemperbarui…");
@@ -117,9 +130,9 @@ public final class EarthquakeActivity extends BaseActivity {
       text(R.id.quakeFelt, "Wilayah dirasakan belum tersedia");
     }
     bmkg.earthquake(
-        new BmkgClient.Result<BmkgParser.Earthquake>() {
+        new BmkgClient.Result<EarthquakeReport>() {
           @Override
-          public void success(BmkgParser.Earthquake value) {
+          public void success(EarthquakeReport value) {
             show(value);
           }
 
@@ -141,19 +154,20 @@ public final class EarthquakeActivity extends BaseActivity {
   }
 
   private String sourceStatus() {
-    return "Laporan terakhir BMKG · Indonesia\nDiambil "
+    return "Laporan terakhir BMKG · Indonesia" + (report.stored ? " · tersimpan" : "") + "\nDiambil "
         + DateTimeFormatter.ofPattern("d MMM HH:mm 'WIB'", new Locale("id", "ID"))
             .withZone(ZoneId.of("Asia/Jakarta"))
-            .format(retrievedAt)
+            .format(report.fetchedAt)
         + "\nBukan peringatan untuk lokasi Anda.";
   }
 
-  private void show(BmkgParser.Earthquake q) {
-    String previous = earthquake == null ? "" : earthquake.shakemapUrl;
+  private void show(EarthquakeReport value) {
+    String previous = report == null ? "" : report.imageKey();
+    report = value;
+    BmkgParser.Earthquake q = value.quake;
     earthquake = q;
-    if (!previous.equals(q.shakemapUrl)) shaking.clear();
+    if (!previous.equals(value.imageKey())) shaking.clear();
     if (shakingSelected) shaking.load(q.shakemapUrl);
-    retrievedAt = java.time.Instant.now();
     text(R.id.quakeArea, q.area);
     text(
         R.id.quakeTime,
@@ -197,6 +211,14 @@ public final class EarthquakeActivity extends BaseActivity {
 
   private void text(int id, String value) {
     ((TextView) findViewById(id)).setText(value);
+  }
+
+  @Override protected void onSaveInstanceState(Bundle state) {
+    if (report != null) try {
+      state.putString("quake_report", report.snapshot());
+      state.putBoolean("quake_pinned", pinned);
+    } catch (org.json.JSONException invalid) { }
+    super.onSaveInstanceState(state);
   }
 
   @Override

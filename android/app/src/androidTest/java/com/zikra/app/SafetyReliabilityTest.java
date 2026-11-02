@@ -107,20 +107,9 @@ public final class SafetyReliabilityTest extends InstrumentationTestCase {
 
   public void testEarthquakeRefreshAndFailureKeepReportAndValidCoordinates() throws Exception {
     launch(EarthquakeActivity.class);
-    BmkgParser.Earthquake report =
-        new BmkgParser.Earthquake(
-            "5.1",
-            "Laut Jawa",
-            "10 km",
-            "Tidak berpotensi tsunami",
-            "-",
-            "",
-            Instant.parse("2026-10-18T12:00:00Z"),
-            -6.1,
-            112.3,
-            "",
-            "");
-    invoke("show", BmkgParser.Earthquake.class, report);
+    com.zikra.app.safety.EarthquakeReport report = com.zikra.app.safety.EarthquakeReport.network(
+      "{\"Infogempa\":{\"gempa\":{\"DateTime\":\"2026-10-18T12:00:00Z\",\"Wilayah\":\"Laut Jawa\",\"Magnitude\":\"5.1\",\"Kedalaman\":\"10 km\",\"Coordinates\":\"-6.1,112.3\"}}}", Instant.now());
+    invoke("show", com.zikra.app.safety.EarthquakeReport.class, report);
     String eventTime = text(R.id.quakeTime);
     String coordinates = text(R.id.quakeCoordinates);
     invoke("refresh", null, null);
@@ -136,8 +125,8 @@ public final class SafetyReliabilityTest extends InstrumentationTestCase {
 
     invoke(
         "show",
-        BmkgParser.Earthquake.class,
-        new BmkgParser.Earthquake("4.2", "Laut", "", "", "", "", Instant.now()));
+        com.zikra.app.safety.EarthquakeReport.class,
+        com.zikra.app.safety.EarthquakeReport.network("{\"Infogempa\":{\"gempa\":{\"DateTime\":\"2026-10-18T12:00:00Z\",\"Wilayah\":\"Laut\",\"Magnitude\":\"4.2\",\"Kedalaman\":\"10 km\"}}}", Instant.now()));
     assertFalse(page.findViewById(R.id.quakeOpenMap).isEnabled());
     assertTrue(text(R.id.quakeCoordinates).contains("belum tersedia"));
   }

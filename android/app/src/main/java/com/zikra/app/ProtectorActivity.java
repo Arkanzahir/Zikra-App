@@ -13,12 +13,12 @@ import java.util.Locale;
 public final class ProtectorActivity extends BaseActivity {
   private static final Locale ID = new Locale("id", "ID");
   private static final DateTimeFormatter CLOCK =
-      DateTimeFormatter.ofPattern("HH:mm 'WIB'", ID).withZone(ZoneId.of("Asia/Jakarta"));
+      DateTimeFormatter.ofPattern("d MMM HH:mm 'WIB'", ID).withZone(ZoneId.of("Asia/Jakarta"));
   private BmkgClient bmkg;
   private BmkgParser.Forecast weather;
   private BmkgParser.Earthquake quake;
   private LocationPoint location = LocationPoint.INITIAL;
-  private Instant retrieved;
+  private EarthquakeReport quakeReport;
   private ProtectorWeatherView scene;
   private EarthquakeMapView map;
   private final android.os.Handler timer =
@@ -54,8 +54,8 @@ public final class ProtectorActivity extends BaseActivity {
     findViewById(R.id.protectorWeatherTemperature)
         .setOnClickListener(v -> open(WeatherActivity.class));
     findViewById(R.id.protectorWeatherDetails).setOnClickListener(v -> open(WeatherActivity.class));
-    findViewById(R.id.protectorQuakeCard).setOnClickListener(v -> open(EarthquakeActivity.class));
-    findViewById(R.id.protectorQuakeOpen).setOnClickListener(v -> open(EarthquakeActivity.class));
+    findViewById(R.id.protectorQuakeCard).setOnClickListener(v -> openQuake());
+    findViewById(R.id.protectorQuakeOpen).setOnClickListener(v -> openQuake());
     findViewById(R.id.protectorSource)
         .setOnClickListener(
             v -> external(Intent.ACTION_VIEW, "https://data.bmkg.go.id/gempabumi/"));
@@ -114,6 +114,12 @@ public final class ProtectorActivity extends BaseActivity {
 
   private void refresh() {
     bmkg.reset();
+    if (quakeReport != null && !quakeReport.usable(Instant.now())) {
+      quakeReport = null; quake = null;
+      map.setEpicenter(null, null);
+      text(R.id.protectorMagnitude, "—"); text(R.id.protectorDepth, "—");
+      text(R.id.protectorClock, "—");
+    }
     if (weather != null
         && !WeatherCode.usableCache(
             weather.fetchedAt.toEpochMilli(),
@@ -144,8 +150,8 @@ public final class ProtectorActivity extends BaseActivity {
         R.id.protectorQuakeStatus,
         quake == null ? "Menghubungkan ke BMKG…" : status() + " · Memperbarui…");
     bmkg.earthquake(
-        new BmkgClient.Result<BmkgParser.Earthquake>() {
-          public void success(BmkgParser.Earthquake q) {
+        new BmkgClient.Result<EarthquakeReport>() {
+          public void success(EarthquakeReport q) {
             showQuake(q);
           }
 
@@ -182,9 +188,10 @@ public final class ProtectorActivity extends BaseActivity {
         "Kelembapan " + w.humidity + "%  ·  Angin " + w.wind + " km/jam");
   }
 
-  private void showQuake(BmkgParser.Earthquake q) {
+  private void showQuake(EarthquakeReport report) {
+    quakeReport = report;
+    BmkgParser.Earthquake q = report.quake;
     quake = q;
-    retrieved = Instant.now();
     text(R.id.protectorMagnitude, q.magnitude);
     text(R.id.protectorDepth, q.depth);
     text(
@@ -201,8 +208,17 @@ public final class ProtectorActivity extends BaseActivity {
 
   private String status() {
     return "Diambil "
-        + CLOCK.format(retrieved)
+        + CLOCK.format(quakeReport.fetchedAt)
+        + (quakeReport.stored ? " · tersimpan" : "")
         + " · laporan terakhir Indonesia\nBukan peringatan untuk lokasimu.";
+  }
+
+  private void openQuake() {
+    Intent intent = new Intent(this, EarthquakeActivity.class);
+    if (quakeReport != null && quakeReport.usable(Instant.now())) try {
+      intent.putExtra("quake_report", quakeReport.snapshot());
+    } catch (org.json.JSONException invalid) { }
+    startActivity(intent);
   }
 
   private void text(int id, String value) {

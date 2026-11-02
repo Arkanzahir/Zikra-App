@@ -89,11 +89,20 @@ public final class BmkgDesignTest extends InstrumentationTestCase {
     BmkgParser.Forecast forecast =
         BmkgParser.forecast(FORECAST, Instant.parse("2026-10-17T02:30:00Z"));
     bind("showWeather", BmkgParser.Forecast.class, forecast);
-    bind("showQuake", BmkgParser.Earthquake.class, BmkgParser.earthquake(QUAKE));
+    bind("showQuake", EarthquakeReport.class, EarthquakeReport.network(QUAKE, Instant.now()));
     rendered("ProtectorDesignFixture");
     assertEquals("27°", ((TextView) page.findViewById(R.id.protectorWeatherTemperature)).getText());
     assertEquals("5.1", ((TextView) page.findViewById(R.id.protectorMagnitude)).getText());
     assertTrue(((EarthquakeMapView) page.findViewById(R.id.protectorQuakeMap)).hasEpicenter());
+    android.app.Instrumentation.ActivityMonitor monitor =
+        getInstrumentation().addMonitor(EarthquakeActivity.class.getName(), null, false);
+    getInstrumentation().runOnMainSync(() -> page.findViewById(R.id.protectorQuakeCard).performClick());
+    Activity detail = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
+    getInstrumentation().removeMonitor(monitor);
+    assertNotNull(detail);
+    assertEquals("5.1", ((TextView) detail.findViewById(R.id.quakeMagnitude)).getText().toString());
+    assertTrue(((TextView) detail.findViewById(R.id.quakeArea)).getText().toString().contains("Laut"));
+    getInstrumentation().runOnMainSync(detail::finish);
   }
 
   public void testForecastBindsEveryDatedSlotIntoXmlCards() throws Exception {
@@ -112,7 +121,7 @@ public final class BmkgDesignTest extends InstrumentationTestCase {
 
   public void testQuakeBindsTimestampCoordinatesAndMapAction() throws Exception {
     launch(EarthquakeActivity.class);
-    bind("show", BmkgParser.Earthquake.class, BmkgParser.earthquake(QUAKE));
+    bind("show", EarthquakeReport.class, EarthquakeReport.network(QUAKE, Instant.now()));
     rendered("EarthquakeDesignFixture");
     assertEquals("10:23", ((TextView) page.findViewById(R.id.quakeClock)).getText());
     String coords = ((TextView) page.findViewById(R.id.quakeCoordinates)).getText().toString();

@@ -63,6 +63,14 @@ public final class BmkgParser {
         : "";
   }
 
+  public static String shakemapRedirect(String original, String target) {
+    String prefix = "https://static.bmkg.go.id/";
+    if (original == null || !original.startsWith(prefix)) return "";
+    String filename = original.substring(prefix.length());
+    return original.equals(shakemapUrl(filename))
+        && ("https://cdn.bmkg.go.id/" + filename).equals(target) ? target : "";
+  }
+
   public static Weather weather(String json, Instant now) throws JSONException {
     return forecast(json, now).current;
   }
