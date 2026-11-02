@@ -1,0 +1,9 @@
+
+com.zikra.app.safety.EarthquakeE01Test:.
+com.zikra.app.safety.BmkgDesignTest:..
+Test results for InstrumentationTestRunner=...
+Time: 10.205
+
+OK (3 tests)
+
+

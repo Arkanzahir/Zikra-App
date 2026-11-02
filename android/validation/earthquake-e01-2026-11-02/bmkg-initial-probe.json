@@ -1,0 +1,14 @@
+{
+  "source": "BMKG",
+  "sourceUrl": "https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json",
+  "checkedAt": "2026-10-30T08:21:43.000Z",
+  "phoneUsed": false,
+  "status": 200,
+  "feedSha256": "9b5bd2fd7097a54edbd599190891ef187c6b5283de91006e32d92b9ab50705f3",
+  "coordinates": "-0.72,131.38",
+  "eventTime": "2026-10-30T06:03:45+00:00",
+  "magnitude": "3.7",
+  "depth": "10 km",
+  "passed": false,
+  "error": "TypeError"
+}

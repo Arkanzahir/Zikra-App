@@ -1,0 +1,19 @@
+{
+  "version": "1.9.34",
+  "versionCode": 61,
+  "bytes": 45738506,
+  "sha256": "af44a35b6553b082a32699481fabc3e64227eab507e86b96954c3d51b074ec1c",
+  "below100MB": true,
+  "knownCredentialFindings": 0,
+  "privateAudioHashes": {
+    "selected": "545da9c890916ce918ed0e82df9b5e37169aafd638cdb3dfe61d41caa39b016f",
+    "fajr": "106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530"
+  },
+  "sourceCommit": "1ea08ee0b68a84e9ef6d2b920c3888c5b4109e5a",
+  "signerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "signatureVerified": true,
+  "backupRulesPackagedChecked": true,
+  "actualOemTransferTested": false,
+  "localFile": "D:/Download/Zikra-App-main/Zikra-Protector-v1.9.34-beta-debug.apk",
+  "installedOnPhone": false
+}

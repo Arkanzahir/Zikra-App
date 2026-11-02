@@ -1,0 +1,43 @@
+[
+  {
+    "class": "com.zikra.app.safety.EarthquakeE01Test",
+    "label": "e01-core",
+    "passed": true,
+    "count": 3,
+    "durationSeconds": 10.4,
+    "finalEvidence": false
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE01Test",
+    "label": "e01-final",
+    "passed": true,
+    "count": 4,
+    "durationSeconds": 14.1,
+    "finalEvidence": false
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE01Test,com.zikra.app.safety.BmkgParserTest,com.zikra.app.safety.BmkgTransportTest,com.zikra.app.safety.BmkgDesignTest#testDashboardBindsWeatherAndQuakeIntoCompactCards,com.zikra.app.safety.BmkgDesignTest#testQuakeBindsTimestampCoordinatesAndMapAction,com.zikra.app.SafetyReliabilityTest#testEarthquakeRefreshAndFailureKeepReportAndValidCoordinates",
+    "label": "e01-regression-final",
+    "passed": true,
+    "count": 18,
+    "durationSeconds": 35.6,
+    "finalEvidence": true
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE01Test#testTileTimeoutKeepsSourcePinAndReachableDetails,com.zikra.app.safety.BmkgDesignTest#testDashboardBindsWeatherAndQuakeIntoCompactCards,com.zikra.app.safety.BmkgDesignTest#testQuakeBindsTimestampCoordinatesAndMapAction",
+    "label": "e01-font200",
+    "passed": false,
+    "count": 0,
+    "durationSeconds": 3.5,
+    "finalEvidence": false,
+    "reason": "Process killed by Android LOW_MEMORY during initial post-boot attempt; crash buffer had no Java exception. Retried after boot settled, without code changes."
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE01Test#testTileTimeoutKeepsSourcePinAndReachableDetails,com.zikra.app.safety.BmkgDesignTest#testDashboardBindsWeatherAndQuakeIntoCompactCards,com.zikra.app.safety.BmkgDesignTest#testQuakeBindsTimestampCoordinatesAndMapAction",
+    "label": "e01-font200-retry",
+    "passed": true,
+    "count": 3,
+    "durationSeconds": 13.1,
+    "finalEvidence": true
+  }
+]

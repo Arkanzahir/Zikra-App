@@ -1,0 +1,25 @@
+{
+  "source": "BMKG",
+  "sourceUrl": "https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json",
+  "checkedAt": "2026-10-30T08:26:24.472Z",
+  "phoneUsed": false,
+  "status": 200,
+  "feedSha256": "9b5bd2fd7097a54edbd599190891ef187c6b5283de91006e32d92b9ab50705f3",
+  "coordinates": "-0.72,131.38",
+  "eventTime": "2026-10-30T06:03:45+00:00",
+  "magnitude": "3.7",
+  "depth": "10 km",
+  "officialRedirect": {
+    "status": 301,
+    "from": "https://static.bmkg.go.id/20261030130345.mmi.jpg",
+    "to": "https://cdn.bmkg.go.id/20261030130345.mmi.jpg"
+  },
+  "shakemap": {
+    "url": "https://static.bmkg.go.id/20261030130345.mmi.jpg",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "bytes": 271658,
+    "sha256": "2a977f3d73231e313d596575730c576340e1a1f7957716a0cea53beb8da4ae9f"
+  },
+  "passed": true
+}

@@ -1,5 +1,25 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## E01 selesai teknis beta — 2 November 2026
+
+Pengguna mengizinkan lanjut bagian E sementara HP ditunda. Ini menggantikan
+larangan urutan E pada catatan lama, tanpa menutup sisa A–D. Laporan/pin/waktu/
+Shakemap kini satu snapshot, cache bertanggal maksimal 24 jam, detail mempertahankan
+laporan pilihan dan redirect gambar dibatasi CDN BMKG/file sama. Source
+`1ea08ee0b68a84e9ef6d2b920c3888c5b4109e5a`; [bukti dan batas](android/validation/earthquake-e01-2026-11-02/README.md).
+169 unit/4 skip dan 21 eksekusi native final/18 metode unik lulus; lint 0 error/
+861 warning. Feed/gambar nyata diuji 30 Oktober; font 200%/unit akhir/preservasi
+2 November. Kegagalan probe awal, memori build dan native awal tetap dicatat.
+APK lokal 1.9.34/code61, 45.738.506 byte, SHA256
+`af44a35b6553b082a32699481fabc3e64227eab507e86b96954c3d51b074ec1c`.
+32 berkas asli emulator pulih cocok hash; pengaturan/helper dibersihkan dan
+emulator ditutup. HP tidak diakses, terakhir dibuktikan 1.9.31. WIP/stash/audio/
+rahasia/ikon/artwork tetap. Tidak ada deploy/email/model/biaya berubah.
+**Berikutnya E02**, lalu E03/E04; bukan klaim E atau A–D/publik selesai.
+B01/C02 laptop mati/C07 fisik/D02/D02a/F/G tetap terbuka; UI10/mode orang tua
+masih ditunda. Setiap checkpoint terverifikasi tetap audit/commit/push origin/main.
+
+
 ## C07 vision hosted tuntas terarah tanpa USB — 30 Oktober2026
 
 Pengguna sedang memakai HP; jangan akses/berulang meminta USB. Model vision production kini`Qwen/Qwen3-VL-8B-Instruct`, sourcekonfigurasi`43f821a554ab15d35eeb5f0f97ca9912c5134a83`, setelah6sampel langsung dan7request hosted200/strictpass;72backend/0skip lulus.[Bukti/rollout/monitor/mail/audio](android/validation/non-usb-closeout-2026-10-30/README.md). Hanya variabel vision diganti,19entri env aplikasi lain snapshot-sama(maskedsecret tidak didekripsi);key/modelchatteks/provider/kuota/paket tetap. DeploymentREADY,health200/tanpatoken401;tidak ada build/HP/Androidtest baru,APK tetap1.9.33/HP terakhir1.9.31. C07bagianhosted sampel terpenuhi tetapi parent[ ] untuk picker/grant/izin HP;hasil gagal lama tetap. Monitor3scheduleterbaru success;C02laptopmati belum. B01mail30Oktober belum ada balasan;D02izin audio belum,draf lokal belum dikirim. WIP/stash/audio/rahasia/aset/dataHP tetap;B01/C02/D02/D02a/E/F/G/publik/UI10/modeorangtua sesuai gerbang/penundaan. Audit/commit/push tetap wajib.
@@ -149,7 +169,7 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 
 ## E — Protector dan koneksi data
 
-- [ ] **E01 — Verifikasi laporan gempa dan peta.** Pin, magnitudo, kedalaman, wilayah, waktu dan Shakemap berasal dari laporan yang sama. Periksa urutan koordinat, gempa di luar kota pilihan, kegagalan tile/gambar dan data lama; tampilkan sumber serta waktu pembaruan. Laporan kejadian bukan prediksi gempa.
+- [x] **E01 — Verifikasi laporan gempa dan peta (beta terarah).** Selesai 2 November 2026, 1.9.34/code61: satu snapshot laporan/pin/waktu/Shakemap, cache bertanggal maksimal24jam, detail laporan pilihan, penolakan URL/redirect asing dan kegagalan gambar/tile diuji. 169 unit/4 skip, 21 eksekusi native final/18 metode unik lulus; lint0 error/861 warning. Feed/JPEG BMKG nyata 30 Oktober di Sorong sesuai bidang layar, bukan terbatas kota pengguna. [Bukti, riwayat kegagalan, APK dan batas](android/validation/earthquake-e01-2026-11-02/README.md). 32 berkas emulator dipulihkan cocok hash/helper dibersihkan/emulator ditutup; HP tidak diakses. Laporan bukan prediksi atau push; E02–E04 dan gerbang A–D/F/G/publik tetap terbuka.
 - [ ] **E02 — Notifikasi gempa saat aplikasi ditutup.** Jika masuk cakupan rilis, server memantau feed resmi dengan cache/jeda yang patuh batas sumber, menyimpan ID kejadian untuk mencegah kirim ulang, lalu mengirim push. HP membuka detail kejadian yang dipilih, bukan laporan terbaru yang berbeda. Uji izin ditolak, duplikat, server restart dan keterlambatan; jangan menjanjikan peringatan pasti sebelum guncangan.
 - [ ] **E03 — Cuaca dan pengingat kontekstual.** Kondisi/animasi mengikuti prakiraan untuk lokasi dan waktu yang benar; bedakan prakiraan dari pengukuran langsung. Sesuai cakupan, selesaikan alert cuaca, doa perjalanan, pagi/petang dan morning briefing dengan dependensi jadwal/lokasi serta kontrol pengguna; hindari notifikasi berulang.
 - [ ] **E04 — Bantuan darurat dan masjid terdekat.** Tautan/panggilan/arah dapat digunakan, izin lokasi ditolak punya fallback, hasil kosong/gagal jelas, data komunitas tidak dianggap lengkap. Pesan keluarga/panggilan tetap melalui tindakan pengguna. Nomor/tautan bantuan dan atribusi diperiksa.
@@ -394,3 +414,5 @@ Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | ta
 |30 Oktober2026|C07 lanjutan tanpa HP|72backend lulus,HTTP503 upstream dipetakan sibuk;probe hosted503/provider_busy. Model aktif dikonfirmasi,katalog404/Gemma gated403 tidak dianggap selesai. HP ditunda pengguna;C07/C02/D02/D02a/B01/E/publik tetap terbuka.|[Bukti/source/konfigurasi/batas](android/validation/vision-reliability-c07-2026-10-30/README.md)|
 
 |30 Oktober2026|C07 hosted sampel tuntas tanpaUSB|VisionQwen3 aktif setelah6direct/7hostedstrictpass,72backend lulus. Monitor3schedule sukses,B01belum dibalas,drafaudio belum dikirim. Tidak aksesHP;C07parent/C02/D02/D02a/B01/E/publik tetap terbuka.|[Bukti/config/rollout/batas](android/validation/non-usb-closeout-2026-10-30/README.md)|
+
+|2 November 2026|E01 beta1.9.34|Pengguna mengizinkan E tanpa HP. Integritas snapshot BMKG/cache/pin/Shakemap/detail pilihan dan fallback diuji;169 unit/4 skip,21 native/18 unik lulus,lint0 error/861 warning.32 berkas emulator pulih; HP tetap1.9.31. E02 berikutnya, sisa gerbang tetap terbuka.|[Bukti/APK/source/batas](android/validation/earthquake-e01-2026-11-02/README.md)|
