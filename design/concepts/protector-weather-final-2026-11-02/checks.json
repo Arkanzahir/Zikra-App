@@ -1,0 +1,55 @@
+{
+  "checkedDate": "2026-11-02",
+  "previewOnly": true,
+  "weatherIconFamilies": 10,
+  "weatherSvgFiles": 20,
+  "androidVectorFiles": 20,
+  "themeVariants": 2,
+  "sourceNavigationShapesReused": true,
+  "forecastCtaAndBack": true,
+  "mapDetail": true,
+  "selectedHour": true,
+  "nightHoursCorrect": true,
+  "cachedLabel": true,
+  "unavailableDoesNotInventForecast": true,
+  "retryDemonstration": true,
+  "decodedImages": true,
+  "scriptErrors": [],
+  "narrowWidthChecks": [
+    {
+      "view": "Protector",
+      "width": 288,
+      "scrollWidth": 288
+    },
+    {
+      "view": "Cuaca",
+      "width": 288,
+      "scrollWidth": 288
+    },
+    {
+      "view": "Gempa",
+      "width": 288,
+      "scrollWidth": 288
+    },
+    {
+      "view": "Aset",
+      "width": 288,
+      "scrollWidth": 288
+    }
+  ],
+  "minGraphLabelScreenPixels": 11,
+  "androidVectorsAapt2Compile": true,
+  "phoneAccessed": false,
+  "apkChanged": false,
+  "backendChanged": false,
+  "assetManifestHashesVerified": true,
+  "allSvgAndXmlParsed": true,
+  "aaptCompiledVectorEntries": 20,
+  "assetPackBytes": 401434,
+  "allProtectedHashesUnchanged": true,
+  "originalApkSha256Unchanged": true,
+  "stashUnchanged": true,
+  "originalNavigationGeometryUnchanged": true,
+  "standalonePreviewNavigation": true,
+  "visibleAssetGalleryNavigation": true
+}

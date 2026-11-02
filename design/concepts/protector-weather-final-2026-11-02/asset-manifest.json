@@ -1,0 +1,321 @@
+{
+  "status": "design-assets-only-not-installed-in-apk",
+  "weatherStates": [
+    "clear-day",
+    "clear-night",
+    "partly-cloudy-day",
+    "partly-cloudy-night",
+    "cloudy",
+    "light-rain",
+    "rain",
+    "thunderstorm",
+    "fog",
+    "unavailable"
+  ],
+  "themeVariants": [
+    "light",
+    "dark"
+  ],
+  "weatherSvgFiles": 20,
+  "weatherAndroidVectorFiles": 20,
+  "navigationShapePreserved": true,
+  "sourceInputs": {
+    "android/app/src/main/res/drawable/ic_home.xml": "3593011cd4ad6b48d890bea057da759b9b4168e25c2fff72462486416316dfd4",
+    "android/app/src/main/res/drawable/home_shortcut_ref_quran.xml": "326793326f7cf70b9d6112a72ee6bcf875597a748d202d412e68a810fced2b21",
+    "android/app/src/main/res/drawable/home_shortcut_ref_ai.xml": "585e194a7771a1e64fa98f061fd1f99ca0d51161ca9e7e99191e26b6e2579e93",
+    "android/app/src/main/res/drawable/home_shortcut_ref_study.xml": "a2b57b4b7af1bfe88348d02227126de8913112697e0a164b011e4818193f0688",
+    "android/app/src/main/res/drawable/ic_user.xml": "fb8ad81cc2311f860d957e345669280828f8eca634e8bee00bbb41e68c1efbbe",
+    "android/app/src/main/res/drawable-nodpi/protector_city.png": "92cdbdf880340bc3f5f4b13634230e29c98d966b1d51c82fddd56fe946c5107e",
+    "android/app/src/main/res/drawable-nodpi/protector_clouds.png": "207766da2fde9f96a0645583baf2b54f3572e4b9adfb4e9f2c5da235d056f394",
+    "android/app/src/main/res/drawable-nodpi/protector_storm.png": "b40317f798c2a6aeee496764f8382c2d1129c6653686dce6c1cf67f03925cce7",
+    "android/app/src/main/res/font/protector_roboto.ttf": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134"
+  },
+  "assetBytes": 401434,
+  "files": [
+    {
+      "path": "assets/android/res/drawable/protector_weather_clear_day.xml",
+      "bytes": 2004,
+      "sha256": "0a089bd55e911e1831e35503e8e63c29ffe3b19725bc3e2d0f88ee65baf183bf"
+    },
+    {
+      "path": "assets/android/res/drawable/protector_weather_clear_night.xml",
+      "bytes": 658,
+      "sha256": "6030abe737072516211c99bf958abea1a812cd9c1b268fb0219f039e64693398"
+    },
+    {
+      "path": "assets/android/res/drawable/protector_weather_cloudy.xml",
+      "bytes": 670,
+      "sha256": "13671287cf4c981c9e7e84c752b7e972361eb69b06e1406151438d4eb99c6509"
+    },
+    {
+      "path": "assets/android/res/drawable/protector_weather_fog.xml",
+      "bytes": 650,
+      "sha256": "4d141e1ce2eeec1f8651f4395daeea608a9e18f6791b29db178add09b553b04c"
+    },
+    {
+      "path": "assets/android/res/drawable/protector_weather_light_rain.xml",
+      "bytes": 656,
+      "sha256": "cd064f2a1f78a85daf52b318a13566b683ba7dc7147ef546bb14889daf48ce1d"
+    },
+    {
+      "path": "assets/android/res/drawable/protector_weather_partly_cloudy_day.xml",
+      "bytes": 832,
+      "sha256": "28f58e30c976915af33ff403c327a09170c71a4b9f3a0aafd12a200657b95460"
+    },
+    {
+      "path": "assets/android/res/drawable/protector_weather_partly_cloudy_night.xml",
+      "bytes": 940,
+      "sha256": "b4d7f2e87970481262c4303a125752a6eab337db2da413fc4fb98eb88ad17a06"
+    },
+    {
+      "path": "assets/android/res/drawable/protector_weather_rain.xml",
+      "bytes": 668,
+      "sha256": "1dda0b6b5867329c8e34d480f74f7ca83e168686df9739f906b98123dc559977"
+    },
+    {
+      "path": "assets/android/res/drawable/protector_weather_thunderstorm.xml",
+      "bytes": 814,
+      "sha256": "eb288a85a435260fbd5b2d31c20c5a927de20162db3fbefec8f857497d4412d3"
+    },
+    {
+      "path": "assets/android/res/drawable/protector_weather_unavailable.xml",
+      "bytes": 643,
+      "sha256": "61e75f25a69636b14302040a36c3e609facfb1ea2a50dc732ca92b79392fcf5e"
+    },
+    {
+      "path": "assets/android/res/drawable-night/protector_weather_clear_day.xml",
+      "bytes": 2004,
+      "sha256": "db92a05ae715b7420e346cf5eaa402893658ad9149a76cff4602271e78321ec7"
+    },
+    {
+      "path": "assets/android/res/drawable-night/protector_weather_clear_night.xml",
+      "bytes": 658,
+      "sha256": "3760bfa45acd10582f69b932bc255f4d06bf373d9358d0f87dbee18b00e058fe"
+    },
+    {
+      "path": "assets/android/res/drawable-night/protector_weather_cloudy.xml",
+      "bytes": 670,
+      "sha256": "bac9b0f6a806cd9960d1eb53ae3138842b346f99d312082e435eec6d6a0ae609"
+    },
+    {
+      "path": "assets/android/res/drawable-night/protector_weather_fog.xml",
+      "bytes": 650,
+      "sha256": "5e7431e705b8f1451e1ca8b1741c8c08846514bc8510644fc0701383cbfd99c9"
+    },
+    {
+      "path": "assets/android/res/drawable-night/protector_weather_light_rain.xml",
+      "bytes": 656,
+      "sha256": "f5e2a47f6abfb56916c42d0cdeb9d23f491eb79e0be65aded193f61342ec91bf"
+    },
+    {
+      "path": "assets/android/res/drawable-night/protector_weather_partly_cloudy_day.xml",
+      "bytes": 832,
+      "sha256": "89647fb918a7dbbfa1a37610ae7c1492b66d0a0d2a6f844c8e09366a205b26a7"
+    },
+    {
+      "path": "assets/android/res/drawable-night/protector_weather_partly_cloudy_night.xml",
+      "bytes": 940,
+      "sha256": "f24c9c070a5b6868d6a6763034d6beb64cefd2d7e7d976f0003c9fb0707e2a02"
+    },
+    {
+      "path": "assets/android/res/drawable-night/protector_weather_rain.xml",
+      "bytes": 668,
+      "sha256": "e3df3c0958e709e3f118a08f89f03b52263b485dccc6d0be069a35644cf49aa1"
+    },
+    {
+      "path": "assets/android/res/drawable-night/protector_weather_thunderstorm.xml",
+      "bytes": 814,
+      "sha256": "165fb1a8ff335e46a10cd5bebad92d6901036e91d3e89faa3507598b52118c6f"
+    },
+    {
+      "path": "assets/android/res/drawable-night/protector_weather_unavailable.xml",
+      "bytes": 643,
+      "sha256": "e8dd69b8a6910dc0756a5a5e1277d7607d6eae5003a24c6712a38c8540af4b16"
+    },
+    {
+      "path": "assets/backgrounds/city.webp",
+      "bytes": 120658,
+      "sha256": "d3929ee7dd649a0d75a65b8628d90a7610364eda89ca35478e4272d267e57861"
+    },
+    {
+      "path": "assets/backgrounds/clouds.webp",
+      "bytes": 150046,
+      "sha256": "10fd4c78febdb0ba4f74def862259804f02cbd704c6715bf37d02bd6ed8f5ba4"
+    },
+    {
+      "path": "assets/backgrounds/storm.webp",
+      "bytes": 38762,
+      "sha256": "979e6287fa178f335f660b5e7fa902276a38c6c6ab08cdf8212128bfcf0e82d5"
+    },
+    {
+      "path": "assets/fonts/roboto-latin-preview.woff2",
+      "bytes": 52988,
+      "sha256": "84e8dab889635fff686047fd5411f19627cd1969c6f667fbf7a2b96bdc14f46c"
+    },
+    {
+      "path": "assets/icons/dark/clear-day.svg",
+      "bytes": 1297,
+      "sha256": "6e095ea9648fea7bdd4bbe51e072f872daecff8ee5ead7c966f7a071f79c59f6"
+    },
+    {
+      "path": "assets/icons/dark/clear-night.svg",
+      "bytes": 455,
+      "sha256": "ae7c4156670045452a358b3246cf7d38381b328b65a6506ef1c14449e7173cce"
+    },
+    {
+      "path": "assets/icons/dark/cloudy.svg",
+      "bytes": 462,
+      "sha256": "a03c84769e256dce52e107068cf68b6c784a09e7a218472261ab464711659e59"
+    },
+    {
+      "path": "assets/icons/dark/fog.svg",
+      "bytes": 414,
+      "sha256": "31e3b0f5feea805ef88f461a6884009eff2d6f52cc6d2755b957c7313614a6d3"
+    },
+    {
+      "path": "assets/icons/dark/light-rain.svg",
+      "bytes": 427,
+      "sha256": "13046daf55ca5e95f2197711e31b1457689b1462ce7657f09e117d335ac2e39b"
+    },
+    {
+      "path": "assets/icons/dark/partly-cloudy-day.svg",
+      "bytes": 589,
+      "sha256": "0c6e82bc9c6a2de49359d0b88d7787b33fdfc9c8281d4bf20dc99ccbd569ba72"
+    },
+    {
+      "path": "assets/icons/dark/partly-cloudy-night.svg",
+      "bytes": 679,
+      "sha256": "d785409285c26d1981c4bbd2d3c2ebe917f3f72009b671dceb09cdddda06a769"
+    },
+    {
+      "path": "assets/icons/dark/rain.svg",
+      "bytes": 433,
+      "sha256": "bd74218497229c5f2adfb1eaef9729b017b5be129db38667667f921ac4497fb2"
+    },
+    {
+      "path": "assets/icons/dark/thunderstorm.svg",
+      "bytes": 541,
+      "sha256": "91ba23096c868fef27d49a69eb723a1356d37645222c7561aa25d7a01c61349b"
+    },
+    {
+      "path": "assets/icons/dark/unavailable.svg",
+      "bytes": 410,
+      "sha256": "87e2954a78dafc15183460b4af237bd9eb5be918343aced23c4c074cb6f9503c"
+    },
+    {
+      "path": "assets/icons/light/clear-day.svg",
+      "bytes": 1297,
+      "sha256": "71d3bf59f4ead93dac3a0421a312fe2d227d4b6dc6708cba15926ab39315ce19"
+    },
+    {
+      "path": "assets/icons/light/clear-night.svg",
+      "bytes": 455,
+      "sha256": "9b85ceb6cf50f01cf54acf6a83e20fc4538a74a643767a5b4fd768e25c12e2cb"
+    },
+    {
+      "path": "assets/icons/light/cloudy.svg",
+      "bytes": 462,
+      "sha256": "8a51ff29952bdbe3ec4c10149c2508603d9437288c72abd3eed50f393ffbb68c"
+    },
+    {
+      "path": "assets/icons/light/fog.svg",
+      "bytes": 414,
+      "sha256": "d6918151f14f57346547e7bf9a81002b2e757d9ba796739c4ec6aa480aa70f4b"
+    },
+    {
+      "path": "assets/icons/light/light-rain.svg",
+      "bytes": 427,
+      "sha256": "b84d79981e86b1373af8b21f4fcc28ff7287c686944db7d80967f3aa632cb37b"
+    },
+    {
+      "path": "assets/icons/light/partly-cloudy-day.svg",
+      "bytes": 589,
+      "sha256": "69ff3b59b633a232ad36b9fdd9329335503ebe8536073cdc42627e2cd1483cc1"
+    },
+    {
+      "path": "assets/icons/light/partly-cloudy-night.svg",
+      "bytes": 679,
+      "sha256": "de3f9ad9447484d2d8d9223a54be2ec6048576ac1e878450461df74a92b0bd16"
+    },
+    {
+      "path": "assets/icons/light/rain.svg",
+      "bytes": 433,
+      "sha256": "4b06aa6e3aff53af780448ca9c0b1011418ba47d1512aa3783a20f76c96b962f"
+    },
+    {
+      "path": "assets/icons/light/thunderstorm.svg",
+      "bytes": 541,
+      "sha256": "4cf712099ee9375eade4493805988da77328bc0db6fa9d05c48ac2335a402b5d"
+    },
+    {
+      "path": "assets/icons/light/unavailable.svg",
+      "bytes": 410,
+      "sha256": "ee6be4c0bf9847eadc1ebe43080fc0f20316cff34dd945c30c8747803663582f"
+    },
+    {
+      "path": "assets/licenses/existing-weather-artwork.txt",
+      "bytes": 476,
+      "sha256": "517c5b73437dc76b25b26c9bc88faba1442d1c3506e6fa02b2fe4948123e4978"
+    },
+    {
+      "path": "assets/licenses/natural-earth.txt",
+      "bytes": 1160,
+      "sha256": "977b10a51784e2d221dfcfb50424b4974dcbe920401de5b39a01d832c2928f3e"
+    },
+    {
+      "path": "assets/licenses/roboto-OFL.txt",
+      "bytes": 4486,
+      "sha256": "7fc71631cf5ad1c89cfbf004f08d40731c8b881d8e895b4997877e3c5359d270"
+    },
+    {
+      "path": "assets/navigation/dark/ai.svg",
+      "bytes": 536,
+      "sha256": "21c56b963bc901034c4eecb437305b983a22b0cb9c72c68e9ab7d7e25b9fd000"
+    },
+    {
+      "path": "assets/navigation/dark/home.svg",
+      "bytes": 288,
+      "sha256": "d58efe92b0c6a2a32118e065db5eb087937957a2e14e33c864ccb10d52253df7"
+    },
+    {
+      "path": "assets/navigation/dark/profile.svg",
+      "bytes": 305,
+      "sha256": "795039315b9a098beacd799c8e899c75769218b7febcf925eb3716cab5b40644"
+    },
+    {
+      "path": "assets/navigation/dark/quran.svg",
+      "bytes": 563,
+      "sha256": "45813d36e69c09d9a23936aa8d1e128db92676b115bc3a4a9a5d2d789d1569f5"
+    },
+    {
+      "path": "assets/navigation/dark/study.svg",
+      "bytes": 495,
+      "sha256": "6bdd67985529dd9b0ead566b3ac58d407dcef02402839ffa36ae6e83f7eb1706"
+    },
+    {
+      "path": "assets/navigation/light/ai.svg",
+      "bytes": 536,
+      "sha256": "fe83c1816c992a3b016a28fcfb9165367ae087ea995a10ea0b66ffc8433344eb"
+    },
+    {
+      "path": "assets/navigation/light/home.svg",
+      "bytes": 288,
+      "sha256": "84954d8c2a9304f303fb2bf4e97abaee39071017cc2370295e8795f1a7431d78"
+    },
+    {
+      "path": "assets/navigation/light/profile.svg",
+      "bytes": 305,
+      "sha256": "f89deb107920a9b690cf1cf872b905b95a1be16f9661e44a24f17b12655ef9b8"
+    },
+    {
+      "path": "assets/navigation/light/quran.svg",
+      "bytes": 563,
+      "sha256": "a6321bdf1eadd5a0666081be6a9b0f171d35462ae04a2db700df829807a7d430"
+    },
+    {
+      "path": "assets/navigation/light/study.svg",
+      "bytes": 495,
+      "sha256": "4031078560a35edce08077266787c7d5f79ea00c5fe05982b1ba7f5cfb71c100"
+    }
+  ]
+}

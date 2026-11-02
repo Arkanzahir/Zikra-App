@@ -176,6 +176,9 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 
 ## F — Satu bahasa desain, bukan hiasan tambahan
 
+- [ ] **UI11 — Integrasi prakiraan cuaca pada Protector yang dipertahankan.** Desain final/aset sudah disusun 2 November 2026 atas permintaan pengguna: panel empat slot + detail, peta dan tiga kolom laporan tetap, ikon cuaca satu keluarga dengan navigasi asli. [Paket final/galeri/pemeriksaan](design/concepts/protector-weather-final-2026-11-02/README.md). 20 SVG/20 VectorDrawable, browser/320px/tema/keadaan data dan compile resource terarah lulus. Belum diterapkan ke APK atau disetujui visual akhir; native/data E03 dan gerbang publik belum ditutup. Pertahankan artwork/ikon/identitas yang sekarang saat integrasi, jangan merombak seluruh Protector.
+
+
 - [x] **UI01 — Perbaiki daftar Doa yang terlalu membulat/generik.** Selesai 24 Oktober 2026, APK 1.6.2: satu daftar dengan divider, ikon sesuai isi, kategori/rujukan, warna bacaan terbuka dan Arab rata kanan. Build/lint serta tes buka/cari terarah lulus; [screenshot dan batas](android/validation/dua-list-2026-10-24/README.md). Dataset/API belum lengkap; F02/B01–B04 tetap terbuka.
 
 - [x] **UI02 — Rapikan desain Doa setelah preview pengguna.** Selesai 24 Oktober 2026, APK 1.7.3: [screenshot asli, pemeriksaan dan batas](android/validation/dua-refined-2026-10-24/README.md). Tombol koleksi menyatu dengan halaman, kategori/ikon/ruang baca diperjelas, Arab/Latin/arti dipisah dan detail sumber dapat dilipat pada kedua koleksi. Dua metode native / tiga eksekusi (normal dan font 200%) lulus; build/lint tanpa error, emulator ditutup. Data 14/225 tidak diubah; bukan penyelesaian kurasi B01/B04 atau seluruh F03.
@@ -416,3 +419,5 @@ Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | ta
 |30 Oktober2026|C07 hosted sampel tuntas tanpaUSB|VisionQwen3 aktif setelah6direct/7hostedstrictpass,72backend lulus. Monitor3schedule sukses,B01belum dibalas,drafaudio belum dikirim. Tidak aksesHP;C07parent/C02/D02/D02a/B01/E/publik tetap terbuka.|[Bukti/config/rollout/batas](android/validation/non-usb-closeout-2026-10-30/README.md)|
 
 |2 November 2026|E01 beta1.9.34|Pengguna mengizinkan E tanpa HP. Integritas snapshot BMKG/cache/pin/Shakemap/detail pilihan dan fallback diuji;169 unit/4 skip,21 native/18 unik lulus,lint0 error/861 warning.32 berkas emulator pulih; HP tetap1.9.31. E02 berikutnya, sisa gerbang tetap terbuka.|[Bukti/APK/source/batas](android/validation/earthquake-e01-2026-11-02/README.md)|
+
+|2 November 2026|UI11 desain/aset final|Protector sekarang dipertahankan; panel prakiraan/detail dan aset 10 kondisi × 2 tema disiapkan. Browser/320px dan20 vektor compile lulus; APK/HP/backend tidak berubah. UI11 native/E03/E02–E04/publik tetap terbuka.|[Desain/aset/batas](design/concepts/protector-weather-final-2026-11-02/README.md)|
