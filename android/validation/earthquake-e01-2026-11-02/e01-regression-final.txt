@@ -1,12 +1,17 @@
-
-com.zikra.app.safety.EarthquakeE01Test:.....
-com.zikra.app.safety.BmkgParserTest:........
-com.zikra.app.safety.BmkgTransportTest:..
-com.zikra.app.safety.BmkgDesignTest:..
-com.zikra.app.SafetyReliabilityTest:.
-Test results for InstrumentationTestRunner=..................
-Time: 33.865
-
-OK (18 tests)
-
-
+com.zikra.app.safety.EarthquakeE01Test:.....
+
+com.zikra.app.safety.BmkgParserTest:........
+
+com.zikra.app.safety.BmkgTransportTest:..
+
+com.zikra.app.safety.BmkgDesignTest:..
+
+com.zikra.app.SafetyReliabilityTest:.
+
+Test results for InstrumentationTestRunner=..................
+
+Time: 33.865
+
+
+
+OK (18 tests)
