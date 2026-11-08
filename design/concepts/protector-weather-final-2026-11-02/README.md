@@ -1,5 +1,14 @@
 # Protector — susunan final dan aset prakiraan cuaca
 
+## Implementasi native — 8 November 2026
+
+Arah desain disetujui untuk implementasi. Native beta1.9.35 sudah dibuat dengan
+navigasi putih/hijau gelap sesuai koreksi pengguna; warna langit terpisah dari
+tema. [Screenshot APK, pengujian dan batas](../../../android/validation/weather-ui11-2026-11-08/README.md).
+Preview di bawah dipertahankan sebagai riwayat desain, bukan screenshot APK atau
+data cuaca terkini. UI11 selesai teknis terarah, E03 keseluruhan tetap terbuka.
+
+
 2 November 2026. **Desain dan aset siap ditinjau; belum diterapkan ke APK.**
 Arahan pengguna: pertahankan Protector sekarang yang sudah disukai, tambahkan
 prakiraan cuaca dengan rapi. Tidak merombak logo, ikon fitur atau artwork kota.

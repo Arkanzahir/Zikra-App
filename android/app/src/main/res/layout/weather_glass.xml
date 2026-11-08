@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/app_surface">
+    <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <com.zikra.app.safety.WeatherSkyView android:id="@+id/weatherSky" android:layout_width="match_parent" android:layout_height="match_parent"/>
+        <ScrollView android:id="@+id/weatherScroll" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:scrollbars="none">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="16dp" android:paddingBottom="24dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingVertical="8dp">
+                    <ImageButton android:id="@+id/toolbarBack" android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/ic_back" android:tint="@color/weather_sky_text" android:padding="12dp" android:background="?android:attr/selectableItemBackgroundBorderless" android:contentDescription="@string/protector_back"/>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                        <TextView style="@style/WeatherSkyText" android:id="@+id/protectorToolbarTitle" android:text="@string/weather_title" android:textSize="17sp" android:gravity="center"/>
+                        <TextView style="@style/WeatherSkyCaption" android:id="@+id/protectorToolbarSubtitle" android:text="@string/weather_title" android:gravity="center"/>
+                    </LinearLayout>
+                    <ImageButton android:id="@+id/protectorRefresh" android:layout_width="48dp" android:layout_height="48dp" android:src="@drawable/protector_ic_refresh" android:tint="@color/weather_sky_text" android:padding="13dp" android:background="?android:attr/selectableItemBackgroundBorderless" android:contentDescription="@string/protector_refresh"/>
+                </LinearLayout>
+                <TextView style="@style/WeatherSkyCaption" android:id="@+id/weatherDate" android:layout_marginTop="18dp" android:gravity="center"/>
+                <TextView style="@style/WeatherSkyText" android:id="@+id/weatherTemperature" android:text="@string/protector_placeholder" android:textSize="80sp" android:fontFamily="sans-serif-light" android:gravity="center" android:fontFeatureSettings="tnum"/>
+                <TextView style="@style/WeatherSkyText" android:id="@+id/weatherDescription" android:text="@string/weather_loading" android:textSize="19sp" android:gravity="center"/>
+                <TextView style="@style/WeatherSkyAction" android:id="@+id/weatherLocation" android:text="@string/weather_title" android:textSize="12sp" android:gravity="center"/>
+                <LinearLayout style="@style/WeatherPanel">
+                    <TextView style="@style/WeatherSkyCaption" android:id="@+id/weatherForecastNote" android:text="@string/weather_loading" android:paddingBottom="12dp"/>
+                    <TextView style="@style/WeatherSkyCaption" android:text="@string/weather_hourly_title" android:layout_marginBottom="8dp"/>
+                    <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:fillViewport="true" android:scrollbars="none">
+                        <LinearLayout android:id="@+id/weatherForecastList" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false"/>
+                    </HorizontalScrollView>
+                    <TextView style="@style/WeatherSkyCaption" android:id="@+id/weatherSelectedHour" android:accessibilityLiveRegion="polite" android:layout_marginTop="8dp"/>
+                    <TextView style="@style/WeatherSkyCaption" android:id="@+id/weatherEmptyForecast" android:text="@string/weather_no_slots" android:paddingVertical="12dp"/>
+                    <TextView style="@style/WeatherSkyAction" android:id="@+id/weatherRetry" android:text="@string/weather_retry" android:gravity="center" android:visibility="gone"/>
+                </LinearLayout>
+                <LinearLayout style="@style/WeatherPanel" android:id="@+id/weatherDailyPanel" android:visibility="gone">
+                    <TextView style="@style/WeatherSkyCaption" android:text="@string/weather_daily_title" android:paddingBottom="8dp"/>
+                    <LinearLayout android:id="@+id/weatherDailyList" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"/>
+                    <TextView style="@style/WeatherSkyCaption" android:text="@string/weather_daily_note" android:layout_marginTop="8dp"/>
+                </LinearLayout>
+                <LinearLayout style="@style/WeatherPanel" android:id="@+id/weatherGraphPanel" android:visibility="gone">
+                    <TextView style="@style/WeatherSkyAction" android:id="@+id/weatherGraphToggle" android:text="@string/weather_graph"/>
+                    <com.zikra.app.safety.TemperatureChartView android:id="@+id/weatherChart" android:layout_width="match_parent" android:layout_height="180dp" android:visibility="gone"/>
+                </LinearLayout>
+                <LinearLayout android:id="@+id/weatherMetrics" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout style="@style/WeatherPanel" android:layout_width="0dp" android:layout_weight="1" android:layout_marginEnd="6dp">
+                        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/weather_ic_drop" android:tint="@color/weather_sky_text" android:importantForAccessibility="no"/>
+                        <TextView style="@style/WeatherSkyCaption" android:text="@string/weather_humidity" android:layout_marginTop="8dp"/>
+                        <TextView style="@style/WeatherSkyText" android:id="@+id/weatherHumidity" android:text="@string/protector_placeholder" android:textSize="22sp"/>
+                    </LinearLayout>
+                    <LinearLayout style="@style/WeatherPanel" android:layout_width="0dp" android:layout_weight="1" android:layout_marginStart="6dp">
+                        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/weather_ic_wind" android:tint="@color/weather_sky_text" android:importantForAccessibility="no"/>
+                        <TextView style="@style/WeatherSkyCaption" android:id="@+id/weatherDirection" android:text="@string/protector_placeholder" android:layout_marginTop="8dp"/>
+                        <TextView style="@style/WeatherSkyText" android:id="@+id/weatherWind" android:text="@string/protector_placeholder" android:textSize="22sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <TextView style="@style/WeatherSkyCaption" android:id="@+id/weatherStatus" android:text="@string/weather_loading" android:gravity="center" android:layout_marginTop="16dp" android:accessibilityLiveRegion="polite"/>
+                <TextView style="@style/WeatherSkyAction" android:id="@+id/weatherSource" android:text="@string/weather_source" android:textSize="12sp" android:gravity="center"/>
+                <TextView style="@style/WeatherSkyCaption" android:text="@string/weather_model_note" android:gravity="center"/>
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+    <include layout="@layout/protector_main_dock"/>
+</LinearLayout>

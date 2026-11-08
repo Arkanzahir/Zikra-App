@@ -1,0 +1,56 @@
+<resources>
+    <color name="weather_sky_text">#FFFFFF</color>
+    <color name="weather_sky_secondary">#DFEDF6</color>
+    <color name="weather_panel">#D015507F</color>
+    <color name="weather_panel_edge">#28FFFFFF</color>
+    <color name="weather_selected">#20FFFFFF</color>
+    <color name="weather_overview_selection">#E6F1E9</color>
+    <color name="weather_range_track">#24FFFFFF</color>
+    <color name="weather_range_cool">#A1D8E8</color>
+    <color name="weather_range_warm">#F3CA85</color>
+    <string name="weather_title">Prakiraan cuaca</string>
+    <string name="weather_hourly_title">PRAKIRAAN PER JAM</string>
+    <string name="weather_hourly_open">Cuaca per jam · Lihat prakiraan →</string>
+    <string name="weather_daily_title">RENTANG SUHU 3 HARI</string>
+    <string name="weather_daily_note">Min. — Maks. °C · dari slot prakiraan yang tersedia</string>
+    <string name="weather_today">Hari ini</string>
+    <string name="weather_slot_note">Prakiraan untuk %1$s · %2$s</string>
+    <string name="weather_hour_description">%1$s · %2$s · %3$s</string>
+    <string name="weather_range_description">%1$s, minimum %2$s, maksimum %3$s derajat Celsius, dari %4$d slot prakiraan. Ikon kondisi sekitar tengah hari.</string>
+    <string name="weather_partial_day">Sebagian hari</string>
+    <string name="weather_loading">Memuat prakiraan…</string>
+    <string name="weather_missing">Cuaca belum tersedia</string>
+    <string name="weather_no_slots">Belum ada prakiraan berikutnya. Coba muat ulang.</string>
+    <string name="weather_retry">Coba lagi</string>
+    <string name="weather_graph">Grafik suhu per jam ⌄</string>
+    <string name="weather_graph_close">Tutup grafik suhu ⌃</string>
+    <string name="weather_humidity">Kelembapan</string>
+    <string name="weather_wind">Angin · %1$s</string>
+    <string name="weather_source">Prakiraan model: Open-Meteo · CC BY 4.0 ↗</string>
+    <string name="weather_model_note">Prakiraan dapat berubah · bukan pengukuran langsung</string>
+    <string name="weather_update_failed">Pembaruan gagal. Data tersimpan tetap ditampilkan.</string>
+    <style name="WeatherSkyText" parent="ProtectorReferenceText">
+        <item name="android:textColor">@color/weather_sky_text</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:includeFontPadding">true</item>
+    </style>
+    <style name="WeatherSkyCaption" parent="WeatherSkyText">
+        <item name="android:textColor">@color/weather_sky_secondary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="WeatherPanel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">14dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:background">@drawable/weather_glass_panel</item>
+    </style>
+    <style name="WeatherSkyAction" parent="WeatherSkyText">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+</resources>

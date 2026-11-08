@@ -10,6 +10,13 @@ import java.util.*;
 
 /** Dated model forecast; geometry and labels are rebuilt only when data or size changes. */
 public final class TemperatureChartView extends View {
+  private boolean onSky;
+
+  public void setOnSky(boolean value) {
+    onSky = value;
+    invalidate();
+  }
+
   private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
   private final Path line = new Path();
   private final List<BmkgParser.Weather> slots = new ArrayList<>();
@@ -108,26 +115,40 @@ public final class TemperatureChartView extends View {
       return;
     }
     float left = dp(21), right = w - dp(21), top = dp(23), bottom = h - dp(30);
-    paint.setColor(0x1929626E);
+    paint.setColor(
+        onSky ? getContext().getColor(com.zikra.app.R.color.weather_range_track) : 0x1929626E);
     paint.setStrokeWidth(dp(1));
     for (int i = 0; i < 3; i++)
       c.drawLine(left, top + (bottom - top) * i / 2, right, top + (bottom - top) * i / 2, paint);
     paint.setStyle(Paint.Style.STROKE);
     paint.setStrokeWidth(dp(2));
-    paint.setColor(getContext().getColor(com.zikra.app.R.color.protector_cyan_ink));
+    paint.setColor(ink());
     c.drawPath(line, paint);
     paint.setStyle(Paint.Style.FILL);
     for (int i = 0; i < slots.size(); i++) {
       paint.setColor(Color.WHITE);
       c.drawCircle(xs[i], ys[i], dp(4), paint);
       paint.setStyle(Paint.Style.STROKE);
-      paint.setColor(getContext().getColor(com.zikra.app.R.color.protector_cyan_ink));
+      paint.setColor(ink());
       paint.setStrokeWidth(dp(1.5f));
       c.drawCircle(xs[i], ys[i], dp(4), paint);
       paint.setStyle(Paint.Style.FILL);
       c.drawText(labels[i], xs[i], ys[i] - dp(10), paint);
-      paint.setColor(getContext().getColor(com.zikra.app.R.color.protector_muted));
+      paint.setColor(
+          getContext()
+              .getColor(
+                  onSky
+                      ? com.zikra.app.R.color.weather_sky_secondary
+                      : com.zikra.app.R.color.protector_muted));
       c.drawText(hours[i], xs[i], h - dp(7), paint);
     }
+  }
+
+  private int ink() {
+    return getContext()
+        .getColor(
+            onSky
+                ? com.zikra.app.R.color.weather_range_warm
+                : com.zikra.app.R.color.protector_cyan_ink);
   }
 }

@@ -1,0 +1,24 @@
+{
+  "unit": {
+    "tests": 177,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4
+  },
+  "lint": {
+    "Warning": 883
+  },
+  "nativeFinalExecutions": 6,
+  "nativeUniqueMethods": 4,
+  "initialExecutionsBeforeVisualFix": 6,
+  "emulatorApi": "37.1",
+  "fontScaleChecked": [
+    1,
+    2
+  ],
+  "narrowLogicalWidthDp": 320,
+  "newLiveProviderProbe": false,
+  "noNewPermissionOrBackendDeploy": true,
+  "phoneUpdated": false,
+  "wifiAndMobileDataDisabledForFixtures": true
+}

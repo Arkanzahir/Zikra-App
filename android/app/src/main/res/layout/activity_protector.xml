@@ -18,6 +18,11 @@
                     <TextView style="@style/ProtectorReferenceText" android:id="@+id/protectorWeatherDetails" android:text="@string/protector_ref_protector_weather_details_text" android:textSize="12sp" android:textColor="@color/protector_ref_color_ffffff" android:layout_marginTop="8dp" />
                 </LinearLayout>
             </FrameLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                <TextView style="@style/ProtectorReferenceAction" android:id="@+id/protectorForecastOpen" android:layout_width="match_parent" android:gravity="start|center_vertical" android:text="@string/weather_hourly_open" android:textSize="16sp" android:background="@android:color/transparent" />
+                <LinearLayout android:id="@+id/protectorForecastSlots" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false" />
+                <TextView style="@style/ProtectorBody" android:id="@+id/protectorForecastStatus" android:text="@string/weather_loading" android:textSize="12sp" android:layout_marginTop="8dp" />
+            </LinearLayout>
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="-16dp" android:paddingHorizontal="12dp" android:paddingTop="8dp" android:background="@drawable/protector_reference_sheet">
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
                     <TextView style="@style/ProtectorReferenceText" android:id="@+id/protectorMapTitle" android:text="@string/protector_map_title" android:textSize="18sp" android:textStyle="bold" android:layout_weight="1" android:layout_width="0dp" />
@@ -52,26 +57,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:background="@color/protector_ivory">
-        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/protectorNavHome" android:gravity="center" android:minHeight="56dp" android:layout_weight="1" android:clickable="true" android:focusable="true" android:contentDescription="@string/protector_ref_protector_nav_home_contentdescription">
-            <ImageView android:layout_width="23dp" android:layout_height="23dp" android:src="@drawable/ic_home" android:tint="@color/protector_reference_ink" android:importantForAccessibility="no" />
-            <TextView style="@style/ProtectorReferenceText" android:id="@+id/protectorNavLabelHome" android:text="@string/protector_ref_protector_nav_label_home_text" android:textSize="10sp" android:gravity="center" android:layout_marginTop="4dp" />
-        </LinearLayout>
-        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/protectorNavQuran" android:gravity="center" android:minHeight="56dp" android:layout_weight="1" android:clickable="true" android:focusable="true" android:contentDescription="@string/protector_ref_protector_nav_quran_contentdescription">
-            <ImageView android:layout_width="23dp" android:layout_height="23dp" android:src="@drawable/feature_icon_quran" android:tint="@color/protector_reference_ink" android:importantForAccessibility="no" />
-            <TextView style="@style/ProtectorReferenceText" android:id="@+id/protectorNavLabelQuran" android:text="@string/protector_ref_protector_nav_label_quran_text" android:textSize="10sp" android:gravity="center" android:layout_marginTop="4dp" />
-        </LinearLayout>
-        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/protectorNavAi" android:gravity="center" android:minHeight="56dp" android:layout_weight="1" android:clickable="true" android:focusable="true" android:contentDescription="@string/protector_ref_protector_nav_ai_contentdescription">
-            <ImageView android:layout_width="23dp" android:layout_height="23dp" android:src="@drawable/feature_icon_ai" android:tint="@color/protector_reference_ink" android:importantForAccessibility="no" />
-            <TextView style="@style/ProtectorReferenceText" android:id="@+id/protectorNavLabelAi" android:text="@string/protector_ref_protector_nav_label_ai_text" android:textSize="10sp" android:gravity="center" android:layout_marginTop="4dp" />
-        </LinearLayout>
-        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/protectorNavStudy" android:gravity="center" android:minHeight="56dp" android:layout_weight="1" android:clickable="true" android:focusable="true" android:contentDescription="@string/protector_ref_protector_nav_study_contentdescription">
-            <ImageView android:layout_width="23dp" android:layout_height="23dp" android:src="@drawable/feature_icon_study" android:tint="@color/protector_reference_ink" android:importantForAccessibility="no" />
-            <TextView style="@style/ProtectorReferenceText" android:id="@+id/protectorNavLabelStudy" android:text="@string/protector_ref_protector_nav_label_study_text" android:textSize="10sp" android:gravity="center" android:layout_marginTop="4dp" />
-        </LinearLayout>
-        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/protectorNavProfile" android:gravity="center" android:minHeight="56dp" android:layout_weight="1" android:clickable="true" android:focusable="true" android:contentDescription="@string/protector_ref_protector_nav_profile_contentdescription">
-            <ImageView android:layout_width="23dp" android:layout_height="23dp" android:src="@drawable/ic_user" android:tint="@color/protector_reference_ink" android:importantForAccessibility="no" />
-            <TextView style="@style/ProtectorReferenceText" android:id="@+id/protectorNavLabelProfile" android:text="@string/protector_ref_protector_nav_label_profile_text" android:textSize="10sp" android:gravity="center" android:layout_marginTop="4dp" />
-        </LinearLayout>
-    </LinearLayout>
+    <include layout="@layout/protector_main_dock" />
 </LinearLayout>

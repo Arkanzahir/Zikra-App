@@ -1,0 +1,5 @@
+com.zikra.app.WeatherGlassTest:..
+Test results for InstrumentationTestRunner=..
+Time: 6.383
+
+OK (2 tests)

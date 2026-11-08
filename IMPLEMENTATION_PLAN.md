@@ -1,5 +1,23 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## UI11 native selesai teknis beta 1.9.35 — 8 November 2026
+
+Pengguna mengizinkan implementasi cuaca. Panel prakiraan Protector, detail langit/
+transparan, rentang suhu tiga hari dari slot provider dan grafik lipat sudah
+native; dock putih/hijau gelap mengikuti tema, langit mengikuti jam lokasi.
+[Bukti/APK/batas](android/validation/weather-ui11-2026-11-08/README.md):173 unit
+lulus/4 skip,6 native final/4 metode unik (termasuk320dp/font200),lint0 error/
+883 warning. APK1.9.35/code62,45.924.363 byte,SHA256
+`20e21d21b4c0e13ffe1ca67e4640ff49cf33ff7af8d4f001a3f7a691d4531ab3`.
+Uji native memakai fixture/jaringan mati, bukan probe API aktual; client tetap
+Open-Meteo/cache6jam dan tidak ada notifikasi/deploy/izin/model/paket baru.
+32 berkas emulator pulih cocok hash, setting/helper dibersihkan/emulator ditutup;
+HP tidak diakses. WIP/stash/audio/env/logo/master tetap, signer sama/0 nilai
+credential dikenal di APK. UI11 ditutup sebatas beta ini, E03 alert/doa tetap
+terbuka; E02 berikutnya sesuai rencana. B01/C02/C07/D02/D02a/F/G/publik dan
+penundaan UI10 tetap; bukan klaim A–D/E/publik selesai seluruhnya.
+
+
 ## UI11 — revisi preview detail cuaca, 8 November 2026
 
 Detail cuaca disusun mengikuti referensi pengguna: langit penuh, panel transparan,
@@ -187,7 +205,7 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 
 ## F — Satu bahasa desain, bukan hiasan tambahan
 
-- [ ] **UI11 — Integrasi prakiraan cuaca pada Protector yang dipertahankan.** Desain final/aset sudah disusun 2 November 2026 atas permintaan pengguna: panel empat slot + detail, peta dan tiga kolom laporan tetap, ikon cuaca satu keluarga dengan navigasi asli. [Paket final/galeri/pemeriksaan](design/concepts/protector-weather-final-2026-11-02/README.md). 20 SVG/20 VectorDrawable, browser/320px/tema/keadaan data dan compile resource terarah lulus. Belum diterapkan ke APK atau disetujui visual akhir; native/data E03 dan gerbang publik belum ditutup. Pertahankan artwork/ikon/identitas yang sekarang saat integrasi, jangan merombak seluruh Protector.
+- [x] **UI11 — Integrasi prakiraan cuaca pada Protector yang dipertahankan.** Selesai teknis beta1.9.35 pada8 November2026 setelah pengguna mengizinkan implementasi. Empat slot overview + detail langit/transparan, suhu harian dari slot API, grafik lipat, dock putih/hijau gelap dan ikon satu keluarga. [Bukti/APK/batas](android/validation/weather-ui11-2026-11-08/README.md):173unit/4skip,6native final/4metode unik termasukfont200/320dp,lint0error/883warning;32berkas emulator pulih dan ditutup,HP tidak diakses. Fixture bukan data terkini; E03 pengingat kontekstual dan gerbang publik tetap terbuka.
 
 
 - [x] **UI01 — Perbaiki daftar Doa yang terlalu membulat/generik.** Selesai 24 Oktober 2026, APK 1.6.2: satu daftar dengan divider, ikon sesuai isi, kategori/rujukan, warna bacaan terbuka dan Arab rata kanan. Build/lint serta tes buka/cari terarah lulus; [screenshot dan batas](android/validation/dua-list-2026-10-24/README.md). Dataset/API belum lengkap; F02/B01–B04 tetap terbuka.
@@ -432,3 +450,5 @@ Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | ta
 |2 November 2026|E01 beta1.9.34|Pengguna mengizinkan E tanpa HP. Integritas snapshot BMKG/cache/pin/Shakemap/detail pilihan dan fallback diuji;169 unit/4 skip,21 native/18 unik lulus,lint0 error/861 warning.32 berkas emulator pulih; HP tetap1.9.31. E02 berikutnya, sisa gerbang tetap terbuka.|[Bukti/APK/source/batas](android/validation/earthquake-e01-2026-11-02/README.md)|
 
 |2 November 2026|UI11 desain/aset final|Protector sekarang dipertahankan; panel prakiraan/detail dan aset 10 kondisi × 2 tema disiapkan. Browser/320px dan20 vektor compile lulus; APK/HP/backend tidak berubah. UI11 native/E03/E02–E04/publik tetap terbuka.|[Desain/aset/batas](design/concepts/protector-weather-final-2026-11-02/README.md)|
+
+|8 November 2026|UI11 native beta1.9.35|Prakiraan Protector/detail tiga hari/grafik/dock bertema diterapkan;173unit/4skip,6native final danlint0error. HP tidak diakses,emulator pulih/ditutup;E03/publik tetap terbuka.|[Bukti/APK/batas](android/validation/weather-ui11-2026-11-08/README.md)|

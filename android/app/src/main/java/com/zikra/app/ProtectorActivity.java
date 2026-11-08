@@ -38,7 +38,7 @@ public final class ProtectorActivity extends BaseActivity {
     setContentView(R.layout.activity_protector);
     setupScreen("Protector");
     getWindow().setStatusBarColor(0xff2697d1);
-    getWindow().setNavigationBarColor(0xfffaf8f0);
+    getWindow().setNavigationBarColor(getColor(R.color.app_surface));
     scene = findViewById(R.id.protectorWeatherScene);
     map = findViewById(R.id.protectorQuakeMap);
     map.setCompact(true);
@@ -54,6 +54,7 @@ public final class ProtectorActivity extends BaseActivity {
     findViewById(R.id.protectorWeatherTemperature)
         .setOnClickListener(v -> open(WeatherActivity.class));
     findViewById(R.id.protectorWeatherDetails).setOnClickListener(v -> open(WeatherActivity.class));
+    findViewById(R.id.protectorForecastOpen).setOnClickListener(v -> open(WeatherActivity.class));
     findViewById(R.id.protectorQuakeCard).setOnClickListener(v -> openQuake());
     findViewById(R.id.protectorQuakeOpen).setOnClickListener(v -> openQuake());
     findViewById(R.id.protectorSource)
@@ -115,9 +116,11 @@ public final class ProtectorActivity extends BaseActivity {
   private void refresh() {
     bmkg.reset();
     if (quakeReport != null && !quakeReport.usable(Instant.now())) {
-      quakeReport = null; quake = null;
+      quakeReport = null;
+      quake = null;
       map.setEpicenter(null, null);
-      text(R.id.protectorMagnitude, "—"); text(R.id.protectorDepth, "—");
+      text(R.id.protectorMagnitude, "—");
+      text(R.id.protectorDepth, "—");
       text(R.id.protectorClock, "—");
     }
     if (weather != null
@@ -126,6 +129,8 @@ public final class ProtectorActivity extends BaseActivity {
             System.currentTimeMillis(),
             OpenMeteoClient.MAX_AGE_MS)) weather = null;
     if (weather == null) {
+      ((android.widget.LinearLayout) findViewById(R.id.protectorForecastSlots)).removeAllViews();
+      text(R.id.protectorForecastStatus, getString(R.string.weather_loading));
       scene.setWeather(null, location.zone);
       getWindow().setStatusBarColor(scene.getSkyColor());
       text(R.id.protectorWeatherTemperature, "—°");
@@ -141,6 +146,7 @@ public final class ProtectorActivity extends BaseActivity {
 
           public void failure(String message) {
             if (weather == null) {
+              text(R.id.protectorForecastStatus, getString(R.string.weather_no_slots));
               text(R.id.protectorWeatherDescription, "Cuaca belum tersedia");
               text(R.id.protectorWeatherTime, "Periksa koneksi, lalu muat ulang");
             } else text(R.id.protectorWeatherTime, "Pembaruan gagal · prakiraan tersimpan");
@@ -168,6 +174,23 @@ public final class ProtectorActivity extends BaseActivity {
 
   private void showWeather(BmkgParser.Forecast f) {
     weather = f;
+    java.util.List<BmkgParser.Weather> next = WeatherOutlook.upcoming(f, 4);
+    WeatherForecastUi.hours(
+        findViewById(R.id.protectorForecastSlots),
+        next,
+        f.location,
+        false,
+        slot ->
+            text(
+                R.id.protectorForecastStatus,
+                DateTimeFormatter.ofPattern("EEE d/M HH:mm", ID)
+                        .withZone(f.location.zone)
+                        .format(slot.time)
+                    + " · "
+                    + slot.description
+                    + " · "
+                    + f.location.zoneLabel(slot.time)));
+    if (next.isEmpty()) text(R.id.protectorForecastStatus, getString(R.string.weather_no_slots));
     BmkgParser.Weather w = f.current;
     scene.setWeather(w.description, f.location.zone);
     getWindow().setStatusBarColor(scene.getSkyColor());
@@ -215,9 +238,11 @@ public final class ProtectorActivity extends BaseActivity {
 
   private void openQuake() {
     Intent intent = new Intent(this, EarthquakeActivity.class);
-    if (quakeReport != null && quakeReport.usable(Instant.now())) try {
-      intent.putExtra("quake_report", quakeReport.snapshot());
-    } catch (org.json.JSONException invalid) { }
+    if (quakeReport != null && quakeReport.usable(Instant.now()))
+      try {
+        intent.putExtra("quake_report", quakeReport.snapshot());
+      } catch (org.json.JSONException invalid) {
+      }
     startActivity(intent);
   }
 

@@ -1,0 +1,4 @@
+<resources>
+    <color name="weather_panel">#D9102F4B</color>
+    <color name="weather_overview_selection">#2C493A</color>
+</resources>
