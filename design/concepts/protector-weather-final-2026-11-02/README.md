@@ -4,6 +4,26 @@
 Arahan pengguna: pertahankan Protector sekarang yang sudah disukai, tambahkan
 prakiraan cuaca dengan rapi. Tidak merombak logo, ikon fitur atau artwork kota.
 
+## Revisi detail cuaca — 8 November 2026
+
+Detail cuaca kini memakai langit penuh dan kartu biru transparan, mengikuti arah
+[referensi pengguna](https://id.pinterest.com/pin/952300283731001337/).
+Suhu utama terpusat, lima kolom sekarang/empat jam berikutnya, rentang minimum–
+maksimum tiga hari, grafik yang dapat dibuka, serta kelembapan/angin.
+Ilustrasi dan ikon tetap berasal dari aset Zikra; gambar Pinterest tidak dibundel.
+Markup halaman utama Protector dan inventaris aset terverifikasi tetap sama.
+
+[Pemeriksaan revisi](glass-checks.json) mencakup pilihan jam, kembali, grafik,
+label cache, tanpa data, coba lagi, siang/malam/hujan dan lebar 320 px. Percobaan
+browser pertama gagal memuat dependensi jaringan; pengujian ulang dengan akses
+jaringan normal lulus. Ini pemeriksaan preview, bukan pengujian API/Android/HP.
+
+Seluruh tanggal dan angka cuaca pada preview adalah **contoh 2 November**.
+Tiga hari dipilih sesuai rentang `forecast_days=3` client saat ini. Ringkasan
+harian dan batang suhu masih fixture desain, belum agregasi data produksi.
+Tidak ada persentase peluang hujan karena field tersebut belum tersedia pada
+pemetaan client. APK tetap 1.9.34; UI11/E03 dan penerimaan visual tetap terbuka.
+
 ## Susunan yang dipilih
 
 1. **Hero lama dipertahankan.** Judul Protector, lokasi, ilustrasi langit/kota,
@@ -17,8 +37,9 @@ prakiraan cuaca dengan rapi. Tidak merombak logo, ikon fitur atau artwork kota.
    kedalaman / waktu, wilayah, tanggal kejadian dan waktu pengambilan. Data cuaca
    tidak mengubah kejadian gempa yang dipilih. Warna titik menandai posisi,
    bukan jangkauan dampak atau tingkat bahaya.
-4. **Detail cuaca.** Suhu/kondisi utama, grafik suhu yang terukur, daftar jam
-   berikutnya, kelembapan/angin dan sumber. Tidak menambahkan angka peluang
+4. **Detail cuaca.** Langit penuh, suhu/kondisi utama, kartu per jam, rentang
+   suhu tiga hari, grafik yang dapat dibuka, kelembapan/angin dan sumber.
+   Tidak menambahkan angka peluang
    hujan, UV, kualitas udara atau prakiraan tujuh hari yang belum dipetakan dari
    data yang tersedia.
 5. **Navigasi memakai bentuk ikon Zikra asli.** Berkas SVG navigasi diekspor
@@ -89,7 +110,7 @@ python build_assets.py
 python assemble_preview.py
 ```
 
-`layout.fragment.html`, `preview.css` dan `preview.js` adalah sumber yang dapat
+`layout.fragment.html`, `weather-detail.fragment.html`, `preview.css` dan `preview.js` adalah sumber yang dapat
 diedit. `preview.fragment.html` merupakan hasil rakitan. `preview.html` dibungkus
 dengan renderer visualize untuk tinjauan standalone, bukan deployment aplikasi.
 Opsi tema/suasana/status pada percakapan adalah kontrol tinjauan desain.

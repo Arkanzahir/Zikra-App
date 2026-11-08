@@ -5,12 +5,13 @@
   const state = {
     tema: 'Terang',
     suasana: 'Siang',
-    layar: 'Protector',
+    layar: 'Cuaca',
     jam: 0,
     status: 'Tersambung'
   };
 
   function theme() {
+    if (state.layar === 'Cuaca') return 'dark';
     return state.tema === 'Gelap' || (state.tema === 'Ikuti perangkat' && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
   }
 
@@ -104,9 +105,74 @@
     });
   }
 
+  function renderDailyForecast(missing) {
+    const rows = state.suasana === 'Hujan' ? [{
+      day: 'Hari ini',
+      low: 24,
+      high: 28,
+      icon: 'light-rain'
+    }, {
+      day: 'Sel',
+      low: 24,
+      high: 30,
+      icon: 'rain'
+    }, {
+      day: 'Rab',
+      low: 25,
+      high: 31,
+      icon: 'cloudy'
+    }] : [{
+      day: 'Hari ini',
+      low: 26,
+      high: 31,
+      icon: 'light-rain'
+    }, {
+      day: 'Sel',
+      low: 25,
+      high: 32,
+      icon: 'light-rain'
+    }, {
+      day: 'Rab',
+      low: 25,
+      high: 31,
+      icon: 'cloudy'
+    }];
+    root.querySelector('.wd-daily').hidden = missing;
+    const list = root.querySelector('.wd-daily-rows');
+    list.replaceChildren();
+    const low = Math.min(...rows.map(row => row.low));
+    const high = Math.max(...rows.map(row => row.high));
+    rows.forEach(row => {
+      const element = document.createElement('div');
+      element.className = 'wd-daily-row';
+      element.setAttribute('role', 'listitem');
+      element.setAttribute('aria-label', `${row.day}, minimum ${row.low}, maksimum ${row.high} derajat Celsius, data contoh`);
+      const name = document.createElement('span');
+      name.textContent = row.day;
+      const icon = document.createElement('span');
+      icon.className = 'pp-icon';
+      assetIcon(icon, row.icon);
+      const minimum = document.createElement('span');
+      minimum.className = 'wd-daily-low';
+      minimum.textContent = row.low + '°';
+      const range = document.createElement('span');
+      range.className = 'wd-range';
+      range.setAttribute('aria-hidden', 'true');
+      const mark = document.createElement('span');
+      mark.style.left = ((row.low - low) / (high - low) * 100) + '%';
+      mark.style.width = ((row.high - row.low) / (high - low) * 100) + '%';
+      range.append(mark);
+      const maximum = document.createElement('strong');
+      maximum.textContent = row.high + '°';
+      element.append(name, icon, minimum, range, maximum);
+      list.append(element);
+    });
+  }
+
   function render() {
     root.style.colorScheme = state.tema === 'Terang' ? 'light' : state.tema === 'Gelap' ? 'dark' : 'light dark';
     root.dataset.weather = state.suasana;
+    root.dataset.activeScreen = state.layar;
     const night = state.suasana === 'Malam',
       rain = state.suasana === 'Hujan';
     const missing = state.status === 'Belum tersedia';
@@ -114,6 +180,8 @@
     root.style.setProperty('--pp-sky-bottom', night ? '#365f6d' : rain ? '#a5bec7' : '#c6e1e4');
     root.style.setProperty('--pp-city-brightness', night ? '.42' : rain ? '.78' : '1');
     root.style.setProperty('--pp-cloud-opacity', night ? '.45' : '.92');
+    root.style.setProperty('--wd-top', night ? '#14293f' : rain ? '#4b677d' : '#347ca9');
+    root.style.setProperty('--wd-bottom', night ? '#314c69' : rain ? '#8daabd' : '#79b9d9');
     root.querySelector('.pp-sun').style.visibility = rain ? 'hidden' : 'visible';
     root.querySelector('.pp-sun').style.boxShadow = night ? 'inset -14px -5px 0 #28485d' : '0 0 30px 8px #ffe7ab66';
     root.querySelectorAll('[data-temp]').forEach(e => e.textContent = missing ? '—' : night ? '27' : rain ? '28' : '31');
@@ -129,7 +197,14 @@
     root.querySelector('.pp-hour-rail').hidden = missing;
     root.querySelector('.pp-forecast-empty').hidden = !missing;
     root.querySelector('.pp-chart-section').hidden = missing;
-    root.querySelector('.pp-forecast-rows').hidden = missing;
+    root.querySelector('.wd-hour-grid').hidden = missing;
+    root.querySelector('.wd-hour-selection').hidden = missing;
+    root.querySelector('.wd-empty').hidden = !missing;
+    root.querySelector('.wd-graph').hidden = missing;
+    assetIcon(root.querySelector('.wd-empty-icon'), 'unavailable');
+    renderDailyForecast(missing);
+    root.querySelector('[data-weather-brief]').textContent = missing ? 'Prakiraan belum dapat dimuat. Periksa koneksi lalu coba lagi.' : night ? 'Langit berawan malam ini, berangsur lebih cerah mulai pukul 22.00.' : rain ? 'Hujan ringan siang ini, berangsur berawan mulai pukul 16.00.' : 'Cerah berawan siang ini. Hujan ringan diperkirakan mulai pukul 15.00.';
+    root.querySelector('[data-detail-freshness]').textContent = missing ? 'Belum ada data valid' : state.status === 'Tersimpan' ? 'Data tersimpan · Contoh diambil 12.00 WIB' : 'Contoh diperbarui 12.00 WIB';
     assetIcon(root.querySelector('.pp-empty-icon'), 'unavailable');
     ['home', 'quran', 'ai', 'study', 'profile'].forEach((name, i) => assetImage(root.querySelectorAll('.pp-dock>span .pp-icon')[i], assets.navigation[theme()][name]));
     root.querySelector('.pp-updated').textContent = missing ? 'Belum ada data cuaca yang dapat ditampilkan' : state.status === 'Tersimpan' ? 'Data tersimpan · Contoh diambil 12.00 WIB' : 'Contoh data cuaca diperbarui 12.00 WIB';
@@ -151,14 +226,9 @@
       e.querySelector('strong').textContent = data.temps[i] + '°';
       icon(e.querySelector('.pp-hour-icon'), data.icons[i]);
     });
-    root.querySelector('.pp-selected-hour').textContent = missing ? 'Belum ada data prakiraan' : data.times[state.jam] + ' · ' + data.conditions[state.jam];
-    root.querySelectorAll('.pp-forecast-rows>div').forEach((row, i) => {
-      row.querySelector('span:nth-child(2)').textContent = data.times[i];
-      row.querySelector('p').textContent = data.conditions[i];
-      row.querySelector('strong').textContent = data.temps[i] + '°';
-      icon(row.querySelector('.pp-icon'), data.icons[i]);
-    });
+    root.querySelectorAll('.pp-selected-hour').forEach(label => label.textContent = missing ? 'Belum ada data prakiraan' : data.times[state.jam] + ' · ' + data.conditions[state.jam]);
     icon(root.querySelector('.pp-big-weather'), missing ? 'unavailable' : night ? 'cloud-moon' : rain ? 'cloud-rain' : 'cloud-sun');
+    icon(root.querySelector('.wd-now-icon'), missing ? 'unavailable' : night ? 'cloud-moon' : rain ? 'cloud-rain' : 'cloud-sun');
     const chart = root.querySelector('.pp-chart'),
       paths = chart.querySelectorAll('path'),
       max = Math.max(...data.temps),
@@ -193,7 +263,8 @@
           tema: state.tema,
           suasana: state.suasana,
           layar: state.layar,
-          status: state.status
+          status: state.status,
+          weatherDetailStyle: 'Langit dan kartu transparan'
         }
       },
       privateContent: {
@@ -244,7 +315,11 @@
     tile.append(pair, name, format);
     root.querySelector('.pp-asset-grid').append(tile);
   });
-  root.querySelectorAll('[data-preview]').forEach(button => button.addEventListener('click', () => { state.layar = button.dataset.preview; render(); save(); }));
+  root.querySelectorAll('[data-preview]').forEach(button => button.addEventListener('click', () => {
+    state.layar = button.dataset.preview;
+    render();
+    save();
+  }));
   root.querySelectorAll('[data-hour]').forEach(b => b.addEventListener('click', () => {
     state.jam = Number(b.dataset.hour);
     render();

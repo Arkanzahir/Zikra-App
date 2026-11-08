@@ -1,5 +1,16 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## UI11 — revisi preview detail cuaca, 8 November 2026
+
+Detail cuaca disusun mengikuti referensi pengguna: langit penuh, panel transparan,
+prakiraan per jam dan rentang suhu tiga hari. [Desain/bukti/batas](design/concepts/protector-weather-final-2026-11-02/README.md).
+Pilihan jam/kembali/grafik/cache/tanpa data/coba lagi dan 320 px lulus browser;
+markup utama Protector, hash aset, WIP/stash/rahasia serta APK1.9.34 tetap.
+Semua cuaca/tanggal adalah fixture contoh 2 November, bukan data terkini atau
+implementasi agregasi API. Tidak ada build/HP/deploy/biaya baru. UI11/E03 belum
+dicentang dan penerimaan visual belum diasumsikan; gerbang A–D/E/publik tetap.
+
+
 ## E01 selesai teknis beta — 2 November 2026
 
 Pengguna mengizinkan lanjut bagian E sementara HP ditunda. Ini menggantikan

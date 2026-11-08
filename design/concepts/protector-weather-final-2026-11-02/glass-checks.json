@@ -1,0 +1,37 @@
+{
+  "checkedDate": "2026-11-08",
+  "previewOnly": true,
+  "primaryHourSelection": true,
+  "forecastCtaAndBack": true,
+  "graphDisclosure": true,
+  "cachedLabel": true,
+  "missingHidesForecast": true,
+  "retryDemonstration": true,
+  "dailyDays": 3,
+  "precipitationProbabilityInvented": false,
+  "decodedImages": true,
+  "narrowWidthChecks": [
+    {
+      "view": "Cuaca",
+      "width": 288,
+      "scrollWidth": 288
+    },
+    {
+      "view": "Protector",
+      "width": 288,
+      "scrollWidth": 288
+    }
+  ],
+  "scriptErrors": [],
+  "phoneAccessed": false,
+  "apkChanged": false,
+  "backendChanged": false,
+  "protectorMarkupSha256Unchanged": "72f056236bfa3aea242225af38e200c4045f1c90d6db9d9b70aa2b0196797a55",
+  "assetManifestSha256Unchanged": "4f72362244fa48f8d19fbd76c050d6c8a75fd61f93136ef4f0d7693c46265fe5",
+  "allAssetHashesVerified": true,
+  "protectedStateAndStashUnchanged": true,
+  "apkSha256Unchanged": "af44a35b6553b082a32699481fabc3e64227eab507e86b96954c3d51b074ec1c",
+  "initialRestrictedBrowserAttempt": "Dependency loading failed; repeated with normal network access and passed",
+  "standalonePreviewNavigation": true,
+  "visibleAssetGalleryNavigation": true
+}

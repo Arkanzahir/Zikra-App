@@ -1,0 +1,44 @@
+<header class="pp-inner-header wd-header">
+  <button class="pp-back cursor-interaction" type="button" data-action="back" aria-label="Kembali ke Protector"><span class="pp-icon"><i data-lucide="arrow-left" aria-hidden="true"></i></span></button>
+  <div><h1>Sukolilo, Surabaya</h1><p>Prakiraan cuaca</p></div>
+  <span class="wd-header-space" aria-hidden="true"></span>
+</header>
+<main class="pp-weather-page wd-content">
+  <div class="pp-weather-summary wd-temperature">
+    <div><p class="pp-eyebrow">SENIN, 2 NOVEMBER</p><div class="pp-detail-temp"><span data-temp>31</span>°</div><h2 data-condition>Cerah berawan</h2></div>
+    <span class="pp-big-weather pp-icon" hidden></span>
+  </div>
+  <p class="pp-summary-caption wd-location-note">Cuaca di lokasimu · WIB</p>
+
+  <section class="wd-glass wd-hourly" aria-labelledby="wd-hour-title">
+    <p class="wd-brief" data-weather-brief>Cerah berawan siang ini. Hujan ringan diperkirakan mulai pukul 15.00.</p>
+    <div class="wd-panel-heading"><span class="pp-icon"><i data-lucide="clock-3" aria-hidden="true"></i></span><h2 id="wd-hour-title">PRAKIRAAN PER JAM</h2></div>
+    <div class="wd-hour-grid">
+      <div class="wd-now"><span>Sekarang</span><span class="wd-now-icon pp-icon"></span><strong><span data-temp>31</span>°</strong></div>
+      <button type="button" class="pp-hour cursor-interaction" data-hour="0" aria-pressed="true"><span>14.00</span><span class="pp-hour-icon pp-icon"></span><strong>31°</strong></button>
+      <button type="button" class="pp-hour cursor-interaction" data-hour="1" aria-pressed="false"><span>15.00</span><span class="pp-hour-icon pp-icon"></span><strong>29°</strong></button>
+      <button type="button" class="pp-hour cursor-interaction" data-hour="2" aria-pressed="false"><span>16.00</span><span class="pp-hour-icon pp-icon"></span><strong>28°</strong></button>
+      <button type="button" class="pp-hour cursor-interaction" data-hour="3" aria-pressed="false"><span>17.00</span><span class="pp-hour-icon pp-icon"></span><strong>28°</strong></button>
+    </div>
+    <p class="wd-hour-selection pp-selected-hour" aria-live="polite">14.00 · Cerah berawan</p>
+    <div class="wd-empty" hidden><span class="wd-empty-icon pp-icon"></span><p>Prakiraan belum tersedia.</p><button type="button" class="pp-retry cursor-interaction" data-action="refresh">Coba lagi</button></div>
+  </section>
+
+  <section class="wd-glass wd-daily" aria-labelledby="wd-daily-title">
+    <div class="wd-panel-heading"><span class="pp-icon"><i data-lucide="calendar-days" aria-hidden="true"></i></span><h2 id="wd-daily-title">PRAKIRAAN 3 HARI</h2></div>
+    <div class="wd-daily-rows" role="list" aria-label="Contoh prakiraan tiga hari"></div>
+    <div class="wd-daily-legend"><span>Min.</span><span>Rentang suhu (°C)</span><span>Maks.</span></div>
+  </section>
+
+  <details class="wd-glass wd-graph">
+    <summary class="cursor-interaction"><span>Grafik suhu per jam</span><span class="pp-icon"><i data-lucide="chevron-down" aria-hidden="true"></i></span></summary>
+    <section class="pp-chart-section"><div class="pp-section-heading"><h2>Perubahan suhu</h2><span class="pp-units">°C · WIB</span></div><svg class="pp-chart" viewBox="0 0 324 180" role="img" aria-label="Data contoh, 31 derajat pukul 14, lalu 29 pukul 15, 28 pukul 16 dan 17, 27 pukul 18"><defs><linearGradient id="pp-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity=".18"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs><path class="pp-chart-grid" d="M22 40H302 M22 90H302 M22 140H302"/><path d="M24 40 L93 90 L162 115 L231 115 L300 140 L300 155H24Z" fill="url(#pp-area)"/><path d="M24 40 L93 90 L162 115 L231 115 L300 140" stroke="currentColor" stroke-width="2.3" fill="none"/><g class="pp-chart-points"><circle cx="24" cy="40" r="4"/><circle cx="93" cy="90" r="4"/><circle cx="162" cy="115" r="4"/><circle cx="231" cy="115" r="4"/><circle cx="300" cy="140" r="4"/></g><g class="pp-chart-labels"><text x="24" y="24">31°</text><text x="93" y="74">29°</text><text x="162" y="99">28°</text><text x="231" y="99">28°</text><text x="300" y="124">27°</text><text x="24" y="175">14.00</text><text x="93" y="175">15.00</text><text x="162" y="175">16.00</text><text x="231" y="175">17.00</text><text x="300" y="175">18.00</text></g></svg></section>
+  </details>
+
+  <div class="pp-detail-metrics wd-metrics">
+    <div class="wd-glass"><span class="pp-icon"><i data-lucide="droplets" aria-hidden="true"></i></span><p>Kelembapan</p><strong data-humidity>72%</strong></div>
+    <div class="wd-glass"><span class="pp-icon"><i data-lucide="wind" aria-hidden="true"></i></span><p>Angin tenggara</p><strong data-wind>12 km/jam</strong></div>
+  </div>
+  <p class="pp-detail-source wd-source">Open-Meteo · <span data-detail-freshness>Contoh diperbarui 12.00 WIB</span></p>
+  <p class="wd-example-note">Data contoh · Prakiraan dapat berubah</p>
+</main>

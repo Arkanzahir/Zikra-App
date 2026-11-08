@@ -36,18 +36,51 @@
           <p class="pp-updated" aria-live="polite">Contoh data cuaca diperbarui 12.00 WIB</p>
         </main>
       </div>
-      <div data-screen="Cuaca" hidden>
-        <header class="pp-inner-header"><button class="pp-back cursor-interaction" type="button" data-action="back" aria-label="Kembali ke Protector"><span class="pp-icon"><i data-lucide="arrow-left" aria-hidden="true"></i></span></button><div><h1>Cuaca</h1><p>Sukolilo, Surabaya</p></div></header>
-        <main class="pp-weather-page">
-          <div class="pp-weather-summary"><div><p class="pp-eyebrow">SENIN, 2 NOVEMBER</p><div class="pp-detail-temp"><span data-temp>31</span>°<small>C</small></div><h2 data-condition>Cerah berawan</h2></div><span class="pp-big-weather pp-icon"><i data-lucide="cloud-sun" aria-hidden="true"></i></span></div>
-          <p class="pp-summary-caption">Prakiraan sesuai lokasi · Open-Meteo</p>
-          <section class="pp-chart-section"><div class="pp-section-heading"><h2>Perubahan suhu</h2><span class="pp-units">°C · WIB</span></div><svg class="pp-chart" viewBox="0 0 324 180" role="img" aria-label="Data contoh, 31 derajat pukul 14, lalu 29 pukul 15, 28 pukul 16 dan 17, 27 pukul 18"><defs><linearGradient id="pp-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity=".18"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs><path class="pp-chart-grid" d="M22 40H302 M22 90H302 M22 140H302"/><path d="M24 40 L93 90 L162 115 L231 115 L300 140 L300 155H24Z" fill="url(#pp-area)"/><path d="M24 40 L93 90 L162 115 L231 115 L300 140" stroke="currentColor" stroke-width="2.3" fill="none"/><g class="pp-chart-points"><circle cx="24" cy="40" r="4"/><circle cx="93" cy="90" r="4"/><circle cx="162" cy="115" r="4"/><circle cx="231" cy="115" r="4"/><circle cx="300" cy="140" r="4"/></g><g class="pp-chart-labels"><text x="24" y="24">31°</text><text x="93" y="74">29°</text><text x="162" y="99">28°</text><text x="231" y="99">28°</text><text x="300" y="124">27°</text><text x="24" y="175">14.00</text><text x="93" y="175">15.00</text><text x="162" y="175">16.00</text><text x="231" y="175">17.00</text><text x="300" y="175">18.00</text></g></svg></section>
-          <div class="pp-detail-heading"><h2>Prakiraan per jam</h2><span>Hari ini</span></div>
-          <div class="pp-forecast-rows"><div><span class="pp-icon"><i data-lucide="cloud-sun" aria-hidden="true"></i></span><span>14.00</span><p>Cerah berawan</p><strong>31°</strong></div><div><span class="pp-icon"><i data-lucide="cloud-rain" aria-hidden="true"></i></span><span>15.00</span><p>Hujan ringan</p><strong>29°</strong></div><div><span class="pp-icon"><i data-lucide="cloud-rain" aria-hidden="true"></i></span><span>16.00</span><p>Hujan ringan</p><strong>28°</strong></div><div><span class="pp-icon"><i data-lucide="cloud" aria-hidden="true"></i></span><span>17.00</span><p>Berawan</p><strong>28°</strong></div></div>
-          <div class="pp-detail-metrics"><div><span class="pp-icon"><i data-lucide="droplets" aria-hidden="true"></i></span><p>Kelembapan</p><strong data-humidity>72%</strong></div><div><span class="pp-icon"><i data-lucide="wind" aria-hidden="true"></i></span><p>Angin tenggara</p><strong data-wind>12 km/jam</strong></div></div>
-          <p class="pp-detail-source">Data contoh · Prakiraan dapat berubah</p>
-        </main>
-      </div>
+      <div data-screen="Cuaca" hidden><header class="pp-inner-header wd-header">
+  <button class="pp-back cursor-interaction" type="button" data-action="back" aria-label="Kembali ke Protector"><span class="pp-icon"><i data-lucide="arrow-left" aria-hidden="true"></i></span></button>
+  <div><h1>Sukolilo, Surabaya</h1><p>Prakiraan cuaca</p></div>
+  <span class="wd-header-space" aria-hidden="true"></span>
+</header>
+<main class="pp-weather-page wd-content">
+  <div class="pp-weather-summary wd-temperature">
+    <div><p class="pp-eyebrow">SENIN, 2 NOVEMBER</p><div class="pp-detail-temp"><span data-temp>31</span>°</div><h2 data-condition>Cerah berawan</h2></div>
+    <span class="pp-big-weather pp-icon" hidden></span>
+  </div>
+  <p class="pp-summary-caption wd-location-note">Cuaca di lokasimu · WIB</p>
+
+  <section class="wd-glass wd-hourly" aria-labelledby="wd-hour-title">
+    <p class="wd-brief" data-weather-brief>Cerah berawan siang ini. Hujan ringan diperkirakan mulai pukul 15.00.</p>
+    <div class="wd-panel-heading"><span class="pp-icon"><i data-lucide="clock-3" aria-hidden="true"></i></span><h2 id="wd-hour-title">PRAKIRAAN PER JAM</h2></div>
+    <div class="wd-hour-grid">
+      <div class="wd-now"><span>Sekarang</span><span class="wd-now-icon pp-icon"></span><strong><span data-temp>31</span>°</strong></div>
+      <button type="button" class="pp-hour cursor-interaction" data-hour="0" aria-pressed="true"><span>14.00</span><span class="pp-hour-icon pp-icon"></span><strong>31°</strong></button>
+      <button type="button" class="pp-hour cursor-interaction" data-hour="1" aria-pressed="false"><span>15.00</span><span class="pp-hour-icon pp-icon"></span><strong>29°</strong></button>
+      <button type="button" class="pp-hour cursor-interaction" data-hour="2" aria-pressed="false"><span>16.00</span><span class="pp-hour-icon pp-icon"></span><strong>28°</strong></button>
+      <button type="button" class="pp-hour cursor-interaction" data-hour="3" aria-pressed="false"><span>17.00</span><span class="pp-hour-icon pp-icon"></span><strong>28°</strong></button>
+    </div>
+    <p class="wd-hour-selection pp-selected-hour" aria-live="polite">14.00 · Cerah berawan</p>
+    <div class="wd-empty" hidden><span class="wd-empty-icon pp-icon"></span><p>Prakiraan belum tersedia.</p><button type="button" class="pp-retry cursor-interaction" data-action="refresh">Coba lagi</button></div>
+  </section>
+
+  <section class="wd-glass wd-daily" aria-labelledby="wd-daily-title">
+    <div class="wd-panel-heading"><span class="pp-icon"><i data-lucide="calendar-days" aria-hidden="true"></i></span><h2 id="wd-daily-title">PRAKIRAAN 3 HARI</h2></div>
+    <div class="wd-daily-rows" role="list" aria-label="Contoh prakiraan tiga hari"></div>
+    <div class="wd-daily-legend"><span>Min.</span><span>Rentang suhu (°C)</span><span>Maks.</span></div>
+  </section>
+
+  <details class="wd-glass wd-graph">
+    <summary class="cursor-interaction"><span>Grafik suhu per jam</span><span class="pp-icon"><i data-lucide="chevron-down" aria-hidden="true"></i></span></summary>
+    <section class="pp-chart-section"><div class="pp-section-heading"><h2>Perubahan suhu</h2><span class="pp-units">°C · WIB</span></div><svg class="pp-chart" viewBox="0 0 324 180" role="img" aria-label="Data contoh, 31 derajat pukul 14, lalu 29 pukul 15, 28 pukul 16 dan 17, 27 pukul 18"><defs><linearGradient id="pp-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity=".18"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs><path class="pp-chart-grid" d="M22 40H302 M22 90H302 M22 140H302"/><path d="M24 40 L93 90 L162 115 L231 115 L300 140 L300 155H24Z" fill="url(#pp-area)"/><path d="M24 40 L93 90 L162 115 L231 115 L300 140" stroke="currentColor" stroke-width="2.3" fill="none"/><g class="pp-chart-points"><circle cx="24" cy="40" r="4"/><circle cx="93" cy="90" r="4"/><circle cx="162" cy="115" r="4"/><circle cx="231" cy="115" r="4"/><circle cx="300" cy="140" r="4"/></g><g class="pp-chart-labels"><text x="24" y="24">31°</text><text x="93" y="74">29°</text><text x="162" y="99">28°</text><text x="231" y="99">28°</text><text x="300" y="124">27°</text><text x="24" y="175">14.00</text><text x="93" y="175">15.00</text><text x="162" y="175">16.00</text><text x="231" y="175">17.00</text><text x="300" y="175">18.00</text></g></svg></section>
+  </details>
+
+  <div class="pp-detail-metrics wd-metrics">
+    <div class="wd-glass"><span class="pp-icon"><i data-lucide="droplets" aria-hidden="true"></i></span><p>Kelembapan</p><strong data-humidity>72%</strong></div>
+    <div class="wd-glass"><span class="pp-icon"><i data-lucide="wind" aria-hidden="true"></i></span><p>Angin tenggara</p><strong data-wind>12 km/jam</strong></div>
+  </div>
+  <p class="pp-detail-source wd-source">Open-Meteo · <span data-detail-freshness>Contoh diperbarui 12.00 WIB</span></p>
+  <p class="wd-example-note">Data contoh · Prakiraan dapat berubah</p>
+</main>
+</div>
       <div data-screen="Gempa" hidden>
         <header class="pp-inner-header"><button class="pp-back cursor-interaction" type="button" data-action="back" aria-label="Kembali ke Protector"><span class="pp-icon"><i data-lucide="arrow-left" aria-hidden="true"></i></span></button><div><h1>Peta gempa</h1><p>Data contoh laporan BMKG</p></div></header>
         <main class="pp-quake-page"><div class="pp-detail-map"><svg class="pp-map" role="img" aria-label="Peta Indonesia, data contoh gempa Sorong"></svg><span class="pp-map-source">Natural Earth · Batas wilayah</span></div><p class="pp-eyebrow">LAPORAN TERAKHIR BMKG</p><h2>Timur Laut Kota Sorong</h2><p class="pp-quake-date">Jumat, 30 Oktober 2026 · 13.03 WIB</p><div class="pp-event-metrics"><div><p>Magnitudo</p><strong>3,7</strong></div><div><p>Kedalaman</p><strong>10 km</strong></div></div><p class="pp-coordinates">0,720° LS · 131,380° BT</p><div class="pp-report-note"><span class="pp-icon"><i data-lucide="info" aria-hidden="true"></i></span><p>Contoh laporan kejadian nasional. Bukan prediksi atau peringatan bagi lokasimu.</p></div></main>
@@ -1149,6 +1182,320 @@
   margin-top:3px
 }
 
+/* Weather detail: original Zikra atmosphere with a readable glass surface. */
+#zikra-protector-final {
+  --wd-top:#347ca9;
+  --wd-bottom:#79b9d9;
+  --wd-glass:light-dark(#15507fbf,#102f4bcc);
+  --wd-edge:#ffffff20;
+  --wd-text:#ffffff;
+  --wd-secondary:#ffffffc7;
+}
+#zikra-protector-final[data-active-screen="Cuaca"] .pp-phone {
+  background:var(--wd-top);
+}
+#zikra-protector-final[data-active-screen="Cuaca"] .pp-status {
+  background:var(--wd-top);
+}
+#zikra-protector-final [data-screen="Cuaca"] {
+  position:relative;
+  isolation:isolate;
+  color:var(--wd-text);
+  background:linear-gradient(var(--wd-top),var(--wd-bottom));
+}
+#zikra-protector-final [data-screen="Cuaca"]::before {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  background:var(--pp-clouds) 60% -35px/650px auto repeat-y;
+  opacity:.53;
+  pointer-events:none;
+}
+#zikra-protector-final [data-screen="Cuaca"]::after {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  background:linear-gradient(0deg,#0c376745,#23486300 70%);
+  pointer-events:none;
+}
+#zikra-protector-final[data-weather="Hujan"] [data-screen="Cuaca"]::before {
+  background:var(--pp-storm) center top/cover no-repeat;
+  opacity:.53;
+}
+#zikra-protector-final[data-weather="Malam"] [data-screen="Cuaca"]::before {
+  filter:brightness(.45) saturate(.6);
+  opacity:.4;
+}
+#zikra-protector-final .wd-header {
+  display:grid;
+  grid-template-columns:44px minmax(0,1fr) 44px;
+  gap:6px;
+  background:transparent;
+  border:0;
+  padding:13px 14px 6px;
+  text-align:center;
+}
+#zikra-protector-final .wd-header .pp-back {
+  color:var(--wd-text);
+}
+#zikra-protector-final .wd-header h1 {
+  font-size:17px;
+  font-weight:500;
+}
+#zikra-protector-final .wd-header p {
+  color:var(--wd-secondary);
+  font-size:11px;
+  margin-top:2px;
+}
+#zikra-protector-final .wd-content {
+  padding:18px 17px 22px;
+}
+#zikra-protector-final .wd-temperature {
+  justify-content:center;
+  margin:0;
+  text-align:center;
+}
+#zikra-protector-final .wd-temperature .pp-eyebrow {
+  color:var(--wd-secondary);
+  font-size:11px;
+  letter-spacing:.7px;
+}
+#zikra-protector-final .wd-temperature .pp-detail-temp {
+  color:var(--wd-text);
+  font-size:88px;
+  font-weight:300;
+  line-height:1.1;
+  letter-spacing:-4px;
+  margin:8px 0 1px;
+  text-shadow:0 2px 16px #14446720;
+}
+#zikra-protector-final .wd-temperature h2 {
+  font-size:18px;
+  font-weight:400;
+  margin-top:1px;
+  color:var(--wd-text);
+  text-shadow:0 1px 8px #14446780;
+}
+#zikra-protector-final .wd-location-note {
+  text-align:center;
+  font-size:11px;
+  color:var(--wd-secondary);
+  margin:5px 0 24px;
+}
+#zikra-protector-final .wd-glass {
+  background:var(--wd-glass);
+  border:1px solid var(--wd-edge);
+  border-radius:18px;
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  color:var(--wd-text);
+}
+#zikra-protector-final .wd-hourly {
+  padding:15px 13px 9px;
+}
+#zikra-protector-final .wd-brief {
+  font-size:13px;
+  line-height:1.55;
+  padding-bottom:13px;
+  border-bottom:1px solid #ffffff20;
+}
+#zikra-protector-final .wd-panel-heading {
+  display:flex;
+  gap:5px;
+  align-items:center;
+  color:var(--wd-secondary);
+  padding-top:12px;
+}
+#zikra-protector-final .wd-panel-heading .pp-icon {
+  width:13px;
+  height:13px;
+}
+#zikra-protector-final .wd-panel-heading h2 {
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.4px;
+}
+#zikra-protector-final .wd-hour-grid {
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:2px;
+  padding-top:8px;
+}
+#zikra-protector-final .wd-hour-grid .pp-hour,
+#zikra-protector-final .wd-now {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:var(--wd-text);
+  background:transparent;
+  gap:10px;
+  padding:10px 0;
+  font-size:11px;
+  min-width:0;
+  min-height:101px;
+  border-radius:12px;
+}
+#zikra-protector-final .wd-hour-grid .pp-hour[aria-pressed="true"] {
+  background:#ffffff14;
+}
+#zikra-protector-final .wd-hour-grid .pp-hour-icon,
+#zikra-protector-final .wd-now-icon {
+  width:30px;
+  height:30px;
+}
+#zikra-protector-final .wd-hour-grid strong {
+  font-size:17px;
+  font-weight:500;
+}
+#zikra-protector-final .wd-hour-selection {
+  font-size:11px;
+  color:var(--wd-secondary);
+  padding:5px 3px 2px;
+}
+#zikra-protector-final .wd-daily {
+  margin-top:12px;
+  padding:0 14px 10px;
+}
+#zikra-protector-final .wd-daily-row {
+  display:grid;
+  grid-template-columns:52px 28px 27px minmax(24px,1fr) 27px;
+  gap:7px;
+  align-items:center;
+  font-size:14px;
+  padding:13px 0;
+  border-bottom:1px solid #ffffff18;
+}
+#zikra-protector-final .wd-daily-row:last-child {
+  border-bottom:0;
+}
+#zikra-protector-final .wd-daily-row .pp-icon {
+  width:28px;
+  height:28px;
+}
+#zikra-protector-final .wd-daily-row strong {
+  font-size:15px;
+  font-weight:500;
+  text-align:right;
+}
+#zikra-protector-final .wd-daily-low {
+  color:var(--wd-secondary);
+  text-align:right;
+}
+#zikra-protector-final .wd-range {
+  position:relative;
+  height:5px;
+  background:#ffffff18;
+  border-radius:10px;
+}
+#zikra-protector-final .wd-range>span {
+  position:absolute;
+  height:100%;
+  border-radius:10px;
+  background:linear-gradient(90deg,#a1d8e8,#f3ca85);
+}
+#zikra-protector-final .wd-daily-legend {
+  display:flex;
+  gap:12px;
+  justify-content:flex-end;
+  color:var(--wd-secondary);
+  font-size:11px;
+  padding-top:7px;
+}
+#zikra-protector-final .wd-graph {
+  margin-top:12px;
+  padding:0 14px;
+}
+#zikra-protector-final .wd-graph summary {
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:13px;
+  list-style:none;
+}
+#zikra-protector-final .wd-graph summary .pp-icon {
+  width:15px;
+  height:15px;
+}
+#zikra-protector-final .wd-graph .pp-chart-section {
+  margin:3px 0 15px;
+}
+#zikra-protector-final .wd-graph .pp-chart-section h2 {
+  font-size:13px;
+  color:var(--wd-text);
+}
+#zikra-protector-final .wd-graph .pp-units,
+#zikra-protector-final .wd-graph .pp-chart-labels {
+  color:var(--wd-secondary);
+  fill:var(--wd-secondary);
+}
+#zikra-protector-final .wd-graph .pp-chart,
+#zikra-protector-final .wd-graph .pp-chart-points {
+  color:#f1d396;
+  fill:#f1d396;
+}
+#zikra-protector-final .wd-graph .pp-chart-grid {
+  stroke:#ffffff20;
+  fill:none;
+}
+#zikra-protector-final .wd-metrics {
+  background:transparent;
+  padding:0;
+  margin:12px 0 16px;
+  gap:12px;
+}
+#zikra-protector-final .wd-metrics>div {
+  padding:15px;
+}
+#zikra-protector-final .wd-metrics .pp-icon,
+#zikra-protector-final .wd-metrics strong {
+  color:var(--wd-text);
+}
+#zikra-protector-final .wd-metrics p,
+#zikra-protector-final .wd-source {
+  color:var(--wd-secondary);
+}
+#zikra-protector-final .wd-example-note {
+  text-align:center;
+  font-size:11px;
+  margin-top:5px;
+  color:var(--wd-secondary);
+}
+#zikra-protector-final .wd-empty {
+  text-align:center;
+  padding:16px 5px;
+  color:var(--wd-text);
+}
+#zikra-protector-final .wd-empty-icon {
+  width:48px;
+  height:48px;
+}
+#zikra-protector-final .wd-empty p {
+  margin:8px 0 12px;
+  font-size:13px;
+}
+#zikra-protector-final .wd-empty .pp-retry {
+  background:#ffffff22;
+  color:var(--wd-text);
+}
+#zikra-protector-final[data-active-screen="Cuaca"] .pp-dock {
+  background:var(--wd-top);
+  border-color:#ffffff20;
+}
+#zikra-protector-final[data-active-screen="Cuaca"] .pp-dock>span {
+  color:var(--wd-secondary);
+}
+@media(max-width:360px) {
+  #zikra-protector-final .wd-content {padding-left:12px;padding-right:12px;}
+  #zikra-protector-final .wd-hourly {padding-left:10px;padding-right:10px;}
+  #zikra-protector-final .wd-daily {padding-left:11px;padding-right:11px;}
+  #zikra-protector-final .wd-daily-row {gap:4px;grid-template-columns:46px 25px 24px minmax(20px,1fr) 24px;font-size:13px;}
+  #zikra-protector-final .wd-daily-row strong {font-size:14px;}
+}
+
 @media(max-width:360px) {
   #zikra-protector-final .pp-home-content {
   padding-left:13px;
@@ -1192,12 +1539,13 @@
   const state = {
     tema: 'Terang',
     suasana: 'Siang',
-    layar: 'Protector',
+    layar: 'Cuaca',
     jam: 0,
     status: 'Tersambung'
   };
 
   function theme() {
+    if (state.layar === 'Cuaca') return 'dark';
     return state.tema === 'Gelap' || (state.tema === 'Ikuti perangkat' && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
   }
 
@@ -1291,9 +1639,74 @@
     });
   }
 
+  function renderDailyForecast(missing) {
+    const rows = state.suasana === 'Hujan' ? [{
+      day: 'Hari ini',
+      low: 24,
+      high: 28,
+      icon: 'light-rain'
+    }, {
+      day: 'Sel',
+      low: 24,
+      high: 30,
+      icon: 'rain'
+    }, {
+      day: 'Rab',
+      low: 25,
+      high: 31,
+      icon: 'cloudy'
+    }] : [{
+      day: 'Hari ini',
+      low: 26,
+      high: 31,
+      icon: 'light-rain'
+    }, {
+      day: 'Sel',
+      low: 25,
+      high: 32,
+      icon: 'light-rain'
+    }, {
+      day: 'Rab',
+      low: 25,
+      high: 31,
+      icon: 'cloudy'
+    }];
+    root.querySelector('.wd-daily').hidden = missing;
+    const list = root.querySelector('.wd-daily-rows');
+    list.replaceChildren();
+    const low = Math.min(...rows.map(row => row.low));
+    const high = Math.max(...rows.map(row => row.high));
+    rows.forEach(row => {
+      const element = document.createElement('div');
+      element.className = 'wd-daily-row';
+      element.setAttribute('role', 'listitem');
+      element.setAttribute('aria-label', `${row.day}, minimum ${row.low}, maksimum ${row.high} derajat Celsius, data contoh`);
+      const name = document.createElement('span');
+      name.textContent = row.day;
+      const icon = document.createElement('span');
+      icon.className = 'pp-icon';
+      assetIcon(icon, row.icon);
+      const minimum = document.createElement('span');
+      minimum.className = 'wd-daily-low';
+      minimum.textContent = row.low + '°';
+      const range = document.createElement('span');
+      range.className = 'wd-range';
+      range.setAttribute('aria-hidden', 'true');
+      const mark = document.createElement('span');
+      mark.style.left = ((row.low - low) / (high - low) * 100) + '%';
+      mark.style.width = ((row.high - row.low) / (high - low) * 100) + '%';
+      range.append(mark);
+      const maximum = document.createElement('strong');
+      maximum.textContent = row.high + '°';
+      element.append(name, icon, minimum, range, maximum);
+      list.append(element);
+    });
+  }
+
   function render() {
     root.style.colorScheme = state.tema === 'Terang' ? 'light' : state.tema === 'Gelap' ? 'dark' : 'light dark';
     root.dataset.weather = state.suasana;
+    root.dataset.activeScreen = state.layar;
     const night = state.suasana === 'Malam',
       rain = state.suasana === 'Hujan';
     const missing = state.status === 'Belum tersedia';
@@ -1301,6 +1714,8 @@
     root.style.setProperty('--pp-sky-bottom', night ? '#365f6d' : rain ? '#a5bec7' : '#c6e1e4');
     root.style.setProperty('--pp-city-brightness', night ? '.42' : rain ? '.78' : '1');
     root.style.setProperty('--pp-cloud-opacity', night ? '.45' : '.92');
+    root.style.setProperty('--wd-top', night ? '#14293f' : rain ? '#4b677d' : '#347ca9');
+    root.style.setProperty('--wd-bottom', night ? '#314c69' : rain ? '#8daabd' : '#79b9d9');
     root.querySelector('.pp-sun').style.visibility = rain ? 'hidden' : 'visible';
     root.querySelector('.pp-sun').style.boxShadow = night ? 'inset -14px -5px 0 #28485d' : '0 0 30px 8px #ffe7ab66';
     root.querySelectorAll('[data-temp]').forEach(e => e.textContent = missing ? '—' : night ? '27' : rain ? '28' : '31');
@@ -1316,7 +1731,14 @@
     root.querySelector('.pp-hour-rail').hidden = missing;
     root.querySelector('.pp-forecast-empty').hidden = !missing;
     root.querySelector('.pp-chart-section').hidden = missing;
-    root.querySelector('.pp-forecast-rows').hidden = missing;
+    root.querySelector('.wd-hour-grid').hidden = missing;
+    root.querySelector('.wd-hour-selection').hidden = missing;
+    root.querySelector('.wd-empty').hidden = !missing;
+    root.querySelector('.wd-graph').hidden = missing;
+    assetIcon(root.querySelector('.wd-empty-icon'), 'unavailable');
+    renderDailyForecast(missing);
+    root.querySelector('[data-weather-brief]').textContent = missing ? 'Prakiraan belum dapat dimuat. Periksa koneksi lalu coba lagi.' : night ? 'Langit berawan malam ini, berangsur lebih cerah mulai pukul 22.00.' : rain ? 'Hujan ringan siang ini, berangsur berawan mulai pukul 16.00.' : 'Cerah berawan siang ini. Hujan ringan diperkirakan mulai pukul 15.00.';
+    root.querySelector('[data-detail-freshness]').textContent = missing ? 'Belum ada data valid' : state.status === 'Tersimpan' ? 'Data tersimpan · Contoh diambil 12.00 WIB' : 'Contoh diperbarui 12.00 WIB';
     assetIcon(root.querySelector('.pp-empty-icon'), 'unavailable');
     ['home', 'quran', 'ai', 'study', 'profile'].forEach((name, i) => assetImage(root.querySelectorAll('.pp-dock>span .pp-icon')[i], assets.navigation[theme()][name]));
     root.querySelector('.pp-updated').textContent = missing ? 'Belum ada data cuaca yang dapat ditampilkan' : state.status === 'Tersimpan' ? 'Data tersimpan · Contoh diambil 12.00 WIB' : 'Contoh data cuaca diperbarui 12.00 WIB';
@@ -1338,14 +1760,9 @@
       e.querySelector('strong').textContent = data.temps[i] + '°';
       icon(e.querySelector('.pp-hour-icon'), data.icons[i]);
     });
-    root.querySelector('.pp-selected-hour').textContent = missing ? 'Belum ada data prakiraan' : data.times[state.jam] + ' · ' + data.conditions[state.jam];
-    root.querySelectorAll('.pp-forecast-rows>div').forEach((row, i) => {
-      row.querySelector('span:nth-child(2)').textContent = data.times[i];
-      row.querySelector('p').textContent = data.conditions[i];
-      row.querySelector('strong').textContent = data.temps[i] + '°';
-      icon(row.querySelector('.pp-icon'), data.icons[i]);
-    });
+    root.querySelectorAll('.pp-selected-hour').forEach(label => label.textContent = missing ? 'Belum ada data prakiraan' : data.times[state.jam] + ' · ' + data.conditions[state.jam]);
     icon(root.querySelector('.pp-big-weather'), missing ? 'unavailable' : night ? 'cloud-moon' : rain ? 'cloud-rain' : 'cloud-sun');
+    icon(root.querySelector('.wd-now-icon'), missing ? 'unavailable' : night ? 'cloud-moon' : rain ? 'cloud-rain' : 'cloud-sun');
     const chart = root.querySelector('.pp-chart'),
       paths = chart.querySelectorAll('path'),
       max = Math.max(...data.temps),
@@ -1380,7 +1797,8 @@
           tema: state.tema,
           suasana: state.suasana,
           layar: state.layar,
-          status: state.status
+          status: state.status,
+          weatherDetailStyle: 'Langit dan kartu transparan'
         }
       },
       privateContent: {
@@ -1431,7 +1849,11 @@
     tile.append(pair, name, format);
     root.querySelector('.pp-asset-grid').append(tile);
   });
-  root.querySelectorAll('[data-preview]').forEach(button => button.addEventListener('click', () => { state.layar = button.dataset.preview; render(); save(); }));
+  root.querySelectorAll('[data-preview]').forEach(button => button.addEventListener('click', () => {
+    state.layar = button.dataset.preview;
+    render();
+    save();
+  }));
   root.querySelectorAll('[data-hour]').forEach(b => b.addEventListener('click', () => {
     state.jam = Number(b.dataset.hour);
     render();

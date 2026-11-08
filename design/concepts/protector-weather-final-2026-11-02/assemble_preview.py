@@ -22,6 +22,7 @@ def assemble():
     for token, file in [("__CITY_DATA__", "backgrounds/city.webp"), ("__CLOUD_DATA__", "backgrounds/clouds.webp"), ("__FONT_DATA__", "fonts/roboto-latin-preview.woff2"), ("__STORM_DATA__", "backgrounds/storm.webp")]:
         css = css.replace(token, data_uri(HERE / "assets" / file))
     replacements = {
+        "__WEATHER_DETAIL__": (HERE / "weather-detail.fragment.html").read_text(encoding="utf8"),
         "__GEOMETRY__": (ROOT / "android/app/src/main/res/raw/protector_indonesia.geojson").read_text(encoding="utf8"),
         "__ASSET_DATA__": json.dumps(assets, separators=(",", ":")),
         "__STYLES__": css,
