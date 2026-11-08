@@ -5,6 +5,18 @@ dan meminta navigasi konsisten: permukaan putih saat terang, hijau gelap saat
 gelap. **Selesai teknis beta terarah; bukan seluruh E03 atau rilis publik.**
 APK belum dipasang/diuji di HP pengguna.
 
+## Verifikasi API lanjutan — 8 November, 13.30 WIB
+
+Sesudah checkpoint implementasi, permintaan HTTPS langsung dengan parameter
+client dan titik kota publik Sukolilo/Surabaya mendapat HTTP200,72 slot per jam,
+zona Asia/Jakarta, rentang lokal8–10 November. Payload nyata diterima oleh
+`OpenMeteoParser` dan `WeatherOutlook` dari class produksi hasil build:4 slot
+berikutnya dan3 kelompok rentang harian valid. [Bukti ringkas](live-api-probe.json).
+Ini menambah bukti kompatibilitas data layanan; pengujian native di bawah tetap
+fixture/offline. Bukan pengujian jaringan HP atau jaminan ketersediaan/ketepatan
+prakiraan di semua tempat. Tidak memakai GPS perangkat, tidak mengubah APK,
+konfigurasi, key atau paket; respons mentah disimpan privat.
+
 ## Perubahan
 
 - Protector mempertahankan hero/artwork, peta dan tiga metrik laporan gempa.

@@ -1,0 +1,16 @@
+{
+  "sampleLocation": "Public city sample: Sukolilo, Surabaya; not device GPS",
+  "nextSlots": 4,
+  "firstSlotUtc": "2026-11-07T17:00:00Z",
+  "timezone": "Asia/Jakarta",
+  "checkedAtUtc": "2026-11-08T06:30:55.044465200Z",
+  "lastSlotUtc": "2026-11-10T16:00:00Z",
+  "hourlySlots": 72,
+  "productionAggregationAccepted": true,
+  "selectedSlotLocal": "2026-11-08T14:00+07:00[Asia/Jakarta]",
+  "dailyRanges": 3,
+  "productionParserAccepted": true,
+  "httpStatus": 200,
+  "phoneTested": false,
+  "apkChanged": false
+}

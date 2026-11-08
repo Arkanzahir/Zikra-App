@@ -2,6 +2,11 @@
 
 ## UI11 native selesai teknis beta 1.9.35 — 8 November 2026
 
+Verifikasi lanjutan13.30WIB:API Open-Meteo titik kota publik SurabayaHTTP200/
+72slot diterima parser produksi dan agregasi3hari/4slot berikutnya.
+[Bukti](android/validation/weather-ui11-2026-11-08/live-api-probe.json).
+APK tetap1.9.35/HP belum diuji; bukan jaminan cuaca/operator atau gerbang E03.
+
 Pengguna mengizinkan implementasi cuaca. Panel prakiraan Protector, detail langit/
 transparan, rentang suhu tiga hari dari slot provider dan grafik lipat sudah
 native; dock putih/hijau gelap mengikuti tema, langit mengikuti jam lokasi.
