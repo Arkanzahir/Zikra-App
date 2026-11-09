@@ -10,6 +10,14 @@ jadwal serta uji HP fisik. [Status aktivasi](activation.json),
 sebelum aktivasi; penolakan review ditangani dengan persetujuan baru ini.
 Bukan penyelesaian seluruh A–D/E atau persetujuan rilis publik.
 
+Observasi terakhir**12.54WIB**: belum ada run otomatis setelah**20.9menit**,
+meski default branch/main, variabletrue, workflowactive dan enable API204 sudah
+diverifikasi. [Bukti](schedule-observation.json). Bentuk cron2/5 setara dengan
+slot sebelumnya; tidak menyimpulkan ekspresi lama sebagai penyebab. Penyebab
+pasti belum diketahui. Jangan menjanjikan interval aktual5menit. GitHub juga
+[mendokumentasikan potensi delay/drop](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule).
+Kondisi ini tidak ditutup memakai run manual tambahan. E02 tetap terbuka.
+
 ## Hasil
 
 - Endpoint privat Vercel `/v1/earthquakes/poll`, tiga feed BMKG tetap, baseline

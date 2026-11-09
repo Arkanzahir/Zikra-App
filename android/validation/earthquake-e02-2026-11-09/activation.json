@@ -14,5 +14,7 @@
   "phoneTested": false,
   "apkUnchanged": true,
   "scheduleExpressionSimplified": true,
-  "scheduleExpressionNote": "Equivalent minute slots; uses the documented start/step form. No claim that the earlier range/step expression caused the missing runs."
+  "scheduleExpressionNote": "Equivalent minute slots; uses the documented start/step form. No claim that the earlier range/step expression caused the missing runs.",
+  "automaticExecutionVerified": false,
+  "latestObservation": "schedule-observation.json"
 }

@@ -1,5 +1,13 @@
 ## E02 aktivasi disetujui; observasi jadwal — 9 November 2026
 
+Observasi terakhir12.54WIB: aktivasi true/branchutama main/workflow
+active dan enable API204, tetapi belum ada event schedule setelah20.9menit.
+Manual sukses tidak menutup observasi ini; ekspresi telah disederhanakan ke2/5
+dengan slot sama, sebab pasti belum diketahui. [Bukti observasi](android/validation/earthquake-e02-2026-11-09/schedule-observation.json).
+Jangan menjanjikan pengiriman rutin5menit atau menyebut E02 selesai. Tidak ada
+Androidtest/HP/deploy baru; pemeriksaan selanjutnya harus membaca run schedule
+aktual lalu memeriksa langkah pollnya, tanpa meminta ulang persetujuan opt-in.
+
 Pengguna kini menyetujui laporan nyata kepada seluruh pelanggan topic beta yang
 opt-in, termasuk uji produksi/jadwal. Penolakan review sebelumnya diselesaikan
 dengan persetujuan ini; jangan meminta ulang. Variable GitHub true, poll200/
