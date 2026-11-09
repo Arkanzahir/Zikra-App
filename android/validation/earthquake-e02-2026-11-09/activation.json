@@ -1,0 +1,16 @@
+{
+  "authorizedOn": "2026-11-09",
+  "scope": "Official BMKG reports for all opted-in beta topic subscribers; production poll and scheduler testing explicitly approved",
+  "topic": "zikra-earthquake-beta-v1",
+  "schedulerEnabled": true,
+  "schedule": "2-57/5 * * * * UTC",
+  "pollChecked": true,
+  "acceptedOnDirectProbe": 0,
+  "uncertainOnDirectProbe": 0,
+  "manualRunId": 42568061078,
+  "manualRunSuccess": true,
+  "scheduledRunObserved": false,
+  "deliveryToAllSubscribersProven": false,
+  "phoneTested": false,
+  "apkUnchanged": true
+}

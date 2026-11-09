@@ -1,0 +1,40 @@
+{
+  "at": "2026-11-09T05:33:13.046Z",
+  "passed": true,
+  "results": [
+    {
+      "name": "health",
+      "status": 200,
+      "body": {
+        "status": "ok"
+      },
+      "durationMs": 1186
+    },
+    {
+      "name": "unauthorized",
+      "status": 401,
+      "body": {
+        "error": "unauthorized"
+      },
+      "durationMs": 732
+    },
+    {
+      "name": "method",
+      "status": 405,
+      "body": {
+        "error": "method_not_allowed"
+      },
+      "durationMs": 363
+    },
+    {
+      "name": "authorized",
+      "status": 200,
+      "body": {
+        "state": "checked",
+        "accepted": 0,
+        "uncertain": 0
+      },
+      "durationMs": 1475
+    }
+  ]
+}

@@ -1,5 +1,18 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## E02 aktivasi disetujui; observasi jadwal — 9 November 2026
+
+Pengguna kini menyetujui laporan nyata kepada seluruh pelanggan topic beta yang
+opt-in, termasuk uji produksi/jadwal. Penolakan review sebelumnya diselesaikan
+dengan persetujuan ini; jangan meminta ulang. Variable GitHub true, poll200/
+checked/accepted0/uncertain0; workflow manual42568061078 dan langkah poll sukses.
+[Bukti aktivasi](android/validation/earthquake-e02-2026-11-09/activation.json).
+Run ber-event schedule belum teramati; jangan menyamakan uji manual dengan cron.
+E02 tetap[ ] untuk observasi jadwal dan uji HP. Tidak mengirim kejadian palsu ke
+topic; penerimaan semua subscriber belum diklaim. APK tetap1.9.36/code63/50.062.820byte.
+Tidak ada build/HP/emulator/inference/key/model/paket baru; WIP/stash/audio/env/
+aset/data tetap. Gerbang B01/C02/C07/D02/D02a/E03/E04/F/G/publik tetap.
+
 ## E02 parsial beta 1.9.36 — 9 November 2026
 
 Push BMKG/Redis/FCM dan pengaturan opt-in sudah diterapkan; APK50.062.820byte,
@@ -222,7 +235,7 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 
 - [x] **E01 — Verifikasi laporan gempa dan peta (beta terarah).** Selesai 2 November 2026, 1.9.34/code61: satu snapshot laporan/pin/waktu/Shakemap, cache bertanggal maksimal24jam, detail laporan pilihan, penolakan URL/redirect asing dan kegagalan gambar/tile diuji. 169 unit/4 skip, 21 eksekusi native final/18 metode unik lulus; lint0 error/861 warning. Feed/JPEG BMKG nyata 30 Oktober di Sorong sesuai bidang layar, bukan terbatas kota pengguna. [Bukti, riwayat kegagalan, APK dan batas](android/validation/earthquake-e01-2026-11-02/README.md). 32 berkas emulator dipulihkan cocok hash/helper dibersihkan/emulator ditutup; HP tidak diakses. Laporan bukan prediksi atau push; E02–E04 dan gerbang A–D/F/G/publik tetap terbuka.
 - [ ] **E02 — Notifikasi gempa saat aplikasi ditutup.** Jika masuk cakupan rilis, server memantau feed resmi dengan cache/jeda yang patuh batas sumber, menyimpan ID kejadian untuk mencegah kirim ulang, lalu mengirim push. HP membuka detail kejadian yang dipilih, bukan laporan terbaru yang berbeda. Uji izin ditolak, duplikat, server restart dan keterlambatan; jangan menjanjikan peringatan pasti sebelum guncangan.
-  Status9November: implementasi/APK1.9.36 dan uji emulator terarah lulus; parent tetap terbuka untuk persetujuan aktivasi topic massal, observasi jadwal dan HP. [Bukti/batas](android/validation/earthquake-e02-2026-11-09/README.md).
+  Status9November: implementasi/APK1.9.36 dan uji emulator terarah lulus; aktivasi topic massal sudah disetujui dan true; poll/workflow manual lulus, parent tetap terbuka untuk observasi jadwal otomatis dan HP. [Bukti/batas](android/validation/earthquake-e02-2026-11-09/README.md).
 
 - [ ] **E03 — Cuaca dan pengingat kontekstual.** Kondisi/animasi mengikuti prakiraan untuk lokasi dan waktu yang benar; bedakan prakiraan dari pengukuran langsung. Sesuai cakupan, selesaikan alert cuaca, doa perjalanan, pagi/petang dan morning briefing dengan dependensi jadwal/lokasi serta kontrol pengguna; hindari notifikasi berulang.
 - [ ] **E04 — Bantuan darurat dan masjid terdekat.** Tautan/panggilan/arah dapat digunakan, izin lokasi ditolak punya fallback, hasil kosong/gagal jelas, data komunitas tidak dianggap lengkap. Pesan keluarga/panggilan tetap melalui tindakan pengguna. Nomor/tautan bantuan dan atribusi diperiksa.

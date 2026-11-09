@@ -1,0 +1,9 @@
+{
+  "repository": "Arkanzahir/Zikra-App",
+  "publicRepository": true,
+  "workflowState": "active",
+  "workflowPath": ".github/workflows/earthquake-push.yml",
+  "activationVariable": "true",
+  "workflowUrl": "https://github.com/Arkanzahir/Zikra-App/blob/main/.github/workflows/earthquake-push.yml",
+  "broadcastTriggeredByInspection": false
+}

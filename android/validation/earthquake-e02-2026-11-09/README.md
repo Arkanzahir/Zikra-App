@@ -1,9 +1,13 @@
 # E02 — Push gempa, beta 1.9.36, 9 November 2026
 
-**E02 masih terbuka.** Implementasi dan uji terarah selesai; aktivasi pemeriksaan
-massal, observasi jadwal nyata dan uji HP fisik belum selesai. Variable GitHub
-`ZIKRA_QUAKE_PUSH_ENABLED` tetap `false`; [inspeksi GitHub baca-saja](scheduler-inspection.json) mengonfirmasi workflow terdaftar pada repo publik tanpa memicu broadcast. Bukan penyelesaian seluruh A–D/E atau
-persetujuan rilis publik.
+**Jadwal sudah diaktifkan setelah persetujuan eksplisit pengguna, 9 November 2026.**
+Poll produksi200/checked/accepted0/uncertain0; workflow manual dan langkah poll
+lulus. Run ber-event schedule belum teramati; E02 tetap terbuka untuk observasi
+jadwal serta uji HP fisik. [Status aktivasi](activation.json),
+[poll produksi](hosted-activation-probe.json), [job manual](workflow-manual-jobs.json),
+[inspeksi true](scheduler-activation.json). Inspeksi false di bawah adalah riwayat
+sebelum aktivasi; penolakan review ditangani dengan persetujuan baru ini.
+Bukan penyelesaian seluruh A–D/E atau persetujuan rilis publik.
 
 ## Hasil
 
@@ -76,13 +80,12 @@ nyata atau broadcast ke pengguna.
 
 ## Gerbang yang belum terpenuhi
 
-1. **Aktivasi massal belum diizinkan.** Review persetujuan otomatis menolak poll
-   produksi setelah baseline karena bisa mengirim laporan nyata kepada semua
-   pelanggan topic, sedangkan persetujuan jelas baru untuk uji emulator terarah.
-   Tidak dicoba melalui workflow atau jalan lain. Jadwal tetap nonaktif.
-2. Setelah persetujuan, jalankan poll nyata, aktifkan variable jadwal dan amati
-   run terjadwal berhasil. Rantai **Vercel → FCM pengiriman nyata** belum diklaim
-   lulus hanya dari baseline atau uji pengirim lokal.
+1. Aktivasi massal telah disetujui dan variable true. Inspeksi awal false tetap
+   tersimpan sebagai riwayat, bukan status aktif terbaru.
+2. Poll produksi dan workflow manual lulus; run terjadwal pertama belum teramati.
+   Probe tidak menemukan kejadian baru untuk dikirim. Pengiriman Vercel-FCM
+   kepada seluruh pelanggan belum diamati; jangan menjanjikan penerimaan semua
+   HP dari job manual sukses atau dari uji operator-FCM-emulator.
 3. Uji HP fisik pada versi ini, termasuk aplikasi ditutup, ketukan kejadian dan
    kondisi baterai/OEM. Jangan berulang meminta USB ketika pengguna menundanya.
 4. Lima menit adalah rencana pemeriksaan, bukan tenggat jaminan. GitHub, sumber,

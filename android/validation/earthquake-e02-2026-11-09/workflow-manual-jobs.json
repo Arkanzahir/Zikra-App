@@ -1,0 +1,51 @@
+{
+  "runId": 42568061078,
+  "jobs": [
+    {
+      "id": 128998861076,
+      "name": "poll",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-09T05:34:14Z",
+      "completed_at": "2026-11-09T05:34:21Z",
+      "html_url": "https://github.com/Arkanzahir/Zikra-App/actions/runs/42568061078/job/128998861076",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-09T05:34:15Z",
+          "completed_at": "2026-11-09T05:34:16Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-09T05:34:16Z",
+          "completed_at": "2026-11-09T05:34:17Z"
+        },
+        {
+          "name": "Poll official reports without exposing payloads",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-09T05:34:17Z",
+          "completed_at": "2026-11-09T05:34:19Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-09T05:34:19Z",
+          "completed_at": "2026-11-09T05:34:19Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-09T05:34:19Z",
+          "completed_at": "2026-11-09T05:34:19Z"
+        }
+      ]
+    }
+  ]
+}

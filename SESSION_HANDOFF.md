@@ -1,5 +1,18 @@
 # Handoff aktif Zikra — 9 November 2026 (WIB)
 
+## E02 aktivasi disetujui; observasi jadwal — 9 November 2026
+
+Pengguna kini menyetujui laporan nyata kepada seluruh pelanggan topic beta yang
+opt-in, termasuk uji produksi/jadwal. Penolakan review sebelumnya diselesaikan
+dengan persetujuan ini; jangan meminta ulang. Variable GitHub true, poll200/
+checked/accepted0/uncertain0; workflow manual42568061078 dan langkah poll sukses.
+[Bukti aktivasi](android/validation/earthquake-e02-2026-11-09/activation.json).
+Run ber-event schedule belum teramati; jangan menyamakan uji manual dengan cron.
+E02 tetap[ ] untuk observasi jadwal dan uji HP. Tidak mengirim kejadian palsu ke
+topic; penerimaan semua subscriber belum diklaim. APK tetap1.9.36/code63/50.062.820byte.
+Tidak ada build/HP/emulator/inference/key/model/paket baru; WIP/stash/audio/env/
+aset/data tetap. Gerbang B01/C02/C07/D02/D02a/E03/E04/F/G/publik tetap.
+
 ## E02 parsial beta 1.9.36 — 9 November 2026
 
 Push BMKG/Redis/FCM dan pengaturan opt-in sudah diterapkan; APK50.062.820byte,

@@ -1,0 +1,6 @@
+{
+  "backendRuntimeFilesMatchDeployedManifest": true,
+  "wipAndAudioStashUnchanged": true,
+  "apkUnchanged": true,
+  "noNewAndroidBuild": true
+}
