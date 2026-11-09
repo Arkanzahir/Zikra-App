@@ -2,7 +2,7 @@
 
 **E02 masih terbuka.** Implementasi dan uji terarah selesai; aktivasi pemeriksaan
 massal, observasi jadwal nyata dan uji HP fisik belum selesai. Variable GitHub
-`ZIKRA_QUAKE_PUSH_ENABLED` tetap `false`. Bukan penyelesaian seluruh A–D/E atau
+`ZIKRA_QUAKE_PUSH_ENABLED` tetap `false`; [inspeksi GitHub baca-saja](scheduler-inspection.json) mengonfirmasi workflow terdaftar pada repo publik tanpa memicu broadcast. Bukan penyelesaian seluruh A–D/E atau
 persetujuan rilis publik.
 
 ## Hasil
@@ -96,6 +96,7 @@ nyata atau broadcast ke pengguna.
 APK lokal: `Zikra-Earthquake-v1.9.36-beta-debug.apk`, code63,
 **50.062.820 byte**, SHA256
 `77d76f1879f75363f8c2737169206a4c371289bdeb90c341c8a4fa20512be2b5`.
+[Audit commit kode](code-history-audit.json) menemukan nol nilai privat/pola credential pada59blob baru sebelum push; SHA kode`b7d536c7819f940c921dfc219e239e7c9ea37d4f`.
 [Audit APK](apk.json): di bawah100MB, signer dan kedua rekaman tetap, nol nilai
 credential server dikenal/nol file konfigurasi privat ditemukan di APK.
 Identitas client Firebase sengaja dibundel untuk SDK, bukan kunci pengirim.

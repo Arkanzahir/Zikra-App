@@ -1,0 +1,11 @@
+{
+  "base": "ef89beb01ee0a1db380a649761812eda3b99ecf8",
+  "head": "b7d536c7819f940c921dfc219e239e7c9ea37d4f",
+  "commits": 1,
+  "blobsScanned": 59,
+  "totalBlobBytes": 3112366,
+  "largestBlobBytes": 748938,
+  "findings": [],
+  "passed": true,
+  "scope": "All new blob versions in origin/main..HEAD, known current private values in UTF8/UTF16 plus credential patterns/private-generated filenames; not a scan of older remote history"
+}
