@@ -2,7 +2,8 @@
 
 **Jadwal sudah diaktifkan setelah persetujuan eksplisit pengguna, 9 November 2026.**
 Poll produksi200/checked/accepted0/uncertain0; workflow manual dan langkah poll
-lulus. Run ber-event schedule belum teramati; E02 tetap terbuka untuk observasi
+lulus. Run ber-event schedule belum teramati. Ekspresi cron disederhanakan ke `2/5`
+dengan slot menit yang sama, sesuai bentuk start/step pada [dokumentasi GitHub](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#onschedule); penyebab keterlambatan belum dipastikan. E02 tetap terbuka untuk observasi
 jadwal serta uji HP fisik. [Status aktivasi](activation.json),
 [poll produksi](hosted-activation-probe.json), [job manual](workflow-manual-jobs.json),
 [inspeksi true](scheduler-activation.json). Inspeksi false di bawah adalah riwayat

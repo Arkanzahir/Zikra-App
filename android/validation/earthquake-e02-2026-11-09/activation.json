@@ -3,7 +3,7 @@
   "scope": "Official BMKG reports for all opted-in beta topic subscribers; production poll and scheduler testing explicitly approved",
   "topic": "zikra-earthquake-beta-v1",
   "schedulerEnabled": true,
-  "schedule": "2-57/5 * * * * UTC",
+  "schedule": "2/5 * * * * UTC",
   "pollChecked": true,
   "acceptedOnDirectProbe": 0,
   "uncertainOnDirectProbe": 0,
@@ -12,5 +12,7 @@
   "scheduledRunObserved": false,
   "deliveryToAllSubscribersProven": false,
   "phoneTested": false,
-  "apkUnchanged": true
+  "apkUnchanged": true,
+  "scheduleExpressionSimplified": true,
+  "scheduleExpressionNote": "Equivalent minute slots; uses the documented start/step form. No claim that the earlier range/step expression caused the missing runs."
 }

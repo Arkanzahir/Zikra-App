@@ -32,7 +32,8 @@ Tiga request per pemeriksaan; tidak ada retry berulang di dalam satu pemeriksaan
 Response dibatasi 64 KiB per feed dan input waktu/koordinat/angka/teks divalidasi.
 Redirect keluar ditolak. Atribusi BMKG dipertahankan.
 
-Workflow dijadwalkan lima menit sekali, pada menit 2/7/12/…/57. Ini memakai
+Workflow dijadwalkan lima menit sekali, pada menit 2/7/12/…/57 dengan
+ekspresi `2/5 * * * *` (bentuk start/step yang dicontohkan dokumentasi). Ini memakai
 GitHub Actions karena cron Vercel Hobby dibatasi satu kali sehari. Jadwal GitHub
 dapat terlambat atau dilewati. Redis juga memberlakukan interval minimal satu
 menit dan lease 55 detik untuk mencegah pemeriksaan paralel.
