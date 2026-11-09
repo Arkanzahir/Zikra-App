@@ -1,2 +1,4 @@
 # Local credentials. Never commit these files or bundle them into an APK.
 /.local/
+**/google-services.json
+**/*service-account*.json

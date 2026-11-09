@@ -1,0 +1,19 @@
+<resources>
+    <color name="quake_action_on_fill">#FFFFFF</color>
+    <string name="quake_alert_settings">Notifikasi gempa</string>
+    <string name="quake_alert_channel">Laporan gempa BMKG</string>
+    <string name="quake_alert_scope">Laporan gempa di Indonesia dari BMKG. Bukan peringatan pasti sebelum guncangan atau peringatan khusus lokasimu.</string>
+    <string name="quake_alert_title">BMKG · Gempa M%1$s</string>
+    <string name="quake_alert_body">%1$s · kedalaman %2$s · %3$s</string>
+    <string name="quake_alert_explanation">Dapatkan laporan gempa baru meski Zikra tidak sedang dibuka. Ketuk notifikasi untuk melihat laporan kejadian tersebut.</string>
+    <string name="quake_alert_privacy">Saat diaktifkan, Firebase mengelola ID instalasi dan token push untuk mengirim notifikasi. GPS, profil dan percakapan AI tidak dikirim untuk fitur ini. Google Analytics tidak digunakan.</string>
+    <string name="quake_alert_timing">Pemeriksaan server dijadwalkan sekitar setiap 5 menit dan dapat terlambat. Koneksi, izin Android, penghemat baterai atau Paksa berhenti dapat menghambat penerimaan. Ini tidak menggantikan informasi dan arahan resmi BMKG.</string>
+    <string name="quake_alert_off">Nonaktif</string>
+    <string name="quake_alert_pending">Menghubungkan notifikasi… Periksa koneksi jika belum tersambung.</string>
+    <string name="quake_alert_ready">Terhubung ke laporan gempa Indonesia</string>
+    <string name="quake_alert_not_configured">Koneksi notifikasi belum tersedia pada build ini.</string>
+    <string name="quake_alert_permission">Izin notifikasi Android belum aktif. Aktifkan melalui Pengaturan Android jika ingin menerima laporan.</string>
+    <string name="quake_alert_android_settings">Pengaturan notifikasi Android →</string>
+    <string name="quake_alert_expired_title">Laporan notifikasi tidak tersedia</string>
+    <string name="quake_alert_expired_body">Data laporan ini kedaluwarsa atau tidak valid. Pilih Muat ulang untuk membuka laporan BMKG terbaru.</string>
+</resources>

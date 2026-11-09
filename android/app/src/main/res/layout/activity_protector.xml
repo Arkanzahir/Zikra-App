@@ -53,6 +53,7 @@
                     <TextView style="@style/ProtectorReferenceAction" android:id="@+id/protectorWarnings" android:text="@string/protector_guide" android:layout_weight="1" android:layout_width="0dp" />
                     <TextView style="@style/ProtectorReferenceAction" android:id="@+id/protectorEmergency" android:text="@string/protector_emergency" android:layout_weight="1" android:layout_marginStart="8dp" android:layout_width="0dp" />
                 </LinearLayout>
+                <TextView style="@style/ProtectorReferenceAction" android:id="@+id/protectorAlertSettings" android:text="@string/quake_alert_settings" android:layout_width="match_parent" android:layout_marginTop="12dp" />
                 <TextView style="@style/ProtectorReferenceText" android:id="@+id/protectorSource" android:text="@string/protector_source_note" android:textSize="10sp" android:gravity="center" android:minHeight="40dp" android:clickable="true" android:focusable="true" />
             </LinearLayout>
         </LinearLayout>

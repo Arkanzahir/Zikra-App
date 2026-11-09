@@ -56,13 +56,18 @@ test('Vercel entry points pin paths and deployment excludes private config and a
   const config = JSON.parse(readFileSync(new URL('./vercel.json', import.meta.url)));
   assert.equal(config.functions['api/*.js'].supportsCancellation, true);
   assert.equal(config.functions['api/*.js'].maxDuration, 60);
-  assert.deepEqual(config.rewrites, [{ source: '/health', destination: '/api/health' },
+  assert.deepEqual(config.rewrites, [{ source: '/v1/earthquakes/poll', destination: '/api/earthquake-poll' },
+    { source: '/health', destination: '/api/health' },
     { source: '/v1/assistant', destination: '/api/assistant' },{source:'/v1/images',destination:'/api/images'},{source:'/v1/capabilities',destination:'/api/capabilities'}]);
   for (const [entry, path] of [['health', '/health'], ['assistant', '/v1/assistant'],['images','/v1/images'],['capabilities','/v1/capabilities']])
     assert.ok(readFileSync(new URL(`./api/${entry}.js`, import.meta.url), 'utf8').includes(`req.url = '${path}'`));
   const allowlist = readFileSync(new URL('./.vercelignore', import.meta.url), 'utf8');
   assert.equal(allowlist.split(/\r?\n/)[0], '*');
   assert.ok(!allowlist.includes('!.env')); assert.ok(!allowlist.includes('!*.mjs'));
+  for (const file of ['api/earthquake-poll.js', 'earthquake-feed.mjs', 'earthquake-fcm.mjs', 'earthquake-poll.mjs'])
+    assert.ok(allowlist.split(/\r?\n/).includes('!' + file));
+  assert.ok(!allowlist.includes('!earthquake-trigger.mjs'));
+  assert.ok(readFileSync(new URL('./api/earthquake-poll.js', import.meta.url), 'utf8').includes('../earthquake-poll.mjs'));
 });
 
 async function issue(redis, prefix = 'zikra:v1:') {

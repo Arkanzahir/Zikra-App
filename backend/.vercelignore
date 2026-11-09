@@ -17,3 +17,7 @@
 !tafsir.mjs
 !attachments.mjs
 !image-generation.mjs
+!api/earthquake-poll.js
+!earthquake-feed.mjs
+!earthquake-fcm.mjs
+!earthquake-poll.mjs

@@ -1,0 +1,107 @@
+{
+  "unit": {
+    "tests": 180,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4
+  },
+  "unitPassed": 176,
+  "lint": {
+    "Warning": 878
+  },
+  "backendPassed": 79,
+  "backendSkipped": 0,
+  "finalNativeExecutions": 11,
+  "finalNativeUniqueMethods": 9,
+  "nativeFinalSelection": [
+    {
+      "class": "com.zikra.app.safety.EarthquakeE02Test#testOffAndMalformedOrDelayedPushRemainSilent",
+      "label": "release-testOffAndMalformedOrDelayedPushRemainSilent",
+      "passed": true,
+      "count": 1,
+      "durationSeconds": 3.0
+    },
+    {
+      "class": "com.zikra.app.safety.EarthquakeE02Test#testDuplicatePersistsAndTapOpensSelectedReport",
+      "label": "release-testDuplicatePersistsAndTapOpensSelectedReport",
+      "passed": true,
+      "count": 1,
+      "durationSeconds": 4.8
+    },
+    {
+      "class": "com.zikra.app.safety.EarthquakeE02Test#testDuplicateAfterActualProcessRestartRemainsSilent",
+      "label": "release-testDuplicateAfterActualProcessRestartRemainsSilent",
+      "passed": true,
+      "count": 1,
+      "durationSeconds": 1.7
+    },
+    {
+      "class": "com.zikra.app.safety.EarthquakeE02Test#testOptOutCancelsOnlyEarthquakeNotifications",
+      "label": "release-testOptOutCancelsOnlyEarthquakeNotifications",
+      "passed": true,
+      "count": 1,
+      "durationSeconds": 2.5
+    },
+    {
+      "class": "com.zikra.app.safety.EarthquakeE02Test#testExpiredNotificationCannotShowUnrelatedLatestReport",
+      "label": "release-testExpiredNotificationCannotShowUnrelatedLatestReport",
+      "passed": true,
+      "count": 1,
+      "durationSeconds": 5.8
+    },
+    {
+      "class": "com.zikra.app.safety.EarthquakeE02Test#testSettingsBothThemesRetainOffAndNavigation",
+      "label": "release-testSettingsBothThemesRetainOffAndNavigation",
+      "passed": true,
+      "count": 1,
+      "durationSeconds": 5.0
+    },
+    {
+      "class": "com.zikra.app.safety.EarthquakeE02Test#testSettingsBothThemesRetainOffAndNavigation",
+      "label": "final-settings-intent-default",
+      "passed": true,
+      "count": 1,
+      "durationSeconds": 6.4
+    },
+    {
+      "class": "com.zikra.app.safety.EarthquakeE02Test#testSettingsBothThemesRetainOffAndNavigation",
+      "label": "final-settings-intent-font200",
+      "passed": true,
+      "count": 1,
+      "durationSeconds": 6.5
+    },
+    {
+      "class": "com.zikra.app.safety.EarthquakeE02Test#testDeniedPermissionRemainsSilent",
+      "label": "final-permission-denied",
+      "passed": true,
+      "count": 1,
+      "durationSeconds": 2.9
+    },
+    {
+      "class": "com.zikra.app.safety.EarthquakeE02Test#testRegisterOwnedEmulatorForRealFcmDelivery",
+      "label": "final-cloud-after-reboot",
+      "passed": true,
+      "count": 1,
+      "durationSeconds": 5.6
+    },
+    {
+      "class": "com.zikra.app.safety.EarthquakeE02Test#testRemoveOwnedEmulatorCloudRegistration",
+      "label": "final-cloud-cleanup",
+      "passed": true,
+      "count": 1,
+      "durationSeconds": 8.5
+    }
+  ],
+  "failedNativeAttemptsRetained": 5,
+  "emulatorApi": "37.1",
+  "fontScale": [
+    1,
+    2
+  ],
+  "narrowWidthDp": 320,
+  "settingsIntentInterceptedInTouchTest": true,
+  "targetedRealFcmOnFinalApk": true,
+  "massBroadcastTested": false,
+  "schedulerEnabled": false,
+  "phoneTouched": false
+}

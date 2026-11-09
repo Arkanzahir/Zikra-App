@@ -6,8 +6,8 @@ import android.widget.TextView;
 import com.zikra.app.safety.BmkgClient;
 import com.zikra.app.safety.BmkgParser;
 import com.zikra.app.safety.EarthquakeMapView;
-import com.zikra.app.safety.ShakemapLoader;
 import com.zikra.app.safety.EarthquakeReport;
+import com.zikra.app.safety.ShakemapLoader;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -21,6 +21,7 @@ public final class EarthquakeActivity extends BaseActivity {
   private BmkgParser.Earthquake earthquake;
   private EarthquakeReport report;
   private boolean pinned;
+  private boolean notificationUnavailable;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +29,14 @@ public final class EarthquakeActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_earthquake);
     setupScreen("Gempabumi BMKG");
-    getWindow().setStatusBarColor(0xfffaf8f0);
+    getWindow().setStatusBarColor(getColor(R.color.app_surface));
     getWindow()
         .getDecorView()
         .setSystemUiVisibility(
-            android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                | android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+            com.zikra.app.ui.AppAppearance.dark(this)
+                ? 0
+                : android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                    | android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
     map = findViewById(R.id.quakeMap);
     shaking =
         new ShakemapLoader(
@@ -45,12 +48,32 @@ public final class EarthquakeActivity extends BaseActivity {
     findViewById(R.id.quakeSheet).getLayoutParams().height =
         Math.min(dp(320), Math.round(available * .44f));
     bmkg = new BmkgClient(this);
-    String snapshot = savedInstanceState == null ? getIntent().getStringExtra("quake_report")
-        : savedInstanceState.getString("quake_report");
-    if (snapshot != null) try {
-      show(EarthquakeReport.cached(snapshot, java.time.Instant.now()));
-      pinned = savedInstanceState == null || savedInstanceState.getBoolean("quake_pinned");
-    } catch (Exception invalid) { }
+    String snapshot =
+        savedInstanceState == null
+            ? getIntent().getStringExtra("quake_report")
+            : savedInstanceState.getString("quake_report");
+    if (snapshot != null)
+      try {
+        show(EarthquakeReport.cached(snapshot, java.time.Instant.now()));
+        pinned = savedInstanceState == null || savedInstanceState.getBoolean("quake_pinned");
+      } catch (Exception invalid) {
+      }
+    if (getIntent().getBooleanExtra("quake_notification", false) && report == null) {
+      notificationUnavailable = true;
+      text(R.id.quakeArea, getString(R.string.quake_alert_expired_title));
+      text(R.id.quakeStatus, getString(R.string.quake_alert_expired_body));
+      for (int id :
+          new int[] {
+            R.id.quakeMagnitude,
+            R.id.quakeClock,
+            R.id.quakeDepth,
+            R.id.quakeTime,
+            R.id.quakePotential,
+            R.id.quakeCoordinates,
+            R.id.quakeFelt
+          }) text(id, getString(R.string.protector_placeholder));
+      findViewById(R.id.quakeOpenMap).setEnabled(false);
+    }
 
     findViewById(R.id.protectorRefresh).setOnClickListener(v -> refresh());
     findViewById(R.id.quakeSource)
@@ -74,7 +97,8 @@ public final class EarthquakeActivity extends BaseActivity {
     super.onResume();
     if (!shakingSelected) map.resume();
     else shaking.load(earthquake == null ? "" : earthquake.shakemapUrl);
-    if (!pinned || report == null || !report.usable(java.time.Instant.now())) refresh();
+    if (!notificationUnavailable
+        && (!pinned || report == null || !report.usable(java.time.Instant.now()))) refresh();
   }
 
   private void selectMap(boolean selected) {
@@ -88,7 +112,9 @@ public final class EarthquakeActivity extends BaseActivity {
               active
                   ? R.drawable.protector_reference_selected
                   : R.drawable.protector_reference_outline);
-      ((TextView) findViewById(id)).setTextColor(active ? 0xffffffff : 0xff123337);
+      ((TextView) findViewById(id))
+          .setTextColor(
+              getColor(active ? R.color.quake_action_on_fill : R.color.protector_reference_ink));
     }
     if (selected) {
       map.pause();
@@ -108,10 +134,13 @@ public final class EarthquakeActivity extends BaseActivity {
   }
 
   private void refresh() {
+    notificationUnavailable = false;
     pinned = false;
     bmkg.reset();
     if (report != null && !report.usable(java.time.Instant.now())) {
-      report = null; earthquake = null; shaking.clear();
+      report = null;
+      earthquake = null;
+      shaking.clear();
     }
     text(
         R.id.quakeStatus,
@@ -154,7 +183,9 @@ public final class EarthquakeActivity extends BaseActivity {
   }
 
   private String sourceStatus() {
-    return "Laporan terakhir BMKG · Indonesia" + (report.stored ? " · tersimpan" : "") + "\nDiambil "
+    return "Laporan terakhir BMKG · Indonesia"
+        + (report.stored ? " · tersimpan" : "")
+        + "\nDiambil "
         + DateTimeFormatter.ofPattern("d MMM HH:mm 'WIB'", new Locale("id", "ID"))
             .withZone(ZoneId.of("Asia/Jakarta"))
             .format(report.fetchedAt)
@@ -213,11 +244,14 @@ public final class EarthquakeActivity extends BaseActivity {
     ((TextView) findViewById(id)).setText(value);
   }
 
-  @Override protected void onSaveInstanceState(Bundle state) {
-    if (report != null) try {
-      state.putString("quake_report", report.snapshot());
-      state.putBoolean("quake_pinned", pinned);
-    } catch (org.json.JSONException invalid) { }
+  @Override
+  protected void onSaveInstanceState(Bundle state) {
+    if (report != null)
+      try {
+        state.putString("quake_report", report.snapshot());
+        state.putBoolean("quake_pinned", pinned);
+      } catch (org.json.JSONException invalid) {
+      }
     super.onSaveInstanceState(state);
   }
 

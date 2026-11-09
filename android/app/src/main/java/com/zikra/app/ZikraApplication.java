@@ -9,5 +9,6 @@ public final class ZikraApplication extends Application {
     super.onCreate();
     PrayerTimetables.get(this);
     PrayerTimetables.scheduleRefresh(this);
+    if (com.zikra.app.safety.EarthquakeAlerts.enabled(this)) com.zikra.app.safety.EarthquakeAlerts.sync(this);
   }
 }

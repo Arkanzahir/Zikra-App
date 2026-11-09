@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/app_surface">
+    <include layout="@layout/protector_toolbar"/>
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+            <TextView style="@style/ProtectorHeading" android:text="@string/quake_alert_settings" android:textSize="24sp"/>
+            <TextView style="@style/ProtectorBody" android:text="@string/quake_alert_explanation" android:layout_marginTop="12dp"/>
+            <Switch android:id="@+id/quakeAlertSwitch" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="72dp" android:text="@string/quake_alert_channel" android:textSize="17sp" android:textColor="@color/text" android:layout_marginTop="20dp" android:paddingVertical="12dp"/>
+            <TextView style="@style/ProtectorBody" android:id="@+id/quakeAlertStatus" android:text="@string/quake_alert_off" android:accessibilityLiveRegion="polite"/>
+            <TextView style="@style/ProtectorBody" android:text="@string/quake_alert_scope" android:layout_marginTop="24dp"/>
+            <TextView style="@style/ProtectorBody" android:text="@string/quake_alert_timing" android:layout_marginTop="16dp"/>
+            <TextView style="@style/ProtectorBody" android:text="@string/quake_alert_privacy" android:layout_marginTop="16dp"/>
+            <Button android:id="@+id/quakeAlertAndroidSettings" style="@style/ProtectorButton" android:text="@string/quake_alert_android_settings" android:layout_marginTop="24dp"/>
+        </LinearLayout>
+    </ScrollView>
+    <include layout="@layout/protector_main_dock"/>
+</LinearLayout>

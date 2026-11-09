@@ -1,0 +1,7 @@
+{
+  "appProcessAbsentBeforeSend": true,
+  "screenOffBeforeSend": true,
+  "forceStopUsed": false,
+  "target": "owned emulator",
+  "deviceApkSha256": "77d76f1879f75363f8c2737169206a4c371289bdeb90c341c8a4fa20512be2b5"
+}

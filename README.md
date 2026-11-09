@@ -1,3 +1,25 @@
+## E02 parsial beta 1.9.36 — 9 November 2026
+
+Push BMKG/Redis/FCM dan pengaturan opt-in sudah diterapkan; APK50.062.820byte,
+SHA256`77d76f1879f75363f8c2737169206a4c371289bdeb90c341c8a4fa20512be2b5`.
+[Bukti, kegagalan, batas dan APK](android/validation/earthquake-e02-2026-11-09/README.md):
+79backend/0skip,176unit/4skip,11native akhir/9metode unik,lint0error/878warning.
+Push nyata hanya ke token emulator: proses app tidak berjalan/layar mati,
+duplikat tidak memperbarui notifikasi dan ketukan membuka kejadian sama offline.
+Vercel baru dibuktikan health/401/405 dan baseline200/accepted0, bukan pengiriman
+massal. **Jadwal GitHub tetap false; E02 tetap[ ].** Review persetujuan otomatis
+menolak poll sesudah baseline karena bisa broadcast ke seluruh pelanggan topic;
+perlu persetujuan eksplisit sebelum poll/aktivasi, lalu observasi run nyata dan
+uji HP. Jangan melewati penolakan melalui workflow/jalur lain.
+Pengirim FCM berizin terbatas disetujui pengguna; server key hanya lokal privat/
+Vercel, pemicu terenkripsi GitHub, identitas client SDK sengaja di APK. AI/key/
+model/paket tetap. Registrasi Google Play sempat gagal/timeout, pulih setelah
+reboot; riwayat gagal dipertahankan. Registrasi uji dihapus,32berkas emulator
+pulih cocok hash/setting dan izin diperiksa/helper dibersihkan/emulator ditutup.
+HP tidak diakses, terakhir terbukti1.9.31. WIP/stash/audio/env/logo/master tetap.
+B01/C02/C07/D02/D02a/E03/E04/F/G/publik serta penundaan UI10 tetap terbuka;
+bukan klaim A–D/E selesai. Checkpoint terverifikasi tetap audit/commit/push.
+
 > **UI09 beta1.9.29 — 30 Oktober2026:** font Amiri Quran yang disetujui sudah dibundel dan HP aktual1.9.25 diperbarui ke1.9.29.163 unit/4 skip dan2 native HP API36/264 layout lulus;lint0 error/862 warning. [Bukti/data/font/APK](android/validation/quran-font-ui09-2026-10-30/README.md).17 tabel/preferensi/izin/pengaturan terjaga, helper dibersihkan. Sorotan ditunda pengguna (UI10), Mushaf QCF tetap; A–D/publik belum selesai seluruhnya.
 
 ## E01 selesai teknis beta — 2 November 2026

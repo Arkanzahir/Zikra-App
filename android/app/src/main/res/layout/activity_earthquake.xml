@@ -39,7 +39,7 @@
             <TextView style="@style/ProtectorReferenceText" android:id="@+id/quakePotential" android:text="@string/protector_ref_quake_potential_text" android:textSize="12sp" android:layout_marginTop="8dp" />
             <TextView style="@style/ProtectorReferenceText" android:id="@+id/quakeCoordinates" android:text="@string/protector_ref_quake_coordinates_text" android:textSize="11sp" android:layout_marginTop="8dp" />
             <TextView style="@style/ProtectorReferenceText" android:id="@+id/quakeStatus" android:text="@string/protector_ref_quake_status_text" android:textSize="11sp" android:layout_marginTop="8dp" />
-            <TextView style="@style/ProtectorReferenceAction" android:id="@+id/quakeSource" android:text="@string/protector_bmkg_source" android:layout_marginTop="12dp" android:layout_gravity="fill_horizontal" android:textColor="@color/protector_ref_color_ffffff" android:background="@drawable/protector_reference_selected" android:layout_width="match_parent" />
+            <TextView style="@style/ProtectorReferenceAction" android:id="@+id/quakeSource" android:text="@string/protector_bmkg_source" android:layout_marginTop="12dp" android:layout_gravity="fill_horizontal" android:textColor="@color/quake_action_on_fill" android:background="@drawable/protector_reference_selected" android:layout_width="match_parent" />
             <TextView style="@style/ProtectorReferenceAction" android:id="@+id/quakeOpenMap" android:text="@string/protector_ref_quake_open_map_text" android:layout_marginTop="4dp" android:background="@android:color/transparent" android:layout_gravity="center" />
         </LinearLayout>
     </ScrollView>

@@ -1,5 +1,10 @@
 # Gateway Featherless untuk Pendamping Zikra
 
+E02 memakai endpoint terpisah untuk laporan gempa BMKG → FCM; konfigurasi,
+batas privasi dan kontrol jadwal ada di [runbook push](deploy/EARTHQUAKE_PUSH.md).
+Aktivasi massal serta status pengujian mengikuti checklist/bukti E02, bukan
+keberhasilan deploy AI. Kunci/provider/model AI yang sudah tersedia tetap.
+
 **Vision production30Oktober2026:** `Qwen/Qwen3-VL-8B-Instruct` menggantikan model vision lama sesudah6direct/7hosted sampel strictpass;72tes backend lulus. Key/provider/modelchatteks/paket tetap;[bukti/rollout/batas](../android/validation/non-usb-closeout-2026-10-30/README.md). C07 keseluruhan tetap terbuka untuk HP.
 
 **Lanjutan30 Oktober2026:** HTTP503 upstream langsung juga503/provider_busy;72tes lulus dan503/header60 teramati pada hosted. Model aktif dikonfirmasi,vision masih belum siap;[bukti/katalog/alternatif/batas](../android/validation/vision-reliability-c07-2026-10-30/README.md). HP ditunda pengguna;env/model tetap.

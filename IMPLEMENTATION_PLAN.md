@@ -1,5 +1,27 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## E02 parsial beta 1.9.36 — 9 November 2026
+
+Push BMKG/Redis/FCM dan pengaturan opt-in sudah diterapkan; APK50.062.820byte,
+SHA256`77d76f1879f75363f8c2737169206a4c371289bdeb90c341c8a4fa20512be2b5`.
+[Bukti, kegagalan, batas dan APK](android/validation/earthquake-e02-2026-11-09/README.md):
+79backend/0skip,176unit/4skip,11native akhir/9metode unik,lint0error/878warning.
+Push nyata hanya ke token emulator: proses app tidak berjalan/layar mati,
+duplikat tidak memperbarui notifikasi dan ketukan membuka kejadian sama offline.
+Vercel baru dibuktikan health/401/405 dan baseline200/accepted0, bukan pengiriman
+massal. **Jadwal GitHub tetap false; E02 tetap[ ].** Review persetujuan otomatis
+menolak poll sesudah baseline karena bisa broadcast ke seluruh pelanggan topic;
+perlu persetujuan eksplisit sebelum poll/aktivasi, lalu observasi run nyata dan
+uji HP. Jangan melewati penolakan melalui workflow/jalur lain.
+Pengirim FCM berizin terbatas disetujui pengguna; server key hanya lokal privat/
+Vercel, pemicu terenkripsi GitHub, identitas client SDK sengaja di APK. AI/key/
+model/paket tetap. Registrasi Google Play sempat gagal/timeout, pulih setelah
+reboot; riwayat gagal dipertahankan. Registrasi uji dihapus,32berkas emulator
+pulih cocok hash/setting dan izin diperiksa/helper dibersihkan/emulator ditutup.
+HP tidak diakses, terakhir terbukti1.9.31. WIP/stash/audio/env/logo/master tetap.
+B01/C02/C07/D02/D02a/E03/E04/F/G/publik serta penundaan UI10 tetap terbuka;
+bukan klaim A–D/E selesai. Checkpoint terverifikasi tetap audit/commit/push.
+
 ## UI11 native selesai teknis beta 1.9.35 — 8 November 2026
 
 Pengguna mengizinkan implementasi cuaca. Panel prakiraan Protector, detail langit/
@@ -200,6 +222,8 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 
 - [x] **E01 — Verifikasi laporan gempa dan peta (beta terarah).** Selesai 2 November 2026, 1.9.34/code61: satu snapshot laporan/pin/waktu/Shakemap, cache bertanggal maksimal24jam, detail laporan pilihan, penolakan URL/redirect asing dan kegagalan gambar/tile diuji. 169 unit/4 skip, 21 eksekusi native final/18 metode unik lulus; lint0 error/861 warning. Feed/JPEG BMKG nyata 30 Oktober di Sorong sesuai bidang layar, bukan terbatas kota pengguna. [Bukti, riwayat kegagalan, APK dan batas](android/validation/earthquake-e01-2026-11-02/README.md). 32 berkas emulator dipulihkan cocok hash/helper dibersihkan/emulator ditutup; HP tidak diakses. Laporan bukan prediksi atau push; E02–E04 dan gerbang A–D/F/G/publik tetap terbuka.
 - [ ] **E02 — Notifikasi gempa saat aplikasi ditutup.** Jika masuk cakupan rilis, server memantau feed resmi dengan cache/jeda yang patuh batas sumber, menyimpan ID kejadian untuk mencegah kirim ulang, lalu mengirim push. HP membuka detail kejadian yang dipilih, bukan laporan terbaru yang berbeda. Uji izin ditolak, duplikat, server restart dan keterlambatan; jangan menjanjikan peringatan pasti sebelum guncangan.
+  Status9November: implementasi/APK1.9.36 dan uji emulator terarah lulus; parent tetap terbuka untuk persetujuan aktivasi topic massal, observasi jadwal dan HP. [Bukti/batas](android/validation/earthquake-e02-2026-11-09/README.md).
+
 - [ ] **E03 — Cuaca dan pengingat kontekstual.** Kondisi/animasi mengikuti prakiraan untuk lokasi dan waktu yang benar; bedakan prakiraan dari pengukuran langsung. Sesuai cakupan, selesaikan alert cuaca, doa perjalanan, pagi/petang dan morning briefing dengan dependensi jadwal/lokasi serta kontrol pengguna; hindari notifikasi berulang.
 - [ ] **E04 — Bantuan darurat dan masjid terdekat.** Tautan/panggilan/arah dapat digunakan, izin lokasi ditolak punya fallback, hasil kosong/gagal jelas, data komunitas tidak dianggap lengkap. Pesan keluarga/panggilan tetap melalui tindakan pengguna. Nomor/tautan bantuan dan atribusi diperiksa.
 
@@ -452,3 +476,4 @@ Format baris berikutnya: `tanggal | ID | hasil singkat + batas yang tersisa | ta
 |2 November 2026|UI11 desain/aset final|Protector sekarang dipertahankan; panel prakiraan/detail dan aset 10 kondisi × 2 tema disiapkan. Browser/320px dan20 vektor compile lulus; APK/HP/backend tidak berubah. UI11 native/E03/E02–E04/publik tetap terbuka.|[Desain/aset/batas](design/concepts/protector-weather-final-2026-11-02/README.md)|
 
 |8 November 2026|UI11 native beta1.9.35|Prakiraan Protector/detail tiga hari/grafik/dock bertema diterapkan;173unit/4skip,6native final danlint0error. HP tidak diakses,emulator pulih/ditutup;E03/publik tetap terbuka.|[Bukti/APK/batas](android/validation/weather-ui11-2026-11-08/README.md)|
+|9 November2026|E02 parsial beta1.9.36|Firebase pengirim terbatas/endpoint baseline/Android opt-in,79backend,176unit,11native akhir lulus. Push terarah emulator nyata/duplikat/tujuan tepat;32berkas dipulihkan. Jadwal false: aktivasi massal menunggu persetujuan setelah penolakan review otomatis; HP belum. E02 tetap terbuka.|[Bukti/APK/batas](android/validation/earthquake-e02-2026-11-09/README.md)|

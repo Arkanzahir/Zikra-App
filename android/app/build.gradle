@@ -14,8 +14,8 @@ android {
         applicationId 'com.zikra.app'
         minSdk 26
         targetSdk 35
-        versionCode 62
-        versionName '1.9.35'
+        versionCode 63
+        versionName '1.9.36'
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
 
@@ -73,6 +73,7 @@ android.sourceSets.debug.assets.srcDir(prepareAdhanAudio)
 tasks.matching { it.name == 'preDebugBuild' }.configureEach { dependsOn(prepareAdhanAudio) }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-messaging:25.1.3'
     // OkHttp 3.x and Okio 1.x are Java, including their runtime dependencies.
     implementation 'com.squareup.okhttp3:okhttp:3.14.9'
     // Native Java map; no Google key or billing is required for the OSM provider.
@@ -80,3 +81,41 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.json:json:20240303'
 }
+
+// Client identifiers are generated locally. Service-account credentials are never accepted here.
+def firebaseClient = providers.gradleProperty('zikraFirebaseConfig')
+    .orElse(rootProject.file('../.local/firebase-android.json').absolutePath)
+def prepareFirebaseClient = tasks.register('prepareFirebaseClient') {
+    inputs.property('path', firebaseClient)
+    def input = file(firebaseClient.get())
+    if (input.exists()) inputs.file(input)
+    outputs.dir(layout.buildDirectory.dir('generated/firebaseClient'))
+    doLast {
+        def values = [:]
+        if (input.exists()) {
+            if (input.length() > 65536) throw new GradleException('Invalid Firebase client configuration')
+            def parsed = new groovy.json.JsonSlurper().parse(input)
+            if (parsed.private_key || parsed.type == 'service_account') throw new GradleException('Server credentials must never be bundled')
+            def client = parsed.client?.find { it.client_info?.android_client_info?.package_name == 'com.zikra.app' }
+            values = [google_app_id: client?.client_info?.mobilesdk_app_id,
+                google_api_key: client?.api_key?.getAt(0)?.current_key,
+                gcm_defaultSenderId: parsed.project_info?.project_number,
+                project_id: parsed.project_info?.project_id]
+            if (!(values.google_app_id ==~ /1:[0-9]+:android:[a-f0-9]{16,64}/)
+                || !(values.google_api_key ==~ /AIza[A-Za-z0-9_-]{30,50}/)
+                || !(values.gcm_defaultSenderId ==~ /[0-9]{6,20}/)
+                || !(values.project_id ==~ /[a-z][a-z0-9-]{4,61}[a-z0-9]/))
+                throw new GradleException('Invalid Firebase Android app configuration')
+        }
+        def destination = layout.buildDirectory.file('generated/firebaseClient/values/quake_firebase.xml').get().asFile
+        destination.parentFile.mkdirs()
+        def writer = new StringWriter()
+        new groovy.xml.MarkupBuilder(writer).resources {
+            bool(name: 'quake_push_configured', !values.isEmpty())
+            values.each { key, value -> string(name: key, translatable: 'false', value) }
+        }
+        destination.setText(writer.toString(), 'UTF-8')
+    }
+}
+android.sourceSets.main.res.srcDir(prepareFirebaseClient)
+tasks.matching { it.name == 'preBuild' }.configureEach { dependsOn(prepareFirebaseClient) }

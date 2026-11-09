@@ -1,0 +1,191 @@
+[
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testOffAndMalformedOrDelayedPushRemainSilent",
+    "label": "native-invalid",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 2.6
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testDuplicatePersistsAndTapOpensSelectedReport",
+    "label": "native-selected",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 4.6
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testDuplicateAfterActualProcessRestartRemainsSilent",
+    "label": "native-restart",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 1.4
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testOptOutCancelsOnlyEarthquakeNotifications",
+    "label": "testOptOutCancelsOnlyEarthquakeNotifications",
+    "passed": false,
+    "count": 0,
+    "durationSeconds": 2.8
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testOptOutCancelsOnlyEarthquakeNotifications",
+    "label": "final-testOptOutCancelsOnlyEarthquakeNotifications",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 3.6
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testExpiredNotificationCannotShowUnrelatedLatestReport",
+    "label": "final-testExpiredNotificationCannotShowUnrelatedLatestReport",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 6.2
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testSettingsBothThemesRetainOffAndNavigation",
+    "label": "final-testSettingsBothThemesRetainOffAndNavigation",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 6.6
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testDeniedPermissionRemainsSilent",
+    "label": "native-permission-denied",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 2.9
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testRegisterOwnedEmulatorForRealFcmDelivery",
+    "label": "native-fcm-register",
+    "passed": false,
+    "count": 0,
+    "durationSeconds": 3.1
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testRegisterOwnedEmulatorForRealFcmDelivery",
+    "label": "native-fcm-register-validated",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 7.7
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testRemoveOwnedEmulatorCloudRegistration",
+    "label": "native-cloud-cleanup",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 10.8
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testOffAndMalformedOrDelayedPushRemainSilent",
+    "label": "release-testOffAndMalformedOrDelayedPushRemainSilent",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 3.0
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testDuplicatePersistsAndTapOpensSelectedReport",
+    "label": "release-testDuplicatePersistsAndTapOpensSelectedReport",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 4.8
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testDuplicateAfterActualProcessRestartRemainsSilent",
+    "label": "release-testDuplicateAfterActualProcessRestartRemainsSilent",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 1.7
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testOptOutCancelsOnlyEarthquakeNotifications",
+    "label": "release-testOptOutCancelsOnlyEarthquakeNotifications",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 2.5
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testExpiredNotificationCannotShowUnrelatedLatestReport",
+    "label": "release-testExpiredNotificationCannotShowUnrelatedLatestReport",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 5.8
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testSettingsBothThemesRetainOffAndNavigation",
+    "label": "release-testSettingsBothThemesRetainOffAndNavigation",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 5.0
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testSettingsBothThemesRetainOffAndNavigation",
+    "label": "release-settings-font200",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 6.8
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testSettingsBothThemesRetainOffAndNavigation",
+    "label": "release-settings-default",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 5.5
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testSettingsBothThemesRetainOffAndNavigation",
+    "label": "release-settings-touch-default",
+    "passed": false,
+    "count": 0,
+    "durationSeconds": 171.2
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testSettingsBothThemesRetainOffAndNavigation",
+    "label": "final-settings-intent-default",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 6.4
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testSettingsBothThemesRetainOffAndNavigation",
+    "label": "final-settings-intent-font200",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 6.5
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testDeniedPermissionRemainsSilent",
+    "label": "final-permission-denied",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 2.9
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testRegisterOwnedEmulatorForRealFcmDelivery",
+    "label": "final-cloud-register",
+    "passed": false,
+    "count": 0,
+    "durationSeconds": 3.0
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testRegisterOwnedEmulatorForRealFcmDelivery",
+    "label": "final-cloud-register-recovered",
+    "passed": false,
+    "count": 0,
+    "durationSeconds": 66.9
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testRegisterOwnedEmulatorForRealFcmDelivery",
+    "label": "final-cloud-after-reboot",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 5.6
+  },
+  {
+    "class": "com.zikra.app.safety.EarthquakeE02Test#testRemoveOwnedEmulatorCloudRegistration",
+    "label": "final-cloud-cleanup",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 8.5
+  }
+]

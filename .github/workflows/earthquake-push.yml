@@ -1,0 +1,25 @@
+name: Zikra earthquake reports
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '2-57/5 * * * *'
+permissions:
+  contents: read
+concurrency:
+  group: zikra-earthquake-poll
+  cancel-in-progress: false
+jobs:
+  poll:
+    if: vars.ZIKRA_QUAKE_PUSH_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1; same verified action as backend health
+        with:
+          persist-credentials: false
+          sparse-checkout: backend/earthquake-trigger.mjs
+          sparse-checkout-cone-mode: false
+      - name: Poll official reports without exposing payloads
+        env:
+          ZIKRA_QUAKE_CRON_SECRET: ${{ secrets.ZIKRA_QUAKE_CRON_SECRET }}
+        run: node backend/earthquake-trigger.mjs
