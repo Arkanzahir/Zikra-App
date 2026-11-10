@@ -93,3 +93,11 @@ Reply harus menunggu Redis release sebelum respons diakhiri, termasuk galat
 provider. Jangan menggantungkan cleanup lease pada kerja sesudah res.end di
 runtime serverless. Finally tetap diperlukan ketika klien membatalkan.
 [Bukti87tes/probe3request serta batas](../../android/validation/assistant-lease-c02-2026-11-10/README.md).
+
+## Kategori penolakan tanpa konten
+
+Event aplikasi Vercel assistant_rejected hanya memuat status dan kode galat
+dari allowlist. try_later adalah antrean gateway, provider_busy adalah jawaban
+upstream sibuk; rate_limited dan kuota harian terpisah. Tidak mencatat pesan,
+berkas, credential atau identitas instalasi. Metadata/retensi platform tetap
+mengikuti kebijakan operasi, bukan klaim nol log. [Bukti89tes dan probe diagnostik](../../android/validation/assistant-diagnostics-c02-2026-11-10/README.md).

@@ -100,3 +100,24 @@ test('distributed lease is released before success or provider-error response be
   const second=await send();assert.equal(second.status,status);await second.json();
  }
 });
+
+test('rejection diagnostics distinguish own queue from upstream without request or credential data',async t=>{
+ const events=[];
+ const send=await gateway(t,()=>assert.fail('upstream must not run'),{onRejection:event=>events.push(event),
+  accessMode:'installation',accessStore:{identify:async()=> 'a'.repeat(36),
+    acquire:async()=>({allowed:false,status:429,error:'try_later'})}});
+ const reply=await send();assert.equal(reply.status,429);await reply.json();
+ assert.deepEqual(events,[{event:'assistant_rejected',status:429,code:'try_later'}]);
+ const upstreamEvents=[];
+ const busy=await gateway(t,()=>Response.json({errors:[{code:3040,message:'private upstream detail'}]},{status:429}),
+  {onRejection:event=>upstreamEvents.push(event)});
+ const response=await busy();assert.equal(response.status,429);await response.json();
+ assert.deepEqual(upstreamEvents,[{event:'assistant_rejected',status:429,code:'provider_busy'}]);
+});
+
+test('diagnostic callback failures cannot break rejection responses',async t=>{
+ const send=await gateway(t,()=>Response.json({errors:[{code:3040}]},{status:429}),
+  {onRejection:()=>{throw Error('synthetic logger outage');}});
+ const reply=await send();assert.equal(reply.status,429);
+ assert.deepEqual(await reply.json(),{error:'provider_busy'});
+});

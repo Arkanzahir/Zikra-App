@@ -1,5 +1,19 @@
 # Handoff aktif Zikra — 10 November2026 (WIB)
 
+## C02 masih intermiten; kategori error ditelusuri — 10 November 2026
+
+Pengguna mengoreksi laporan dua pesan berhasil saat sleep: masih seperti
+sebelumnya. C02 tetap[ ], laporan positif singkat tidak menutupnya. Event
+server kini hanya assistant_rejected/status/kode allowlist, tanpa konten/token/
+identitas pengguna. [Bukti/batas](android/validation/assistant-diagnostics-c02-2026-11-10/README.md):
+89backend/0skip,deploy berhasil, satu429/rate_limited buatan dengan identitas
+uji terpisah terlihat di runtime. Ini memvalidasi diagnostik, bukan menemukan
+penyebab error pengguna. Kunci/counter uji dihapus, counter pengguna tetap.
+Diminta satu pesan saat laptop menyala agar kode error aktual bisa dicocokkan.
+APK1.9.37/model/env/kuota/paket/cron/dataHP/aset/audio tetap; tidak ada uji HP
+baru. B01,D02/D02a,E03/E04,F/G/publik tetap; bukan seluruh A–D/E selesai.
+
+
 ## C02 perbaikan lease; uji sleep belum lulus — 10 November 2026
 
 Pengguna melaporkan layanan penuh/connection error pada1.9.37 saat laptop

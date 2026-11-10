@@ -1,0 +1,11 @@
+{
+  "events": [
+    {
+      "at": "2026-11-10T10:39:59.970Z",
+      "event": "assistant_rejected",
+      "status": 429,
+      "code": "rate_limited"
+    }
+  ],
+  "scope": "Only allowlisted error category and HTTP status; no request body/identity"
+}

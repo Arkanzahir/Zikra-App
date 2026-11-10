@@ -11,14 +11,15 @@ export function readVercelConfig(env = process.env) {
   return { ...config, redis, dailyLimit };
 }
 
-export function createVercelHandler(env = process.env, { redis, fetchImpl, sourceFetchImpl } = {}) {
+export function createVercelHandler(env = process.env, { redis, fetchImpl, sourceFetchImpl,
+  onRejection = event => console.warn(JSON.stringify(event)) } = {}) {
   const config = readVercelConfig(env);
   const accessStore = new RedisAccess({ redis: redis ?? new RedisRest(config.redis),
     prefix: config.redis.prefix, dailyLimit: config.dailyLimit });
   // An image configuration failure must not disable existing text/vision chat.
   let imageConfig;try{imageConfig=readImageConfig(env);}catch{imageConfig=null;}
   const imageService=createImageService({config:imageConfig,redis:accessStore.redis,prefix:config.redis.prefix,fetchImpl});
-  return createRequestHandler({ ...config, accessMode: 'installation', accessStore, fetchImpl, sourceFetchImpl,imageService });
+  return createRequestHandler({ ...config, accessMode: 'installation', accessStore, fetchImpl, sourceFetchImpl,imageService,onRejection });
 }
 
 let handler;
