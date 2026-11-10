@@ -1,0 +1,36 @@
+{
+  "at": "2026-11-10T10:20:55.813Z",
+  "syntheticOnly": true,
+  "label": "after",
+  "results": [
+    {
+      "turn": 1,
+      "status": 200,
+      "provider": "cloudflare",
+      "error": null,
+      "elapsedMs": 5356,
+      "ownActiveLeasesAfterResponse": 0,
+      "answerPresent": true
+    },
+    {
+      "turn": 2,
+      "status": 200,
+      "provider": "cloudflare",
+      "error": null,
+      "elapsedMs": 2950,
+      "ownActiveLeasesAfterResponse": 0,
+      "answerPresent": true
+    },
+    {
+      "turn": 3,
+      "status": 200,
+      "provider": "cloudflare",
+      "error": null,
+      "elapsedMs": 3177,
+      "ownActiveLeasesAfterResponse": 0,
+      "answerPresent": true
+    }
+  ],
+  "ownTestKeysRemoved": true,
+  "userCountersReset": false
+}

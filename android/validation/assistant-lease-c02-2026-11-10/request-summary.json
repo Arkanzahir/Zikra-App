@@ -1,0 +1,109 @@
+{
+  "scope": "CDN metadata only; cannot identify phone independently or infer response error body",
+  "requests": [
+    {
+      "timestamp": "2026-11-10T10:13:47.401Z",
+      "path": "/v1/assistant",
+      "status": 200,
+      "androidOkHttp": false,
+      "wafAction": "allow"
+    },
+    {
+      "timestamp": "2026-11-10T10:13:46.856Z",
+      "path": "/v1/assistant",
+      "status": 409,
+      "androidOkHttp": false,
+      "wafAction": "allow"
+    },
+    {
+      "timestamp": "2026-11-10T10:13:46.314Z",
+      "path": "/v1/assistant",
+      "status": 409,
+      "androidOkHttp": false,
+      "wafAction": "allow"
+    },
+    {
+      "timestamp": "2026-11-10T10:13:44.957Z",
+      "path": "/v1/assistant",
+      "status": 401,
+      "androidOkHttp": false,
+      "wafAction": "allow"
+    },
+    {
+      "timestamp": "2026-11-10T10:12:52.142Z",
+      "path": "/v1/assistant",
+      "status": 429,
+      "androidOkHttp": true,
+      "wafAction": "allow"
+    },
+    {
+      "timestamp": "2026-11-10T10:12:50.321Z",
+      "path": "/v1/assistant",
+      "status": 429,
+      "androidOkHttp": true,
+      "wafAction": "allow"
+    },
+    {
+      "timestamp": "2026-11-10T10:12:29.711Z",
+      "path": "/v1/assistant",
+      "status": 429,
+      "androidOkHttp": true,
+      "wafAction": "allow"
+    },
+    {
+      "timestamp": "2026-11-10T10:12:23.098Z",
+      "path": "/v1/assistant",
+      "status": 429,
+      "androidOkHttp": true,
+      "wafAction": "allow"
+    },
+    {
+      "timestamp": "2026-11-10T10:12:20.957Z",
+      "path": "/v1/assistant",
+      "status": 429,
+      "androidOkHttp": true,
+      "wafAction": "allow"
+    },
+    {
+      "timestamp": "2026-11-10T10:12:08.136Z",
+      "path": "/v1/assistant",
+      "status": 200,
+      "androidOkHttp": true,
+      "wafAction": "allow"
+    },
+    {
+      "timestamp": "2026-11-10T10:03:39.094Z",
+      "path": "/v1/assistant",
+      "status": 200,
+      "androidOkHttp": true,
+      "wafAction": "allow"
+    },
+    {
+      "timestamp": "2026-11-10T10:03:29.746Z",
+      "path": "/v1/assistant",
+      "status": 200,
+      "androidOkHttp": true,
+      "wafAction": "allow"
+    },
+    {
+      "timestamp": "2026-11-10T10:03:27.282Z",
+      "path": "/v1/assistant",
+      "status": 200,
+      "androidOkHttp": true,
+      "wafAction": "allow"
+    },
+    {
+      "timestamp": "2026-11-10T10:03:24.787Z",
+      "path": "/v1/assistant",
+      "status": 200,
+      "androidOkHttp": true,
+      "wafAction": "allow"
+    }
+  ],
+  "statusCounts": {
+    "200": 6,
+    "409": 2,
+    "401": 1,
+    "429": 5
+  }
+}

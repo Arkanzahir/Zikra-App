@@ -83,7 +83,14 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
   let active = 0;
   const activeClients = new Map();
   return async (req, res) => {
-    const reply = (status, value) => {
+    let identity = null, lease;
+    const reply = async (status, value) => {
+      // Release before ending the response: a serverless runtime may suspend work afterwards.
+      if (lease) {
+        const held = lease; lease = undefined;
+        try { await installation.release(identity, held); }
+        catch { /* The bounded lease still expires if Redis is unavailable. */ }
+      }
       if (res.destroyed || res.writableEnded) return;
       if (!req.complete) res.setHeader('Connection', 'close');
       res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8',
@@ -95,7 +102,6 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
     const imageRequest=req.method==='POST'&&req.url==='/v1/images';
     const capabilities=req.method==='GET'&&req.url==='/v1/capabilities';
     if (!imageRequest&&!capabilities&&(req.method !== 'POST' || req.url !== '/v1/assistant')) return reply(404, { error: 'not_found' });
-    let identity = null;
     try {
       identity = installation ? await installation.identify(req.headers.authorization)
         : (equalToken(req.headers.authorization, `Bearer ${clientToken}`) ? req.socket.remoteAddress || 'unknown' : null);
@@ -113,7 +119,6 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
     if (Number(req.headers['content-length'] || 0) > requestLimit)
       return reply(413, { error: 'too_large' });
     // Trust the socket, never caller-supplied X-Forwarded-For. Intended for one private client.
-    let lease;
     if (distributed) {
       try {
         const grant = await installation.acquire(identity, req.headers.authorization);
@@ -219,9 +224,9 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
       const content = data?.choices?.[0]?.message?.content;
       if (typeof content !== 'string' || !content.trim() || content.length > 8000)
         return reply(502, { error: 'invalid_provider_response' });
-      reply(200, { ...providerReply(content, selection), provider, ...(source ? { source } : {}) });
+      await reply(200, { ...providerReply(content, selection), provider, ...(source ? { source } : {}) });
     } catch (error) {
-      reply(controller.signal.aborted ? 504 : 502, { error: 'provider_unavailable' });
+      await reply(controller.signal.aborted ? 504 : 502, { error: 'provider_unavailable' });
     } finally {
       clearTimeout(timeout); res.off('close', closed); active--;
       req.off('error', requestError);

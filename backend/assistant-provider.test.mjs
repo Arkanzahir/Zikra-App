@@ -74,3 +74,29 @@ test('Cloudflare HTTP 200 errors cannot coexist with a displayed successful answ
   choices:[{message:{content:'must not display'}}]}));
  const reply=await send();assert.equal(reply.status,502);assert.deepEqual(await reply.json(),{error:'provider_unavailable'});
 });
+
+test('distributed lease is released before success or provider-error response becomes visible',async t=>{
+ for(const status of [200,503]){
+  let held=false,releaseStarted,finishRelease;
+  const started=new Promise(resolve=>{releaseStarted=resolve;});
+  const gate=new Promise(resolve=>{finishRelease=resolve;});
+  t.after(()=>finishRelease());
+  const send=await gateway(t,()=>status===200
+    ?Response.json({choices:[{message:{content:'Synthetic reply'}}]})
+    :Response.json({error:'synthetic'},{status}),{accessMode:'installation',accessStore:{
+      identify:async()=> 'a'.repeat(36),
+      acquire:async()=>{
+        if(held)return {allowed:false,status:429,error:'try_later'};
+        held=true;return {allowed:true,lease:'synthetic-lease'};
+      },
+      release:async()=>{releaseStarted();await gate;held=false;}
+    }});
+  let delivered=false;
+  const first=send().then(response=>{delivered=true;return response;});
+  await started;await new Promise(resolve=>setTimeout(resolve,30));
+  assert.equal(delivered,false,'A response must not finish while its slot is still held');
+  finishRelease();const response=await first;await response.json();
+  assert.equal(response.status,status);assert.equal(held,false);
+  const second=await send();assert.equal(second.status,status);await second.json();
+ }
+});

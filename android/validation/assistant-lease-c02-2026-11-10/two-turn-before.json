@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-10T10:19:23.287Z",
+  "syntheticOnly": true,
+  "label": "before",
+  "results": [
+    {
+      "turn": 1,
+      "status": 200,
+      "provider": "cloudflare",
+      "error": null,
+      "elapsedMs": 2781,
+      "ownActiveLeasesAfterResponse": 0,
+      "answerPresent": true
+    },
+    {
+      "turn": 2,
+      "status": 200,
+      "provider": "cloudflare",
+      "error": null,
+      "elapsedMs": 11389,
+      "ownActiveLeasesAfterResponse": 1,
+      "answerPresent": true
+    }
+  ],
+  "ownTestKeysRemoved": true,
+  "userCountersReset": false
+}

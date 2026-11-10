@@ -86,3 +86,10 @@ Referensi resmi:
 [data usage](https://developers.cloudflare.com/workers-ai/platform/data-usage/),
 [pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/),
 [errors](https://developers.cloudflare.com/workers-ai/platform/errors/).
+
+## Lease sebelum respons — 10 November 2026
+
+Reply harus menunggu Redis release sebelum respons diakhiri, termasuk galat
+provider. Jangan menggantungkan cleanup lease pada kerja sesudah res.end di
+runtime serverless. Finally tetap diperlukan ketika klien membatalkan.
+[Bukti87tes/probe3request serta batas](../../android/validation/assistant-lease-c02-2026-11-10/README.md).

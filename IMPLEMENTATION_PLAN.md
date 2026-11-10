@@ -1,5 +1,21 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## C02 perbaikan lease; uji sleep belum lulus — 10 November 2026
+
+Pengguna melaporkan layanan penuh/connection error pada1.9.37 saat laptop
+sleep; Wi-Fi router/internet lain tetap. CDN menunjukkan Android200 lalu5×429
+sekitar17.12WIB, tanpa body error/identitas HP yang dipastikan. Ditemukan reply
+berakhir sebelum Redisrelease; probe lama sesudah respons kedua masih1lease.
+Reply kini menunggu release sebelum mengakhiri respons, finally tetap menangani
+cancel. [Bukti dan batas](android/validation/assistant-lease-c02-2026-11-10/README.md):
+87backend/0skip,3chat berurutan hosted200 dan0lease hidup sesudah setiap respons.
+Server sudah diperbarui; APK1.9.37/dataHP/model/env/kuota/paket/cron/aset/audio
+ tetap. Identitas uji dibersihkan, counter pengguna tidak direset. Ini bukan
+bukti seluruh429 berasal dari celah ini; provider tetap bisa sibuk.
+C02 tetap[ ] menunggu uji ulang pengguna dua pesan saat laptop sleep/mati.
+B01,D02/D02a/E03/E04/F/G/publik tetap; bukan seluruh A–D/E selesai.
+
+
 ## C03b uji HP Cloudflare — 10 November 2026
 
 APK 1.9.36 → 1.9.37 dipasang tanpa uninstall. Dua metode HP API36 lulus:
