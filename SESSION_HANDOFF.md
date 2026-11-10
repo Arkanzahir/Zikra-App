@@ -1,5 +1,21 @@
 # Handoff aktif Zikra — 10 November2026 (WIB)
 
+## C03b uji HP Cloudflare — 10 November 2026
+
+APK 1.9.36 → 1.9.37 dipasang tanpa uninstall. Dua metode HP API36 lulus:
+izin sekali/revoke/konteks defaultfalse dengan4HTTP sintetis, serta client asli
+ke Vercel/Cloudflare untuk chat, foto, PDF3halaman dan TXT buatan dengan
+identitas terpisah. [Bukti dan kegagalan](android/validation/assistant-cloudflare-phone-2026-11-10/README.md).
+Compile/helper awal dan4NETWORK awal gagal tetap dicatat; foreground kemudian
+lulus, penyebab awal belum dibuktikan.48berkas dicadangkan; isi awal17tabel,
+preferensi/izin/setting/baterai terpelihara. Token/marker/helper dan registry/
+usage/lease uji dibersihkan, gateway/mode lama dipulihkan; counter pengguna tetap.
+APK/code/hash tetap1.9.37/64/e6576726,49.377.416byte; WIP/stash/arsip/env/aset/audio
+ tetap. C03b dicentang sebatas beta ini; C02 laptop mati masih membutuhkan
+pengguna. B01,D02/D02a hak audio/sisa fisik/vendor,E03/E04,F/G/publik tetap
+terbuka, bukan seluruh A–D/E selesai. UI10/mode orang tua ditunda.
+
+
 ## Migrasi Cloudflare — beta 1.9.37, 10 November 2026
 
 Pengguna memilih Cloudflare Workers AI untuk chat/foto/PDF setelah premium

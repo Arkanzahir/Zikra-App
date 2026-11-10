@@ -1,0 +1,5 @@
+com.zikra.app.assistant.PhoneCloudflareTest:.
+Test results for InstrumentationTestRunner=.
+Time: 18.42
+
+OK (1 test)

@@ -1,0 +1,40 @@
+{
+  "physicalPhone": true,
+  "actualHostedProvider": true,
+  "syntheticOnly": true,
+  "interceptorUsed": false,
+  "results": [
+    {
+      "kind": "text",
+      "passed": true,
+      "networkCause": null,
+      "elapsedMs": 2658,
+      "reply": "ZIKRA-CF-PHONE",
+      "failure": null
+    },
+    {
+      "kind": "photo",
+      "passed": true,
+      "networkCause": null,
+      "elapsedMs": 2334,
+      "reply": "17 + 26 = **43**",
+      "failure": null
+    },
+    {
+      "kind": "pdf",
+      "passed": true,
+      "networkCause": null,
+      "elapsedMs": 9348,
+      "reply": "28 + 34 = **62**\n\nSemangat belajarnya, Zikra! \ud83c\udf1f",
+      "failure": null
+    },
+    {
+      "kind": "document",
+      "passed": true,
+      "networkCause": null,
+      "elapsedMs": 2870,
+      "reply": "**12 + 8 = 20**",
+      "failure": null
+    }
+  ]
+}

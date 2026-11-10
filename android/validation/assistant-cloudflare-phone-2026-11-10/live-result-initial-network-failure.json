@@ -1,0 +1,36 @@
+{
+  "physicalPhone": true,
+  "actualHostedProvider": true,
+  "syntheticOnly": true,
+  "interceptorUsed": false,
+  "results": [
+    {
+      "kind": "text",
+      "passed": false,
+      "elapsedMs": 32,
+      "reply": null,
+      "failure": "NETWORK"
+    },
+    {
+      "kind": "photo",
+      "passed": false,
+      "elapsedMs": 14,
+      "reply": null,
+      "failure": "NETWORK"
+    },
+    {
+      "kind": "pdf",
+      "passed": false,
+      "elapsedMs": 13,
+      "reply": null,
+      "failure": "NETWORK"
+    },
+    {
+      "kind": "document",
+      "passed": false,
+      "elapsedMs": 15,
+      "reply": null,
+      "failure": "NETWORK"
+    }
+  ]
+}

@@ -4,7 +4,7 @@
 model `@cf/qwen/qwen3.8-27b`, APK1.9.37.
 [Konfigurasi/privasi/kuota/rollback](deploy/ASSISTANT_PROVIDER.md) dan
 [bukti termasuk kegagalan PDF](../android/validation/assistant-cloudflare-2026-11-10/README.md).
-Uji HP penyedia baru dan C02 laptop mati belum selesai. Catatan bertanggal lama
+[Uji HP penyedia baru lulus terarah](../android/validation/assistant-cloudflare-phone-2026-11-10/README.md); C02 laptop mati belum selesai. Catatan bertanggal lama
 di bawah tetap riwayat; Featherless tidak lagi penerima chat produksi.
 
 

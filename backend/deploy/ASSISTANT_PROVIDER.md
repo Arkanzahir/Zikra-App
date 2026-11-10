@@ -77,7 +77,8 @@ APK Cloudflare menolak respons Featherless; jangan menonaktifkan gate demi
 kompatibilitas. Langganan Featherless yang berakhir bukan fallback andal.
 
 [Bukti dan kegagalan yang dipertahankan](../../android/validation/assistant-cloudflare-2026-11-10/README.md).
-Uji HP baru dan C02 saat laptop mati masih tertunda atas pilihan pengguna.
+[Uji HP baru lulus terarah](../../android/validation/assistant-cloudflare-phone-2026-11-10/README.md);
+C02 saat laptop mati masih memerlukan pengujian pengguna.
 
 Referensi resmi:
 [model](https://developers.cloudflare.com/workers-ai/models/qwen3.8-27b/),

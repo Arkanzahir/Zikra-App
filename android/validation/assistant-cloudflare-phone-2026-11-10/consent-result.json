@@ -1,0 +1,14 @@
+{
+  "physicalPhone": true,
+  "firstDeclineNoUpload": true,
+  "firstAcceptSendsOnce": true,
+  "nextSendNoRepeatedReview": true,
+  "reopenRetainsPermission": true,
+  "extraContextOptInDefaultFalse": true,
+  "differentServiceRequiresPermission": true,
+  "revocationBlocksUntilNewConsent": true,
+  "chosenAttachmentDirectSendAfterConsent": true,
+  "syntheticRequests": 4,
+  "liveProviderInference": false,
+  "passed": true
+}

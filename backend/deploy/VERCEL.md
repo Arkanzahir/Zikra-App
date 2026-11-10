@@ -2,8 +2,8 @@
 
 **Aktif10 November2026:** provider chat/vision Cloudflare Workers AI, APK1.9.37.
 [Runbook migrasi, izin, Free dan rollback](ASSISTANT_PROVIDER.md) menjadi acuan
-variabel terbaru. Ada lima entry function termasuk earthquake-poll. Uji HP baru
-serta C02 laptop mati tetap terbuka; riwayat vision Featherless di bawah bukan
+variabel terbaru. Ada lima entry function termasuk earthquake-poll. [Uji HP baru lulus terarah](../../android/validation/assistant-cloudflare-phone-2026-11-10/README.md);
+C02 laptop mati tetap terbuka; riwayat vision Featherless di bawah bukan
 konfigurasi aktif saat ini.
 
 

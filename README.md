@@ -5,7 +5,7 @@ Cloudflare Workers AI, model `@cf/qwen/qwen3.8-27b`, paket tetap Free.
 APK49.377.416byte; izin penyedia diperbarui sekali, tanpa tinjauan tiap pesan.
 [Bukti dan batas](android/validation/assistant-cloudflare-2026-11-10/README.md):
 86 backend/177 unit/3 native emulator lulus. PDF hosted pernah timeout dan
-ulang200 belum patuh format; uji HP baru/C02 laptop mati tetap tertunda.
+ulang200 belum patuh format. [Uji HP baru lulus terarah](android/validation/assistant-cloudflare-phone-2026-11-10/README.md); C02 laptop mati tetap tertunda.
 APK lama perlu diperbarui. Bukan seluruh A–D/E atau rilis publik selesai.
 
 

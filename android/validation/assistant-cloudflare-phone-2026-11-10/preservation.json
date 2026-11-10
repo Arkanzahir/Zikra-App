@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "oldVersion": "1.9.36",
+  "newVersion": "1.9.37",
+  "originalInternalFiles": 48,
+  "systemSettingsPreserved": true,
+  "permissionsPreserved": true,
+  "batteryPolicyPreserved": true,
+  "helperRemoved": true,
+  "missingOriginalFiles": [],
+  "changedOtherOriginalFiles": [],
+  "originalDatabaseTables": 17,
+  "originalRowsPreserved": true,
+  "originalPreferencesPreserved": true
+}
