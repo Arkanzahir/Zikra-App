@@ -13,6 +13,8 @@ public class AssistantGatewayTest {
     assertTrue(AssistantConnection.valid("https://example.test/v1/assistant", ACCESS));
     assertFalse(AssistantConnection.valid("http://example.test/v1/assistant", ACCESS));
     assertFalse(AssistantConnection.valid("https://api.featherless.ai/v1/assistant", ACCESS));
+    assertFalse(AssistantConnection.valid("https://api.cloudflare.com/v1/assistant", ACCESS));
+    assertFalse(AssistantConnection.valid("https://example.test/v1/assistant", "cfat_" + "x".repeat(40)));
     assertFalse(AssistantConnection.valid("https://example.test/v1/assistant?key=secret", ACCESS));
     assertFalse(AssistantConnection.valid("https://user:secret@example.test/v1/assistant", ACCESS));
     assertFalse(AssistantConnection.valid("https://example.test/v1/assistant", "short"));

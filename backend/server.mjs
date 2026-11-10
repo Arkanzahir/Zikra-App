@@ -7,6 +7,7 @@ import { validateSelection, selectedPrompt, providerReply } from './assistant-co
 import { loadTafsir } from './tafsir.mjs';
 import {prepareAttachments,attachToMessages,AttachmentError,ATTACHMENT_BODY_LIMIT} from './attachments.mjs';
 import {ImageError,IMAGE_USER_DAILY,IMAGE_GLOBAL_DAILY} from './image-generation.mjs';
+import {providerRequest,providerDailyQuota} from './assistant-provider.mjs';
 
 const SYSTEM = 'Kamu Pendamping Zikra. Jawab dalam bahasa Indonesia yang singkat dan membantu. '
   + 'Bantu rencana belajar, rutinitas, dan hafalan. Jangan mengklaim telah mengubah tugas atau timer. '
@@ -68,12 +69,13 @@ async function boundedJson(stream, limit, signal) {
   catch { throw new InputError('invalid_json', 400); }
 }
 
-export function createRequestHandler({ apiKey, model, visionModel, clientToken, fetchImpl = fetch, now = Date.now,
+export function createRequestHandler({ apiKey, model, visionModel, provider = 'featherless', accountId, freePlanConfirmed, clientToken, fetchImpl = fetch, now = Date.now,
   providerTimeoutMs = 35000, accessMode = 'private', clientsFile, usageFile, dailyLimit,
   sourceFetchImpl = fetch, accessStore, imageService }) {
   if (!['private', 'installation'].includes(accessMode)) throw new ConfigError('Invalid access mode.');
-  if (accessMode === 'private') validateCredentials({ apiKey, model, visionModel, clientToken });
-  else validateProvider({ apiKey, model, visionModel });
+  const providerConfig = {apiKey, model, visionModel, provider, accountId, freePlanConfirmed};
+  if (accessMode === 'private') validateCredentials({ ...providerConfig, clientToken });
+  else validateProvider(providerConfig);
   const installation = accessMode === 'installation'
     ? accessStore ?? new InstallationAccess({ clientsFile, usageFile, dailyLimit }) : null;
   const distributed = typeof installation?.acquire === 'function';
@@ -99,7 +101,11 @@ export function createRequestHandler({ apiKey, model, visionModel, clientToken, 
         : (equalToken(req.headers.authorization, `Bearer ${clientToken}`) ? req.socket.remoteAddress || 'unknown' : null);
     } catch { return reply(503, { error: 'access_unavailable' }); }
     if (!identity) return reply(401, { error: 'unauthorized' });
-    if(capabilities)return reply(200,{imageGeneration:!!imageService,imageUserDaily:IMAGE_USER_DAILY,imageGlobalDaily:IMAGE_GLOBAL_DAILY});
+    if(capabilities)return reply(200,{imageGeneration:!!imageService,imageUserDaily:IMAGE_USER_DAILY,imageGlobalDaily:IMAGE_GLOBAL_DAILY,assistantProvider:provider});
+    const requestedProvider=req.headers['x-zikra-provider'];
+    if(!imageRequest && (provider==='cloudflare' && requestedProvider!=='cloudflare'
+        || requestedProvider!==undefined && requestedProvider!==provider))
+      return reply(409,{error:'provider_changed',provider});
     if(imageRequest&&!imageService)return reply(503,{error:'image_unavailable'});
     if (!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type'] || ''))
       return reply(415, { error: 'json_required' });
@@ -112,8 +118,9 @@ export function createRequestHandler({ apiKey, model, visionModel, clientToken, 
       try {
         const grant = await installation.acquire(identity, req.headers.authorization);
         if (!grant.allowed) {
-          if (grant.status === 429) res.setHeader('Retry-After', '60');
-          return reply(grant.status, { error: grant.error });
+          const daily=grant.error==='quota_exceeded';
+          if (grant.status === 429) res.setHeader('Retry-After',daily?String(Math.ceil((86400000-now()%86400000)/1000)):'60');
+          return reply(grant.status, { error: daily?'daily_quota_exceeded':grant.error });
         }
         lease = grant.lease;
       } catch { return reply(503, { error: 'access_unavailable' }); }
@@ -123,13 +130,17 @@ export function createRequestHandler({ apiKey, model, visionModel, clientToken, 
       for (const [key, window] of counters) if (time - window.start > 60000) counters.delete(key);
       let window = counters.get(ip);
       if (!window) { window = { start: time, count: 0 }; counters.set(ip, window); }
-      if (++window.count > 10 || active >= 2 || (installation && activeClients.get(identity))) {
+      if (++window.count > 10) {
+        res.setHeader('Retry-After','60');return reply(429,{error:'rate_limited'});
+      }
+      if (active >= 2 || (installation && activeClients.get(identity))) {
         res.setHeader('Retry-After', '60'); return reply(429, { error: 'try_later' });
       }
       if (installation) {
         try {
           if (!installation.consume(identity, time)) {
-            res.setHeader('Retry-After', '60'); return reply(429, { error: 'quota_exceeded' });
+            res.setHeader('Retry-After',String(Math.ceil((86400000-now()%86400000)/1000)));
+            return reply(429, { error: 'daily_quota_exceeded' });
           }
         } catch { return reply(503, { error: 'access_unavailable' }); }
       }
@@ -167,15 +178,20 @@ export function createRequestHandler({ apiKey, model, visionModel, clientToken, 
       }
       const system = SYSTEM + (Object.keys(selection.context).length || selection.taskProposals || source
         ? '\n\n' + selectedPrompt(selection, source) : '');
-      const upstream = await fetchImpl('https://api.featherless.ai/v1/chat/completions', {
+      const request = providerRequest({...providerConfig,model:attachment.vision?visionModel:model},
+        [{role:'system',content:system},...attachToMessages(messages,attachment)],selection.taskProposals);
+      const upstream = await fetchImpl(request.url, {
         method: 'POST', signal: controller.signal, redirect: 'error',
-        headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json',
-          'X-Title': 'Zikra', 'HTTP-Referer': 'https://github.com/Arkanzahir/Zikra-App' },
-        body: JSON.stringify({ model:attachment.vision?visionModel:model, messages: [{ role: 'system', content: system }, ...attachToMessages(messages,attachment)],
-          max_tokens: 512, temperature: selection.taskProposals ? 0 : 0.5, stream: false })
+        headers:request.headers,body:request.body
       });
       if (!upstream.ok) {
-        await upstream.body?.cancel();
+        if(provider==='cloudflare' && upstream.status===429){
+          let details;try{details=await boundedJson(upstream.body,8192,controller.signal);}catch{}
+          if(providerDailyQuota(details)){
+            res.setHeader('Retry-After',String(Math.ceil((86400000-now()%86400000)/1000)));
+            return reply(429,{error:'provider_quota_exceeded'});
+          }
+        }else await upstream.body?.cancel();
         const busy = upstream.status === 429 || upstream.status === 503;
         if (busy) res.setHeader('Retry-After', '60');
         return reply(busy ? upstream.status : 502,
@@ -192,11 +208,18 @@ export function createRequestHandler({ apiKey, model, visionModel, clientToken, 
         return reply(503, { error: 'provider_busy' });
       }
       // Some upstream failures use HTTP 200. Never display a coexisting answer as success.
+      if (provider==='cloudflare' && (data?.success===false || Array.isArray(data?.errors) && data.errors.length)) {
+        if(providerDailyQuota(data)) {
+          res.setHeader('Retry-After',String(Math.ceil((86400000-now()%86400000)/1000)));
+          return reply(429,{error:'provider_quota_exceeded'});
+        }
+        return reply(502,{error:'provider_unavailable'});
+      }
       if (data?.error != null) return reply(502, { error: 'provider_unavailable' });
       const content = data?.choices?.[0]?.message?.content;
       if (typeof content !== 'string' || !content.trim() || content.length > 8000)
         return reply(502, { error: 'invalid_provider_response' });
-      reply(200, { ...providerReply(content, selection), provider: 'featherless', ...(source ? { source } : {}) });
+      reply(200, { ...providerReply(content, selection), provider, ...(source ? { source } : {}) });
     } catch (error) {
       reply(controller.signal.aborted ? 504 : 502, { error: 'provider_unavailable' });
     } finally {

@@ -57,12 +57,13 @@ async function verify() {
       if (index === 0 && report.liveRequested) {
         const response = await fetch(`${origin}/v1/assistant`, {
           method: 'POST', redirect: 'error', signal: AbortSignal.timeout(40000),
-          headers: { Authorization: `Bearer ${config.clientToken}`, 'Content-Type': 'application/json' },
+          headers: { Authorization: `Bearer ${config.clientToken}`, 'Content-Type': 'application/json',
+            'X-Zikra-Provider': config.provider },
           body: JSON.stringify({ messages: [{ role: 'user', content: 'Balas singkat: siap.' }] })
         });
         const body = await response.json();
         report.liveGatewayStatus = response.status;
-        report.liveReplyValid = response.status === 200 && body.provider === 'featherless'
+        report.liveReplyValid = response.status === 200 && body.provider === config.provider
           && typeof body.reply === 'string' && body.reply.trim().length > 0;
         // Only the gateway's fixed error codes may appear in the report.
         if (!report.liveReplyValid) report.liveError = ['provider_busy', 'provider_unavailable',

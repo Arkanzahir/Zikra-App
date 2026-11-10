@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-11-10T09:07:29.361Z",
+  "origin": "https://zikra-ai.vercel.app",
+  "modelsAndQuota": {
+    "ZIKRA_ASSISTANT_FREE_PLAN_CONFIRMED": {
+      "valueReadable": false,
+      "type": "sensitive",
+      "present": true
+    },
+    "CLOUDFLARE_VISION_MODEL": {
+      "valueReadable": false,
+      "type": "sensitive",
+      "present": true
+    },
+    "CLOUDFLARE_CHAT_MODEL": {
+      "valueReadable": false,
+      "type": "sensitive",
+      "present": true
+    },
+    "ZIKRA_AI_PROVIDER": {
+      "valueReadable": false,
+      "type": "sensitive",
+      "present": true
+    },
+    "ZIKRA_DAILY_LIMIT": {
+      "value": "100",
+      "updatedAt": 1792888237327
+    }
+  },
+  "deployment": {
+    "id": "dpl_E5srz95dV6sydRfWbV5MxWgwFjCY",
+    "state": "READY",
+    "createdAt": 1794301112162
+  },
+  "noSecretsPrinted": true
+}

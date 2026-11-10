@@ -1,9 +1,17 @@
-# Gateway Featherless untuk Pendamping Zikra
+# Gateway AI untuk Pendamping Zikra
+
+**Aktif10 November2026:** chat/vision Cloudflare Workers AI pada paket Free,
+model `@cf/qwen/qwen3.8-27b`, APK1.9.37.
+[Konfigurasi/privasi/kuota/rollback](deploy/ASSISTANT_PROVIDER.md) dan
+[bukti termasuk kegagalan PDF](../android/validation/assistant-cloudflare-2026-11-10/README.md).
+Uji HP penyedia baru dan C02 laptop mati belum selesai. Catatan bertanggal lama
+di bawah tetap riwayat; Featherless tidak lagi penerima chat produksi.
+
 
 E02 memakai endpoint terpisah untuk laporan gempa BMKG → FCM; konfigurasi,
 batas privasi dan kontrol jadwal ada di [runbook push](deploy/EARTHQUAKE_PUSH.md).
 Aktivasi massal serta status pengujian mengikuti checklist/bukti E02, bukan
-keberhasilan deploy AI. Kunci/provider/model AI yang sudah tersedia tetap.
+keberhasilan deploy AI. Jadwal/secret E02 terpisah dari pemilihan penyedia chat.
 
 **Vision production30Oktober2026:** `Qwen/Qwen3-VL-8B-Instruct` menggantikan model vision lama sesudah6direct/7hosted sampel strictpass;72tes backend lulus. Key/provider/modelchatteks/paket tetap;[bukti/rollout/batas](../android/validation/non-usb-closeout-2026-10-30/README.md). C07 keseluruhan tetap terbuka untuk HP.
 
@@ -27,7 +35,7 @@ APK1.9.7/C03 mempunyai [bukti emulator terarah](../android/validation/assistant-
 Pengguna memilih Vercel dan memakai key yang sudah ada. Syarat
 rotasi dibatalkan sesuai [keputusan terbaru](../android/validation/assistant-c-2026-10-25/key-decision-2026-10-25.md).
 
-Alur sasaran: Android → backend HTTPS → Featherless. Android kini default Otomatis
+Alur aktif: Android → backend HTTPS → Cloudflare Workers AI. Android kini default Otomatis
 menurut konfigurasi/internet tervalidasi, dengan override manual dan panduan lokal
 ketika offline. Online mengirim pesan saat ini, atau riwayat online bila dipilih
 (maksimal 24 pesan / 16.000 karakter). Nama, maksimal 10 tugas/tenggat dan
@@ -38,6 +46,10 @@ jawaban lokal. Model AI tidak dibundel ke APK.
 
 ## Konfigurasi privat
 
+Untuk Cloudflare, gunakan tabel lengkap pada [runbook provider](deploy/ASSISTANT_PROVIDER.md).
+Contoh perintah `.local/featherless.env` di bawah hanya jalur legacy; konfigurasi
+Cloudflare harus mencakup model dan konfirmasi Free, bukan token saja.
+
 Tanpa dependensi npm runtime tambahan; hosting Vercel dipin Node 24.x, uji Node
 24.22.1 lulus. CLI privat lama juga diperiksa pada Node 22.17.0; hasil tersebut
 bukan sertifikasi patch runtime produksi. Konfigurasi file di bawah khusus
@@ -45,8 +57,8 @@ gateway privat/VPS; Vercel memakai env Redis dan handler tanpa `listen()`.
 
 | Variabel | Validasi / fungsi |
 | --- | --- |
-| `FEATHERLESS_API_KEY` | Wajib, 16–512 karakter ASCII terlihat tanpa spasi/control; bukan dikirim ke APK |
-| `FEATHERLESS_MODEL` | Wajib, ID persis dari akun; maksimal 200 karakter huruf/angka/titik/garis miring/underscore/hyphen |
+| `FEATHERLESS_API_KEY` | Hanya provider legacy featherless, 16–512 karakter ASCII terlihat tanpa spasi/control; bukan dikirim ke APK |
+| `FEATHERLESS_MODEL` | Hanya provider legacy featherless, ID persis dari akun; maksimal 200 karakter huruf/angka/titik/garis miring/underscore/hyphen |
 | `ZIKRA_CLIENT_TOKEN` | Wajib, token acak terpisah 32–256 karakter huruf/angka dan `._~+/=-`, tidak berawalan `sk-`, berbeda dari key provider; sesuai validasi Android, hanya uji pribadi |
 | `HOST` | Default `127.0.0.1`; IP literal atau `localhost`. Bind selain loopback hanya setelah isolasi jaringan hosting ditinjau |
 | `PORT` | Default `8787`, bilangan bulat 1–65535 |

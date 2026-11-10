@@ -1,0 +1,27 @@
+{
+  "changed": [
+    {
+      "name": "ZIKRA_AI_PROVIDER",
+      "value": "cloudflare",
+      "success": true
+    },
+    {
+      "name": "CLOUDFLARE_CHAT_MODEL",
+      "value": "@cf/qwen/qwen3.8-27b",
+      "success": true
+    },
+    {
+      "name": "CLOUDFLARE_VISION_MODEL",
+      "value": "@cf/qwen/qwen3.8-27b",
+      "success": true
+    },
+    {
+      "name": "ZIKRA_ASSISTANT_FREE_PLAN_CONFIRMED",
+      "value": "true",
+      "success": true
+    }
+  ],
+  "providerKeyRotated": false,
+  "originalProviderSecretsRetained": true,
+  "paidUpgrade": false
+}

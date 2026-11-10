@@ -1,0 +1,44 @@
+{
+  "results": [
+    {
+      "name": "text",
+      "status": 200,
+      "elapsedMs": 4613,
+      "provider": "cloudflare",
+      "reply": "ZIKRA-CF-GATEWAY",
+      "error": null,
+      "passed": true,
+      "syntheticOnly": true
+    },
+    {
+      "name": "photo",
+      "status": 200,
+      "elapsedMs": 16397,
+      "provider": "cloudflare",
+      "reply": "ZK-7348",
+      "error": null,
+      "passed": true,
+      "syntheticOnly": true
+    },
+    {
+      "name": "pdf-pages",
+      "status": 200,
+      "elapsedMs": 2894,
+      "provider": "cloudflare",
+      "reply": "ZK-7348",
+      "error": null,
+      "passed": true,
+      "syntheticOnly": true
+    },
+    {
+      "name": "docx-text",
+      "status": 200,
+      "elapsedMs": 1749,
+      "provider": "cloudflare",
+      "reply": "ZK-4826",
+      "error": null,
+      "passed": true,
+      "syntheticOnly": true
+    }
+  ]
+}

@@ -27,7 +27,7 @@
 atur hari ini?</string>
     <string name="concept_ai_caption">Susun rencana belajar, ibadah, dan hafalanmu.</string>
     <string name="concept_ai_mode_offline">Panduan lokal • offline</string>
-    <string name="concept_ai_mode_online">Featherless • online</string>
+    <string name="concept_ai_mode_online">Cloudflare • online</string>
     <string name="concept_ai_choose_mode">Pilih mode pendamping</string>
     <string name="concept_ai_offline">Offline — panduan lokal</string>
     <string name="concept_ai_online">Online — melalui backend</string>
@@ -35,11 +35,11 @@ atur hari ini?</string>
     <string name="concept_ai_endpoint">URL backend HTTPS</string>
     <string name="concept_ai_access">Kode akses backend</string>
     <string name="concept_ai_connect">Simpan dan pakai online</string>
-    <string name="concept_ai_backend_note">Mode online mengirim pesan percakapan ke backend pilihanmu dan Featherless. Masukkan URL layanan Zikra serta kode aksesnya, bukan API key Featherless.</string>
+    <string name="concept_ai_backend_note">Mode online mengirim pesan percakapan ke backend Zikra dan Cloudflare Workers AI. Masukkan URL layanan Zikra serta kode akses instalasinya, bukan API token Cloudflare.</string>
     <string name="concept_ai_backend_invalid">Gunakan URL HTTPS dan kode akses minimal 32 karakter.</string>
     <string name="concept_ai_pending">Menyiapkan jawaban…</string>
     <string name="concept_ai_failed">Jawaban online belum tersedia. Pesanmu tetap tersimpan. Coba kirim lagi atau pilih mode offline.</string>
-    <string name="concept_ai_network_note">Pesan pada mode online dikirim ke backend dan Featherless. Riwayat tetap tersimpan di perangkat.</string>
+    <string name="concept_ai_network_note">Pesan pada mode online dikirim ke backend Zikra dan Cloudflare Workers AI. Riwayat tetap tersimpan di perangkat.</string>
     <string name="concept_ai_local_note">Panduan lokal untuk rutinitas. Mode online bisa diatur melalui pilihan mode.</string>
     <string name="concept_ai_cloud_label">ZIKRA • ONLINE</string>
     <string name="concept_ai_local_label">ZIKRA • OFFLINE</string>

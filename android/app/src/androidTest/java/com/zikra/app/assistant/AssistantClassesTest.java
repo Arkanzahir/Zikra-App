@@ -69,7 +69,7 @@ public final class AssistantClassesTest extends InstrumentationTestCase {
       calls.incrementAndGet();okio.Buffer buffer=new okio.Buffer();chain.request().body().writeTo(buffer);
       try{
         JSONObject request=new JSONObject(buffer.readUtf8());sent.set(request);
-        JSONObject response=new JSONObject().put("provider","featherless").put("reply","[DATA UJI] Usulan belum disimpan.");
+        JSONObject response=new JSONObject().put("provider","cloudflare").put("reply","[DATA UJI] Usulan belum disimpan.");
         if(request.getJSONObject("features").getBoolean("taskProposals"))response.put("proposal",new JSONObject()
             .put("id",request.getString("requestId")).put("kind","add_task").put("title","[DATA UJI C04] Persiapan kalkulus").put("dueAt",0));
         return new Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200).message("Synthetic")

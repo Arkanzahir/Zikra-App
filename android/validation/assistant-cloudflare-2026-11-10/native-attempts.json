@@ -1,0 +1,23 @@
+[
+  {
+    "class": "com.zikra.app.assistant.AssistantIntegrationTest#testNativeClientMapsSuccessAuthQuotaTimeoutServerAndMalformedWithoutFallback",
+    "label": "testNativeClientMapsSuccessAuthQuotaTimeoutServerAndMalformedWithoutFallback",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 6.2
+  },
+  {
+    "class": "com.zikra.app.assistant.AssistantIntegrationTest#testCloudflareErrorsRemainDistinctWithoutSuccessfulFallback",
+    "label": "testCloudflareErrorsRemainDistinctWithoutSuccessfulFallback",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 5.0
+  },
+  {
+    "class": "com.zikra.app.assistant.AssistantIntegrationTest#testCloudflareConsentIsOncePerEndpointAndLegacyPermissionIsInsufficient",
+    "label": "testCloudflareConsentIsOncePerEndpointAndLegacyPermissionIsInsufficient",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 3.5
+  }
+]

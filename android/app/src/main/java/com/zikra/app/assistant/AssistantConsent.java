@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 
 /** Basic online permission is bound to the reviewed service, never to extra personal context. */
 public final class AssistantConsent {
-  private static final String ENDPOINT = "assistant_basic_consent_endpoint_v1";
+  private static final String ENDPOINT = "assistant_basic_consent_cloudflare_endpoint_v2";
   private AssistantConsent() {}
   public static boolean granted(SharedPreferences prefs, String endpoint) {
     return endpoint != null && !endpoint.isEmpty() && endpoint.equals(prefs.getString(ENDPOINT, ""));

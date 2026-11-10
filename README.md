@@ -1,5 +1,14 @@
 ## C07 dan E02 selesai teknis beta terarah — 10 November 2026
 
+**10 November 2026 — AI Cloudflare, beta 1.9.37:** backend chat/vision kini
+Cloudflare Workers AI, model `@cf/qwen/qwen3.8-27b`, paket tetap Free.
+APK49.377.416byte; izin penyedia diperbarui sekali, tanpa tinjauan tiap pesan.
+[Bukti dan batas](android/validation/assistant-cloudflare-2026-11-10/README.md):
+86 backend/177 unit/3 native emulator lulus. PDF hosted pernah timeout dan
+ulang200 belum patuh format; uji HP baru/C02 laptop mati tetap tertunda.
+APK lama perlu diperbarui. Bukan seluruh A–D/E atau rilis publik selesai.
+
+
 HP diperbarui ke **1.9.36** tanpa menghapus data. Pemilih foto/PDF/DOCX,
 pembatalan dan grant berkas lulus; kedua adzan selesai alami dan audio focus
 berfungsi. Push gempa nyata berlabel UJI hanya dikirim ke satu HP yang diizinkan.

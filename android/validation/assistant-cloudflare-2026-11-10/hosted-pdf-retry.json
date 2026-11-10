@@ -1,0 +1,104 @@
+{
+  "at": "2026-11-10T09:02:09.073Z",
+  "syntheticOnly": true,
+  "physicalPhoneTested": false,
+  "results": [
+    {
+      "name": "health",
+      "status": 200,
+      "elapsedMs": 366,
+      "body": {
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "name": "no-auth",
+      "status": 401,
+      "elapsedMs": 299,
+      "body": {
+        "error": "unauthorized"
+      },
+      "passed": true
+    },
+    {
+      "name": "capabilities",
+      "status": 200,
+      "elapsedMs": 602,
+      "body": {
+        "imageGeneration": true,
+        "imageUserDaily": 3,
+        "imageGlobalDaily": 20,
+        "assistantProvider": "cloudflare"
+      },
+      "passed": true
+    },
+    {
+      "name": "reject-provider-missing",
+      "status": 409,
+      "elapsedMs": 516,
+      "body": {
+        "error": "provider_changed",
+        "provider": "cloudflare"
+      },
+      "passed": true
+    },
+    {
+      "name": "reject-provider-featherless",
+      "status": 409,
+      "elapsedMs": 497,
+      "body": {
+        "error": "provider_changed",
+        "provider": "cloudflare"
+      },
+      "passed": true
+    },
+    {
+      "name": "pdf-page-images",
+      "status": 200,
+      "elapsedMs": 4205,
+      "body": {
+        "reply": "ZK-7348\nBooks: 3 x 12000\nTotal = ?",
+        "provider": "cloudflare"
+      },
+      "passed": false
+    },
+    {
+      "name": "task-proposal",
+      "status": 200,
+      "elapsedMs": 3481,
+      "body": {
+        "reply": "Usulan belum disimpan; tinjau dahulu.",
+        "proposal": {
+          "id": "5e4d2267-5195-458e-8587-406f595663d1",
+          "kind": "add_task",
+          "title": "Belajar matematika",
+          "dueAt": 0
+        },
+        "provider": "cloudflare"
+      },
+      "passed": true
+    },
+    {
+      "name": "earthquake-auth-unchanged",
+      "status": 401,
+      "elapsedMs": 312,
+      "body": {
+        "error": "unauthorized"
+      },
+      "passed": true
+    },
+    {
+      "name": "earthquake-method-unchanged",
+      "status": 405,
+      "elapsedMs": 386,
+      "body": {
+        "error": "method_not_allowed"
+      },
+      "passed": true
+    }
+  ],
+  "providerGateDidNotConsumeQuota": true,
+  "isolatedTestKeysRemoved": true,
+  "passed": false
+}

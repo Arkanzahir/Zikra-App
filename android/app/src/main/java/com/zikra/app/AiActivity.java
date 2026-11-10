@@ -754,7 +754,7 @@ public final class AiActivity extends BaseActivity {
     if(selectionDialog!=null&&selectionDialog.isShowing())return;
     String endpoint=connection.endpoint();
     selectionDialog=new AlertDialog.Builder(this).setTitle("Mulai Zikra AI online")
-        .setMessage("Pesan dan lampiran yang kamu pilih dikirim ke layanan Zikra serta penyedia AI saat kamu menekan Kirim. Setelah setuju, pesan berikutnya langsung dikirim tanpa tinjauan berulang.\n\nProfil, tugas, jadwal dan riwayat tambahan tidak disertakan otomatis. Pilih lewat Alat → Kirim dengan konteks bila diperlukan. Izin bisa dicabut lewat Izin data AI.")
+        .setMessage("Pesan dan lampiran yang kamu pilih dikirim ke backend Zikra dan Cloudflare Workers AI saat kamu menekan Kirim. Penyedia kini Cloudflare; persetujuan sebelumnya perlu diperbarui sekali. Setelah setuju, pesan berikutnya langsung dikirim tanpa tinjauan berulang.\n\nProfil, tugas, jadwal dan riwayat tambahan tidak disertakan otomatis. Pilih lewat Alat → Kirim dengan konteks bila diperlukan. Izin bisa dicabut lewat Izin data AI.")
         .setPositiveButton("Setuju & kirim",(dialog,which)->{
           if(!endpoint.equals(connection.endpoint())){toast("Layanan berubah. Kirim ulang untuk meninjau izin.");return;}
           selectionDialog.dismiss();com.zikra.app.assistant.AssistantConsent.accept(preferences,endpoint);dispatch.run();
@@ -873,6 +873,9 @@ public final class AiActivity extends BaseActivity {
     switch (failure) {
       case UNAUTHORIZED: message = R.string.assistant_auth_failed; break;
       case QUOTA: message = R.string.assistant_quota_failed; break;
+      case RATE_LIMIT: message = R.string.assistant_rate_failed; break;
+      case PROVIDER_QUOTA: message = R.string.assistant_provider_quota_failed; break;
+      case PROVIDER_CHANGED: message = R.string.assistant_provider_changed; break;
       case BUSY: message = R.string.assistant_busy_failed; break;
       case TIMEOUT: message = R.string.assistant_timeout_failed; break;
       case NETWORK: message = R.string.assistant_network_failed; break;

@@ -13,7 +13,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 import okhttp3.HttpUrl;
 
-/** User-configured private gateway. A Featherless provider key is never accepted here. */
+/** Private gateway credentials are separate from upstream provider credentials. */
 public final class AssistantConnection {
   private static final String KEY = "zikra-assistant-gateway-v1";
   private final SharedPreferences prefs;
@@ -52,11 +52,12 @@ public final class AssistantConnection {
         && url.fragment() == null
         && url.encodedPath().equals("/v1/assistant")
         && !url.host().equals("api.featherless.ai")
+        && !url.host().equals("api.cloudflare.com")
         && accessCode != null
         && accessCode.length() >= 32
         && accessCode.length() <= 256
         && accessCode.matches("[A-Za-z0-9._~+/=\\-]+")
-        && !accessCode.startsWith("sk-") && !accessCode.startsWith("AIza");
+        && !accessCode.startsWith("sk-") && !accessCode.startsWith("AIza") && !accessCode.startsWith("cfat_");
   }
 
   private SecretKey key(boolean create) throws Exception {

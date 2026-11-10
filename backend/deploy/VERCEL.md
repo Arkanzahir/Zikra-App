@@ -1,5 +1,12 @@
 # Vercel + Upstash — C02
 
+**Aktif10 November2026:** provider chat/vision Cloudflare Workers AI, APK1.9.37.
+[Runbook migrasi, izin, Free dan rollback](ASSISTANT_PROVIDER.md) menjadi acuan
+variabel terbaru. Ada lima entry function termasuk earthquake-poll. Uji HP baru
+serta C02 laptop mati tetap terbuka; riwayat vision Featherless di bawah bukan
+konfigurasi aktif saat ini.
+
+
 Keputusan pengguna 25 Oktober 2026: gunakan Vercel. Proyek `zikra-ai` telah dibuat
 di akun Hobby; backend kini memakai empat entry function Node 24.x untuk health,
 assistant, capabilities dan images. [Runbook operasional/backup](OPERATIONS.md)
@@ -9,7 +16,7 @@ Jangan menganggap proyek dibuat atau build berhasil sebagai hosting AI yang beke
 
 ## Arsitektur dan batas
 
-Android → HTTPS Vercel `/v1/assistant` → Featherless. Provider key yang sudah ada
+Android → HTTPS Vercel `/v1/assistant` → Cloudflare Workers AI. Provider key yang sudah ada
 tetap hanya dalam environment server; tidak dimasukkan ke Android/Git/image.
 `GET /health` hanya liveness minimal, bukan kesiapan Redis/model/kuota.
 Alias `/api/health` dan `/api/assistant` menuju entry masing-masing; metode tetap
@@ -60,7 +67,7 @@ jangan menghapus registry untuk memaksa layanan kembali bekerja.
    ```
 
 3. Simpan variabel dalam [template kosong](../.env.vercel.example) ke environment
-   **production**. `FEATHERLESS_API_KEY` bertipe Secret/sensitive, diisi dari env
+   **production**. `CLOUDFLARE_API_TOKEN` bertipe Secret/sensitive, diisi dari env
    privat lokal tanpa menampilkan nilainya. Redis REST URL dan token tulis
    berasal dari integrasi; nama `KV_REST_API_URL` dan `KV_REST_API_TOKEN` dari
    Vercel Marketplace juga diterima langsung tanpa menyalin nilai credential.
@@ -90,7 +97,7 @@ jangan menghapus registry untuk memaksa layanan kembali bekerja.
    Serahkan token gateway hanya ke instalasinya secara privat. Jangan mengisi
    provider key pada pengaturan Android.
 6. Jalankan probe sintetis dengan endpoint sebenarnya. `--live` menggunakan
-   satu request Featherless; output hanya status/boolean, tanpa jawaban/token:
+   satu request ke provider yang dipilih; output hanya status/boolean, tanpa jawaban/token:
 
    ```sh
    node --env-file=.local/vercel-client.env backend/check-vercel.mjs https://NAMA_PROYEK.vercel.app PATH_RECEIPT --live

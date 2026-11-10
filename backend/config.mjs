@@ -3,24 +3,40 @@ import { isAbsolute } from 'node:path';
 
 export class ConfigError extends Error {}
 
-export function validateProvider({ apiKey, model, visionModel }) {
+export function validateProvider({ apiKey, model, visionModel, provider = 'featherless', accountId, freePlanConfirmed }) {
+  if (!['featherless', 'cloudflare'].includes(provider)) throw new ConfigError('Invalid ZIKRA_AI_PROVIDER.');
   // Reject whitespace/control characters before constructing provider headers.
   if (typeof apiKey !== 'string' || !/^[!-~]{16,512}$/.test(apiKey))
-    throw new ConfigError('Invalid FEATHERLESS_API_KEY.');
-  if (typeof model !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9._/-]{0,199}$/.test(model))
-    throw new ConfigError('Invalid FEATHERLESS_MODEL.');
-  if(visionModel!==undefined&&visionModel!==null&&(typeof visionModel!=='string'||! /^[A-Za-z0-9][A-Za-z0-9._/-]{0,199}$/.test(visionModel)))throw new ConfigError('Invalid FEATHERLESS_VISION_MODEL.');
+    throw new ConfigError('Invalid server AI credential.');
+  const modelPattern = provider === 'cloudflare' ? /^@cf\/[A-Za-z0-9][A-Za-z0-9._/-]{0,190}$/ : /^[A-Za-z0-9][A-Za-z0-9._/-]{0,199}$/;
+  if (typeof model !== 'string' || !modelPattern.test(model))
+    throw new ConfigError('Invalid assistant model.');
+  if(visionModel!==undefined&&visionModel!==null&&(typeof visionModel!=='string'||!modelPattern.test(visionModel)))throw new ConfigError('Invalid vision model.');
+  if(provider === 'cloudflare' && (!/^[a-f0-9]{32}$/.test(accountId ?? '') || freePlanConfirmed !== true))
+    throw new ConfigError('Cloudflare account and explicit Free plan confirmation required.');
 }
 
-export function validateCredentials({ apiKey, model, visionModel, clientToken }) {
-  validateProvider({ apiKey, model, visionModel });
+export function readProviderConfig(env = process.env) {
+  const provider = env.ZIKRA_AI_PROVIDER ?? 'featherless';
+  const config = provider === 'cloudflare'
+    ? { provider, apiKey: env.CLOUDFLARE_API_TOKEN, accountId: env.CLOUDFLARE_ACCOUNT_ID,
+        model: env.CLOUDFLARE_CHAT_MODEL, visionModel: env.CLOUDFLARE_VISION_MODEL,
+        freePlanConfirmed: env.ZIKRA_ASSISTANT_FREE_PLAN_CONFIRMED === 'true' }
+    : { provider, apiKey: env.FEATHERLESS_API_KEY, model: env.FEATHERLESS_MODEL, visionModel: env.FEATHERLESS_VISION_MODEL };
+  validateProvider(config);
+  return config;
+}
+
+export function validateCredentials(config) {
+  const { apiKey, clientToken } = config;
+  validateProvider(config);
   if (typeof clientToken !== 'string' || !/^[A-Za-z0-9._~+\/=-]{32,256}$/.test(clientToken)
       || clientToken.startsWith('sk-') || clientToken === apiKey)
     throw new ConfigError('Invalid ZIKRA_CLIENT_TOKEN; use a separate random 32+ character token.');
 }
 
 export function readConfig(env = process.env) {
-  const config = { apiKey: env.FEATHERLESS_API_KEY, model: env.FEATHERLESS_MODEL, visionModel: env.FEATHERLESS_VISION_MODEL,
+  const config = { ...readProviderConfig(env),
     clientToken: env.ZIKRA_CLIENT_TOKEN, host: env.HOST ?? '127.0.0.1',
     port: Number(env.PORT ?? '8787'), accessMode: env.ZIKRA_ACCESS_MODE ?? 'private' };
   if (config.accessMode === 'private') validateCredentials(config);

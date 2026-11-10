@@ -22,14 +22,18 @@ public final class OnlineAssistantClient implements AutoCloseable {
     default void failed(Failure failure) { failed(); }
   }
 
-  public enum Failure { UNAUTHORIZED, QUOTA, BUSY, TIMEOUT, NETWORK, SERVER, INVALID_RESPONSE, SOURCE, ATTACHMENT }
+  public enum Failure { UNAUTHORIZED, QUOTA, RATE_LIMIT, PROVIDER_QUOTA, PROVIDER_CHANGED, BUSY, TIMEOUT, NETWORK, SERVER, INVALID_RESPONSE, SOURCE, ATTACHMENT }
 
   public static Failure failure(int status, String error) {
     if ("source_unavailable".equals(error)) return Failure.SOURCE;
     if(status==413||"vision_unavailable".equals(error)||"invalid_attachment".equals(error)||"unsupported_attachment".equals(error))return Failure.ATTACHMENT;
     if (status == 401 || status == 403) return Failure.UNAUTHORIZED;
-    if ((status == 429 || status == 503) && "provider_busy".equals(error)) return Failure.BUSY;
-    if (status == 429) return Failure.QUOTA;
+    if (status == 409 && "provider_changed".equals(error)) return Failure.PROVIDER_CHANGED;
+    if (status == 429 && "provider_quota_exceeded".equals(error)) return Failure.PROVIDER_QUOTA;
+    if (((status == 429 || status == 503) && "provider_busy".equals(error))
+        || (status == 429 && "try_later".equals(error))) return Failure.BUSY;
+    if (status == 429 && ("quota_exceeded".equals(error) || "daily_quota_exceeded".equals(error))) return Failure.QUOTA;
+    if (status == 429) return Failure.RATE_LIMIT;
     if (status == 408 || status == 504) return Failure.TIMEOUT;
     return status >= 500 ? Failure.SERVER : Failure.INVALID_RESPONSE;
   }
@@ -84,6 +88,7 @@ public final class OnlineAssistantClient implements AutoCloseable {
                 .url(endpoint)
                 .header("Authorization", "Bearer " + code)
                 .header("X-Zikra-Attachments",body.has("attachments")?"1":"0")
+                .header("X-Zikra-Provider", "cloudflare")
                 .post(
                     RequestBody.create(
                         MediaType.parse("application/json; charset=utf-8"), body.toString()))
@@ -111,7 +116,7 @@ public final class OnlineAssistantClient implements AutoCloseable {
                 if (response.body().source().buffer().size() <= 65536) {
                   JSONObject data = new JSONObject(response.body().string());
                   failure = failure(response.code(), data.optString("error"));
-                  if (response.isSuccessful() && "featherless".equals(data.optString("provider"))) {
+                  if (response.isSuccessful() && "cloudflare".equals(data.optString("provider"))) {
                     Object raw = data.opt("reply");
                     String value = raw instanceof String ? ((String) raw).trim() : "";
                     if (!value.isEmpty() && value.length() <= 8000) {

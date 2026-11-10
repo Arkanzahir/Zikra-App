@@ -101,7 +101,7 @@ public final class AssistantConnectivityTest extends InstrumentationTestCase {
     install(new OkHttpClient.Builder().callTimeout(150, TimeUnit.MILLISECONDS).retryOnConnectionFailure(false)
         .addInterceptor(chain -> {
           if (calls.incrementAndGet() == 1) SystemClock.sleep(400);
-          return reply(chain.request(), 200, "{\"reply\":\"Jawaban setelah coba lagi\",\"provider\":\"featherless\"}");
+          return reply(chain.request(), 200, "{\"reply\":\"Jawaban setelah coba lagi\",\"provider\":\"cloudflare\"}");
         }).build());
     compose("Pesan sintetis untuk timeout"); approve();
     waitFor(() -> !waiting());
@@ -142,7 +142,7 @@ public final class AssistantConnectivityTest extends InstrumentationTestCase {
     install(new OkHttpClient.Builder().addInterceptor(chain -> {
       calls.incrementAndGet(); started.countDown();
       try { release.await(8, TimeUnit.SECONDS); } catch (InterruptedException error) { Thread.currentThread().interrupt(); }
-      return reply(chain.request(), 200, "{\"reply\":\"Balasan lama tidak boleh masuk\",\"provider\":\"featherless\"}");
+      return reply(chain.request(), 200, "{\"reply\":\"Balasan lama tidak boleh masuk\",\"provider\":\"cloudflare\"}");
     }).build());
     try {
       compose("Pesan konfigurasi sintetis"); approve(); assertTrue(started.await(3, TimeUnit.SECONDS));
@@ -181,7 +181,7 @@ public final class AssistantConnectivityTest extends InstrumentationTestCase {
         started.countDown();
         try{release.await(8,TimeUnit.SECONDS);}catch(InterruptedException error){Thread.currentThread().interrupt();}
       }
-      return reply(chain.request(),200,"{\"reply\":\"Balasan setelah ganti mode\",\"provider\":\"featherless\"}");
+      return reply(chain.request(),200,"{\"reply\":\"Balasan setelah ganti mode\",\"provider\":\"cloudflare\"}");
     }).build());
     try{
       compose("Uji pergantian mode saat mengirim");approve();assertTrue(started.await(3,TimeUnit.SECONDS));
@@ -202,7 +202,7 @@ public final class AssistantConnectivityTest extends InstrumentationTestCase {
     install(new OkHttpClient.Builder().addInterceptor(chain -> {
       calls.incrementAndGet(); started.countDown();
       try { release.await(8, TimeUnit.SECONDS); } catch (InterruptedException error) { Thread.currentThread().interrupt(); }
-      return reply(chain.request(), 200, "{\"reply\":\"Late\",\"provider\":\"featherless\"}");
+      return reply(chain.request(), 200, "{\"reply\":\"Late\",\"provider\":\"cloudflare\"}");
     }).build());
     try {
       compose("Pesan sebelum background"); approve(); assertTrue(started.await(3, TimeUnit.SECONDS));

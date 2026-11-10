@@ -38,7 +38,7 @@ public final class PhoneConsentTest extends InstrumentationTestCase {
       try{captured.set(new JSONObject(body.readUtf8()));}catch(JSONException e){throw new IOException(e);}
       requests.incrementAndGet();
       return new Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200).message("Synthetic")
-          .body(ResponseBody.create(MediaType.parse("application/json"),"{\"reply\":\"Jawaban sintetis\",\"provider\":\"featherless\"}")).build();
+          .body(ResponseBody.create(MediaType.parse("application/json"),"{\"reply\":\"Jawaban sintetis\",\"provider\":\"cloudflare\"}")).build();
     }).build()));
   }
   private void send(String text){ui(()->{((EditText)activity.findViewById(R.id.aiInput)).setText(text);activity.findViewById(R.id.aiSend).performClick();});}
@@ -49,7 +49,7 @@ public final class PhoneConsentTest extends InstrumentationTestCase {
     assertTrue(new File(context.getFilesDir(),"phone-c07-backup-verified").isFile());
     try(InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(getInstrumentation().getUiAutomation().executeShellCommand("getprop ro.kernel.qemu"))){assertFalse("Physical only","1".equals(new String(in.readAllBytes(),StandardCharsets.UTF_8).trim()));}
     SharedPreferences prefs=context.getSharedPreferences("zikra_preferences",0);
-    String[] keys={"assistant_active_chat","assistant_mode_v2","assistant_basic_consent_endpoint_v1"};
+    String[] keys={"assistant_active_chat","assistant_mode_v2","assistant_basic_consent_cloudflare_endpoint_v2"};
     Map<String,String> original=new HashMap<>();for(String key:keys)if(prefs.contains(key))original.put(key,prefs.getString(key,""));
     String endpoint=new AssistantConnection(context).endpoint();assertFalse(endpoint.isEmpty());
     String chat=null;

@@ -1,5 +1,27 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## Migrasi Cloudflare — beta 1.9.37, 10 November 2026
+
+Pengguna memilih Cloudflare Workers AI untuk chat/foto/PDF setelah premium
+Featherless berakhir, lalu meminta APK dahulu/HP nanti. Backend produksi READY,
+chat/vision dikonfigurasi `@cf/qwen/qwen3.8-27b`; paket Free, tidak ada upgrade
+atau fallback berbayar. Adapter/izin sekali per endpoint diperbarui; izin lama
+bukan izin penerima baru dan APK lama ditolak409 sebelum kuota/inference.
+Kuota harian, alokasi akun gratis, batas menit dan antrean dibedakan; counter
+pengguna tetap. [Bukti, kegagalan dan batas](android/validation/assistant-cloudflare-2026-11-10/README.md):
+86 backend/0skip,177 unit/4skip,3 native emulator lulus,lint0error/878warning.
+Hosted awal11/12 strict lulus(PDF504); ulang8/9 strict lulus(PDF200/kode benar,
+format menambahkan teks). Bukan klaim seluruh dokumen/format akurat.
+APK1.9.37/code64,49.377.416byte,SHA256
+`e65767269d53d91fc126dde387dd7f57c805da7cd35dcfecb283676463e55e94`;
+signer/audio tetap,0 credential server dikenal.32berkas emulator pulih cocok
+hash/pengaturan/helper dibersihkan/emulator ditutup; HP tidak diakses/terakhir
+terbukti1.9.36. WIP/stash/arsip/env/logo/master tetap; E02 cron tetap.
+Uji HP penyedia baru dan C02 laptop mati belum selesai. B01,D02/D02a hak audio/
+sisa fisik/vendor,E03/E04,F/G serta publik tetap terbuka; bukan seluruh A–D/E
+selesai. UI10/mode orang tua ditunda. Checkpoint wajib audit/commit/push.
+
+
 ## C07 dan E02 selesai teknis beta terarah — 10 November 2026
 
 C07: foto, PDF tiga halaman dan DOCX UTF-16 dipilih melalui DocumentsUI asli
@@ -248,6 +270,7 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 - [x] **C03 — Hubungkan APK ke AI online dengan alur yang jelas.** Selesai **26 Oktober 2026**, beta1.9.7/code34, source249b523: Otomatis/manual, konfigurasi HTTPS/kode akses terenkripsi, consent per pengiriman, loading/batal/timeout/error/kuota/retry dan label hasil dibuktikan. Wi-Fi Android tersambung tanpa VALIDATED serta CAPTIVE_PORTAL nyata diuji memakai probe localhost AOSP; pemulihan tidak mengirim draf. Pergantian mode/koneksi dan background membatalkan hasil tertunda; timeout/putus saat membaca body dibedakan dari JSON rusak, HTTP401/502 tetap benar walau body HTML. Teks200%/layar sempit menampilkan mode, error/retry dan target keyboard utuh. [Bukti terarah](android/validation/assistant-c03-2026-10-26/README.md):19 eksekusi native/17 metode unik,116 unit lulus/4 skip,lint0 error/753 warning; APK37.218.400 byte.10 berkas asli emulator dan pengaturan dipulihkan, helper dihapus/emulator ditutup; audit nilai rahasia yang diketahui bersih. Tidak mengulang inference provider atau mengklaim operasional C02, konteks C04, mikrofon C06, kamera C07 atau seluruh C/publik selesai. Bukti provider/HP sebelumnya tetap C05.
   **Lanjutan 1.8.1:** [APK emulator → Vercel → Featherless nyata lulus](android/validation/assistant-hosted-emulator-2026-10-25/README.md): consent, token salah, putus jaringan/retry, batal dan proposal. Crash TLS saat keluar layar diperbaiki tanpa bypass StrictMode/TLS. 3 metode live + 6 regresi native + 14 unit lulus, lint 0 error/716 warning. Bukti emulator ini dipisahkan dari [uji HP C05 yang kemudian lulus](android/validation/assistant-phone-2026-10-25/README.md).
 - [x] **C03a — Izin sekali tanpa tinjauan berulang.** Permintaan pengguna30 Oktober2026, beta1.9.31: izin pesan/lampiran dipilih sekali per endpoint, kiriman berikutnya langsung; konteks tambahan defaultfalse melalui Alat dan izin bisa dicabut.163 unit/4 skip,lint0 error/862 warning;1 metode HP/3 eksekusi sukses dengan HTTP sintetis. [Bukti/temuan/perbaikan/preservasi](android/validation/assistant-consent-once-2026-10-30/README.md). Audit awal mode tetap gagal/tercatat, perbaikan dua nilai dan verifikasi akhir baru dipisahkan; isi17 tabel dan chat PDF pengguna terjaga. C02/C07/D02/D02a dan publik belum ditutup.
+- [ ] **C03b — Tutup migrasi Cloudflare pada HP.** Backend/adapter/izin/kuota dan APK1.9.37 tersedia; 86 backend/177 unit/3 native emulator lulus. [Bukti](android/validation/assistant-cloudflare-2026-11-10/README.md) mempertahankan PDF timeout dan respons ulang yang tidak patuh format. Pengguna meminta APK dahulu, HP nanti. Pasang pembaruan tanpa uninstall, verifikasi izin baru sekali/riwayat lama/mode/galat serta sampel chat dan lampiran pada HP; lanjut C02 laptop mati. Belum dicentang atas bukti emulator saja.
 - [x] **C04 — Konteks dan tindakan AI sesuai data asli (beta terarah).** Selesai30 Oktober2026,1.9.28/code55: nama/tugas/salat/history/proposal/kelas dipilih per kiriman; snapshot kelas7 hari/maksimal10 hanya judul/tanggal/jam/zona, tanpa guru/ruang/SKS/koordinat/ID. Preview dikirim apa adanya; perubahan store setelah preview tidak menyisipkan data. Backend ketat, kontrak APK lama tetap diterima. Review/receipt sekali/restart/stale/completed diuji ulang. Dua sampel Tadabbur hosted1:2/113:1 ditelaah; prompt membedakan konteks ayat lain dan sumber gagal tidak ditebak.163 unit/4 skip,69 backend tanpa skip,13 native/10 metode unik lulus;lint0 error/862 warning. Font200 memakai gulir terbatas dan tombol Kirim/Simpan diuji sentuhan nyata. [Bukti, deployment, telaah sampel, APK dan preservasi](android/validation/assistant-context-c04-2026-10-30/README.md).32 berkas emulator pulih cocok hash/helper dan emulator ditutup; HP tidak disentuh. Bukan sertifikasi semua ayat/keluaran model atau penutupan B01/G03/C02/C07/D02/D02a/publik. Bukti awal1.8.0 tetap [historis](android/validation/assistant-c-2026-10-25/README.md).
   **Lanjutan emulator:** proposal dari hosting nyata ditinjau/disimpan sekali dan sumber ayat 1:2 tampil. Ringkasan memuat frasa Basmalah yang [masih perlu tinjauan isi](android/validation/assistant-hosted-emulator-2026-10-25/README.md); metadata sumber yang cocok bukan sertifikasi akurasi ringkasan. C04 tetap terbuka.
 - [x] **C05 — Uji percakapan nyata dari HP.** **Selesai 25 Oktober 2026:** APK 1.8.1 di POCO F7/API 36 → HTTPS Vercel → Featherless → balasan `online` tampil, tanpa interceptor/mock jaringan. Token salah, koreksi/retry, kuota server 429 melalui fixture terpisah, jaringan benar-benar diputus/pulih dan pembatalan diperiksa. [Bukti native/screenshot dan preservasi](android/validation/assistant-phone-2026-10-25/README.md): satu metode end-to-end lulus; tujuh file data asli cocok hash setelah pemulihan, input/helper tes dibersihkan, koneksi gateway baru tersimpan terenkripsi. Profil/tugas/riwayat asli tidak dikirim. **Laptop masih hidup**; uji laptop mati tetap pekerjaan C02, bukan diklaim oleh penutupan C05. Bukti emulator sebelumnya tetap historis.

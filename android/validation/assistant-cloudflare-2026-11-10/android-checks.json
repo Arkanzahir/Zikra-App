@@ -1,0 +1,17 @@
+{
+  "unit": {
+    "tests": 181,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4,
+    "passed": 177
+  },
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 878
+  },
+  "physicalPhoneTested": false,
+  "nativeMethodsPassed": 3,
+  "emulatorOnly": true
+}

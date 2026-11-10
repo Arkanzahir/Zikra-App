@@ -67,7 +67,8 @@ if state[1] then
 elseif state[2] or state[3] or state[4] then return redis.error_reply('invalid_usage') end
 redis.call('ZREMRANGEBYSCORE', KEYS[3], '-inf', now)
 redis.call('ZREMRANGEBYSCORE', KEYS[4], '-inf', now)
-if count >= tonumber(ARGV[3]) or minuteCount >= 10 then return {0, 'quota_exceeded'} end
+if count >= tonumber(ARGV[3]) then return {0, 'quota_exceeded'} end
+if minuteCount >= 10 then return {0, 'rate_limited'} end
 if redis.call('ZCARD', KEYS[3]) >= 2 or redis.call('ZCARD', KEYS[4]) >= 1 then return {0, 'try_later'} end
 redis.call('HSET', KEYS[2], 'day', day, 'count', count + 1, 'minute', minute, 'minuteCount', minuteCount + 1)
 redis.call('EXPIRE', KEYS[2], 172800)
@@ -117,7 +118,7 @@ export class RedisAccess {
     if (Array.isArray(result) && result.length === 1 && result[0] === -1)
       return { allowed: false, status: 401, error: 'unauthorized' };
     if (Array.isArray(result) && result.length === 2 && result[0] === 0
-        && ['try_later', 'quota_exceeded'].includes(result[1]))
+        && ['try_later', 'quota_exceeded', 'rate_limited'].includes(result[1]))
       return { allowed: false, status: 429, error: result[1] };
     throw new Error('invalid_access_response');
   }

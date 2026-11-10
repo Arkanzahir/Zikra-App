@@ -9,6 +9,7 @@
 !api/capabilities.js
 !server.mjs
 !config.mjs
+!assistant-provider.mjs
 !access.mjs
 !redis-access.mjs
 !vercel-handler.mjs

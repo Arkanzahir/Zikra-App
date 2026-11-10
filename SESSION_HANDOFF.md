@@ -1,5 +1,27 @@
 # Handoff aktif Zikra — 10 November2026 (WIB)
 
+## Migrasi Cloudflare — beta 1.9.37, 10 November 2026
+
+Pengguna memilih Cloudflare Workers AI untuk chat/foto/PDF setelah premium
+Featherless berakhir, lalu meminta APK dahulu/HP nanti. Backend produksi READY,
+chat/vision dikonfigurasi `@cf/qwen/qwen3.8-27b`; paket Free, tidak ada upgrade
+atau fallback berbayar. Adapter/izin sekali per endpoint diperbarui; izin lama
+bukan izin penerima baru dan APK lama ditolak409 sebelum kuota/inference.
+Kuota harian, alokasi akun gratis, batas menit dan antrean dibedakan; counter
+pengguna tetap. [Bukti, kegagalan dan batas](android/validation/assistant-cloudflare-2026-11-10/README.md):
+86 backend/0skip,177 unit/4skip,3 native emulator lulus,lint0error/878warning.
+Hosted awal11/12 strict lulus(PDF504); ulang8/9 strict lulus(PDF200/kode benar,
+format menambahkan teks). Bukan klaim seluruh dokumen/format akurat.
+APK1.9.37/code64,49.377.416byte,SHA256
+`e65767269d53d91fc126dde387dd7f57c805da7cd35dcfecb283676463e55e94`;
+signer/audio tetap,0 credential server dikenal.32berkas emulator pulih cocok
+hash/pengaturan/helper dibersihkan/emulator ditutup; HP tidak diakses/terakhir
+terbukti1.9.36. WIP/stash/arsip/env/logo/master tetap; E02 cron tetap.
+Uji HP penyedia baru dan C02 laptop mati belum selesai. B01,D02/D02a hak audio/
+sisa fisik/vendor,E03/E04,F/G serta publik tetap terbuka; bukan seluruh A–D/E
+selesai. UI10/mode orang tua ditunda. Checkpoint wajib audit/commit/push.
+
+
 ## C07 dan E02 selesai teknis beta terarah — 10 November 2026
 
 C07: foto, PDF tiga halaman dan DOCX UTF-16 dipilih melalui DocumentsUI asli

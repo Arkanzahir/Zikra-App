@@ -1,0 +1,133 @@
+{
+  "at": "2026-11-10T08:59:48.562Z",
+  "syntheticOnly": true,
+  "physicalPhoneTested": false,
+  "results": [
+    {
+      "name": "health",
+      "status": 200,
+      "elapsedMs": 757,
+      "body": {
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "name": "no-auth",
+      "status": 401,
+      "elapsedMs": 570,
+      "body": {
+        "error": "unauthorized"
+      },
+      "passed": true
+    },
+    {
+      "name": "capabilities",
+      "status": 200,
+      "elapsedMs": 886,
+      "body": {
+        "imageGeneration": true,
+        "imageUserDaily": 3,
+        "imageGlobalDaily": 20,
+        "assistantProvider": "cloudflare"
+      },
+      "passed": true
+    },
+    {
+      "name": "reject-provider-missing",
+      "status": 409,
+      "elapsedMs": 551,
+      "body": {
+        "error": "provider_changed",
+        "provider": "cloudflare"
+      },
+      "passed": true
+    },
+    {
+      "name": "reject-provider-featherless",
+      "status": 409,
+      "elapsedMs": 773,
+      "body": {
+        "error": "provider_changed",
+        "provider": "cloudflare"
+      },
+      "passed": true
+    },
+    {
+      "name": "text",
+      "status": 200,
+      "elapsedMs": 3120,
+      "body": {
+        "reply": "ZIKRA-CF-HOSTED",
+        "provider": "cloudflare"
+      },
+      "passed": true
+    },
+    {
+      "name": "photo",
+      "status": 200,
+      "elapsedMs": 3400,
+      "body": {
+        "reply": "ZK-7348",
+        "provider": "cloudflare"
+      },
+      "passed": true
+    },
+    {
+      "name": "pdf-page-images",
+      "status": 504,
+      "elapsedMs": 36210,
+      "body": {
+        "error": "provider_unavailable"
+      },
+      "passed": false
+    },
+    {
+      "name": "docx-extracted-text",
+      "status": 200,
+      "elapsedMs": 2350,
+      "body": {
+        "reply": "ZK-4826",
+        "provider": "cloudflare"
+      },
+      "passed": true
+    },
+    {
+      "name": "task-proposal",
+      "status": 200,
+      "elapsedMs": 4976,
+      "body": {
+        "reply": "Usulan belum disimpan; tinjau dahulu.",
+        "proposal": {
+          "id": "28c40fe1-2420-4227-97f5-a8d3130c009e",
+          "kind": "add_task",
+          "title": "Belajar matematika",
+          "dueAt": 0
+        },
+        "provider": "cloudflare"
+      },
+      "passed": true
+    },
+    {
+      "name": "earthquake-auth-unchanged",
+      "status": 401,
+      "elapsedMs": 541,
+      "body": {
+        "error": "unauthorized"
+      },
+      "passed": true
+    },
+    {
+      "name": "earthquake-method-unchanged",
+      "status": 405,
+      "elapsedMs": 355,
+      "body": {
+        "error": "method_not_allowed"
+      },
+      "passed": true
+    }
+  ],
+  "providerGateDidNotConsumeQuota": true,
+  "isolatedTestKeysRemoved": true,
+  "passed": false
+}

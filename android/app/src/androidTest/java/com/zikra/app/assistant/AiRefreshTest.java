@@ -164,7 +164,7 @@ public final class AiRefreshTest extends InstrumentationTestCase {
     launch();waitUntil(()->new AssistantNetwork(context,()->{}).validated());
     AtomicInteger calls=new AtomicInteger();AtomicReference<JSONObject> captured=new AtomicReference<>();
     OkHttpClient http=new OkHttpClient.Builder().addInterceptor(chain->{calls.incrementAndGet();okio.Buffer body=new okio.Buffer();chain.request().body().writeTo(body);try{captured.set(new JSONObject(body.readUtf8()));}catch(JSONException e){throw new IOException(e);}assertEquals("1",chain.request().header("X-Zikra-Attachments"));
-      return new Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200).message("Synthetic").body(ResponseBody.create(MediaType.parse("application/json"),"{\"reply\":\"Jawaban uji lampiran\",\"provider\":\"featherless\"}")).build();}).build();
+      return new Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200).message("Synthetic").body(ResponseBody.create(MediaType.parse("application/json"),"{\"reply\":\"Jawaban uji lampiran\",\"provider\":\"cloudflare\"}")).build();}).build();
     ((OnlineAssistantClient)field("onlineClient")).close();set("onlineClient",new OnlineAssistantClient(http));
     AssistantAttachments.Draft draft=decode((AssistantAttachments)field("attachmentReader"),"kode-uji.png","image/png",image());
     ui(()->{try{set("attachment",draft);set("importingAttachment",false);}catch(Exception e){throw new RuntimeException(e);}call("renderAttachment");});

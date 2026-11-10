@@ -32,7 +32,12 @@ public class AssistantSelectionTest {
   }
   @Test public void errorKindsAndSourceProvenanceDoNotTurnIntoOfflineAnswers() throws Exception {
     assertEquals(OnlineAssistantClient.Failure.UNAUTHORIZED, OnlineAssistantClient.failure(401, ""));
-    assertEquals(OnlineAssistantClient.Failure.QUOTA, OnlineAssistantClient.failure(429, ""));
+    assertEquals(OnlineAssistantClient.Failure.RATE_LIMIT, OnlineAssistantClient.failure(429, ""));
+    assertEquals(OnlineAssistantClient.Failure.QUOTA, OnlineAssistantClient.failure(429, "daily_quota_exceeded"));
+    assertEquals(OnlineAssistantClient.Failure.BUSY, OnlineAssistantClient.failure(429, "try_later"));
+    assertEquals(OnlineAssistantClient.Failure.RATE_LIMIT, OnlineAssistantClient.failure(429, "rate_limited"));
+    assertEquals(OnlineAssistantClient.Failure.PROVIDER_QUOTA, OnlineAssistantClient.failure(429, "provider_quota_exceeded"));
+    assertEquals(OnlineAssistantClient.Failure.PROVIDER_CHANGED, OnlineAssistantClient.failure(409, "provider_changed"));
     assertEquals(OnlineAssistantClient.Failure.BUSY, OnlineAssistantClient.failure(503, "provider_busy"));
     assertEquals(OnlineAssistantClient.Failure.BUSY, OnlineAssistantClient.failure(429, "provider_busy"));
     assertEquals(OnlineAssistantClient.Failure.UNAUTHORIZED, OnlineAssistantClient.failure(401, "provider_busy"));

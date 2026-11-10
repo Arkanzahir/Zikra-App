@@ -1,11 +1,10 @@
-import { ConfigError, validateProvider } from './config.mjs';
+import { ConfigError, readProviderConfig } from './config.mjs';
 import { RedisAccess, RedisRest, readRedisConfig } from './redis-access.mjs';
 import { createRequestHandler } from './server.mjs';
 import {readImageConfig,createImageService} from './image-generation.mjs';
 
 export function readVercelConfig(env = process.env) {
-  const config = { apiKey: env.FEATHERLESS_API_KEY, model: env.FEATHERLESS_MODEL, visionModel: env.FEATHERLESS_VISION_MODEL };
-  validateProvider(config);
+  const config = readProviderConfig(env);
   const redis = readRedisConfig(env), dailyLimit = Number(env.ZIKRA_DAILY_LIMIT ?? '100');
   if (!Number.isInteger(dailyLimit) || dailyLimit < 1 || dailyLimit > 1000)
     throw new ConfigError('Invalid ZIKRA_DAILY_LIMIT; use 1 to 1000.');

@@ -133,7 +133,7 @@ test('production Lua: minute quota, namespaces, storage corruption and malformed
     const grant = await access.acquire(client.id, auth(client.token)); assert.ok(grant.allowed);
     await access.release(client.id, grant.lease);
   }
-  assert.equal((await access.acquire(client.id, auth(client.token))).error, 'quota_exceeded');
+  assert.equal((await access.acquire(client.id, auth(client.token))).error, 'rate_limited');
   assert.equal(await new RedisAccess({ redis, prefix: 'preview:' }).identify(auth(client.token)), null);
   await redis.command(['HSET', `zikra:v1:usage:${client.id}`, 'minute', 0]);
   const reset = await access.acquire(client.id, auth(client.token)); assert.ok(reset.allowed);

@@ -73,12 +73,13 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
       OnlineAssistantClient.Failure.SERVER, OnlineAssistantClient.Failure.UNAUTHORIZED};
     for (int i = 0; i < codes.length; i++) {
       final int code = codes[i];
-      final String json = i == 5 ? "{\"error\":\"source_unavailable\"}" : i == 6 ? "{"
-          : i == 7 ? "{\"reply\":42,\"provider\":\"featherless\"}" : i >= 8 ? "<html>Gateway error</html>"
-          : "{\"reply\":\"Synthetic reply\",\"provider\":\"featherless\"}";
+      final String json = i == 2 ? "{\"error\":\"daily_quota_exceeded\"}" : i == 5 ? "{\"error\":\"source_unavailable\"}" : i == 6 ? "{"
+          : i == 7 ? "{\"reply\":42,\"provider\":\"cloudflare\"}" : i >= 8 ? "<html>Gateway error</html>"
+          : "{\"reply\":\"Synthetic reply\",\"provider\":\"cloudflare\"}";
       OkHttpClient http = new OkHttpClient.Builder().addInterceptor(chain -> {
         assertEquals("https", chain.request().url().scheme());
         assertEquals("Bearer " + CODE, chain.request().header("Authorization"));
+        assertEquals("cloudflare", chain.request().header("X-Zikra-Provider"));
         return new Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1)
             .code(code).message("Synthetic").body(ResponseBody.create(MediaType.parse("application/json"), json)).build();
       }).build();
@@ -99,6 +100,50 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
     }
   }
 
+  public void testCloudflareErrorsRemainDistinctWithoutSuccessfulFallback() throws Exception {
+    String[] errors = {"daily_quota_exceeded", "rate_limited", "provider_quota_exceeded",
+        "try_later", "provider_busy", "provider_changed"};
+    OnlineAssistantClient.Failure[] expected = {OnlineAssistantClient.Failure.QUOTA,
+        OnlineAssistantClient.Failure.RATE_LIMIT, OnlineAssistantClient.Failure.PROVIDER_QUOTA,
+        OnlineAssistantClient.Failure.BUSY, OnlineAssistantClient.Failure.BUSY,
+        OnlineAssistantClient.Failure.PROVIDER_CHANGED};
+    for (int i = 0; i < errors.length; i++) {
+      final String error = errors[i];
+      OkHttpClient http = new OkHttpClient.Builder().addInterceptor(chain -> {
+        assertEquals("cloudflare", chain.request().header("X-Zikra-Provider"));
+        return new Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1)
+            .code("provider_changed".equals(error) ? 409 : 429).message("Synthetic")
+            .body(ResponseBody.create(MediaType.parse("application/json"), "{\"error\":\"" + error + "\"}")).build();
+      }).build();
+      AtomicReference<OnlineAssistantClient.Failure> failure = new AtomicReference<>();
+      CountDownLatch done = new CountDownLatch(1);
+      try (OnlineAssistantClient client = new OnlineAssistantClient(http)) {
+        client.send(new AssistantConnection(context), new JSONObject().put("messages", new JSONArray()
+            .put(new JSONObject().put("role", "user").put("content", "Synthetic message"))), new OnlineAssistantClient.Result() {
+          @Override public void complete(String value) { fail("No successful fallback allowed"); }
+          @Override public void failed() { done.countDown(); }
+          @Override public void failed(OnlineAssistantClient.Failure value) { failure.set(value); done.countDown(); }
+        });
+        assertTrue("Failure callback", done.await(5, TimeUnit.SECONDS));
+        assertEquals(expected[i], failure.get());
+      }
+    }
+  }
+
+  public void testCloudflareConsentIsOncePerEndpointAndLegacyPermissionIsInsufficient() {
+    SharedPreferences prefs = context.getSharedPreferences("zikra_preferences", 0);
+    String endpoint = "https://example.test/v1/assistant";
+    AssistantConsent.revoke(prefs);
+    prefs.edit().putString("assistant_basic_consent_endpoint_v1", endpoint).commit();
+    assertFalse(AssistantConsent.granted(prefs, endpoint));
+    AssistantConsent.accept(prefs, endpoint);
+    assertTrue(AssistantConsent.granted(prefs, endpoint));
+    assertFalse(AssistantConsent.granted(prefs, "https://different.test/v1/assistant"));
+    AssistantConsent.revoke(prefs);
+    assertFalse(AssistantConsent.granted(prefs, endpoint));
+    assertEquals(endpoint, prefs.getString("assistant_basic_consent_endpoint_v1", ""));
+  }
+
   public void testCancellationSuppressesLateNativeCallback() throws Exception {
     CountDownLatch started = new CountDownLatch(1), release = new CountDownLatch(1);
     AtomicInteger callbacks = new AtomicInteger();
@@ -107,7 +152,7 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
       try { release.await(3, TimeUnit.SECONDS); } catch (InterruptedException interrupted) { Thread.currentThread().interrupt(); }
       return new Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200)
           .message("Synthetic").body(ResponseBody.create(MediaType.parse("application/json"),
-            "{\"reply\":\"Late reply\",\"provider\":\"featherless\"}")).build();
+            "{\"reply\":\"Late reply\",\"provider\":\"cloudflare\"}")).build();
     }).build();
     try (OnlineAssistantClient client = new OnlineAssistantClient(http)) {
       client.send(new AssistantConnection(context), new JSONArray().put(new JSONObject().put("role", "user").put("text", "Synthetic")),
@@ -212,7 +257,7 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
         try { release.await(5, TimeUnit.SECONDS); } catch (InterruptedException interrupted) { Thread.currentThread().interrupt(); }
       }
       return new Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200).message("Synthetic")
-          .body(ResponseBody.create(MediaType.parse("application/json"), "{\"reply\":\"Controlled online reply\",\"provider\":\"featherless\"}")).build();
+          .body(ResponseBody.create(MediaType.parse("application/json"), "{\"reply\":\"Controlled online reply\",\"provider\":\"cloudflare\"}")).build();
     }).build());
     try {
       sendDraft("Synthetic retry test", false);
@@ -242,7 +287,7 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
         JSONObject request = new JSONObject(buffer.readUtf8());
         assertTrue(request.getJSONObject("features").getBoolean("taskProposals"));
         assertEquals(0, request.getJSONObject("context").length());
-        JSONObject response = new JSONObject().put("reply", "Usulan belum disimpan.").put("provider", "featherless")
+        JSONObject response = new JSONObject().put("reply", "Usulan belum disimpan.").put("provider", "cloudflare")
             .put("proposal", new JSONObject().put("id", request.getString("requestId")).put("kind", "add_task")
                 .put("title", "[DATA UJI C04] Proposed task").put("dueAt", 0));
         return new Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1).code(200).message("Synthetic")

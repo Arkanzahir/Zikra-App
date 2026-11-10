@@ -1,3 +1,9 @@
+> **Aktif10 November2026:** chat/vision memakai Cloudflare Workers AI lewat backend
+> Vercel, bukan koneksi langsung APK ke provider. Model `@cf/qwen/qwen3.8-27b`;
+> izin Cloudflare sekali per endpoint pada APK1.9.37. [Bukti/batas](validation/assistant-cloudflare-2026-11-10/README.md).
+> Uji HP penyedia baru/C02 laptop mati tetap tertunda. Catatan provider bertanggal
+> lama di bawah adalah riwayat, bukan status terkini.
+
 > **Reader/Featherless 1.3.0:** reader terjemahan dapat memakai pasangan rekaman/timing dan pencocokan urutan kata; ayat-only saat mismatch/offline. [Laporan](validation/concept-refresh-2026-10-21/README.md). [Gateway Featherless](../backend/README.md) tersedia, tetapi belum dihosting/dikonfigurasi/diuji live. API key tidak ada di APK.
 
 > **Sorotan kata online — 21 Oktober 2026:** public Quran.com v4 memasangkan URL rekaman dan segments per ayat untuk Alafasy/Husary/Minshawi. SHA256 file yang diputar, cakupan kata dan durasi decoder mengikat WordTimeline; tidak menerapkan timing pada rekaman CDN lama. [Implementasi, bukti dan batas](validation/mushaf-word-sync-2026-10-21/README.md). Backend terautentikasi/Content Sync dan timing offline belum terhubung.
