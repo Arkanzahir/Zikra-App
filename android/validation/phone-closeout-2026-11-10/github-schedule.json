@@ -1,0 +1,53 @@
+{
+  "runs": [
+    {
+      "runId": 42634441952,
+      "url": "https://github.com/Arkanzahir/Zikra-App/actions/runs/42634441952",
+      "jobs": [
+        {
+          "name": "poll",
+          "conclusion": "success",
+          "startedAt": "2026-11-09T14:25:01Z",
+          "completedAt": "2026-11-09T14:25:07Z",
+          "pollSteps": [
+            {
+              "name": "Poll official reports without exposing payloads",
+              "conclusion": "success",
+              "startedAt": "2026-11-09T14:25:03Z",
+              "completedAt": "2026-11-09T14:25:06Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "runId": 42720908567,
+      "url": "https://github.com/Arkanzahir/Zikra-App/actions/runs/42720908567",
+      "jobs": [
+        {
+          "name": "poll",
+          "conclusion": "success",
+          "startedAt": "2026-11-09T23:29:54Z",
+          "completedAt": "2026-11-09T23:30:02Z",
+          "pollSteps": [
+            {
+              "name": "Poll official reports without exposing payloads",
+              "conclusion": "success",
+              "startedAt": "2026-11-09T23:29:57Z",
+              "completedAt": "2026-11-09T23:30:00Z"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "runEventTypeVerified": "schedule",
+  "runCreationTimesUtc": [
+    "2026-11-09T14:24:57Z",
+    "2026-11-09T23:29:51Z"
+  ],
+  "gapSeconds": 32694,
+  "requestedIntervalSeconds": 300,
+  "fiveMinuteCadenceSatisfied": false,
+  "usedAsCloudflareFallbackPendingObservation": true
+}

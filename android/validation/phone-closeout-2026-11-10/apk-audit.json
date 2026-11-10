@@ -1,0 +1,14 @@
+{
+  "version": "1.9.36",
+  "versionCode": 63,
+  "bytes": 50062820,
+  "sha256": "77d76f1879f75363f8c2737169206a4c371289bdeb90c341c8a4fa20512be2b5",
+  "knownServerCredentialFindings": 0,
+  "privateConfigurationFilesInApk": 0,
+  "firebaseClientIdentifiersExpected": true,
+  "audioHashesUnchanged": true,
+  "below100MB": true,
+  "debugSignerUnchanged": true,
+  "protectedWipStashAudioArchiveEnvLogoMasterUnchanged": true,
+  "scope": "Known current server credentials in uncompressed APK; Firebase client identifiers are intentionally bundled, not server credentials."
+}

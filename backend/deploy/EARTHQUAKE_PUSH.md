@@ -1,6 +1,6 @@
 # E02 — Pengiriman laporan gempa
 
-Jalur ini terpisah dari AI: GitHub Actions → endpoint privat Vercel → tiga feed
+Jalur ini terpisah dari AI: Cloudflare Cron (GitHub Actions cadangan) → endpoint privat Vercel → tiga feed
 BMKG + Redis → Firebase Cloud Messaging → Android. Tidak menjalankan inference
 atau menerima lokasi/pesan pengguna. Ini laporan nasional, bukan prediksi atau
 peringatan yang dijamin tiba sebelum guncangan.
@@ -32,7 +32,13 @@ Tiga request per pemeriksaan; tidak ada retry berulang di dalam satu pemeriksaan
 Response dibatasi 64 KiB per feed dan input waktu/koordinat/angka/teks divalidasi.
 Redirect keluar ditolak. Atribusi BMKG dipertahankan.
 
-Workflow dijadwalkan lima menit sekali, pada menit 2/7/12/…/57 dengan
+Cloudflare Free telah dipasang10November2026 dengan `*/5 * * * *`, workers.dev/
+preview nonaktif dan hanya secret pemicu pada Worker. [Paket, observasi dan
+rollback](earthquake-cron/README.md). Runtime menggunakan redirect manual dan
+menolak semua status selain200; tidak mengikuti pengalihan atau mencetak body.
+Jangan menyamakan konfigurasi dengan keberhasilan pemicu otomatis.
+
+Workflow GitHub cadangan dijadwalkan lima menit sekali, pada menit 2/7/12/…/57 dengan
 ekspresi `2/5 * * * *` (bentuk start/step yang dicontohkan dokumentasi). Ini memakai
 GitHub Actions karena cron Vercel Hobby dibatasi satu kali sehari. Jadwal GitHub
 dapat terlambat atau dilewati. Redis juga memberlakukan interval minimal satu
@@ -80,7 +86,7 @@ Tes Lua memakai `ZIKRA_REDIS_TEST_PYTHON` dan fakeredis/Lupa di lingkungan uji.
 `EarthquakeAlertPolicyTest` memeriksa batas usia/kontrak client.
 `EarthquakeE02Test` hanya berjalan dengan marker emulator yang sudah dicadangkan.
 
-Uji cloud harus memakai token emulator milik penguji dan label **UJI**, bukan
+Uji cloud harus memakai token emulator/HP yang diizinkan dan label **UJI**, bukan
 broadcast kejadian palsu ke topic pengguna. Simpan token hanya privat; unsubscribe
 dan hapus token/instalasi uji setelah selesai. Pemulihan aplikasi memakai APK lama
 dengan data tetap; mematikan variable jadwal menghentikan poll berikutnya.

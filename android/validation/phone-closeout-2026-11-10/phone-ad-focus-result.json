@@ -1,0 +1,50 @@
+{
+  "physicalPhone": true,
+  "regularSoftStartAvailable": true,
+  "earlySoftStartGain": 0,
+  "fullGainAfterSoftStart": true,
+  "softStartSamples": [
+    {
+      "elapsedMs": 0,
+      "gain": 0
+    },
+    {
+      "elapsedMs": 105,
+      "gain": 0
+    },
+    {
+      "elapsedMs": 213,
+      "gain": 0.02730666659772396
+    },
+    {
+      "elapsedMs": 315,
+      "gain": 0.2184533327817917
+    },
+    {
+      "elapsedMs": 418,
+      "gain": 0.40959998965263367
+    },
+    {
+      "elapsedMs": 520,
+      "gain": 0.5734400153160095
+    },
+    {
+      "elapsedMs": 623,
+      "gain": 0.737280011177063
+    },
+    {
+      "elapsedMs": 725,
+      "gain": 0.9011200070381165
+    },
+    {
+      "elapsedMs": 827,
+      "gain": 1
+    }
+  ],
+  "realAndroidFocusRequests": true,
+  "notificationDuckingContinuesPlayback": true,
+  "positionAdvancesDuringDucking": true,
+  "strongerTransientLossStops": true,
+  "focusGainDoesNotRestartStoppedAudio": true,
+  "passed": true
+}

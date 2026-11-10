@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-10T02:23:54.560Z",
+  "worker": "zikra-earthquake-cron",
+  "freePlanVerifiedInDashboard": true,
+  "freePlanEvidence": "Workers plans: Free / $0 / Current plan, observed 10 November 2026",
+  "userApprovedCloudflareSecret": true,
+  "paidUpgradePerformed": false,
+  "steps": [
+    {
+      "path": "scripts",
+      "method": "GET",
+      "status": 200,
+      "success": true,
+      "errorCodes": []
+    },
+    {
+      "path": "/zikra-earthquake-cron",
+      "method": "PUT",
+      "status": 200,
+      "success": true,
+      "errorCodes": []
+    },
+    {
+      "path": "/zikra-earthquake-cron/subdomain",
+      "method": "POST",
+      "status": 200,
+      "success": true,
+      "errorCodes": []
+    },
+    {
+      "path": "/zikra-earthquake-cron/schedules",
+      "method": "PUT",
+      "status": 200,
+      "success": true,
+      "errorCodes": []
+    },
+    {
+      "path": "/zikra-earthquake-cron/schedules",
+      "method": "GET",
+      "status": 200,
+      "success": true,
+      "errorCodes": []
+    }
+  ],
+  "scheduleVerified": true,
+  "scheduledInvocationObserved": false
+}

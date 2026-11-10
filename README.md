@@ -1,3 +1,21 @@
+## C07 dan E02 selesai teknis beta terarah — 10 November 2026
+
+HP diperbarui ke **1.9.36** tanpa menghapus data. Pemilih foto/PDF/DOCX,
+pembatalan dan grant berkas lulus; kedua adzan selesai alami dan audio focus
+berfungsi. Push gempa nyata berlabel UJI hanya dikirim ke satu HP yang diizinkan.
+
+Cloudflare **Workers Free ($0)** kini memicu backend dengan cron lima menit.
+Setelah memperbaiki ketidakcocokan redirect, pemicu otomatis09.40 dan09.45 WIB
+sukses, berjarak300detik; source terpasang cocok. GitHub tetap cadangan. Dua
+sampel ini bukan jaminan latensi, semua perangkat, atau peringatan sebelum gempa.
+
+[Bukti, kegagalan awal, privasi dan preservasi](android/validation/phone-closeout-2026-11-10/README.md):
+7 metode fisik unik,79 backend/0skip,5 tes Worker lulus; baris asli17 tabel
+terpelihara. APK tetap50.062.820byte,0 nilai credential server dikenal.
+**C02 laptop mati, B01, sisa D02/D02a, E03/E04 dan F/G/publik tetap terbuka.**
+A–D dan seluruh E belum selesai bersama. Catatan bertanggal sebelumnya di bawah
+adalah riwayat, bukan status terbaru.
+
 ## E02 aktivasi disetujui; observasi jadwal — 9 November 2026
 
 Observasi terakhir12.54WIB: aktivasi true/branchutama main/workflow

@@ -1,0 +1,35 @@
+{
+  "events": [
+    {
+      "observedAt": "2026-11-10T02:35:21.384Z",
+      "eventTimestamp": 1794278120774,
+      "outcome": "exception",
+      "cron": "*/5 * * * *",
+      "scheduledTime": 1794278119841,
+      "exceptionNames": [
+        "TypeError"
+      ],
+      "scriptName": "zikra-earthquake-cron"
+    },
+    {
+      "observedAt": "2026-11-10T02:40:23.714Z",
+      "eventTimestamp": 1794278420716,
+      "outcome": "ok",
+      "cron": "*/5 * * * *",
+      "scheduledTime": 1794278419841,
+      "exceptionNames": [],
+      "exceptionMessages": [],
+      "scriptName": "zikra-earthquake-cron"
+    },
+    {
+      "observedAt": "2026-11-10T02:45:22.385Z",
+      "eventTimestamp": 1794278720466,
+      "outcome": "ok",
+      "cron": "*/5 * * * *",
+      "scheduledTime": 1794278719841,
+      "exceptionNames": [],
+      "exceptionMessages": [],
+      "scriptName": "zikra-earthquake-cron"
+    }
+  ]
+}

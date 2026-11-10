@@ -1,0 +1,7 @@
+{
+  "physicalPhone": true,
+  "optIn": true,
+  "realFirebaseRegistration": true,
+  "topicSubscribed": true,
+  "passed": true
+}

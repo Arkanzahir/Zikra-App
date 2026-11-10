@@ -1,0 +1,10 @@
+{
+  "physicalPhone": true,
+  "eventId": "8f68c0fd67022a831d237fb25f9f372ba09fe6c7cbc53c12c4973cddb52bacbc",
+  "postTime": 1794276333074,
+  "when": 1794276316845,
+  "channel": "earthquake_reports_v1",
+  "testLabelVisible": true,
+  "actualFcmReceived": true,
+  "passed": true
+}

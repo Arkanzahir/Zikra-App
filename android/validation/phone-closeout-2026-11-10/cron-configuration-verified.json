@@ -1,0 +1,53 @@
+{
+  "observedAt": "2026-11-10T02:41:59.556Z",
+  "worker": "zikra-earthquake-cron",
+  "steps": [
+    {
+      "path": "/settings",
+      "status": 200,
+      "secretBindings": [
+        {
+          "name": "ZIKRA_QUAKE_CRON_SECRET",
+          "type": "secret_text"
+        }
+      ],
+      "compatibilityDate": "2026-11-10",
+      "observability": {
+        "enabled": true,
+        "head_sampling_rate": 1,
+        "redact_query_string": false,
+        "logs": {
+          "enabled": true,
+          "head_sampling_rate": 1,
+          "persist": true,
+          "invocation_logs": true
+        },
+        "traces": {
+          "enabled": false,
+          "persist": true,
+          "head_sampling_rate": 1
+        }
+      },
+      "usageModel": "standard"
+    },
+    {
+      "path": "/subdomain",
+      "status": 200,
+      "enabled": false,
+      "previewsEnabled": false
+    },
+    {
+      "path": "/schedules",
+      "status": 200,
+      "schedules": [
+        {
+          "cron": "*/5 * * * *",
+          "created_on": "2026-11-10T02:23:59.284212Z",
+          "modified_on": "2026-11-10T02:23:59.284212Z"
+        }
+      ]
+    }
+  ],
+  "deployedSourceMatches": true,
+  "deployedSourceSha256": "57f5dde76b463efee9bab7bb49f26519fdd8dfda3213bff644ef1d8da7851cfe"
+}

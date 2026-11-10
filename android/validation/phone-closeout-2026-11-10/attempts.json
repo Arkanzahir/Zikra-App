@@ -1,0 +1,43 @@
+{
+  "earlierFailuresRetained": [
+    {
+      "stage": "helper compilation",
+      "error": "Files.readString is not available in the Android SDK surface; replaced with Files.readAllBytes",
+      "passed": false
+    },
+    {
+      "stage": "initial picker attempt",
+      "error": "Null accessibility text caused a harness NullPointerException; null guard added. Observed in tool output; initial raw log was overwritten by the next attempt.",
+      "passed": false
+    },
+    {
+      "file": "picker-attempt-2.txt",
+      "error": "java.lang.IllegalStateException: UiAutomationService android.accessibilityservice.IAccessibilityServiceClient$Stub$Proxy@ca2d74balready registered!",
+      "passed": false
+    },
+    {
+      "file": "picker-attempt-3.txt",
+      "error": "junit.framework.AssertionFailedError: Phone picker condition timed out",
+      "passed": false
+    },
+    {
+      "file": "picker-attempt-4.txt",
+      "error": "junit.framework.AssertionFailedError: Phone picker condition timed out",
+      "passed": false
+    },
+    {
+      "file": "firebase-cleanup-attempt-1.txt",
+      "error": "java.util.concurrent.TimeoutException: Timed out waiting for Task",
+      "passed": false
+    }
+  ],
+  "pickerFinalPassed": true,
+  "cloudRegistrationAndNotificationFinalPassed": true,
+  "firebaseCleanupRetryPassed": true,
+  "naturalAudioAndFocusPassed": true,
+  "earlyPreservationAudit": {
+    "passed": false,
+    "reason": "Sky ephemeris cache refreshed to current date; reviewed coordinates and timezone unchanged, retained newer derived cache"
+  },
+  "wholeDatabaseRestoreUsed": false
+}

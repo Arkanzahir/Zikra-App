@@ -1,0 +1,13 @@
+{
+  "physicalPhone": true,
+  "realDocumentsUiSelection": true,
+  "initialDirectoryProvidedByHarness": true,
+  "photo": true,
+  "pdfPages": 3,
+  "docxUtf16Table": true,
+  "cancelPreservesDraft": true,
+  "unselectedGrantDenied": true,
+  "assistantHttpRequests": 0,
+  "liveProviderInference": false,
+  "passed": true
+}

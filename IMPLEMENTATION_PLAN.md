@@ -1,5 +1,41 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## C07 dan E02 selesai teknis beta terarah — 10 November 2026
+
+C07: foto, PDF tiga halaman dan DOCX UTF-16 dipilih melalui DocumentsUI asli
+di HP. Grant hanya berkas terpilih, pembatalan menjaga draf, 0 request AI.
+Digabungkan dengan bukti hosted/kamera terdahulu, C07 selesai beta terarah;
+bukan klaim OCR sempurna atau RAG permanen. HP diperbarui 1.9.31 → 1.9.36 tanpa
+uninstall. 41 berkas dicadangkan; baris asli 17 tabel, preferensi, izin dan
+pengaturan terpelihara. Cache efemeris tanggal baru ditinjau pada koordinat/
+zona sama. Helper, empat fixture dan registrasi FCM uji sudah dibersihkan.
+
+E02: push FCM nyata hanya ke token HP dengan label UJI masuk saat proses app
+tidak berjalan dan layar Dozing; duplikat tidak memperbarui waktu notifikasi,
+ContentIntent membuka kejadian sama. Pengguna menyetujui pengganti cron Cloudflare
+hanya Free dan secret pemicu di sana. Dashboard Free / $0 / Current plan
+terverifikasi. Token deploy baru hanya Workers Scripts Write pada akun ini,
+kedaluwarsa 10 Desember 2026, disimpan lokal privat; token AI tetap. Worker
+memiliki satu secret pemicu, cron */5, workers.dev/preview mati; source terpasang
+cocok hash. Pemicu awal gagal karena redirect:error tidak didukung runtime,
+diperbaiki manual/tetap menolak3xx tanpa mengatur ulang jadwal. Dua pemicu
+otomatis sesudah perbaikan, 09.40 dan 09.45 WIB, sukses dengan jarak300detik.
+GitHub cadangan tetap aktif; dua run lamanya berjarak9jam4menit54detik.
+E02 selesai teknis beta terarah, bukan jaminan latensi, semua subscriber/vendor
+atau peringatan sebelum guncangan. Pengamatan jangka panjang tetap G02/operasi.
+
+Adzan biasa dan Subuh saat ini selesai alami232.028ms/187.272ms; MAY_DUCK
+melanjutkan, fokus lebih kuat menghentikan tanpa restart. 7 metode fisik unik
+lulus, 79 backend/0skip dan5 Worker lulus; helper akhir dikompilasi. Kegagalan
+awal, timeout cleanup dan audit cache tetap dicatat. [Bukti, receipt dan batas](android/validation/phone-closeout-2026-11-10/README.md).
+APK1.9.36/code63 tetap50.062.820byte, signer/audio tetap, 0 nilai rahasia server
+dikenal. WIP PROJECT_HANDOFF/stash/archive/env/logo/master tetap.
+
+C02 laptop mati, B01, D02/D02a hak audio dan sisa fisik/vendor, E03/E04, F/G
+serta publik tetap terbuka. Bukan seluruh A–D/E selesai. Penundaan UI10 dan mode
+orang tua tetap. Semua checkpoint terverifikasi wajib audit/commit/push.
+
+
 ## E02 aktivasi disetujui; observasi jadwal — 9 November 2026
 
 Observasi terakhir12.54WIB: aktivasi true/branchutama main/workflow
@@ -217,9 +253,9 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 - [x] **C05 — Uji percakapan nyata dari HP.** **Selesai 25 Oktober 2026:** APK 1.8.1 di POCO F7/API 36 → HTTPS Vercel → Featherless → balasan `online` tampil, tanpa interceptor/mock jaringan. Token salah, koreksi/retry, kuota server 429 melalui fixture terpisah, jaringan benar-benar diputus/pulih dan pembatalan diperiksa. [Bukti native/screenshot dan preservasi](android/validation/assistant-phone-2026-10-25/README.md): satu metode end-to-end lulus; tujuh file data asli cocok hash setelah pemulihan, input/helper tes dibersihkan, koneksi gateway baru tersimpan terenkripsi. Profil/tugas/riwayat asli tidak dikirim. **Laptop masih hidup**; uji laptop mati tetap pekerjaan C02, bukan diklaim oleh penutupan C05. Bukti emulator sebelumnya tetap historis.
 - [x] **C06 — Input suara dengan fallback mengetik.** Selesai beta **26 Oktober 2026**, APK1.9.7/code34: dua metode native HP/API36 lulus untuk consent ditolak, recognizer nyata dibatalkan, mikrofon menghasilkan draf29 karakter yang cocok frasa uji, batas500 karakter, tidak auto-kirim dan pulih setelah layar dibuka ulang. [Bukti fisik dan preservasi](android/validation/assistant-c06-2026-10-26/README.md):12 berkas asli cocok hash setelah pemulihan, helper dihapus, APK diperbarui tanpa uninstall aplikasi utama. Tidak menerbitkan transkrip atau mengirim data asli ke AI; recognizer Android dapat memakai layanan/jaringan sendiri. Pengujian callback terdahulu tetap historis; Vision/foto/dokumen tetap C07 dan belum ditutup penuh.
 
-- [ ] **C07 — Lampiran foto dan dokumen untuk bantuan tugas (dibuka kembali pengguna 25 Oktober).** Menggantikan penundaan Vision pada A02 lama. Kamera/Galeri/Dokumen lewat + di kiri composer, draf/preview/hapus sebelum Kirim, tidak auto-upload ketika koneksi pulih. Implementasi bertahap foto dan PDF/DOCX/TXT, daftar format serta batas ukuran/halaman yang benar-benar didukung dinyatakan; izin minimal, validasi MIME/konten/arsip, tidak mengeksekusi berkas. Provider key hanya backend; model vision dan akses akun harus dibuktikan dengan foto nyata, dokumen teks dan scan, penolakan tipe/ukuran, offline/gagal/batal dan pemeliharaan data. **1.9.5:** foto/PDF/DOCX/TXT sudah diterapkan, preview/hapus/consent dan validasi teruji; foto serta PDF scan sintetis berhasil APK → Vercel → vision nyata. Kamera/grant/picker/izin pada HP dan variasi OCR masih perlu, C07 tetap terbuka. [Bukti/source dan batas](android/validation/ai-home-refresh-2026-10-25/README.md). Jangan memberi lampiran biner ke model teks atau mengklaim semua file didukung. [Keputusan/preview](design/concepts/home-approved-ai-auto-attachments-2026-10-25.md).
+- [x] **C07 — Lampiran foto dan dokumen untuk bantuan tugas (dibuka kembali pengguna 25 Oktober).** Menggantikan penundaan Vision pada A02 lama. Kamera/Galeri/Dokumen lewat + di kiri composer, draf/preview/hapus sebelum Kirim, tidak auto-upload ketika koneksi pulih. Implementasi bertahap foto dan PDF/DOCX/TXT, daftar format serta batas ukuran/halaman yang benar-benar didukung dinyatakan; izin minimal, validasi MIME/konten/arsip, tidak mengeksekusi berkas. Provider key hanya backend; model vision dan akses akun harus dibuktikan dengan foto nyata, dokumen teks dan scan, penolakan tipe/ukuran, offline/gagal/batal dan pemeliharaan data. **1.9.5:** foto/PDF/DOCX/TXT sudah diterapkan, preview/hapus/consent dan validasi teruji; foto serta PDF scan sintetis berhasil APK → Vercel → vision nyata. Kamera/grant/picker/izin pada HP dan variasi OCR masih perlu, C07 tetap terbuka. [Bukti/source dan batas](android/validation/ai-home-refresh-2026-10-25/README.md). Jangan memberi lampiran biner ke model teks atau mengklaim semua file didukung. [Keputusan/preview](design/concepts/home-approved-ai-auto-attachments-2026-10-25.md).
   - [x] Bagian hosted tanpa USB,30Oktober2026: model visionQwen3 diuji6sampel langsung/7request hosted200 dengan ekspektasi tetap dan rollout terarah;72backend lulus.[Bukti dan batas](android/validation/non-usb-closeout-2026-10-30/README.md).
-  - [ ] Sisa pengujian picker/grant/penolakan izin HP; pengguna menunda HP. ParentC07 belum ditutup.
+  - [x] Pengujian picker/grant/penolakan akses HP selesai10November2026 pada1.9.36; foto/PDF3halaman/DOCX/cancel/berkas tidak dipilih teruji melalui DocumentsUI asli,0request AI. Gabungan hosted/kamera historis dan preservasi memenuhi C07 beta terarah; variasi OCR tetap terbatas. [Bukti](android/validation/phone-closeout-2026-11-10/README.md).
 
   **Lanjutan30 Oktober2026 — tetap parsial:** [beta1.9.30/bukti](android/validation/attachments-c07-2026-10-30/README.md), parser DOCX menjaga tab/baris/tabel dan UTF-16/namespace strict, DOCTYPE/entity/anggaran ditolak.163 unit/4 skip,8 native emulator dan5 backend terarah lulus;lint0 error/862 warning. Draf gagal/batal dan lampiran saat jaringan pulih tanpa auto-upload teruji;32 berkas emulator pulih, HP tidak disentuh/terakhir1.9.29. Picker/grant/penolakan izin HP dan variasi OCR masih terbuka; kamera manual terdahulu tidak dianggap membuktikan seluruh gerbang. C02/D02/D02a/B01 belum ditutup, E belum dimulai, UI10 tetap ditunda.
 
@@ -242,7 +278,7 @@ Jangan menjalankan seluruh tahap sekaligus. Pemeriksaan ringan dan kerapian dasa
 ## E — Protector dan koneksi data
 
 - [x] **E01 — Verifikasi laporan gempa dan peta (beta terarah).** Selesai 2 November 2026, 1.9.34/code61: satu snapshot laporan/pin/waktu/Shakemap, cache bertanggal maksimal24jam, detail laporan pilihan, penolakan URL/redirect asing dan kegagalan gambar/tile diuji. 169 unit/4 skip, 21 eksekusi native final/18 metode unik lulus; lint0 error/861 warning. Feed/JPEG BMKG nyata 30 Oktober di Sorong sesuai bidang layar, bukan terbatas kota pengguna. [Bukti, riwayat kegagalan, APK dan batas](android/validation/earthquake-e01-2026-11-02/README.md). 32 berkas emulator dipulihkan cocok hash/helper dibersihkan/emulator ditutup; HP tidak diakses. Laporan bukan prediksi atau push; E02–E04 dan gerbang A–D/F/G/publik tetap terbuka.
-- [ ] **E02 — Notifikasi gempa saat aplikasi ditutup.** Jika masuk cakupan rilis, server memantau feed resmi dengan cache/jeda yang patuh batas sumber, menyimpan ID kejadian untuk mencegah kirim ulang, lalu mengirim push. HP membuka detail kejadian yang dipilih, bukan laporan terbaru yang berbeda. Uji izin ditolak, duplikat, server restart dan keterlambatan; jangan menjanjikan peringatan pasti sebelum guncangan.
+- [x] **E02 — Notifikasi gempa saat aplikasi ditutup (beta terarah, 10 November 2026).** Pemantauan Cloudflare Free → Vercel/BMKG/Redis/FCM, dua pemicu otomatis sukses berjarak300detik, uji token HP/layar mati/duplikat/detail serta bukti emulator izin/restart/terlambat memenuhi beta terarah. [Bukti dan batas](android/validation/phone-closeout-2026-11-10/README.md). Pengamatan jangka panjang/variasi vendor mengikuti G02; bukan jaminan semua subscriber atau sebelum guncangan. **Kriteria:** Jika masuk cakupan rilis, server memantau feed resmi dengan cache/jeda yang patuh batas sumber, menyimpan ID kejadian untuk mencegah kirim ulang, lalu mengirim push. HP membuka detail kejadian yang dipilih, bukan laporan terbaru yang berbeda. Uji izin ditolak, duplikat, server restart dan keterlambatan; jangan menjanjikan peringatan pasti sebelum guncangan.
   Status9November: implementasi/APK1.9.36 dan uji emulator terarah lulus; aktivasi topic massal sudah disetujui dan true; poll/workflow manual lulus, parent tetap terbuka untuk observasi jadwal otomatis dan HP. [Bukti/batas](android/validation/earthquake-e02-2026-11-09/README.md).
 
 - [ ] **E03 — Cuaca dan pengingat kontekstual.** Kondisi/animasi mengikuti prakiraan untuk lokasi dan waktu yang benar; bedakan prakiraan dari pengukuran langsung. Sesuai cakupan, selesaikan alert cuaca, doa perjalanan, pagi/petang dan morning briefing dengan dependensi jadwal/lokasi serta kontrol pengguna; hindari notifikasi berulang.

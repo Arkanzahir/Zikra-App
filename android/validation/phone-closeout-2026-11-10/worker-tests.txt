@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: public HTTP requests cannot trigger a poll
+ok 1 - public HTTP requests cannot trigger a poll
+  ---
+  duration_ms: 17.9016
+  type: 'test'
+  ...
+# Subtest: configuration fails closed before sending any request
+ok 2 - configuration fails closed before sending any request
+  ---
+  duration_ms: 0.6183
+  type: 'test'
+  ...
+# Subtest: only the fixed production endpoint receives the trigger credential
+ok 3 - only the fixed production endpoint receives the trigger credential
+  ---
+  duration_ms: 0.8108
+  type: 'test'
+  ...
+# Subtest: redirects and service failures are not retried or read into logs
+ok 4 - redirects and service failures are not retried or read into logs
+  ---
+  duration_ms: 0.4577
+  type: 'test'
+  ...
+# Subtest: scheduled handler completes one poll and disables scheduler retries
+ok 5 - scheduled handler completes one poll and disables scheduler retries
+  ---
+  duration_ms: 0.279
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 90.1948

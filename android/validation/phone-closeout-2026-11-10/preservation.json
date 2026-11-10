@@ -1,0 +1,116 @@
+{
+  "oldVersion": "1.9.31",
+  "newVersion": "1.9.36",
+  "originalInternalFiles": 41,
+  "databaseTables": [
+    {
+      "database": "zikra.db",
+      "table": "android_metadata",
+      "originalRows": 1,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra.db",
+      "table": "checklist_days",
+      "originalRows": 19,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra.db",
+      "table": "tasks",
+      "originalRows": 5,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra.db",
+      "table": "assistant_actions",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra_hadith.db",
+      "table": "android_metadata",
+      "originalRows": 1,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra_hadith.db",
+      "table": "entries",
+      "originalRows": 7,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra_hadith.db",
+      "table": "packages",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "zikra_hadith.db",
+      "table": "bookmarks",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "assistant_chats.db",
+      "table": "android_metadata",
+      "originalRows": 1,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "assistant_chats.db",
+      "table": "conversations",
+      "originalRows": 2,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "assistant_chats.db",
+      "table": "metadata",
+      "originalRows": 1,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "study-schedule.db",
+      "table": "android_metadata",
+      "originalRows": 1,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "study-schedule.db",
+      "table": "weekly_classes",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "faith.db",
+      "table": "android_metadata",
+      "originalRows": 1,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "faith.db",
+      "table": "plans",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "faith.db",
+      "table": "entries",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    },
+    {
+      "database": "faith.db",
+      "table": "day_notes",
+      "originalRows": 0,
+      "originalContentPreserved": true
+    }
+  ],
+  "systemSettingsPreserved": true,
+  "permissionsPreserved": true,
+  "batteryPolicyPreserved": true,
+  "helperRemoved": true,
+  "ownPublicFixturesRemoved": 4,
+  "skyCacheReviewedNotRestored": true,
+  "passed": true
+}

@@ -1,0 +1,18 @@
+{
+  "physicalPhone": true,
+  "records": [
+    {
+      "prayerIndex": 2,
+      "durationMs": 232028,
+      "naturalCompletion": true,
+      "passed": true
+    },
+    {
+      "prayerIndex": 0,
+      "durationMs": 187272,
+      "naturalCompletion": true,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

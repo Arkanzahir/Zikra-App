@@ -1,0 +1,26 @@
+{
+  "observedAt": "2026-11-10T02:43:35.221740+00:00",
+  "physicalPhone": {
+    "androidApi": 36,
+    "model": "POCO F7",
+    "fromVersion": "1.9.31",
+    "toVersion": "1.9.36",
+    "backupFiles": 41,
+    "mainAppUninstalled": false,
+    "liveAiInferenceThisSession": false,
+    "providerApiKeysOnPhone": false
+  },
+  "c07PhysicalPickerGrantCancellationSatisfied": true,
+  "c07PriorHostedSamplesReused": true,
+  "c02LaptopOffTestPerformed": false,
+  "d02CurrentRecordingsAndAudioFocusPassed": true,
+  "d02PhysicalRebootAndExtendedVendorDozePassed": false,
+  "audioRedistributionRightsResolved": false,
+  "earthquakePhoneDeliveryPassed": true,
+  "cloudflareScheduledInvocationObserved": true,
+  "publicReleaseReady": false,
+  "c07QualifiedBetaComplete": true,
+  "e02QualifiedBetaComplete": true,
+  "cloudflareFiveMinuteCadenceObservedForTwoRuns": true,
+  "longTermObservationComplete": false
+}

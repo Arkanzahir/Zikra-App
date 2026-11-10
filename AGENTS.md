@@ -1,5 +1,41 @@
 # Workflow proyek Zikra
 
+## C07 dan E02 selesai teknis beta terarah — 10 November 2026
+
+C07: foto, PDF tiga halaman dan DOCX UTF-16 dipilih melalui DocumentsUI asli
+di HP. Grant hanya berkas terpilih, pembatalan menjaga draf, 0 request AI.
+Digabungkan dengan bukti hosted/kamera terdahulu, C07 selesai beta terarah;
+bukan klaim OCR sempurna atau RAG permanen. HP diperbarui 1.9.31 → 1.9.36 tanpa
+uninstall. 41 berkas dicadangkan; baris asli 17 tabel, preferensi, izin dan
+pengaturan terpelihara. Cache efemeris tanggal baru ditinjau pada koordinat/
+zona sama. Helper, empat fixture dan registrasi FCM uji sudah dibersihkan.
+
+E02: push FCM nyata hanya ke token HP dengan label UJI masuk saat proses app
+tidak berjalan dan layar Dozing; duplikat tidak memperbarui waktu notifikasi,
+ContentIntent membuka kejadian sama. Pengguna menyetujui pengganti cron Cloudflare
+hanya Free dan secret pemicu di sana. Dashboard Free / $0 / Current plan
+terverifikasi. Token deploy baru hanya Workers Scripts Write pada akun ini,
+kedaluwarsa 10 Desember 2026, disimpan lokal privat; token AI tetap. Worker
+memiliki satu secret pemicu, cron */5, workers.dev/preview mati; source terpasang
+cocok hash. Pemicu awal gagal karena redirect:error tidak didukung runtime,
+diperbaiki manual/tetap menolak3xx tanpa mengatur ulang jadwal. Dua pemicu
+otomatis sesudah perbaikan, 09.40 dan 09.45 WIB, sukses dengan jarak300detik.
+GitHub cadangan tetap aktif; dua run lamanya berjarak9jam4menit54detik.
+E02 selesai teknis beta terarah, bukan jaminan latensi, semua subscriber/vendor
+atau peringatan sebelum guncangan. Pengamatan jangka panjang tetap G02/operasi.
+
+Adzan biasa dan Subuh saat ini selesai alami232.028ms/187.272ms; MAY_DUCK
+melanjutkan, fokus lebih kuat menghentikan tanpa restart. 7 metode fisik unik
+lulus, 79 backend/0skip dan5 Worker lulus; helper akhir dikompilasi. Kegagalan
+awal, timeout cleanup dan audit cache tetap dicatat. [Bukti, receipt dan batas](android/validation/phone-closeout-2026-11-10/README.md).
+APK1.9.36/code63 tetap50.062.820byte, signer/audio tetap, 0 nilai rahasia server
+dikenal. WIP PROJECT_HANDOFF/stash/archive/env/logo/master tetap.
+
+C02 laptop mati, B01, D02/D02a hak audio dan sisa fisik/vendor, E03/E04, F/G
+serta publik tetap terbuka. Bukan seluruh A–D/E selesai. Penundaan UI10 dan mode
+orang tua tetap. Semua checkpoint terverifikasi wajib audit/commit/push.
+
+
 ## E02 aktivasi disetujui; observasi jadwal — 9 November 2026
 
 Observasi terakhir12.54WIB: aktivasi true/branchutama main/workflow
