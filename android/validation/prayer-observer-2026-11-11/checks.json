@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-11",
+  "phoneAccessed": false,
+  "emulatorAccessed": false,
+  "runtimeApkChanged": false,
+  "tests": {
+    "exitCode": 0,
+    "passed": 15,
+    "initialAttempt": "12 passed, 1 failed: notification package prefix accepted .test; fixed exact delimiter and retained regression"
+  },
+  "syntheticReplay": {
+    "replayOnly": true,
+    "phoneAccessed": false,
+    "status": "observed",
+    "reason": "future_alarm_set_restored",
+    "stableSamples": 2,
+    "physicalGateAutomaticallyClosed": false
+  },
+  "capturedDumpCounts": {
+    "before-reboot-alarms-private.txt": {
+      "activePrayerAlarms": 26,
+      "exact": 26
+    },
+    "normal-before-reboot-alarms-private.txt": {
+      "activePrayerAlarms": 31,
+      "exact": 31
+    },
+    "normal-after-reboot-alarms-private.txt": {
+      "activePrayerAlarms": 0,
+      "exact": 0
+    },
+    "final-alarms-private.txt": {
+      "activePrayerAlarms": 31,
+      "exact": 31
+    }
+  },
+  "helperBuild": {
+    "successful": true,
+    "installed": false
+  },
+  "audioPermissionDraftSent": false,
+  "physicalD02GateClosed": false
+}

@@ -1,0 +1,80 @@
+{
+  "mode": "boot",
+  "baseline": {
+    "connected": true,
+    "complete": true,
+    "unlocked": true,
+    "boot_complete": true,
+    "boot_id": "synthetic-old",
+    "device_epoch_ms": 100000,
+    "alarms": [
+      {
+        "index": 2,
+        "epoch": 200000,
+        "exact": true
+      }
+    ],
+    "ui_active": false,
+    "ui_started_since_boot": false,
+    "instrumentation_active": false
+  },
+  "samples": [
+    {
+      "at": 0,
+      "value": {
+        "connected": true,
+        "complete": true,
+        "unlocked": true,
+        "boot_complete": true,
+        "boot_id": "synthetic-new",
+        "device_epoch_ms": 100000,
+        "alarms": [],
+        "ui_active": false,
+        "ui_started_since_boot": false,
+        "instrumentation_active": false
+      }
+    },
+    {
+      "at": 42,
+      "value": {
+        "connected": true,
+        "complete": true,
+        "unlocked": true,
+        "boot_complete": true,
+        "boot_id": "synthetic-new",
+        "device_epoch_ms": 100000,
+        "alarms": [
+          {
+            "index": 2,
+            "epoch": 200000,
+            "exact": true
+          }
+        ],
+        "ui_active": false,
+        "ui_started_since_boot": false,
+        "instrumentation_active": false
+      }
+    },
+    {
+      "at": 44,
+      "value": {
+        "connected": true,
+        "complete": true,
+        "unlocked": true,
+        "boot_complete": true,
+        "boot_id": "synthetic-new",
+        "device_epoch_ms": 100000,
+        "alarms": [
+          {
+            "index": 2,
+            "epoch": 200000,
+            "exact": true
+          }
+        ],
+        "ui_active": false,
+        "ui_started_since_boot": false,
+        "instrumentation_active": false
+      }
+    }
+  ]
+}

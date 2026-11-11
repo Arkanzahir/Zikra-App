@@ -1,10 +1,8 @@
 package com.zikra.app.reminders;
 
-import android.app.Activity;
 import android.content.*;
 import android.os.*;
 import android.test.InstrumentationTestCase;
-import com.zikra.app.PrayerActivity;
 import com.zikra.app.location.LocationStore;
 import com.zikra.app.study.StudyAlarmPolicy;
 import java.io.File;
@@ -240,91 +238,7 @@ public final class PhonePrayerRecoveryTest extends InstrumentationTestCase {
             .put("systemAlarmsMustBeCapturedByHostBeforeInstrumentation", true));
   }
 
-  public void testAlarmDuringForcedIdle() throws Exception {
-    assertTrue(state.isFile());
-    assertTrue(StudyAlarmPolicy.exact(context));
-    JSONObject original = read(state.getName());
-    sameSnapshot(
-        original.getJSONObject("expected_prefs"), snapshot(PrayerSettings.prefs(context)), null);
-    Activity page =
-        getInstrumentation()
-            .startActivitySync(
-                new Intent(context, PrayerActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-    try {
-      main(
-          () -> {
-            PrayerSettings.prefs(context)
-                .edit()
-                .putBoolean("reminder_enabled", true)
-                .putBoolean(PrayerSettings.PAUSE_FOCUS, false)
-                .putBoolean(PrayerSettings.QUIET_CLASSES, false)
-                .remove("prayer_delivered_2")
-                .commit();
-            PrayerSettings.setMode(context, 2, PrayerMode.ADHAN);
-            PrayerReminders.sync(context);
-          });
-      long epoch = System.currentTimeMillis() + 45000;
-      original
-          .put("expected_prefs", snapshot(PrayerSettings.prefs(context)))
-          .put("test_epoch", epoch);
-      write(state.getName(), original);
-      Intent event = PrayerReminders.alarmIntent(context, 2, epoch);
-      String slot = event.getStringExtra("slot");
-      SharedPreferences plan = context.getSharedPreferences(PrayerReminders.PLAN, 0);
-      Set<String> ids = new HashSet<>(plan.getStringSet("ids", Collections.emptySet()));
-      ids.add(slot);
-      assertTrue(
-          plan.edit()
-              .putStringSet("ids", ids)
-              .putLong("e:" + slot, epoch)
-              .putString("l:" + slot, LocationStore.current(context).key())
-              .putLong("r:" + slot, PrayerSettings.revision(context))
-              .commit());
-      android.app.PendingIntent pending =
-          android.app.PendingIntent.getBroadcast(
-              context,
-              0,
-              event,
-              android.app.PendingIntent.FLAG_UPDATE_CURRENT
-                  | android.app.PendingIntent.FLAG_IMMUTABLE);
-      StudyAlarmPolicy.schedule(context, epoch, pending);
-      main(() -> page.moveTaskToBack(true));
-      write(
-          "d02-idle-armed.json", new JSONObject().put("scheduledEpoch", epoch).put("exact", true));
-      long deadline = SystemClock.elapsedRealtime() + 75000;
-      while (!AdhanService.state().playing && SystemClock.elapsedRealtime() < deadline)
-        SystemClock.sleep(100);
-      assertTrue("Real alarm should play during forced idle", AdhanService.state().playing);
-      PowerManager power = context.getSystemService(PowerManager.class);
-      JSONObject proof =
-          new JSONObject()
-              .put("playing", true)
-              .put("preview", AdhanService.state().preview)
-              .put("screenOff", !power.isInteractive())
-              .put("deviceIdle", power.isDeviceIdleMode())
-              .put("powerSave", power.isPowerSaveMode())
-              .put("scheduledEpoch", epoch)
-              .put(
-                  "deliveredEpoch", PrayerSettings.prefs(context).getLong("prayer_delivered_2", -1))
-              .put("latenessMs", System.currentTimeMillis() - epoch);
-      write("d02-idle-playing.json", proof);
-      assertFalse(proof.getBoolean("preview"));
-      assertTrue(proof.getBoolean("screenOff"));
-      assertTrue(proof.getBoolean("deviceIdle"));
-      assertTrue(proof.getBoolean("powerSave"));
-      assertEquals(epoch, proof.getLong("deliveredEpoch"));
-      SystemClock.sleep(5000);
-      proof.put("passed", true);
-      write("d02-idle-playing.json", proof);
-    } finally {
-      main(
-          () -> {
-            AdhanService.stop(context);
-            page.finish();
-          });
-    }
-  }
-
+  // Idle delivery must be observed from the host; instrumentation itself may be suspended.
   public void testRestoreOriginalPreferences() throws Exception {
     if (!state.isFile()) return;
     JSONObject original = read(state.getName());

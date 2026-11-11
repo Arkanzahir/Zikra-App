@@ -1,5 +1,21 @@
 # A02 — Cakupan penyelesaian Zikra
 
+## D02 — observer laptop dan draf izin, 11 November 2026
+
+Metode menunggu Doze di instrumentation dipensiunkan; observer laptop baru hanya
+membaca perangkat dengan serial eksplisit. Boot menunggu unlock dan dua set alarm
+stabil; timeout/nol awal bukan vonis gagal. Idle memerlukan alarm asli sebelum
+waktunya, marker epoch, layanan/notifikasi dan kondisi daya. [Bukti dan batas](android/validation/prayer-observer-2026-11-11/README.md):
+15 tes Python lulus, replay sintetis lulus, parser dump lama 26/31/0/31 alarm
+aktif; helper Android berhasil dikompilasi, tidak dipasang. Tes awal menemukan
+pencocokan paket notifikasi .test yang terlalu longgar; diperbaiki dengan regresi.
+HP/emulator tidak diakses. [Draf izin audio](docs/audio-permission/request-template.md)
+belum dikirim; penerima/hak/lafaz belum diverifikasi. D02/D02a tetap[ ] sampai
+bukti fisik dan hak terpenuhi. APK tetap1.9.39; runtime/data/power/izin/audio/
+backend/env/cron/desain/WIP/stash tetap. B01/C02/E03/E04/F/G/publik tidak ditutup.
+UI10/mode orang tua tetap ditunda; checkpoint wajib audit/commit/push.
+
+
 ## D02/D02a — checkpoint HP belum konklusif, 11 November 2026
 
 HP1.9.39 dicadangkan48berkas/APK; pengguna melakukan restart dan menyetujui satu
