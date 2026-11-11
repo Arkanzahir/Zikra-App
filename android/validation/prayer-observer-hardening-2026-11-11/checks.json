@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-11",
+  "tests": {
+    "passed": 19,
+    "exitCode": 0,
+    "initialNewTestFailure": "Transient reconnect fixture omitted reminder fields and triggered terminal settings rejection; corrected to an incomplete connected sample"
+  },
+  "physicalAttempt": {
+    "userAuthorized": true,
+    "helperCompiled": true,
+    "initialInstallFailed": true,
+    "installRetriedSuccessfully": true,
+    "noRestartCapabilityProbe": "Nonexistent component rejected; flag accepted, not a test pass",
+    "nativeNoRestartRunnerTimedOutSeconds": 40,
+    "testMethodReached": false,
+    "syntheticAlarmArmed": false,
+    "newPowerSimulationApplied": false,
+    "instrumentationStopped": true,
+    "nonExportedActivityStartRejected": true,
+    "mainAppOpenedNormallyToRearm": true,
+    "experimentalNativeMethodsRetainedInRuntimeOrTestSource": false
+  },
+  "preservation": {
+    "checkedPreferenceFiles": 16,
+    "changedPreferenceFiles": 1,
+    "databaseTablesCompared": 20,
+    "databaseRowsPreserved": true,
+    "settingsSame": true,
+    "forcedIdleReleased": true,
+    "batterySimulationReleased": true,
+    "helperRemoved": true,
+    "ownMarkerRemoved": true,
+    "newAlarmArmed": false,
+    "newPowerSimulationApplied": false,
+    "observerComplete": true,
+    "activeInstrumentation": false,
+    "activePrayerAlarms": 30,
+    "mainVersion": "1.9.39",
+    "mainAppUninstalled": false,
+    "userPreferenceFilesByteUnchanged": 15,
+    "planChangeOnlyOneExpiredSlot": true,
+    "initialByteEqualityCheckFailedAndRetained": true,
+    "preservedQualified": true
+  },
+  "oldObserverIssue": "Unsupported activity instrumentation command returned error text with exit zero; old false instrumentation field is not independent proof",
+  "publicD02GateClosed": false,
+  "audioChanged": false,
+  "audioPermissionRequestSent": false,
+  "audioPublisherReview": "Publisher page lists free downloads; no verified recipient or explicit app redistribution permission established",
+  "mainApkBuiltOrDelivered": false
+}

@@ -1,5 +1,22 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## D02 — observer dikoreksi, percobaan HP belum lulus, 11 November 2026
+
+[Hasil/kegagalan/preservasi](android/validation/prayer-observer-hardening-2026-11-11/README.md):
+19tes Python lulus. Command instrumentation lama tidak didukung tetapi exit0;
+field false lama bukan bukti independen. Kini process dump/header/target dan
+hasil run-as divalidasi; disconnect idle10detik menjadi belum konklusif.
+Dua build helper lulus; runner --no-restart di HP timeout40detik sebelum membuat
+alarm/state. Tidak menerapkan simulasi daya baru. Instrumentation dihentikan,
+helper/marker dibersihkan, app dibuka normal,30alarm asli aktif.15pref byte-sama,
+plan hanya memangkas1slot kedaluwarsa,20tabel seluruh baris sama/daya normal.
+Laporan kesetaraan byte awal yang gagal tetap disimpan. Metode native eksperimen
+tidak dimasukkan source; APK utama1.9.39/runtime tidak berubah. HP bebas dipakai.
+D02/D02a/izin/lafaz dan B01/C02/E03/E04/F/G/publik tetap terbuka; jangan klaim
+idle sudah lulus. Penerima/izin audio belum terverifikasi; draf belum dikirim.
+WIP/stash/audio/desain/konfigurasi privat tetap; checkpoint audit/commit/push.
+
+
 ## D02 — daya pulih setelah USB kembali, 11 November 2026
 
 Pengguna mengonfirmasi unlock dan menyambungkan USB kembali. Forced idle dan

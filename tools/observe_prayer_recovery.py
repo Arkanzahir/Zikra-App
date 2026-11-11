@@ -80,6 +80,19 @@ def active_ui(text: str) -> bool:
                for line in text.splitlines())
 
 
+def instrumentation_active(text: str) -> bool:
+    if "ACTIVITY MANAGER RUNNING PROCESSES" not in text:
+        raise ObservationUnavailable("invalid_process_dump")
+    headers = list(re.finditer(r"(?m)^\s*Instrumentation #\d+: ActiveInstrumentation\{[^\r\n]+", text))
+    for i, header in enumerate(headers):
+        block = text[header.end():headers[i + 1].start() if i + 1 < len(headers) else len(text)]
+        targets = re.search(r"\bmTargetProcesses=\[([^\]]*)\]", block)
+        if targets and any(target.strip() == PACKAGE or target.strip().startswith(PACKAGE + ":")
+                           for target in targets[1].split(",")):
+            return True
+    return False
+
+
 def boot_activity_started(text: str, boot_epoch: float) -> bool:
     for line in text.splitlines():
         at = re.match(r"\s*(\d+\.\d+)", line)
@@ -157,10 +170,18 @@ class DozeObserver:
         self.last = "waiting_for_alarm"
         self.armed = False
         self.terminal = None
+        self.disconnected_at = None
 
     def sample(self, _at: float, value: dict) -> dict:
         if self.terminal is not None:
             return self.terminal
+        if not value.get("connected"):
+            if self.disconnected_at is None:
+                self.disconnected_at = _at
+            if _at - self.disconnected_at >= 10:
+                return self.result("inconclusive", "device_disconnected_during_idle")
+            return self.result("waiting", "device_disconnected")
+        self.disconnected_at = None
         reason = "waiting_for_alarm"
         if value.get("instrumentation_active") or value.get("ui_active"):
             return self.result("inconclusive", "application_or_instrumentation_opened")
@@ -203,7 +224,7 @@ class ReadOnlyAdb:
         ("shell", "run-as", PACKAGE, "ls", "-d", "files"),
         ("shell", "date", "+%s"), ("shell", "cat", "/proc/uptime"),
         ("shell", "dumpsys", "activity", "activities"),
-        ("shell", "dumpsys", "activity", "instrumentation"),
+        ("shell", "dumpsys", "activity", "processes"),
         ("shell", "logcat", "-d", "-t", "3000", "-v", "epoch", "-s", "ActivityTaskManager:I"),
         ("shell", "dumpsys", "alarm"),
         ("exec-out", "run-as", PACKAGE, "cat", "shared_prefs/zikra_preferences.xml"),
@@ -239,12 +260,13 @@ class ReadOnlyAdb:
                          boot_complete=self.read("shell", "getprop", "sys.boot_completed").strip() == b"1")
             if not value["boot_complete"]:
                 return value
-            self.read("shell", "run-as", PACKAGE, "ls", "-d", "files")
+            if self.read("shell", "run-as", PACKAGE, "ls", "-d", "files").strip() != b"files":
+                raise ObservationUnavailable("credential_storage_unavailable")
             value["unlocked"] = True
             now = int(self.read("shell", "date", "+%s").strip()) * 1000
             uptime = float(self.read("shell", "cat", "/proc/uptime").split()[0])
             value.update(device_epoch_ms=now, ui_active=active_ui(self.read("shell", "dumpsys", "activity", "activities").decode(errors="replace")),
-                         instrumentation_active=PACKAGE in self.read("shell", "dumpsys", "activity", "instrumentation").decode(errors="replace"))
+                         instrumentation_active=instrumentation_active(self.read("shell", "dumpsys", "activity", "processes").decode(errors="replace")))
             if mode == "boot":
                 value["ui_started_since_boot"] = boot_activity_started(self.read("shell", "logcat", "-d", "-t", "3000", "-v", "epoch", "-s", "ActivityTaskManager:I").decode(errors="replace"), now / 1000 - uptime)
                 value["alarms"] = parse_alarms(self.read("shell", "dumpsys", "alarm").decode(errors="replace"))

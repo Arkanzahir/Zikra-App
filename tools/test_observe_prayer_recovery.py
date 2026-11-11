@@ -122,6 +122,20 @@ class RecoveryTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 o.validate_selected_alarm({**self.baseline(), **change}, 2, 200000)
 
+    def test_idle_disconnect_aborts_after_ten_seconds(self):
+        observer = o.DozeObserver(2, 200000)
+        self.assertEqual("waiting", observer.sample(0, {"connected": False})["status"])
+        self.assertEqual("waiting", observer.sample(9, {"connected": False})["status"])
+        self.assertEqual("device_disconnected_during_idle",
+                         observer.sample(10, {"connected": False})["reason"])
+        self.assertEqual("inconclusive", observer.sample(11, sample())["status"])
+
+    def test_idle_transient_disconnect_resets_after_reconnect(self):
+        observer = o.DozeObserver(2, 200000)
+        observer.sample(0, {"connected": False})
+        observer.sample(9, sample(complete=False))
+        self.assertEqual("waiting", observer.sample(15, {"connected": False})["status"])
+
     def test_adapter_rejects_mutations_before_runner(self):
         calls = []
         adapter = o.ReadOnlyAdb("adb", "fixture-device", runner=lambda *a, **k: calls.append(a))
@@ -147,12 +161,42 @@ class RecoveryTests(unittest.TestCase):
                 output = b"200"
             elif args == ["shell", "cat", "/proc/uptime"]:
                 output = b"100.0 90.0"
+            elif args == ["shell", "run-as", o.PACKAGE, "ls", "-d", "files"]:
+                output = b"files"
+            elif args == ["shell", "dumpsys", "activity", "processes"]:
+                output = b"ACTIVITY MANAGER RUNNING PROCESSES (dumpsys activity processes)"
             return SimpleNamespace(returncode=0, stdout=output)
         value = o.ReadOnlyAdb("fake-adb", "fixture-device", runner).snapshot("boot")
         self.assertTrue(value["complete"])
         self.assertNotIn("PRIVATE", json.dumps(value))
         self.assertNotIn("11111111-1111", json.dumps(value))
         self.assertTrue(all(command in o.ReadOnlyAdb.COMMANDS for command in calls))
+
+    def test_instrumentation_dump_rejects_unsupported_command(self):
+        with self.assertRaises(o.ObservationUnavailable):
+            o.instrumentation_active('Unknown command: instrumentation')
+        prefix = 'ACTIVITY MANAGER RUNNING PROCESSES\n Active instrumentation:\n'
+        record = ' Instrumentation #0: ActiveInstrumentation{a runner} 1 procs}\n mTargetProcesses=[com.zikra.app]\n'
+        self.assertTrue(o.instrumentation_active(prefix + record))
+        self.assertFalse(o.instrumentation_active(prefix + record.replace('[com.zikra.app]', '[com.zikra.app.test]')))
+        self.assertFalse(o.instrumentation_active(prefix))
+
+    def test_invalid_success_exit_storage_or_process_read_stays_incomplete(self):
+        for bad_command in (("shell", "run-as", o.PACKAGE, "ls", "-d", "files"),
+                            ("shell", "dumpsys", "activity", "processes")):
+            def runner(command, **kwargs):
+                args = tuple(command[3:])
+                values = {
+                    ("shell", "cat", "/proc/sys/kernel/random/boot_id"): b"11111111-1111-1111-1111-111111111111",
+                    ("shell", "getprop", "sys.boot_completed"): b"1",
+                    ("shell", "run-as", o.PACKAGE, "ls", "-d", "files"): b"files",
+                    ("shell", "date", "+%s"): b"200",
+                    ("shell", "cat", "/proc/uptime"): b"100.0 90.0",
+                }
+                output = b"Unknown command" if args == bad_command else values.get(args, b"")
+                return SimpleNamespace(returncode=0, stdout=output)
+            value = o.ReadOnlyAdb("fake-adb", "fixture-device", runner).snapshot("boot")
+            self.assertFalse(value["complete"])
 
     def test_failed_device_read_never_exports_error_or_claims_complete(self):
         runner = lambda *a, **k: SimpleNamespace(returncode=1, stdout=b"PRIVATE ERROR")

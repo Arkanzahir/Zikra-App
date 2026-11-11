@@ -72,5 +72,6 @@
     "selectedEpochDeliveryMarkerPresentAfterReconnect": false,
     "adhanServiceActiveAfterReconnect": false,
     "deliveryTimePowerStateVerified": false
-  }
+  },
+  "laterInstrumentationDetectionCaveat": "Unsupported singular command returned exit zero/error text. Instrumentation false fields from old observer are not independent proof. Alarm comparisons remain recorded; D02 remains open. See prayer-observer-hardening-2026-11-11."
 }

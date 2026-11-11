@@ -56,3 +56,11 @@ dan tidak mengubah timeout menjadi lulus.
 [checks.json](checks.json) memuat ringkasan tanpa serial, koordinat, isi
 preferensi, data tabel atau berkas cadangan. Seluruh data mentah tetap `.local`.
 Tidak ada source runtime, desain, audio, provider, backend atau email berubah.
+
+## Koreksi pemeriksaan instrumentation
+
+Pemeriksaan lanjutan menemukan subperintah `activity instrumentation` tidak
+didukung pada HP tetapi mengembalikan exit nol. Field lama instrumentation=false
+tidak boleh dianggap bukti independen bebas instrumentation. Dua set alarm
+boot dan preservasi tetap tercatat, bukan penutupan gerbang D02. Lihat
+[perbaikan observer dan percobaan gagal](../prayer-observer-hardening-2026-11-11/README.md).

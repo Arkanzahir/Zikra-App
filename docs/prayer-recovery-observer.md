@@ -56,6 +56,14 @@ Deteksi pembukaan aplikasi memakai aktivitas aktif dan log sistem terbatas;
 log yang hilang/terpotong tidak membuktikan aplikasi tidak pernah dibuka.
 Operator tetap perlu mengawasi agar tidak ada pembukaan aplikasi.
 
+Pemeriksaan instrumentation memakai bagian `Active instrumentation` pada dump
+`activity processes` yang header-nya divalidasi. Subperintah singular
+`activity instrumentation` ternyata tidak didukung pada HP uji meskipun keluar
+dengan status proses nol; hasil lama dari perintah tersebut bukan bukti bebas
+instrumentation. Output error/penyimpanan terkunci kini tidak dianggap snapshot
+lengkap. Jika USB hilang selama idle selama sepuluh detik, hasil segera belum
+konklusif agar operator dapat memprioritaskan pemulihan daya.
+
 ## Idle dan hemat baterai
 
 Pilih satu alarm **asli**, exact, masih di masa depan pada baseline. Pastikan
