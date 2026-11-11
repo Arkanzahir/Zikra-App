@@ -1,0 +1,98 @@
+{
+  "revision": "landscape v3 fluid",
+  "video": {
+    "name": "Zikra-Promo-Preview-Landscape-v3-Fluid-Final.mp4",
+    "bytes": 4852604,
+    "sha256": "5af27029eae5b3c8b99b92c0a925905d048b4bdc62b1bcbdf3757dde0519983d",
+    "width": 1280,
+    "height": 720,
+    "seconds": 15,
+    "fps": 60,
+    "decodedFrames": 900,
+    "fullDecodeExit": 0,
+    "meanVolumeDb": -16.7,
+    "peakVolumeDb": -1.5
+  },
+  "motion": {
+    "poseAndVelocityContinuous": true,
+    "seams": [
+      {
+        "time": 1.05,
+        "maxPositionDeltaEps1e6": 0.0005376529177851808,
+        "maxVelocityDeltaEps1e5": 0.01034571823765873
+      },
+      {
+        "time": 2.2,
+        "maxPositionDeltaEps1e6": 3.40851169378098e-05,
+        "maxVelocityDeltaEps1e5": 0.0019223421077185776
+      },
+      {
+        "time": 4.7,
+        "maxPositionDeltaEps1e6": 0.0005088699682573861,
+        "maxVelocityDeltaEps1e5": 0.002587017888799892
+      },
+      {
+        "time": 5.25,
+        "maxPositionDeltaEps1e6": 0.0010399216016026003,
+        "maxVelocityDeltaEps1e5": 0.01987773998735065
+      },
+      {
+        "time": 5.85,
+        "maxPositionDeltaEps1e6": 0.0008357146584785369,
+        "maxVelocityDeltaEps1e5": 0.02608377371871029
+      },
+      {
+        "time": 6.65,
+        "maxPositionDeltaEps1e6": 4.928584309116246e-05,
+        "maxVelocityDeltaEps1e5": 0.007160281256801682
+      },
+      {
+        "time": 8.65,
+        "maxPositionDeltaEps1e6": 0.00046843102813909354,
+        "maxVelocityDeltaEps1e5": 0.00290417574433377
+      },
+      {
+        "time": 9.2,
+        "maxPositionDeltaEps1e6": 0.0009666672295907119,
+        "maxVelocityDeltaEps1e5": 0.016577894257352455
+      },
+      {
+        "time": 9.85,
+        "maxPositionDeltaEps1e6": 0.0008226976950709286,
+        "maxVelocityDeltaEps1e5": 0.021157421770112705
+      },
+      {
+        "time": 10.8,
+        "maxPositionDeltaEps1e6": 4.052105190144317e-05,
+        "maxVelocityDeltaEps1e5": 0.004713842827186454
+      },
+      {
+        "time": 12.8,
+        "maxPositionDeltaEps1e6": 1.2709970826918493e-05,
+        "maxVelocityDeltaEps1e5": 0.0001758166945364792
+      }
+    ],
+    "visibleFramesAfterEntrance": 810,
+    "viewportPass": true,
+    "minY": 26.032545135319708,
+    "maxY": 697.4810327554383
+  },
+  "reviewedSeconds": [
+    1,
+    3.5,
+    5.5,
+    7.5,
+    9.5,
+    13
+  ],
+  "iterationNote": "Initial two-pose shutter showed discrete double silhouette; replaced with four temporally averaged opaque compositions. Fast travel intentionally blurs; subjective acceptance pending.",
+  "voiceUnchanged": true,
+  "voiceSha256": "de19194a6fc5a3652c5499adf3a00ee5bd113cb6c93de90a770a429e9bb7c9f6",
+  "protectedFilesMatch": true,
+  "stashPresent": true,
+  "phoneAccessed": false,
+  "appRuntimeChanged": false,
+  "newVoiceGenerationOrPaidPlan": false,
+  "published": false,
+  "commercialRightsAndFullPromoPending": true
+}

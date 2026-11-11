@@ -13,6 +13,36 @@ from render_zikra_promo_teaser import ROOT, font, load_recording
 W, H, FPS, SECONDS = 1280, 720, 30, 15
 PINE = '#173c34'
 
+# Time, horizontal/vertical position, scale, yaw, pitch and roll.
+FLUID_KEYS = np.array([
+    [0, -220, 430, .52, 58, -17, -24],
+    [1.05, 345, 350, .73, -24, 7, 7],
+    [2.2, 315, 360, .73, 8, -4, -2],
+    [4.7, 330, 355, .75, -8, 4, -4],
+    [5.25, 500, 307, .68, -42, 9, -13],
+    [5.85, 950, 358, .74, 24, -6, 6],
+    [6.65, 930, 360, .75, -6, 2, -3],
+    [8.65, 940, 350, .74, 9, 6, 4],
+    [9.2, 775, 400, .67, 46, -8, 12],
+    [9.85, 320, 352, .74, -25, 7, -6],
+    [10.8, 330, 360, .73, 7, -3, 2],
+    [12.8, 315, 355, .75, -9, 5, -4],
+    [15, 325, 360, .73, -19, -1, -7],
+])
+FLUID_TANGENTS = np.gradient(FLUID_KEYS[:,1:], FLUID_KEYS[:,0], axis=0)
+
+
+def fluid_pose(t):
+    """One C1-continuous spline supplies anticipation, banking and follow-through."""
+    t = min(15., max(0., t))
+    j = min(len(FLUID_KEYS)-2, max(0, int(np.searchsorted(FLUID_KEYS[:,0],t))-1))
+    duration = FLUID_KEYS[j+1,0]-FLUID_KEYS[j,0]
+    u = (t-FLUID_KEYS[j,0])/duration
+    return ((2*u**3-3*u**2+1)*FLUID_KEYS[j,1:]
+            +(u**3-2*u**2+u)*duration*FLUID_TANGENTS[j]
+            +(-2*u**3+3*u**2)*FLUID_KEYS[j+1,1:]
+            +(u**3-u**2)*duration*FLUID_TANGENTS[j+1])
+
 
 def smooth(t):
     t = min(1., max(0., t))
@@ -69,11 +99,11 @@ def phone_texture(screen):
     return texture
 
 
-def device(screen, state):
+def device(screen, state, depth=False):
     x,y,scale,yaw,pitch,roll = state
     corners = [(-175,-375,0),(175,-375,0),(175,375,0),(-175,375,0)]
     front = project(corners,scale,yaw,pitch,roll)
-    rear = project([(a,b,9) for a,b,_ in corners],scale,yaw,pitch,roll)
+    rear = project([(a,b,18 if depth else 9) for a,b,_ in corners],scale,yaw,pitch,roll)
     pts = np.concatenate([front,rear])
     low = np.floor(pts.min(axis=0))-4
     high = np.ceil(pts.max(axis=0))+4
@@ -81,9 +111,36 @@ def device(screen, state):
     front -= low
     rear -= low
     texture = phone_texture(screen)
+    if depth:
+        # A restrained moving glass highlight follows the viewing angle.
+        highlight = Image.new('RGBA',texture.size)
+        hd = ImageDraw.Draw(highlight)
+        hx = 175+round(yaw*5)
+        for offset in range(-40,41,4):
+            hd.line((hx+offset-100,0,hx+offset+100,750),
+                    fill=(255,255,255,round(5*(1-abs(offset)/44))),width=7)
+        highlight.putalpha(Image.fromarray(np.minimum(
+            np.asarray(highlight.getchannel('A')),
+            np.asarray(texture.getchannel('A')))))
+        texture.alpha_composite(highlight)
     back = Image.new('RGBA',texture.size,'#52665b')
     back.putalpha(texture.getchannel('A'))
     layer = warp(back,rear,size)
+    if depth:
+        # Rounded perimeter side faces give the device a real projected rim.
+        ring=[]
+        for cx,cy,a in [(132,-332,-90),(132,332,0),(-132,332,90),(-132,-332,180)]:
+            for angle in np.linspace(a,a+90,9):
+                angle=math.radians(angle)
+                ring.append((cx+43*math.cos(angle),cy+43*math.sin(angle),0))
+        near=project(ring,scale,yaw,pitch,roll)-low
+        far=project([(a,b,18) for a,b,_ in ring],scale,yaw,pitch,roll)-low
+        draw=ImageDraw.Draw(layer)
+        for j in range(len(ring)):
+            k=(j+1)%len(ring)
+            shade=round(62+27*math.cos(j/len(ring)*math.tau+math.radians(yaw)))
+            draw.polygon([tuple(near[j]),tuple(near[k]),tuple(far[k]),tuple(far[j])],
+                         fill=(shade,shade+10,shade+6,255))
     layer.alpha_composite(warp(texture,front,size))
     return layer,(round(x+low[0]),round(y+low[1]))
 
@@ -108,7 +165,7 @@ def caption(lines, x, y, size, t, start, end, gap=1.18, color=PINE, bold=True):
     return layer
 
 
-def render(footage,voice,work,output,ffmpeg):
+def render(footage,voice,work,output,ffmpeg,motion='gentle',fps=30):
     if output.exists():raise FileExistsError(output)
     work.mkdir(parents=True,exist_ok=True)
     home = load_recording(ffmpeg,footage/'home.mp4',0,7.7)
@@ -121,14 +178,14 @@ def render(footage,voice,work,output,ffmpeg):
     picture = work/'picture.mp4'
     with (work/'render.log').open('wb') as log:
         enc = subprocess.Popen([str(ffmpeg),'-hide_banner','-loglevel','error','-y',
-            '-f','rawvideo','-pix_fmt','rgb24','-s',f'{W}x{H}','-r',str(FPS),'-i','-',
+            '-f','rawvideo','-pix_fmt','rgb24','-s',f'{W}x{H}','-r',str(fps),'-i','-',
             '-an','-c:v','libx264','-threads','2','-preset','fast','-crf','18','-pix_fmt','yuv420p',
             '-movflags','+faststart',str(picture)],stdin=subprocess.PIPE,stderr=log)
         try:
-            for i in range(SECONDS*FPS):
-                t=i/FPS
+            for i in range(SECONDS*fps):
+                t=i/fps
                 frame=bg.copy()
-                state=pose(t)
+                state=fluid_pose(t) if motion=='fluid' else pose(t)
                 # All six pose channels evolve continuously, including at scene swaps.
                 if t<5.56:
                     screen=home[min(len(home)-1,int(t*FPS))]
@@ -136,7 +193,7 @@ def render(footage,voice,work,output,ffmpeg):
                     screen=quran[min(len(quran)-1,max(0,int((t-5.56)*FPS)))]
                 else:
                     screen=home[min(len(home)-1,int((t-9.55)*FPS))]
-                phone,(px,py)=device(screen,state)
+                phone,(px,py)=device(screen,state,depth=motion=='fluid')
                 shadow=Image.new('RGBA',(W,H))
                 sd=ImageDraw.Draw(shadow)
                 sd.ellipse((state[0]-142,641,state[0]+157,666),fill=(25,62,38,35))
@@ -146,7 +203,22 @@ def render(footage,voice,work,output,ffmpeg):
                 dim.putalpha(phone.getchannel('A').point(lambda v:round(v*.12)))
                 shadow.alpha_composite(dim,(px+15,py+17))
                 frame=Image.alpha_composite(frame,shadow.filter(ImageFilter.GaussianBlur(14)))
-                frame.alpha_composite(phone,(px,py))
+                if motion=='fluid':
+                    # Sample a half-frame shutter without discrete double silhouettes.
+                    previous=fluid_pose(max(0,t-.5/fps))
+                    travel=math.hypot(state[0]-previous[0],state[1]-previous[1])
+                    if travel>2.5:
+                        exposure=None
+                        for sample,offset in enumerate([-.25,-1/12,1/12,.25]):
+                            trail,(tx,ty)=device(screen,fluid_pose(t+offset/fps),depth=True)
+                            instant=frame.copy()
+                            instant.alpha_composite(trail,(tx,ty))
+                            exposure=instant if exposure is None else Image.blend(exposure,instant,1/(sample+1))
+                        frame=exposure
+                    else:
+                        frame.alpha_composite(phone,(px,py))
+                else:
+                    frame.alpha_composite(phone,(px,py))
                 layers=[
                     caption(['Kenalkan,','Zikra.'],620,240,68,t,.05,1.85,gap=1.05),
                     caption(['Ibadah dan belajar,','dalam satu tempat.'],620,285,43,t,1.8,4.95),
@@ -164,10 +236,10 @@ def render(footage,voice,work,output,ffmpeg):
                 d.text((90,29),'zikra',font=font(32,serif=True),fill=PINE)
                 d.text((1235,45),'PREVIEW  /  15 DETIK',font=font(12,True),fill='#798b7c',anchor='rm')
                 d.text((42,685),'REKAMAN APK BETA  ·  DATA CONTOH',font=font(11),fill='#819180')
-                if i in [30,105,165,225,285,390]:
+                if i in [round(s*fps) for s in [1,3.5,5.5,7.5,9.5,13]]:
                     frame.convert('RGB').save(work/f'frame-{i:03}.jpg',quality=93)
                 enc.stdin.write(frame.convert('RGB').tobytes())
-                if i%90==0:print(json.dumps({'renderedSeconds':t}),flush=True)
+                if i%(3*fps)==0:print(json.dumps({'renderedSeconds':t}),flush=True)
         finally:
             enc.stdin.close();enc.wait(timeout=90)
         if enc.returncode:raise RuntimeError('Video encoder failed')
@@ -180,4 +252,6 @@ def render(footage,voice,work,output,ffmpeg):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for arg in ['footage','voice','work','output','ffmpeg']:p.add_argument('--'+arg,type=Path,required=True)
+    p.add_argument('--motion',choices=['gentle','fluid'],default='gentle')
+    p.add_argument('--fps',type=int,choices=[30,60],default=30)
     render(**vars(p.parse_args()))

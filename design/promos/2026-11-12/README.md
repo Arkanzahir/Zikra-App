@@ -1,5 +1,21 @@
 # Cuplikan promo 15 detik — 12 November 2026
 
+## Revisi v3 — ayunan dan lintasan melengkung, 60 fps
+
+Pengguna masih menilai HP v2 kaku. Mode `--motion fluid --fps 60` menambah
+keyframe spline dengan posisi/kecepatan kontinu, antisipasi, banking, perubahan
+skala dan gerak lanjutan. Sisi lengkung/depth18, highlight kaca ringan serta
+shutter empat sampel saat perpindahan cepat memperjelas bentuk dan arah gerak.
+Percobaan shutter dua sampel sebelumnya menghasilkan bayangan ganda yang terlihat;
+output percobaan tetap lokal dan bukan hasil yang disampaikan sebagai revisi akhir.
+
+Hasil lokal: `D:/Download/Zikra-App-main/Zikra-Promo-Preview-Landscape-v3-Fluid-Final.mp4`.
+Format1280×720/15detik/60fps; narasi Putri dan footage lama tetap. Ini masih
+geometri/proyeksi layar dan rim, bukan render mesh perangkat 3D penuh.
+Receipt/hasil decode dan kontinuitas berada di `checks-fluid.json`. Penerimaan
+visual pengguna belum diasumsikan; lisensi komersial/video lengkap/publikasi
+serta gerbang aplikasi tetap. Tidak memakai HP/emulator/provider atau biaya baru.
+
 ## Revisi mendatar v2 — format dan gerakan dikoreksi
 
 Pengguna menilai v1 kaku dan mengoreksi format referensi yang mendatar. Versi

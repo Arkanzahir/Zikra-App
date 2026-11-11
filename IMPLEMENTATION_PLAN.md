@@ -1,5 +1,13 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## Promo v3 gerakan — 12 November 2026
+
+Pengguna masih menilai v2 kaku. [Revisi/batas](design/promos/2026-11-12/README.md):
+mode fluid60fps, spline kontinu dengan ayunan/lintasan melengkung, rim depth,
+highlight dan shutter empat sampel. Narasi Putri/footage tetap; tanpa HP,
+biaya atau runtime baru. Penerimaan visual/video lengkap/lisensi komersial/
+publikasi belum selesai; source dan bukti diperiksa/dipush, gerbang aplikasi tetap.
+
 ## Promo v2 mendatar — 12 November 2026
 
 Pengguna mengoreksi format vertikal/gerakan kaku. [Revisi dan bukti](design/promos/2026-11-12/README.md):
