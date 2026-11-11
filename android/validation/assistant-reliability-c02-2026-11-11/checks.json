@@ -1,0 +1,44 @@
+{
+  "backend": {
+    "passed": 91,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "androidUnit": {
+    "tests": 185,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4,
+    "passed": 181
+  },
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 878
+  },
+  "transportRegression": {
+    "localHttpHeadersDelayedSeconds": 12,
+    "oldDefaultReadTimeoutSeconds": 10,
+    "oldClientFailedWithSocketTimeout": true,
+    "updatedClientReceived200": true,
+    "externalInferenceRequests": 0
+  },
+  "attempts": {
+    "sandboxBackend": {
+      "passed": 24,
+      "failed": 7,
+      "reason": "Python fixture executable unavailable in restricted access"
+    },
+    "sandboxGradle": "cache access denied",
+    "firstAuthorizedBackend": {
+      "passed": 29,
+      "failed": 0,
+      "cancelled": 2,
+      "reason": "Two tests exceeded their deadlines; rerun sequentially passed all 91. Exact scheduling cause not established."
+    }
+  },
+  "phoneAccessed": false,
+  "emulatorUsed": false,
+  "c02Closed": false
+}

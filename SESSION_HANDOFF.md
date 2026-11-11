@@ -1,5 +1,24 @@
 # Handoff aktif Zikra — 10 November2026 (WIB)
 
+## C02: timeout aplikasi diperbaiki, antrean dibedakan — 11 November 2026
+
+Client sebelumnya call45detik tetapi read timeout bawaan10detik; gateway dapat
+menunggu provider35detik. Uji HTTP nyata12detik: lama SocketTimeoutException,
+baru200. Factory kini connect10/read45/write20/call60, tanpa retry/redirect.
+Ini celah terbukti, belum bukti seluruh429 pengguna berasal darinya. Lua dan log
+membedakan queue installation/global tanpa isi atau identitas; respons APK lama
+tetap try_later dan batas kuota/slot tetap. [Bukti/APK/batas](android/validation/assistant-reliability-c02-2026-11-11/README.md):
+91backend/0skip,181unit/4skip,lint0error/878warning. Server produksi diperbarui;
+3chat hosted200/nol lease milik uji setelah tiap respons, fixture penolakan
+installation terlihat pada log; key uji dibersihkan/counter pengguna tetap.
+Kegagalan akses/deadline awal dicatat, final berurutan lulus. APK1.9.39/code66,
+49.443.800byte,SHA256ac0e5dff4e5f8bdcee0a283e6677e227d18a799faa179e51198be9667610de43.
+Signer/audio/0 credential dikenal dan WIP/stash/arsip/env/logo/master terjaga.
+HP/emulator tidak diakses; HP terakhir1.9.37, APK baru belum terpasang. C02 tetap[ ]
+menunggu uji HP/pesan berurutan/sleep dan diagnosis jika berulang; tidak ada
+migrasi provider/model/paket/cron/Maps. B01,D02/D02a,E03/E04,F/G/publik tetap,
+bukan seluruh A–D/E selesai. UI10/mode orang tua ditunda. Audit/commit/push wajib.
+
 ## Tipografi AI selesai beta emulator1.9.38 — 11 November 2026
 
 Balasan AI kini sans-serif sistem/Roboto16sp, hierarki heading dan Markdown

@@ -85,7 +85,7 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
   let active = 0;
   const activeClients = new Map();
   return async (req, res) => {
-    let identity = null, lease;
+    let identity = null, lease, queue;
     const reply = async (status, value) => {
       // Release before ending the response: a serverless runtime may suspend work afterwards.
       if (lease) {
@@ -96,7 +96,8 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
       if (res.destroyed || res.writableEnded) return;
       if (req.url === '/v1/assistant' && REJECTION_CODES.has(value?.error)
           && typeof onRejection === 'function') {
-        try { onRejection({ event: 'assistant_rejected', status, code: value.error }); }
+        try { onRejection({ event: 'assistant_rejected', status, code: value.error,
+          ...(value.error === 'try_later' && ['installation', 'global'].includes(queue) ? { queue } : {}) }); }
         catch { /* Diagnostics must never change the response or expose request data. */ }
       }
       if (!req.complete) res.setHeader('Connection', 'close');
@@ -130,6 +131,7 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
       try {
         const grant = await installation.acquire(identity, req.headers.authorization);
         if (!grant.allowed) {
+          queue = grant.queue;
           const daily=grant.error==='quota_exceeded';
           if (grant.status === 429) res.setHeader('Retry-After',daily?String(Math.ceil((86400000-now()%86400000)/1000)):'60');
           return reply(grant.status, { error: daily?'daily_quota_exceeded':grant.error });

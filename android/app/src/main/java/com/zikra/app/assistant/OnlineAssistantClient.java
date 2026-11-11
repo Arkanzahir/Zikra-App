@@ -5,7 +5,6 @@ import android.os.Looper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import okhttp3.*;
 import org.json.*;
@@ -41,12 +40,7 @@ public final class OnlineAssistantClient implements AutoCloseable {
   private final OkHttpClient http;
 
   public OnlineAssistantClient() {
-    this(new OkHttpClient.Builder()
-          .callTimeout(45, TimeUnit.SECONDS)
-          .followRedirects(false)
-          .followSslRedirects(false)
-          .retryOnConnectionFailure(false)
-          .build());
+    this(AssistantHttp.create());
   }
 
   OnlineAssistantClient(OkHttpClient http) { this.http = http; }

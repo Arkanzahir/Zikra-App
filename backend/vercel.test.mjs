@@ -146,6 +146,46 @@ test('production Lua: minute quota, namespaces, storage corruption and malformed
   await assert.rejects(invalid.acquire(client.id, auth(client.token)));
 });
 
+test('production Lua: busy scope distinguishes own request from global capacity without consuming quota', integration, async t => {
+  const redis = await fixture(t), clients = await Promise.all([issue(redis), issue(redis), issue(redis)]);
+  const access = new RedisAccess({ redis });
+  const first = await access.acquire(clients[0].id, auth(clients[0].token));
+  const second = await access.acquire(clients[1].id, auth(clients[1].token));
+  assert.ok(first.allowed && second.allowed);
+  assert.deepEqual(await access.acquire(clients[0].id, auth(clients[0].token)),
+    { allowed: false, status: 429, error: 'try_later', queue: 'installation' });
+  assert.deepEqual(await access.acquire(clients[2].id, auth(clients[2].token)),
+    { allowed: false, status: 429, error: 'try_later', queue: 'global' });
+  assert.equal(await redis.command(['HGET', `zikra:v1:usage:${clients[0].id}`, 'count']), '1');
+  assert.equal(await redis.command(['EXISTS', `zikra:v1:usage:${clients[2].id}`]), 0);
+  await access.release(clients[0].id, first.lease);
+  const recovered = await access.acquire(clients[2].id, auth(clients[2].token));
+  assert.ok(recovered.allowed);
+  await access.release(clients[1].id, second.lease);
+  await access.release(clients[2].id, recovered.lease);
+  assert.equal(await redis.command(['ZCARD', 'zikra:v1:active']), 0);
+});
+
+test('Vercel busy diagnostics expose only an allowlisted queue scope, never registry data', integration, async t => {
+  const redis = await fixture(t), client = await issue(redis), events = [];
+  const access = new RedisAccess({ redis });
+  const held = await access.acquire(client.id, auth(client.token));
+  const server = http.createServer(createVercelHandler(env, {
+    redis, onRejection: event => events.push(event),
+    fetchImpl: () => assert.fail('Busy request must not call the provider')
+  }));
+  server.listen(0, '127.0.0.1'); await once(server, 'listening');
+  t.after(() => new Promise(resolve => { server.closeAllConnections(); server.close(resolve); }));
+  const result = await fetch(`http://127.0.0.1:${server.address().port}/v1/assistant`, {
+    method: 'POST', headers: { Authorization: auth(client.token), 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages: [{ role: 'user', content: 'private synthetic content' }] })
+  });
+  assert.equal(result.status, 429);
+  assert.deepEqual(await result.json(), { error: 'try_later' });
+  assert.deepEqual(events, [{ event: 'assistant_rejected', status: 429, code: 'try_later', queue: 'installation' }]);
+  await access.release(client.id, held.lease);
+});
+
 test('Vercel HTTP: two handlers share access state, invalid input releases slots, failures never call provider', integration, async t => {
   const redis = await fixture(t), client = await issue(redis); let calls = 0;
   const options = { redis, fetchImpl: async () => { calls++; return response(); } };

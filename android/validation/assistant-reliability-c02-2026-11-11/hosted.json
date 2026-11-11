@@ -1,0 +1,42 @@
+{
+  "at": "2026-11-11T09:10:56.102Z",
+  "syntheticInstallationOnly": true,
+  "requests": [
+    {
+      "status": 200,
+      "code": null,
+      "provider": "cloudflare",
+      "replyNonempty": true,
+      "elapsedMs": 2434,
+      "ownLeaseEntriesAfterReply": 0
+    },
+    {
+      "status": 200,
+      "code": null,
+      "provider": "cloudflare",
+      "replyNonempty": true,
+      "elapsedMs": 3007,
+      "ownLeaseEntriesAfterReply": 0
+    },
+    {
+      "status": 200,
+      "code": null,
+      "provider": "cloudflare",
+      "replyNonempty": true,
+      "elapsedMs": 4462,
+      "ownLeaseEntriesAfterReply": 0
+    }
+  ],
+  "queueProbe": {
+    "status": 429,
+    "code": "try_later",
+    "provider": null,
+    "replyNonempty": false,
+    "elapsedMs": 1251
+  },
+  "cleanup": {
+    "ownKeysRemoved": true,
+    "userCountersReset": false
+  },
+  "passed": true
+}
