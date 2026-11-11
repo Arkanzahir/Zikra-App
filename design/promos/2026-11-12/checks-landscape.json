@@ -1,0 +1,43 @@
+{
+  "revision": "landscape v2",
+  "date": "2026-11-12",
+  "video": {
+    "name": "Zikra-Promo-Preview-Landscape-v2.mp4",
+    "bytes": 2708357,
+    "sha256": "d45d9c7ecf66450ade94c5db65bda446a55426b6cb558a072896232c9e48fb11",
+    "width": 1280,
+    "height": 720,
+    "seconds": 15,
+    "fps": 30,
+    "decodedFrames": 450,
+    "fullDecodeExit": 0,
+    "meanVolumeDb": -16.7,
+    "peakVolumeDb": -1.5
+  },
+  "motion": {
+    "seamDeltaAtEpsilon1e6": 1.1563187740648573e-05,
+    "poseContinuous": true,
+    "projectedCornersInsideViewportAfterEntrance": true,
+    "framesChecked": 405,
+    "minY": 54.93849365346887,
+    "maxY": 651.2152834620406,
+    "firstOverstrict65pxMarginCheckPassed": false,
+    "firstCheckFinding": "Device enters top 65px margin, minimum54.94px; remains fully visible. Top-left brand is spatially separate. Viewport check and sampled frame review passed.",
+    "projection": "3-axis perspective front and depth-offset rear plane; not full 3D mesh"
+  },
+  "reviewedSeconds": [
+    3.5,
+    5.5,
+    7.5,
+    13
+  ],
+  "voiceReusedUnchanged": true,
+  "voiceSha256": "de19194a6fc5a3652c5499adf3a00ee5bd113cb6c93de90a770a429e9bb7c9f6",
+  "paidPlanActivated": false,
+  "phoneAccessed": false,
+  "appRuntimeChanged": false,
+  "protectedFilesMatch": true,
+  "stashPresent": true,
+  "publiclyPublished": false,
+  "fullPromoAndCommercialRightsPending": true
+}

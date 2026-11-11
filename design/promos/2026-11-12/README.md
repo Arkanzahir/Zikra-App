@@ -1,5 +1,24 @@
 # Cuplikan promo 15 detik — 12 November 2026
 
+## Revisi mendatar v2 — format dan gerakan dikoreksi
+
+Pengguna menilai v1 kaku dan mengoreksi format referensi yang mendatar. Versi
+baru `D:/Download/Zikra-App-main/Zikra-Promo-Preview-Landscape-v2.mp4` adalah
+1280×720/30fps/15detik, 2.708.357 byte. Teks ditempatkan di sisi berlawanan
+dengan HP. Posisi, skala, yaw, pitch dan roll berubah berkelanjutan dengan kurva
+quintic saat berganti sisi; perspektif front/rear memberi kesan ketebalan.
+Ini proyeksi bidang layar dengan kedalaman, bukan mesh perangkat 3D penuh.
+
+Narasi Putri dan rekaman sumber sama tanpa pembuatan suara/biaya baru.450frame
+dan audio didekode penuh; visual3,5/5,5/7,5/13detik ditinjau. Posisi pada lima
+batas perpindahan kontinu,405frame sesudah masuk layar terukur tidak terpotong.
+Cek awal margin65px terlalu ketat: min54,94px tetap dalam viewport dan logo
+terletak terpisah di kiri atas. Temuan awal tetap dicatat dalam receipt.
+[Bukti revisi](checks-landscape.json), source `tools/render_zikra_promo_landscape.py`.
+V1 di bawah disimpan sebagai riwayat; penerimaan visual v2 belum diasumsikan.
+Video lengkap/lisensi komersial/publikasi tetap menunggu. Runtime/data/aset/HP/
+model/paket/gerbang rilis tetap. Source dan bukti saja masuk checkpoint GitHub.
+
 Pengguna meminta contoh editing berdasarkan video KamiTolong yang diberikan,
 setelah memilih sampel suara perempuan Putri Maharani dari ElevenLabs. Ini
 cuplikan pembuka untuk ditinjau, belum video promo lengkap atau publikasi.

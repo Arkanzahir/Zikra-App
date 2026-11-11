@@ -1,5 +1,15 @@
 # Workflow proyek Zikra
 
+## Promo v2 mendatar — 12 November 2026
+
+Pengguna mengoreksi format vertikal/gerakan kaku. [Revisi dan bukti](design/promos/2026-11-12/README.md):
+1280×720/15detik, teks di samping HP, perpindahan/kemiringan/perspektif kontinu.
+450frame+audio decode penuh lulus,4frame ditinjau,405frame geometri dalam layar;
+cek margin65px awal terlalu ketat tetap dicatat. Narasi Putri/rekaman lama
+sama, tanpa biaya/HP/runtime baru. V1 tersimpan; penerimaan v2/video lengkap/
+lisensi komersial/publikasi belum selesai. Source/bukti diaudit/commit/push;
+WIP/stash/audio/env/master dan seluruh gerbang aplikasi tetap.
+
 ## Cuplikan promo referensi — 12 November 2026
 
 Pengguna meminta contoh editing 10–15 detik berdasarkan referensi video dan
