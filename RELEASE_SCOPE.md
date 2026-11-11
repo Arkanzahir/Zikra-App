@@ -1,5 +1,19 @@
 # A02 — Cakupan penyelesaian Zikra
 
+## Cuplikan promo referensi — 12 November 2026
+
+Pengguna meminta contoh editing 10–15 detik berdasarkan referensi video dan
+memilih suara perempuan Putri Maharani. [Hasil/bukti/batas](design/promos/2026-11-12/README.md):
+video lokal15detik720×1280/30fps, narasi ElevenLabs baru14,68detik melalui demo
+publik gratis, rekaman Home/Quran APK1.9.40 asli; teks bertahap/perangkat perspektif
+ringan bergerak kiri-kanan.450frame+audio decode penuh lulus,4frame ditinjau,
+puncak-1,5dB; kecepatan narasi tetap. Bukan sampel profil suara ditempel ulang.
+Ini cuplikan untuk tinjauan; video lengkap/penerimaan pengguna/lisensi komersial
+belum selesai. Audio/video lokal saja, tanpa paket berbayar/publikasi/HP/emulator
+baru. Source renderer dan receipt diaudit/commit/push; WIP/stash/audio/master/env
+terjaga. Runtime/APK/backend/cron/model tetap; B01/C02/D02/D02a/E03/E04/F/G/publik
+masih menurut gerbang terbuka, bukan seluruh A–D/E selesai.
+
 ## Draf promo video — 11 November 2026
 
 Pengguna meminta rekaman fitur dan edit video dengan narasi Indonesia, lalu

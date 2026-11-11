@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-12",
+  "video": {
+    "name": "Zikra-Promo-Preview-15s-Putri.mp4",
+    "bytes": 2553295,
+    "sha256": "f70413c2f2e887a6628499e2580a257830ad6bc63f14fd794d47fbf3fd0145c7",
+    "width": 720,
+    "height": 1280,
+    "seconds": 15,
+    "fps": 30,
+    "decodedFrames": 450,
+    "fullDecodeExit": 0,
+    "codec": "h264",
+    "audio": "aac 48000 Hz mono",
+    "meanVolumeDb": -16.7,
+    "peakVolumeDb": -1.5
+  },
+  "voice": {
+    "provider": "ElevenLabs public web demo",
+    "name": "Putri Maharani",
+    "sourcePage": "https://elevenlabs.io/text-to-speech/indonesian",
+    "inputCharacters": 210,
+    "seconds": 14.680816,
+    "sha256": "de19194a6fc5a3652c5499adf3a00ee5bd113cb6c93de90a770a429e9bb7c9f6",
+    "playbackSpeedChanged": false,
+    "commercialRightsCleared": false
+  },
+  "footage": {
+    "home.mp4": "4737764e2ca2ba5b68f5a3c9efc7eaa97ee3aa5a23a8d4a4d3ef44cd178f1df9",
+    "quran.mp4": "99dd4a512279f838b1a0c85466f8ac39a12091f3a31e3d2d4530c64cd6334845"
+  },
+  "visualFramesReviewedSeconds": [
+    0.5,
+    3.5,
+    7.5,
+    13
+  ],
+  "preservation": {
+    "protectedFilesMatch": {
+      "PROJECT_HANDOFF.md": true,
+      "design/branding/zikra-logo-primary.jpg": true,
+      ".local/featherless.env": true,
+      ".local/pending-audio-a03-2026-10-24/source-wip.zip": true
+    },
+    "audioStashPresent": true,
+    "phoneAccessed": false,
+    "emulatorStarted": false,
+    "appRuntimeChanged": false,
+    "paidPlanActivated": false,
+    "publiclyPublished": false
+  },
+  "scope": "15-second local editorial preview; full promo and release gates remain open"
+}
