@@ -1,0 +1,40 @@
+{
+  "scenes": [
+    {
+      "start": 0,
+      "end": 2,
+      "scene": "Brand"
+    },
+    {
+      "start": 2,
+      "end": 7.5,
+      "scene": "Home"
+    },
+    {
+      "start": 7.5,
+      "end": 13.5,
+      "scene": "Quran"
+    },
+    {
+      "start": 13.5,
+      "end": 19,
+      "scene": "Focus"
+    },
+    {
+      "start": 19,
+      "end": 24,
+      "scene": "Protector"
+    },
+    {
+      "start": 24,
+      "end": 30,
+      "scene": "Brand / beta CTA"
+    }
+  ],
+  "narration": "Di tengah hari yang sibuk, beri ruang untuk hal yang berarti. Bersama Zikra, dekatkan diri dengan Al-Quran. Temani rutinitas ibadahmu, dan belajar dengan lebih terarah. Atur fokus, pahami harimu, dan mulai dari satu langkah kecil. Zikra. Satu langkah baik, setiap hari.",
+  "notes": [
+    "Actual beta footage, no simulated AI answers",
+    "No Play Store availability badge",
+    "Narration synthetic, no copyrighted soundtrack included"
+  ]
+}

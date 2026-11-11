@@ -1,5 +1,19 @@
 # Handoff aktif Zikra — 11 November 2026 (WIB)
 
+## Draf promo video — 11 November 2026
+
+Pengguna meminta rekaman fitur dan edit video dengan narasi Indonesia, lalu
+mengosongkan RAM. [Draf/provenance/batas](design/promos/2026-11-11/README.md):30detik,
+720×1280/30fps, empat cuplikan APK1.9.40 asli dari emulator baru, narasi sintetis,
+subtitle, transisi dan bahan edit ZIP. Home take pertama onboarding ditolak lalu
+direkam ulang; video final didekode penuh/ditinjau6frame. Helper akhir compile
+lulus; tidak ada test perangkat/gerbang rilis baru yang dinyatakan selesai.
+Emulator sementara ditutup/datanya dihapus setelah verifikasi marker/lokasi;
+HP/emulator lama/WIP/stash/audio/rahasia/logo/master tetap. Video hanya lokal,
+belum dipublikasikan; runtime APK/backend/biaya/model tetap. D02/E03 dan gerbang
+publik tetap terbuka. Checkpoint source/storyboard/bukti wajib audit/commit/push.
+
+
 ## E03 — waktu prakiraan dan transport cuaca, beta1.9.40, 11 November 2026
 
 Tanpa USB/HP/emulator: slot Open-Meteo wajib berurutan per jam dan mencakup

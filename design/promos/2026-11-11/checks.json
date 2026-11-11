@@ -1,0 +1,58 @@
+{
+  "draft": true,
+  "published": false,
+  "videoSeconds": 30,
+  "resolution": "720x1280",
+  "fps": 30,
+  "videoCodec": "H.264",
+  "audioCodec": "AAC 48 kHz mono",
+  "bytes": 1636281,
+  "sha256": "5d65e6108c0aa5415ba208290401a0c45e91320392cbb44d4820b4fa2a0549a2",
+  "fullDecodeSuccessful": true,
+  "syntheticNarration": "id-ID-ArdiNeural; original Indonesian promo script",
+  "subtitleSource": "TTS sentence timing scaled to the final narration tempo",
+  "paidPlanActivated": false,
+  "phoneAccessed": false,
+  "originalEmulatorDataTouched": false,
+  "isolatedEmulatorCleanup": {
+    "phoneTouched": false,
+    "ownEmulatorStopped": true,
+    "ownTemporaryDataRemoved": true,
+    "originalEmulatorDataTouched": false
+  },
+  "currentApkVersion": "1.9.40",
+  "captureMethods": 4,
+  "captureExecutions": 5,
+  "firstHomeTake": "Onboarding, rejected after visual review; onboarding completed and Home recaptured",
+  "screenCaptureAudioUsed": false,
+  "originalRecitationOrAdhanAudioUsed": false,
+  "visualReview": "Six final frames reviewed; hard captions + narration; original screen content retained",
+  "apkRuntimeChanged": false,
+  "releaseGatesClosed": false,
+  "sources": [
+    {
+      "scene": "home",
+      "source": "Actual Android screenrecord / APK 1.9.40",
+      "bytes": 1498779,
+      "sha256": "4737764e2ca2ba5b68f5a3c9efc7eaa97ee3aa5a23a8d4a4d3ef44cd178f1df9"
+    },
+    {
+      "scene": "quran",
+      "source": "Actual Android screenrecord / APK 1.9.40",
+      "bytes": 686596,
+      "sha256": "99dd4a512279f838b1a0c85466f8ac39a12091f3a31e3d2d4530c64cd6334845"
+    },
+    {
+      "scene": "focus",
+      "source": "Actual Android screenrecord / APK 1.9.40",
+      "bytes": 1334465,
+      "sha256": "cb912f3e34abb5a5a83cf974cd18d54d36e758a4ef6a1d3f8e32265b39324b71"
+    },
+    {
+      "scene": "protector",
+      "source": "Actual Android screenrecord / APK 1.9.40",
+      "bytes": 1176464,
+      "sha256": "5f858947da7e99581b54d1d17cc98f5f6630e7d4cdc377e5502f16ed089f5884"
+    }
+  ]
+}
