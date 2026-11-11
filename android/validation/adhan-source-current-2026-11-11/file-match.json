@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-11-11T10:10:04.013Z",
+  "files": [
+    {
+      "file": "Adzan-Misyari-Rasyid.mp3",
+      "sourcePage": "https://islamdownload.net/123801-download-suara-adzan.html",
+      "url": "https://islamdownload.net/wp-content/uploads-by-id/123801/Adzan-Misyari-Rasyid.mp3",
+      "bytes": 3713152,
+      "sha256": "545da9c890916ce918ed0e82df9b5e37169aafd638cdb3dfe61d41caa39b016f",
+      "matchesUserFile": true,
+      "explicitRedistributionPermissionEstablished": false
+    },
+    {
+      "file": "fajr_128_44.mp3",
+      "sourcePage": "https://islamdownload.net/123801-download-suara-adzan.html",
+      "url": "https://islamdownload.net/wp-content/uploads-by-id/123801/fajr_128_44.mp3",
+      "bytes": 2996349,
+      "sha256": "106a7b2ca4e8f85fb44f7b150d42e7ca11237c961642ad877dd02e45f8add530",
+      "matchesUserFile": true,
+      "explicitRedistributionPermissionEstablished": false
+    }
+  ]
+}

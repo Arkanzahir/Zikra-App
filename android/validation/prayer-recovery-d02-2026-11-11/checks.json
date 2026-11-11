@@ -1,0 +1,38 @@
+{
+  "physicalApi": 36,
+  "mainVersion": "1.9.39",
+  "mainApkReinstalled": false,
+  "initialBackupFiles": 48,
+  "freshPhase2BackupBeforeNoTouchTest": true,
+  "helperBuildPassed": true,
+  "nativeCompletedExecutions": 5,
+  "nativeUniqueCompletedMethods": 3,
+  "nativeMethods": [
+    "testArmRebootWithoutAudio",
+    "testInspectAfterRealReboot",
+    "testRestoreOriginalPreferences"
+  ],
+  "nativeDozePassed": false,
+  "dozeAttempt": {
+    "exactAlarmArmed": true,
+    "forcedIdleReached": true,
+    "powerSaveEnabledForTest": true,
+    "playingResultObserved": false,
+    "hostInstrumentationTimeoutSeconds": 150,
+    "outcome": "incomplete; no successful delivery claim"
+  },
+  "rebootOutcome": "inconclusive: alarm snapshot preceded reschedule process by41.718s; no settled independent follow-up before UI opened",
+  "failedLockedStorageRestoreAttempt": {
+    "guardStoppedBeforeRestoring": true,
+    "laterRestorePassed": true,
+    "originalFullFailureLogRetained": false,
+    "limitation": "Failed method log was overwritten by successful retry before per-attempt preservation was added; stack at setUp line31 was recorded in tool transcript."
+  },
+  "initialHostQueryErrorCorrected": true,
+  "initialHelperInstallRejectedTwiceThenUserApprovedRetry": true,
+  "settingsAndDataRestored": true,
+  "audioRightsResolved": false,
+  "d02Closed": false,
+  "d02aClosed": false,
+  "newRuntimeApkProduced": false
+}

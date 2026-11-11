@@ -1,5 +1,29 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## D02/D02a — checkpoint HP belum konklusif, 11 November 2026
+
+HP1.9.39 dicadangkan48berkas/APK; pengguna melakukan restart dan menyetujui satu
+restart USB. [Bukti, kegagalan dan preservasi](android/validation/prayer-recovery-d02-2026-11-11/README.md).
+5eksekusi native selesai/3metode unik hanya arm/inspeksi preferensi/restore,
+10unit jadwal-zona lulus. Snapshot31→0alarm setelah boot belum membuktikan bug:
+proses receiver baru mulai41,718detik setelah snapshot, sebelum tindak lanjut
+independen aplikasi sudah terbuka. Forced idle/hemat baterai tercapai tetapi
+host instrumentation timeout150detik tanpa hasil playing; bukan kelulusan.
+Pengaturan/power dipulihkan;16file preferensi dan20tabel sama dengan cadangan
+fase terakhir setelah pengguna setuju tidak menyentuh HP. Cadangan awal tetap.
+Helper/berkas uji/XML dibersihkan, simulasi baterai/idle dilepas,31alarm asli
+aktif setelah pembukaan normal. HP bebas dipakai; jangan menganggap siap tes
+terus-menerus. Tidak mengubah autostart/izin atau memasang ulang APK utama.
+[Pasangan audio aktif](android/validation/adhan-source-current-2026-11-11/README.md)
+Misyari/Subuh cocok hash penerbit, izin redistribusi/lafaz tetap belum terpenuhi.
+D02/D02a tetap[ ]; jangan menandai reboot/Doze selesai dari snapshot awal.
+Pengguna memasang39 dan melaporkan AI membalas saat laptop ditutup; keadaan daya
+bukan pengukuran independen/shutdown, C02 tetap sesuai gerbang. Migrasi Google
+Maps dibatalkan pengguna karena pembayaran awal; OSM yang sudah bekerja tetap,
+draf Maps privat/bukan source aktif. Tidak ada runtime APK/provider/model/env/
+cron/email baru. WIP/stash/audio/konfigurasi/desain tetap. B01,E03/E04,F/G/publik
+terbuka; UI10/mode orang tua ditunda. Audit/commit/push checkpoint wajib.
+
 ## C02: timeout aplikasi diperbaiki, antrean dibedakan — 11 November 2026
 
 Client sebelumnya call45detik tetapi read timeout bawaan10detik; gateway dapat

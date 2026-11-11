@@ -1,0 +1,10 @@
+{
+  "phoneClockOffsetSecondsBounds": [
+    -0.789139986038208,
+    0.289715051651001
+  ],
+  "snapshotPrecededRescheduleProcessBySeconds": 41.718,
+  "initialZeroSnapshotIsConclusiveFailure": false,
+  "recoveryOutcome": "inconclusive: initial snapshot was before receiver start; application opened before a settled independent follow-up",
+  "autostartSettingsChanged": false
+}

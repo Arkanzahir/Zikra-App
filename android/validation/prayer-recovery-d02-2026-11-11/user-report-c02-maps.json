@@ -1,0 +1,11 @@
+{
+  "reportedDate": "2026-11-11",
+  "installedVersionConfirmedByPhone": "1.9.39",
+  "userReportedAiRepliesWhileLaptopLidClosed": true,
+  "laptopPowerStateIndependentlyMeasured": false,
+  "notAShutdownOrLongTermStabilityTest": true,
+  "googleMapsMigrationCancelledByUserDueToPrepayment": true,
+  "googleMapsRuntimeCodeActive": false,
+  "googleMapsAgentPaymentOrKeyCreationPerformed": false,
+  "currentMapProvider": "OpenStreetMap"
+}

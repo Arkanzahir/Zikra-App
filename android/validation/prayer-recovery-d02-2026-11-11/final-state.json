@@ -1,0 +1,10 @@
+{
+  "mainVersion": "1.9.39",
+  "prayerAlarmTagLines": 41,
+  "helperAbsent": true,
+  "batterySimulationRemoved": true,
+  "forcedIdleRemoved": true,
+  "autostartSettingsChanged": false,
+  "mainAppUninstalled": false,
+  "activePrayerAlarms": 31
+}

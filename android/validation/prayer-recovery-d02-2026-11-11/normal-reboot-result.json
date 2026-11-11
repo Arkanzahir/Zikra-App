@@ -1,0 +1,10 @@
+{
+  "realReboot": true,
+  "beforeAlarmCount": 31,
+  "afterAlarmCount": 0,
+  "alarmsMatch": false,
+  "modesMatch": true,
+  "locationHashMatch": true,
+  "capturedBeforeOpeningZikraOrInstrumentation": true,
+  "passed": false
+}

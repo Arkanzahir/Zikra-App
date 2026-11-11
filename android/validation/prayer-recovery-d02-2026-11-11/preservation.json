@@ -1,0 +1,14 @@
+{
+  "checkedPreferenceFiles": 16,
+  "changedOriginalPreferences": {},
+  "databaseTablesCompared": 20,
+  "allDatabaseRowsPreserved": true,
+  "systemSettingsRestored": true,
+  "timezoneUnchanged": true,
+  "phoneMainVersion": "1.9.39",
+  "comparisonBaseline": "Fresh phase2 backup after user agreed to leave phone untouched; session-start backup retained separately",
+  "mainAppUninstalled": false,
+  "passed": true,
+  "helperRemoved": true,
+  "ownTestFilesRemoved": true
+}
