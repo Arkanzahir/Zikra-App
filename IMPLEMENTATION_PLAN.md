@@ -1,5 +1,22 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## D02 — restart teramati; USB putus saat idle, 11 November 2026
+
+Satu restart USB baru disetujui pengguna. Observer laptop melihat boot baru dan
+pemulihan dua set alarm stabil tanpa UI/instrumentation Zikra;31alarm sama,
+16file preferensi byte-sama dan20tabel seluruh baris terpelihara.48file dicadangkan.
+[Bukti dan batas](android/validation/prayer-reboot-observer-phone-2026-11-11/README.md).
+Uji memakai alarm ADHAN asli berikutnya, tanpa mengubah jadwal/pilihan audio.
+Idle/layar mati/setting hemat baterai terlihat sebelum USB putus; pengiriman
+belum teramati. Hasil idle belum konklusif, bukan bug terbukti atau lulus.
+**Pemulihan daya masih menunggu USB**: lima perintah finally gagal karena HP
+terputus; retry juga belum menemukan HP. Saat tersambung, prioritaskan unforce
+idle/battery reset dan pemulihan dua setting sesuai baseline privat, verifikasi;
+jangan mulai tes baru/restart/install. Pengguna sudah diminta menyambungkan.
+APK tetap1.9.39; runtime/helper/audio/backend/env/desain/WIP/stash tidak berubah.
+D02/D02a,izin/lafaz,B01/C02/E03/E04/F/G/publik tetap terbuka. Draf izin belum dikirim.
+
+
 ## D02 — observer laptop dan draf izin, 11 November 2026
 
 Metode menunggu Doze di instrumentation dipensiunkan; observer laptop baru hanya

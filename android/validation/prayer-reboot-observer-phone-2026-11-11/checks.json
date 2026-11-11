@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-11",
+  "apkVersion": "1.9.39",
+  "oneUserAuthorizedRestart": true,
+  "backupFiles": 48,
+  "bootObservation": {
+    "status": "observed",
+    "reason": "future_alarm_set_restored",
+    "stableSamples": 2,
+    "physicalGateAutomaticallyClosed": false
+  },
+  "bootVerification": {
+    "realBootChanged": true,
+    "complete": true,
+    "activePrayerAlarms": 31,
+    "futureAlarmSetSame": true,
+    "ownUiActive": false,
+    "ownUiStartedSinceBoot": false,
+    "instrumentationActive": false,
+    "powerSettingsSame": true,
+    "preferenceFiles": 16,
+    "byteChangedPreferenceFiles": 0,
+    "remindersEnabled": true,
+    "deviceMutationsSinceRestart": false
+  },
+  "databasePreservation": {
+    "tablesCompared": 20,
+    "allRowsPreserved": true
+  },
+  "idleObservation": {
+    "status": "inconclusive",
+    "reason": "required_delivery_not_observed_in_window",
+    "audibleSoundVerified": false,
+    "fullRecordingVerified": false,
+    "physicalGateAutomaticallyClosed": false
+  },
+  "idleSamples": {
+    "total": 90,
+    "complete": 20,
+    "requiredPowerObserved": true,
+    "lastCompleteAtSeconds": 66.24,
+    "selectedDeliveryObserved": false
+  },
+  "usbDisconnectedDuringObservation": true,
+  "powerRestorationPendingUsb": true,
+  "powerRestorationCommandsInitiallyFailed": 5,
+  "restoreRetry": "Device still disconnected; no commands applied",
+  "additionalInspectionInitialFailure": "Read-only adapter rejected unsupported setting read; corrected host inspection used explicit read commands; no device write from failed inspection",
+  "publicD02GateClosed": false,
+  "runtimeCodeChanged": false,
+  "mainApkReinstalled": false,
+  "helperInstalled": false,
+  "audioChanged": false,
+  "permissionRequestSent": false
+}
