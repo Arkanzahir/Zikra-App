@@ -1,0 +1,12 @@
+{
+  "bodyBytes": 2581,
+  "phoneAccessed": false,
+  "zone": "Asia/Jakarta",
+  "httpStatus": 200,
+  "coordinates": "Public fixed repository default, not GPS from a device",
+  "hourlySlots": 72,
+  "parsed": true,
+  "selectedSecondsFromNow": 444,
+  "transport": "JDK host probe; Android factory covered by local HTTP regression",
+  "redirectsEnabled": false
+}

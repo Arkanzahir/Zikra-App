@@ -1,0 +1,22 @@
+{
+  "phoneAccessed": false,
+  "emulatorAccessed": false,
+  "screenshotsTaken": false,
+  "uiLayoutChanged": false,
+  "backendDeployed": false,
+  "providerChanged": false,
+  "paidPlanActivated": false,
+  "newContextNotificationsEnabled": false,
+  "E03Closed": false,
+  "D02Closed": false,
+  "liveProbeScope": "One public fixed location from host JVM; not HP or Android networking UI proof",
+  "nativeTestsRun": false,
+  "existingAndroidNativeFixtureSemantics": "Nearest upcoming forecast preserved; selected timestamp stays visible",
+  "pending": [
+    "E03 weather alert controls and deduplication",
+    "E03 travel/morning/evening reminders and briefing",
+    "D02 physical idle/audio rights and full lafaz verification",
+    "B01 source clarification",
+    "E04 and public release gates"
+  ]
+}

@@ -94,10 +94,8 @@ public final class WeatherActivity extends BaseActivity {
   private void refresh() {
     client.reset();
     if (displayed != null
-        && !WeatherCode.usableCache(
-            displayed.fetchedAt.toEpochMilli(),
-            System.currentTimeMillis(),
-            OpenMeteoClient.MAX_AGE_MS)) displayed = null;
+        && !WeatherOutlook.usable(displayed, Instant.now(), OpenMeteoClient.MAX_AGE_MS))
+      displayed = null;
     if (displayed == null) clear();
     client.weather(
         new BmkgClient.Result<BmkgParser.Forecast>() {
@@ -136,6 +134,9 @@ public final class WeatherActivity extends BaseActivity {
   }
 
   private void showFailure(String message) {
+    if (displayed != null
+        && !WeatherOutlook.usable(displayed, Instant.now(), OpenMeteoClient.MAX_AGE_MS))
+      displayed = null;
     if (displayed == null) {
       clear();
       text(R.id.weatherDescription, getString(R.string.weather_missing));

@@ -7,6 +7,22 @@ import java.util.*;
 public final class WeatherOutlook {
   private WeatherOutlook() {}
 
+  public static boolean usable(BmkgParser.Forecast forecast, Instant now, long maximumAge) {
+    if (forecast == null
+        || !WeatherCode.usableCache(
+            forecast.fetchedAt.toEpochMilli(), now.toEpochMilli(), maximumAge)
+        || forecast.slots.isEmpty()) return false;
+    List<Instant> times = new ArrayList<>();
+    for (BmkgParser.Weather slot : forecast.slots) times.add(slot.time);
+    try {
+      ForecastSelector.hourly(times, now);
+      return !forecast.current.time.isAfter(now.plusSeconds(3600))
+          && now.isBefore(forecast.current.time.plusSeconds(3600));
+    } catch (IllegalArgumentException invalid) {
+      return false;
+    }
+  }
+
   public static List<BmkgParser.Weather> upcoming(BmkgParser.Forecast forecast, int limit) {
     if (limit <= 0) return Collections.emptyList();
     List<BmkgParser.Weather> result = new ArrayList<>();

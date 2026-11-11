@@ -1,5 +1,20 @@
 # Handoff aktif Zikra — 11 November 2026 (WIB)
 
+## E03 — waktu prakiraan dan transport cuaca, beta1.9.40, 11 November 2026
+
+Tanpa USB/HP/emulator: slot Open-Meteo wajib berurutan per jam dan mencakup
+waktu yang diminta; deret kedaluwarsa/terlalu jauh di masa depan serta epoch
+pecahan ditolak. Pilihan slot prakiraan terdekat mendatang tetap; BMKG tidak
+diubah. Transport cuaca kini menolak redirect/retry otomatis dan read25/call25.
+[Bukti/APK/batas](android/validation/weather-e03-2026-11-11/README.md):189unit lulus,
+4skip,lint0error/878warning; satu GET publik host200/72slot berhasil diparse.
+APK1.9.40/code67,49.680.570byte,SHA2568263961c8db002ed1b537704aced709b8c8bf1ff7a5d7a4a1d70f71313d54fcf.
+Signer/audio/rahasia dikenal/WIP/stash/env/aset terjaga. HP tetap1.9.39; tidak
+memasang APK/unggah Drive/deploy/provider/paid baru. Layout tetap, native tidak
+ diulang. E03 parent masih[ ] untuk alert/kontrol/deduplikasi/doa/briefing;
+D02/D02a/B01/C02/E04/F/G/publik tetap terbuka. Checkpoint audit/commit/push.
+
+
 ## D02 — observer dikoreksi, percobaan HP belum lulus, 11 November 2026
 
 [Hasil/kegagalan/preservasi](android/validation/prayer-observer-hardening-2026-11-11/README.md):

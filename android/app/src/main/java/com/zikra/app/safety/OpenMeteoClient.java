@@ -26,8 +26,7 @@ public final class OpenMeteoClient implements AutoCloseable {
 
   public static final long FRESH_MS = 10 * 60 * 1000L, MAX_AGE_MS = 6 * 60 * 60 * 1000L;
   private static final ExecutorService WORK = Executors.newFixedThreadPool(2);
-  private static final OkHttpClient HTTP =
-      new OkHttpClient.Builder().callTimeout(25, TimeUnit.SECONDS).build();
+  private static final OkHttpClient HTTP = WeatherHttp.create();
   private final Activity owner;
   private final SharedPreferences cache;
   private volatile int generation;

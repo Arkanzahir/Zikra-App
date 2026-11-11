@@ -48,4 +48,21 @@ public final class ForecastSelector {
     }
     return upcoming >= 0 ? upcoming : latest;
   }
+
+  /** Hourly model data must cover now; a fresh download cannot revive an expired series. */
+  public static int hourly(List<Instant> times, Instant now) {
+    if (times.isEmpty() || now == null) throw new IllegalArgumentException("Hourly coverage");
+    Instant previous = null;
+    for (Instant time : times) {
+      if (time == null || (previous != null && !time.equals(previous.plusSeconds(3600))))
+        throw new IllegalArgumentException("Hourly interval");
+      previous = time;
+    }
+    int index = select(times, now);
+    Instant selected = times.get(index);
+    if (selected.isAfter(now.plusSeconds(3600))
+        || !now.isBefore(times.get(times.size() - 1).plusSeconds(3600)))
+      throw new IllegalArgumentException("Hourly coverage");
+    return index;
+  }
 }

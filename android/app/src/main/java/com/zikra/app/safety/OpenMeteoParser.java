@@ -57,6 +57,8 @@ public final class OpenMeteoParser {
     List<BmkgParser.Weather> slots = new ArrayList<>();
     List<Instant> instants = new ArrayList<>();
     for (int i = 0; i < count; i++) {
+      if (clockUnit.equals("unixtime") && times.getDouble(i) != times.getLong(i))
+        throw new JSONException("Time precision");
       Instant time =
           clockUnit.equals("unixtime")
               ? Instant.ofEpochSecond(times.getLong(i))
@@ -96,14 +98,14 @@ public final class OpenMeteoParser {
               ""));
       instants.add(time);
     }
+    final int selected;
+    try {
+      selected = ForecastSelector.hourly(instants, now);
+    } catch (IllegalArgumentException invalid) {
+      throw new JSONException("Hourly forecast does not cover requested time");
+    }
     return new BmkgParser.Forecast(
-        slots.get(ForecastSelector.select(instants, now)),
-        slots,
-        "Open-Meteo",
-        fetched,
-        stored,
-        stale,
-        point);
+        slots.get(selected), slots, "Open-Meteo", fetched, stored, stale, point);
   }
 
   private static String number(double value) {

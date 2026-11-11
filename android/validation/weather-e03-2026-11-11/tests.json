@@ -1,0 +1,9 @@
+{
+  "tests": 193,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 4,
+  "passed": 189,
+  "lintErrors": 0,
+  "lintWarnings": 878
+}

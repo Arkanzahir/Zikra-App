@@ -68,6 +68,31 @@ public final class WeatherOutlookTest {
   }
 
   @Test
+  public void displayedSlotCannotOutliveItsHourEvenWithRecentDownload() {
+    BmkgParser.Weather current = slot("2026-11-11T23:00:00Z", "29");
+    BmkgParser.Forecast f = forecast(current, current);
+    assertTrue(WeatherOutlook.usable(f, Instant.parse("2026-11-11T23:59:59Z"), 21600000));
+    assertFalse(WeatherOutlook.usable(f, Instant.parse("2026-11-12T00:00:00Z"), 21600000));
+    assertFalse(WeatherOutlook.usable(f, current.time.minusSeconds(1), 21600000));
+    assertFalse(WeatherOutlook.usable(forecast(current), current.time, 21600000));
+  }
+
+  @Test
+  public void validSlotStillRequiresBoundedCacheAge() {
+    BmkgParser.Weather current = slot("2026-11-11T23:00:00Z", "29");
+    BmkgParser.Forecast f =
+        new BmkgParser.Forecast(
+            current,
+            Collections.singletonList(current),
+            "Open-Meteo",
+            current.time.minusSeconds(7 * 3600),
+            true,
+            true,
+            LocationPoint.INITIAL);
+    assertFalse(WeatherOutlook.usable(f, current.time, 21600000));
+  }
+
+  @Test
   public void skyUsesLocalHourInsteadOfAppTheme() {
     Instant time = Instant.parse("2026-11-08T11:00:00Z");
     assertTrue(WeatherOutlook.night(time, ZoneId.of("Asia/Jakarta")));

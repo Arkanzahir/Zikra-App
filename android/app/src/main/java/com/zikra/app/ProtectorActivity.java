@@ -55,7 +55,8 @@ public final class ProtectorActivity extends BaseActivity {
         .setOnClickListener(v -> open(WeatherActivity.class));
     findViewById(R.id.protectorWeatherDetails).setOnClickListener(v -> open(WeatherActivity.class));
     findViewById(R.id.protectorForecastOpen).setOnClickListener(v -> open(WeatherActivity.class));
-    findViewById(R.id.protectorAlertSettings).setOnClickListener(v -> open(EarthquakeAlertsActivity.class));
+    findViewById(R.id.protectorAlertSettings)
+        .setOnClickListener(v -> open(EarthquakeAlertsActivity.class));
     findViewById(R.id.protectorQuakeCard).setOnClickListener(v -> openQuake());
     findViewById(R.id.protectorQuakeOpen).setOnClickListener(v -> openQuake());
     findViewById(R.id.protectorSource)
@@ -125,20 +126,9 @@ public final class ProtectorActivity extends BaseActivity {
       text(R.id.protectorClock, "—");
     }
     if (weather != null
-        && !WeatherCode.usableCache(
-            weather.fetchedAt.toEpochMilli(),
-            System.currentTimeMillis(),
-            OpenMeteoClient.MAX_AGE_MS)) weather = null;
-    if (weather == null) {
-      ((android.widget.LinearLayout) findViewById(R.id.protectorForecastSlots)).removeAllViews();
-      text(R.id.protectorForecastStatus, getString(R.string.weather_loading));
-      scene.setWeather(null, location.zone);
-      getWindow().setStatusBarColor(scene.getSkyColor());
-      text(R.id.protectorWeatherTemperature, "—°");
-      text(R.id.protectorWeatherDescription, "Memuat prakiraan…");
-      text(R.id.protectorWeatherTime, "Menghubungkan ke Open-Meteo");
-      text(R.id.protectorWeatherDetails, "Kelembapan — · Angin —");
-    }
+        && !WeatherOutlook.usable(weather, Instant.now(), OpenMeteoClient.MAX_AGE_MS))
+      weather = null;
+    if (weather == null) clearWeather();
     bmkg.weather(
         new BmkgClient.Result<BmkgParser.Forecast>() {
           public void success(BmkgParser.Forecast f) {
@@ -146,6 +136,11 @@ public final class ProtectorActivity extends BaseActivity {
           }
 
           public void failure(String message) {
+            if (weather != null
+                && !WeatherOutlook.usable(weather, Instant.now(), OpenMeteoClient.MAX_AGE_MS)) {
+              weather = null;
+              clearWeather();
+            }
             if (weather == null) {
               text(R.id.protectorForecastStatus, getString(R.string.weather_no_slots));
               text(R.id.protectorWeatherDescription, "Cuaca belum tersedia");
@@ -171,6 +166,17 @@ public final class ProtectorActivity extends BaseActivity {
                     : status() + "\nPembaruan gagal; laporan sebelumnya ditampilkan.");
           }
         });
+  }
+
+  private void clearWeather() {
+    ((android.widget.LinearLayout) findViewById(R.id.protectorForecastSlots)).removeAllViews();
+    text(R.id.protectorForecastStatus, getString(R.string.weather_loading));
+    scene.setWeather(null, location.zone);
+    getWindow().setStatusBarColor(scene.getSkyColor());
+    text(R.id.protectorWeatherTemperature, "—°");
+    text(R.id.protectorWeatherDescription, "Memuat prakiraan…");
+    text(R.id.protectorWeatherTime, "Menghubungkan ke Open-Meteo");
+    text(R.id.protectorWeatherDetails, "Kelembapan — · Angin —");
   }
 
   private void showWeather(BmkgParser.Forecast f) {
