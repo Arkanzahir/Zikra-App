@@ -42,14 +42,35 @@
     "selectedDeliveryObserved": false
   },
   "usbDisconnectedDuringObservation": true,
-  "powerRestorationPendingUsb": true,
+  "powerRestorationPendingUsb": false,
   "powerRestorationCommandsInitiallyFailed": 5,
-  "restoreRetry": "Device still disconnected; no commands applied",
+  "restoreRetry": "First wait found no device; after user reconnected all power restoration checks passed",
   "additionalInspectionInitialFailure": "Read-only adapter rejected unsupported setting read; corrected host inspection used explicit read commands; no device write from failed inspection",
   "publicD02GateClosed": false,
   "runtimeCodeChanged": false,
   "mainApkReinstalled": false,
   "helperInstalled": false,
   "audioChanged": false,
-  "permissionRequestSent": false
+  "permissionRequestSent": false,
+  "powerRestorationVerifiedAfterReconnect": {
+    "restored": true,
+    "forcedIdleReleased": true,
+    "batterySimulationReleased": true,
+    "settingsSame": true,
+    "activePrayerAlarms": 30,
+    "snapshotComplete": true,
+    "uiActive": false,
+    "instrumentationActive": false,
+    "mainAppOpenedByAgent": false,
+    "restartRequested": false
+  },
+  "postReconnectVerification": {
+    "futureExpectedCount": 30,
+    "futureActualCount": 30,
+    "futureAlarmSetSame": true,
+    "postReconnectSnapshotComplete": true,
+    "selectedEpochDeliveryMarkerPresentAfterReconnect": false,
+    "adhanServiceActiveAfterReconnect": false,
+    "deliveryTimePowerStateVerified": false
+  }
 }

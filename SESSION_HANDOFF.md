@@ -1,5 +1,19 @@
 # Handoff aktif Zikra — 11 November 2026 (WIB)
 
+## D02 — daya pulih setelah USB kembali, 11 November 2026
+
+Pengguna mengonfirmasi unlock dan menyambungkan USB kembali. Forced idle dan
+simulasi baterai dilepas; low_power/stay-awake cocok baseline privat, layar
+dibangunkan tanpa restart atau membuka Zikra. [Bukti pemulihan](android/validation/prayer-reboot-observer-phone-2026-11-11/README.md).
+30alarm masa depan sesuai baseline setelah satu waktu lewat. Snapshot lengkap
+pasca-sambung tidak menemukan marker pengiriman epoch pilihan/layanan adzan;
+kondisi pada saat pengiriman tidak terukur. Uji idle tetap belum konklusif,
+bukan lulus atau bug terbukti. Kegagalan pemulihan awal tetap dicatat, kini
+status pending daya ditutup oleh bukti baru. HP bebas dipakai; jangan memulai
+uji/restart baru tanpa koordinasi. APK1.9.39/runtime/audio/data pengguna tetap;
+D02/D02a/izin/lafaz/B01/C02/E03/E04/F/G/publik tetap terbuka.
+
+
 ## D02 — restart teramati; USB putus saat idle, 11 November 2026
 
 Satu restart USB baru disetujui pengguna. Observer laptop melihat boot baru dan

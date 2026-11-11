@@ -1,7 +1,7 @@
 # D02 — restart nyata teramati, idle belum konklusif
 
-**Pemulihan daya uji masih menunggu HP tersambung kembali.** Jangan menganggap
-HP sudah dipulihkan atau D02 selesai. Pengguna sudah diminta menyambungkan USB.
+**Daya uji sudah dipulihkan dan diverifikasi setelah pengguna menyambungkan
+USB kembali.** Hasil idle tetap belum konklusif; D02 belum selesai.
 
 ## Restart
 
@@ -36,17 +36,22 @@ suara, rekaman selesai atau alarm tidak bekerja dari terputusnya sambungan.
 
 Kelima langkah pemulihan di `finally` gagal karena perangkat tidak tersambung.
 Percobaan menunggu sambungan berikutnya juga berakhir tanpa menemukan HP.
-**Simulasi daya mungkin masih aktif; pemulihan belum terverifikasi.**
+Pemulihan awal belum terverifikasi pada saat itu. Setelah pengguna
+menyambungkan kembali, forced idle dan simulasi baterai berhasil dilepas, kedua
+setting kembali ke baseline. Layar dibangunkan tanpa membuka Zikra/restart.
+Tersisa 30 alarm masa depan, sama dengan baseline setelah satu waktu terlewati;
+bukan kehilangan satu jadwal masa depan. Snapshot lengkap setelah sambung
+kembali tidak menemukan marker epoch pengiriman untuk alarm pilihan maupun
+layanan adzan aktif. Ini tidak membuktikan kondisi daya pada waktu pengiriman
+dan tidak mengubah timeout menjadi lulus.
 
-## Tindak lanjut wajib saat USB kembali
+## Pemulihan selesai; tindak lanjut
 
-1. Lepas forced idle dan simulasi baterai; pulihkan nilai awal low_power serta
-   stay_on_while_plugged_in dari baseline privat, tanpa menimpa perubahan lain
-   pengguna yang tidak dikenal. Bangunkan layar.
-2. Verifikasi setting, forced-idle, simulasi baterai dan alarm; simpan bukti
-   pemulihan terpisah. Jangan melakukan restart atau uji baru dahulu.
-3. Revisi status pending ini setelah pemulihan terbukti. Audio/lafaz/hak,
-   idle terarah dan jangka panjang masih mengikuti gerbang D02/D02a/G02.
+1. Pemulihan daya terverifikasi pada `checks.json`; percobaan awal yang gagal
+   tetap dicatat. Tidak ada pemasangan helper atau perubahan jadwal/mode audio.
+2. Uji idle perlu sesi tersendiri dengan koneksi stabil dan kesiapan pengguna.
+   Jangan menyimpulkan kegagalan aplikasi dari pengamatan yang terputus.
+3. Audio/lafaz/hak dan pengamatan jangka panjang tetap mengikuti D02/D02a/G02.
 
 [checks.json](checks.json) memuat ringkasan tanpa serial, koordinat, isi
 preferensi, data tabel atau berkas cadangan. Seluruh data mentah tetap `.local`.
