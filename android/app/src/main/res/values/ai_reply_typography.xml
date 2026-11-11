@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="ai_reply_body">16sp</dimen>
+    <string name="ai_reply_link_blocked">Tautan ini tidak didukung. Gunakan tautan HTTPS yang valid.</string>
+    <string name="ai_reply_link_unavailable">Belum ada aplikasi yang dapat membuka tautan ini.</string>
+</resources>

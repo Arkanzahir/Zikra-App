@@ -37,6 +37,7 @@ import org.json.JSONObject;
 
 /** Native local companion with a bounded on-device conversation and Android voice input. */
 public final class AiActivity extends BaseActivity {
+  private com.zikra.app.ui.AssistantMarkdown replyRenderer;
   private static final int VOICE_REQUEST = 4001;
   private static final int MAX_MESSAGES = ConversationStore.MAX_MESSAGES;
   private static final int MAX_STORED_TEXT = 8000;
@@ -567,11 +568,13 @@ public final class AiActivity extends BaseActivity {
       card.addView(label);
     }
     TextView body = new TextView(this);
-    body.setText(message);
-    body.setTextSize(16);
-    body.setLineSpacing(dp(4), 1f);
-    body.setTextColor(getColor(R.color.ai_refresh_ink));
-    body.setTextIsSelectable(true);
+    if (user) {
+      com.zikra.app.ui.AssistantMarkdown.style(body);
+      body.setText(message);
+    } else {
+      if (replyRenderer == null) replyRenderer = new com.zikra.app.ui.AssistantMarkdown(this);
+      replyRenderer.bind(body, message);
+    }
     card.addView(body);
     if(!user)card.addView(AssistantUi.icon(this,R.drawable.ai_balanced_copy,getString(R.string.ai_balanced_copy),()->{((android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(android.content.ClipData.newPlainText("Zikra AI",message));toast("Teks disalin");}));
     row.addView(card);

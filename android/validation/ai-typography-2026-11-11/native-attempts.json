@@ -1,0 +1,65 @@
+[
+  {
+    "class": "com.zikra.app.assistant.AssistantTypographyTest",
+    "label": "initial-normal",
+    "passed": false,
+    "count": 0,
+    "durationSeconds": 4.8
+  },
+  {
+    "class": "com.zikra.app.assistant.AssistantTypographyTest#testCodeLiteralArabicAndUntrustedMarkupRemainNativeText",
+    "label": "isolated-renderer",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 1.4
+  },
+  {
+    "class": "com.zikra.app.assistant.AssistantTypographyTest#testActualReplyTypographyLight",
+    "label": "isolated-light",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 3.7
+  },
+  {
+    "class": "com.zikra.app.assistant.AssistantTypographyTest",
+    "label": "final-normal",
+    "passed": true,
+    "count": 3,
+    "durationSeconds": 5.8
+  },
+  {
+    "class": "com.zikra.app.assistant.AssistantTypographyTest#testActualReplyTypographyLight",
+    "label": "final-large-light",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 5.1
+  },
+  {
+    "class": "com.zikra.app.assistant.AssistantTypographyTest#testActualReplyTypographyDark",
+    "label": "final-large-dark",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 3.8
+  },
+  {
+    "class": "com.zikra.app.assistant.AssistantTypographyTest",
+    "label": "verified-normal",
+    "passed": true,
+    "count": 3,
+    "durationSeconds": 8.1
+  },
+  {
+    "class": "com.zikra.app.assistant.AssistantTypographyTest#testActualReplyTypographyLight",
+    "label": "verified-large-light",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 5.4
+  },
+  {
+    "class": "com.zikra.app.assistant.AssistantTypographyTest#testActualReplyTypographyDark",
+    "label": "verified-large-dark",
+    "passed": true,
+    "count": 1,
+    "durationSeconds": 4.1
+  }
+]

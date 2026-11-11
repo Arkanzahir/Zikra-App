@@ -1,0 +1,19 @@
+{
+  "unit": {
+    "tests": 183,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4,
+    "passed": 179
+  },
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 878
+  },
+  "nativeTypographyTestRun": true,
+  "phoneUntouched": true,
+  "finalNativeExecutions": 5,
+  "uniqueNativeMethods": 3,
+  "nativeScope": "Offline synthetic fixtures on project emulator API37.1; normal/dark,320dp/font200%; no physical phone or provider inference"
+}
