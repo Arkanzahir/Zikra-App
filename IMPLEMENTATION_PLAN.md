@@ -1,5 +1,18 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## C02: try_later gateway ditemukan — 11 November 2026
+
+Tiga event produksi09.34WIB berstatus429/try_later, yaitu pemeriksaan antrean
+Zikra sebelum inference, bukan kode kuota/provider_busy Cloudflare.
+[Bukti dan batas](android/validation/assistant-queue-c02-2026-11-11/README.md).
+Snapshot09.37tidak menemukan lease global aktif; identitas operator belum
+independen cocok dengan HP. Belum dipastikan slot instalasi/global mana yang
+menolak. Pengguna mengusulkan Groq; dokumentasinya diperiksa, belum migrasi.
+Mengganti provider tidak otomatis menghilangkan gate antrean. C02 tetap[ ];
+tidak ada counter/batas/model/env/paket/APK/dataHP berubah atau tes baru.
+B01/D02/D02a/E03/E04/F/G/publik tetap, bukan seluruh A–D/E selesai.
+
+
 ## C02 masih intermiten; kategori error ditelusuri — 10 November 2026
 
 Pengguna mengoreksi laporan dua pesan berhasil saat sleep: masih seperti

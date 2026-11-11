@@ -1,0 +1,22 @@
+{
+  "events": [
+    {
+      "at": "2026-11-11T02:34:27.562Z",
+      "event": "assistant_rejected",
+      "status": 429,
+      "code": "try_later"
+    },
+    {
+      "at": "2026-11-11T02:34:19.387Z",
+      "event": "assistant_rejected",
+      "status": 429,
+      "code": "try_later"
+    },
+    {
+      "at": "2026-11-11T02:34:17.421Z",
+      "event": "assistant_rejected",
+      "status": 429,
+      "code": "try_later"
+    }
+  ]
+}
