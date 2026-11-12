@@ -1,5 +1,27 @@
 # Cuplikan promo 15 detik — 12 November 2026
 
+## Karakter pendukung cerita
+
+Hasil lokal D:/Download/Zikra-App-main/Zikra-Promo-52s-Karakter-Putri.mp4.
+Tiga karakter cutout berlatar alpha dibuat dengan built-in ImageGen, dengan
+pose bingung, memahami melalui HP, dan menulis saat belajar. Tokoh mahasiswa
+laki-laki semirealistis hijau-krem adalah pilihan visual agen untuk tinjauan.
+[Asset/prompt lengkap](characters/README.md), [susunan](characters-edit.json),
+[bukti pemeriksaan](checks-characters.json).
+
+Karakter ditempatkan pada pembuka0-3,35, pengantarAI8,95-11,6, jawabanAI17,4-20,4,
+Study20,4-23,3 dan fokus23,3-27,2. Pembuka berubah menjadi karakter di kiri dan
+teks di kanan. Pada tutorial, karakter menjaga ruang layar dan penunjuk tombol.
+Animasi berupa fade/masuk12px selama0,4detik, lalu hold; pose Study/fokus
+berlanjut tanpa menghilang. Tidak ada gerak anggota tubuh. Durasi52detik dan
+naskah/VO Putri dari pilihan pengguna; ADTS stream audio cocok byte-sama.
+1560frame+audio decode penuh lulus, posisi karakter di viewport/tidak menutupi
+HP saat hold lulus; pembuka/jawabanAI/Study dan contact sheet ditinjau.
+Aset hanya digunakan pada promo, tidak ditambahkan ke APK. Tidak ada foto/data
+pengguna atau akses HP/emulator baru. Video lokal untuk tinjauan; penerimaan
+visual dan lisensi komersial suara tetap belum selesai, aplikasi tidak berubah.
+
+
 ## Suara dan naskah pilihan pengguna, 52 detik
 
 Hasil lokal D:/Download/Zikra-App-main/Zikra-Promo-52s-Putri-Naskah-Baru-Final.mp4.

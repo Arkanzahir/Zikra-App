@@ -1,0 +1,111 @@
+{
+  "output": "D:\\Download\\Zikra-App-main\\Zikra-Promo-52s-Karakter-Putri.mp4",
+  "bytes": 3585215,
+  "sha256": "38a23dad24bd8da321df1dd82eeca1f865cb60f5acb7ca8713ea4ddcde38c81e",
+  "seconds": 52,
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "decodedFrames": 1560,
+  "decodePassed": true,
+  "audioExactCopyOfApprovedVersion": true,
+  "audioAdtsSha256": "baa3a590294d789116c703bea295ecc1d63a4e81e98e1dcb961f75f225eeef02",
+  "meanVolumeDb": -16.5,
+  "peakVolumeDb": -1.4,
+  "assets": [
+    {
+      "path": "design\\promos\\2026-11-12\\characters\\student-confused.png",
+      "size": [
+        1312,
+        1199
+      ],
+      "bytes": 1570280,
+      "sha256": "b501fe2776b03d0ebcd5ce6086a920d7335ed32884a95ac8d74faccb0ec36a47"
+    },
+    {
+      "path": "design\\promos\\2026-11-12\\characters\\student-focused.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 1834966,
+      "sha256": "3540adcfc6746cbd8e4dd763cb7b0a607d81545a9b355c893f182028b63be7fd"
+    },
+    {
+      "path": "design\\promos\\2026-11-12\\characters\\student-understood.png",
+      "size": [
+        1312,
+        1199
+      ],
+      "bytes": 1626759,
+      "sha256": "de936c596211e7349fb6014ba6098ecd11eb549564d65b0b7d51f936645485ec"
+    }
+  ],
+  "placementsPassed": [
+    {
+      "shot": "hook",
+      "box": [
+        30.0,
+        141,
+        590,
+        539
+      ]
+    },
+    {
+      "shot": "ai-intro",
+      "box": [
+        198.0,
+        385,
+        334,
+        305
+      ]
+    },
+    {
+      "shot": "ai-reply",
+      "box": [
+        30.0,
+        287,
+        425,
+        388
+      ]
+    },
+    {
+      "shot": "study",
+      "box": [
+        142.5,
+        380,
+        465,
+        310
+      ]
+    },
+    {
+      "shot": "focus",
+      "box": [
+        142.5,
+        380,
+        465,
+        310
+      ]
+    }
+  ],
+  "visualReview": [
+    "opening confused student with right-aligned copy",
+    "AI answer with understood student",
+    "Study/focus writing pose",
+    "16-frame contact sheet"
+  ],
+  "motion": "400ms fade /12px entrance then hold. Pose change, no articulated limb animation.",
+  "styleDecision": "Fictional semi-realistic Indonesian male college student in green/cream. Root choice without explicit gender/style selection.",
+  "imageTool": "built-in image_gen",
+  "scriptAndVoiceChanged": false,
+  "newDeviceAccess": false,
+  "privatePhotoUsed": false,
+  "published": false,
+  "voiceCommercialLicenseVerified": false,
+  "preservation": {
+    "PROJECT_HANDOFF.md": true,
+    ".local/pending-audio-a03-2026-10-24/source-wip.zip": true,
+    ".local/featherless.env": true,
+    "design/branding/zikra-logo-primary.jpg": true
+  }
+}

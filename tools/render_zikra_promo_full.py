@@ -69,6 +69,24 @@ def screen_at(frames, elapsed, rate):
     return frames[min(len(frames)-1, max(0, int(elapsed*15*rate)))]
 
 
+@lru_cache(maxsize=16)
+def character_texture(path, width, height):
+    with Image.open(ROOT/path) as source:
+        return ImageOps.contain(source.convert("RGBA"), (width, height), Image.Resampling.LANCZOS)
+
+
+def composite_character(frame, shot, elapsed):
+    item = shot.get("character")
+    if item is None:
+        return
+    x, y, width, height = item["box"]
+    image = character_texture(item["source"], width, height)
+    appear = smooth((elapsed-item.get("delay", 0))/.4)
+    position = (round(x+(width-image.width)/2),
+                round(y+height-image.height+12*(1-appear)))
+    frame.alpha_composite(opacity(image, appear), position)
+
+
 def camera(shot, previous, elapsed):
     target = shot["pose"]
     if previous is None:
@@ -161,7 +179,10 @@ def render(edit, ffmpeg, output, work, voice, prepared_audio=None):
                     frame = mark_frame(base, shot["type"] == "outro", elapsed)
                 elif shot["type"] == "title":
                     frame = base.copy()
-                    frame.alpha_composite(text(shot["copy"], 640, 290, 46, elapsed, centered=True))
+                    composite_character(frame, shot, elapsed)
+                    frame.alpha_composite(text(shot["copy"], shot.get("copyX", 640),
+                                               shot.get("copyY", 290), shot.get("font", 46),
+                                               elapsed, centered=shot.get("centered", True)))
                 else:
                     frame = base.copy()
                     pose = camera(shot, previous, elapsed)
@@ -170,6 +191,7 @@ def render(edit, ffmpeg, output, work, voice, prepared_audio=None):
                         cx, cy = pose[:2]
                         ImageDraw.Draw(halo).ellipse((cx-190, cy-175, cx+190, cy+195), fill="#dcebd4")
                         frame.alpha_composite(halo)
+                    composite_character(frame, shot, elapsed)
                     screen = screen_at(frames, elapsed, shot.get("rate", 1))
                     composite_phone(frame, screen, pose)
                     if shot.get("copy"):

@@ -1,5 +1,21 @@
 # Workflow proyek Zikra
 
+## Promo karakter - 12 November 2026
+
+Pengguna menilai video polos dan meminta karakter sesuai narasi, misalnya
+orang bingung saat materi belum paham. Tiga PNG alpha tokoh mahasiswa
+laki-laki semirealistis dibuat built-in ImageGen, identitas/outfit hijau-krem
+dipertahankan melalui referensi; ini pilihan visual agen untuk ditinjau.
+Karakter bingung/paham/menulis muncul pada lima shot dengan fade/geser12px;
+anggota tubuh tidak dianimasikan. Video52detik dengan suara/naskah pilihan
+sebelumnya; stream audio byte-sama.1560frame+audio decode lulus, penempatan
+di layar/tidak menutup HP saat hold dan visual pembuka/AI/Study/contact ditinjau.
+Sumber/prompt/bukti di design/promos/2026-11-12/characters/README.md dan
+checks-characters.json. Output lokal untuk tinjauan, belum publikasi/penerimaan
+visual/lisensi komersial VO. HP/emulator/runtime tidak diakses. WIP/stash/
+arsip/env/master tetap; gerbang aplikasi tetap. Audit/commit/push checkpoint.
+
+
 ## Promo naskah pilihan pengguna - 12 November 2026
 
 Pengguna memilih Putri Maharani I7sakys8pBZ1Z5f0UhT9, mengirim naskah104kata
