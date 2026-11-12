@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-12",
+  "scope": "local-priority-audit-no-phone",
+  "backend": {
+    "passed": 78,
+    "skipped": 13,
+    "failed": 0,
+    "total": 91
+  },
+  "observer": {
+    "passed": 19
+  },
+  "replay": {
+    "syntheticOnly": true,
+    "status": "observed",
+    "physicalGateAutomaticallyClosed": false
+  },
+  "liveHealth": {
+    "executed": false,
+    "reason": "Automatic approval review could not complete (Bad Request); action not executed."
+  },
+  "phoneAccessed": false,
+  "runtimeChanged": false,
+  "apkChanged": false,
+  "privateConfigurationChanged": false,
+  "gatesClosed": []
+}

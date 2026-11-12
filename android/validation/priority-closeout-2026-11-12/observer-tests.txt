@@ -1,0 +1,24 @@
+test_adapter_rejects_mutations_before_runner (test_observe_prayer_recovery.RecoveryTests.test_adapter_rejects_mutations_before_runner) ... ok
+test_alarm_parser_excludes_other_packages_and_history (test_observe_prayer_recovery.RecoveryTests.test_alarm_parser_excludes_other_packages_and_history) ... ok
+test_boot_log_and_foreground_detection (test_observe_prayer_recovery.RecoveryTests.test_boot_log_and_foreground_detection) ... ok
+test_contamination_is_terminal (test_observe_prayer_recovery.RecoveryTests.test_contamination_is_terminal) ... ok
+test_delayed_boot_does_not_fail_early_zero_snapshot (test_observe_prayer_recovery.RecoveryTests.test_delayed_boot_does_not_fail_early_zero_snapshot) ... ok
+test_disconnect_lock_same_boot_and_incomplete_reset_stability (test_observe_prayer_recovery.RecoveryTests.test_disconnect_lock_same_boot_and_incomplete_reset_stability) ... ok
+test_doze_requires_current_delivery_idle_screen_and_power (test_observe_prayer_recovery.RecoveryTests.test_doze_requires_current_delivery_idle_screen_and_power) ... ok
+test_expired_alarms_ignored_but_empty_future_set_not_success (test_observe_prayer_recovery.RecoveryTests.test_expired_alarms_ignored_but_empty_future_set_not_success) ... ok
+test_failed_device_read_never_exports_error_or_claims_complete (test_observe_prayer_recovery.RecoveryTests.test_failed_device_read_never_exports_error_or_claims_complete) ... ok
+test_foreground_scope_and_notice_identity (test_observe_prayer_recovery.RecoveryTests.test_foreground_scope_and_notice_identity) ... ok
+test_idle_disconnect_aborts_after_ten_seconds (test_observe_prayer_recovery.RecoveryTests.test_idle_disconnect_aborts_after_ten_seconds) ... ok
+test_idle_transient_disconnect_resets_after_reconnect (test_observe_prayer_recovery.RecoveryTests.test_idle_transient_disconnect_resets_after_reconnect) ... ok
+test_instrumentation_dump_rejects_unsupported_command (test_observe_prayer_recovery.RecoveryTests.test_instrumentation_dump_rejects_unsupported_command) ... ok
+test_invalid_success_exit_storage_or_process_read_stays_incomplete (test_observe_prayer_recovery.RecoveryTests.test_invalid_success_exit_storage_or_process_read_stays_incomplete) ... ok
+test_preferences_only_exports_selected_fields (test_observe_prayer_recovery.RecoveryTests.test_preferences_only_exports_selected_fields) ... ok
+test_private_outputs_never_overwrite_or_escape (test_observe_prayer_recovery.RecoveryTests.test_private_outputs_never_overwrite_or_escape) ... ok
+test_selected_alarm_must_be_future_exact_baseline (test_observe_prayer_recovery.RecoveryTests.test_selected_alarm_must_be_future_exact_baseline) ... ok
+test_snapshot_fake_runner_exports_no_raw_content (test_observe_prayer_recovery.RecoveryTests.test_snapshot_fake_runner_exports_no_raw_content) ... ok
+test_timeout_is_never_proven_application_failure (test_observe_prayer_recovery.RecoveryTests.test_timeout_is_never_proven_application_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.008s
+
+OK

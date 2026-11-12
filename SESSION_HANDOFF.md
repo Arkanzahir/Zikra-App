@@ -1,5 +1,19 @@
 # Handoff aktif Zikra — 12 November 2026 (WIB)
 
+## Prioritas C02/D02 tanpa HP — 12 November 2026
+
+Pengguna memprioritaskan penutupan lalu menunda HP. [Audit dan sesi berikutnya](android/validation/priority-closeout-2026-11-12/README.md):
+78 backend lulus/13 skip/0 gagal; 19 observer lulus, replay sintetis bukan bukti
+fisik. Putaran awal satu tes gagal akses temp AppData; putaran akhir memakai
+temp privat proyek. Cek server live tidak dijalankan karena automatic approval
+review gagal diproses (Bad Request); tidak dilewati melalui jalur lain. Tidak
+mengakses HP/deploy/inference/mengubah runtime/APK/audio/env. Pemulihan reboot
+sudah teramati sebelumnya; jangan mengulang restart tanpa alasan. Sisa prioritas:
+C02 pesan berurutan/internet HP mandiri dan pemeriksaan layanan, D02 pengamatan
+alarm asli idle dengan USB stabil, hak/lafaz audio. Parent tetap terbuka; daftar
+langkah/bukti dan kondisi inconclusive dipisahkan. APK tetap 1.9.41/HP terakhir
+1.9.39; WIP/stash/privat terpelihara. Checkpoint audit/commit/push.
+
 ## B01 — integrasi HadeethEnc opsional, 1.9.41 — 12 November 2026
 
 Kelanjutan audit menambah koleksi pilihan tanpa menghapus data/koleksi lama
