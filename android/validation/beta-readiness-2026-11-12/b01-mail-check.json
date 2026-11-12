@@ -1,0 +1,10 @@
+{
+  "checkedDate": "2026-11-12",
+  "scope": "Read-only from/to contact search since 24 October and known clarification thread",
+  "messagesInKnownThread": 1,
+  "sentMessagesInThread": 1,
+  "incomingReplyInThread": false,
+  "matchingIncomingReplyFound": false,
+  "newMessageOrFollowupSent": false,
+  "mailboxIdentityAndPrivateMessageIdsPublished": false
+}

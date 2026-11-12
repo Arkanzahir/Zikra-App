@@ -1,5 +1,22 @@
 # A02 — Cakupan penyelesaian Zikra
 
+## G04 — persiapan beta, belum siap distribusi — 12 November 2026
+
+Pengguna memprioritaskan kesiapan beta sebelum website unduhan. Jalur release
+memerlukan signing environment lengkap, inspeksi unsigned eksplisit; audit APK
+menolak debug/signer debug/unsigned/nilai rahasia dikenal. [Bukti dan batas](android/validation/beta-readiness-2026-11-12/README.md):
+assembleRelease/lintRelease berhasil,189 unit/4skip,lint0error/879warning,
+91 backend tanpa skip dan8 regresi audit lulus. Kandidat unsigned1.9.40/code67
+37.809.274byte, tidak memuat adzan privat/tidak dapat dipasang; APK debug lama
+tetap. Health200/akses401, tanpa inference/deploy; email B01 hanyaSENT/belum
+balasan. [Runbook/privasi/inventaris/catatan beta](docs/beta/README.md) disiapkan,
+kontak penerbit/retensi/signing/migrasi belum disahkan. Signer release baru tidak
+bisa memperbarui debug dengan ID sama; jangan uninstall atau menimpa data HP.
+Tidak membuat keystore/mengaksesHP/emulator/publikasi/biaya baru. WIP/stash/
+audio/env/logo/master terjaga; perubahan line ending lama tetap di luar commit.
+B01/hak audio/lafaz/sisa D02-C02/E03-E04/F/G/publik tetap terbuka. Visual promo
+diterima pengguna, hak VO/publikasi tetap terpisah. Checkpoint audit/commit/push.
+
 ## Promo lengkap tanpa awan tambahan - 12 November 2026
 
 Pengguna meminta menghapus awan tambahan dan melihat video lengkap. Badge

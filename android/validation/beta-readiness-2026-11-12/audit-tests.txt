@@ -1,0 +1,13 @@
+test_debug_apk_is_not_release (test_audit_beta_release.ReleaseAuditTest.test_debug_apk_is_not_release) ... ok
+test_debug_key_is_rejected_even_if_pinned (test_audit_beta_release.ReleaseAuditTest.test_debug_key_is_rejected_even_if_pinned) ... ok
+test_duplicate_apk_entries_rejected (test_audit_beta_release.ReleaseAuditTest.test_duplicate_apk_entries_rejected) ... ok
+test_invalid_signature_never_passes_by_printing_a_digest (test_audit_beta_release.ReleaseAuditTest.test_invalid_signature_never_passes_by_printing_a_digest) ... ok
+test_manifest_true_flags_and_test_only_rejected (test_audit_beta_release.ReleaseAuditTest.test_manifest_true_flags_and_test_only_rejected) ... ok
+test_missing_protection_attributes_fail_closed (test_audit_beta_release.ReleaseAuditTest.test_missing_protection_attributes_fail_closed) ... ok
+test_private_filenames_and_utf16_secrets_are_detected (test_audit_beta_release.ReleaseAuditTest.test_private_filenames_and_utf16_secrets_are_detected) ... ok
+test_valid_signature_requires_pinned_non_debug_key (test_audit_beta_release.ReleaseAuditTest.test_valid_signature_requires_pinned_non_debug_key) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.024s
+
+OK

@@ -1,0 +1,9 @@
+{
+  "runtimeInputsUnchangedAcrossRebuild": true,
+  "inputFiles": 693,
+  "unsignedApkUnchangedAcrossRebuild": true,
+  "privateConfigurationsUnchanged": true,
+  "apkPublished": false,
+  "phoneOrEmulatorUsed": false,
+  "scope": "Input hashes compared before/after Gradle package rebuild. Existing tasks may be up-to-date; not a clean-room reproducibility claim."
+}

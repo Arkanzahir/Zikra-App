@@ -1,0 +1,6 @@
+{
+  "baseCommit": "bc0503a98278a12458dfb4cef91729b5ac7c32b3",
+  "runtimeInputsDigest": "6c388b61086c4c082813c6888b0454b6649bd8e7c004d948f92925e8bf017273",
+  "inputFiles": 693,
+  "scope": "Workspace source snapshot before final package rebuild; unrelated WIP is preserved, not claimed committed."
+}

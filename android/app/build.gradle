@@ -120,3 +120,5 @@ def prepareFirebaseClient = tasks.register('prepareFirebaseClient') {
 }
 android.sourceSets.main.res.srcDir(prepareFirebaseClient)
 tasks.matching { it.name == 'preBuild' }.configureEach { dependsOn(prepareFirebaseClient) }
+
+apply from: rootProject.file('release-signing.gradle')

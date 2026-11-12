@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-11-12T10:10:08.099701+00:00",
+  "sourceBaseCommit": "bc0503a98278a12458dfb4cef91729b5ac7c32b3",
+  "distributionApproved": false,
+  "androidUnit": {
+    "tests": 193,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4
+  },
+  "releaseLint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 879
+  },
+  "backend": {
+    "passed": 91,
+    "failed": 0,
+    "skipped": 0,
+    "usesLocalRedisLuaFixture": true,
+    "cloudInference": false
+  },
+  "releaseAuditTests": {
+    "passed": 8,
+    "failed": 0
+  },
+  "guardCases": {
+    "missingSigningRejected": true,
+    "partialSigningRejected": true,
+    "explicitUnsignedInspectionBuildSucceeded": true,
+    "validReleaseSigningNotTested": true
+  },
+  "preservation": {
+    "protectedWipStashAudioArchiveEnvLogoMasterMatchPriorEvidence": true,
+    "otherPrivateConfigsSnapshottedLocally": true,
+    "phoneAccessed": false,
+    "emulatorUsed": false,
+    "serverConfigurationChanged": false
+  },
+  "limitations": [
+    "Unsigned APK cannot be installed or distributed",
+    "Release candidate has no private adhan audio",
+    "Known-value scanning is not exhaustive secret detection",
+    "Unit checks do not replace final device smoke/upgrade",
+    "No release keystore or signed artifact created"
+  ]
+}

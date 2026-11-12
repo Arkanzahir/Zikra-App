@@ -2,3 +2,8 @@
 /.local/
 **/google-services.json
 **/*service-account*.json
+# Distribution signing credentials stay private even outside .local.
+*.jks
+*.keystore
+*.p12
+*.pfx

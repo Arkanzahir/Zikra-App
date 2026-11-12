@@ -1,0 +1,36 @@
+// Keep signing credentials out of Gradle properties, source files and command arguments.
+def signingNames = ['STORE_FILE', 'STORE_PASSWORD', 'KEY_ALIAS', 'KEY_PASSWORD']
+def signingValues = signingNames.collectEntries { name ->
+    [(name): providers.environmentVariable('ZIKRA_RELEASE_' + name).orElse('').get()]
+}
+def signingPresent = signingValues.values().every { !it.isEmpty() }
+def signingPartial = signingValues.values().any { !it.isEmpty() } && !signingPresent
+def unsignedCandidate = providers.gradleProperty('zikraUnsignedCandidate').orElse('false').get() == 'true'
+
+if (signingPresent) {
+    android.signingConfigs.create('betaRelease') {
+        storeFile = file(signingValues.STORE_FILE)
+        storePassword = signingValues.STORE_PASSWORD
+        keyAlias = signingValues.KEY_ALIAS
+        keyPassword = signingValues.KEY_PASSWORD
+    }
+    android.buildTypes.release.signingConfig = android.signingConfigs.betaRelease
+}
+
+def validateReleaseSigning = tasks.register('validateReleaseSigning') {
+    doLast {
+        if (signingPartial) throw new GradleException('Incomplete release signing environment; no values are logged')
+        if (unsignedCandidate && signingPresent)
+            throw new GradleException('Unsigned inspection mode cannot use release signing credentials')
+        if (!signingPresent && !unsignedCandidate)
+            throw new GradleException('Release signing is required; use zikraUnsignedCandidate=true only for local inspection')
+        if (signingPresent) {
+            def key = file(signingValues.STORE_FILE).canonicalFile
+            def repo = rootProject.projectDir.parentFile.canonicalFile.toPath()
+            def privateRoot = new File(repo.toFile(), '.local').canonicalFile.toPath()
+            if (!key.isFile() || (key.toPath().startsWith(repo) && !key.toPath().startsWith(privateRoot)))
+                throw new GradleException('Release keystore must exist in ignored .local or outside the repository')
+        }
+    }
+}
+tasks.matching { it.name == 'preReleaseBuild' }.configureEach { dependsOn(validateReleaseSigning) }
