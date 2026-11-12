@@ -1,0 +1,33 @@
+{
+  "checkedDate": "2026-11-12",
+  "sourceBaseCommit": "f8aaa0e31ef4d989fb8de091ba50ec14da2442e1",
+  "auditReproducedFromPrivateSnapshots": true,
+  "readOnlySourceQueries": true,
+  "corpusTextBundledInGitOrApk": false,
+  "runtimeChanged": false,
+  "scopeChangeApproved": false,
+  "hadithSourceChanged": false,
+  "b01CompleteBooksSatisfied": false,
+  "religiousCorrectnessOfWholeCorpusCertified": false,
+  "distributionApproved": false,
+  "phoneOrEmulatorUsed": false,
+  "apkRebuilt": false,
+  "emailSent": false,
+  "serviceConfigurationChanged": false,
+  "protectedWipStashAudioEnvLogoMasterApkUnchanged": true,
+  "independentReferenceCheck": {
+    "sampleId": 4560,
+    "references": [
+      "https://sunnah.com/bukhari:1",
+      "https://sunnah.com/muslim:1907a"
+    ],
+    "scope": "Theme, narrator, reference and variant wording only; not all Indonesian translation or printed editions"
+  },
+  "additionalSourceGradeNoteChecked": 58153,
+  "attemptsKept": [
+    "Initial restricted-network URLError before HTTP",
+    "Helper namespace NameError before extra network requests",
+    "CSV returned raw bytes rather than assumed ZIP; parser corrected without replacing source",
+    "PDF screenshots partly unavailable; not used to verify edition/layout"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "checkedDate": "2026-11-12",
+  "termsUrl": "https://hadeethenc.com/id/home",
+  "termsCount": 7,
+  "termsFragmentSha256": "f4c22050138140035bbe7d88a7e7bf25ac999d76056ef4d5821dbc5983826769",
+  "wholeHtmlSha256": "632750dc398ed95fbb4b4c4955a371b5c05eabd6013a14cdbb358dd1bc74cc8f",
+  "conditionsSummary": [
+    "Preserve content without changes/additions/deletions",
+    "Credit publisher/source",
+    "State translation version",
+    "Keep version information in document",
+    "Notify source of translation observations",
+    "Follow source updates",
+    "Do not display inappropriate advertising"
+  ],
+  "translationVersionFoundInOfficialCsv": "1.22.0",
+  "declaredLastUpdate": "2026-05-10 17:47:10",
+  "officialCsvUrl": "https://hadeethenc.com/downloads/csv/HadeethEnc.com_id-v1.22.0.csv",
+  "versionCheckUrl": "https://hadeethenc.com/en/check/id/v1.22.0",
+  "versionCheckStatus": 200,
+  "sourcePageSaysUpToDateAtProbe": true,
+  "sqliteConditionalHead": {
+    "method": "HEAD",
+    "ifNoneMatchSent": true,
+    "status": 304,
+    "url": "https://hadeethenc.com/downloads/sqlite/id.sqlite.zip"
+  },
+  "versionCaveat": "API/SQLite alone lack Indonesian release version; ar_version is not substituted for it. CSV metadata is mandatory provenance.",
+  "distributionApproved": false
+}

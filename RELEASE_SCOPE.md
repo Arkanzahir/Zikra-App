@@ -1,5 +1,18 @@
 # A02 — Cakupan penyelesaian Zikra
 
+## B01 — audit alternatif HadeethEnc, belum ganti sumber — 12 November 2026
+
+Pengguna meminta audit dahulu. [Bukti/ketentuan/versi/batas](android/validation/hadeethenc-source-2026-11-12/README.md):
+ekspor resmi2.260ID Arab–Indonesia,10sampel API cocok,CSV/SQLite teks utama
+seluruh ID cocok; CSV1.22.0 membawa metadata/tautan cek yang menyatakan mutakhir
+saat probe. Ketentuan penerbitan ulang eksplisit bersyarat, rujukan rinci di
+endpointArab, grade/atsar tidak boleh disamaratakan. Layak kandidat ensiklopedia
+pilihan, bukan bukti dua kitab lengkap/tashih semua entri. Adaptor/versi/rujukan/
+migrasi/izin perubahan cakupan belum diterapkan; B01 dan beta/publik tetap terbuka.
+Tidak mengimpor korpus keGit/APK, tidak mengubah runtime/sourceHadis/bookmark/
+APK/backend/HP atau mengirim email. WIP/stash/audio/env/logo/master terjaga.
+Checkpoint audit/bukti tetap audit/commit/push; G04 dan gerbang lain tetap.
+
 ## G04 — persiapan beta, belum siap distribusi — 12 November 2026
 
 Pengguna memprioritaskan kesiapan beta sebelum website unduhan. Jalur release

@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "scope": "Structural inspection of one official Indonesian export and ten bilingual API samples; not independent tashih, complete-book proof or integration approval.",
+  "snapshot": {
+    "bytes": 7831552,
+    "sha256": "6f616e20663aefefdd2bc1a0ab3ad1c23547e2d802fdf107d79abce2546fe8aa",
+    "integrity": "ok",
+    "hadithCount": 2260,
+    "uniqueIds": 2260,
+    "minimumId": 1751,
+    "maximumId": 66541,
+    "columns": [
+      "id",
+      "title",
+      "hadeeth",
+      "explanation",
+      "hints",
+      "hadeeth_ar",
+      "grade",
+      "attribution",
+      "tarteeb",
+      "ar_version"
+    ],
+    "emptyFields": {
+      "title": 0,
+      "hadeeth": 0,
+      "hadeeth_ar": 0,
+      "grade": 0,
+      "attribution": 0,
+      "explanation": 6,
+      "hints": 1407
+    },
+    "arabicTextWithoutArabicScript": 0,
+    "arabicVersions": {
+      "2": 841,
+      "1": 1419
+    },
+    "distinctSourceGradeLabels": 24,
+    "labelsContainingHasan": 161,
+    "sourceCommentCannotFindNamedScholarGradeIds": [
+      58153
+    ],
+    "danglingCategoryLinks": 0,
+    "duplicateCategoryPairs": 0,
+    "detailedReferenceColumnPresent": false,
+    "indonesianTranslationVersionColumnPresent": false
+  },
+  "rootCategories": [
+    {
+      "categoryId": 1,
+      "uniqueHadithsIncludingDescendants": 78
+    },
+    {
+      "categoryId": 2,
+      "uniqueHadithsIncludingDescendants": 10
+    },
+    {
+      "categoryId": 3,
+      "uniqueHadithsIncludingDescendants": 459
+    },
+    {
+      "categoryId": 4,
+      "uniqueHadithsIncludingDescendants": 1102
+    },
+    {
+      "categoryId": 5,
+      "uniqueHadithsIncludingDescendants": 741
+    },
+    {
+      "categoryId": 6,
+      "uniqueHadithsIncludingDescendants": 98
+    },
+    {
+      "categoryId": 7,
+      "uniqueHadithsIncludingDescendants": 204
+    }
+  ],
+  "rootCategoryCountsMatchLiveApi": true,
+  "samples": [
+    {
+      "id": 1751,
+      "textFieldsMatchOffline": true,
+      "hintsMatchAfterJsonDecoding": true,
+      "embeddedArabicMatchesArabicApi": true,
+      "arabicReferenceNonempty": true,
+      "indonesianReferencePresent": false,
+      "apiTranslationVersionFields": [],
+      "offlineArabicVersion": 2
+    },
+    {
+      "id": 4560,
+      "textFieldsMatchOffline": true,
+      "hintsMatchAfterJsonDecoding": true,
+      "embeddedArabicMatchesArabicApi": true,
+      "arabicReferenceNonempty": true,
+      "indonesianReferencePresent": false,
+      "apiTranslationVersionFields": [],
+      "offlineArabicVersion": 2
+    },
+    {
+      "id": 5497,
+      "textFieldsMatchOffline": true,
+      "hintsMatchAfterJsonDecoding": true,
+      "embeddedArabicMatchesArabicApi": true,
+      "arabicReferenceNonempty": true,
+      "indonesianReferencePresent": false,
+      "apiTranslationVersionFields": [],
+      "offlineArabicVersion": 2
+    },
+    {
+      "id": 5819,
+      "textFieldsMatchOffline": true,
+      "hintsMatchAfterJsonDecoding": true,
+      "embeddedArabicMatchesArabicApi": true,
+      "arabicReferenceNonempty": true,
+      "indonesianReferencePresent": false,
+      "apiTranslationVersionFields": [],
+      "offlineArabicVersion": 2
+    },
+    {
+      "id": 5881,
+      "textFieldsMatchOffline": true,
+      "hintsMatchAfterJsonDecoding": true,
+      "embeddedArabicMatchesArabicApi": true,
+      "arabicReferenceNonempty": true,
+      "indonesianReferencePresent": false,
+      "apiTranslationVersionFields": [],
+      "offlineArabicVersion": 1
+    },
+    {
+      "id": 6264,
+      "textFieldsMatchOffline": true,
+      "hintsMatchAfterJsonDecoding": true,
+      "embeddedArabicMatchesArabicApi": true,
+      "arabicReferenceNonempty": true,
+      "indonesianReferencePresent": false,
+      "apiTranslationVersionFields": [],
+      "offlineArabicVersion": 1
+    },
+    {
+      "id": 8289,
+      "textFieldsMatchOffline": true,
+      "hintsMatchAfterJsonDecoding": true,
+      "embeddedArabicMatchesArabicApi": true,
+      "arabicReferenceNonempty": true,
+      "indonesianReferencePresent": false,
+      "apiTranslationVersionFields": [],
+      "offlineArabicVersion": 2
+    },
+    {
+      "id": 10851,
+      "textFieldsMatchOffline": true,
+      "hintsMatchAfterJsonDecoding": true,
+      "embeddedArabicMatchesArabicApi": true,
+      "arabicReferenceNonempty": true,
+      "indonesianReferencePresent": false,
+      "apiTranslationVersionFields": [],
+      "offlineArabicVersion": 2
+    },
+    {
+      "id": 65043,
+      "textFieldsMatchOffline": true,
+      "hintsMatchAfterJsonDecoding": true,
+      "embeddedArabicMatchesArabicApi": true,
+      "arabicReferenceNonempty": true,
+      "indonesianReferencePresent": false,
+      "apiTranslationVersionFields": [],
+      "offlineArabicVersion": 2
+    },
+    {
+      "id": 66541,
+      "textFieldsMatchOffline": true,
+      "hintsMatchAfterJsonDecoding": true,
+      "embeddedArabicMatchesArabicApi": true,
+      "arabicReferenceNonempty": true,
+      "indonesianReferencePresent": false,
+      "apiTranslationVersionFields": [],
+      "offlineArabicVersion": 2
+    }
+  ],
+  "sampleSelection": "Median numeric ID in each root subtree, plus global minimum/maximum and known niat sample; not a random accuracy estimate",
+  "officialCsvRelease": {
+    "bytes": 10706985,
+    "sha256": "6049e4f92c6c1d40f06993a7c57e5808aafffb5b65da2b12f2f6ede4b056a2c8",
+    "sourceVersion": "1.22.0",
+    "declaredLastUpdate": "2026-05-10 17:47:10",
+    "updateCheckUrl": "https://hadeethenc.com/en/check/id/v1.22.0",
+    "metadataPreservationNoticePresent": true,
+    "dataRows": 2260,
+    "uniqueIds": 2260,
+    "allIndonesian": true,
+    "idSetMatchesSqlite": true,
+    "columns": [
+      "id",
+      "title_ar",
+      "title",
+      "hadith_text_ar",
+      "hadith_text",
+      "explanation_ar",
+      "explanation",
+      "benefits_ar",
+      "benefits",
+      "grade_ar",
+      "takhrij_ar",
+      "grade",
+      "takhrij",
+      "lang",
+      "link"
+    ],
+    "rawFieldMismatchCountsAgainstSqlite": {
+      "title": 0,
+      "hadith_text": 0,
+      "hadith_text_ar": 0,
+      "explanation": 0,
+      "grade": 2257,
+      "takhrij": 2257
+    },
+    "matchingGradeAndAttributionAfterBracketComparisonOnly": {
+      "grade": 2260,
+      "takhrij": 2260
+    },
+    "comparisonDoesNotModifyOriginalContent": true
+  },
+  "pagination": {
+    "firstPageCount": 20,
+    "secondPageCount": 20,
+    "duplicateIdsWithinPages": 0,
+    "categoryTotal": 78,
+    "lastPage": 4,
+    "onlyTwoPagesFetched": true
+  },
+  "missingExplanationIds": [
+    10558,
+    10564,
+    11187,
+    11201,
+    58084,
+    64709
+  ],
+  "distributionApproved": false,
+  "b01CompleteBooksSatisfied": false
+}
