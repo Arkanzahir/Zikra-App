@@ -1,5 +1,34 @@
 # Cuplikan promo 15 detik — 12 November 2026
 
+## Suara dan naskah pilihan pengguna, 52 detik
+
+Hasil lokal D:/Download/Zikra-App-main/Zikra-Promo-52s-Putri-Naskah-Baru-Final.mp4.
+1280x720/30fps, H.264/AAC48kHz. Pengguna mengonfirmasi gaya HP/latar sama dengan
+versi sebelumnya, dengan suara/naskah baru dan urutan adegan diselaraskan.
+Naskah lengkap sesuai kiriman tersimpan di script-approved.txt,104kata.
+Suara Putri Maharani pada tautan I7sakys8pBZ1Z5f0UhT9 cocok selected-radio value
+demo resmi. Halaman profil menghasilkan audio blob yang tidak bisa diekspor
+melalui media yang terlihat; hasil unduhan diperoleh melalui demo Indonesian
+resmi dengan ID yang sama. Tidak ada API key/login/paket berbayar baru.
+
+Bacaan51,069detik memakai tempo asli, diberi lead250ms dan ekor diam hingga
+52detik. Urutan baru mulai dengan pertanyaan, pengenalan, tutorial AI, Study/
+fokus, Quran/hafalan/Kiblat/salat, Protector, lalu ajakan beta. Fotografi/
+bingkai/bahan rekaman berasal dari versi sebelumnya. Jeda jaringan pada rekaman
+AI dipersingkat dan aksi UI dipotong sesuai selected-voice-edit.json.
+
+Renderer menerima prepared-audio eksplisit dan durasi dari edit list; jalur
+legacy47 tetap tersedia. Penjagaan menolak penggunaan cache lama untuk timeline
+baru, termasuk ketika WAV legacy sudah ada. Teks shot pendek muncul lebih
+cepat; penunjuk menu ditahan pada menu dan penunjuk jawaban baru muncul setelah
+respons terlihat. Render percobaan awal tetap lokal, hasil Final sudah dikoreksi.
+Bukti di checks-selected-voice.json:1560frame+audio decode penuh lulus, geometri/
+hold lulus, rata-rata-16,5dB/puncak-1,4dB, visual menu/jawaban/contact ditinjau.
+Penilaian pendengaran dan penerimaan estetika tetap memerlukan pengguna.
+Lisensi komersial suara belum dipastikan; output tetap lokal untuk tinjauan.
+HP/emulator dan runtime aplikasi tidak diakses; seluruh gerbang aplikasi tetap.
+
+
 ## Versi lengkap 47 detik
 
 Hasil lokal D:/Download/Zikra-App-main/Zikra-Promo-47s-Landscape-Putri-Final.mp4.

@@ -1,5 +1,20 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## Promo naskah pilihan pengguna - 12 November 2026
+
+Pengguna memilih Putri Maharani I7sakys8pBZ1Z5f0UhT9, mengirim naskah104kata
+dan mengonfirmasi mempertahankan gaya HP/latar video47detik. Bacaan baru
+51,07detik disimpan lewat demo resmi dengan radio value cocokID; video52detik
+memakai urutan AI-Study-ibadah-Protector, tempo suara asli. Source dan bukti
+di design/promos/2026-11-12/README.md, selected-voice-edit.json serta
+checks-selected-voice.json.1560frame+audio/geometry/hold lulus; prepared-audio
+eksplisit menjaga cache narasi lama terpisah. Teks shotpendek/callout menu
+dan jawaban diselaraskan. Bahan lama dipakai, tanpa aksesHP/emulator baru.
+Hasil lokal untuk tinjauan; lisensi suara komersial/publikasi/penerimaan
+intonasi belum terpenuhi. WIP/stash/arsip/env/master dan gerbang rilis tetap.
+Checkpoint source/bukti wajib audit/commit/push.
+
+
 ## Promo lengkap 47 detik - 12 November 2026
 
 Pengguna meminta eksekusi mengikuti referensi mendatar47detik. Hasil dan bukti

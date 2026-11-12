@@ -1,4 +1,4 @@
-"""Render the 47-second Zikra product demo from a reproducible edit decision list."""
+"""Render a Zikra product demo from a reproducible edit decision list."""
 import argparse
 import json
 import math
@@ -123,15 +123,21 @@ def assemble_voice(ffmpeg, raw_voice, work, audio):
                     "-filter_complex", ";".join(filters), "-map", "[out]", "-c:a", "pcm_s16le", str(audio)], check=True)
 
 
-def render(edit, ffmpeg, output, work, voice):
+def render(edit, ffmpeg, output, work, voice, prepared_audio=None):
     if output.exists():
         raise FileExistsError(output)
     work.mkdir(parents=True, exist_ok=True)
     shots = json.loads(edit.read_text(encoding="utf-8-sig"))
-    assert shots[0]["start"] == 0 and shots[-1]["end"] == 47
+    duration = shots[-1]["end"]
+    assert shots[0]["start"] == 0 and math.isfinite(duration) and duration > 0
     assert all(a["end"] == b["start"] for a, b in zip(shots, shots[1:]))
-    audio = work/"narration-timed.wav"
+    assert all(s["end"] > s["start"] for s in shots)
+    if prepared_audio is None and duration != 47:
+        raise ValueError("Supply prepared audio for a new narration timeline")
+    audio = prepared_audio or work/"narration-timed.wav"
     if not audio.exists():
+        if prepared_audio is not None:
+            raise FileNotFoundError(prepared_audio)
         assemble_voice(ffmpeg, voice, work, audio)
     base = background()
     picture = work/"picture-full.mp4"
@@ -168,7 +174,7 @@ def render(edit, ffmpeg, output, work, voice):
                     composite_phone(frame, screen, pose)
                     if shot.get("copy"):
                         text_x = 120 if shot["pose"][0] > 700 else 615
-                        delay = .5 if previous is not None else .1
+                        delay = shot.get("copyDelay", .5 if previous is not None else .1)
                         frame.alpha_composite(text(shot["copy"], text_x, shot.get("copyY", 270), shot.get("font", 43), elapsed-delay))
                     for item in shot.get("callouts", []):
                         callout(frame, item, elapsed)
@@ -189,7 +195,7 @@ def render(edit, ffmpeg, output, work, voice):
             raise RuntimeError("Video encoding failed")
     subprocess.run([str(ffmpeg), "-hide_banner", "-loglevel", "error", "-n", "-i", str(picture),
                     "-i", str(audio), "-map", "0:v", "-map", "1:a", "-c:v", "copy",
-                    "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-t", "47",
+                    "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-t", str(duration),
                     "-movflags", "+faststart", str(output)], check=True)
 
 
@@ -197,4 +203,5 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("edit", "ffmpeg", "output", "work", "voice"):
         parser.add_argument("--"+name, type=Path, required=True)
+    parser.add_argument("--prepared-audio", type=Path)
     render(**vars(parser.parse_args()))
