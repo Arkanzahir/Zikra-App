@@ -1,5 +1,20 @@
 # A02 — Cakupan penyelesaian Zikra
 
+## G03/G04 — audit luring Quran, retensi dan kontak, 12 November 2026
+
+[Hasil audit tanpa HP](android/validation/non-phone-release-2026-11-12/README.md):
+pengguna mengizinkan email dukungan arkanzahir46@gmail.com; dokumen privasi/
+catatan beta diperbarui, identitas penerbit legal belum diasumsikan. Retensi
+kode dicatat: registry tanpa TTL/revoke bukan delete, usage/gambar172800detik,
+lease55/key60detik, event gempa7hari. Retensi penyedia belum terverifikasi.
+Ketentuan QF/FAQ/Content Sync primer ditinjau; font CDN bersyarat berbeda dari
+konten offline. QuranRepository masih cache API biasa/unduhan tanpa sync; perlu
+migrasi Content Sync, bukan hapus cache atau ganti sumber diam-diam. Rencana
+transaksi/preservasi/bookmark/rollback dan gate release disimpan, implementasi
+migrasi belum dilakukan. APK1.9.41/runtime/backend/keystore/data/HP tidak diubah.
+Tidak menerima ketentuan/mengirim email/publikasi. B01/audio/C02/D02/E/F/G serta
+beta tetap terbuka. Checkpoint audit/commit/push; WIP/stash/privat tetap.
+
 ## G03 — audit font bundel tanpa HP, 12 November 2026
 
 Pengguna meminta pekerjaan tanpa HP. [Bukti](android/validation/bundled-fonts-2026-11-12/README.md):

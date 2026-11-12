@@ -1,7 +1,8 @@
 # Draf informasi privasi Zikra beta
 
 12 November 2026. **Draf untuk ditinjau, belum kebijakan publik final.**
-Nama penerbit dan kontak dukungan belum ditetapkan. Cakupan usia, retensi
+Kontak dukungan yang diizinkan pengguna: arkanzahir46@gmail.com. Nama aplikasi
+Zikra; identitas penerbit final belum dikonfirmasi. Cakupan usia, retensi
 metadata seluruh penyedia dan prosedur permintaan penghapusan server harus
 dipastikan sebelum dokumen diterbitkan. Ini bukan pernyataan semua lapisan nol log.
 
@@ -77,3 +78,30 @@ tambahan tidak menjadi izin permanen mengirim seluruh data ke AI. Operator
 memerlukan prosedur dukungan untuk mencabut akses instalasi dan menangani
 permintaan terkait data server; kontaknya harus ditetapkan sebelum rilis.
 Durasi retensi final per layanan belum disahkan dalam draf ini.
+
+## Retensi yang terlihat pada kode gateway
+
+Pemeriksaan 12 November 2026 (bukan audit dashboard penyedia):
+
+| Data | Perilaku kode saat ini |
+| --- | --- |
+| Registry instalasi dan hash token akses | Tidak memiliki TTL otomatis. Pencabutan menandai revoked; bukan penghapusan record |
+| Hitungan pemakaian AI | TTL 172.800 detik, diperbarui oleh pemakaian yang diterima; bukan penghapusan mutlak dua hari sejak instalasi |
+| Slot aktif AI | Lease 55 detik, key TTL 60 detik; pelepasan normal lebih cepat |
+| Kuota/deduplikasi gambar | TTL 172.800 detik pada key yang diatur layanan gambar |
+| Deduplikasi laporan gempa | Key event 7 hari; penanda inisialisasi tidak memiliki TTL otomatis |
+| Chat dan berkas di HP | Lokal sampai dihapus pengguna/aturan penyimpanan aplikasi; penghapusan lokal tidak menghapus metadata layanan lain |
+
+Retensi log Vercel/Cloudflare/Upstash/FCM harus diverifikasi pada akun/paket dan
+ketentuan masing-masing; angka tabel tidak menjamin seluruh salinan/log/backups
+penyedia ikut terhapus. Tidak mengubah TTL produksi atau menghapus registry di sini.
+
+## Dukungan dan permintaan terkait data
+
+Hubungi [dukungan Zikra](mailto:arkanzahir46@gmail.com). Sertakan versi aplikasi,
+jenis masalah dan waktu kejadian; jangan kirim password, API key, kode akses AI,
+PIN, dokumen pribadi atau koordinat tepat. Permintaan akan ditinjau operator;
+belum ada layanan penghapusan otomatis atau tenggat penanganan yang dijanjikan.
+Operator memverifikasi instalasi melalui kanal aman sebelum mencabut akses atau
+menghapus data terkait. Pencabutan akses dan penghapusan data adalah dua langkah
+berbeda. Jangan mengklaim data penyedia terhapus tanpa konfirmasi layanan tersebut.

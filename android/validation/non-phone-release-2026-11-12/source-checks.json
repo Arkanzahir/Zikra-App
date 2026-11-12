@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-12",
+  "sourceSha256": {
+    "backend/redis-access.mjs": "2ec65f9591e963655c91fe5264942344c15c436a3dcb13e7075b5a899d03b626",
+    "backend/image-generation.mjs": "8791ca43812e45c8c10c97758104e5fa20dfdce60b55d58cca2fc609c48f1075",
+    "backend/earthquake-poll.mjs": "7d7c48e7e8bd66b1fb2b6b594966012f30979c2f26a3ceebeae2764d162edc25",
+    "android/app/src/main/java/com/zikra/app/reading/QuranRepository.java": "d96eba8071379889f4b3c9a5bd52cf4099e098c5d9881a3a5b03e047a5e7661d",
+    "android/app/src/main/java/com/zikra/app/reading/mushaf/MushafRepository.java": "801cfdc757d77b3e3610b3803f30db4c10d343ca7bcfc8fd31396d72a5c9907e",
+    "android/release-signing.gradle": "cb526aac3ab2eefa70a3d27747d09aadf66c58ca74d6aaaf54d405bfe80bf04f"
+  },
+  "phoneAccessed": false,
+  "runtimeChanged": false,
+  "deployed": false,
+  "distributionApproved": false
+}

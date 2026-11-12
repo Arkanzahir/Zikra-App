@@ -1,7 +1,7 @@
 # Catatan calon beta — belum diterbitkan
 
 Paket final, versi distribusi, hash, signer dan URL unduhan belum dipilih.
-Kandidat lokal pemeriksaan adalah source 1.9.40/code67. Jangan memasang kandidat
+Kandidat lokal pemeriksaan adalah source 1.9.41/code68. Jangan memasang kandidat
 unsigned atau menjadikan debug lama sebagai unduhan beta publik.
 
 ## Fitur yang dapat diuji setelah gerbang dipenuhi
@@ -35,7 +35,7 @@ dipengaruhi izin alarm/notifikasi, senyap, audio focus dan pembatasan vendor.
 
 ## Laporan masalah
 
-Kontak dukungan masih menunggu pilihan penerbit. Sertakan versi, model HP,
+Kontak dukungan: [arkanzahir46@gmail.com](mailto:arkanzahir46@gmail.com). Sertakan versi, model HP,
 versi Android, langkah mengulang dan teks error. Redaksi screenshot yang memuat
 nama, lokasi tepat, isi chat atau dokumen. Jangan mengirim key/kode akses/PIN.
 
