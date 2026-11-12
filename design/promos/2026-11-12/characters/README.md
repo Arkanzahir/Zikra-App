@@ -1,7 +1,8 @@
 # Karakter promo Zikra
 
-Tiga ilustrasi karakter mahasiswa laki-laki semirealistis dibuat memakai
-built-in ImageGen. Warna hijau-krem dipilih untuk menyatu dengan materi promo.
+Tiga ilustrasi karakter mahasiswa laki-laki kartun 2D dibuat memakai
+built-in ImageGen. Pengguna mengoreksi kandidat semirealistis dan meminta
+kartun. Warna hijau-krem dipilih untuk menyatu dengan materi promo.
 
 - student-confused.png menunjukkan kebingungan saat melihat materi.
 - student-understood.png menunjukkan membaca jawaban melalui HP.

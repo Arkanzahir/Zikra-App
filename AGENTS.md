@@ -1,5 +1,19 @@
 # Workflow proyek Zikra
 
+## Koreksi karakter promo menjadi kartun 2D - 12 November 2026
+
+Pengguna menolak rupa semirealistis dan memperjelas maksudnya karakter kartun.
+Tiga PNG diganti kartun2D konsisten melalui built-in ImageGen, memakai path
+aset yang sama; kandidat lama adalah riwayat ditolak, bukan desain diterima.
+Video52detik diekspor ulang melalui proses baru, suara/naskah stream-byte-sama.
+1560frame+audio decode lulus, alpha/ukuran/posisi dan visual pembuka/Study/paham
+ditinjau. Sumber/prompt terbaru di characters/README.md dan prompts.json,
+bukti di design/promos/2026-11-12/checks-cartoon.json. Gerak masuk/pergantian
+pose, belum animasi anggota tubuh. Hasil lokal menunggu penilaian pengguna;
+hak suara komersial/publikasi tetap belum ditutup. HP/emulator/app runtime/
+WIP/stash/arsip/env/master terpelihara. Audit/commit/push checkpoint.
+
+
 ## Promo karakter - 12 November 2026
 
 Pengguna menilai video polos dan meminta karakter sesuai narasi, misalnya

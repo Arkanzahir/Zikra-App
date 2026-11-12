@@ -1,5 +1,23 @@
 # Cuplikan promo 15 detik — 12 November 2026
 
+## Revisi kartun 2D sesuai klarifikasi pengguna
+
+Kandidat semirealistis di bawah ditolak pengguna sebelum disampaikan sebagai
+hasil akhir. Pengguna menginginkan karakter kartun. Ketiga PNG pada folder
+characters sekarang adalah kartun2D hijau-krem dengan identitas konsisten,
+menggantikan rupa lama. Prompt terpakai tercatat di characters/prompts.json.
+
+Hasil terbaru D:/Download/Zikra-App-main/Zikra-Promo-52s-Kartun-2D-Putri.mp4.
+Susunan characters-edit.json dipertahankan dan render dilakukan melalui
+proses baru agar cache aset lama tidak terpakai. Suara/naskah dan durasi52detik
+cocok dengan versi Putri yang dipilih pengguna.1560frame+audio decode lulus;
+alpha, ukuran serta posisi lima vignette diperiksa; pembuka/paham/Study
+ditinjau. [Bukti terbaru](checks-cartoon.json).
+Gerak ilustrasi berupa masuk/fade/pergantian pose. Penerimaan visual oleh
+pengguna dan hak komersial suara tetap belum dipenuhi. Video tetap lokal;
+runtime dan gerbang aplikasi tidak diubah.
+
+
 ## Karakter pendukung cerita
 
 Hasil lokal D:/Download/Zikra-App-main/Zikra-Promo-52s-Karakter-Putri.mp4.

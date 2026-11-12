@@ -1,0 +1,77 @@
+{
+  "seconds": 52,
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "decodedFrames": 1560,
+  "decodePassed": true,
+  "audioExactCopyOfApprovedVersion": true,
+  "audioAdtsSha256": "baa3a590294d789116c703bea295ecc1d63a4e81e98e1dcb961f75f225eeef02",
+  "meanVolumeDb": -16.5,
+  "peakVolumeDb": -1.4,
+  "visualReview": [
+    "cartoon opening with right-aligned copy",
+    "cartoon understanding pose beside AI answer",
+    "cartoon writing pose in Study"
+  ],
+  "motion": "400ms fade /12px entrance then hold. Pose change, no articulated limb animation.",
+  "imageTool": "built-in image_gen",
+  "scriptAndVoiceChanged": false,
+  "newDeviceAccess": false,
+  "privatePhotoUsed": false,
+  "published": false,
+  "voiceCommercialLicenseVerified": false,
+  "preservation": {
+    "PROJECT_HANDOFF.md": true,
+    ".local/pending-audio-a03-2026-10-24/source-wip.zip": true,
+    ".local/featherless.env": true,
+    "design/branding/zikra-logo-primary.jpg": true
+  },
+  "output": "D:\\Download\\Zikra-App-main\\Zikra-Promo-52s-Kartun-2D-Putri.mp4",
+  "bytes": 3654658,
+  "sha256": "e6f73ef7e74d390cfd224ccfdad1b8a8f2624ec3ab323dd61db2951cebd6f034",
+  "styleDecision": "User explicitly requested 2D cartoon after rejecting semi-realistic characters",
+  "supersedes": "Rejected semi-realistic candidate; current asset paths contain cartoon replacements",
+  "assets": [
+    {
+      "path": "design\\promos\\2026-11-12\\characters\\student-confused.png",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "bytes": 1147576,
+      "sha256": "245973c608ea12c44873ea78627093479a53f259d4f1a617a880faa489959dfb"
+    },
+    {
+      "path": "design\\promos\\2026-11-12\\characters\\student-focused.png",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "bytes": 1061659,
+      "sha256": "c58f4d58094bf93c53b5cee1d40200ea25fcee92af022ac930afcee3208af2f0"
+    },
+    {
+      "path": "design\\promos\\2026-11-12\\characters\\student-understood.png",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "bytes": 959755,
+      "sha256": "e4fc1aa1179317e4c2335fa88af617cafbc1eb536874f4d799d03104151c82fa"
+    }
+  ],
+  "placementReview": "Same five boxes, independently checked against new dimensions; opening/Study/reaction inspected"
+}
