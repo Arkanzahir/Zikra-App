@@ -16,8 +16,12 @@
     "physicalGateAutomaticallyClosed": false
   },
   "liveHealth": {
-    "executed": false,
-    "reason": "Automatic approval review could not complete (Bad Request); action not executed."
+    "executed": true,
+    "passed": true,
+    "healthStatus": 200,
+    "unknownCredentialStatus": 401,
+    "inferenceChecked": false,
+    "initialApprovalReviewFailure": true
   },
   "phoneAccessed": false,
   "runtimeChanged": false,

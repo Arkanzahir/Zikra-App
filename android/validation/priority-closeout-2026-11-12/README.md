@@ -16,7 +16,10 @@ konfigurasi cloud, audio atau APK. Kandidat tetap 1.9.41; HP terakhir 1.9.39.
   tidak mengubah kode untuk menyembunyikan kegagalan. Log awal tetap privat.
 - Cek kesehatan HTTPS/auth Redis tidak dijalankan: automatic approval review
   gagal diproses (Bad Request), bukan keputusan bahwa aksi tidak aman. Tidak
-  mencoba jalur lain untuk melewati pemeriksaan. Server hari ini belum terbukti.
+  mencoba jalur lain untuk melewati pemeriksaan. Setelah jalur persetujuan kembali
+  bekerja, percobaan ulang dengan persetujuan berhasil: HTTPS 200, credential
+  tak dikenal 401. [Bukti](health.json), tanpa inference atau akses chat pengguna.
+  Ini bukan bukti model tersedia atau penutupan C02.
 
 ## Bukti yang sudah cukup dan tidak perlu diulang tanpa alasan
 

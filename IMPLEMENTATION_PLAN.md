@@ -6,7 +6,8 @@ Pengguna memprioritaskan penutupan lalu menunda HP. [Audit dan sesi berikutnya](
 78 backend lulus/13 skip/0 gagal; 19 observer lulus, replay sintetis bukan bukti
 fisik. Putaran awal satu tes gagal akses temp AppData; putaran akhir memakai
 temp privat proyek. Cek server live tidak dijalankan karena automatic approval
-review gagal diproses (Bad Request); tidak dilewati melalui jalur lain. Tidak
+review gagal diproses (Bad Request); sesudah jalur persetujuan pulih, retry
+berizin menghasilkan health200/auth401 tanpa inference. Bukti awal dipertahankan. Tidak
 mengakses HP/deploy/inference/mengubah runtime/APK/audio/env. Pemulihan reboot
 sudah teramati sebelumnya; jangan mengulang restart tanpa alasan. Sisa prioritas:
 C02 pesan berurutan/internet HP mandiri dan pemeriksaan layanan, D02 pengamatan
