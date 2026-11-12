@@ -9,6 +9,8 @@ Website bukan pengganti gerbang konten, privasi, paket dan pengujian.
 Daftar ini memperjelas gerbang beta pada [cakupan](../../RELEASE_SCOPE.md),
 tanpa menghapus fitur wajib atau mencentang seluruh A–D/E/F/G.
 
+[Jobdesk rinci J01–J15, status dan kriteria selesai](JOBDESK.md).
+
 ## Pekerjaan yang memblokir distribusi
 
 | Gerbang | Bukti tersedia | Yang masih diperlukan |

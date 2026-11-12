@@ -1,5 +1,16 @@
 # Workflow proyek Zikra
 
+## Jobdesk pelacakan sebelum eksekusi — 12 November 2026
+
+Pengguna meminta penjabaran dahulu. [Jobdesk J01–J15](docs/beta/JOBDESK.md)
+memetakan prioritas, status awal, dependensi, penanggung jawab, kebutuhan HP,
+kriteria selesai dan bukti ke checklist A–G. Ini dokumen rencana, tidak
+mengeksekusi fitur/deploy/HP atau mengubah cakupan. J01–J03 Content Sync dahulu;
+engine teruji bukan migrasi APK selesai. Hak/privasi/operasional/E/F/paket
+menyusul, satu sesi HP terkoordinasi, gerbang beta lalu website. Login/sync/admin,
+UI10 dan mode orang tua tetap ditunda. Perkiraan70–75% chat informal, bukan
+progres terukur. Tidak menutup parent A–D/E/F/G. Wajib audit/commit/push.
+
 ## Content Sync — fondasi server teruji, integrasi APK belum — 12 November 2026
 
 Pengguna meminta implementasi migrasi Quran luring. [Kode/bukti/batas](android/validation/quran-content-sync-2026-11-12/README.md):
