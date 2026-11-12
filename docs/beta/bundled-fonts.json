@@ -1,0 +1,32 @@
+{
+  "reviewed": "2026-11-12",
+  "fonts": [
+    {
+      "name": "Amiri Quran",
+      "font": "res/font/amiri_quran.ttf",
+      "notice": "assets/licenses/amiri-quran-OFL.txt",
+      "fontSha256": "dd11ed7dad6e426e67c4e0cbfd42d2f8469bf60e4eaab739ed0b674486348cf9",
+      "noticeSha256": "b32e3b24e2a943b8acbf6ab8d5499bfed737d5176091b7341a8c1e7fbcdeb0fa",
+      "upstream": "https://github.com/aliftype/amiri",
+      "license": "OFL-1.1"
+    },
+    {
+      "name": "Plus Jakarta Sans",
+      "font": "res/font/plus_jakarta_sans.ttf",
+      "notice": "res/raw/plus_jakarta_sans_license.txt",
+      "fontSha256": "89b3fb38aa0d275d7a731d0d817a4f1622b316b4d7fbdedcf02ee9099ff68bc8",
+      "noticeSha256": "995c7199cab65954f545996326755daee7b63cc6b42b06c13da1f9502ab08a99",
+      "upstream": "https://github.com/google/fonts/tree/main/ofl/plusjakartasans",
+      "license": "OFL-1.1"
+    },
+    {
+      "name": "Roboto",
+      "font": "res/font/protector_roboto.ttf",
+      "notice": "assets/licenses/protector-roboto-ofl.txt",
+      "fontSha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+      "noticeSha256": "7fc71631cf5ad1c89cfbf004f08d40731c8b881d8e895b4997877e3c5359d270",
+      "upstream": "https://github.com/google/fonts/tree/main/ofl/roboto",
+      "license": "OFL-1.1"
+    }
+  ]
+}

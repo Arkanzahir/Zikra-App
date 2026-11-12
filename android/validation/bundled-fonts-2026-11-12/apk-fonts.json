@@ -1,0 +1,22 @@
+{
+  "scope": "three-bundled-fonts-only",
+  "apkSha256": "29ad8fb40f6449efe1678df949665075a4a54394a06bb44187b21e807e261321",
+  "completeBundledFontInventory": true,
+  "fonts": [
+    {
+      "name": "Amiri Quran",
+      "fontAndNoticeMatch": true
+    },
+    {
+      "name": "Plus Jakarta Sans",
+      "fontAndNoticeMatch": true
+    },
+    {
+      "name": "Roboto",
+      "fontAndNoticeMatch": true
+    }
+  ],
+  "passed": true,
+  "downloadedMushafFontsReviewed": false,
+  "distributionApproved": false
+}

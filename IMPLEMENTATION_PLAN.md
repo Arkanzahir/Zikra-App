@@ -1,5 +1,17 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## G03 — audit font bundel tanpa HP, 12 November 2026
+
+Pengguna meminta pekerjaan tanpa HP. [Bukti](android/validation/bundled-fonts-2026-11-12/README.md):
+3 font lokal/notice OFL cocok hash source dan APK1.9.41; seluruh res/font
+terinventaris. Tool baru menolak notice hilang/font berubah/tambahan/source
+drift, 5 regresi lulus. Sumber OFL/Amiri/Google Fonts ditinjau. Tidak membangun
+ulang APK, mengubah desain/font/runtime/backend/private/WIP, memakai HP/emulator,
+mengirim email atau membuat signing baru. QCF/nama surah unduhan dan hak teks/
+terjemahan/timing/audio Quran belum tercakup. B01/adzan/C02/D02/E/F/G dan beta
+publik tetap terbuka; OFL font bundel bukan izin seluruh konten. Checkpoint
+wajib audit/commit/push. APK tetap1.9.41 dan HP terakhir1.9.39.
+
 ## Prioritas C02/D02 tanpa HP — 12 November 2026
 
 Pengguna memprioritaskan penutupan lalu menunda HP. [Audit dan sesi berikutnya](android/validation/priority-closeout-2026-11-12/README.md):

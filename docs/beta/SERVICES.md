@@ -39,3 +39,9 @@ atau seluruh lisensi konten sudah disahkan. Tidak mengganti penyedia/paket.
 Kesesuaian syarat Quran/font/audio/Hadis/Doa/USNO/Overpass dan metadata/retensi
 platform tetap memerlukan bukti. Jangan mengklaim seluruh G03 selesai dari
 empat halaman yang dibaca atau dari pemindaian credential yang bersih.
+
+## Font yang dibundel
+
+Tiga font lokal dan notice OFL telah diperiksa pada APK1.9.41: Amiri Quran,
+Plus Jakarta Sans dan Roboto. [Bukti/pemeriksaan ulang/batas](../../android/validation/bundled-fonts-2026-11-12/README.md).
+Ini tidak mencakup QCF/nama surah unduhan, teks, terjemahan atau audio Quran.

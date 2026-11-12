@@ -1,0 +1,10 @@
+test_altered_font_rejected (test_audit_bundled_fonts.BundledFontAuditTests.test_altered_font_rejected) ... ok
+test_matching_package_does_not_approve_distribution (test_audit_bundled_fonts.BundledFontAuditTests.test_matching_package_does_not_approve_distribution) ... ok
+test_missing_notice_rejected (test_audit_bundled_fonts.BundledFontAuditTests.test_missing_notice_rejected) ... ok
+test_source_drift_rejected_even_when_apk_still_matches_pin (test_audit_bundled_fonts.BundledFontAuditTests.test_source_drift_rejected_even_when_apk_still_matches_pin) ... ok
+test_uninventoried_packaged_font_rejected (test_audit_bundled_fonts.BundledFontAuditTests.test_uninventoried_packaged_font_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.083s
+
+OK
