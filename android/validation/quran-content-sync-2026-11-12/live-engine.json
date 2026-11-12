@@ -1,0 +1,15 @@
+{
+  "canonicalBootstrap": true,
+  "liveIncremental": true,
+  "credentialsOrTokensSaved": false,
+  "resources": [
+    {
+      "name": "quran_core:1",
+      "count": 90345
+    },
+    {
+      "name": "translations:33",
+      "count": 6236
+    }
+  ]
+}

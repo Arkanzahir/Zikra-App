@@ -1,0 +1,12 @@
+{
+  "environment": "production",
+  "auth": 200,
+  "bootstrap": 200,
+  "secretsSaved": false,
+  "keys": [
+    "sync"
+  ],
+  "shape": {
+    "sync": "object"
+  }
+}

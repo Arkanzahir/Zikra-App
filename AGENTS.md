@@ -1,5 +1,20 @@
 # Workflow proyek Zikra
 
+## Content Sync — fondasi server teruji, integrasi APK belum — 12 November 2026
+
+Pengguna meminta implementasi migrasi Quran luring. [Kode/bukti/batas](android/validation/quran-content-sync-2026-11-12/README.md):
+mesin protokol staging di memori + transport server-only tetap/berbatas,
+17tes lulus; bootstrap snapshot asli114surah/6236ayat dan6236terjemahan33,
+90345core record, incremental HTTPS produksi dengan filter kanonis berhasil.
+Probe awal2MB/422 dan salah validator urutan bootstrap dicatat/diperbaiki;
+bootstrap enumerasi resource tidak sama dengan urutan log incremental.
+Tidak menyimpan naskah/token/secret di Git/APK. Modul belum dihubungkan handler/
+route produksi, tidak deploy/env baru. Reader/QuranDownloadService/Mushaf masih
+lama; migrasi belum selesai. Berikutnya akses/rate-limit/cache server, binding
+Android durable/staging/refresh/tombstone dan preservasi file/bookmark/progres.
+APK tetap1.9.41, HP tidak diakses, WIP/stash/audio/privat terjaga. Gerbang rilis
+B01/C02/D02/E/F/G/signing/hak tetap terbuka. Audit/commit/push checkpoint.
+
 ## G03/G04 — audit luring Quran, retensi dan kontak, 12 November 2026
 
 [Hasil audit tanpa HP](android/validation/non-phone-release-2026-11-12/README.md):
