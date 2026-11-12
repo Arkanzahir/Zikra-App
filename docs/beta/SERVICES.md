@@ -16,6 +16,7 @@ atau seluruh lisensi konten sudah disahkan. Tidak mengganti penyedia/paket.
 | Quran.com/Quran Foundation/CDN Islamic Network | Nomor surah/ayat/halaman/qari dan metadata jaringan | Audit sumber teks/terjemahan/font/timing/audio perlu dirangkum sebelum distribusi final |
 | equran.id | Permintaan Doa/tafsir dan metadata jaringan | B04 sudah ditelaah terarah; tetap perlu sumber/atribusi pada paket final |
 | raw GitHub kandidat Gading | Kitab/versi paket dan metadata jaringan | B01 belum selesai. Lisensi software tidak mengesahkan sumber konten |
+| HadeethEnc opsional | Unduhan CSV resmi berversi dan metadata jaringan; situs sumber/cek versi setelah tindakan pengguna | Kandidat1.9.41 menambah2.260 entri pilihan/1.22.0, metadata asli/atribusi tersimpan. Bukan dua kitab lengkap atau pembaruan otomatis. [Bukti/batas](../../android/validation/hadeethenc-integration-2026-11-12/README.md) |
 | Android/aplikasi luar | Dikte, kamera/picker, rute/panggilan/berbagi pilihan pengguna | Bergantung perangkat dan aplikasi; jangan menganggap semua pemrosesan berlangsung lokal |
 
 ## Sumber primer diperiksa 12 November

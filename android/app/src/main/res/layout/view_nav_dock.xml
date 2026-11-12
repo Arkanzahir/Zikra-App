@@ -16,6 +16,7 @@
         android:background="@color/app_line_e5ebe7" />
     <LinearLayout
         android:id="@+id/navItems"
+        android:baselineAligned="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"

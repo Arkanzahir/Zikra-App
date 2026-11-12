@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-12",
+  "apkSha256": "29ad8fb40f6449efe1678df949665075a4a54394a06bb44187b21e807e261321",
+  "source": {
+    "version": "1.22.0",
+    "entries": 2260,
+    "bytes": 10706985,
+    "sha256": "6049e4f92c6c1d40f06993a7c57e5808aafffb5b65da2b12f2f6ede4b056a2c8",
+    "bundledInApk": false
+  },
+  "unit": {
+    "tests": 198,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4,
+    "passed": 194
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 878
+  },
+  "buildPassed": true,
+  "native": {
+    "native-final-normal.txt": {
+      "executions": 2,
+      "passed": true
+    },
+    "native-final-font200.txt": {
+      "executions": 1,
+      "passed": true
+    }
+  },
+  "nativeScope": "Fresh isolated Android emulator only; normal and 200% font. No user phone accessed.",
+  "screenshotsReviewed": 10,
+  "preservation": {
+    "protectedFilesUnchanged": true,
+    "privateConfigurationsUnchanged": true,
+    "stashUnchanged": true,
+    "userPhoneAccessed": false
+  },
+  "emulatorCleaned": true,
+  "localApk": "D:\\Download\\Zikra-App-main\\Zikra-HadeethEnc-v1.9.41-beta-debug.apk",
+  "distributionApproved": false,
+  "openGates": [
+    "B01 full-book/source decision",
+    "audio rights/lafaz and physical D02",
+    "C02 final service gate",
+    "privacy/support/terms",
+    "signed distribution and migration",
+    "remaining E/F/G checklist"
+  ]
+}

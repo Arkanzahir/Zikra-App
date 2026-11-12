@@ -1,0 +1,62 @@
+[
+  {
+    "privatePath": ".local/hadeethenc-native-20261112/screens-final-normal/validation/HadeethEnc-Collection.png",
+    "bytes": 337107,
+    "sha256": "b516c52010103cba9f7aacd7e6eb37bffac3268bb67242fe70c01784884baf43",
+    "visuallyReviewed": true
+  },
+  {
+    "privatePath": ".local/hadeethenc-native-20261112/screens-final-normal/validation/HadeethEnc-Reader-dark.png",
+    "bytes": 147396,
+    "sha256": "c2d2f653b3df9781a681e7c21ca8fb158d71f5a420bb43ed30ce532fb8eaf169",
+    "visuallyReviewed": true
+  },
+  {
+    "privatePath": ".local/hadeethenc-native-20261112/screens-final-normal/validation/HadeethEnc-Reader-light.png",
+    "bytes": 147705,
+    "sha256": "3ba4079358f3d485ae6624092a17549c40d4c7aa529ad92ca6cef4594475971a",
+    "visuallyReviewed": true
+  },
+  {
+    "privatePath": ".local/hadeethenc-native-20261112/screens-final-normal/validation/HadeethEnc-Source-dark.png",
+    "bytes": 162481,
+    "sha256": "417115ca304cd089c6e63fcffd908a95662d69edeca9f7a1791ef97bf1cf6278",
+    "visuallyReviewed": true
+  },
+  {
+    "privatePath": ".local/hadeethenc-native-20261112/screens-final-normal/validation/HadeethEnc-Source-light.png",
+    "bytes": 166062,
+    "sha256": "2703fdb94c7b05e856e64d402eea8ece1bb5fe0298ecee516353f2ceb081d623",
+    "visuallyReviewed": true
+  },
+  {
+    "privatePath": ".local/hadeethenc-native-20261112/screens-final-font200/validation/HadeethEnc-Collection.png",
+    "bytes": 105464,
+    "sha256": "90274470928495d0201d166b545bcd582bc2606e57d290368057d70737794c25",
+    "visuallyReviewed": true
+  },
+  {
+    "privatePath": ".local/hadeethenc-native-20261112/screens-final-font200/validation/HadeethEnc-Reader-dark.png",
+    "bytes": 80718,
+    "sha256": "a188c739c714b63977097de607781ec226d8ff6756d6e08116f910205d4c0121",
+    "visuallyReviewed": true
+  },
+  {
+    "privatePath": ".local/hadeethenc-native-20261112/screens-final-font200/validation/HadeethEnc-Reader-light.png",
+    "bytes": 81659,
+    "sha256": "0cb8039af517588518a4995cdbc3fc8c773a2b74fdc8b4168d5afcf7ba14f4d7",
+    "visuallyReviewed": true
+  },
+  {
+    "privatePath": ".local/hadeethenc-native-20261112/screens-final-font200/validation/HadeethEnc-Source-dark.png",
+    "bytes": 86449,
+    "sha256": "a71b471d2666cc15c8c0e296fb5859deb1e5489c3d58723fe6deb19f5b4e7de6",
+    "visuallyReviewed": true
+  },
+  {
+    "privatePath": ".local/hadeethenc-native-20261112/screens-final-font200/validation/HadeethEnc-Source-light.png",
+    "bytes": 89257,
+    "sha256": "600bc84ec6046b579c194ebd520d6fb07ab03bdc8a8d6f5aea480a1403e3319a",
+    "visuallyReviewed": true
+  }
+]

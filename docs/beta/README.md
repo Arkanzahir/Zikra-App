@@ -1,6 +1,9 @@
 # Persiapan distribusi beta Zikra
 
 12 November 2026. **Status HOLD, belum boleh dipublikasikan sebagai APK siap beta.**
+Kandidat1.9.41 kini menambah ensiklopedia HadeethEnc opsional, sumber/versi
+terlihat dan data lama dijaga. [Bukti dan batas](../../android/validation/hadeethenc-integration-2026-11-12/README.md).
+Ini belum menggantikan keputusan dua kitab lengkap atau menutup B01.
 Permintaan terbaru memprioritaskan kesiapan aplikasi sebelum website unduhan.
 Website bukan pengganti gerbang konten, privasi, paket dan pengujian.
 Daftar ini memperjelas gerbang beta pada [cakupan](../../RELEASE_SCOPE.md),
@@ -15,7 +18,7 @@ tanpa menghapus fitur wajib atau mencentang seluruh A–D/E/F/G.
 | Alur inti G01/G02 | Bukti modul dan pembaruan terdahulu | Smoke lintas fitur dan upgrade pada **paket final yang sama**, HP dengan izin ditolak/background/putus jaringan. Hasil versi lama tetap bukti versi lama |
 | AI C02/G03 | Hosting/akses instalasi/kuota; health 200 dan akses tanpa izin 401 pada pemeriksaan ini | Konfirmasi kasus laptop mati yang masih terbuka, alur memperoleh akses per tester, retensi/operator dan batas kapasitas beta. Jangan membagikan kode akses bersama dalam APK |
 | Privasi/dukungan G03 | Izin online sekali, konteks opt-in, proteksi backup dan audit terdahulu | Nama penerbit, kontak dukungan, kebijakan publik akurat dan peninjauan layanan. [Draf berbasis implementasi](PRIVACY_DRAFT.md) |
-| Paket G04 | Build debug 1.9.40/code67 dan bukti modul; jalur release disiapkan | Sertifikat release tetap yang dicadangkan privat, build signed final, fingerprint/hash, audit dan pengujian ulang. Kandidat unsigned tidak dapat dipasang |
+| Paket G04 | Kandidat internal debug 1.9.41/code68, 53,2 MB; jalur release disiapkan | Sertifikat release tetap yang dicadangkan privat, build signed final, fingerprint/hash, audit dan pengujian ulang. Kandidat unsigned tidak dapat dipasang; debug bukan paket publik |
 | Sumber layanan G03 | Atribusi OSM/BMKG/Open-Meteo pada fitur, API dan cache | Tinjau syarat sumber Quran/audio/font/Hadis/Doa dan skala beta; verifikasi identitas FCM APK release. [Inventaris](SERVICES.md) |
 
 E03/E04 dan F global tetap mengikuti checklist. Tidak boleh mengklaim fitur

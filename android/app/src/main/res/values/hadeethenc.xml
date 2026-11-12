@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="hadeethencVersionCheck" type="id" />
+    <string name="hadeethenc_title">Ensiklopedia pilihan</string>
+    <string name="hadeethenc_download_label">Hadis dan atsar pilihan · 2.260 entri · 10,7 MB</string>
+    <string name="hadeethenc_package_info">Arab dan Indonesia dari HadeethEnc.com, versi 1.22.0. Koleksi pilihan ini bukan kitab Bukhari/Muslim lengkap. Penilaian dan atribusi mengikuti penerbit. Unduhan opsional 10,7 MB diperiksa sebelum dipasang; setelah tersimpan dapat dibaca dan dicari luring. Berkas sumber dan metadata versi dipertahankan.\n\nPenerbit mengizinkan penggunaan ulang bersyarat: isi tetap utuh, atribusi dan versi dipertahankan, pembaruan diikuti, catatan terjemahan disampaikan ke sumber, serta iklan yang sesuai. Baca ketentuan lengkap di sumber.</string>
+    <string name="hadeethenc_source_button">Buka sumber</string>
+    <string name="hadeethenc_status">HadeethEnc.com · versi 1.22.0 · ID ensiklopedia, bukan nomor kitab. Koleksi hadis dan atsar pilihan; bukan semuanya berpenilaian sama.</string>
+    <string name="hadeethenc_kind">HADIS DAN ATSAR PILIHAN</string>
+    <string name="hadeethenc_note">Teks dan penilaian dipertahankan dari HadeethEnc.com. Nomor yang tampil adalah ID ensiklopedia. Untuk bibliografi rinci dan konteks, buka sumber. Tidak menambahkan penilaian agama dari AI.</string>
+    <string name="hadeethenc_grade_label">Penilaian dari sumber</string>
+    <string name="hadeethenc_explanation_label">Uraian dari sumber</string>
+    <string name="hadeethenc_benefits_label">Faedah dari sumber</string>
+    <string name="hadeethenc_full_source">Naskah lengkap dan versi</string>
+    <string name="hadeethenc_check_version">Periksa versi</string>
+    <string name="hadeethenc_details_note">Metadata dan teks sumber disimpan utuh. Pemeriksaan versi membuka situs penerbit; tidak mengunduh atau mengganti koleksi otomatis.</string>
+    <string-array name="hadeethenc_field_labels">
+        <item>ID ensiklopedia</item><item>Judul Arab</item><item>Judul Indonesia</item>
+        <item>Teks Arab</item><item>Terjemahan Indonesia</item><item>Uraian Arab</item>
+        <item>Uraian Indonesia</item><item>Faedah Arab</item><item>Faedah Indonesia</item>
+        <item>Penilaian Arab</item><item>Atribusi Arab</item><item>Penilaian</item>
+        <item>Atribusi</item><item>Bahasa</item><item>Tautan sumber</item>
+    </string-array>
+</resources>

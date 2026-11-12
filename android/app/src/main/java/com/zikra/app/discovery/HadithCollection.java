@@ -7,6 +7,7 @@ public final class HadithCollection {
   public static final class Entry {
     public final String id, title, arabic, meaning, source, collection;
     public final boolean excerpt;
+    public final HadeethEncCsv.Record encyclopedia;
 
     private Entry(
         String id, String title, String arabic, String meaning, String source, String collection) {
@@ -15,6 +16,11 @@ public final class HadithCollection {
 
     private Entry(String id, String title, String arabic, String meaning, String source,
         String collection, boolean excerpt) {
+      this(id, title, arabic, meaning, source, collection, excerpt, null);
+    }
+
+    private Entry(String id, String title, String arabic, String meaning, String source,
+        String collection, boolean excerpt, HadeethEncCsv.Record encyclopedia) {
       this.id = id;
       this.title = title;
       this.arabic = arabic;
@@ -22,6 +28,7 @@ public final class HadithCollection {
       this.source = source;
       this.collection = collection;
       this.excerpt = excerpt;
+      this.encyclopedia = encyclopedia;
     }
   }
 
@@ -34,8 +41,15 @@ public final class HadithCollection {
   }
 
   public static String bookForId(String id) {
+    if (id != null && id.matches("hadeethenc:id:[1-9][0-9]{0,5}")) return "hadeethenc";
     if (id == null || !id.matches("tafsirq-v1:(bukhari|muslim):[1-9][0-9]{0,5}")) return null;
     return id.split(":")[1];
+  }
+
+  public static Entry encyclopedia(HadeethEncCsv.Record record) {
+    return new Entry(record.id(), record.cell(2), record.cell(3), record.cell(4),
+        "HadeethEnc.com · ID " + record.number + " · versi " + HadeethEncCsv.VERSION
+            + "\n" + record.cell(12), "HadeethEnc", false, record);
   }
 
   public static final Entry[] ENTRIES = {

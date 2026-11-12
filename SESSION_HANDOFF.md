@@ -1,4 +1,33 @@
-# Handoff aktif Zikra — 11 November 2026 (WIB)
+# Handoff aktif Zikra — 12 November 2026 (WIB)
+
+## B01 — integrasi HadeethEnc opsional, 1.9.41 — 12 November 2026
+
+Kelanjutan audit menambah koleksi pilihan tanpa menghapus data/koleksi lama
+atau mengganti target dua kitab lengkap. [Implementasi, bukti dan batas](android/validation/hadeethenc-integration-2026-11-12/README.md):
+2.260 entri, unduhan opsional 10,7 MB dipatok ukuran/SHA, seluruh 15 kolom dan
+metadata asli dipertahankan, ID terpisah, pencarian/paging/bookmark luring,
+atribusi/versi/grade/uraian/faedah dan pemeriksaan versi manual. SQLite v1→v2
+hanya menambah kolom nullable; rollback/batal/buka ulang/hapus-pasang ulang
+serta bookmark lama/baru dibuktikan pada emulator baru terpisah.
+
+Unit 194 lulus/4 skip (198 total), lima regresi parser termasuk snapshot resmi
+penuh tanpa skip; tiga eksekusi native final/dua metode unik lulus, terang/gelap
+serta font 200%. Tombol versi/aksi reader dan pengukuran dock diperbaiki dari
+hasil screenshot. Lint 0 error/878 warning; build debug/helper berhasil.
+APK internal 1.9.41/code68: 53.164.475 byte, SHA256
+`29ad8fb40f6449efe1678df949665075a4a54394a06bb44187b21e807e261321`.
+Signer debug/dua audio cocok; tidak menemukan nilai credential server dikenal
+atau konfigurasi privat di APK. CSV tidak dibundel atau dimasukkan ke Git.
+Salinan lokal: `D:\Download\Zikra-App-main\Zikra-HadeethEnc-v1.9.41-beta-debug.apk`.
+
+HP tidak diakses/di-update, terakhir dibuktikan 1.9.39. Emulator khusus sesi
+sudah ditutup, setting dipulihkan dan data sementaranya dihapus; AVD lama tidak
+diubah. WIP PROJECT_HANDOFF, stash/arsip audio, tujuh konfigurasi privat,
+logo/artwork dan APK baseline cocok hash. Tidak ada deploy/email/Drive/biaya/
+publikasi baru. B01 induk (cakupan/edisi/hak sumber lama), audio, C02/sisa D02,
+E/F/G serta beta/publik tetap terbuka. Integrasi pilihan bukan tashih seluruh
+korpus atau pengganti dua kitab lengkap. Audit/commit/push checkpoint; jangan
+mengikutkan perubahan line ending lama atau WIP pengguna.
 
 ## B01 — audit alternatif HadeethEnc, belum ganti sumber — 12 November 2026
 

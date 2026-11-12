@@ -50,6 +50,9 @@ peta yang dilihat; HTTPS tidak menyembunyikan IP dari penerima. Layanan pada
 Izin lokasi dapat ditolak dan lokasi manual tetap tersedia.
 
 Quran, audio, paket Mushaf, Doa dan kandidat Hadis diunduh saat fitur memerlukannya.
+Ensiklopedia HadeethEnc bersifat opsional dan diunduh setelah pilihan pengguna;
+berkas sumber/metadata versinya disimpan lokal. Tautan sumber/cek versi membuka
+situs penerbit, tanpa mengirim profil atau isi chat.
 Tautan rute/panggilan/berbagi membuka aplikasi luar setelah tindakan pengguna;
 kebijakan aplikasi tujuan berlaku. Dikte/kamera/pemilih dokumen menggunakan
 layanan Android/aplikasi pilihan perangkat; tidak menjanjikan dikte selalu luring.

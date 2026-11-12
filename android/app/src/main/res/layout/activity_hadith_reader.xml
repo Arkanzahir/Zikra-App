@@ -32,10 +32,23 @@
             <TextView android:id="@+id/hadithReaderNote" style="@style/DailyCaption"
                 android:textColor="@color/hadith_secondary" android:layout_marginTop="20dp"
                 android:padding="12dp" android:background="@drawable/daily_mint_card" android:textSize="11sp" />
+            <LinearLayout android:id="@+id/hadeethencDetails" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                <TextView style="@style/HadithLabel" android:text="@string/hadeethenc_grade_label" android:layout_marginTop="24dp" />
+                <TextView android:id="@+id/hadeethencGrade" style="@style/DailyText" android:layout_marginTop="8dp" android:textIsSelectable="true" />
+                <TextView android:id="@+id/hadeethencExplanationLabel" style="@style/HadithLabel" android:text="@string/hadeethenc_explanation_label" android:layout_marginTop="24dp" />
+                <TextView android:id="@+id/hadeethencExplanation" style="@style/DailyText" android:layout_marginTop="8dp" android:textIsSelectable="true" />
+                <TextView android:id="@+id/hadeethencBenefitsLabel" style="@style/HadithLabel" android:text="@string/hadeethenc_benefits_label" android:layout_marginTop="24dp" />
+                <TextView android:id="@+id/hadeethencBenefits" style="@style/DailyText" android:layout_marginTop="8dp" android:textIsSelectable="true" />
+                <TextView android:id="@+id/hadeethencFullSource" style="@style/DailyButton" android:layout_marginTop="16dp"
+                    android:background="@drawable/daily_white_card" android:textColor="@color/daily_ink" android:text="@string/hadeethenc_full_source" />
+                <TextView android:id="@+id/hadeethencOpenSource" style="@style/DailyButton" android:layout_marginTop="8dp"
+                    android:background="@drawable/daily_white_card" android:textColor="@color/daily_ink" android:text="@string/hadeethenc_source_button" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/daily_line" />
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+    <LinearLayout android:id="@+id/hadithReaderActions" android:layout_width="match_parent" android:layout_height="wrap_content"
         android:gravity="center_vertical" android:paddingHorizontal="16dp" android:paddingVertical="8dp"
         android:background="@color/daily_white" android:baselineAligned="false">
         <TextView android:id="@+id/dailyReaderSave" style="@style/DailyButton"

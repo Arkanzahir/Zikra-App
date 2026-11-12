@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.zikra.app.discovery.HadeethEncCsvTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-12T12:10:08" hostname="LAPTOP-C0PN7S52" time="0.892">
+  <properties/>
+  <testcase name="wrongVersionForeignLinkLanguageAndDuplicateIdsAreRejected" classname="com.zikra.app.discovery.HadeethEncCsvTest" time="0.026"/>
+  <testcase name="sinkCancellationStopsWithoutSilentlyCompleting" classname="com.zikra.app.discovery.HadeethEncCsvTest" time="0.008"/>
+  <testcase name="quotedMultilineBomRoundTripAndDistinctIdentity" classname="com.zikra.app.discovery.HadeethEncCsvTest" time="0.046"/>
+  <testcase name="truncationMalformedQuotesAndOversizedFieldsAreRejected" classname="com.zikra.app.discovery.HadeethEncCsvTest" time="0.008"/>
+  <testcase name="auditedOfficialExportMatchesPinnedHashAndPreservesEveryRecord" classname="com.zikra.app.discovery.HadeethEncCsvTest" time="0.804"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

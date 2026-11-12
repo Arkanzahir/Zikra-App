@@ -38,12 +38,16 @@ public final class HadithStore implements AutoCloseable {
       "65e7a48f8ae0b792e3f8374f9de3e45d3119a1fdb5b6322aa6182db585348bb8");
   public static final Book MUSLIM = new Book("muslim", 4930, 5362, 12049465L,
       "c9dcee026176991c52c955628c7242f60a7ffafbb714c2cd387b14759bb89a71");
+  public static final Book HADEETHENC = new Book("hadeethenc", HadeethEncCsv.COUNT, 66541,
+      HadeethEncCsv.BYTES, HadeethEncCsv.SHA256);
+  private static final Object ENC_INSTALL_LOCK = new Object();
   private static final OkHttpClient HTTP = new OkHttpClient.Builder()
       .followRedirects(false).followSslRedirects(false)
       .connectTimeout(15, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS)
       .callTimeout(180, TimeUnit.SECONDS).build();
   private final Context context;
   private final Database helper;
+  private final File encyclopediaSource;
   private final Handler main = new Handler(Looper.getMainLooper());
   private final ExecutorService worker = Executors.newSingleThreadExecutor();
   private volatile boolean closed, cancelled;
@@ -62,18 +66,20 @@ public final class HadithStore implements AutoCloseable {
   public static Book book(String id) {
     if ("bukhari".equals(id)) return BUKHARI;
     if ("muslim".equals(id)) return MUSLIM;
+    if ("hadeethenc".equals(id)) return HADEETHENC;
     throw new IllegalArgumentException("Book");
   }
 
   public static final class Page {
     public final List<HadithCollection.Entry> entries;
     public final int total, offset, unavailableSaved;
-    public final boolean bukhariInstalled, muslimInstalled;
+    public final boolean bukhariInstalled, muslimInstalled, encyclopediaInstalled;
     private Page(List<HadithCollection.Entry> entries, int total, int offset, int missing,
-        boolean bukhari, boolean muslim) {
+        boolean bukhari, boolean muslim, boolean encyclopedia) {
       this.entries = Collections.unmodifiableList(entries); this.total = total;
       this.offset = offset; this.unavailableSaved = missing;
       this.bukhariInstalled = bukhari; this.muslimInstalled = muslim;
+      this.encyclopediaInstalled = encyclopedia;
     }
   }
 
@@ -84,6 +90,10 @@ public final class HadithStore implements AutoCloseable {
   public HadithStore(Context context, String databaseName) {
     this.context = context.getApplicationContext();
     helper = new Database(this.context, databaseName);
+    encyclopediaSource = new File(this.context.getFilesDir(), "hadeethenc-"
+        + java.util.UUID.nameUUIDFromBytes(databaseName.getBytes(StandardCharsets.UTF_8))
+        + "-" + HadeethEncCsv.VERSION + ".csv");
+    worker.execute(this::cleanupEncyclopediaSource);
   }
 
   private void post(Runnable action) { main.post(() -> { if (!closed) action.run(); }); }
@@ -97,13 +107,15 @@ public final class HadithStore implements AutoCloseable {
     });
   }
 
-  private Page queryNow(String query, String collection, Set<String> saved, int requestedOffset) {
+  private Page queryNow(String query, String collection, Set<String> saved, int requestedOffset) throws Exception {
     SQLiteDatabase db = helper.getWritableDatabase();
     syncBookmarks(db, saved);
     List<String> args = new ArrayList<>();
     String where = "1=1";
     if ("Bukhari".equals(collection) || "Muslim".equals(collection)) {
       where += " AND book=?"; args.add(collection.toLowerCase(java.util.Locale.ROOT));
+    } else if ("Pilihan".equals(collection)) {
+      where += " AND book=?"; args.add("hadeethenc");
     } else if ("Tersimpan".equals(collection)) where += " AND id IN (SELECT id FROM bookmarks)";
     if (query.matches("[0-9]{1,6}")) { where += " AND number=?"; args.add(query); }
     else if (!query.isEmpty()) {
@@ -126,7 +138,8 @@ public final class HadithStore implements AutoCloseable {
     try (Cursor c = db.rawQuery("SELECT COUNT(*) FROM bookmarks b LEFT JOIN entries e ON e.id=b.id WHERE e.id IS NULL", null)) {
       c.moveToFirst(); missing = c.getInt(0);
     }
-    return new Page(rows, total, offset, missing, installed(db, "bukhari"), installed(db, "muslim"));
+    return new Page(rows, total, offset, missing, installed(db, "bukhari"), installed(db, "muslim"),
+        installed(db, "hadeethenc"));
   }
 
   private void syncBookmarks(SQLiteDatabase db, Set<String> saved) {
@@ -144,7 +157,7 @@ public final class HadithStore implements AutoCloseable {
 
   private static boolean installed(SQLiteDatabase db, String book) {
     try (Cursor c = db.rawQuery("SELECT 1 FROM packages WHERE book=? AND revision=?",
-        new String[]{book, REVISION})) { return c.moveToFirst(); }
+        new String[]{book, "hadeethenc".equals(book) ? HadeethEncCsv.VERSION : REVISION})) { return c.moveToFirst(); }
   }
 
   public void get(String id, Result<HadithCollection.Entry> result) {
@@ -161,11 +174,17 @@ public final class HadithStore implements AutoCloseable {
     });
   }
 
-  private static HadithCollection.Entry entry(Cursor c) {
+  private static HadithCollection.Entry entry(Cursor c) throws Exception {
     String id = c.getString(c.getColumnIndexOrThrow("id"));
     if (c.getInt(c.getColumnIndexOrThrow("excerpt")) == 1) {
       for (HadithCollection.Entry e : HadithCollection.ENTRIES) if (e.id.equals(id)) return e;
       throw new IllegalStateException("Unknown excerpt");
+    }
+    if ("hadeethenc".equals(c.getString(c.getColumnIndexOrThrow("book")))) {
+      HadeethEncCsv.Record record = HadeethEncCsv.Record.fromJson(
+          c.getString(c.getColumnIndexOrThrow("content")));
+      if (!record.id().equals(id)) throw new IllegalStateException("Source identity mismatch");
+      return HadithCollection.encyclopedia(record);
     }
     return HadithCollection.sourced(c.getString(c.getColumnIndexOrThrow("book")),
         c.getInt(c.getColumnIndexOrThrow("number")), c.getString(c.getColumnIndexOrThrow("arab")),
@@ -175,6 +194,7 @@ public final class HadithStore implements AutoCloseable {
   public void download(String id, Download result) {
     Book book = book(id);
     cancelled = false;
+    if (book == HADEETHENC) { downloadEncyclopedia(result); return; }
     worker.execute(() -> {
       File temp = new File(context.getCacheDir(), "hadith-" + book.id + ".part");
       try {
@@ -213,6 +233,65 @@ public final class HadithStore implements AutoCloseable {
         post(() -> result.failed(code));
       } finally { call = null; temp.delete(); }
     });
+  }
+
+  private void downloadEncyclopedia(Download result) {
+    worker.execute(() -> {
+      File temp = null;
+      try {
+        if (new StatFs(context.getFilesDir().getAbsolutePath()).getAvailableBytes() < HadeethEncCsv.BYTES * 8)
+          throw new IllegalStateException("storage");
+        temp = File.createTempFile("hadeethenc-", ".part", context.getCacheDir());
+        HadeethEncTransfer.fetch(temp, () -> closed || cancelled, active -> call = active,
+            percent -> post(() -> result.progress(percent)));
+        if (closed || cancelled) throw new IllegalStateException("cancelled");
+        // Keep the exact publisher file; the database is an index, not a replacement for its notice.
+        synchronized (ENC_INSTALL_LOCK) {
+          if (closed || cancelled) throw new IllegalStateException("cancelled");
+          java.nio.file.Files.move(temp.toPath(), encyclopediaSource.toPath(),
+              java.nio.file.StandardCopyOption.ATOMIC_MOVE, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+          importEncyclopedia(encyclopediaSource);
+        }
+        post(() -> { result.progress(100); result.finished(); });
+      } catch (Exception failure) {
+        String code = closed || cancelled ? "cancelled" : "storage".equals(failure.getMessage()) ? "storage"
+            : "checksum".equals(failure.getMessage()) ? "checksum" : "network";
+        post(() -> result.failed(code));
+      } finally {
+        call = null;
+        if (temp != null) temp.delete();
+        cleanupEncyclopediaSource();
+      }
+    });
+  }
+
+  private void cleanupEncyclopediaSource() {
+    synchronized (ENC_INSTALL_LOCK) {
+      try { if (!installed(helper.getReadableDatabase(), "hadeethenc")) encyclopediaSource.delete(); }
+      catch (RuntimeException ignored) { /* Preserve a possibly installed source on uncertainty. */ }
+    }
+  }
+
+  /** All parsing/inserts occur in one transaction; failure retains every previous source/bookmark. */
+  private void importEncyclopedia(File file) throws Exception {
+    SQLiteDatabase db = helper.getWritableDatabase();
+    db.beginTransaction();
+    try (InputStreamReader reader = new InputStreamReader(new FileInputStream(file),
+        StandardCharsets.UTF_8.newDecoder().onMalformedInput(java.nio.charset.CodingErrorAction.REPORT)
+            .onUnmappableCharacter(java.nio.charset.CodingErrorAction.REPORT))) {
+      db.delete("entries", "book=?", new String[]{"hadeethenc"});
+      HadeethEncCsv.parse(reader, record -> {
+        if (closed || cancelled) throw new IllegalStateException("cancelled");
+        ContentValues row = values(HadithCollection.encyclopedia(record), "hadeethenc", record.number);
+        row.put("content", record.json());
+        db.insertOrThrow("entries", null, row);
+      });
+      if (closed || cancelled) throw new IllegalStateException("cancelled");
+      ContentValues metadata = new ContentValues(); metadata.put("book", "hadeethenc");
+      metadata.put("revision", HadeethEncCsv.VERSION); metadata.put("count", HadeethEncCsv.COUNT);
+      db.insertWithOnConflict("packages", null, metadata, SQLiteDatabase.CONFLICT_REPLACE);
+      db.setTransactionSuccessful();
+    } finally { db.endTransaction(); }
   }
 
   /** The hash is checked before this transaction; any parse/cancel failure restores the old package. */
@@ -263,12 +342,15 @@ public final class HadithStore implements AutoCloseable {
     Book selected = book(id);
     worker.execute(() -> {
       try {
-        SQLiteDatabase db = helper.getWritableDatabase(); db.beginTransaction();
-        try {
-          db.delete("entries", "book=?", new String[]{selected.id});
-          db.delete("packages", "book=?", new String[]{selected.id});
-          db.setTransactionSuccessful();
-        } finally { db.endTransaction(); }
+        synchronized (ENC_INSTALL_LOCK) {
+          SQLiteDatabase db = helper.getWritableDatabase(); db.beginTransaction();
+          try {
+            db.delete("entries", "book=?", new String[]{selected.id});
+            db.delete("packages", "book=?", new String[]{selected.id});
+            db.setTransactionSuccessful();
+          } finally { db.endTransaction(); }
+          if (selected == HADEETHENC) encyclopediaSource.delete();
+        }
         post(() -> result.show(true));
       } catch (Exception failure) { post(result::failed); }
     });
@@ -290,7 +372,7 @@ public final class HadithStore implements AutoCloseable {
   }
 
   private static final class Database extends SQLiteOpenHelper {
-    Database(Context context, String name) { super(context, name, null, 1); }
+    Database(Context context, String name) { super(context, name, null, 2); }
     @Override public void onConfigure(SQLiteDatabase db) {
       // New optional-content databases return deleted pages to the filesystem.
       db.execSQL("PRAGMA auto_vacuum=FULL");
@@ -298,7 +380,7 @@ public final class HadithStore implements AutoCloseable {
     @Override public void onCreate(SQLiteDatabase db) {
       db.execSQL("CREATE TABLE entries(id TEXT PRIMARY KEY NOT NULL,book TEXT NOT NULL,number INTEGER,"
           + "title TEXT NOT NULL,arab TEXT NOT NULL,meaning TEXT NOT NULL,source TEXT NOT NULL,"
-          + "search TEXT NOT NULL,excerpt INTEGER NOT NULL,UNIQUE(book,number))");
+          + "search TEXT NOT NULL,excerpt INTEGER NOT NULL,content TEXT,UNIQUE(book,number))");
       db.execSQL("CREATE INDEX entries_book_number ON entries(book,number)");
       db.execSQL("CREATE TABLE packages(book TEXT PRIMARY KEY NOT NULL,revision TEXT NOT NULL,count INTEGER NOT NULL)");
       db.execSQL("CREATE TABLE bookmarks(id TEXT PRIMARY KEY NOT NULL)");
@@ -306,7 +388,8 @@ public final class HadithStore implements AutoCloseable {
         db.insertOrThrow("entries", null, values(entry, "legacy", null));
     }
     @Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-      throw new IllegalStateException("Unsupported content migration");
+      if (oldVersion == 1 && newVersion == 2) db.execSQL("ALTER TABLE entries ADD COLUMN content TEXT");
+      else throw new IllegalStateException("Unsupported content migration");
     }
   }
 }
