@@ -1,5 +1,56 @@
 # Cuplikan promo 15 detik — 12 November 2026
 
+## Versi lengkap 47 detik
+
+Hasil lokal D:/Download/Zikra-App-main/Zikra-Promo-47s-Landscape-Putri-Final.mp4.
+1280x720/30fps, H.264/AAC48kHz, 47detik. Receipt final di checks-full.json.
+File video/audio tetap lokal untuk tinjauan. Source dan edit decision list
+di tools/render_zikra_promo_full.py, tools/promo_device.py dan full-edit.json.
+
+### Susunan dan gerak
+
+0-2,2 logo; 2,2-6,4 Home; 6,4-9,9 Quran; 9,9-14,55 hafalan/Kiblat/salat;
+14,55-18,1 pengantar AI; 18,1-27,47 tutorial AI; 27,47-31,78 tambah tugas;
+31,78-35,15 fokus; 35,15-39,7 Protector; 39,7-47 logo dan ajakan beta.
+Bingkai perangkat diam setelah masuk. Putaran pendek menampilkan sisi belakang
+dan rim saat perpindahan tiga bagian, tanpa ayunan terus-menerus. Bagian tutorial
+tetap besar di tengah dengan penunjuk kecil pada input/menu/tombol.
+
+### Bahan nyata dan penyuntingan
+
+FreshAVD ZikraPromoFull memakai APK1.9.40 dan data contoh baru. Quran dipilih,
+audio ditekan, AI mengetik pertanyaan fotosintesis publik, membuka menu lampiran,
+mengirim dan menerima jawaban Online asli. Study merekam ketikan dan simpan
+tugas contoh; fokus berjalan. Hifz/Kiblat/salat adalah hold tampilan aplikasi.
+Home/Protector menggunakan klip asli sesi11November dengan data contoh.
+Isi jawaban AI tidak diganti. Pemilihan foto/dokumen ditampilkan sebagai menu;
+adegan ini tidak memperagakan unggah berkas baru. Jeda jaringan dipersingkat,
+dan sebagian navigasi/ketikan dipercepat sesuai full-edit.json. Tidak ada suara
+tilawah/adzan yang dicampur dengan narasi.
+
+Narasi lengkap595karakter dihasilkan lewat demo publik ElevenLabs dengan suara
+Putri Maharani, file41,8detik. Dipotong hanya di jeda terukur dan diberi jeda
+tambahan menjadi47detik; kecepatan suara tetap. Normalisasi rata-rata-16,9dB
+dengan puncak-1,5dB. Model tidak menilai audio lewat pendengaran langsung.
+Lisensi komersial keluaran demo belum diverifikasi. Publikasi komersial menunggu
+pemastian hak suara. Tidak ada paket berbayar yang diaktifkan.
+
+### Pemeriksaan dan pemulihan
+
+1410frame+audio didekode penuh; 360sampel siluet perangkat di dalam1280x720
+dan pose hold diam. Contact sheet serta frame tutorial/akhir ditinjau visual.
+Percobaan awal kekurangan kapasitas D, kemudian data emulator baru di E dipakai
+setelah persetujuan. Dua take AI ditolak karena karakter awal/urutan navigasi,
+take terakhir benar. Screenrecord tampilan diam berisi satu frame tanpa durasi;
+decoder disesuaikan agar hold frame asli tetap bisa dipakai. Tanda baca rusak
+di catatan kecil pada render awal dikoreksi sebelum ekspor Final.
+Data aplikasi freshAVD dibersihkan, kedua proses milik sesi ditutup dan folder
+E:/Zikra-Promo-Temp-20261112-0937 dihapus setelah validasi marker dan path.
+WIP/stash/arsip/audio/env/logo aplikasi terpelihara; AVD lama dan HP tidak dipakai.
+Perangkat video adalah proyeksi permukaan/rim dengan belakang prosedural.
+Penerimaan estetika oleh pengguna serta gerbang rilis aplikasi tetap terbuka.
+
+
 ## Revisi v3 — ayunan dan lintasan melengkung, 60 fps
 
 Pengguna masih menilai HP v2 kaku. Mode `--motion fluid --fps 60` menambah

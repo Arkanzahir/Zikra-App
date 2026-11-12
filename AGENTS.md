@@ -1,5 +1,19 @@
 # Workflow proyek Zikra
 
+## Promo lengkap 47 detik - 12 November 2026
+
+Pengguna meminta eksekusi mengikuti referensi mendatar47detik. Hasil dan bukti
+tercatat di design/promos/2026-11-12/README.md dan checks-full.json. Putri lengkap,
+putaran hanya saat transisi lalu hold, rekaman nyata Home/Quran/Hifz/Kiblat/
+salat/AI/Study/fokus/Protector. Tutorial AI memakai pertanyaan publik dengan
+jawaban Online nyata; waktu tunggu dipotong. FreshAVD terisolasi/data sementara
+E disetujui, appdata dibersihkan/emulator ditutup/foldernya dihapus. HP tidak
+diakses.1410frame+audio decode lulus,360sampel geometri/hold lulus; WIP/stash/
+arsip/env/master terjaga. Hasil lokal untuk tinjauan; penerimaan visual dan
+lisensi komersial suara belum dipenuhi. Source/bukti audit/commit/push.
+Gerbang aplikasi B01/C02/D02/D02a/E03/E04/F/G/publik tetap sesuai checklist.
+
+
 ## Promo v3 gerakan — 12 November 2026
 
 Pengguna masih menilai v2 kaku. [Revisi/batas](design/promos/2026-11-12/README.md):

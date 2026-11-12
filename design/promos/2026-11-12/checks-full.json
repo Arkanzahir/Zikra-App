@@ -1,0 +1,104 @@
+{
+  "durationSeconds": 47,
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "expectedVideoFrames": 1410,
+  "voice": "ElevenLabs Putri Maharani, public web demo",
+  "voiceSpeedChanged": false,
+  "audioAssembly": "Measured pauses split and padded, normalized; 47 seconds",
+  "actualOnlineResponse": true,
+  "publicDemoPrompt": "Jelaskan fotosintesis dalam dua kalimat untuk pelajar.",
+  "waitsShortened": true,
+  "privateUserDataCaptured": false,
+  "captureFailures": [
+    "D drive image capacity below Android minimum; isolated data moved to E with approval",
+    "First AI redo introduced stray character; rejected",
+    "AI redo used Back with absent keyboard; rejected",
+    "Static screenrecord has no duration; decoder now preserves last frame"
+  ],
+  "temporaryEmulator": {
+    "name": "ZikraPromoFull",
+    "appDataCleared": true,
+    "closed": true,
+    "temporaryDirectoryRemoved": true
+  },
+  "commercialVoiceRightsVerified": false,
+  "published": false,
+  "geometrySamplesPassed": 360,
+  "sources": [
+    {
+      "path": ".local/promo-full-20261112/ai-tutorial.mp4",
+      "bytes": 2555769,
+      "sha256": "fef5a70d9bc4d8eb8a3491efd698e22cf080726ae7e0c36eeb9f14aedc9eab9a"
+    },
+    {
+      "path": ".local/promo-full-20261112/ai-verified.mp4",
+      "bytes": 1383316,
+      "sha256": "fd109c701cfe95c823dc7d1df8c9bf3db125948abb6cab34ee77ce927335f9a8"
+    },
+    {
+      "path": ".local/promo-full-20261112/focus-current.mp4",
+      "bytes": 830835,
+      "sha256": "f6d1bf14ee3c33500cd556f20aa64a294ab1ce2c23a543787a1873613a03dda1"
+    },
+    {
+      "path": ".local/promo-full-20261112/hifz-current.mp4",
+      "bytes": 30000,
+      "sha256": "b8f681bb593e5422c96658a4d621cb9010369b91622092e7b35ca874060d6a5f"
+    },
+    {
+      "path": ".local/promo-full-20261112/prayer-current.mp4",
+      "bytes": 50731,
+      "sha256": "801b80f7941015aba5230c7e507c4d327aa5a5f67259706150bd87a5c4e7a2dd"
+    },
+    {
+      "path": ".local/promo-full-20261112/qibla-current.mp4",
+      "bytes": 60507,
+      "sha256": "adc9ffe2fcebb9d8472542722b1728be80bc8e45820bf3f8569aeb26d107454e"
+    },
+    {
+      "path": ".local/promo-full-20261112/quran-tutorial.mp4",
+      "bytes": 1786508,
+      "sha256": "9cd454cc1251b9a6da273b19ccae1f8e537fceceb10a07e1ee1f884f2020b11a"
+    },
+    {
+      "path": ".local/promo-full-20261112/study-tutorial.mp4",
+      "bytes": 2283224,
+      "sha256": "b1cb63d5b91f37d3c2b43c4aac928481b9456b193c6cfee27216cb332070915d"
+    },
+    {
+      "path": ".local/promo-zikra-20261111/home.mp4",
+      "bytes": 1498779,
+      "sha256": "4737764e2ca2ba5b68f5a3c9efc7eaa97ee3aa5a23a8d4a4d3ef44cd178f1df9"
+    },
+    {
+      "path": ".local/promo-zikra-20261111/protector.mp4",
+      "bytes": 1176464,
+      "sha256": "5f858947da7e99581b54d1d17cc98f5f6630e7d4cdc377e5502f16ed089f5884"
+    }
+  ],
+  "preservation": {
+    "PROJECT_HANDOFF.md": true,
+    ".local/pending-audio-a03-2026-10-24/source-wip.zip": true,
+    ".local/featherless.env": true,
+    "design/branding/zikra-logo-primary.jpg": true
+  },
+  "output": "D:\\Download\\Zikra-App-main\\Zikra-Promo-47s-Landscape-Putri-Final.mp4",
+  "bytes": 3108551,
+  "sha256": "fc96fafdf73a58f26376835a75fab57c1b0425e35761f47831c7e2d6424654eb",
+  "decodeFullAudioVideoPassed": true,
+  "meanVolumeDb": -16.9,
+  "peakVolumeDb": -1.5,
+  "visualReview": [
+    "16-shot contact sheet",
+    "AI typing",
+    "AI attachment menu",
+    "actual online answer",
+    "Study entry and save",
+    "weather scene",
+    "intro/outro",
+    "transition geometry"
+  ],
+  "limitation": "Private review. Human assessment of voice and visual preference pending. Commercial voice rights unverified."
+}

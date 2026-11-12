@@ -1,0 +1,348 @@
+[
+  {
+    "id": "intro",
+    "start": 0,
+    "end": 2.2,
+    "type": "intro"
+  },
+  {
+    "id": "home",
+    "start": 2.2,
+    "end": 6.4,
+    "type": "hero",
+    "length": 5,
+    "pose": [
+      335,
+      360,
+      0.82,
+      -5,
+      0,
+      0
+    ],
+    "copy": [
+      "Ibadah dan belajar,",
+      "dalam satu tempat."
+    ],
+    "dissolve": true,
+    "source": ".local/promo-zikra-20261111/home.mp4"
+  },
+  {
+    "id": "quran",
+    "start": 6.4,
+    "end": 9.9,
+    "type": "hero",
+    "length": 6.5,
+    "rate": 1.7,
+    "pose": [
+      945,
+      360,
+      0.82,
+      5,
+      0,
+      0
+    ],
+    "spin": true,
+    "copy": [
+      "Baca Al-Quran,",
+      "dengar dan pahami."
+    ],
+    "source": ".local/promo-full-20261112/quran-tutorial.mp4"
+  },
+  {
+    "id": "hifz",
+    "start": 9.9,
+    "end": 11.25,
+    "type": "hero",
+    "length": 3,
+    "pose": [
+      335,
+      360,
+      0.82,
+      -5,
+      0,
+      0
+    ],
+    "spin": true,
+    "transition": 0.7,
+    "copy": [
+      "Lanjutkan",
+      "hafalanmu."
+    ],
+    "font": 42,
+    "source": ".local/promo-full-20261112/hifz-current.mp4"
+  },
+  {
+    "id": "qibla",
+    "start": 11.25,
+    "end": 12.3,
+    "type": "hero",
+    "length": 3,
+    "pose": [
+      335,
+      360,
+      0.82,
+      -5,
+      0,
+      0
+    ],
+    "copy": [
+      "Cek arah kiblat."
+    ],
+    "font": 42,
+    "dissolve": true,
+    "source": ".local/promo-full-20261112/qibla-current.mp4"
+  },
+  {
+    "id": "prayer",
+    "start": 12.3,
+    "end": 14.55,
+    "type": "hero",
+    "length": 3,
+    "pose": [
+      335,
+      360,
+      0.82,
+      -5,
+      0,
+      0
+    ],
+    "copy": [
+      "Atur pengingat",
+      "salatmu."
+    ],
+    "dissolve": true,
+    "source": ".local/promo-full-20261112/prayer-current.mp4"
+  },
+  {
+    "id": "ai-title",
+    "start": 14.55,
+    "end": 16.1,
+    "type": "title",
+    "copy": [
+      "Ingin memahami materi?"
+    ],
+    "dissolve": true
+  },
+  {
+    "id": "ai-intro",
+    "start": 16.1,
+    "end": 18.1,
+    "type": "hero",
+    "length": 0.7,
+    "pose": [
+      335,
+      360,
+      0.82,
+      -5,
+      0,
+      0
+    ],
+    "copy": [
+      "Buka Zikra AI."
+    ],
+    "dissolve": true,
+    "source": ".local/promo-full-20261112/ai-tutorial.mp4"
+  },
+  {
+    "id": "ai-type",
+    "start": 18.1,
+    "end": 20.4,
+    "type": "tutorial",
+    "length": 3.8,
+    "rate": 1.4,
+    "pose": [
+      640,
+      360,
+      0.85,
+      0,
+      0,
+      0
+    ],
+    "transition": 0.45,
+    "callouts": [
+      {
+        "label": "Tulis pertanyaanmu",
+        "box": [
+          888,
+          350
+        ],
+        "tip": [
+          695,
+          430
+        ],
+        "delay": 0.45
+      }
+    ],
+    "source": ".local/promo-full-20261112/ai-verified.mp4",
+    "in": 2.6
+  },
+  {
+    "id": "ai-attach",
+    "start": 20.4,
+    "end": 23.4,
+    "type": "tutorial",
+    "in": 8.7,
+    "length": 3,
+    "pose": [
+      640,
+      360,
+      0.85,
+      0,
+      0,
+      0
+    ],
+    "callouts": [
+      {
+        "label": "Foto atau dokumen",
+        "box": [
+          888,
+          495
+        ],
+        "tip": [
+          728,
+          550
+        ],
+        "delay": 0.2
+      }
+    ],
+    "source": ".local/promo-full-20261112/ai-verified.mp4",
+    "rate": 1
+  },
+  {
+    "id": "ai-send",
+    "start": 23.4,
+    "end": 24.1,
+    "type": "tutorial",
+    "in": 13.3,
+    "length": 1,
+    "pose": [
+      640,
+      360,
+      0.85,
+      0,
+      0,
+      0
+    ],
+    "callouts": [
+      {
+        "label": "Tekan kirim",
+        "box": [
+          888,
+          530
+        ],
+        "tip": [
+          748,
+          576
+        ]
+      }
+    ],
+    "source": ".local/promo-full-20261112/ai-verified.mp4",
+    "rate": 1.2
+  },
+  {
+    "id": "ai-reply",
+    "start": 24.1,
+    "end": 27.47,
+    "type": "tutorial",
+    "in": 22.2,
+    "length": 4,
+    "pose": [
+      640,
+      360,
+      0.85,
+      0,
+      0,
+      0
+    ],
+    "dissolve": true,
+    "callouts": [
+      {
+        "label": "Lanjutkan percakapan",
+        "box": [
+          876,
+          275
+        ],
+        "tip": [
+          728,
+          295
+        ]
+      }
+    ],
+    "note": "Rekaman aplikasi beta · waktu tunggu dipersingkat",
+    "source": ".local/promo-full-20261112/ai-verified.mp4"
+  },
+  {
+    "id": "study",
+    "start": 27.47,
+    "end": 31.78,
+    "type": "hero",
+    "in": 5,
+    "length": 9,
+    "rate": 2,
+    "pose": [
+      945,
+      360,
+      0.82,
+      5,
+      0,
+      0
+    ],
+    "transition": 0.6,
+    "copy": [
+      "Catat tugas",
+      "di Study."
+    ],
+    "dissolve": true,
+    "source": ".local/promo-full-20261112/study-tutorial.mp4"
+  },
+  {
+    "id": "focus",
+    "start": 31.78,
+    "end": 35.15,
+    "type": "hero",
+    "length": 4,
+    "pose": [
+      945,
+      360,
+      0.82,
+      5,
+      0,
+      0
+    ],
+    "copy": [
+      "Mulai sesi fokus."
+    ],
+    "dissolve": true,
+    "source": ".local/promo-full-20261112/focus-current.mp4"
+  },
+  {
+    "id": "protector",
+    "start": 35.15,
+    "end": 39.7,
+    "type": "hero",
+    "length": 6,
+    "pose": [
+      335,
+      360,
+      0.82,
+      -5,
+      0,
+      0
+    ],
+    "copy": [
+      "Cek cuaca dan",
+      "informasi gempa."
+    ],
+    "spin": true,
+    "transition": 0.8,
+    "note": "Contoh tampilan prakiraan dan laporan gempa",
+    "source": ".local/promo-zikra-20261111/protector.mp4"
+  },
+  {
+    "id": "outro",
+    "start": 39.7,
+    "end": 47,
+    "type": "outro",
+    "dissolve": true
+  }
+]
