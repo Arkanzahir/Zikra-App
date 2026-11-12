@@ -1,5 +1,16 @@
 # Cuplikan promo 15 detik — 12 November 2026
 
+## Versi lengkap tanpa awan tambahan
+
+Pengguna memilih menghapus badge awan/hujan tambahan. Hasil terbaru
+D:/Download/Zikra-App-main/Zikra-Promo-Lengkap-52s-Tanpa-Awan.mp4.
+52detik1280x720/30fps dengan kartun bertas di pengantar Protector.
+[Susunan](outdoor-no-cloud-edit.json) dan [bukti](checks-no-cloud.json).
+1560frame+audio decode penuh lulus, stream audio sama dengan VO pilihan
+pengguna; perubahan susunan hanya menghapus field weather. Frame39,57detik
+ditinjau. Video lokal untuk tinjauan; lisensi suara/publikasi tetap terbuka.
+
+
 ## Tambahan kartun pengantar Protector
 
 Pengguna meminta kartun untuk narasi ingin beraktivitas di luar. Video terbaru

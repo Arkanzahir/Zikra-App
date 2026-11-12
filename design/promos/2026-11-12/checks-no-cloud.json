@@ -1,0 +1,17 @@
+{
+  "output": "D:\\Download\\Zikra-App-main\\Zikra-Promo-Lengkap-52s-Tanpa-Awan.mp4",
+  "bytes": 3694204,
+  "sha256": "347d985b0ca9f2c7e12c33c148d2163661c32af0791c05cd631d24ffc4bb2407",
+  "seconds": 52,
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "decodedFrames": 1560,
+  "fullDecodePassed": true,
+  "decorativeCloudRainRemoved": true,
+  "onlyWeatherOverlayRemovedFromEDL": true,
+  "audioExactMatch": true,
+  "visualReview": "39.57s, clear space between outdoor cartoon and Protector",
+  "published": false,
+  "voiceCommercialLicenseVerified": false
+}

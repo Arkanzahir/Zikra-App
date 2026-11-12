@@ -1,5 +1,16 @@
 # Rencana implementasi Zikra menuju rilis publik
 
+## Promo lengkap tanpa awan tambahan - 12 November 2026
+
+Pengguna meminta menghapus awan tambahan dan melihat video lengkap. Badge
+awan/hujan dinonaktifkan pada dua shot, kartun bertema keluar tetap ada.
+Output Zikra-Promo-Lengkap-52s-Tanpa-Awan.mp4 lokal52detik1280x720/30fps;
+1560frame+audio decode lulus, stream audio sama, selisih EDL hanya field
+weather, visual39,57detik ditinjau. Source/bukti di outdoor-no-cloud-edit.json
+dan checks-no-cloud.json pada design/promos/2026-11-12. Penerimaan pengguna/
+lisensi suara/publikasi serta gerbang aplikasi tetap. Wajib audit/commit/push.
+
+
 ## Promo kartun hendak keluar - 12 November 2026
 
 Permintaan pengguna untuk kartun pada pertanyaan ingin keluar diterapkan
