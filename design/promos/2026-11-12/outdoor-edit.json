@@ -1,0 +1,475 @@
+[
+  {
+    "id": "hook",
+    "start": 0,
+    "end": 3.35,
+    "type": "title",
+    "copy": [
+      "Materi belum paham,",
+      "tugas sudah menunggu?"
+    ],
+    "copyX": 650,
+    "copyY": 260,
+    "font": 44,
+    "centered": false,
+    "character": {
+      "source": "design/promos/2026-11-12/characters/student-confused.png",
+      "box": [
+        30,
+        100,
+        590,
+        580
+      ]
+    }
+  },
+  {
+    "id": "intro",
+    "start": 3.35,
+    "end": 5.2,
+    "type": "intro",
+    "dissolve": true
+  },
+  {
+    "id": "home",
+    "start": 5.2,
+    "end": 8.95,
+    "type": "hero",
+    "length": 5,
+    "pose": [
+      335,
+      360,
+      0.82,
+      -5,
+      0,
+      0
+    ],
+    "copy": [
+      "Teman belajar dan",
+      "pendamping ibadah."
+    ],
+    "dissolve": true,
+    "source": ".local/promo-zikra-20261111/home.mp4"
+  },
+  {
+    "id": "ai-intro",
+    "start": 8.95,
+    "end": 11.6,
+    "type": "hero",
+    "length": 0.7,
+    "pose": [
+      945,
+      360,
+      0.82,
+      5,
+      0,
+      0
+    ],
+    "copy": [
+      "Ada materi yang",
+      "bikin bingung?"
+    ],
+    "dissolve": true,
+    "source": ".local/promo-full-20261112/ai-tutorial.mp4",
+    "spin": true,
+    "transition": 0.8,
+    "character": {
+      "source": "design/promos/2026-11-12/characters/student-confused.png",
+      "box": [
+        90,
+        385,
+        550,
+        305
+      ],
+      "delay": 0.3
+    }
+  },
+  {
+    "id": "ai-type",
+    "start": 11.6,
+    "end": 14.1,
+    "type": "tutorial",
+    "length": 3.8,
+    "rate": 1.4,
+    "pose": [
+      640,
+      360,
+      0.85,
+      0,
+      0,
+      0
+    ],
+    "transition": 0.45,
+    "callouts": [
+      {
+        "label": "Tulis pertanyaanmu",
+        "box": [
+          888,
+          350
+        ],
+        "tip": [
+          695,
+          430
+        ],
+        "delay": 0.45
+      }
+    ],
+    "source": ".local/promo-full-20261112/ai-verified.mp4",
+    "in": 2.6
+  },
+  {
+    "id": "ai-attach",
+    "start": 14.1,
+    "end": 16.4,
+    "type": "tutorial",
+    "in": 8.95,
+    "length": 1.5,
+    "pose": [
+      640,
+      360,
+      0.85,
+      0,
+      0,
+      0
+    ],
+    "callouts": [
+      {
+        "label": "Foto atau dokumen",
+        "box": [
+          888,
+          495
+        ],
+        "tip": [
+          728,
+          550
+        ],
+        "delay": 0.5
+      }
+    ],
+    "source": ".local/promo-full-20261112/ai-verified.mp4",
+    "rate": 1
+  },
+  {
+    "id": "ai-send",
+    "start": 16.4,
+    "end": 17.4,
+    "type": "tutorial",
+    "in": 13.3,
+    "length": 1.4,
+    "pose": [
+      640,
+      360,
+      0.85,
+      0,
+      0,
+      0
+    ],
+    "callouts": [
+      {
+        "label": "Tekan kirim",
+        "box": [
+          888,
+          530
+        ],
+        "tip": [
+          748,
+          576
+        ]
+      }
+    ],
+    "source": ".local/promo-full-20261112/ai-verified.mp4",
+    "rate": 1
+  },
+  {
+    "id": "ai-reply",
+    "start": 17.4,
+    "end": 20.4,
+    "type": "tutorial",
+    "in": 22.2,
+    "length": 4,
+    "pose": [
+      640,
+      360,
+      0.85,
+      0,
+      0,
+      0
+    ],
+    "dissolve": true,
+    "callouts": [
+      {
+        "label": "Lanjutkan percakapan",
+        "box": [
+          876,
+          275
+        ],
+        "tip": [
+          728,
+          295
+        ],
+        "delay": 1
+      }
+    ],
+    "note": "Rekaman aplikasi beta · waktu tunggu dipersingkat",
+    "source": ".local/promo-full-20261112/ai-verified.mp4",
+    "character": {
+      "source": "design/promos/2026-11-12/characters/student-understood.png",
+      "box": [
+        30,
+        185,
+        425,
+        490
+      ],
+      "delay": 0.2
+    }
+  },
+  {
+    "id": "study",
+    "start": 20.4,
+    "end": 23.3,
+    "type": "hero",
+    "in": 8.8,
+    "length": 5,
+    "rate": 1.7,
+    "pose": [
+      945,
+      360,
+      0.82,
+      5,
+      0,
+      0
+    ],
+    "transition": 0.6,
+    "copy": [
+      "Catat tugas",
+      "di Study."
+    ],
+    "dissolve": true,
+    "source": ".local/promo-full-20261112/study-tutorial.mp4",
+    "character": {
+      "source": "design/promos/2026-11-12/characters/student-focused.png",
+      "box": [
+        100,
+        380,
+        550,
+        310
+      ],
+      "delay": 0.2
+    }
+  },
+  {
+    "id": "focus",
+    "start": 23.3,
+    "end": 27.2,
+    "type": "hero",
+    "length": 4,
+    "pose": [
+      945,
+      360,
+      0.82,
+      5,
+      0,
+      0
+    ],
+    "copy": [
+      "Mulai sesi fokus."
+    ],
+    "dissolve": true,
+    "source": ".local/promo-full-20261112/focus-current.mp4",
+    "copyDelay": 0.1,
+    "character": {
+      "source": "design/promos/2026-11-12/characters/student-focused.png",
+      "box": [
+        100,
+        380,
+        550,
+        310
+      ],
+      "delay": -1
+    }
+  },
+  {
+    "id": "quran",
+    "start": 27.2,
+    "end": 32.35,
+    "type": "hero",
+    "length": 8.5,
+    "rate": 1.5,
+    "pose": [
+      335,
+      360,
+      0.82,
+      -5,
+      0,
+      0
+    ],
+    "spin": true,
+    "copy": [
+      "Baca Al-Quran,",
+      "dengar dan pahami."
+    ],
+    "source": ".local/promo-full-20261112/quran-tutorial.mp4",
+    "in": 0.3
+  },
+  {
+    "id": "hifz",
+    "start": 32.35,
+    "end": 34.05,
+    "type": "hero",
+    "length": 3,
+    "pose": [
+      335,
+      360,
+      0.82,
+      -5,
+      0,
+      0
+    ],
+    "spin": false,
+    "transition": 0.7,
+    "copy": [
+      "Lanjutkan",
+      "hafalanmu."
+    ],
+    "font": 42,
+    "source": ".local/promo-full-20261112/hifz-current.mp4",
+    "copyDelay": 0.1
+  },
+  {
+    "id": "qibla",
+    "start": 34.05,
+    "end": 35.25,
+    "type": "hero",
+    "length": 3,
+    "pose": [
+      335,
+      360,
+      0.82,
+      -5,
+      0,
+      0
+    ],
+    "copy": [
+      "Cek arah kiblat."
+    ],
+    "font": 42,
+    "dissolve": true,
+    "source": ".local/promo-full-20261112/qibla-current.mp4",
+    "copyDelay": 0.1
+  },
+  {
+    "id": "prayer",
+    "start": 35.25,
+    "end": 38.05,
+    "type": "hero",
+    "length": 3,
+    "pose": [
+      335,
+      360,
+      0.82,
+      -5,
+      0,
+      0
+    ],
+    "copy": [
+      "Atur pengingat",
+      "salatmu."
+    ],
+    "dissolve": true,
+    "source": ".local/promo-full-20261112/prayer-current.mp4",
+    "copyDelay": 0.1
+  },
+  {
+    "id": "protector",
+    "start": 38.05,
+    "end": 39.75,
+    "type": "hero",
+    "length": 6,
+    "pose": [
+      945,
+      360,
+      0.82,
+      5,
+      0,
+      0
+    ],
+    "copy": [
+      "Mau beraktivitas",
+      "di luar?"
+    ],
+    "spin": true,
+    "transition": 0.7,
+    "note": "Contoh tampilan prakiraan dan laporan gempa",
+    "source": ".local/promo-zikra-20261111/protector.mp4",
+    "copyY": 190,
+    "copyDelay": 0.1,
+    "character": {
+      "source": "design/promos/2026-11-12/characters/student-outdoor.png",
+      "box": [
+        100,
+        335,
+        470,
+        350
+      ],
+      "delay": 0.4
+    },
+    "weather": {
+      "position": [
+        575,
+        335
+      ],
+      "start": 38.9,
+      "end": 43.8
+    }
+  },
+  {
+    "id": "protector-detail",
+    "start": 39.75,
+    "end": 43.8,
+    "type": "hero",
+    "length": 5,
+    "pose": [
+      945,
+      360,
+      0.82,
+      5,
+      0,
+      0
+    ],
+    "copy": [
+      "Lihat cuaca dan",
+      "informasi gempa."
+    ],
+    "spin": false,
+    "transition": 0.8,
+    "note": "Contoh tampilan prakiraan dan laporan gempa",
+    "source": ".local/promo-zikra-20261111/protector.mp4",
+    "in": 1.7,
+    "copyDelay": 0.1,
+    "copyY": 190,
+    "character": {
+      "source": "design/promos/2026-11-12/characters/student-outdoor.png",
+      "box": [
+        100,
+        335,
+        470,
+        350
+      ],
+      "delay": -1
+    },
+    "weather": {
+      "position": [
+        575,
+        335
+      ],
+      "start": 38.9,
+      "end": 43.8
+    }
+  },
+  {
+    "id": "outro",
+    "start": 43.8,
+    "end": 52,
+    "type": "outro",
+    "dissolve": true
+  }
+]

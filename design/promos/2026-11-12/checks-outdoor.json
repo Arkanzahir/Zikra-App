@@ -1,0 +1,35 @@
+{
+  "output": "D:\\Download\\Zikra-App-main\\Zikra-Promo-52s-Kartun-Outdoor-Putri.mp4",
+  "bytes": 3720174,
+  "sha256": "7cf0ac384872d1395fb5edf90ed7df25fd702f830c61b9cc39a28610fa5a94e9",
+  "previewClip": "D:\\Download\\Zikra-App-main\\Zikra-Promo-Cuplikan-Protector-Kartun.mp4",
+  "clipBytes": 584154,
+  "clipSeconds": 5.75,
+  "videoSeconds": 52,
+  "fps": 30,
+  "width": 1280,
+  "height": 720,
+  "decodedFrames": 1560,
+  "decodePassed": true,
+  "editedInterval": [
+    38.05,
+    43.8
+  ],
+  "outsideIntervalEDLUnchanged": true,
+  "audioStreamExactMatch": true,
+  "weatherMovesBetweenFrames": true,
+  "weatherClockContinuousAcrossCut": true,
+  "characterAndBadgePlacementPassed": true,
+  "characterSource": "design\\promos\\2026-11-12\\characters\\student-outdoor.png",
+  "characterSha256": "c2afede1f6a953a9fcae38f1754e6c52fd107e1568044bdbfcce47b95e718600",
+  "characterBehavior": "Backpack/phone/closed umbrella cartoon, single entrance and held pose. Arms are not rigged.",
+  "weatherBehavior": "Illustrative rain/cloud native animation; no new weather lookup",
+  "imageGeneration": "built-in image_gen with existing cartoon identity reference",
+  "visualReview": [
+    "39.57s outdoor question",
+    "41.23s Protector detail"
+  ],
+  "published": false,
+  "voiceCommercialLicenseVerified": false,
+  "newPhoneOrEmulatorAccess": false
+}

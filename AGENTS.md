@@ -1,5 +1,20 @@
 # Workflow proyek Zikra
 
+## Promo kartun hendak keluar - 12 November 2026
+
+Permintaan pengguna untuk kartun pada pertanyaan ingin keluar diterapkan
+di38,05-43,8detik. Kartun2D bertema sama membawa tas/HP/payung lipat; awan
+dan tetes hujan bergerak memakai clock global yang berlanjut melewati cut
+39,75detik. Karakter masuk sekali lalu pose ditahan. Teks digeser lebih atas;
+HP/karakter/badge terpisah. Full52detik dan cuplikan5,75detik tersimpan lokal.
+1560frame+audio decode lulus, audio cocok stream-byte-sama, EDL di luar
+interval tetap, hujan bergerak/phase berlanjut dan penempatan/dua frame
+ditinjau. Sumber/prompt/bukti di design/promos/2026-11-12/characters/README.md,
+outdoor-edit.json dan checks-outdoor.json. Tidak mengakses HP/emulator/API
+cuaca baru; ilustrasi cuaca bersifat naratif. Penerimaan visual/lisensi VO/
+publikasi dan gerbang aplikasi tetap terbuka. Audit/commit/push checkpoint.
+
+
 ## Koreksi karakter promo menjadi kartun 2D - 12 November 2026
 
 Pengguna menolak rupa semirealistis dan memperjelas maksudnya karakter kartun.

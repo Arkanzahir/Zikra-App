@@ -87,6 +87,40 @@ def composite_character(frame, shot, elapsed):
     frame.alpha_composite(opacity(image, appear), position)
 
 
+@lru_cache(maxsize=1)
+def cloud_sprite():
+    mask = Image.new("L", (128, 80))
+    draw = ImageDraw.Draw(mask)
+    draw.ellipse((12, 26, 66, 70), fill=255)
+    draw.ellipse((40, 7, 98, 65), fill=255)
+    draw.ellipse((80, 32, 120, 70), fill=255)
+    draw.rounded_rectangle((10, 40, 120, 74), 16, fill=255)
+    outline = Image.new("RGBA", mask.size, PINE)
+    outline.putalpha(mask.filter(ImageFilter.MaxFilter(5)))
+    fill = Image.new("RGBA", mask.size, "#edf5ef")
+    fill.putalpha(mask)
+    outline.alpha_composite(fill)
+    return outline
+
+
+def composite_weather(frame, shot, now):
+    item = shot.get("weather")
+    if item is None or now < item["start"]:
+        return
+    elapsed = now-item["start"]
+    appear = smooth(elapsed/.35)*smooth((item["end"]-now)/.25)
+    x, y = item["position"]
+    layer = Image.new("RGBA", (W, H))
+    draw = ImageDraw.Draw(layer)
+    draw.rounded_rectangle((x, y, x+150, y+135), 28, fill="#ffffff", outline="#dbe6dc", width=2)
+    layer.alpha_composite(cloud_sprite(), (round(x+11+4*math.sin(elapsed*1.5)), y+7))
+    for i in range(3):
+        phase = (elapsed*1.2+i/3) % 1
+        px, py = x+47+i*24, y+86+phase*32
+        draw.line((px, py, px-5, py+10), fill=(55, 111, 91, round(220*math.sin(math.pi*phase))), width=3)
+    frame.alpha_composite(opacity(layer, appear))
+
+
 def camera(shot, previous, elapsed):
     target = shot["pose"]
     if previous is None:
@@ -200,6 +234,7 @@ def render(edit, ffmpeg, output, work, voice, prepared_audio=None):
                         frame.alpha_composite(text(shot["copy"], text_x, shot.get("copyY", 270), shot.get("font", 43), elapsed-delay))
                     for item in shot.get("callouts", []):
                         callout(frame, item, elapsed)
+                    composite_weather(frame, shot, t)
                     if shot.get("note"):
                         ImageDraw.Draw(frame).text((640, 698), shot["note"], font=font(13), fill=MUTED, anchor="mb")
                 # Short dissolve only at cuts. Full spins are kept visible at hero transitions.

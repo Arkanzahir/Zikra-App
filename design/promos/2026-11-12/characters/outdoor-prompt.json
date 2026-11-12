@@ -1,0 +1,7 @@
+{
+  "tool": "built-in image_gen",
+  "asset": "student-outdoor.png",
+  "reference": "student-understood.png",
+  "transparent_background": true,
+  "prompt": "Edit this reference to make one new pose of the EXACT SAME 2D CARTOON male student for the next scene of a Zikra app explainer. Keep the exact recognizable simple cartoon face, oval dark eyes, solid wavy black hair silhouette, warm tan skin, green overshirt and ivory T-shirt, pine-green outlines, flat hand-drawn color style and adult cartoon proportions. He is getting ready to go outside: a sage green backpack is worn over both shoulders with clear straps, one hand holding a plain phone and checking it thoughtfully, other hand holding a backpack strap. A small closed umbrella is tucked into a side pocket of the backpack. Waist-up to upper hips three-quarter pose turned slightly toward the right, friendly calm expression, both hands visible, whole head and bag contained inside the frame. Isolated cutout on a genuinely TRANSPARENT alpha background, generous empty margins, no desk, no chair, no background, no weather symbols, no text, no logos or watermarks. Entirely DRAWN 2D cartoon consistent with reference. No photograph, no photorealism, no skin textures, no 3D rendering."
+}

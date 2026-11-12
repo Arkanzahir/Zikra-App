@@ -1,5 +1,24 @@
 # Cuplikan promo 15 detik — 12 November 2026
 
+## Tambahan kartun pengantar Protector
+
+Pengguna meminta kartun untuk narasi ingin beraktivitas di luar. Video terbaru
+D:/Download/Zikra-App-main/Zikra-Promo-52s-Kartun-Outdoor-Putri.mp4, serta
+cuplikan D:/Download/Zikra-App-main/Zikra-Promo-Cuplikan-Protector-Kartun.mp4.
+Karakter2D yang sama sekarang memakai tas, melihat HP, dan membawa payung lipat.
+Karakter masuk pada38,45detik; kartu awan/hujan bergerak mulai38,9 hingga43,8.
+Posisi ditahan saat berganti ke detail Protector, fase hujan memakai clock
+global yang sama sehingga gerak tidak terulang dari awal. Teks lebih atas
+memberi ruang karakter. Ilustrasi cuaca mengikuti narasi, tanpa lookup/data baru.
+
+[Susunan](outdoor-edit.json), [bukti](checks-outdoor.json), dan
+[aset/prompt](characters/README.md).1560frame+audio lulus, audio sama dengan
+versi pilihan pengguna; susunan di luar kedua shot tidak berubah. Perbedaan
+frame animasi, kontinuitas metadata clock, posisi dan dua frame diperiksa.
+Gerak anggota tubuh belum dirender. Output lokal untuk tinjauan; penerimaan
+visual dan hak komersial suara masih terbuka, runtime aplikasi tetap.
+
+
 ## Revisi kartun 2D sesuai klarifikasi pengguna
 
 Kandidat semirealistis di bawah ditolak pengguna sebelum disampaikan sebagai
