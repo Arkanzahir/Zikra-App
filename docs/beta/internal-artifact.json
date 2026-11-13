@@ -9,7 +9,7 @@
   "debugSigningKey": true,
   "distributionApproved": false,
   "downloadUrl": null,
-  "runtimeVerification": "27-native-emulator-passed-physical-device-pending",
+  "runtimeVerification": "32-native-emulator-cases-passed-physical-device-pending",
   "remainingGates": [
     "content-and-audio-rights",
     "publisher-and-privacy",

@@ -1,9 +1,13 @@
+## Tambahan ketahanan Quran —14November2026
+
+[Lima kasus tambahan](android/validation/quran-failure-2026-11-14/README.md) lulus pada APK1.9.47 yang sama: withdrawn/recovery, outage biasa, gagal tulis, guard ruang rendah dan actual process-kill saat staging. Total32kasus native berbeda. Tidak mengubah produksi/versi; ENOSPCfisik/power-loss dan gap lain tetap terbuka. Handoff diperbarui; jangan mengulang skenario ini tanpa perubahan/alasan baru.
+
 ## Status terbaru — 14 November 2026
 
 **Kandidat internal1.9.47/code74, tetap HOLD.** Mulai dari
 [handoff akun/lanjutan](ACCOUNT_HANDOFF.md), [status terstruktur](docs/beta/STATUS.json)
 dan [bukti pengujian terbaru](android/validation/beta-final-2026-11-14/README.md).
-202JVM lulus/4skip,27native emulator pada APK yang sama lulus;0lint error,
+202JVM lulus/4skip,32native kasus berbeda pada APK yang sama lulus;0lint error,
 890warning. Ukuran49.511.880byte. Upgrade data terisi1.9.41→1.9.46→1.9.47 lulus.
 Website pratinjau lokal desktop/mobile tersedia di [website](website/README.md),
 tanpa tautan unduh publik. HP,hak konten/audio,privasi/signing dan gerbang beta

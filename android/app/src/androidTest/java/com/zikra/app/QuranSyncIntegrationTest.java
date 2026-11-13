@@ -144,4 +144,51 @@ public final class QuranSyncIntegrationTest extends InstrumentationTestCase {
       assertNotNull(arabic.getTypeface()); assertTrue(arabic.getText().length() > 0);
     });
   }
+  public void testMidPageFilesystemWriteFailureKeepsCommittedGeneration() throws Exception {
+    QuranChapters.Chapter chapter = QuranChapters.all(context).get(1);
+    QuranSyncStore store = new QuranSyncStore(context);
+    store.download(chapter, page -> reader(2, page), () -> {});
+    File root = new File(sandbox, "quran-content-sync-r33");
+    File manifest = new File(root, "chapter-2.json");
+    String baseline = read(manifest), pageBefore = store.read(chapter, 2);
+    String committed = new JSONObject(baseline).getString("generation");
+    File userFile = new File(sandbox, "bookmark-kept.json");
+    Files.write(userFile.toPath(), "2:12".getBytes(StandardCharsets.UTF_8));
+    final boolean[] reachedPartialWrite = {false};
+    rejected(store, chapter, page -> {
+      if (page == 2) for (File staging : root.listFiles()) {
+        if (staging.isDirectory() && !staging.getName().equals(committed)) {
+          assertTrue(new File(staging, "1.json").isFile());
+          assertTrue(new File(staging, "2.json").mkdir());
+          reachedPartialWrite[0] = true;
+        }
+      }
+      return reader(2, page);
+    }, () -> {});
+    assertTrue(reachedPartialWrite[0]);
+    assertEquals(baseline, read(manifest));
+    assertEquals(pageBefore, new QuranSyncStore(context).read(chapter, 2));
+    assertEquals("2:12", read(userFile));
+  }
+  public void testLowSpaceGuardDoesNotFetchOrReplaceCommittedData() throws Exception {
+    QuranChapters.Chapter chapter = QuranChapters.all(context).get(1);
+    QuranSyncStore store = new QuranSyncStore(context);
+    store.download(chapter, page -> reader(2, page), () -> {});
+    File root = new File(sandbox, "quran-content-sync-r33");
+    String manifest = read(new File(root, "chapter-2.json")), pageBefore = store.read(chapter, 1);
+    int entries = root.listFiles().length;
+    File lowSpace = new File(root.getAbsolutePath()) {
+      @Override public long getUsableSpace() { return 5L * 1024 * 1024; }
+    };
+    java.lang.reflect.Field field = QuranSyncStore.class.getDeclaredField("root");
+    field.setAccessible(true); field.set(store, lowSpace);
+    final boolean[] fetched = {false};
+    try {
+      rejected(store, chapter, page -> { fetched[0] = true; return reader(2, page); }, () -> {});
+    } finally { field.set(store, root); }
+    assertFalse("Space guard must run before any source request", fetched[0]);
+    assertEquals(entries, root.listFiles().length);
+    assertEquals(manifest, read(new File(root, "chapter-2.json")));
+    assertEquals(pageBefore, new QuranSyncStore(context).read(chapter, 1));
+  }
 }

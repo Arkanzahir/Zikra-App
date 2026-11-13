@@ -1,3 +1,7 @@
+## Tambahan ketahanan Quran
+
+[Lima kasus tambahan](../../android/validation/quran-failure-2026-11-14/README.md) lulus; APK tetap1.9.47,HOLD,total32kasus native berbeda. Status dan gap diperbarui di handoff/STATUS.json. Tidak mengubah gerbang hak/signing/HP/publikasi.
+
 ## Update14November2026
 
 Kandidat internal1.9.47,debug/HOLD. [Status terkini](STATUS.json), [handoff](../../ACCOUNT_HANDOFF.md), [bukti27native](../../android/validation/beta-final-2026-11-14/README.md). Website lokal desktop/mobile teruji. Rincian dan gerbang lama hanya berlaku sejauh belum dikoreksi checkpoint ini; tidak menutup HP/signing/hak/putusan beta.

@@ -46,7 +46,7 @@ Audit: android/validation/beta-final-2026-11-14/apk-audit.json.
 Tanda tangan debug valid/sama; private entries0, credential dikenal0,
 backup/cleartext nonaktif. Ini bukan persetujuan distribusi publik.
 
-Hasil pada1.9.47: JVM202 lulus/4skip, native27 lulus, lint0error/890warning.
+Hasil pada1.9.47: JVM202 lulus/4skip, native32 kasus berbeda lulus (27awal+5tambahan), lint0error/890warning.
 Bukan klaim source bebas masalah. Backend tidak berubah;125tes backend lulus
 pada checkpoint13November, tidak diklaim dijalankan ulang untuk receiver Android.
 
@@ -91,7 +91,7 @@ jangan mengklaim kandidat baru sudah terpasang/diuji fisik.
   pengguna menolak billing Google Maps SDK. Intent/nomor/URL/fallback teruji dengan
   monitor yang mencegat; aplikasi penerima eksternal belum diuji menyeluruh.
 - F:tema global, dock AI/keyboard/draf, lampu siang-malam, splash cold/warm,
-  reduced motion, foreground/viewport/power/sensor guard tersedia.27native mencakup
+  reduced motion, foreground/viewport/power/sensor guard tersedia.32kasus native mencakup
   smoke16tampilan, bukan persetujuan visual semua piksel atau baterai HP.
 - Website statis di website/dist: fitur,FAQ,dukungan,drafprivasi,aset lokal.
   Desktop dan390CSSpx tanpa overflow diuji; tombol download disabled dan tidak
@@ -99,11 +99,12 @@ jangan mengklaim kandidat baru sudah terpasang/diuji fisik.
 
 ## 5. Pekerjaan berikutnya, bukan mulai dari nol
 
-1. Tutup gap J02/J03 yang belum berbukti: resource dicabut, proses mati/ruang rendah
-   nyata, cakupan font/Mushaf/audio/timing dan kebijakan cache masing-masing.
-   Jangan mengulang gateway hosted yang sudah lulus tanpa perubahan.
+1. Lanjutkan J02/J03: font/Mushaf/audio/timing serta kebijakan cache masing-masing.
+   Resource dicabut, crash saat staging, gagal tulis dan guard ruang rendah sudah
+   teruji terarah; lihat receipt quran-failure. ENOSPCfisik/power-loss belum
+   dibuktikan. Jangan mengulang lima kasus atau gateway hosted tanpa alasan baru.
 2. Sisa E/F/G: job background/Doze, receiver sistem/aplikasi penerima eksternal,
-   layar/dialog/teks besar yang belum dicakup. Uji27case tidak menutup seluruh matriks.
+   layar/dialog/teks besar yang belum dicakup. Uji32case tidak menutup seluruh matriks.
 3. J04–J06: hak sumber/layanan, B01 dua kitab lengkap menunggu Gading, audio/lafaz.
    HadeethEnc opsional2260 bukan pengganti diam-diam. Pengguna menunda pembahasan
    izin; itu bukan bukti izin diperoleh. Jangan mengirim email baru tanpa instruksi.
@@ -189,3 +190,5 @@ bukti terbaru ada di android/validation/beta-final-2026-11-14/README.md.
 Jangan ulang proyek atau menganggap A–D/E/F/G selesai. Pertahankan WIP, stash audio,
 data pengguna, desain diterima dan konfigurasi privat. Lanjutkan gap terdekat
 sesuai handoff; HP hanya saat siap. Audit, commit dan push perubahan milik tugas.
+
+Uji ketahanan terbaru memakai tools/verify_quran_process_recovery.ps1, hanya emulator disposable. Jangan jalankan prepare/recovery sebagai suite biasa; baca android/validation/quran-failure-2026-11-14/README.md. APK utama tetap sama; tidak ada versi baru hanya untuk test.

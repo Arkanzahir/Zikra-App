@@ -7,7 +7,7 @@
   "apkSha256": "03f9b61fc7ad88ad9049683a138dc3ae77b92982c3062a6d0fd152b884a07670",
   "debugSigningKey": true,
   "phoneTestedOnCandidate": false,
-  "nativePassed": 27,
+  "nativePassed": 32,
   "jvmPassed": 202,
   "jvmSkipped": 4,
   "lintErrors": 0,
@@ -24,5 +24,14 @@
     "release-signer-and-migration",
     "physical-device-final-session",
     "beta-decision-and-public-download"
-  ]
+  ],
+  "additionalEvidence": "android/validation/quran-failure-2026-11-14/README.md",
+  "quranFailureVerification": {
+    "withdrawalProtocol": true,
+    "processKilledDuringStaging": true,
+    "midPageFilesystemFailure": true,
+    "lowSpaceGuard": true,
+    "actualEnospc": false,
+    "powerLoss": false
+  }
 }

@@ -1,0 +1,5 @@
+{
+  "nonLoopbackSerialRejected": true,
+  "noPhysicalDeviceUsed": true,
+  "freshSandboxRequired": true
+}

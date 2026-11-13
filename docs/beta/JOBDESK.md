@@ -6,7 +6,7 @@
 
 Checkpoint terbaru: [handoff akun](../../ACCOUNT_HANDOFF.md),
 [hasil gabungan](../../android/validation/final-batch-2026-11-13/README.md).
-Kandidat1.9.47:202JVM/27native lulus,4JVMskip,890lintwarning. Backend tidak berubah;125tes lulus pada checkpoint sebelumnya.
+Kandidat1.9.47:202JVM/32native kasus berbeda lulus,4JVMskip,890lintwarning. Backend tidak berubah;125tes lulus pada checkpoint sebelumnya.
 Website J15 pratinjau lokal tersedia di `website/dist`, tanpa tautan APK.
 Gerbang J14 belum ditutup; jangan menganggap seluruh J02–J15 selesai.
 
@@ -84,6 +84,8 @@ Hasil: endpoint dan receipt uji yang dapat dipakai J02/J03, belum klaim migrasi 
 Receipt lanjutan: android/validation/quran-sync-integration/README.md dan hosted-proof.json. J02/J03 tidak otomatis selesai.
 
 ### J02 — Quran reader dan unduhan
+
+Tambahan: [withdrawal/proses mati/gagal tulis/ruang rendah](../../android/validation/quran-failure-2026-11-14/README.md) teruji terarah pada APK yang sama. Lima kasus ini bukan ENOSPCfisik atau power-loss; kriteria majemuk yang belum lengkap tetap terbuka.
 
 - [x] Hubungkan reader/QuranDownloadService ke data dari Content Sync dengan
   identitas surah/ayat/terjemahan yang sama, tanpa mengubah teks sumber.
