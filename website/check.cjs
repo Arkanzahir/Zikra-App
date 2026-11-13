@@ -13,6 +13,12 @@ for (const name of ['index.html', 'privacy.html']) {
   assert(!/<script|\.apk|https?:\/\//i.test(html), 'No remote resources, scripts or APK links in HOLD preview');
 }
 const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const artifact = JSON.parse(fs.readFileSync(path.join(__dirname, '../docs/beta/internal-artifact.json'), 'utf8'));
+assert.equal(artifact.releaseStatus, 'HOLD');
+assert.equal(artifact.distributionApproved, false);
+assert.equal(artifact.downloadUrl, null);
+assert(artifact.bytes < 100000000);
+assert(home.includes(`Kandidat internal ${artifact.version}`), 'Website version must match audited internal manifest');
 assert(/<button[^>]*disabled>Unduhan belum dibuka<\/button>/.test(home));
 assert(home.includes('arkanzahir46@gmail.com'));
-console.log('PASS: local references, language/viewport, HOLD download and support contact');
+console.log('PASS: local references, language/viewport, audited version, HOLD download and support contact');

@@ -180,7 +180,7 @@ public final class UtilitiesPolishTest extends InstrumentationTestCase {
       float density = assistant.getResources().getDisplayMetrics().density;
       assertTrue(assistant.findViewById(R.id.aiSend).getWidth() >= Math.round(48 * density));
       String heading = ((TextView) assistant.findViewById(R.id.detailTitle)).getText().toString();
-      assertEquals("Pendamping Zikra", heading);
+      assertEquals(assistant.getString(R.string.ai_refresh_title), heading);
       UiEvidence.capture(getInstrumentation(), "UtilityAssistantLargeFont");
     } finally {
       if (page != null) {

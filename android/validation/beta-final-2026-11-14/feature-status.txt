@@ -1,0 +1,27 @@
+Native APK screenshot journey. [Uji] checklist entries are temporary test data.
+Network views use actual live/cache/loading/failure state; screenshots do not prove network success.
+QualityHome → HomeActivity
+QualityStudy → StudyActivity
+QualityHifz → StudyActivity
+QualityIbadah → StudyActivity
+QualityPrayer → PrayerActivity
+QualityQuranCatalog → QuranActivity
+QualityQuranReader → QuranActivity
+QualityDua → DuaActivity
+QualityHadith → HadithActivity
+QualityCalendar → CalendarActivity
+QualityProfile → ProfileActivity
+QualityAssistant → AiActivity
+QualityQibla → QiblaActivity
+QualityInfaq → InfaqActivity
+Protector weather: Open-Meteo · tersimpan · 14 Nov 01:00 WIB
+Protector earthquake: Diambil 14 Nov 00:06 WIB · tersimpan · laporan terakhir Indonesia
+Bukan peringatan untuk lokasimu.
+QualityProtector → ProtectorActivity
+Weather: Open-Meteo · tersimpan
+Diambil 14 Nov 00:06 WIB · Sukolilo, Surabaya
+QualityWeather → WeatherActivity
+Earthquake: Laporan terakhir BMKG · Indonesia · tersimpan
+Diambil 14 Nov 00:06 WIB
+Bukan peringatan untuk lokasi Anda.
+QualityEarthquake → EarthquakeActivity

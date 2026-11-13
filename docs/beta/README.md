@@ -1,3 +1,7 @@
+## Update14November2026
+
+Kandidat internal1.9.47,debug/HOLD. [Status terkini](STATUS.json), [handoff](../../ACCOUNT_HANDOFF.md), [bukti27native](../../android/validation/beta-final-2026-11-14/README.md). Website lokal desktop/mobile teruji. Rincian dan gerbang lama hanya berlaku sejauh belum dikoreksi checkpoint ini; tidak menutup HP/signing/hak/putusan beta.
+
 ## Checkpoint terbaru
 
 [Handoff akun baru](../../ACCOUNT_HANDOFF.md), [hasil uji gabungan](../../android/validation/final-batch-2026-11-13/README.md), [website lokal](../../website/README.md). Kandidat tetap 1.9.46 HOLD; scope uji terbaru mengoreksi catatan historis yang menyebut seluruh uji ditunda.

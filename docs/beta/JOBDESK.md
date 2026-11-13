@@ -1,8 +1,12 @@
+## Update14November2026
+
+[Bukti kandidat1.9.47](../../android/validation/beta-final-2026-11-14/README.md) dan [handoff akun](../../ACCOUNT_HANDOFF.md) adalah checkpoint terbaru. Parent tetap terbuka; hanya dua kriteria terarah tambahan dicentang.
+
 # Jobdesk menuju beta Zikra
 
 Checkpoint terbaru: [handoff akun](../../ACCOUNT_HANDOFF.md),
 [hasil gabungan](../../android/validation/final-batch-2026-11-13/README.md).
-Kandidat1.9.46;125backend/200JVM/9native lulus,4JVMskip,891lintwarning.
+Kandidat1.9.47:202JVM/27native lulus,4JVMskip,890lintwarning. Backend tidak berubah;125tes lulus pada checkpoint sebelumnya.
 Website J15 pratinjau lokal tersedia di `website/dist`, tanpa tautan APK.
 Gerbang J14 belum ditutup; jangan menganggap seluruh J02–J15 selesai.
 
@@ -42,23 +46,23 @@ izin publikasi/layanan, menyediakan akses melalui konfigurasi privat dan
 mengonfirmasi hal yang hanya dapat dirasakan pada HP. Pemilik konten memberi
 izin konten; Codex tidak dapat mengesahkan izin atas nama mereka.
 
-| ID | Prioritas / acuan | Pekerjaan | Status awal | HP |
+| ID | Prioritas / acuan | Pekerjaan | Status checkpoint14November | HP |
 | --- | --- | --- | --- | --- |
 | J01 | P0 / G03, D03 | Layanan Content Sync server | Selesai terverifikasi: endpoint/cache/enkripsi dan hosted200/401/429 lulus | Tidak |
-| J02 | P0 / D03, D06, G03 | Integrasi Quran reader dan unduhan Android | Kode terpaket1.9.43; kompilasi berhasil, uji gabungan ditunda pengguna | Emulator dahulu, konfirmasi akhir J13 |
-| J03 | P0 / D03, G03 | Integrasi layout Mushaf, font, timing/audio | Kode terpaket1.9.43; uji gabungan font/timing/audio ditunda pengguna | Emulator dahulu, akhir J13 |
+| J02 | P0 / D03, D06, G03 | Integrasi Quran reader dan unduhan Android | Terintegrasi1.9.47;hosted native,staging,upgrade terisi lulus;gapfailure/audio/HP tetap | Emulator dahulu, konfirmasi akhir J13 |
+| J03 | P0 / D03, G03 | Integrasi layout Mushaf, font, timing/audio | Mapping604/font CDN asli lulus;seluruhfont/timing/audio/hak tetap | Emulator dahulu, akhir J13 |
 | J04 | P0 / G03 | Sumber dan hak Quran/font/terjemahan/layanan | Sebagian; tiga font bundel lolos audit paket | Tidak, izin eksternal mungkin perlu |
 | J05 | P0 / B01 | Kejelasan sumber kitab Hadis lengkap | Menunggu klarifikasi sumber/cakupan | Tidak |
 | J06 | P0 / D02, D02a | Hak dan lafaz audio adzan | Sebagian: dua rekaman/hash teridentifikasi; izin belum | Audit tanpa HP; suara akhir J13 |
 | J07 | P1 / C02, G03 | Operasional AI dan akses tester | Sebagian; health/auth dan tes tersedia | Mayoritas tidak; kasus akhir J13 |
-| J08 | P1 / E03 | Cuaca, alert, doa kontekstual, briefing | Kode pengingat/briefing1.9.44 tersedia; uji gabungan ditunda pengguna | Mayoritas tidak, lalu J13 |
-| J09 | P1 / E04 | Darurat dan masjid terdekat | Kode bantuan/fallback1.9.45 tersedia; sumber ditinjau, uji gabungan ditunda | Emulator dahulu, aksi akhir J13 |
-| J10 | P1 / F01–F04 | Konsistensi UI, aksesibilitas, performa | Panduan visual dibekukan; motion guard1.9.46, uji gabungan/performa masih tertunda | Sebagian emulator; performa akhir HP |
+| J08 | P1 / E03 | Cuaca, alert, doa kontekstual, briefing | Cuaca live/cache,pengaturan,dedupe/izin/lokasi/hari lulus terarah;jobbackground/HP tetap | Mayoritas tidak, lalu J13 |
+| J09 | P1 / E04 | Darurat dan masjid terdekat | Intent nomor/draf/rute/fallback lulus dengan monitor;app penerima/HP tetap | Emulator dahulu, aksi akhir J13 |
+| J10 | P1 / F01–F04 | Konsistensi UI, aksesibilitas, performa | Panduan,splash/dock/keyboard/teks200% dan smoke16layar lulus;matriks/performaHP tetap | Sebagian emulator; performa akhir HP |
 | J11 | P0 / G03 | Privasi, dukungan dan tata kelola | Sebagian; draf/email sudah ada | Tidak |
 | J12 | P0 / G04 | Signing, paket dan migrasi distribusi | Sebagian; guard/auditor ada, key final belum | Build tanpa HP; migrasi akhir J13 |
 | J13 | P0 / C02, D02, G01, G02 | Uji paket final dan kegagalan fisik | Menunggu HP dan kandidat final | Ya, dikoordinasikan |
 | J14 | P0 / G05 | Putusan siap beta terbatas | Antrean; HOLD tetap berlaku | Berdasarkan bukti J01–J13 |
-| J15 | Sesudah J14 | Website unduhan dan peluncuran bertahap | Belum dieksekusi | Uji instal kanal pada HP |
+| J15 | Sesudah J14 | Website unduhan dan peluncuran bertahap | Preview lokal desktop/mobile selesai;download/publish menungguJ14 | Uji instal kanal pada HP |
 
 ## Kriteria selesai per job
 
@@ -81,7 +85,7 @@ Receipt lanjutan: android/validation/quran-sync-integration/README.md dan hosted
 
 ### J02 — Quran reader dan unduhan
 
-- [ ] Hubungkan reader/QuranDownloadService ke data dari Content Sync dengan
+- [x] Hubungkan reader/QuranDownloadService ke data dari Content Sync dengan
   identitas surah/ayat/terjemahan yang sama, tanpa mengubah teks sumber.
 - [ ] Terapkan penyimpanan durable/staging dan perpindahan generasi hanya sesudah
   lengkap; file lama, bookmark/progres/pilihan qari dipertahankan sampai pengganti valid.
@@ -151,7 +155,9 @@ atau menambah biaya tanpa kebutuhan dan keputusan yang sesuai.
 - [ ] Verifikasi cuaca untuk lokasi/zona/waktu pilihan dan keadaan data lama/gagal.
 - [ ] Tuntaskan alert/kontrol pengguna/deduplikasi, doa perjalanan/pagi/petang,
   morning briefing sesuai cakupan yang sudah disetujui.
-- [ ] Uji pergantian hari/lokasi, izin ditolak, opt-out dan tidak ada notifikasi ganda.
+- [x] Uji pergantian hari/lokasi, izin ditolak, opt-out dan tidak ada notifikasi ganda.
+  Bukti emulator journal/cooldown/revision/location/permission pada1.9.47;
+  bukan klaim delivery fisik Doze/semuaOS.
 
 Hasil: bukti skenario nyata serta batas layanan. E01/E02 tidak diulang tanpa alasan.
 

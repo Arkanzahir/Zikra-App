@@ -1,8 +1,11 @@
 # Catatan calon beta — belum diterbitkan
 
 Paket final, versi distribusi, hash, signer dan URL unduhan belum dipilih.
-Kandidat internal terbaru1.9.46/code73,49.511.880byte; SHA256bc52f34baa7a64fdd5783cd0ecd8ac302f0a00ecbe19235325b2e8a7dd930fc0. Kompilasi/audit dikenal berhasil; uji gabungan pada versi ini ditunda pengguna. [Status dan gerbang](FINAL_BATCH.md). Jangan memasang kandidat
-unsigned atau menjadikan debug lama sebagai unduhan beta publik.
+Kandidat internal terbaru1.9.47/code74,49.511.880byte;SHA256
+03f9b61fc7ad88ad9049683a138dc3ae77b92982c3062a6d0fd152b884a07670.
+Receiver penjadwalan memvalidasi action sistem;202JVM/27native lulus,4JVMskip,
+0lint error/890warning. [Bukti/batas](../../android/validation/beta-final-2026-11-14/README.md).
+Tetap debug/HOLD;HP,signing,hak dan gerbang lainnya belum ditutup.
 
 ## Fitur yang dapat diuji setelah gerbang dipenuhi
 

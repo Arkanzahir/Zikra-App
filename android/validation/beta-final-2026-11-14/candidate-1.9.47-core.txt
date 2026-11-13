@@ -1,0 +1,11 @@
+com.zikra.app.BetaUpgradeDataTest:.
+com.zikra.app.RescheduleReceiverNativeTest:.
+com.zikra.app.QuranHostedGatewayTest:.
+com.zikra.app.QuranSyncIntegrationTest:....
+com.zikra.app.reading.mushaf.MushafFontCacheNativeTest:.
+com.zikra.app.FinalBatchThemeTest:.
+com.zikra.app.OnboardingParallaxTest:..
+Test results for InstrumentationTestRunner=...........
+Time: 37.3
+
+OK (11 tests)

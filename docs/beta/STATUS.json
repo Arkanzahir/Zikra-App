@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-14",
+  "releaseStatus": "HOLD",
+  "version": "1.9.47",
+  "versionCode": 74,
+  "apkBytes": 49511880,
+  "apkSha256": "03f9b61fc7ad88ad9049683a138dc3ae77b92982c3062a6d0fd152b884a07670",
+  "debugSigningKey": true,
+  "phoneTestedOnCandidate": false,
+  "nativePassed": 27,
+  "jvmPassed": 202,
+  "jvmSkipped": 4,
+  "lintErrors": 0,
+  "lintWarnings": 890,
+  "backendPreviousRunPassed": 125,
+  "backendChanged": false,
+  "website": "local-preview-verified-desktop-and-390-css-px-no-public-download",
+  "evidence": "android/validation/beta-final-2026-11-14/README.md",
+  "remaining": [
+    "quran-font-audio-failure-matrix",
+    "background-and-device-verification",
+    "content-service-audio-rights-B01",
+    "publisher-retention-privacy",
+    "release-signer-and-migration",
+    "physical-device-final-session",
+    "beta-decision-and-public-download"
+  ]
+}

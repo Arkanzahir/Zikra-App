@@ -1,172 +1,191 @@
-# Mulai di sini — pindah akun GPT
+# Mulai di sini — handoff akun GPT
 
-Checkpoint 13 November 2026. Ini ringkasan operasional terbaru; baca sebelum bagian
-historis di dokumen besar. Akun GPT baru tidak otomatis menerima percakapan,
-otorisasi akun layanan, berkas privat atau memori akun lama.
+Checkpoint terbaru: **14 November 2026, kandidat internal 1.9.47/code74, HOLD**.
+Dokumen ini menggantikan ringkasan versi lama di percakapan. Akun baru tidak
+mewarisi chat, memori, koneksi layanan atau file privat akun sebelumnya.
 
-## Urutan baca
+## 1. Baca sebelum bekerja
 
-1. `AGENTS.md` dan dokumen ini.
-2. `SESSION_HANDOFF.md`, `IMPLEMENTATION_PLAN.md`, `RELEASE_SCOPE.md`.
-3. `docs/beta/JOBDESK.md`, `docs/beta/FINAL_BATCH.md`.
-4. `android/validation/final-batch-2026-11-13/README.md` dan
-   `android/validation/quran-sync-integration/README.md`.
-5. `docs/design/APP_GUIDE.md`, `docs/beta/OPERATOR_RUNBOOK.md`,
-   `docs/beta/PRIVACY_DRAFT.md`, `docs/beta/SERVICES.md`.
+1. AGENTS.md dan dokumen ini.
+2. SESSION_HANDOFF.md, IMPLEMENTATION_PLAN.md, RELEASE_SCOPE.md.
+3. docs/beta/JOBDESK.md dan docs/beta/STATUS.json.
+4. android/validation/beta-final-2026-11-14/README.md.
+5. docs/design/APP_GUIDE.md, docs/beta/OPERATOR_RUNBOOK.md,
+   docs/beta/PRIVACY_DRAFT.md dan docs/beta/SERVICES.md.
 
-Catatan paling atas yang lebih baru mengoreksi status historis, bukan berarti
-hasil lama berlaku otomatis untuk kandidat baru. Checklist hanya dicentang jika
-semua kriterianya berbukti. Baseline 1.7.6/83312da sudah historis; jangan reset ke sana.
+Bagian paling baru mengoreksi catatan historis, bukan menghapus batas bukti.
+Baseline1.7.6/commit83312da sudah historis; jangan reset ke sana. Jangan menganggap
+A–D/E/F/G selesai seluruhnya atau membuka unduhan hanya karena APK berhasil build.
 
-## Workspace dan aturan pengguna
+## 2. Workspace dan keputusan pengguna
 
-- Root repo sebenarnya `D:/Download/Zikra-App-main/Zikra-App-main`;
-  folder induknya hanya wrapper/output APK. Remote GitHub `Arkanzahir/Zikra-App`,
-  branch `main`. Periksa HEAD/remote saat mulai; jangan hard-reset/pull menimpa WIP.
-- Selalu gunakan caveman, komunikasi Indonesia ringkas. Skill lokal
-  `C:/Users/Lenovo/.codex/skills/caveman/SKILL.md`; frontend-design untuk UI.
-- Pengguna meminta selesaikan berdasarkan prioritas, hemat limit, perubahan
-  diaudit/commit/push. Jangan minta ulang keputusan yang sudah jelas. Uji HP
-  hanya ketika perangkat siap dan penggunaan terkoordinasi.
-- Tidak memulai ulang proyek, menghapus data pengguna, mengunggah rahasia,
-  mengganti desain disetujui, menerima ketentuan/biaya atau mengirim email diam-diam.
-- Unduhan awal wajib <100.000.000byte. Paket debug tidak boleh jadi rilis publik.
-- Login Google/sync/backup cloud/admin (F05–F08), mode orang tua dan sorotan Quran
-  UI10 ditunda. Jangan menambahnya untuk menghindari pekerjaan rilis inti.
+Repo: D:/Download/Zikra-App-main/Zikra-App-main. Folder induk hanya wrapper/output.
+Remote: https://github.com/Arkanzahir/Zikra-App, branch main. Baca HEAD/status
+sebelum mulai. Jangan hard-reset, clean massal atau pull menimpa WIP.
 
-## Kandidat dan bukti
+Selalu gunakan caveman, bahasa Indonesia ringkas. Skill lokal berada di
+C:/Users/Lenovo/.codex/skills/caveman/SKILL.md; frontend-design untuk pekerjaan UI.
+Pengguna meminta pekerjaan tuntas berdasarkan prioritas dan dokumentasi jelas,
+audit/commit/push setiap checkpoint, hemat limit. Jangan hanya membuat rencana
+atau mengulang tes yang sudah lulus tanpa perubahan/alasan baru.
 
-- APK internal 1.9.46 / code 73:
-  `D:/Download/Zikra-App-main/Zikra-Polish-v1.9.46-beta-debug.apk`.
-  49.511.880byte;SHA256
-  `bc52f34baa7a64fdd5783cd0ecd8ac302f0a00ecbe19235325b2e8a7dd930fc0`.
-- Audit `android/validation/ui-f-code-2026-11-13/apk-audit.json`: tanda tangan
-  debug,private entries0/credential dikenal0,backup/cleartext nonaktif. Bukan
-  jaminan absolut keamanan atau persetujuan distribusi.
-- Sesi gabungan terbaru: backend125 lulus;JVM200 lulus/4 skip;native9 lulus;
-  lint0 error/891 warning.12 screenshot enam layar ×terang/gelap. Scope/gap ada di receipt.
-- HP terakhir yang terbukti pada checkpoint sebelum sesi ini1.9.39. Sesi ini
-  tidak memakai HP. Jangan mengklaim1.9.46 telah diuji fisik atau dipasang pengguna.
-- Tidak membuat versi baru hanya untuk dokumen,website atau test-only.
+Pertahankan desain/logo/ikon diterima, data pengguna dan konfigurasi privat.
+Unduhan awal <100.000.000 byte. Tidak mengaktifkan biaya/billing, menerima
+ketentuan, mengirim email/pesan, atau menghapus aplikasi pengguna diam-diam.
+HP belum dipakai pada sesi terbaru; koordinasikan kesiapan/restart sebelumnya.
 
-## Arsitektur dan implementasi yang sudah ada
+Login Google, backup/sinkronisasi cloud, dashboard admin (F05–F08), mode orang
+tua dan sorotan Quran UI10 ditunda. Jangan menambah fitur besar ini sekarang.
 
-- Android native Java/XML di `android`; data tugas/profil/hafalan/chat lokal,
-  token akses dilindungi Keystore. AI online backend HTTPS Vercel,
-  `https://zikra-ai.vercel.app`,provider Cloudflare Workers AI. Mode offline
-  rule-based, bukan LLM lokal. Riwayat lokal bukan memori cloud/RAG permanen.
-- Contoh konfigurasi model pada `backend/.env.vercel.example` memakai
-  `@cf/qwen/qwen3.8-27b`; jangan menganggap contoh membuktikan model produksi
-  aktif tanpa pemeriksaan metadata konfigurasi privat. Featherless legacy saja.
-- Gateway akses instalasi/kuota via Upstash;credential provider server-only.
-  Poll gempa Cloudflare cron 5 menit→backend→BMKG→FCM opt-in; bukan earlywarning.
-- Content SyncQuran: 3 group kanonis,mushaf1/quran_core1/translations33,
-  114 surah / 6236 ayat / 83665 kata/604 halaman. CacheRedis AES256GCM staging+pointer,
-  TTL 8 hari / refresh 6 hari. `/v1/quran` reader/Mushaf/locate terautentikasi danquota
-  terpisah. Hosted200/401/429/revoke pernah teruji; detail receipt.
-- Android `QuranSyncGateway / Store`,Repository danDownloadService memakai staging
-  chapter lengkap/atomic,mempertahankan generasi lama danguardcancel/storage.
-  `MushafFontCache` validasi sebelumpublish,retensi file lama saat outage,
-  AccessDenied tidak disamarkan. Font/audio tetap unduhan terpisah.
-- Jadwal salat mengikuti lokasi,zona,tanggal,sumber regional/cache dan fallback
-  hitung berlabel. Jangan paksa selisih2menit global agar sama pencarianGoogle.
-  Lihat implementasi/receipt sumber saat menjelaskan; jangan ganti atribusi
-  upstream menjadi “resmi Kemenag” tanpa bukti hubungan sumber.
-- E03: empat pengingat default off,cuaca perlu persetujuan lokasi tersimpan,
-  JobScheduler 15 menit best-effort,day dedupe/cooldown/revision,tidak menyalakan GPS.
-- E04: nomor darurat membuka dialer,draf keluarga tanpaGPS/kirim otomatis;
-  peta OSM / Overpass tetap,Google Maps hanya web / geo / fallback manual. Billing ditolak
-  pengguna; jangan aktifkan Maps SDK berbayar.
-- F01 panduan desain danF04 guard motion/foreground/viewport/power/screen/sensor
-  dipaketkan. DockAI,splash,lampu malam dan aset diterima dipertahankan. Semua
-  layar/power/200%font belum tuntas diverifikasi.
-- `website/dist`:landing,fitur,FAQ,dukungan,draf privasi,aset lokal asli.
-  DesktopChrome/FAQ/privasi diuji;mobile belum. Download disabled, HOLD, tanpa URL APK.
-  Belum hosting/publikasi. `D:/node.exe website/check.cjs` untukcek lokal.
+## 3. Kandidat dan bukti terkini
 
-## Sisa, urut konkret
+APK: D:/Download/Zikra-App-main/Zikra-Polish-v1.9.47-beta-debug.apk.
+Ukuran49.511.880 byte, SHA256:
+03f9b61fc7ad88ad9049683a138dc3ae77b92982c3062a6d0fd152b884a07670.
+Audit: android/validation/beta-final-2026-11-14/apk-audit.json.
+Tanda tangan debug valid/sama; private entries0, credential dikenal0,
+backup/cleartext nonaktif. Ini bukan persetujuan distribusi publik.
 
-1. Lanjutkan gap J02/J03 terarah: gateway Android→hosted,update data terisi,
-   font/Mushaf/audio danoffline/failure. Hindari mengulang seluruhtes yang sudah
-   lulus tanpa perubahan. Testfresh-only Quran terakhir tidak aman direrun utuh
-   pada store yang sudah diisi; buat emulator disposable baru, bukan hapus data pengguna.
-2. J08/J09/F02–F04:cuaca live, ganti lokasi, stop job, permission danfallbackmaps /
-   emergency draft;teks200%,keyboard,scroll/power. Jangan benar-benar menelepon,
-   mengirimSMS/broadcast atau memakai berkas pribadi untuk bukti.
-3. J04–J12: B01 Gading belum memberi klarifikasi dua kitab lengkap;HadeethEnc 2260
-   opsional bukan pengganti diam-diam. Hak dua audio/penelaahanlafaz,penerbit/
-   retensi / proses penghapusan dan signer release / migrasi masih terbuka. Pengguna menunda
-   pembahasan izin, bukan berarti izin sudah diperoleh. Email dukungan publik
-   yang diizinkan: `arkanzahir46@gmail.com`; identitas penerbit final belum diputuskan.
-4. Satu sesi HP J13 pada hash kandidat sama: update tanpa data hilang,AI online
-   independen laptop,sisa adzan idle / power,smoke lintas fitur. Koordinasikan restart.
-   Jangan menyimpulkan ujiHP lama menutup kandidat baru.
-5. J14 putusan beta,kemudian J15 rilis website / download HTTPS + install / update nyata.
-   Jangan uploadAPKdebug atau promo sebelumgerbang. Promo visual disetujui;
-   hak voice-over / komersial belum ditutup. Parent A–D/E/F/G belumselesai seluruhnya.
+Hasil pada1.9.47: JVM202 lulus/4skip, native27 lulus, lint0error/890warning.
+Bukan klaim source bebas masalah. Backend tidak berubah;125tes backend lulus
+pada checkpoint13November, tidak diklaim dijalankan ulang untuk receiver Android.
 
-## Lindungi WIP dan konfigurasi
+Perubahan produksi terbaru hanya allowlist action sistem pada
+android/app/src/main/java/com/zikra/app/reminders/PrayerRescheduleReceiver.java,
+serta versi. Receiver tetap non-exported. Tidak mengubah jadwal/audio/provider/UI.
+Test reduced motion kini mengatur/memulihkan animation0 sendiri; ekspektasi judul
+AI lama diganti ke resource desain diterima. Assertion layout tetap dipertahankan.
 
-- Jangan stage `PROJECT_HANDOFF.md` (WIP pengguna), `InfaqActivity.java`,
-  banyak res/valuesXML yang hanya berubah lineending,design lama tidak dilacak,
-  crashlogs atau `__pycache__`. Selalu stage path eksplisit milik tugas.
-- PROJECT_HANDOFF SHA256
-  `e6df1b9dfc227883098e6db19ea7413cac6206a61fa6834eeb1bc2a7fae63650`.
-  Stashaudio `35686be384ac549e5a5bf85be87cfe56e3b667df` janganapply/drop.
-  Arsip `.local/pending-audio-a03-2026-10-24/source-wip.zip`,SHA256
-  `f2b905b613a5083a6f9bd3e548d8bcb661a458bfc143302cb116c7a06984724f`.
-- Rahasia hanya di `.local`:featherless.env,vercel-client.env,
-  vercel-production.env,cloudflare.env,cloudflare-cron.env,earthquake-cron.env,
-  firebase-server.json,quran-foundation.env,quran-sync.env. Jangan cetak isi,
-  commit,APK,website,atau kirim ke chat. Baselinehashprivat
-  `.local/beta-release-20261112/private-hashes.json`; bukan berkas untuk diunggah.
-- Logo diterima `design/branding/zikra-logo-primary.jpg`,SHA256
-  `7fa6744a626bbb27e1d944c18090730a64d37658a0e8f5aaea5212f14d52d963`;
-  foreground Home SHA256 `1fedfc7a3eab18615822cb95a153293c325900ff7fd51984c3033ce234e57a90`.
-- GitHub tidak membawa `.local`,APK,MP3,signerprivat atau akses layanan. Pada
-  komputer yang sama filelokal tetap ada; komputerbaru membutuhkan pemindahan
-  privat oleh pemilik. Jangan menganggap login GPT baru menghubungkanGitHub/
-  Drive/Cloudflare/Vercel otomatis.
+Data contoh terisi pada1.9.41 berhasil dipertahankan dengan install-r ke1.9.46
+lalu1.9.47: profil, tugas, Hifz, chat/draf, bookmark dan tema. Bukan migrasi signer
+release atau bukti HP. HP terakhir yang terbukti pada checkpoint lama1.9.39;
+jangan mengklaim kandidat baru sudah terpasang/diuji fisik.
 
-## Lingkungan dan perintah penting
+## 4. Sistem yang sudah tersedia
 
-PowerShell;Node `D:/node.exe`,Java `C:/Users/Lenovo/.jdks/jbr-17.0.14`,
-AndroidSDK `E:/AndroidSDK`,Python
-`C:/Users/Lenovo/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe`.
-Git memakai `-c safe.directory=D:/Download/Zikra-App-main/Zikra-App-main`.
+- Android native Java/XML di android; backend Node di backend.
+- AI online melalui https://zikra-ai.vercel.app ke Cloudflare Workers AI.
+  Mode offline adalah aturan lokal; riwayat lokal bukan RAG/ingatan cloud permanen.
+  Foto/PDF/DOCX/TXT terbatas sesuai UI/draf privasi. Registry/kuota instalasi Upstash;
+  provider key server-only. Featherless legacy tidak aktif untuk chat produksi.
+  Contoh model pada backend/.env.vercel.example: @cf/qwen/qwen3.8-27b. Contoh bukan
+  bukti model produksi saat ini; periksa metadata konfigurasi privat bila perlu.
+- Quran Content Sync: mushafs1/quran_core1/translations33,114surah,6236ayat,
+  83665kata,604halaman. Cache server AES256GCM, TTL8hari/refresh6hari.
+  Endpoint /v1/quran terautentikasi, kuota terpisah. QF credential hanya server.
+  Native QuranSyncGateway/Store/Repository/DownloadService memakai staging dan
+  publikasi chapter atomik. Font CDN, timing metadata dan audio adalah jalur berbeda.
+- Hosted native reader/Mushaf/locate/token salah/pemulihan berhasil; font CDN asli
+  p1/nama surah/basmalah berhasil lewat MushafRepository. Fixture lengkap menguji
+  mapping/publish/failure/recovery. Belum semua604font/qari/audio/timing/proses mati.
+- Jadwal salat mengikuti tanggal/lokasi/zona, sumber regional/cache dan fallback
+  hitung berlabel. Jangan paksa offset2menit global agar sama Google atau mengganti
+  atribusi upstream menjadi resmi Kemenag tanpa bukti. Lihat source/receipt jadwal.
+- Cuaca Open-Meteo; gempa laporan BMKG. Poll Cloudflare cron5menit→Vercel→FCM
+  bagi pengguna opt-in, bukan early warning. Jangan broadcast ulang sebagai tes.
+- E03:pengingat defaultoff, persetujuan cuaca memakai lokasi tersimpan tanpa GPS,
+  JobScheduler15menit best-effort, journal/dedupe/cooldown/revision dan kontrol izin.
+  Cuaca live kota default/cache serta penolakan stale work/hari/lokasi/izin teruji;
+  pengiriman cuaca latar belakang dalam Doze/HP belum selesai.
+- E04:dialer/draf tanpa submit, Maps web→geo→dialog salin. OSM/Overpass tetap;
+  pengguna menolak billing Google Maps SDK. Intent/nomor/URL/fallback teruji dengan
+  monitor yang mencegat; aplikasi penerima eksternal belum diuji menyeluruh.
+- F:tema global, dock AI/keyboard/draf, lampu siang-malam, splash cold/warm,
+  reduced motion, foreground/viewport/power/sensor guard tersedia.27native mencakup
+  smoke16tampilan, bukan persetujuan visual semua piksel atau baterai HP.
+- Website statis di website/dist: fitur,FAQ,dukungan,drafprivasi,aset lokal.
+  Desktop dan390CSSpx tanpa overflow diuji; tombol download disabled dan tidak
+  ada URL APK. Belum hosting/publikasi. Kontak publik: arkanzahir46@gmail.com.
 
-Build Gradle memerlukan properti audio lokal TERPILIH:
-`-PzikraAdhanAudio=D:/Download/Zikra-App-main/Zikra-App-main/.local/d02-audio-20261026/selected/adhan_misyari_user.mp3`
-dan `-PzikraFajrAudio=D:/Download/Zikra-App-main/Zikra-App-main/.local/d02-audio-20261026/selected/adhan_fajr_user.mp3`.
-Tanpa properti ini paket bisa memakai audio berbeda. Cache Gradle E perlu izin
-lingkungan. Tidak ada env signing release dikonfigurasi pada sesi ini.
+## 5. Pekerjaan berikutnya, bukan mulai dari nol
 
-Backend test fixture Python `.local/vercel-test-venv/Scripts/python.exe` via
-`ZIKRA_REDIS_TEST_PYTHON`. JVM fixture `ZIKRA_HADEETHENC_FIXTURE` menunjuk
-`.local/hadeethenc-audit-20261112/HadeethEnc.com_id-v1.22.0.csv`.
-Selalu sebutskip; jangan menyembunyikannya.
+1. Tutup gap J02/J03 yang belum berbukti: resource dicabut, proses mati/ruang rendah
+   nyata, cakupan font/Mushaf/audio/timing dan kebijakan cache masing-masing.
+   Jangan mengulang gateway hosted yang sudah lulus tanpa perubahan.
+2. Sisa E/F/G: job background/Doze, receiver sistem/aplikasi penerima eksternal,
+   layar/dialog/teks besar yang belum dicakup. Uji27case tidak menutup seluruh matriks.
+3. J04–J06: hak sumber/layanan, B01 dua kitab lengkap menunggu Gading, audio/lafaz.
+   HadeethEnc opsional2260 bukan pengganti diam-diam. Pengguna menunda pembahasan
+   izin; itu bukan bukti izin diperoleh. Jangan mengirim email baru tanpa instruksi.
+4. J11: penerbit final, retensi/proses penghapusan/kebijakan privasi. Email dukungan
+   sudah diizinkan, identitas penerbit final belum ditetapkan.
+5. J12: signer release tetap + cadangan privat dan strategi migrasi debug→release.
+   Jangan membuat keputusan migrasi sendiri, uninstall atau menyebarkan debug publik.
+6. J13: satu sesi HP terkoordinasi pada hash kandidat yang sama; update terisi,
+   AI independen laptop, sisa alarm/adzan idle/power, sensor dan smoke lintas fitur.
+   Uji lama tetap bukti versi lama. Tidak perlu mengulang reboot lama tanpa alasan.
+7. J14 keputusan beta, baru J15 downloadHTTPS/install/update dari kanal nyata.
+   Promo visual disetujui; hak voice-over/komersial belum ditutup. Jangan publish dulu.
 
-Node fetch lokal pernah TCP timeout Vercel / Redis meskiWindows HTTPS berhasil.
-Adapter uji privat `.local/quran-sync-integration/windows-fetch.mjs` dan
-`hosted-proof.mjs` tersedia; jangan melemahkan TLS atau menganggap produksi mati.
-Jangan hapus seluruh registry Redis. Uji hanya identitas sintetis diketahui,
-simpan ID privat sebelum issue, TTL dan finally cleanup. Satu run awal gagal sebelum
-ID persist mungkin menyisakan identitas tak teridentifikasi; jangan klaim seluruh
-registry bersih tanpa bukti.
+## 6. WIP, file lokal dan rahasia
 
-Audit staged `.local/quran-sync-integration/audit-staged.cjs` memeriksa nilai
-credential dikenal / path privat; jalankan sebelum commit. `tools/audit_beta_release.py`
-output eksklusif: pakai nama file baru; debug menghasilkan status HOLD / exit 1 yang diharapkan.
-`tools/prepare_beta_manifest.py` hanya HOLD, bukan persetujuan rilis.
+Jangan stage PROJECT_HANDOFF.md, InfaqActivity.java, XML values yang berubah
+line ending, desain lama untracked, crashlog atau __pycache__. Diff Infaq saat
+checkpoint ini tidak menunjukkan perubahan logika setelah whitespace diabaikan.
+PROJECT_HANDOFF adalah WIP pengguna dan tetap terpisah. Stage path eksplisit saja.
 
-## Prompt akun baru (salin)
+PROJECT_HANDOFF SHA256:
+e6df1b9dfc227883098e6db19ea7413cac6206a61fa6834eeb1bc2a7fae63650.
+Stash audio35686be384ac549e5a5bf85be87cfe56e3b667df: jangan apply/drop.
+Arsip .local/pending-audio-a03-2026-10-24/source-wip.zip SHA256:
+f2b905b613a5083a6f9bd3e548d8bcb661a458bfc143302cb116c7a06984724f.
+Logo design/branding/zikra-logo-primary.jpg dan foreground Home diterima tetap.
 
-Lanjutkan Zikra di D:\Download\Zikra-App-main\Zikra-App-main. Selalu gunakan
-skill caveman. Baca ACCOUNT_HANDOFF.md, AGENTS.md, SESSION_HANDOFF.md,
-IMPLEMENTATION_PLAN.md, RELEASE_SCOPE.md dan docs/beta/JOBDESK.md terlebih dahulu.
-Kandidat internal1.9.46 masih HOLD; hasil terbaru dan gap ada di
-android/validation/final-batch-2026-11-13/README.md. Website sudah pratinjau lokal,
-belum publik. Jangan ulang proyek atau menutup A–D/E/F/G tanpa bukti. Pertahankan
-WIP PROJECT_HANDOFF,stash audio,data pengguna, desain disetujui dan konfigurasi
-privat. Lanjutkan gap terdekat sesuai urutan handoff; ujiHP hanya ketika siap.
-Audit,commit danpush perubahan milik tugas; jangan masukkan rahasia ke Git/APK.
+Rahasia hanya di .local: featherless.env,vercel-client.env,vercel-production.env,
+cloudflare.env,cloudflare-cron.env,earthquake-cron.env,firebase-server.json,
+quran-foundation.env,quran-sync.env. Jangan cetak nilainya, upload atau masuk Git/APK.
+Baseline tujuh konfigurasi: .local/beta-release-20261112/private-hashes.json.
+GitHub tidak memuat file privat, APK, MP3, signer atau akses akun layanan.
+
+Pada laptop yang sama, file lokal tetap tersedia saat ganti akun GPT. Pada mesin
+lain, pemilik perlu memindahkan file privat secara aman. Login GPT baru tidak
+otomatis menghubungkan GitHub/Drive/Cloudflare/Vercel atau membawa chat lama.
+
+## 7. Lingkungan dan verifikasi
+
+PowerShell;Node D:/node.exe;Java C:/Users/Lenovo/.jdks/jbr-17.0.14;
+SDK E:/AndroidSDK;Python:
+C:/Users/Lenovo/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe.
+Git memakai -c safe.directory=D:/Download/Zikra-App-main/Zikra-App-main.
+
+Gradle selalu memakai kedua properti audio berikut:
+-PzikraAdhanAudio=D:/Download/Zikra-App-main/Zikra-App-main/.local/d02-audio-20261026/selected/adhan_misyari_user.mp3
+-PzikraFajrAudio=D:/Download/Zikra-App-main/Zikra-App-main/.local/d02-audio-20261026/selected/adhan_fajr_user.mp3
+
+Tanpa ini paket bisa memakai audio berbeda. JAVA_HOME/ANDROID_HOME seperti di atas.
+Fixture JVM ZIKRA_HADEETHENC_FIXTURE menunjuk
+.local/hadeethenc-audit-20261112/HadeethEnc.com_id-v1.22.0.csv.
+Fixture Redis test ZIKRA_REDIS_TEST_PYTHON=.local/vercel-test-venv/Scripts/python.exe.
+Perintah build: ./android/gradlew.bat -p android --no-daemon --console=plain
+[dua properti audio] testDebugUnitTest assembleDebug assembleDebugAndroidTest lintDebug.
+
+Audit staged: D:/node.exe .local/quran-sync-integration/audit-staged.cjs.
+Auditor APK tools/audit_beta_release.py memakai output eksklusif: nama baru setiap
+run; debug menghasilkan HOLD/exit1, jangan menganggap exit0 otomatis siap rilis.
+Manifest tools/prepare_beta_manifest.py juga hanya HOLD. Website: D:/node.exe website/check.cjs.
+
+Node HTTPS lokal pernah timeout meski Windows HTTPS berhasil. Adapter privat
+.local/quran-sync-integration/windows-fetch.mjs tersedia untuk uji; jangan
+melemahkan TLS. Android37 dapat memblokir UID instrumentasi tanpa Activity
+foreground: tunggu fokus/validasi jaringan, jangan mengubah firewall untuk meluluskan.
+
+Native test hanya pada emulator disposable, serial eksplisit. Fixture/data pribadi
+jangan dipaketkan ke testAPK. QuranSyncIntegrationTest bagian Z membutuhkan store
+chapter2 belum ada; gunakan emulator baru, bukan menghapus data pengguna.
+Host test perlu identitas sintetis privat, TTL, cleanup key sendiri dan finally.
+.local/native-hosted-20261113/access.mjs menyediakan lifecycle untuk sesi terakhir.
+Dua identitas sesi ini sudah dihapus dan EXISTS0 diverifikasi. Satu run historis
+sebelum IDpersist mungkin menyisakan identitas takteridentifikasi; jangan scan/delete
+seluruh registry atau mengklaim semua registry bersih. Emulator/server task sudah
+dihentikan dan data task dibersihkan; jangan mencoba path AVD lama tanpa membuat
+emulator disposable baru. Screenshot/log/ringkasan final tersedia di Git.
+
+## Prompt siap salin untuk akun baru
+
+Lanjutkan Zikra di D:/Download/Zikra-App-main/Zikra-App-main. Selalu gunakan caveman.
+Baca ACCOUNT_HANDOFF.md, AGENTS.md, SESSION_HANDOFF.md, IMPLEMENTATION_PLAN.md,
+RELEASE_SCOPE.md dan docs/beta/JOBDESK.md. Kandidat internal1.9.47 masih HOLD;
+bukti terbaru ada di android/validation/beta-final-2026-11-14/README.md.
+Jangan ulang proyek atau menganggap A–D/E/F/G selesai. Pertahankan WIP, stash audio,
+data pengguna, desain diterima dan konfigurasi privat. Lanjutkan gap terdekat
+sesuai handoff; HP hanya saat siap. Audit, commit dan push perubahan milik tugas.

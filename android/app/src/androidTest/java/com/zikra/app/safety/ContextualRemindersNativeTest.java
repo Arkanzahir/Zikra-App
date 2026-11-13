@@ -28,6 +28,9 @@ public final class ContextualRemindersNativeTest extends InstrumentationTestCase
       long revision = prefs.getLong("revision", 0);
       ContextualReminders.deliver(c, point, revision - 1, "morning", 0, "[Uji]", "Data sintetis", null);
       assertFalse(prefs.contains("sent_morning"));
+      LocationPoint other = new LocationPoint(-6.2, 106.8, "Asia/Jakarta", "Jakarta uji", "manual", 0, -1);
+      ContextualReminders.deliver(c, other, revision, "morning", 0, "[Uji] lokasi lama", "Data sintetis", null);
+      assertFalse(prefs.contains("sent_morning"));
       ContextualReminders.deliver(c, point, revision, "morning", 0, "[Uji]", "Data sintetis", null);
       long sent = prefs.getLong("sent_morning_at", 0);
       assertTrue(sent > 0);
@@ -38,6 +41,10 @@ public final class ContextualRemindersNativeTest extends InstrumentationTestCase
       prefs.edit().putString("sent_morning", "2000-01-01").putLong("sent_morning_at", recent).commit();
       ContextualReminders.deliver(c, point, revision, "morning", 0, "[Uji] cooldown", "Data sintetis", null);
       assertEquals(recent, prefs.getLong("sent_morning_at", 0));
+      prefs.edit().putString("sent_morning", "2000-01-01")
+          .putLong("sent_morning_at", System.currentTimeMillis() - 7 * 3600000L).commit();
+      ContextualReminders.deliver(c, point, revision, "morning", 0, "[Uji] hari baru", "Data sintetis", null);
+      assertEquals(Instant.now().atZone(point.zone).toLocalDate().toString(), prefs.getString("sent_morning", ""));
       ContextualReminders.set(c, "morning", false);
       assertNull(scheduler.getPendingJob(46103));
       prefs.edit().remove("sent_morning").remove("sent_morning_at").commit();
@@ -47,6 +54,23 @@ public final class ContextualRemindersNativeTest extends InstrumentationTestCase
     } finally {
       scheduler.cancel(46103);
       for (int i = 0; i < 3; i++) notifications.cancel(46103 + i);
+      prefs.edit().clear().commit();
+    }
+  }
+  public void testPermissionDeniedDoesNotRecordDelivery() {
+    assertTrue(android.os.Build.MODEL.contains("sdk") || android.os.Build.FINGERPRINT.contains("generic"));
+    Context c = getInstrumentation().getTargetContext();
+    SharedPreferences prefs = c.getSharedPreferences(ContextualReminders.PREFS, 0);
+    assertTrue(prefs.getAll().isEmpty());
+    assertFalse("Harness must revoke notification permission", EarthquakeAlerts.permission(c));
+    try {
+      ContextualReminders.set(c, "morning", true);
+      ContextualReminders.deliver(c, LocationStore.current(c), prefs.getLong("revision", 0), "morning", 0,
+          "[Uji] izin ditolak", "Data sintetis", null);
+      assertFalse(prefs.contains("sent_morning"));
+      assertEquals(0, c.getSystemService(NotificationManager.class).getActiveNotifications().length);
+    } finally {
+      c.getSystemService(JobScheduler.class).cancel(46103);
       prefs.edit().clear().commit();
     }
   }

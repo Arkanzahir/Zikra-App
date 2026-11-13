@@ -1,3 +1,15 @@
+## Kandidat1.9.47 dan handoff —14November2026
+
+Mulai dari [ACCOUNT_HANDOFF.md](ACCOUNT_HANDOFF.md) dan [status ringkas](docs/beta/STATUS.json).
+[Receipt terbaru](android/validation/beta-final-2026-11-14/README.md):202JVM lulus,
+4skip,27native pada kandidat yang sama lulus;lint0error/890warning. Receiver
+penjadwalan memvalidasi action sistem. APK49.511.880byte,debug/HOLD.
+Upgrade data sintetis1.9.41→1.9.46→1.9.47 berhasil;hostedQuran/font/cuaca,
+keyboard/dock/lampu/splash/teks200%/intent darurat teruji sesuai scope receipt.
+Website pratinjau desktop/mobile teruji,tanpa download publik. Tidak memakaiHP.
+B01/hak/audio/penerbit/retensi/signing/migrasi/HP/J14 dan gap rinci tetap terbuka.
+Catatan lama di bawah bukan status kandidat terbaru. WIP/stash/privat tetap.
+
 ## Checkpoint pindah akun — 13 November 2026
 
 Baca [ACCOUNT_HANDOFF.md](ACCOUNT_HANDOFF.md) terlebih dahulu. Kandidat tetap

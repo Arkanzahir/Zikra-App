@@ -5,7 +5,7 @@ Seluruh aset lokal. Buka melalui server HTTP pada direktori `dist`.
 
 Tidak dipublikasikan. Tombol unduh sengaja disabled; tidak ada URL APK maupun
 auto-redirect. Dokumen privasi diberi label draf. Dukungan hanya mailto atas
-tindakan pengguna. Gambar Home berasal dari emulator kandidat internal1.9.46,
+tindakan pengguna. Gambar Home berasal dari emulator kandidat internal1.9.47,
 bukan klaim jadwal/lokasi pengguna. Logo resmi dipertahankan.
 
 Sebelum publikasi J14/J15: sahkan paket release/signer/migrasi, hak konten/audio,
@@ -15,3 +15,5 @@ uji unduh dan update nyata tanpa uninstall. Jangan mengubah tombol menjadi
 aktif memakai APK debug atau hanya karena berkas manifest ada.
 
 Pemeriksaan statis: `D:/node.exe website/check.cjs` dari root repo.
+
+Desktop dan viewport390CSSpx diuji: aset termuat, tanpa overflow horizontal, FAQ/privasi bekerja dan unduhan tetap disabled. Kandidat1.9.47; bukti pada android/validation/beta-final-2026-11-14.

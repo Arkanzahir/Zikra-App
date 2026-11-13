@@ -1,3 +1,14 @@
+## Status terbaru — 14 November 2026
+
+**Kandidat internal1.9.47/code74, tetap HOLD.** Mulai dari
+[handoff akun/lanjutan](ACCOUNT_HANDOFF.md), [status terstruktur](docs/beta/STATUS.json)
+dan [bukti pengujian terbaru](android/validation/beta-final-2026-11-14/README.md).
+202JVM lulus/4skip,27native emulator pada APK yang sama lulus;0lint error,
+890warning. Ukuran49.511.880byte. Upgrade data terisi1.9.41→1.9.46→1.9.47 lulus.
+Website pratinjau lokal desktop/mobile tersedia di [website](website/README.md),
+tanpa tautan unduh publik. HP,hak konten/audio,privasi/signing dan gerbang beta
+masih terbuka. Catatan di bawah adalah riwayat, bukan status kandidat terbaru.
+
 ## C07 dan E02 selesai teknis beta terarah — 10 November 2026
 
 **11 November2026 — tipografi AI1.9.38:** font sans-serif netral dan Markdown

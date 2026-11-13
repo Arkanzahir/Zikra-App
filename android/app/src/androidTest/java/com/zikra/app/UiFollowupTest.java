@@ -189,9 +189,18 @@ public final class UiFollowupTest extends InstrumentationTestCase {
     coldLaunch(true);image("launch-complete");coldLaunch(false);
   }
   public void testReducedMotionSkipsIntro() throws Exception {
+    String original=android.provider.Settings.Global.getString(context.getContentResolver(), "animator_duration_scale");
+    setAnimatorScale("0");
     ActivityMonitor splash=getInstrumentation().addMonitor(SplashActivity.class.getName(),null,false);
     try{coldLaunch(true);Activity intro=splash.getLastActivity();assertNotNull(intro);assertFalse((Boolean)field(intro,"started"));}
-    finally{getInstrumentation().removeMonitor(splash);}
+    finally{getInstrumentation().removeMonitor(splash);setAnimatorScale(original);}
+  }
+  private void setAnimatorScale(String value) throws Exception {
+    String command=value==null ? "settings delete global animator_duration_scale"
+        : "settings put global animator_duration_scale "+Float.parseFloat(value);
+    try(java.io.InputStream stream=new android.os.ParcelFileDescriptor.AutoCloseInputStream(
+        getInstrumentation().getUiAutomation().executeShellCommand(command))){while(stream.read()!=-1){}}
+    getInstrumentation().waitForIdleSync();
   }
   public void testBackgroundDoesNotNavigateUntilResumed() throws Exception {
     Field shown=SplashActivity.class.getDeclaredField("introShown");shown.setAccessible(true);shown.setBoolean(null,false);
