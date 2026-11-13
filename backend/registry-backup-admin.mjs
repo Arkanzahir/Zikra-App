@@ -1,19 +1,8 @@
 import { randomBytes, createHash } from 'node:crypto';
-import { writeFileSync, openSync, readSync, fstatSync, closeSync, realpathSync } from 'node:fs';
-import { isAbsolute, relative, resolve, dirname, basename, sep } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { writeFileSync, openSync, readSync, fstatSync, closeSync } from 'node:fs';
+import { privateOperatorPath as privatePath } from './operator-files.mjs';
 import { RedisRest, readRedisConfig } from './redis-access.mjs';
 import { snapshotRegistry, encryptSnapshot, decryptSnapshot, restoreRegistry } from './registry-backup.mjs';
-
-const root = realpathSync(fileURLToPath(new URL('../', import.meta.url)));
-function privatePath(value) {
-  if (typeof value !== 'string' || !isAbsolute(value)) throw new Error();
-  const canonical = resolve(realpathSync(dirname(value)), basename(value));
-  const location = relative(root, canonical);
-  const insideRepo = location !== '..' && !location.startsWith('..' + sep) && !isAbsolute(location);
-  if (insideRepo && !location.startsWith('.local' + sep)) throw new Error();
-  return canonical;
-}
 
 function readEnvelope(path) {
   const fd = openSync(privatePath(path), 'r');
