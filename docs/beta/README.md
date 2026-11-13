@@ -1,3 +1,7 @@
+## Checkpoint terbaru
+
+[Handoff akun baru](../../ACCOUNT_HANDOFF.md), [hasil uji gabungan](../../android/validation/final-batch-2026-11-13/README.md), [website lokal](../../website/README.md). Kandidat tetap 1.9.46 HOLD; scope uji terbaru mengoreksi catatan historis yang menyebut seluruh uji ditunda.
+
 # Status terkini —13November2026
 
 Kandidat internal terakhir1.9.46/code73,49.511.880byte; implementasi E03/E04 serta penguatan lifecycle F sudah masuk paket. Kompilasi/audit dikenal berhasil, uji gabungan ditunda pengguna. **Tetap HOLD; belum siap dipublikasikan.**

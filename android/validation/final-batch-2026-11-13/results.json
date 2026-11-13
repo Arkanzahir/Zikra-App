@@ -1,0 +1,11 @@
+{
+  "candidate":"1.9.46", "versionCode":73,
+  "apkSha256":"bc52f34baa7a64fdd5783cd0ecd8ac302f0a00ecbe19235325b2e8a7dd930fc0",
+  "backend":{"passed":125,"failed":0,"skipped":0},
+  "androidJvm":{"total":204,"passed":200,"failed":0,"skipped":4},
+  "lint":{"errors":0,"warnings":891},
+  "native":{"quran":4,"font":1,"motion":2,"theme":1,"reminders":1,"failed":0},
+  "screenshots":12,
+  "website":{"localOnly":true,"staticCheck":true,"desktopBrowser":true,"mobileBrowser":false,"published":false},
+  "phoneUsed":false,"distributionApproved":false
+}

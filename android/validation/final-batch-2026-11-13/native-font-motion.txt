@@ -1,0 +1,6 @@
+com.zikra.app.reading.mushaf.MushafFontCacheNativeTest:.
+com.zikra.app.OnboardingParallaxTest:..
+Test results for InstrumentationTestRunner=...
+Time: 3.558
+
+OK (3 tests)

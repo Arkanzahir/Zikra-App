@@ -9,7 +9,7 @@
   "debugSigningKey": true,
   "distributionApproved": false,
   "downloadUrl": null,
-  "runtimeVerification": "deferred",
+  "runtimeVerification": "partial-emulator-2026-11-13-device-pending",
   "remainingGates": [
     "content-and-audio-rights",
     "publisher-and-privacy",

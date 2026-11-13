@@ -1,3 +1,7 @@
+## Update verifikasi dan pindah akun
+
+Lihat [handoff akun](../../ACCOUNT_HANDOFF.md) dan [bukti terbaru](../../android/validation/final-batch-2026-11-13/README.md). Uji terarah sudah dijalankan; matriks lengkap/HP dan gerbang rilis tetap terbuka. Website pratinjau lokal tersedia, belum publish.
+
 # Satu batch penutupan beta
 
 Status13November2026: implementasi terbaru di APK internal1.9.46/code73;

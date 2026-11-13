@@ -1,0 +1,5 @@
+com.zikra.app.FinalBatchThemeTest:.
+Test results for InstrumentationTestRunner=.
+Time: 12.577
+
+OK (1 test)

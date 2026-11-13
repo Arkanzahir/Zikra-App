@@ -1,5 +1,11 @@
 # Jobdesk menuju beta Zikra
 
+Checkpoint terbaru: [handoff akun](../../ACCOUNT_HANDOFF.md),
+[hasil gabungan](../../android/validation/final-batch-2026-11-13/README.md).
+Kandidat1.9.46;125backend/200JVM/9native lulus,4JVMskip,891lintwarning.
+Website J15 pratinjau lokal tersedia di `website/dist`, tanpa tautan APK.
+Gerbang J14 belum ditutup; jangan menganggap seluruh J02–J15 selesai.
+
 Dibuat 12 November 2026. Acuan source: ca80e85, APK internal1.9.41, HP terakhir
 terbukti1.9.39. Ini daftar pelaksanaan turunan IMPLEMENTATION_PLAN.md dan
 RELEASE_SCOPE.md, tidak menggantikan cakupan atau menghapus gerbang lama.

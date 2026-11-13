@@ -1,3 +1,14 @@
+## Checkpoint pindah akun — 13 November 2026
+
+Baca [ACCOUNT_HANDOFF.md](ACCOUNT_HANDOFF.md) terlebih dahulu. Kandidat tetap
+1.9.46/code73, HOLD. [Verifikasi gabungan](android/validation/final-batch-2026-11-13/README.md):
+125 backend dan 200 JVM lulus, 4 JVM skip, 9 native emulator lulus;
+lint 0 error/891 warning. Website pratinjau lokal di `website/dist`; belum
+publik dan tanpa tautan APK. Tidak memakai HP atau mengubah produksi pada sesi ini.
+Gap J02/J03/E/F, B01/hak/audio/penerbit/retensi/signing/migrasi/HP/J14 tetap terbuka.
+WIP/stash/privat/aset terjaga. Catatan historis di bawah yang menyebut uji belum
+berjalan dikoreksi oleh checkpoint ini hanya untuk scope yang tercatat.
+
 ## Konsolidasi akhir hemat limit —13November
 
 [Satu batch](docs/beta/FINAL_BATCH.md), [operator/dukungan](docs/beta/OPERATOR_RUNBOOK.md) dan manifest internal HOLD disiapkan. Kandidat tetap1.9.46/code73; tidak build/versi/deploy/inference/HP/emulator baru. Catatan beta diselaraskan ke kandidat sekarang. Uji gabungan ditunda; hak/B01/audio/penerbit/signing danHP bukan sesuatu yang dapat disahkan dari kode. F02/F03, retensi/ketentuan layanan dan gerbang lain masih terbuka; jangan klaim semua pekerjaan tanpaHP selesai. WIP/privat/stash/aset dipertahankan.

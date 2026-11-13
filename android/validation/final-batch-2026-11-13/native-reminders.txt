@@ -1,0 +1,5 @@
+com.zikra.app.safety.ContextualRemindersNativeTest:.
+Test results for InstrumentationTestRunner=.
+Time: 0.262
+
+OK (1 test)
