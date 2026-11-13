@@ -127,36 +127,65 @@ public abstract class BaseActivity extends Activity {
   }
 
   protected void external(String action, String uri) {
+    if (!tryExternal(action, Uri.parse(uri))) toast(getString(R.string.emergency_no_app));
+  }
+
+  protected boolean tryExternal(String action, Uri uri) {
     try {
-      startActivity(new Intent(action, Uri.parse(uri)));
-    } catch (ActivityNotFoundException e) {
-      toast("Aplikasi yang diperlukan belum tersedia di perangkat.");
-    }
+      startActivity(new Intent(action, uri));
+      return true;
+    } catch (ActivityNotFoundException | SecurityException unavailable) { return false; }
   }
 
   protected void showEmergencyActions() {
     if (isFinishing() || (emergency != null && emergency.isShowing())) return;
     emergency =
         new AlertDialog.Builder(this)
-            .setTitle("Bantuan cepat")
+            .setTitle(R.string.emergency_title)
             .setItems(
                 new String[] {
-                  "Telepon darurat 112",
-                  "Kabari keluarga lewat WhatsApp",
-                  "Cari masjid terdekat",
-                  "Buka Protector BMKG"
+                  getString(R.string.emergency_112), getString(R.string.emergency_119),
+                  getString(R.string.emergency_110), getString(R.string.emergency_family),
+                  getString(R.string.emergency_mosques), getString(R.string.emergency_protector),
+                  getString(R.string.emergency_scope)
                 },
                 (d, which) -> {
-                  if (which == 0) external(Intent.ACTION_DIAL, "tel:112");
-                  if (which == 1)
-                    external(
-                        Intent.ACTION_VIEW,
-                        "https://wa.me/?text="
-                            + Uri.encode("Aku membutuhkan bantuan. Tolong hubungi aku."));
-                  if (which == 2) open(NearbyMosquesActivity.class);
-                  if (which == 3) open(ProtectorActivity.class);
+                  if (which < 3) external(Intent.ACTION_DIAL, "tel:" + new String[]{"112", "119", "110"}[which]);
+                  if (which == 3) familyDraft();
+                  if (which == 4) open(NearbyMosquesActivity.class);
+                  if (which == 5) open(ProtectorActivity.class);
+                  if (which == 6) emergencyScope();
                 })
-            .setNegativeButton("Tutup", null)
+            .setNegativeButton(R.string.emergency_close, null)
             .show();
+  }
+
+  private void familyDraft() {
+    emergency = new AlertDialog.Builder(this).setTitle(R.string.emergency_family)
+        .setItems(new String[]{getString(R.string.emergency_family_sms), getString(R.string.emergency_family_share)},
+            (dialog, which) -> {
+              if (which == 0) {
+                Intent sms = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:"))
+                    .putExtra("sms_body", getString(R.string.emergency_family_body));
+                try { startActivity(sms); return; }
+                catch (ActivityNotFoundException | SecurityException unavailable) { /* Offer a share draft below. */ }
+              }
+              Intent share = new Intent(Intent.ACTION_SEND).setType("text/plain")
+                  .putExtra(Intent.EXTRA_TEXT, getString(R.string.emergency_family_body));
+              try { startActivity(Intent.createChooser(share, getString(R.string.emergency_share_chooser))); }
+              catch (ActivityNotFoundException | SecurityException unavailable) { toast(getString(R.string.emergency_no_app)); }
+            }).setNegativeButton(R.string.emergency_close, null).show();
+  }
+
+  private void emergencyScope() {
+    emergency = new AlertDialog.Builder(this).setTitle(R.string.emergency_scope)
+        .setMessage(R.string.emergency_scope_body)
+        .setPositiveButton(R.string.emergency_sources, (dialog, which) -> {
+          String[] labels = {"112 · Komdigi", "119 · Kementerian Kesehatan", "110 · Polri"};
+          String[] urls = {"https://layanan112.komdigi.go.id/alur", "https://kemkes.go.id/id/layanan/psc-119", "https://polri.go.id/kontak/call-center-110"};
+          emergency = new AlertDialog.Builder(this).setTitle(R.string.emergency_sources)
+              .setItems(labels, (source, selected) -> external(Intent.ACTION_VIEW, urls[selected]))
+              .setNegativeButton(R.string.emergency_close, null).show();
+        }).setNegativeButton(R.string.emergency_close, null).show();
   }
 }

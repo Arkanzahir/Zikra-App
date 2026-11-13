@@ -1,0 +1,23 @@
+<resources>
+    <string name="emergency_title">Bantuan cepat</string>
+    <string name="emergency_112">112 · Darurat wilayah</string>
+    <string name="emergency_119">119 · Darurat kesehatan</string>
+    <string name="emergency_110">110 · Kepolisian</string>
+    <string name="emergency_family">Siapkan pesan untuk keluarga</string>
+    <string name="emergency_mosques">Cari masjid terdekat</string>
+    <string name="emergency_protector">Buka Protector</string>
+    <string name="emergency_scope">Cakupan layanan dan sumber</string>
+    <string name="emergency_close">Tutup</string>
+    <string name="emergency_scope_body">112 diselenggarakan pemerintah daerah dan belum tersedia di seluruh wilayah Indonesia. 119 adalah layanan darurat kesehatan; 110 adalah layanan kepolisian. Ketersediaan dan respons dapat berbeda menurut wilayah serta jaringan.
+\n\nMemilih nomor hanya membuka dialer. Kamu sendiri yang memulai panggilan. Zikra tidak mengirim laporan otomatis atau menjamin bantuan telah diterima.</string>
+    <string name="emergency_sources">Sumber resmi</string>
+    <string name="emergency_family_body">Aku membutuhkan bantuan. Tolong hubungi aku.</string>
+    <string name="emergency_family_sms">Buka draf SMS</string>
+    <string name="emergency_family_share">Pilih aplikasi berbagi</string>
+    <string name="emergency_share_chooser">Kirim melalui aplikasi pilihanmu</string>
+    <string name="emergency_no_app">Aplikasi yang diperlukan belum tersedia di perangkat.</string>
+    <string name="nearby_no_navigation">Aplikasi peta atau browser belum tersedia. Koordinat tujuan: %1$s. Salin bila ingin membukanya secara manual.</string>
+    <string name="nearby_no_search_navigation">Aplikasi peta atau browser belum tersedia. Pusat pencarian: %1$s. Ini lokasi pilihanmu, bukan lokasi masjid yang ditemukan. Salin untuk mencari secara manual.</string>
+    <string name="nearby_copy_coordinates">Salin koordinat</string>
+    <string name="nearby_coordinates_copied">Koordinat disalin</string>
+</resources>

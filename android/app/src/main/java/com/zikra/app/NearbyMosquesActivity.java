@@ -96,12 +96,10 @@ public final class NearbyMosquesActivity extends BaseActivity {
         .setOnCheckedChangeListener((group, id) -> showMap(id == R.id.mosquesMapToggle));
     findViewById(R.id.mosquesExternal)
         .setOnClickListener(
-            v ->
-                external(
-                    Intent.ACTION_VIEW,
-                    "https://www.google.com/maps/search/?api=1&query="
-                        + android.net.Uri.encode(
-                            "masjid near " + location.latitude + "," + location.longitude)));
+            v -> openNavigation(
+                "https://www.google.com/maps/search/?api=1&query="
+                    + android.net.Uri.encode("masjid near " + location.latitude + "," + location.longitude),
+                location.latitude, location.longitude, "masjid", true));
     findViewById(R.id.mosquesAttribution).setOnClickListener(v -> chooseProvider());
     findViewById(R.id.mosquesMapRetry).setOnClickListener(v -> retryMap());
     labels();
@@ -307,7 +305,24 @@ public final class NearbyMosquesActivity extends BaseActivity {
             .buildUpon()
             .appendQueryParameter("api", "1")
             .appendQueryParameter("destination", place.latitude + "," + place.longitude);
-    external(Intent.ACTION_VIEW, uri.build().toString());
+    openNavigation(uri.build().toString(), place.latitude, place.longitude, place.name, false);
+  }
+
+  private void openNavigation(String web, double latitude, double longitude, String label, boolean searchNearby) {
+    if (tryExternal(Intent.ACTION_VIEW, android.net.Uri.parse(web))) return;
+    String coordinates = latitude + "," + longitude;
+    android.net.Uri geo = android.net.Uri.parse("geo:" + coordinates + "?q="
+        + android.net.Uri.encode(searchNearby ? "masjid" : coordinates + "(" + label + ")"));
+    if (tryExternal(Intent.ACTION_VIEW, geo)) return;
+    sourceDialog = new AlertDialog.Builder(this).setTitle(label)
+        .setMessage(getString(searchNearby ? R.string.nearby_no_search_navigation : R.string.nearby_no_navigation, coordinates))
+        .setPositiveButton(R.string.nearby_copy_coordinates, (dialog, which) -> {
+          android.content.ClipboardManager clipboard = getSystemService(android.content.ClipboardManager.class);
+          if (clipboard != null) {
+            clipboard.setPrimaryClip(android.content.ClipData.newPlainText(label, coordinates));
+            toast(getString(R.string.nearby_coordinates_copied));
+          }
+        }).setNegativeButton(R.string.emergency_close, null).show();
   }
 
   private void showMap(boolean show) {
@@ -466,6 +481,9 @@ public final class NearbyMosquesActivity extends BaseActivity {
       nextAllowedSearch = 0;
       render();
       labels();
+    } else {
+      location = selected;
+      text(R.id.mosquesLocation, location.label + "\nUbah lokasi · " + location.zoneLabel(java.time.Instant.now()));
     }
     ((Button) findViewById(R.id.mosquesRefresh)).setEnabled(true);
     if (restoreResults) {

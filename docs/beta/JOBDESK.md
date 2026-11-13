@@ -44,7 +44,7 @@ izin konten; Codex tidak dapat mengesahkan izin atas nama mereka.
 | J06 | P0 / D02, D02a | Hak dan lafaz audio adzan | Sebagian: dua rekaman/hash teridentifikasi; izin belum | Audit tanpa HP; suara akhir J13 |
 | J07 | P1 / C02, G03 | Operasional AI dan akses tester | Sebagian; health/auth dan tes tersedia | Mayoritas tidak; kasus akhir J13 |
 | J08 | P1 / E03 | Cuaca, alert, doa kontekstual, briefing | Kode pengingat/briefing1.9.44 tersedia; uji gabungan ditunda pengguna | Mayoritas tidak, lalu J13 |
-| J09 | P1 / E04 | Darurat dan masjid terdekat | Sebagian; pencarian bekerja, audit alur final tersisa | Emulator dahulu, aksi akhir J13 |
+| J09 | P1 / E04 | Darurat dan masjid terdekat | Kode bantuan/fallback1.9.45 tersedia; sumber ditinjau, uji gabungan ditunda | Emulator dahulu, aksi akhir J13 |
 | J10 | P1 / F01–F04 | Konsistensi UI, aksesibilitas, performa | Sebagian; referensi/tema global dan uji subset tersedia | Sebagian emulator; performa akhir HP |
 | J11 | P0 / G03 | Privasi, dukungan dan tata kelola | Sebagian; draf/email sudah ada | Tidak |
 | J12 | P0 / G04 | Signing, paket dan migrasi distribusi | Sebagian; guard/auditor ada, key final belum | Build tanpa HP; migrasi akhir J13 |

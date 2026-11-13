@@ -64,7 +64,11 @@ Ensiklopedia HadeethEnc bersifat opsional dan diunduh setelah pilihan pengguna;
 berkas sumber/metadata versinya disimpan lokal. Tautan sumber/cek versi membuka
 situs penerbit, tanpa mengirim profil atau isi chat.
 Tautan rute/panggilan/berbagi membuka aplikasi luar setelah tindakan pengguna;
-kebijakan aplikasi tujuan berlaku. Dikte/kamera/pemilih dokumen menggunakan
+menu bantuan membuka dialer atau draf pesan tanpa menelepon/mengirim otomatis.
+Draf keluarga tidak menyertakan GPS, profil atau percakapan. Salin koordinat
+untuk navigasi manual hanya dilakukan setelah tombol Salin ditekan; clipboard
+kemudian tunduk pada akses dan masa simpan Android/aplikasi lain.
+Kebijakan aplikasi tujuan berlaku. Dikte/kamera/pemilih dokumen menggunakan
 layanan Android/aplikasi pilihan perangkat; tidak menjanjikan dikte selalu luring.
 
 ## Pengingat

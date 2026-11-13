@@ -1,3 +1,7 @@
+## E04 kode1.9.45/code72 —13November
+
+[Bukti/batas](android/validation/safety-e04-code-2026-11-13/README.md): bantuan dengan kategori nomor/sumber resmi dan draf keluarga tanpaGPS/kirim otomatis; fallback navigasi web→geo→salin koordinat atas tindakan pengguna; label lokasi diperbarui tanpa lookup baru. OSM/Overpass tetap, tanpaMapsSDK/billing. Build29detik, APK49.511.880byte; credential dikenal bersih/audio/signer tetap. Uji runtime ditunda, tidak memakaiHP/emulator/menelepon/mengirim/mencari live. E04/J09 belum lulus; parent/hak/signing/F/G tetap. WIP/privat/stash tetap.
+
 ## E03 kode pengingat1.9.44/code71 —13November
 
 [Bukti/batas](android/validation/contextual-e03-code-2026-11-13/README.md): empat opt-in mati bawaan, persetujuan cuaca latar belakang tanpaGPS, JobScheduler best-effort/deduplikasi/revisi, ringkasan tugas-salat-cuaca lokal, kategori Doa perjalanan/pagi-petang dan kontrol OS. Native Protector dipertahankan. Kompilasi/assemble17detik berhasil, APK50.262.119byte, audio/signer tetap, audit credential dikenal bersih. Uji ditunda pengguna; tidak memakaiHP/emulator/mengirimnotif/mengubahpreferensi/backend. E03/J08 belum selesai terverifikasi; J02/J03/E04/F/G/hak/signing/HP tetap gate. WIP/privat/stash/desain dipertahankan.

@@ -1,0 +1,13 @@
+{
+  "version": "1.9.45",
+  "versionCode": 72,
+  "compile": true,
+  "assembleDebug": true,
+  "runtimeTests": false,
+  "phoneUsed": false,
+  "emulatorUsed": false,
+  "realCallsOrMessagesSent": false,
+  "liveMosqueSearchPerformed": false,
+  "upstreamProviderChanged": false,
+  "distributionApproved": false
+}
