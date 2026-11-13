@@ -1,0 +1,12 @@
+{
+  "version": "1.9.46",
+  "versionCode": 73,
+  "compile": true,
+  "assembleDebug": true,
+  "runtimeTests": false,
+  "emulatorUsed": false,
+  "phoneUsed": false,
+  "systemAnimationOrPowerSettingsChanged": false,
+  "artworkOrIconsChanged": false,
+  "distributionApproved": false
+}

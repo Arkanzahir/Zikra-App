@@ -1,6 +1,5 @@
 package com.zikra.app.discovery;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
@@ -20,6 +19,8 @@ import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
+import android.graphics.Rect;
+import com.zikra.app.ui.AmbientMotionPolicy;
 import com.zikra.app.R;
 
 /** Layered native artwork; motion only runs while the welcome screen is visible. */
@@ -37,6 +38,9 @@ public final class LearningOrbitView extends View implements SensorEventListener
   private final RectF ring = new RectF();
   private final RectF tile = new RectF();
   private final Path moon = new Path();
+  private final Rect visible = new Rect();
+  private final AmbientMotionPolicy policy;
+  private final android.view.ViewTreeObserver.OnScrollChangedListener scrollChanged = this::updateMotion;
   private SensorManager sensorManager;
   private Sensor tiltSensor;
   private Shader glow, medallion;
@@ -49,7 +53,7 @@ public final class LearningOrbitView extends View implements SensorEventListener
         @Override
         public void run() {
           if (!running) return;
-          if (!ValueAnimator.areAnimatorsEnabled()) {
+          if (!policy.enabled() || !getLocalVisibleRect(visible)) {
             updateMotion();
             return;
           }
@@ -67,6 +71,7 @@ public final class LearningOrbitView extends View implements SensorEventListener
 
   public LearningOrbitView(Context context, AttributeSet attrs) {
     super(context, attrs);
+    policy = new AmbientMotionPolicy(context, this::updateMotion);
     int[] resources = {
       R.drawable.feature_icon_study,
       R.drawable.feature_icon_quran,
@@ -94,6 +99,8 @@ public final class LearningOrbitView extends View implements SensorEventListener
 
   public void setForeground(boolean foreground) {
     this.foreground = foreground;
+    if (foreground && isAttachedToWindow()) policy.start();
+    else policy.stop();
     updateMotion();
   }
 
@@ -102,12 +109,15 @@ public final class LearningOrbitView extends View implements SensorEventListener
   }
 
   private void updateMotion() {
+    if (policy == null) return;
     boolean shouldRun =
         foreground
             && isAttachedToWindow()
             && isShown()
             && hasWindowFocus()
-            && ValueAnimator.areAnimatorsEnabled();
+            && getWindowVisibility() == VISIBLE
+            && getLocalVisibleRect(visible)
+            && policy.enabled();
     if (shouldRun == running) return;
     running = shouldRun;
     removeCallbacks(frame);
@@ -128,6 +138,8 @@ public final class LearningOrbitView extends View implements SensorEventListener
   @Override
   protected void onAttachedToWindow() {
     super.onAttachedToWindow();
+    getViewTreeObserver().addOnScrollChangedListener(scrollChanged);
+    if (foreground) policy.start();
     updateMotion();
   }
 
@@ -135,6 +147,8 @@ public final class LearningOrbitView extends View implements SensorEventListener
   protected void onDetachedFromWindow() {
     foreground = false;
     running = false;
+    policy.stop();
+    if (getViewTreeObserver().isAlive()) getViewTreeObserver().removeOnScrollChangedListener(scrollChanged);
     removeCallbacks(frame);
     if (sensorManager != null) sensorManager.unregisterListener(this);
     super.onDetachedFromWindow();
@@ -151,6 +165,11 @@ public final class LearningOrbitView extends View implements SensorEventListener
     super.onVisibilityChanged(changed, visibility);
     // View constructors can dispatch visibility before this class initializes its fields.
     if (frame != null) updateMotion();
+  }
+
+  @Override protected void onWindowVisibilityChanged(int visibility) {
+    super.onWindowVisibilityChanged(visibility);
+    if (policy != null) updateMotion();
   }
 
   @Override

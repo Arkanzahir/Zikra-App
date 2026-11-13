@@ -1,3 +1,7 @@
+## F acuan dan gerak1.9.46/code73 —13November
+
+[Panduan F01](docs/design/APP_GUIDE.md) dibekukan dari source/referensi diterima, dengan matriks layar; bukan klaim semua UI seragam. [Delta/batas](android/validation/ui-f-code-2026-11-13/README.md): policy gerak/power/screen dan cleanup listener diperkuat; orbit/fokus/sky memeriksa viewport/scroll/visibility/sensor. Artwork/logo/ikon/timer/audio tetap. Compile10detik/build20detik, APK49.511.880byte, audit credential dikenal bersih/audio/signer sama. Uji gabungan ditunda pengguna; tidakHP/emulator/settingsOS. F02–F04/HP/hak/signing/G/beta tetap terbuka.
+
 ## E04 kode1.9.45/code72 —13November
 
 [Bukti/batas](android/validation/safety-e04-code-2026-11-13/README.md): bantuan dengan kategori nomor/sumber resmi dan draf keluarga tanpaGPS/kirim otomatis; fallback navigasi web→geo→salin koordinat atas tindakan pengguna; label lokasi diperbarui tanpa lookup baru. OSM/Overpass tetap, tanpaMapsSDK/billing. Build29detik, APK49.511.880byte; credential dikenal bersih/audio/signer tetap. Uji runtime ditunda, tidak memakaiHP/emulator/menelepon/mengirim/mencari live. E04/J09 belum lulus; parent/hak/signing/F/G tetap. WIP/privat/stash tetap.
@@ -826,7 +830,7 @@ upgrade1.9.14 berisi dan teks200%/malam tiga halaman dibuktikan. [Bukti/source/r
 F01–F04 keseluruhan tetap[ ]; belum semua layar/HP/performa atau penerimaan
 visual APK. Google login/sync/admin baru diskusi, tidak diimplementasikan.
 
-- [ ] **F01 — Bekukan panduan visual berdasarkan referensi yang diterima.** Catat font, ukuran/jarak, ikon, warna, radius dan keluarga ilustrasi per konteks; bedakan variasi fungsi yang disengaja dari gaya yang bertabrakan. Pertahankan logo dan referensi yang sudah disetujui. Hasil: dokumen acuan + daftar layar yang perlu diselaraskan.
+- [x] **F01 — Bekukan panduan visual berdasarkan referensi yang diterima.** Acuan source13November di [APP_GUIDE.md](docs/design/APP_GUIDE.md), termasuk matriks layar; F02/F03 dan penilaian visual tetap terbuka. Catat font, ukuran/jarak, ikon, warna, radius dan keluarga ilustrasi per konteks; bedakan variasi fungsi yang disengaja dari gaya yang bertabrakan. Pertahankan logo dan referensi yang sudah disetujui. Hasil: dokumen acuan + daftar layar yang perlu diselaraskan.
 - [ ] **F02 — Selaraskan seluruh layar dan teks.** Periksa Home, Quran/reader/Mushaf, Study/fokus/break/Hifz, AI, Protector/peta, Hadis/reader, Doa, Profil, salat, Kiblat, lokasi/masjid, kalender dan pengaturan. Rapikan ruang kosong, kartu berulang, orb/dekorasi generik serta kalimat template. Gunakan isi nyata, bukan statistik contoh.
 - [ ] **F03 — Ukuran layar, teks besar dan aksesibilitas.** Kontrol tetap terjangkau, target sentuh memadai, Arab/Indonesia tidak terpotong, kontras dan label aksesibel. Periksa font besar, tema yang tersedia, keyboard, dialog, loading/kosong/gagal dan scroll. Simpan screenshot native pada ukuran yang diuji.
 - [x] **F03a — Tema global lintas fitur.** Selesai subset beta29 Oktober2026, APK1.9.23: satu preferensi terang/gelap/perangkat, dialog/dock/input, pemulihan halaman lama/draf/restart dan reader.153 unit/4 skip,9 native lulus; [bukti/preview/batas](android/validation/global-theme-2026-10-29/README.md). Uji HP tema dan F03 keseluruhan tetap terbuka.

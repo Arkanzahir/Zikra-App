@@ -8,6 +8,10 @@ import android.view.View;
 
 /** Decorative native companion. The actual timer is owned by FocusClock, never by drawing. */
 public final class FocusGardenView extends View {
+  private final Rect visible = new Rect();
+  private final android.view.ViewTreeObserver.OnScrollChangedListener scrollChanged = () -> {
+    if (canAnimate()) schedule(); else stop();
+  };
   private boolean allowed, active, running, resting, finished, framePosted;
   private long lastFrame;
   private float motionTime;
@@ -55,6 +59,7 @@ public final class FocusGardenView extends View {
         && !finished
         && isAttachedToWindow()
         && isShown()
+        && getLocalVisibleRect(visible)
         && hasWindowFocus();
   }
 
@@ -88,9 +93,22 @@ public final class FocusGardenView extends View {
   }
 
   @Override
+  protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
+    getViewTreeObserver().addOnScrollChangedListener(scrollChanged);
+    schedule();
+  }
+
+  @Override
   protected void onDetachedFromWindow() {
     stop();
+    if (getViewTreeObserver().isAlive()) getViewTreeObserver().removeOnScrollChangedListener(scrollChanged);
     super.onDetachedFromWindow();
+  }
+
+  @Override protected void onVisibilityChanged(View changed, int visibility) {
+    super.onVisibilityChanged(changed, visibility);
+    if (frame != null) { if (canAnimate()) schedule(); else stop(); }
   }
 
   @Override

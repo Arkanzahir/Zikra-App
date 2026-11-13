@@ -9,7 +9,7 @@ import android.provider.Settings;
 public final class AmbientMotionPolicy {
   private final Context context;
   private final Runnable changed;
-  private boolean listening, enabled;
+  private boolean listening, enabled, observerRegistered, receiverRegistered;
   private final ContentObserver observer =
       new ContentObserver(new Handler(Looper.getMainLooper())) {
         @Override
@@ -36,33 +36,41 @@ public final class AmbientMotionPolicy {
 
   public void start() {
     if (!listening) {
-      listening = true;
-      context
-          .getContentResolver()
-          .registerContentObserver(
-              Settings.Global.getUriFor(Settings.Global.ANIMATOR_DURATION_SCALE), false, observer);
-      IntentFilter filter = new IntentFilter(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED);
-      if (Build.VERSION.SDK_INT >= 33)
-        context.registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED);
-      else context.registerReceiver(receiver, filter);
+      try {
+        context.getContentResolver().registerContentObserver(
+            Settings.Global.getUriFor(Settings.Global.ANIMATOR_DURATION_SCALE), false, observer);
+        observerRegistered = true;
+        IntentFilter filter = new IntentFilter(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED);
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_SCREEN_ON);
+        if (Build.VERSION.SDK_INT >= 33)
+          context.registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED);
+        else context.registerReceiver(receiver, filter);
+        receiverRegistered = true;
+        listening = true;
+      } catch (RuntimeException unavailable) { stop(); return; }
     }
     refresh();
   }
 
   private void refresh() {
-    PowerManager power = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-    enabled =
-        Settings.Global.getFloat(
-                    context.getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE, 1f)
-                > 0f
-            && (power == null || !power.isPowerSaveMode());
+    try {
+      PowerManager power = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+      enabled = listening && Settings.Global.getFloat(context.getContentResolver(),
+          Settings.Global.ANIMATOR_DURATION_SCALE, 1f) > 0f
+          && (power == null || (power.isInteractive() && !power.isPowerSaveMode()));
+    } catch (RuntimeException unavailable) { enabled = false; }
     changed.run();
   }
 
   public void stop() {
-    if (listening) {
-      context.unregisterReceiver(receiver);
-      context.getContentResolver().unregisterContentObserver(observer);
+    if (receiverRegistered) {
+      receiverRegistered = false;
+      try { context.unregisterReceiver(receiver); } catch (RuntimeException alreadyGone) { }
+    }
+    if (observerRegistered) {
+      observerRegistered = false;
+      try { context.getContentResolver().unregisterContentObserver(observer); } catch (RuntimeException alreadyGone) { }
     }
     listening = false;
     enabled = false;

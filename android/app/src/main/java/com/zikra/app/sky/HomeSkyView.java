@@ -140,7 +140,17 @@ public final class HomeSkyView extends View implements SensorEventListener {
 
   @Override public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
-  public void setScrollOffset(float pixels) { scrollOffset = pixels; invalidate(); }
+  public void setScrollOffset(float pixels) { scrollOffset = pixels; syncSensor(); invalidate(); }
+
+  @Override protected void onVisibilityChanged(View changed, int visibility) {
+    super.onVisibilityChanged(changed, visibility);
+    if (policy != null) { syncSensor(); invalidate(); }
+  }
+
+  @Override protected void onWindowVisibilityChanged(int visibility) {
+    super.onWindowVisibilityChanged(visibility);
+    if (policy != null) { syncSensor(); invalidate(); }
+  }
 
   @Override protected void onMeasure(int widthSpec, int heightSpec) {
     setMeasuredDimension(MeasureSpec.getSize(widthSpec),

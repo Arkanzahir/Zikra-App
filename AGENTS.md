@@ -1,3 +1,7 @@
+## F acuan dan gerak1.9.46/code73 —13November
+
+[Panduan F01](docs/design/APP_GUIDE.md) dibekukan dari source/referensi diterima, dengan matriks layar; bukan klaim semua UI seragam. [Delta/batas](android/validation/ui-f-code-2026-11-13/README.md): policy gerak/power/screen dan cleanup listener diperkuat; orbit/fokus/sky memeriksa viewport/scroll/visibility/sensor. Artwork/logo/ikon/timer/audio tetap. Compile10detik/build20detik, APK49.511.880byte, audit credential dikenal bersih/audio/signer sama. Uji gabungan ditunda pengguna; tidakHP/emulator/settingsOS. F02–F04/HP/hak/signing/G/beta tetap terbuka.
+
 ## E04 kode1.9.45/code72 —13November
 
 [Bukti/batas](android/validation/safety-e04-code-2026-11-13/README.md): bantuan dengan kategori nomor/sumber resmi dan draf keluarga tanpaGPS/kirim otomatis; fallback navigasi web→geo→salin koordinat atas tindakan pengguna; label lokasi diperbarui tanpa lookup baru. OSM/Overpass tetap, tanpaMapsSDK/billing. Build29detik, APK49.511.880byte; credential dikenal bersih/audio/signer tetap. Uji runtime ditunda, tidak memakaiHP/emulator/menelepon/mengirim/mencari live. E04/J09 belum lulus; parent/hak/signing/F/G tetap. WIP/privat/stash tetap.
