@@ -1,0 +1,10 @@
+{
+  "candidateVersion": "1.9.48",
+  "databaseIntegrityPassed": true,
+  "originalContentRowsPreserved": true,
+  "databases": 5,
+  "tablesChecked": 17,
+  "originalRows": 42,
+  "operationalTimestampChanges": 1,
+  "destructiveRestoreUsed": false
+}

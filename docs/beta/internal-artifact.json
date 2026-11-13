@@ -9,10 +9,10 @@
   "debugSigningKey": true,
   "distributionApproved": false,
   "downloadUrl": null,
-  "runtimeVerification": "19-native-emulator-cases-passed-physical-device-pending",
+  "runtimeVerification": "19-native-emulator-cases-and-1-physical-smoke-case-passed-final-device-gaps-open",
   "remainingGates": [
     "content-and-audio-rights",
-    "age-scope-retention-and-privacy",
+    "teen-controls-retention-and-privacy",
     "release-signing-and-migration",
     "combined-runtime-and-device-tests"
   ]

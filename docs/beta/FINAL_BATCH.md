@@ -1,3 +1,13 @@
+## HP dan operasional —14November2026
+
+[Bukti terbaru](../../android/validation/phone-ops-2026-11-14/README.md):HP diperbarui
+1.9.39→1.9.48 tanpa uninstall; isi42baris/17tabel dan preferensi asli terjaga.
+1smoke fisik lulus,14kondisi layar/tema+dockAI. Backend134tes/0skip setelah
+alat erasure operator; tidak deploy/menghapus produksi. Sasaran13+ dipilih.
+Tidak ada restart/ujiadzan baru; pengguna meminta tidak mengulang audio.
+Hak/B01/privasi remaja/retensi/signing/J13/J14/J15 tetap gate. APK/hash tetap
+1.9.48,debug/HOLD; catatan sebelumnya historis. WIP/privat tetap.
+
 ## Checkpoint audio/peta1.9.48 —14November2026
 
 [Bukti terkini](../../android/validation/audio-map-2026-11-14/README.md):207JVM tanpa skip,

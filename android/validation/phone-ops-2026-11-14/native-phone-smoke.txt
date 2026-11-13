@@ -1,0 +1,8 @@
+com.zikra.app.PhysicalBetaSmokeTest:INSTRUMENTATION_STATUS: personal_screenshots_taken=false
+INSTRUMENTATION_STATUS: physical_screen_theme_checks=14
+INSTRUMENTATION_STATUS_CODE: 0
+.
+Test results for InstrumentationTestRunner=.
+Time: 14.309
+
+OK (1 test)

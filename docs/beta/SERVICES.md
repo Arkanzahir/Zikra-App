@@ -49,3 +49,12 @@ Ini tidak mencakup QCF/nama surah unduhan, teks, terjemahan atau audio Quran.
 ## Delta implementasi13November
 
 Content SyncQF memakai autentikasi server, cache Redis terenkripsiAES-GCM dan refresh6hari; TTL cache server8hari pada cache server bukan retensi seluruh penyedia. APK tidak menerima OAuthsecret/checkpoint. Pengingat cuaca baru hanya setelah opt-in/penjelasan koordinat terpilih→Open-Meteo; tanpa GPS latar belakang, pemeriksaan sekitar1jam pukul06–21 dan maksimal1alert/hari. Ketentuan skala/nonkomersial serta agregat pengguna tetap perlu ditutupJ04. Draf keluarga dan route membuka aplikasi lain hanya atas tindakan pengguna, tidak submit otomatis.
+
+## Peninjauan14November2026
+
+[Retensi primer dan batas akun](RETENTION_REVIEW.md) ditinjau tanpa mengubah
+konfigurasi layanan. Alat erasure instalasi teruji lokal; bukan penghapusan
+produksi atau semua data penyedia. OSM1.9.48 sudah memakai kebijakan expiry
+bersama dan cachebaru, terujiparser; klaim lama “masih perlu diperiksa” di atas
+tidak berarti perbaikan ini belum ada. Scope wire/kapasitas tetap berbeda.
+Sasaran beta13+ dipilih; ketentuan dan penanganan remaja masih perlu dituntaskan.

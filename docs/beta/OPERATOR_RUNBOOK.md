@@ -8,7 +8,7 @@ Tidak menjalankan tindakan administratif hanya karena dokumen ini tersedia.
 
 Gunakan backend/redis-client-admin.mjs melalui lingkungan operator privat yang
 sudah memuat konfigurasi Redis sah. Perintah issue menerima path absolut output
-privat yang belum ada; token disimpan ke file eksklusif, bukan dicetak. Catat ID
+privat yang belum ada (di repo hanya .local; path source ditolak); token disimpan ke file eksklusif, bukan dicetak. Catat ID
 instalasi dari hasilnya pada daftar operator privat; bagikan akses hanya melalui
 kanal privat kepada penguji yang dituju. Jangan masukkan token bersama ke APK,
 website, Git atau formulir dukungan publik. Token provider AI/QF/FCM tidak dibagikan.
@@ -39,6 +39,11 @@ tepat pada key milik ID tersebut. Timeout cleanup dicatat, bukan disamarkan lulu
 
 ## Dukungan dan insiden
 
+Alat penghapusan terbatas tersedia melalui [prosedur per instalasi](INSTALLATION_ERASURE.md):
+inspect tanpa mutasi → prepare/revoke → tunggu120detik tanpa lease aktif → erase
+target persis. Tujuh tes Lua lokal lulus; belum dipakai untuk data produksi.
+Jangan menyamakan hasilnya dengan penghapusan log/cadangan penyedia atau chat HP.
+
 Kontak publik yang disetujui: arkanzahir46@gmail.com. Minta versi/hash, Android,
 model perangkat, waktu dan langkah mengulang; screenshot harus disunting pengguna.
 Jangan minta PIN, password, key, token, dokumen pribadi atau ekspor chat sebagai
@@ -51,7 +56,7 @@ Rotasi credential server atau tindakan di layanan luar mengikuti izin yang relev
 jangan menulis nilai credential ke laporan. Jika data pengguna mungkin terdampak,
 catat fakta terverifikasi dan kebutuhan pemberitahuan; jangan menjanjikan nol log.
 
-Penghapusan server: identifikasi layanan/record pemohon dan kewenangannya terlebih
+Penghapusan server: ikuti INSTALLATION_ERASURE.md; identifikasi layanan/record pemohon dan kewenangannya terlebih
 dahulu. Chat lokal, registry, usage, cache dan metadata penyedia memiliki aturan
 berbeda. Bukti penghapusan/cadangan di penyedia masih gate J11. Jangan menghapus
 record orang lain atau cache bersama hanya karena satu penguji berhenti.

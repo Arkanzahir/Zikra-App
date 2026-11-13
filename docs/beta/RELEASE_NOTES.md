@@ -5,6 +5,9 @@ Kandidat internal terbaru1.9.48/code75,49.615.884byte;SHA256
 7a8d094170d31b2dbd25b5e0e31074b61642b3208e0b269b5ce6b90ab61b6319.
 Audio menolak respons HTTP parsial; cache peta mengikuti expiry server.
 207JVM tanpa skip dan19native emulator lulus;0lint error/890warning.
+Tambahan1smoke HP/14kondisi tema+dock lulus pada hash yang sama;
+update1.9.39→1.9.48 mempertahankan isi42baris lama. Backend134tes lulus
+setelah alat erasure operator lokal; tidak deploy/menghapus produksi.
 [Bukti/batas](../../android/validation/audio-map-2026-11-14/README.md).
 Penerbit publik: Zikra. Tetap debug/HOLD;HP,signing,hak,usia/retensi dan gerbang lain terbuka.
 

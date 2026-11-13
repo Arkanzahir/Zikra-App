@@ -152,6 +152,10 @@ Uji suara dan alarm fisik digabung J13, bukan sesi USB berulang untuk tugas yang
 
 ### J07 — AI dan akses tester
 
+Tambahan14November: alat penghapusan metadata per instalasi inspect→prepare/revoke→
+tunggu120detik→erase teruji7kasus Lua lokal; suite backend134lulus/0skip. Tidak
+menghapus produksi, bukan retensi seluruh penyedia. Lihat INSTALLATION_ERASURE.md.
+
 - [ ] Tutup prosedur menerbitkan/mencabut akses per tester, kuota/kapasitas,
   penanganan penuh/timeout serta pemantauan tanpa log sensitif.
 - [ ] Uji percakapan berurutan dan pemulihan slot; data chat/lampiran tetap hanya
@@ -199,7 +203,8 @@ F01–F04 tidak otomatis selesai dari subset tersebut.
 
 - [x] Kontak pengguna dicatat: arkanzahir46@gmail.com; draf retensi berbasis kode ada.
 - [x] Nama penerbit publik: Zikra; dikonfirmasi pengguna 14 November 2026.
-- [ ] Tetapkan cakupan usia/layanan dan kebijakan publik
+- [x] Sasaran beta13+ dipilih pengguna14November; bukan18+ dan bukan bukti verifikasi usia.
+- [ ] Tuntaskan penanganan remaja13–17tahun, layanan dan kebijakan publik
   yang sesuai implementasi; jangan menjanjikan nol log atau retensi yang tak terbukti.
 - [ ] Tetapkan proses dukungan, pencabutan akses/penghapusan data dan penanganan
   insiden; verifikasi retensi penyedia dan salinan cadangan, bukan hanya TTL gateway.
@@ -220,8 +225,9 @@ privat tidak masuk Git/APK/log. Membuat key bukan pengganti uji migrasi.
 
 ### J13 — Satu sesi HP terkoordinasi
 
-- [ ] Cadangan diverifikasi dan update tanpa uninstall; preservasi data/izin/pilihan
-  pengguna dibandingkan sebelum/sesudah pada kandidat final yang sama.
+- [x] Cadangan dan update HP1.9.39→1.9.48 tanpa uninstall diverifikasi:42baris isi
+  asli/17tabel, preferensi pengguna tetap; timestamp chat/cache/plan berubah wajar.
+- [ ] Lengkapi snapshot izin/pengaturan OS serta skenario akhir yang belum tercakup.
 - [ ] Tutup C02 serta D02 idle/hemat baterai, audio focus/Stop/selesai alami dan
   skenario gagal yang masih kurang. Bukti reboot lama tidak diulang tanpa alasan.
 - [ ] Smoke lintas fitur G01/G02, izin ditolak, proses/background, putus jaringan,
