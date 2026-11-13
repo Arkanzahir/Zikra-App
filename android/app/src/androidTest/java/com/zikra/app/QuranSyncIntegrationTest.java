@@ -65,7 +65,7 @@ public final class QuranSyncIntegrationTest extends InstrumentationTestCase {
       return json.toString();
     }, () -> {});
     final int[] checks = {0};
-    rejected(store, chapter, page -> reader(2, page), () -> { if (++checks[0] == 7) throw new IOException("cancel before commit"); });
+    rejected(store, chapter, page -> reader(2, page), () -> { if (++checks[0] == 8) throw new IOException("cancel before commit"); });
     assertEquals(old, new QuranSyncStore(context).read(chapter, 6));
     File root = new File(sandbox, "quran-content-sync-r33");
     File orphan = new File(root, UUID.randomUUID().toString()); assertTrue(orphan.mkdir());

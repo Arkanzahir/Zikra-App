@@ -1,3 +1,11 @@
+## Implementasi dahulu; uji dibundel —13November
+
+Pengguna meminta menyelesaikan kode terdekat dahulu dan menunda uji emulator/HP. Reader/gateway/unduhan dan pemetaan Mushaf Content Sync telah terpasang di source. Tambahan checkpoint ini: MushafFontCache menyatukan tiga jalur font CDN; font halaman diperiksa QcfGlyphMetrics, nama surah/Basmalah memakai parser masing-masing. Kandidat sementara divalidasi sebelum AtomicFile mengganti cache; font lama valid dipertahankan saat koneksi gagal tanpa memajukan timestamp. Penolakan401/403 tidak memakai fallback. Kegagalan menulis menjaga font lama; file sementara dibersihkan. Font tidak diganti desainnya, teks/glyph sumber dan audio pilihan tetap.
+
+QuranSyncStore mengecek pembatalan sebelum staging, ruang6MiB, ukuran UTF8 maksimal524288byte/halaman, dan membersihkan folder baru bila penanda kepemilikan gagal ditulis. Fixture pembatalan disesuaikan agar tetap memicu sebelum commit. Timing tetap metadata memori dari rekaman ayat yang sama; audio binary/cache dan haknya terpisah dari Content Sync. Tidak mengubah model/AI/provider/desain/sorotan UI10.
+
+Tidak menjalankan build/unit/lint/emulator/HP pada perubahan ini, mengikuti prioritas pengguna. APK terakhir tetap1.9.42/code69 dari checkpoint sebelumnya, belum memuat perubahan hardening ini. Empat native dan125backend terdahulu bukan kelulusan source terbaru. J02/J03 berstatus implementasi di source, menunggu tinjauan/paket/uji gabungan; checkbox penyelesaian penuh tetap terbuka. Sesi uji berikut: build lalu parser/font valid-rusak/penulisan gagal/font usang luring/401, download batal/storage/rollback, gateway Android hosted, visual/title/Basmalah/harakat/pergantian halaman, audio/timing/pause/stop dan qari. J04 hak/atribusi serta gate beta tetap terpisah; jangan mengklaim semua A–G selesai.
+
 ## Hosted terverifikasi13November
 
 Reader2:1 mengembalikan50ayat200, Mushaf halaman1 berisi7ayat200, locate2:1 mengembalikan halaman2/200. Tanpa akses401, batas60permintaan/menit429, identitas revoked401. Key identitas sintetis yang dipakai putaran ini dihapus terkonfirmasi; identitas tersimpan sebelumnya diperiksa/dihapus dan menghasilkan0entri. Tidak ada inferenceAI.

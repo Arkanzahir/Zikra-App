@@ -54,6 +54,7 @@ public final class MushafRepository implements AutoCloseable {
                         "Zikra-Android/1.1 (+https://github.com/Arkanzahir/Zikra-App)")
                     .build())
             .execute()) {
+      if (response.code() == 401 || response.code() == 403) throw new MushafFontCache.AccessDenied();
       if (!response.isSuccessful() || response.body() == null) throw new IOException("HTTP");
       response.body().source().request(limit + 1L);
       if (response.body().source().buffer().size() > limit) throw new IOException("Too large");
@@ -180,29 +181,12 @@ public final class MushafRepository implements AutoCloseable {
             ensureBasmalahFont();
             if (!fonts.isDirectory() && !fonts.mkdirs()) throw new IOException("Font folder");
             File file = new File(fonts, "p" + page + ".ttf");
-            Typeface font = null;
-            if (file.isFile() && System.currentTimeMillis() - file.lastModified() < 7L * 86400000) {
-              try {
-                font = Typeface.createFromFile(file);
-              } catch (RuntimeException ignored) {
-              }
-            }
-            if (font == null) {
-              byte[] bytes =
-                  fetch(
-                      "https://verses.quran.foundation/fonts/quran/hafs/v2/ttf/p" + page + ".ttf",
-                      3 * 1024 * 1024);
-              AtomicFile atomic = new AtomicFile(file);
-              FileOutputStream out = atomic.startWrite();
-              try {
-                out.write(bytes);
-                atomic.finishWrite(out);
-              } catch (IOException error) {
-                atomic.failWrite(out);
-                throw error;
-              }
-              font = Typeface.createFromFile(file);
-            }
+            Typeface font = MushafFontCache.load(file,
+                () -> fetch("https://verses.quran.foundation/fonts/quran/hafs/v2/ttf/p" + page + ".ttf", 3 * 1024 * 1024),
+                candidate -> {
+                  new QcfGlyphMetrics(candidate);
+                  return Typeface.createFromFile(candidate);
+                });
             Typeface loaded = font;
             File[] cached = fonts.listFiles((dir, name) -> name.endsWith(".ttf"));
             if (cached != null && cached.length > 8) {
@@ -293,54 +277,16 @@ public final class MushafRepository implements AutoCloseable {
   }
 
   private void ensureHeadingFont() throws IOException {
-    File folder = new File(fonts.getParentFile(), "qcf-title-font");
-    if (!folder.isDirectory() && !folder.mkdirs()) throw new IOException("Title font folder");
-    File file = new File(folder, "surah-names-v1.ttf");
-    if (file.isFile() && System.currentTimeMillis() - file.lastModified() < 7L * 86400000) {
-      try {
-        new SurahHeadingFont(file);
-        return;
-      } catch (RuntimeException invalid) {
-      }
-    }
-    byte[] bytes =
-        fetch(
-            "https://verses.quran.foundation/fonts/quran/surah-names/v1/sura_names.ttf",
-            1024 * 1024);
-    AtomicFile atomic = new AtomicFile(file);
-    FileOutputStream out = atomic.startWrite();
-    try {
-      out.write(bytes);
-      atomic.finishWrite(out);
-    } catch (IOException error) {
-      atomic.failWrite(out);
-      throw error;
-    }
-    new SurahHeadingFont(file);
+    File file = new File(fonts.getParentFile(), "qcf-title-font/surah-names-v1.ttf");
+    MushafFontCache.load(file,
+        () -> fetch("https://verses.quran.foundation/fonts/quran/surah-names/v1/sura_names.ttf", 1024 * 1024),
+        SurahHeadingFont::new);
   }
 
   private void ensureBasmalahFont() throws IOException {
-    File folder = new File(fonts.getParentFile(), "qcf-basmalah");
-    if (!folder.isDirectory() && !folder.mkdirs()) throw new IOException("Basmalah font folder");
-    File file = new File(folder, "p1.ttf");
-    if (file.isFile() && System.currentTimeMillis() - file.lastModified() < 7L * 86400000) {
-      try {
-        new BasmalahRenderer(file);
-        return;
-      } catch (IOException | RuntimeException invalid) {
-      }
-    }
-    byte[] bytes =
-        fetch("https://verses.quran.foundation/fonts/quran/hafs/v2/ttf/p1.ttf", 3 * 1024 * 1024);
-    AtomicFile atomic = new AtomicFile(file);
-    FileOutputStream out = atomic.startWrite();
-    try {
-      out.write(bytes);
-      atomic.finishWrite(out);
-    } catch (IOException error) {
-      atomic.failWrite(out);
-      throw error;
-    }
-    new BasmalahRenderer(file);
+    File file = new File(fonts.getParentFile(), "qcf-basmalah/p1.ttf");
+    MushafFontCache.load(file,
+        () -> fetch("https://verses.quran.foundation/fonts/quran/hafs/v2/ttf/p1.ttf", 3 * 1024 * 1024),
+        BasmalahRenderer::new);
   }
 }

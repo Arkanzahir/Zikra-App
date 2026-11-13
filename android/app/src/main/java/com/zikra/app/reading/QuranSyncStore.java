@@ -45,14 +45,19 @@ public final class QuranSyncStore {
     }
   }
   public void download(QuranChapters.Chapter chapter, Source source, Check check) throws Exception {
+    check.run();
     File staging;
     synchronized (COMMIT) {
       if (!root.isDirectory() && !root.mkdirs()) throw new IOException("Quran storage unavailable");
+      if (root.getUsableSpace() < 6L * 1024 * 1024) throw new IOException("Insufficient Quran storage");
       recoverOrphans();
       staging = new File(root, UUID.randomUUID().toString());
       if (!staging.mkdir()) throw new IOException("Quran staging unavailable");
       try (FileOutputStream owner = new FileOutputStream(new File(staging, ".owner"))) {
         owner.write(OWNER.getBytes(StandardCharsets.UTF_8)); owner.getFD().sync();
+      } catch (IOException failedOwner) {
+        new File(staging, ".owner").delete(); staging.delete();
+        throw failedOwner;
       }
       ACTIVE.add(staging.getName());
     }
@@ -63,11 +68,13 @@ public final class QuranSyncStore {
       for (int page = 1; page <= pages; page++) {
         check.run();
         String json = source.page(page);
+        byte[] bytes = json.getBytes(StandardCharsets.UTF_8);
+        if (bytes.length > 524288) throw new IOException("Quran page budget exceeded");
         long time = QuranSyncPage.validate(json, chapter, page, System.currentTimeMillis());
         if (checked != -1 && checked != time) throw new IOException("Quran source changed during download; retry");
         checked = time;
         try (FileOutputStream output = new FileOutputStream(new File(staging, page + ".json"))) {
-          output.write(json.getBytes(StandardCharsets.UTF_8)); output.getFD().sync();
+          output.write(bytes); output.getFD().sync();
         }
       }
       check.run();

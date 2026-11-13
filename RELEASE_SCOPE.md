@@ -1,3 +1,7 @@
+## Implementasi diprioritaskan13November
+
+Pengguna menunda uji hingga kode terdekat selesai. [Perubahan source/batas](android/validation/quran-sync-integration/README.md): cache font CDN validasi-staging/publikasi atomik/retensi saat outage; unduhan Quran batas ruang/ukuran serta cleanup staging. Tidak build/test/emulator/HP pada delta ini. APK tetap1.9.42, belum memuat delta; kelulusan lama tidak berlaku otomatis. J02/J03 implementasi tersedia, uji gabungan dan hak konten tetap terbuka. WIP/stash/privat/audio/desain dipertahankan.
+
 ## Verifikasi hosted Content Sync13November
 
 [Bukti](android/validation/quran-sync-integration/README.md): reader/Mushaf/locate produksi200, tanpa izin/revoke401, kuota429; identitas uji dibersihkan. Hambatan HTTPS Node laptop diatasi transportWindows untuk uji privat, tanpa perubahan runtime/TLS. J01 selesai terarah setelah checkpoint; J02/J03 tetap sebagian (gateway native hosted/UI/font/audio akhir). HP tidak dipakai.
