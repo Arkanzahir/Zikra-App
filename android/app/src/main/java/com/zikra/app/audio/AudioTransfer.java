@@ -57,7 +57,8 @@ public final class AudioTransfer {
               .header("User-Agent", "Zikra-Android/1.0 (+https://github.com/Arkanzahir/Zikra-App)")
               .build();
       try (Response response = http.newCall(request).execute()) {
-        if (!response.isSuccessful() || response.body() == null)
+        // Resumption is per completed ayah, never an unverified HTTP byte range.
+        if (response.code() != 200 || response.header("Content-Range") != null || response.body() == null)
           throw new IOException("Audio HTTP");
         try (InputStream in = response.body().byteStream();
             FileOutputStream out = new FileOutputStream(partial)) {

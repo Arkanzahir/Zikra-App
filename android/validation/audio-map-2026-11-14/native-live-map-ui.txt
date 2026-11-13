@@ -1,0 +1,50 @@
+com.zikra.app.audio.LiveRecitationContractTest:.
+com.zikra.app.QuranAudioTest:.INSTRUMENTATION_STATUS: screenshot_note=ReaderFoldedPlayingSynthetic: TimeoutException
+INSTRUMENTATION_STATUS_CODE: 0
+.
+com.zikra.app.QualityJourneyTest:INSTRUMENTATION_STATUS: quality_screenshot=QualityHome
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityStudy
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityHifz
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityIbadah
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityPrayer
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityQuranCatalog
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityQuranReader
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityDua
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityHadith
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityCalendar
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityProfile
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityAssistant
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityQibla
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityInfaq
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityProtector
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityWeather
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: quality_screenshot=QualityEarthquake
+INSTRUMENTATION_STATUS_CODE: 0
+.
+com.zikra.app.QuranAudioTest:INSTRUMENTATION_STATUS: different_word_offsets=2
+INSTRUMENTATION_STATUS: duration_ms=4624
+INSTRUMENTATION_STATUS: next_verse=3
+INSTRUMENTATION_STATUS: recording=Live Alafasy Quran.com timed recording
+INSTRUMENTATION_STATUS_CODE: 0
+.
+com.zikra.app.maps.OsmMapPolicyTest:.
+Test results for InstrumentationTestRunner=......
+Time: 56.664
+
+OK (6 tests)

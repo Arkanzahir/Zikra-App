@@ -2,7 +2,7 @@
 
 12 November 2026. **Draf untuk ditinjau, belum kebijakan publik final.**
 Kontak dukungan yang diizinkan pengguna: arkanzahir46@gmail.com. Nama aplikasi
-Zikra; identitas penerbit final belum dikonfirmasi. Cakupan usia, retensi
+Zikra; nama penerbit publik **Zikra** dikonfirmasi pengguna pada 14 November 2026. Cakupan usia, retensi
 metadata seluruh penyedia dan prosedur permintaan penghapusan server harus
 dipastikan sebelum dokumen diterbitkan. Ini bukan pernyataan semua lapisan nol log.
 

@@ -8,7 +8,6 @@ import android.util.AttributeSet;
 import android.view.*;
 import android.widget.*;
 import com.zikra.app.R;
-import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
@@ -101,15 +100,7 @@ public final class EarthquakeMapView extends FrameLayout {
 
   private void ensureMap() {
     if (map != null) return;
-    org.osmdroid.config.IConfigurationProvider config = Configuration.getInstance();
-    config.setUserAgentValue("Zikra-Android/1.5 (+https://github.com/Arkanzahir/Zikra-App)");
-    java.io.File base = new java.io.File(getContext().getCacheDir(), "osm");
-    base.mkdirs();
-    config.setOsmdroidBasePath(base);
-    config.setOsmdroidTileCache(new java.io.File(base, "tiles"));
-    config.setTileDownloadThreads((short) 2);
-    config.setCacheMapTileOvershoot((short) 0);
-    config.setExpirationExtendedDuration(7L * 86400 * 1000);
+    com.zikra.app.maps.OsmMapPolicy.configure(getContext());
     map = new MapView(getContext());
     map.setTileSource(TileSourceFactory.MAPNIK);
     map.setMinZoomLevel(3d);

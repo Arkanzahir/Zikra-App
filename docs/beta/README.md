@@ -1,3 +1,13 @@
+## Checkpoint audio/peta1.9.48 —14November2026
+
+[Bukti terkini](../../android/validation/audio-map-2026-11-14/README.md):207JVM tanpa skip,
+19native emulator lulus, lint0error/890warning. Audio menolak HTTP parsial;
+cache peta mengikuti expiry server. APK49.615.884byte,debug/HOLD.
+Upgrade terisi1.9.41→1.9.48 lulus tanpa uninstall di antaranya. Penerbit publik
+**Zikra** dikonfirmasi; kontak arkanzahir46@gmail.com. Usia/retensi/hak/B01/signing/
+migrasi/HP/keputusan beta masih terbuka. Hasil1.9.47 di bawah historis, bukan
+jumlah tes kandidat baru. Tidak memakaiHP/deploy/publikasi; WIP/privat tetap.
+
 ## Tambahan ketahanan Quran
 
 [Lima kasus tambahan](../../android/validation/quran-failure-2026-11-14/README.md) lulus; APK tetap1.9.47,HOLD,total32kasus native berbeda. Status dan gap diperbarui di handoff/STATUS.json. Tidak mengubah gerbang hak/signing/HP/publikasi.
@@ -37,7 +47,7 @@ tanpa menghapus fitur wajib atau mencentang seluruh A–D/E/F/G.
 | Audio D02/D02a | Dua rekaman aktif, sumber/hash dan beberapa uji HP | Hak distribusi dua rekaman dan pemeriksaan lafaz, bukti idle/hemat baterai yang belum konklusif. [Daftar izin](../audio-permission/README.md) |
 | Alur inti G01/G02 | Bukti modul dan pembaruan terdahulu | Smoke lintas fitur dan upgrade pada **paket final yang sama**, HP dengan izin ditolak/background/putus jaringan. Hasil versi lama tetap bukti versi lama |
 | AI C02/G03 | Hosting/akses instalasi/kuota; health 200 dan akses tanpa izin 401 pada pemeriksaan ini | Konfirmasi kasus laptop mati yang masih terbuka, alur memperoleh akses per tester, retensi/operator dan batas kapasitas beta. Jangan membagikan kode akses bersama dalam APK |
-| Privasi/dukungan G03 | Izin online sekali, konteks opt-in, proteksi backup dan audit terdahulu | Identitas penerbit final, kebijakan publik akurat dan peninjauan layanan. [Draf berbasis implementasi](PRIVACY_DRAFT.md) |
+| Privasi/dukungan G03 | Izin online sekali, konteks opt-in, proteksi backup dan audit terdahulu | Cakupan usia/retensi dan kebijakan publik akurat dan peninjauan layanan. [Draf berbasis implementasi](PRIVACY_DRAFT.md) |
 | Paket G04 | Kandidat internal debug 1.9.41/code68, 53,2 MB; jalur release disiapkan | Sertifikat release tetap yang dicadangkan privat, build signed final, fingerprint/hash, audit dan pengujian ulang. Kandidat unsigned tidak dapat dipasang; debug bukan paket publik |
 | Sumber layanan G03 | Atribusi OSM/BMKG/Open-Meteo pada fitur, API dan cache | Tinjau syarat sumber Quran/audio/font/Hadis/Doa dan skala beta; verifikasi identitas FCM APK release. [Inventaris](SERVICES.md) |
 
@@ -48,7 +58,7 @@ bukan alasan menahan beta bila syarat beta lainnya benar-benar terpenuhi.
 
 ## Urutan pelaksanaan
 
-1. Tutup sumber/hak konten, tentukan penerbit/kontak dan sertifikat distribusi.
+1. Tutup sumber/hak konten, sahkan usia/privasi dan sertifikat distribusi.
    Jika sumber belum memperoleh kejelasan, pertahankan HOLD; penggantian atau
    pengurangan cakupan memerlukan keputusan pengguna, bukan dihapus diam-diam.
 2. Build signed dengan versi meningkat saat kandidat final dipilih. Jangan

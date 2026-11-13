@@ -62,7 +62,8 @@ public final class TimedAudioRepository implements AutoCloseable {
     }
     try (Response response = call.execute()) {
       check(token);
-      if (!response.isSuccessful() || response.body() == null) throw new IOException("HTTP");
+      if (response.code() != 200 || response.header("Content-Range") != null || response.body() == null)
+        throw new IOException("Incomplete HTTP representation");
       response.body().source().request(limit + 1L);
       check(token);
       if (response.body().source().buffer().size() > limit) throw new IOException("Too large");

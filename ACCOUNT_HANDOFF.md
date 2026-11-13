@@ -1,6 +1,6 @@
 # Mulai di sini — handoff akun GPT
 
-Checkpoint terbaru: **14 November 2026, kandidat internal 1.9.47/code74, HOLD**.
+Checkpoint terbaru: **14 November 2026, kandidat internal 1.9.48/code75, HOLD**.
 Dokumen ini menggantikan ringkasan versi lama di percakapan. Akun baru tidak
 mewarisi chat, memori, koneksi layanan atau file privat akun sebelumnya.
 
@@ -9,7 +9,7 @@ mewarisi chat, memori, koneksi layanan atau file privat akun sebelumnya.
 1. AGENTS.md dan dokumen ini.
 2. SESSION_HANDOFF.md, IMPLEMENTATION_PLAN.md, RELEASE_SCOPE.md.
 3. docs/beta/JOBDESK.md dan docs/beta/STATUS.json.
-4. android/validation/beta-final-2026-11-14/README.md.
+4. android/validation/audio-map-2026-11-14/README.md; receipt1.9.47 tetap historis.
 5. docs/design/APP_GUIDE.md, docs/beta/OPERATOR_RUNBOOK.md,
    docs/beta/PRIVACY_DRAFT.md dan docs/beta/SERVICES.md.
 
@@ -37,27 +37,33 @@ HP belum dipakai pada sesi terbaru; koordinasikan kesiapan/restart sebelumnya.
 Login Google, backup/sinkronisasi cloud, dashboard admin (F05–F08), mode orang
 tua dan sorotan Quran UI10 ditunda. Jangan menambah fitur besar ini sekarang.
 
+Nama penerbit publik **Zikra**, dikonfirmasi14November; email dukungan tetap
+arkanzahir46@gmail.com. Ini tidak menutup retensi/usia atau mengizinkan publikasi.
+
 ## 3. Kandidat dan bukti terkini
 
-APK: D:/Download/Zikra-App-main/Zikra-Polish-v1.9.47-beta-debug.apk.
-Ukuran49.511.880 byte, SHA256:
-03f9b61fc7ad88ad9049683a138dc3ae77b92982c3062a6d0fd152b884a07670.
-Audit: android/validation/beta-final-2026-11-14/apk-audit.json.
+APK: D:/Download/Zikra-App-main/Zikra-Polish-v1.9.48-beta-debug.apk.
+Ukuran49.615.884 byte, SHA256:
+7a8d094170d31b2dbd25b5e0e31074b61642b3208e0b269b5ce6b90ab61b6319.
+Audit: android/validation/audio-map-2026-11-14/apk-audit.json.
 Tanda tangan debug valid/sama; private entries0, credential dikenal0,
 backup/cleartext nonaktif. Ini bukan persetujuan distribusi publik.
 
-Hasil pada1.9.47: JVM202 lulus/4skip, native32 kasus berbeda lulus (27awal+5tambahan), lint0error/890warning.
+Hasil pada1.9.48: JVM207 lulus/0skip, native19 kasus lulus ditambah1 persiapan seed upgrade, lint0error/890warning.
+Bukti1.9.47 tetap historis:32native, tidak dijumlahkan ke kandidat baru.
 Bukan klaim source bebas masalah. Backend tidak berubah;125tes backend lulus
 pada checkpoint13November, tidak diklaim dijalankan ulang untuk receiver Android.
 
-Perubahan produksi terbaru hanya allowlist action sistem pada
-android/app/src/main/java/com/zikra/app/reminders/PrayerRescheduleReceiver.java,
-serta versi. Receiver tetap non-exported. Tidak mengubah jadwal/audio/provider/UI.
+Perubahan1.9.48 menolak HTTP206/Content-Range pada jalur audio, serta menyatukan
+kebijakan cache OSM yang menghormati expiry server. Cache lama dipertahankan
+namun tak digunakan; tidak mengubah rekaman audio/jadwal/desain/provider.
+Allowlist receiver1.9.47 tetap berlaku.
 Test reduced motion kini mengatur/memulihkan animation0 sendiri; ekspektasi judul
 AI lama diganti ke resource desain diterima. Assertion layout tetap dipertahankan.
 
 Data contoh terisi pada1.9.41 berhasil dipertahankan dengan install-r ke1.9.46
-lalu1.9.47: profil, tugas, Hifz, chat/draf, bookmark dan tema. Bukan migrasi signer
+lalu1.9.47: profil, tugas, Hifz, chat/draf, bookmark dan tema. Verifikasi terpisah
+1.9.41→1.9.48 juga lulus; lihat receipt terbaru. Bukan migrasi signer
 release atau bukti HP. HP terakhir yang terbukti pada checkpoint lama1.9.39;
 jangan mengklaim kandidat baru sudah terpasang/diuji fisik.
 
@@ -108,8 +114,8 @@ jangan mengklaim kandidat baru sudah terpasang/diuji fisik.
 3. J04–J06: hak sumber/layanan, B01 dua kitab lengkap menunggu Gading, audio/lafaz.
    HadeethEnc opsional2260 bukan pengganti diam-diam. Pengguna menunda pembahasan
    izin; itu bukan bukti izin diperoleh. Jangan mengirim email baru tanpa instruksi.
-4. J11: penerbit final, retensi/proses penghapusan/kebijakan privasi. Email dukungan
-   sudah diizinkan, identitas penerbit final belum ditetapkan.
+4. J11: nama penerbit publik Zikra dan email arkanzahir46@gmail.com sudah dikonfirmasi.
+   Cakupan usia, retensi/proses penghapusan/kebijakan privasi tetap perlu disahkan.
 5. J12: signer release tetap + cadangan privat dan strategi migrasi debug→release.
    Jangan membuat keputusan migrasi sendiri, uninstall atau menyebarkan debug publik.
 6. J13: satu sesi HP terkoordinasi pada hash kandidat yang sama; update terisi,
@@ -185,7 +191,7 @@ emulator disposable baru. Screenshot/log/ringkasan final tersedia di Git.
 
 Lanjutkan Zikra di D:/Download/Zikra-App-main/Zikra-App-main. Selalu gunakan caveman.
 Baca ACCOUNT_HANDOFF.md, AGENTS.md, SESSION_HANDOFF.md, IMPLEMENTATION_PLAN.md,
-RELEASE_SCOPE.md dan docs/beta/JOBDESK.md. Kandidat internal1.9.47 masih HOLD;
+RELEASE_SCOPE.md dan docs/beta/JOBDESK.md. Kandidat internal1.9.48 masih HOLD;
 bukti terbaru ada di android/validation/beta-final-2026-11-14/README.md.
 Jangan ulang proyek atau menganggap A–D/E/F/G selesai. Pertahankan WIP, stash audio,
 data pengguna, desain diterima dan konfigurasi privat. Lanjutkan gap terdekat

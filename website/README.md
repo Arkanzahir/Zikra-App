@@ -9,7 +9,7 @@ tindakan pengguna. Gambar Home berasal dari emulator kandidat internal1.9.47,
 bukan klaim jadwal/lokasi pengguna. Logo resmi dipertahankan.
 
 Sebelum publikasi J14/J15: sahkan paket release/signer/migrasi, hak konten/audio,
-identitas/privasi, uji HP dan keputusan beta. Perbarui informasi versi dari
+usia/retensi/privasi, uji HP dan keputusan beta. Perbarui informasi versi dari
 receipt paket final, tambahkan URL HTTPS serta SHA256 final yang cocok, lalu
 uji unduh dan update nyata tanpa uninstall. Jangan mengubah tombol menjadi
 aktif memakai APK debug atau hanya karena berkas manifest ada.
@@ -17,3 +17,5 @@ aktif memakai APK debug atau hanya karena berkas manifest ada.
 Pemeriksaan statis: `D:/node.exe website/check.cjs` dari root repo.
 
 Desktop dan viewport390CSSpx diuji: aset termuat, tanpa overflow horizontal, FAQ/privasi bekerja dan unduhan tetap disabled. Kandidat1.9.47; bukti pada android/validation/beta-final-2026-11-14.
+
+14November: metadata kandidat1.9.48 dan nama penerbit Zikra diselaraskan; cek statis lulus. Screenshot/layout desktop-mobile tetap bukti1.9.47, tidak diklaim direkam ulang.

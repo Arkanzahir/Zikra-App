@@ -208,4 +208,28 @@ public final class TimedAudioRepositoryTest {
     }
     assertEquals(0, folder.list().length);
   }
+
+  @Test
+  public void partialHttpAudioCannotBePublishedAsACompleteClip() throws Exception {
+    for (boolean misleadingSuccess : new boolean[]{false, true}) {
+      File folder = temporary.newFolder();
+      AtomicInteger calls = new AtomicInteger();
+      OkHttpClient http = new OkHttpClient.Builder().addInterceptor(chain -> {
+        calls.incrementAndGet();
+        Response complete = response(chain.request(), () -> {});
+        if (chain.request().url().host().equals("verses.quran.foundation"))
+          return complete.newBuilder().code(misleadingSuccess ? 200 : 206)
+              .header("Content-Range", "bytes 0-31/4096").build();
+        return complete;
+      }).build();
+      try (TimedAudioRepository repository = new TimedAudioRepository(folder, http)) {
+        try {
+          repository.load(Recitation.IDS[0], 1, 1);
+          fail("A partial representation must not become a complete cached recording");
+        } catch (IOException expected) { }
+        assertEquals(3, calls.get());
+        assertEquals(0, folder.list().length);
+      }
+    }
+  }
 }

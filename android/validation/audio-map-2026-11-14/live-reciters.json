@@ -1,0 +1,35 @@
+[
+  {
+    "reciter": "ar.alafasy",
+    "resourceId": 7,
+    "providerName": "Mishari Rashid al-`Afasy",
+    "chapter": 1,
+    "verse": 1,
+    "bytes": 146830,
+    "decodedDurationMs": 6087,
+    "reportedDurationMs": 6000,
+    "timingValidated": true
+  },
+  {
+    "reciter": "ar.husary",
+    "resourceId": 6,
+    "providerName": "Mahmoud Khalil Al-Husary",
+    "chapter": 1,
+    "verse": 1,
+    "bytes": 42003,
+    "decodedDurationMs": 5224,
+    "reportedDurationMs": 5000,
+    "timingValidated": true
+  },
+  {
+    "reciter": "ar.minshawi",
+    "resourceId": 9,
+    "providerName": "Mohamed Siddiq al-Minshawi",
+    "chapter": 1,
+    "verse": 1,
+    "bytes": 79540,
+    "decodedDurationMs": 4971,
+    "reportedDurationMs": 4000,
+    "timingValidated": true
+  }
+]

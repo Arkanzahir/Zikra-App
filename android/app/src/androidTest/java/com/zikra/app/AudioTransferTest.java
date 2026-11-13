@@ -116,6 +116,61 @@ public final class AudioTransferTest extends InstrumentationTestCase {
     assertTrue(AudioTransfer.decodable(target));
   }
 
+  public void testUnexpectedPartialResponseNeverPublishesCompletedAudio() throws Exception {
+    for (int status : new int[]{206, 200}) {
+      OkHttpClient http = new OkHttpClient.Builder().addInterceptor(chain ->
+          new Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1)
+              .code(status).message("Synthetic partial representation")
+              .header("Content-Range", "bytes 0-449/9000")
+              .body(ResponseBody.create(MediaType.parse("audio/wav"), wave())).build()).build();
+      try {
+        transfer(http, () -> {});
+        fail("Partial audio must not be marked complete even if its prefix decodes");
+      } catch (IOException expected) { }
+      assertFalse(target.exists());
+      assertFalse(new File(target + ".part").exists());
+    }
+  }
+
+  public void testTruncationAndInterruptedBodyDoNotPublishAndCanRetry() throws Exception {
+    for (boolean interrupted : new boolean[]{false, true}) {
+      OkHttpClient http = new OkHttpClient.Builder().addInterceptor(chain -> {
+        byte[] bytes = wave();
+        okio.Source stream = new okio.Buffer().write(bytes);
+        if (interrupted) stream = new okio.ForwardingSource(stream) {
+          private long read;
+          @Override public long read(okio.Buffer sink, long count) throws IOException {
+            if (read >= 256) throw new IOException("Synthetic body interrupted");
+            long size = super.read(sink, Math.min(count, 256));
+            if (size > 0) read += size;
+            return size;
+          }
+        };
+        return new Response.Builder().request(chain.request()).protocol(Protocol.HTTP_1_1)
+            .code(200).message("Synthetic truncation")
+            .body(ResponseBody.create(MediaType.parse("audio/wav"), bytes.length + 1024, okio.Okio.buffer(stream))).build();
+      }).build();
+      try { transfer(http, () -> {}); fail("Incomplete transfer must fail"); }
+      catch (IOException expected) { }
+      assertFalse(target.exists());
+      assertFalse(new File(target + ".part").exists());
+    }
+    transfer(client(wave(), 200, new AtomicInteger()), () -> {});
+    assertTrue(AudioTransfer.decodable(target));
+  }
+
+  public void testValidCompletedAudioSurvivesCancelledRetryWithoutNetwork() throws Exception {
+    transfer(client(wave(), 200, new AtomicInteger()), () -> {});
+    byte[] before = Files.readAllBytes(target.toPath());
+    AtomicInteger calls = new AtomicInteger();
+    OkHttpClient unavailable = client(new byte[512], 503, calls);
+    try { transfer(unavailable, () -> { throw new IOException("Synthetic cancellation"); }); fail("Cancelled request must stop"); }
+    catch (IOException expected) { }
+    transfer(unavailable, () -> {});
+    assertEquals(0, calls.get());
+    assertTrue(java.util.Arrays.equals(before, Files.readAllBytes(target.toPath())));
+  }
+
   @Override
   protected void tearDown() throws Exception {
     try {

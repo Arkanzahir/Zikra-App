@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "releaseStatus": "HOLD",
-  "version": "1.9.47",
-  "versionCode": 74,
-  "bytes": 49511880,
-  "sha256": "03f9b61fc7ad88ad9049683a138dc3ae77b92982c3062a6d0fd152b884a07670",
+  "version": "1.9.48",
+  "versionCode": 75,
+  "bytes": 49615884,
+  "sha256": "7a8d094170d31b2dbd25b5e0e31074b61642b3208e0b269b5ce6b90ab61b6319",
   "signerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
   "debugSigningKey": true,
   "distributionApproved": false,
   "downloadUrl": null,
-  "runtimeVerification": "32-native-emulator-cases-passed-physical-device-pending",
+  "runtimeVerification": "19-native-emulator-cases-passed-physical-device-pending",
   "remainingGates": [
     "content-and-audio-rights",
-    "publisher-and-privacy",
+    "age-scope-retention-and-privacy",
     "release-signing-and-migration",
     "combined-runtime-and-device-tests"
   ]

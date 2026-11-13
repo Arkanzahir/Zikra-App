@@ -1,0 +1,5 @@
+com.zikra.app.BetaUpgradeDataTest:.
+Test results for InstrumentationTestRunner=.
+Time: 0.054
+
+OK (1 test)

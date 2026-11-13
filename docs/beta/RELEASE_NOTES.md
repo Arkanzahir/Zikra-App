@@ -1,11 +1,12 @@
 # Catatan calon beta — belum diterbitkan
 
 Paket final, versi distribusi, hash, signer dan URL unduhan belum dipilih.
-Kandidat internal terbaru1.9.47/code74,49.511.880byte;SHA256
-03f9b61fc7ad88ad9049683a138dc3ae77b92982c3062a6d0fd152b884a07670.
-Receiver penjadwalan memvalidasi action sistem;202JVM/27native lulus,4JVMskip,
-0lint error/890warning. [Bukti/batas](../../android/validation/beta-final-2026-11-14/README.md).
-Tetap debug/HOLD;HP,signing,hak dan gerbang lainnya belum ditutup.
+Kandidat internal terbaru1.9.48/code75,49.615.884byte;SHA256
+7a8d094170d31b2dbd25b5e0e31074b61642b3208e0b269b5ce6b90ab61b6319.
+Audio menolak respons HTTP parsial; cache peta mengikuti expiry server.
+207JVM tanpa skip dan19native emulator lulus;0lint error/890warning.
+[Bukti/batas](../../android/validation/audio-map-2026-11-14/README.md).
+Penerbit publik: Zikra. Tetap debug/HOLD;HP,signing,hak,usia/retensi dan gerbang lain terbuka.
 
 ## Fitur yang dapat diuji setelah gerbang dipenuhi
 

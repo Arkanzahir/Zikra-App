@@ -1,3 +1,13 @@
+## Checkpoint audio/peta1.9.48 —14November2026
+
+[Bukti terkini](../../android/validation/audio-map-2026-11-14/README.md):207JVM tanpa skip,
+19native emulator lulus, lint0error/890warning. Audio menolak HTTP parsial;
+cache peta mengikuti expiry server. APK49.615.884byte,debug/HOLD.
+Upgrade terisi1.9.41→1.9.48 lulus tanpa uninstall di antaranya. Penerbit publik
+**Zikra** dikonfirmasi; kontak arkanzahir46@gmail.com. Usia/retensi/hak/B01/signing/
+migrasi/HP/keputusan beta masih terbuka. Hasil1.9.47 di bawah historis, bukan
+jumlah tes kandidat baru. Tidak memakaiHP/deploy/publikasi; WIP/privat tetap.
+
 ## Update14November2026
 
 [Bukti kandidat1.9.47](../../android/validation/beta-final-2026-11-14/README.md) dan [handoff akun](../../ACCOUNT_HANDOFF.md) adalah checkpoint terbaru. Parent tetap terbuka; hanya dua kriteria terarah tambahan dicentang.
@@ -58,7 +68,7 @@ izin konten; Codex tidak dapat mengesahkan izin atas nama mereka.
 | J08 | P1 / E03 | Cuaca, alert, doa kontekstual, briefing | Cuaca live/cache,pengaturan,dedupe/izin/lokasi/hari lulus terarah;jobbackground/HP tetap | Mayoritas tidak, lalu J13 |
 | J09 | P1 / E04 | Darurat dan masjid terdekat | Intent nomor/draf/rute/fallback lulus dengan monitor;app penerima/HP tetap | Emulator dahulu, aksi akhir J13 |
 | J10 | P1 / F01–F04 | Konsistensi UI, aksesibilitas, performa | Panduan,splash/dock/keyboard/teks200% dan smoke16layar lulus;matriks/performaHP tetap | Sebagian emulator; performa akhir HP |
-| J11 | P0 / G03 | Privasi, dukungan dan tata kelola | Sebagian; draf/email sudah ada | Tidak |
+| J11 | P0 / G03 | Privasi, dukungan dan tata kelola | Sebagian; nama Zikra/email dikonfirmasi, usia/retensi masih terbuka | Tidak |
 | J12 | P0 / G04 | Signing, paket dan migrasi distribusi | Sebagian; guard/auditor ada, key final belum | Build tanpa HP; migrasi akhir J13 |
 | J13 | P0 / C02, D02, G01, G02 | Uji paket final dan kegagalan fisik | Menunggu HP dan kandidat final | Ya, dikoordinasikan |
 | J14 | P0 / G05 | Putusan siap beta terbatas | Antrean; HOLD tetap berlaku | Berdasarkan bukti J01–J13 |
@@ -188,7 +198,8 @@ F01–F04 tidak otomatis selesai dari subset tersebut.
 ### J11 — Privasi/dukungan
 
 - [x] Kontak pengguna dicatat: arkanzahir46@gmail.com; draf retensi berbasis kode ada.
-- [ ] Tetapkan identitas penerbit final, cakupan usia/layanan dan kebijakan publik
+- [x] Nama penerbit publik: Zikra; dikonfirmasi pengguna 14 November 2026.
+- [ ] Tetapkan cakupan usia/layanan dan kebijakan publik
   yang sesuai implementasi; jangan menjanjikan nol log atau retensi yang tak terbukti.
 - [ ] Tetapkan proses dukungan, pencabutan akses/penghapusan data dan penanganan
   insiden; verifikasi retensi penyedia dan salinan cadangan, bukan hanya TTL gateway.

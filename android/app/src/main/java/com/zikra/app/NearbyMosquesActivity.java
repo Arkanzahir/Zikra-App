@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
@@ -346,14 +345,7 @@ public final class NearbyMosquesActivity extends BaseActivity {
         "Ketuk penanda untuk memilih masjid. Jika peta belum termuat, gunakan tampilan Daftar.");
     findViewById(R.id.mosquesMapStatus).setVisibility(View.VISIBLE);
     if (mapView == null) {
-      org.osmdroid.config.IConfigurationProvider config = Configuration.getInstance();
-      config.setUserAgentValue("Zikra-Android/1.0 (+https://github.com/Arkanzahir/Zikra-App)");
-      java.io.File base = new java.io.File(getCacheDir(), "osm");
-      base.mkdirs();
-      config.setOsmdroidBasePath(base);
-      config.setOsmdroidTileCache(new java.io.File(base, "tiles"));
-      config.setTileDownloadThreads((short) 2);
-      config.setCacheMapTileOvershoot((short) 0);
+      com.zikra.app.maps.OsmMapPolicy.configure(this);
       mapView = new MapView(this);
       mapView.setTileSource(TileSourceFactory.MAPNIK);
       mapView.setMultiTouchControls(true);

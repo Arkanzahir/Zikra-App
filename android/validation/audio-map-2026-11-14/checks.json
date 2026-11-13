@@ -1,0 +1,19 @@
+{
+  "version": "1.9.48",
+  "sha256": "7a8d094170d31b2dbd25b5e0e31074b61642b3208e0b269b5ce6b90ab61b6319",
+  "unit": {
+    "tests": 207,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 890
+  },
+  "nativePassed": 19,
+  "upgradePreparationPassed": 1,
+  "physicalDeviceTested": false,
+  "backendChanged": false
+}

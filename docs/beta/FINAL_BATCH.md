@@ -1,3 +1,13 @@
+## Checkpoint audio/peta1.9.48 —14November2026
+
+[Bukti terkini](../../android/validation/audio-map-2026-11-14/README.md):207JVM tanpa skip,
+19native emulator lulus, lint0error/890warning. Audio menolak HTTP parsial;
+cache peta mengikuti expiry server. APK49.615.884byte,debug/HOLD.
+Upgrade terisi1.9.41→1.9.48 lulus tanpa uninstall di antaranya. Penerbit publik
+**Zikra** dikonfirmasi; kontak arkanzahir46@gmail.com. Usia/retensi/hak/B01/signing/
+migrasi/HP/keputusan beta masih terbuka. Hasil1.9.47 di bawah historis, bukan
+jumlah tes kandidat baru. Tidak memakaiHP/deploy/publikasi; WIP/privat tetap.
+
 ## Tambahan ketahanan Quran
 
 [Lima kasus tambahan](../../android/validation/quran-failure-2026-11-14/README.md) lulus; APK tetap1.9.47,HOLD,total32kasus native berbeda. Status dan gap diperbarui di handoff/STATUS.json. Tidak mengubah gerbang hak/signing/HP/publikasi.
@@ -48,7 +58,7 @@ menutup seluruh kriteria J02/J03/J08/J09/J10 atau parent A–G.
 |---|---|
 | J05/B01 | Klarifikasi edisi/hak/kelengkapan Bukhari–Muslim atau keputusan perubahan cakupan; HadeethEnc opsional bukan pengganti diam-diam |
 | J06 | Bukti kewenangan distribusi dua rekaman adzan dan penelaahan lafaz |
-| J11 | Identitas penerbit final dan retensi/proses penghapusan penyedia yang disahkan; email dukungan telah diberikan |
+| J11 | Nama penerbit Zikra/email dikonfirmasi; cakupan usia dan retensi/proses penghapusan penyedia belum disahkan |
 | J12 | Signer release tetap/cadangan privat dan migrasi data dari debug; jangan uninstall pengguna |
 | J13 | Satu sesi HP terkoordinasi: update terisi, C02/D02 dan smoke lintas fitur pada hash kandidat yang sama |
 | J14/J15 | Putusan beta setelah bukti lengkap; baru tautan unduhan/instal kanal nyata dan publikasi promo berizin |

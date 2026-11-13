@@ -1,26 +1,26 @@
 {
   "date": "2026-11-14",
   "releaseStatus": "HOLD",
-  "version": "1.9.47",
-  "versionCode": 74,
-  "apkBytes": 49511880,
-  "apkSha256": "03f9b61fc7ad88ad9049683a138dc3ae77b92982c3062a6d0fd152b884a07670",
+  "version": "1.9.48",
+  "versionCode": 75,
+  "apkBytes": 49615884,
+  "apkSha256": "7a8d094170d31b2dbd25b5e0e31074b61642b3208e0b269b5ce6b90ab61b6319",
   "debugSigningKey": true,
   "phoneTestedOnCandidate": false,
-  "nativePassed": 32,
-  "jvmPassed": 202,
-  "jvmSkipped": 4,
+  "nativePassed": 19,
+  "jvmPassed": 207,
+  "jvmSkipped": 0,
   "lintErrors": 0,
   "lintWarnings": 890,
   "backendPreviousRunPassed": 125,
   "backendChanged": false,
-  "website": "local-preview-verified-desktop-and-390-css-px-no-public-download",
-  "evidence": "android/validation/beta-final-2026-11-14/README.md",
+  "website": "static-check-1.9.48-passed-layout-and-screenshot-1.9.47-no-public-download",
+  "evidence": "android/validation/audio-map-2026-11-14/README.md",
   "remaining": [
     "quran-font-audio-failure-matrix",
     "background-and-device-verification",
     "content-service-audio-rights-B01",
-    "publisher-retention-privacy",
+    "age-scope-retention-privacy",
     "release-signer-and-migration",
     "physical-device-final-session",
     "beta-decision-and-public-download"
@@ -32,6 +32,13 @@
     "midPageFilesystemFailure": true,
     "lowSpaceGuard": true,
     "actualEnospc": false,
-    "powerLoss": false
-  }
+    "powerLoss": false,
+    "candidateVersion": "1.9.47",
+    "evidence": "android/validation/quran-failure-2026-11-14/README.md"
+  },
+  "publisherDisplayName": "Zikra",
+  "publisherConfirmedDate": "2026-11-14",
+  "supportEmail": "arkanzahir46@gmail.com",
+  "previousCandidateNativePassed": 32,
+  "previousCandidateVersion": "1.9.47"
 }
