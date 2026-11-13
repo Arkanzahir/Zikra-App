@@ -1,3 +1,11 @@
+## Paket implementasi1.9.43 —13November
+
+Source J02/J03 beserta hardening font/unduhan kini telah dikompilasi dan masuk APK internal1.9.43/code70. compileDebugJavaWithJavac13detik dan assembleDebug16detik berhasil. Sesuai instruksi pengguna, unit/runtime/emulator/HP belum dijalankan ulang; kelulusan checkpoint lama bukan kelulusan paket ini. Pengujian gabungan berikutnya dilakukan pada kandidat yang sama setelah seluruh implementasi prioritas stabil.
+
+APK lokal D:/Download/Zikra-App-main/Zikra-QuranSync-v1.9.43-beta-debug.apk;49.467.796byte (<100.000.000), SHA256d2ec5a4898eaba0c9d62046887e562c7b4027f40498216710e524f6672c11b38. Audit paket tidak menemukan nilai credential dikenal atau berkas privat; dua hash audio tetap, signer debug sama sehingga distribusi publik tetap ditolak. Tujuh konfigurasi privat baseline/WIP PROJECT_HANDOFF/arsip audio cocok hash; data HP tidak diakses. Build dari working tree yang tetap membawa WIP pengguna; bukan provenance final release yang disahkan.
+
+J01 server telah lulus. J02/J03 kode tersedia dan terpaket, status verifikasi akhir tetap terbuka. Gerbang keseluruhan tetap: izin sumber Hadis B01/kitab lengkap, hak dua rekaman adzan, atribusi/ketentuan layanan, identitas penerbit/signing/migrasi, sisa E03/E04/F serta sesi HP terkoordinasi. Jangan menyatakan semua A–G/J01–J15 selesai. Website J15 tetap sesudah gerbang; preview lokal boleh disiapkan.
+
 ## Implementasi dahulu; uji dibundel —13November
 
 Pengguna meminta menyelesaikan kode terdekat dahulu dan menunda uji emulator/HP. Reader/gateway/unduhan dan pemetaan Mushaf Content Sync telah terpasang di source. Tambahan checkpoint ini: MushafFontCache menyatukan tiga jalur font CDN; font halaman diperiksa QcfGlyphMetrics, nama surah/Basmalah memakai parser masing-masing. Kandidat sementara divalidasi sebelum AtomicFile mengganti cache; font lama valid dipertahankan saat koneksi gagal tanpa memajukan timestamp. Penolakan401/403 tidak memakai fallback. Kegagalan menulis menjaga font lama; file sementara dibersihkan. Font tidak diganti desainnya, teks/glyph sumber dan audio pilihan tetap.

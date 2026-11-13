@@ -1,0 +1,15 @@
+{
+  "version": "1.9.43",
+  "versionCode": 70,
+  "implementationScope": "J02 reader/download and J03 layout/font cache; source implementation packaged",
+  "compile": true,
+  "assembleDebug": true,
+  "runtimeTestsExecutedThisDelta": false,
+  "unitTestsExecutedThisDelta": false,
+  "deviceAccessed": false,
+  "emulatorStarted": false,
+  "productionBackendChanged": false,
+  "buildFromWorkingTree": true,
+  "unrelatedUserWipPreserved": true,
+  "distributionApproved": false
+}
