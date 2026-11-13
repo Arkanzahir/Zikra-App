@@ -50,6 +50,15 @@ peta yang dilihat; HTTPS tidak menyembunyikan IP dari penerima. Layanan pada
 [inventaris](SERVICES.md) juga menerima metadata jaringan ketika konten dimuat.
 Izin lokasi dapat ditolak dan lokasi manual tetap tersedia.
 
+Pengingat cuaca/harian mati secara bawaan. Jika pemeriksaan cuaca latar belakang
+diaktifkan setelah penjelasan di aplikasi, koordinat lokasi pilihan dikirim ke
+Open-Meteo sekitar tiap jam pada pukul06–21 waktu lokasi pilihan. Fitur ini tidak
+menyalakan GPS atau mendeteksi perjalanan. Pilihan dapat dimatikan kapan saja;
+jadwal pemeriksaan dibatalkan ketika seluruh pengingat dimatikan. Ringkasan pagi
+membaca jumlah tugas dan jadwal salat secara lokal; tidak mengirim isi tugas ke AI.
+Prakiraan yang tersimpan hanya dipakai bila lokasi/waktu dan batas umurnya valid.
+Notifikasi ditandai privat; visibilitas akhirnya mengikuti pengaturan Android.
+
 Quran, audio, paket Mushaf, Doa dan kandidat Hadis diunduh saat fitur memerlukannya.
 Ensiklopedia HadeethEnc bersifat opsional dan diunduh setelah pilihan pengguna;
 berkas sumber/metadata versinya disimpan lokal. Tautan sumber/cek versi membuka

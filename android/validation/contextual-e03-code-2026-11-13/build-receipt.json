@@ -1,0 +1,14 @@
+{
+  "version": "1.9.44",
+  "versionCode": 71,
+  "compile": true,
+  "assembleDebug": true,
+  "runtimeTests": false,
+  "emulatorUsed": false,
+  "phoneUsed": false,
+  "userReminderChoicesChanged": false,
+  "notificationsSent": false,
+  "backendChanged": false,
+  "defaultOptions": "all disabled",
+  "distributionApproved": false
+}

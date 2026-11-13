@@ -1,3 +1,7 @@
+## E03 kode pengingat1.9.44/code71 —13November
+
+[Bukti/batas](android/validation/contextual-e03-code-2026-11-13/README.md): empat opt-in mati bawaan, persetujuan cuaca latar belakang tanpaGPS, JobScheduler best-effort/deduplikasi/revisi, ringkasan tugas-salat-cuaca lokal, kategori Doa perjalanan/pagi-petang dan kontrol OS. Native Protector dipertahankan. Kompilasi/assemble17detik berhasil, APK50.262.119byte, audio/signer tetap, audit credential dikenal bersih. Uji ditunda pengguna; tidak memakaiHP/emulator/mengirimnotif/mengubahpreferensi/backend. E03/J08 belum selesai terverifikasi; J02/J03/E04/F/G/hak/signing/HP tetap gate. WIP/privat/stash/desain dipertahankan.
+
 ## Paket implementasi1.9.43/code70
 
 [Receipt/batas](android/validation/quran-sync-integration/README.md): kode reader/unduhan/layout/fontcache J02/J03 telah dikompilasi dan dipaketkan; APK49.467.796byte, audio/signer tetap, tidak ada nilai credential dikenal/berkas privat. WIP dan baseline privat terjaga. Uji gabungan ditunda pengguna; tidak memakai HP/emulator atau mengulang unit. J02/J03 belum lulus verifikasi akhir; parent A–G/beta tetap terbuka. APK lokal Zikra-QuranSync-v1.9.43-beta-debug.apk, bukan distribusi publik.

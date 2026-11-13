@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/app_surface">
+    <include layout="@layout/protector_toolbar"/>
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+            <TextView style="@style/ProtectorHeading" android:text="@string/contextual_title" android:textSize="24sp"/>
+            <TextView style="@style/ProtectorBody" android:text="@string/contextual_intro" android:layout_marginTop="12dp"/>
+            <TextView android:id="@+id/contextStatus" style="@style/ProtectorBody" android:layout_marginTop="12dp" android:accessibilityLiveRegion="polite"/>
+            <Switch android:id="@+id/contextWeather" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="72dp" android:text="@string/contextual_weather" android:textSize="17sp" android:textColor="@color/text"/>
+            <Switch android:id="@+id/contextBriefing" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="64dp" android:text="@string/contextual_briefing" android:textSize="17sp" android:textColor="@color/text"/>
+            <Switch android:id="@+id/contextMorning" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="64dp" android:text="@string/contextual_morning" android:textSize="17sp" android:textColor="@color/text"/>
+            <Switch android:id="@+id/contextEvening" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="64dp" android:text="@string/contextual_evening" android:textSize="17sp" android:textColor="@color/text"/>
+            <Button android:id="@+id/contextMorningTime" style="@style/ProtectorButton" android:text="@string/contextual_morning"/>
+            <Button android:id="@+id/contextEveningTime" style="@style/ProtectorButton" android:text="@string/contextual_evening"/>
+            <TextView style="@style/ProtectorBody" android:text="@string/contextual_timing" android:layout_marginTop="16dp"/>
+            <TextView style="@style/ProtectorBody" android:text="@string/contextual_weather_scope" android:layout_marginTop="16dp"/>
+            <TextView style="@style/ProtectorHeading" android:text="@string/contextual_preview" android:layout_marginTop="24dp"/>
+            <TextView android:id="@+id/contextPreview" style="@style/ProtectorBody" android:layout_marginTop="12dp"/>
+            <Button android:id="@+id/contextStudy" style="@style/ProtectorButton" android:text="@string/contextual_study" android:layout_marginTop="16dp"/>
+            <Button android:id="@+id/contextDua" style="@style/ProtectorButton" android:text="@string/contextual_dua"/>
+            <Button android:id="@+id/contextTravel" style="@style/ProtectorButton" android:text="@string/contextual_travel"/>
+            <Button android:id="@+id/contextQuake" style="@style/ProtectorButton" android:text="@string/contextual_quake"/>
+            <Button android:id="@+id/contextAndroidSettings" style="@style/ProtectorButton" android:text="@string/contextual_android"/>
+        </LinearLayout>
+    </ScrollView>
+    <include layout="@layout/protector_main_dock"/>
+</LinearLayout>

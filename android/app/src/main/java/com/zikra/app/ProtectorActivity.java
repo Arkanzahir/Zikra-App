@@ -56,7 +56,7 @@ public final class ProtectorActivity extends BaseActivity {
     findViewById(R.id.protectorWeatherDetails).setOnClickListener(v -> open(WeatherActivity.class));
     findViewById(R.id.protectorForecastOpen).setOnClickListener(v -> open(WeatherActivity.class));
     findViewById(R.id.protectorAlertSettings)
-        .setOnClickListener(v -> open(EarthquakeAlertsActivity.class));
+        .setOnClickListener(v -> open(ContextualActivity.class));
     findViewById(R.id.protectorQuakeCard).setOnClickListener(v -> openQuake());
     findViewById(R.id.protectorQuakeOpen).setOnClickListener(v -> openQuake());
     findViewById(R.id.protectorSource)

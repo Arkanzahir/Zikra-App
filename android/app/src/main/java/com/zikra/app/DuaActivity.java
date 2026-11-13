@@ -76,6 +76,11 @@ public class DuaActivity extends BaseActivity implements TextToSpeech.OnInitList
     installVoice = findViewById(R.id.duaInstallVoice);
     LinearLayout container = findViewById(R.id.duaContainer);
     listenButtons = new Button[duas.size()];
+    if (state == null) {
+      String category = getIntent().getStringExtra("dua_category_name");
+      int requested = CATEGORY_NAMES.indexOf(category);
+      if (requested >= 0) selectedCategory = requested;
+    }
     if (state != null) {
       selectedCategory = state.getInt("dua_category", 0);
       expandedIndex = state.getInt("dua_expanded", -1);
