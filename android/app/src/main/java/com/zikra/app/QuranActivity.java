@@ -537,6 +537,10 @@ public class QuranActivity extends BaseActivity {
           @Override
           public void failed(String message) {
             loading = false;
+            loadedPage = null;
+            ayahContainer.removeAllViews();
+            findViewById(R.id.quranPagination).setVisibility(View.GONE);
+            findViewById(R.id.quranLoadStatus).setVisibility(View.VISIBLE);
             ((TextView) findViewById(R.id.quranLoadStatus)).setMaxLines(Integer.MAX_VALUE);
             findViewById(R.id.quranLoading).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.quranLoadStatus)).setText(message);

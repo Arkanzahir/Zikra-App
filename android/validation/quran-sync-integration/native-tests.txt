@@ -1,0 +1,6 @@
+
+com.zikra.app.QuranSyncIntegrationTest:...
+Test results for InstrumentationTestRunner=...
+Time: 6.406
+
+OK (3 tests)

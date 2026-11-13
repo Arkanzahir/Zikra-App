@@ -1,0 +1,26 @@
+{
+  "sourceResources": [
+    {
+      "name": "quran_core:1",
+      "count": 90345
+    },
+    {
+      "name": "translations:33",
+      "count": 6236
+    },
+    {
+      "name": "mushafs:1",
+      "count": 84270
+    }
+  ],
+  "durableRoundTripValidated": true,
+  "encryptedCacheBytes": 6753567,
+  "cacheChunks": 20,
+  "fixtureCommands": 44,
+  "readerPages": 190,
+  "mushafPages": 604,
+  "maxMushafPageBytes": 23881,
+  "realRedis": false,
+  "realNetwork": false,
+  "credentialsOrSourceBodiesCommitted": false
+}

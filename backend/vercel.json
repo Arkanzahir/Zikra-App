@@ -6,6 +6,7 @@
     "api/*.js": { "maxDuration": 60, "supportsCancellation": true }
   },
   "rewrites": [
+    { "source": "/v1/quran", "destination": "/api/quran" },
     { "source": "/v1/earthquakes/poll", "destination": "/api/earthquake-poll" },
     { "source": "/health", "destination": "/api/health" },
     { "source": "/v1/assistant", "destination": "/api/assistant" },

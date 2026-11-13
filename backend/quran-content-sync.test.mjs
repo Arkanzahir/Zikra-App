@@ -5,12 +5,15 @@ import { QuranContentSync, syncPath } from './quran-content-sync.mjs';
 const snapshot = group => ({ resource_group: group, resource_id: group === 'translations' ? 33 : 1,
   schema_version: 1, sync_sequence: 10, records: group === 'translations'
     ? [{ id: 1, resource_id: 33, resource_content_id: 33, verse_key: '1:1', text: 'Synthetic fixture' }]
+    : group === 'mushafs' ? [{ id: 1, record_type: 'mushaf' }]
     : [{ id: 1, record_type: 'verse', verse_key: '1:1', text_uthmani: 'Synthetic fixture' }] });
 const page = (mutations = [
   { sequence: 1, type: 'RESOURCE_CREATE', resource_group: 'quran_core', resource_id: 1,
     snapshot_url: '/api/v4/resources/snapshots/quran_core/1' },
   { sequence: 2, type: 'RESOURCE_CREATE', resource_group: 'translations', resource_id: 33,
-    snapshot_url: '/api/v4/resources/snapshots/translations/33' }
+    snapshot_url: '/api/v4/resources/snapshots/translations/33' },
+  { sequence: 3, type: 'RESOURCE_CREATE', resource_group: 'mushafs', resource_id: 1,
+    snapshot_url: '/api/v4/resources/snapshots/mushafs/1' }
 ], token = 'synthetic-checkpoint') => ({ sync: {
   mutations, sync_until_sequence: 10, has_more: false, next_page_url: null, next_sync_token: token } });
 const change = (type, extra = {}) => ({ sequence: 2, type, resource_group: 'translations', resource_id: 33, ...extra });
@@ -20,7 +23,7 @@ function harness() {
     calls.push(path);
     if (path.startsWith('/api/v4/resources/sync')) return structuredClone(controller.page);
     if (controller.fail) throw Error('synthetic-network-failure');
-    return snapshot(path.endsWith('/33') ? 'translations' : 'quran_core');
+    return snapshot(path.includes('/mushafs/') ? 'mushafs' : path.endsWith('/33') ? 'translations' : 'quran_core');
   } });
   return { calls, controller, engine };
 }
@@ -28,9 +31,9 @@ function harness() {
 test('bootstrap fetches both requested snapshots before publishing final checkpoint', async () => {
   const { engine, calls } = harness();
   const result = await engine.refresh();
-  assert.equal(result.token, 'synthetic-checkpoint'); assert.equal(result.resources.size, 2);
-  assert.equal(calls.length, 3); assert.equal(result.checkedAt, 123);
-  result.resources.clear(); assert.equal(engine.state().resources.size, 2);
+  assert.equal(result.token, 'synthetic-checkpoint'); assert.equal(result.resources.size, 3);
+  assert.equal(calls.length, 4); assert.equal(result.checkedAt, 123);
+  result.resources.clear(); assert.equal(engine.state().resources.size, 3);
 });
 test('failed snapshot leaves prior generation and checkpoint untouched', async () => {
   const { engine, controller } = harness(); await engine.refresh(); const before = engine.state();
@@ -76,7 +79,7 @@ test('aborted run never commits and next attempt can recover', async () => {
 });
 test('concurrent refreshes share one run', async () => {
   const { engine, calls } = harness();
-  await Promise.all([engine.refresh(), engine.refresh()]); assert.equal(calls.length, 3);
+  await Promise.all([engine.refresh(), engine.refresh()]); assert.equal(calls.length, 4);
 });
 test('path validation rejects external, traversal, unrelated endpoints and fragments', () => {
   for (const value of ['//evil.test/api/v4/resources/sync', '/api/v4/resources/../private',
@@ -85,7 +88,7 @@ test('path validation rejects external, traversal, unrelated endpoints and fragm
 });
 test('generation validation failure preserves complete previous generation', async () => {
   const engine = new QuranContentSync({ read: async path => path.includes('snapshots')
-    ? snapshot(path.endsWith('33') ? 'translations' : 'quran_core') : page(),
+    ? snapshot(path.includes('/mushafs/') ? 'mushafs' : path.endsWith('33') ? 'translations' : 'quran_core') : page(),
     validateGeneration: () => { throw Error('incomplete-canonical-verses'); } });
   await assert.rejects(engine.refresh()); assert.equal(engine.state().token, null);
 });
@@ -98,9 +101,10 @@ test('bootstrap resource enumeration may have descending historical sequences', 
   controller.page = page([
     change('RESOURCE_CREATE', { sequence: 9, resource_group: 'quran_core', resource_id: 1,
       snapshot_url: '/api/v4/resources/snapshots/quran_core/1' }),
-    change('RESOURCE_CREATE', { sequence: 3, snapshot_url: '/api/v4/resources/snapshots/translations/33' })
+    change('RESOURCE_CREATE', { sequence: 3, snapshot_url: '/api/v4/resources/snapshots/translations/33' }),
+    change('RESOURCE_CREATE', { sequence: 1, resource_group: 'mushafs', resource_id: 1, snapshot_url: '/api/v4/resources/snapshots/mushafs/1' })
   ]);
-  assert.equal((await engine.refresh()).resources.size, 2);
+  assert.equal((await engine.refresh()).resources.size, 3);
   controller.page = page([change('RESOURCE_UPDATE', { sequence: 9 }), change('RESOURCE_UPDATE', { sequence: 3 })]);
   const before = engine.state();
   await assert.rejects(engine.refresh()); assert.deepEqual(engine.state(), before);

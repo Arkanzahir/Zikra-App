@@ -9,14 +9,19 @@ import java.util.concurrent.*;
 import okhttp3.*;
 import org.json.JSONException;
 
-/** On-demand public v4 content; maximum eight cached 50-verse pages, not Content Sync. */
+/** Synced pages plus preserved legacy data; ordinary API reads are no longer cached. */
 public final class QuranRepository implements AutoCloseable {
   private static final ExecutorService WORK = Executors.newFixedThreadPool(2);
   private static final Object CACHE_LOCK = new Object();
   private static final OkHttpClient HTTP =
-      new OkHttpClient.Builder().callTimeout(25, TimeUnit.SECONDS).build();
+      new OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS).readTimeout(55, TimeUnit.SECONDS)
+          .callTimeout(60, TimeUnit.SECONDS).followRedirects(false).followSslRedirects(false)
+          .retryOnConnectionFailure(false).build();
   private final Handler main = new Handler(Looper.getMainLooper());
+  private final Context context;
   private final File directory;
+  private final File syncedCache;
+  private final QuranSyncStore syncedStore;
   private final File offlineDirectory;
   private volatile boolean closed;
   private volatile int generation;
@@ -29,87 +34,108 @@ public final class QuranRepository implements AutoCloseable {
   }
 
   public QuranRepository(Context c) {
+    context = c.getApplicationContext();
+    syncedStore = new QuranSyncStore(context);
+    syncedCache = new File(c.getFilesDir(), "quran-sync-page-cache-r33");
     directory = new File(c.getFilesDir(), "quran-pages-v4-r33");
     offlineDirectory = new File(c.getFilesDir(), "quran-offline-r33");
   }
 
-  public void cancel() {
+  public synchronized void cancel() {
     generation++;
     Call call = active;
     if (call != null) call.cancel();
   }
+  private synchronized void track(int token, Call call) {
+    if (closed || token != generation) call.cancel(); else active = call;
+  }
+  private synchronized void untrack(Call call) { if (active == call) active = null; }
 
   public void load(QuranChapters.Chapter chapter, int page, Result result) {
     cancel();
     int token = generation;
-    WORK.execute(
-        () -> {
-          QuranPage local = QuranPage.builtIn(chapter.id);
-          if (local != null) {
-            deliver(token, () -> result.ready(local, "Empat surah bawaan · offline"));
-            return;
+    WORK.execute(() -> {
+      String stored = null;
+      String source = "Quran Foundation · Content Sync · tersimpan";
+      long checked = 0;
+      try { stored = syncedStore.read(chapter, page); }
+      catch (Exception missing) {
+        try {
+          synchronized (CACHE_LOCK) {
+            stored = read(new AtomicFile(new File(syncedCache, chapter.id + "-" + page + ".json")).openRead());
           }
-          File file = new File(directory, chapter.id + "-" + page + ".json");
+        }
+        catch (Exception absent) { /* No synchronized page yet. */ }
+      }
+      if (stored != null) {
+        try { checked = QuranSyncPage.validate(stored, chapter, page, System.currentTimeMillis()); }
+        catch (Exception invalid) { stored = null; }
+      }
+      QuranPage fallback = null;
+      try { if (stored != null) fallback = QuranPage.parse(stored, chapter, page); }
+      catch (Exception invalid) { /* Preserve a previous valid source below. */ }
+      if (fallback == null) {
+        fallback = QuranPage.builtIn(chapter.id);
+        source = "Empat surah bawaan · offline";
+      }
+      if (fallback == null) {
+        for (File folder : new File[]{offlineDirectory, directory}) {
           try {
-            File offline = new File(offlineDirectory, chapter.id + "-" + page + ".json");
-            QuranPage stored =
-                QuranPage.parse(read(new AtomicFile(offline).openRead()), chapter, page);
-            deliver(token, () -> result.ready(stored, "Quran.com · surah diunduh · offline"));
-            return;
-          } catch (IOException | JSONException | RuntimeException ignored) {
-          }
-          try {
-            String cached;
-            synchronized (CACHE_LOCK) {
-              cached = read(new AtomicFile(file).openRead());
-            }
-            QuranPage stored = QuranPage.parse(cached, chapter, page);
-            synchronized (CACHE_LOCK) {
-              file.setLastModified(System.currentTimeMillis());
-            }
-            deliver(token, () -> result.ready(stored, "Quran.com · bacaan tersimpan"));
-            return;
-          } catch (IOException | JSONException | RuntimeException ignored) {
-          }
-          Call call =
-              HTTP.newCall(
-                  new Request.Builder()
-                      .url(
-                          "https://api.quran.com/api/v4/verses/by_chapter/"
-                              + chapter.id
-                              + "?language=id&translations=33&fields=text_uthmani&per_page=50&page="
-                              + page)
-                      .header("Accept", "application/json")
-                      .header("User-Agent", "Zikra-Android/1.0")
-                      .build());
-          active = call;
-          if (closed || token != generation) {
-            call.cancel();
-            return;
-          }
-          try (Response response = call.execute()) {
-            if (!response.isSuccessful() || response.body() == null)
-              throw new IOException("HTTP " + response.code());
-            response.body().source().request(524289);
-            if (response.body().source().buffer().size() > 524288)
-              throw new IOException("Page too large");
-            String json = response.body().string();
+            fallback = QuranPage.parse(read(new AtomicFile(new File(folder, chapter.id + "-" + page + ".json")).openRead()), chapter, page);
+            source = "Quran.com · bacaan lama tersimpan";
+            break;
+          } catch (Exception missing) { /* Keep looking without deleting legacy data. */ }
+        }
+      }
+      final boolean displayed = fallback != null;
+      final boolean removed = QuranSyncGateway.sourceRemoved(context);
+      if (displayed && !removed) {
+        final QuranPage value = fallback; final String label = source;
+        deliver(token, () -> result.ready(value, label));
+        if (QuranSyncPage.fresh(checked, System.currentTimeMillis())) return;
+      }
+      if (closed || token != generation) return;
+      if (QuranSyncGateway.configured(context)) {
+        final Call[] syncing = new Call[1];
+        try {
+          String json = QuranSyncGateway.fetch(context, HTTP, chapter, page, call -> {
+            syncing[0] = call; track(token, call);
+          });
+          if (closed || token != generation) return;
+          save(new File(syncedCache, chapter.id + "-" + page + ".json"), json);
+          // Do not bind a second time: the reader appends rows and may be playing audio.
+          if (!displayed || removed) {
             QuranPage value = QuranPage.parse(json, chapter, page);
-            if (closed || token != generation) return;
-            save(file, json);
-            deliver(token, () -> result.ready(value, "Quran.com · online"));
-          } catch (IOException | JSONException | RuntimeException error) {
-            if (!call.isCanceled())
-              deliver(
-                  token,
-                  () ->
-                      result.failed(
-                          "Bacaan belum dapat dimuat. Periksa koneksi lalu coba lagi. Empat surah"
-                              + " bawaan dan halaman yang tersimpan tetap dapat dibaca."));
-          } finally {
-            if (active == call) active = null;
+            deliver(token, () -> result.ready(value, "Quran Foundation · Content Sync"));
           }
-        });
+          return;
+        } catch (QuranSyncGateway.SourceRemoved unavailable) {
+          deliver(token, () -> result.failed("Sumber bacaan sedang tidak tersedia. Data lama dipertahankan; coba lagi nanti."));
+          return;
+        } catch (Exception unavailable) {
+          if (closed || token != generation) return;
+        } finally { untrack(syncing[0]); }
+      }
+      if (removed) {
+        deliver(token, () -> result.failed("Sumber bacaan sedang tidak tersedia. Data lama dipertahankan; coba lagi nanti."));
+        return;
+      }
+      if (displayed) return;
+      // Online-only compatibility path. Never create new offline copies from this API.
+      Call call = HTTP.newCall(new Request.Builder().url("https://api.quran.com/api/v4/verses/by_chapter/"
+          + chapter.id + "?language=id&translations=33&fields=text_uthmani&per_page=50&page=" + page)
+          .header("Accept", "application/json").header("User-Agent", "Zikra-Android/1.0").build());
+      track(token, call);
+      if (closed || token != generation) { call.cancel(); return; }
+      try (Response response = call.execute()) {
+        if (!response.isSuccessful() || response.body() == null) throw new IOException("Quran source unavailable");
+        String json = read(response.body().byteStream());
+        QuranPage value = QuranPage.parse(json, chapter, page);
+        deliver(token, () -> result.ready(value, "Quran.com · online, belum disimpan"));
+      } catch (Exception unavailable) {
+        if (!call.isCanceled()) deliver(token, () -> result.failed("Bacaan belum dapat dimuat. Periksa koneksi lalu coba lagi. Bacaan lama tetap dipertahankan."));
+      } finally { untrack(call); }
+    });
   }
 
   private String read(InputStream input) throws IOException {
@@ -127,7 +153,7 @@ public final class QuranRepository implements AutoCloseable {
 
   private void save(File file, String json) {
     synchronized (CACHE_LOCK) {
-      if (!directory.exists() && !directory.mkdirs()) return;
+      if (!syncedCache.exists() && !syncedCache.mkdirs()) return;
       AtomicFile atomic = new AtomicFile(file);
       FileOutputStream stream = null;
       try {
@@ -138,7 +164,7 @@ public final class QuranRepository implements AutoCloseable {
         if (stream != null) atomic.failWrite(stream);
         return;
       }
-      File[] files = directory.listFiles((dir, name) -> name.endsWith(".json"));
+      File[] files = syncedCache.listFiles((dir, name) -> name.endsWith(".json"));
       if (files == null) return;
       Arrays.sort(files, Comparator.comparingLong(File::lastModified));
       for (int i = 0; i < files.length - 8; i++) files[i].delete();

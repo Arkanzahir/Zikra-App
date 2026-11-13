@@ -1,0 +1,11 @@
+{
+  "storageQuerySucceeded": true,
+  "teamQuerySucceeded": true,
+  "vercelPlan": "hobby",
+  "upstashPlan": "Free",
+  "autoUpgrade": false,
+  "eviction": false,
+  "existingQuranEnvNames": [],
+  "configurationChanged": false,
+  "credentialsSaved": false
+}

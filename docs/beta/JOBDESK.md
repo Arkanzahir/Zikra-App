@@ -3,7 +3,7 @@
 Dibuat 12 November 2026. Acuan source: ca80e85, APK internal1.9.41, HP terakhir
 terbukti1.9.39. Ini daftar pelaksanaan turunan IMPLEMENTATION_PLAN.md dan
 RELEASE_SCOPE.md, tidak menggantikan cakupan atau menghapus gerbang lama.
-Permintaan pengguna saat ini: jabarkan dahulu, belum eksekusi seluruh jobdesk.
+Pengguna mengizinkan pelaksanaan urutan terdekat. Checkpoint13November: J01–J03 dikerjakan, bukti di android/validation/quran-sync-integration/README.md; belum semua kriteria terpenuhi. Website J15 mencakup preview lokal sebelum J14, publikasi unduhan sesudah gerbang.
 
 ## Cara melacak
 
@@ -36,9 +36,9 @@ izin konten; Codex tidak dapat mengesahkan izin atas nama mereka.
 
 | ID | Prioritas / acuan | Pekerjaan | Status awal | HP |
 | --- | --- | --- | --- | --- |
-| J01 | P0 / G03, D03 | Layanan Content Sync server | Sebagian: mesin/transport17tes dan incremental produksi lulus; belum route/deploy | Tidak |
-| J02 | P0 / D03, D06, G03 | Integrasi Quran reader dan unduhan Android | Antrean; reader masih jalur lama | Emulator dahulu, konfirmasi akhir J13 |
-| J03 | P0 / D03, G03 | Integrasi layout Mushaf, font, timing/audio | Sebagian fitur lama; migrasi baru belum | Emulator dahulu, akhir J13 |
+| J01 | P0 / G03, D03 | Layanan Content Sync server | Sebagian: endpoint/cache/enkripsi diuji, build Vercel berhasil; belum deploy | Tidak |
+| J02 | P0 / D03, D06, G03 | Integrasi Quran reader dan unduhan Android | Sebagian: reader/staging diimplementasikan; tiga native lulus, hosted/UI akhir belum | Emulator dahulu, konfirmasi akhir J13 |
+| J03 | P0 / D03, G03 | Integrasi layout Mushaf, font, timing/audio | Sebagian: 604 halaman tervalidasi; font/timing/audio akhir tersisa | Emulator dahulu, akhir J13 |
 | J04 | P0 / G03 | Sumber dan hak Quran/font/terjemahan/layanan | Sebagian; tiga font bundel lolos audit paket | Tidak, izin eksternal mungkin perlu |
 | J05 | P0 / B01 | Kejelasan sumber kitab Hadis lengkap | Menunggu klarifikasi sumber/cakupan | Tidak |
 | J06 | P0 / D02, D02a | Hak dan lafaz audio adzan | Sebagian: dua rekaman/hash teridentifikasi; izin belum | Audit tanpa HP; suara akhir J13 |

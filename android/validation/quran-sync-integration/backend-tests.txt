@@ -1,0 +1,761 @@
+TAP version 13
+# Subtest: installation tokens are hashed, independently revocable and not shared client credentials
+ok 1 - installation tokens are hashed, independently revocable and not shared client credentials
+  ---
+  duration_ms: 6.5046
+  type: 'test'
+  ...
+# Subtest: daily and minute quotas survive process recreation, reset at UTC day boundary and fail closed on corruption
+ok 2 - daily and minute quotas survive process recreation, reset at UTC day boundary and fail closed on corruption
+  ---
+  duration_ms: 13.7249
+  type: 'test'
+  ...
+# Subtest: installation gateway enforces revocation/quotas before provider and isolates clients behind one proxy
+ok 3 - installation gateway enforces revocation/quotas before provider and isolates clients behind one proxy
+  ---
+  duration_ms: 63.0071
+  type: 'test'
+  ...
+# Subtest: selected context rejects hidden fields, invalid prayer time and unconsented actions
+ok 4 - selected context rejects hidden fields, invalid prayer time and unconsented actions
+  ---
+  duration_ms: 15.6875
+  type: 'test'
+  ...
+# Subtest: edit can only propose a selected incomplete task and cannot complete/delete it
+ok 5 - edit can only propose a selected incomplete task and cannot complete/delete it
+  ---
+  duration_ms: 0.2564
+  type: 'test'
+  ...
+# Subtest: source failure never calls model; valid source is returned separately from model summary
+ok 6 - source failure never calls model; valid source is returned separately from model summary
+  ---
+  duration_ms: 41.3725
+  type: 'test'
+  ...
+# Subtest: Cloudflare fails closed on missing Free confirmation, identity, model or key; no legacy fallback
+ok 7 - Cloudflare fails closed on missing Free confirmation, identity, model or key; no legacy fallback
+  ---
+  duration_ms: 1.1083
+  type: 'test'
+  ...
+# Subtest: old or different-provider client cannot forward data to a new recipient or consume quota
+ok 8 - old or different-provider client cannot forward data to a new recipient or consume quota
+  ---
+  duration_ms: 49.9077
+  type: 'test'
+  ...
+# Subtest: explicit provider mismatch also blocks an operator rollback before forwarding
+ok 9 - explicit provider mismatch also blocks an operator rollback before forwarding
+  ---
+  duration_ms: 5.9978
+  type: 'test'
+  ...
+# Subtest: Cloudflare request uses exact endpoint, inline messages, bounded low reasoning, no storage or provider fallback
+ok 10 - Cloudflare request uses exact endpoint, inline messages, bounded low reasoning, no storage or provider fallback
+  ---
+  duration_ms: 6.7117
+  type: 'test'
+  ...
+# Subtest: provider daily allocation is distinct from busy capacity and upstream details never leak
+ok 11 - provider daily allocation is distinct from busy capacity and upstream details never leak
+  ---
+  duration_ms: 11.5251
+  type: 'test'
+  ...
+# Subtest: daily quota and temporary concurrency preserve separate wire errors
+ok 12 - daily quota and temporary concurrency preserve separate wire errors
+  ---
+  duration_ms: 13.2264
+  type: 'test'
+  ...
+# Subtest: Cloudflare HTTP 200 errors cannot coexist with a displayed successful answer
+ok 13 - Cloudflare HTTP 200 errors cannot coexist with a displayed successful answer
+  ---
+  duration_ms: 6.1054
+  type: 'test'
+  ...
+# Subtest: distributed lease is released before success or provider-error response becomes visible
+ok 14 - distributed lease is released before success or provider-error response becomes visible
+  ---
+  duration_ms: 99.8872
+  type: 'test'
+  ...
+# Subtest: rejection diagnostics distinguish own queue from upstream without request or credential data
+ok 15 - rejection diagnostics distinguish own queue from upstream without request or credential data
+  ---
+  duration_ms: 11.9334
+  type: 'test'
+  ...
+# Subtest: diagnostic callback failures cannot break rejection responses
+ok 16 - diagnostic callback failures cannot break rejection responses
+  ---
+  duration_ms: 4.3471
+  type: 'test'
+  ...
+# Subtest: attachment isolation: only the last user message receives explicitly selected data
+ok 17 - attachment isolation: only the last user message receives explicitly selected data
+  ---
+  duration_ms: 1.3943
+  type: 'test'
+  ...
+# Subtest: document text remains user data, never a system message or an executable proposal
+ok 18 - document text remains user data, never a system message or an executable proposal
+  ---
+  duration_ms: 0.291
+  type: 'test'
+  ...
+# Subtest: reject remote URLs, bad MIME/base64, unsafe names, oversized content and unsupported vision
+ok 19 - reject remote URLs, bad MIME/base64, unsafe names, oversized content and unsupported vision
+  ---
+  duration_ms: 0.6036
+  type: 'test'
+  ...
+# Subtest: reject oversized image dimensions before provider access
+ok 20 - reject oversized image dimensions before provider access
+  ---
+  duration_ms: 0.2544
+  type: 'test'
+  ...
+# Subtest: HTTP gateway uses the configured vision model and never forwards an invalid attachment
+ok 21 - HTTP gateway uses the configured vision model and never forwards an invalid attachment
+  ---
+  duration_ms: 42.2551
+  type: 'test'
+  ...
+# Subtest: deployment allowlist includes class validation dependency
+ok 22 - deployment allowlist includes class validation dependency
+  ---
+  duration_ms: 1.1913
+  type: 'test'
+  ...
+# Subtest: classes are absent by default; valid minimal snapshot only and empty schedule are explicit
+ok 23 - classes are absent by default; valid minimal snapshot only and empty schedule are explicit
+  ---
+  duration_ms: 15.7321
+  type: 'test'
+  ...
+# Subtest: classes reject hidden fields, invalid ranges/timezones, overflow, controls and overlapping or unordered entries
+ok 24 - classes reject hidden fields, invalid ranges/timezones, overflow, controls and overlapping or unordered entries
+  ---
+  duration_ms: 1.5376
+  type: 'test'
+  ...
+# Subtest: ten consecutive classes and bounded omitted count; prayer provenance remains compatible with old APKs
+ok 25 - ten consecutive classes and bounded omitted count; prayer provenance remains compatible with old APKs
+  ---
+  duration_ms: 0.6454
+  type: 'test'
+  ...
+# Subtest: class titles remain untrusted data and cannot authorize proposals or edits
+ok 26 - class titles remain untrusted data and cannot authorize proposals or edits
+  ---
+  duration_ms: 0.6442
+  type: 'test'
+  ...
+# Subtest: real gateway validates and forwards only the selected class snapshot before returning a reviewable task
+ok 27 - real gateway validates and forwards only the selected class snapshot before returning a reviewable task
+  ---
+  duration_ms: 45.2109
+  type: 'test'
+  ...
+# Subtest: cloud fixture uses real HTTP abort before headers and during body, then explicit retry
+ok 28 - cloud fixture uses real HTTP abort before headers and during body, then explicit retry
+  ---
+  duration_ms: 440.2128
+  type: 'test'
+  ...
+# Subtest: preview fixture denies missing/expired credentials and invalid stage without work
+ok 29 - preview fixture denies missing/expired credentials and invalid stage without work
+  ---
+  duration_ms: 11.1721
+  type: 'test'
+  ...
+# Subtest: vision configuration is optional, exact and never substitutes the text model
+ok 30 - vision configuration is optional, exact and never substitutes the text model
+  ---
+  duration_ms: 1.6597
+  type: 'test'
+  ...
+# Subtest: private config defaults to loopback and validates explicit bind
+ok 31 - private config defaults to loopback and validates explicit bind
+  ---
+  duration_ms: 0.2823
+  type: 'test'
+  ...
+# Subtest: config rejects missing, control, whitespace and malformed values without echoing them
+ok 32 - config rejects missing, control, whitespace and malformed values without echoing them
+  ---
+  duration_ms: 3.9874
+  type: 'test'
+  ...
+# Subtest: CLI check validates without listening or exposing credentials; invalid startup exits nonzero
+ok 33 - CLI check validates without listening or exposing credentials; invalid startup exits nonzero
+  ---
+  duration_ms: 155.4927
+  type: 'test'
+  ...
+# Subtest: official report snapshots validate fields and deduplicate revisions across feeds
+ok 34 - official report snapshots validate fields and deduplicate revisions across feeds
+  ---
+  duration_ms: 3.1527
+  type: 'test'
+  ...
+# Subtest: source requests are fixed HTTPS, bounded and fail closed on a malformed feed
+ok 35 - source requests are fixed HTTPS, bounded and fail closed on a malformed feed
+  ---
+  duration_ms: 17.807
+  type: 'test'
+  ...
+# Subtest: durable baseline, event claims and shared interval survive cold starts without duplicate sends
+ok 36 - durable baseline, event claims and shared interval survive cold starts without duplicate sends
+  ---
+  duration_ms: 1652.136
+  type: 'test'
+  ...
+# Subtest: ambiguous FCM result remains reserved, while explicit rejection can retry on a later poll
+ok 37 - ambiguous FCM result remains reserved, while explicit rejection can retry on a later poll
+  ---
+  duration_ms: 2063.6323
+  type: 'test'
+  ...
+# Subtest: stale events, parallel polls and authorization failures do not send notifications
+ok 38 - stale events, parallel polls and authorization failures do not send notifications
+  ---
+  duration_ms: 1873.0946
+  type: 'test'
+  ...
+# Subtest: FCM uses scoped RSA OAuth and a data-only payload pinned to the exact source report
+ok 39 - FCM uses scoped RSA OAuth and a data-only payload pinned to the exact source report
+  ---
+  duration_ms: 107.1408
+  type: 'test'
+  ...
+# Subtest: poll route denies missing credentials and never exposes configuration or upstream failures
+ok 40 - poll route denies missing credentials and never exposes configuration or upstream failures
+  ---
+  duration_ms: 0.7803
+  type: 'test'
+  ...
+# Subtest: image configuration is opt-in, requires Free-plan confirmation, rejects unsafe credentials
+ok 41 - image configuration is opt-in, requires Free-plan confirmation, rejects unsafe credentials
+  ---
+  duration_ms: 1.4166
+  type: 'test'
+  ...
+# Subtest: only an explicit prompt and a fresh UUID can reach image inference
+ok 42 - only an explicit prompt and a fresh UUID can reach image inference
+  ---
+  duration_ms: 0.9542
+  type: 'test'
+  ...
+# Subtest: image output is bounded canonical base64 with fixed provider and safe dimensions
+ok 43 - image output is bounded canonical base64 with fixed provider and safe dimensions
+  ---
+  duration_ms: 0.533
+  type: 'test'
+  ...
+# Subtest: persistent quota/deduplication is checked before the provider; failures never fallback or retry
+ok 44 - persistent quota/deduplication is checked before the provider; failures never fallback or retry
+  ---
+  duration_ms: 3.2977
+  type: 'test'
+  ...
+# Subtest: provider quota, malformed image, oversized response and timeout stay explicit errors
+ok 45 - provider quota, malformed image, oversized response and timeout stay explicit errors
+  ---
+  duration_ms: 3.2834
+  type: 'test'
+  ...
+# Subtest: HTTP image capability is authenticated, disabled by default, and isolated from text/attachments
+ok 46 - HTTP image capability is authenticated, disabled by default, and isolated from text/attachments
+  ---
+  duration_ms: 49.5902
+  type: 'test'
+  ...
+# Subtest: monitor rejects unsafe origins before any request
+ok 47 - monitor rejects unsafe origins before any request
+  ---
+  duration_ms: 1.1037
+  type: 'test'
+  ...
+# Subtest: monitor enters the production Redis auth path without quota or provider calls
+ok 48 - monitor enters the production Redis auth path without quota or provider calls
+  ---
+  duration_ms: 38.402
+  type: 'test'
+  ...
+# Subtest: health alone cannot hide Redis failure or an unknown credential gaining access
+ok 49 - health alone cannot hide Redis failure or an unknown credential gaining access
+  ---
+  duration_ms: 2.815
+  type: 'test'
+  ...
+# Subtest: invalid, oversized, redirected and failed probes produce bounded metadata only
+ok 50 - invalid, oversized, redirected and failed probes produce bounded metadata only
+  ---
+  duration_ms: 3.1602
+  type: 'test'
+  ...
+# Subtest: deadline includes waiting for response body
+ok 51 - deadline includes waiting for response body
+  ---
+  duration_ms: 111.4169
+  type: 'test'
+  ...
+# Subtest: bootstrap fetches both requested snapshots before publishing final checkpoint
+ok 52 - bootstrap fetches both requested snapshots before publishing final checkpoint
+  ---
+  duration_ms: 1.9253
+  type: 'test'
+  ...
+# Subtest: failed snapshot leaves prior generation and checkpoint untouched
+ok 53 - failed snapshot leaves prior generation and checkpoint untouched
+  ---
+  duration_ms: 1.3354
+  type: 'test'
+  ...
+# Subtest: row mutations apply in sequence and preserve exact source text
+ok 54 - row mutations apply in sequence and preserve exact source text
+  ---
+  duration_ms: 0.5872
+  type: 'test'
+  ...
+# Subtest: resource delete removes source and advances checkpoint without resurrecting it
+ok 55 - resource delete removes source and advances checkpoint without resurrecting it
+  ---
+  duration_ms: 0.4663
+  type: 'test'
+  ...
+# Subtest: hostile snapshot URL cannot receive transport credentials
+ok 56 - hostile snapshot URL cannot receive transport credentials
+  ---
+  duration_ms: 0.2308
+  type: 'test'
+  ...
+# Subtest: rejects missing final token, foreign resources and unordered events without commit
+ok 57 - rejects missing final token, foreign resources and unordered events without commit
+  ---
+  duration_ms: 1.067
+  type: 'test'
+  ...
+# Subtest: pagination loop and changing upper bound roll back all pages
+ok 58 - pagination loop and changing upper bound roll back all pages
+  ---
+  duration_ms: 0.332
+  type: 'test'
+  ...
+# Subtest: aborted run never commits and next attempt can recover
+ok 59 - aborted run never commits and next attempt can recover
+  ---
+  duration_ms: 0.4609
+  type: 'test'
+  ...
+# Subtest: concurrent refreshes share one run
+ok 60 - concurrent refreshes share one run
+  ---
+  duration_ms: 0.3438
+  type: 'test'
+  ...
+# Subtest: path validation rejects external, traversal, unrelated endpoints and fragments
+ok 61 - path validation rejects external, traversal, unrelated endpoints and fragments
+  ---
+  duration_ms: 0.3678
+  type: 'test'
+  ...
+# Subtest: generation validation failure preserves complete previous generation
+ok 62 - generation validation failure preserves complete previous generation
+  ---
+  duration_ms: 0.334
+  type: 'test'
+  ...
+# Subtest: incomplete bootstrap cannot silently publish a partial resource set
+ok 63 - incomplete bootstrap cannot silently publish a partial resource set
+  ---
+  duration_ms: 0.2243
+  type: 'test'
+  ...
+# Subtest: bootstrap resource enumeration may have descending historical sequences
+ok 64 - bootstrap resource enumeration may have descending historical sequences
+  ---
+  duration_ms: 0.4529
+  type: 'test'
+  ...
+# Subtest: durable generation restores checkpoint and exact source text
+ok 65 - durable generation restores checkpoint and exact source text
+  ---
+  duration_ms: 4.0451
+  type: 'test'
+  ...
+# Subtest: expired writer cannot replace a valid published generation
+ok 66 - expired writer cannot replace a valid published generation
+  ---
+  duration_ms: 1.2916
+  type: 'test'
+  ...
+# Subtest: missing/corrupted chunks never become accepted state
+ok 67 - missing/corrupted chunks never become accepted state
+  ---
+  duration_ms: 0.7922
+  type: 'test'
+  ...
+# Subtest: partial write leaves old pointer and lock release cannot affect another owner
+ok 68 - partial write leaves old pointer and lock release cannot affect another owner
+  ---
+  duration_ms: 0.4442
+  type: 'test'
+  ...
+# Subtest: Redis content response budget is opt-in; ordinary access checks keep old bound
+ok 69 - Redis content response budget is opt-in; ordinary access checks keep old bound
+  ---
+  duration_ms: 15.714
+  type: 'test'
+  ...
+# Subtest: cache ciphertext hides source/checkpoint and wrong keys cannot restore it
+ok 70 - cache ciphertext hides source/checkpoint and wrong keys cannot restore it
+  ---
+  duration_ms: 1.1414
+  type: 'test'
+  ...
+# Subtest: production publication Lua fences stale writers on Redis
+ok 71 - production publication Lua fences stale writers on Redis
+  ---
+  duration_ms: 1627.1426
+  type: 'test'
+  ...
+# Subtest: only authorized installations can access content; no provider consent/header or inference is used
+ok 72 - only authorized installations can access content; no provider consent/header or inference is used
+  ---
+  duration_ms: 32.7117
+  type: 'test'
+  ...
+# Subtest: disabled route and revoked installation do not invoke source work
+ok 73 - disabled route and revoked installation do not invoke source work
+  ---
+  duration_ms: 13.6168
+  type: 'test'
+  ...
+# Subtest: duplicate/unrelated query fields, other routes and POST cannot reach source
+ok 74 - duplicate/unrelated query fields, other routes and POST cannot reach source
+  ---
+  duration_ms: 12.6321
+  type: 'test'
+  ...
+# Subtest: page response contains only selected content and public provenance, never checkpoint
+ok 75 - page response contains only selected content and public provenance, never checkpoint
+  ---
+  duration_ms: 1.4764
+  type: 'test'
+  ...
+# Subtest: invalid pages and unauthorized identity never fetch content
+ok 76 - invalid pages and unauthorized identity never fetch content
+  ---
+  duration_ms: 0.6992
+  type: 'test'
+  ...
+# Subtest: Quran rate quota is distinct from AI inference and rejects before content work
+ok 77 - Quran rate quota is distinct from AI inference and rejects before content work
+  ---
+  duration_ms: 0.1667
+  type: 'test'
+  ...
+# Subtest: cold restart reads durable generation without downloading new snapshots
+ok 78 - cold restart reads durable generation without downloading new snapshots
+  ---
+  duration_ms: 0.1951
+  type: 'test'
+  ...
+# Subtest: known deleted source stays unavailable and is not substituted with old content
+ok 79 - known deleted source stays unavailable and is not substituted with old content
+  ---
+  duration_ms: 0.1555
+  type: 'test'
+  ...
+# Subtest: failed refresh or publication does not replace last complete generation
+ok 80 - failed refresh or publication does not replace last complete generation
+  ---
+  duration_ms: 0.415
+  type: 'test'
+  ...
+# Subtest: Mushaf preserves source glyphs and resolves split verses, word anchors and juz
+ok 81 - Mushaf preserves source glyphs and resolves split verses, word anchors and juz
+  ---
+  duration_ms: 0.7078
+  type: 'test'
+  ...
+# Subtest: fixed-origin transport authorizes server-side and reuses bounded token
+ok 82 - fixed-origin transport authorizes server-side and reuses bounded token
+  ---
+  duration_ms: 19.7472
+  type: 'test'
+  ...
+# Subtest: hostile paths are rejected before sending authorization anywhere
+ok 83 - hostile paths are rejected before sending authorization anywhere
+  ---
+  duration_ms: 0.324
+  type: 'test'
+  ...
+# Subtest: token expiry and unauthorized response cannot leave stale credentials in use
+ok 84 - token expiry and unauthorized response cannot leave stale credentials in use
+  ---
+  duration_ms: 1.2189
+  type: 'test'
+  ...
+# Subtest: unknown environment, malformed authorization and oversized content fail closed
+ok 85 - unknown environment, malformed authorization and oversized content fail closed
+  ---
+  duration_ms: 1.4422
+  type: 'test'
+  ...
+# Subtest: encrypted snapshots round-trip with authenticated fresh nonces and no plaintext identifiers
+ok 86 - encrypted snapshots round-trip with authenticated fresh nonces and no plaintext identifiers
+  ---
+  duration_ms: 4.4235
+  type: 'test'
+  ...
+# Subtest: backup schema, capacity and canonical ciphertext are bounded before restoration
+ok 87 - backup schema, capacity and canonical ciphertext are bounded before restoration
+  ---
+  duration_ms: 1.1313
+  type: 'test'
+  ...
+# Subtest: real Lua exports paired registry metadata and ignores usage or accidental extra content
+ok 88 - real Lua exports paired registry metadata and ignores usage or accidental extra content
+  ---
+  duration_ms: 1621.1213
+  type: 'test'
+  ...
+# Subtest: real Lua rejects incomplete, corrupt and oversized registries instead of partial backups
+ok 89 - real Lua rejects incomplete, corrupt and oversized registries instead of partial backups
+  ---
+  duration_ms: 1714.0369
+  type: 'test'
+  ...
+# Subtest: restore never overwrites production or reactivates credentials revoked after a stale backup
+ok 90 - restore never overwrites production or reactivates credentials revoked after a stale backup
+  ---
+  duration_ms: 2603.5981
+  type: 'test'
+  ...
+# Subtest: operator CLI keeps keys and decoded content private, refuses overwrites and repository output
+ok 91 - operator CLI keeps keys and decoded content private, refuses overwrites and repository output
+  ---
+  duration_ms: 317.9476
+  type: 'test'
+  ...
+# Subtest: requires server credentials
+ok 92 - requires server credentials
+  ---
+  duration_ms: 1.1939
+  type: 'test'
+  ...
+# Subtest: rejects system injection roles and oversized histories
+ok 93 - rejects system injection roles and oversized histories
+  ---
+  duration_ms: 0.1927
+  type: 'test'
+  ...
+# Subtest: injects server system prompt, fixes model and keeps API key server-side
+ok 94 - injects server system prompt, fixes model and keeps API key server-side
+  ---
+  duration_ms: 37.9601
+  type: 'test'
+  ...
+# Subtest: unauthorized requests never reach provider
+ok 95 - unauthorized requests never reach provider
+  ---
+  duration_ms: 9.0774
+  type: 'test'
+  ...
+# Subtest: invalid inputs never reach provider
+ok 96 - invalid inputs never reach provider
+  ---
+  duration_ms: 4.9339
+  type: 'test'
+  ...
+# Subtest: provider error body is not leaked
+ok 97 - provider error body is not leaked
+  ---
+  duration_ms: 6.0148
+  type: 'test'
+  ...
+# Subtest: empty and oversized provider content is rejected
+ok 98 - empty and oversized provider content is rejected
+  ---
+  duration_ms: 6.4641
+  type: 'test'
+  ...
+# Subtest: bounded provider response prevents memory growth
+ok 99 - bounded provider response prevents memory growth
+  ---
+  duration_ms: 5.0244
+  type: 'test'
+  ...
+# Subtest: health is liveness only and reveals no private configuration
+ok 100 - health is liveness only and reveals no private configuration
+  ---
+  duration_ms: 6.3953
+  type: 'test'
+  ...
+# Subtest: null, malformed JSON, wrong type and declared oversize are client errors
+ok 101 - null, malformed JSON, wrong type and declared oversize are client errors
+  ---
+  duration_ms: 14.1663
+  type: 'test'
+  ...
+# Subtest: chunked oversize returns 413 instead of dropping the request socket
+ok 102 - chunked oversize returns 413 instead of dropping the request socket
+  ---
+  duration_ms: 8.763
+  type: 'test'
+  ...
+# Subtest: provider malformed JSON, null and thrown errors stay sanitized
+ok 103 - provider malformed JSON, null and thrown errors stay sanitized
+  ---
+  duration_ms: 12.4601
+  type: 'test'
+  ...
+# Subtest: provider 429 is mapped without leaking its body
+ok 104 - provider 429 is mapped without leaking its body
+  ---
+  duration_ms: 5.5325
+  type: 'test'
+  ...
+# Subtest: provider HTTP 503 means busy, cancels the error body and leaves retry to the user
+ok 105 - provider HTTP 503 means busy, cancels the error body and leaves retry to the user
+  ---
+  duration_ms: 4.5436
+  type: 'test'
+  ...
+# Subtest: HTTP 200 capacity error is sanitized, never retried automatically and releases its lease
+ok 106 - HTTP 200 capacity error is sanitized, never retried automatically and releases its lease
+  ---
+  duration_ms: 4.0597
+  type: 'test'
+  ...
+# Subtest: other HTTP 200 provider errors cannot leak details or masquerade as an answer
+ok 107 - other HTTP 200 provider errors cannot leak details or masquerade as an answer
+  ---
+  duration_ms: 6.9052
+  type: 'test'
+  ...
+# Subtest: provider timeout aborts work and releases capacity
+ok 108 - provider timeout aborts work and releases capacity
+  ---
+  duration_ms: 50.9174
+  type: 'test'
+  ...
+# Subtest: two active requests block a third
+ok 109 - two active requests block a third
+  ---
+  duration_ms: 16.1117
+  type: 'test'
+  ...
+# Subtest: client disconnect aborts provider work
+ok 110 - client disconnect aborts provider work
+  ---
+  duration_ms: 6.7616
+  type: 'test'
+  ...
+# Subtest: a stalled request body times out before a distributed lease can expire
+ok 111 - a stalled request body times out before a distributed lease can expire
+  ---
+  duration_ms: 53.4841
+  type: 'test'
+  ...
+# Subtest: rate limit prevents unlimited upstream requests
+ok 112 - rate limit prevents unlimited upstream requests
+  ---
+  duration_ms: 19.9201
+  type: 'test'
+  ...
+# Subtest: tafsir rejects wrong chapter, missing/duplicate verses and empty markup before any summary
+ok 113 - tafsir rejects wrong chapter, missing/duplicate verses and empty markup before any summary
+  ---
+  duration_ms: 20.6373
+  type: 'test'
+  ...
+# Subtest: tafsir preserves word boundaries, marks bounded excerpts and never splits a surrogate pair
+ok 114 - tafsir preserves word boundaries, marks bounded excerpts and never splits a surrogate pair
+  ---
+  duration_ms: 0.8837
+  type: 'test'
+  ...
+# Subtest: tafsir has fixed HTTPS origin, bounded body and observes cancellation even for cached data
+ok 115 - tafsir has fixed HTTPS origin, bounded body and observes cancellation even for cached data
+  ---
+  duration_ms: 2.3819
+  type: 'test'
+  ...
+# Subtest: Vercel configuration never falls back to shared tokens or local files
+ok 116 - Vercel configuration never falls back to shared tokens or local files
+  ---
+  duration_ms: 1.9108
+  type: 'test'
+  ...
+# Subtest: Redis transport uses a bounded HTTPS POST, header-only credentials and no redirects
+ok 117 - Redis transport uses a bounded HTTPS POST, header-only credentials and no redirects
+  ---
+  duration_ms: 8.6568
+  type: 'test'
+  ...
+# Subtest: Vercel entry points pin paths and deployment excludes private config and admin/test code
+ok 118 - Vercel entry points pin paths and deployment excludes private config and admin/test code
+  ---
+  duration_ms: 3.6483
+  type: 'test'
+  ...
+# Subtest: image Lua: atomic per-installation/global limits, idempotency, UTC reset and corrupt-state rejection
+ok 119 - image Lua: atomic per-installation/global limits, idempotency, UTC reset and corrupt-state rejection
+  ---
+  duration_ms: 1633.7976
+  type: 'test'
+  ...
+# Subtest: production Lua: quotas and revocation persist across new Vercel instances
+ok 120 - production Lua: quotas and revocation persist across new Vercel instances
+  ---
+  duration_ms: 1605.8578
+  type: 'test'
+  ...
+# Subtest: production Lua: concurrent processes share two global slots, one per installation and expiring leases
+ok 121 - production Lua: concurrent processes share two global slots, one per installation and expiring leases
+  ---
+  duration_ms: 1629.4046
+  type: 'test'
+  ...
+# Subtest: production Lua: minute quota, namespaces, storage corruption and malformed responses fail closed
+ok 122 - production Lua: minute quota, namespaces, storage corruption and malformed responses fail closed
+  ---
+  duration_ms: 1629.5251
+  type: 'test'
+  ...
+# Subtest: production Lua: busy scope distinguishes own request from global capacity without consuming quota
+ok 123 - production Lua: busy scope distinguishes own request from global capacity without consuming quota
+  ---
+  duration_ms: 1599.1375
+  type: 'test'
+  ...
+# Subtest: Vercel busy diagnostics expose only an allowlisted queue scope, never registry data
+ok 124 - Vercel busy diagnostics expose only an allowlisted queue scope, never registry data
+  ---
+  duration_ms: 1660.6577
+  type: 'test'
+  ...
+# {"event":"assistant_rejected","status":503,"code":"access_unavailable"}
+# Subtest: Vercel HTTP: two handlers share access state, invalid input releases slots, failures never call provider
+ok 125 - Vercel HTTP: two handlers share access state, invalid input releases slots, failures never call provider
+  ---
+  duration_ms: 1632.2554
+  type: 'test'
+  ...
+1..125
+# tests 125
+# suites 0
+# pass 125
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 28292.8156

@@ -1,0 +1,27 @@
+{
+  "realNetwork": true,
+  "realRedis": true,
+  "credentialsOrSourceBodiesLogged": false,
+  "bootstrapMs": 25042,
+  "phase": "incremental",
+  "resources": [
+    {
+      "name": "mushafs:1",
+      "count": 84270
+    },
+    {
+      "name": "quran_core:1",
+      "count": 90345
+    },
+    {
+      "name": "translations:33",
+      "count": 6236
+    }
+  ],
+  "durableColdRestore": true,
+  "incremental": true,
+  "sameCounts": true,
+  "cacheParts": 20,
+  "encryptedBytes": 6754362,
+  "success": true
+}

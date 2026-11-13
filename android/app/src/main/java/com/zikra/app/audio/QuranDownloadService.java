@@ -22,7 +22,9 @@ public final class QuranDownloadService extends Service {
   private final ExecutorService worker = Executors.newSingleThreadExecutor();
   private final Handler main = new Handler(Looper.getMainLooper());
   private final OkHttpClient http =
-      new OkHttpClient.Builder().callTimeout(60, TimeUnit.SECONDS).build();
+      new OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS).readTimeout(55, TimeUnit.SECONDS)
+          .callTimeout(60, TimeUnit.SECONDS).followRedirects(false).followSslRedirects(false)
+          .retryOnConnectionFailure(false).build();
   private volatile boolean cancelled, destroyed;
   private String qari;
   private int chapter;
@@ -147,53 +149,24 @@ public final class QuranDownloadService extends Service {
   }
 
   private void textPages() throws Exception {
-    if (QuranPage.builtIn(chapter) != null) return;
+    if (!QuranSyncGateway.configured(this) && QuranPage.builtIn(chapter) != null) return;
     QuranChapters.Chapter info = QuranChapters.all(this).get(chapter - 1);
-    File folder = new File(getFilesDir(), "quran-offline-r33");
-    folder.mkdirs();
+    QuranSyncStore store = new QuranSyncStore(this);
+    boolean current = !QuranSyncGateway.sourceRemoved(this);
     for (int page = 1; page <= (info.count + 49) / 50; page++) {
-      checkCancelled();
-      AtomicFile target = new AtomicFile(new File(folder, chapter + "-" + page + ".json"));
-      try (InputStream in = target.openRead()) {
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        byte[] chunk = new byte[8192];
-        int n;
-        while ((n = in.read(chunk)) != -1) {
-          if (buffer.size() + n > 524288) throw new IOException("Text too large");
-          buffer.write(chunk, 0, n);
-        }
-        byte[] bytes = buffer.toByteArray();
-        QuranPage.parse(new String(bytes, StandardCharsets.UTF_8), info, page);
-        continue;
-      } catch (Exception missing) {
-        /* Fetch and validate a missing/incomplete page. */
-      }
-      Request request =
-          new Request.Builder()
-              .url(
-                  "https://api.quran.com/api/v4/verses/by_chapter/"
-                      + chapter
-                      + "?language=id&translations=33&fields=text_uthmani&per_page=50&page="
-                      + page)
-              .build();
-      try (Response response = http.newCall(request).execute()) {
-        if (!response.isSuccessful() || response.body() == null) throw new IOException("Text HTTP");
-        response.body().source().request(524289);
-        if (response.body().source().buffer().size() > 524288)
-          throw new IOException("Text too large");
-        byte[] bytes = response.body().bytes();
-        QuranPage.parse(new String(bytes, StandardCharsets.UTF_8), info, page);
-        FileOutputStream out = null;
-        try {
-          out = target.startWrite();
-          out.write(bytes);
-          target.finishWrite(out);
-        } catch (Exception failure) {
-          if (out != null) target.failWrite(out);
-          throw failure;
-        }
-      }
+      try {
+        String json = store.read(info, page);
+        long checked = QuranSyncPage.validate(json, info, page, System.currentTimeMillis());
+        if (!QuranSyncPage.fresh(checked, System.currentTimeMillis())) current = false;
+      } catch (Exception missing) { current = false; }
     }
+    if (current) return;
+    store.download(info, page -> {
+      checkCancelled();
+      return QuranSyncGateway.fetch(this, http, info, page, call -> {
+        if (cancelled || destroyed) call.cancel();
+      });
+    }, this::checkCancelled);
   }
 
   private Notification notification(String text, int done, int total, boolean active) {

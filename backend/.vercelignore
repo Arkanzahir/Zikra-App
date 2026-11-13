@@ -22,3 +22,9 @@
 !earthquake-feed.mjs
 !earthquake-fcm.mjs
 !earthquake-poll.mjs
+!api/quran.js
+!quran-content-sync.mjs
+!quran-sync-transport.mjs
+!quran-sync-cache.mjs
+!quran-sync-service.mjs
+!quran-sync-handler.mjs

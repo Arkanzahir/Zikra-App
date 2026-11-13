@@ -22,7 +22,11 @@ export function readRedisConfig(env = process.env) {
 }
 
 export class RedisRest {
-  constructor({ url, token, fetchImpl = fetch }) { this.url = url; this.token = token; this.fetchImpl = fetchImpl; }
+  constructor({ url, token, fetchImpl = fetch, responseLimit = 65536 }) {
+    if (!Number.isInteger(responseLimit) || responseLimit < 1 || responseLimit > 524288)
+      throw new ConfigError('Invalid Redis response limit.');
+    this.url = url; this.token = token; this.fetchImpl = fetchImpl; this.responseLimit = responseLimit;
+  }
   async command(args) {
     try {
       const response = await this.fetchImpl(this.url, { method: 'POST', redirect: 'error',
@@ -32,7 +36,7 @@ export class RedisRest {
       const chunks = []; let bytes = 0;
       for await (const chunk of response.body) {
         bytes += chunk.length;
-        if (bytes > 65536) throw new Error();
+        if (bytes > this.responseLimit) throw new Error();
         chunks.push(chunk);
       }
       const data = JSON.parse(Buffer.concat(chunks).toString('utf8'));
