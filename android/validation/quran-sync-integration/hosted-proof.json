@@ -1,0 +1,32 @@
+{
+  "realHosted": true,
+  "privateContentLogged": false,
+  "checks": [
+    {
+      "query": "chapter=2&page=1",
+      "status": 200,
+      "ms": 13734,
+      "verseCount": 50,
+      "source": "Quran Foundation Content Sync"
+    },
+    {
+      "query": "kind=mushaf&page=1",
+      "status": 200,
+      "ms": 12402,
+      "verseCount": 7,
+      "source": "Quran Foundation Content Sync"
+    },
+    {
+      "query": "kind=locate&chapter=2&verse=1",
+      "status": 200,
+      "ms": 10970,
+      "page": 2,
+      "source": "Quran Foundation Content Sync"
+    }
+  ],
+  "noAuth": 401,
+  "rateLimited": 429,
+  "revoked": 401,
+  "passed": true,
+  "syntheticIdentityRemoved": true
+}

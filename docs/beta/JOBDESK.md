@@ -36,7 +36,7 @@ izin konten; Codex tidak dapat mengesahkan izin atas nama mereka.
 
 | ID | Prioritas / acuan | Pekerjaan | Status awal | HP |
 | --- | --- | --- | --- | --- |
-| J01 | P0 / G03, D03 | Layanan Content Sync server | Sebagian: endpoint/cache/enkripsi diuji, deployment READY; hosted belum terverifikasi | Tidak |
+| J01 | P0 / G03, D03 | Layanan Content Sync server | Selesai terverifikasi: endpoint/cache/enkripsi dan hosted200/401/429 lulus | Tidak |
 | J02 | P0 / D03, D06, G03 | Integrasi Quran reader dan unduhan Android | Sebagian: reader/staging diimplementasikan; empat native lulus, hosted/UI akhir belum | Emulator dahulu, konfirmasi akhir J13 |
 | J03 | P0 / D03, G03 | Integrasi layout Mushaf, font, timing/audio | Sebagian: 604 halaman tervalidasi; font/timing/audio akhir tersisa | Emulator dahulu, akhir J13 |
 | J04 | P0 / G03 | Sumber dan hak Quran/font/terjemahan/layanan | Sebagian; tiga font bundel lolos audit paket | Tidak, izin eksternal mungkin perlu |
@@ -58,16 +58,18 @@ izin konten; Codex tidak dapat mengesahkan izin atas nama mereka.
 
 - [x] Mesin staging/token atomik di memori dan transport server-only dibuat;
   17tes serta bootstrap/incremental produksi terarah dibuktikan.
-- [ ] Hubungkan endpoint konten dengan autentikasi instalasi/rate limit; secret
+- [x] Hubungkan endpoint konten dengan autentikasi instalasi/rate limit; secret
   QF hanya di server, tanpa URL upstream bebas dari client.
-- [ ] Tentukan penyimpanan/cold-start dan cache/refresh; respons ke APK harus
+- [x] Tentukan penyimpanan/cold-start dan cache/refresh; respons ke APK harus
   ringkas, bukan meneruskan snapshot core35MB melalui satu respons serverless.
-- [ ] Uji tidak berizin/kuota, abort/timeout/paging/tombstone, restart server,
+- [x] Uji tidak berizin/kuota, abort/timeout/paging/tombstone, restart server,
   rollback dan ketersediaan resource; verifikasi deployment jika diaktifkan.
 
 Bukti awal: ../../android/validation/quran-content-sync-2026-11-12/README.md
 (dari root repo: android/validation/quran-content-sync-2026-11-12/README.md).
 Hasil: endpoint dan receipt uji yang dapat dipakai J02/J03, belum klaim migrasi APK.
+
+Receipt lanjutan: android/validation/quran-sync-integration/README.md dan hosted-proof.json. J02/J03 tidak otomatis selesai.
 
 ### J02 — Quran reader dan unduhan
 

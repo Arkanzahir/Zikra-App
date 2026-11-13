@@ -1,0 +1,7 @@
+{
+  "localNodeTransport": "UND_ERR_CONNECT_TIMEOUT to Vercel and Redis; DNS resolved",
+  "windowsHttpsHealth": 200,
+  "verificationTransport": "Windows HTTPS invoked privately by test-only adapter; production code unchanged",
+  "knownPreviousSyntheticIdentityRemoved": 0,
+  "currentSyntheticIdentityRemoved": true
+}

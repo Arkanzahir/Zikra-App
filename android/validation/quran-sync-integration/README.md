@@ -1,3 +1,9 @@
+## Hosted terverifikasi13November
+
+Reader2:1 mengembalikan50ayat200, Mushaf halaman1 berisi7ayat200, locate2:1 mengembalikan halaman2/200. Tanpa akses401, batas60permintaan/menit429, identitas revoked401. Key identitas sintetis yang dipakai putaran ini dihapus terkonfirmasi; identitas tersimpan sebelumnya diperiksa/dihapus dan menghasilkan0entri. Tidak ada inferenceAI.
+
+Kegagalan sebelumnya berasal dari koneksi HTTPS Node lokal (DNS terjawab, UND_ERR_CONNECT_TIMEOUT); transport HTTPS Windows berhasil health200 dan dipakai adaptor uji privat untuk receipt hosted. Kode produksi tidak diganti atau menonaktifkanTLS. Source/tokens/credential tidak dicetak. Respons13,7/12,4/11detik adalah sampel, bukan SLA. J01 kini memenuhi kriteria server terarah; J02/J03 tetap sebagian karena gateway native hosted, tampilan/font dan audio akhir belum dibuktikan pada kandidat ini. Ketidakpastian identitas percobaan paling awal yang tidak sempat disimpan tetap dicatat pada riwayat; jangan menghapus registry pengguna.
+
 ## Kelanjutan13November — deployment dan empat native
 
 Paket98berkas lulus audit nilai credential dikenal/berkas privat; deployment produksi READY, alias https://zikra-ai.vercel.app. Percobaan pertama fetch failed, retry berhasil. Empat native emulator lulus termasuk binding50ayat tersimpan. Capture pertama tertutup dialog debugging dan capture berikutnya launcher; tidak dipakai sebagai bukti visual reader. Screenshot dan gateway Android hosted masih terbuka.
