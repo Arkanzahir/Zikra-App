@@ -36,8 +36,8 @@ izin konten; Codex tidak dapat mengesahkan izin atas nama mereka.
 
 | ID | Prioritas / acuan | Pekerjaan | Status awal | HP |
 | --- | --- | --- | --- | --- |
-| J01 | P0 / G03, D03 | Layanan Content Sync server | Sebagian: endpoint/cache/enkripsi diuji, build Vercel berhasil; belum deploy | Tidak |
-| J02 | P0 / D03, D06, G03 | Integrasi Quran reader dan unduhan Android | Sebagian: reader/staging diimplementasikan; tiga native lulus, hosted/UI akhir belum | Emulator dahulu, konfirmasi akhir J13 |
+| J01 | P0 / G03, D03 | Layanan Content Sync server | Sebagian: endpoint/cache/enkripsi diuji, deployment READY; hosted belum terverifikasi | Tidak |
+| J02 | P0 / D03, D06, G03 | Integrasi Quran reader dan unduhan Android | Sebagian: reader/staging diimplementasikan; empat native lulus, hosted/UI akhir belum | Emulator dahulu, konfirmasi akhir J13 |
 | J03 | P0 / D03, G03 | Integrasi layout Mushaf, font, timing/audio | Sebagian: 604 halaman tervalidasi; font/timing/audio akhir tersisa | Emulator dahulu, akhir J13 |
 | J04 | P0 / G03 | Sumber dan hak Quran/font/terjemahan/layanan | Sebagian; tiga font bundel lolos audit paket | Tidak, izin eksternal mungkin perlu |
 | J05 | P0 / B01 | Kejelasan sumber kitab Hadis lengkap | Menunggu klarifikasi sumber/cakupan | Tidak |

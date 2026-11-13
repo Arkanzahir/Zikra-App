@@ -1,0 +1,8 @@
+{
+  "status": "ok",
+  "id": "dpl_4atmumBPKntThkXvUm9LT98N2vbR",
+  "readyState": "READY",
+  "target": "production",
+  "productionUrl": "https://zikra-ai.vercel.app",
+  "hostedFunctionalVerification": false
+}
