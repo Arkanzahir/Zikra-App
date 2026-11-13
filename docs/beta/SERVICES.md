@@ -45,3 +45,7 @@ empat halaman yang dibaca atau dari pemindaian credential yang bersih.
 Tiga font lokal dan notice OFL telah diperiksa pada APK1.9.41: Amiri Quran,
 Plus Jakarta Sans dan Roboto. [Bukti/pemeriksaan ulang/batas](../../android/validation/bundled-fonts-2026-11-12/README.md).
 Ini tidak mencakup QCF/nama surah unduhan, teks, terjemahan atau audio Quran.
+
+## Delta implementasi13November
+
+Content SyncQF memakai autentikasi server, cache Redis terenkripsiAES-GCM dan refresh6hari; TTL cache server8hari pada cache server bukan retensi seluruh penyedia. APK tidak menerima OAuthsecret/checkpoint. Pengingat cuaca baru hanya setelah opt-in/penjelasan koordinat terpilih→Open-Meteo; tanpa GPS latar belakang, pemeriksaan sekitar1jam pukul06–21 dan maksimal1alert/hari. Ketentuan skala/nonkomersial serta agregat pengguna tetap perlu ditutupJ04. Draf keluarga dan route membuka aplikasi lain hanya atas tindakan pengguna, tidak submit otomatis.

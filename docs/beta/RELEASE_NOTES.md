@@ -1,7 +1,7 @@
 # Catatan calon beta — belum diterbitkan
 
 Paket final, versi distribusi, hash, signer dan URL unduhan belum dipilih.
-Kandidat lokal pemeriksaan adalah source 1.9.41/code68. Jangan memasang kandidat
+Kandidat internal terbaru1.9.46/code73,49.511.880byte; SHA256bc52f34baa7a64fdd5783cd0ecd8ac302f0a00ecbe19235325b2e8a7dd930fc0. Kompilasi/audit dikenal berhasil; uji gabungan pada versi ini ditunda pengguna. [Status dan gerbang](FINAL_BATCH.md). Jangan memasang kandidat
 unsigned atau menjadikan debug lama sebagai unduhan beta publik.
 
 ## Fitur yang dapat diuji setelah gerbang dipenuhi
@@ -11,6 +11,9 @@ unsigned atau menjadikan debug lama sebagai unduhan beta publik.
 - Study/tugas/jadwal/fokus, Hifz/aktivitas, Doa dan Profil lokal.
 - Zikra AI online Cloudflare, lampiran terbatas, chat lokal dan panduan offline.
 - Protector, prakiraan cuaca, laporan BMKG dan push gempa opsional.
+- Kode pengingat cuaca/harian opt-in dan ringkasan lokal; default mati.
+- Kode bantuan/draf keluarga dan fallback navigasi masjid; tidak mengirim otomatis.
+- Guard lifecycle animasi/sensor; pengukuran baterai dan uji visual masih tertunda.
 
 Daftar ini cakupan pengujian, bukan klaim semua syarat modul atau lisensinya lulus.
 Hadis B01, hak adzan, sisa fisik, E03/E04/F/G mengikuti [gerbang](README.md).

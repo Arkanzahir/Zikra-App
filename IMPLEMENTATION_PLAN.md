@@ -1,3 +1,7 @@
+## Konsolidasi akhir hemat limit —13November
+
+[Satu batch](docs/beta/FINAL_BATCH.md), [operator/dukungan](docs/beta/OPERATOR_RUNBOOK.md) dan manifest internal HOLD disiapkan. Kandidat tetap1.9.46/code73; tidak build/versi/deploy/inference/HP/emulator baru. Catatan beta diselaraskan ke kandidat sekarang. Uji gabungan ditunda; hak/B01/audio/penerbit/signing danHP bukan sesuatu yang dapat disahkan dari kode. F02/F03, retensi/ketentuan layanan dan gerbang lain masih terbuka; jangan klaim semua pekerjaan tanpaHP selesai. WIP/privat/stash/aset dipertahankan.
+
 ## F acuan dan gerak1.9.46/code73 —13November
 
 [Panduan F01](docs/design/APP_GUIDE.md) dibekukan dari source/referensi diterima, dengan matriks layar; bukan klaim semua UI seragam. [Delta/batas](android/validation/ui-f-code-2026-11-13/README.md): policy gerak/power/screen dan cleanup listener diperkuat; orbit/fokus/sky memeriksa viewport/scroll/visibility/sensor. Artwork/logo/ikon/timer/audio tetap. Compile10detik/build20detik, APK49.511.880byte, audit credential dikenal bersih/audio/signer sama. Uji gabungan ditunda pengguna; tidakHP/emulator/settingsOS. F02–F04/HP/hak/signing/G/beta tetap terbuka.

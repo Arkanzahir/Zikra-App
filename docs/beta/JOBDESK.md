@@ -5,6 +5,8 @@ terbukti1.9.39. Ini daftar pelaksanaan turunan IMPLEMENTATION_PLAN.md dan
 RELEASE_SCOPE.md, tidak menggantikan cakupan atau menghapus gerbang lama.
 Pengguna mengizinkan pelaksanaan urutan terdekat. Checkpoint13November: J01–J03 dikerjakan, bukti di android/validation/quran-sync-integration/README.md; belum semua kriteria terpenuhi. Website J15 mencakup preview lokal sebelum J14, publikasi unduhan sesudah gerbang.
 
+Rute penutupan terbaru: [FINAL_BATCH.md](FINAL_BATCH.md); kandidat internal1.9.46/code73 tetap HOLD. [Operator/dukungan](OPERATOR_RUNBOOK.md) disiapkan, bukan bukti retensi/kapasitas penyedia disahkan.
+
 ## Cara melacak
 
 Status: **Antrean**, **Sebagian**, **Menunggu HP**, **Menunggu keputusan/izin**,

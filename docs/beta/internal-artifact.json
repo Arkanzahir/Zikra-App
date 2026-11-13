@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "releaseStatus": "HOLD",
+  "version": "1.9.46",
+  "versionCode": 73,
+  "bytes": 49511880,
+  "sha256": "bc52f34baa7a64fdd5783cd0ecd8ac302f0a00ecbe19235325b2e8a7dd930fc0",
+  "signerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "debugSigningKey": true,
+  "distributionApproved": false,
+  "downloadUrl": null,
+  "runtimeVerification": "deferred",
+  "remainingGates": [
+    "content-and-audio-rights",
+    "publisher-and-privacy",
+    "release-signing-and-migration",
+    "combined-runtime-and-device-tests"
+  ]
+}
