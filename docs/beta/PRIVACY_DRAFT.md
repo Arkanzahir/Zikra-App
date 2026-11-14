@@ -39,6 +39,19 @@ sendiri bila tidak diperlukan. Staging privat dibersihkan setelah berhasil/gagal
 sisa akibat proses mati dibersihkan oportunistik setelah24jam pada startup baru
 bila tidak ada pending. Ini bukan janji secure erase atau retensi nol seluruhOS.
 
+## Kontrol izin diperkuat1.9.51
+
+Persetujuan berbagi chat diikat pada layanan dan revisi izin. Pesan yang masih
+antre dibatalkan jika izin dicabut/diberikan ulang atau koneksi berubah. Review
+konteks lama tidak mendapat izin baru otomatis. Gambar tetap dikonfirmasi perprompt,
+tanpa memberi izin chat. Balasan chat terlambat sesudah revokasi tidak ditampilkan;
+permintaan yang sudah dikirim tidak dapat ditarik kembali dari penyedia.
+Izin lama yang masih valid tidak menyebabkan dialog setiap pesan.
+
+[Tinjauan13–17](TEEN_PRIVACY_REVIEW.md) tetap terbuka: izin data AI tidak
+membuktikan usia/persetujuan wali. Lokasi presisi serta retensi/log/backup
+seluruh akun memerlukan peninjauan tersendiri sebelum undangan remaja.
+
 ## AI online dan lampiran
 
 Setelah izin dasar, pesan/lampiran yang dipilih pengguna dikirim melalui

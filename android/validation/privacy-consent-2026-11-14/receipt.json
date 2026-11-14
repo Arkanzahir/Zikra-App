@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-14",
+  "version": "1.9.51",
+  "versionCode": 78,
+  "apkBytes": 50364855,
+  "apkSha256": "99eeba78ed0f240ae9feea50db8f6592c442b5894fa6800565e908a1e15afb7c",
+  "jvm": {
+    "tests": 230,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "nativePermissionCases": 9,
+  "nativeRegressionCases": 5,
+  "lintErrors": 0,
+  "lintWarnings": 894,
+  "privateConfigurationEntries": 0,
+  "knownCredentialEntries": 0,
+  "signerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+  "debugSigningKey": true,
+  "distributionApproved": false,
+  "phoneUsed": false,
+  "backendChanged": false,
+  "backendPreviousTests": 134,
+  "teenPrivacyFinalized": false
+}

@@ -29,6 +29,11 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
   private static final String ID = "8da51639-4899-42f0-9dc4-66723b358667";
   private static final String CODE = "private-test-code-32-characters-long";
 
+  private AssistantConnection authorizedConnection() {
+    AssistantConnection connection = new AssistantConnection(context);
+    AssistantConsent.accept(context.getSharedPreferences("zikra_preferences", 0), connection.endpoint());
+    return connection;
+  }
   @Override protected void setUp() throws Exception {
     super.setUp(); context = getInstrumentation().getTargetContext();
     try (InputStream stream = new ParcelFileDescriptor.AutoCloseInputStream(
@@ -87,7 +92,7 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
       AtomicReference<String> answer = new AtomicReference<>();
       AtomicReference<OnlineAssistantClient.Failure> failure = new AtomicReference<>();
       try (OnlineAssistantClient client = new OnlineAssistantClient(http)) {
-        client.send(new AssistantConnection(context), new JSONObject().put("messages", new JSONArray()
+        client.send(authorizedConnection(), new JSONObject().put("messages", new JSONArray()
             .put(new JSONObject().put("role", "user").put("content", "Synthetic message"))), new OnlineAssistantClient.Result() {
           @Override public void complete(String value) { answer.set(value); done.countDown(); }
           @Override public void failed() { done.countDown(); }
@@ -118,7 +123,7 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
       AtomicReference<OnlineAssistantClient.Failure> failure = new AtomicReference<>();
       CountDownLatch done = new CountDownLatch(1);
       try (OnlineAssistantClient client = new OnlineAssistantClient(http)) {
-        client.send(new AssistantConnection(context), new JSONObject().put("messages", new JSONArray()
+        client.send(authorizedConnection(), new JSONObject().put("messages", new JSONArray()
             .put(new JSONObject().put("role", "user").put("content", "Synthetic message"))), new OnlineAssistantClient.Result() {
           @Override public void complete(String value) { fail("No successful fallback allowed"); }
           @Override public void failed() { done.countDown(); }
@@ -155,7 +160,7 @@ public final class AssistantIntegrationTest extends InstrumentationTestCase {
             "{\"reply\":\"Late reply\",\"provider\":\"cloudflare\"}")).build();
     }).build();
     try (OnlineAssistantClient client = new OnlineAssistantClient(http)) {
-      client.send(new AssistantConnection(context), new JSONArray().put(new JSONObject().put("role", "user").put("text", "Synthetic")),
+      client.send(authorizedConnection(), new JSONArray().put(new JSONObject().put("role", "user").put("text", "Synthetic")),
           new OnlineAssistantClient.Result() {
             @Override public void complete(String value) { callbacks.incrementAndGet(); }
             @Override public void failed() { callbacks.incrementAndGet(); }

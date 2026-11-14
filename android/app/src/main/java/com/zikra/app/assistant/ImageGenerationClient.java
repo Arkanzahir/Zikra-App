@@ -22,14 +22,22 @@ public final class ImageGenerationClient implements AutoCloseable {
     try{check=http.newCall(request(connection,"/v1/capabilities").get().build());check.enqueue(new Callback(){public void onFailure(Call c,IOException e){deliver(false);}public void onResponse(Call c,Response r){boolean ready=false;try(r){if(r.isSuccessful()&&r.body()!=null){r.body().source().request(4097);if(r.body().source().buffer().size()<=4096)ready=new JSONObject(r.body().string()).optBoolean("imageGeneration");}}catch(Exception ignored){}deliver(ready);}private void deliver(boolean value){main.post(()->{if(!closed&&token==capabilityGeneration)callback.available(value);});}});}catch(Exception e){main.post(()->{if(!closed&&token==capabilityGeneration)callback.available(false);});}
   }
   public void generate(AssistantConnection connection,String prompt,String requestId,Result result)throws Exception{
+    generate(connection,prompt,requestId,connection.servicePermission(),result);
+  }
+  public void generate(AssistantConnection connection,String prompt,String requestId,AssistantConnection.ServicePermit permission,Result result)throws Exception{
+    if(!connection.permitsImage(permission))throw new OnlineAssistantClient.PermissionChanged();
     if(closed)throw new IOException();cancel();int token=generation;
+    OkHttpClient.Builder guarded=http.newBuilder();guarded.interceptors().add(0,chain->{
+      if(!connection.permitsImage(permission))throw new OnlineAssistantClient.PermissionChanged();
+      return chain.proceed(chain.request());
+    });
     JSONObject body=new JSONObject().put("prompt",prompt).put("requestId",requestId);
-    active=http.newCall(request(connection,"/v1/images").post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"),body.toString())).build());
+    active=guarded.build().newCall(request(connection,"/v1/images").post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"),body.toString())).build());
     active.enqueue(new Callback(){
-      public void onFailure(Call c,IOException e){fail(e instanceof java.io.InterruptedIOException?"image_timeout":"image_network");}
+      public void onFailure(Call c,IOException e){fail(e instanceof OnlineAssistantClient.PermissionChanged?"image_permission_changed":e instanceof java.io.InterruptedIOException?"image_timeout":"image_network");}
       public void onResponse(Call c,Response r){GeneratedImages.Data image=null;String error="invalid_image_response";
         try(r){if(r.body()!=null){int limit=r.isSuccessful()?2_800_000:4096;r.body().source().request(limit+1L);if(r.body().source().buffer().size()<=limit){JSONObject value=new JSONObject(r.body().string());if(r.isSuccessful())image=GeneratedImages.Data.parse(value);else error=value.optString("error","image_provider_unavailable");}}}catch(Exception ignored){}
-        if(image==null){fail(error);return;}GeneratedImages.Data data=image;main.post(()->{if(!closed&&token==generation)result.complete(data);});
+        if(image==null){fail(error);return;}GeneratedImages.Data data=image;main.post(()->{if(!closed&&token==generation){if(connection.permitsImage(permission))result.complete(data);else result.failed("image_permission_changed");}});
       }
       private void fail(String error){main.post(()->{if(!closed&&token==generation)result.failed(error);});}
     });

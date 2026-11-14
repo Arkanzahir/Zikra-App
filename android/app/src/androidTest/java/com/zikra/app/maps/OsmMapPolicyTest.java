@@ -17,7 +17,7 @@ public final class OsmMapPolicyTest extends InstrumentationTestCase {
       config.setExpirationOverrideDuration(900000000L);
       OsmMapPolicy.configure(context);
       assertNull(config.getExpirationOverrideDuration()); assertEquals(0L, config.getExpirationExtendedDuration());
-      assertTrue(config.getUserAgentValue().contains("Zikra-Android/1.9.50"));
+      assertTrue(config.getUserAgentValue().contains("Zikra-Android/1.9.51"));
       assertEquals("osm-http-v2", config.getOsmdroidBasePath().getName());
       assertEquals((short)2, config.getTileDownloadThreads());
       long now = java.time.Instant.parse("2026-11-14T00:00:00Z").toEpochMilli();

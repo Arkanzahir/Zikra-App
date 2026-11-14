@@ -1,13 +1,13 @@
 # Catatan calon beta — belum diterbitkan
 
 Paket final, versi distribusi, hash, signer dan URL unduhan belum dipilih.
-Kandidat internal terbaru1.9.50/code77,50.316.831byte;SHA256
-1e52d94689625726ed02e0d3e2b2742e0d0ac8a711e6412f6a236140fd70ba4d.
-Menambahkan cadangan lokal terenkripsi dan pemulihan staging pada instalasi kosong
-Android9+, tanpa token/consent.224JVM/10native kandidat lulus,0skip;
-lint0error/894warning. [Bukti/batas](../../android/validation/local-migration-2026-11-14/README.md).
-HP tetap1.9.48. PenerbitZikra,sasaran13+. Debug/HOLD;hak/signing/privasi remaja/
-retensi/pickerHP/perangkat dan keputusan beta tetap terbuka. Website ditunda.
+Kandidat internal terbaru1.9.51/code78,50.364.855byte;SHA256
+99eeba78ed0f240ae9feea50db8f6592c442b5894fa6800565e908a1e15afb7c.
+Memperkuat izin chat/gambar terhadap perubahan layanan/revoke saat review/antrean.
+230JVM/14native emulator lulus,0skip;lint0error/894warning.
+[Bukti/batas](../../android/validation/privacy-consent-2026-11-14/README.md).
+HP tetap1.9.48;debug/HOLD. Target13+ bukan bukti usia/wali. Hak/B01/audio,
+retensi/privasi remaja, signer final/pickerHP/J13/J14 tetap. Website ditunda.
 
 ## Fitur yang dapat diuji setelah gerbang dipenuhi
 

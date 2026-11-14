@@ -16,10 +16,33 @@ import okhttp3.HttpUrl;
 /** Private gateway credentials are separate from upstream provider credentials. */
 public final class AssistantConnection {
   private static final String KEY = "zikra-assistant-gateway-v1";
-  private final SharedPreferences prefs;
+  private final SharedPreferences prefs, consent;
 
   public AssistantConnection(Context context) {
     prefs = context.getSharedPreferences("assistant_gateway", 0);
+    consent = context.getSharedPreferences("zikra_preferences", 0);
+  }
+
+  private String credentialIdentity() { return prefs.getString("iv", "") + ":" + prefs.getString("access", ""); }
+  public AssistantConsent.Permit permission() { return configured() ? AssistantConsent.capture(consent, endpoint(), credentialIdentity()) : null; }
+  public boolean permits(AssistantConsent.Permit permit) {
+    return configured() && !"offline".equals(consent.getString("assistant_mode_v2", "auto")) && permit != null && permit.matches(consent, endpoint(), credentialIdentity());
+  }
+
+  /** Image confirmation is per prompt; it does not silently grant basic chat permission. */
+  public static final class ServicePermit {
+    private final String endpoint, credential, revision;
+    private ServicePermit(String endpoint, String credential, String revision) {
+      this.endpoint = endpoint; this.credential = credential; this.revision = revision;
+    }
+  }
+  public ServicePermit servicePermission() {
+    return configured() ? new ServicePermit(endpoint(), credentialIdentity(), AssistantConsent.revision(consent)) : null;
+  }
+  public boolean permitsImage(ServicePermit permit) {
+    return configured() && !"offline".equals(consent.getString("assistant_mode_v2", "auto")) && permit != null
+        && endpoint().equals(permit.endpoint) && credentialIdentity().equals(permit.credential)
+        && AssistantConsent.revision(consent).equals(permit.revision);
   }
 
   public String endpoint() {

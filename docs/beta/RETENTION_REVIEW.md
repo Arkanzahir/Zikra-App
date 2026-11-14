@@ -26,3 +26,13 @@ Sasaran beta dipilih pengguna: **13+**, termasuk remaja13–17tahun. Pemilihan
 sasaran bukan verifikasi usia/izin orang tua. Peninjauan ketentuan layanan untuk
 remaja, alur pendampingan/persetujuan dan penjelasan publik masih gate sebelum
 undangan remaja. Tidak membuat tanggal lahir atau identitas palsu untuk uji.
+
+## Peninjauan kontrol1.9.51
+
+[Pemeriksaan terarah](PRIVACY_SECURITY_REVIEW.md) memisahkan revokasi izin
+konten dari penghapusan chat/registry/salinan penyedia. Revisi izin disimpan
+lokal tanpa timestamp/nama dan tidak dikirim sebagai profil pengguna. Request
+yang sudah diterima penyedia tidak dapat ditarik oleh guard antrean. Status
+retensi dashboard/log/backup tetap belum final; tidak mengubah TTL/produksi.
+[Tinjauan remaja](TEEN_PRIVACY_REVIEW.md) tetap membutuhkan mekanisme usia/wali
+dan peninjauan lokasi presisi; basicconsent bukan persetujuan wali.

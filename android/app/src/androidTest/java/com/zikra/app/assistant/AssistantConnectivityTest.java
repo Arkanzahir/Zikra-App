@@ -40,6 +40,11 @@ public final class AssistantConnectivityTest extends InstrumentationTestCase {
   private Context context;
   private AiActivity activity;
 
+  private AssistantConnection authorizedConnection() {
+    AssistantConnection connection = new AssistantConnection(context);
+    AssistantConsent.accept(context.getSharedPreferences("zikra_preferences", 0), connection.endpoint());
+    return connection;
+  }
   @Override protected void setUp() throws Exception {
     super.setUp();
     context = getInstrumentation().getTargetContext();
@@ -84,7 +89,7 @@ public final class AssistantConnectivityTest extends InstrumentationTestCase {
       CountDownLatch done = new CountDownLatch(1);
       AtomicReference<OnlineAssistantClient.Failure> failure = new AtomicReference<>();
       try (OnlineAssistantClient client = new OnlineAssistantClient(http)) {
-        client.send(new AssistantConnection(context), new JSONObject().put("messages", new JSONArray()), new OnlineAssistantClient.Result() {
+        client.send(authorizedConnection(), new JSONObject().put("messages", new JSONArray()), new OnlineAssistantClient.Result() {
           public void complete(String value) { done.countDown(); }
           public void failed() { done.countDown(); }
           public void failed(OnlineAssistantClient.Failure value) { failure.set(value); done.countDown(); }

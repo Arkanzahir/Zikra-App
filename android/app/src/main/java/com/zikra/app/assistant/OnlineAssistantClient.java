@@ -21,7 +21,7 @@ public final class OnlineAssistantClient implements AutoCloseable {
     default void failed(Failure failure) { failed(); }
   }
 
-  public enum Failure { UNAUTHORIZED, QUOTA, RATE_LIMIT, PROVIDER_QUOTA, PROVIDER_CHANGED, BUSY, TIMEOUT, NETWORK, SERVER, INVALID_RESPONSE, SOURCE, ATTACHMENT }
+  public enum Failure { CONSENT, UNAUTHORIZED, QUOTA, RATE_LIMIT, PROVIDER_QUOTA, PROVIDER_CHANGED, BUSY, TIMEOUT, NETWORK, SERVER, INVALID_RESPONSE, SOURCE, ATTACHMENT }
 
   public static Failure failure(int status, String error) {
     if ("source_unavailable".equals(error)) return Failure.SOURCE;
@@ -71,13 +71,25 @@ public final class OnlineAssistantClient implements AutoCloseable {
   }
 
   public void send(AssistantConnection connection, JSONObject body, Result result) throws Exception {
+    send(connection, body, connection.permission(), result);
+  }
+  public static final class PermissionChanged extends IOException {
+    PermissionChanged() { super("AI permission or connection changed"); }
+  }
+  public void send(AssistantConnection connection, JSONObject body, AssistantConsent.Permit permission, Result result) throws Exception {
+    if (!connection.permits(permission)) throw new PermissionChanged();
     if (closed.get()) throw new IOException("Assistant client is closed");
     cancel();
     int token = generation;
     String code = connection.accessCode(), endpoint = connection.endpoint();
     if (!AssistantConnection.valid(endpoint, code)) throw new IOException("Invalid gateway");
+    OkHttpClient.Builder guarded = http.newBuilder();
+    guarded.interceptors().add(0, chain -> {
+      if (!connection.permits(permission)) throw new PermissionChanged();
+      return chain.proceed(chain.request());
+    });
     active =
-        http.newCall(
+        guarded.build().newCall(
             new Request.Builder()
                 .url(endpoint)
                 .header("Authorization", "Bearer " + code)
@@ -93,7 +105,7 @@ public final class OnlineAssistantClient implements AutoCloseable {
           public void onFailure(Call call, IOException error) {
             main.post(
                 () -> {
-                  if (token == generation) result.failed(error instanceof java.io.InterruptedIOException
+                  if (token == generation) result.failed(error instanceof PermissionChanged ? Failure.CONSENT : error instanceof java.io.InterruptedIOException
                       ? Failure.TIMEOUT : Failure.NETWORK);
                 });
           }
@@ -133,6 +145,7 @@ public final class OnlineAssistantClient implements AutoCloseable {
             main.post(
                 () -> {
                   if (token == generation) {
+                    if (!connection.permits(permission)) { result.failed(Failure.CONSENT); return; }
                     if (finalAnswer != null) result.complete(finalAnswer, finalProposal, finalSource);
                     else result.failed(finalFailure);
                   }

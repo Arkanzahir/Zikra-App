@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.zikra.app.assistant.ConversationStore;
+import com.zikra.app.assistant.AssistantConnection;
 import com.zikra.app.assistant.AssistantNetwork;
 import com.zikra.app.assistant.AssistantAttachments;
 import com.zikra.app.assistant.AssistantCameraProvider;
@@ -182,17 +183,19 @@ public final class AiActivity extends BaseActivity {
     JSONObject row=messages.optJSONObject(messages.length()-1);if(row==null||!"user".equals(row.optString("role"))||!row.optBoolean("image_generation"))return;
     if(!effectiveOnline()){imageFailure("image_network");return;}
     if(!generatedImages.canAccept()){toast(getString(R.string.ai_images_full));return;}
+    final AssistantConnection.ServicePermit permission=connection.servicePermission();
     String prompt=row.optString("text");TextView review=new TextView(this);review.setText(getString(R.string.ai_images_consent)+"\n\n"+prompt);review.setTextSize(16);review.setPadding(dp(20),dp(12),dp(20),dp(16));ScrollView content=new ScrollView(this);content.addView(review);
-    selectionDialog=new AlertDialog.Builder(this).setTitle(R.string.ai_images_review).setView(content).setPositiveButton(R.string.ai_images_start,(dialog,which)->generateImage(prompt)).setNegativeButton(R.string.ai_images_cancel,(dialog,which)->showCancelled()).create();
+    selectionDialog=new AlertDialog.Builder(this).setTitle(R.string.ai_images_review).setView(content).setPositiveButton(R.string.ai_images_start,(dialog,which)->generateImage(prompt,permission)).setNegativeButton(R.string.ai_images_cancel,(dialog,which)->showCancelled()).create();
     selectionDialog.setOnCancelListener(dialog->showCancelled());selectionDialog.show();
   }
-  private void generateImage(String prompt){
+  private void generateImage(String prompt,AssistantConnection.ServicePermit permission){
+    if(!connection.permitsImage(permission)){imageFailure("image_permission_changed");return;}
     if(waiting)return;if(!effectiveOnline()){imageFailure("image_network");return;}
     final String expected=chatId;generatingImage=true;setWaiting(true);findViewById(R.id.aiRetry).setVisibility(View.GONE);
     ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(input.getWindowToken(),0);input.clearFocus();
     ((TextView)findViewById(R.id.aiRequestStatus)).setText(R.string.ai_images_working);
     final String attemptId=java.util.UUID.randomUUID().toString();try{JSONObject current=messages.optJSONObject(messages.length()-1);if(current!=null)current.put("image_request_id",attemptId);}catch(JSONException ignored){}persistConversation();
-    try{imageClient.generate(connection,prompt,attemptId,new ImageGenerationClient.Result(){
+    try{imageClient.generate(connection,prompt,attemptId,permission,new ImageGenerationClient.Result(){
       public void complete(GeneratedImages.Data data){if(!expected.equals(chatId)||isDestroyed())return;
         ((TextView)findViewById(R.id.aiRequestStatus)).setText(R.string.ai_images_saving);
         generatedImages.save(expected,data,new GeneratedImages.Result(){
@@ -203,11 +206,11 @@ public final class AiActivity extends BaseActivity {
         });
       }
       public void failed(String error){if(expected.equals(chatId))imageFailure(error);}
-    });}catch(Exception unavailable){imageFailure("image_provider_unavailable");}
+    });}catch(OnlineAssistantClient.PermissionChanged changed){imageFailure("image_permission_changed");}catch(Exception unavailable){imageFailure("image_provider_unavailable");}
   }
   private void imageFailure(String error){
     if(isDestroyed()||isFinishing())return;generatingImage=false;setWaiting(false);int id;
-    switch(error){case "image_user_quota":id=R.string.ai_images_user_quota;break;case "image_global_quota":case "image_provider_quota":id=R.string.ai_images_global_quota;break;case "image_timeout":id=R.string.ai_images_timeout;break;case "image_network":id=R.string.ai_images_network;break;case "image_storage":id=R.string.ai_images_full;break;default:id=R.string.ai_images_failed;}
+    switch(error){case "image_permission_changed":id=R.string.assistant_permission_changed;break;case "image_user_quota":id=R.string.ai_images_user_quota;break;case "image_global_quota":case "image_provider_quota":id=R.string.ai_images_global_quota;break;case "image_timeout":id=R.string.ai_images_timeout;break;case "image_network":id=R.string.ai_images_network;break;case "image_storage":id=R.string.ai_images_full;break;default:id=R.string.ai_images_failed;}
     ((TextView)findViewById(R.id.aiRequestStatus)).setText(id);findViewById(R.id.aiRequestStatus).setVisibility(View.VISIBLE);findViewById(R.id.aiRetry).setVisibility(View.VISIBLE);
   }
   private void imageInChat(LinearLayout card,JSONObject item){
@@ -640,7 +643,7 @@ public final class AiActivity extends BaseActivity {
     if(connection==null||network==null)return;
     boolean online=effectiveOnline();String prefix="auto".equals(routingMode)?"Otomatis · ":"";
     String status=online?"Online":"Offline";
-    if(gatewayFailure!=null&&network.validated()&&online)status="Layanan bermasalah";
+    if(gatewayFailure!=null&&network.validated()&&online)status=gatewayFailure==OnlineAssistantClient.Failure.CONSENT?getString(R.string.assistant_permission_needed):"Layanan bermasalah";
     ((TextView)findViewById(R.id.aiMode)).setText(prefix+status+" ⌄");
     int note;
     switch(network.state()){
@@ -766,15 +769,17 @@ public final class AiActivity extends BaseActivity {
   }
 
   private void sendBasicOnline() {
+    com.zikra.app.assistant.AssistantConsent.Permit permission = connection.permission();
     try {
       JSONObject request=AssistantSelection.build(this,messages,false,false,false,false,false,pendingVerse,false);
       if(attachment!=null)request.put("attachments",new JSONArray().put(attachment.payload()));
       if(request.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8).length>2*1024*1024)throw new JSONException("Attachment budget");
-      sendOnline(request);
+      sendOnline(request, permission);
     }catch(Exception unavailable){toast("Pesan atau lampiran belum dapat disiapkan. Periksa lalu coba lagi.");showCancelled();}
   }
 
   private void showSelection() {
+    final com.zikra.app.assistant.AssistantConsent.Permit permission = connection.permission();
     if (selectionDialog != null && selectionDialog.isShowing()) return;
     ScrollView container = new com.zikra.app.ui.AssistantReviewScrollView(this);
     LinearLayout form = new LinearLayout(this);
@@ -813,12 +818,13 @@ public final class AiActivity extends BaseActivity {
     selectionDialog.setOnCancelListener(dialog -> showCancelled());
     selectionDialog.setOnShowListener(dialog -> selectionDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view -> {
       if (snapshot[0] == null) return;
-      JSONObject selected = snapshot[0]; selectionDialog.dismiss(); sendOnline(selected);
+      JSONObject selected = snapshot[0]; selectionDialog.dismiss(); sendOnline(selected, permission);
     }));
     selectionDialog.show();
   }
 
-  private void sendOnline(JSONObject request) {
+  private void sendOnline(JSONObject request, com.zikra.app.assistant.AssistantConsent.Permit permission) {
+    if (!connection.permits(permission)) { showOnlineFailure(OnlineAssistantClient.Failure.CONSENT); return; }
     final String requestChat=chatId;gatewayFailure=null;updateMode();
     if (waiting) return;
     if(!effectiveOnline()){showOnlineFailure(OnlineAssistantClient.Failure.NETWORK);return;}
@@ -828,6 +834,7 @@ public final class AiActivity extends BaseActivity {
       onlineClient.send(
           connection,
           request,
+          permission,
           new com.zikra.app.assistant.OnlineAssistantClient.Result() {
             @Override
             public void complete(String reply) {
@@ -859,6 +866,8 @@ public final class AiActivity extends BaseActivity {
 
             @Override public void failed(OnlineAssistantClient.Failure failure) { showOnlineFailure(failure); }
           });
+    } catch (OnlineAssistantClient.PermissionChanged changed) {
+      showOnlineFailure(OnlineAssistantClient.Failure.CONSENT);
     } catch (Exception unavailable) {
       showOnlineFailure();
     }
@@ -874,6 +883,7 @@ public final class AiActivity extends BaseActivity {
     gatewayFailure=failure;updateMode();
     int message;
     switch (failure) {
+      case CONSENT: message = R.string.assistant_permission_changed; break;
       case UNAUTHORIZED: message = R.string.assistant_auth_failed; break;
       case QUOTA: message = R.string.assistant_quota_failed; break;
       case RATE_LIMIT: message = R.string.assistant_rate_failed; break;

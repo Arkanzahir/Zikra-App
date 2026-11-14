@@ -1,0 +1,4 @@
+<resources>
+    <string name="assistant_permission_changed">Izin atau layanan AI berubah. Pesan belum dikirim. Tekan Coba lagi untuk meninjau izin yang berlaku.</string>
+    <string name="assistant_permission_needed">Perlu tinjau izin</string>
+</resources>

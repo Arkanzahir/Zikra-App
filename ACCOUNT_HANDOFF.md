@@ -1,3 +1,15 @@
+## Izin AI1.9.51 —14November2026
+
+[Bukti/batas](android/validation/privacy-consent-2026-11-14/README.md):230JVM/0skip,
+14native izin/regresi emulator lulus;lint0error/894warning. Review dan antrean
+chat/gambar terikat layanan/credential/revisi;latechatreply sesudah revoke dibuang,
+izin valid lama tidak diminta ulang tiap pesan. APK50.364.855byte,debug/HOLD;
+HP tetap1.9.48. Backend tidak berubah;134tes terdahulu bukan runbaru.
+[Tinjauan remaja](docs/beta/TEEN_PRIVACY_REVIEW.md):usia/wali/lokasi presisi/
+retensi akun tetap terbuka; basicconsent bukan izin wali. Tidak menyelesaikan
+J11/G03/beta. Website ditunda;WIP/stash/privat/aset tetap. Berikutnya keputusan
+mekanisme remaja dan retensi akun, hak/B01/signing, lalu sesiHPterkoordinasi.
+
 ## Cadangan lokal1.9.50 —14November2026
 
 [Bukti/batas](android/validation/local-migration-2026-11-14/README.md):224JVM/0skip,
@@ -34,7 +46,7 @@ berbalas di akun terhubung. Hak/privasi remaja/retensi/signing/J13/J14 tetap gat
 
 # Mulai di sini — handoff akun GPT
 
-Checkpoint terbaru: **14 November 2026, kandidat internal 1.9.50/code77, HOLD**.
+Checkpoint terbaru: **14 November 2026, kandidat internal 1.9.51/code78, HOLD**.
 Dokumen ini menggantikan ringkasan versi lama di percakapan. Akun baru tidak
 mewarisi chat, memori, koneksi layanan atau file privat akun sebelumnya.
 

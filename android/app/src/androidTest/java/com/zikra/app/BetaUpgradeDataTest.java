@@ -34,7 +34,7 @@ public final class BetaUpgradeDataTest extends InstrumentationTestCase {
     }
   }
   public void testVerifyAfterInPlaceUpdate() throws Exception {
-    assertEquals("1.9.50", context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName);
+    assertEquals("1.9.51", context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName);
     SharedPreferences prefs = context.getSharedPreferences("zikra_preferences", 0);
     assertTrue(prefs.contains("upgrade_chat"));
     assertEquals("Penguji upgrade", prefs.getString("profile_display_name", ""));

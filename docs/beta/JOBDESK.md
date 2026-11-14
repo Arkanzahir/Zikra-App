@@ -79,7 +79,7 @@ izin konten; Codex tidak dapat mengesahkan izin atas nama mereka.
 | J08 | P1 / E03 | Cuaca, alert, doa kontekstual, briefing | Cuaca live/cache,pengaturan,dedupe/izin/lokasi/hari lulus terarah;jobbackground/HP tetap | Mayoritas tidak, lalu J13 |
 | J09 | P1 / E04 | Darurat dan masjid terdekat | Intent nomor/draf/rute/fallback lulus dengan monitor;app penerima/HP tetap | Emulator dahulu, aksi akhir J13 |
 | J10 | P1 / F01–F04 | Konsistensi UI, aksesibilitas, performa | Panduan,splash/dock/keyboard/teks200% dan smoke16layar lulus;matriks/performaHP tetap | Sebagian emulator; performa akhir HP |
-| J11 | P0 / G03 | Privasi, dukungan dan tata kelola | Sebagian; nama Zikra/email dikonfirmasi, usia/retensi masih terbuka | Tidak |
+| J11 | P0 / G03 | Privasi, dukungan dan tata kelola | Sebagian; izin AI1.9.51diperkuat/teruji;usia-wali/lokasi/retensi tetap terbuka | Tidak |
 | J12 | P0 / G04 | Signing, paket dan migrasi distribusi | Sebagian; backup lokal/cross-signer emulator1.9.50lulus, key final/pickerHPbelum | Build tanpa HP; migrasi akhir J13 |
 | J13 | P0 / C02, D02, G01, G02 | Uji paket final dan kegagalan fisik | Menunggu HP dan kandidat final | Ya, dikoordinasikan |
 | J14 | P0 / G05 | Putusan siap beta terbatas | Antrean; HOLD tetap berlaku | Berdasarkan bukti J01–J13 |
@@ -222,6 +222,7 @@ F01–F04 tidak otomatis selesai dari subset tersebut.
 - [x] Kontak pengguna dicatat: arkanzahir46@gmail.com; draf retensi berbasis kode ada.
 - [x] Nama penerbit publik: Zikra; dikonfirmasi pengguna 14 November 2026.
 - [x] Sasaran beta13+ dipilih pengguna14November; bukan18+ dan bukan bukti verifikasi usia.
+- [x] Kontrol izin konten AI mengikat review/antrean pada layanan/revisi; [bukti1.9.51](../../android/validation/privacy-consent-2026-11-14/README.md).
 - [ ] Tuntaskan penanganan remaja13–17tahun, layanan dan kebijakan publik
   yang sesuai implementasi; jangan menjanjikan nol log atau retensi yang tak terbukti.
 - [ ] Tetapkan proses dukungan, pencabutan akses/penghapusan data dan penanganan
