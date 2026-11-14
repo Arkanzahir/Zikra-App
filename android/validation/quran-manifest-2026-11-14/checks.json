@@ -1,0 +1,20 @@
+{
+  "version": "1.9.49",
+  "versionCode": 76,
+  "sha256": "f01398824c5c9463b64cffae171bc6e35ea714a7869020830790ac6d4de410ef",
+  "unit": {
+    "tests": 207,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 890
+  },
+  "nativePassed": 16,
+  "seedPreparationPassed": 1,
+  "intentionallyKilledPreparationCountedAsPass": false,
+  "physicalDeviceTested": false
+}

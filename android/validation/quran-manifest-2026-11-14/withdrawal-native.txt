@@ -1,0 +1,5 @@
+com.zikra.app.reading.QuranWithdrawalTest:..
+Test results for InstrumentationTestRunner=..
+Time: 0.642
+
+OK (2 tests)

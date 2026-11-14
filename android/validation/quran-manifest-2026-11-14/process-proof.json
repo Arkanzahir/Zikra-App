@@ -1,0 +1,7 @@
+{
+  "actualForceStop": true,
+  "targetProcessObservedBeforeKill": true,
+  "oldProcessGone": true,
+  "recoveryPassed": true,
+  "privateContentLogged": false
+}

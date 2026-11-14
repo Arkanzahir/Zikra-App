@@ -1,0 +1,5 @@
+com.zikra.app.reading.QuranProcessRecoveryTest:.
+Test results for InstrumentationTestRunner=.
+Time: 0.116
+
+OK (1 test)

@@ -20,6 +20,18 @@ public final class QuranSyncStore {
   public interface Check { void run() throws Exception; }
   public QuranSyncStore(Context context) { root = new File(context.getFilesDir(), "quran-content-sync-r33"); }
   private AtomicFile pointer(int chapter) { return new AtomicFile(new File(root, "chapter-" + chapter + ".json")); }
+  private JSONObject manifest(QuranChapters.Chapter chapter) throws IOException, org.json.JSONException {
+    JSONObject value = new JSONObject(readBounded(pointer(chapter.id).openRead(), 4096));
+    long checked = value.getLong("checked_at");
+    if (value.getInt("schema") != 1 || value.getInt("chapter") != chapter.id
+        || value.getInt("pages") != (chapter.count + 49) / 50
+        || !value.getString("generation").matches("[a-f0-9-]{36}")
+        || !(value.get("checked_at") instanceof Number)
+        || ((Number) value.get("checked_at")).doubleValue() != checked
+        || checked < 1 || checked > System.currentTimeMillis() + 60000)
+      throw new IOException("Invalid Quran chapter manifest");
+    return value;
+  }
   public static String readBounded(InputStream source, int limit) throws IOException {
     try (InputStream input = source; ByteArrayOutputStream output = new ByteArrayOutputStream()) {
       byte[] bytes = new byte[8192]; int size;
@@ -33,11 +45,8 @@ public final class QuranSyncStore {
   public String read(QuranChapters.Chapter chapter, int page) throws Exception {
     synchronized (COMMIT) {
       recoverOrphans();
-      JSONObject manifest = new JSONObject(readBounded(pointer(chapter.id).openRead(), 4096));
+      JSONObject manifest = manifest(chapter);
       String generation = manifest.getString("generation");
-      if (manifest.getInt("schema") != 1 || manifest.getInt("chapter") != chapter.id
-          || !generation.matches("[a-f0-9-]{36}") || manifest.getInt("pages") != (chapter.count + 49) / 50)
-        throw new IOException("Invalid Quran chapter manifest");
       String json = readBounded(new FileInputStream(new File(new File(root, generation), page + ".json")), 524288);
       if (QuranSyncPage.validate(json, chapter, page, System.currentTimeMillis()) != manifest.getLong("checked_at"))
         throw new IOException("Quran generation mismatch");
@@ -83,21 +92,32 @@ public final class QuranSyncStore {
       synchronized (COMMIT) {
         AtomicFile pointer = pointer(chapter.id); FileOutputStream output = null;
         String obsolete = null;
+        JSONObject old = null;
         try {
-          JSONObject old = new JSONObject(readBounded(pointer.openRead(), 4096));
+          JSONObject candidate = manifest(chapter);
+          String first = readBounded(new FileInputStream(new File(new File(root,
+              candidate.getString("generation")), "1.json")), 524288);
+          if (QuranSyncPage.validate(first, chapter, 1, System.currentTimeMillis()) != candidate.getLong("checked_at"))
+            throw new IOException("Quran pointer source mismatch");
+          old = candidate;
+        } catch (IOException | org.json.JSONException | IllegalArgumentException invalidPointer) {
+          // A complete validated download may repair the pointer; do not trust it for cleanup.
+        }
+        if (old != null) {
           if (old.getLong("checked_at") > checked) throw new IOException("Newer Quran generation already installed");
           String previous = old.getString("generation");
           if (previous.matches("[a-f0-9-]{36}")) manifest.put("previous", previous);
           obsolete = old.optString("previous", "");
-        } catch (FileNotFoundException firstDownload) { /* No prior chapter generation. */ }
+        }
         try {
+          check.run();
           output = pointer.startWrite(); output.write(manifest.toString().getBytes(StandardCharsets.UTF_8));
           pointer.finishWrite(output); committed = true;
         } catch (Exception error) {
           if (output != null) pointer.failWrite(output);
           throw error;
         }
-        removeOwnedGeneration(obsolete);
+        removeObsoleteGeneration(obsolete);
       }
     } finally {
       synchronized (COMMIT) {
@@ -105,6 +125,22 @@ public final class QuranSyncStore {
         if (!committed) removeOwnedGeneration(staging.getName());
       }
     }
+  }
+  private void removeObsoleteGeneration(String name) {
+    if (name == null || !name.matches("[a-f0-9-]{36}")) return;
+    File[] files = root.listFiles();
+    if (files == null || files.length > 1000) return;
+    Set<String> pointers = new HashSet<>();
+    for (File file : files) if (file.getName().matches("chapter-[1-9][0-9]{0,2}\\.json(\\.bak)?"))
+      pointers.add(file.getName().replaceFirst("\\.bak$", ""));
+    try {
+      for (String pointer : pointers) {
+        JSONObject current = new JSONObject(readBounded(new AtomicFile(new File(root, pointer)).openRead(), 4096));
+        if (name.equals(current.getString("generation")) || name.equals(current.optString("previous", ""))) return;
+      }
+    } catch (IOException | org.json.JSONException uncertainReference) { return; }
+    // A corrupt previous pointer must never reclaim another chapter's committed data.
+    removeOwnedGeneration(name);
   }
   private void removeOwnedGeneration(String name) {
     if (name == null || !name.matches("[a-f0-9-]{36}")) return;

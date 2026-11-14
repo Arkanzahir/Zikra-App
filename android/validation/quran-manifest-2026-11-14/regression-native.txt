@@ -1,0 +1,6 @@
+com.zikra.app.QuranSyncIntegrationTest:....
+com.zikra.app.maps.OsmMapPolicyTest:.
+Test results for InstrumentationTestRunner=.....
+Time: 2.661
+
+OK (5 tests)

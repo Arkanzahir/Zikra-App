@@ -1,3 +1,13 @@
+## Kandidat1.9.49 dan arah berikutnya —14November2026
+
+Baca [receipt1.9.49](android/validation/quran-manifest-2026-11-14/README.md).
+J02 teknis ditutup setelah perbaikan pointer/cleanup/cancel;207JVM/16native lulus.
+HP tetap1.9.48; jangan klaim1.9.49 diuji fisik. Website ditunda,preview48 dibekukan.
+Pengguna memilih cadangan lokal dahulu untuk migrasi debug→release. Implementasi
+cadangan terenkripsi/import aman dan uji lintas signer menjadi pekerjaan berikutnya.
+Jangan ekspor token/kunci Android Keystore; jangan uninstall HP. Cloudbackup tetap
+tertunda. Hak/B01/audio/privasi/signing/J13/beta belum selesai.
+
 ## Kelanjutan HP/operasional —14November2026
 
 [Bukti](android/validation/phone-ops-2026-11-14/README.md): APK1.9.48 yang sama
@@ -8,7 +18,7 @@ berbalas di akun terhubung. Hak/privasi remaja/retensi/signing/J13/J14 tetap gat
 
 # Mulai di sini — handoff akun GPT
 
-Checkpoint terbaru: **14 November 2026, kandidat internal 1.9.48/code75, HOLD**.
+Checkpoint terbaru: **14 November 2026, kandidat internal 1.9.49/code76, HOLD**.
 Dokumen ini menggantikan ringkasan versi lama di percakapan. Akun baru tidak
 mewarisi chat, memori, koneksi layanan atau file privat akun sebelumnya.
 
@@ -52,14 +62,16 @@ arkanzahir46@gmail.com. Ini tidak menutup retensi/usia atau mengizinkan publikas
 
 ## 3. Kandidat dan bukti terkini
 
-APK: D:/Download/Zikra-App-main/Zikra-Polish-v1.9.48-beta-debug.apk.
-Ukuran49.615.884 byte, SHA256:
-7a8d094170d31b2dbd25b5e0e31074b61642b3208e0b269b5ce6b90ab61b6319.
-Audit: android/validation/audio-map-2026-11-14/apk-audit.json.
+APK: D:/Download/Zikra-App-main/Zikra-Polish-v1.9.49-beta-debug.apk.
+Ukuran49.537.679 byte, SHA256:
+f01398824c5c9463b64cffae171bc6e35ea714a7869020830790ac6d4de410ef.
+Audit: android/validation/quran-manifest-2026-11-14/apk-audit.json.
 Tanda tangan debug valid/sama; private entries0, credential dikenal0,
 backup/cleartext nonaktif. Ini bukan persetujuan distribusi publik.
 
-Hasil pada1.9.48: JVM207 lulus/0skip, native19 kasus emulator dan1 smoke fisik lulus, ditambah1 persiapan seed upgrade, lint0error/890warning.
+Hasil1.9.49:207JVM/16native emulator lulus,0skip,lint0error/890warning.
+Hasil1.9.48:19native emulator dan1smoke fisik; bukan tes kandidat baru.
+Persiapan seed/kill tidak dihitung sebagai metode native kandidat yang lulus.
 Bukti1.9.47 tetap historis:32native, tidak dijumlahkan ke kandidat baru.
 Bukan klaim source bebas masalah. Backend134tes lulus tanpa skip setelah tambahan
 alat operator erasure; endpoint/provider produksi tidak diubah/deploy.
@@ -116,7 +128,8 @@ terjaga, timestamp1chat serta cache/plan berubah wajar. Satu test fisik mencakup
 
 ## 5. Pekerjaan berikutnya, bukan mulai dari nol
 
-1. Lanjutkan J02/J03: font/Mushaf/audio/timing serta kebijakan cache masing-masing.
+1. J02 teknis ditutup pada1.9.49; lanjutkan sisa J03 font/Mushaf/audio/timing
+   serta kebijakan cache/hak masing-masing. Prioritas baru migrasi cadangan lokal.
    Resource dicabut, crash saat staging, gagal tulis dan guard ruang rendah sudah
    teruji terarah; lihat receipt quran-failure. ENOSPCfisik/power-loss belum
    dibuktikan. Jangan mengulang lima kasus atau gateway hosted tanpa alasan baru.
@@ -203,7 +216,7 @@ emulator disposable baru. Screenshot/log/ringkasan final tersedia di Git.
 
 Lanjutkan Zikra di D:/Download/Zikra-App-main/Zikra-App-main. Selalu gunakan caveman.
 Baca ACCOUNT_HANDOFF.md, AGENTS.md, SESSION_HANDOFF.md, IMPLEMENTATION_PLAN.md,
-RELEASE_SCOPE.md dan docs/beta/JOBDESK.md. Kandidat internal1.9.48 masih HOLD;
+RELEASE_SCOPE.md dan docs/beta/JOBDESK.md. Kandidat internal1.9.49 masih HOLD;
 bukti terbaru ada di android/validation/beta-final-2026-11-14/README.md.
 Jangan ulang proyek atau menganggap A–D/E/F/G selesai. Pertahankan WIP, stash audio,
 data pengguna, desain diterima dan konfigurasi privat. Lanjutkan gap terdekat

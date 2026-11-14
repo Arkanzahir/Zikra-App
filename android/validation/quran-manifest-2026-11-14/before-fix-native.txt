@@ -1,0 +1,54 @@
+com.zikra.app.QuranManifestRecoveryTest:
+Error in testCorruptManifestCanBeRepairedOnlyByACompleteValidDownload:
+org.json.JSONException: Expected ':' after broken at character 7 of {broken
+	at org.json.JSONTokener.syntaxError(JSONTokener.java:469)
+	at org.json.JSONTokener.readObject(JSONTokener.java:397)
+	at org.json.JSONTokener.nextValue(JSONTokener.java:104)
+	at org.json.JSONObject.<init>(JSONObject.java:168)
+	at org.json.JSONObject.<init>(JSONObject.java:185)
+	at com.zikra.app.reading.QuranSyncStore.download(QuranSyncStore.java:87)
+	at com.zikra.app.QuranManifestRecoveryTest.testCorruptManifestCanBeRepairedOnlyByACompleteValidDownload(QuranManifestRecoveryTest.java:60)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:569)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2655)
+
+Error in testInvalidSchemaAndOversizedManifestCannotPermanentlyBlockRepair:
+java.io.IOException: Newer Quran generation already installed
+	at com.zikra.app.reading.QuranSyncStore.download(QuranSyncStore.java:88)
+	at com.zikra.app.QuranManifestRecoveryTest.testInvalidSchemaAndOversizedManifestCannotPermanentlyBlockRepair(QuranManifestRecoveryTest.java:68)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:569)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2655)
+
+Error in testObsoletePointerCannotDeleteAnotherChaptersCommittedGeneration:
+java.io.FileNotFoundException: /data/user/0/com.zikra.app/cache/quran-manifest-test-e76be543-d99f-47fe-b224-77f21789367d/quran-content-sync-r33/b9609118-634d-46bf-8e99-cb461d0694bb/1.json: open failed: ENOENT (No such file or directory)
+	at libcore.io.IoBridge.open(IoBridge.java:569)
+	at java.io.FileInputStream.<init>(FileInputStream.java:179)
+	at com.zikra.app.reading.QuranSyncStore.read(QuranSyncStore.java:41)
+	at com.zikra.app.QuranManifestRecoveryTest.testObsoletePointerCannotDeleteAnotherChaptersCommittedGeneration(QuranManifestRecoveryTest.java:91)
+	at android.test.InstrumentationTestCase.runMethod(InstrumentationTestCase.java:220)
+	at android.test.InstrumentationTestCase.runTest(InstrumentationTestCase.java:205)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:195)
+	at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:181)
+	at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:569)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2655)
+Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+	at libcore.io.Linux.open(Native Method)
+	at libcore.io.ForwardingOs.open(ForwardingOs.java:410)
+	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:274)
+	at libcore.io.ForwardingOs.open(ForwardingOs.java:410)
+	at android.app.AndroidForwardingOs.open(AndroidForwardingOs.java:120)
+	at libcore.io.IoBridge.open(IoBridge.java:555)
+	... 15 more
+.
+Test results for InstrumentationTestRunner=.E.E.E.
+Time: 5.293
+
+FAILURES!!!
+Tests run: 4,  Failures: 0,  Errors: 3

@@ -1,15 +1,13 @@
 # Catatan calon beta — belum diterbitkan
 
 Paket final, versi distribusi, hash, signer dan URL unduhan belum dipilih.
-Kandidat internal terbaru1.9.48/code75,49.615.884byte;SHA256
-7a8d094170d31b2dbd25b5e0e31074b61642b3208e0b269b5ce6b90ab61b6319.
-Audio menolak respons HTTP parsial; cache peta mengikuti expiry server.
-207JVM tanpa skip dan19native emulator lulus;0lint error/890warning.
-Tambahan1smoke HP/14kondisi tema+dock lulus pada hash yang sama;
-update1.9.39→1.9.48 mempertahankan isi42baris lama. Backend134tes lulus
-setelah alat erasure operator lokal; tidak deploy/menghapus produksi.
-[Bukti/batas](../../android/validation/audio-map-2026-11-14/README.md).
-Penerbit publik: Zikra. Tetap debug/HOLD;HP,signing,hak,usia/retensi dan gerbang lain terbuka.
+Kandidat internal terbaru1.9.49/code76,49.537.679byte;SHA256
+f01398824c5c9463b64cffae171bc6e35ea714a7869020830790ac6d4de410ef.
+Memperbaiki indeks Quran rusak,perlindungan cache surah lain dan pembatalan commit.
+207JVM/16native emulator lulus,0skip;lint0error/890warning.
+[Bukti/batas](../../android/validation/quran-manifest-2026-11-14/README.md).
+HP masih1.9.48. PenerbitZikra,sasaran13+. Debug/HOLD;hak/signing/privasi remaja/
+migrasi/perangkat dan keputusan beta tetap terbuka. Website ditunda pengguna.
 
 ## Fitur yang dapat diuji setelah gerbang dipenuhi
 

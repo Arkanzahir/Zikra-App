@@ -1,3 +1,13 @@
+## Pemulihan Quran1.9.49 —14November2026
+
+[Bukti terkini](../../android/validation/quran-manifest-2026-11-14/README.md):207JVM/16native
+emulator lulus,0skip;lint0error/890warning. Manifest rusak dapat diperbaiki,
+cleanup melindungi surah lain,checkcancel sebelumcommit. J02 teknis dicentang;
+hak/J03lengkap/HP/signing/privasi/beta tetap terbuka. APK49.537.679byte,debug/HOLD.
+HP tetap1.9.48. Website ditunda pengguna; preview1.9.48 dibekukan. Pengguna
+memilih pemindahan data via cadangan lokal; kerjakan enkripsi/restore lintas
+signer berikutnya, bukan backupcloudF06. WIP/stash/privat/aset tetap.
+
 ## HP dan operasional —14November2026
 
 [Bukti terbaru](../../android/validation/phone-ops-2026-11-14/README.md):HP diperbarui

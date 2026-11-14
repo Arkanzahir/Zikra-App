@@ -1,21 +1,21 @@
 {
   "date": "2026-11-14",
   "releaseStatus": "HOLD",
-  "version": "1.9.48",
-  "versionCode": 75,
-  "apkBytes": 49615884,
-  "apkSha256": "7a8d094170d31b2dbd25b5e0e31074b61642b3208e0b269b5ce6b90ab61b6319",
+  "version": "1.9.49",
+  "versionCode": 76,
+  "apkBytes": 49537679,
+  "apkSha256": "f01398824c5c9463b64cffae171bc6e35ea714a7869020830790ac6d4de410ef",
   "debugSigningKey": true,
-  "phoneTestedOnCandidate": true,
-  "nativePassed": 20,
+  "phoneTestedOnCandidate": false,
+  "nativePassed": 16,
   "jvmPassed": 207,
   "jvmSkipped": 0,
   "lintErrors": 0,
   "lintWarnings": 890,
-  "backendPreviousRunPassed": 125,
-  "backendChanged": true,
-  "website": "static-check-1.9.48-passed-layout-and-screenshot-1.9.47-no-public-download",
-  "evidence": "android/validation/phone-ops-2026-11-14/README.md",
+  "backendPreviousRunPassed": 134,
+  "backendChanged": false,
+  "website": "paused-by-user-preview-still-1.9.48-no-public-download",
+  "evidence": "android/validation/quran-manifest-2026-11-14/README.md",
   "remaining": [
     "quran-font-audio-failure-matrix",
     "background-and-device-verification",
@@ -25,7 +25,7 @@
     "physical-device-final-session-remaining-cases",
     "beta-decision-and-public-download"
   ],
-  "additionalEvidence": "android/validation/audio-map-2026-11-14/README.md",
+  "additionalEvidence": "android/validation/phone-ops-2026-11-14/README.md",
   "quranFailureVerification": {
     "withdrawalProtocol": true,
     "processKilledDuringStaging": true,
@@ -33,8 +33,8 @@
     "lowSpaceGuard": true,
     "actualEnospc": false,
     "powerLoss": false,
-    "candidateVersion": "1.9.47",
-    "evidence": "android/validation/quran-failure-2026-11-14/README.md"
+    "candidateVersion": "1.9.49",
+    "evidence": "android/validation/quran-manifest-2026-11-14/README.md"
   },
   "publisherDisplayName": "Zikra",
   "publisherConfirmedDate": "2026-11-14",
@@ -42,11 +42,11 @@
   "previousCandidateNativePassed": 32,
   "previousCandidateVersion": "1.9.47",
   "phoneFinalSessionComplete": false,
-  "physicalSmokeCasesPassed": 1,
-  "physicalScreenThemeChecks": 14,
-  "nativeEmulatorPassed": 19,
-  "backendCurrentRunPassed": 134,
-  "backendChangeScope": "operator-erasure-and-private-token-output-guards-no-production-deploy",
+  "physicalSmokeCasesPassed": 0,
+  "physicalScreenThemeChecks": 0,
+  "nativeEmulatorPassed": 16,
+  "backendCurrentRunPassed": null,
+  "backendChangeScope": "no-backend-change-in-1.9.49",
   "targetMinimumAge": 13,
   "teenPrivacyFinalized": false,
   "phoneDataVerification": {
@@ -55,6 +55,17 @@
     "databaseIntegrityPassed": true,
     "operationalChatTimestampChanges": 1,
     "userPreferencesPreserved": true,
-    "derivedSkyAndAlarmPlanRefreshed": true
+    "derivedSkyAndAlarmPlanRefreshed": true,
+    "candidateVersion": "1.9.48"
+  },
+  "previousPhysicalVersion": "1.9.48",
+  "previousPhysicalSmokeCasesPassed": 1,
+  "previousPhysicalScreenThemeChecks": 14,
+  "backendTestSourceCommit": "4420cc7",
+  "quranManifestRecovery": {
+    "corruptManifestRepair": true,
+    "crossChapterCacheProtected": true,
+    "finalCommitCancellationChecked": true,
+    "validNewerGenerationRetained": true
   }
 }

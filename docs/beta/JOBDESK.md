@@ -59,7 +59,7 @@ izin konten; Codex tidak dapat mengesahkan izin atas nama mereka.
 | ID | Prioritas / acuan | Pekerjaan | Status checkpoint14November | HP |
 | --- | --- | --- | --- | --- |
 | J01 | P0 / G03, D03 | Layanan Content Sync server | Selesai terverifikasi: endpoint/cache/enkripsi dan hosted200/401/429 lulus | Tidak |
-| J02 | P0 / D03, D06, G03 | Integrasi Quran reader dan unduhan Android | Terintegrasi1.9.47;hosted native,staging,upgrade terisi lulus;gapfailure/audio/HP tetap | Emulator dahulu, konfirmasi akhir J13 |
+| J02 | P0 / D03, D06, G03 | Integrasi Quran reader dan unduhan Android | Teknis selesai1.9.49;manifest/cancel/withdrawal/storage/processkill/upgrade teruji;hak danJ13 tetap | Emulator dahulu, konfirmasi akhir J13 |
 | J03 | P0 / D03, G03 | Integrasi layout Mushaf, font, timing/audio | Mapping604/font CDN asli lulus;seluruhfont/timing/audio/hak tetap | Emulator dahulu, akhir J13 |
 | J04 | P0 / G03 | Sumber dan hak Quran/font/terjemahan/layanan | Sebagian; tiga font bundel lolos audit paket | Tidak, izin eksternal mungkin perlu |
 | J05 | P0 / B01 | Kejelasan sumber kitab Hadis lengkap | Menunggu klarifikasi sumber/cakupan | Tidak |
@@ -95,21 +95,28 @@ Receipt lanjutan: android/validation/quran-sync-integration/README.md dan hosted
 
 ### J02 — Quran reader dan unduhan
 
-Tambahan: [withdrawal/proses mati/gagal tulis/ruang rendah](../../android/validation/quran-failure-2026-11-14/README.md) teruji terarah pada APK yang sama. Lima kasus ini bukan ENOSPCfisik atau power-loss; kriteria majemuk yang belum lengkap tetap terbuka.
+Bukti1.9.47 sebelumnya: [withdrawal/proses mati/gagal tulis/ruang rendah](../../android/validation/quran-failure-2026-11-14/README.md).
+[Bukti1.9.49 terkini](../../android/validation/quran-manifest-2026-11-14/README.md)
+menutup kriteria teknis di bawah; bukan ENOSPCfisik atau power-loss.
 
 - [x] Hubungkan reader/QuranDownloadService ke data dari Content Sync dengan
   identitas surah/ayat/terjemahan yang sama, tanpa mengubah teks sumber.
-- [ ] Terapkan penyimpanan durable/staging dan perpindahan generasi hanya sesudah
+- [x] Terapkan penyimpanan durable/staging dan perpindahan generasi hanya sesudah
   lengkap; file lama, bookmark/progres/pilihan qari dipertahankan sampai pengganti valid.
-- [ ] Refresh sesuai kontrak, bedakan umur data dari waktu dibaca; uji pembatalan,
+- [x] Refresh sesuai kontrak, bedakan umur data dari waktu dibaca; uji pembatalan,
   koneksi putus, korupsi, storage rendah, resource dicabut dan proses mati.
 
 Hasil: migrasi data terisi dan reader/unduhan luring teruji di emulator;
 catat batas empat surah bawaan/sumbernya. Tidak menghapus unduhan demi meluluskan tes.
 
+J02 teknis ditutup14November berdasarkan fixture/parser, staging atomik,
+16native1.9.49 termasuk kill/recovery, gangguan/cancel/storage/withdrawal,
+serta preservasi data sintetis. Bukti: quran-manifest-2026-11-14. ENOSPCfisik/
+powerloss di luar klaim tes ini; hakJ04 dan sesi perangkatJ13 tetap terpisah.
+
 ### J03 — Mushaf dan audio
 
-- [ ] Petakan layout Mushaf/word ke ID resource yang benar, terpisah dari Quran
+- [x] Petakan layout Mushaf/word ke ID resource yang benar, terpisah dari Quran
   core/terjemahan; pertahankan navigasi halaman dan bookmark lama.
 - [ ] Bedakan cache font CDN, metadata timing dan binary rekaman; periksa kebijakan
   penyimpanan masing-masing. Uji basmalah/nama surah/harakat dan pergantian halaman.
