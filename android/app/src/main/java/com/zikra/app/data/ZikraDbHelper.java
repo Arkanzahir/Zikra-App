@@ -40,7 +40,7 @@ public final class ZikraDbHelper extends SQLiteOpenHelper {
   }
 
   private ZikraDbHelper(Context context, String databaseName, Clock clock, boolean followsLocation) {
-    super(context.getApplicationContext(), databaseName, null, VERSION);
+    super(com.zikra.app.migration.LocalMigration.storageContext(context.getApplicationContext()), databaseName, null, VERSION);
     if (clock == null) throw new IllegalArgumentException("Clock is required");
     this.clock = clock;
     this.context = context.getApplicationContext();

@@ -1,0 +1,30 @@
+{
+  "candidate": {
+    "version": "1.9.50",
+    "code": 77,
+    "bytes": 50316831,
+    "sha256": "1e52d94689625726ed02e0d3e2b2742e0d0ac8a711e6412f6a236140fd70ba4d"
+  },
+  "jvm": {
+    "tests": 224,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 894
+  },
+  "nativeCandidateMethods": 10,
+  "crossSigner": {
+    "sourceCertificateSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
+    "targetDisposableCertificateSha256": "56786df615929492abe6175b0fdb96812de9d9fc65a96eb848b0da726eb5ff5c",
+    "targetApkSha256": "4b0ede80287c8bbe730661382d28ca9ad5cfb0fb32d0e1900cdc6a024fbbf536",
+    "payloadIdenticalExceptSignatures": true,
+    "fixtureSha256": "5d0003078b6bb46af864032a2b7c23e42cdc18f916ce2c255a68dc499e74f63a",
+    "startupRecovery": "restored",
+    "newProcessVerified": true
+  },
+  "physicalDeviceUsed": false,
+  "releaseStatus": "HOLD"
+}

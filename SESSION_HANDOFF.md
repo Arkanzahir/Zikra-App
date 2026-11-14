@@ -1,3 +1,14 @@
+## Cadangan lokal1.9.50 —14November2026
+
+[Bukti/batas](android/validation/local-migration-2026-11-14/README.md):224JVM/0skip,
+8native core +2native lintas signer kandidat lulus; lint0error/894warning.
+Profil → Cadangan lokal, password/enkripsi, staging/guard/jurnal/fresh-target dan
+cleanup terarah tersedia. Restore Android9+, tanpa transfer token/consent/OSgrants;
+buka proses baru setelah aktivasi. APK50.316.831byte,debug/HOLD. HP tetap1.9.48;
+SAF/picker/restore HP dan signer final belum lulus. Website tetap ditunda.
+J12 sebagian, bukan selesai rilis; hak/B01/audio/privasi remaja/retensi/J13/J14
+masih terbuka. [Panduan](docs/beta/LOCAL_BACKUP.md). WIP/stash/privat/aset tetap.
+
 ## Pemulihan Quran1.9.49 —14November2026
 
 [Bukti terkini](android/validation/quran-manifest-2026-11-14/README.md):207JVM/16native

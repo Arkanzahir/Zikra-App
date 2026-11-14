@@ -18,7 +18,7 @@ public final class PhysicalBetaSmokeTest extends InstrumentationTestCase {
   public void testThemesAndAiDockOnPreservedInstallation() throws Exception {
     Context context = getInstrumentation().getTargetContext();
     assertTrue(new File(context.getFilesDir(), "physical-beta-smoke-authorized").isFile());
-    assertEquals("1.9.49", context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName);
+    assertEquals("1.9.50", context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName);
     SharedPreferences appearance = context.getSharedPreferences(AppAppearance.PREFS, 0);
     boolean hadTheme = appearance.contains(AppAppearance.KEY);
     String previousTheme = appearance.getString(AppAppearance.KEY, "light");

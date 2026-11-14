@@ -6,6 +6,7 @@ import android.content.Intent;
 
 public final class ClassAlarmReceiver extends BroadcastReceiver {
   @Override public void onReceive(Context context, Intent intent) {
+    if (com.zikra.app.migration.LocalMigration.blocked()) return;
     if (intent != null) ClassReminders.deliver(context, intent);
   }
 }

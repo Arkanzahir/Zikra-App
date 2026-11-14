@@ -25,6 +25,20 @@ menghilangkannya. Backup Android dinonaktifkan dan domain cloud/D2D dikecualikan
 tetapi kepatuhan semua vendor belum diuji. Chat/lampiran belum memakai enkripsi
 database tersendiri; token akses AI dilindungi Android Keystore.
 
+## Cadangan lokal pilihan pengguna
+
+Versi internal1.9.50 menyediakan ekspor cadangan terenkripsi dengan kata sandi
+melalui pemilih dokumen. Tidak ada upload otomatis oleh Zikra; penyedia dokumen
+yang dipilih pengguna dapat menyinkronkan berkas ke cloud. Chat, tugas, jurnal,
+profil/preferensi dan media pilihan yang tersimpan dalam aplikasi ikut sesuai
+[panduan](LOCAL_BACKUP.md). Token/kunci/consent/izinAndroid tidak diekspor.
+Kata sandi tidak disimpan atau dapat dipulihkan oleh pengembang. Pemulihan hanya
+pada instalasi kosong Android9+ setelah validasi; pengingat perlu ditinjau ulang.
+Berkas ekspor berada di lokasi yang dipilih pengguna dan harus dihapus/diamankan
+sendiri bila tidak diperlukan. Staging privat dibersihkan setelah berhasil/gagal;
+sisa akibat proses mati dibersihkan oportunistik setelah24jam pada startup baru
+bila tidak ada pending. Ini bukan janji secure erase atau retensi nol seluruhOS.
+
 ## AI online dan lampiran
 
 Setelah izin dasar, pesan/lampiran yang dipilih pengguna dikirim melalui

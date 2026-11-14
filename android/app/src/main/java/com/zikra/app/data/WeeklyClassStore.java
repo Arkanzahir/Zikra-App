@@ -17,7 +17,7 @@ public final class WeeklyClassStore extends SQLiteOpenHelper {
 
   public WeeklyClassStore(Context context) { this(context, "study-schedule.db"); }
   public WeeklyClassStore(Context context, String name) {
-    super(context.getApplicationContext(), name, null, 2);
+    super(com.zikra.app.migration.LocalMigration.storageContext(context.getApplicationContext()), name, null, 2);
   }
   @Override public void onCreate(SQLiteDatabase db) {
     db.execSQL("CREATE TABLE weekly_classes (id INTEGER PRIMARY KEY AUTOINCREMENT,"

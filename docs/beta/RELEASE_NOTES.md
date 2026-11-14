@@ -1,13 +1,13 @@
 # Catatan calon beta — belum diterbitkan
 
 Paket final, versi distribusi, hash, signer dan URL unduhan belum dipilih.
-Kandidat internal terbaru1.9.49/code76,49.537.679byte;SHA256
-f01398824c5c9463b64cffae171bc6e35ea714a7869020830790ac6d4de410ef.
-Memperbaiki indeks Quran rusak,perlindungan cache surah lain dan pembatalan commit.
-207JVM/16native emulator lulus,0skip;lint0error/890warning.
-[Bukti/batas](../../android/validation/quran-manifest-2026-11-14/README.md).
-HP masih1.9.48. PenerbitZikra,sasaran13+. Debug/HOLD;hak/signing/privasi remaja/
-migrasi/perangkat dan keputusan beta tetap terbuka. Website ditunda pengguna.
+Kandidat internal terbaru1.9.50/code77,50.316.831byte;SHA256
+1e52d94689625726ed02e0d3e2b2742e0d0ac8a711e6412f6a236140fd70ba4d.
+Menambahkan cadangan lokal terenkripsi dan pemulihan staging pada instalasi kosong
+Android9+, tanpa token/consent.224JVM/10native kandidat lulus,0skip;
+lint0error/894warning. [Bukti/batas](../../android/validation/local-migration-2026-11-14/README.md).
+HP tetap1.9.48. PenerbitZikra,sasaran13+. Debug/HOLD;hak/signing/privasi remaja/
+retensi/pickerHP/perangkat dan keputusan beta tetap terbuka. Website ditunda.
 
 ## Fitur yang dapat diuji setelah gerbang dipenuhi
 

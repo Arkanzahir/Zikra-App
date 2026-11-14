@@ -1,3 +1,19 @@
+## Cadangan lokal1.9.50 —14November2026
+
+[Bukti/batas](android/validation/local-migration-2026-11-14/README.md):224JVM/0skip,
+8native core +2native lintas signer kandidat lulus; lint0error/894warning.
+Profil → Cadangan lokal, password/enkripsi, staging/guard/jurnal/fresh-target dan
+cleanup terarah tersedia. Restore Android9+, tanpa transfer token/consent/OSgrants;
+buka proses baru setelah aktivasi. APK50.316.831byte,debug/HOLD. HP tetap1.9.48;
+SAF/picker/restore HP dan signer final belum lulus. Website tetap ditunda.
+J12 sebagian, bukan selesai rilis; hak/B01/audio/privasi remaja/retensi/J13/J14
+masih terbuka. [Panduan](docs/beta/LOCAL_BACKUP.md). WIP/stash/privat/aset tetap.
+
+Prioritas selanjutnya: uji pemilih dokumen/password/restore HP saat pengguna siap,
+signer release tetap dan review privasi13–17/retensi/hak. Jangan mengulang uji
+adzan yang sama tanpa perubahan/alasan; jangan uninstall HP. Bagian versi lama
+berikut historis, bukan instruksi mengerjakan ulang cadangan yang sudah teruji.
+
 ## Kandidat1.9.49 dan arah berikutnya —14November2026
 
 Baca [receipt1.9.49](android/validation/quran-manifest-2026-11-14/README.md).
@@ -18,7 +34,7 @@ berbalas di akun terhubung. Hak/privasi remaja/retensi/signing/J13/J14 tetap gat
 
 # Mulai di sini — handoff akun GPT
 
-Checkpoint terbaru: **14 November 2026, kandidat internal 1.9.49/code76, HOLD**.
+Checkpoint terbaru: **14 November 2026, kandidat internal 1.9.50/code77, HOLD**.
 Dokumen ini menggantikan ringkasan versi lama di percakapan. Akun baru tidak
 mewarisi chat, memori, koneksi layanan atau file privat akun sebelumnya.
 

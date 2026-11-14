@@ -19,7 +19,7 @@ public final class FaithStore extends SQLiteOpenHelper {
   }
 
   public FaithStore(Context context, String name, Clock clock) {
-    super(context.getApplicationContext(), name, null, 1);
+    super(com.zikra.app.migration.LocalMigration.storageContext(context.getApplicationContext()), name, null, 1);
     this.context = context.getApplicationContext();
     this.clock = clock;
   }

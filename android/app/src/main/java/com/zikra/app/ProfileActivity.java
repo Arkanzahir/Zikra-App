@@ -127,6 +127,8 @@ public final class ProfileActivity extends BaseActivity {
                     ? getString(R.string.refined_profile_no_hifz)
                     : getString(R.string.refined_hifz_count, faith.hifzDone, faith.hifzTotal));
     rows.removeAllViews();
+    row("Cadangan lokal", "Simpan dan pulihkan data dengan kata sandi", R.drawable.study_scene_settings_icon,
+        () -> open(com.zikra.app.migration.BackupActivity.class));
     row(getString(R.string.app_appearance),
         com.zikra.app.ui.AppAppearance.label(this), R.drawable.ic_home_appearance,
         () -> profileDialog = com.zikra.app.ui.AppAppearance.choose(this));

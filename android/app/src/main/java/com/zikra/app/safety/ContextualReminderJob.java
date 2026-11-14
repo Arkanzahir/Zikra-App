@@ -16,6 +16,7 @@ public final class ContextualReminderJob extends JobService {
   private final OkHttpClient http = WeatherHttp.create();
   private volatile int generation;
   @Override public boolean onStartJob(JobParameters params) {
+    if (com.zikra.app.migration.LocalMigration.blocked()) return false;
     int token = ++generation;
     worker.execute(() -> {
       try {
@@ -66,6 +67,7 @@ public final class ContextualReminderJob extends JobService {
     return true;
   }
   @Override public boolean onStopJob(JobParameters params) {
+    if (com.zikra.app.migration.LocalMigration.blocked()) return false;
     generation++; http.dispatcher().cancelAll(); return false;
   }
   @Override public void onDestroy() {

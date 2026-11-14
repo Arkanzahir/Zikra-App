@@ -87,6 +87,8 @@ public final class HadithStore implements AutoCloseable {
   public interface Download { void progress(int percent); void finished(); void failed(String code); }
 
   public HadithStore(Context context) { this(context, "zikra_hadith.db"); }
+  /** Reuse the native schema for validated local migration, without starting network workers. */
+  public static SQLiteOpenHelper migrationSchema(Context context) { return new Database(context, "zikra_hadith.db"); }
   public HadithStore(Context context, String databaseName) {
     this.context = context.getApplicationContext();
     helper = new Database(this.context, databaseName);
@@ -372,7 +374,7 @@ public final class HadithStore implements AutoCloseable {
   }
 
   private static final class Database extends SQLiteOpenHelper {
-    Database(Context context, String name) { super(context, name, null, 2); }
+    Database(Context context, String name) { super(com.zikra.app.migration.LocalMigration.storageContext(context), name, null, 2); }
     @Override public void onConfigure(SQLiteDatabase db) {
       // New optional-content databases return deleted pages to the filesystem.
       db.execSQL("PRAGMA auto_vacuum=FULL");

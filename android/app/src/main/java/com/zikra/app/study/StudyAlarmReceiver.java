@@ -5,6 +5,7 @@ import android.content.*;
 public final class StudyAlarmReceiver extends BroadcastReceiver {
   @Override
   public void onReceive(Context context, Intent intent) {
+    if (com.zikra.app.migration.LocalMigration.blocked()) return;
     if (intent != null) StudyReminders.deliver(context, intent);
   }
 }

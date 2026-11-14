@@ -1,0 +1,31 @@
+<resources>
+    <string name="migration_title">Cadangan lokal</string>
+    <string name="migration_explanation">Simpan chat, tugas, hafalan, penanda bacaan, dan preferensi dalam berkas terenkripsi. Pilih folder Download untuk menyimpannya di perangkat. Penyedia penyimpanan yang kamu pilih dapat menyinkronkan berkas ke cloud.</string>
+    <string name="migration_export">Buat cadangan</string>
+    <string name="migration_import">Periksa atau pulihkan cadangan</string>
+    <string name="migration_safety">Kode akses AI, persetujuan layanan, izin perangkat, unduhan Quran dan paket Hadis tidak ikut. Pemulihan memerlukan Android 9+ dan instalasi tanpa data pribadi. Jangan hapus aplikasi lama sebelum cadangan berhasil diperiksa.</string>
+    <string name="migration_picker_missing">Pemilih berkas tidak tersedia pada perangkat ini.</string>
+    <string name="migration_password">Kata sandi cadangan</string>
+    <string name="migration_password_repeat">Ulangi kata sandi</string>
+    <string name="migration_password_notice">Gunakan 12–128 karakter. Kata sandi tidak disimpan atau dikirim. Jika terlupa, cadangan tidak dapat dibuka.</string>
+    <string name="migration_password_error">Minimal 12 karakter; kedua kata sandi harus sama.</string>
+    <string name="migration_continue">Lanjutkan</string>
+    <string name="migration_working">Mengenkripsi dan memeriksa data… Tunggu sampai selesai.</string>
+    <string name="migration_export_success">Cadangan tersimpan dan berhasil dibuka ulang. Simpan kata sandi secara terpisah. Jangan hapus versi lama sebelum berkas ini juga diperiksa pada perangkat tujuan.</string>
+    <string name="migration_failed">Belum berhasil. Periksa kata sandi, ruang kosong (sekitar 400 MB), berkas, dan akses penyimpanan. Data aktif tidak diganti. Berkas ekspor yang gagal harus diperiksa atau dibuat ulang.</string>
+    <string name="migration_counts">%1$d catatan dan %2$d berkas media tervalidasi.</string>
+    <string name="migration_validated">Cadangan dapat dibaca</string>
+    <string name="migration_apply_notice">Pemulihan akan dijalankan setelah Zikra ditutup dan dibuka kembali. Selama pemulihan, layar lain tidak tersedia. Setelah selesai, tutup dan buka sekali lagi agar seluruh pengaturan dimuat ulang.</string>
+    <string name="migration_verify_only">Pemulihan memerlukan Android 9 atau lebih baru dan instalasi tanpa data pribadi. Cadangan berhasil diperiksa, tetapi tidak akan menimpa data aktif. Gunakan instalasi baru untuk memulihkannya; jangan hapus versi lama sebelum berkas dan kata sandi aman.</string>
+    <string name="migration_done">Selesai</string>
+    <string name="migration_apply">Siapkan pemulihan</string>
+    <string name="migration_restart_notice">Cadangan siap dipulihkan. Tutup Zikra melalui tombol ini, lalu buka kembali. Jangan gunakan layar lain sebelum pemulihan selesai.</string>
+    <string name="migration_close">Tutup Zikra</string>
+    <string name="migration_recover_title">Memulihkan cadangan</string>
+    <string name="migration_processing">Memproses…</string>
+    <string name="migration_recover_working">Jangan gunakan Zikra selama pemulihan. Data diperiksa sebelum dipasang.</string>
+    <string name="migration_recovered">Cadangan berhasil dipulihkan. Tutup Zikra, lalu buka kembali. Tinjau izin dan aktifkan ulang pengingat salat jika diperlukan.</string>
+    <string name="migration_unchanged">Pemulihan tidak diterapkan. Data sebelumnya dipertahankan. Tutup dan buka kembali Zikra untuk mencoba lagi.</string>
+    <string name="migration_recover_failed">Pemulihan belum selesai. Data penampungan tetap disimpan. Coba lagi; jangan hapus data aplikasi.</string>
+    <string name="migration_retry">Coba lagi</string>
+</resources>

@@ -21,7 +21,7 @@ public final class ConversationStore extends SQLiteOpenHelper {
     }
   }
   public ConversationStore(Context context) {
-    super(context, "assistant_chats.db", null, 1);
+    super(com.zikra.app.migration.LocalMigration.storageContext(context), "assistant_chats.db", null, 1);
     prefs=context.getSharedPreferences("zikra_preferences",0);
     migrate();
   }

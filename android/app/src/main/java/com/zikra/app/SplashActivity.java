@@ -22,6 +22,9 @@ public final class SplashActivity extends Activity {
 
   @Override protected void onCreate(Bundle state) {
     super.onCreate(state);
+    if (com.zikra.app.migration.LocalMigration.blocked()) {
+      startActivity(new Intent(this, com.zikra.app.migration.MigrationLoadingActivity.class)); finish(); return;
+    }
     if(!isTaskRoot()){finish();return;}
     skip=state!=null || introShown;
     setContentView(R.layout.activity_splash);

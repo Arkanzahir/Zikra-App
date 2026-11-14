@@ -7,6 +7,7 @@ import android.content.Intent;
 public final class PrayerRescheduleReceiver extends BroadcastReceiver {
   @Override
   public void onReceive(Context context, Intent intent) {
+    if (com.zikra.app.migration.LocalMigration.blocked()) return;
     if (intent == null || !supportedAction(intent.getAction())) return;
     PrayerReminders.sync(context);
     com.zikra.app.study.StudyReminders.sync(context);

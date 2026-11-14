@@ -1,3 +1,14 @@
+## Cadangan lokal1.9.50 —14November2026
+
+[Bukti/batas](../../android/validation/local-migration-2026-11-14/README.md):224JVM/0skip,
+8native core +2native lintas signer kandidat lulus; lint0error/894warning.
+Profil → Cadangan lokal, password/enkripsi, staging/guard/jurnal/fresh-target dan
+cleanup terarah tersedia. Restore Android9+, tanpa transfer token/consent/OSgrants;
+buka proses baru setelah aktivasi. APK50.316.831byte,debug/HOLD. HP tetap1.9.48;
+SAF/picker/restore HP dan signer final belum lulus. Website tetap ditunda.
+J12 sebagian, bukan selesai rilis; hak/B01/audio/privasi remaja/retensi/J13/J14
+masih terbuka. [Panduan](../../docs/beta/LOCAL_BACKUP.md). WIP/stash/privat/aset tetap.
+
 ## Checkpoint audio/peta1.9.48 —14November2026
 
 [Bukti terkini](../../android/validation/audio-map-2026-11-14/README.md):207JVM tanpa skip,
@@ -69,7 +80,7 @@ izin konten; Codex tidak dapat mengesahkan izin atas nama mereka.
 | J09 | P1 / E04 | Darurat dan masjid terdekat | Intent nomor/draf/rute/fallback lulus dengan monitor;app penerima/HP tetap | Emulator dahulu, aksi akhir J13 |
 | J10 | P1 / F01–F04 | Konsistensi UI, aksesibilitas, performa | Panduan,splash/dock/keyboard/teks200% dan smoke16layar lulus;matriks/performaHP tetap | Sebagian emulator; performa akhir HP |
 | J11 | P0 / G03 | Privasi, dukungan dan tata kelola | Sebagian; nama Zikra/email dikonfirmasi, usia/retensi masih terbuka | Tidak |
-| J12 | P0 / G04 | Signing, paket dan migrasi distribusi | Sebagian; guard/auditor ada, key final belum | Build tanpa HP; migrasi akhir J13 |
+| J12 | P0 / G04 | Signing, paket dan migrasi distribusi | Sebagian; backup lokal/cross-signer emulator1.9.50lulus, key final/pickerHPbelum | Build tanpa HP; migrasi akhir J13 |
 | J13 | P0 / C02, D02, G01, G02 | Uji paket final dan kegagalan fisik | Menunggu HP dan kandidat final | Ya, dikoordinasikan |
 | J14 | P0 / G05 | Putusan siap beta terbatas | Antrean; HOLD tetap berlaku | Berdasarkan bukti J01–J13 |
 | J15 | Sesudah J14 | Website unduhan dan peluncuran bertahap | Preview lokal desktop/mobile selesai;download/publish menungguJ14 | Uji instal kanal pada HP |
@@ -220,8 +231,10 @@ Hasil: dokumen final yang siap ditinjau/diterbitkan, bukan teks placeholder.
 
 ### J12 — Paket rilis dan perpindahan dari debug
 
-- [x] Guard signing env-only dan auditor paket ada; kandidat internal53,2MB.
-- [ ] Tentukan signer release tetap/cadangan privat dan strategi perpindahan data.
+- [x] Guard signing env-only dan auditor paket ada; kandidat internal1.9.50,50.316.831byte.
+- [x] Strategi cadangan lokal dipilih; core ekspor/import dan lintas signer emulator teruji1.9.50.
+  [Bukti dan gap HP/SAF](../../android/validation/local-migration-2026-11-14/README.md).
+- [ ] Tentukan signer release tetap/cadangan privat; uji pemindahan pada paket final.
   Signer baru tidak dapat memperbarui debug ber-ID sama; jangan uninstall.
 - [ ] Setelah hak audio selesai, bangun signed candidate dengan versi/hash dan
   source terikat; audit rahasia/fixture, FCM, lisensi/aset dan fitur setara.
