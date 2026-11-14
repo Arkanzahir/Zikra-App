@@ -67,6 +67,12 @@ gambar halaman, DOCX/TXT menjadi teks. Tidak ada redaksi otomatis atau indeks
 RAG/ingatan cloud permanen. Hapus chat/lampiran lokal tidak menarik kembali data
 yang telah diproses penyedia.
 
+PDF juga memakai salinan sementara di cache privat saat dirender. Salinan
+dihapus setelah proses selesai/gagal; bila aplikasi terhenti, pembukaan berikutnya
+mencoba membersihkan salinan renderer yang lebih tua24jam dengan scan terbatas.
+Ini bukan penghapusan tepat waktu atau penghapusan fisik yang dijamin. PDF asli
+dan lampiran percakapan tersimpan tidak ikut dibersihkan oleh mekanisme ini.
+
 Batas saat ini satu berkas per pesan, 8 MB, PDF sampai 3 halaman, DOCX/TXT sampai
 12.000 unit karakter Java; penyimpanan lampiran lokal dibatasi 25 MB. File yang
 memenuhi batas belum tentu terbaca akurat. Kuota AI bersifat terbatas dan dapat

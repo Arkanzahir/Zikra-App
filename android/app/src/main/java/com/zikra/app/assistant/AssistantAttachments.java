@@ -94,8 +94,10 @@ public final class AssistantAttachments implements AutoCloseable {
       kind="photo";images.add(normalizeImage(bytes));
     }else if(lower.endsWith(".pdf")&&bytes.length>5&&new String(bytes,0,5,StandardCharsets.US_ASCII).equals("%PDF-")){
       if(declared!=null&&!declared.equals("application/pdf")&&!declared.equals("application/octet-stream"))throw new IOException("Jenis PDF tidak cocok.");
-      kind="pdf";mime="application/pdf";File temp=File.createTempFile("assistant-pdf-",".pdf",context.getCacheDir());
-      try{try(FileOutputStream out=new FileOutputStream(temp)){out.write(bytes);}
+      kind="pdf";mime="application/pdf";
+      try(AssistantTempFiles.Pdf copy=AssistantTempFiles.createPdf(context.getCacheDir())){
+        File temp=copy.file;
+        try(FileOutputStream out=new FileOutputStream(temp)){out.write(bytes);}
         try(ParcelFileDescriptor fd=ParcelFileDescriptor.open(temp,ParcelFileDescriptor.MODE_READ_ONLY);PdfRenderer renderer=new PdfRenderer(fd)){
           pages=renderer.getPageCount();if(pages<1||pages>3)throw new IOException("PDF didukung sampai 3 halaman. Pilih bagian yang ingin dibahas.");
           for(int i=0;i<pages;i++){if(Thread.currentThread().isInterrupted())throw new InterruptedIOException();try(PdfRenderer.Page page=renderer.openPage(i)){
@@ -105,7 +107,7 @@ public final class AssistantAttachments implements AutoCloseable {
             try{page.render(image,null,null,PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);images.add(compress(image));}finally{image.recycle();}
           }}
         }
-      }finally{temp.delete();}
+      }
     }else if(lower.endsWith(".docx")&&bytes.length>4&&bytes[0]==80&&bytes[1]==75){
       if(declared!=null&&!declared.equals("application/vnd.openxmlformats-officedocument.wordprocessingml.document")&&!declared.equals("application/zip")&&!declared.equals("application/octet-stream"))throw new IOException("Jenis DOCX tidak cocok.");
       kind="docx";mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document";text=AssistantDocx.read(bytes,MAX_TEXT);

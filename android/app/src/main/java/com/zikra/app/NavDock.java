@@ -142,10 +142,11 @@ public final class NavDock {
     boolean largeType = page.getResources().getConfiguration().fontScale >= 1.5f;
     text.setText(key.equals("ai") && largeType ? "Zikra\nAI" : label);
     text.setMaxLines(key.equals("ai") ? 2 : 1);
+    text.setEllipsize(android.text.TextUtils.TruncateAt.END);
     // Keep whole destination names on narrow screens. Labels still enlarge with the system;
     // bound only this compact navigation text while the page content keeps the full font scale.
     text.setAutoSizeTextTypeUniformWithConfiguration(
-        10, 12, 1, android.util.TypedValue.COMPLEX_UNIT_SP);
+        8, 12, 1, android.util.TypedValue.COMPLEX_UNIT_SP);
     text.setTypeface(
         page.getResources().getFont(R.font.plus_jakarta_sans),
         key.equals(selected) ? android.graphics.Typeface.BOLD : android.graphics.Typeface.NORMAL);

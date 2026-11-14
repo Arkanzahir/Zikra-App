@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-15",
+  "version": "1.9.52",
+  "versionCode": 79,
+  "apkBytes": 49820578,
+  "apkSha256": "4c35b8617af581609ee70e439d5c1ec94624466056561762d7a756988d624035",
+  "jvm": {
+    "tests": 235,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "nativeUniqueMethodsPassed": 4,
+  "nativeFinalExecutionsPassed": 5,
+  "nativeScreenshots": 24,
+  "keyboardScreenshots": 1,
+  "nativeDevice": "Disposable emulator API37.1 GooglePlay 16KiB x86_64",
+  "nativeViewports": [
+    "1080x2400 at420dpi / font100%",
+    "840x1800 at420dpi (320dp) / font200%"
+  ],
+  "startupOrphanSimulationPassed": true,
+  "actualKillDuringPdfRendererTested": false,
+  "lintErrors": 0,
+  "lintWarnings": 894,
+  "backendChanged": false,
+  "backendPreviousTests": 134,
+  "phoneUsed": false,
+  "phoneVersionLastVerified": "1.9.48",
+  "distributionApproved": false,
+  "releaseStatus": "HOLD",
+  "providerAccountRetentionVerified": false,
+  "retentionMetadataHttpStatuses": [
+    403,
+    403
+  ],
+  "teenPrivacyFinalized": false,
+  "targetSdk": 35,
+  "playRequiredTargetSdkReviewed": 36,
+  "inAppAiReportingImplemented": false,
+  "environmentCleanup": {
+    "ownedDataDirectoryRemoved": true,
+    "vmStopped": true,
+    "phoneUsed": false,
+    "userAppsClosed": false
+  }
+}

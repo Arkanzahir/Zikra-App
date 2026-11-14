@@ -1,3 +1,18 @@
+## PR05 — P2: salinan PDF renderer setelah proses mati,15November2026
+
+Lokasi: `assistant/AssistantAttachments.java` jalur decodePDF dan
+`ZikraApplication.finishStartup`. Cleanup normal saja bisa meninggalkan salinan
+rawPDF setelah penghentian proses. Kandidat1.9.52 menambah pemilik lifecycle dan
+startup cleanup terbatas untuk file renderer >24jam, melindungi file aktif,
+symlink/direktori/nama lain. Asli/chat/attachment tersimpan tidak ikut dihapus.
+[Bukti aktual/batas](../../android/validation/product-audit-2026-11-15/README.md).
+Bukan secure erase atau janji cleanup tepat24jam; cache kamera tertunda masih
+perlu peninjauan tersendiri. PR02–PR04 tetap terbuka. Retensi akun15November
+BLOCKED: GET metadata403/dashboardlogin; tidak mengubah produksi.
+
+[Audit produk putaran pertama](PRODUCT_AUDIT.md) juga mencatat targetAPI35 dan
+ketiadaan pelaporan kontenAI in-app sebagai gap Play, bukan temuan eksploitasi.
+
 # Pemeriksaan privasi/keamanan terarah —14November2026
 
 Scope: persetujuan konten AI, antrean transport dan batas privasi beta13+.

@@ -1,13 +1,14 @@
 # Catatan calon beta — belum diterbitkan
 
 Paket final, versi distribusi, hash, signer dan URL unduhan belum dipilih.
-Kandidat internal terbaru1.9.51/code78,50.364.855byte;SHA256
-99eeba78ed0f240ae9feea50db8f6592c442b5894fa6800565e908a1e15afb7c.
-Memperkuat izin chat/gambar terhadap perubahan layanan/revoke saat review/antrean.
-230JVM/14native emulator lulus,0skip;lint0error/894warning.
-[Bukti/batas](../../android/validation/privacy-consent-2026-11-14/README.md).
-HP tetap1.9.48;debug/HOLD. Target13+ bukan bukti usia/wali. Hak/B01/audio,
-retensi/privasi remaja, signer final/pickerHP/J13/J14 tetap. Website ditunda.
+Kandidat internal terbaru1.9.52/code79,49.820.578byte;SHA256
+4c35b8617af581609ee70e439d5c1ec94624466056561762d7a756988d624035.
+Cleanup salinan PDF renderer setelah proses mati serta label navigasi pada
+320dp/teks200% diperkuat. [Bukti](../../android/validation/product-audit-2026-11-15/README.md),
+[audit/gap](PRODUCT_AUDIT.md). HP tetap1.9.48;debug/HOLD. Sasaran13+ bukan
+verifikasi usia/wali. Hak/B01/audio, retensi/privasi remaja, signer final,
+SAF/HP/J13/J14 tetap terbuka. TargetAPI36 dan pelaporanAI in-app menjadi
+pekerjaan wajib sebelum Play. Website tetap ditunda.
 
 ## Fitur yang dapat diuji setelah gerbang dipenuhi
 

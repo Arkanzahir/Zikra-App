@@ -1,0 +1,104 @@
+
+=== native-verified-normal.txt ===
+INSTRUMENTATION_STATUS: class=com.zikra.app.assistant.AssistantTempFilesNativeTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+com.zikra.app.assistant.AssistantTempFilesNativeTest:
+INSTRUMENTATION_STATUS: test=testPdfSuccessAndRejectionLeaveNoRawCopy
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.assistant.AssistantTempFilesNativeTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testPdfSuccessAndRejectionLeaveNoRawCopy
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.assistant.AssistantTempFilesNativeTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=testSymlinkCannotDeleteOriginalDocument
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.assistant.AssistantTempFilesNativeTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testSymlinkCannotDeleteOriginalDocument
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.zikra.app.FinalBatchThemeTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+com.zikra.app.FinalBatchThemeTest:
+INSTRUMENTATION_STATUS: test=testFeatureThemesAndOptInDefaults
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.FinalBatchThemeTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testFeatureThemesAndOptInDefaults
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+Test results for InstrumentationTestRunner=...
+Time: 16.554
+
+OK (3 tests)
+
+
+INSTRUMENTATION_CODE: -1
+
+=== native-verified-large.txt ===
+INSTRUMENTATION_STATUS: class=com.zikra.app.FinalBatchThemeTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.zikra.app.FinalBatchThemeTest:
+INSTRUMENTATION_STATUS: test=testFeatureThemesAndOptInDefaults
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.FinalBatchThemeTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testFeatureThemesAndOptInDefaults
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+Test results for InstrumentationTestRunner=.
+Time: 13.05
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+=== native-verified-keyboard.txt ===
+INSTRUMENTATION_STATUS: class=com.zikra.app.assistant.AiRefreshTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.zikra.app.assistant.AiRefreshTest:
+INSTRUMENTATION_STATUS: test=testLargeTextComposerAndKeyboardRemainReachable
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.zikra.app.assistant.AiRefreshTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=testLargeTextComposerAndKeyboardRemainReachable
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+Test results for InstrumentationTestRunner=.
+Time: 4.012
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1

@@ -1,3 +1,10 @@
+## Status aktif15November2026
+
+Kandidat internal1.9.52/code79 tetap **HOLD**. [Audit produk/prioritas](PRODUCT_AUDIT.md)
+dan [bukti kandidat](../../android/validation/product-audit-2026-11-15/README.md)
+menjadi rujukan terbaru; bagian versi lama di bawah adalah riwayat. A–D/E/F/G
+belum selesai seluruhnya. HP tetap1.9.48; website ditunda.
+
 ## Izin AI1.9.51 —14November2026
 
 [Bukti/batas](../../android/validation/privacy-consent-2026-11-14/README.md):230JVM/0skip,

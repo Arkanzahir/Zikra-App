@@ -1,21 +1,21 @@
 {
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "releaseStatus": "HOLD",
-  "version": "1.9.51",
-  "versionCode": 78,
-  "apkBytes": 50364855,
-  "apkSha256": "99eeba78ed0f240ae9feea50db8f6592c442b5894fa6800565e908a1e15afb7c",
+  "version": "1.9.52",
+  "versionCode": 79,
+  "apkBytes": 49820578,
+  "apkSha256": "4c35b8617af581609ee70e439d5c1ec94624466056561762d7a756988d624035",
   "debugSigningKey": true,
   "phoneTestedOnCandidate": false,
-  "nativePassed": 14,
-  "jvmPassed": 230,
+  "nativePassed": 4,
+  "jvmPassed": 235,
   "jvmSkipped": 0,
   "lintErrors": 0,
   "lintWarnings": 894,
   "backendPreviousRunPassed": 134,
   "backendChanged": false,
   "website": "paused-by-user-preview-still-1.9.48-no-public-download",
-  "evidence": "android/validation/privacy-consent-2026-11-14/README.md",
+  "evidence": "android/validation/product-audit-2026-11-15/README.md",
   "remaining": [
     "quran-font-audio-failure-matrix",
     "background-and-device-verification",
@@ -23,7 +23,9 @@
     "teen-controls-retention-privacy",
     "release-signer-and-migration",
     "physical-device-final-session-remaining-cases",
-    "beta-decision-and-public-download"
+    "beta-decision-and-public-download",
+    "play-target-api36-migration",
+    "in-app-ai-reporting-and-safety-evaluation"
   ],
   "additionalEvidence": "android/validation/phone-ops-2026-11-14/README.md",
   "quranFailureVerification": {
@@ -39,14 +41,14 @@
   "publisherDisplayName": "Zikra",
   "publisherConfirmedDate": "2026-11-14",
   "supportEmail": "arkanzahir46@gmail.com",
-  "previousCandidateNativePassed": 10,
-  "previousCandidateVersion": "1.9.50",
+  "previousCandidateNativePassed": 14,
+  "previousCandidateVersion": "1.9.51",
   "phoneFinalSessionComplete": false,
   "physicalSmokeCasesPassed": 0,
   "physicalScreenThemeChecks": 0,
-  "nativeEmulatorPassed": 14,
+  "nativeEmulatorPassed": 4,
   "backendCurrentRunPassed": null,
-  "backendChangeScope": "no-backend-change-in-1.9.51",
+  "backendChangeScope": "no-backend-change-in-1.9.52",
   "targetMinimumAge": 13,
   "teenPrivacyFinalized": false,
   "phoneDataVerification": {
@@ -86,6 +88,20 @@
     "ageVerificationImplemented": false,
     "guardianConsentImplemented": false,
     "teenLocationControlsImplemented": false,
-    "providerAccountRetentionVerified": false
+    "providerAccountRetentionVerified": false,
+    "verificationCandidateVersion": "1.9.51"
+  },
+  "nativeFinalExecutionsPassed": 5,
+  "productAudit": {
+    "round": 1,
+    "completeProductCertification": false,
+    "pdfTemporaryCleanupImplemented": true,
+    "pdfOrphanStartupSimulationPassed": true,
+    "dockLabels320dpFont200Verified": true,
+    "nativeScreenThemeConditions": 24,
+    "providerAccountRetentionVerified": false,
+    "playTargetApiStatus": "FAIL-target35-required36",
+    "inAppAiReportingStatus": "FAIL-not-implemented",
+    "evidence": "docs/beta/PRODUCT_AUDIT.md"
   }
 }

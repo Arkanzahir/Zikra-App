@@ -1,3 +1,14 @@
+## Pembaruan sumber15November2026 — tetap HOLD
+
+Metadata resmi [JDIHKomdigi](https://jdih.komdigi.go.id/produk_hukum/view/id/1007/t/peraturan+menteri+komunikasi+dan+digital+nomor+9+tahun+2026)
+dan [BPK](https://peraturan.bpk.go.id/Details/346040/permenkomdigi-no-9-tahun-2026)
+menunjukkan Permenkomdigi9/2026 berlaku, ditetapkan6Maret2026, sebagai aturan
+pelaksanaan terkait PP17/2025. Penelaahan tidak boleh hanya memakai PP lama.
+Namun PDF yang ditautkan BPK masih memuat kata RANCANGAN pada halaman awal,
+sedangkan unduhan JDIHtimeout. **Teks final dan penerapan pasal belum terverifikasi**;
+jangan menetapkan alur/kelompokusia hanya dari salinan yang provenance-nya ambigu.
+Tidak ada mekanisme wali baru dibuat atau klaim kepatuhan pada putaran ini.
+
 # Tinjauan privasi beta13+ — 14 November 2026
 
 **Status: belum final, tetap HOLD.** Sasaran13+ dipertahankan sesuai pengguna;

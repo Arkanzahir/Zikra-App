@@ -1,0 +1,8 @@
+Starting: Intent { cmp=com.zikra.app/.SplashActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.zikra.app/.SplashActivity
+TotalTime: 921
+WaitTime: 924
+Complete
+OWNED_COPY_REMOVED_ORIGINAL_PRESERVED

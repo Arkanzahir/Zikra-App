@@ -1,19 +1,21 @@
 {
   "schemaVersion": 1,
   "releaseStatus": "HOLD",
-  "version": "1.9.51",
-  "versionCode": 78,
-  "bytes": 50364855,
-  "sha256": "99eeba78ed0f240ae9feea50db8f6592c442b5894fa6800565e908a1e15afb7c",
+  "version": "1.9.52",
+  "versionCode": 79,
+  "bytes": 49820578,
+  "sha256": "4c35b8617af581609ee70e439d5c1ec94624466056561762d7a756988d624035",
   "signerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
   "debugSigningKey": true,
   "distributionApproved": false,
   "downloadUrl": null,
-  "runtimeVerification": "14-native-permission-and-regression-methods-passed-on-emulator-phone-still-1.9.48",
+  "runtimeVerification": "4-unique-native-methods-5-final-executions-24-screen-theme-conditions-on-emulator-phone-still-1.9.48",
   "remainingGates": [
     "content-and-audio-rights",
     "teen-controls-retention-and-privacy",
     "release-signing-and-migration",
-    "combined-runtime-and-device-tests"
+    "combined-runtime-and-device-tests",
+    "play-target-api36",
+    "in-app-ai-reporting"
   ]
 }

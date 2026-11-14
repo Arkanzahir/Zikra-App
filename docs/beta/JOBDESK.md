@@ -217,12 +217,17 @@ Tidak melakukan panggilan darurat atau mengirim pesan sungguhan sebagai tes.
 Hasil: matriks layar + cacat yang diperbaiki + bukti perbaikan; F03a selesai subset,
 F01–F04 tidak otomatis selesai dari subset tersebut.
 
+Audit15November: [putaran1/bukti](PRODUCT_AUDIT.md),235JVM/4native unik,
+24kondisi screenshot dan keyboard; label dock320dp/teks200% diperbaiki.
+Ini subset J10; seluruh keadaan UI/performaHP belum dicentang.
+
 ### J11 — Privasi/dukungan
 
 - [x] Kontak pengguna dicatat: arkanzahir46@gmail.com; draf retensi berbasis kode ada.
 - [x] Nama penerbit publik: Zikra; dikonfirmasi pengguna 14 November 2026.
 - [x] Sasaran beta13+ dipilih pengguna14November; bukan18+ dan bukan bukti verifikasi usia.
 - [x] Kontrol izin konten AI mengikat review/antrean pada layanan/revisi; [bukti1.9.51](../../android/validation/privacy-consent-2026-11-14/README.md).
+- [x] Cleanup salinan PDF renderer terarah1.9.52, bukan seluruh cache/kamera/retensi.
 - [ ] Tuntaskan penanganan remaja13–17tahun, layanan dan kebijakan publik
   yang sesuai implementasi; jangan menjanjikan nol log atau retensi yang tak terbukti.
 - [ ] Tetapkan proses dukungan, pencabutan akses/penghapusan data dan penanganan
@@ -297,3 +302,13 @@ Sisa / dependensi:
 ```
 
 Belum ada tugas implementasi yang dicentang hanya karena jobdesk ini dibuat.
+
+## Temuan audit15November yang perlu dilacak
+
+- [x] PA06: cleanup salinan PDF renderer, guard file aktif dan startup orphan sintetis; bukti1.9.52.
+- [x] PA08: konsolidasi handoff aktif dan runtimePython fixture.
+- [x] PA11: batas label dock pada320dp/teks200%, dua tema; bukan seluruh F03.
+- [ ] PA03: migrasi SDK/toolchainAPI36 dan regresi Android16 sebelum Play.
+- [ ] PA04: pelaporan kontenAI in-app yang nyata, retensi/minimisasi/triase dan evaluasi keselamatan.
+
+Rincian/urutan/ketergantungan tetap [PRODUCT_AUDIT](PRODUCT_AUDIT.md).

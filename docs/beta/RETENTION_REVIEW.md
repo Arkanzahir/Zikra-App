@@ -1,3 +1,13 @@
+## Pemeriksaan akun15November2026 — BLOCKED
+
+Probe hanya-GET ke metadata tim/proyek Vercel menggunakan sesi CLI yang sudah
+ada mendapatHTTP403 pada kedua permintaan. Dashboard browser meminta login.
+Paket/fitur/drain/backup dan retensi akun aktif **belum terverifikasi**; metadata
+Free lama24Oktober tidak menjadi bukti paket15November. Tidak membaca isi log,
+mengubah akses/TTL/paket, membuat token atau menghapus data produksi.
+Bukti tersanitasi ada pada [receipt audit](../../android/validation/product-audit-2026-11-15/README.md).
+Dokumentasi vendor14November di bawah tetap rujukan umum, bukan konfigurasi akun.
+
 # Tinjauan retensi penyedia — 14 November 2026
 
 Peninjauan dokumentasi primer, bukan audit dashboard/kontrak seluruh akun.

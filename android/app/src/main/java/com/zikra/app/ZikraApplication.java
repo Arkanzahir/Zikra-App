@@ -14,7 +14,10 @@ public final class ZikraApplication extends Application {
   public synchronized void finishStartup() {
     if (initialized || com.zikra.app.migration.LocalMigration.blocked()) return;
     initialized = true;
-    new Thread(() -> com.zikra.app.migration.LocalMigration.cleanAbandoned(this), "zikra-local-cleanup").start();
+    new Thread(() -> {
+      com.zikra.app.migration.LocalMigration.cleanAbandoned(this);
+      com.zikra.app.assistant.AssistantTempFiles.pruneStalePdfs(getCacheDir(), System.currentTimeMillis());
+    }, "zikra-local-cleanup").start();
     PrayerTimetables.get(this);
     PrayerTimetables.scheduleRefresh(this);
     com.zikra.app.safety.ContextualReminders.schedule(this);

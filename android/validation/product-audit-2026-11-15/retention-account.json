@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-15",
+  "readOnly": true,
+  "requests": [
+    {
+      "kind": "team-metadata",
+      "status": 403
+    },
+    {
+      "kind": "project-metadata",
+      "status": 403
+    }
+  ],
+  "accountPlan": "UNKNOWN",
+  "providerRetentionVerified": false
+}

@@ -31,6 +31,7 @@ public final class FinalBatchThemeTest extends InstrumentationTestCase {
             getInstrumentation().waitForIdleSync();
             assertEquals(mode.equals("dark"), AppAppearance.dark(page));
             UiEvidence.capture(getInstrumentation(), "final-" + screen.getSimpleName() + "-" + mode);
+            assertDockLabelsFit(page);
           } finally { getInstrumentation().runOnMainSync(page::finish); }
         }
       }
@@ -38,6 +39,24 @@ public final class FinalBatchThemeTest extends InstrumentationTestCase {
     } finally {
       appearance.edit().putString(AppAppearance.KEY, previous).commit();
       prefs.edit().putBoolean("onboarding_complete", onboarded).commit();
+    }
+  }
+
+  private void assertDockLabelsFit(Activity page) {
+    for (int id : new int[]{R.id.dockHome, R.id.dockQuran, R.id.dockAi, R.id.dockStudy, R.id.dockProfile}) {
+      android.view.View item = page.findViewById(id);
+      if (item == null || !item.isShown()) continue;
+      android.widget.TextView text = item.findViewById(R.id.navDestinationLabel);
+      android.text.Layout layout = text.getLayout();
+      assertNotNull(page.getClass().getSimpleName() + " dock must be laid out", layout);
+      int available = text.getWidth() - text.getCompoundPaddingLeft() - text.getCompoundPaddingRight();
+      for (int line = 0; line < layout.getLineCount(); line++) {
+        assertEquals("Whole destination label", 0, layout.getEllipsisCount(line));
+        assertTrue("Destination label stays inside its tab", layout.getLineWidth(line) <= available + 1);
+      }
+      android.graphics.Rect visible = new android.graphics.Rect();
+      assertTrue(text.getGlobalVisibleRect(visible));
+      assertEquals("Whole label remains visible", text.getHeight(), visible.height());
     }
   }
 }

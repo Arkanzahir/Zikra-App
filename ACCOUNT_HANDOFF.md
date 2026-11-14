@@ -1,52 +1,6 @@
-## Izin AI1.9.51 —14November2026
-
-[Bukti/batas](android/validation/privacy-consent-2026-11-14/README.md):230JVM/0skip,
-14native izin/regresi emulator lulus;lint0error/894warning. Review dan antrean
-chat/gambar terikat layanan/credential/revisi;latechatreply sesudah revoke dibuang,
-izin valid lama tidak diminta ulang tiap pesan. APK50.364.855byte,debug/HOLD;
-HP tetap1.9.48. Backend tidak berubah;134tes terdahulu bukan runbaru.
-[Tinjauan remaja](docs/beta/TEEN_PRIVACY_REVIEW.md):usia/wali/lokasi presisi/
-retensi akun tetap terbuka; basicconsent bukan izin wali. Tidak menyelesaikan
-J11/G03/beta. Website ditunda;WIP/stash/privat/aset tetap. Berikutnya keputusan
-mekanisme remaja dan retensi akun, hak/B01/signing, lalu sesiHPterkoordinasi.
-
-## Cadangan lokal1.9.50 —14November2026
-
-[Bukti/batas](android/validation/local-migration-2026-11-14/README.md):224JVM/0skip,
-8native core +2native lintas signer kandidat lulus; lint0error/894warning.
-Profil → Cadangan lokal, password/enkripsi, staging/guard/jurnal/fresh-target dan
-cleanup terarah tersedia. Restore Android9+, tanpa transfer token/consent/OSgrants;
-buka proses baru setelah aktivasi. APK50.316.831byte,debug/HOLD. HP tetap1.9.48;
-SAF/picker/restore HP dan signer final belum lulus. Website tetap ditunda.
-J12 sebagian, bukan selesai rilis; hak/B01/audio/privasi remaja/retensi/J13/J14
-masih terbuka. [Panduan](docs/beta/LOCAL_BACKUP.md). WIP/stash/privat/aset tetap.
-
-Prioritas selanjutnya: uji pemilih dokumen/password/restore HP saat pengguna siap,
-signer release tetap dan review privasi13–17/retensi/hak. Jangan mengulang uji
-adzan yang sama tanpa perubahan/alasan; jangan uninstall HP. Bagian versi lama
-berikut historis, bukan instruksi mengerjakan ulang cadangan yang sudah teruji.
-
-## Kandidat1.9.49 dan arah berikutnya —14November2026
-
-Baca [receipt1.9.49](android/validation/quran-manifest-2026-11-14/README.md).
-J02 teknis ditutup setelah perbaikan pointer/cleanup/cancel;207JVM/16native lulus.
-HP tetap1.9.48; jangan klaim1.9.49 diuji fisik. Website ditunda,preview48 dibekukan.
-Pengguna memilih cadangan lokal dahulu untuk migrasi debug→release. Implementasi
-cadangan terenkripsi/import aman dan uji lintas signer menjadi pekerjaan berikutnya.
-Jangan ekspor token/kunci Android Keystore; jangan uninstall HP. Cloudbackup tetap
-tertunda. Hak/B01/audio/privasi/signing/J13/beta belum selesai.
-
-## Kelanjutan HP/operasional —14November2026
-
-[Bukti](android/validation/phone-ops-2026-11-14/README.md): APK1.9.48 yang sama
-terpasang diHP; isi42baris/17tabel tetap,14kondisi layar/tema+dock lulus.
-Backend134tes/0skip setelah alat erasure operator; tidak deploy/menghapus produksi.
-Sasaran13+ dipilih pengguna. Tidak ada uji adzan/restart baru. B01 email belum
-berbalas di akun terhubung. Hak/privasi remaja/retensi/signing/J13/J14 tetap gate.
-
 # Mulai di sini — handoff akun GPT
 
-Checkpoint terbaru: **14 November 2026, kandidat internal 1.9.51/code78, HOLD**.
+Checkpoint terbaru: **15 November 2026, kandidat internal 1.9.52/code79, HOLD**.
 Dokumen ini menggantikan ringkasan versi lama di percakapan. Akun baru tidak
 mewarisi chat, memori, koneksi layanan atau file privat akun sebelumnya.
 
@@ -90,33 +44,24 @@ arkanzahir46@gmail.com. Ini tidak menutup retensi/usia atau mengizinkan publikas
 
 ## 3. Kandidat dan bukti terkini
 
-APK: D:/Download/Zikra-App-main/Zikra-Polish-v1.9.49-beta-debug.apk.
-Ukuran49.537.679 byte, SHA256:
-f01398824c5c9463b64cffae171bc6e35ea714a7869020830790ac6d4de410ef.
-Audit: android/validation/quran-manifest-2026-11-14/apk-audit.json.
-Tanda tangan debug valid/sama; private entries0, credential dikenal0,
-backup/cleartext nonaktif. Ini bukan persetujuan distribusi publik.
+Kandidat internal **1.9.52/code79**, tetap debug/HOLD. Bukti aktif:
+[receipt dan batas](android/validation/product-audit-2026-11-15/README.md),
+[audit produk](docs/beta/PRODUCT_AUDIT.md), [status](docs/beta/STATUS.json).
+APK: D:/Download/Zikra-App-main/Zikra-Privacy-v1.9.52-beta-debug.apk.
+49.820.578byte; SHA256 4c35b8617af581609ee70e439d5c1ec94624466056561762d7a756988d624035.
+235JVM/0skip,lint0error/894warning. Native kandidat mengikuti receipt aktif;
+jangan menjumlahkan tes versi lama. Backend tidak berubah,134tes14November
+adalah runterdahulu. HP tetap1.9.48, bukan kandidat52.
 
-Hasil1.9.49:207JVM/16native emulator lulus,0skip,lint0error/890warning.
-Hasil1.9.48:19native emulator dan1smoke fisik; bukan tes kandidat baru.
-Persiapan seed/kill tidak dihitung sebagai metode native kandidat yang lulus.
-Bukti1.9.47 tetap historis:32native, tidak dijumlahkan ke kandidat baru.
-Bukan klaim source bebas masalah. Backend134tes lulus tanpa skip setelah tambahan
-alat operator erasure; endpoint/provider produksi tidak diubah/deploy.
-
-Perubahan1.9.48 menolak HTTP206/Content-Range pada jalur audio, serta menyatukan
-kebijakan cache OSM yang menghormati expiry server. Cache lama dipertahankan
-namun tak digunakan; tidak mengubah rekaman audio/jadwal/desain/provider.
-Allowlist receiver1.9.47 tetap berlaku.
-Test reduced motion kini mengatur/memulihkan animation0 sendiri; ekspektasi judul
-AI lama diganti ke resource desain diterima. Assertion layout tetap dipertahankan.
-
-Data contoh terisi pada1.9.41 berhasil dipertahankan dengan install-r ke1.9.46
-lalu1.9.47: profil, tugas, Hifz, chat/draf, bookmark dan tema. Verifikasi terpisah
-1.9.41→1.9.48 juga lulus; lihat receipt terbaru. Bukan migrasi signer
-release atau bukti HP. HP telah diperbarui1.9.39→1.9.48 tanpa uninstall;5DB/17tabel/42baris isi lama
-terjaga, timestamp1chat serta cache/plan berubah wajar. Satu test fisik mencakup
-14kondisi layar/tema dan dockAI; bukan semua skenario J13.
+Perubahan52: label dock pada320dp/teks200%, cleanup salinan PDF renderer dan
+konsolidasi handoff; tidak menghapus PDF asli/chat/lampiran tersimpan.
+Riwayat penting: [51 consent](android/validation/privacy-consent-2026-11-14/README.md),
+[50 backup](android/validation/local-migration-2026-11-14/README.md),
+[49 Quran](android/validation/quran-manifest-2026-11-14/README.md),
+[48 HP](android/validation/phone-ops-2026-11-14/README.md).
+Backup lokal core/lintas signer fixture sudah tersedia; jangan mengerjakan ulang.
+Restore Android9+, SAF/HP dan signer final masih belum tuntas. Data HP42baris/
+17tabel terjaga pada update48; bukti itu tidak mengesahkan kandidat52.
 
 ## 4. Sistem yang sudah tersedia
 
@@ -156,26 +101,26 @@ terjaga, timestamp1chat serta cache/plan berubah wajar. Satu test fisik mencakup
 
 ## 5. Pekerjaan berikutnya, bukan mulai dari nol
 
-1. J02 teknis ditutup pada1.9.49; lanjutkan sisa J03 font/Mushaf/audio/timing
-   serta kebijakan cache/hak masing-masing. Prioritas baru migrasi cadangan lokal.
-   Resource dicabut, crash saat staging, gagal tulis dan guard ruang rendah sudah
-   teruji terarah; lihat receipt quran-failure. ENOSPCfisik/power-loss belum
-   dibuktikan. Jangan mengulang lima kasus atau gateway hosted tanpa alasan baru.
-2. Sisa E/F/G: job background/Doze, receiver sistem/aplikasi penerima eksternal,
-   layar/dialog/teks besar yang belum dicakup. Uji32case tidak menutup seluruh matriks.
-3. J04–J06: hak sumber/layanan, B01 dua kitab lengkap menunggu Gading, audio/lafaz.
-   HadeethEnc opsional2260 bukan pengganti diam-diam. Pengguna menunda pembahasan
-   izin; itu bukan bukti izin diperoleh. Jangan mengirim email baru tanpa instruksi.
-4. J11: nama penerbit publik Zikra dan email arkanzahir46@gmail.com sudah dikonfirmasi.
-   Sasaran13+ dipilih; penanganan remaja13–17tahun, retensi penyedia/kebijakan final
-   masih terbuka. Alat erasure operator teruji lokal, tidak menghapus produksi.
-5. J12: signer release tetap + cadangan privat dan strategi migrasi debug→release.
-   Jangan membuat keputusan migrasi sendiri, uninstall atau menyebarkan debug publik.
-6. J13: satu sesi HP terkoordinasi pada hash kandidat yang sama; update terisi,
-   AI independen laptop, sisa alarm/adzan idle/power, sensor dan smoke lintas fitur.
-   Uji lama tetap bukti versi lama. Tidak perlu mengulang reboot lama tanpa alasan.
-7. J14 keputusan beta, baru J15 downloadHTTPS/install/update dari kanal nyata.
-   Promo visual disetujui; hak voice-over/komersial belum ditutup. Jangan publish dulu.
+Baca urutan dan matriks [PRODUCT_AUDIT](docs/beta/PRODUCT_AUDIT.md).
+1. J11 usia/wali/lokasi remaja dan retensi akun belum final. Pemeriksaan GET
+   Vercel15November mendapat403, browser meminta login; jangan mengklaim paket/
+   retensi akun terverifikasi. Permenkomdigi9/2026 perlu penelaahan teks final.
+2. PA03: migrasi compile/target35 ke36 dan toolchain yang cocok + behavior
+   Android16 sebelum Play; tidak mengganti angka lalu mengklaim kompatibel.
+3. PA04: pelaporan konten AI in-app belum tersedia. Siapkan alur minimal,
+   persetujuan/retensi/triase sebelum implementasi/deploy; jangan mengirim
+   percakapan otomatis atau menganggap email eksternal sudah memenuhi syarat.
+4. J03 font/audio/timing/hak dan matriks kegagalan yang belum tercakup; J02
+   teknis sudah ditutup. ENOSPC/power-loss nyata belum dibuktikan.
+5. J04–J06 sumber/hak, B01 dua kitab lengkap menunggu Gading; HadeethEnc bukan
+   pengganti. Jangan mengirim email baru atau mengklaim lisensi tanpa bukti.
+6. J12 signer tetap dan uji cadangan pada paket final; core backup50 sudah diuji.
+   Jangan uninstall HP. J13 satu sesi HP terkoordinasi sesuai gap penting,
+   tidak mengulang adzan/reboot identik tanpa perubahan atau alasan baru.
+7. J14 keputusan beta20–50penguji sesudah gate; baru J15 website/unduhanHTTPS.
+   Website tetap ditunda; preview48 dibekukan dan bukan manifest kandidat52.
+
+Login Google/cloud/adminF05–F08,mode orang tua,UI10 tetap ditunda.
 
 ## 6. WIP, file lokal dan rahasia
 
@@ -215,7 +160,9 @@ Gradle selalu memakai kedua properti audio berikut:
 Tanpa ini paket bisa memakai audio berbeda. JAVA_HOME/ANDROID_HOME seperti di atas.
 Fixture JVM ZIKRA_HADEETHENC_FIXTURE menunjuk
 .local/hadeethenc-audit-20261112/HadeethEnc.com_id-v1.22.0.csv.
-Fixture Redis test ZIKRA_REDIS_TEST_PYTHON=.local/vercel-test-venv/Scripts/python.exe.
+Fixture Redis: ZIKRA_REDIS_TEST_PYTHON menunjuk Python runtime di atas;
+PYTHONPATH=.local/vercel-test-venv/Lib/site-packages. Executable Scripts/python.exe
+venv lama rusak; jangan dipakai. GRADLE_USER_HOME=E:/.gradle.
 Perintah build: ./android/gradlew.bat -p android --no-daemon --console=plain
 [dua properti audio] testDebugUnitTest assembleDebug assembleDebugAndroidTest lintDebug.
 
@@ -244,8 +191,9 @@ emulator disposable baru. Screenshot/log/ringkasan final tersedia di Git.
 
 Lanjutkan Zikra di D:/Download/Zikra-App-main/Zikra-App-main. Selalu gunakan caveman.
 Baca ACCOUNT_HANDOFF.md, AGENTS.md, SESSION_HANDOFF.md, IMPLEMENTATION_PLAN.md,
-RELEASE_SCOPE.md dan docs/beta/JOBDESK.md. Kandidat internal1.9.49 masih HOLD;
-bukti terbaru ada di android/validation/beta-final-2026-11-14/README.md.
+RELEASE_SCOPE.md dan docs/beta/JOBDESK.md. Kandidat internal1.9.52 masih HOLD;
+bukti terbaru ada di android/validation/product-audit-2026-11-15/README.md.
+Baca docs/beta/PRODUCT_AUDIT.md untuk audit dan urutan prioritas.
 Jangan ulang proyek atau menganggap A–D/E/F/G selesai. Pertahankan WIP, stash audio,
 data pengguna, desain diterima dan konfigurasi privat. Lanjutkan gap terdekat
 sesuai handoff; HP hanya saat siap. Audit, commit dan push perubahan milik tugas.
