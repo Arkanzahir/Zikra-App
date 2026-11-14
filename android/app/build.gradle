@@ -7,15 +7,15 @@ android {
     useLibrary 'android.test.runner'
     useLibrary 'android.test.base'
     useLibrary 'android.test.mock'
-    compileSdk 35
+    compileSdk 36
     buildToolsVersion '35.0.0'
 
     defaultConfig {
         applicationId 'com.zikra.app'
         minSdk 26
-        targetSdk 35
-        versionCode 79
-        versionName '1.9.52'
+        targetSdk 36
+        versionCode 80
+        versionName '1.9.53'
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
 

@@ -53,19 +53,19 @@
         </receiver>
         <activity android:name=".NearbyMosquesActivity" android:exported="false" />
         <activity android:name=".LocationActivity" android:exported="false" />
-        <activity android:name=".OnboardingActivity" android:exported="false" />
+        <activity android:name=".OnboardingActivity" android:enableOnBackInvokedCallback="false" android:exported="false" />
         <activity android:name=".HadithActivity" android:exported="false" />
         <activity android:name=".HadithReaderActivity" android:exported="false" />
         <activity android:name=".CalendarActivity" android:exported="false" />
         <activity android:name=".WeatherActivity" android:exported="false" />
         <activity android:name=".EarthquakeActivity" android:exported="false" />
-        <activity android:name=".migration.BackupActivity" android:exported="false" />
-        <activity android:name=".migration.MigrationLoadingActivity" android:exported="false" />
+        <activity android:name=".migration.BackupActivity" android:enableOnBackInvokedCallback="false" android:exported="false" />
+        <activity android:name=".migration.MigrationLoadingActivity" android:enableOnBackInvokedCallback="false" android:exported="false" />
         <activity android:name=".ProfileActivity" android:exported="false" />
         <activity android:name=".FaithActivity" android:exported="false" />
         <activity android:name=".WeeklyClassesActivity" android:exported="false" />
         <receiver android:name=".study.ClassAlarmReceiver" android:exported="false" />
-        <activity android:name=".AiActivity" android:exported="false" android:theme="@style/Theme.Zikra.Assistant" />
+        <activity android:name=".AiActivity" android:enableOnBackInvokedCallback="false" android:exported="false" android:theme="@style/Theme.Zikra.Assistant" />
         <activity android:name=".InfaqActivity" android:exported="false" />
         <activity android:name=".PrayerActivity" android:exported="false" />
         <activity android:name=".DuaActivity" android:exported="false" />
@@ -76,7 +76,7 @@
         <receiver android:name=".study.FocusAlarmReceiver" android:exported="false" />
         <activity android:name=".FocusTimerActivity" android:exported="false" />
         <activity android:name=".StudyActivity" android:exported="false" />
-        <activity android:name=".QuranActivity" android:exported="false" />
+        <activity android:name=".QuranActivity" android:enableOnBackInvokedCallback="false" android:exported="false" />
         <activity android:name=".MushafActivity" android:exported="false" />
         <activity android:name=".HomeActivity" android:theme="@style/Theme.Zikra.Home" android:exported="false" />
         <activity android:name=".SplashActivity" android:exported="true" android:theme="@style/Theme.Zikra.Launch">

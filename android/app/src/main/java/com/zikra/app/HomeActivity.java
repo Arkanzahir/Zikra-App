@@ -105,6 +105,12 @@ public final class HomeActivity extends BaseActivity {
     findViewById(R.id.homeScroll).setBackgroundColor(getColor(R.color.refined_background));
     homeRoot.setOnApplyWindowInsetsListener(
         (view, insets) -> {
+          if (android.os.Build.VERSION.SDK_INT >= 36) {
+            android.graphics.Insets safe = insets.getInsets(android.view.WindowInsets.Type.systemBars()
+                | android.view.WindowInsets.Type.displayCutout());
+            view.setPadding(safe.left, safe.top, safe.right, safe.bottom);
+            return insets;
+          }
           int top =
               android.os.Build.VERSION.SDK_INT >= 30
                   ? insets.getInsets(android.view.WindowInsets.Type.statusBars()).top

@@ -208,3 +208,9 @@ checkpoint; jangan memasukkan hash commit sendiri secara sirkular ke dokumen.
 
 Perkiraan durasi baru layak diberikan sesudah akses/hak dan hasil regresi
 tersedia. Tidak menjanjikan tanggal rilis dari jumlah fitur atau build sukses.
+
+### Checkpoint PA03 — 15 November
+
+Migrasi sumber ke compile/target 36, min 26, AGP 8.10.1, Gradle 8.11.1 dengan checksum distribusi. SDK platform 36 revisi 2 berhasil dipasang. Build awal APK aplikasi/instrumentasi dan tes JVM berhasil. Home menangani cutout samping. Layar BaseActivity lain memakai safe area bilah sistem dan keyboard di Android 16+. Lima layar memakai opt-out predictive back sementara untuk mempertahankan perilaku Kembali khusus. Versi kerja 1.9.53/code80. Kandidat publik tetap HOLD. Bukti runtime dicatat terpisah sesudah uji.
+
+Rujukan: [kompatibilitas AGP](https://developer.android.com/build/releases/agp-8-10-0-release-notes), [perubahan Android 16](https://developer.android.com/about/versions/16/behavior-changes-16).

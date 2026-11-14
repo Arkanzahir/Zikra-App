@@ -53,6 +53,18 @@ public abstract class BaseActivity extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    if (android.os.Build.VERSION.SDK_INT >= 36 && !(this instanceof HomeActivity)) {
+      // Home draws its own hero under the status bar. Other screens share safe content bounds.
+      View content = findViewById(android.R.id.content);
+      content.setBackgroundColor(getColor(R.color.background));
+      content.setOnApplyWindowInsetsListener((view, insets) -> {
+        android.graphics.Insets safe = insets.getInsets(android.view.WindowInsets.Type.systemBars()
+            | android.view.WindowInsets.Type.displayCutout() | android.view.WindowInsets.Type.ime());
+        view.setPadding(safe.left, safe.top, safe.right, safe.bottom);
+        return insets.inset(safe.left, safe.top, safe.right, safe.bottom);
+      });
+      content.requestApplyInsets();
+    }
     appliedAppearance = com.zikra.app.ui.AppAppearance.selected(this);
     appliedNightMode = getResources().getConfiguration().uiMode
         & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
@@ -97,6 +109,7 @@ public abstract class BaseActivity extends Activity {
     int status = getWindow().getStatusBarColor();
     int navigation = getWindow().getNavigationBarColor();
     if (android.graphics.Color.alpha(navigation) == 0) navigation = getColor(R.color.background);
+    if (android.os.Build.VERSION.SDK_INT >= 36 && !(this instanceof HomeActivity)) status = getColor(R.color.background);
     if (android.graphics.Color.valueOf(status).luminance() > 0.5f) flags |= lightStatus;
     if (android.graphics.Color.valueOf(navigation).luminance() > 0.5f) flags |= lightNavigation;
     getWindow().getDecorView().setSystemUiVisibility(flags);
