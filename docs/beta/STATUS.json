@@ -48,7 +48,7 @@
   "physicalSmokeCasesPassed": 2,
   "physicalScreenThemeChecks": 14,
   "nativeEmulatorPassed": 3,
-  "backendCurrentRunPassed": 138,
+  "backendCurrentRunPassed": 150,
   "backendChangeScope": "report-operator-tool-and-approved-production-activation",
   "targetMinimumAge": 13,
   "teenPrivacyFinalized": false,
@@ -117,5 +117,16 @@
     "legacyDatabasePreserved": true,
     "storedAudioPreferencePreserved": true
   },
-  "backendCurrentRunSkipped": 0
+  "backendCurrentRunSkipped": 0,
+  "selfServiceAccounts": {
+    "status": "local-foundation-only",
+    "newTestsPassed": 12,
+    "firebaseAdapterContractTested": true,
+    "realFirebaseAccountE2e": false,
+    "trustedAgeGuardianAdapterAvailable": false,
+    "androidRegistrationImplemented": false,
+    "publicEndpointEnabled": false,
+    "productionChanged": false,
+    "evidence": "backend/deploy/SELF_SERVICE_ACCOUNTS.md"
+  }
 }

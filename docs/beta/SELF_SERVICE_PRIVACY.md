@@ -1,6 +1,6 @@
 # Pendaftaran mandiri, usia dan wali
 
-15November2026. Pengguna menyetujui pengembangan, belum tersedia di1.9.55. TetapHOLD.
+15November2026. Pengguna menyetujui pengembangan; fondasi server teruji lokal, belum tersedia sebagai alur pengguna di1.9.55. TetapHOLD.
 
 Tujuan alur ialah aksesAI bagi pengguna13+ tanpa kode undangan manual. Pendaftaran akun dan bukti email, penetapan usia, persetujuan wali serta izin berbagi pesan memiliki bukti dan pencabutan masing-masing. Riwayat lokal tidak otomatis menjadi data akun/cloud.
 AkunFirebase dapat menjadi dasar autentikasi. IDtoken harus diverifikasi server, termasuk issuer/audience/signature/expiry serta revokasi, sebelum menerbitkan akses instalasi. Emailverified mengonfirmasi penguasaan email. Hindari menyebutnya usia atau hubungan keluarga terverifikasi.
@@ -17,3 +17,7 @@ Rujukan primer
 - https://jdih.komdigi.go.id/index.php/produk_hukum/view/id/1011/t/keputusan%2Bmenteri%2Bkomunikasi%2Bdan%2Bdigital%2Bnomor%2B219%2Btahun%2B2026
 
 Metadata aturan219/2026 menunjukkan perubahan142/2026 tentang indikator/penilaianrisiko. Teksoperatif dan penerapan akhir belum tuntas. Tidak memakai angka usia/klasifikasi yang ditebak dari metadata.
+
+## Checkpoint fondasi server
+
+Aturan eligibility/permintaanwali/keputusan/revoke dan adapter Firebase Admin tersedia lokal.12tes baru lulus, total150backend/0skip/0gagal, termasuk Lua concurrent registration dan konsumsi challenge satu kali. [Kontrak/batas](../../backend/deploy/SELF_SERVICE_ACCOUNTS.md). Belum ada provider assurance nyata, endpoint pendaftaran, layar Android, email, akun produksi atau deploy baru. Tidak menutup PA01/J11/F05 atau HOLD. Bukti email bukan bukti usia/hubungan keluarga. APK/HP tetap signed1.9.55.

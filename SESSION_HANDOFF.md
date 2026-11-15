@@ -1,3 +1,7 @@
+## Fondasi akun mandiri — 15 November 2026
+
+Pengguna menyetujui usia/wali mandiri. Server policy, Firebase Admin identity adapter dan Redis CAS ditambahkan,12tes baru/150backend penuh lulus tanpa skip. Belum ada provider assurance nyata, endpoint/Android signup atau email produksi. Ini fondasi lokal, bukan alur akun selesai; tidak aktif di produksi dan tidak masuk deployment allowlist. [Batas/tahap berikutnya](backend/deploy/SELF_SERVICE_ACCOUNTS.md). SignedAPK/HP tetap1.9.55, HOLD. Checkpoint83bc6db sebelumnya sudah dipush.
+
 ## Checkpoint aktif 1.9.55/code82 — 15 November 2026
 
 HOLD. Release ditandatangani, dipasang di HP API36 dan data dipulihkan melalui cadangan terenkripsi setelah izin pengguna. Quick-check lima database dan perbandingan jumlah sembilan tabel pribadi lulus; 14 kondisi layar/tema lulus. Cadangan awal 0byte diperbaiki melalui migrasi schema sebelum ekspor. Token/consent/izin OS tidak dipindahkan. [Bukti dan batas](android/validation/release-migration-2026-11-15/README.md).
