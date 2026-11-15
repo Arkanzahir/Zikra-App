@@ -1,0 +1,19 @@
+# Pendaftaran mandiri, usia dan wali
+
+15November2026. Pengguna menyetujui pengembangan, belum tersedia di1.9.55. TetapHOLD.
+
+Tujuan alur ialah aksesAI bagi pengguna13+ tanpa kode undangan manual. Pendaftaran akun dan bukti email, penetapan usia, persetujuan wali serta izin berbagi pesan memiliki bukti dan pencabutan masing-masing. Riwayat lokal tidak otomatis menjadi data akun/cloud.
+AkunFirebase dapat menjadi dasar autentikasi. IDtoken harus diverifikasi server, termasuk issuer/audience/signature/expiry serta revokasi, sebelum menerbitkan akses instalasi. Emailverified mengonfirmasi penguasaan email. Hindari menyebutnya usia atau hubungan keluarga terverifikasi.
+Rancangan keadaan yang perlu diterapkan: belumterdaftar, emailbelumterverifikasi, usiabelumdapatditentukan, di bawah13ditolak, dewasaeligible,13–17menungguwali, izinwaliaktif, ditolak/dicabut. Keadaan belumterverifikasi tidak mendapat aksesAI. Parent dan child harus terikat pada permintaan tertentu, versi kebijakan, masa berlaku, perlindungan replay dan kanal pencabutan. Tidak mengunggah KTP/wajah atau mengirim email atas nama pengguna dari alatagent tanpa persetujuan.
+Pemilihan metode assurance harus cocok dengan risiko dan kanalAPKwebsite. GooglePlayAgeSignals hanya berlaku pada cakupan tertentu dan aplikasi diperbaruiPlay, jadi belummenjadi jalurwebsite. Modeunknown/under13/pencabutan/restore tidak boleh membukaakses lewatfallback.
+Sebelum aktivasi publik, selesaikan penilaianrisiko sesuai sumber resmi/ketentuanlayanan, metode usia/wali yang dipilih, retensi bukti minimum, email/pemberitahuan, abusebudget dan uji endtoend. Jangan menyatakan sekadar checkbox menutup seluruh kewajiban. Dokumen ini bukan implementasi atau keputusan kepatuhan.
+
+Rujukan primer
+- https://firebase.google.com/docs/auth/android/email-link-auth
+- https://firebase.google.com/docs/auth/admin/verify-id-tokens
+- https://firebase.google.com/docs/auth/admin/manage-sessions
+- https://developer.android.com/google/play/age-signals/overview
+- https://developer.android.com/google/play/age-signals/test-age-signals-api
+- https://jdih.komdigi.go.id/index.php/produk_hukum/view/id/1011/t/keputusan%2Bmenteri%2Bkomunikasi%2Bdan%2Bdigital%2Bnomor%2B219%2Btahun%2B2026
+
+Metadata aturan219/2026 menunjukkan perubahan142/2026 tentang indikator/penilaianrisiko. Teksoperatif dan penerapan akhir belum tuntas. Tidak memakai angka usia/klasifikasi yang ditebak dari metadata.

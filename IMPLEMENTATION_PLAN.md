@@ -1,3 +1,9 @@
+## Checkpoint aktif 1.9.55/code82 — 15 November 2026
+
+HOLD. Release ditandatangani, dipasang di HP API36 dan data dipulihkan melalui cadangan terenkripsi setelah izin pengguna. Quick-check lima database dan perbandingan jumlah sembilan tabel pribadi lulus; 14 kondisi layar/tema lulus. Cadangan awal 0byte diperbaiki melalui migrasi schema sebelum ekspor. Token/consent/izin OS tidak dipindahkan. [Bukti dan batas](android/validation/release-migration-2026-11-15/README.md).
+Laporan AI produksi aktif setelah persetujuan deploy; receipt sintetis/TTL7hari/resolve teruji. Retensi seluruh penyedia belum terverifikasi. Kunci rilis privat lokal tersedia; salinan pemulihan media terpisah belum.
+Pengguna menyetujui pendaftaran mandiri, usia dan wali untuk AI13+ tanpa undangan. Ini memperluas F05 untuk akses tersebut, bukan sinkronisasi cloud. Belum diimplementasikan; lihat [rencana](docs/beta/SELF_SERVICE_PRIVACY.md). B01 lengkap, privasi remaja, sisa uji/operasional dan keputusan publik tetap terbuka. Catatan versi sebelumnya di bawah historis.
+
 ## Cakupan beta publik 1.9.54
 
 Pengguna menyetujui HadeethEnc dahulu dan notifikasi biasa. Implementasi/preservasi diverifikasi melalui 3 tes native, unit release dan audit paket. [Bukti](android/validation/public-scope-2026-11-15/README.md). B01 dan hak rekaman asli tetap terbuka untuk cakupan lengkap. Release unsigned/HOLD, privasi13+, signer/migrasi dan uji akhir tetap wajib.

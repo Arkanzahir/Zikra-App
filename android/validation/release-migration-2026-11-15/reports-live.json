@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-15",
+  "syntheticOnly": true,
+  "health": true,
+  "extraFieldRejected": true,
+  "received": true,
+  "retryIdempotent": true,
+  "exactFields": true,
+  "ttlSevenDays": true,
+  "operatorResolve": true,
+  "deleted": true,
+  "passed": true
+}

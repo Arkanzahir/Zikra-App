@@ -1,3 +1,7 @@
+## Akses akun dipulihkan — 15 November 2026
+
+Login CLI diperbarui pengguna; metadata proyek/tim kembali200 dan paket Hobby terverifikasi. Ini menggantikan hambatan403 di bawah. Retensi drain/backup/seluruh lapisan masih belum terverifikasi; tidak mengklaim nol log. Laporan aplikasi aktif dengan TTL7hari, diuji sintetis.
+
 ## Pemeriksaan akun15November2026 — BLOCKED
 
 Probe hanya-GET ke metadata tim/proyek Vercel menggunakan sesi CLI yang sudah

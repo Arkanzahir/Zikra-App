@@ -1,22 +1,23 @@
 {
   "schemaVersion": 1,
   "releaseStatus": "HOLD",
-  "version": "1.9.54",
-  "versionCode": 81,
-  "bytes": 37908470,
-  "sha256": "3c934c6fd5e3c95a7c2a4f487895d4364b44365c7b9f8bc43e07e22f54fbe8d1",
-  "signerSha256": null,
+  "version": "1.9.55",
+  "versionCode": 82,
+  "bytes": 37916662,
+  "sha256": "05a331d6fa10c284ebea4b8dfd0bb08b1303a524abff089dd0fd2ea3087e6a6d",
+  "signerSha256": "c65c40ddc15dce2d4390496585e28a41bee95c2ca72f47791fed77a50431deeb",
   "debugSigningKey": false,
   "distributionApproved": false,
   "downloadUrl": null,
-  "runtimeVerification": "3-native-scope-methods-on-debug-scope-equivalent-release-signing-and-device-tests-open",
+  "runtimeVerification": "physical-api36-restore-five-databases-nine-table-counts-and-14-screen-theme-checks",
   "remainingGates": [
     "content-and-audio-rights",
     "teen-controls-retention-and-privacy",
-    "release-signing-and-migration",
     "combined-runtime-and-device-tests",
     "play-target-api36",
-    "in-app-ai-reporting"
+    "in-app-ai-reporting",
+    "external-signer-recovery-copy",
+    "self-service-age-and-guardian-verification"
   ],
-  "artifactKind": "unsigned-release-inspection-not-installable"
+  "artifactKind": "signed-release-hold"
 }

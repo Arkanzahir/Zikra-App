@@ -50,6 +50,30 @@ public final class BackupSnapshotNativeTest extends InstrumentationTestCase {
       @Override public boolean deleteSharedPreferences(String name) { return target.deleteSharedPreferences(prefix + name); }
     };
   }
+  public void testExportMigratesAnUnopenedLegacyHadithDatabase() throws Exception {
+    try (SQLiteDatabase db = source.openOrCreateDatabase("zikra_hadith.db", 0, null)) {
+      db.execSQL("CREATE TABLE entries(id TEXT PRIMARY KEY)");
+      db.execSQL("CREATE TABLE bookmarks(id TEXT PRIMARY KEY NOT NULL)");
+      db.execSQL("INSERT INTO bookmarks VALUES('legacy-bookmark')");
+      db.setVersion(1);
+    }
+    File export = new File(source.getCacheDir(), "zikra-export-" + UUID.randomUUID());
+    char[] password = "synthetic-regression-password".toCharArray();
+    try {
+      File encrypted = LocalMigration.export(source, password, export);
+      assertTrue(encrypted.length() > 100);
+      try (SQLiteDatabase db = source.openOrCreateDatabase("zikra_hadith.db", 0, null);
+          android.database.Cursor rows = db.rawQuery("SELECT id FROM bookmarks", null)) {
+        assertEquals(2, db.getVersion());
+        assertTrue(rows.moveToFirst());
+        assertEquals("legacy-bookmark", rows.getString(0));
+      }
+    } finally {
+      java.util.Arrays.fill(password, '\0');
+      if (export.exists()) LocalMigration.discardExport(source, export);
+    }
+  }
+
   protected void tearDown() throws Exception {
     try {
       LocalMigration.initialize(getInstrumentation().getTargetContext());

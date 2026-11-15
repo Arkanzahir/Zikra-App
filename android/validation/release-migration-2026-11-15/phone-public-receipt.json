@@ -1,0 +1,12 @@
+{
+  "version": "1.9.55",
+  "releaseSignerVerified": true,
+  "restoreConfirmedByUser": true,
+  "physicalReadOnlyIntegrityPassed": true,
+  "personalTableCountsMatched": true,
+  "tablesCountCompared": 9,
+  "derivedDailyTableExcluded": true,
+  "signedInstallSucceeded": true,
+  "encryptedBackupPreserved": true,
+  "phoneLatestDebuggable": false
+}

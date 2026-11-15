@@ -1,0 +1,11 @@
+
+INSTRUMENTATION_STATUS: receiptVersion=1.9.55-release
+INSTRUMENTATION_STATUS_CODE: 0
+.INSTRUMENTATION_STATUS: personal_screenshots_taken=false
+INSTRUMENTATION_STATUS: physical_screen_theme_checks=14
+INSTRUMENTATION_STATUS_CODE: 0
+.
+Test results for InstrumentationTestRunner=..
+Time: 14.317
+
+OK (2 tests)

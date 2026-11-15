@@ -65,7 +65,9 @@ public final class BackupSnapshot {
     for (Map.Entry<String, List<String>> spec : BackupPolicy.DATABASES.entrySet()) {
       File path = context.getDatabasePath(spec.getKey());
       if (!path.isFile()) { databases.put(spec.getKey(), JSONObject.NULL); continue; }
-      try (SQLiteDatabase db = SQLiteDatabase.openDatabase(path.getPath(), null, SQLiteDatabase.OPEN_READWRITE)) {
+      // A database may still have its previous schema if its screen has not been opened since update.
+      try (SQLiteOpenHelper helper = schema(context, spec.getKey())) {
+        SQLiteDatabase db = helper.getWritableDatabase();
         db.beginTransactionNonExclusive();
         try {
           JSONObject tables = new JSONObject();
