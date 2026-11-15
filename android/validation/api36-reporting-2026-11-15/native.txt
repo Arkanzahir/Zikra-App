@@ -1,0 +1,8 @@
+
+com.zikra.app.FinalBatchThemeTest:.
+com.zikra.app.assistant.AiRefreshTest:..
+com.zikra.app.assistant.AssistantTempFilesNativeTest:..
+Test results for InstrumentationTestRunner=.....
+Time: 16.964
+
+OK (5 tests)

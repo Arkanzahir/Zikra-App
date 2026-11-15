@@ -196,6 +196,24 @@ public final class AiRefreshTest extends InstrumentationTestCase {
     }finally{shell("svc wifi "+(wifi?"enable":"disable"));shell("svc data "+(data?"enable":"disable"));}
   }
 
+  public void testOnlineAnswerHasReportActionAndCanCancel() throws Exception {
+    launch();
+    ui(() -> call("bubble", new Class<?>[]{String.class, String.class, String.class},
+        "assistant", "Contoh jawaban uji.", "online"));
+    java.util.ArrayList<android.view.View> flags = new java.util.ArrayList<>();
+    activity.getWindow().getDecorView().findViewsWithText(flags, "Laporkan jawaban AI ini",
+        android.view.View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+    assertEquals(1, flags.size());
+    ui(() -> flags.get(0).performClick());
+    shot("report-reason");
+    android.view.accessibility.AccessibilityNodeInfo root = getInstrumentation()
+        .getUiAutomation().getRootInActiveWindow();
+    assertFalse(root.findAccessibilityNodeInfosByText("Informasi keliru").isEmpty());
+    getInstrumentation().sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);
+    getInstrumentation().waitForIdleSync();
+    assertNull(field("reportCall"));
+  }
+
   public void testLargeTextComposerAndKeyboardRemainReachable()throws Exception{
     new AssistantConnection(context).offline();context.getSharedPreferences("zikra_preferences",0).edit().putString("assistant_mode_v2","offline").commit();launch();
     android.graphics.Rect composer=new android.graphics.Rect();assertTrue(activity.findViewById(R.id.aiComposer).getGlobalVisibleRect(composer));assertTrue(composer.height()>40);

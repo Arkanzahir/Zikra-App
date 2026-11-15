@@ -5,6 +5,8 @@
 !api
 !api/health.js
 !api/assistant.js
+!answer-reports.mjs
+!api/answer-reports.js
 !api/images.js
 !api/capabilities.js
 !server.mjs

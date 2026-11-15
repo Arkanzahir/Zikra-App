@@ -579,9 +579,58 @@ public final class AiActivity extends BaseActivity {
       replyRenderer.bind(body, message);
     }
     card.addView(body);
-    if(!user)card.addView(AssistantUi.icon(this,R.drawable.ai_balanced_copy,getString(R.string.ai_balanced_copy),()->{((android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(android.content.ClipData.newPlainText("Zikra AI",message));toast("Teks disalin");}));
+    if (!user) {
+      LinearLayout actions = new LinearLayout(this);
+      actions.addView(AssistantUi.icon(this, R.drawable.ai_balanced_copy, getString(R.string.ai_balanced_copy), () -> {
+        ((android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE))
+            .setPrimaryClip(android.content.ClipData.newPlainText("Zikra AI", message));
+        toast("Teks disalin");
+      }));
+      if ("online".equals(mode)) {
+        android.widget.Button flag = new android.widget.Button(this, null, android.R.attr.borderlessButtonStyle);
+        flag.setText("Laporkan");
+        flag.setAllCaps(false);
+        flag.setContentDescription("Laporkan jawaban AI ini");
+        flag.setOnClickListener(v -> reviewReport(message));
+        actions.addView(flag);
+      }
+      card.addView(actions);
+    }
     row.addView(card);
     thread.addView(row);
+  }
+
+  private okhttp3.Call reportCall;
+
+  private void reviewReport(String message) {
+    if (reportCall != null) { toast("Laporan sebelumnya sedang dikirim."); return; }
+    AssistantConnection.ServicePermit permit = connection.servicePermission();
+    if (!connection.permitsService(permit)) { toast("Aktifkan koneksi online untuk mengirim laporan."); return; }
+    String[] labels = {"Konten berbahaya", "Informasi keliru", "Alasan lain"};
+    String[] codes = {"unsafe", "inaccurate", "other"};
+    new AlertDialog.Builder(this).setTitle("Mengapa kamu melaporkan jawaban ini?")
+        .setItems(labels, (dialog, index) -> {
+          EditText excerpt = new EditText(this);
+          excerpt.setFilters(new InputFilter[]{new InputFilter.LengthFilter(500)});
+          excerpt.setMinLines(2);
+          excerpt.setMaxLines(5);
+          excerpt.setText(message);
+          new AlertDialog.Builder(this).setTitle("Kirim ke tim Zikra")
+              .setMessage(labels[index] + ". Edit kutipan dan hapus data pribadi sebelum mengirim. Hanya alasan dan kutipan ini yang disertakan.")
+              .setView(excerpt).setNegativeButton("Batal", null)
+              .setPositiveButton("Kirim laporan", (review, button) -> {
+                String text = excerpt.getText().toString().trim();
+                if (text.isEmpty()) { toast("Isi kutipan yang ingin dilaporkan."); return; }
+                try {
+                  reportCall = com.zikra.app.assistant.AnswerReportClient.send(connection, permit, codes[index], text,
+                      received -> runOnUiThread(() -> {
+                        reportCall = null;
+                        if (!isFinishing() && !isDestroyed())
+                          toast(received ? "Laporan diterima." : "Laporan belum terkonfirmasi. Coba lagi nanti.");
+                      }));
+                } catch (Exception unavailable) { toast("Laporan belum terkirim. Periksa koneksi layanan."); }
+              }).show();
+        }).setNegativeButton("Batal", null).show();
   }
 
   private void sendMessage() {
@@ -1119,6 +1168,7 @@ public final class AiActivity extends BaseActivity {
     if(network!=null)network.close();
     if(conversations!=null)conversations.close();
     if(attachmentReader!=null)attachmentReader.close();
+    if (reportCall != null) reportCall.cancel();
     super.onDestroy();
   }
 }

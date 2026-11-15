@@ -73,7 +73,7 @@ async function boundedJson(stream, limit, signal) {
 
 export function createRequestHandler({ apiKey, model, visionModel, provider = 'featherless', accountId, freePlanConfirmed, clientToken, fetchImpl = fetch, now = Date.now,
   providerTimeoutMs = 35000, accessMode = 'private', clientsFile, usageFile, dailyLimit,
-  sourceFetchImpl = fetch, accessStore, imageService, onRejection }) {
+  sourceFetchImpl = fetch, accessStore, imageService, reportAnswer, onRejection }) {
   if (!['private', 'installation'].includes(accessMode)) throw new ConfigError('Invalid access mode.');
   const providerConfig = {apiKey, model, visionModel, provider, accountId, freePlanConfirmed};
   if (accessMode === 'private') validateCredentials({ ...providerConfig, clientToken });
@@ -109,12 +109,25 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
     if (req.method === 'GET' && req.url === '/health') return reply(200, { status: 'ok' });
     const imageRequest=req.method==='POST'&&req.url==='/v1/images';
     const capabilities=req.method==='GET'&&req.url==='/v1/capabilities';
-    if (!imageRequest&&!capabilities&&(req.method !== 'POST' || req.url !== '/v1/assistant')) return reply(404, { error: 'not_found' });
+    const reportRequest = req.method === 'POST' && req.url === '/v1/answer-reports';
+    if (!reportRequest&&!imageRequest&&!capabilities&&(req.method !== 'POST' || req.url !== '/v1/assistant')) return reply(404, { error: 'not_found' });
     try {
       identity = installation ? await installation.identify(req.headers.authorization)
         : (equalToken(req.headers.authorization, `Bearer ${clientToken}`) ? req.socket.remoteAddress || 'unknown' : null);
     } catch { return reply(503, { error: 'access_unavailable' }); }
     if (!identity) return reply(401, { error: 'unauthorized' });
+    if (reportRequest) {
+      if (!reportAnswer) return reply(503, { error: 'report_unavailable' });
+      if (!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type'] || ''))
+        return reply(415, { error: 'json_required' });
+      try {
+        const body = await boundedJson(req, 4096, AbortSignal.timeout(10000));
+        const status = await reportAnswer(identity, body);
+        return reply(status, status === 201 ? { received: true } : { error: status === 429 ? 'rate_limited' : 'invalid_report' });
+      } catch (error) {
+        return reply(error instanceof InputError ? error.status : 503, { error: 'report_unavailable' });
+      }
+    }
     if(capabilities)return reply(200,{imageGeneration:!!imageService,imageUserDaily:IMAGE_USER_DAILY,imageGlobalDaily:IMAGE_GLOBAL_DAILY,assistantProvider:provider});
     const requestedProvider=req.headers['x-zikra-provider'];
     if(!imageRequest && (provider==='cloudflare' && requestedProvider!=='cloudflare'

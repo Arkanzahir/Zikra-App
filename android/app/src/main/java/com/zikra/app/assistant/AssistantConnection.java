@@ -39,7 +39,8 @@ public final class AssistantConnection {
   public ServicePermit servicePermission() {
     return configured() ? new ServicePermit(endpoint(), credentialIdentity(), AssistantConsent.revision(consent)) : null;
   }
-  public boolean permitsImage(ServicePermit permit) {
+  public boolean permitsImage(ServicePermit permit) { return permitsService(permit); }
+  public boolean permitsService(ServicePermit permit) {
     return configured() && !"offline".equals(consent.getString("assistant_mode_v2", "auto")) && permit != null
         && endpoint().equals(permit.endpoint) && credentialIdentity().equals(permit.credential)
         && AssistantConsent.revision(consent).equals(permit.revision);

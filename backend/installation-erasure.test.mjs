@@ -47,14 +47,14 @@ test('inspection is read-only; prepare revokes, waits and is idempotent', integr
 
 test('erasure deletes only one paired installation and its scoped metadata', integration, async t => {
   const f = await fixture(t), other = randomUUID();
-  const selected = [f.prefix + 'usage:' + f.id, f.prefix + 'images:user:' + f.id,
+  const selected = [f.prefix + 'answer-report:' + f.id + ':sample', f.prefix + 'report-rate:' + f.id, f.prefix + 'usage:' + f.id, f.prefix + 'images:user:' + f.id,
     f.prefix + 'images:request:' + f.id + ':' + randomUUID(), f.prefix + 'quran-sync:rate:' + f.id];
-  const retained = [f.prefix + 'images:request:' + other + ':' + randomUUID(), f.prefix + 'images:global',
+  const retained = [f.prefix + 'answer-report:' + other + ':sample', f.prefix + 'images:request:' + other + ':' + randomUUID(), f.prefix + 'images:global',
     f.prefix + 'e02:initialized', f.prefix + 'quran-sync:current', 'unrelated:private'];
   for (const key of [...selected, ...retained]) await f.redis.command(['SET', key, 'private-value']);
   await f.manage('prepare'); await settle(f);
   const result = await f.manage('erase');
-  assert.equal(result.state, 'erased'); assert.equal(result.removedKeys, 6);
+  assert.equal(result.state, 'erased'); assert.equal(result.removedKeys, 8);
   for (const key of selected) assert.equal(await f.redis.command(['EXISTS', key]), 0);
   for (const key of retained) assert.equal(await f.redis.command(['GET', key]), 'private-value');
   assert.equal(await f.redis.command(['EXISTS', f.prefix + 'installation:' + f.id]), 0);

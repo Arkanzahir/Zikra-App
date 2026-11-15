@@ -13,7 +13,7 @@ import java.nio.file.Files;
 public final class AssistantTempFilesNativeTest extends InstrumentationTestCase {
   @Override protected void setUp() throws Exception {
     super.setUp();
-    assertTrue(android.os.Build.MODEL.contains("sdk") || android.os.Build.FINGERPRINT.contains("generic"));
+    assertTrue(("ranchu".equals(android.os.Build.HARDWARE) && android.os.Build.FINGERPRINT.startsWith("Android/sdk_phone")) || android.os.Build.MODEL.contains("sdk") || android.os.Build.FINGERPRINT.contains("generic"));
   }
   private byte[] pdf(int pages) throws Exception {
     PdfDocument document = new PdfDocument();

@@ -10,7 +10,7 @@ import com.zikra.app.safety.ContextualReminders;
 @SuppressWarnings("deprecation")
 public final class FinalBatchThemeTest extends InstrumentationTestCase {
   public void testFeatureThemesAndOptInDefaults() throws Exception {
-    assertTrue(android.os.Build.MODEL.contains("sdk") || android.os.Build.FINGERPRINT.contains("generic"));
+    assertTrue(("ranchu".equals(android.os.Build.HARDWARE) && android.os.Build.FINGERPRINT.startsWith("Android/sdk_phone")) || android.os.Build.MODEL.contains("sdk") || android.os.Build.FINGERPRINT.contains("generic"));
     android.content.Context context = getInstrumentation().getTargetContext();
     android.content.SharedPreferences appearance = context.getSharedPreferences(AppAppearance.PREFS, 0);
     String previous = appearance.getString(AppAppearance.KEY, "light");

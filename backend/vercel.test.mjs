@@ -58,6 +58,7 @@ test('Vercel entry points pin paths and deployment excludes private config and a
   assert.equal(config.functions['api/*.js'].maxDuration, 60);
   assert.deepEqual(config.rewrites, [{ source: '/v1/quran', destination: '/api/quran' },
     { source: '/v1/earthquakes/poll', destination: '/api/earthquake-poll' },
+    { source: '/v1/answer-reports', destination: '/api/answer-reports' },
     { source: '/health', destination: '/api/health' },
     { source: '/v1/assistant', destination: '/api/assistant' },{source:'/v1/images',destination:'/api/images'},{source:'/v1/capabilities',destination:'/api/capabilities'}]);
   for (const [entry, path] of [['health', '/health'], ['assistant', '/v1/assistant'],['images','/v1/images'],['capabilities','/v1/capabilities']])
@@ -210,4 +211,30 @@ test('Vercel HTTP: two handlers share access state, invalid input releases slots
   await redis.command(['SET', `zikra:v1:client:${client.hash}`, '{']);
   const unavailable = await send(0, valid); assert.equal(unavailable.status, 503);
   assert.deepEqual(await unavailable.json(), { error: 'access_unavailable' }); assert.equal(calls, 1);
+});
+
+test('answer reports: authenticated, minimal, deduplicated, limited, expiring and revocable',integration,async t=>{
+  const redis=await fixture(t), client=await issue(redis);
+  const handler=createVercelHandler({...env,ZIKRA_REPORTS_ENABLED:'true'}, {redis,fetchImpl:()=>assert.fail('no provider call')});
+  const server=http.createServer(handler).listen(0,'127.0.0.1');
+  await once(server,'listening'); t.after(()=>server.close());
+  const url='http://127.0.0.1:'+server.address().port+'/v1/answer-reports';
+  const send=(payload,token=client.token)=>fetch(url,{method:'POST',headers:{Authorization:auth(token),
+    'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const form={reason:'inaccurate',excerpt:'Synthetic answer'};
+  assert.equal((await send(form,'invalid')).status,401);
+  assert.equal((await send({...form,profile:'unwanted'})).status,400);
+  assert.equal((await send({...form,excerpt:'x'.repeat(501)})).status,400);
+  assert.equal((await send({...form,excerpt:'x'.repeat(5000)})).status,413);
+  assert.equal((await send(form)).status,201);
+  assert.deepEqual(await (await send(form)).json(),{received:true});
+  const keys=await redis.command(['KEYS','zikra:v1:answer-report:*']);
+  assert.equal(keys.length,1);
+  assert.deepEqual(JSON.parse(await redis.command(['GET',keys[0]])),form);
+  const ttl=await redis.command(['TTL',keys[0]]);
+  assert.ok(ttl>0 && ttl<=604800);
+  for(let i=0;i<4;i++) assert.equal((await send({...form,excerpt:'answer '+i})).status,201);
+  assert.equal((await send({...form,excerpt:'sixth'})).status,429);
+  await redis.command(['EVAL',REVOKE,1,'zikra:v1:client:'+client.hash,client.id]);
+  assert.equal((await send(form)).status,401);
 });

@@ -1,3 +1,4 @@
+import {saveAnswerReport} from './answer-reports.mjs';
 import { ConfigError, readProviderConfig } from './config.mjs';
 import { RedisAccess, RedisRest, readRedisConfig } from './redis-access.mjs';
 import { createRequestHandler } from './server.mjs';
@@ -19,7 +20,9 @@ export function createVercelHandler(env = process.env, { redis, fetchImpl, sourc
   // An image configuration failure must not disable existing text/vision chat.
   let imageConfig;try{imageConfig=readImageConfig(env);}catch{imageConfig=null;}
   const imageService=createImageService({config:imageConfig,redis:accessStore.redis,prefix:config.redis.prefix,fetchImpl});
-  return createRequestHandler({ ...config, accessMode: 'installation', accessStore, fetchImpl, sourceFetchImpl,imageService,onRejection });
+  const reportAnswer = env.ZIKRA_REPORTS_ENABLED === 'true'
+    ? (identity, body) => saveAnswerReport(accessStore.redis, config.redis.prefix, identity, body) : null;
+  return createRequestHandler({ reportAnswer, ...config, accessMode: 'installation', accessStore, fetchImpl, sourceFetchImpl,imageService,onRejection });
 }
 
 let handler;

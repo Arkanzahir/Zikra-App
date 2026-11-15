@@ -29,20 +29,23 @@ if action == 'prepare' then
   return {'prepared'}
 end
 local keys = {key, index, prefix .. 'usage:' .. id, prefix .. 'active:' .. id,
-  prefix .. 'images:user:' .. id, prefix .. 'quran-sync:rate:' .. id}
-local seen, cursor, steps = {}, '0', 0
+  prefix .. 'report-rate:' .. id, prefix .. 'images:user:' .. id, prefix .. 'quran-sync:rate:' .. id}
+local seen, steps = {}, 0
+for _, group in ipairs({'images:request:', 'answer-report:'}) do
+local cursor = '0'
 repeat
-  local batch = redis.call('SCAN', cursor, 'MATCH', prefix .. 'images:request:' .. id .. ':*', 'COUNT', 100)
+  local batch = redis.call('SCAN', cursor, 'MATCH', prefix .. group .. id .. ':*', 'COUNT', 100)
   cursor = tostring(batch[1]); steps = steps + 1
   for _, item in ipairs(batch[2]) do
     if not seen[item] then
       seen[item] = true
       table.insert(keys, item)
-      if #keys > ${MAX_ERASURE_REQUESTS + 6} then return redis.error_reply('erasure_too_large') end
+      if #keys > ${MAX_ERASURE_REQUESTS + 7} then return redis.error_reply('erasure_too_large') end
     end
   end
   if steps >= 1000 and cursor ~= '0' then return redis.error_reply('erasure_too_large') end
 until cursor == '0'
+end
 local live = redis.call('ZCOUNT', prefix .. 'active:' .. id, now * 1000, '+inf')
 local count = 0
 for _, item in ipairs(keys) do count = count + redis.call('EXISTS', item) end
