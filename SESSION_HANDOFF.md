@@ -1,3 +1,7 @@
+## Penelusuran hak15November2026
+
+[CONTENT_LICENSE_TRACE](docs/beta/CONTENT_LICENSE_TRACE.md) merangkum bukti primer. Adzan aktif bersumberIslamdownload, hash cocok bukti11November; jangan meminta ulang asalfile ke pengguna. QF/EQuran/HadeethEnc punya izin bersyarat; jangan menyatakan semuanya butuhsurat khusus. Adzan/B01/akun/resource/promo masih parsial. Tidak ada email, penggantianaudio atau publikasi. HOLD.
+
 ## Checkpoint aktif1.9.53 —15 November2026
 
 HOLD. API36/toolchain dan pelaporanAI lokal diimplementasikan. [Bukti/batas](android/validation/api36-reporting-2026-11-15/README.md). PA03/PA04 PARTIAL. Produksi laporan belum aktif; HP tetap1.9.48. Berikutnya kompatibilitas lintas versi, triase/retensi dan E2E laporan. Bagian sebelumnya merupakan riwayat.
