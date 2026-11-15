@@ -340,8 +340,12 @@ public final class PrayerActivity extends BaseActivity {
   private void showMode(int index,boolean restoring) {
     if(!PrayerSchedule.isPrayer(index))return;
     editingPrayer=index;if(!restoring)draftMode=PrayerSettings.mode(this,index).ordinal();
+    int modeOffset = BuildConfig.PUBLIC_BETA_SCOPE ? 1 : 0;
+    String[] choices = getResources().getStringArray(R.array.prayer_mode_choices);
+    if (modeOffset == 1) choices = java.util.Arrays.copyOfRange(choices, 1, choices.length);
+    final int offset = modeOffset;
     modeDialog=new AlertDialog.Builder(this).setTitle(getString(R.string.adhan_mode_title,PrayerSchedule.NAMES[index]))
-        .setSingleChoiceItems(R.array.prayer_mode_choices,draftMode,(dialog,choice)->draftMode=choice)
+        .setSingleChoiceItems(choices,Math.max(0,draftMode-offset),(dialog,choice)->draftMode=choice+offset)
         .setNegativeButton(R.string.weekly_cancel,null).setPositiveButton(R.string.weekly_save,null).create();
     modeDialog.setOnShowListener(dialog->modeDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{
       PrayerMode selected=PrayerMode.values()[draftMode];
@@ -362,6 +366,7 @@ public final class PrayerActivity extends BaseActivity {
     findViewById(R.id.prayerAudioStop).setVisibility(state.active?View.VISIBLE:View.GONE);
     findViewById(R.id.prayerAudioPreview).setEnabled(present&&!state.active);
     String message=!state.status.isEmpty()?state.status:getString(present?R.string.adhan_audio_label:R.string.adhan_audio_missing);
+    if (BuildConfig.PUBLIC_BETA_SCOPE) message = "Beta publik memakai notifikasi biasa tanpa rekaman adzan bawaan.";
     TextView label=findViewById(R.id.prayerAudioStatus);if(!message.contentEquals(label.getText()))label.setText(message);
     ((TextView)findViewById(R.id.prayerBannerHint)).setText(
         !PrayerReminders.canNotify(this)?R.string.adhan_permission_needed:

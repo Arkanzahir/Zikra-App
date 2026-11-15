@@ -1,0 +1,6 @@
+
+com.zikra.app.PublicBetaScopeTest:...
+Test results for InstrumentationTestRunner=...
+Time: 4.89
+
+OK (3 tests)

@@ -1,3 +1,7 @@
+## Perubahan cakupan disetujui15November2026
+
+Beta publik awal memakai koleksiHadeethEnc dahulu. Dua kitabGading ditunda sampai sumber/hak jelas; B01tetapterbuka. Notifikasi salat biasa dahulu, tanpa bundelMP3privat. Data lama dan varianinternal dijaga. Implementasi1.9.54: [bukti](android/validation/public-scope-2026-11-15/README.md). Sasaran13+,privasi,signing,ujiakhir dan statusHOLD tetap. Tidak memberi izin publikasi sebelumgate terpenuhi.
+
 ## Checkpoint aktif1.9.53 —15 November2026
 
 HOLD. API36/toolchain dan pelaporanAI lokal diimplementasikan. [Bukti/batas](android/validation/api36-reporting-2026-11-15/README.md). PA03/PA04 PARTIAL. Produksi laporan belum aktif; HP tetap1.9.48. Berikutnya kompatibilitas lintas versi, triase/retensi dan E2E laporan. Bagian sebelumnya merupakan riwayat.

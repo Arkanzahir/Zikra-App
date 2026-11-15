@@ -1,3 +1,7 @@
+## Aktif1.9.54/code81 —cakupanpublik disetujui
+
+HadeethEnc dahulu, Gadingditunda, notification-only. Releaseflagpublik tetaptrue; debuginternaldefaultfalse. [Bukti/batas](android/validation/public-scope-2026-11-15/README.md). Data/bookmark/audioasal terjaga. Kandidatrelease masihunsignedinspeksi/HOLD. HPtetap1.9.48. Sasaran13+tidakberubah. Detailversilama di bawah historis.
+
 ## Penelusuran hak15November2026
 
 [CONTENT_LICENSE_TRACE](docs/beta/CONTENT_LICENSE_TRACE.md) merangkum bukti primer. Adzan aktif bersumberIslamdownload, hash cocok bukti11November; jangan meminta ulang asalfile ke pengguna. QF/EQuran/HadeethEnc punya izin bersyarat; jangan menyatakan semuanya butuhsurat khusus. Adzan/B01/akun/resource/promo masih parsial. Tidak ada email, penggantianaudio atau publikasi. HOLD.

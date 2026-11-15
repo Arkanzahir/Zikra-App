@@ -13,7 +13,8 @@ public final class PrayerSettings {
   public static PrayerMode mode(Context context, int index) {
     if (!PrayerSchedule.isPrayer(index)) return PrayerMode.OFF;
     SharedPreferences p=prefs(context);String key=PrayerSchedule.KEYS[index];
-    return PrayerMode.stored(p.getString("prayer_mode_"+key,null),p.getBoolean("reminder_"+key,true));
+    PrayerMode mode = PrayerMode.stored(p.getString("prayer_mode_"+key,null),p.getBoolean("reminder_"+key,true));
+    return com.zikra.app.BuildConfig.PUBLIC_BETA_SCOPE && mode == PrayerMode.ADHAN ? PrayerMode.NOTIFICATION : mode;
   }
   public static void setMode(Context context, int index, PrayerMode mode) {
     if (!PrayerSchedule.isPrayer(index) || mode == null) throw new IllegalArgumentException("Invalid prayer mode");

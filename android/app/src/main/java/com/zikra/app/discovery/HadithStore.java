@@ -113,7 +113,7 @@ public final class HadithStore implements AutoCloseable {
     SQLiteDatabase db = helper.getWritableDatabase();
     syncBookmarks(db, saved);
     List<String> args = new ArrayList<>();
-    String where = "1=1";
+    String where = com.zikra.app.BuildConfig.PUBLIC_BETA_SCOPE ? "book='hadeethenc'" : "1=1";
     if ("Bukhari".equals(collection) || "Muslim".equals(collection)) {
       where += " AND book=?"; args.add(collection.toLowerCase(java.util.Locale.ROOT));
     } else if ("Pilihan".equals(collection)) {
@@ -168,7 +168,8 @@ public final class HadithStore implements AutoCloseable {
         HadithCollection.Entry value = null;
         try (Cursor c = helper.getReadableDatabase().query("entries", null, "id=?",
             new String[]{id == null ? "" : id}, null, null, null)) {
-          if (c.moveToFirst()) value = entry(c);
+          if (c.moveToFirst() && (!com.zikra.app.BuildConfig.PUBLIC_BETA_SCOPE
+              || "hadeethenc".equals(c.getString(c.getColumnIndexOrThrow("book"))))) value = entry(c);
         }
         HadithCollection.Entry found = value;
         post(() -> result.show(found));
@@ -194,6 +195,9 @@ public final class HadithStore implements AutoCloseable {
   }
 
   public void download(String id, Download result) {
+    if (com.zikra.app.BuildConfig.PUBLIC_BETA_SCOPE && !"hadeethenc".equals(id)) {
+      post(() -> result.failed("scope")); return;
+    }
     Book book = book(id);
     cancelled = false;
     if (book == HADEETHENC) { downloadEncyclopedia(result); return; }

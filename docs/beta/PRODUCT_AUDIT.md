@@ -222,3 +222,7 @@ PA04 PARTIAL: UI dan server pelaporan sudah diimplementasikan,135backendtes lulu
 [Bukti dan batas](../../android/validation/api36-reporting-2026-11-15/README.md). HOLD.
 
 Checkpoint publik15November: bukti lisensi belum tersedia menurut pengguna. Dua uji tambahanAPI36/teks200% lulus,9tesauditpaket lulus. Rujukan [persyaratan publik](docs/beta/PUBLIC_RELEASE_BLOCKERS.md) dari root repo. Status HOLD.
+
+## Cakupan publik disetujui —1.9.54
+
+Pengguna menyetujui HadeethEnc dahulu, Gading ditunda dan notifikasi biasa dahulu. Diimplementasikan dengan release flag tetap, filter pembacaan/unduhan serta fallback mode tanpa menghapus data. [Bukti dan batas](../../android/validation/public-scope-2026-11-15/README.md). B01 tidak ditutup, audio privat tidak masuk release. Paket release masih unsigned, HOLD.

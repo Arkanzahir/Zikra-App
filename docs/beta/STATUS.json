@@ -1,21 +1,21 @@
 {
   "date": "2026-11-15",
   "releaseStatus": "HOLD",
-  "version": "1.9.53",
-  "versionCode": 80,
-  "apkBytes": 49575828,
-  "apkSha256": "9dae0409837936f5d4288e1e48c78867e2b31c404a237aefa4fa23281a1aac99",
-  "debugSigningKey": true,
+  "version": "1.9.54",
+  "versionCode": 81,
+  "apkBytes": 37908470,
+  "apkSha256": "3c934c6fd5e3c95a7c2a4f487895d4364b44365c7b9f8bc43e07e22f54fbe8d1",
+  "debugSigningKey": false,
   "phoneTestedOnCandidate": false,
-  "nativePassed": 5,
+  "nativePassed": 3,
   "jvmPassed": 235,
   "jvmSkipped": 0,
   "lintErrors": 0,
-  "lintWarnings": 907,
+  "lintWarnings": 909,
   "backendPreviousRunPassed": 134,
-  "backendChanged": true,
+  "backendChanged": false,
   "website": "paused-by-user-preview-still-1.9.48-no-public-download",
-  "evidence": "android/validation/api36-reporting-2026-11-15/README.md",
+  "evidence": "android/validation/public-scope-2026-11-15/README.md",
   "remaining": [
     "quran-font-audio-failure-matrix",
     "background-and-device-verification",
@@ -46,9 +46,9 @@
   "phoneFinalSessionComplete": false,
   "physicalSmokeCasesPassed": 0,
   "physicalScreenThemeChecks": 0,
-  "nativeEmulatorPassed": 5,
-  "backendCurrentRunPassed": 135,
-  "backendChangeScope": "answer-report-route-and-scoped-erasure",
+  "nativeEmulatorPassed": 3,
+  "backendCurrentRunPassed": null,
+  "backendChangeScope": "unchanged-after-1.9.53",
   "targetMinimumAge": 13,
   "teenPrivacyFinalized": false,
   "phoneDataVerification": {
@@ -91,7 +91,7 @@
     "providerAccountRetentionVerified": false,
     "verificationCandidateVersion": "1.9.51"
   },
-  "nativeFinalExecutionsPassed": 7,
+  "nativeFinalExecutionsPassed": 3,
   "productAudit": {
     "round": 1,
     "completeProductCertification": false,
@@ -105,5 +105,14 @@
     "evidence": "docs/beta/PRODUCT_AUDIT.md"
   },
   "releaseAuditTestsPassed": 9,
-  "contentRightsEvidenceProvided": false
+  "contentRightsEvidenceProvided": false,
+  "artifactKind": "unsigned-release-inspection",
+  "releaseSigned": false,
+  "publicBetaScopeApproved": true,
+  "publicBetaScope": {
+    "hadith": "hadeethenc-only",
+    "prayerReminder": "notification-vibration-off",
+    "legacyDatabasePreserved": true,
+    "storedAudioPreferencePreserved": true
+  }
 }

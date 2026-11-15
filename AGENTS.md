@@ -1,3 +1,7 @@
+## Aktif1.9.54/code81 —cakupanpublik disetujui
+
+HadeethEnc dahulu, Gadingditunda, notification-only. Releaseflagpublik tetaptrue; debuginternaldefaultfalse. [Bukti/batas](android/validation/public-scope-2026-11-15/README.md). Data/bookmark/audioasal terjaga. Kandidatrelease masihunsignedinspeksi/HOLD. HPtetap1.9.48. Sasaran13+tidakberubah. Detailversilama di bawah historis.
+
 ## Checkpoint aktif1.9.53 —15 November2026
 
 HOLD. API36/toolchain dan pelaporanAI lokal diimplementasikan. [Bukti/batas](android/validation/api36-reporting-2026-11-15/README.md). PA03/PA04 PARTIAL. Produksi laporan belum aktif; HP tetap1.9.48. Berikutnya kompatibilitas lintas versi, triase/retensi dan E2E laporan. Bagian sebelumnya merupakan riwayat.

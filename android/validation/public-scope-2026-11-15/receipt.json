@@ -1,0 +1,20 @@
+{
+  "version": "1.9.54",
+  "versionCode": 81,
+  "releaseStatus": "HOLD",
+  "releaseUnitTests": {
+    "tests": 235,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "nativeScopeTests": 3,
+  "nativeArtifact": "debug-with-PUBLIC_BETA_SCOPE-true",
+  "releaseLintErrors": 0,
+  "releaseLintWarnings": 909,
+  "unsignedReleaseBytes": 37908470,
+  "unsignedReleaseSha256": "3c934c6fd5e3c95a7c2a4f487895d4364b44365c7b9f8bc43e07e22f54fbe8d1",
+  "privateAudioBundled": false,
+  "phoneUsed": false,
+  "signerCreated": false
+}

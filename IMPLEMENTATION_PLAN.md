@@ -1,3 +1,7 @@
+## Cakupan beta publik 1.9.54
+
+Pengguna menyetujui HadeethEnc dahulu dan notifikasi biasa. Implementasi/preservasi diverifikasi melalui 3 tes native, unit release dan audit paket. [Bukti](android/validation/public-scope-2026-11-15/README.md). B01 dan hak rekaman asli tetap terbuka untuk cakupan lengkap. Release unsigned/HOLD, privasi13+, signer/migrasi dan uji akhir tetap wajib.
+
 ## Checkpoint aktif1.9.53 —15 November2026
 
 HOLD. API36/toolchain dan pelaporanAI lokal diimplementasikan. [Bukti/batas](android/validation/api36-reporting-2026-11-15/README.md). PA03/PA04 PARTIAL. Produksi laporan belum aktif; HP tetap1.9.48. Berikutnya kompatibilitas lintas versi, triase/retensi dan E2E laporan. Bagian sebelumnya merupakan riwayat.

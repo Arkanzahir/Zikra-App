@@ -57,6 +57,8 @@ public final class HadithActivity extends BaseActivity {
     if (state == null && "bukhari".equals(requestedBook)) category = "Bukhari";
     if (state == null && "muslim".equals(requestedBook)) category = "Muslim";
     if (state == null && "hadeethenc".equals(requestedBook)) category = "Pilihan";
+    if (BuildConfig.PUBLIC_BETA_SCOPE && ("Bukhari".equals(category) || "Muslim".equals(category)))
+      category = "Pilihan";
     search = findViewById(R.id.hadithSearch);
     if (state != null) search.setText(state.getString("query", ""));
     LinearLayout container = findViewById(R.id.hadithTabs);
@@ -135,9 +137,16 @@ public final class HadithActivity extends BaseActivity {
             });
     findViewById(R.id.hadithPrevious).setOnClickListener(v -> { offset -= HadithStore.PAGE_SIZE; render(); });
     findViewById(R.id.hadithNext).setOnClickListener(v -> { offset += HadithStore.PAGE_SIZE; render(); });
+    if (BuildConfig.PUBLIC_BETA_SCOPE) {
+      findViewById(R.id.hadithBooks).setVisibility(View.GONE);
+      findViewById(R.id.hadithHero).setVisibility(View.GONE);
+      TextView subtitle = findViewById(R.id.featureSubtitle);
+      subtitle.setText("Koleksi pilihan HadeethEnc");
+      subtitle.setVisibility(View.VISIBLE);
+    }
     findViewById(R.id.hadithDownloads).setOnClickListener(v -> chooseDownload());
     findViewById(R.id.hadithSource).setOnClickListener(v -> {
-      if ("Pilihan".equals(category)) { showEncyclopediaSource(); return; }
+      if (BuildConfig.PUBLIC_BETA_SCOPE || "Pilihan".equals(category)) { showEncyclopediaSource(); return; }
       String notice;
       try (java.io.InputStream input = getResources().openRawResource(R.raw.hadith_source_notice);
           java.io.ByteArrayOutputStream output = new java.io.ByteArrayOutputStream()) {
@@ -256,7 +265,7 @@ public final class HadithActivity extends BaseActivity {
         .setText(page.total == 0 ? getString(R.string.hadith_no_results)
             : getString(R.string.hadith_page_range, page.offset + 1, page.offset + page.entries.size(), page.total));
     ((TextView) findViewById(R.id.hadithStatus)).setText(
-        getString("Pilihan".equals(category) ? R.string.hadeethenc_status : R.string.hadith_search_scope)
+        getString((BuildConfig.PUBLIC_BETA_SCOPE || "Pilihan".equals(category)) ? R.string.hadeethenc_status : R.string.hadith_search_scope)
             + (page.unavailableSaved == 0 ? "" : "\n" + getString(R.string.hadith_missing_saved, page.unavailableSaved)));
     findViewById(R.id.hadithPager).setVisibility(page.total > HadithStore.PAGE_SIZE ? View.VISIBLE : View.GONE);
     findViewById(R.id.hadithPrevious).setEnabled(page.offset > 0);
@@ -272,6 +281,7 @@ public final class HadithActivity extends BaseActivity {
 
   private void chooseDownload() {
     if (downloading) return;
+    if (BuildConfig.PUBLIC_BETA_SCOPE) { manageDownload("hadeethenc"); return; }
     dialog = new android.app.AlertDialog.Builder(this).setTitle(R.string.hadith_downloads)
         .setItems(new String[]{getString(R.string.hadeethenc_download_label), getString(R.string.hadith_book_download, "Bukhari", 6638, "13,4"),
             getString(R.string.hadith_book_download, "Muslim", 4930, "12,0")},

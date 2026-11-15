@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "releaseStatus": "HOLD",
-  "version": "1.9.53",
-  "versionCode": 80,
-  "bytes": 49575828,
-  "sha256": "9dae0409837936f5d4288e1e48c78867e2b31c404a237aefa4fa23281a1aac99",
-  "signerSha256": "c7888fe2ca40e14698726ed20b2f93947033cef0bdee9cfd127c429d0ea0ca1b",
-  "debugSigningKey": true,
+  "version": "1.9.54",
+  "versionCode": 81,
+  "bytes": 37908470,
+  "sha256": "3c934c6fd5e3c95a7c2a4f487895d4364b44365c7b9f8bc43e07e22f54fbe8d1",
+  "signerSha256": null,
+  "debugSigningKey": false,
   "distributionApproved": false,
   "downloadUrl": null,
-  "runtimeVerification": "5-native-methods-Android16-API36-no-physical-candidate-test",
+  "runtimeVerification": "3-native-scope-methods-on-debug-scope-equivalent-release-signing-and-device-tests-open",
   "remainingGates": [
     "content-and-audio-rights",
     "teen-controls-retention-and-privacy",
@@ -17,5 +17,6 @@
     "combined-runtime-and-device-tests",
     "play-target-api36",
     "in-app-ai-reporting"
-  ]
+  ],
+  "artifactKind": "unsigned-release-inspection-not-installable"
 }

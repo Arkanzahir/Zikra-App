@@ -7,6 +7,7 @@ import java.io.IOException;
 public final class AdhanAsset {
   private AdhanAsset() {}
   public static AssetFileDescriptor open(Context context,int index)throws IOException {
+    if (com.zikra.app.BuildConfig.PUBLIC_BETA_SCOPE) throw new IOException("Public beta uses notifications");
     return context.getAssets().openFd(index==0?"adhan/fajr.mp3":"adhan/selected.mp3");
   }
   public static boolean available(Context context,int index) {

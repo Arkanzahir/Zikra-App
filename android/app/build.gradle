@@ -14,8 +14,8 @@ android {
         applicationId 'com.zikra.app'
         minSdk 26
         targetSdk 36
-        versionCode 80
-        versionName '1.9.53'
+        versionCode 81
+        versionName '1.9.54'
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
 
@@ -28,6 +28,15 @@ android {
         release {
             minifyEnabled false
         }
+    }
+
+    buildFeatures { buildConfig true }
+
+    buildTypes {
+        debug {
+            buildConfigField 'boolean', 'PUBLIC_BETA_SCOPE', providers.gradleProperty('zikraPublicBetaScope').orElse('false').get().toBoolean().toString()
+        }
+        release { buildConfigField 'boolean', 'PUBLIC_BETA_SCOPE', 'true' }
     }
 
     lint {
