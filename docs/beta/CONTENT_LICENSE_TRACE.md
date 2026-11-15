@@ -41,3 +41,13 @@ Promo memakai demoElevenLabs menurut catatanrender. [Terms9Oktober2026](https://
 ## Kesimpulan tindakan
 
 Izin publik tersedia untuk beberapa komponen, jadi pertanyaan “semua harus minta surat” terlalu luas. Penghalang paling konkret ialah kewenangan/izin dua rekaman adzan dan sumber/hak terjemahan Hadis lengkap. QF/EQuran/HadeethEnc memiliki ketentuan yang dapat dipenuhi, perlu pemadanan terhadap implementasi. Status rilis tetapHOLD. Penelusuran ini belum mencakup seluruh dependencytransitif/model/artwork sampai tuntas.
+
+## Lanjutan penelusuran15November
+
+[AlQuranCloudterms13November](https://alquran.cloud/terms-and-conditions) mencakup API/audioCDN: teks dapat disimpan/ditampilkan tanpa perubahan dan dengan sumber; terjemahan/rekaman tetap hak pembuat. Rekaman boleh streaming/embed/download personal-edukasi; produkkomersial dapat diminta menghapus rekaman. Ini menambah bukti penggunaan edukasi, tidak menyimpulkan seluruh model komersial Zikra sudah berizin.
+[ElevenLabsbilling](https://elevenlabs.io/docs/overview/administration/billing) mengonfirmasi free nonkomersial dengan atribusi, hakkomersial untuk konten yang dibuat pada paketberbayar. [Penjelasan berakhirlangganan](https://elevenlabs.io/docs/help-center/account/general/what-happens-to-my-content-after-my-subscription-ends) mempertahankan hak output yang dibuat selama langganan. Paket saat pembuatan output terakhir tetap perlu dibuktikan.
+Asetcuaca master mencatat built-inimagegen23Oktober pada design/assets/protector-weather-v2/PROMPTS.md. Karakterpromo/gaya telah dicatat pada design/promos/2026-11-12/README.md. Ini membuktikan jejakgenerasi proyek; bukti akun/toolterms dan hak referensi tidak otomatis selesai.
+
+### Kandidat alternatif adzan, belum dipilih
+
+[Beautifuladhan](https://commons.wikimedia.org/wiki/File:Beautiful_adhan.ogg), uploaderAdam-synagda, ownwork29April2022, durasi154detik, halaman mencantumkanCC0. Ini kandidat dengan pernyataan izin eksplisit, bukan rekamanMisyari. Belum diunduh/didengar/diperiksa lafaz/dites dan tidak dianggap cocokSubuh. Tidak mengganti rekaman pilihan pengguna dari hasil pencarian saja.
