@@ -1,3 +1,7 @@
+## Perbaikan audio lokal1.9.57 —15November2026
+
+Atas permintaan pengguna, suara/notifikasi adzan kembali tersedia melalui MP3 yang dipilih sendiri (tanpa bundel redistribusi). [Bukti](../../android/validation/local-adhan-2026-11-15/README.md):235JVM, lint0error,10native pada release bertanda tangan asli termasuk AlarmManager→pemutar→Stop. Tetap belum ujiSAF/suara fisik pada57, tidak menutup seluruhD02/hak rekaman/usia-wali/gate publik. HOLD tetap. HeadingAPI28 pada perbaikanContextual56 dipisahvalues-v28 setelahlint; min26 tetap.
+
 ## Pembaruan source1.9.56
 
 [Bukti](../../android/validation/accounts-2026-11-15/README.md): akun internal SDK dan endpoint lokal tersedia, Firebase Spark/email/min12 aktif berizin. PA01 tetap parsial: belum ada assurance usia/wali nyata, portal, erasure dan wiringAI. PA04 teknis beta sudah memiliki bukti tindakan UI→record produksi minimal/TTL/operator; bukan sertifikasi Play atau keselamatan seluruh jawaban. HP tetap55, source56/debug-emulator-only, HOLD. Perincian audit awal di bawah historis; jangan membaca PA04 produksi-disabled sebagai keadaan sekarang.

@@ -84,6 +84,11 @@ public final class PrayerActivity extends BaseActivity {
   private AlertDialog modeDialog, previewDialog;
   private int editingPrayer=-1, draftMode, pendingPreview=-1;
   private static final int REQUEST_NOTIFICATIONS = 401;
+  private static final int PICK_ADHAN_AUDIO = 410;
+  private int audioPickerTarget = -1;
+  private android.os.CancellationSignal audioImport;
+  private final java.util.concurrent.ExecutorService audioWorker = java.util.concurrent.Executors.newSingleThreadExecutor();
+  private final Handler audioHandler = new Handler(Looper.getMainLooper());
 
   @Override
   protected void onCreate(Bundle state) {
@@ -116,6 +121,7 @@ public final class PrayerActivity extends BaseActivity {
       } catch (java.time.DateTimeException ignored) {
       }
       weekMode = state.getBoolean("week_mode", false);
+      audioPickerTarget = state.getInt("audio_picker_target", -1);
     }
     dates = findViewById(R.id.prayerWeekDates);
     rows = findViewById(R.id.prayerRows);
@@ -167,8 +173,20 @@ public final class PrayerActivity extends BaseActivity {
     quiet.setChecked(preferences.getBoolean(PrayerSettings.QUIET_CLASSES,false));
     pause.setOnCheckedChangeListener((v,on)->preferences.edit().putBoolean(PrayerSettings.PAUSE_FOCUS,on).apply());
     quiet.setOnCheckedChangeListener((v,on)->{preferences.edit().putBoolean(PrayerSettings.QUIET_CLASSES,on).apply();AdhanService.stopIfInvalid();});
+    findViewById(R.id.prayerAudioImport).setOnClickListener(v -> chooseLocalAudio());
+    findViewById(R.id.prayerAudioRemove).setOnClickListener(v -> new AlertDialog.Builder(this)
+        .setTitle(R.string.local_adhan_remove).setItems(R.array.local_adhan_targets,(dialog,which)->
+            new AlertDialog.Builder(this).setTitle(R.string.local_adhan_remove)
+                .setMessage(R.string.local_adhan_remove_note).setNegativeButton(android.R.string.cancel,null)
+                .setPositiveButton(R.string.local_adhan_remove,(confirm,button)->{
+                  try{
+                    AdhanService.stop(this);LocalAdhanAudio.remove(this,which==0?2:0);
+                    PrayerSettings.prefs(this).edit().putLong("prayer_revision",PrayerSettings.revision(this)+1).commit();
+                    PrayerReminders.sync(this);renderRows();updateAudioUi();
+                  }catch(java.io.IOException failed){toast(getString(R.string.local_adhan_remove_failed));}
+                }).show()).show());
     findViewById(R.id.prayerAudioPreview).setOnClickListener(v->previewDialog=new AlertDialog.Builder(this)
-        .setTitle(R.string.adhan_preview).setItems(R.array.adhan_preview_choices,(dialog,choice)->preview(choice==1?0:2)).show());
+        .setTitle(R.string.adhan_preview).setItems(R.array.local_adhan_targets,(dialog,choice)->preview(choice==1?0:2)).show());
     findViewById(R.id.prayerAudioStop).setOnClickListener(v->{AdhanService.stop(this);updateAudioUi();});
     selectMode(weekMode);
     if(state!=null&&state.getInt("editing_prayer",-1)>=0){draftMode=state.getInt("draft_mode");showMode(state.getInt("editing_prayer"),true);}
@@ -210,6 +228,7 @@ public final class PrayerActivity extends BaseActivity {
   protected void onSaveInstanceState(Bundle state) {
     state.putString("selected_date", selectedDate.toString());
     state.putBoolean("week_mode", weekMode);
+    state.putInt("audio_picker_target", audioPickerTarget);
     if(modeDialog!=null&&modeDialog.isShowing()){state.putInt("editing_prayer",editingPrayer);state.putInt("draft_mode",draftMode);}
     super.onSaveInstanceState(state);
   }
@@ -340,7 +359,7 @@ public final class PrayerActivity extends BaseActivity {
   private void showMode(int index,boolean restoring) {
     if(!PrayerSchedule.isPrayer(index))return;
     editingPrayer=index;if(!restoring)draftMode=PrayerSettings.mode(this,index).ordinal();
-    int modeOffset = BuildConfig.PUBLIC_BETA_SCOPE ? 1 : 0;
+    int modeOffset = BuildConfig.PUBLIC_BETA_SCOPE && !LocalAdhanAudio.available(this,index) ? 1 : 0;
     String[] choices = getResources().getStringArray(R.array.prayer_mode_choices);
     if (modeOffset == 1) choices = java.util.Arrays.copyOfRange(choices, 1, choices.length);
     final int offset = modeOffset;
@@ -364,13 +383,66 @@ public final class PrayerActivity extends BaseActivity {
   private void updateAudioUi() {
     AdhanService.State state=AdhanService.state();boolean present=AdhanAsset.available(this,0)&&AdhanAsset.available(this,2);
     findViewById(R.id.prayerAudioStop).setVisibility(state.active?View.VISIBLE:View.GONE);
-    findViewById(R.id.prayerAudioPreview).setEnabled(present&&!state.active);
+    findViewById(R.id.prayerAudioPreview).setEnabled(
+        (AdhanAsset.available(this,0)||AdhanAsset.available(this,2))&&!state.active&&audioImport==null);
+    findViewById(R.id.prayerAudioImport).setEnabled(!state.active&&audioImport==null);
+    findViewById(R.id.prayerAudioRemove).setEnabled(!state.active&&audioImport==null
+        &&(LocalAdhanAudio.available(this,0)||LocalAdhanAudio.available(this,2)));
     String message=!state.status.isEmpty()?state.status:getString(present?R.string.adhan_audio_label:R.string.adhan_audio_missing);
-    if (BuildConfig.PUBLIC_BETA_SCOPE) message = "Beta publik memakai notifikasi biasa tanpa rekaman adzan bawaan.";
+    if (audioImport != null) message = getString(R.string.local_adhan_importing);
+    else if (BuildConfig.PUBLIC_BETA_SCOPE) {
+      boolean fajr=LocalAdhanAudio.available(this,0), normal=LocalAdhanAudio.available(this,2);
+      message=getString(fajr&&normal?R.string.local_adhan_ready:
+          fajr?R.string.local_adhan_fajr_ready:normal?R.string.local_adhan_normal_ready:R.string.local_adhan_missing);
+      if(state.active&&!state.status.isEmpty())message=state.status;
+    }
     TextView label=findViewById(R.id.prayerAudioStatus);if(!message.contentEquals(label.getText()))label.setText(message);
     ((TextView)findViewById(R.id.prayerBannerHint)).setText(
         !PrayerReminders.canNotify(this)?R.string.adhan_permission_needed:
         PrayerReminders.channelAllowed(this,AdhanNotification.CHANNEL)?R.string.adhan_banner_hint:R.string.adhan_banner_blocked);
+  }
+  private void chooseLocalAudio() {
+    if(audioImport!=null||AdhanService.state().active)return;
+    new AlertDialog.Builder(this).setTitle(R.string.local_adhan_choose)
+        .setItems(R.array.local_adhan_targets,(dialog,which)->new AlertDialog.Builder(this)
+            .setTitle(R.string.local_adhan_choose).setMessage(R.string.local_adhan_privacy)
+            .setNegativeButton(android.R.string.cancel,null)
+            .setPositiveButton(R.string.local_adhan_choose_file,(confirm,button)->{
+              audioPickerTarget=which==0?2:0;
+              Intent picker=new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE)
+                  .setType("audio/*");
+              try {startActivityForResult(picker,PICK_ADHAN_AUDIO);}
+              catch(ActivityNotFoundException unavailable){audioPickerTarget=-1;toast(getString(R.string.local_adhan_picker_missing));}
+            }).show()).show();
+  }
+  @Override protected void onActivityResult(int request,int result,Intent data) {
+    super.onActivityResult(request,result,data);
+    if(request!=PICK_ADHAN_AUDIO)return;
+    int target=audioPickerTarget;audioPickerTarget=-1;
+    if(result!=RESULT_OK||data==null||data.getData()==null||!PrayerSchedule.isPrayer(target)||audioImport!=null)return;
+    Uri uri=data.getData();
+    android.os.CancellationSignal cancel=new android.os.CancellationSignal();audioImport=cancel;
+    AdhanService.stop(this);updateAudioUi();
+    java.lang.ref.WeakReference<PrayerActivity> owner=new java.lang.ref.WeakReference<>(this);
+    android.content.Context app=getApplicationContext();
+    Runnable timeout=()->{synchronized(cancel){cancel.cancel();}};
+    audioHandler.postDelayed(timeout,30_000);
+    audioWorker.execute(()->{
+      boolean success;
+      try{LocalAdhanAudio.importAudio(app,target,uri,cancel);success=true;}
+      catch(java.io.IOException|RuntimeException failed){success=false;}
+      final boolean imported=success;
+      new Handler(Looper.getMainLooper()).post(()->{
+        PrayerActivity activity=owner.get();
+        if(activity==null||activity.isFinishing()||activity.isDestroyed())return;
+        activity.audioHandler.removeCallbacks(timeout);activity.audioImport=null;
+        if(imported){
+          PrayerSettings.prefs(app).edit().putLong("prayer_revision",PrayerSettings.revision(app)+1).commit();
+          PrayerReminders.sync(app);activity.renderRows();
+        }
+        activity.updateAudioUi();activity.toast(activity.getString(imported?R.string.local_adhan_saved:R.string.local_adhan_failed));
+      });
+    });
   }
   private void openBannerSettings(){
     PrayerReminders.createChannel(this);
@@ -379,6 +451,8 @@ public final class PrayerActivity extends BaseActivity {
     try{startActivity(intent);}catch(ActivityNotFoundException unavailable){toast(getString(R.string.adhan_settings_unavailable));}
   }
   @Override protected void onDestroy(){
+    if (audioImport != null) { synchronized(audioImport) { audioImport.cancel(); } }
+    audioHandler.removeCallbacksAndMessages(null);audioWorker.shutdownNow();
     if(modeDialog!=null)modeDialog.dismiss();if(previewDialog!=null)previewDialog.dismiss();super.onDestroy();
   }
 

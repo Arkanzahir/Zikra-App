@@ -14,8 +14,8 @@ android {
         applicationId 'com.zikra.app'
         minSdk 26
         targetSdk 36
-        versionCode 83
-        versionName '1.9.56'
+        versionCode 84
+        versionName '1.9.57'
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
 

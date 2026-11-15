@@ -1,3 +1,7 @@
+## Adzan pilihan lokal sejak1.9.57
+
+Cadangan tidak menyertakan MP3 pilihan pengguna. Setelah pemulihan/reinstall, pilih kembali rekaman biasa/Subuh di Pengingat salat. File asli pada penyimpanan HP tetap utuh; pilihan mode tetap tersimpan tetapi tanpa file yang sesuai kembali menggunakan notifikasi. Izin Android dan pengingat utama tetap perlu diperiksa. Pembaruan biasa memakai signer sama mempertahankan salinan privat, tanpa uninstall.
+
 # Cadangan lokal Zikra beta
 
 Implementasi internal1.9.50, belum izin merilis APK. [Bukti dan batas](../../android/validation/local-migration-2026-11-14/README.md).

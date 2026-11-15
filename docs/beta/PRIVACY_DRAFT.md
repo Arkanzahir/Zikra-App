@@ -1,3 +1,7 @@
+## Audio adzan lokal1.9.57
+
+Pengguna dapat memilih MP3 yang sudah tersimpan lokal melalui pemilih dokumen Android. Salinan disimpan privat dalam aplikasi untuk pemutaran offline; Zikra tidak mengunggah file/URI/nama sumber ke backend atau penyedia AI. Pengguna dapat menghapus salinan melalui Pengingat salat → Hapus salinan audio. Sumber asli tidak dihapus. MP3 tidak dimasukkan ke cadangan lokal, sehingga perlu dipilih ulang setelah reinstall/restore. Tidak meminta izin akses seluruh media. Ini perilaku fitur yang diuji, bukan finalisasi kebijakan atau seluruh gate privasi.
+
 ## Akun dalam pengembangan1.9.56 — belum kebijakan final
 
 Firebase Email/Password Spark kini diaktifkan berizin. APK internal menyediakan login, reset dan verifikasi email; release55 di HP belum memuat layar ini dan source release56 menutup flag akun. Firebase memproses email/kata sandi dan sesi SDK saat pengguna bertindak; ini terpisah dari report7hari dan tidak berarti riwayat lokal diunggah. Belum ada email/akun produksi yang dibuat dalam pengujian ini. Metadata akun/retensi/erasure/usia/wali belum ditelaah menyeluruh atau dipublikasikan sebagai janji. Handler akun lokal menyimpan subjectID/ageband/relasi minimal ketika kelak diaktifkan; belum route produksi. [Batas](../../backend/deploy/SELF_SERVICE_ACCOUNTS.md).

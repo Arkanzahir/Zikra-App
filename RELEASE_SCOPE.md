@@ -1,3 +1,7 @@
+## Adzan pilihan lokal1.9.57
+
+Cakupan publik tetap tanpa bundelMP3/Gading tertunda. Pengguna dapat memilih MP3 pribadi untuk salinan privat/offline, tanpa upload. Ini bukan izin distribusi rekaman asli. [Bukti/batas](android/validation/local-adhan-2026-11-15/README.md). HOLD; HP tetap55 dan gate publik lain terbuka.
+
 ## Checkpoint source1.9.56 — akun internal, HOLD
 
 [Bukti/batas](android/validation/accounts-2026-11-15/README.md):158backend/235JVM lulus tanpa skip;4native akun final lulus dengan Firebase Emulator resmi;9snapshot dan1UI laporan→produksi pada build56 pendahulu lulus. Lint0error/909warning. Debug44.860.138byte, auth-emulator-only; bukan APK publik. HP tetap signed1.9.55 dan tidak dipakai.

@@ -14,7 +14,7 @@ public final class PrayerSettings {
     if (!PrayerSchedule.isPrayer(index)) return PrayerMode.OFF;
     SharedPreferences p=prefs(context);String key=PrayerSchedule.KEYS[index];
     PrayerMode mode = PrayerMode.stored(p.getString("prayer_mode_"+key,null),p.getBoolean("reminder_"+key,true));
-    return com.zikra.app.BuildConfig.PUBLIC_BETA_SCOPE && mode == PrayerMode.ADHAN ? PrayerMode.NOTIFICATION : mode;
+    return com.zikra.app.BuildConfig.PUBLIC_BETA_SCOPE && mode == PrayerMode.ADHAN && !LocalAdhanAudio.available(context, index) ? PrayerMode.NOTIFICATION : mode;
   }
   public static void setMode(Context context, int index, PrayerMode mode) {
     if (!PrayerSchedule.isPrayer(index) || mode == null) throw new IllegalArgumentException("Invalid prayer mode");

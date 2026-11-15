@@ -1,21 +1,21 @@
 {
   "date": "2026-11-15",
   "releaseStatus": "HOLD",
-  "version": "1.9.55",
-  "versionCode": 82,
-  "apkBytes": 37916662,
-  "apkSha256": "05a331d6fa10c284ebea4b8dfd0bb08b1303a524abff089dd0fd2ea3087e6a6d",
+  "version": "1.9.57",
+  "versionCode": 84,
+  "apkBytes": 38917467,
+  "apkSha256": "fd3cdc9ebe6cb2b624d8a735f35b4a555c23056401f719547b1af45970e31903",
   "debugSigningKey": false,
-  "phoneTestedOnCandidate": true,
-  "nativePassed": 3,
+  "phoneTestedOnCandidate": false,
+  "nativePassed": 10,
   "jvmPassed": 235,
   "jvmSkipped": 0,
   "lintErrors": 0,
-  "lintWarnings": 909,
+  "lintWarnings": 911,
   "backendPreviousRunPassed": 134,
   "backendChanged": true,
   "website": "paused-by-user-preview-still-1.9.48-no-public-download",
-  "evidence": "android/validation/release-migration-2026-11-15/README.md",
+  "evidence": "android/validation/local-adhan-2026-11-15/README.md",
   "remaining": [
     "quran-font-audio-failure-matrix",
     "background-and-device-verification",
@@ -47,7 +47,7 @@
   "phoneFinalSessionComplete": false,
   "physicalSmokeCasesPassed": 2,
   "physicalScreenThemeChecks": 14,
-  "nativeEmulatorPassed": 3,
+  "nativeEmulatorPassed": 10,
   "backendCurrentRunPassed": 158,
   "backendChangeScope": "report-operator-tool-and-approved-production-activation",
   "targetMinimumAge": 13,
@@ -94,7 +94,7 @@
     "providerAccountRetentionVerified": false,
     "verificationCandidateVersion": "1.9.51"
   },
-  "nativeFinalExecutionsPassed": 3,
+  "nativeFinalExecutionsPassed": 10,
   "productAudit": {
     "round": 1,
     "completeProductCertification": false,
@@ -114,9 +114,10 @@
   "publicBetaScopeApproved": true,
   "publicBetaScope": {
     "hadith": "hadeethenc-only",
-    "prayerReminder": "notification-vibration-off",
+    "prayerReminder": "user-local-adhan-or-notification-vibration-off",
     "legacyDatabasePreserved": true,
-    "storedAudioPreferencePreserved": true
+    "storedAudioPreferencePreserved": true,
+    "bundledPrayerAudio": false
   },
   "backendCurrentRunSkipped": 0,
   "selfServiceAccounts": {
@@ -155,7 +156,8 @@
     "jvmSkipped": 0,
     "lintErrors": 0,
     "lintWarnings": 909,
-    "evidence": "android/validation/accounts-2026-11-15/README.md"
+    "evidence": "android/validation/accounts-2026-11-15/README.md",
+    "historical": true
   },
   "contextualUiCandidate": {
     "version": "1.9.56",
@@ -167,6 +169,18 @@
     "physicalPhoneUpdated": false,
     "evidence": "android/validation/contextual-ui-2026-11-15/README.md",
     "functionalChecksPassed": 9,
-    "newLintRun": false
+    "newLintRun": false,
+    "historical": true
+  },
+  "physicalPhoneVersion": "1.9.55",
+  "localAdhan": {
+    "importImplemented": true,
+    "source": "explicit-user-selected-local-mp3",
+    "bundledAudio": false,
+    "uploaded": false,
+    "includedInLocalBackup": false,
+    "nativeReleasePassed": 10,
+    "physicalTested": false,
+    "documentPickerEndToEndTested": false
   }
 }

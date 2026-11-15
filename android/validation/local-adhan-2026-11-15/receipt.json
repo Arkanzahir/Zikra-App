@@ -1,0 +1,31 @@
+{
+  "version": "1.9.57",
+  "versionCode": 84,
+  "releaseApkSha256": "fd3cdc9ebe6cb2b624d8a735f35b4a555c23056401f719547b1af45970e31903",
+  "jvm": {
+    "tests": 235,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lintErrors": 0,
+  "lintWarnings": 911,
+  "nativeDistinctPassed": 10,
+  "nativeRuns": [
+    {
+      "cases": 9,
+      "seconds": 1.701
+    },
+    {
+      "cases": 1,
+      "seconds": 6.513
+    }
+  ],
+  "nativeTarget": "signed release APK on API36 AOSP emulator",
+  "fixtureBundledInApk": false,
+  "uiImportControlAndExplanationChecked": true,
+  "realDocumentPickerSelectionTested": false,
+  "physicalPhoneUsed": false,
+  "physicalPhoneVersion": "1.9.55",
+  "releaseStatus": "HOLD"
+}

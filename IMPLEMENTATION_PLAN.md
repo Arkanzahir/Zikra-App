@@ -1,3 +1,7 @@
+## Adzan lokal1.9.57 — 15 November 2026
+
+Pengguna meminta notifikasi beserta suara kembali. Pilihan MP3 lokal biasa/Subuh, salinan privat, validasi/replace atomik/hapus dan fallback tersedia; rekaman tidak dibundel/diunggah. [Bukti/batas](android/validation/local-adhan-2026-11-15/README.md):235JVM/0skip, lint0error/911warning,10native pada APK release API36 (9impor/preview+Stop,1AlarmManager→audio→notifikasi+Stop) lulus. Signed38.917.467byte, signer sama55,0secret/0MP3. HP tetap55; belum pemasangan57/ujiSAF/suara fisik. Usia/wali otomatis tetap belum terintegrasi dan manualreview dibatalkan; HOLD tetap. B01Gading/aset/audioasli/WIP/privat tetap terjaga. Media lokal tidak ikut backup, perlu pilihulang setelahrestore; tidak otomatis menyalakan master/izin atau mengubah modeOFF.
+
 ## Steering terbaru: usia otomatis, UI pengingat dan adzan
 
 Pengguna tidak menginginkan review usia oleh pengelola; pilihan manual sebelumnya dibatalkan sebelum implementasi. Arah otomatis/izinwali digital tetap perlu integrasi, bukan bukti identitas dari checkbox. Foto Pengingat harian menunjukkan tombol menempel/besar dan hierarki lemah; rapikan dengan token/ikon disetujui. Adzan di HP55 memakai public scope notification-only, bukan gangguan perangkat; pertahankan larangan bundel audio tanpa hak. Prompt master di attachment8717449c dibaca ulang. Belum ada perbaikan UI/audio pada checkpoint56; kerjakan berikutnya tanpa menganggap A–D selesai.

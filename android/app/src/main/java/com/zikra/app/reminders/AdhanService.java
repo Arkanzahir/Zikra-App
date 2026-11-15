@@ -139,7 +139,7 @@ public final class AdhanService extends Service {
               .setCurve(new float[]{0f,1f},new float[]{0f,1f}).build());
           entrance.apply(VolumeShaper.Operation.PLAY);
         }
-        ready.start();
+        ready.start();began=SystemClock.elapsedRealtime();
       }
       catch(IllegalStateException failed){finish(getString(R.string.adhan_unavailable),true);return;}
       if(!preview&&PrayerSettings.prefs(this).getBoolean(PrayerSettings.PAUSE_FOCUS,false))com.zikra.app.study.FocusTimer.pauseForAdhan(this);
