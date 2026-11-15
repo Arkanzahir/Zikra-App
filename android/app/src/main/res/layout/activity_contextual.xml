@@ -1,26 +1,38 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/app_surface">
-    <include layout="@layout/protector_toolbar"/>
-    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
-            <TextView style="@style/ProtectorHeading" android:text="@string/contextual_title" android:textSize="24sp"/>
-            <TextView style="@style/ProtectorBody" android:text="@string/contextual_intro" android:layout_marginTop="12dp"/>
-            <TextView android:id="@+id/contextStatus" style="@style/ProtectorBody" android:layout_marginTop="12dp" android:accessibilityLiveRegion="polite"/>
-            <Switch android:id="@+id/contextWeather" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="72dp" android:text="@string/contextual_weather" android:textSize="17sp" android:textColor="@color/text"/>
-            <Switch android:id="@+id/contextBriefing" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="64dp" android:text="@string/contextual_briefing" android:textSize="17sp" android:textColor="@color/text"/>
-            <Switch android:id="@+id/contextMorning" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="64dp" android:text="@string/contextual_morning" android:textSize="17sp" android:textColor="@color/text"/>
-            <Switch android:id="@+id/contextEvening" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="64dp" android:text="@string/contextual_evening" android:textSize="17sp" android:textColor="@color/text"/>
-            <Button android:id="@+id/contextMorningTime" style="@style/ProtectorButton" android:text="@string/contextual_morning"/>
-            <Button android:id="@+id/contextEveningTime" style="@style/ProtectorButton" android:text="@string/contextual_evening"/>
-            <TextView style="@style/ProtectorBody" android:text="@string/contextual_timing" android:layout_marginTop="16dp"/>
-            <TextView style="@style/ProtectorBody" android:text="@string/contextual_weather_scope" android:layout_marginTop="16dp"/>
-            <TextView style="@style/ProtectorHeading" android:text="@string/contextual_preview" android:layout_marginTop="24dp"/>
-            <TextView android:id="@+id/contextPreview" style="@style/ProtectorBody" android:layout_marginTop="12dp"/>
-            <Button android:id="@+id/contextStudy" style="@style/ProtectorButton" android:text="@string/contextual_study" android:layout_marginTop="16dp"/>
-            <Button android:id="@+id/contextDua" style="@style/ProtectorButton" android:text="@string/contextual_dua"/>
-            <Button android:id="@+id/contextTravel" style="@style/ProtectorButton" android:text="@string/contextual_travel"/>
-            <Button android:id="@+id/contextQuake" style="@style/ProtectorButton" android:text="@string/contextual_quake"/>
-            <Button android:id="@+id/contextAndroidSettings" style="@style/ProtectorButton" android:text="@string/contextual_android"/>
-        </LinearLayout>
-    </ScrollView>
-    <include layout="@layout/protector_main_dock"/>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/contextRoot" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/refined_background">
+ <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:paddingBottom="64dp">
+  <include layout="@layout/protector_toolbar" />
+  <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+   <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+<TextView style="@style/ContextBody" android:text="@string/contextual_intro" />
+<TextView style="@style/ContextStatus" android:text="@string/contextual_status" android:id="@+id/contextStatus" />
+<TextView style="@style/ContextHeading" android:text="@string/contextual_routine" />
+<LinearLayout style="@style/ContextGroup">
+<Switch style="@style/ContextToggle" android:id="@+id/contextBriefing" android:text="@string/contextual_briefing" />
+<Switch style="@style/ContextToggle" android:id="@+id/contextMorning" android:text="@string/contextual_morning" />
+<TextView style="@style/ContextAction" android:id="@+id/contextMorningTime" android:text="@string/contextual_morning" />
+<Switch style="@style/ContextToggle" android:id="@+id/contextEvening" android:text="@string/contextual_evening" />
+<TextView style="@style/ContextAction" android:id="@+id/contextEveningTime" android:text="@string/contextual_evening" />
 </LinearLayout>
+<TextView style="@style/ContextHeading" android:text="@string/contextual_weather_heading" />
+<LinearLayout style="@style/ContextGroup">
+<Switch style="@style/ContextToggle" android:id="@+id/contextWeather" android:text="@string/contextual_weather" />
+<TextView style="@style/ContextBody" android:text="@string/contextual_weather_short" />
+</LinearLayout>
+<TextView style="@style/ContextHeading" android:text="@string/contextual_preview" />
+<LinearLayout style="@style/ContextGroup">
+<TextView style="@style/ContextBody" android:id="@+id/contextPreview" android:textIsSelectable="true" /></LinearLayout>
+<TextView style="@style/ContextHeading" android:text="@string/contextual_related" />
+<LinearLayout style="@style/ContextGroup">
+<TextView style="@style/ContextAction" android:id="@+id/contextPrayer" android:text="@string/contextual_prayer" />
+<TextView style="@style/ContextAction" android:id="@+id/contextStudy" android:text="@string/contextual_study" />
+<TextView style="@style/ContextAction" android:id="@+id/contextDua" android:text="@string/contextual_dua" />
+<TextView style="@style/ContextAction" android:id="@+id/contextTravel" android:text="@string/contextual_travel" />
+<TextView style="@style/ContextAction" android:id="@+id/contextQuake" android:text="@string/contextual_quake" />
+<TextView style="@style/ContextAction" android:id="@+id/contextAndroidSettings" android:text="@string/contextual_android" />
+</LinearLayout>
+<TextView style="@style/ContextBody" android:text="@string/contextual_timing_short" />
+<TextView style="@style/ContextAction" android:id="@+id/contextHelp" android:text="@string/contextual_help" />
+   </LinearLayout>
+  </ScrollView>
+ </LinearLayout>
+</FrameLayout>

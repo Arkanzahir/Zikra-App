@@ -156,5 +156,17 @@
     "lintErrors": 0,
     "lintWarnings": 909,
     "evidence": "android/validation/accounts-2026-11-15/README.md"
+  },
+  "contextualUiCandidate": {
+    "version": "1.9.56",
+    "apkBytes": 44864650,
+    "apkSha256": "4143f04f7524011a064dc8af938664132c7bfcdc859116ad9ede93fc3b89167a",
+    "accountSignInEnabled": false,
+    "accountAuthEmulator": false,
+    "publicBetaScope": true,
+    "physicalPhoneUpdated": false,
+    "evidence": "android/validation/contextual-ui-2026-11-15/README.md",
+    "functionalChecksPassed": 9,
+    "newLintRun": false
   }
 }

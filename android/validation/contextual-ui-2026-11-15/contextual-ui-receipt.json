@@ -1,0 +1,28 @@
+{
+  "checks": [
+    {
+      "theme": "light",
+      "fontScale": "1.0",
+      "timePicker": true,
+      "fullDisclosure": true,
+      "prayerNavigation": true
+    },
+    {
+      "theme": "dark",
+      "fontScale": "1.0",
+      "timePicker": true,
+      "fullDisclosure": true,
+      "prayerNavigation": true
+    },
+    {
+      "theme": "light",
+      "fontScale": "2.0",
+      "timePicker": true,
+      "fullDisclosure": true,
+      "prayerNavigation": true
+    }
+  ],
+  "apkSha256": "4143f04f7524011a064dc8af938664132c7bfcdc859116ad9ede93fc3b89167a",
+  "physicalPhoneUsed": false,
+  "releaseHold": true
+}

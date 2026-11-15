@@ -15,7 +15,8 @@ public final class ContextualActivity extends BaseActivity {
     super.onCreate(state);
     setContentView(R.layout.activity_contextual);
     setupScreen(getString(R.string.contextual_title));
-    ProtectorChrome.apply(this); ProtectorNavigation.bind(this);
+    ProtectorChrome.apply(this);
+    NavDock.attach(this, (FrameLayout)findViewById(R.id.contextRoot), "contextual");
     ((TextView)findViewById(R.id.protectorToolbarTitle)).setText(R.string.contextual_title);
     ((TextView)findViewById(R.id.protectorToolbarSubtitle)).setText(R.string.contextual_subtitle);
     findViewById(R.id.protectorRefresh).setVisibility(android.view.View.GONE);
@@ -40,6 +41,11 @@ public final class ContextualActivity extends BaseActivity {
         } else { ContextualReminders.set(this, key, enabled); bind(); }
       });
     }
+    findViewById(R.id.contextPrayer).setOnClickListener(v -> startActivity(new Intent(this, PrayerActivity.class)));
+    findViewById(R.id.contextHelp).setOnClickListener(v -> new AlertDialog.Builder(this)
+        .setTitle(R.string.contextual_help)
+        .setMessage(getString(R.string.contextual_timing) + "\n\n" + getString(R.string.contextual_weather_scope))
+        .setPositiveButton(android.R.string.ok, null).show());
     findViewById(R.id.contextMorningTime).setOnClickListener(v -> chooseTime("morning"));
     findViewById(R.id.contextEveningTime).setOnClickListener(v -> chooseTime("evening"));
     findViewById(R.id.contextTravel).setOnClickListener(v -> openDua("Perjalanan"));

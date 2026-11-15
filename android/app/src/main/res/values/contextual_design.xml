@@ -1,0 +1,35 @@
+<resources>
+ <style name="ContextBody">
+  <item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item>
+  <item name="android:textSize">14sp</item><item name="android:textColor">@color/refined_muted</item>
+  <item name="android:lineSpacingExtra">5dp</item><item name="android:paddingVertical">8dp</item>
+ </style>
+ <style name="ContextHeading" parent="ContextBody">
+  <item name="android:textSize">18sp</item><item name="android:textStyle">bold</item><item name="android:textColor">@color/refined_ink</item>
+  <item name="android:layout_marginTop">16dp</item><item name="android:accessibilityHeading">true</item>
+ </style>
+ <style name="ContextStatus" parent="ContextBody">
+  <item name="android:background">@drawable/refined_card</item><item name="android:padding">16dp</item>
+  <item name="android:layout_marginTop">12dp</item><item name="android:accessibilityLiveRegion">polite</item>
+ </style>
+ <style name="ContextGroup">
+  <item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item>
+  <item name="android:orientation">vertical</item><item name="android:background">@drawable/refined_card</item><item name="android:paddingHorizontal">16dp</item><item name="android:paddingVertical">8dp</item>
+ </style>
+ <style name="ContextToggle">
+  <item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item><item name="android:minHeight">56dp</item>
+  <item name="android:textSize">15sp</item><item name="android:textColor">@color/refined_ink</item><item name="android:paddingVertical">12dp</item><item name="android:drawablePadding">16dp</item>
+ </style>
+ <style name="ContextAction" parent="ContextBody">
+  <item name="android:textColor">@color/refined_ink</item><item name="android:minHeight">56dp</item><item name="android:gravity">center_vertical</item>
+  <item name="android:paddingVertical">12dp</item><item name="android:drawableEnd">@drawable/ic_arrow</item><item name="android:drawablePadding">16dp</item>
+  <item name="android:background">?android:attr/selectableItemBackground</item><item name="android:clickable">true</item><item name="android:focusable">true</item>
+ </style>
+ <string name="contextual_routine">Rutinitasmu</string>
+ <string name="contextual_weather_heading">Sebelum beraktivitas</string>
+ <string name="contextual_weather_short">Prakiraan Open-Meteo berdasarkan lokasi pilihan. Bukan peringatan resmi BMKG; GPS tidak dilacak di latar belakang.</string>
+ <string name="contextual_related">Akses cepat</string>
+ <string name="contextual_prayer">Pengingat salat dan adzan</string>
+ <string name="contextual_timing_short">Pengingat harian terpisah dari alarm adzan. Mengikuti zona waktu lokasi pilihan; dapat tertunda saat hemat baterai.</string>
+ <string name="contextual_help">Cara kerja pengingat</string>
+</resources>
