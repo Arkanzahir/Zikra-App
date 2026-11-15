@@ -54,7 +54,11 @@ def inspect_manifest(badging, manifest, version, code):
         return bool(re.search(r'android:' + name + r'[^\n]*=(?:false|\(type 0x12\)0x0)\b', manifest))
     debug = re.search(r'android:debuggable[^\n]*=(?:true|\(type 0x12\)0xffffffff)\b', manifest)
     test_only = re.search(r'android:testOnly[^\n]*=(?:true|\(type 0x12\)0xffffffff)\b', manifest)
+    minimum = re.findall(r"^(?:sdkVersion|minSdkVersion):'([0-9]+)'$", badging, re.M)
+    target = re.findall(r"^targetSdkVersion:'([0-9]+)'$", badging, re.M)
     return {
+        'minimumApiPreserved': minimum == ['26'],
+        'targetApi36OrHigher': len(target) == 1 and int(target[0]) >= 36,
         'expectedIdentity': bool(package and package.groups() == ('com.zikra.app', str(code), version)),
         'notDebuggable': not debug and 'application-debuggable' not in badging,
         'notTestOnly': not test_only and 'testOnly' not in badging,

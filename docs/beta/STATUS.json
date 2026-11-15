@@ -91,7 +91,7 @@
     "providerAccountRetentionVerified": false,
     "verificationCandidateVersion": "1.9.51"
   },
-  "nativeFinalExecutionsPassed": 5,
+  "nativeFinalExecutionsPassed": 7,
   "productAudit": {
     "round": 1,
     "completeProductCertification": false,
@@ -103,5 +103,7 @@
     "playTargetApiStatus": "PARTIAL-target36-native5-pass-cross-version-open",
     "inAppAiReportingStatus": "PARTIAL-local-implemented-production-disabled",
     "evidence": "docs/beta/PRODUCT_AUDIT.md"
-  }
+  },
+  "releaseAuditTestsPassed": 9,
+  "contentRightsEvidenceProvided": false
 }

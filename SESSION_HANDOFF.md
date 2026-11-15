@@ -1879,3 +1879,5 @@ uji HP/B01/C02/C04/C07 dan gerbang publik tetap sesuai checklist.
 ## Prioritas pengguna27 Oktober2026: tuntaskan D dahulu
 
 D06 selesai teknis beta dengan pembaruan APK berisi data; [bukti](android/validation/storage-d06-2026-10-27/README.md). D03/D04/D05 juga selesai teknis beta. D01/D02/D02a tetap terbuka untuk pemeriksaan fisik dan sumber/ketentuan audio. Jangan pindah ke E atau menyebut seluruh D/publik selesai; kerjakan bukti yang bisa dilakukan tanpa HP dahulu. Pengguna menunda HP: jangan berulang meminta sambungan. Semua checkpoint terverifikasi tetap commit/push origin/main; PROJECT_HANDOFF.md WIP tetap di luar commit.
+
+Checkpoint publik15November: bukti lisensi belum tersedia menurut pengguna. Dua uji tambahanAPI36/teks200% lulus,9tesauditpaket lulus. Rujukan [persyaratan publik](docs/beta/PUBLIC_RELEASE_BLOCKERS.md) dari root repo. Status HOLD.

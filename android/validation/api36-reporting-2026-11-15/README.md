@@ -14,3 +14,9 @@ Endpoint /v1/answer-reports authenticated, field allowlist,4096byte/timeout10det
 Backendtests mencakup payload ekstra/besar, receipt,TTL,kuota,revokasi dan scoped-erasure.
 Server default menolak penerimaan sampai ZIKRA_REPORTS_ENABLED=true. Belum deploy/aktif produksi, belum triase manusia, belum pengujian kirim aplikasi ke server nyata. PA04 tetap PARTIAL.
 Retensi backup/log akun terpisah belum terverifikasi. Tidak ada perubahan provider,billing,signer/publikasi. WIP/MP3 tidak masuk commit.
+
+## Penguatan persiapan publik
+
+Dua eksekusi native tambahan lulus di API36,640x1440/320dpi=320dp,font200%: theme12kondisi dan composer/keyboard. Total5metode unik/7eksekusi final. native-api36-large.png diperiksa. Batas uji label dan keyboard terpenuhi; welcomeAI/kalender/profil masih padat dan sebagian memerlukan scroll pada teksbesar. Ini bukan penutupan seluruh aksesibilitas.
+Audit paket diperkuat memeriksa minSdk26 dan target>=36 langsung dari aaptbadging. Sembilan tes auditor lulus, termasuk SDKhilang/ambigu/preview/targetlama/minimumberubah. Parser mendukung nama sdkVersion maupun minSdkVersion pada aapt; outputfinal keduanya true. APK tetapdebug/HOLD, hash identik.
+Pengguna mengonfirmasi15November bahwa bukti tertulis distribusi konten belum ada. Hak/B01/audio tetap terbuka dan publikasi belum dapat dilakukan.

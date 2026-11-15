@@ -12,6 +12,18 @@ spec.loader.exec_module(audit)
 
 
 class ReleaseAuditTest(unittest.TestCase):
+    def test_sdk_levels_are_checked_from_packaged_manifest(self):
+        valid = "sdkVersion:'26'\ntargetSdkVersion:'36'"
+        self.assertTrue(audit.inspect_manifest(valid, '', 'v', 1)['minimumApiPreserved'])
+        self.assertTrue(audit.inspect_manifest(valid, '', 'v', 1)['targetApi36OrHigher'])
+        self.assertTrue(audit.inspect_manifest("minSdkVersion:'26'", '', 'v', 1)['minimumApiPreserved'])
+        self.assertFalse(audit.inspect_manifest("sdkVersion:'26'\nminSdkVersion:'26'", '', 'v', 1)['minimumApiPreserved'])
+        for value in ['', "targetSdkVersion:'35'", "targetSdkVersion:'preview'",
+                      "targetSdkVersion:'36'\ntargetSdkVersion:'35'"]:
+            self.assertFalse(audit.inspect_manifest(value, '', 'v', 1)['targetApi36OrHigher'])
+        for value in ['', "sdkVersion:'28'", "sdkVersion:'26'\nsdkVersion:'26'"]:
+            self.assertFalse(audit.inspect_manifest(value, '', 'v', 1)['minimumApiPreserved'])
+
     def test_valid_signature_requires_pinned_non_debug_key(self):
         pin = 'a' * 64
         with patch.object(audit.subprocess, 'run', return_value=SimpleNamespace(
