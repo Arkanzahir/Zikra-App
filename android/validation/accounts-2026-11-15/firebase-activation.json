@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-15",
+  "project": "zikra-79b75",
+  "plan": "Spark",
+  "emailPasswordEnabled": true,
+  "billingUpgrade": false,
+  "requirePasswordPolicy": true,
+  "minimumPasswordLength": 12,
+  "forceUpgradeExistingPasswords": false,
+  "realProductionSignupOrEmailTested": false,
+  "screenshotsStoredPrivately": {
+    "firebase-auth-enabled.png": "5d8e77aa7cc8b157503edd4c8a023b630216cbc28126f07c6b99aa0a87e0350e",
+    "firebase-password-policy-enabled.png": "6247e887ab479910596c098cb75726c80d0e8ac2a53273d0be0635f243c94de8"
+  }
+}

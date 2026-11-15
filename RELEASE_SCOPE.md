@@ -1,3 +1,8 @@
+## Checkpoint source1.9.56 — akun internal, HOLD
+
+[Bukti/batas](android/validation/accounts-2026-11-15/README.md):158backend/235JVM lulus tanpa skip;4native akun final lulus dengan Firebase Emulator resmi;9snapshot dan1UI laporan→produksi pada build56 pendahulu lulus. Lint0error/909warning. Debug44.860.138byte, auth-emulator-only; bukan APK publik. HP tetap signed1.9.55 dan tidak dipakai.
+Firebase Email/Password Spark aktif atas izin pengguna; Require/min12 disimpan setelah izin spesifik. Tidak upgrade billing, membuat server key/role atau mengirim email produksi. Handler akun/renew/abusegate dan layar signin/reset/emailverify tersedia internal, belum dihubungkan ke route/publicAI. Assurance usia/wali/portal/erasure dan gate lain belum selesai; tidak menyalakan adapter palsu. [Kontrak](backend/deploy/SELF_SERVICE_ACCOUNTS.md). WIP/stash/audio/privat terjaga; emulator/helper dibersihkan.
+
 ## Checkpoint aktif 1.9.55/code82 — 15 November 2026
 
 HOLD. Release ditandatangani, dipasang di HP API36 dan data dipulihkan melalui cadangan terenkripsi setelah izin pengguna. Quick-check lima database dan perbandingan jumlah sembilan tabel pribadi lulus; 14 kondisi layar/tema lulus. Cadangan awal 0byte diperbaiki melalui migrasi schema sebelum ekspor. Token/consent/izin OS tidak dipindahkan. [Bukti dan batas](android/validation/release-migration-2026-11-15/README.md).

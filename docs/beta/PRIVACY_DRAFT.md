@@ -1,3 +1,7 @@
+## Akun dalam pengembangan1.9.56 — belum kebijakan final
+
+Firebase Email/Password Spark kini diaktifkan berizin. APK internal menyediakan login, reset dan verifikasi email; release55 di HP belum memuat layar ini dan source release56 menutup flag akun. Firebase memproses email/kata sandi dan sesi SDK saat pengguna bertindak; ini terpisah dari report7hari dan tidak berarti riwayat lokal diunggah. Belum ada email/akun produksi yang dibuat dalam pengujian ini. Metadata akun/retensi/erasure/usia/wali belum ditelaah menyeluruh atau dipublikasikan sebagai janji. Handler akun lokal menyimpan subjectID/ageband/relasi minimal ketika kelak diaktifkan; belum route produksi. [Batas](../../backend/deploy/SELF_SERVICE_ACCOUNTS.md).
+
 # Draf informasi privasi Zikra beta
 
 14 November 2026. **Draf untuk ditinjau, belum kebijakan publik final.**

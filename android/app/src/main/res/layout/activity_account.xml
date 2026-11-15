@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@color/refined_background">
+    <com.zikra.app.ui.FeatureHeader android:id="@+id/accountHeader"
+        android:layout_width="match_parent" android:layout_height="wrap_content" />
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="24dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="@string/account_heading" android:textColor="@color/refined_ink"
+                android:textSize="28sp" android:textStyle="bold" android:accessibilityHeading="true" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="12dp" android:text="@string/account_intro"
+                android:textColor="@color/refined_muted" android:textSize="16sp" android:lineSpacingExtra="4dp" />
+            <TextView android:id="@+id/accountStatus" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="24dp"
+                android:textColor="@color/refined_ink" android:textSize="16sp"
+                android:accessibilityLiveRegion="polite" />
+            <TextView android:id="@+id/accountIdentity" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="12dp"
+                android:textColor="@color/refined_ink" android:textSize="16sp"
+                android:saveEnabled="false" />
+            <LinearLayout android:id="@+id/accountForm" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="16dp">
+                <EditText android:id="@+id/accountEmail" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:minHeight="56dp"
+                    android:hint="@string/account_email" android:inputType="textEmailAddress"
+                    android:maxLength="254" android:singleLine="true" android:saveEnabled="false"
+                    android:importantForAutofill="no" android:textColor="@color/refined_ink"
+                    android:textColorHint="@color/refined_muted" />
+                <EditText android:id="@+id/accountPassword" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:minHeight="56dp"
+                    android:hint="@string/account_password" android:inputType="textPassword"
+                    android:maxLength="4096" android:singleLine="true" android:saveEnabled="false"
+                    android:importantForAutofill="no" android:textColor="@color/refined_ink"
+                    android:textColorHint="@color/refined_muted" />
+                <CheckBox android:id="@+id/accountConsent" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:minHeight="56dp" android:layout_marginTop="16dp"
+                    android:text="@string/account_consent" android:textSize="14sp"
+                    android:textColor="@color/refined_muted" android:saveEnabled="false" />
+                <Button android:id="@+id/accountSignIn" style="@style/ProtectorButton"
+                    android:layout_marginTop="20dp" android:text="@string/account_signin" />
+                <Button android:id="@+id/accountCreate" style="@style/ProtectorButton"
+                    android:text="@string/account_create" />
+                <Button android:id="@+id/accountReset" style="@style/ProtectorButton"
+                    android:text="@string/account_reset" />
+            </LinearLayout>
+            <Button android:id="@+id/accountVerify" style="@style/ProtectorButton"
+                android:layout_marginTop="24dp" android:text="@string/account_verify" />
+            <Button android:id="@+id/accountRefresh" style="@style/ProtectorButton"
+                android:text="@string/account_refresh" />
+            <Button android:id="@+id/accountSignOut" style="@style/ProtectorButton"
+                android:text="@string/account_signout" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -14,8 +14,8 @@ android {
         applicationId 'com.zikra.app'
         minSdk 26
         targetSdk 36
-        versionCode 82
-        versionName '1.9.55'
+        versionCode 83
+        versionName '1.9.56'
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
 
@@ -35,8 +35,14 @@ android {
     buildTypes {
         debug {
             buildConfigField 'boolean', 'PUBLIC_BETA_SCOPE', providers.gradleProperty('zikraPublicBetaScope').orElse('false').get().toBoolean().toString()
+            buildConfigField 'boolean', 'ACCOUNT_SIGN_IN_ENABLED', providers.gradleProperty('zikraAccountSignIn').orElse('false').get().toBoolean().toString()
+            buildConfigField 'boolean', 'ACCOUNT_AUTH_EMULATOR', providers.gradleProperty('zikraAccountEmulator').orElse('false').get().toBoolean().toString()
         }
-        release { buildConfigField 'boolean', 'PUBLIC_BETA_SCOPE', 'true' }
+        release {
+            buildConfigField 'boolean', 'PUBLIC_BETA_SCOPE', 'true'
+            buildConfigField 'boolean', 'ACCOUNT_SIGN_IN_ENABLED', 'false'
+            buildConfigField 'boolean', 'ACCOUNT_AUTH_EMULATOR', 'false'
+        }
     }
 
     lint {
@@ -84,6 +90,8 @@ tasks.matching { it.name == 'preDebugBuild' }.configureEach { dependsOn(prepareA
 dependencies {
     implementation 'io.noties.markwon:core:4.6.2'
     implementation 'com.google.firebase:firebase-messaging:25.1.3'
+    // Keep Auth on the compatible pre-25 line while AGP's lint uses Kotlin metadata2.1.
+    implementation 'com.google.firebase:firebase-auth:24.0.1'
     // OkHttp 3.x and Okio 1.x are Java, including their runtime dependencies.
     implementation 'com.squareup.okhttp3:okhttp:3.14.9'
     // Native Java map; no Google key or billing is required for the OSM provider.

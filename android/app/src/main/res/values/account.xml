@@ -1,0 +1,28 @@
+<resources>
+    <string name="account_title">Akun Zikra</string>
+    <string name="account_entry">Masuk dan kelola verifikasi akun</string>
+    <string name="account_heading">Ruangmu, tetap milikmu.</string>
+    <string name="account_intro">Akun mengelola identitas dan akses layanan. Bacaan, tugas, dan riwayat di HP tidak otomatis diunggah.</string>
+    <string name="account_email">Alamat email</string>
+    <string name="account_password">Kata sandi</string>
+    <string name="account_consent">Saya setuju mengirim email dan kata sandi ke Firebase untuk masuk atau membuat akun. Verifikasi email tidak membuktikan usia maupun izin wali.</string>
+    <string name="account_signin">Masuk</string>
+    <string name="account_create">Buat akun</string>
+    <string name="account_reset">Lupa kata sandi</string>
+    <string name="account_signout">Keluar dari akun</string>
+    <string name="account_verify">Kirim email verifikasi</string>
+    <string name="account_refresh">Saya sudah memverifikasi email</string>
+    <string name="account_signed_in">Sudah masuk. Periksa email untuk melanjutkan verifikasi.</string>
+    <string name="account_identity">Email akun: %1$s</string>
+    <string name="account_verified">Email terverifikasi. Akses AI tetap menunggu pemeriksaan usia dan izin wali yang diperlukan.</string>
+    <string name="account_signed_out">Belum masuk</string>
+    <string name="account_busy">Sedang memproses…</string>
+    <string name="account_check_input">Isi email yang valid dan kata sandi. Untuk akun baru, gunakan minimal 12 karakter.</string>
+    <string name="account_check_consent">Baca dan setujui pemrosesan akun terlebih dahulu.</string>
+    <string name="account_error">Belum bisa melanjutkan. Periksa data dan koneksi, lalu coba lagi.</string>
+    <string name="account_rate_error">Terlalu banyak percobaan. Tunggu beberapa saat sebelum mencoba lagi.</string>
+    <string name="account_network_error">Koneksi belum tersedia. Coba lagi setelah tersambung.</string>
+    <string name="account_email_sent">Permintaan email sudah diproses. Periksa kotak masuk dan folder spam.</string>
+    <string name="account_wait_email">Tunggu satu menit sebelum meminta email lagi.</string>
+    <string name="account_closed">Pendaftaran akun belum dibuka pada versi ini.</string>
+</resources>

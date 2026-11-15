@@ -1,3 +1,11 @@
+## Arahan terbaru: otomatis, tanpa review pengelola
+
+Pengguna membatalkan pilihan review manual beta yang sempat disetujui. Jangan melanjutkan role/queue peninjau pengelola. Arah yang diminta: perhitungan usia otomatis dan persetujuan wali digital. Bedakan deklarasi usia, kontrol email dan pembuktian identitas/usia/relasi; jangan mengklaim hal yang tidak diverifikasi. Belum diintegrasikan, HOLD.
+
+## Pembaruan1.9.56
+
+Signin/reset/verifikasi email SDK tersedia dan teruji pada emulator resmi. Firebase Email/Password Spark dan Require/min12 telah diaktifkan dengan izin pengguna. Handler lokal/renewal/pre-auth abusegate juga tersedia;158backend/235JVM/4native final lulus. [Bukti/batas](../../android/validation/accounts-2026-11-15/README.md). Usia/wali/provider assurance/portal dan wiringAI belum tuntas; akun bukan izinAI. Tidak ada email/akun produksi uji atau deploy endpoint akun. Detail fondasi di bawah historis dan digantikan untuk subset yang sudah diverifikasi.
+
 # Pendaftaran mandiri, usia dan wali
 
 15November2026. Pengguna menyetujui pengembangan; fondasi server teruji lokal, belum tersedia sebagai alur pengguna di1.9.55. TetapHOLD.

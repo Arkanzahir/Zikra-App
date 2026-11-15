@@ -67,22 +67,54 @@ export class AccountEligibility {
     else if (this.validAge(record, 'teen')) status = 'guardian_required';
     return { accountId: record.id, revision: record.revision, status };
   }
+  async verifiedAge(subject, ageProof) {
+    const proof = await this.proofs.age(reference(ageProof), subject), now = this.now();
+    if (!object(proof) || proof.subject !== subject
+        || !['under13', 'teen', 'adult', 'unknown'].includes(proof.band)
+        || !instant(proof.issuedAt) || !instant(proof.expiresAt)
+        || proof.issuedAt > now || proof.expiresAt <= now
+        || proof.expiresAt - proof.issuedAt > 30 * DAY) fail('invalid_proof');
+    return { band: proof.band, issuedAt: proof.issuedAt, expiresAt: proof.expiresAt };
+  }
   async register(token, input) {
     fields(input, ['ageProof', 'policyVersion']);
     if (input.policyVersion !== this.policyVersion) fail('policy_changed');
     const who = await this.principal(token, true);
     if (await this.read(who.id)) fail('account_exists');
-    const proof = await this.proofs.age(reference(input.ageProof), who.subject);
+    const age = await this.verifiedAge(who.subject, input.ageProof);
     const now = this.now();
-    if (!object(proof) || proof.subject !== who.subject
-        || !['under13', 'teen', 'adult', 'unknown'].includes(proof.band)
-        || !instant(proof.issuedAt) || !instant(proof.expiresAt)
-        || proof.issuedAt > now || proof.expiresAt <= now
-        || proof.expiresAt - proof.issuedAt > 30 * DAY) fail('invalid_proof');
     return this.save(null, { schema: 1, id: who.id, subject: who.subject,
       policy: this.policyVersion, state: 'active',
-      age: { band: proof.band, issuedAt: proof.issuedAt, expiresAt: proof.expiresAt },
+      age,
       guardian: null, request: null, requestDay: Math.floor(now / DAY), requestCount: 0 });
+  }
+  async renew(token, input) {
+    fields(input, ['ageProof', 'policyVersion']);
+    if (input.policyVersion !== this.policyVersion) fail('policy_changed');
+    const who = await this.principal(token, true), previous = await this.read(who.id);
+    if (!previous) fail('not_registered');
+    const age = await this.verifiedAge(who.subject, input.ageProof);
+    if (age.issuedAt <= previous.updatedAt) fail('invalid_proof');
+    const next = structuredClone(previous);
+    next.state = 'active'; next.policy = this.policyVersion;
+    next.age = age;
+    next.guardian = null; next.request = null;
+    return this.save(previous, next);
+  }
+  async status(token) {
+    const who = await this.principal(token), record = await this.read(who.id);
+    if (!record) return { status: 'not_registered', policyVersion: this.policyVersion };
+    const result = { ...this.summary(record), policyVersion: this.policyVersion,
+      ageProofExpiresAt: record.age.expiresAt };
+    if (result.status === 'guardian_required') {
+      try { await this.authorize(token); result.status = 'teen_eligible'; }
+      catch (error) {
+        if (error.message !== 'guardian_required' && error.message !== 'unauthorized') throw error;
+        if (record.guardian?.decision === 'deny') result.status = 'guardian_denied';
+        else if (record.request?.expiresAt > this.now()) result.status = 'guardian_pending';
+      }
+    }
+    return result;
   }
   async requestGuardian(token) {
     const who = await this.principal(token, true), record = await this.read(who.id);

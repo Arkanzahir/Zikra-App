@@ -48,7 +48,7 @@
   "physicalSmokeCasesPassed": 2,
   "physicalScreenThemeChecks": 14,
   "nativeEmulatorPassed": 3,
-  "backendCurrentRunPassed": 150,
+  "backendCurrentRunPassed": 158,
   "backendChangeScope": "report-operator-tool-and-approved-production-activation",
   "targetMinimumAge": 13,
   "teenPrivacyFinalized": false,
@@ -80,7 +80,8 @@
     "documentPickerEndToEndTested": true,
     "finalReleaseSignerSelected": true,
     "evidence": "android/validation/local-migration-2026-11-14/README.md",
-    "externalSignerRecoveryBackup": false
+    "externalSignerRecoveryBackup": false,
+    "legacyUnopenedSchemaRegressionPassed": true
   },
   "privacyConsent": {
     "reviewAndQueueBound": true,
@@ -103,7 +104,7 @@
     "nativeScreenThemeConditions": 24,
     "providerAccountRetentionVerified": false,
     "playTargetApiStatus": "PARTIAL-target36-native5-pass-cross-version-open",
-    "inAppAiReportingStatus": "PARTIAL-production-receipt-operator-tested-phone-send-e2e-open",
+    "inAppAiReportingStatus": "technical-beta-ui-to-production-emulator-ttl-and-operator-tested",
     "evidence": "docs/beta/PRODUCT_AUDIT.md"
   },
   "releaseAuditTestsPassed": 9,
@@ -119,14 +120,41 @@
   },
   "backendCurrentRunSkipped": 0,
   "selfServiceAccounts": {
-    "status": "local-foundation-only",
-    "newTestsPassed": 12,
+    "status": "internal-signin-and-local-http-partial",
+    "newTestsPassed": 20,
     "firebaseAdapterContractTested": true,
     "realFirebaseAccountE2e": false,
     "trustedAgeGuardianAdapterAvailable": false,
     "androidRegistrationImplemented": false,
     "publicEndpointEnabled": false,
-    "productionChanged": false,
-    "evidence": "backend/deploy/SELF_SERVICE_ACCOUNTS.md"
+    "productionChanged": true,
+    "evidence": "android/validation/accounts-2026-11-15/README.md",
+    "localFirebaseSdkE2ePassed": true,
+    "firebaseEmailPasswordEnabled": true,
+    "firebasePlan": "Spark",
+    "serverPasswordMinimum": 12,
+    "serverPasswordRequireEnforcement": true,
+    "productionChangeScope": "approved-Firebase-provider-and-password-policy-only",
+    "androidEmailSignInImplemented": true,
+    "localHttpHandlerImplemented": true,
+    "guardianPortalImplemented": false,
+    "accountAiAuthorizationIntegrated": false,
+    "productionAccountIdentityReaderConfigured": false,
+    "manualReviewSelected": false,
+    "selectedDirection": "automatic-declared-age-and-digital-guardian-consent-not-yet-integrated"
+  },
+  "developmentCandidate": {
+    "version": "1.9.56",
+    "versionCode": 83,
+    "artifactKind": "debug-local-auth-emulator-only",
+    "releaseBuilt": false,
+    "bytes": 44860138,
+    "sha256": "29401005610db407966c33c8510699cdd319dad516a7c0472cdb11fa6347108e",
+    "finalNativePassed": 4,
+    "jvmPassed": 235,
+    "jvmSkipped": 0,
+    "lintErrors": 0,
+    "lintWarnings": 909,
+    "evidence": "android/validation/accounts-2026-11-15/README.md"
   }
 }

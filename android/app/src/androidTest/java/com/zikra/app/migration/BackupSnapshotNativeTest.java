@@ -21,7 +21,8 @@ public final class BackupSnapshotNativeTest extends InstrumentationTestCase {
   private android.app.Activity foreground;
   protected void setUp() throws Exception {
     super.setUp(); Context target = getInstrumentation().getTargetContext();
-    assertTrue(android.os.Build.MODEL.contains("sdk") || android.os.Build.FINGERPRINT.contains("generic"));
+    assertTrue(android.os.Build.MODEL.toLowerCase(Locale.ROOT).contains("sdk")
+        || android.os.Build.FINGERPRINT.toLowerCase(Locale.ROOT).contains("generic"));
     assertTrue(new File(target.getFilesDir(), "local-migration-emulator-authorized").isFile());
     foreground = getInstrumentation().startActivitySync(new Intent(target, com.zikra.app.CalendarActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     root = new File(target.getCacheDir(), "backup-native-" + UUID.randomUUID()); assertTrue(root.mkdir());

@@ -62,6 +62,7 @@
         <activity android:name=".migration.BackupActivity" android:enableOnBackInvokedCallback="false" android:exported="false" />
         <activity android:name=".migration.MigrationLoadingActivity" android:enableOnBackInvokedCallback="false" android:exported="false" />
         <activity android:name=".ProfileActivity" android:exported="false" />
+        <activity android:name=".account.AccountActivity" android:exported="false" />
         <activity android:name=".FaithActivity" android:exported="false" />
         <activity android:name=".WeeklyClassesActivity" android:exported="false" />
         <receiver android:name=".study.ClassAlarmReceiver" android:exported="false" />

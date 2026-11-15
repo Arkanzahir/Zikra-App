@@ -1,5 +1,6 @@
 # Local credentials. Never commit these files or bundle them into an APK.
 /.local/
+/firebase-debug.log*
 **/google-services.json
 **/*service-account*.json
 # Distribution signing credentials stay private even outside .local.

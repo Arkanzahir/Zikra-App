@@ -1,3 +1,12 @@
+## Steering terbaru: usia otomatis, UI pengingat dan adzan
+
+Pengguna tidak menginginkan review usia oleh pengelola; pilihan manual sebelumnya dibatalkan sebelum implementasi. Arah otomatis/izinwali digital tetap perlu integrasi, bukan bukti identitas dari checkbox. Foto Pengingat harian menunjukkan tombol menempel/besar dan hierarki lemah; rapikan dengan token/ikon disetujui. Adzan di HP55 memakai public scope notification-only, bukan gangguan perangkat; pertahankan larangan bundel audio tanpa hak. Prompt master di attachment8717449c dibaca ulang. Belum ada perbaikan UI/audio pada checkpoint56; kerjakan berikutnya tanpa menganggap A–D selesai.
+
+## Checkpoint source1.9.56 — akun internal, HOLD
+
+[Bukti/batas](android/validation/accounts-2026-11-15/README.md):158backend/235JVM lulus tanpa skip;4native akun final lulus dengan Firebase Emulator resmi;9snapshot dan1UI laporan→produksi pada build56 pendahulu lulus. Lint0error/909warning. Debug44.860.138byte, auth-emulator-only; bukan APK publik. HP tetap signed1.9.55 dan tidak dipakai.
+Firebase Email/Password Spark aktif atas izin pengguna; Require/min12 disimpan setelah izin spesifik. Tidak upgrade billing, membuat server key/role atau mengirim email produksi. Handler akun/renew/abusegate dan layar signin/reset/emailverify tersedia internal, belum dihubungkan ke route/publicAI. Assurance usia/wali/portal/erasure dan gate lain belum selesai; tidak menyalakan adapter palsu. [Kontrak](backend/deploy/SELF_SERVICE_ACCOUNTS.md). WIP/stash/audio/privat terjaga; emulator/helper dibersihkan.
+
 ## Fondasi akun mandiri — 15 November 2026
 
 Pengguna menyetujui usia/wali mandiri. Server policy, Firebase Admin identity adapter dan Redis CAS ditambahkan,12tes baru/150backend penuh lulus tanpa skip. Belum ada provider assurance nyata, endpoint/Android signup atau email produksi. Ini fondasi lokal, bukan alur akun selesai; tidak aktif di produksi dan tidak masuk deployment allowlist. [Batas/tahap berikutnya](backend/deploy/SELF_SERVICE_ACCOUNTS.md). SignedAPK/HP tetap1.9.55, HOLD. Checkpoint83bc6db sebelumnya sudah dipush.

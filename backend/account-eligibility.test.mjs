@@ -132,6 +132,38 @@ test('unavailable or corrupt registry does not fall back to online and never ret
   await assert.rejects(f.service.authorize('adult'), /access_unavailable/);
 });
 
+test('status is owner-scoped and tracks request/grant/denial without exposing challenge hashes', async () => {
+  const f = fixture(); assert.equal((await f.service.status('child')).status,'not_registered');
+  await f.register('child','teen'); await f.register('parent','adult');
+  assert.equal((await f.service.status('child')).status,'guardian_required');
+  const request=await f.service.requestGuardian('child');
+  const pending=await f.service.status('child'); assert.equal(pending.status,'guardian_pending');
+  assert.ok(!JSON.stringify(pending).includes(request.secret));
+  await f.decide(request); assert.equal((await f.service.status('child')).status,'teen_eligible');
+  await f.service.revokeGuardian('parent',request.childAccountId);
+  assert.equal((await f.service.status('child')).status,'guardian_required');
+  await f.decide(await f.service.requestGuardian('child'),'parent','deny');
+  assert.equal((await f.service.status('child')).status,'guardian_denied');
+});
+test('explicit renewal needs fresh trusted proof and invalidates prior guardian linkage', async () => {
+  const f=fixture();await f.register('child','teen');await f.register('parent','adult');
+  await f.decide(await f.service.requestGuardian('child'));
+  await f.service.withdraw('parent');
+  await assert.rejects(f.service.renew('parent',{ageProof:'missing',policyVersion:'beta-v1'}),/invalid_proof/);
+  await assert.rejects(f.service.renew('parent',{ageProof:'synthetic-proof-parent',policyVersion:'beta-v1'}),/invalid_proof/);
+  f.advance(1000);
+  f.proofs.get('synthetic-proof-parent').issuedAt+=1000;
+  await f.service.renew('parent',{ageProof:'synthetic-proof-parent',policyVersion:'beta-v1'});
+  assert.equal((await f.service.status('parent')).status,'adult_eligible');
+  await assert.rejects(f.service.authorize('child'),/guardian_required/);
+  await f.decide(await f.service.requestGuardian('child'));
+  f.advance(1000);
+  f.proofs.get('synthetic-proof-child').issuedAt+=2000;
+  await f.service.renew('child',{ageProof:'synthetic-proof-child',policyVersion:'beta-v1'});
+  await assert.rejects(f.service.authorize('child'),/guardian_required/);
+  await assert.rejects(f.service.renew('child',{ageProof:'synthetic-proof-child',policyVersion:'old'}),/policy_changed/);
+});
+
 const redisEnabled = Boolean(process.env.ZIKRA_REDIS_TEST_PYTHON);
 test('Redis CAS executes production Lua: concurrent registration/challenge consumption have one winner',
   { skip: !redisEnabled }, async t => {
