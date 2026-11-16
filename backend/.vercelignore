@@ -30,3 +30,11 @@
 !quran-sync-cache.mjs
 !quran-sync-service.mjs
 !quran-sync-handler.mjs
+
+!api/adult-account.js
+!adult-account-runtime.mjs
+!adult-accounts.mjs
+!firebase-identity.mjs
+!account-eligibility.mjs
+!account-abuse.mjs
+!account-http.mjs

@@ -1,0 +1,28 @@
+{
+  "environment": "preview",
+  "url": "https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app",
+  "protection": "Vercel Authentication",
+  "anonymousChecks": [
+    {
+      "path": "/",
+      "status": 302,
+      "requiresVercelLogin": true
+    },
+    {
+      "path": "/media/zikra-promo.mp4",
+      "status": 302,
+      "requiresVercelLogin": true
+    },
+    {
+      "path": "/media/ai-demo.jpg",
+      "status": 302,
+      "requiresVercelLogin": true
+    },
+    {
+      "path": "/privacy.html",
+      "status": 302,
+      "requiresVercelLogin": true
+    }
+  ],
+  "removedPublicAliasStatus": 404
+}

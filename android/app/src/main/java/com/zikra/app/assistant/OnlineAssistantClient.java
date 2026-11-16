@@ -105,7 +105,7 @@ public final class OnlineAssistantClient implements AutoCloseable {
           public void onFailure(Call call, IOException error) {
             main.post(
                 () -> {
-                  if (token == generation) result.failed(error instanceof PermissionChanged ? Failure.CONSENT : error instanceof java.io.InterruptedIOException
+                  if (token == generation) result.failed(error instanceof PermissionChanged ? Failure.CONSENT : error instanceof com.zikra.app.account.AccountSession.Required ? Failure.UNAUTHORIZED : error instanceof java.io.InterruptedIOException
                       ? Failure.TIMEOUT : Failure.NETWORK);
                 });
           }

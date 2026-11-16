@@ -1,3 +1,5 @@
+> **Status pengembangan terbaru:** [CURRENT_STATUS](docs/beta/CURRENT_STATUS.md). Preview website terlindungi sudah online; distribusi APK tetap HOLD. [Mulai sesi baru](docs/beta/NEW_CHAT_PROMPT.txt).
+
 ## Status aktif15November2026
 
 Kandidat internal1.9.52/code79 tetap **HOLD**. [Audit produk/prioritas](docs/beta/PRODUCT_AUDIT.md)

@@ -17,6 +17,10 @@ export function createFirebaseIdentity(auth, { projectId, now = Date.now }) {
           || !Number.isSafeInteger(claims.exp) || claims.exp <= seconds
           || !Number.isSafeInteger(claims.auth_time) || claims.auth_time > seconds
           || (recent && seconds - claims.auth_time > 300)) throw new Error('unauthorized');
+      try {
+        const user=await auth.getUser(claims.sub);
+        if(user.uid!==claims.sub||user.disabled||user.emailVerified!==true)throw new Error();
+      } catch { throw new Error('unauthorized'); }
       return { subject: claims.sub };
     },
     async assertActive(subject, grantedAt) {

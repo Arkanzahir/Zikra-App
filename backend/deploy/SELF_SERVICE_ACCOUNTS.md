@@ -1,3 +1,9 @@
+# AkunAI18+ aktif sebagai pekerjaan —16November2026
+
+Kontrak terbaru: [status/gap](../../docs/beta/CURRENT_STATUS.md), [bukti](../../android/validation/adult-accounts-2026-11-15/README.md). Source58 mempunyai AdultAccounts, runtimefirebase-admin14.5.1, route/v1/adult-account serta interceptorAndroid.175backend/237JVM/5native demo lulus. Belum deploy akun keproduksi atau signedAPK58; releaseflagsfalse. FirebaseAuthreader role sudahdibuat, filekeybelumdidapat. DeklarasiDOB self_declared bukan assuranceidentitas; noDOBpersist, metadata90hari sejakperubahan, konfirmasi30hari. ENABLED dahulu, REQUIRED hanya setelahAPKsiap. Alurwali di bawah **historis/ditunda**, jangan mengaktifkannya untukbeta18+ tanpa keputusanbaru.
+
+---
+
 # Self-service accounts: integration contract
 
 Status: local HTTP integration and internal Android authentication implemented. Firebase Email/Password is enabled on the approved Spark project; account/age/guardian endpoints are not deployed publicly.

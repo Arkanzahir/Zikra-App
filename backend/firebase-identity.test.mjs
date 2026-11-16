@@ -40,3 +40,11 @@ test('guardian account disablement, email change and session revocation invalida
     await assert.rejects(f.identity.assertActive('synthetic-owner', now), /unauthorized/);
   }
 });
+
+test('verified token claims cannot bypass current disabled or unverified account state',async()=>{
+ for(const change of [{disabled:true},{emailVerified:false},{uid:'other'}]){
+  const f=fixture(),original=f.auth.getUser;
+  f.auth.getUser=async uid=>({...await original(uid),...change});
+  await assert.rejects(f.identity.verify(token),/unauthorized/);
+ }
+});

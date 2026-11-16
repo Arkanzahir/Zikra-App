@@ -1,0 +1,72 @@
+# Zikra — status aktif untuk sesi berikutnya
+
+**16 November 2026 · HOLD · belum rilis publik.** Baca dokumen ini sebelum riwayat panjang. Tidak mengulang audit produk15 November atau proyek dari nol. Repo aktif: `D:/Download/Zikra-App-main/Zikra-App-main` (bukan hanya folder parent).
+
+## Fakta yang jangan dicampur
+
+| Bagian | Keadaan yang terbukti |
+|---|---|
+| HP pengguna | Terakhir diverifikasi signed 1.9.55/code82; data berhasil dipulihkan. Tidak dipasang57/58 oleh sesi website |
+| SignedAPK lokal terbaru | .local/releases/Zikra-v1.9.57-release.apk,38.917.467byte, SHAfd3cdc9ebe6cb2b624d8a735f35b4a555c23056401f719547b1af45970e31903; HOLD |
+| Source Android | 1.9.58/code85, akun18+ internal. Debugemulator44.924.550byte; belum signed release58 |
+| Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
+| Layanan akun18+ | Implementasi/test lokal tersedia; belum dideploy produksi. Dua flagserver belum diaktifkan oleh sesi ini |
+| Website | Preview Vercel terlindungi sudah READY, video52detik lengkap bersuara; tombolAPKdisabled |
+| Publikasi | Tidak ada APK/voice/promo umum yang dibuka. A–D/E/F/G tidak selesai seluruhnya |
+
+Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginVercel pemilik). Proyek `zikra-web` terpisah dari `zikra-ai`, plan Hobby diverifikasi. [Bukti hosting](../../website/validation/2026-11-16-hosting/README.md). User memilih **preview terlindungi dengan video lengkap dahulu**, bukan web publik tanpa suara. Jangan membuat tautan bypass atau menonaktifkan proteksi.
+
+## Keputusan pengguna yang masih berlaku
+
+- AI online beta **18+ dahulu**. Alur wali dan review usia manual dibatalkan/ditunda. Fitur lokal tidak otomatis semuanya menjadi18+.
+- KonfirmasiDOB adalah deklarasi, bukan bukti identitas/usia terverifikasi. Jangan mengganti label assurance menjadi verified atau mengklaim kepatuhan selesai.
+- B01 dua kitabGading masih menunggu sumber/hak. Cakupan beta terbatas **HadeethEnc dahulu**, tanpa menunggu Gading untuk menyiapkan cakupan terbatas. Data/bookmark lama tetap dijaga.
+- Adzan memakai MP3 pilihan lokal pengguna, biasa/Subuh terpisah; tidak dibundel/diunggah. Website menampilkan informasi ini dengan jujur.
+- PenerbitZikra, dukunganpublik arkanzahir46@gmail.com. GoogleMaps/billing ditolak; tetapOSM. Tidak ada upgrade berbayar.
+- Desain terbaru disetujui cukup baik: gaya susunanEnte, logo dan delapan ikon asli,6panel+12topik fitur, video52detik. Pertahankan identitas tersebut. Situs tetapHTML/CSS/nativecontrols, tanpaframework/analytics/JS.
+- Semua perubahan selesai perlucheckpointGitHub. Jangan menyebut seluruh pekerjaan selesai hanya karena sebuahbuild/test lulus.
+
+## Bukti terbaru
+
+- [Akun18+](../../android/validation/adult-accounts-2026-11-15/README.md):175backend/237JVM/5native,0skip; lint0error/912warning; npm audit0vulnerability pada run tercatat. Native menggunakan FirebaseAuthEmulator resmi, AdminSDK, Redisfixture dan AIstub sintetis, **bukan produksi/HP**. LokalNode22.17.0; targetVercel24.x belum diuji lokal.
+- [Adzan57](../../android/validation/local-adhan-2026-11-15/README.md):10native pada signed releaseAPI36 termasuk alarm→audio→Stop. PemilihanMP3/SAF/suara padaHP 57 belum diverifikasi.
+- [WebsiteEnte](../../website/validation/2026-11-16-ente/README.md):6panel,12topik,1440/390/320CSSpx tanpaoverflow, ikon/anchor diperiksa. [Pemetaanfitur](../../website/FEATURE_MAP.md).
+- [Hosting](../../website/validation/2026-11-16-hosting/README.md): pemilik dapat membuka dan memutarvideo; anonymous root/video/frameAI/privacy302keSSO; alias publik otomatis sudah dilepas dan404. Paket5.844.310byte/25file,0APK/0knownsecretmatch. Ini bukan audit seluruh retensi/keamanan penyedia.
+- [MigrasiHP 55](../../android/validation/release-migration-2026-11-15/README.md): backup terenkripsi dan restore nyata,5database/9tabel dibandingkan. Kunci/consent/izinOS tidak dipindahkan.
+
+## Prioritas berikutnya, berurutan
+
+| Urut | Pekerjaan nyata yang belum selesai | Perlu HP/input? |
+|---|---|---|
+|1| Selesaikan akses Auth readerFirebase. Serviceaccount `zikra-auth-reader` sudah dibuat dengan Firebase Authentication Viewer saja. Satu key berprefix09f84d5dcc70 sudah dibuat tetapi berkas privat belum ditemukan. Periksa inventory/unduhan; jika tak dapat dipulihkan, nonaktifkan key tak dikelola dengan mekanisme aman sebelum membuat pengganti. Jangan mengumpulkan key yatim | Akses konsol pemilik; jangan minta key lewat chat |
+|2| Simpan credentialAuth khusus dan subject key64hex privat; uji read-only memakaiUID acak yang tidak ada, bukan daftar akun nyata. Deploy endpoint akun dahulu dengan ENABLED=true / REQUIRED=false. User sudah menyetujui layanan akunFree dan penyimpanan lokal/Vercel | TanpaHP; perlucredentialvalid |
+|3| Tuntaskan rilis58: releaseaccountflags masihfalse. Siapkan konfigurasi produksi yang teruji (bukan emulator), signedAPK dengan key yang sama, auditsecret/paket di bawah100MB, kompatibilitas/migrasi | Kode/build tanpa HP; E2E pemilik berikutnya |
+|4| Uji signup/email/status/deklarasi/withdrawal pada layanan nyata secara terkoordinasi. Aktifkan kewajibanakun untukchat/gambar/laporan hanya setelah APK baru siap; jangan memutus pengguna lama lebih dahulu | Akunemail pengguna/HP bila siap; jangan mengirimemail tanpa izin |
+|5| Finalkan privasi/risk usia 18+ dan retensi/kuota/provider, jalur penghapusan akun/metadata dan penanganan laporan. Selfdeclaration bukan jaminan anti-pemalsuan; holdSharedPreferences.commit failure belum fault-tested | Sebagian kode/dokumen tanpa HP; sebagian keputusan/layanan |
+|6| Tutup gate konten/audio/ilustrasi/promo yang berlaku untuk cakupan terbatas. Hak suaraElevenLabs pada saatgenerasi belum terkonfirmasi; video hanya untukreview terlindungi. [Jejak sumber](CONTENT_LICENSE_TRACE.md), [audit](PRODUCT_AUDIT.md) | Bukti luar; jangan menganggap filegratis=izinredistribusi |
+|7| SesiHP terarah untuk kandidat final/update/data dan sisa kasus adzan/izin. Gunakan bukti historis yang masih relevan; jangan ulang semua audio/restart demi jumlah tes | HP setelah koordinasi; restart hanya izin khusus |
+|8| Salinan pemulihan signing di media terpisah belum ada; jangan buat ulang key. Finalisasi keputusanbeta/paketmanifest/privasi, kemudian baruaktifkan downloadweb dan ujiHTTP/hash/installupdate | Media/pilihan pengguna; gate publik |
+
+Web tidak memerlukanpembangunanulang. `website/README.md`, `website/package-preview.cjs`, `website/vercel.json` dan receipt hosting menjelaskan deploy. Gunakan `--environment preview` eksplisit. Deploy pertama Vercel sempat otomatis diberialiasproduksi; aliasdilepas. Jangan menganggap perintah tanpa --prod pasti tidak membuat alias publik pada proyekbaru.
+
+## Kontrak akun yang harus dipertahankan
+
+Server: `backend/adult-accounts.mjs`, `adult-account-runtime.mjs`, `account-http.mjs`, `api/adult-account.js`, `server.mjs`. Android: paket `account`, `AssistantConnection`, `AssistantHttp`, `ImageGenerationClient`, `OnlineAssistantClient`, `AiActivity`.
+
+- Endpoint GET/v1/adult-account; POST /declare,/renew,/withdraw. VerifiedFirebaseemail/tokenrevocation/currentstate; loginbaru≤5menit untukmutasi. DOB tidak disimpan; metadataUID/HMAC/ageband/policy/revisionTTL90hari sejak perubahan, konfirmasi30hari.
+- `ZIKRA_ADULT_ACCOUNTS_ENABLED=true` untukendpoint; `ZIKRA_ADULT_ACCOUNTS_REQUIRED=true` baru mewajibkanAI. Tidak aktifkanREQUIRED lebih dahulu.
+- Rahasia: `ZIKRA_AUTH_SERVICE_ACCOUNT_JSON`, `ZIKRA_ACCOUNT_SUBJECT_KEY`. HanyaAuth reader, bukanFCMsender. Jangan pakai emulator/TLSoff/subject keyfixturea*64 di produksi.
+- Android release ADULT_ACCOUNTS_ENABLED/ACCOUNT_SIGN_IN_ENABLED/ACCOUNT_AUTH_EMULATOR semuanya false. Debug hanyaaktif via property. Emulatormode hanya percaya10.0.2.2:9098; produksi hanyaHTTPSzikra-ai.vercel.app. FirebaseJWT tidak boleh diteruskan ke model/hostlain.
+- Permintaan diikatUID/revisi; callbacklama ditolak. Localhold persisten sebelumwithdrawRPC. Jejak under18 bukan penolakanpermanen seumurhidup; record punyaTTL dan deklarasi tetapself reported.
+
+## Lingkungan dan yang wajib dijaga
+
+WindowsPowerShell. NodeD:/node.exe; PythonbundledCodex; JDK C:/Users/Lenovo/.jdks/jbr-17.0.14; SDK E:/AndroidSDK; GRADLE_USER_HOME E:/.gradle. API36/AGP8.10.1/Gradle8.11.1/min26. [Build/test](../../android/validation/adult-accounts-2026-11-15/README.md).
+
+`.local` tidak diGit: signing/credential.clixml, cloudflare.env, vercel-production.env, firebase-android.json, testlogs dan media. Jangan mencetak nilainya, menaruhnya diAPK/Git, atau meminta lewat chat. Key release sama; backup terenkripsi pengguna harus dijaga. Janganfactoryreset/uninstall/restoreHP tanpa izin terbaru yang sesuai.
+
+**PROJECT_HANDOFF.md tetapWIP terpisah**: SHA e6df1b9dfc227883098e6db19ea7413cac6206a61fa6834eeb1bc2a7fae63650. Jangan stage/reset/overwrite. Stashaudio35686be384ac549e5a5bf85be87cfe56e3b667df tetapada; janganpop/drop. Desain/aset/audioasli/berkaspribadi tidak dihapus. UntrackedPNG/lama/crashlogs/__pycache bukan bahanstage massal.
+
+Proses emulator miliktes (5592/ADB5048), AuthEmulator danfixture9098 sudah dihentikan saat handoff; jangan menjalankan skenario lama begitu saja. HP/defaultADB5037 tidak dipakai sesiwebsite. Previewlokal64882 dapat berhenti saat sesi berakhir; URLVercel tidak bergantung laptop.
+
+Bagian catatan lama yang menyebut13+/wali/manualreview/websitepause atauAPK48 adalah riwayat. Dokumen ini dan receipt baru mengunggulinya untuk keadaan yang tercatat, bukan menghapus bukti sejarah.

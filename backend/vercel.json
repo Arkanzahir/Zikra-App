@@ -3,15 +3,47 @@
   "framework": null,
   "buildCommand": "",
   "functions": {
-    "api/*.js": { "maxDuration": 60, "supportsCancellation": true }
+    "api/*.js": {
+      "maxDuration": 60,
+      "supportsCancellation": true
+    }
   },
   "rewrites": [
-    { "source": "/v1/quran", "destination": "/api/quran" },
-    { "source": "/v1/earthquakes/poll", "destination": "/api/earthquake-poll" },
-    { "source": "/v1/answer-reports", "destination": "/api/answer-reports" },
-    { "source": "/health", "destination": "/api/health" },
-    { "source": "/v1/assistant", "destination": "/api/assistant" },
-    { "source": "/v1/images", "destination": "/api/images" },
-    { "source": "/v1/capabilities", "destination": "/api/capabilities" }
+    {
+      "source": "/v1/adult-account",
+      "destination": "/api/adult-account"
+    },
+    {
+      "source": "/v1/adult-account/:action",
+      "destination": "/api/adult-account?action=:action"
+    },
+    {
+      "source": "/v1/quran",
+      "destination": "/api/quran"
+    },
+    {
+      "source": "/v1/earthquakes/poll",
+      "destination": "/api/earthquake-poll"
+    },
+    {
+      "source": "/v1/answer-reports",
+      "destination": "/api/answer-reports"
+    },
+    {
+      "source": "/health",
+      "destination": "/api/health"
+    },
+    {
+      "source": "/v1/assistant",
+      "destination": "/api/assistant"
+    },
+    {
+      "source": "/v1/images",
+      "destination": "/api/images"
+    },
+    {
+      "source": "/v1/capabilities",
+      "destination": "/api/capabilities"
+    }
   ]
 }

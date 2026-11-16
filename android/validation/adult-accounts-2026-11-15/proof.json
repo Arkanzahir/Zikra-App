@@ -1,0 +1,30 @@
+{
+  "sourceVersion": "1.9.58",
+  "versionCode": 85,
+  "kind": "debug-emulator-only-not-public",
+  "debugApkBytes": 44924550,
+  "debugApkSha256": "7d8be4ccb8ae1007ec9d1268da4915dcbcd1e189ef2c196452b1bbbe568e566f",
+  "backendPassed": 175,
+  "backendSkipped": 0,
+  "localNode": "22.17.0",
+  "productionNodeTarget": "24.x",
+  "node24Tested": false,
+  "jvmPassed": 237,
+  "jvmSkipped": 0,
+  "nativePassed": 5,
+  "nativeEnvironment": "API36-owned-emulator + official Firebase Auth emulator + Admin SDK + Redis fixture + synthetic AI stub",
+  "nativeUserDataSent": false,
+  "lintErrors": 0,
+  "lintWarnings": 912,
+  "dependencyAuditVulnerabilities": 0,
+  "accountProductionDeployed": false,
+  "signedRelease58Built": false,
+  "physicalPhoneUpdated": false,
+  "releaseStatus": "HOLD",
+  "logSha256": {
+    "adult-account-backend-final-proof.log": "c15cc4566df3664dca9d72394e2cd314b0da68862cfd2d14e558cb5b966904c8",
+    "adult-flow-lifecycle-native.txt": "97504a3586532d9b6d795dd03953ad01bfd10c3968eb55826026da884fe9f862",
+    "adult-account-lifecycle-build.log": "2111f1ea3eb4a9ab5ba775d2512bd0af412bb451548720a4d3815db7edff5263",
+    "adult-sdk-audit.json": "417e30c5aa1420baa9ca8e69589f4c0ca33d77a992fc2c22b7e8e702748232db"
+  }
+}

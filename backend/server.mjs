@@ -39,6 +39,10 @@ export function validateMessages(value) {
   return messages.at(-1).role === 'user' ? messages : null;
 }
 
+class AccountAccessError extends Error {
+  constructor(message,status){super(message);this.status=status;}
+}
+
 class InputError extends Error {
   constructor(message, status) { super(message); this.status = status; }
 }
@@ -73,7 +77,8 @@ async function boundedJson(stream, limit, signal) {
 
 export function createRequestHandler({ apiKey, model, visionModel, provider = 'featherless', accountId, freePlanConfirmed, clientToken, fetchImpl = fetch, now = Date.now,
   providerTimeoutMs = 35000, accessMode = 'private', clientsFile, usageFile, dailyLimit,
-  sourceFetchImpl = fetch, accessStore, imageService, reportAnswer, onRejection }) {
+  sourceFetchImpl = fetch, accessStore, imageService, reportAnswer, onRejection, adultAccessGate }) {
+  if (adultAccessGate !== undefined && typeof adultAccessGate !== 'function') throw new ConfigError('Invalid adult account gate.');
   if (!['private', 'installation'].includes(accessMode)) throw new ConfigError('Invalid access mode.');
   const providerConfig = {apiKey, model, visionModel, provider, accountId, freePlanConfirmed};
   if (accessMode === 'private') validateCredentials({ ...providerConfig, clientToken });
@@ -85,7 +90,24 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
   let active = 0;
   const activeClients = new Map();
   return async (req, res) => {
-    let identity = null, lease, queue;
+    let identity = null, lease, queue, account;
+    const verifyAccount = async () => {
+      if (!adultAccessGate) return;
+      const token = req.headers['x-zikra-account-token'];
+      if (typeof token !== 'string' || !/^[A-Za-z0-9._-]{32,8192}$/.test(token))
+        throw new AccountAccessError('account_sign_in_required',401);
+      let next;
+      try { next = await adultAccessGate(token); }
+      catch(error) {
+        throw new AccountAccessError(error?.message === 'unauthorized' ? 'account_sign_in_required'
+          : error?.message === 'adult_confirmation_required' ? 'adult_confirmation_required' : 'account_unavailable',
+          error?.message === 'unauthorized' ? 401 : error?.message === 'adult_confirmation_required' ? 403 : 503);
+      }
+      if (!next || !/^[a-f0-9]{64}$/.test(next.accountId ?? '') || !Number.isSafeInteger(next.revision)
+          || account && (next.accountId !== account.accountId || next.revision !== account.revision))
+        throw new AccountAccessError('adult_confirmation_required',403);
+      account = next;
+    };
     const reply = async (status, value) => {
       // Release before ending the response: a serverless runtime may suspend work afterwards.
       if (lease) {
@@ -116,19 +138,25 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
         : (equalToken(req.headers.authorization, `Bearer ${clientToken}`) ? req.socket.remoteAddress || 'unknown' : null);
     } catch { return reply(503, { error: 'access_unavailable' }); }
     if (!identity) return reply(401, { error: 'unauthorized' });
+    if (!capabilities) {
+      try { await verifyAccount(); }
+      catch(error) { return reply(error.status,{error:error.message}); }
+    }
     if (reportRequest) {
       if (!reportAnswer) return reply(503, { error: 'report_unavailable' });
       if (!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type'] || ''))
         return reply(415, { error: 'json_required' });
       try {
         const body = await boundedJson(req, 4096, AbortSignal.timeout(10000));
+        await verifyAccount();
         const status = await reportAnswer(identity, body);
         return reply(status, status === 201 ? { received: true } : { error: status === 429 ? 'rate_limited' : 'invalid_report' });
       } catch (error) {
+        if(error instanceof AccountAccessError)return reply(error.status,{error:error.message});
         return reply(error instanceof InputError ? error.status : 503, { error: 'report_unavailable' });
       }
     }
-    if(capabilities)return reply(200,{imageGeneration:!!imageService,imageUserDaily:IMAGE_USER_DAILY,imageGlobalDaily:IMAGE_GLOBAL_DAILY,assistantProvider:provider});
+    if(capabilities)return reply(200,{imageGeneration:!!imageService,imageUserDaily:IMAGE_USER_DAILY,imageGlobalDaily:IMAGE_GLOBAL_DAILY,assistantProvider:provider,...(adultAccessGate?{accountRequired:true,minimumAge:18}:{})});
     const requestedProvider=req.headers['x-zikra-provider'];
     if(!imageRequest && (provider==='cloudflare' && requestedProvider!=='cloudflare'
         || requestedProvider!==undefined && requestedProvider!==provider))
@@ -188,7 +216,7 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
         if (error instanceof InputError) return reply(error.status, { error: error.message });
         throw error;
       }
-      if(imageRequest){try{return reply(200,await imageService.generate(body,identity,controller.signal));}catch(error){if(error instanceof ImageError)return reply(error.status,{error:error.message});throw error;}}
+      if(imageRequest){try{await verifyAccount();const image=await imageService.generate(body,identity,controller.signal);await verifyAccount();return reply(200,image);}catch(error){if(error instanceof ImageError)return reply(error.status,{error:error.message});throw error;}}
       const messages = validateMessages(body?.messages);
       if(!body?.attachments&&Buffer.byteLength(JSON.stringify(body),'utf8')>BODY_LIMIT)return reply(413,{error:'too_large'});
       if (!messages) return reply(400, { error: 'invalid_messages' });
@@ -207,6 +235,7 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
         ? '\n\n' + selectedPrompt(selection, source) : '');
       const request = providerRequest({...providerConfig,model:attachment.vision?visionModel:model},
         [{role:'system',content:system},...attachToMessages(messages,attachment)],selection.taskProposals);
+      await verifyAccount();
       const upstream = await fetchImpl(request.url, {
         method: 'POST', signal: controller.signal, redirect: 'error',
         headers:request.headers,body:request.body
@@ -246,9 +275,11 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
       const content = data?.choices?.[0]?.message?.content;
       if (typeof content !== 'string' || !content.trim() || content.length > 8000)
         return reply(502, { error: 'invalid_provider_response' });
+      await verifyAccount();
       await reply(200, { ...providerReply(content, selection), provider, ...(source ? { source } : {}) });
     } catch (error) {
-      await reply(controller.signal.aborted ? 504 : 502, { error: 'provider_unavailable' });
+      if(error instanceof AccountAccessError)await reply(error.status,{error:error.message});
+      else await reply(controller.signal.aborted ? 504 : 502, { error: 'provider_unavailable' });
     } finally {
       clearTimeout(timeout); res.off('close', closed); active--;
       req.off('error', requestError);

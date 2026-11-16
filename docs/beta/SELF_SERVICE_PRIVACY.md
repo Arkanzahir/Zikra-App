@@ -1,3 +1,7 @@
+## Keputusan pengganti: AI online18+ dahulu
+
+Pengguna memilih AI online beta18+ tanpa alur wali; pengembangan wali ditunda. Arah saatini memakai emailterverifikasi dan pernyataanusia yang dihitung di server, dengan labelself_declared; ini tidak disebut buktiidentitas. Aktivasi publik dan penilaian kecukupan assurance/risiko/retensi tetap belum selesai. Jangan menyalakanadapterpalsu atau menganggap kebijakan18+ sendiri menuntaskan seluruhkepatuhan. Bagian13–17 di bawah merupakan rencanahistoris untuk pengembangan mendatang.
+
 ## Arahan terbaru: otomatis, tanpa review pengelola
 
 Pengguna membatalkan pilihan review manual beta yang sempat disetujui. Jangan melanjutkan role/queue peninjau pengelola. Arah yang diminta: perhitungan usia otomatis dan persetujuan wali digital. Bedakan deklarasi usia, kontrol email dan pembuktian identitas/usia/relasi; jangan mengklaim hal yang tidak diverifikasi. Belum diintegrasikan, HOLD.

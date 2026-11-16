@@ -10,7 +10,8 @@ const ERRORS = new Map([
   ['invalid_proof', 400], ['policy_changed', 409], ['account_exists', 409],
   ['account_conflict', 409], ['not_registered', 409], ['not_eligible', 403],
   ['guardian_required', 403], ['invalid_request', 400], ['rate_limited', 429],
-  ['request_timeout', 408], ['invalid_content_type', 415]
+  ['request_timeout', 408], ['invalid_content_type', 415], ['under18_blocked', 403],
+  ['adult_confirmation_required', 403]
 ]);
 async function json(req) {
   if (!/^application\/json(?:\s*;\s*charset=utf-8)?$/i.test(req.headers['content-type'] ?? ''))
@@ -43,9 +44,9 @@ async function json(req) {
 
 // No implicit public activation. beforeAuth must apply host-trusted address/global limits
 // before Firebase verification. Caller input headers alone must never identify an IP.
-export function createAccountHandler({ service, beforeAuth }) {
-  if (typeof beforeAuth !== 'function'
-      || [...new Set(ROUTES.values())].some(method => typeof service?.[method] !== 'function'))
+export function createAccountHandler({ service, beforeAuth, routes = ROUTES }) {
+  if (!(routes instanceof Map) || typeof beforeAuth !== 'function'
+      || [...new Set(routes.values())].some(method => typeof service?.[method] !== 'function'))
     throw new Error('invalid_account_config');
   return async (req, res) => {
     const reply = (status, value) => {
@@ -56,7 +57,7 @@ export function createAccountHandler({ service, beforeAuth }) {
         ...(status === 429 ? { 'Retry-After': '60' } : {}) });
       res.end(JSON.stringify(value));
     };
-    const action = ROUTES.get(`${req.method} ${req.url}`);
+    const action = routes.get(`${req.method} ${req.url}`);
     if (!action) return reply(404, { error: 'not_found' });
     try {
       if (await beforeAuth(req) !== true) throw new Error('rate_limited');
@@ -76,4 +77,11 @@ export function createAccountHandler({ service, beforeAuth }) {
       return reply(ERRORS.get(code) ?? 503, { error: code });
     }
   };
+}
+
+export function createAdultAccountHandler(options) {
+  return createAccountHandler({ ...options, routes: new Map([
+    ['GET /v1/adult-account', 'status'], ['POST /v1/adult-account/declare', 'register'],
+    ['POST /v1/adult-account/renew', 'renew'], ['POST /v1/adult-account/withdraw', 'withdraw']
+  ]) });
 }

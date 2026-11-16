@@ -1,0 +1,9 @@
+Lanjutkan proyek Zikra di D:\Download\Zikra-App-main\Zikra-App-main. Gunakan skill caveman.
+
+Baca AGENTS.md, docs/beta/CURRENT_STATUS.md, ACCOUNT_HANDOFF.md, SESSION_HANDOFF.md, IMPLEMENTATION_PLAN.md, RELEASE_SCOPE.md dan docs/beta/PRODUCT_AUDIT.md. Jangan mengulang audit atau proyek dari nol.
+
+HP terakhir 1.9.55; signed lokal1.9.57; source akun1.9.58 belum rilis. AI online 18+, wali ditunda. 175 backend / 237 JVM / 5 native emulator lulus, bukan bukti produksi. Web bergaya Ente sudah online sebagai preview Vercel terlindungi dengan video bersuara; unduhan APK ditutup.
+
+Prioritas: selesaikan credential Firebase Auth reader yang belum terambil, deploy endpoint akun dahulu, lalu finalkan signed APK dan uji produksi/migrasi sebelum mewajibkan login AI. Ikuti gap CURRENT_STATUS; HOLD tetap.
+
+Jaga data pengguna, konfigurasi/signing .local, PROJECT_HANDOFF.md WIP, stash audio dan desain disetujui. Jangan unggah rahasia, upgrade berbayar atau restart/hapus data HP tanpa koordinasi. Commit/push checkpoint beserta bukti dan batasnya.

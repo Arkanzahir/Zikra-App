@@ -1,3 +1,5 @@
+> **Preview online16November2026:** https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ — memerlukan loginVercel pemilik. Video lengkap bersuara; unduhanAPK tetapdisabled. [Bukti/deploy](DEPLOYMENT.md). Ini menggantikan status lokal-saja di iterasi sebelumnya; tidak mengubah HOLD aplikasi.
+
 # Website Zikra — pratinjau lokal
 
 Revisi produk16November2026. Situs statis di `dist`; tanpa framework, JavaScript, analytics, cookie, formulir atau aset pihak ketiga. Belum dihosting publik dan tidak menawarkan APK. Status aplikasi tetap HOLD.

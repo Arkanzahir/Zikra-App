@@ -9,6 +9,7 @@ final class AssistantHttp {
   static OkHttpClient create() {
     // The gateway can spend 35 seconds generating, plus bounded access-store operations.
     return new OkHttpClient.Builder()
+        .addInterceptor(com.zikra.app.account.AccountSession.interceptor())
         .connectTimeout(10, TimeUnit.SECONDS)
         .readTimeout(45, TimeUnit.SECONDS)
         .writeTimeout(20, TimeUnit.SECONDS)

@@ -933,7 +933,7 @@ public final class AiActivity extends BaseActivity {
     int message;
     switch (failure) {
       case CONSENT: message = R.string.assistant_permission_changed; break;
-      case UNAUTHORIZED: message = R.string.assistant_auth_failed; break;
+      case UNAUTHORIZED: message = BuildConfig.ADULT_ACCOUNTS_ENABLED ? R.string.adult_ai_signin_required : R.string.assistant_auth_failed; break;
       case QUOTA: message = R.string.assistant_quota_failed; break;
       case RATE_LIMIT: message = R.string.assistant_rate_failed; break;
       case PROVIDER_QUOTA: message = R.string.assistant_provider_quota_failed; break;

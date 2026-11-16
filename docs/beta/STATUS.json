@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "releaseStatus": "HOLD",
   "version": "1.9.57",
   "versionCode": 84,
@@ -14,7 +14,7 @@
   "lintWarnings": 911,
   "backendPreviousRunPassed": 134,
   "backendChanged": true,
-  "website": "paused-by-user-preview-still-1.9.48-no-public-download",
+  "website": "protected-vercel-preview-live-public-apk-download-disabled",
   "evidence": "android/validation/local-adhan-2026-11-15/README.md",
   "remaining": [
     "quran-font-audio-failure-matrix",
@@ -182,5 +182,37 @@
     "nativeReleasePassed": 10,
     "physicalTested": false,
     "documentPickerEndToEndTested": false
-  }
+  },
+  "websitePreview": {
+    "url": "https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/",
+    "project": "zikra-web",
+    "plan": "hobby",
+    "requiresVercelAuthentication": true,
+    "videoSeconds": 52,
+    "videoMuted": false,
+    "publicDownloadEnabled": false,
+    "evidence": "website/validation/2026-11-16-hosting/README.md"
+  },
+  "adultAccountsCurrent": {
+    "sourceVersion": "1.9.58",
+    "versionCode": 85,
+    "minimumAgeForOnlineAi": 18,
+    "guardianFlowDeferred": true,
+    "assurance": "self_declared",
+    "backendPassed": 175,
+    "backendSkipped": 0,
+    "jvmPassed": 237,
+    "jvmSkipped": 0,
+    "nativeEmulatorPassed": 5,
+    "lintErrors": 0,
+    "lintWarnings": 912,
+    "productionDeployed": false,
+    "globalAiRequirementEnabled": false,
+    "releaseFlagsEnabled": false,
+    "signedRelease58Built": false,
+    "firebaseAuthReaderRoleCreated": true,
+    "firebaseAuthReaderPrivateKeyRetrieved": false,
+    "evidence": "android/validation/adult-accounts-2026-11-15/README.md"
+  },
+  "activeStatusDocument": "docs/beta/CURRENT_STATUS.md"
 }

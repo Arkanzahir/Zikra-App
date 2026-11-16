@@ -14,7 +14,7 @@
     <string name="account_refresh">Saya sudah memverifikasi email</string>
     <string name="account_signed_in">Sudah masuk. Periksa email untuk melanjutkan verifikasi.</string>
     <string name="account_identity">Email akun: %1$s</string>
-    <string name="account_verified">Email terverifikasi. Akses AI tetap menunggu pemeriksaan usia dan izin wali yang diperlukan.</string>
+    <string name="account_verified">Email terverifikasi. AI online beta hanya untuk usia 18+; lanjutkan melalui Kelola akses AI 18+.</string>
     <string name="account_signed_out">Belum masuk</string>
     <string name="account_busy">Sedang memproses…</string>
     <string name="account_check_input">Isi email yang valid dan kata sandi. Untuk akun baru, gunakan minimal 12 karakter.</string>

@@ -50,6 +50,8 @@
                 android:layout_marginTop="24dp" android:text="@string/account_verify" />
             <Button android:id="@+id/accountRefresh" style="@style/ProtectorButton"
                 android:text="@string/account_refresh" />
+            <Button android:id="@+id/accountAdultEntry" style="@style/ProtectorButton" android:layout_marginTop="16dp" android:text="@string/adult_entry" />
+            <Button android:id="@+id/accountReauthenticate" style="@style/ProtectorButton" android:layout_marginTop="12dp" android:text="@string/adult_reauthenticate" />
             <Button android:id="@+id/accountSignOut" style="@style/ProtectorButton"
                 android:text="@string/account_signout" />
         </LinearLayout>

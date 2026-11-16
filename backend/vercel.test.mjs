@@ -56,7 +56,8 @@ test('Vercel entry points pin paths and deployment excludes private config and a
   const config = JSON.parse(readFileSync(new URL('./vercel.json', import.meta.url)));
   assert.equal(config.functions['api/*.js'].supportsCancellation, true);
   assert.equal(config.functions['api/*.js'].maxDuration, 60);
-  assert.deepEqual(config.rewrites, [{ source: '/v1/quran', destination: '/api/quran' },
+  assert.deepEqual(config.rewrites, [{source:'/v1/adult-account',destination:'/api/adult-account'},
+    {source:'/v1/adult-account/:action',destination:'/api/adult-account?action=:action'}, { source: '/v1/quran', destination: '/api/quran' },
     { source: '/v1/earthquakes/poll', destination: '/api/earthquake-poll' },
     { source: '/v1/answer-reports', destination: '/api/answer-reports' },
     { source: '/health', destination: '/api/health' },
@@ -68,7 +69,8 @@ test('Vercel entry points pin paths and deployment excludes private config and a
   assert.ok(!allowlist.includes('!.env')); assert.ok(!allowlist.includes('!*.mjs'));
   for (const file of ['api/earthquake-poll.js', 'earthquake-feed.mjs', 'earthquake-fcm.mjs', 'earthquake-poll.mjs',
     'api/quran.js', 'quran-content-sync.mjs', 'quran-sync-transport.mjs', 'quran-sync-cache.mjs',
-    'quran-sync-service.mjs', 'quran-sync-handler.mjs'])
+    'quran-sync-service.mjs', 'quran-sync-handler.mjs','api/adult-account.js','adult-account-runtime.mjs',
+    'adult-accounts.mjs','firebase-identity.mjs','account-eligibility.mjs','account-abuse.mjs','account-http.mjs'])
     assert.ok(allowlist.split(/\r?\n/).includes('!' + file));
   assert.ok(!allowlist.includes('!earthquake-trigger.mjs'));
   assert.ok(readFileSync(new URL('./api/earthquake-poll.js', import.meta.url), 'utf8').includes('../earthquake-poll.mjs'));

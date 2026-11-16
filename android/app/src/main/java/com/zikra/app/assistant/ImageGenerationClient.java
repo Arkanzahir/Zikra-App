@@ -12,7 +12,7 @@ public final class ImageGenerationClient implements AutoCloseable {
   public interface Capability{void available(boolean value);}
   private final OkHttpClient http;private final Handler main=new Handler(Looper.getMainLooper());
   private int generation,capabilityGeneration;private Call active,check;private boolean closed;
-  public ImageGenerationClient(){this(new OkHttpClient.Builder().callTimeout(45,TimeUnit.SECONDS).followRedirects(false).followSslRedirects(false).retryOnConnectionFailure(false).build());}
+  public ImageGenerationClient(){this(AssistantHttp.create().newBuilder().callTimeout(45,TimeUnit.SECONDS).followRedirects(false).followSslRedirects(false).retryOnConnectionFailure(false).build());}
   ImageGenerationClient(OkHttpClient client){http=client;}
   private Request.Builder request(AssistantConnection connection,String route)throws Exception{
     String token=connection.accessCode();if(!AssistantConnection.valid(connection.endpoint(),token))throw new IOException();

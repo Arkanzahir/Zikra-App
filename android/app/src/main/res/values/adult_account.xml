@@ -1,0 +1,28 @@
+<resources>
+ <item name="adultStatus" type="id"/><item name="adultBirthDate" type="id"/><item name="adultConsent" type="id"/><item name="adultConfirm" type="id"/><item name="adultRefresh" type="id"/><item name="adultSignIn" type="id"/><item name="adultWithdraw" type="id"/>
+ <string name="adult_title">Akses AI online</string>
+ <string name="adult_heading">Beta AI untuk usia 18+</string>
+ <string name="adult_intro">Masuk dengan email terverifikasi, lalu konfirmasikan usiamu. Fitur lokal dan data di HP tidak otomatis diunggah.</string>
+ <string name="adult_date">Pilih tanggal lahir</string>
+ <string name="adult_consent">Saya menyatakan berusia minimal 18 tahun dan menyetujui ketentuan beta AI online. Pernyataan ini bukan verifikasi identitas.</string>
+ <string name="adult_confirm">Simpan konfirmasi usia</string>
+ <string name="adult_refresh">Periksa status</string>
+ <string name="adult_signin">Akun dan masuk ulang</string>
+ <string name="adult_withdraw">Cabut akses AI online</string>
+ <string name="adult_withdraw_note">Akses AI akun ini akan ditutup. Bacaan, tugas, dan riwayat lokal tetap ada. Permintaan yang sedang berjalan dapat dihentikan; data yang sudah diterima penyedia tidak dapat ditarik kembali.</string>
+ <string name="adult_privacy">Tanggal lahir dikirim saat kamu menyimpan untuk menghitung batas usia, lalu tidak disimpan dalam catatan akun backend. Catatan menyimpan kelompok usia dan persetujuan, bukan identitas terverifikasi. Konfirmasi berlaku 30 hari; catatan akun backend memiliki batas penyimpanan 90 hari sejak perubahan terakhir. Email/sesi Firebase mengikuti layanan akun. Kebijakan beta belum final.</string>
+ <string name="adult_busy">Memeriksa akun…</string>
+ <string name="adult_check">Pilih tanggal lahir dan setujui pernyataan usia dahulu.</string>
+ <string name="adult_under18">AI online beta belum tersedia untuk pengguna di bawah 18 tahun.</string>
+ <string name="adult_needed">Email perlu terverifikasi dan konfirmasi usia 18+ belum disimpan.</string>
+ <string name="adult_ready">Konfirmasi 18+ aktif berdasarkan pernyataanmu. Ini bukan verifikasi identitas; izin berbagi pesan tetap mengikuti pilihanmu.</string>
+ <string name="adult_withdrawn">Akses AI telah dicabut. Untuk mengaktifkan lagi, masuk ulang dan berikan konfirmasi baru.</string>
+ <string name="adult_expired">Konfirmasi perlu diperbarui. Masuk ulang dan tinjau pernyataan terbaru.</string>
+ <string name="adult_reauth">Masuk ulang dan pastikan email terverifikasi untuk melanjutkan.</string>
+ <string name="adult_unavailable">Layanan akun belum dapat dihubungi. Tidak ada akses AI baru yang diberikan; coba lagi nanti.</string>
+ <string name="adult_entry">Kelola akses AI 18+</string>
+ <string name="adult_reauthenticate">Masuk ulang untuk konfirmasi akun</string>
+ <string name="adult_signup_age">Konfirmasi usia untuk akun beta AI</string>
+ <string name="adult_ai_signin_required">AI online beta hanya untuk 18+. Buka Profil → Akun → Kelola akses AI 18+ untuk masuk, verifikasi email dan konfirmasi usia.</string>
+ <string name="adult_withdraw_pending">Akses AI di HP ini diblokir. Pencabutan di server belum selesai; coba Cabut akses AI online lagi saat terhubung.</string>
+</resources>

@@ -1,3 +1,11 @@
+## Status aktif16November2026 — mulai di sini
+
+Baca [status tunggal dan urutan kerja](docs/beta/CURRENT_STATUS.md) serta [prompt sesi baru](docs/beta/NEW_CHAT_PROMPT.txt). Website sudah **previewVercel terlindungi**, video bersuara, tanpaAPKpublik. HP terakhir55; signedlokal57; sourceakun58 internal, belum deployakun/signedrelease58.175backend/237JVM/5native emulator lulus, bukan buktiproduksi. User memilih AIonline18+, wali ditunda. HOLD tetap; bagian lama di bawah adalah riwayat. PROJECT_HANDOFF.mdWIP/stash/datapribadi/privat tetap dijaga.
+
+## Keputusan terbaru: AI online beta18+, wali ditunda
+
+Pengguna memilih AI online18+ dahulu pada15November2026. Jangan melanjutkan alur wali/review pengelola untuk beta ini; fondasi teen sebelumnya historis, tidak dihapus. Source1.9.58 sedang dikerjakan: deklarasi usia18+ (bukan identitas terverifikasi), emailFirebase, pencabutan dan gateAI. Belum aktivasi/deploy produksi, seluruh flagrelease tetapfalse, HP tetap55. Cakupan fitur lokal tidak otomatis berubah menjadi18+ atau dianggap seluruh gate privasi selesai. Bukti57/adzan tetapberlaku; HOLD tetap.
+
 ## Adzan lokal1.9.57 — 15 November 2026
 
 Pengguna meminta notifikasi beserta suara kembali. Pilihan MP3 lokal biasa/Subuh, salinan privat, validasi/replace atomik/hapus dan fallback tersedia; rekaman tidak dibundel/diunggah. [Bukti/batas](android/validation/local-adhan-2026-11-15/README.md):235JVM/0skip, lint0error/911warning,10native pada APK release API36 (9impor/preview+Stop,1AlarmManager→audio→notifikasi+Stop) lulus. Signed38.917.467byte, signer sama55,0secret/0MP3. HP tetap55; belum pemasangan57/ujiSAF/suara fisik. Usia/wali otomatis tetap belum terintegrasi dan manualreview dibatalkan; HOLD tetap. B01Gading/aset/audioasli/WIP/privat tetap terjaga. Media lokal tidak ikut backup, perlu pilihulang setelahrestore; tidak otomatis menyalakan master/izin atau mengubah modeOFF.

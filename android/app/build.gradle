@@ -14,8 +14,8 @@ android {
         applicationId 'com.zikra.app'
         minSdk 26
         targetSdk 36
-        versionCode 84
-        versionName '1.9.57'
+        versionCode 85
+        versionName '1.9.58'
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
 
@@ -35,11 +35,13 @@ android {
     buildTypes {
         debug {
             buildConfigField 'boolean', 'PUBLIC_BETA_SCOPE', providers.gradleProperty('zikraPublicBetaScope').orElse('false').get().toBoolean().toString()
+            buildConfigField 'boolean', 'ADULT_ACCOUNTS_ENABLED', providers.gradleProperty('zikraAdultAccounts').orElse('false').get().toBoolean().toString()
             buildConfigField 'boolean', 'ACCOUNT_SIGN_IN_ENABLED', providers.gradleProperty('zikraAccountSignIn').orElse('false').get().toBoolean().toString()
             buildConfigField 'boolean', 'ACCOUNT_AUTH_EMULATOR', providers.gradleProperty('zikraAccountEmulator').orElse('false').get().toBoolean().toString()
         }
         release {
             buildConfigField 'boolean', 'PUBLIC_BETA_SCOPE', 'true'
+            buildConfigField 'boolean', 'ADULT_ACCOUNTS_ENABLED', 'false'
             buildConfigField 'boolean', 'ACCOUNT_SIGN_IN_ENABLED', 'false'
             buildConfigField 'boolean', 'ACCOUNT_AUTH_EMULATOR', 'false'
         }

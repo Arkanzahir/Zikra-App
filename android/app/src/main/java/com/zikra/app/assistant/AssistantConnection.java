@@ -23,7 +23,8 @@ public final class AssistantConnection {
     consent = context.getSharedPreferences("zikra_preferences", 0);
   }
 
-  private String credentialIdentity() { return prefs.getString("iv", "") + ":" + prefs.getString("access", ""); }
+  private String credentialIdentity() { return prefs.getString("iv", "") + ":" + prefs.getString("access", "")
+      + (com.zikra.app.BuildConfig.ADULT_ACCOUNTS_ENABLED ? ":"+com.zikra.app.account.AccountSession.binding() : ""); }
   public AssistantConsent.Permit permission() { return configured() ? AssistantConsent.capture(consent, endpoint(), credentialIdentity()) : null; }
   public boolean permits(AssistantConsent.Permit permit) {
     return configured() && !"offline".equals(consent.getString("assistant_mode_v2", "auto")) && permit != null && permit.matches(consent, endpoint(), credentialIdentity());

@@ -1,3 +1,11 @@
+## Status aktif16November2026 — mulai di sini
+
+Baca [status tunggal dan urutan kerja](docs/beta/CURRENT_STATUS.md) serta [prompt sesi baru](docs/beta/NEW_CHAT_PROMPT.txt). Website sudah **previewVercel terlindungi**, video bersuara, tanpaAPKpublik. HP terakhir55; signedlokal57; sourceakun58 internal, belum deployakun/signedrelease58.175backend/237JVM/5native emulator lulus, bukan buktiproduksi. User memilih AIonline18+, wali ditunda. HOLD tetap; bagian lama di bawah adalah riwayat. PROJECT_HANDOFF.mdWIP/stash/datapribadi/privat tetap dijaga.
+
+## Keputusan terbaru: AI online beta18+, wali ditunda
+
+Pengguna memilih AI online18+ dahulu pada15November2026. Jangan melanjutkan alur wali/review pengelola untuk beta ini; fondasi teen sebelumnya historis, tidak dihapus. Source1.9.58 sedang dikerjakan: deklarasi usia18+ (bukan identitas terverifikasi), emailFirebase, pencabutan dan gateAI. Belum aktivasi/deploy produksi, seluruh flagrelease tetapfalse, HP tetap55. Cakupan fitur lokal tidak otomatis berubah menjadi18+ atau dianggap seluruh gate privasi selesai. Bukti57/adzan tetapberlaku; HOLD tetap.
+
 ## Adzan pilihan lokal1.9.57
 
 Cakupan publik tetap tanpa bundelMP3/Gading tertunda. Pengguna dapat memilih MP3 pribadi untuk salinan privat/offline, tanpa upload. Ini bukan izin distribusi rekaman asli. [Bukti/batas](android/validation/local-adhan-2026-11-15/README.md). HOLD; HP tetap55 dan gate publik lain terbuka.
