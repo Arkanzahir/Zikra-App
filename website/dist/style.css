@@ -191,3 +191,121 @@ body>header:not(.site-header) { display: flex; justify-content: space-between; a
   html { scroll-behavior: auto; }
   *, *:before, *:after { animation: none!important; transition: none!important; }
 }
+/* Feature presentation inspired by the composition of Ente, using Zikra assets. */
+:root { --paper: #f8f9fa; --accent: #24764c; }
+.site-header { background: white; border: 1px solid #edf0ed; border-radius: 60px; height: 80px; padding-inline: 25px; margin-top: 18px; }
+.nav-cta { padding: 12px 20px; border-radius: 30px; background: var(--pine); color: white; }
+.hero { padding-top: 64px; padding-bottom: 24px; }
+h1 { color: #232b27; font-size: clamp(44px,5.2vw,74px); font-weight: 750; line-height: 1.07; }
+h1>span { color: var(--accent); }
+.hero .eyebrow { color: #64746a; }
+.hero-actions .button { border-radius: 32px; min-width: 160px; }
+.button.secondary { background: #edf0ec; color: var(--pine); border-color: #edf0ec; }
+.button.secondary:hover { background: #e0e8df; }
+.app-fan { display: flex; align-items: flex-start; justify-content: center; height: 425px; overflow: hidden; padding-top: 26px; margin-top: 35px; }
+.fan-screen { flex: 0 0 228px; margin: 0; border: 6px solid #23382e; border-radius: 32px; overflow: hidden; background: #23382e; box-shadow: 0 10px 24px #22392d1c; }
+.fan-screen img { width: 100%; height: auto; }
+.fan-left { transform: rotate(-9deg) translateY(45px); margin-right: -12px; }
+.fan-middle { flex-basis: 250px; position: relative; z-index: 2; }
+.fan-right { transform: rotate(9deg) translateY(45px); margin-left: -12px; }
+.gallery-note { font-size: 10px; color: var(--muted); margin-top: 14px; }
+.promo { background: white; padding: 12px 24px 20px; border-radius: 24px; margin-top: 14px; }
+.promo video { border-radius: 18px; }
+.app-index { display: grid; grid-template-columns: repeat(8,1fr); gap: 16px; padding: 36px 0 30px; }
+.app-index a { display: flex; flex-direction: column; align-items: center; gap: 12px; text-decoration: none; font-size: 11px; }
+.app-index img { width: 31px; height: 31px; }
+.app-index a:hover { color: var(--accent); text-decoration: underline; }
+.feature-showcase { padding-block: 38px; }
+.showcase-heading { text-align: center; margin: 12px auto 38px; }
+.showcase-heading h2 { font-size: 42px; font-weight: 700; color: #232b27; }
+.showcase-heading>p:not(.eyebrow) { color: var(--muted); font-size: 14px; margin-top: 18px; }
+.feature-mosaic { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
+.feature-panel { display: flex; flex-direction: column; min-width: 0; padding: 38px 38px 0; border-radius: 34px; background: white; overflow: hidden; }
+.panel-wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 50px; min-height: 540px; }
+.panel-quran { background: #1c5140; color: #fff; }
+.panel-quran .eyebrow, .panel-quran .feature-note { color: #d7e8dc; }
+.panel-ai { background: #e2f0e6; }
+.panel-study { background: #e8edf6; }
+.panel-hifz { background: #edf1e6; }
+.panel-calendar { background: #fff; }
+.panel-weather { background: #dcebf3; }
+.panel-copy h2 { font-size: 37px; font-weight: 700; letter-spacing: -1.3px; }
+.panel-copy>p:not(.eyebrow) { font-size: 13px; line-height: 1.85; margin-top: 20px; }
+.panel-copy .feature-note { font-size: 11px; }
+.panel-copy ul { padding-left: 18px; font-size: 12px; line-height: 2.2; margin-block: 22px; }
+.panel-phone { width: 245px; max-width: 100%; margin: 30px auto -160px; border: 5px solid #243e31; border-radius: 30px; overflow: hidden; background: #243e31; box-shadow: 0 10px 25px #1735251c; }
+.panel-phone img { width: 100%; height: auto; }
+.panel-wide .panel-phone { width: 270px; margin-bottom: -100px; transform: rotate(5deg); }
+.panel-demo { width: calc(100% + 76px); max-width: none; height: auto; margin: auto -38px 0; }
+.panel-copy { position: relative; z-index: 2; }
+.panel-copy h2 { font-size: 34px; letter-spacing: -1px; }
+.panel-copy>p:not(.eyebrow) { font-size: 13px; line-height: 1.85; margin: 20px 0; }
+.panel-copy>.feature-note { font-size: 11px; }
+.panel-copy ul { padding-left: 18px; font-size: 12px; line-height: 2.2; }
+.panel-phone { width: 235px; max-width: 85%; border: 5px solid #243b30; border-radius: 30px; background: #243b30; margin: 24px auto -155px; overflow: hidden; box-shadow: 0 10px 24px #203f241c; }
+.panel-phone img { width: 100%; height: auto; }
+.panel-wide { grid-column: 1/-1; display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 40px; padding: 42px 60px 0; min-height: 525px; }
+.panel-wide .panel-copy { padding-bottom: 40px; max-width: 460px; }
+.panel-wide h2 { font-size: 44px; }
+.panel-wide .panel-phone { width: 255px; margin: 0 auto -110px; transform: rotate(5deg); }
+.panel-quran { background: #174535; color: white; }
+.panel-quran .eyebrow, .panel-quran .feature-note { color: #d0e4d6; }
+.panel-ai { background: #dfefe4; }
+.panel-demo { width: calc(100% + 76px); max-width: none; margin: auto -38px 0; height: auto; }
+.panel-study { background: #e7edf7; }
+.panel-hifz { background: #e8eee2; }
+.panel-calendar { background: white; border: 1px solid #e9ece7; }
+.panel-calendar .panel-phone { transform: rotate(-4deg); }
+.panel-weather { background: #deedf6; }
+.panel-weather .panel-phone { transform: rotate(-5deg); }
+.directory-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); column-gap: 36px; }
+.directory-item { border-top: 1px solid var(--line); padding: 25px 0; scroll-margin-top: 24px; }
+.directory-item h3 { font-size: 17px; font-weight: 650; line-height: 1.4; }
+.directory-item p { font-size: 12px; line-height: 1.9; color: var(--muted); margin-bottom: 0; }
+@media(max-width:1000px) {
+  .feature-panel { padding: 28px 28px 0; }
+  .panel-wide { padding-inline: 36px; gap: 24px; }
+  .panel-wide h2 { font-size: 37px; }
+  .panel-demo { width: calc(100% + 56px); margin-inline: -28px; }
+  .directory-grid { gap: 0 26px; }
+}
+@media(max-width:760px) {
+  .site-header { padding-inline: 14px; border-radius: 22px; height: 72px; margin-top: 12px; }
+  .nav-cta { font-size: 9px; padding: 10px 12px; }
+  .nav-cta span { display: none; }
+  .brand { font-size: 26px; }
+  .brand img { width: 31px; height: 38px; }
+  .beta-tag { font-size: 7px; margin-left: 6px; padding-inline: 4px; }
+  .hero { text-align: center; padding-top: 43px; }
+  h1 { font-size: clamp(36px,7.5vw,54px); letter-spacing: -1.8px; }
+  .hero-actions { justify-content: center; gap: 12px; }
+  .hero-actions .button { min-width: 0; padding: 12px 17px; font-size: 11px; }
+  .app-fan { height: 335px; margin-top: 25px; padding-top: 18px; }
+  .fan-screen { flex-basis: 160px; border-width: 4px; border-radius: 24px; }
+  .fan-left { margin-right: -70px; transform: rotate(-10deg) translateY(45px); }
+  .fan-middle { flex-basis: 180px; }
+  .fan-right { margin-left: -70px; transform: rotate(10deg) translateY(45px); }
+  .gallery-note { font-size: 9px; }
+  .promo { padding: 8px 14px 12px; border-radius: 18px; }
+  .promo video { border-radius: 10px; }
+  .app-index { grid-template-columns: repeat(4,1fr); gap: 24px 12px; padding-top: 28px; }
+  .app-index a { gap: 8px; font-size: 10px; }
+  .app-index img { width: 28px; height: 28px; }
+  .feature-showcase { padding-block: 28px; }
+  .showcase-heading { margin-bottom: 26px; }
+  .showcase-heading h2 { font-size: 30px; }
+  .showcase-heading>p:not(.eyebrow) { font-size: 12px; }
+  .feature-mosaic { grid-template-columns: 1fr; gap: 18px; }
+  .feature-panel { padding: 28px 24px 0; border-radius: 24px; }
+  .panel-copy h2 { font-size: 30px; }
+  .panel-copy>p:not(.eyebrow) { font-size: 12px; }
+  .panel-copy>.feature-note { font-size: 10px; }
+  .panel-wide { display: flex; grid-column: auto; gap: 0; min-height: 0; }
+  .panel-wide .panel-copy { padding-bottom: 0; }
+  .panel-wide h2 { font-size: 33px; }
+  .panel-phone, .panel-wide .panel-phone { width: 215px; margin-top: 20px; margin-bottom: -150px; }
+  .panel-demo { width: calc(100% + 48px); margin: 15px -24px 0; }
+  .directory-grid { grid-template-columns: 1fr; gap: 0; }
+  .directory-item { padding-block: 22px; }
+  .directory-item h3 { font-size: 17px; }
+}

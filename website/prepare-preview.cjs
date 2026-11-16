@@ -4,6 +4,11 @@ const crypto = require('node:crypto');
 
 const files = [
   {
+    source: path.resolve(__dirname, '../.local/promo-no-cloud-20261112/review-0393.jpg'),
+    target: 'ai-demo.jpg',
+    sha256: '1a16b18096a543eae62f35c337444939825f5704a00439828cbb2be3161d73ed',
+  },
+  {
     source: path.resolve(__dirname, '../../Zikra-Promo-Lengkap-52s-Tanpa-Awan.mp4'),
     target: 'zikra-promo.mp4',
     sha256: '347d985b0ca9f2c7e12c33c148d2163661c32af0791c05cd631d24ffc4bb2407',
