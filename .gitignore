@@ -8,3 +8,5 @@
 *.keystore
 *.p12
 *.pfx
+# Promo remains local until distribution rights are cleared.
+/website/dist/media/

@@ -1,34 +1,39 @@
 # Website Zikra — pratinjau lokal
 
-Revisi16November2026. Sumber statis di `dist`, tanpa build dependency, JavaScript, analytics, cookie, formulir, atau aset jaringan pihak ketiga. Jalankan server HTTP lokal dengan document root `website/dist`.
+Revisi produk16November2026. Situs statis di `dist`; tanpa framework, JavaScript, analytics, cookie, formulir atau aset pihak ketiga. Belum dihosting publik dan tidak menawarkan APK. Status aplikasi tetap HOLD.
 
-## Arah desain
+## Desain sekarang
 
-Hijau pinus dan mint, Plus Jakarta Sans lokal, tampilan aplikasi asli sebagai fokus. Logo SVG menyalin tiga path dari `android/app/src/main/res/drawable/zikra_refined_pine.xml`; tidak digambar ulang. Wordmark mengikuti font aplikasi. Atas koreksi pengguna, simbol privasi lingkaran, orbit, dan kartu slogan melayang dihapus. Bagian privasi memakai teks serta tautan yang menjelaskan fungsi.
+Logo memakai geometri vektor Android yang sama (`zikra_refined_pine.xml`), font Plus Jakarta Sans lokal dengan lisensi tersimpan. Pembuka di tengah, video promo52detik sebagai demonstrasi utama, lalu tiga bagian fitur dengan screenshot besar: Belajar, Ibadah dan Protector. Navigasi jangkar, privasi, status paket, pemasangan dan FAQ tetap tersedia. Tidak ada aksen huruf miring, kartu slogan melayang, orbit atau simbol privasi dekoratif.
 
-Susunan: hero, navigasi fitur, belajar/ibadah/Protector, galeri horizontal, privasi, status beta, langkah pemasangan, FAQ, dukungan. FAQ native HTML; galeri dapat digeser dengan sentuhan/keyboard. Fokus keyboard terlihat dan reduced motion dihormati.
+Referensi ditelaah sebelum perubahan:
+- https://culturedcode.com/things/ — identitas aplikasi dan pengenalan produk langsung.
+- https://localsend.org/ — hierarki fungsi, navigasi dan unduhan yang jelas.
+- https://ente.com/ — demonstrasi produk untuk menjelaskan fitur.
 
-## Referensi yang ditelaah
+Referensi sebelumnya (Pillars/Beeper/Signal) merupakan arah iterasi pertama; desain sekarang mengikuti koreksi pengguna. Tidak menyalin aset, testimoni, statistik atau klaim produk lain.
 
-- https://thepillarsapp.com/ — hierarki aplikasi ibadah dan penjelasan fitur.
-- https://www.beeper.com/ — pengenalan produk dan galeri aplikasi.
-- https://signal.org/android/apk/ — informasi distribusi APK/signer.
+## Promo lokal
 
-Referensi dipakai untuk arah, bukan menyalin aset, testimoni, angka pengguna, atau klaim produk mereka.
+Pengguna meminta memasukkan promo terakhir yang disetujui: `Zikra-Promo-Lengkap-52s-Tanpa-Awan.mp4`,52detik,1280×720,3.694.204byte. Sumber berada di parent repo. SHA256: `347d985b0ca9f2c7e12c33c148d2163661c32af0791c05cd631d24ffc4bb2407`. Poster dari frame lokal review-0267, naskah dari `design/promos/2026-11-12/script-approved.txt`.
 
-## Asal aset
+`D:/node.exe website/prepare-preview.cjs` memeriksa hash sumber sebelum menyalin video/poster ke `dist/media`. Folder ini diabaikan Git. Video/voice tidak diunggah ke GitHub atau hosting; hak distribusi suara masih belum ditutup menurut catatan promo/lisensi. Persetujuan menyisipkan preview tidak dianggap menyelesaikan hak publikasi. Jangan deploy direktori ini sebelum persyaratan publikasi terpenuhi.
 
-- `assets/zikra-symbol.svg`: geometri logo Android yang sama.
-- `assets/plus-jakarta-sans.ttf`: font aplikasi; lisensi `assets/FONT-LICENSE.txt`.
-- `home-day.png`, `quran.png`, `study.png`, `weather.png`: cuplikan emulator yang sudah tersedia di `android/validation/beta-final-2026-11-14/screens`. Data contoh; bukan rekaman ulang versi58, jadwal pengguna, atau bukti akurasi waktu salat.
-- PNG lama dipertahankan untuk menjaga riwayat; brand website kini memakai SVG.
+Pemutar HTML native: controls, playsinline, preload none, tanpa autoplay/mute. Suara mengikuti tindakan pengguna dan volume perangkat/browser. Naskah dapat dibuka tanpa menonton. Naskah bukan caption tersinkronisasi; caption dan pemeriksaan aksesibilitas video lengkap masih diperlukan sebelum publikasi.
 
-## Status distribusi
+## Aset lain
 
-Tetap HOLD, belum dihosting publik, tanpa URL APK/auto-download. Tombol unduh disabled. Metadata kandidat mengikuti `docs/beta/internal-artifact.json` (55), bukan versi source58 yang belum menjadi paket publik. Situs tidak mengaktifkan akun atau mengubah backend/HP. AI18+ dijelaskan sebagai rencana yang belum diluncurkan.
+`study.png`, `quran.png`, `weather.png`: bukti emulator terdahulu pada `android/validation/beta-final-2026-11-14/screens`, berisi data contoh. Bukan rekaman ulang58 atau cuaca/jadwal langsung. Aset lama dipertahankan; bukan semuanya dipakai desain saat ini.
 
-Sebelum publikasi: finalkan paket/signer/migrasi, hak aset/konten, privasi/retensi/usia, uji akhir dan persetujuan distribusi. Setelah itu cocokkan URL HTTPS, ukuran dan SHA256 dengan paket final, lalu uji unduhan/pembaruan nyata.
+## Menjalankan dan memeriksa
 
-## Validasi
+1. Siapkan media lokal dengan `D:/node.exe website/prepare-preview.cjs` jika sumber tersedia.
+2. Jalankan server HTTP dengan document root `website/dist` dan bind127.0.0.1. Preview sesi ini: http://127.0.0.1:64882/.
+3. `D:/node.exe website/check.cjs` memeriksa seluruh referensi lokal termasuk media.
+4. Pada checkout tanpa media privat: `D:/node.exe website/check.cjs --source-only`. Output ini bukan bukti pemutaran. Tidak mengunduh atau membuat ulang suara.
 
-Jalankan `D:/node.exe website/check.cjs` dari root repo. Bukti dan batas pemeriksaan browser di `validation/2026-11-16/README.md`. Pratinjau lokal sesi ini: http://127.0.0.1:64882/ (memerlukan server lokal tetap berjalan).
+[Bukti terbaru dan batas](validation/2026-11-16-product/README.md). Bukti folder2026-11-16 terdahulu merupakan iterasi sebelum video.
+
+## Gerbang publikasi
+
+Tombol unduh tetap disabled, tanpa URL APK/auto-redirect. Metadata kandidat mengikuti `docs/beta/internal-artifact.json` (55); source58 belum disebut paket publik. AI18+ masih dijelaskan sebagai rencana. Sebelum membuka unduhan: sahkan paket/signer/migrasi, hak konten/promo, privasi/retensi/usia, uji akhir dan distribusi; cocokkan URL HTTPS, ukuran serta SHA256 dengan paket final. Perubahan website tidak menyelesaikan pekerjaan akun/backend/HP yang masih WIP.

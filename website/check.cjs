@@ -2,12 +2,22 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const root = path.join(__dirname, 'dist');
+const sourceOnly = process.argv.includes('--source-only');
+const missingReviewMedia = [];
 for (const name of ['index.html', 'privacy.html']) {
   const html = fs.readFileSync(path.join(root, name), 'utf8');
   assert(html.includes('lang="id"') && html.includes('name="viewport"'), name);
-  for (const [, target] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
+  for (const [, target] of html.matchAll(/(?:href|src|poster)="([^"]+)"/g)) {
     if (/^(?:https?:|mailto:|#)/.test(target)) continue;
-    const file = target.split('#')[0];
+    const file = target.split(/[?#]/)[0];
+    if (!fs.existsSync(path.resolve(root, file)) && sourceOnly && file.startsWith('media/')) {
+      missingReviewMedia.push(file);
+      continue;
+    }
+    if (!fs.existsSync(path.resolve(root, file)) && sourceOnly && file.startsWith('media/')) {
+      missingReviewMedia.push(file);
+      continue;
+    }
     assert(fs.existsSync(path.resolve(root, file)), `${name}: missing ${file}`);
   }
   assert(!/<script|\.apk|https?:\/\//i.test(html), 'No remote resources, scripts or APK links in HOLD preview');
@@ -29,4 +39,11 @@ const css = fs.readFileSync(path.join(root, 'style.css'), 'utf8');
 assert(!/https?:\/\/|@import/i.test(css), 'No remote CSS resources');
 for (const [, target] of css.matchAll(/url\(['"]?([^'"\)]+)['"]?\)/g)) assert(fs.existsSync(path.resolve(root, target)), `CSS missing ${target}`);
 assert(css.includes('prefers-reduced-motion'), 'Respect reduced motion');
-console.log('PASS: local references, language/viewport, audited version, HOLD download and support contact');
+assert(!home.includes('class="serif"'), 'One type family; removed italic marketing accents');
+const video = home.match(/<video\b[^>]*>/)?.[0];
+assert(video && /\bcontrols\b/.test(video) && /\bplaysinline\b/.test(video));
+assert(/preload="none"/.test(video) && !/\bautoplay\b/.test(video) && !/\bmuted\b/.test(video));
+assert(home.includes('id="transkrip"') && home.includes('Naskah video pengenalan'));
+assert(home.includes('unduhan beta belum dibuka'));
+console.log(`PASS: ${sourceOnly ? 'source-only' : 'local assets'}, navigation, candidate metadata, HOLD download, video controls/no autoplay and transcript`);
+if (missingReviewMedia.length) console.log(`Local review media absent (not a playback test): ${missingReviewMedia.join(', ')}`);
