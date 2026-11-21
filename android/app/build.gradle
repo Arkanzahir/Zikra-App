@@ -5,6 +5,8 @@ plugins {
 def releaseAdultAccounts = providers.gradleProperty('zikraReleaseAdultAccounts')
     .orElse('false').map { it == 'true' }
 
+def internalAdhan = providers.gradleProperty('zikraInternalAdhan').orElse('false').get() == 'true'
+
 android {
     namespace 'com.zikra.app'
     useLibrary 'android.test.runner'
@@ -17,8 +19,8 @@ android {
         applicationId 'com.zikra.app'
         minSdk 26
         targetSdk 36
-        versionCode 86
-        versionName '1.9.59'
+        versionCode 87
+        versionName '1.9.60'
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
 
@@ -37,12 +39,15 @@ android {
 
     buildTypes {
         debug {
+            buildConfigField 'boolean', 'INTERNAL_ADHAN', internalAdhan.toString()
             buildConfigField 'boolean', 'PUBLIC_BETA_SCOPE', providers.gradleProperty('zikraPublicBetaScope').orElse('false').get().toBoolean().toString()
             buildConfigField 'boolean', 'ADULT_ACCOUNTS_ENABLED', providers.gradleProperty('zikraAdultAccounts').orElse('false').get().toBoolean().toString()
             buildConfigField 'boolean', 'ACCOUNT_SIGN_IN_ENABLED', providers.gradleProperty('zikraAccountSignIn').orElse('false').get().toBoolean().toString()
             buildConfigField 'boolean', 'ACCOUNT_AUTH_EMULATOR', providers.gradleProperty('zikraAccountEmulator').orElse('false').get().toBoolean().toString()
         }
         release {
+            if (internalAdhan) versionNameSuffix '-internal'
+            buildConfigField 'boolean', 'INTERNAL_ADHAN', internalAdhan.toString()
             buildConfigField 'boolean', 'PUBLIC_BETA_SCOPE', 'true'
             buildConfigField 'boolean', 'ADULT_ACCOUNTS_ENABLED', releaseAdultAccounts.get().toString()
             buildConfigField 'boolean', 'ACCOUNT_SIGN_IN_ENABLED', releaseAdultAccounts.get().toString()
@@ -64,33 +69,48 @@ android {
     androidResources.noCompress += ['mp3']
 }
 
-// Private beta audio is supplied explicitly; it is not copied into source control or release builds.
+// Original recordings are optional local inputs. Only an explicit internal build
+// can include them in a release APK.
 def adhanSource = providers.gradleProperty('zikraAdhanAudio')
 def fajrSource = providers.gradleProperty('zikraFajrAudio')
-def prepareAdhanAudio = tasks.register('prepareDebugAdhanAudio') {
-    inputs.property('source', adhanSource.orElse(''))
-    inputs.property('fajrSource', fajrSource.orElse(''))
-    if (adhanSource.isPresent()) inputs.file(file(adhanSource.get()))
-    if (fajrSource.isPresent()) inputs.file(file(fajrSource.get()))
-    outputs.dir(layout.buildDirectory.dir('generated/adhanAssets'))
-    doLast {
-        def root = layout.buildDirectory.get().asFile.canonicalFile.toPath()
-        def destination = layout.buildDirectory.dir('generated/adhanAssets').get().asFile.canonicalFile
-        if (!destination.toPath().startsWith(root)) throw new GradleException('Invalid generated audio path')
-        delete(destination)
-        [selected: adhanSource, fajr: fajrSource].each { name, provider ->
-            if (provider.isPresent()) {
-                def source = file(provider.get())
-                if (!source.isFile() || source.length() == 0 || source.length() > 10000000)
-                    throw new GradleException('Expected a local audio file below 10 MB')
-                copy { from source; into new File(destination, 'adhan'); rename { name + '.mp3' } }
+def registerAdhanAssets = { String buildType, boolean include, boolean requirePair ->
+    def suffix = buildType.capitalize()
+    def destination = layout.buildDirectory.dir('generated/adhanAssets' + suffix)
+    def task = tasks.register('prepare' + suffix + 'AdhanAudio') {
+        def sources = [selected: adhanSource, fajr: fajrSource]
+        inputs.property('include', include)
+        inputs.property('requirePair', requirePair)
+        sources.each { name, provider ->
+            inputs.property(name, include ? provider.orElse('') : '')
+            if (include && provider.isPresent()) inputs.file(file(provider.get()))
+        }
+        outputs.dir(destination)
+        doLast {
+            if (requirePair && sources.values().any { !it.isPresent() }) {
+                throw new GradleException('Internal adhan requires both zikraAdhanAudio and zikraFajrAudio')
+            }
+            def root = layout.buildDirectory.get().asFile.canonicalFile.toPath()
+            def target = destination.get().asFile.canonicalFile
+            if (!target.toPath().startsWith(root)) throw new GradleException('Invalid generated audio path')
+            delete(target)
+            if (include) {
+                sources.each { name, provider ->
+                    if (provider.isPresent()) {
+                        def source = file(provider.get())
+                        if (!source.isFile() || source.length() == 0 || source.length() > 10000000) {
+                            throw new GradleException('Expected a local audio file below 10 MB')
+                        }
+                        copy { from source; into new File(target, 'adhan'); rename { name + '.mp3' } }
+                    }
+                }
             }
         }
     }
+    android.sourceSets.getByName(buildType).assets.srcDir(task)
+    tasks.matching { it.name == 'pre' + suffix + 'Build' }.configureEach { dependsOn(task) }
 }
-android.sourceSets.debug.assets.srcDir(prepareAdhanAudio)
-// AGP must generate the selected private audio before it decides whether assets changed.
-tasks.matching { it.name == 'preDebugBuild' }.configureEach { dependsOn(prepareAdhanAudio) }
+registerAdhanAssets('debug', true, internalAdhan)
+registerAdhanAssets('release', internalAdhan, internalAdhan)
 
 dependencies {
     implementation 'io.noties.markwon:core:4.6.2'
