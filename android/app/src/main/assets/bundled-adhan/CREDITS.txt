@@ -1,0 +1,6 @@
+Adzan biasa: Beautiful adhan.ogg — Adam-synagda
+Sumber: https://commons.wikimedia.org/wiki/File:Beautiful_adhan.ogg
+Lisensi: CC0 1.0 — https://creativecommons.org/publicdomain/zero/1.0/
+Zikra mengonversi Ogg Vorbis ke MP3 tanpa memotong rekaman.
+SHA-256 Ogg sumber: 35fe06b08fe80505c550c33fed8a783fa9901ddc81ac884958b4be048f5b2a79
+SHA-256 MP3: 751929b3849141dda950a6aefb6bd5531cec57d8246345c0722a838b7a6fd3f9

@@ -14,7 +14,10 @@ public final class AdhanAsset {
           android.os.ParcelFileDescriptor.MODE_READ_ONLY);
       return new AssetFileDescriptor(descriptor, 0, descriptor.getStatSize());
     }
-    if (com.zikra.app.BuildConfig.PUBLIC_BETA_SCOPE) throw new IOException("Public beta uses notifications");
+    if (com.zikra.app.BuildConfig.PUBLIC_BETA_SCOPE) {
+      if (index == 0) throw new IOException("No bundled Fajr recording");
+      return context.getAssets().openFd("bundled-adhan/regular.mp3");
+    }
     return context.getAssets().openFd(index==0?"adhan/fajr.mp3":"adhan/selected.mp3");
   }
   public static boolean available(Context context,int index) {

@@ -43,7 +43,10 @@ def inspect_entries(apk, secrets):
                  if 'assets/adhan/' + name + '.mp3' in archive.namelist()}
     return {'privateConfigurationFiles': private_files,
             'knownCredentialEntries': credential_entries,
-            'audioSha256': audio}
+            'audioSha256': audio,
+            'bundledAdhanSha256': {name: hashlib.sha256(archive.read(name)).hexdigest()
+                                   for name in archive.namelist()
+                                   if name.startswith('assets/bundled-adhan/') and name.endswith('.mp3')}}
 
 
 def inspect_manifest(badging, manifest, version, code):

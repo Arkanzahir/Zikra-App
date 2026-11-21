@@ -51,3 +51,10 @@ Asetcuaca master mencatat built-inimagegen23Oktober pada design/assets/protector
 ### Kandidat alternatif adzan, belum dipilih
 
 [Beautifuladhan](https://commons.wikimedia.org/wiki/File:Beautiful_adhan.ogg), uploaderAdam-synagda, ownwork29April2022, durasi154detik, halaman mencantumkanCC0. Ini kandidat dengan pernyataan izin eksplisit, bukan rekamanMisyari. Belum diunduh/didengar/diperiksa lafaz/dites dan tidak dianggap cocokSubuh. Tidak mengganti rekaman pilihan pengguna dari hasil pencarian saja.
+
+
+### Audio bawaan pada kandidat berikutnya
+
+Untuk Zuhur hingga Isya, Zikra menyiapkan rekaman CC0 [Beautiful adhan.ogg](https://commons.wikimedia.org/wiki/File:Beautiful_adhan.ogg) karya Adam-synagda. Rekaman dikonversi ke MP3 tanpa dipotong. Pemeriksaan paket menemukan hanya satu MP3 adzan, disimpan tanpa kompresi ZIP dan cocok dengan hash aset. Uji emulator mencakup pemilihan suara bawaan tanpa impor, opsi OFF, serta regresi impor, notifikasi dan alarm dengan audio lokal. Sumber, lisensi, perubahan format, dan hash berkas tercatat di [kredit audio](../../android/app/src/main/assets/bundled-adhan/CREDITS.txt).
+
+Untuk Subuh, [kandidat Masmaa](https://www.masmaa.org/en/audio/fajr-adhan-prophets-mosque) mencantumkan CC BY dan kredit Hiba Shihab. File yang diperoleh berdurasi sekitar 63 detik; kelengkapan lafaznya belum diperiksa. [Rekaman Malmö](https://commons.wikimedia.org/wiki/File:Eid_al-Fitr_Fajr_azan_at_Malm%C3%B6_Mosque_-_19_August_2012.webm) tercatat CC BY 3.0, tetapi unduhan sumber yang dicoba mendapat HTTP 429. Zikra masih menggunakan MP3 pilihan pengguna untuk Subuh.
