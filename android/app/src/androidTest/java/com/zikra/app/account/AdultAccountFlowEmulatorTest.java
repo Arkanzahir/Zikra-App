@@ -10,12 +10,17 @@ import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.zikra.app.*;
+import com.zikra.app.assistant.AssistantConnection;
+import com.zikra.app.assistant.AssistantConsent;
+import com.zikra.app.assistant.OnlineAssistantClient;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.net.*;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 import okhttp3.*;
 import org.json.*;
 
@@ -68,7 +73,7 @@ public final class AdultAccountFlowEmulatorTest extends InstrumentationTestCase 
   private Response request(String path,JSONObject value)throws Exception {
     OkHttpClient http=new OkHttpClient.Builder().callTimeout(15,TimeUnit.SECONDS).addInterceptor(AccountSession.interceptor()).build();
     Request.Builder request=new Request.Builder().url("http://10.0.2.2:9098"+path).post(RequestBody.create(MediaType.parse("application/json"),value.toString()));
-    if(path.equals("/v1/assistant"))request.header("Authorization","Bearer synthetic-native-installation-key-32").header("X-Zikra-Provider","cloudflare");
+    if(path.equals("/v1/assistant"))request.header("X-Zikra-Provider","cloudflare");
     else request.header("Authorization","Bearer "+AccountSession.token());
     return http.newCall(request.build()).execute();
   }
@@ -79,7 +84,21 @@ public final class AdultAccountFlowEmulatorTest extends InstrumentationTestCase 
     waitText(R.id.adultStatus,R.string.adult_ready);
     com.zikra.app.UiEvidence.capture(getInstrumentation(),"adult-account-confirmed");
     JSONObject body=new JSONObject().put("messages",new JSONArray().put(new JSONObject().put("role","user").put("content","Synthetic fixture only")));
-    try(Response response=request("/v1/assistant",body)){assertEquals(200,response.code());assertEquals("Synthetic adult flow answer",new JSONObject(response.body().string()).getString("reply"));}
+    var context = getInstrumentation().getTargetContext();
+    var preferences = context.getSharedPreferences("zikra_preferences", 0);
+    AssistantConnection connection = new AssistantConnection(context);
+    int timeoutsBefore = timeoutCount();
+    assertTrue(connection.usesAccountGateway());
+    assertFalse(connection.hasInstallation());
+    AssistantConsent.accept(preferences, connection.endpoint());
+    try (OnlineAssistantClient client = new OnlineAssistantClient()) {
+      assertEquals("Synthetic adult flow answer", sendChat(client, connection, "Synthetic success"));
+      assertEquals(OnlineAssistantClient.Failure.TIMEOUT, sendChat(client, connection, "Synthetic edge timeout"));
+      assertEquals("Synthetic adult flow answer", sendChat(client, connection, "Synthetic retry"));
+    } finally {
+      AssistantConsent.revoke(preferences);
+    }
+    assertEquals(timeoutsBefore + 1, timeoutCount());
     click(R.id.adultWithdraw);
     List<AccessibilityNodeInfo> buttons=Collections.emptyList();long dialogUntil=SystemClock.elapsedRealtime()+5000;
     while(buttons.isEmpty()&&SystemClock.elapsedRealtime()<dialogUntil){
@@ -92,11 +111,45 @@ public final class AdultAccountFlowEmulatorTest extends InstrumentationTestCase 
     assertTrue(AccountSession.held());
     try(Response response=request("/v1/assistant",body)){fail("Local withdrawal must stop the request");}catch(AccountSession.Required expected){}
     Request raw=new Request.Builder().url("http://10.0.2.2:9098/v1/assistant")
-        .header("Authorization","Bearer synthetic-native-installation-key-32")
         .header("X-Zikra-Account-Token",AccountSession.token()).header("X-Zikra-Provider","cloudflare")
         .post(RequestBody.create(MediaType.parse("application/json"),body.toString())).build();
     try(Response response=new OkHttpClient().newCall(raw).execute()){assertEquals(403,response.code());}
   }
+  private int timeoutCount() throws Exception {
+    try (Response response = new OkHttpClient().newCall(new Request.Builder()
+        .url("http://10.0.2.2:9098/__qa").build()).execute()) {
+      assertEquals(200, response.code());
+      return new JSONObject(response.body().string()).getInt("timeouts");
+    }
+  }
+
+  private Object sendChat(OnlineAssistantClient client, AssistantConnection connection, String prompt)
+      throws Exception {
+    JSONObject payload = new JSONObject().put("messages", new JSONArray()
+        .put(new JSONObject().put("role", "user").put("content", prompt)));
+    CountDownLatch done = new CountDownLatch(1);
+    AtomicReference<Object> outcome = new AtomicReference<>();
+    AtomicReference<Exception> error = new AtomicReference<>();
+    getInstrumentation().runOnMainSync(() -> {
+      try {
+        client.send(connection, payload, new OnlineAssistantClient.Result() {
+          @Override public void complete(String reply) { outcome.set(reply); done.countDown(); }
+          @Override public void failed() { done.countDown(); }
+          @Override public void failed(OnlineAssistantClient.Failure failure) {
+            outcome.set(failure);
+            done.countDown();
+          }
+        });
+      } catch (Exception failure) {
+        error.set(failure);
+        done.countDown();
+      }
+    });
+    assertTrue("Missing chat result", done.await(20, TimeUnit.SECONDS));
+    if (error.get() != null) throw error.get();
+    return outcome.get();
+  }
+
   public void testUnder18ServerBlockCannotBeRenewedAsAdult()throws Exception {
     verify();JSONObject body=new JSONObject().put("birthDate","2010-01-01").put("accepted",true).put("policyVersion","adult-beta-2026-11-v1");
     try(Response response=request("/v1/adult-account/declare",body)){assertEquals(200,response.code());assertEquals("under18_blocked",new JSONObject(response.body().string()).getString("status"));}
