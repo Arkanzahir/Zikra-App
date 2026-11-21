@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-16",
+  "date": "2026-11-21",
   "releaseStatus": "HOLD",
   "version": "1.9.57",
   "versionCode": 84,
@@ -208,8 +208,17 @@
     "lintWarnings": 912,
     "productionDeployed": false,
     "globalAiRequirementEnabled": false,
-    "releaseFlagsEnabled": false,
-    "signedRelease58Built": false,
+    "defaultReleaseFlagsEnabled": false,
+    "signedRelease58Built": true,
+    "signedCandidate": {
+      "accountFlagsEnabled": true,
+      "emulatorEnabled": false,
+      "bytes": 38929647,
+      "sha256": "dacd64ab3066de1d3062e018942e4e05f1e970b6795c60d19348763fb5355907",
+      "releaseJvmPassed": 237,
+      "physicalPhoneInstalled": false,
+      "evidence": "android/validation/signed-account-candidate-2026-11-21/README.md"
+    },
     "firebaseAuthReaderRoleCreated": true,
     "firebaseAuthReaderPrivateKeyRetrieved": false,
     "evidence": "android/validation/adult-accounts-2026-11-15/README.md"

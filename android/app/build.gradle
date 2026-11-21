@@ -2,6 +2,9 @@ plugins {
     id 'com.android.application'
 }
 
+def releaseAdultAccounts = providers.gradleProperty('zikraReleaseAdultAccounts')
+    .orElse('false').map { it == 'true' }
+
 android {
     namespace 'com.zikra.app'
     useLibrary 'android.test.runner'
@@ -41,8 +44,8 @@ android {
         }
         release {
             buildConfigField 'boolean', 'PUBLIC_BETA_SCOPE', 'true'
-            buildConfigField 'boolean', 'ADULT_ACCOUNTS_ENABLED', 'false'
-            buildConfigField 'boolean', 'ACCOUNT_SIGN_IN_ENABLED', 'false'
+            buildConfigField 'boolean', 'ADULT_ACCOUNTS_ENABLED', releaseAdultAccounts.get().toString()
+            buildConfigField 'boolean', 'ACCOUNT_SIGN_IN_ENABLED', releaseAdultAccounts.get().toString()
             buildConfigField 'boolean', 'ACCOUNT_AUTH_EMULATOR', 'false'
         }
     }
@@ -139,5 +142,18 @@ def prepareFirebaseClient = tasks.register('prepareFirebaseClient') {
 }
 android.sourceSets.main.res.srcDir(prepareFirebaseClient)
 tasks.matching { it.name == 'preBuild' }.configureEach { dependsOn(prepareFirebaseClient) }
+
+if (releaseAdultAccounts.get()) {
+    def validateReleaseAccountClient = tasks.register('validateReleaseAccountClient') {
+        dependsOn(prepareFirebaseClient)
+        doLast {
+            def input = file(firebaseClient.get())
+            if (!input.isFile() || new groovy.json.JsonSlurper().parse(input).project_info?.project_id != 'zikra-79b75') {
+                throw new GradleException('Release accounts require the Zikra production Firebase client configuration')
+            }
+        }
+    }
+    tasks.matching { it.name == 'preReleaseBuild' }.configureEach { dependsOn(validateReleaseAccountClient) }
+}
 
 apply from: rootProject.file('release-signing.gradle')

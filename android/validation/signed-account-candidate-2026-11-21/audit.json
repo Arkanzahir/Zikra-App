@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "version": "1.9.58",
+  "versionCode": 85,
+  "bytes": 38929647,
+  "sha256": "dacd64ab3066de1d3062e018942e4e05f1e970b6795c60d19348763fb5355907",
+  "below100MB": true,
+  "manifest": {
+    "minimumApiPreserved": true,
+    "targetApi36OrHigher": true,
+    "expectedIdentity": true,
+    "notDebuggable": true,
+    "notTestOnly": true,
+    "backupDisabled": true,
+    "cleartextDisabled": true
+  },
+  "archive": {
+    "privateConfigurationFiles": 0,
+    "knownCredentialEntries": 0,
+    "audioSha256": {}
+  },
+  "signing": {
+    "signatureValid": true,
+    "signerSha256": "c65c40ddc15dce2d4390496585e28a41bee95c2ca72f47791fed77a50431deeb",
+    "debugSigningKey": false,
+    "expectedReleaseSigner": true
+  },
+  "artifactChecksPassed": true,
+  "distributionApproved": false,
+  "remainingGates": "Content rights, audio rights, device tests, privacy/support, service terms and source/build provenance require separate evidence."
+}
