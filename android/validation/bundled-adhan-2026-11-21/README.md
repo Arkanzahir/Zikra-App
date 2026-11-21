@@ -12,3 +12,9 @@ APK kandidat bertanda tangan di `.local/releases/Zikra-v1.9.60-beta-audio-candid
 - Cadangan terenkripsi 748.987 byte dari sesi 1.9.59 tersedia dan hash salinannya cocok dengan file di HP. Izin notifikasi dan alarm tepat waktu tetap aktif setelah update.
 - Pengguna memutar pratinjau Subuh dari menu Dengarkan adzan di HP, mendengar suaranya, lalu menghentikannya. Layanan adzan teramati aktif saat pratinjau dan berhenti setelahnya.
 - Pembatasan pemasangan di HP membatalkan paket alat uji terpisah. Paket tersebut tidak terpasang. Uji alarm otomatis dengan layar terkunci masih terbuka. Website beta tetap pada preview terlindungi, tanpa tautan unduh APK publik.
+
+## Audio lama pilihan pengguna di HP
+
+Sesudah mendengar pratinjau Subuh bawaan paket standar, pengguna memilih dua MP3 lama Zikra. APK 1.9.60-internal/code87 dibangun dari source kandidat standar dengan login dan akun 18+ tetap aktif. Audio bawaan di build ini adalah `fajr_128_44.mp3` untuk Subuh dan `Adzan-Misyari-Rasyid.mp3` untuk Zuhur sampai Isya. Keduanya cocok dengan hash rekaman lama.
+
+Pembaruan langsung dari 1.9.60 standar berhasil. Hash APK terpasang cocok. Sertifikat, ID aplikasi, direktori data, waktu pemasangan awal, dan izin notifikasi tetap sama. Aplikasi berhasil dibuka. Uji dengar rekaman lama dan alarm saat layar terkunci belum dilakukan pada paket ini.
