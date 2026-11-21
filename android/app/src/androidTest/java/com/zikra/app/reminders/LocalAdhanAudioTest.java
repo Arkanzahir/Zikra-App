@@ -62,7 +62,10 @@ public final class LocalAdhanAudioTest extends InstrumentationTestCase {
   public void testBundledNormalAudioWorksWithoutImport() {
     assertFalse(LocalAdhanAudio.available(scope, 2));
     assertTrue(AdhanAsset.available(scope, 2));
-    assertFalse(AdhanAsset.available(scope, 0));
+    assertEquals(BuildConfig.INTERNAL_ADHAN, AdhanAsset.available(scope, 0));
+    PrayerSettings.setMode(scope, 0, PrayerMode.ADHAN);
+    assertEquals(BuildConfig.INTERNAL_ADHAN ? PrayerMode.ADHAN : PrayerMode.NOTIFICATION,
+        PrayerSettings.mode(scope, 0));
     PrayerSettings.setMode(scope, 2, PrayerMode.ADHAN);
     assertEquals(PrayerMode.ADHAN, PrayerSettings.mode(scope, 2));
     PrayerSettings.setMode(scope, 2, PrayerMode.OFF);
@@ -77,7 +80,8 @@ public final class LocalAdhanAudioTest extends InstrumentationTestCase {
     assertEquals(PrayerMode.ADHAN,PrayerSettings.mode(scope,2));
     install(2);
     assertEquals(PrayerMode.ADHAN,PrayerSettings.mode(scope,2));
-    assertEquals(PrayerMode.NOTIFICATION,PrayerSettings.mode(scope,0));
+    assertEquals(BuildConfig.INTERNAL_ADHAN ? PrayerMode.ADHAN : PrayerMode.NOTIFICATION,
+        PrayerSettings.mode(scope, 0));
     assertEquals(PrayerMode.OFF,PrayerSettings.mode(scope,4));
     assertFalse(PrayerReminders.enabled(scope));
     assertEquals("ADHAN",settings.getString("prayer_mode_dzuhur",null));
@@ -126,8 +130,10 @@ public final class LocalAdhanAudioTest extends InstrumentationTestCase {
   public void testRemovalFallsBackWithoutChangingSavedMode()throws Exception {
     PrayerSettings.prefs(scope).edit().putString("prayer_mode_subuh","ADHAN").putBoolean("reminder_subuh",true).commit();
     install(0);install(2);LocalAdhanAudio.remove(scope,0);
-    assertFalse(AdhanAsset.available(scope,0));assertTrue(AdhanAsset.available(scope,2));
-    assertEquals(PrayerMode.NOTIFICATION,PrayerSettings.mode(scope,0));
+    assertEquals(BuildConfig.INTERNAL_ADHAN, AdhanAsset.available(scope, 0));
+    assertTrue(AdhanAsset.available(scope, 2));
+    assertEquals(BuildConfig.INTERNAL_ADHAN ? PrayerMode.ADHAN : PrayerMode.NOTIFICATION,
+        PrayerSettings.mode(scope, 0));
     assertEquals("ADHAN",PrayerSettings.prefs(scope).getString("prayer_mode_subuh",null));noStaging();
   }
   public void testLocalRecordingPlaysWithNotificationStopAction()throws Exception {

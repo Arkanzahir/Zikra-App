@@ -41,12 +41,13 @@ def inspect_entries(apk, secrets):
         audio = {name: hashlib.sha256(archive.read('assets/adhan/' + name + '.mp3')).hexdigest()
                  for name in ('selected', 'fajr')
                  if 'assets/adhan/' + name + '.mp3' in archive.namelist()}
+        bundled_adhan = {name: hashlib.sha256(archive.read(name)).hexdigest()
+                         for name in archive.namelist()
+                         if name.startswith('assets/bundled-adhan/') and name.endswith('.mp3')}
     return {'privateConfigurationFiles': private_files,
             'knownCredentialEntries': credential_entries,
             'audioSha256': audio,
-            'bundledAdhanSha256': {name: hashlib.sha256(archive.read(name)).hexdigest()
-                                   for name in archive.namelist()
-                                   if name.startswith('assets/bundled-adhan/') and name.endswith('.mp3')}}
+            'bundledAdhanSha256': bundled_adhan}
 
 
 def inspect_manifest(badging, manifest, version, code):
