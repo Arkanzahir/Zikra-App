@@ -16,7 +16,7 @@ Pengguna meminta memasukkan promo terakhir yang disetujui: `Zikra-Promo-Lengkap-
 
 `D:/node.exe website/prepare-preview.cjs` memeriksa hash sumber sebelum menyalin video/poster ke `dist/media`. Folder ini diabaikan Git. Video/voice tidak diunggah ke GitHub atau hosting; hak distribusi suara masih belum ditutup menurut catatan promo/lisensi. Persetujuan menyisipkan preview tidak dianggap menyelesaikan hak publikasi. Jangan deploy direktori ini sebelum persyaratan publikasi terpenuhi.
 
-Pemutar HTML native: controls, playsinline, preload none, tanpa autoplay/mute. Suara mengikuti tindakan pengguna dan volume perangkat/browser. Naskah dapat dibuka tanpa menonton. Caption Bahasa Indonesia dapat dipilih di pemutar. Waktunya mengikuti jeda audio video 52 detik. Tinjauan akhir dengan audio dan pemeriksaan aksesibilitas masih diperlukan sebelum publikasi.
+Pemutar HTML native: controls, playsinline, preload none, tanpa autoplay/mute. Suara mengikuti tindakan pengguna dan volume perangkat/browser. Naskah dapat dibuka tanpa menonton. Caption Bahasa Indonesia dapat dipilih di pemutar. Waktunya mengikuti jeda audio video 52 detik. Edge lokal menampilkan seluruh 17 cue pada posisi yang diuji. Batas cue dicocokkan dengan jeda audio MP4 final. Pemeriksaan aksesibilitas keseluruhan masih diperlukan sebelum publikasi.
 
 ## Aset lain
 

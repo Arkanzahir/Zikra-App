@@ -28,6 +28,8 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 
 ## Bukti terbaru
 
+- **Uji 22 November 2026.** Pemutar Edge lokal menampilkan seluruh 17 caption pada titik tengah cue dan tidak menampilkan caption pada 51,8 detik. Pada MP4 final, pemeriksaan FFmpeg menggunakan ambang -38 dB dan jeda minimal 180 ms menemukan selisih awal caption maksimum 18 ms dari akhir jeda dan selisih akhir caption maksimum 139 ms dari awal jeda. APK signed 1.9.64/code91 dipasang dan dibuka di emulator API 36. Dari Beranda, Zikra AI menjawab prompt rencana belajar lewat panduan lokal. Pemilihan mode Online membuka layar akses 18+ yang meminta email terverifikasi dan konfirmasi usia. Tidak ada inferensi online pada uji APK ini. Publikasi tetap HOLD.
+
 - **Kesiapan web.** Manifest dan metadata web mencatat APK signed 1.9.64/code91 (41.994.958 byte), sesuai hash, audit signer, dan bukti update emulator. Halaman privasi menjelaskan usia 18+, retensi catatan dan hapus akun. Caption Indonesia mengikuti jeda audio promo 52 detik. Tinjauan pemutaran caption, retensi penyedia, izin distribusi suara promo dan publikasi tetap terbuka.
 
 - **Chat Android tanpa token instalasi.** 10 tes instrumentasi lulus di emulator Android API 36 dengan Firebase Auth Emulator, Redis dan provider AI sintetis. Setelah verifikasi email dan konfirmasi usia, klien Android berhasil mengirim chat tanpa token instalasi. Respons HTML 504 dipetakan ke timeout, satu permintaan mencapai provider sintetis, dan permintaan baru yang dikirim manual berhasil. Pencabutan akses memblokir chat pada klien dan server. Probe anonim produksi memberi 200 untuk health dan 401 untuk capabilities serta akun. Uji chat APK signed 1.9.64 di staging masih terbuka karena APK memakai URL produksi.
