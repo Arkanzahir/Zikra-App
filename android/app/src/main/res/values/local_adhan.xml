@@ -18,4 +18,5 @@ Audio tidak disertakan dalam cadangan lokal. Pilih ulang setelah memasang ulang 
  <string name="local_adhan_remove">Hapus salinan audio</string>
  <string name="local_adhan_remove_note">Hapus salinan privat di Zikra? File asli tetap utuh. Zikra kembali memakai suara bawaan jika tersedia. Jika belum ada suara bawaan, pengingat memakai notifikasi biasa. Pilihan mode tetap tersimpan.</string>
  <string name="local_adhan_remove_failed">Salinan belum dapat dihapus. Coba lagi.</string>
+ <string name="bundled_fajr_credit">Adzan Subuh bawaan standar — Developer Athan 3 (Fajr), Ahmed Khalaf. Rekaman asli.\nSumber https://github.com/nandxorandor/Athan\nCC BY 4.0 https://creativecommons.org/licenses/by/4.0/</string>
 </resources>

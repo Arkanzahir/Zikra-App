@@ -15,8 +15,7 @@ public final class AdhanAsset {
       return new AssetFileDescriptor(descriptor, 0, descriptor.getStatSize());
     }
     if (com.zikra.app.BuildConfig.PUBLIC_BETA_SCOPE && !com.zikra.app.BuildConfig.INTERNAL_ADHAN) {
-      if (index == 0) throw new IOException("No bundled Fajr recording");
-      return context.getAssets().openFd("bundled-adhan/regular.mp3");
+      return context.getAssets().openFd(index == 0 ? "bundled-adhan/fajr.mp3" : "bundled-adhan/regular.mp3");
     }
     return context.getAssets().openFd(index==0?"adhan/fajr.mp3":"adhan/selected.mp3");
   }

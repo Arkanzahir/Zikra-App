@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "version": "1.9.60",
+  "versionCode": 87,
+  "bytes": 41991450,
+  "sha256": "8d4c88fff7bd46dac023356cd0907b4bd739a8041a291b8fa529f50c1e60bd4c",
+  "below100MB": true,
+  "manifest": {
+    "minimumApiPreserved": true,
+    "targetApi36OrHigher": true,
+    "expectedIdentity": true,
+    "notDebuggable": true,
+    "notTestOnly": true,
+    "backupDisabled": true,
+    "cleartextDisabled": true
+  },
+  "archive": {
+    "privateConfigurationFiles": 0,
+    "knownCredentialEntries": 0,
+    "audioSha256": {},
+    "bundledAdhanSha256": {
+      "assets/bundled-adhan/fajr.mp3": "18b43fca35558ed05de0cbf8fcf468fd606e17cacb688bfed065e45787f56378",
+      "assets/bundled-adhan/regular.mp3": "751929b3849141dda950a6aefb6bd5531cec57d8246345c0722a838b7a6fd3f9"
+    }
+  },
+  "signing": {
+    "signatureValid": true,
+    "signerSha256": "c65c40ddc15dce2d4390496585e28a41bee95c2ca72f47791fed77a50431deeb",
+    "debugSigningKey": false,
+    "expectedReleaseSigner": true
+  },
+  "artifactChecksPassed": true,
+  "distributionApproved": false,
+  "remainingGates": "Content rights, audio rights, device tests, privacy/support, service terms and source/build provenance require separate evidence."
+}
