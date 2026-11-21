@@ -1,6 +1,8 @@
 package com.zikra.app.account;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.text.InputType;
 import android.os.SystemClock;
 import android.util.Patterns;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.zikra.app.BaseActivity;
@@ -19,6 +22,7 @@ import com.zikra.app.R;
 import com.zikra.app.ui.FeatureHeader;
 import com.zikra.app.ui.RefinedUi;
 import java.lang.ref.WeakReference;
+import org.json.JSONObject;
 
 /** Account authentication only. Email verification never grants age/guardian eligibility. */
 public final class AccountActivity extends BaseActivity {
@@ -29,6 +33,8 @@ public final class AccountActivity extends BaseActivity {
   private boolean busy;
   private long nextEmailAt;
   private android.app.DatePickerDialog signupAgePicker;
+  private AlertDialog deletionDialog;
+  private AdultAccountClient deletionClient;
   private final FirebaseAuth.AuthStateListener authState = ignored -> render();
 
   @Override protected void onCreate(Bundle state) {
@@ -61,6 +67,7 @@ public final class AccountActivity extends BaseActivity {
     });
     findViewById(R.id.accountAdultEntry).setOnClickListener(v -> startActivity(new android.content.Intent(this,AdultAccountActivity.class)));
     findViewById(R.id.accountReauthenticate).setOnClickListener(v -> reauthenticate());
+    findViewById(R.id.accountDelete).setOnClickListener(v -> confirmDeletion());
     render();
   }
 
@@ -76,6 +83,74 @@ public final class AccountActivity extends BaseActivity {
         }).setOnDismissListener(d->secret.setText("")).show();
   }
 
+  private void confirmDeletion() {
+    FirebaseUser user = auth.getCurrentUser();
+    if (!BuildConfig.ACCOUNT_DELETION_ENABLED || busy || user == null || user.getEmail() == null) return;
+    EditText secret = new EditText(this);
+    secret.setId(android.R.id.edit);
+    secret.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+    secret.setHint(R.string.account_password);
+    secret.setSaveEnabled(false);
+    secret.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
+    deletionDialog = new AlertDialog.Builder(this).setTitle(R.string.account_delete)
+        .setMessage(R.string.account_delete_confirm).setView(secret)
+        .setNegativeButton(R.string.contextual_cancel, null)
+        .setPositiveButton(R.string.account_delete, null).create();
+    deletionDialog.setOnDismissListener(dialog -> secret.setText(""));
+    deletionDialog.setOnShowListener(dialog -> deletionDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+        .setOnClickListener(view -> {
+          if (secret.length() == 0) {
+            secret.setError(getString(R.string.account_check_input));
+            return;
+          }
+          String value = secret.getText().toString();
+          deletionDialog.dismiss();
+          requestDeletion(user, value);
+        }));
+    deletionDialog.show();
+  }
+
+  private void requestDeletion(FirebaseUser user, String secret) {
+    FirebaseUser current = auth.getCurrentUser();
+    if (busy || current == null || !user.getUid().equals(current.getUid())) return;
+    busy = true;
+    render();
+    WeakReference<AccountActivity> reference = new WeakReference<>(this);
+    user.reauthenticate(EmailAuthProvider.getCredential(user.getEmail(), secret)).addOnCompleteListener(result -> {
+      AccountActivity screen = reference.get();
+      if (screen == null || screen.isDestroyed() || screen.isFinishing()) return;
+      FirebaseUser signedIn = screen.auth.getCurrentUser();
+      if (!result.isSuccessful() || signedIn == null || !user.getUid().equals(signedIn.getUid())) {
+        screen.finishDeletionUi(R.string.account_delete_reauth_failed);
+        return;
+      }
+      screen.deleteReauthenticatedAccount(user);
+    });
+  }
+
+  private void deleteReauthenticatedAccount(FirebaseUser user) {
+    AccountSession.hold();
+    if (deletionClient == null) deletionClient = new AdultAccountClient();
+    JSONObject body = new JSONObject(java.util.Collections.singletonMap("confirm", true));
+    deletionClient.send("delete", body, new AdultAccountClient.Result() {
+      @Override public void complete(JSONObject response) {
+        AccountSession.finishDeletion(user);
+        busy = false;
+        render();
+        toast(getString(R.string.account_delete_done));
+      }
+      @Override public void failed(String code) {
+        finishDeletionUi(R.string.account_delete_retry);
+      }
+    });
+  }
+
+  private void finishDeletionUi(int message) {
+    busy = false;
+    render();
+    status.setText(message);
+  }
+
   @Override protected void onStart() {
     super.onStart(); if (auth != null) auth.addAuthStateListener(authState);
   }
@@ -84,7 +159,12 @@ public final class AccountActivity extends BaseActivity {
     if (password != null) password.setText("");
     super.onStop();
   }
-  @Override protected void onDestroy(){if(signupAgePicker!=null)signupAgePicker.dismiss();super.onDestroy();}
+  @Override protected void onDestroy() {
+    if (signupAgePicker != null) signupAgePicker.dismiss();
+    if (deletionDialog != null) deletionDialog.dismiss();
+    if (deletionClient != null) deletionClient.close();
+    super.onDestroy();
+  }
   @Override protected boolean usesShakeShortcut() { return false; }
 
   private boolean validEmail() {
@@ -161,8 +241,10 @@ public final class AccountActivity extends BaseActivity {
     findViewById(R.id.accountSignOut).setVisibility(signedIn ? View.VISIBLE : View.GONE);
     findViewById(R.id.accountAdultEntry).setVisibility(verified&&BuildConfig.ADULT_ACCOUNTS_ENABLED?View.VISIBLE:View.GONE);
     findViewById(R.id.accountReauthenticate).setVisibility(signedIn?View.VISIBLE:View.GONE);
+    findViewById(R.id.accountDelete).setVisibility(signedIn && BuildConfig.ACCOUNT_DELETION_ENABLED
+        ? View.VISIBLE : View.GONE);
     for (int id : new int[] {R.id.accountSignIn, R.id.accountCreate, R.id.accountReset,
-        R.id.accountVerify, R.id.accountRefresh, R.id.accountSignOut, R.id.accountAdultEntry, R.id.accountReauthenticate}) findViewById(id).setEnabled(!busy);
+        R.id.accountVerify, R.id.accountRefresh, R.id.accountSignOut, R.id.accountAdultEntry, R.id.accountReauthenticate, R.id.accountDelete}) findViewById(id).setEnabled(!busy);
     status.setText(busy ? R.string.account_busy : verified ? R.string.account_verified
         : signedIn ? R.string.account_signed_in : R.string.account_signed_out);
   }

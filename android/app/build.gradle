@@ -19,8 +19,8 @@ android {
         applicationId 'com.zikra.app'
         minSdk 26
         targetSdk 36
-        versionCode 90
-        versionName '1.9.63'
+        versionCode 91
+        versionName '1.9.64'
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
 
@@ -43,6 +43,7 @@ android {
             buildConfigField 'boolean', 'PUBLIC_BETA_SCOPE', providers.gradleProperty('zikraPublicBetaScope').orElse('false').get().toBoolean().toString()
             buildConfigField 'boolean', 'ADULT_ACCOUNTS_ENABLED', providers.gradleProperty('zikraAdultAccounts').orElse('false').get().toBoolean().toString()
             buildConfigField 'boolean', 'ACCOUNT_SIGN_IN_ENABLED', providers.gradleProperty('zikraAccountSignIn').orElse('false').get().toBoolean().toString()
+            buildConfigField 'boolean', 'ACCOUNT_DELETION_ENABLED', providers.gradleProperty('zikraAccountEmulator').orElse('false').get().toBoolean().toString()
             buildConfigField 'boolean', 'ACCOUNT_AUTH_EMULATOR', providers.gradleProperty('zikraAccountEmulator').orElse('false').get().toBoolean().toString()
         }
         release {
@@ -51,6 +52,7 @@ android {
             buildConfigField 'boolean', 'PUBLIC_BETA_SCOPE', 'true'
             buildConfigField 'boolean', 'ADULT_ACCOUNTS_ENABLED', releaseAdultAccounts.get().toString()
             buildConfigField 'boolean', 'ACCOUNT_SIGN_IN_ENABLED', releaseAdultAccounts.get().toString()
+            buildConfigField 'boolean', 'ACCOUNT_DELETION_ENABLED', (releaseAdultAccounts.get() && project.findProperty('zikraReleaseAccountDeletion') == 'true').toString()
             buildConfigField 'boolean', 'ACCOUNT_AUTH_EMULATOR', 'false'
         }
     }

@@ -11,7 +11,8 @@ const ERRORS = new Map([
   ['account_conflict', 409], ['not_registered', 409], ['not_eligible', 403],
   ['guardian_required', 403], ['invalid_request', 400], ['rate_limited', 429],
   ['request_timeout', 408], ['invalid_content_type', 415], ['under18_blocked', 403],
-  ['adult_confirmation_required', 403]
+  ['adult_confirmation_required', 403], ['account_deletion_pending', 409],
+  ['account_deletion_unavailable', 503]
 ]);
 async function json(req) {
   if (!/^application\/json(?:\s*;\s*charset=utf-8)?$/i.test(req.headers['content-type'] ?? ''))
@@ -82,6 +83,7 @@ export function createAccountHandler({ service, beforeAuth, routes = ROUTES }) {
 export function createAdultAccountHandler(options) {
   return createAccountHandler({ ...options, routes: new Map([
     ['GET /v1/adult-account', 'status'], ['POST /v1/adult-account/declare', 'register'],
-    ['POST /v1/adult-account/renew', 'renew'], ['POST /v1/adult-account/withdraw', 'withdraw']
+    ['POST /v1/adult-account/renew', 'renew'], ['POST /v1/adult-account/withdraw', 'withdraw'],
+    ['POST /v1/adult-account/delete', 'deleteAccount']
   ]) });
 }

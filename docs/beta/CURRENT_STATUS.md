@@ -8,7 +8,7 @@
 |---|---|
 | HP pengguna | APK signed 1.9.63-internal/code90 terpasang. Pilihan Adzan penuh kembali muncul tanpa impor dan dialog memberi petunjuk ganti ke MP3 sendiri. Hash, ID, direktori data dan waktu pemasangan awal cocok. Rekaman lama dan perbaikan rute earphone tetap ada. |
 | Kandidat signed terbaru | 1.9.63/code90 standar, 41.992.546 byte, akun 18+ opsional dan dua audio bawaan berlisensi. Audit, unduhan HTTP lokal, pemasangan baru, dan update emulator 1.9.59 → 1.9.63 lulus. Paket dan manifest HOLD disimpan privat. |
-| Source Android | 1.9.63/code90 dengan akses akun mandiri pada build akun. Aktivasi pada build release memerlukan opsi eksplisit dan konfigurasi klien Firebase produksi. |
+| Source Android | 1.9.64/code91 dengan akses akun mandiri pada build akun. Aktivasi pada build release memerlukan opsi eksplisit dan konfigurasi klien Firebase produksi. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
 | Layanan akun18+ | Endpoint aktif di produksi dengan akun tetap opsional. Pendaftaran sintetis dan penolakan email belum terverifikasi lulus. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
 | Website | Preview Vercel terlindungi sudah READY, video52detik lengkap bersuara; tombolAPKdisabled |
@@ -28,8 +28,10 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 
 ## Bukti terbaru
 
+- **Hapus akun 1.9.64.** Menu Akun Zikra meminta konfirmasi dan autentikasi ulang dengan sandi. Endpoint menghapus akun Firebase, metadata deklarasi usia dan penghitung kuota akun. Penanda pseudonim 24 jam memblokir akses sambil memberi ruang percobaan ulang. Data di HP tetap lokal dan laporan moderasi mengikuti TTL tujuh hari. 177 tes backend, 237 JVM release dan 10 tes Android API 36 lulus. Tes Android memakai Firebase Auth Emulator dan akun sintetis, termasuk pembatalan dialog dan penolakan login setelah penghapusan. Draf privasi diperbarui. Tombol dan endpoint penghapusan produksi masih mati sampai izin akun layanan dan uji staging tersedia. [Aktivasi](../../backend/deploy/SELF_SERVICE_ACCOUNTS.md).
+
 - **Alarm otomatis di HP 1.9.63-internal.** AlarmManager fisik membunyikan Subuh saat layar mati dan keyguard terkunci. Pemutar melaporkan output headset saja. Aksi Berhenti di notifikasi menghentikan layanan, dan preferensi pengingat pulih. Percobaan speaker dihentikan sebelum menjadwalkan alarm karena headset masih terdeteksi.
-- **Akun dan kandidat 1.9.63.** Pemilihan sesi memakai FirebaseAuth yang sama untuk emulator bernama. Tes pendaftaran mengikuti dialog usia. 9 tes Android dengan akun dan jawaban AI sintetis lulus, termasuk verifikasi email, login, batas usia, dan pencabutan akses. 176 tes backend serta 237 tes JVM release lulus. APK belum memiliki alur hapus akun dari UI. Unduhan lokal kandidat standar cocok hash dan lolos pasang baru serta update di emulator. Situs tetap preview terlindungi.
+- **Akun dan kandidat 1.9.63.** Pemilihan sesi memakai FirebaseAuth yang sama untuk emulator bernama. Tes pendaftaran mengikuti dialog usia. 9 tes Android dengan akun dan jawaban AI sintetis lulus, termasuk verifikasi email, login, batas usia, dan pencabutan akses. 176 tes backend serta 237 tes JVM release lulus. Kandidat 1.9.63 belum memiliki alur hapus akun dari UI. Unduhan lokal kandidat standar cocok hash dan lolos pasang baru serta update di emulator. Situs tetap preview terlindungi.
 
 - **Pilihan pengingat 1.9.63.** Menu menampilkan Adzan penuh jika ada audio siap pakai, termasuk bawaan. Pengguna melihat keempat mode di HP setelah 1.9.62. Build 1.9.63 menambah petunjuk lokasi tombol Ganti suara adzan dengan MP3 dan memperbarui keterangan volume. 12 instrumentasi emulator Android 36 lulus, termasuk tampilan petunjuk, memilih dan menyimpan mode Adzan penuh tanpa impor, serta regresi audio. Signed 1.9.63-internal berhasil memperbarui HP.
 

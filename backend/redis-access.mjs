@@ -56,6 +56,7 @@ local function adult_allowed(key, id, revision, policy)
   local raw = redis.call('GET', key)
   if not raw then return false end
   local record = cjson.decode(raw)
+  if type(record) ~= 'table' then return false end
   local clock = redis.call('TIME')
   local now = tonumber(clock[1]) * 1000 + math.floor(tonumber(clock[2]) / 1000)
   return record.schema == 2 and record.id == id and record.revision == tonumber(revision)

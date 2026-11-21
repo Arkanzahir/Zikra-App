@@ -94,13 +94,17 @@ public final class AdultAccountActivity extends BaseActivity {
       case "under18_blocked":return R.string.adult_under18;
       case "withdrawn":return R.string.adult_withdrawn;
       case "withdraw_pending":return R.string.adult_withdraw_pending;
+      case "deletion_pending":return R.string.account_delete_retry;
       case "confirmation_expired":case "policy_changed":return R.string.adult_expired;
       default:return R.string.adult_needed;
     }
   }
   private void render(){
     boolean blocked=serverStatus.equals("under18_blocked"),active=serverStatus.equals("adult_confirmed"),pending=serverStatus.equals("withdraw_pending");
-    date.setVisibility(active||blocked||pending?View.GONE:View.VISIBLE);consent.setVisibility(active||blocked||pending?View.GONE:View.VISIBLE);confirm.setVisibility(active||blocked||pending?View.GONE:View.VISIBLE);
+    boolean hideDeclaration = active || blocked || pending || serverStatus.equals("deletion_pending");
+    date.setVisibility(hideDeclaration ? View.GONE : View.VISIBLE);
+    consent.setVisibility(hideDeclaration ? View.GONE : View.VISIBLE);
+    confirm.setVisibility(hideDeclaration ? View.GONE : View.VISIBLE);
     confirm.setEnabled(!busy&&!policy.isEmpty());date.setEnabled(!busy);consent.setEnabled(!busy);refresh.setEnabled(!busy);
     withdraw.setVisibility(active||pending?View.VISIBLE:View.GONE);withdraw.setEnabled(!busy);
   }

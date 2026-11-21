@@ -16,14 +16,15 @@ public final class AdultAccountClient implements AutoCloseable {
   public void send(String action,JSONObject body,Result callback){
     if(closed)return;int run=++generation;String binding=AccountSession.binding();
     String base=AccountSession.serviceBase();
-    if(!java.util.Arrays.asList("status","declare","renew","withdraw").contains(action))throw new IllegalArgumentException("Unknown account action");
+    boolean deletion = action.equals("delete");
+    if(!java.util.Arrays.asList("status","declare","renew","withdraw","delete").contains(action))throw new IllegalArgumentException("Unknown account action");
     worker.execute(()->{
       JSONObject result=null;String error="account_unavailable";
       try{
         HttpUrl url=HttpUrl.parse(base+"/v1/adult-account"+(action.equals("status")?"":"/"+action));
         if(!AccountSession.trusted(url))throw new IOException();
         if(!binding.equals(AccountSession.binding()))throw new IOException("Account changed");
-        Request.Builder request=new Request.Builder().url(url).header("Authorization","Bearer "+AccountSession.token());
+        Request.Builder request=new Request.Builder().url(url).header("Authorization","Bearer "+(deletion ? AccountSession.tokenForDeletion() : AccountSession.token()));
         if(!action.equals("status"))request.post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"),body.toString()));
         if(closed||run!=generation)return;
         Call call=http.newCall(request.build());active=call;
@@ -32,7 +33,8 @@ public final class AdultAccountClient implements AutoCloseable {
           if(response.body()!=null){response.body().source().request(8193);
             if(response.body().source().buffer().size()<=8192){
               JSONObject data=new JSONObject(response.body().string());
-              if(response.isSuccessful()&&data.optInt("minimumAge")==18&&"self_declared".equals(data.optString("assurance")))result=data;
+              if(response.isSuccessful() && (deletion ? "deleted".equals(data.optString("status"))
+                  : data.optInt("minimumAge")==18&&"self_declared".equals(data.optString("assurance"))))result=data;
               else{String code=data.optString("error");if(java.util.Arrays.asList("unauthorized","under18_blocked","account_exists","not_registered","policy_changed","rate_limited","invalid_input").contains(code))error=code;}
             }
           }

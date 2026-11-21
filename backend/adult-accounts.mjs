@@ -5,6 +5,7 @@ const DAY = 86400000, ID = /^[a-f0-9]{64}$/;
 const exact = (value, keys) => value && typeof value === 'object' && !Array.isArray(value)
   && Object.keys(value).length === keys.length && keys.every(key => Object.hasOwn(value, key));
 const fail = code => { throw new Error(code); };
+export const DELETION_MARKER = 'deletion_pending';
 
 export function adultOnDate(birthDate, today) {
   if (typeof birthDate !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(birthDate)
@@ -18,11 +19,11 @@ export function adultOnDate(birthDate, today) {
 
 /** Verified email plus an explicit age declaration; never represented as identity verification. */
 export class AdultAccounts {
-  constructor({ identity, repository, subjectKey, now = Date.now, policyVersion = ADULT_POLICY }) {
+  constructor({ identity, repository, subjectKey, eraseAccount, now = Date.now, policyVersion = ADULT_POLICY }) {
     if (typeof identity?.verify !== 'function' || typeof repository?.read !== 'function'
         || typeof repository?.compareAndSet !== 'function' || !ID.test(subjectKey ?? '')
         || !/^[A-Za-z0-9._-]{1,64}$/.test(policyVersion)) fail('invalid_account_config');
-    Object.assign(this, { identity, repository, subjectKey, now, policyVersion });
+    Object.assign(this, { identity, repository, subjectKey, eraseAccount, now, policyVersion });
   }
   id(subject) {
     if (typeof subject !== 'string' || !subject || subject.length > 128) fail('unauthorized');
@@ -34,7 +35,7 @@ export class AdultAccounts {
   }
   async read(id) {
     const record = await this.repository.read(id);
-    if (record === null) return null;
+    if (record === null || record === DELETION_MARKER) return record;
     if (!exact(record, ['schema','id','subject','revision','state','policy','assurance',
         'ageBand','declaredAt','updatedAt','expiresAt']) || record.schema !== 2 || record.id !== id
         || this.id(record.subject) !== id || !Number.isSafeInteger(record.revision) || record.revision < 1
@@ -48,6 +49,8 @@ export class AdultAccounts {
     return record;
   }
   summary(record) {
+    if (record === DELETION_MARKER) return { status: DELETION_MARKER, minimumAge: 18,
+      assurance: 'self_declared', policyVersion: this.policyVersion };
     let status = record.state === 'under18' ? 'under18_blocked'
       : record.state === 'withdrawn' ? 'withdrawn'
       : record.policy !== this.policyVersion ? 'policy_changed'
@@ -71,6 +74,7 @@ export class AdultAccounts {
     if (!exact(input, ['birthDate','accepted','policyVersion']) || input.accepted !== true) fail('invalid_input');
     if (input.policyVersion !== this.policyVersion) fail('policy_changed');
     const who = await this.principal(token, true), previous = await this.read(who.id);
+    if (previous === DELETION_MARKER) fail('account_deletion_pending');
     if (previous?.state === 'under18' || previous?.ageBand === 'under18') fail('under18_blocked');
     if (!renewal && previous) fail('account_exists');
     if (renewal && !previous) fail('not_registered');
@@ -85,8 +89,16 @@ export class AdultAccounts {
   async withdraw(token, input) {
     if (!exact(input, [])) fail('invalid_input');
     const who = await this.principal(token, true), previous = await this.read(who.id);
+    if (previous === DELETION_MARKER) fail('account_deletion_pending');
     if (!previous) fail('not_registered');
     return this.save(previous, { ...previous, state: 'withdrawn' });
+  }
+  async deleteAccount(token, input) {
+    if (!exact(input, ['confirm']) || input.confirm !== true) fail('invalid_input');
+    if (!this.eraseAccount) fail('account_deletion_unavailable');
+    const { subject } = await this.identity.verify(token, true, false);
+    await this.eraseAccount(this.id(subject), subject);
+    return { status: 'deleted' };
   }
   async authorize(token) {
     const who = await this.principal(token), record = await this.read(who.id);

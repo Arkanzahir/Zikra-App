@@ -6,7 +6,7 @@ import { AdultAccounts, adultOnDate, ADULT_POLICY } from './adult-accounts.mjs';
 import { RedisAccountRepository } from './account-eligibility.mjs';
 import { createAdultAccountHandler } from './account-http.mjs';
 import { createGateway } from './server.mjs';
-import { readAdultRuntimeConfig, vercelAccountAddress } from './adult-account-runtime.mjs';
+import { createAdultServices, readAdultRuntimeConfig, vercelAccountAddress } from './adult-account-runtime.mjs';
 import { createVercelHandler } from './vercel-handler.mjs';
 import { RedisAccess, tokenHash } from './redis-access.mjs';
 import { inspectAnswerReports } from './answer-report-admin.mjs';
@@ -83,17 +83,17 @@ test('Redis adult registration CAS has one winner and records expire', {skip:!pr
   assert.equal((await repo.read(id)).schema,2);
 });
 test('adult HTTP surface has no guardian routes and accepts no query credentials',async t=>{
-  const calls=[];const service=Object.fromEntries(['status','register','renew','withdraw'].map(name=>[name,async()=>{calls.push(name);return{status:name};}]));
+  const calls=[];const service=Object.fromEntries(['status','register','renew','withdraw','deleteAccount'].map(name=>[name,async()=>{calls.push(name);return{status:name};}]));
   const server=http.createServer(createAdultAccountHandler({service,beforeAuth:async()=>true}));
   server.listen(0,'127.0.0.1');await once(server,'listening');t.after(()=>{server.closeAllConnections();server.close();});
   const base=`http://127.0.0.1:${server.address().port}`,headers={authorization:'Bearer synthetic-32-character-account-token','content-type':'application/json'};
-  for(const [path,method,body] of [['','GET',undefined],['/declare','POST',{}],['/renew','POST',{}],['/withdraw','POST',{}]]){
+  for(const [path,method,body] of [['','GET',undefined],['/declare','POST',{}],['/renew','POST',{}],['/withdraw','POST',{}],['/delete','POST',{confirm:true}]]){
     const response=await fetch(base+'/v1/adult-account'+path,{method,headers,...(body?{body:JSON.stringify(body)}:{})});
     assert.equal(response.status,200);assert.equal(response.headers.get('cache-control'),'no-store');
   }
   for(const path of ['/v1/account/guardian/request','/v1/adult-account?token=secret'])
     assert.equal((await fetch(base+path,{headers})).status,404);
-  assert.deepEqual(calls,['status','register','renew','withdraw']);
+  assert.deepEqual(calls,['status','register','renew','withdraw','deleteAccount']);
 });
 
 async function gateway(t,gate,upstream=async()=>new Response(JSON.stringify({choices:[{message:{content:'Synthetic answer'}}]})),extra={}){
@@ -236,3 +236,78 @@ test('fresh account uses AI without installation credentials and shares quota ac
       assert.equal((await send(route, body, rotated, true)).status, 403);
     assert.equal(modelCalls, 3);
   });
+
+
+test('confirmed self-deletion removes account metadata, blocks stale access and retries a transient deletion', {
+  skip: !process.env.ZIKRA_REDIS_TEST_PYTHON
+}, async t => {
+  const redis = await redisFixture(t), prefix = 'synthetic:erase:', projectId = 'demo-zikra-accounts';
+  const now = Date.parse('2026-11-21T05:00:00Z'), seconds = now / 1000;
+  const token = 'synthetic-owner-firebase-token-32';
+  const stale = 'synthetic-stale-firebase-token-32';
+  const records = new Map([['owner', { uid: 'owner', emailVerified: true }],
+    ['other', { uid: 'other', emailVerified: true }], ['unverified', { uid: 'unverified', emailVerified: false }]]);
+  const auth = {
+    async verifyIdToken(value, checkRevoked) {
+      assert.equal(checkRevoked, true);
+      const uid = value.includes('unverified') ? 'unverified' : 'owner';
+      if (!records.has(uid)) throw Error('auth/user-not-found');
+      return { uid, sub: uid, aud: projectId, iss: 'https://securetoken.google.com/' + projectId,
+        email_verified: records.get(uid).emailVerified, exp: seconds + 3600,
+        auth_time: value === stale ? seconds - 301 : seconds };
+    },
+    async getUser(uid) { return records.get(uid); }
+  };
+  let available = false;
+  const runtime = createAdultServices({ auth, redis, prefix, projectId, now: () => now,
+    subjectKey: 'a'.repeat(64), trustedAddress: () => '127.0.0.1',
+    deleteUser: async uid => { if (!available) throw Error('private failure'); records.delete(uid); } });
+  const server = http.createServer(runtime.handler);
+  server.listen(0, '127.0.0.1');
+  await once(server, 'listening');
+  t.after(() => { server.closeAllConnections(); server.close(); });
+  const remove = (value, body) => fetch('http://127.0.0.1:' + server.address().port + '/v1/adult-account/delete',
+    { method: 'POST', headers: { Authorization: 'Bearer ' + value, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body) });
+  const service = runtime.service;
+  const declaration = { birthDate: '1999-01-01', accepted: true, policyVersion: ADULT_POLICY };
+  await service.register(token, declaration);
+  const principal = await service.authorize(token);
+  const id = principal.accountId, key = prefix + 'adult:account:' + id;
+  await redis.command(['SET', prefix + 'usage:' + id, 'synthetic-quota']);
+  await redis.command(['SET', prefix + 'report-rate:' + id, 'synthetic-rate']);
+  await redis.command(['SET', prefix + 'usage:' + service.id('other'), 'other-quota']);
+  const report = prefix + 'answer-report:' + id + ':owned';
+  await redis.command(['SET', report, 'moderation', 'EX', 604800]);
+
+  assert.equal((await remove(stale, { confirm: true })).status, 401);
+  assert.equal((await remove(token, { confirm: true, uid: 'other' })).status, 400);
+  assert.ok(await redis.command(['GET', key]));
+  const failed = await remove(token, { confirm: true });
+  assert.equal(failed.status, 503);
+  assert.deepEqual(await failed.json(), { error: 'account_deletion_unavailable' });
+  assert.ok(records.has('owner'));
+  assert.equal(await redis.command(['GET', key]), '"deletion_pending"');
+  assert.ok(await redis.command(['TTL', key]) > 0);
+  assert.equal(await redis.command(['GET', prefix + 'usage:' + id]), null);
+  assert.equal(await redis.command(['GET', prefix + 'report-rate:' + id]), null);
+  assert.equal(await redis.command(['GET', prefix + 'usage:' + service.id('other')]), 'other-quota');
+  assert.equal(await redis.command(['GET', report]), 'moderation');
+  assert.equal((await service.status(token)).status, 'deletion_pending');
+  await assert.rejects(service.authorize(token), /adult_confirmation_required/);
+  await assert.rejects(service.register(token, declaration), /account_deletion_pending/);
+  const access = new RedisAccess({ redis, prefix });
+  assert.equal((await access.acquireAccount(principal)).status, 403);
+
+  available = true;
+  const success = await remove(token, { confirm: true });
+  assert.deepEqual(await success.json(), { status: 'deleted' });
+  assert.equal(success.headers.get('cache-control'), 'no-store');
+  assert.equal((await remove(token, { confirm: true })).status, 401);
+  await assert.rejects(service.authorize(token), /unauthorized/);
+  assert.ok(records.has('other'));
+  const unverified = 'synthetic-unverified-firebase-token-32';
+  await assert.rejects(service.status(unverified), /unauthorized/);
+  assert.equal((await remove(unverified, { confirm: true })).status, 200);
+  assert.equal(records.has('unverified'), false);
+});
