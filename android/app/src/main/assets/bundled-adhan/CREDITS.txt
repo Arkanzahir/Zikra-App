@@ -4,3 +4,9 @@ Lisensi: CC0 1.0 — https://creativecommons.org/publicdomain/zero/1.0/
 Zikra mengonversi Ogg Vorbis ke MP3 tanpa memotong rekaman.
 SHA-256 Ogg sumber: 35fe06b08fe80505c550c33fed8a783fa9901ddc81ac884958b4be048f5b2a79
 SHA-256 MP3: 751929b3849141dda950a6aefb6bd5531cec57d8246345c0722a838b7a6fd3f9
+
+Adzan Subuh: Developer Athan 3 (Fajr) — Ahmed Khalaf
+Sumber: https://github.com/nandxorandor/Athan/blob/ad2bf1799add51cca4aaf1f123b1c212378c7786/app/src/main/assets/athan/fajr/Developer_Athan-3_Fajr.mp3
+Lisensi: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+Zikra menggunakan MP3 dari pembuat tanpa mengubah rekaman.
+SHA-256 MP3: 18b43fca35558ed05de0cbf8fcf468fd606e17cacb688bfed065e45787f56378

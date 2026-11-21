@@ -7,7 +7,7 @@
 | Bagian | Keadaan yang terbukti |
 |---|---|
 | HP pengguna | Signed APK 1.9.59/code86 terpasang langsung dari 1.9.55. Integritas lima database dan jumlah baris sepuluh tabel cocok. |
-| Kandidat signed terbaru | 1.9.59/code86, 38.946.195 byte, akses akun mandiri di build akun. [Bukti paket dan emulator](../../android/validation/signed-self-service-candidate-2026-11-21/README.md). Update fisik lulus. Uji adzan dan rollout masih terbuka. |
+| Kandidat signed terbaru | 1.9.60/code87, 41.991.450 byte, akun 18+ opsional pada build akun, serta adzan bawaan Subuh dan Zuhur hingga Isya. Audit, update emulator, dan 11 tes adzan lulus. [Bukti](../../android/validation/bundled-adhan-2026-11-21/README.md). |
 | Source Android | 1.9.60/code87 dengan akses akun mandiri pada build akun. Aktivasi pada build release memerlukan opsi eksplisit dan konfigurasi klien Firebase produksi. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
 | Layanan akun18+ | Endpoint aktif di produksi dengan akun tetap opsional. Pendaftaran sintetis dan penolakan email belum terverifikasi lulus. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
@@ -21,7 +21,7 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 - AI online beta **18+ dahulu**. Alur wali dan review usia manual dibatalkan/ditunda. Fitur lokal tidak otomatis semuanya menjadi18+.
 - KonfirmasiDOB adalah deklarasi, bukan bukti identitas/usia terverifikasi. Jangan mengganti label assurance menjadi verified atau mengklaim kepatuhan selesai.
 - B01 dua kitabGading masih menunggu sumber/hak. Cakupan beta terbatas **HadeethEnc dahulu**, tanpa menunggu Gading untuk menyiapkan cakupan terbatas. Data/bookmark lama tetap dijaga.
-- Adzan memakai MP3 pilihan lokal pengguna, biasa/Subuh terpisah; tidak dibundel/diunggah. Website menampilkan informasi ini dengan jujur.
+- Beta standar memakai adzan bawaan Ahmed Khalaf untuk Subuh dan Adam-synagda untuk Zuhur sampai Isya. Pengguna dapat memilih MP3 lokal secara opsional. Salinan web perlu mengikuti kandidat terbaru menjelang publikasi.
 - PenerbitZikra, dukunganpublik arkanzahir46@gmail.com. GoogleMaps/billing ditolak; tetapOSM. Tidak ada upgrade berbayar.
 - Desain terbaru disetujui cukup baik: gaya susunanEnte, logo dan delapan ikon asli,6panel+12topik fitur, video52detik. Pertahankan identitas tersebut. Situs tetapHTML/CSS/nativecontrols, tanpaframework/analytics/JS.
 - Semua perubahan selesai perlucheckpointGitHub. Jangan menyebut seluruh pekerjaan selesai hanya karena sebuahbuild/test lulus.
@@ -29,7 +29,7 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 ## Bukti terbaru
 
 - APK signed `1.9.60-internal`/code87 memuat pasangan Misyari dan Subuh yang byte-nya cocok dengan Zikra lama. Tanpa impor MP3, keduanya bisa dipilih lewat mode Adzan penuh. Audit APK, 237 tes JVM, dan 11 tes instrumen emulator API 36 lulus. Paket standar diuji terpisah dengan hasil kedua MP3 lama absen. APK internal belum dipasang di HP atau dipublikasikan. [Sumber dan cakupan](CONTENT_LICENSE_TRACE.md).
-- Kandidat source berikutnya menyertakan adzan biasa CC0 untuk Zuhur sampai Isya, dengan prioritas MP3 pilihan pengguna. APK pemeriksaan berhasil dibangun; 237 tes JVM dan 11 tes instrumentasi emulator API 36 lulus. Kandidat Subuh masih menunggu verifikasi lafaz. [Jejak lisensi](CONTENT_LICENSE_TRACE.md).
+- [Adzan bawaan 1.9.60](../../android/validation/bundled-adhan-2026-11-21/README.md): update offline 1.9.59 → 1.9.60 di emulator Android 36, audit signer dan dua MP3, serta 11 tes adzan lulus. Alarm Subuh memutar rekaman bawaan tanpa impor dan berhenti melalui aksi notifikasi. Suara fisik dan izin pada HP masih terbuka. [Jejak lisensi](CONTENT_LICENSE_TRACE.md).
 - [Kandidat signed 1.9.59](../../android/validation/signed-self-service-candidate-2026-11-21/README.md). 237 tes JVM, audit paket, update emulator 1.9.58 → 1.9.59, empat database sintetis, dan lima layar lulus.
 - **Akses AI mandiri lokal.** 176 tes backend dan 237 tes JVM release lulus tanpa skip. Regresi memakai Redis fixture untuk chat, gambar, laporan, kuota lintas token Firebase, token instalasi lama, dan pencabutan. Belum ada aktivasi produksi, kandidat signed baru, atau pengujian perangkat untuk build ini.
 - [Pembaruan emulator 1.9.55 → 1.9.58](MIGRATION_EMULATOR_2026-11-21.md): empat database sintetis dan lima layar lulus dari rebuild signed 1.9.55.

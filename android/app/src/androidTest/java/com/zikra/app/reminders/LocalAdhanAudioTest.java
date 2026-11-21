@@ -12,7 +12,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.util.*;
 
-/** Disposable emulator, private host fixture only. No audio in either APK. */
+/** Disposable emulator, private host fixture for import cases. */
 @SuppressWarnings("deprecation")
 public final class LocalAdhanAudioTest extends InstrumentationTestCase {
   private File root, input;
@@ -59,13 +59,23 @@ public final class LocalAdhanAudioTest extends InstrumentationTestCase {
     File[] files=new File(root,"local-adhan").listFiles();
     if(files!=null)for(File file:files)assertFalse(file.getName().endsWith(".tmp"));
   }
-  public void testBundledNormalAudioWorksWithoutImport() {
+  public void testBundledAudioWorksWithoutImport() throws Exception {
+    assertFalse(LocalAdhanAudio.available(scope, 0));
     assertFalse(LocalAdhanAudio.available(scope, 2));
     assertTrue(AdhanAsset.available(scope, 2));
-    assertEquals(BuildConfig.INTERNAL_ADHAN, AdhanAsset.available(scope, 0));
+    assertTrue(AdhanAsset.available(scope, 0));
     PrayerSettings.setMode(scope, 0, PrayerMode.ADHAN);
-    assertEquals(BuildConfig.INTERNAL_ADHAN ? PrayerMode.ADHAN : PrayerMode.NOTIFICATION,
-        PrayerSettings.mode(scope, 0));
+    assertEquals(PrayerMode.ADHAN, PrayerSettings.mode(scope, 0));
+    try (AssetFileDescriptor audio = AdhanAsset.open(scope, 0)) {
+      android.media.MediaPlayer player = new android.media.MediaPlayer();
+      try {
+        player.setDataSource(audio.getFileDescriptor(), audio.getStartOffset(), audio.getLength());
+        player.prepare();
+        assertTrue(player.getDuration() >= 10_000);
+      } finally {
+        player.release();
+      }
+    }
     PrayerSettings.setMode(scope, 2, PrayerMode.ADHAN);
     assertEquals(PrayerMode.ADHAN, PrayerSettings.mode(scope, 2));
     PrayerSettings.setMode(scope, 2, PrayerMode.OFF);
@@ -80,8 +90,7 @@ public final class LocalAdhanAudioTest extends InstrumentationTestCase {
     assertEquals(PrayerMode.ADHAN,PrayerSettings.mode(scope,2));
     install(2);
     assertEquals(PrayerMode.ADHAN,PrayerSettings.mode(scope,2));
-    assertEquals(BuildConfig.INTERNAL_ADHAN ? PrayerMode.ADHAN : PrayerMode.NOTIFICATION,
-        PrayerSettings.mode(scope, 0));
+    assertEquals(PrayerMode.ADHAN, PrayerSettings.mode(scope, 0));
     assertEquals(PrayerMode.OFF,PrayerSettings.mode(scope,4));
     assertFalse(PrayerReminders.enabled(scope));
     assertEquals("ADHAN",settings.getString("prayer_mode_dzuhur",null));
@@ -130,10 +139,9 @@ public final class LocalAdhanAudioTest extends InstrumentationTestCase {
   public void testRemovalFallsBackWithoutChangingSavedMode()throws Exception {
     PrayerSettings.prefs(scope).edit().putString("prayer_mode_subuh","ADHAN").putBoolean("reminder_subuh",true).commit();
     install(0);install(2);LocalAdhanAudio.remove(scope,0);
-    assertEquals(BuildConfig.INTERNAL_ADHAN, AdhanAsset.available(scope, 0));
+    assertTrue(AdhanAsset.available(scope, 0));
     assertTrue(AdhanAsset.available(scope, 2));
-    assertEquals(BuildConfig.INTERNAL_ADHAN ? PrayerMode.ADHAN : PrayerMode.NOTIFICATION,
-        PrayerSettings.mode(scope, 0));
+    assertEquals(PrayerMode.ADHAN, PrayerSettings.mode(scope, 0));
     assertEquals("ADHAN",PrayerSettings.prefs(scope).getString("prayer_mode_subuh",null));noStaging();
   }
   public void testLocalRecordingPlaysWithNotificationStopAction()throws Exception {
@@ -168,22 +176,21 @@ public final class LocalAdhanAudioTest extends InstrumentationTestCase {
       Files.deleteIfExists(actual.toPath());
     }
   }
-  public void testScheduledAlarmUsesLocalRecordingAndNotificationStop()throws Exception {
+  public void testScheduledFajrPlaysBundledRecordingWithNotificationStop()throws Exception {
     Context app=getInstrumentation().getTargetContext();
     assertTrue(PrayerReminders.exactAllowed(app));
     SharedPreferences settings=PrayerSettings.prefs(app),plan=app.getSharedPreferences(PrayerReminders.PLAN,0);
     Map<String,?> oldSettings=new HashMap<>(settings.getAll()),oldPlan=new HashMap<>(plan.getAll());
-    File actual=LocalAdhanAudio.file(app,2);assertFalse(actual.exists());
-    assertTrue(actual.getParentFile().isDirectory()||actual.getParentFile().mkdirs());
+    int fajr = 0;
+    assertFalse(LocalAdhanAudio.available(app, fajr));
     android.app.Activity page=null;
     try {
-      Files.copy(input.toPath(),actual.toPath());
       page=getInstrumentation().startActivitySync(new Intent(app,com.zikra.app.PrayerActivity.class)
           .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
       settings.edit().putBoolean("reminder_enabled",true).putBoolean(PrayerSettings.QUIET_CLASSES,false).commit();
-      PrayerSettings.setMode(app,2,PrayerMode.ADHAN);PrayerReminders.sync(app);
+      PrayerSettings.setMode(app,fajr,PrayerMode.ADHAN);PrayerReminders.sync(app);
       long epoch=System.currentTimeMillis()+2_000;
-      Intent alarm=PrayerReminders.alarmIntent(app,2,epoch);String slot=alarm.getStringExtra("slot");
+      Intent alarm=PrayerReminders.alarmIntent(app,fajr,epoch);String slot=alarm.getStringExtra("slot");
       Set<String> ids=new HashSet<>(plan.getStringSet("ids",Collections.emptySet()));ids.add(slot);
       plan.edit().putStringSet("ids",ids).putLong("e:"+slot,epoch)
           .putString("l:"+slot,com.zikra.app.location.LocationStore.current(app).key())
@@ -196,6 +203,7 @@ public final class LocalAdhanAudioTest extends InstrumentationTestCase {
       while(!AdhanService.state().playing&&SystemClock.elapsedRealtime()<end)SystemClock.sleep(100);
       assertTrue(AdhanService.state().status,AdhanService.state().playing);
       assertFalse(AdhanService.state().preview);
+      assertEquals(fajr, AdhanService.state().index);
       android.service.notification.StatusBarNotification notice=null;
       for(android.service.notification.StatusBarNotification item:app.getSystemService(android.app.NotificationManager.class).getActiveNotifications())
         if(item.getId()==AdhanNotification.ID)notice=item;
@@ -209,7 +217,6 @@ public final class LocalAdhanAudioTest extends InstrumentationTestCase {
       settings.edit().putBoolean("reminder_enabled",false).commit();PrayerReminders.sync(app);
       restore(settings,oldSettings);restore(plan,oldPlan);PrayerReminders.sync(app);
       if(page!=null){android.app.Activity opened=page;getInstrumentation().runOnMainSync(opened::finish);}
-      Files.deleteIfExists(actual.toPath());
     }
   }
   private void restore(SharedPreferences prefs,Map<String,?> original) {
