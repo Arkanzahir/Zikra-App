@@ -4,6 +4,6 @@ Baca AGENTS.md, docs/beta/CURRENT_STATUS.md, ACCOUNT_HANDOFF.md, SESSION_HANDOFF
 
 HP terakhir 1.9.55. Kandidat signed 1.9.58 telah dibangun dan diaudit. Akun 18+ belum diuji di produksi. Web tetap preview terlindungi dan unduhan ditutup.
 
-Firebase Auth Reader baru sudah tersedia dan uji baca lulus. Lanjut deploy endpoint akun, selesaikan akses AI mandiri dan uji produksi serta migrasi. Ikuti CURRENT_STATUS dan pertahankan HOLD hingga persyaratan rilis dipenuhi.
+Endpoint akun produksi sudah aktif dengan akun opsional. Pendaftaran sintetis dan penolakan akun belum terverifikasi lulus. Lanjut uji akun terverifikasi, akses AI mandiri, migrasi APK dan cek status key lama di IAM. Ikuti CURRENT_STATUS dan pertahankan HOLD hingga persyaratan rilis dipenuhi.
 
 Jaga data pengguna, konfigurasi/signing .local, PROJECT_HANDOFF.md WIP, stash audio dan desain disetujui. Jangan unggah rahasia, upgrade berbayar atau restart/hapus data HP tanpa koordinasi. Commit/push checkpoint beserta bukti dan batasnya.

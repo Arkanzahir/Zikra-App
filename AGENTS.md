@@ -1,6 +1,6 @@
 ## Status aktif 21 November 2026
 
-Baca [status dan urutan kerja](docs/beta/CURRENT_STATUS.md). Kandidat akun 1.9.58 sudah ditandatangani dan diaudit. Akses Firebase server, alur AI mandiri, dan uji perangkat tetap terbuka. Rilis berstatus HOLD. Catatan di bawah adalah riwayat.
+Baca [status dan urutan kerja](docs/beta/CURRENT_STATUS.md). Kandidat akun 1.9.58 sudah ditandatangani dan diaudit. Endpoint akun produksi aktif dengan akun opsional. Verifikasi email produksi, akses AI mandiri, status key lama di IAM, dan uji perangkat tetap terbuka. Rilis berstatus HOLD. Catatan di bawah adalah riwayat.
 
 ## Checkpoint 16 November 2026
 
