@@ -12,12 +12,8 @@ public final class AnswerReportClient {
   public static Call send(AssistantConnection connection, AssistantConnection.ServicePermit permit,
       String reason, String excerpt, Result result) throws Exception {
     if (!connection.permitsService(permit)) throw new IOException();
-    String endpoint = connection.endpoint();
-    String token = connection.accessCode();
-    if (!AssistantConnection.valid(endpoint, token)) throw new IOException();
-    HttpUrl url = HttpUrl.parse(endpoint).newBuilder().encodedPath("/v1/answer-reports").build();
     JSONObject payload = new JSONObject().put("reason", reason).put("excerpt", excerpt);
-    Request request = new Request.Builder().url(url).header("Authorization", "Bearer " + token)
+    Request request = connection.request("/v1/answer-reports")
         .post(RequestBody.create(MediaType.parse("application/json; charset=utf-8"), payload.toString())).build();
     Call call = HTTP.newBuilder().addInterceptor(chain -> {
       if (!connection.permitsService(permit)) throw new IOException();

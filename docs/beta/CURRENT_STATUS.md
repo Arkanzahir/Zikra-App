@@ -8,7 +8,7 @@
 |---|---|
 | HP pengguna | Terakhir diverifikasi pada signed APK 1.9.55/code82. Data berhasil dipulihkan. |
 | Kandidat signed terbaru | 1.9.58/code85, 38.929.647 byte, akun 18+ aktif pada kandidat. [Bukti paket](../../android/validation/signed-account-candidate-2026-11-21/README.md). Uji HP dan produksi masih terbuka. |
-| Source Android | 1.9.58/code85. Aktivasi akun pada build release memerlukan opsi eksplisit dan konfigurasi klien Firebase produksi. |
+| Source Android | 1.9.58/code85 dengan akses akun mandiri pada build akun. Aktivasi akun pada build release memerlukan opsi eksplisit dan konfigurasi klien Firebase produksi. Kandidat signed lama belum memuat perubahan ini. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
 | Layanan akun18+ | Endpoint aktif di produksi dengan akun tetap opsional. Pendaftaran sintetis dan penolakan email belum terverifikasi lulus. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
 | Website | Preview Vercel terlindungi sudah READY, video52detik lengkap bersuara; tombolAPKdisabled |
@@ -28,6 +28,7 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 
 ## Bukti terbaru
 
+- **Akses AI mandiri lokal.** 176 tes backend dan 237 tes JVM release lulus tanpa skip. Regresi memakai Redis fixture untuk chat, gambar, laporan, kuota lintas token Firebase, token instalasi lama, dan pencabutan. Belum ada aktivasi produksi, kandidat signed baru, atau pengujian perangkat untuk build ini.
 - [Pembaruan emulator 1.9.55 → 1.9.58](MIGRATION_EMULATOR_2026-11-21.md): empat database sintetis dan lima layar lulus dari rebuild signed 1.9.55.
 - [Kandidat signed 1.9.58](../../android/validation/signed-account-candidate-2026-11-21/README.md): kunci rilis yang sama, ukuran di bawah 100 MB, 237 tes JVM release lulus, pemeriksaan kredensial dan bundel adzan bersih. Build akun menolak konfigurasi Firebase yang hilang.
 - [Endpoint akun produksi](ACCOUNT_PRODUCTION_2026-11-21.md): empat rute menolak permintaan tanpa token, token instalasi lama masih memperoleh capabilities, akun sintetis berhasil dihapus. Verifikasi email dan alur positif belum lulus.
@@ -44,7 +45,7 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 |1| Kunci Auth Reader baru sudah dipindah ke `.local/firebase-auth-reader.json` dan diabaikan Git. Uji baca Firebase dengan UID acak menghasilkan `auth/user-not-found`, sesuai harapan. Pemeriksaan inventaris IAM dengan Auth Reader menghasilkan HTTP 403. Status kunci lama perlu dilihat dengan akses IAM pemilik. | Konsol pemilik untuk status kunci lama |
 |2| Selesai. Subject key stabil disimpan privat. Endpoint akun aktif dengan `ENABLED=true` dan `REQUIRED=false`. [Bukti deploy dan rollback](ACCOUNT_PRODUCTION_2026-11-21.md). | Tanpa HP |
 |3| [Uji update emulator](MIGRATION_EMULATOR_2026-11-21.md) dari rebuild signed 1.9.55 ke kandidat 1.9.58 lulus. Empat database sintetis dan lima layar terverifikasi. Lanjut uji dari APK historis di HP dan data pengguna. | HP setelah koordinasi |
-|4| Pendaftaran sintetis dan penolakan akun belum terverifikasi lulus di produksi. Lanjutkan uji pengiriman/verifikasi email, status, deklarasi, perpanjangan, dan pencabutan pada akun terverifikasi. Selesaikan akses mandiri AI: saat ini server masih perlu token instalasi terpisah walaupun akun 18+ valid. Sebelum mewajibkan akun untuk chat, gambar, dan laporan, verifikasi instalasi baru bisa masuk melalui alur yang disetujui dan kuota berlaku. | Endpoint produksi diperlukan untuk pengujian akhir |
+|4| Pendaftaran sintetis dan penolakan akun belum terverifikasi lulus di produksi. Lanjutkan uji pengiriman/verifikasi email, status, deklarasi, perpanjangan, dan pencabutan pada akun terverifikasi. Akses mandiri sudah diimplementasikan dan diuji dengan Redis fixture. Berikutnya uji build Android bersih dan backend dengan akun terverifikasi pada rollout terkontrol. Produksi saat ini masih memerlukan token instalasi. | Endpoint produksi diperlukan untuk pengujian akhir |
 |5| Finalkan privasi/risk usia 18+ dan retensi/kuota/provider, jalur penghapusan akun/metadata dan penanganan laporan. Selfdeclaration bukan jaminan anti-pemalsuan; holdSharedPreferences.commit failure belum fault-tested | Sebagian kode/dokumen tanpa HP; sebagian keputusan/layanan |
 |6| Tutup gate konten/audio/ilustrasi/promo yang berlaku untuk cakupan terbatas. Hak suaraElevenLabs pada saatgenerasi belum terkonfirmasi; video hanya untukreview terlindungi. [Jejak sumber](CONTENT_LICENSE_TRACE.md), [audit](PRODUCT_AUDIT.md) | Bukti luar; jangan menganggap filegratis=izinredistribusi |
 |7| SesiHP terarah untuk kandidat final/update/data dan sisa kasus adzan/izin. Gunakan bukti historis yang masih relevan; jangan ulang semua audio/restart demi jumlah tes | HP setelah koordinasi; restart hanya izin khusus |
@@ -57,7 +58,7 @@ Web tidak memerlukanpembangunanulang. `website/README.md`, `website/package-prev
 Server: `backend/adult-accounts.mjs`, `adult-account-runtime.mjs`, `account-http.mjs`, `api/adult-account.js`, `server.mjs`. Android: paket `account`, `AssistantConnection`, `AssistantHttp`, `ImageGenerationClient`, `OnlineAssistantClient`, `AiActivity`.
 
 - Endpoint GET/v1/adult-account; POST /declare,/renew,/withdraw. VerifiedFirebaseemail/tokenrevocation/currentstate; loginbaru≤5menit untukmutasi. DOB tidak disimpan; metadataUID/HMAC/ageband/policy/revisionTTL90hari sejak perubahan, konfirmasi30hari.
-- `ZIKRA_ADULT_ACCOUNTS_ENABLED=true` untukendpoint; `ZIKRA_ADULT_ACCOUNTS_REQUIRED=true` baru mewajibkanAI. Tidak aktifkanREQUIRED lebih dahulu.
+- `ZIKRA_ADULT_ACCOUNTS_ENABLED=true` mengaktifkan endpoint akun. `ZIKRA_ADULT_ACCOUNTS_SELF_SERVICE=true` mengaktifkan chat, gambar, capabilities dan laporan melalui sesi Firebase tanpa token instalasi. Flag baru default mati. Pertahankan `ZIKRA_ADULT_ACCOUNTS_REQUIRED=false` selama transisi agar token instalasi lama tetap berlaku.
 - Rahasia: `ZIKRA_AUTH_SERVICE_ACCOUNT_JSON`, `ZIKRA_ACCOUNT_SUBJECT_KEY`. HanyaAuth reader, bukanFCMsender. Jangan pakai emulator/TLSoff/subject keyfixturea*64 di produksi.
 - Pada Android release, opsi `-PzikraReleaseAdultAccounts=true` mengaktifkan login dan akun 18+ dengan konfigurasi Firebase produksi. Default tetap mati dan opsi emulator selalu mati pada release. JWT Firebase hanya untuk backend Zikra.
 - Permintaan diikatUID/revisi; callbacklama ditolak. Localhold persisten sebelumwithdrawRPC. Jejak under18 bukan penolakanpermanen seumurhidup; record punyaTTL dan deklarasi tetapself reported.

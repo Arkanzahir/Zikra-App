@@ -77,7 +77,8 @@ async function boundedJson(stream, limit, signal) {
 
 export function createRequestHandler({ apiKey, model, visionModel, provider = 'featherless', accountId, freePlanConfirmed, clientToken, fetchImpl = fetch, now = Date.now,
   providerTimeoutMs = 35000, accessMode = 'private', clientsFile, usageFile, dailyLimit,
-  sourceFetchImpl = fetch, accessStore, imageService, reportAnswer, onRejection, adultAccessGate }) {
+  sourceFetchImpl = fetch, accessStore, imageService, reportAnswer, onRejection, adultAccessGate, accountSelfService = false,
+  accountRequired = Boolean(adultAccessGate), accountPreAuth }) {
   if (adultAccessGate !== undefined && typeof adultAccessGate !== 'function') throw new ConfigError('Invalid adult account gate.');
   if (!['private', 'installation'].includes(accessMode)) throw new ConfigError('Invalid access mode.');
   const providerConfig = {apiKey, model, visionModel, provider, accountId, freePlanConfirmed};
@@ -86,13 +87,17 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
   const installation = accessMode === 'installation'
     ? accessStore ?? new InstallationAccess({ clientsFile, usageFile, dailyLimit }) : null;
   const distributed = typeof installation?.acquire === 'function';
+  if (accountSelfService && (!adultAccessGate || !distributed || typeof installation.acquireAccount !== 'function'))
+    throw new ConfigError('Account self-service requires distributed access.');
   const counters = new Map();
   let active = 0;
   const activeClients = new Map();
   return async (req, res) => {
     let identity = null, lease, queue, account;
+    const accountRequest = accountSelfService && (req.headers['x-zikra-account-token'] !== undefined
+      || (accountRequired && req.url !== '/v1/capabilities'));
     const verifyAccount = async () => {
-      if (!adultAccessGate) return;
+      if (!adultAccessGate || (!accountRequired && !accountRequest)) return;
       const token = req.headers['x-zikra-account-token'];
       if (typeof token !== 'string' || !/^[A-Za-z0-9._-]{32,8192}$/.test(token))
         throw new AccountAccessError('account_sign_in_required',401);
@@ -103,7 +108,7 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
           : error?.message === 'adult_confirmation_required' ? 'adult_confirmation_required' : 'account_unavailable',
           error?.message === 'unauthorized' ? 401 : error?.message === 'adult_confirmation_required' ? 403 : 503);
       }
-      if (!next || !/^[a-f0-9]{64}$/.test(next.accountId ?? '') || !Number.isSafeInteger(next.revision)
+      if (!next || !/^[a-f0-9]{64}$/.test(next.accountId ?? '') || !Number.isSafeInteger(next.revision) || next.revision < 1
           || account && (next.accountId !== account.accountId || next.revision !== account.revision))
         throw new AccountAccessError('adult_confirmation_required',403);
       account = next;
@@ -133,14 +138,28 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
     const capabilities=req.method==='GET'&&req.url==='/v1/capabilities';
     const reportRequest = req.method === 'POST' && req.url === '/v1/answer-reports';
     if (!reportRequest&&!imageRequest&&!capabilities&&(req.method !== 'POST' || req.url !== '/v1/assistant')) return reply(404, { error: 'not_found' });
-    try {
-      identity = installation ? await installation.identify(req.headers.authorization)
-        : (equalToken(req.headers.authorization, `Bearer ${clientToken}`) ? req.socket.remoteAddress || 'unknown' : null);
-    } catch { return reply(503, { error: 'access_unavailable' }); }
-    if (!identity) return reply(401, { error: 'unauthorized' });
-    if (!capabilities) {
-      try { await verifyAccount(); }
-      catch(error) { return reply(error.status,{error:error.message}); }
+    if (accountRequest) {
+      try {
+        if (accountPreAuth && !await accountPreAuth(req)) {
+          res.setHeader('Retry-After', '60');
+          return reply(429, { error: 'rate_limited' });
+        }
+        await verifyAccount();
+        identity = account.accountId;
+      } catch (error) {
+        return reply(error instanceof AccountAccessError ? error.status : 503,
+          { error: error instanceof AccountAccessError ? error.message : 'account_unavailable' });
+      }
+    } else {
+      try {
+        identity = installation ? await installation.identify(req.headers.authorization)
+          : (equalToken(req.headers.authorization, `Bearer ${clientToken}`) ? req.socket.remoteAddress || 'unknown' : null);
+      } catch { return reply(503, { error: 'access_unavailable' }); }
+      if (!identity) return reply(401, { error: 'unauthorized' });
+      if (!capabilities) {
+        try { await verifyAccount(); }
+        catch(error) { return reply(error.status,{error:error.message}); }
+      }
     }
     if (reportRequest) {
       if (!reportAnswer) return reply(503, { error: 'report_unavailable' });
@@ -149,14 +168,15 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
       try {
         const body = await boundedJson(req, 4096, AbortSignal.timeout(10000));
         await verifyAccount();
-        const status = await reportAnswer(identity, body);
+        const status = await reportAnswer(identity, body, accountRequest ? account : undefined);
+        if (status === 403) return reply(403, { error: 'adult_confirmation_required' });
         return reply(status, status === 201 ? { received: true } : { error: status === 429 ? 'rate_limited' : 'invalid_report' });
       } catch (error) {
         if(error instanceof AccountAccessError)return reply(error.status,{error:error.message});
         return reply(error instanceof InputError ? error.status : 503, { error: 'report_unavailable' });
       }
     }
-    if(capabilities)return reply(200,{imageGeneration:!!imageService,imageUserDaily:IMAGE_USER_DAILY,imageGlobalDaily:IMAGE_GLOBAL_DAILY,assistantProvider:provider,...(adultAccessGate?{accountRequired:true,minimumAge:18}:{})});
+    if(capabilities)return reply(200,{imageGeneration:!!imageService,imageUserDaily:IMAGE_USER_DAILY,imageGlobalDaily:IMAGE_GLOBAL_DAILY,assistantProvider:provider,...(accountRequired?{accountRequired:true,minimumAge:18}:{})});
     const requestedProvider=req.headers['x-zikra-provider'];
     if(!imageRequest && (provider==='cloudflare' && requestedProvider!=='cloudflare'
         || requestedProvider!==undefined && requestedProvider!==provider))
@@ -170,7 +190,8 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
     // Trust the socket, never caller-supplied X-Forwarded-For. Intended for one private client.
     if (distributed) {
       try {
-        const grant = await installation.acquire(identity, req.headers.authorization);
+        const grant = accountRequest ? await installation.acquireAccount(account)
+          : await installation.acquire(identity, req.headers.authorization);
         if (!grant.allowed) {
           queue = grant.queue;
           const daily=grant.error==='quota_exceeded';
@@ -216,7 +237,7 @@ export function createRequestHandler({ apiKey, model, visionModel, provider = 'f
         if (error instanceof InputError) return reply(error.status, { error: error.message });
         throw error;
       }
-      if(imageRequest){try{await verifyAccount();const image=await imageService.generate(body,identity,controller.signal);await verifyAccount();return reply(200,image);}catch(error){if(error instanceof ImageError)return reply(error.status,{error:error.message});throw error;}}
+      if(imageRequest){try{await verifyAccount();const image=await imageService.generate(body,identity,controller.signal,accountRequest ? account : undefined);await verifyAccount();return reply(200,image);}catch(error){if(error instanceof ImageError)return reply(error.status,{error:error.message});throw error;}}
       const messages = validateMessages(body?.messages);
       if(!body?.attachments&&Buffer.byteLength(JSON.stringify(body),'utf8')>BODY_LIMIT)return reply(413,{error:'too_large'});
       if (!messages) return reply(400, { error: 'invalid_messages' });

@@ -19,7 +19,7 @@ public final class QuranSyncGateway {
     try {
       AssistantConnection connection = new AssistantConnection(context);
       HttpUrl url = HttpUrl.parse(connection.endpoint());
-      return connection.configured() && url != null && url.isHttps() && url.port() == 443
+      return connection.hasInstallation() && url != null && url.isHttps() && url.port() == 443
           && "zikra-ai.vercel.app".equals(url.host()) && "/v1/assistant".equals(url.encodedPath());
     } catch (RuntimeException unavailable) { return false; }
   }

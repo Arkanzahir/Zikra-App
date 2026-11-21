@@ -1,5 +1,6 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { ConfigError } from './config.mjs';
+import { ADULT_POLICY } from './adult-accounts.mjs';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 export const tokenHash = token => createHash('sha256').update(token).digest('hex');
@@ -46,15 +47,37 @@ export class RedisRest {
   }
 }
 
+const accountId = /^[a-f0-9]{64}$/;
+export const adultRecordKey = (prefix, id) => prefix + 'adult:account:' + id;
+
+// Called inside the same Redis transaction as quota acquisition or report storage.
+export const ADULT_RECORD_GUARD = `
+local function adult_allowed(key, id, revision, policy)
+  local raw = redis.call('GET', key)
+  if not raw then return false end
+  local record = cjson.decode(raw)
+  local clock = redis.call('TIME')
+  local now = tonumber(clock[1]) * 1000 + math.floor(tonumber(clock[2]) / 1000)
+  return record.schema == 2 and record.id == id and record.revision == tonumber(revision)
+    and record.state == 'active' and record.ageBand == 'adult' and record.policy == policy
+    and record.assurance == 'self_declared' and tonumber(record.expiresAt) > now
+end
+`;
+
 // Redis time, counters and leases are shared across cold starts and replicas.
 export const ACQUIRE = `
-local raw = redis.call('GET', KEYS[1])
-if not raw then return {-1} end
-local ok, client = pcall(cjson.decode, raw)
-if not ok or type(client) ~= 'table' or type(client.revoked) ~= 'boolean' then
-  return redis.error_reply('invalid_registry')
+${ADULT_RECORD_GUARD}
+if ARGV[4] then
+  if not adult_allowed(KEYS[1], ARGV[1], ARGV[4], ARGV[5]) then return {-2} end
+else
+  local raw = redis.call('GET', KEYS[1])
+  if not raw then return {-1} end
+  local ok, client = pcall(cjson.decode, raw)
+  if not ok or type(client) ~= 'table' or type(client.revoked) ~= 'boolean' then
+    return redis.error_reply('invalid_registry')
 end
-if client.revoked or client.id ~= ARGV[1] then return {-1} end
+  if client.revoked or client.id ~= ARGV[1] then return {-1} end
+end
 local clock = redis.call('TIME')
 local now = tonumber(clock[1]) * 1000 + math.floor(tonumber(clock[2]) / 1000)
 local day = math.floor(now / 86400000)
@@ -115,13 +138,23 @@ export class RedisAccess {
   async acquire(id, auth) {
     const hash = hashFromAuth(auth);
     if (!hash || !uuid.test(id)) return { allowed: false, status: 401, error: 'unauthorized' };
+    return this.acquireFor(id, this.prefix + 'client:' + hash);
+  }
+  async acquireAccount({ accountId: id, revision }) {
+    if (!accountId.test(id) || !Number.isSafeInteger(revision) || revision < 1)
+      return { allowed: false, status: 403, error: 'adult_confirmation_required' };
+    return this.acquireFor(id, adultRecordKey(this.prefix, id), [revision, ADULT_POLICY]);
+  }
+  async acquireFor(id, key, accountArgs = []) {
     const lease = randomUUID();
-    const result = await this.redis.command(['EVAL', ACQUIRE, 4, `${this.prefix}client:${hash}`,
+    const result = await this.redis.command(['EVAL', ACQUIRE, 4, key,
       `${this.prefix}usage:${id}`, `${this.prefix}active`, `${this.prefix}active:${id}`,
-      id, lease, this.dailyLimit]);
+      id, lease, this.dailyLimit, ...accountArgs]);
     if (Array.isArray(result) && result.length === 1 && result[0] === 1) return { allowed: true, lease };
     if (Array.isArray(result) && result.length === 1 && result[0] === -1)
       return { allowed: false, status: 401, error: 'unauthorized' };
+    if (Array.isArray(result) && result.length === 1 && result[0] === -2)
+      return { allowed: false, status: 403, error: 'adult_confirmation_required' };
     if (Array.isArray(result) && result.length === 3 && result[0] === 0
         && result[1] === 'try_later' && ['installation', 'global'].includes(result[2]))
       return { allowed: false, status: 429, error: 'try_later', queue: result[2] };
@@ -131,7 +164,7 @@ export class RedisAccess {
     throw new Error('invalid_access_response');
   }
   async release(id, lease) {
-    if (!uuid.test(id) || !uuid.test(lease)) throw new Error('invalid_lease');
+    if ((!uuid.test(id) && !accountId.test(id)) || !uuid.test(lease)) throw new Error('invalid_lease');
     await this.redis.command(['EVAL', RELEASE, 2, `${this.prefix}active`, `${this.prefix}active:${id}`, lease]);
   }
 }

@@ -1,6 +1,5 @@
 package com.zikra.app.account;
 
-import com.zikra.app.BuildConfig;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import okhttp3.*;
@@ -16,7 +15,7 @@ public final class AdultAccountClient implements AutoCloseable {
   private volatile boolean closed;private volatile Call active;private volatile int generation;
   public void send(String action,JSONObject body,Result callback){
     if(closed)return;int run=++generation;String binding=AccountSession.binding();
-    String base=BuildConfig.DEBUG&&BuildConfig.ACCOUNT_AUTH_EMULATOR?"http://10.0.2.2:9098":"https://zikra-ai.vercel.app";
+    String base=AccountSession.serviceBase();
     if(!java.util.Arrays.asList("status","declare","renew","withdraw").contains(action))throw new IllegalArgumentException("Unknown account action");
     worker.execute(()->{
       JSONObject result=null;String error="account_unavailable";

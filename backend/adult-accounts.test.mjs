@@ -8,6 +8,8 @@ import { createAdultAccountHandler } from './account-http.mjs';
 import { createGateway } from './server.mjs';
 import { readAdultRuntimeConfig, vercelAccountAddress } from './adult-account-runtime.mjs';
 import { createVercelHandler } from './vercel-handler.mjs';
+import { RedisAccess, tokenHash } from './redis-access.mjs';
+import { inspectAnswerReports } from './answer-report-admin.mjs';
 import { redisFixture } from './test-support/redis-fixture.mjs';
 
 function fixture(repository) {
@@ -167,3 +169,70 @@ test('withdrawal before report storage or after image generation denies the resu
   const response=await send(path);assert.equal(response.status,403);assert.equal(generated,path.endsWith('images')?1:0);
  }
 });
+
+test('fresh account uses AI without installation credentials and shares quota across sessions',
+  { skip: !process.env.ZIKRA_REDIS_TEST_PYTHON }, async t => {
+    const redis = await redisFixture(t);
+    const prefix = 'self-service:';
+    const repository = new RedisAccountRepository(redis, prefix + 'adult:');
+    const f = fixture(repository);
+    f.advance(Date.now() - Date.parse('2026-11-15T05:00:00Z'));
+    await f.service.register('adult', f.body());
+    const accepted = 'synthetic-firebase-token-at-least-32-characters', rotated = accepted + '-rotated';
+    const installation = '9'.repeat(64);
+    const legacyId = '11111111-1111-4111-8111-111111111111';
+    const legacyHash = tokenHash(installation);
+    await redis.command(['SET', prefix + 'client:' + legacyHash, JSON.stringify({id: legacyId, revoked: false})]);
+    const env = {
+      FEATHERLESS_API_KEY: 'synthetic-server-only-key', FEATHERLESS_MODEL: 'test/model',
+      UPSTASH_REDIS_REST_URL: 'https://synthetic.upstash.io', UPSTASH_REDIS_REST_TOKEN: 'synthetic-redis-token',
+      ZIKRA_REDIS_PREFIX: prefix, ZIKRA_DAILY_LIMIT: '2', ZIKRA_REPORTS_ENABLED: 'true',
+      ZIKRA_ADULT_ACCOUNTS_ENABLED: 'true', ZIKRA_ADULT_ACCOUNTS_SELF_SERVICE: 'true',
+      ZIKRA_IMAGES_ENABLED: 'true', ZIKRA_IMAGES_FREE_PLAN_CONFIRMED: 'true',
+      CLOUDFLARE_ACCOUNT_ID: 'a'.repeat(32), CLOUDFLARE_API_TOKEN: 'synthetic-cloudflare-token'
+    };
+    const adultAccounts = { authorize: token => f.service.authorize(
+      token === accepted || token === rotated ? 'adult' : 'unverified') };
+    let modelCalls = 0;
+    const requestHandler = createVercelHandler(env, {
+      redis, adultAccounts, accountPreAuth: async req => req.headers['x-test-limited'] !== '1',
+      fetchImpl: async (url, options) => {
+        modelCalls++;
+        assert.ok(!JSON.stringify(options.headers).includes(accepted));
+        if (String(url).includes('cloudflare')) return Response.json({success:true,result:{image:
+          'iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAIklEQVR4nO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAA8G4wQAABiwCo9wAAAABJRU5ErkJggg=='}});
+        return Response.json({choices:[{message:{content:'Synthetic reply'}}]});
+      }, onRejection: () => {}
+    });
+    const server = http.createServer(requestHandler).listen(0, '127.0.0.1');
+    await once(server, 'listening');
+    t.after(() => server.close());
+    const send = (route, body, token, legacy, limited = false) => fetch(
+      'http://127.0.0.1:' + server.address().port + '/v1/' + route, {
+        method: body ? 'POST' : 'GET',
+        headers: {'content-type':'application/json',
+          ...(token ? {'x-zikra-account-token': token} : {}),
+          ...(legacy ? {authorization: 'Bearer ' + installation} : {}),
+          ...(limited ? {'x-test-limited':'1'} : {})},
+        ...(body ? {body: JSON.stringify(body)} : {})
+      });
+    const chat = {messages:[{role:'user',content:'Synthetic'}]};
+    const report = {reason:'other', excerpt:'Synthetic excerpt'};
+    assert.equal((await send('capabilities', null, accepted)).status, 200);
+    assert.equal((await send('capabilities', null, null, true)).status, 200);
+    assert.equal((await send('capabilities', null, accepted, false, true)).status, 429);
+    assert.equal((await send('assistant', chat, 'x'.repeat(32), true)).status, 401);
+    assert.equal((await send('assistant', chat, accepted)).status, 200);
+    const image = {prompt:'Synthetic landscape',requestId:'22222222-2222-4222-8222-222222222222'};
+    assert.equal((await send('images', image, rotated)).status, 200);
+    assert.equal((await send('assistant', chat, rotated)).status, 429);
+    assert.equal((await send('assistant', chat, null, true)).status, 200);
+    assert.equal((await send('answer-reports', report, accepted)).status, 201);
+    assert.equal((await inspectAnswerReports(redis, prefix)).reports.length, 1);
+    const principal = await f.service.authorize('adult');
+    await f.service.withdraw('adult', {});
+    assert.equal((await new RedisAccess({redis, prefix}).acquireAccount(principal)).status, 403);
+    for (const [route, body] of [['assistant', chat], ['images', image], ['answer-reports', report]])
+      assert.equal((await send(route, body, rotated, true)).status, 403);
+    assert.equal(modelCalls, 3);
+  });

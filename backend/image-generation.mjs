@@ -1,5 +1,7 @@
 import {ConfigError} from './config.mjs';
 import {imageDimensions} from './attachments.mjs';
+import { ADULT_POLICY } from './adult-accounts.mjs';
+import { ADULT_RECORD_GUARD, adultRecordKey } from './redis-access.mjs';
 
 export const IMAGE_MODEL='@cf/black-forest-labs/flux-1-schnell';
 export const IMAGE_USER_DAILY=3, IMAGE_GLOBAL_DAILY=20, IMAGE_MAX_BYTES=2_000_000;
@@ -14,6 +16,8 @@ export function readImageConfig(env=process.env){
   return {account:env.CLOUDFLARE_ACCOUNT_ID,token:env.CLOUDFLARE_API_TOKEN};
 }
 export const RESERVE_IMAGE=`
+${ADULT_RECORD_GUARD}
+if ARGV[1] and not adult_allowed(KEYS[4], ARGV[1], ARGV[2], ARGV[3]) then return {-2} end
 local clock=redis.call('TIME')
 local day=math.floor(tonumber(clock[1])/86400)
 if redis.call('EXISTS',KEYS[3])==1 then return {-1} end
@@ -57,11 +61,15 @@ export function validatedImage(data){
 }
 export function createImageService({config,redis,prefix,fetchImpl=fetch}){
   if(!config)return null;
-  return {async generate(body,identity,signal){
+  return {async generate(body,identity,signal,account){
     const request=validateImageRequest(body);
-    if(!uuid.test(identity))throw new ImageError('image_unavailable',503);
-    let grant;try{grant=await redis.command(['EVAL',RESERVE_IMAGE,3,prefix+'images:global',prefix+'images:user:'+identity,prefix+'images:request:'+identity+':'+request.requestId]);}
+    if (!(account ? /^[a-f0-9]{64}$/.test(identity) : uuid.test(identity)))throw new ImageError('image_unavailable',503);
+    const keys = [prefix+'images:global',prefix+'images:user:'+identity,prefix+'images:request:'+identity+':'+request.requestId];
+    if (account) keys.push(adultRecordKey(prefix, identity));
+    let grant;try{grant=await redis.command(['EVAL',RESERVE_IMAGE,keys.length,...keys,
+      ...(account ? [identity, account.revision, ADULT_POLICY] : [])]);}
     catch{throw new ImageError('image_access_unavailable',503);}
+    if(Array.isArray(grant)&&grant[0]===-2)throw new ImageError('adult_confirmation_required',403);
     if(Array.isArray(grant)&&grant[0]===-1)throw new ImageError('image_already_attempted',409);
     if(Array.isArray(grant)&&grant[0]===0&&['image_user_quota','image_global_quota'].includes(grant[1]))throw new ImageError(grant[1],429);
     if(!Array.isArray(grant)||grant.length!==1||grant[0]!==1)throw new ImageError('image_access_unavailable',503);
