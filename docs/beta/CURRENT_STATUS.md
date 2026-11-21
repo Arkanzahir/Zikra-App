@@ -28,6 +28,8 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 
 ## Bukti terbaru
 
+- **Chat Android tanpa token instalasi.** 10 tes instrumentasi lulus di emulator Android API 36 dengan Firebase Auth Emulator, Redis dan provider AI sintetis. Setelah verifikasi email dan konfirmasi usia, klien Android berhasil mengirim chat tanpa token instalasi. Respons HTML 504 dipetakan ke timeout, satu permintaan mencapai provider sintetis, dan permintaan baru yang dikirim manual berhasil. Pencabutan akses memblokir chat pada klien dan server. Probe anonim produksi memberi 200 untuk health dan 401 untuk capabilities serta akun. Uji chat APK signed 1.9.64 di staging masih terbuka karena APK memakai URL produksi.
+
 - **Hapus akun 1.9.64.** Menu Akun Zikra meminta konfirmasi dan autentikasi ulang dengan sandi. Endpoint menghapus akun Firebase, metadata deklarasi usia dan penghitung kuota akun. Penanda pseudonim 24 jam memblokir akses sambil memberi ruang percobaan ulang. Data di HP tetap lokal dan laporan moderasi mengikuti TTL tujuh hari. 177 tes backend, 237 JVM release dan 10 tes Android API 36 lulus. Tes Android memakai Firebase Auth Emulator dan akun sintetis, termasuk pembatalan dialog dan penolakan login setelah penghapusan. Draf privasi diperbarui. Tombol dan endpoint penghapusan produksi masih mati sampai izin akun layanan dan uji staging tersedia. [Aktivasi](../../backend/deploy/SELF_SERVICE_ACCOUNTS.md).
 
 - **Alarm otomatis di HP 1.9.63-internal.** AlarmManager fisik membunyikan Subuh saat layar mati dan keyguard terkunci. Pemutar melaporkan output headset saja. Aksi Berhenti di notifikasi menghentikan layanan, dan preferensi pengingat pulih. Percobaan speaker dihentikan sebelum menjadwalkan alarm karena headset masih terdeteksi.
