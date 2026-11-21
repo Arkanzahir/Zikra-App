@@ -80,7 +80,18 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
   }
   public void testModeEditorRetainsDraftAndCancelDoesNotSave()throws Exception{
     launch(PrayerActivity.class);LinearLayout rows=page.findViewById(R.id.prayerRows);ui(()->rows.getChildAt(1).findViewById(R.id.prayerRowBell).performClick());
-    AlertDialog dialog=(AlertDialog)field(page,"modeDialog");ui(()->dialog.getListView().performItemClick(dialog.getListView().getChildAt(2),2,2));recreate();
+    assertFalse(LocalAdhanAudio.available(context, 2));
+    assertTrue(AdhanAsset.available(context, 2));
+    AlertDialog dialog=(AlertDialog)field(page,"modeDialog");
+    assertEquals(PrayerMode.values().length, dialog.getListView().getAdapter().getCount());
+    ArrayList<View> guidance = new ArrayList<>();
+    dialog.getWindow().getDecorView().findViewsWithText(guidance,
+        context.getString(R.string.local_adhan_mode_hint), View.FIND_VIEWS_WITH_TEXT);
+    assertEquals(1, guidance.size());
+    assertTrue(guidance.get(0).getGlobalVisibleRect(new android.graphics.Rect()));
+    assertEquals(context.getResources().getStringArray(R.array.prayer_mode_choices)[PrayerMode.ADHAN.ordinal()],
+        dialog.getListView().getAdapter().getItem(0));
+    ui(()->dialog.getListView().performItemClick(dialog.getListView().getChildAt(2),2,2));recreate();
     AlertDialog restored=(AlertDialog)field(page,"modeDialog");assertEquals(2,restored.getListView().getCheckedItemPosition());
     for(int which:new int[]{AlertDialog.BUTTON_POSITIVE,AlertDialog.BUTTON_NEGATIVE}){
       View button=restored.getButton(which);android.graphics.Rect box=new android.graphics.Rect();assertTrue(button.getGlobalVisibleRect(box));assertEquals(button.getHeight(),box.height());assertEquals(button.getWidth(),box.width());
@@ -89,6 +100,10 @@ public final class AdhanIntegrationTest extends InstrumentationTestCase {
     ui(()->restored.getButton(AlertDialog.BUTTON_NEGATIVE).performClick());assertEquals(PrayerMode.NOTIFICATION,PrayerSettings.mode(context,2));
     LinearLayout fresh=page.findViewById(R.id.prayerRows);ui(()->fresh.getChildAt(1).findViewById(R.id.prayerRowBell).performClick());AlertDialog save=(AlertDialog)field(page,"modeDialog");
     ui(()->{save.getListView().performItemClick(save.getListView().getChildAt(2),2,2);save.getButton(AlertDialog.BUTTON_POSITIVE).performClick();});assertEquals(PrayerMode.VIBRATE,PrayerSettings.mode(context,2));
+    ui(()->fresh.getChildAt(1).findViewById(R.id.prayerRowBell).performClick());
+    AlertDialog bundled=(AlertDialog)field(page,"modeDialog");
+    ui(()->{bundled.getListView().performItemClick(bundled.getListView().getChildAt(0),0,0);bundled.getButton(AlertDialog.BUTTON_POSITIVE).performClick();});
+    assertEquals(PrayerMode.ADHAN, PrayerSettings.mode(context, 2));
     View preview=page.findViewById(R.id.prayerAudioPreview);ViewParent ancestor=preview.getParent();
     while(!(ancestor instanceof ScrollView))ancestor=ancestor.getParent();ScrollView scroll=(ScrollView)ancestor;
     ui(()->scroll.scrollTo(0,Math.max(0,preview.getTop()-12)));assertTrue(preview.getGlobalVisibleRect(new android.graphics.Rect()));shot("settings");

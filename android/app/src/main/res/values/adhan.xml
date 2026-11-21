@@ -24,7 +24,7 @@
   <string name="adhan_focus_paused">Timer dijeda saat adzan. Lanjutkan jika sudah siap.</string>
   <string name="adhan_quiet_classes">Pengingat senyap selama kelas</string>
   <string name="adhan_quiet_hint">Saat jam kelas dari Study, pengingat tampil tanpa suara/getar dan adzan tidak diputar.</string>
-  <string name="adhan_sound_note">Adzan mengikuti volume alarm, mode senyap/Jangan Ganggu, izin notifikasi dan batas Android. Pengingat dapat tertunda atau tampil sebagai notifikasi biasa bila sistem membatasi pemutar.</string>
+  <string name="adhan_sound_note">Adzan terjadwal mengikuti volume alarm. Saat memakai earphone, adzan mengikuti volume media. Pratinjau selalu mengikuti volume media. Pengingat mengikuti mode senyap/Jangan Ganggu, izin notifikasi dan batas Android. Pengingat dapat tertunda atau tampil sebagai notifikasi biasa bila sistem membatasi pemutar.</string>
   <string name="adhan_fajr_title">Gunakan rekaman ini untuk Subuh?</string>
   <string name="adhan_fajr_note">Rekaman khusus Subuh belum dikonfirmasi. Kamu dapat memakai rekaman pilihan ini atau mempertahankan notifikasi biasa.</string>
   <string name="adhan_use_selected">Pakai rekaman pilihan</string>
