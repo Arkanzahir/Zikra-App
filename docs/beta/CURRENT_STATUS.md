@@ -7,7 +7,7 @@
 | Bagian | Keadaan yang terbukti |
 |---|---|
 | HP pengguna | APK signed 1.9.63-internal/code90 terpasang. Pilihan Adzan penuh kembali muncul tanpa impor dan dialog memberi petunjuk ganti ke MP3 sendiri. Hash, ID, direktori data dan waktu pemasangan awal cocok. Rekaman lama dan perbaikan rute earphone tetap ada. |
-| Kandidat signed terbaru | 1.9.63/code90 standar, 41.992.546 byte, akun 18+ opsional dan dua audio bawaan berlisensi. Audit, unduhan HTTP lokal, pemasangan baru, dan update emulator 1.9.59 → 1.9.63 lulus. Paket dan manifest HOLD disimpan privat. |
+| Kandidat signed terbaru | 1.9.64/code91 standar, 41.994.958 byte, Auth 18+ aktif. Audit signer dan pemindaian rahasia lulus. Update signed 1.9.63 → 1.9.64 di emulator API 36 mempertahankan ID aplikasi, direktori data dan waktu pemasangan awal. APK dan manifest HOLD privat. Hapus akun masih nonaktif pada APK ini. |
 | Source Android | 1.9.64/code91 dengan akses akun mandiri pada build akun. Aktivasi pada build release memerlukan opsi eksplisit dan konfigurasi klien Firebase produksi. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
 | Layanan akun18+ | Endpoint aktif di produksi dengan akun tetap opsional. Pendaftaran sintetis dan penolakan email belum terverifikasi lulus. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
