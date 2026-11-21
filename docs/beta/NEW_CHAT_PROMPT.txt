@@ -2,8 +2,8 @@ Lanjutkan proyek Zikra di E:\Zikra\Zikra-App-main. Gunakan skill caveman.
 
 Baca AGENTS.md, docs/beta/CURRENT_STATUS.md, ACCOUNT_HANDOFF.md, SESSION_HANDOFF.md, IMPLEMENTATION_PLAN.md, RELEASE_SCOPE.md dan docs/beta/PRODUCT_AUDIT.md. Jangan mengulang audit atau proyek dari nol.
 
-HP terakhir 1.9.55. Kandidat signed 1.9.59 telah diaudit dan lulus update emulator dari 1.9.58. Siklus akun 18+ terverifikasi di produksi. Web tetap preview terlindungi dan unduhan ditutup.
+HP sudah menjalankan 1.9.59. Update langsung dari 1.9.55 lulus dengan lima database dan sepuluh tabel cocok. Kandidat signed 1.9.59 telah diaudit dan lulus update emulator dari 1.9.58. Siklus akun 18+ terverifikasi di produksi. Web tetap preview terlindungi dan unduhan ditutup.
 
-Endpoint akun produksi sudah aktif dengan akun opsional. Pendaftaran sintetis dan penolakan akun belum terverifikasi lulus. Update emulator dari rebuild signed 1.9.55 ke 1.9.58 lulus dengan empat database sintetis. Verifikasi email dan siklus akun lulus di produksi. Chat, gambar, dan laporan tanpa token instalasi berhasil di staging terlindungi, dengan timeout chat sesekali. Lanjut verifikasi chat dan rollout terkontrol, migrasi fisik dari 1.9.55 serta cek status key lama di IAM. Ikuti CURRENT_STATUS dan pertahankan HOLD hingga persyaratan rilis dipenuhi.
+Endpoint akun produksi sudah aktif dengan akun opsional. Pendaftaran sintetis dan penolakan akun belum terverifikasi lulus. Update emulator dari rebuild signed 1.9.55 ke 1.9.58 lulus dengan empat database sintetis. Verifikasi email dan siklus akun lulus di produksi. Chat, gambar, dan laporan tanpa token instalasi berhasil di staging terlindungi, dengan timeout chat sesekali. Lanjut verifikasi chat dan rollout terkontrol, uji MP3 dan suara adzan di HP serta cek status key lama di IAM. Ikuti CURRENT_STATUS dan pertahankan HOLD hingga persyaratan rilis dipenuhi.
 
 Jaga data pengguna, konfigurasi/signing .local, PROJECT_HANDOFF.md WIP, stash audio dan desain disetujui. Jangan unggah rahasia, upgrade berbayar atau restart/hapus data HP tanpa koordinasi. Commit/push checkpoint beserta bukti dan batasnya.

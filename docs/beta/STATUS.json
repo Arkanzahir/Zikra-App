@@ -172,7 +172,7 @@
     "newLintRun": false,
     "historical": true
   },
-  "physicalPhoneVersion": "1.9.55",
+  "physicalPhoneVersion": "1.9.59",
   "localAdhan": {
     "importImplemented": true,
     "source": "explicit-user-selected-local-mp3",
@@ -274,8 +274,15 @@
       "emulatorUpgradeFrom": "1.9.58",
       "emulatorDatabasesMatched": 4,
       "emulatorSmokesPassed": 5,
-      "physicalPhoneInstalled": false,
-      "evidence": "android/validation/signed-self-service-candidate-2026-11-21/README.md"
+      "physicalPhoneInstalled": true,
+      "evidence": "android/validation/signed-self-service-candidate-2026-11-21/README.md",
+      "physicalPhoneUpgrade": {
+        "from": "1.9.55",
+        "sqliteIntegrityDatabases": 5,
+        "tableRowCountsMatched": 10,
+        "launchPassed": true,
+        "physicalAdhanTested": false
+      }
     }
   },
   "activeStatusDocument": "docs/beta/CURRENT_STATUS.md"
