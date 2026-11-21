@@ -194,8 +194,8 @@
     "evidence": "website/validation/2026-11-16-hosting/README.md"
   },
   "adultAccountsCurrent": {
-    "sourceVersion": "1.9.58",
-    "versionCode": 85,
+    "sourceVersion": "1.9.59",
+    "versionCode": 86,
     "minimumAgeForOnlineAi": 18,
     "guardianFlowDeferred": true,
     "assurance": "self_declared",
@@ -246,7 +246,7 @@
     },
     "selfServiceImplemented": true,
     "selfServiceProductionEnabled": false,
-    "selfServiceCandidateSigned": false,
+    "selfServiceCandidateSigned": true,
     "selfServiceTests": {
       "backendPassed": 176,
       "releaseJvmPassed": 237,
@@ -263,6 +263,19 @@
       "chatTimeoutObserved": true,
       "withdrawalDenialHttp": 403,
       "fixtureCleanupConfirmed": true
+    },
+    "selfServiceCandidate": {
+      "version": "1.9.59",
+      "versionCode": 86,
+      "bytes": 38946195,
+      "sha256": "edc28523086dbec471f61c8cbdf693d000ee326ec7a2fc303d29a5dc80d9f1bc",
+      "releaseJvmPassed": 237,
+      "releaseJvmSkipped": 0,
+      "emulatorUpgradeFrom": "1.9.58",
+      "emulatorDatabasesMatched": 4,
+      "emulatorSmokesPassed": 5,
+      "physicalPhoneInstalled": false,
+      "evidence": "android/validation/signed-self-service-candidate-2026-11-21/README.md"
     }
   },
   "activeStatusDocument": "docs/beta/CURRENT_STATUS.md"
