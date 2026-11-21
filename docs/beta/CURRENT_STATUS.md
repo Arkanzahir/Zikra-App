@@ -7,8 +7,8 @@
 | Bagian | Keadaan yang terbukti |
 |---|---|
 | HP pengguna | Terakhir diverifikasi pada signed APK 1.9.55/code82. Data berhasil dipulihkan. |
-| Kandidat signed terbaru | 1.9.58/code85, 38.929.647 byte, akun 18+ aktif pada kandidat. [Bukti paket](../../android/validation/signed-account-candidate-2026-11-21/README.md). Uji HP dan produksi masih terbuka. |
-| Source Android | 1.9.58/code85 dengan akses akun mandiri pada build akun. Aktivasi akun pada build release memerlukan opsi eksplisit dan konfigurasi klien Firebase produksi. Kandidat signed lama belum memuat perubahan ini. |
+| Kandidat signed terbaru | 1.9.59/code86, 38.946.195 byte, akses akun mandiri di build akun. [Bukti paket dan emulator](../../android/validation/signed-self-service-candidate-2026-11-21/README.md). Uji HP dan rollout masih terbuka. |
+| Source Android | 1.9.59/code86 dengan akses akun mandiri pada build akun. Aktivasi pada build release memerlukan opsi eksplisit dan konfigurasi klien Firebase produksi. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
 | Layanan akun18+ | Endpoint aktif di produksi dengan akun tetap opsional. Pendaftaran sintetis dan penolakan email belum terverifikasi lulus. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
 | Website | Preview Vercel terlindungi sudah READY, video52detik lengkap bersuara; tombolAPKdisabled |
@@ -28,6 +28,7 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 
 ## Bukti terbaru
 
+- [Kandidat signed 1.9.59](../../android/validation/signed-self-service-candidate-2026-11-21/README.md). 237 tes JVM, audit paket, update emulator 1.9.58 → 1.9.59, empat database sintetis, dan lima layar lulus.
 - **Akses AI mandiri lokal.** 176 tes backend dan 237 tes JVM release lulus tanpa skip. Regresi memakai Redis fixture untuk chat, gambar, laporan, kuota lintas token Firebase, token instalasi lama, dan pencabutan. Belum ada aktivasi produksi, kandidat signed baru, atau pengujian perangkat untuk build ini.
 - [Pembaruan emulator 1.9.55 → 1.9.58](MIGRATION_EMULATOR_2026-11-21.md): empat database sintetis dan lima layar lulus dari rebuild signed 1.9.55.
 - [Kandidat signed 1.9.58](../../android/validation/signed-account-candidate-2026-11-21/README.md): kunci rilis yang sama, ukuran di bawah 100 MB, 237 tes JVM release lulus, pemeriksaan kredensial dan bundel adzan bersih. Build akun menolak konfigurasi Firebase yang hilang.
@@ -45,7 +46,7 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 |1| Kunci Auth Reader baru sudah dipindah ke `.local/firebase-auth-reader.json` dan diabaikan Git. Uji baca Firebase dengan UID acak menghasilkan `auth/user-not-found`, sesuai harapan. Pemeriksaan inventaris IAM dengan Auth Reader menghasilkan HTTP 403. Status kunci lama perlu dilihat dengan akses IAM pemilik. | Konsol pemilik untuk status kunci lama |
 |2| Selesai. Subject key stabil disimpan privat. Endpoint akun aktif dengan `ENABLED=true` dan `REQUIRED=false`. [Bukti deploy dan rollback](ACCOUNT_PRODUCTION_2026-11-21.md). | Tanpa HP |
 |3| [Uji update emulator](MIGRATION_EMULATOR_2026-11-21.md) dari rebuild signed 1.9.55 ke kandidat 1.9.58 lulus. Empat database sintetis dan lima layar terverifikasi. Lanjut uji dari APK historis di HP dan data pengguna. | HP setelah koordinasi |
-|4| Verifikasi email, deklarasi, perpanjangan, dan pencabutan lulus pada endpoint produksi. Chat, gambar, dan laporan tanpa token instalasi berhasil di staging terlindungi. Periksa timeout chat dan uji build Android bersih sebelum rollout. Produksi masih memerlukan token instalasi. | APK baru dan uji HP setelah koordinasi |
+|4| Verifikasi email, deklarasi, perpanjangan, dan pencabutan lulus pada endpoint produksi. Chat, gambar, dan laporan tanpa token instalasi berhasil di staging terlindungi. APK 1.9.59 sudah dibangun dari arsip bersih dan lulus uji update emulator. Verifikasi timeout chat dan lanjut uji HP sebelum rollout. Produksi masih memerlukan token instalasi. | Uji HP setelah koordinasi |
 |5| Finalkan privasi/risk usia 18+ dan retensi/kuota/provider, jalur penghapusan akun/metadata dan penanganan laporan. Selfdeclaration bukan jaminan anti-pemalsuan; holdSharedPreferences.commit failure belum fault-tested | Sebagian kode/dokumen tanpa HP; sebagian keputusan/layanan |
 |6| Tutup gate konten/audio/ilustrasi/promo yang berlaku untuk cakupan terbatas. Hak suaraElevenLabs pada saatgenerasi belum terkonfirmasi; video hanya untukreview terlindungi. [Jejak sumber](CONTENT_LICENSE_TRACE.md), [audit](PRODUCT_AUDIT.md) | Bukti luar; jangan menganggap filegratis=izinredistribusi |
 |7| SesiHP terarah untuk kandidat final/update/data dan sisa kasus adzan/izin. Gunakan bukti historis yang masih relevan; jangan ulang semua audio/restart demi jumlah tes | HP setelah koordinasi; restart hanya izin khusus |
