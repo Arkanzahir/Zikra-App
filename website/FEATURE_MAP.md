@@ -20,7 +20,7 @@
 | Doa | DuaActivity, DuaLibraryActivity | Bacaan/arti/simpanan |
 | Hadis | HadithActivity, HadithReaderActivity | HadeethEnc untuk cakupan publik; Gading tetap ditunda |
 | Kiblat | QiblaActivity | Sensor, posisi dan kalibrasi perangkat |
-| Salat/adzan | PrayerActivity, prayer | Per-waktu/izin Android/MP3 lokal biasa dan Subuh |
+| Salat/adzan | PrayerActivity, prayer | Pengingat per waktu salat, adzan bawaan biasa dan Subuh, MP3 lokal opsional, serta izin Android |
 | Masjid | NearbyMosquesActivity | Jarak garis lurus, bukan rute |
 | Ibadah hari ini | FaithActivity, HomeActivity | Catatan pengguna |
 | Pengingat harian | ContextualActivity | Terpisah dari adzan; pembatasan baterai |
