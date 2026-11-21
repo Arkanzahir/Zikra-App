@@ -6,7 +6,7 @@
 
 | Bagian | Keadaan yang terbukti |
 |---|---|
-| HP pengguna | Signed APK 1.9.59/code86 terpasang langsung dari 1.9.55. Integritas lima database dan jumlah baris sepuluh tabel cocok. |
+| HP pengguna | Signed APK 1.9.60/code87 terpasang dari 1.9.59. Hash paket, sertifikat, identitas aplikasi, dan waktu pemasangan awal cocok. Izin notifikasi dan alarm tepat waktu tetap aktif. [Bukti](../../android/validation/bundled-adhan-2026-11-21/README.md). |
 | Kandidat signed terbaru | 1.9.60/code87, 41.991.450 byte, akun 18+ opsional pada build akun, serta adzan bawaan Subuh dan Zuhur hingga Isya. Audit, update emulator, dan 11 tes adzan lulus. [Bukti](../../android/validation/bundled-adhan-2026-11-21/README.md). |
 | Source Android | 1.9.60/code87 dengan akses akun mandiri pada build akun. Aktivasi pada build release memerlukan opsi eksplisit dan konfigurasi klien Firebase produksi. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
@@ -29,7 +29,7 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 ## Bukti terbaru
 
 - APK signed `1.9.60-internal`/code87 memuat pasangan Misyari dan Subuh yang byte-nya cocok dengan Zikra lama. Tanpa impor MP3, keduanya bisa dipilih lewat mode Adzan penuh. Audit APK, 237 tes JVM, dan 11 tes instrumen emulator API 36 lulus. Paket standar diuji terpisah dengan hasil kedua MP3 lama absen. APK internal belum dipasang di HP atau dipublikasikan. [Sumber dan cakupan](CONTENT_LICENSE_TRACE.md).
-- [Adzan bawaan 1.9.60](../../android/validation/bundled-adhan-2026-11-21/README.md): update offline 1.9.59 → 1.9.60 di emulator Android 36, audit signer dan dua MP3, serta 11 tes adzan lulus. Alarm Subuh memutar rekaman bawaan tanpa impor dan berhenti melalui aksi notifikasi. Suara fisik dan izin pada HP masih terbuka. [Jejak lisensi](CONTENT_LICENSE_TRACE.md).
+- [Adzan bawaan 1.9.60](../../android/validation/bundled-adhan-2026-11-21/README.md): update offline 1.9.59 → 1.9.60 di emulator Android 36, audit signer dan dua MP3, serta 11 tes adzan lulus. Alarm Subuh memutar rekaman bawaan tanpa impor dan berhenti melalui aksi notifikasi. Izin pada HP terverifikasi setelah update. Alarm fisik dengan layar terkunci masih terbuka. [Jejak lisensi](CONTENT_LICENSE_TRACE.md).
 - [Kandidat signed 1.9.59](../../android/validation/signed-self-service-candidate-2026-11-21/README.md). 237 tes JVM, audit paket, update emulator 1.9.58 → 1.9.59, empat database sintetis, dan lima layar lulus.
 - **Akses AI mandiri lokal.** 176 tes backend dan 237 tes JVM release lulus tanpa skip. Regresi memakai Redis fixture untuk chat, gambar, laporan, kuota lintas token Firebase, token instalasi lama, dan pencabutan. Belum ada aktivasi produksi, kandidat signed baru, atau pengujian perangkat untuk build ini.
 - [Pembaruan emulator 1.9.55 → 1.9.58](MIGRATION_EMULATOR_2026-11-21.md): empat database sintetis dan lima layar lulus dari rebuild signed 1.9.55.

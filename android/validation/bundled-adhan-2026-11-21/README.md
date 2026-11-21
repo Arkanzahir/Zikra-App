@@ -6,4 +6,8 @@ APK kandidat bertanda tangan di `.local/releases/Zikra-v1.9.60-beta-audio-candid
 - JVM release melaporkan 232 lulus, 5 dilewati karena fixture data host, tanpa gagal.
 - Emulator Android 36 dengan Wi-Fi dan data seluler dimatikan menerima update langsung dari signed 1.9.59 ke signed 1.9.60. Waktu pemasangan awal tetap sama. Isi database tidak dibandingkan pada putaran ini.
 - [11 tes instrumentasi](instrumentation.txt) lulus pada APK bertanda tangan. Alarm Android memicu pemutaran rekaman Subuh bawaan tanpa impor MP3, dan tombol Berhenti pada notifikasi menghentikan pemutaran. Tes juga mencakup pemilihan audio bawaan dan regresi impor serta penghapusan MP3 pilihan pengguna.
-- Suara fisik, izin, dan alarm dengan layar terkunci masih perlu diperiksa di HP. Website beta tetap pada preview terlindungi, tanpa tautan unduh APK publik.
+## Uji update pada HP Android 36
+
+- Update ADB dari signed 1.9.59/code86 ke 1.9.60/code87 berhasil. Hash APK terpasang cocok dengan kandidat. Sertifikat, ID aplikasi, direktori data, dan waktu pemasangan awal cocok. Isi database tidak dibandingkan pada update ini.
+- Cadangan terenkripsi 748.987 byte dari sesi 1.9.59 tersedia dan hash salinannya cocok dengan file di HP. Izin notifikasi dan alarm tepat waktu tetap aktif setelah update.
+- Pembatasan pemasangan di HP membatalkan paket alat uji terpisah. Paket tersebut tidak terpasang. Uji alarm otomatis dengan layar terkunci masih terbuka. Website beta tetap pada preview terlindungi, tanpa tautan unduh APK publik.
