@@ -21,4 +21,13 @@ Endpoint status, deklarasi, perpanjangan, dan pencabutan tersedia di [zikra-ai.v
 | Status dan deklarasi dengan token akun sintetis tersebut | HTTP 401 |
 | Pembersihan akun sintetis | HTTP 200 saat penghapusan mandiri. Auth Reader mengonfirmasi UID sudah tidak ditemukan. |
 
-Uji sintetis memakai domain `example.invalid` tanpa mengirim email. Alur pengiriman dan klik verifikasi, status/deklarasi berhasil, perpanjangan, dan pencabutan dengan akun terverifikasi masih perlu diuji. Uji rute tanpa kredensial tidak memakai inferensi. IAM mengembalikan HTTP 403 saat Auth Reader membaca daftar kunci. Status key lama perlu akses IAM pemilik. [Uji pembaruan emulator dari rebuild 1.9.55](MIGRATION_EMULATOR_2026-11-21.md) lulus dengan data sintetis.
+Uji sintetis memakai domain `example.invalid` tanpa mengirim email. Uji dengan email terverifikasi dibuktikan pada run berikutnya. Uji rute tanpa kredensial tidak memakai inferensi. IAM mengembalikan HTTP 403 saat Auth Reader membaca daftar kunci. Status key lama perlu akses IAM pemilik. [Uji pembaruan emulator dari rebuild 1.9.55](MIGRATION_EMULATOR_2026-11-21.md) lulus dengan data sintetis.
+
+## Verifikasi email dan akses AI mandiri
+
+- Firebase mengirim tautan ke alamat uji yang disetujui. Pemilik membuka tautan. Token login baru tercatat memiliki email terverifikasi.
+- Endpoint produksi mengembalikan HTTP 200 untuk status awal, deklarasi 18+, perpanjangan dengan revisi baru, dan pencabutan. Status akhir `withdrawn`. Usia tetap deklarasi sendiri.
+- Staging terlindungi `dpl_68Cae68VFhkZHE7jUexdwKDHY8pS` dari source `aecaa62` memakai self-service aktif dan kewajiban akun mati. Tanpa token instalasi, capabilities 200, chat 200 pada percobaan ulang, gambar 200, dan laporan 201. Capabilities dengan token instalasi lama 200.
+- Satu permintaan chat akun dan satu chat token lama mendapat HTTP 504. Penyebab timeout belum terisolasi. Uji chat memakai prompt sintetis dan tidak menilai keandalan layanan.
+- Setelah pencabutan, empat rute staging mengembalikan 403. Akun Firebase dan data Redis yang khusus milik fixture sudah dihapus. Token lama dari akun uji ditolak 401. Kuota global tetap mengikuti TTL normal.
+- Alias publik tetap pada deployment sebelumnya. Akses mandiri produksi, APK final, dan pengujian HP tetap terbuka. Status rilis HOLD.
