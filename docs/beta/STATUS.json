@@ -229,7 +229,21 @@
     "productionUnverifiedAccountRejected": true,
     "productionSyntheticAccountCleanupConfirmed": true,
     "productionVerifiedAccountE2e": false,
-    "previousFirebaseKeyIamStatusVerified": false
+    "previousFirebaseKeyIamStatusVerified": false,
+    "firebaseAuthReaderIamListHttpStatus": 403,
+    "emulatorUpgrade": {
+      "baseline": "1.9.55",
+      "baselineKind": "signed-rebuild-from-83bc6db",
+      "historicalApkHashMatches": false,
+      "target": "1.9.58",
+      "api": 36,
+      "sameSigner": true,
+      "packageIdentityPreserved": true,
+      "databasesWithMatchingSyntheticRows": 4,
+      "smokeScreensPassed": 5,
+      "physicalDeviceTested": false,
+      "evidence": "docs/beta/MIGRATION_EMULATOR_2026-11-21.md"
+    }
   },
   "activeStatusDocument": "docs/beta/CURRENT_STATUS.md"
 }
