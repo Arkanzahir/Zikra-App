@@ -220,7 +220,8 @@
       "evidence": "android/validation/signed-account-candidate-2026-11-21/README.md"
     },
     "firebaseAuthReaderRoleCreated": true,
-    "firebaseAuthReaderPrivateKeyRetrieved": false,
+    "firebaseAuthReaderPrivateKeyRetrieved": true,
+    "firebaseAuthReaderReadAccessVerified": true,
     "evidence": "android/validation/adult-accounts-2026-11-15/README.md"
   },
   "activeStatusDocument": "docs/beta/CURRENT_STATUS.md"
