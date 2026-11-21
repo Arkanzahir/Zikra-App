@@ -113,7 +113,10 @@ public final class PrayerReminders {
           &&AdhanNotification.allowed(c,false)&&PrayerAlarmPlan.timely(epoch,System.currentTimeMillis(),PrayerAlarmPlan.MAX_AUDIO_AGE);
       if(audio){
         prefs.edit().putLong("prayer_delivered_"+index,epoch).commit();
-        if(!AdhanService.fromAlarm(c,intent))post(c,index,epoch,PrayerMode.NOTIFICATION,false,c.getString(R.string.adhan_unavailable));
+        if(!AdhanService.fromAlarm(c,intent)) {
+          boolean headphones=PrayerAudioPolicy.headphonesConnected(c.getSystemService(android.media.AudioManager.class));
+          post(c,index,epoch,PrayerMode.NOTIFICATION,headphones,c.getString(R.string.adhan_unavailable));
+        }
       }else if(post(c,index,epoch,mode,quiet,null))prefs.edit().putLong("prayer_delivered_"+index,epoch).commit();
     }finally{sync(c);}
   }

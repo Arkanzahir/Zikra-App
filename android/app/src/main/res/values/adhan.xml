@@ -41,4 +41,5 @@
   <string name="adhan_banner_blocked">Kategori notifikasi adzan dimatikan. Aktifkan kembali untuk pemutaran adzan; notifikasi biasa tetap mengikuti pilihan dan izin lainnya.</string>
   <string name="adhan_settings_unavailable">Pengaturan tidak tersedia pada perangkat ini.</string>
   <string name="adhan_schedule_note">Pengingat tujuh hari ke depan disiapkan lokal dan diperbarui setelah perubahan waktu, kota, izin atau aplikasi dibuka. Ketepatan tetap mengikuti perangkat.</string>
+  <string name="adhan_headphones_unavailable">Adzan dijeda karena output earphone tidak tersedia.</string>
 </resources>
