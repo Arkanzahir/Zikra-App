@@ -39,6 +39,22 @@ public final class AccountSession {
     auth().getApp().getApplicationContext().getSharedPreferences("zikra_adult_ai_privacy",0).edit().putBoolean(holdKey(user),blocked).commit();
   }
   static FirebaseAuth auth(){return AccountAuth.get(FirebaseApp.getInstance().getApplicationContext());}
+  public enum GatewayRequest { INSTANCE }
+
+  public static String serviceBase() {
+    return BuildConfig.DEBUG && BuildConfig.ACCOUNT_AUTH_EMULATOR
+        ? "http://10.0.2.2:9098" : "https://zikra-ai.vercel.app";
+  }
+
+  public static boolean hasVerifiedUser() {
+    try {
+      FirebaseUser user = auth().getCurrentUser();
+      return user != null && user.isEmailVerified();
+    } catch (IllegalStateException unavailable) {
+      return false;
+    }
+  }
+
   public static boolean trusted(HttpUrl url){
     if(url==null||!url.username().isEmpty()||!url.password().isEmpty()||url.query()!=null||url.fragment()!=null)return false;
     if(BuildConfig.DEBUG&&BuildConfig.ACCOUNT_AUTH_EMULATOR)
@@ -60,7 +76,8 @@ public final class AccountSession {
   }
   public static Interceptor interceptor(){return chain->{
     Request request=chain.request();String path=request.url().encodedPath();
-    if(!BuildConfig.ADULT_ACCOUNTS_ENABLED||!(path.equals("/v1/assistant")||path.equals("/v1/images")||path.equals("/v1/answer-reports")))return chain.proceed(request);
+    if(!BuildConfig.ADULT_ACCOUNTS_ENABLED||!(path.equals("/v1/assistant")||path.equals("/v1/images")||path.equals("/v1/answer-reports")
+        ||(path.equals("/v1/capabilities") && request.tag(GatewayRequest.class)!=null)))return chain.proceed(request);
     if(!trusted(request.url()))throw new IOException("Untrusted account service");
     if(held())throw new Required();
     long revision=REVISION.get();String token=token();

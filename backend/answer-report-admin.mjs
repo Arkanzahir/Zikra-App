@@ -3,7 +3,7 @@ import { pathToFileURL } from 'node:url';
 import { RedisRest, readRedisConfig } from './redis-access.mjs';
 import { privateOperatorPath } from './operator-files.mjs';
 
-const reference = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}:[0-9a-f]{64}$/;
+const reference = /^(?:[0-9a-f]{64}|[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}):[0-9a-f]{64}$/;
 function reportPrefix(prefix) {
   if (!/^[a-zA-Z0-9:_-]{1,64}:$/.test(prefix)) throw new Error('invalid_namespace');
   return prefix + 'answer-report:';

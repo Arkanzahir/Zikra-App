@@ -15,8 +15,7 @@ public final class ImageGenerationClient implements AutoCloseable {
   public ImageGenerationClient(){this(AssistantHttp.create().newBuilder().callTimeout(45,TimeUnit.SECONDS).followRedirects(false).followSslRedirects(false).retryOnConnectionFailure(false).build());}
   ImageGenerationClient(OkHttpClient client){http=client;}
   private Request.Builder request(AssistantConnection connection,String route)throws Exception{
-    String token=connection.accessCode();if(!AssistantConnection.valid(connection.endpoint(),token))throw new IOException();
-    HttpUrl url=HttpUrl.parse(connection.endpoint());return new Request.Builder().url(url.newBuilder().encodedPath(route).build()).header("Authorization","Bearer "+token);
+    return connection.request(route);
   }
   public void capabilities(AssistantConnection connection,Capability callback){int token=++capabilityGeneration;if(check!=null)check.cancel();if(closed)return;
     try{check=http.newCall(request(connection,"/v1/capabilities").get().build());check.enqueue(new Callback(){public void onFailure(Call c,IOException e){deliver(false);}public void onResponse(Call c,Response r){boolean ready=false;try(r){if(r.isSuccessful()&&r.body()!=null){r.body().source().request(4097);if(r.body().source().buffer().size()<=4096)ready=new JSONObject(r.body().string()).optBoolean("imageGeneration");}}catch(Exception ignored){}deliver(ready);}private void deliver(boolean value){main.post(()->{if(!closed&&token==capabilityGeneration)callback.available(value);});}});}catch(Exception e){main.post(()->{if(!closed&&token==capabilityGeneration)callback.available(false);});}

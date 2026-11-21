@@ -723,6 +723,10 @@ public final class AiActivity extends BaseActivity {
   }
 
   private void configureGateway() {
+    if (connection.usesAccountGateway()) {
+      startActivity(new Intent(this, com.zikra.app.account.AdultAccountActivity.class));
+      return;
+    }
     LinearLayout form = new LinearLayout(this);
     form.setOrientation(LinearLayout.VERTICAL);
     form.setPadding(dp(24), dp(8), dp(24), dp(8));
@@ -1136,6 +1140,7 @@ public final class AiActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    if (connection != null && connection.usesAccountGateway()) imageCapabilityEndpoint = "";
     if(network!=null){network.start();updateMode();refreshImageCapability();}
   }
 

@@ -243,6 +243,14 @@
       "smokeScreensPassed": 5,
       "physicalDeviceTested": false,
       "evidence": "docs/beta/MIGRATION_EMULATOR_2026-11-21.md"
+    },
+    "selfServiceImplemented": true,
+    "selfServiceProductionEnabled": false,
+    "selfServiceCandidateSigned": false,
+    "selfServiceTests": {
+      "backendPassed": 176,
+      "releaseJvmPassed": 237,
+      "skipped": 0
     }
   },
   "activeStatusDocument": "docs/beta/CURRENT_STATUS.md"

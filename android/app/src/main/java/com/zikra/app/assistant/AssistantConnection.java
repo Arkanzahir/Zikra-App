@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 import android.util.Base64;
+import com.zikra.app.BuildConfig;
+import com.zikra.app.account.AccountSession;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import javax.crypto.Cipher;
@@ -12,6 +15,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 import okhttp3.HttpUrl;
+import okhttp3.Request;
 
 /** Private gateway credentials are separate from upstream provider credentials. */
 public final class AssistantConnection {
@@ -47,16 +51,38 @@ public final class AssistantConnection {
         && AssistantConsent.revision(consent).equals(permit.revision);
   }
 
+  public boolean hasInstallation() {
+    return !prefs.getString("endpoint", "").isEmpty() && prefs.contains("access") && prefs.contains("iv");
+  }
+
+  public boolean usesAccountGateway() {
+    return BuildConfig.ADULT_ACCOUNTS_ENABLED && !hasInstallation();
+  }
+
   public String endpoint() {
-    return prefs.getString("endpoint", "");
+    if (!usesAccountGateway()) return prefs.getString("endpoint", "");
+    return AccountSession.serviceBase() + "/v1/assistant";
   }
 
   public boolean online() {
-    return prefs.getBoolean("online", false) && !endpoint().isEmpty();
+    return configured() && prefs.getBoolean("online", usesAccountGateway());
   }
 
   public boolean configured() {
-    return !endpoint().isEmpty() && prefs.contains("access") && prefs.contains("iv");
+    return hasInstallation() || (usesAccountGateway() && AccountSession.hasVerifiedUser());
+  }
+
+  Request.Builder request(String route) throws Exception {
+    HttpUrl url = HttpUrl.parse(endpoint());
+    if (usesAccountGateway()) {
+      if (!AccountSession.trusted(url) || !configured()) throw new IOException("Account gateway unavailable");
+      return new Request.Builder().url(url.newBuilder().encodedPath(route).build())
+          .tag(AccountSession.GatewayRequest.class, AccountSession.GatewayRequest.INSTANCE);
+    }
+    String code = accessCode();
+    if (!valid(endpoint(), code)) throw new IOException("Invalid gateway");
+    return new Request.Builder().url(url.newBuilder().encodedPath(route).build())
+        .header("Authorization", "Bearer " + code);
   }
 
   public void activate() {

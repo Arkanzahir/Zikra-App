@@ -35,7 +35,7 @@ export function createAdultServices({auth,redis,prefix,subjectKey,projectId,trus
   const repository=new RedisAccountRepository(redis,prefix+'adult:');
   const service=new AdultAccounts({identity,repository,subjectKey,now});
   const beforeAuth=createAccountPreAuth({redis,prefix:prefix+'adult:',addressKey:subjectKey,trustedAddress});
-  return {service,handler:createAdultAccountHandler({service,beforeAuth})};
+  return {service,beforeAuth,handler:createAdultAccountHandler({service,beforeAuth})};
 }
 let runtime;
 export function getAdultRuntime(env=process.env) {

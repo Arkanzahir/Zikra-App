@@ -81,8 +81,6 @@ public final class OnlineAssistantClient implements AutoCloseable {
     if (closed.get()) throw new IOException("Assistant client is closed");
     cancel();
     int token = generation;
-    String code = connection.accessCode(), endpoint = connection.endpoint();
-    if (!AssistantConnection.valid(endpoint, code)) throw new IOException("Invalid gateway");
     OkHttpClient.Builder guarded = http.newBuilder();
     guarded.interceptors().add(0, chain -> {
       if (!connection.permits(permission)) throw new PermissionChanged();
@@ -90,9 +88,7 @@ public final class OnlineAssistantClient implements AutoCloseable {
     });
     active =
         guarded.build().newCall(
-            new Request.Builder()
-                .url(endpoint)
-                .header("Authorization", "Bearer " + code)
+            connection.request("/v1/assistant")
                 .header("X-Zikra-Attachments",body.has("attachments")?"1":"0")
                 .header("X-Zikra-Provider", "cloudflare")
                 .post(
