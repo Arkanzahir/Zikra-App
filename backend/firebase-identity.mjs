@@ -4,7 +4,7 @@ export function createFirebaseIdentity(auth, { projectId, now = Date.now }) {
       || typeof auth?.verifyIdToken !== 'function' || typeof auth?.getUser !== 'function')
     throw new Error('invalid_identity_config');
   return {
-    async verify(token, recent = false) {
+    async verify(token, recent = false, requireVerified = true) {
       if (typeof token !== 'string' || token.length < 32 || token.length > 8192)
         throw new Error('unauthorized');
       let claims;
@@ -13,13 +13,13 @@ export function createFirebaseIdentity(auth, { projectId, now = Date.now }) {
       const seconds = Math.floor(now() / 1000);
       if (claims?.aud !== projectId || claims?.iss !== `https://securetoken.google.com/${projectId}`
           || typeof claims.sub !== 'string' || claims.sub.length < 1 || claims.sub.length > 128
-          || claims.uid !== claims.sub || claims.email_verified !== true
+          || claims.uid !== claims.sub || (requireVerified && claims.email_verified !== true)
           || !Number.isSafeInteger(claims.exp) || claims.exp <= seconds
           || !Number.isSafeInteger(claims.auth_time) || claims.auth_time > seconds
           || (recent && seconds - claims.auth_time > 300)) throw new Error('unauthorized');
       try {
         const user=await auth.getUser(claims.sub);
-        if(user.uid!==claims.sub||user.disabled||user.emailVerified!==true)throw new Error();
+        if(user.uid!==claims.sub||user.disabled||(requireVerified&&user.emailVerified!==true))throw new Error();
       } catch { throw new Error('unauthorized'); }
       return { subject: claims.sub };
     },

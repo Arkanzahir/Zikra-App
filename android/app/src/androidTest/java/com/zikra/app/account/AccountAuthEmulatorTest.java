@@ -128,6 +128,37 @@ public final class AccountAuthEmulatorTest extends InstrumentationTestCase {
     fill(); click(R.id.accountSignIn); waitForText(R.string.account_verified);
     assertEquals(ownedUser.getUid(), auth.getCurrentUser().getUid());
   }
+  public void testAccountDeletionRequiresConfirmationAndRemovesLogin() throws Exception {
+    ownedUser = Tasks.await(auth.createUserWithEmailAndPassword(address, secret), 20, TimeUnit.SECONDS).getUser();
+    assertNotNull(ownedUser);
+    waitForText(R.string.account_signed_in);
+    click(R.id.accountDelete);
+    java.lang.reflect.Field field = AccountActivity.class.getDeclaredField("deletionDialog");
+    field.setAccessible(true);
+    android.app.AlertDialog dialog = (android.app.AlertDialog) field.get(page);
+    assertNotNull(dialog);
+    getInstrumentation().runOnMainSync(() -> dialog.getButton(android.content.DialogInterface.BUTTON_NEGATIVE).performClick());
+    assertNotNull(auth.getCurrentUser());
+
+    click(R.id.accountDelete);
+    android.app.AlertDialog confirm = (android.app.AlertDialog) field.get(page);
+    getInstrumentation().runOnMainSync(() -> {
+      ((EditText) confirm.findViewById(android.R.id.edit)).setText(secret);
+      confirm.getButton(android.content.DialogInterface.BUTTON_POSITIVE).performClick();
+    });
+    waitForText(R.string.account_signed_out);
+    assertNull(auth.getCurrentUser());
+    try {
+      Tasks.await(auth.signInWithEmailAndPassword(address, secret), 20, TimeUnit.SECONDS);
+      fail("The deleted login must be rejected");
+    } catch (java.util.concurrent.ExecutionException denied) {
+      assertTrue(denied.getCause() instanceof com.google.firebase.auth.FirebaseAuthException);
+      String code = ((com.google.firebase.auth.FirebaseAuthException) denied.getCause()).getErrorCode();
+      assertTrue("Unexpected login result: " + code, code.equals("ERROR_USER_NOT_FOUND")
+          || code.equals("ERROR_INVALID_CREDENTIAL"));
+    }
+    ownedUser = null;
+  }
   public void testPasswordResetUsesLocalOutboxOnly() throws Exception {
     ownedUser = Tasks.await(auth.createUserWithEmailAndPassword(address,secret),20,TimeUnit.SECONDS).getUser();
     auth.signOut(); waitForText(R.string.account_signed_out);

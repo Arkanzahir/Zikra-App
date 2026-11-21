@@ -33,6 +33,15 @@ public final class AccountSession {
   }
   public static void hold(){setHold(true);}
   static void releaseHold(){setHold(false);}
+  static void finishDeletion(FirebaseUser user) {
+    FirebaseAuth auth = auth();
+    FirebaseUser current = auth.getCurrentUser();
+    if (current == null || !current.getUid().equals(user.getUid())) return;
+    invalidate();
+    auth.getApp().getApplicationContext().getSharedPreferences("zikra_adult_ai_privacy", 0)
+        .edit().remove(holdKey(user)).apply();
+    auth.signOut();
+  }
   private static void setHold(boolean blocked){
     invalidate();FirebaseUser user=auth().getCurrentUser();if(user==null)return;
     auth().getApp().getApplicationContext().getSharedPreferences("zikra_adult_ai_privacy",0).edit().putBoolean(holdKey(user),blocked).commit();
@@ -61,14 +70,16 @@ public final class AccountSession {
     return url.isHttps()&&url.host().equals("zikra-ai.vercel.app")&&url.port()==443;
   }
   public static final class Required extends IOException { Required(){super("account_sign_in_required");} }
-  static String token()throws IOException {
+  static String token()throws IOException { return token(false); }
+  static String tokenForDeletion()throws IOException { return token(true); }
+  private static String token(boolean deletion)throws IOException {
     if(Looper.myLooper()==Looper.getMainLooper())throw new IOException("Account request requires worker");
     FirebaseUser user=auth().getCurrentUser();
-    if(user==null||!user.isEmailVerified())throw new Required();
+    if(user==null||(!deletion&&!user.isEmailVerified()))throw new Required();
     try{
-      String token=Tasks.await(user.getIdToken(false),12,TimeUnit.SECONDS).getToken();
+      String token=Tasks.await(user.getIdToken(deletion),12,TimeUnit.SECONDS).getToken();
       FirebaseUser current=auth().getCurrentUser();
-      if(token==null||current==null||!current.getUid().equals(user.getUid())||!current.isEmailVerified())throw new Required();
+      if(token==null||current==null||!current.getUid().equals(user.getUid())||(!deletion&&!current.isEmailVerified()))throw new Required();
       return token;
     }catch(InterruptedException interrupted){Thread.currentThread().interrupt();throw new IOException("Account interrupted");}
     catch(java.util.concurrent.ExecutionException|java.util.concurrent.TimeoutException error){throw new IOException("Account token unavailable");}

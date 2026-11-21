@@ -25,4 +25,9 @@
     <string name="account_email_sent">Permintaan email sudah diproses. Periksa kotak masuk dan folder spam.</string>
     <string name="account_wait_email">Tunggu satu menit sebelum meminta email lagi.</string>
     <string name="account_closed">Pendaftaran akun belum dibuka pada versi ini.</string>
+    <string name="account_delete">Hapus akun</string>
+    <string name="account_delete_confirm">Akun login dan akses AI online akan dihapus permanen. Jadwal, bookmark dan chat di perangkat tetap ada. Masukkan sandi untuk mengonfirmasi.</string>
+    <string name="account_delete_done">Akun sudah dihapus.</string>
+    <string name="account_delete_reauth_failed">Konfirmasi sandi gagal. Periksa sandi dan koneksi, lalu coba lagi.</string>
+    <string name="account_delete_retry">Penghapusan belum terkonfirmasi. Coba lagi jika masih bisa masuk, atau hubungi dukungan.</string>
 </resources>
