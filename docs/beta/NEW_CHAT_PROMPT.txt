@@ -1,4 +1,4 @@
-Lanjutkan proyek Zikra di D:\Download\Zikra-App-main\Zikra-App-main. Gunakan skill caveman.
+Lanjutkan proyek Zikra di E:\Zikra\Zikra-App-main. Gunakan skill caveman.
 
 Baca AGENTS.md, docs/beta/CURRENT_STATUS.md, ACCOUNT_HANDOFF.md, SESSION_HANDOFF.md, IMPLEMENTATION_PLAN.md, RELEASE_SCOPE.md dan docs/beta/PRODUCT_AUDIT.md. Jangan mengulang audit atau proyek dari nol.
 

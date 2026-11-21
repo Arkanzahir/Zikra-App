@@ -1,6 +1,6 @@
 # Zikra — status aktif untuk sesi berikutnya
 
-**21 November 2026 · HOLD · belum rilis publik.** Promosi besar setelah persyaratan rilis dipenuhi. Repo aktif `D:/Download/Zikra-App-main/Zikra-App-main`. Catatan 16 November pada handoff lain adalah riwayat.
+**21 November 2026 · HOLD · belum rilis publik.** Promosi besar setelah persyaratan rilis dipenuhi. Repo aktif `E:/Zikra/Zikra-App-main`. Catatan 16 November pada handoff lain adalah riwayat.
 
 ## Fakta yang jangan dicampur
 
