@@ -48,20 +48,31 @@ public final class AdhanService extends Service {
   private AudioManager audio;
   private AudioFocusRequest focus;
   private boolean preview, prepared, foreground;
+  private boolean headphones, waitingForHeadphones;
+  private float focusVolume=1f;
+  private AudioRouting.OnRoutingChangedListener routing;
   private int index=-1, generation;
   private long epoch, revision, began;
   private String locationKey, token, status="";
   private final SharedPreferences.OnSharedPreferenceChangeListener settings=(p,key)->check();
   private final Runnable prepareTimeout=()->finish(getString(R.string.adhan_unavailable),true);
   private final Runnable tick=new Runnable(){@Override public void run(){
-    check();if(player!=null){publish();main.postDelayed(this,1000);}
+    check();if(player!=null)checkRoute(player);
+    if(player!=null){publish();main.postDelayed(this,1000);}
   }};
   private final BroadcastReceiver noisy=new BroadcastReceiver(){@Override public void onReceive(Context c,Intent i){finish(getString(R.string.adhan_interrupted),false);}};
+
+  private final Runnable routeTimeout = this::headphonesUnavailable;
+  private final AudioDeviceCallback devices = new AudioDeviceCallback() {
+    @Override public void onAudioDevicesAdded(AudioDeviceInfo[] added) { check(); }
+    @Override public void onAudioDevicesRemoved(AudioDeviceInfo[] removed) { check(); }
+  };
 
   @Override public void onCreate(){
     super.onCreate();active=this;audio=getSystemService(AudioManager.class);PrayerReminders.createChannel(this);
     PrayerSettings.prefs(this).registerOnSharedPreferenceChangeListener(settings);
     getSharedPreferences(LocationStore.PREFS,0).registerOnSharedPreferenceChangeListener(settings);
+    audio.registerAudioDeviceCallback(devices, main);
     IntentFilter filter=new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
     if(Build.VERSION.SDK_INT>=33)registerReceiver(noisy,filter,Context.RECEIVER_NOT_EXPORTED);else registerReceiver(noisy,filter);
   }
@@ -80,11 +91,12 @@ public final class AdhanService extends Service {
     String nextToken=nextPreview?"preview:"+SystemClock.elapsedRealtime():nextIndex+":"+nextEpoch;
     if(player!=null&&nextToken.equals(token))return START_NOT_STICKY;
     release();preview=nextPreview;index=nextIndex;epoch=nextEpoch;token=nextToken;
+    headphones=PrayerAudioPolicy.headphonesConnected(audio);
     locationKey=command.getStringExtra("location_key");revision=command.getLongExtra("revision",-1);began=SystemClock.elapsedRealtime();
     if(!validAlarm()||!AdhanNotification.allowed(this,preview)||!AdhanAsset.available(this,index)){
       finish(getString(R.string.adhan_unavailable),true);return START_NOT_STICKY;
     }
-    if(!PrayerAudioPolicy.deviceAllowsSound(this)||PrayerAudioPolicy.quietClass(this)){
+    if(!PrayerAudioPolicy.deviceAllowsSound(this, usesMedia())||PrayerAudioPolicy.quietClass(this)){
       finish(getString(R.string.adhan_silent_device),true);return START_NOT_STICKY;
     }
     if(!preview&&!PrayerAlarmPlan.timely(epoch,System.currentTimeMillis(),PrayerAlarmPlan.MAX_AUDIO_AGE)){
@@ -105,29 +117,87 @@ public final class AdhanService extends Service {
   }
   private void check(){
     if(player==null)return;
+    if (headphones != PrayerAudioPolicy.headphonesConnected(audio)) {
+      finish(getString(R.string.adhan_interrupted), false);
+      return;
+    }
     if(!validAlarm()||!AdhanNotification.allowed(this,preview)
-        ||!PrayerAudioPolicy.deviceAllowsSound(this)||PrayerAudioPolicy.quietClass(this)
+        ||!PrayerAudioPolicy.deviceAllowsSound(this, usesMedia())||PrayerAudioPolicy.quietClass(this)
         ||SystemClock.elapsedRealtime()-began>MAX_PLAY_MS)finish(getString(R.string.adhan_stopped),false);
   }
-  private AudioAttributes attributes(){return new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build();}
+  private boolean usesMedia() { return preview || headphones; }
+
+  private AudioAttributes attributes() {
+    return new AudioAttributes.Builder()
+        .setUsage(usesMedia() ? AudioAttributes.USAGE_MEDIA : AudioAttributes.USAGE_ALARM)
+        .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+        .build();
+  }
+
+  private void headphonesUnavailable() {
+    finish(getString(R.string.adhan_headphones_unavailable), true);
+  }
+
+  private void checkRoute(MediaPlayer current) {
+    if (!headphones || Build.VERSION.SDK_INT < 28 || !prepared || !current.isPlaying()) return;
+    if (Build.VERSION.SDK_INT >= 36) {
+      var outputs = current.getRoutedDevices();
+      if (outputs.isEmpty() && waitingForHeadphones) return;
+      if (outputs.isEmpty() || !outputs.stream().allMatch(PrayerAudioPolicy::isHeadphone)) {
+        headphonesUnavailable();
+        return;
+      }
+    } else {
+      AudioDeviceInfo output = current.getRoutedDevice();
+      if (output == null && waitingForHeadphones) return;
+      if (output == null || !PrayerAudioPolicy.isHeadphone(output)) {
+        headphonesUnavailable();
+        return;
+      }
+    }
+    if (waitingForHeadphones) {
+      waitingForHeadphones=false;
+      main.removeCallbacks(routeTimeout);
+      current.setVolume(focusVolume, focusVolume);
+      playbackStarted();
+    }
+  }
+
+  private void playbackStarted() {
+    if (!preview && PrayerSettings.prefs(this).getBoolean(PrayerSettings.PAUSE_FOCUS, false)) {
+      com.zikra.app.study.FocusTimer.pauseForAdhan(this);
+    }
+    status=getString(R.string.adhan_notification_playing);
+    publish();
+    getSystemService(NotificationManager.class).notify(NOTICE, notification());
+  }
   private void focusChanged(int run,int change){
     if(run!=generation||player==null)return;
     if(change==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK||change==AudioManager.AUDIOFOCUS_GAIN){
-      float volume=change==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK?0.2f:1f;
-      try{player.setVolume(volume,volume);}
+      focusVolume=change==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK?0.2f:1f;
+      if (waitingForHeadphones) return;
+      try{player.setVolume(focusVolume,focusVolume);}
       catch(IllegalStateException unavailable){finish(getString(R.string.adhan_unavailable),true);}
     }else if(change<0)finish(getString(R.string.adhan_interrupted),false);
   }
   private void prepare(){
     final int run=++generation;final MediaPlayer next=new MediaPlayer();player=next;
-    next.setAudioAttributes(attributes());next.setWakeMode(this,PowerManager.PARTIAL_WAKE_LOCK);
+    AudioAttributes playbackAttributes = attributes();
+    next.setAudioAttributes(playbackAttributes);next.setWakeMode(this,PowerManager.PARTIAL_WAKE_LOCK);
+    if (headphones && Build.VERSION.SDK_INT >= 33) {
+      var outputs = audio.getAudioDevicesForAttributes(playbackAttributes);
+      if (outputs.isEmpty() || !outputs.stream().allMatch(PrayerAudioPolicy::isHeadphone)) {
+        headphonesUnavailable();
+        return;
+      }
+    }
     next.setOnPreparedListener(ready->{
       if(run!=generation||player!=ready)return;
       prepared=true;check();if(player!=ready)return;
       try{
       if(!preview&&!PrayerAlarmPlan.timely(epoch,System.currentTimeMillis(),PrayerAlarmPlan.MAX_AUDIO_AGE)){finish(getString(R.string.adhan_late),true);return;}
       if(ready.getDuration()<=0||ready.getDuration()>MAX_PLAY_MS){finish(getString(R.string.adhan_unavailable),true);return;}
-      focus=new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT).setAudioAttributes(attributes())
+      focus=new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT).setAudioAttributes(playbackAttributes)
           .setOnAudioFocusChangeListener(change->focusChanged(run,change),main).build();
       if(audio.requestAudioFocus(focus)!=AudioManager.AUDIOFOCUS_REQUEST_GRANTED){finish(getString(R.string.adhan_focus_denied),true);return;}
       if(run!=generation||player!=ready)return;
@@ -139,12 +209,20 @@ public final class AdhanService extends Service {
               .setCurve(new float[]{0f,1f},new float[]{0f,1f}).build());
           entrance.apply(VolumeShaper.Operation.PLAY);
         }
+        if (headphones && Build.VERSION.SDK_INT >= 28) {
+          waitingForHeadphones=true;
+          ready.setVolume(0f, 0f);
+          routing=router -> {
+            if (player == ready) checkRoute(ready);
+          };
+          ready.addOnRoutingChangedListener(routing, main);
+          main.postDelayed(routeTimeout, 2500);
+        }
         ready.start();began=SystemClock.elapsedRealtime();
       }
       catch(IllegalStateException failed){finish(getString(R.string.adhan_unavailable),true);return;}
-      if(!preview&&PrayerSettings.prefs(this).getBoolean(PrayerSettings.PAUSE_FOCUS,false))com.zikra.app.study.FocusTimer.pauseForAdhan(this);
-      status=getString(R.string.adhan_notification_playing);
-      publish();getSystemService(NotificationManager.class).notify(NOTICE,notification());
+      if (waitingForHeadphones) checkRoute(ready);
+      else playbackStarted();
       }catch(SecurityException|IllegalStateException failure){finish(getString(R.string.adhan_unavailable),true);}
     });
     next.setOnCompletionListener(done->{if(run==generation)finish(getString(R.string.adhan_finished),false);});
@@ -159,21 +237,27 @@ public final class AdhanService extends Service {
   }
   private void publish(){
     int position=0,duration=0;boolean playing=false;
-    try{if(prepared&&player!=null){position=player.getCurrentPosition();duration=player.getDuration();playing=player.isPlaying();}}
+    try{if(prepared&&player!=null){position=player.getCurrentPosition();duration=player.getDuration();playing=player.isPlaying()&&!waitingForHeadphones;}}
     catch(IllegalStateException invalid){ }
     state=new State(player!=null,playing,preview,index,position,duration,status);
   }
   private void finish(String message,boolean fallback){
     status=message;
     if(fallback&&!preview&&PrayerSchedule.isPrayer(index)&&LocationStore.current(this).key().equals(locationKey))
-      PrayerReminders.post(this,index,epoch,PrayerMode.NOTIFICATION,PrayerAudioPolicy.quietClass(this)||!PrayerAudioPolicy.deviceAllowsSound(this),message);
+      PrayerReminders.post(this,index,epoch,PrayerMode.NOTIFICATION,headphones||PrayerAudioPolicy.quietClass(this)||!PrayerAudioPolicy.deviceAllowsSound(this, usesMedia()),message);
     release();publish();stopForeground(STOP_FOREGROUND_REMOVE);foreground=false;stopSelf();
   }
   private void release(){
     generation++;main.removeCallbacks(tick);main.removeCallbacks(prepareTimeout);
+    main.removeCallbacks(routeTimeout);
+    waitingForHeadphones=false;focusVolume=1f;
     MediaPlayer old=player;player=null;prepared=false;
     VolumeShaper oldEntrance=entrance;entrance=null;
     if(oldEntrance!=null)try{oldEntrance.close();}catch(IllegalStateException released){ }
+    if (old != null && routing != null && Build.VERSION.SDK_INT >= 28) {
+      old.removeOnRoutingChangedListener(routing);
+    }
+    routing=null;
     if(old!=null){old.setOnPreparedListener(null);old.setOnCompletionListener(null);old.setOnErrorListener(null);old.release();}
     AudioFocusRequest oldFocus=focus;focus=null;if(oldFocus!=null)audio.abandonAudioFocusRequest(oldFocus);
   }
@@ -181,6 +265,7 @@ public final class AdhanService extends Service {
     if(player!=null)status=getString(R.string.adhan_stopped);
     PrayerSettings.prefs(this).unregisterOnSharedPreferenceChangeListener(settings);
     getSharedPreferences(LocationStore.PREFS,0).unregisterOnSharedPreferenceChangeListener(settings);
+    audio.unregisterAudioDeviceCallback(devices);
     unregisterReceiver(noisy);release();publish();main.removeCallbacksAndMessages(null);
     if(active==this)active=null;if(foreground)stopForeground(STOP_FOREGROUND_REMOVE);super.onDestroy();
   }
