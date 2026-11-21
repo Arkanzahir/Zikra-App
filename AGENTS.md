@@ -1,6 +1,6 @@
 ## Status aktif 21 November 2026
 
-Baca [status dan urutan kerja](docs/beta/CURRENT_STATUS.md). Kandidat akun 1.9.58 sudah ditandatangani dan diaudit. Endpoint akun produksi aktif dengan akun opsional. Source akses AI mandiri tersedia dan diuji lokal. Verifikasi email produksi, rollout akses mandiri, status key lama di IAM, dan uji perangkat tetap terbuka. Rilis berstatus HOLD. Catatan di bawah adalah riwayat.
+Baca [status dan urutan kerja](docs/beta/CURRENT_STATUS.md). Kandidat akun 1.9.58 sudah ditandatangani dan diaudit. Endpoint akun produksi aktif dengan akun opsional. Verifikasi email dan siklus akun lulus di produksi. Chat, gambar, dan laporan tanpa token instalasi berhasil di staging terlindungi. Rollout akses mandiri, status key lama di IAM, dan uji perangkat tetap terbuka. Rilis berstatus HOLD. Catatan di bawah adalah riwayat.
 
 ## Checkpoint 16 November 2026
 

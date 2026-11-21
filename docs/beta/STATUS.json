@@ -228,7 +228,7 @@
     "productionSyntheticSignUpPassed": true,
     "productionUnverifiedAccountRejected": true,
     "productionSyntheticAccountCleanupConfirmed": true,
-    "productionVerifiedAccountE2e": false,
+    "productionVerifiedAccountE2e": true,
     "previousFirebaseKeyIamStatusVerified": false,
     "firebaseAuthReaderIamListHttpStatus": 403,
     "emulatorUpgrade": {
@@ -251,6 +251,18 @@
       "backendPassed": 176,
       "releaseJvmPassed": 237,
       "skipped": 0
+    },
+    "selfServiceStaging": {
+      "deploymentId": "dpl_68Cae68VFhkZHE7jUexdwKDHY8pS",
+      "sourceCommit": "aecaa6233ef4d6d36504ad6b2b6c82642cff1ad4",
+      "accountOnlyCapabilitiesHttp": 200,
+      "accountOnlyChatHttpOnRetry": 200,
+      "accountOnlyImageHttp": 200,
+      "accountOnlyReportHttp": 201,
+      "legacyCapabilitiesHttp": 200,
+      "chatTimeoutObserved": true,
+      "withdrawalDenialHttp": 403,
+      "fixtureCleanupConfirmed": true
     }
   },
   "activeStatusDocument": "docs/beta/CURRENT_STATUS.md"
