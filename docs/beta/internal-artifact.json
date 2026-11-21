@@ -1,23 +1,22 @@
 {
   "schemaVersion": 1,
   "releaseStatus": "HOLD",
-  "version": "1.9.55",
-  "versionCode": 82,
-  "bytes": 37916662,
-  "sha256": "05a331d6fa10c284ebea4b8dfd0bb08b1303a524abff089dd0fd2ea3087e6a6d",
+  "version": "1.9.64",
+  "versionCode": 91,
+  "bytes": 41994958,
+  "sha256": "2ebe7b5fb260e60aff392fc6414ace1e7224f5d511e1f49eeb635ab847e31447",
   "signerSha256": "c65c40ddc15dce2d4390496585e28a41bee95c2ca72f47791fed77a50431deeb",
   "debugSigningKey": false,
   "distributionApproved": false,
   "downloadUrl": null,
-  "runtimeVerification": "physical-api36-restore-five-databases-nine-table-counts-and-14-screen-theme-checks",
+  "runtimeVerification": "emulator-api36-signed-upgrade-1.9.63-to-1.9.64",
   "remainingGates": [
     "content-and-audio-rights",
-    "teen-controls-retention-and-privacy",
-    "combined-runtime-and-device-tests",
-    "play-target-api36",
-    "in-app-ai-reporting",
+    "publisher-and-privacy",
     "external-signer-recovery-copy",
-    "self-service-age-and-guardian-verification"
+    "combined-runtime-and-device-tests",
+    "staging-account-deletion-and-signed-chat",
+    "web-distribution-verification"
   ],
   "artifactKind": "signed-release-hold"
 }

@@ -16,7 +16,7 @@ Pengguna meminta memasukkan promo terakhir yang disetujui: `Zikra-Promo-Lengkap-
 
 `D:/node.exe website/prepare-preview.cjs` memeriksa hash sumber sebelum menyalin video/poster ke `dist/media`. Folder ini diabaikan Git. Video/voice tidak diunggah ke GitHub atau hosting; hak distribusi suara masih belum ditutup menurut catatan promo/lisensi. Persetujuan menyisipkan preview tidak dianggap menyelesaikan hak publikasi. Jangan deploy direktori ini sebelum persyaratan publikasi terpenuhi.
 
-Pemutar HTML native: controls, playsinline, preload none, tanpa autoplay/mute. Suara mengikuti tindakan pengguna dan volume perangkat/browser. Naskah dapat dibuka tanpa menonton. Naskah bukan caption tersinkronisasi; caption dan pemeriksaan aksesibilitas video lengkap masih diperlukan sebelum publikasi.
+Pemutar HTML native: controls, playsinline, preload none, tanpa autoplay/mute. Suara mengikuti tindakan pengguna dan volume perangkat/browser. Naskah dapat dibuka tanpa menonton. Caption Bahasa Indonesia dapat dipilih di pemutar. Waktunya mengikuti jeda audio video 52 detik. Tinjauan akhir dengan audio dan pemeriksaan aksesibilitas masih diperlukan sebelum publikasi.
 
 ## Aset lain
 
@@ -33,4 +33,4 @@ Pemutar HTML native: controls, playsinline, preload none, tanpa autoplay/mute. S
 
 ## Gerbang publikasi
 
-Tombol unduh tetap disabled, tanpa URL APK/auto-redirect. Metadata kandidat mengikuti `docs/beta/internal-artifact.json` (55); source58 belum disebut paket publik. AI18+ masih dijelaskan sebagai rencana. Sebelum membuka unduhan: sahkan paket/signer/migrasi, hak konten/promo, privasi/retensi/usia, uji akhir dan distribusi; cocokkan URL HTTPS, ukuran serta SHA256 dengan paket final. Perubahan website tidak menyelesaikan pekerjaan akun/backend/HP yang masih WIP.
+Tombol unduh tetap disabled, tanpa URL APK/auto-redirect. Metadata kandidat signed 1.9.64 mengikuti `docs/beta/internal-artifact.json`. AI18+ masih dijelaskan sebagai rencana. Sebelum membuka unduhan: sahkan paket/signer/migrasi, hak konten/promo, privasi/retensi/usia, uji akhir dan distribusi; cocokkan URL HTTPS, ukuran serta SHA256 dengan paket final. Perubahan website tidak menyelesaikan pekerjaan akun/backend/HP yang masih WIP.

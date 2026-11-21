@@ -44,6 +44,23 @@ const video = home.match(/<video\b[^>]*>/)?.[0];
 assert(video && /\bcontrols\b/.test(video) && /\bplaysinline\b/.test(video));
 assert(/preload="none"/.test(video) && !/\bautoplay\b/.test(video) && !/\bmuted\b/.test(video));
 assert(home.includes('id="transkrip"') && home.includes('Naskah video pengenalan'));
+const captionTrack = home.match(/<track kind="captions" src="([^"]+)" srclang="id"/);
+assert(captionTrack, 'Indonesian captions missing');
+const [header, ...cues] = fs.readFileSync(path.join(root, captionTrack[1]), 'utf8').trim().split(/\r?\n\r?\n/);
+assert.equal(header, 'WEBVTT');
+const seconds = stamp => Number(stamp.slice(0, 2)) * 60 + Number(stamp.slice(3));
+let previousEnd = 0;
+const captionText = cues.map(cue => {
+  const [timing, ...lines] = cue.split(/\r?\n/);
+  const [, start, end] = timing.match(/^(\d{2}:[0-5]\d\.\d{3}) --> (\d{2}:[0-5]\d\.\d{3})$/) ?? [];
+  assert(start && end && lines.length && seconds(start) >= previousEnd
+    && seconds(start) < seconds(end) && seconds(end) <= 52, 'Invalid caption cue: ' + timing);
+  previousEnd = seconds(end);
+  return lines.join(' ');
+});
+const script = fs.readFileSync(path.join(__dirname, '../design/promos/2026-11-12/script-approved.txt'), 'utf8');
+const normalize = value => value.trim().replace(/\s+/g, ' ');
+assert.equal(normalize(captionText.join(' ')), normalize(script), 'Captions must match approved narration');
 assert(home.includes('unduhan beta belum dibuka'));
-console.log(`PASS: ${sourceOnly ? 'source-only' : 'local assets'}, navigation, candidate metadata, HOLD download, video controls/no autoplay and transcript`);
+console.log(`PASS: ${sourceOnly ? 'source-only' : 'local assets'}, navigation, candidate metadata, HOLD download, video controls/no autoplay, transcript and captions`);
 if (missingReviewMedia.length) console.log(`Local review media absent (not a playback test): ${missingReviewMedia.join(', ')}`);

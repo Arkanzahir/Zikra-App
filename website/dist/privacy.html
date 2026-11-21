@@ -19,7 +19,7 @@
 <main class="document">
 <p class="eyebrow">PRIVASI & BATAS LAYANAN</p>
 <h1>Datamu, dengan<br>penjelasan yang jelas.</h1>
-<p class="notice">Draf pratinjau 21 November 2026. Penerbit Zikra. AI online beta direncanakan untuk usia 18+. Tanggal lahir dipakai untuk deklarasi usia. Fitur lokal memiliki pengaturan sendiri. Kebijakan publik final dan retensi penyedia masih dalam peninjauan.</p>
+<p class="notice">Draf pratinjau 21 November 2026. Penerbit Zikra. Akses AI online lewat akun pada beta direncanakan untuk usia 18 tahun ke atas. Rincian retensi log dan cadangan penyedia masih ditinjau.</p>
 <h2>Yang tersimpan di perangkat</h2>
 <p>Profil, tugas, jadwal, bookmark, hafalan dan riwayat chat disimpan lokal. Belum ada login Google atau sinkronisasi cloud. Jangan uninstall atau hapus data jika ingin mempertahankannya. Database chat dan lampiran belum memiliki enkripsi tersendiri; token akses AI dilindungi Android Keystore.</p>
 <h2>Saat memakai AI online</h2>
@@ -28,11 +28,14 @@
 <h2>Lokasi dan layanan lain</h2>
 <p>Lokasi pilihan digunakan untuk jadwal salat, Kiblat, cuaca dan pencarian masjid. Permintaan cuaca, geokode, pencarian dan tile peta dapat mengungkap koordinat, area yang dilihat, kata pencarian serta IP ke penyedia. Lokasi manual tetap tersedia.</p>
 <p>Pengingat cuaca dan harian mati secara bawaan. Pemeriksaan cuaca latar belakang hanya diaktifkan setelah penjelasan dan pilihan pengguna; memakai lokasi tersimpan, tanpa menyalakan GPS. Push gempa yang diaktifkan memakai Firebase Cloud Messaging. Laporan gempa bukan prediksi dan tidak menjamin notifikasi sebelum guncangan.</p>
+<h2>Akun dan konfirmasi usia</h2>
+<p>Firebase Authentication memproses email dan sesi login. Verifikasi email mengonfirmasi bahwa kamu bisa mengakses alamat tersebut. Saat kamu mengirim tanggal lahir, server menghitung batas usia lalu menyimpan kelompok usia dan status persetujuan di Upstash. Catatan akun tidak menyimpan tanggal lahir. Usia berasal dari pernyataan pengguna.</p>
+<p>Konfirmasi usia berlaku 30 hari. Catatan deklarasi disimpan hingga 90 hari sejak perubahan terakhir. Kamu bisa mencabut akses AI online lewat Akun Zikra.</p>
 <h2>Penyimpanan dan kontrol</h2>
-<p>Akun email tersimpan di Firebase Authentication. Backend menggunakan Upstash untuk akses instalasi, deklarasi usia, dan kuota. Vercel, Cloudflare dan layanan konten dapat memproses metadata operasional. Tidak ada klaim seluruh layanan nol log. Kamu dapat menonaktifkan pengingat, mencabut izin Android, memilih mode AI dan menghapus chat lokal.</p>
+<p>Backend menggunakan Upstash untuk akses instalasi dan kuota. Vercel, Cloudflare dan layanan konten dapat memproses metadata operasional. Kamu dapat menonaktifkan pengingat, mencabut izin Android, memilih mode AI dan menghapus chat lokal.</p>
 <h2>Menghapus akun</h2>
-<p>Jika fitur tersedia pada beta, buka <strong>Akun Zikra → Hapus akun</strong> dan konfirmasi dengan sandi. Zikra menghapus akun login, metadata deklarasi usia, dan penghitung kuota akun. Status sementara memakai ID samaran hingga 24 jam untuk memblokir sesi lama dan memungkinkan percobaan ulang jika penghapusan gagal.</p>
-<p>Jadwal, bookmark dan chat di perangkat tetap tersimpan. Laporan jawaban yang kamu kirim untuk moderasi dapat tersimpan hingga tujuh hari sejak dikirim. Log dan cadangan penyedia mengikuti kebijakan retensi masing-masing. Permintaan terkait data lain dapat diajukan ke dukungan.</p>
+<p>Saat fitur tersedia, pilih <strong>Hapus akun</strong> di menu <strong>Akun Zikra</strong> dan konfirmasi dengan kata sandi. Proses ini menghapus akun login, metadata deklarasi usia dan penghitung kuota akun. Penanda dengan ID samaran bertahan hingga 24 jam untuk memblokir akses lama dan memungkinkan percobaan ulang jika penghapusan gagal.</p>
+<p>Jadwal, bookmark dan chat di perangkat tetap tersimpan. Laporan jawaban yang kamu kirim untuk moderasi dapat tersimpan hingga tujuh hari sejak dikirim. Log dan cadangan penyedia mengikuti kebijakan retensi masing-masing. Jika opsi hapus akun belum tersedia, hubungi dukungan dari email yang terdaftar untuk meminta bantuan penghapusan.</p>
 <h2>Kontak dukungan</h2>
 <p>
 <a href="mailto:arkanzahir46@gmail.com">arkanzahir46@gmail.com</a>. Sebutkan versi aplikasi dan masalahnya. Jangan kirim password, token, dokumen pribadi atau koordinat persis jika tidak diperlukan.</p>

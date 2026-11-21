@@ -19,7 +19,7 @@ const walk = directory => fs.readdirSync(directory, { withFileTypes: true }).fla
 const files = walk(source);
 const manifest = files.map(file => {
   const relative = path.relative(source, file).replaceAll('\\', '/');
-  if (!/^(?:index\.html|privacy\.html|style\.css|assets\/[a-zA-Z0-9_./-]+\.(?:svg|png|ttf|txt)|media\/(?:zikra-promo\.mp4|promo-poster\.jpg|ai-demo\.jpg))$/.test(relative)) {
+  if (!/^(?:index\.html|privacy\.html|style\.css|assets\/[a-zA-Z0-9_./-]+\.(?:svg|png|ttf|txt)|assets\/zikra-promo-id\.vtt|media\/(?:zikra-promo\.mp4|promo-poster\.jpg|ai-demo\.jpg))$/.test(relative)) {
     throw new Error(`Unexpected upload file: ${relative}`);
   }
   const data = fs.readFileSync(file);

@@ -1,3 +1,7 @@
+## Pembaruan 21 November 2026
+
+Akses AI online lewat akun pada beta direncanakan untuk usia 18 tahun ke atas. Bagian tentang sasaran 13+ di bawah adalah riwayat. [Draf halaman privasi web](../../website/dist/privacy.html) menjelaskan deklarasi usia, retensi catatan akun, dan penghapusan saat fitur tersedia. Retensi log dan cadangan penyedia serta uji hapus akun di staging tetap terbuka.
+
 ## Audio adzan lokal1.9.57
 
 Pengguna dapat memilih MP3 yang sudah tersimpan lokal melalui pemilih dokumen Android. Salinan disimpan privat dalam aplikasi untuk pemutaran offline; Zikra tidak mengunggah file/URI/nama sumber ke backend atau penyedia AI. Pengguna dapat menghapus salinan melalui Pengingat salat → Hapus salinan audio. Sumber asli tidak dihapus. MP3 tidak dimasukkan ke cadangan lokal, sehingga perlu dipilih ulang setelah reinstall/restore. Tidak meminta izin akses seluruh media. Ini perilaku fitur yang diuji, bukan finalisasi kebijakan atau seluruh gate privasi.
