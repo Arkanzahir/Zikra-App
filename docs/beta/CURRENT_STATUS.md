@@ -10,7 +10,7 @@
 | Kandidat signed terbaru | 1.9.58/code85, 38.929.647 byte, akun 18+ aktif pada kandidat. [Bukti paket](../../android/validation/signed-account-candidate-2026-11-21/README.md). Uji HP dan produksi masih terbuka. |
 | Source Android | 1.9.58/code85. Aktivasi akun pada build release memerlukan opsi eksplisit dan konfigurasi klien Firebase produksi. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
-| Layanan akun18+ | Akses baca Firebase dengan kunci baru lulus. Endpoint akun belum dideploy produksi. |
+| Layanan akun18+ | Endpoint aktif di produksi dengan akun tetap opsional. Pendaftaran sintetis dan penolakan email belum terverifikasi lulus. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
 | Website | Preview Vercel terlindungi sudah READY, video52detik lengkap bersuara; tombolAPKdisabled |
 | Publikasi | Tidak ada APK/voice/promo umum yang dibuka. A–D/E/F/G tidak selesai seluruhnya |
 
@@ -29,6 +29,7 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 ## Bukti terbaru
 
 - [Kandidat signed 1.9.58](../../android/validation/signed-account-candidate-2026-11-21/README.md): kunci rilis yang sama, ukuran di bawah 100 MB, 237 tes JVM release lulus, pemeriksaan kredensial dan bundel adzan bersih. Build akun menolak konfigurasi Firebase yang hilang.
+- [Endpoint akun produksi](ACCOUNT_PRODUCTION_2026-11-21.md): empat rute menolak permintaan tanpa token, token instalasi lama masih memperoleh capabilities, akun sintetis berhasil dihapus. Verifikasi email dan alur positif belum lulus.
 - [Akun18+](../../android/validation/adult-accounts-2026-11-15/README.md):175backend/237JVM/5native,0skip; lint0error/912warning; npm audit0vulnerability pada run tercatat. Native menggunakan FirebaseAuthEmulator resmi, AdminSDK, Redisfixture dan AIstub sintetis, **bukan produksi/HP**. LokalNode22.17.0; targetVercel24.x belum diuji lokal.
 - [Adzan57](../../android/validation/local-adhan-2026-11-15/README.md):10native pada signed releaseAPI36 termasuk alarm→audio→Stop. PemilihanMP3/SAF/suara padaHP 57 belum diverifikasi.
 - [WebsiteEnte](../../website/validation/2026-11-16-ente/README.md):6panel,12topik,1440/390/320CSSpx tanpaoverflow, ikon/anchor diperiksa. [Pemetaanfitur](../../website/FEATURE_MAP.md).
@@ -40,9 +41,9 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 | Urut | Pekerjaan nyata yang belum selesai | Perlu HP/input? |
 |---|---|---|
 |1| Kunci Auth Reader baru sudah dipindah ke `.local/firebase-auth-reader.json` dan diabaikan Git. Uji baca Firebase dengan UID acak menghasilkan `auth/user-not-found`, sesuai harapan. Konfirmasi status kunci lama di IAM terpisah karena akses baca Auth tidak memeriksa inventaris kunci. | Konsol pemilik untuk status kunci lama |
-|2| Siapkan subject key privat yang stabil dan deploy endpoint akun dengan `ENABLED=true` serta `REQUIRED=false`. User sudah menyetujui layanan akun gratis dan penyimpanan konfigurasi privat di lokal/Vercel. | Tanpa HP |
+|2| Selesai. Subject key stabil disimpan privat. Endpoint akun aktif dengan `ENABLED=true` dan `REQUIRED=false`. [Bukti deploy dan rollback](ACCOUNT_PRODUCTION_2026-11-21.md). | Tanpa HP |
 |3| Kandidat signed 1.9.58 sudah dibuat dan diaudit. Uji pemasangan sebagai pembaruan dari APK 1.9.55 dan verifikasi data pengguna di perangkat uji. | HP atau emulator milik tes dengan data sintetis untuk uji awal |
-|4| Uji daftar, verifikasi email, status, deklarasi, dan pencabutan di produksi. Selesaikan akses mandiri AI: saat ini server masih perlu token instalasi terpisah walaupun akun 18+ valid. Sebelum mewajibkan akun untuk chat, gambar, dan laporan, verifikasi instalasi baru bisa masuk melalui alur yang disetujui dan kuota berlaku. | Endpoint produksi diperlukan untuk pengujian akhir |
+|4| Pendaftaran sintetis dan penolakan akun belum terverifikasi lulus di produksi. Lanjutkan uji pengiriman/verifikasi email, status, deklarasi, perpanjangan, dan pencabutan pada akun terverifikasi. Selesaikan akses mandiri AI: saat ini server masih perlu token instalasi terpisah walaupun akun 18+ valid. Sebelum mewajibkan akun untuk chat, gambar, dan laporan, verifikasi instalasi baru bisa masuk melalui alur yang disetujui dan kuota berlaku. | Endpoint produksi diperlukan untuk pengujian akhir |
 |5| Finalkan privasi/risk usia 18+ dan retensi/kuota/provider, jalur penghapusan akun/metadata dan penanganan laporan. Selfdeclaration bukan jaminan anti-pemalsuan; holdSharedPreferences.commit failure belum fault-tested | Sebagian kode/dokumen tanpa HP; sebagian keputusan/layanan |
 |6| Tutup gate konten/audio/ilustrasi/promo yang berlaku untuk cakupan terbatas. Hak suaraElevenLabs pada saatgenerasi belum terkonfirmasi; video hanya untukreview terlindungi. [Jejak sumber](CONTENT_LICENSE_TRACE.md), [audit](PRODUCT_AUDIT.md) | Bukti luar; jangan menganggap filegratis=izinredistribusi |
 |7| SesiHP terarah untuk kandidat final/update/data dan sisa kasus adzan/izin. Gunakan bukti historis yang masih relevan; jangan ulang semua audio/restart demi jumlah tes | HP setelah koordinasi; restart hanya izin khusus |

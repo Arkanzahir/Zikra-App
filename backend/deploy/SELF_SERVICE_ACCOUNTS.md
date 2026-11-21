@@ -1,3 +1,7 @@
+# Produksi 21 November 2026
+
+Endpoint akun 18+ aktif dengan `ZIKRA_ADULT_ACCOUNTS_ENABLED=true` dan `ZIKRA_ADULT_ACCOUNTS_REQUIRED=false`. Produksi Vercel Node 24.x memerlukan `NODE_OPTIONS=--experimental-require-module` untuk memuat Firebase Admin 14.5.1. [Bukti deploy, probe, dan rollback](../../docs/beta/ACCOUNT_PRODUCTION_2026-11-21.md).
+
 # AkunAI18+ aktif sebagai pekerjaan —16November2026
 
 Kontrak terbaru: [status/gap](../../docs/beta/CURRENT_STATUS.md), [bukti](../../android/validation/adult-accounts-2026-11-15/README.md). Source58 mempunyai AdultAccounts, runtimefirebase-admin14.5.1, route/v1/adult-account serta interceptorAndroid.175backend/237JVM/5native demo lulus. Belum deploy akun keproduksi atau signedAPK58; releaseflagsfalse. FirebaseAuthreader role sudahdibuat, filekeybelumdidapat. DeklarasiDOB self_declared bukan assuranceidentitas; noDOBpersist, metadata90hari sejakperubahan, konfirmasi30hari. ENABLED dahulu, REQUIRED hanya setelahAPKsiap. Alurwali di bawah **historis/ditunda**, jangan mengaktifkannya untukbeta18+ tanpa keputusanbaru.

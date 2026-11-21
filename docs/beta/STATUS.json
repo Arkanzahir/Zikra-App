@@ -206,7 +206,7 @@
     "nativeEmulatorPassed": 5,
     "lintErrors": 0,
     "lintWarnings": 912,
-    "productionDeployed": false,
+    "productionDeployed": true,
     "globalAiRequirementEnabled": false,
     "defaultReleaseFlagsEnabled": false,
     "signedRelease58Built": true,
@@ -222,7 +222,14 @@
     "firebaseAuthReaderRoleCreated": true,
     "firebaseAuthReaderPrivateKeyRetrieved": true,
     "firebaseAuthReaderReadAccessVerified": true,
-    "evidence": "android/validation/adult-accounts-2026-11-15/README.md"
+    "evidence": "android/validation/adult-accounts-2026-11-15/README.md",
+    "productionEvidence": "docs/beta/ACCOUNT_PRODUCTION_2026-11-21.md",
+    "productionDeploymentId": "dpl_AUeeUQF2r8JZxvjkmj3J8bYs1zTo",
+    "productionSyntheticSignUpPassed": true,
+    "productionUnverifiedAccountRejected": true,
+    "productionSyntheticAccountCleanupConfirmed": true,
+    "productionVerifiedAccountE2e": false,
+    "previousFirebaseKeyIamStatusVerified": false
   },
   "activeStatusDocument": "docs/beta/CURRENT_STATUS.md"
 }
