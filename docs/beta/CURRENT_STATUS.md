@@ -6,9 +6,9 @@
 
 | Bagian | Keadaan yang terbukti |
 |---|---|
-| HP pengguna | APK signed 1.9.61-internal/code88 terpasang dari 1.9.60-internal. Dua MP3 lama tetap cocok dengan hash 1.9.53. ID, direktori data dan waktu pemasangan awal cocok. Pengguna mengonfirmasi pratinjau Subuh hanya terdengar dari earphone Bluetooth. |
+| HP pengguna | APK signed 1.9.63-internal/code90 terpasang. Pilihan Adzan penuh kembali muncul tanpa impor dan dialog memberi petunjuk ganti ke MP3 sendiri. Hash, ID, direktori data dan waktu pemasangan awal cocok. Rekaman lama dan perbaikan rute earphone tetap ada. |
 | Kandidat signed terbaru | 1.9.60/code87, 41.991.450 byte, akun 18+ opsional pada build akun, serta adzan bawaan Subuh dan Zuhur hingga Isya. Audit, update emulator, dan 11 tes adzan lulus. [Bukti](../../android/validation/bundled-adhan-2026-11-21/README.md). |
-| Source Android | 1.9.61/code88 dengan akses akun mandiri pada build akun. Aktivasi pada build release memerlukan opsi eksplisit dan konfigurasi klien Firebase produksi. |
+| Source Android | 1.9.63/code90 dengan akses akun mandiri pada build akun. Aktivasi pada build release memerlukan opsi eksplisit dan konfigurasi klien Firebase produksi. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
 | Layanan akun18+ | Endpoint aktif di produksi dengan akun tetap opsional. Pendaftaran sintetis dan penolakan email belum terverifikasi lulus. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
 | Website | Preview Vercel terlindungi sudah READY, video52detik lengkap bersuara; tombolAPKdisabled |
@@ -27,6 +27,8 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 - Semua perubahan selesai perlucheckpointGitHub. Jangan menyebut seluruh pekerjaan selesai hanya karena sebuahbuild/test lulus.
 
 ## Bukti terbaru
+
+- **Pilihan pengingat 1.9.63.** Menu menampilkan Adzan penuh jika ada audio siap pakai, termasuk bawaan. Pengguna melihat keempat mode di HP setelah 1.9.62. Build 1.9.63 menambah petunjuk lokasi tombol Ganti suara adzan dengan MP3 dan memperbarui keterangan volume. 12 instrumentasi emulator Android 36 lulus, termasuk tampilan petunjuk, memilih dan menyimpan mode Adzan penuh tanpa impor, serta regresi audio. Signed 1.9.63-internal berhasil memperbarui HP.
 
 - **Rute audio adzan 1.9.61.** Pratinjau memakai jalur media. Alarm dengan earphone tersambung memakai jalur media dan, pada API yang mendukung pemeriksaan rute, menahan suara sampai output earphone terkonfirmasi. Alarm tanpa earphone tetap memakai jalur alarm. Perubahan/kegagalan rute dapat menghentikan audio. APK internal signed diaudit dan dipasang di HP. 237 tes JVM dan 11 tes emulator API 36 lulus. Pengguna mendengar pratinjau Subuh hanya di earphone Bluetooth. Alarm otomatis dengan earphone dan layar terkunci belum diuji di HP.
 

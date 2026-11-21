@@ -359,12 +359,17 @@ public final class PrayerActivity extends BaseActivity {
   private void showMode(int index,boolean restoring) {
     if(!PrayerSchedule.isPrayer(index))return;
     editingPrayer=index;if(!restoring)draftMode=PrayerSettings.mode(this,index).ordinal();
-    int modeOffset = BuildConfig.PUBLIC_BETA_SCOPE && !LocalAdhanAudio.available(this,index) ? 1 : 0;
+    int modeOffset = BuildConfig.PUBLIC_BETA_SCOPE && !AdhanAsset.available(this,index) ? 1 : 0;
     String[] choices = getResources().getStringArray(R.array.prayer_mode_choices);
     if (modeOffset == 1) choices = java.util.Arrays.copyOfRange(choices, 1, choices.length);
     final int offset = modeOffset;
-    modeDialog=new AlertDialog.Builder(this).setTitle(getString(R.string.adhan_mode_title,PrayerSchedule.NAMES[index]))
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    TextView audioHint = new TextView(builder.getContext());
+    audioHint.setText(R.string.local_adhan_mode_hint);
+    audioHint.setPadding(dp(24), dp(8), dp(24), dp(8));
+    modeDialog=builder.setTitle(getString(R.string.adhan_mode_title,PrayerSchedule.NAMES[index]))
         .setSingleChoiceItems(choices,Math.max(0,draftMode-offset),(dialog,choice)->draftMode=choice+offset)
+        .setView(audioHint)
         .setNegativeButton(R.string.weekly_cancel,null).setPositiveButton(R.string.weekly_save,null).create();
     modeDialog.setOnShowListener(dialog->modeDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{
       PrayerMode selected=PrayerMode.values()[draftMode];
