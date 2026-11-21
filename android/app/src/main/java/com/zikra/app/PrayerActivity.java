@@ -391,7 +391,7 @@ public final class PrayerActivity extends BaseActivity {
     String message=!state.status.isEmpty()?state.status:getString(present?R.string.adhan_audio_label:R.string.adhan_audio_missing);
     if (audioImport != null) message = getString(R.string.local_adhan_importing);
     else if (BuildConfig.PUBLIC_BETA_SCOPE) {
-      boolean fajr=LocalAdhanAudio.available(this,0), normal=LocalAdhanAudio.available(this,2);
+      boolean fajr=AdhanAsset.available(this,0), normal=AdhanAsset.available(this,2);
       message=getString(fajr&&normal?R.string.local_adhan_ready:
           fajr?R.string.local_adhan_fajr_ready:normal?R.string.local_adhan_normal_ready:R.string.local_adhan_missing);
       if(state.active&&!state.status.isEmpty())message=state.status;

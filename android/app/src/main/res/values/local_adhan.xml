@@ -1,5 +1,5 @@
 <resources>
- <string name="local_adhan_choose">Pilih audio adzan dari HP</string>
+ <string name="local_adhan_choose">Ganti suara adzan dengan MP3</string>
  <string name="local_adhan_choose_file">Pilih MP3</string>
  <string-array name="local_adhan_targets"><item>Adzan biasa · Zuhur sampai Isya</item><item>Adzan Subuh</item></string-array>
  <string name="local_adhan_privacy">Unduh atau simpan file di HP terlebih dahulu. Pilih MP3 berdurasi 10 detik–5 menit, maksimal 10 MB. Salinannya disimpan privat di Zikra dan tidak diunggah; file asli tetap utuh.
@@ -12,10 +12,10 @@ Audio tidak disertakan dalam cadangan lokal. Pilih ulang setelah memasang ulang 
  <string name="local_adhan_failed">Audio belum dapat disimpan. Unduh file ke HP, lalu gunakan MP3 10 detik–5 menit, maksimal 10 MB. Rekaman sebelumnya tetap tersedia.</string>
  <string name="local_adhan_picker_missing">Pemilih audio tidak tersedia pada perangkat ini.</string>
  <string name="local_adhan_missing">Suara adzan belum dipilih. Tambahkan MP3 dari HP untuk memakai Adzan penuh. Notifikasi biasa tetap tersedia.</string>
- <string name="local_adhan_ready">Audio biasa dan Subuh pilihanmu tersedia offline. Pengingat mengikuti mode setiap waktu salat.</string>
+ <string name="local_adhan_ready">Audio biasa dan Subuh tersedia offline. Pengingat mengikuti mode setiap waktu salat.</string>
  <string name="local_adhan_fajr_ready">Audio Subuh tersedia offline. Tambahkan audio biasa untuk Zuhur sampai Isya.</string>
- <string name="local_adhan_normal_ready">Audio biasa tersedia offline. Tambahkan audio khusus untuk Subuh.</string>
+ <string name="local_adhan_normal_ready">Suara adzan bawaan tersedia untuk Zuhur sampai Isya. Tambahkan MP3 khusus Subuh jika ingin suara adzan saat Subuh.</string>
  <string name="local_adhan_remove">Hapus salinan audio</string>
- <string name="local_adhan_remove_note">Hapus salinan privat di Zikra? File asli tetap utuh. Waktu salat yang memakai audio ini kembali menggunakan notifikasi biasa; pilihan mode tersimpan tetap dijaga.</string>
+ <string name="local_adhan_remove_note">Hapus salinan privat di Zikra? File asli tetap utuh. Zikra kembali memakai suara bawaan jika tersedia. Jika belum ada suara bawaan, pengingat memakai notifikasi biasa. Pilihan mode tetap tersimpan.</string>
  <string name="local_adhan_remove_failed">Salinan belum dapat dihapus. Coba lagi.</string>
 </resources>

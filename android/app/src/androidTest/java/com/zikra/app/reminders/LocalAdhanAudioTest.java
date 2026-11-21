@@ -59,12 +59,22 @@ public final class LocalAdhanAudioTest extends InstrumentationTestCase {
     File[] files=new File(root,"local-adhan").listFiles();
     if(files!=null)for(File file:files)assertFalse(file.getName().endsWith(".tmp"));
   }
+  public void testBundledNormalAudioWorksWithoutImport() {
+    assertFalse(LocalAdhanAudio.available(scope, 2));
+    assertTrue(AdhanAsset.available(scope, 2));
+    assertFalse(AdhanAsset.available(scope, 0));
+    PrayerSettings.setMode(scope, 2, PrayerMode.ADHAN);
+    assertEquals(PrayerMode.ADHAN, PrayerSettings.mode(scope, 2));
+    PrayerSettings.setMode(scope, 2, PrayerMode.OFF);
+    assertEquals(PrayerMode.OFF, PrayerSettings.mode(scope, 2));
+  }
+
   public void testNormalAudioRestoresOnlySavedAudibleModes()throws Exception {
     SharedPreferences settings=PrayerSettings.prefs(scope);
     settings.edit().putString("prayer_mode_dzuhur","ADHAN").putBoolean("reminder_dzuhur",true)
         .putString("prayer_mode_subuh","ADHAN").putBoolean("reminder_subuh",true)
         .putString("prayer_mode_maghrib","OFF").putBoolean("reminder_maghrib",false).commit();
-    assertEquals(PrayerMode.NOTIFICATION,PrayerSettings.mode(scope,2));
+    assertEquals(PrayerMode.ADHAN,PrayerSettings.mode(scope,2));
     install(2);
     assertEquals(PrayerMode.ADHAN,PrayerSettings.mode(scope,2));
     assertEquals(PrayerMode.NOTIFICATION,PrayerSettings.mode(scope,0));
@@ -81,7 +91,7 @@ public final class LocalAdhanAudioTest extends InstrumentationTestCase {
   }
   public void testFajrIsIndependentAndCopiedNotLinked()throws Exception {
     install(0);
-    assertTrue(AdhanAsset.available(scope,0));assertFalse(AdhanAsset.available(scope,2));
+    assertTrue(AdhanAsset.available(scope,0));assertFalse(LocalAdhanAudio.available(scope,2));
     assertTrue(Arrays.equals(Files.readAllBytes(input.toPath()),Files.readAllBytes(LocalAdhanAudio.file(scope,0).toPath())));
     noStaging();
   }
@@ -94,19 +104,19 @@ public final class LocalAdhanAudioTest extends InstrumentationTestCase {
   public void testKnownOversizeRejected()throws Exception {
     declared=LocalAdhanAudio.MAX_BYTES+1;
     try{install(2);fail("Oversize accepted");}catch(IOException expected){}
-    assertFalse(AdhanAsset.available(scope,2));noStaging();
+    assertFalse(LocalAdhanAudio.available(scope,2));noStaging();
   }
   public void testUnknownLengthCannotBypassByteBudget()throws Exception {
     input=new File(root,"large.mp3");
     try(RandomAccessFile file=new RandomAccessFile(input,"rw")){file.setLength(LocalAdhanAudio.MAX_BYTES+1);}
     try{install(2);fail("Stream budget bypassed");}catch(IOException expected){}
-    assertFalse(AdhanAsset.available(scope,2));noStaging();
+    assertFalse(LocalAdhanAudio.available(scope,2));noStaging();
   }
   public void testCancelledImportAndNonContentUriAreRejected()throws Exception {
     CancellationSignal cancel=new CancellationSignal();cancel.cancel();
     try{LocalAdhanAudio.importAudio(scope,2,uri,cancel);fail("Cancelled accepted");}catch(OperationCanceledException expected){}
     try{LocalAdhanAudio.importAudio(scope,2,Uri.fromFile(input),new CancellationSignal());fail("File URI accepted");}catch(IOException expected){}
-    assertFalse(AdhanAsset.available(scope,2));noStaging();
+    assertFalse(LocalAdhanAudio.available(scope,2));noStaging();
   }
   public void testNonSeekableProviderRetainsExistingAudio()throws Exception {
     install(2);byte[] previous=Files.readAllBytes(LocalAdhanAudio.file(scope,2).toPath());pipe=true;

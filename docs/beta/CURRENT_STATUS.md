@@ -28,6 +28,7 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 
 ## Bukti terbaru
 
+- Kandidat source berikutnya menyertakan adzan biasa CC0 untuk Zuhur sampai Isya, dengan prioritas MP3 pilihan pengguna. APK pemeriksaan berhasil dibangun; 237 tes JVM dan 11 tes instrumentasi emulator API 36 lulus. Kandidat Subuh masih menunggu verifikasi lafaz. [Jejak lisensi](CONTENT_LICENSE_TRACE.md).
 - [Kandidat signed 1.9.59](../../android/validation/signed-self-service-candidate-2026-11-21/README.md). 237 tes JVM, audit paket, update emulator 1.9.58 → 1.9.59, empat database sintetis, dan lima layar lulus.
 - **Akses AI mandiri lokal.** 176 tes backend dan 237 tes JVM release lulus tanpa skip. Regresi memakai Redis fixture untuk chat, gambar, laporan, kuota lintas token Firebase, token instalasi lama, dan pencabutan. Belum ada aktivasi produksi, kandidat signed baru, atau pengujian perangkat untuk build ini.
 - [Pembaruan emulator 1.9.55 → 1.9.58](MIGRATION_EMULATOR_2026-11-21.md): empat database sintetis dan lima layar lulus dari rebuild signed 1.9.55.
