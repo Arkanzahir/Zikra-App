@@ -1,4 +1,17 @@
-# Persyaratan rilis publik —15 November2026
+# Persyaratan aktif rilis publik
+
+22 November 2026. Status **HOLD** untuk kandidat signed 1.9.64/code91. Bukti terbaru tercatat di [status beta](CURRENT_STATUS.md).
+
+| Persyaratan | Bukti saat ini dan pekerjaan tersisa |
+|---|---|
+| Chat mandiri | APK signed sudah menerima jawaban dengan akun terverifikasi dan token instalasi sementara. Uji APK tanpa token instalasi masih diperlukan pada konfigurasi self-service yang terlindungi. |
+| Hapus akun | Uji Firebase Auth Emulator lulus. Staging memerlukan akun layanan terpisah dengan izin `firebaseauth.users.delete` dan konfigurasi khusus staging, serta APK dengan fitur hapus akun aktif. |
+| Konten dan privasi | Cakupan beta menunda dua kitab Gading dan alur wali. Konfirmasi hak suara promo dan sumber lain yang ikut distribusi. Finalkan peninjauan retensi penyedia dan draf privasi 18+. |
+| Signing dan unduhan | APK signed lolos pemeriksaan unduhan HTTPS lokal dan pemasangan ulang emulator. Cadangan pemulihan kunci di media terpisah dan unduhan dari URL publik final masih perlu diverifikasi. |
+
+Pakai akun sintetis untuk tes hapus akun di staging. Konfirmasi sesi lama ditolak, akun tidak dapat login kembali, dan akses chat akun berhenti. Lihat [kontrak aktivasi](../../backend/deploy/SELF_SERVICE_ACCOUNTS.md).
+
+## Catatan historis 15 November 2026
 
 Status HOLD, kandidat1.9.53/code80. Pengguna meminta publikasi sesudah seluruh persyaratan terpenuhi. Pengguna mengonfirmasi belum memiliki bukti tertulis hak distribusi. Tidak ada perubahan cakupan13+, penghapusan fitur atau penggantian audio diam-diam.
 
