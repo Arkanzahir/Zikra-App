@@ -10,4 +10,5 @@ APK kandidat bertanda tangan di `.local/releases/Zikra-v1.9.60-beta-audio-candid
 
 - Update ADB dari signed 1.9.59/code86 ke 1.9.60/code87 berhasil. Hash APK terpasang cocok dengan kandidat. Sertifikat, ID aplikasi, direktori data, dan waktu pemasangan awal cocok. Isi database tidak dibandingkan pada update ini.
 - Cadangan terenkripsi 748.987 byte dari sesi 1.9.59 tersedia dan hash salinannya cocok dengan file di HP. Izin notifikasi dan alarm tepat waktu tetap aktif setelah update.
+- Pengguna memutar pratinjau Subuh dari menu Dengarkan adzan di HP, mendengar suaranya, lalu menghentikannya. Layanan adzan teramati aktif saat pratinjau dan berhenti setelahnya.
 - Pembatasan pemasangan di HP membatalkan paket alat uji terpisah. Paket tersebut tidak terpasang. Uji alarm otomatis dengan layar terkunci masih terbuka. Website beta tetap pada preview terlindungi, tanpa tautan unduh APK publik.
