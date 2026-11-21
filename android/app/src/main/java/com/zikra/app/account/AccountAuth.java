@@ -9,6 +9,13 @@ import com.zikra.app.BuildConfig;
 final class AccountAuth {
   private static FirebaseAuth instance;
   private AccountAuth() {}
+  static synchronized FirebaseAuth current() {
+    if (instance != null) return instance;
+    if (BuildConfig.ACCOUNT_AUTH_EMULATOR) {
+      throw new IllegalStateException("Local account auth is not initialized");
+    }
+    return get(FirebaseApp.getInstance().getApplicationContext());
+  }
   static synchronized FirebaseAuth get(Context context) {
     if (instance != null) return instance;
     if (!BuildConfig.ACCOUNT_AUTH_EMULATOR) {

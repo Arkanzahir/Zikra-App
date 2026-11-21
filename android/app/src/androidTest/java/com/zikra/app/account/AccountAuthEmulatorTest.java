@@ -104,7 +104,19 @@ public final class AccountAuthEmulatorTest extends InstrumentationTestCase {
     } finally { connection.disconnect(); }
   }
   public void testSignupVerificationSignoutAndLogin() throws Exception {
-    fill(); click(R.id.accountCreate); waitForText(R.string.account_signed_in);
+    fill(); click(R.id.accountCreate);
+    if (BuildConfig.ADULT_ACCOUNTS_ENABLED) {
+      java.lang.reflect.Field agePicker = AccountActivity.class.getDeclaredField("signupAgePicker");
+      agePicker.setAccessible(true);
+      android.app.DatePickerDialog picker = (android.app.DatePickerDialog) agePicker.get(page);
+      assertNotNull(picker);
+      java.time.LocalDate birth = java.time.LocalDate.now(java.time.ZoneId.of("Asia/Jakarta")).minusYears(19);
+      getInstrumentation().runOnMainSync(() -> {
+        picker.getDatePicker().updateDate(birth.getYear(), birth.getMonthValue() - 1, birth.getDayOfMonth());
+        picker.getButton(android.content.DialogInterface.BUTTON_POSITIVE).performClick();
+      });
+    }
+    waitForText(R.string.account_signed_in);
     ownedUser = auth.getCurrentUser(); assertNotNull(ownedUser); assertFalse(ownedUser.isEmailVerified());
     getInstrumentation().runOnMainSync(() -> assertTrue(((TextView)page.findViewById(R.id.accountIdentity))
         .getText().toString().contains(address)));

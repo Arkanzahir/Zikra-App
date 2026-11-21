@@ -2,7 +2,6 @@ package com.zikra.app.account;
 
 import android.os.Looper;
 import com.google.android.gms.tasks.Tasks;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.zikra.app.BuildConfig;
@@ -38,7 +37,7 @@ public final class AccountSession {
     invalidate();FirebaseUser user=auth().getCurrentUser();if(user==null)return;
     auth().getApp().getApplicationContext().getSharedPreferences("zikra_adult_ai_privacy",0).edit().putBoolean(holdKey(user),blocked).commit();
   }
-  static FirebaseAuth auth(){return AccountAuth.get(FirebaseApp.getInstance().getApplicationContext());}
+  static FirebaseAuth auth(){return AccountAuth.current();}
   public enum GatewayRequest { INSTANCE }
 
   public static String serviceBase() {
