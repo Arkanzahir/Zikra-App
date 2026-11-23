@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-23",
+  "baselineCommit": "d674ff0208c03b0e0b6cf543df8e139bc2a1544f",
+  "sourceVersion": "1.9.64",
+  "versionCode": 91,
+  "releaseStatus": "HOLD",
+  "newApkBuilt": false,
+  "productionChanged": false,
+  "physicalDeviceUsed": false,
+  "androidInstrumentationExecuted": false,
+  "debugInstrumentationCompilationPassed": true,
+  "targetedJvm": {
+    "failed": 0,
+    "skipped": 0,
+    "passed": 6
+  },
+  "releaseJvm": {
+    "failed": 0,
+    "skipped": 0,
+    "includesTargetedTests": true,
+    "suites": 54,
+    "passed": 243,
+    "errors": 0
+  },
+  "releaseLint": {
+    "warnings": 913,
+    "errors": 0,
+    "findingsInChangedSourceFiles": 0
+  },
+  "releaseInspectionUnsigned": true,
+  "syntheticRestartTested": true,
+  "actualAndroidProcessKillTested": false,
+  "physicalDiskFailureTested": false,
+  "failedWriteSurvivesProcessDeathGuaranteed": false,
+  "sourceSha256": {
+    "android/app/src/main/java/com/zikra/app/account/AccountPrivacyHold.java": "97de3265ed5ca16444c2984eea12e6b069d3560a608a24aa139dee831389143b",
+    "android/app/src/main/java/com/zikra/app/account/AccountSession.java": "2867f6386c8c494c9f1382fcb215503b543bc784ccc6e7046bc71bd42ca4a146",
+    "android/app/src/main/java/com/zikra/app/account/AccountActivity.java": "357dc72de5c05987567b4687c51cbb21a66c1baff884341ae944f2b71c0b7dd0",
+    "android/app/src/main/java/com/zikra/app/account/AdultAccountActivity.java": "23bec6ea581cb00530628ff412086057eb224648fff78923ed7a294513601db4",
+    "android/app/src/main/res/values/adult_account.xml": "3330be55ba508ad2c7ee5835498f8336d945648ec41e32e10568e5627dfcf83c",
+    "android/app/src/test/java/com/zikra/app/account/AccountPrivacyHoldTest.java": "d6a82788ca81f22aba1e65b93896a582012469f82298c00936f5c78626593402"
+  }
+}

@@ -43,7 +43,7 @@ public final class AdultAccountActivity extends BaseActivity {
     withdraw=button(body,R.id.adultWithdraw,R.string.adult_withdraw,false);withdraw.setOnClickListener(v->{withdrawalDialog=new AlertDialog.Builder(this)
         .setTitle(R.string.adult_withdraw).setMessage(R.string.adult_withdraw_note)
         .setNegativeButton(R.string.contextual_cancel,null).setPositiveButton(R.string.adult_withdraw,(d,w)->{
-          AccountSession.hold();request("withdraw",new JSONObject());
+          request("withdraw",new JSONObject());
         }).create();withdrawalDialog.show();});
     body.addView(text(R.string.adult_privacy,13,false));
     setContentView(root);setupScreen(getString(R.string.adult_title));RefinedUi.chrome(this,header,false);
@@ -74,18 +74,22 @@ public final class AdultAccountActivity extends BaseActivity {
     }catch(org.json.JSONException invalid){status.setText(R.string.adult_check);}
   }
   private void request(String action,JSONObject body){
-    if(busy)return;busy=true;render();status.setText(R.string.adult_busy);
+    if(busy)return;
+    boolean holdSaved = !action.equals("withdraw") || AccountSession.hold();
+    busy=true;render();status.setText(R.string.adult_busy);
     client.send(action,body,new AdultAccountClient.Result(){
       public void complete(JSONObject result){
         busy=false;policy=result.optString("policyVersion");serverStatus=result.optString("status");
         if(serverStatus.equals("adult_confirmed")){
-          if(action.equals("declare")||action.equals("renew"))AccountSession.releaseHold();
+          if(action.equals("declare")||action.equals("renew")){
+            if(!AccountSession.releaseHold())serverStatus="local_storage_failed";
+          }
           else if(AccountSession.held())serverStatus="withdraw_pending";
         }
         born=null;date.setText(R.string.adult_date);consent.setChecked(false);
         status.setText(message(serverStatus));render();
       }
-      public void failed(String code){busy=false;status.setText(code.equals("under18_blocked")?R.string.adult_under18:code.equals("unauthorized")?R.string.adult_reauth:R.string.adult_unavailable);render();}
+      public void failed(String code){busy=false;status.setText(!holdSaved?R.string.adult_storage_failed:code.equals("under18_blocked")?R.string.adult_under18:code.equals("unauthorized")?R.string.adult_reauth:R.string.adult_unavailable);render();}
     });
   }
   private int message(String state){
@@ -94,6 +98,7 @@ public final class AdultAccountActivity extends BaseActivity {
       case "under18_blocked":return R.string.adult_under18;
       case "withdrawn":return R.string.adult_withdrawn;
       case "withdraw_pending":return R.string.adult_withdraw_pending;
+      case "local_storage_failed":return R.string.adult_storage_failed;
       case "deletion_pending":return R.string.account_delete_retry;
       case "confirmation_expired":case "policy_changed":return R.string.adult_expired;
       default:return R.string.adult_needed;

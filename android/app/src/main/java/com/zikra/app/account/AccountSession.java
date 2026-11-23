@@ -13,6 +13,13 @@ import okhttp3.*;
 /** Fresh account token stays in memory and is sent only to the first-party service. */
 public final class AccountSession {
   private static final AtomicLong REVISION=new AtomicLong();
+  private static final AccountPrivacyHold PRIVACY_HOLD = new AccountPrivacyHold(new AccountPrivacyHold.Storage() {
+    public boolean read(String key) { return privacy().getBoolean(key, false); }
+    public boolean write(String key, boolean blocked) { return privacy().edit().putBoolean(key, blocked).commit(); }
+  });
+  private static android.content.SharedPreferences privacy() {
+    return auth().getApp().getApplicationContext().getSharedPreferences("zikra_adult_ai_privacy", 0);
+  }
   private AccountSession() {}
   public static void invalidate(){REVISION.incrementAndGet();}
   public static String binding(){
@@ -22,7 +29,7 @@ public final class AccountSession {
   }
   public static boolean held(){
     FirebaseUser user=auth().getCurrentUser();if(user==null)return false;
-    return auth().getApp().getApplicationContext().getSharedPreferences("zikra_adult_ai_privacy",0).getBoolean(holdKey(user),false);
+    return PRIVACY_HOLD.held(holdKey(user));
   }
   private static String holdKey(FirebaseUser user){
     try{
@@ -31,8 +38,8 @@ public final class AccountSession {
       StringBuilder key=new StringBuilder("withdrawn:");for(byte b:bytes)key.append(String.format(java.util.Locale.ROOT,"%02x",b&255));return key.toString();
     }catch(java.security.NoSuchAlgorithmException impossible){throw new IllegalStateException(impossible);}
   }
-  public static void hold(){setHold(true);}
-  static void releaseHold(){setHold(false);}
+  public static boolean hold(){return setHold(true);}
+  static boolean releaseHold(){return setHold(false);}
   static void finishDeletion(FirebaseUser user) {
     FirebaseAuth auth = auth();
     FirebaseUser current = auth.getCurrentUser();
@@ -42,9 +49,9 @@ public final class AccountSession {
         .edit().remove(holdKey(user)).apply();
     auth.signOut();
   }
-  private static void setHold(boolean blocked){
-    invalidate();FirebaseUser user=auth().getCurrentUser();if(user==null)return;
-    auth().getApp().getApplicationContext().getSharedPreferences("zikra_adult_ai_privacy",0).edit().putBoolean(holdKey(user),blocked).commit();
+  private static boolean setHold(boolean blocked){
+    invalidate();FirebaseUser user=auth().getCurrentUser();if(user==null)return false;
+    return PRIVACY_HOLD.set(holdKey(user),blocked);
   }
   static FirebaseAuth auth(){return AccountAuth.current();}
   public enum GatewayRequest { INSTANCE }
@@ -92,7 +99,7 @@ public final class AccountSession {
     if(held())throw new Required();
     long revision=REVISION.get();String token=token();
     FirebaseUser user=auth().getCurrentUser();String uid=user==null?null:user.getUid();
-    if(revision!=REVISION.get()||uid==null)throw new IOException("Account changed");
+    if(revision!=REVISION.get()||uid==null||held())throw new IOException("Account changed");
     Response response=chain.proceed(request.newBuilder().header("X-Zikra-Account-Token",token).build());
     FirebaseUser current=auth().getCurrentUser();
     if(revision!=REVISION.get()||current==null||!uid.equals(current.getUid())||held()){response.close();throw new IOException("Account changed");}

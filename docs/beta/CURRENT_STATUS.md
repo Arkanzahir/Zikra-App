@@ -1,6 +1,6 @@
 # Zikra — status aktif untuk sesi berikutnya
 
-**21 November 2026 · HOLD · belum rilis publik.** Promosi besar setelah persyaratan rilis dipenuhi. Repo aktif `E:/Zikra/Zikra-App-main`. Catatan 16 November pada handoff lain adalah riwayat.
+**23 November 2026 · HOLD · belum rilis publik.** Promosi besar setelah persyaratan rilis dipenuhi. Repo aktif `E:/Zikra/Zikra-App-main`. Catatan 16 November pada handoff lain adalah riwayat.
 
 ## Fakta yang jangan dicampur
 
@@ -27,6 +27,8 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 - Semua perubahan selesai perlucheckpointGitHub. Jangan menyebut seluruh pekerjaan selesai hanya karena sebuahbuild/test lulus.
 
 ## Bukti terbaru
+
+- **Pencabutan akses saat penyimpanan gagal, 23 November.** Source 1.9.64 kini mempertahankan blokir AI dalam proses ketika commit penanda lokal gagal, termasuk saat pengaktifan ulang. UI menampilkan kegagalan penyimpanan, dan pencabutan/penghapusan tetap mencoba server. Sebanyak 243 tes JVM release termasuk enam fault injection lulus tanpa skip; kompilasi Android instrumentation lulus, lint release 0 error/913 warning. Belum ada APK baru atau pengujian UI fault injection native. Commit yang gagal sebelum proses mati dan sebelum RPC selesai tetap belum menjamin blokir pada proses baru. [Bukti dan batas](../../android/validation/account-hold-2026-11-23/README.md).
 
 - **Persiapan distribusi 22 November.** Unduhan APK signed 1.9.64 melalui HTTPS loopback memberi HTTP 200 untuk HEAD dan GET, tipe paket Android dan 41.994.958 byte. SHA-256 serta sertifikat sesuai manifest. Pemasangan ulang pada emulator API 36 mempertahankan waktu pemasangan awal dan aplikasi dapat dibuka. Paket preview web lulus pemeriksaan lokal dengan 26 berkas tanpa APK. Permintaan anonim ke beranda, privasi dan video pada preview Vercel diarahkan ke login. Sebanyak 177 tes backend lulus. Pemeriksaan IAM mengonfirmasi akun layanan yang tersedia bisa membaca Firebase Auth, tanpa izin menghapus akun atau menyiapkan IAM. Pengujian Hapus Akun di staging dan publikasi tetap tertunda.
 
@@ -70,7 +72,7 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 |2| Selesai. Subject key stabil disimpan privat. Endpoint akun aktif dengan `ENABLED=true` dan `REQUIRED=false`. [Bukti deploy dan rollback](ACCOUNT_PRODUCTION_2026-11-21.md). | Tanpa HP |
 |3| [Uji update emulator](MIGRATION_EMULATOR_2026-11-21.md) dari rebuild signed 1.9.55 ke kandidat 1.9.58 lulus. Empat database sintetis dan lima layar terverifikasi. Update dari APK historis 1.9.55 ke 1.9.59 lulus di HP; integritas lima database dan jumlah baris sepuluh tabel cocok. | Selesai untuk update dan perbandingan jumlah baris |
 |4| Verifikasi email, deklarasi, perpanjangan, dan pencabutan lulus pada endpoint produksi. Chat, gambar, dan laporan tanpa token instalasi berhasil di staging terlindungi. APK 1.9.59 sudah dibangun dari arsip bersih dan lulus uji update emulator. Update HP dari 1.9.55 lulus. Verifikasi timeout chat dan alur AI online dari APK sebelum rollout. Produksi masih memerlukan token instalasi. | Uji online dan rollout terkontrol |
-|5| Finalkan privasi/risk usia 18+ dan retensi/kuota/provider, jalur penghapusan akun/metadata dan penanganan laporan. Selfdeclaration bukan jaminan anti-pemalsuan; holdSharedPreferences.commit failure belum fault-tested | Sebagian kode/dokumen tanpa HP; sebagian keputusan/layanan |
+|5| Finalkan privasi/risk usia 18+ dan retensi/kuota/provider, jalur penghapusan akun/metadata dan penanganan laporan. Selfdeclaration bukan jaminan anti-pemalsuan. Kegagalan commit local hold sudah diuji sintetis dan blokir proses diperkuat; kegagalan disk fisik + jaringan + proses mati tetap terbuka | Sebagian kode/dokumen tanpa HP; sebagian keputusan/layanan |
 |6| Tutup gate konten/audio/ilustrasi/promo yang berlaku untuk cakupan terbatas. Hak suaraElevenLabs pada saatgenerasi belum terkonfirmasi; video hanya untukreview terlindungi. [Jejak sumber](CONTENT_LICENSE_TRACE.md), [audit](PRODUCT_AUDIT.md) | Bukti luar; jangan menganggap filegratis=izinredistribusi |
 |7| SesiHP terarah untuk kandidat final/update/data dan sisa kasus adzan/izin. Gunakan bukti historis yang masih relevan; jangan ulang semua audio/restart demi jumlah tes | HP setelah koordinasi; restart hanya izin khusus |
 |8| Salinan pemulihan signing di media terpisah belum ada; jangan buat ulang key. Finalisasi keputusanbeta/paketmanifest/privasi, kemudian baruaktifkan downloadweb dan ujiHTTP/hash/installupdate | Media/pilihan pengguna; gate publik |

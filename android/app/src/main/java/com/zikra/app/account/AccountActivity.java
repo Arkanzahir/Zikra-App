@@ -129,7 +129,7 @@ public final class AccountActivity extends BaseActivity {
   }
 
   private void deleteReauthenticatedAccount(FirebaseUser user) {
-    AccountSession.hold();
+    boolean holdSaved = AccountSession.hold();
     if (deletionClient == null) deletionClient = new AdultAccountClient();
     JSONObject body = new JSONObject(java.util.Collections.singletonMap("confirm", true));
     deletionClient.send("delete", body, new AdultAccountClient.Result() {
@@ -140,7 +140,7 @@ public final class AccountActivity extends BaseActivity {
         toast(getString(R.string.account_delete_done));
       }
       @Override public void failed(String code) {
-        finishDeletionUi(R.string.account_delete_retry);
+        finishDeletionUi(holdSaved ? R.string.account_delete_retry : R.string.adult_storage_failed);
       }
     });
   }

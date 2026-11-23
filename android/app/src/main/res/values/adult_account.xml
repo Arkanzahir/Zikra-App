@@ -25,4 +25,5 @@
  <string name="adult_signup_age">Konfirmasi usia untuk akun beta AI</string>
  <string name="adult_ai_signin_required">AI online beta hanya untuk 18+. Buka Profil → Akun → Kelola akses AI 18+ untuk masuk, verifikasi email dan konfirmasi usia.</string>
  <string name="adult_withdraw_pending">Akses AI di HP ini diblokir. Pencabutan di server belum selesai; coba Cabut akses AI online lagi saat terhubung.</string>
+ <string name="adult_storage_failed">Perubahan akses belum tersimpan di HP. AI diblokir selama aplikasi masih berjalan. Coba lagi saat terhubung sebelum menutup aplikasi.</string>
 </resources>

@@ -1,3 +1,7 @@
+## Pencabutan akses — 23 November 2026
+
+Baca [status aktif](docs/beta/CURRENT_STATUS.md) dan [bukti fault injection](android/validation/account-hold-2026-11-23/README.md). Source 1.9.64 memblokir AI dalam proses bila commit local hold gagal; pengaktifan ulang tidak melepas blokir sebelum commit berhasil. Enam tes fault injection dan kompilasi instrumentation lulus. Belum APK signed baru, uji HP, deploy atau publikasi. Commit gagal + proses mati sebelum RPC selesai tetap gap; HOLD tetap. Catatan versi lama di bawah adalah riwayat.
+
 ## Status aktif 21 November 2026
 
 Baca [status dan urutan kerja](docs/beta/CURRENT_STATUS.md). Kandidat akun 1.9.59 sudah ditandatangani, diaudit, dan lulus uji update emulator dari 1.9.58. Endpoint akun produksi aktif dengan akun opsional. Verifikasi email dan siklus akun lulus di produksi. Chat, gambar, dan laporan tanpa token instalasi berhasil di staging terlindungi. Rollout akses mandiri, status key lama di IAM, dan uji perangkat tetap terbuka. Rilis berstatus HOLD. Catatan di bawah adalah riwayat.

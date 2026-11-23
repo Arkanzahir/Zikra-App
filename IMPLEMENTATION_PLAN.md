@@ -1,3 +1,7 @@
+## G03 — pencabutan akses saat penyimpanan gagal, 23 November 2026
+
+[Bukti dan batas](android/validation/account-hold-2026-11-23/README.md): source 1.9.64 menjaga blokir AI dalam proses saat commit gagal dan meminta percobaan ulang. Enam tes fault injection JVM serta kompilasi instrumentation lulus. G03 tetap terbuka untuk retensi/privasi dan disk fisik + jaringan + proses mati sebelum RPC selesai; bukan penutupan parent atau persetujuan publikasi. Belum APK signed baru atau perubahan HP/produksi. Status terbaru di [CURRENT_STATUS](docs/beta/CURRENT_STATUS.md).
+
 ## Status aktif16November2026 — mulai di sini
 
 Baca [status tunggal dan urutan kerja](docs/beta/CURRENT_STATUS.md) serta [prompt sesi baru](docs/beta/NEW_CHAT_PROMPT.txt). Website sudah **previewVercel terlindungi**, video bersuara, tanpaAPKpublik. HP terakhir55; signedlokal57; sourceakun58 internal, belum deployakun/signedrelease58.175backend/237JVM/5native emulator lulus, bukan buktiproduksi. User memilih AIonline18+, wali ditunda. HOLD tetap; bagian lama di bawah adalah riwayat. PROJECT_HANDOFF.mdWIP/stash/datapribadi/privat tetap dijaga.
