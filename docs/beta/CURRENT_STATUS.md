@@ -28,6 +28,8 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 
 ## Bukti terbaru
 
+- **Cache sorotan kata dan review situs, 24 November.** Source sesudah kandidat 1.9.65 menghapus cache rekaman sorotan kata setelah enam hari saat aplikasi dapat berjalan. Unduhan offline tetap terpisah. 26 tes JVM audio serta dua tes Android API 36 lulus. Tersedia draf Ketentuan Penggunaan dan review lokal tanpa promo. Tiga halaman lulus pemeriksaan Edge pada tiga lebar layar. Belum APK signed baru atau deploy. [Bukti](../../android/validation/word-audio-cache-2026-11-24/README.md).
+
 - **Kandidat signed 1.9.65, 24 November.** Audit paket dan sertifikat lulus. Sebanyak 246 tes JVM release lulus tanpa skip dan lint 0 error/913 warning. Emulator API 36 lulus update dari kandidat signed 1.9.64, preservasi preferensi baca, uji Putar pada ayat yang macet, dan tombol Berikutnya. HEAD/GET HTTPS lokal cocok hash. HP, Preview akun, cadangan pemulihan, dan unduhan publik tetap terbuka. [Bukti](../../android/validation/signed-beta-1.9.65/README.md).
 
 - **Murottal macet, 24 November.** Pemutar kini memberi pesan dan dapat memuat ulang ayat yang sama jika posisi decoder tidak berubah selama 15 detik. Sebanyak 24 tes JVM audio dan dua tes Android API 36 lulus dengan fixture sintetis. Surah, ayat, dan qori kejadian awal belum dikonfirmasi. Belum masuk APK signed yang terpasang. [Bukti dan batas](../../android/validation/murottal-stall-2026-11-24/README.md).

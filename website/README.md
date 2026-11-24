@@ -12,6 +12,13 @@ Rujukan utama saat ini: https://ente.com/ — susunan hero dan panel demonstrasi
 
 ## Promo lokal
 
+Untuk meninjau bentuk halaman publik tanpa promo, jalankan
+`D:/node.exe website/prepare-public-review.cjs`. Skrip menulis salinan lokal di
+`.local/zikra-public-review-*` dan mencetak jalurnya. Salinan hanya membawa
+aset yang dirujuk, draf [Ketentuan Penggunaan](templates/terms.html), dan draf
+privasi. Unduhan tetap ditutup dan `noindex` aktif. Preview terlindungi dengan
+video tetap memakai `dist`. Salinan review perlu persetujuan sebelum publikasi.
+
 Pengguna meminta memasukkan promo terakhir yang disetujui: `Zikra-Promo-Lengkap-52s-Tanpa-Awan.mp4`,52detik,1280×720,3.694.204byte. Sumber berada di parent repo. SHA256: `347d985b0ca9f2c7e12c33c148d2163661c32af0791c05cd631d24ffc4bb2407`. Poster dari frame lokal review-0267, cuplikan AI dari review-0393, naskah dari `design/promos/2026-11-12/script-approved.txt`.
 
 `D:/node.exe website/prepare-preview.cjs` memeriksa hash sumber sebelum menyalin video/poster ke `dist/media`. Folder ini diabaikan Git. Promo dipakai di preview Vercel terlindungi. Hak distribusi suara untuk situs publik masih terbuka. [Audit sumber](../docs/beta/CONTENT_LICENSE_TRACE.md).

@@ -210,6 +210,52 @@ public final class TimedAudioRepositoryTest {
   }
 
   @Test
+  public void expiredRecordingIsDeletedBeforeAnOnlineRetry() throws Exception {
+    AtomicInteger calls = new AtomicInteger();
+    AtomicReference<File> expired = new AtomicReference<>();
+    OkHttpClient http = new OkHttpClient.Builder().addInterceptor(chain -> {
+      calls.incrementAndGet();
+      if (expired.get() != null) assertFalse(expired.get().exists());
+      return response(chain.request(), () -> {});
+    }).build();
+    try (TimedAudioRepository repository = new TimedAudioRepository(temporary.newFolder(), http)) {
+      TimedAudioRepository.Clip original = repository.load(Recitation.IDS[0], 1, 1);
+      assertSame(original, repository.load(Recitation.IDS[0], 1, 1));
+      expired.set(original.file);
+      java.nio.file.Files.setLastModifiedTime(original.file.toPath(), java.nio.file.attribute.FileTime
+          .fromMillis(System.currentTimeMillis() - TimedAudioRepository.CACHE_MAX_AGE_MS - 1000));
+      TimedAudioRepository.Clip replacement = repository.load(Recitation.IDS[0], 1, 1);
+      assertTrue(replacement.file.isFile());
+      assertNotEquals(original.file, replacement.file);
+      assertEquals(6, calls.get());
+    }
+  }
+
+  @Test
+  public void cleanupRemovesOnlyExpiredTimedRecordingsAndKeepsOfflineDownloads() throws Exception {
+    File root = temporary.newFolder();
+    File timed = new File(root, "cache/qcf-timed-audio");
+    File downloads = new File(root, "files/quran-audio/ar.alafasy/1");
+    assertTrue(timed.mkdirs());
+    assertTrue(downloads.mkdirs());
+    File expired = new File(timed, "ayah-old.mp3");
+    File recent = new File(timed, "ayah-new.mp3");
+    File unrelated = new File(timed, "unrelated.mp3");
+    File offline = new File(downloads, "1.mp3");
+    long now = System.currentTimeMillis();
+    for (File file : new File[]{expired, recent, unrelated, offline}) {
+      java.nio.file.Files.write(file.toPath(), new byte[]{1, 2, 3});
+      long age = TimedAudioRepository.CACHE_MAX_AGE_MS - (file == recent ? 1000 : 0);
+      java.nio.file.Files.setLastModifiedTime(file.toPath(), java.nio.file.attribute.FileTime.fromMillis(now - age));
+    }
+    TimedAudioRepository.pruneExpired(timed, now);
+    assertFalse(expired.exists());
+    assertTrue(recent.isFile());
+    assertTrue(unrelated.isFile());
+    assertArrayEquals(new byte[]{1, 2, 3}, java.nio.file.Files.readAllBytes(offline.toPath()));
+  }
+
+  @Test
   public void partialHttpAudioCannotBePublishedAsACompleteClip() throws Exception {
     for (boolean misleadingSuccess : new boolean[]{false, true}) {
       File folder = temporary.newFolder();

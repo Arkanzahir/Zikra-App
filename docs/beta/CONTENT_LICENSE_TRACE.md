@@ -10,15 +10,17 @@ Rekaman Murottal dan video promo tidak ditanam di APK.
 | Jalur yang dipakai | Bukti dari source dan penyedia | Keputusan untuk beta publik |
 |---|---|---|
 | Murottal biasa dan unduhan | `Recitation.url` dipakai untuk streaming dan unduhan per ayat. Ketiga edisi 128 kbps di aplikasi tercantum pada [CDN resmi](https://alquran.cloud/cdn). Pengguna memulai unduhan, berkas masuk `filesDir/quran-audio`, dan menu Audio offline memberi kredit serta opsi hapus. | [Ketentuan Al Quran Cloud](https://alquran.cloud/terms-and-conditions) mendukung streaming dan unduh untuk penggunaan pribadi/edukasi. Hak rekaman tetap pada pemiliknya. Konfirmasi cakupan penggunaan beta sebelum distribusi publik dan telaah ulang sebelum penggunaan komersial. |
-| Murottal dengan sorotan kata | `TimedAudioRepository` mengambil data ayat dan rekaman terpisah dari Quran Foundation/Quran.com. JSON ditahan dalam memori. Maksimal tiga rekaman disimpan sementara, dibersihkan saat repositori ditutup atau dibuka lagi setelah sesi terhenti. Kredit tersedia di Mushaf. | [Ketentuan Quran Foundation §3.1](https://api-docs.quran.com/legal/developer-terms/#31-acceptable-use) membatasi cache biasa hingga satu minggu. Cache audio ini belum punya batas usia eksplisit dan pembersihan setelah proses mati baru berjalan saat repositori dibuka lagi. Perlu perbaikan dan tes kedaluwarsa sebelum menutup jalur ini. |
+| Murottal dengan sorotan kata | `TimedAudioRepository` mengambil data ayat dan rekaman terpisah dari Quran Foundation/Quran.com. JSON ditahan dalam memori. Maksimal tiga rekaman disimpan sementara. Kredit tersedia di Mushaf. | [Ketentuan Quran Foundation §3.1](https://api-docs.quran.com/legal/developer-terms/#31-acceptable-use) membatasi cache biasa hingga satu minggu. Kandidat signed 1.9.65 belum punya batas usia eksplisit. Source sesudahnya menetapkan batas enam hari dengan pembersihan saat startup, selama layanan audio aktif, dan saat cache hendak dipakai. Perlu build signed berikutnya sebelum status kandidat berubah. |
 | Promo 52 detik | Catatan render menghubungkan suara Putri Maharani dengan demo publik ElevenLabs tanpa paket berbayar baru. Tidak ditemukan bukti hak komersial untuk output tersebut. [Ketentuan ElevenLabs](https://elevenlabs.io/terms-of-use) dan [panduan lisensi paket](https://elevenlabs.io/docs/overview/administration/billing) membatasi output gratis ke penggunaan nonkomersial dengan atribusi. | Pertahankan promo untuk tinjauan terlindungi. Untuk rilis tanpa biaya, siapkan halaman publik tanpa promo bernarasi atau pakai rekaman pengganti dengan izin yang sesuai. Publikasi versi sekarang menunggu bukti hak dan atribusi yang cocok. |
 
 Paket persyaratan [privasi Quran Foundation](https://api-docs.quran.com/legal/developer-privacy/)
 dan ketentuan pengembang meminta kebijakan privasi serta Ketentuan Penggunaan
 yang dapat dijangkau publik. Draf situs lokal kini menjelaskan kedua jalur
 Murottal, IP dan permintaan bacaan, unduhan privat, dan fungsi hapus. Persetujuan
-draf, Ketentuan Penggunaan, audit izin data sensitif serta daftar penyedia
-masih terbuka. Catatan 15 November di bawah memberi jejak sumber sebelumnya.
+draf, audit izin data sensitif serta daftar penyedia masih terbuka. [Draf
+Ketentuan Penggunaan](../../website/templates/terms.html) tersedia di salinan
+review lokal tanpa promo. Persetujuan dan publikasi masih terbuka. Catatan
+15 November di bawah memberi jejak sumber sebelumnya.
 
 ## Audit awal — 15 November 2026
 

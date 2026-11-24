@@ -10,6 +10,9 @@ import okhttp3.*;
 
 /** Three transient recordings at most; timing JSON remains in memory, no offline content corpus. */
 public final class TimedAudioRepository implements AutoCloseable {
+  static final long CACHE_MAX_AGE_MS = TimeUnit.DAYS.toMillis(6);
+  private static final String CACHE_DIRECTORY = "qcf-timed-audio";
+
   public static final class Clip {
     public final TimedRecitation data;
     public final File file;
@@ -32,7 +35,7 @@ public final class TimedAudioRepository implements AutoCloseable {
 
   public TimedAudioRepository(Context context) {
     this(
-        new File(context.getCacheDir(), "qcf-timed-audio"),
+        new File(context.getCacheDir(), CACHE_DIRECTORY),
         new OkHttpClient.Builder()
             .callTimeout(30, TimeUnit.SECONDS)
             .followRedirects(false)
@@ -42,9 +45,38 @@ public final class TimedAudioRepository implements AutoCloseable {
   TimedAudioRepository(File folder, OkHttpClient http) {
     this.folder = folder;
     this.http = http;
-    File[] abandoned =
-        folder.listFiles((dir, name) -> name.startsWith("ayah-") && name.endsWith(".mp3"));
+    File[] abandoned = folder.listFiles(TimedAudioRepository::isTimedRecording);
     if (abandoned != null) for (File file : abandoned) file.delete();
+  }
+
+  private static boolean isTimedRecording(File file) {
+    String name = file.getName();
+    return file.isFile() && name.startsWith("ayah-") && name.endsWith(".mp3");
+  }
+
+  private static boolean isExpired(File file, long now) {
+    long modified = file.lastModified();
+    return modified <= now - CACHE_MAX_AGE_MS;
+  }
+
+  public static void pruneExpiredCache(Context context) {
+    pruneExpired(new File(context.getCacheDir(), CACHE_DIRECTORY), System.currentTimeMillis());
+  }
+
+  static void pruneExpired(File folder, long now) {
+    File[] recordings = folder.listFiles(TimedAudioRepository::isTimedRecording);
+    if (recordings != null) {
+      for (File recording : recordings) if (isExpired(recording, now)) recording.delete();
+    }
+  }
+
+  void pruneExpired() {
+    synchronized (lock) {
+      if (closed) return;
+      long now = System.currentTimeMillis();
+      pruneExpired(folder, now);
+      clips.values().removeIf(clip -> !clip.file.isFile() || isExpired(clip.file, now));
+    }
   }
 
   private void check(long token) throws IOException {
@@ -97,7 +129,13 @@ public final class TimedAudioRepository implements AutoCloseable {
     synchronized (lock) {
       check(token);
       Clip previous = clips.get(key);
-      if (previous != null && previous.file.isFile()) return previous;
+      if (previous != null) {
+        if (previous.file.isFile() && !isExpired(previous.file, System.currentTimeMillis())) {
+          return previous;
+        }
+        clips.remove(key);
+        previous.file.delete();
+      }
     }
     long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(40);
     TimedRecitation data =

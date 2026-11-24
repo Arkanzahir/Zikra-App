@@ -106,7 +106,7 @@ public final class QuranAudioService extends Service {
   private List<String> timedWords = java.util.Collections.emptyList();
   private String recordingSha256;
   private TimedAudioRepository timedAudio;
-  private final ExecutorService audioWorker = Executors.newSingleThreadExecutor();
+  private final ScheduledExecutorService audioWorker = Executors.newSingleThreadScheduledExecutor();
   private final BroadcastReceiver noisy =
       new BroadcastReceiver() {
         @Override
@@ -197,6 +197,7 @@ public final class QuranAudioService extends Service {
   public void onCreate() {
     super.onCreate();
     timedAudio = new TimedAudioRepository(this);
+    audioWorker.scheduleWithFixedDelay(timedAudio::pruneExpired, 1, 1, TimeUnit.HOURS);
     audio = (AudioManager) getSystemService(AUDIO_SERVICE);
     focus =
         new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)

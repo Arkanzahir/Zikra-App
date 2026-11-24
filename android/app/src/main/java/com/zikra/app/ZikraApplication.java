@@ -17,6 +17,7 @@ public final class ZikraApplication extends Application {
     new Thread(() -> {
       com.zikra.app.migration.LocalMigration.cleanAbandoned(this);
       com.zikra.app.assistant.AssistantTempFiles.pruneStalePdfs(getCacheDir(), System.currentTimeMillis());
+      com.zikra.app.audio.TimedAudioRepository.pruneExpiredCache(this);
     }, "zikra-local-cleanup").start();
     PrayerTimetables.get(this);
     PrayerTimetables.scheduleRefresh(this);

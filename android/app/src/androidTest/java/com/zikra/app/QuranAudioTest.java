@@ -581,6 +581,26 @@ public final class QuranAudioTest extends InstrumentationTestCase {
         () -> page.findViewById(R.id.quranCatalogAudio).getVisibility() == View.GONE);
   }
 
+  public void testExpiredWordAudioDoesNotAffectOfflinePlayback() throws Exception {
+    seed(1, 12000);
+    File cache = new File(context.getCacheDir(), "qcf-timed-audio");
+    assertTrue(cache.isDirectory() || cache.mkdirs());
+    File expired = File.createTempFile("ayah-expiry-qa-", ".mp3", cache);
+    try {
+      long old = System.currentTimeMillis() - java.util.concurrent.TimeUnit.DAYS.toMillis(7);
+      assertTrue(expired.setLastModified(old));
+      TimedAudioRepository.pruneExpiredCache(context);
+      assertFalse("Stale timed audio must be physically removed", expired.exists());
+      assertTrue("Offline recording must remain", AudioFiles.available(context, Recitation.IDS[0], 1, 1));
+      launch(false);
+      main(() -> QuranAudioService.send(
+          context, QuranAudioService.play(1, 1, 1, 1, Recitation.IDS[0], 1, false)));
+      until("Offline recording plays after cleanup", () -> state().playing && state().position > 0);
+    } finally {
+      if (expired.exists()) expired.delete();
+    }
+  }
+
   public void testStalledDecoderLetsReaderRetryTheSameAyah() throws Exception {
     seed(1, 30000);
     seed(2, 30000);
