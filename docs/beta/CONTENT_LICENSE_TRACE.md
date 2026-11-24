@@ -1,4 +1,26 @@
-# Penelusuran sumber dan izin —15 November2026
+# Penelusuran sumber dan izin
+
+## Cakupan kandidat 1.9.65 — 24 November 2026
+
+Audit APK signed dengan SHA-256 yang cocok dengan [manifest](internal-artifact.json)
+menemukan hanya `assets/bundled-adhan/regular.mp3` dan `fajr.mp3` di antara berkas
+audio dan video. Kedua rekaman ini sudah dipetakan ke kredit CC0 dan CC BY 4.0.
+Rekaman Murottal dan video promo tidak ditanam di APK.
+
+| Jalur yang dipakai | Bukti dari source dan penyedia | Keputusan untuk beta publik |
+|---|---|---|
+| Murottal biasa dan unduhan | `Recitation.url` dipakai untuk streaming dan unduhan per ayat. Ketiga edisi 128 kbps di aplikasi tercantum pada [CDN resmi](https://alquran.cloud/cdn). Pengguna memulai unduhan, berkas masuk `filesDir/quran-audio`, dan menu Audio offline memberi kredit serta opsi hapus. | [Ketentuan Al Quran Cloud](https://alquran.cloud/terms-and-conditions) mendukung streaming dan unduh untuk penggunaan pribadi/edukasi. Hak rekaman tetap pada pemiliknya. Konfirmasi cakupan penggunaan beta sebelum distribusi publik dan telaah ulang sebelum penggunaan komersial. |
+| Murottal dengan sorotan kata | `TimedAudioRepository` mengambil data ayat dan rekaman terpisah dari Quran Foundation/Quran.com. JSON ditahan dalam memori. Maksimal tiga rekaman disimpan sementara, dibersihkan saat repositori ditutup atau dibuka lagi setelah sesi terhenti. Kredit tersedia di Mushaf. | [Ketentuan Quran Foundation §3.1](https://api-docs.quran.com/legal/developer-terms/#31-acceptable-use) membatasi cache biasa hingga satu minggu. Cache audio ini belum punya batas usia eksplisit dan pembersihan setelah proses mati baru berjalan saat repositori dibuka lagi. Perlu perbaikan dan tes kedaluwarsa sebelum menutup jalur ini. |
+| Promo 52 detik | Catatan render menghubungkan suara Putri Maharani dengan demo publik ElevenLabs tanpa paket berbayar baru. Tidak ditemukan bukti hak komersial untuk output tersebut. [Ketentuan ElevenLabs](https://elevenlabs.io/terms-of-use) dan [panduan lisensi paket](https://elevenlabs.io/docs/overview/administration/billing) membatasi output gratis ke penggunaan nonkomersial dengan atribusi. | Pertahankan promo untuk tinjauan terlindungi. Untuk rilis tanpa biaya, siapkan halaman publik tanpa promo bernarasi atau pakai rekaman pengganti dengan izin yang sesuai. Publikasi versi sekarang menunggu bukti hak dan atribusi yang cocok. |
+
+Paket persyaratan [privasi Quran Foundation](https://api-docs.quran.com/legal/developer-privacy/)
+dan ketentuan pengembang meminta kebijakan privasi serta Ketentuan Penggunaan
+yang dapat dijangkau publik. Draf situs lokal kini menjelaskan kedua jalur
+Murottal, IP dan permintaan bacaan, unduhan privat, dan fungsi hapus. Persetujuan
+draf, Ketentuan Penggunaan, audit izin data sensitif serta daftar penyedia
+masih terbuka. Catatan 15 November di bawah memberi jejak sumber sebelumnya.
+
+## Audit awal — 15 November 2026
 
 Penelusuran primer dan pencocokan bukti proyek. Bukan putusan hukum/izin atas nama pemilik. Tidak ada penggantian konten, email atau publikasi. Semua URL diperiksa15November kecuali yang ditandai bukti terdahulu. Tidak semua sumber perlu surat izin terpisah; lisensi publik yang sesuai dapat menjadi dasarnya.
 

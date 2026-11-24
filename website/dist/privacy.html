@@ -22,6 +22,9 @@
 <p class="notice">Draf pratinjau 24 November 2026. Penerbit Zikra. Akses AI online lewat akun pada beta direncanakan untuk usia 18 tahun ke atas. Rincian penyimpanan data pada penyedia masih ditinjau.</p>
 <h2>Yang tersimpan di perangkat</h2>
 <p>Profil, tugas, jadwal, bookmark, hafalan dan riwayat chat disimpan lokal. Belum ada login Google atau sinkronisasi cloud. Jangan uninstall atau hapus data jika ingin mempertahankannya. Database chat dan lampiran belum memiliki enkripsi tersendiri; token akses AI dilindungi Android Keystore.</p>
+<h2>Bacaan dan Murottal</h2>
+<p>Zikra memakai Quran Foundation dan Quran.com untuk memuat bacaan dan sorotan kata. Saat kamu mendengarkan atau mengunduh Murottal biasa, perangkat meminta rekaman dari Al Quran Cloud / Islamic Network. Dalam mode sorotan kata, perangkat juga dapat meminta rekaman dan data waktu dari Quran Foundation. Penyedia yang menerima permintaan dapat melihat alamat IP dan bacaan atau rekaman yang diminta.</p>
+<p>Jika kamu memilih <strong>Unduh / lanjutkan</strong>, Zikra menyimpan audio Murottal secara privat di perangkat untuk didengarkan tanpa internet. Pilih <strong>Hapus audio</strong> untuk menghapus rekaman qori dan surah tersebut. Pemutaran dengan sorotan kata memakai cache sementara.</p>
 <h2>Saat memakai AI online</h2>
 <p>Pesan dan lampiran yang kamu kirim diteruskan lewat backend Zikra di Vercel ke Cloudflare Workers AI. Mode offline menggunakan panduan berbasis aturan lokal. Konteks tambahan mengikuti pilihanmu; seluruh GPS, profil dan folder perangkat tidak dikirim otomatis.</p>
 <p>Satu lampiran per pesan, maksimum 8 MB. PDF sampai 3 halaman; DOCX/TXT sampai 12.000 unit karakter Java. Foto dinormalisasi, tetapi isinya tetap bisa mengandung informasi pribadi. Belum ada indeks RAG atau ingatan cloud permanen. Menghapus chat lokal tidak menarik kembali data yang sudah diproses penyedia.</p>
