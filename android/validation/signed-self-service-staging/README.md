@@ -1,5 +1,20 @@
 # Uji chat mandiri dari APK signed di staging
 
+## Instrumen untuk kandidat signed 1.9.66
+
+Instrumen sekarang memeriksa versi 1.9.66 dan memastikan `AccountSession.hold()`
+berhasil menyimpan status sebelum menguji pemblokiran lokal. Build
+`:app:assembleDebugAndroidTest` dengan `-PzikraHostedTests=true` lulus.
+Sertifikat APK instrumen cocok dengan sertifikat kandidat. Paket privat
+`.local/releases/Zikra-v1.9.66-hosted-instrumentation.apk` memiliki SHA-256
+`e7f3235e5507d21adc4dbbf29b09364f6c47b80799a6ef8bef4c492142fc6d83`.
+Kandidat release tetap cocok dengan manifest internal.
+
+Pemeriksaan proyek `zikra-ai` menemukan proteksi `all_except_custom_domains`
+aktif dan nol variabel Preview, termasuk variabel Redis, pembaca Firebase dan
+penghapus Firebase. Instrumen sudah siap dibawa ke emulator. Pengujian
+hosted belum dijalankan karena konfigurasi Preview dan akun uji belum tersedia.
+
 ## Uji Redis hosted untuk kandidat 1.9.66
 
 Pada 24 November 2026, kontrak akun pada backend lokal lulus terhadap database
@@ -18,8 +33,8 @@ nyata masih terbuka.
 
 ## Riwayat instrumen kandidat 1.9.64
 
-Kandidat `1.9.64`/code91 tetap HOLD. APK kandidat lokal cocok dengan ukuran dan
-SHA-256 dalam [manifest internal](../../../docs/beta/internal-artifact.json).
+Saat uji awal, kandidat `1.9.64`/code91 berstatus HOLD. APK lokal cocok dengan
+ukuran dan SHA-256 yang tercatat untuk versi tersebut.
 APK instrumen terpisah berhasil dibangun dan sertifikatnya cocok dengan
 kandidat. Pada 24 November 2026, Vercel CLI 66.6.0 berhasil membaca proyek dan
 deployment `dpl_68Cae68VFhkZHE7jUexdwKDHY8pS`. Deployment tersebut berlabel
@@ -96,7 +111,5 @@ Kompilasi dari `android`, dengan JDK, SDK, dan cache lokal yang tercatat di
 ./gradlew.bat :app:assembleDebugAndroidTest -PzikraHostedTests=true -PzikraAdultAccounts=true -PzikraAccountSignIn=true --offline --no-daemon --max-workers=1 '-Dorg.gradle.jvmargs=-Xmx768m -XX:MaxMetaspaceSize=512m'
 ```
 
-APK instrumen privat disimpan di `.local/releases/Zikra-Signed-Self-Service-Staging-Instrumentation.apk`.
-SHA-256 `821efcaae33926843e091e3474a1b4a5481b7121c27b00931da018daf7eeb1a6`.
 APK instrumen dan konfigurasi uji tidak masuk distribusi. Pengujian Hapus Akun
 tetap memerlukan izin layanan Firebase yang tercatat di [status rilis](../../../docs/beta/PUBLIC_RELEASE_BLOCKERS.md).

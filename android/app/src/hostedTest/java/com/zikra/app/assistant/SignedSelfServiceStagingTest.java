@@ -36,7 +36,7 @@ public final class SignedSelfServiceStagingTest extends InstrumentationTestCase 
   public void testSignedChatWithoutInstallationAndWithdrawal() throws Exception {
     assertTrue("Only an isolated Android emulator can run this fixture", "ranchu".equals(Build.HARDWARE));
     Context target = getInstrumentation().getTargetContext();
-    assertEquals("1.9.64", target.getPackageManager().getPackageInfo(target.getPackageName(), 0).versionName);
+    assertEquals("1.9.66", target.getPackageManager().getPackageInfo(target.getPackageName(), 0).versionName);
     assertEquals(0, target.getApplicationInfo().flags & android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE);
     JSONObject fixture;
     try (InputStream stream = new ParcelFileDescriptor.AutoCloseInputStream(
@@ -116,8 +116,7 @@ public final class SignedSelfServiceStagingTest extends InstrumentationTestCase 
         assertTrue("Expected synthetic answer", successful.reply.get() != null
             && successful.reply.get().matches("(?s).*\\b63\\b.*"));
         assertEquals(1, chatRequests.get());
-        // The signed artifact predates the boolean return value in the current source.
-        AccountSession.class.getMethod("hold").invoke(null);
+        assertTrue("Local hold was not persisted", AccountSession.hold());
         assertTrue("Local hold was not applied", AccountSession.held());
         ChatResult denied = send(client, connection, prompt);
         assertEquals(OnlineAssistantClient.Failure.UNAUTHORIZED, denied.failure.get());
