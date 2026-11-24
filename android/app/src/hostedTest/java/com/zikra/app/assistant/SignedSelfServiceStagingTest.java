@@ -6,6 +6,8 @@ import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.test.InstrumentationTestCase;
 import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
@@ -76,8 +78,6 @@ public final class SignedSelfServiceStagingTest extends InstrumentationTestCase 
     SharedPreferences installation = target.getSharedPreferences("assistant_gateway", 0);
     assertTrue("Start on a fresh emulator without app preferences", settings.getAll().isEmpty());
     assertTrue("Start without an installation credential", installation.getAll().isEmpty());
-    FirebaseAuth auth = FirebaseAuth.getInstance();
-    assertNull("Start without a signed-in user", auth.getCurrentUser());
     OkHttpClient plain = plainWithoutAccountInterceptor();
     HttpUrl health = preview.newBuilder().encodedPath("/health").build();
     try (Response anonymous = plain.newCall(new Request.Builder().url(health).build()).execute()) {
@@ -88,6 +88,7 @@ public final class SignedSelfServiceStagingTest extends InstrumentationTestCase 
         .header(PREVIEW_HEADER, previewSecret).build()).execute()) {
       assertEquals("Protected preview health", 200, accessible.code());
     }
+    FirebaseAuth auth = initializePreviewAuth(target, fixture.getJSONObject("firebase"));
 
     String token = null;
     boolean declared = false;
@@ -180,6 +181,23 @@ public final class SignedSelfServiceStagingTest extends InstrumentationTestCase 
         target.getSharedPreferences("zikra_adult_ai_privacy", 0).edit().clear().commit();
       }
     }
+  }
+
+  private FirebaseAuth initializePreviewAuth(Context target, JSONObject config) throws Exception {
+    String projectId = config.getString("projectId");
+    String appId = config.getString("applicationId");
+    String apiKey = config.getString("apiKey");
+    assertTrue("Expected a separate Firebase project",
+        projectId.matches("[a-z][a-z0-9-]{4,28}[a-z0-9]") && !"zikra-79b75".equals(projectId));
+    assertTrue("Invalid staging Firebase app ID", appId.matches("1:[0-9]+:android:[a-f0-9]{16,64}"));
+    assertTrue("Invalid staging Firebase API key", apiKey.matches("AIza[A-Za-z0-9_-]{30,50}"));
+    FirebaseApp production = FirebaseApp.getInstance();
+    assertEquals("Expected the unchanged signed candidate", "zikra-79b75", production.getOptions().getProjectId());
+    assertNull("Start without a signed-in user", FirebaseAuth.getInstance(production).getCurrentUser());
+    production.delete();
+    FirebaseOptions options = new FirebaseOptions.Builder()
+        .setProjectId(projectId).setApplicationId(appId).setApiKey(apiKey).build();
+    return FirebaseAuth.getInstance(FirebaseApp.initializeApp(target.getApplicationContext(), options));
   }
 
   private OkHttpClient plainWithoutAccountInterceptor() {

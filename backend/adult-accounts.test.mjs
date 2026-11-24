@@ -149,6 +149,29 @@ test('production account runtime cannot accept emulator, messaging sender or cal
  assert.equal(vercelAccountAddress({VERCEL:'1'}, {headers:{'x-vercel-forwarded-for':'127.0.0.1'}}),'127.0.0.1');
 });
 
+test('Vercel Preview accepts only its configured Firebase project and rejects production credentials', () => {
+  const production = 'zikra-79b75';
+  const staging = 'zikra-staging-fixture';
+  const credential = project => JSON.stringify({
+    type: 'service_account', project_id: project,
+    client_email: `zikra-auth-reader@${project}.iam.gserviceaccount.com`,
+    private_key: '-----BEGIN PRIVATE KEY-----\nsynthetic',
+  });
+  const base = {
+    ZIKRA_ADULT_ACCOUNTS_ENABLED: 'true', ZIKRA_ACCOUNT_SUBJECT_KEY: 'a'.repeat(64),
+    ZIKRA_AUTH_SERVICE_ACCOUNT_JSON: credential(production),
+  };
+  assert.equal(readAdultRuntimeConfig(base).projectId, production);
+  const preview = { ...base, VERCEL: '1', VERCEL_ENV: 'preview' };
+  assert.throws(() => readAdultRuntimeConfig(preview), /account_runtime_unavailable/);
+  const configured = { ...preview, ZIKRA_PREVIEW_FIREBASE_PROJECT_ID: staging };
+  assert.throws(() => readAdultRuntimeConfig(configured), /account_runtime_unavailable/);
+  const isolated = { ...configured, ZIKRA_AUTH_SERVICE_ACCOUNT_JSON: credential(staging) };
+  assert.equal(readAdultRuntimeConfig(isolated).projectId, staging);
+  assert.throws(() => readAdultRuntimeConfig({ ...isolated, VERCEL_ENV: 'production' }), /account_runtime_unavailable/);
+  assert.throws(() => readAdultRuntimeConfig({ ...isolated, VERCEL: undefined }), /account_runtime_unavailable/);
+});
+
 test('verified account header never enters the upstream model request',async t=>{
  const firebaseToken='synthetic-firebase-token-at-least-32-characters';
  let invoked=false;

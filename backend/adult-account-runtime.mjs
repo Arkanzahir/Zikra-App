@@ -8,18 +8,36 @@ import { createAccountPreAuth } from './account-abuse.mjs';
 import { createAdultAccountHandler } from './account-http.mjs';
 import { RedisRest, readRedisConfig, adultRecordKey } from './redis-access.mjs';
 
+const PRODUCTION_PROJECT = 'zikra-79b75';
+const PROJECT_ID = /^[a-z][a-z0-9-]{4,28}[a-z0-9]$/;
+
+function readServiceAccount(raw, projectId, accountName) {
+  let credential;
+  try { credential = JSON.parse(raw); } catch { return undefined; }
+  const [name, domain, extra] = typeof credential?.client_email === 'string'
+    ? credential.client_email.split('@') : [];
+  if (credential?.type !== 'service_account' || credential.project_id !== projectId
+      || extra !== undefined || domain !== `${projectId}.iam.gserviceaccount.com`
+      || !(name === accountName || name?.startsWith(accountName + '-') && /^[a-z0-9]+$/.test(name.slice(accountName.length + 1)))
+      || typeof credential.private_key !== 'string'
+      || !credential.private_key.startsWith('-----BEGIN PRIVATE KEY-----\n')) return undefined;
+  return credential;
+}
+
 export function readAdultRuntimeConfig(env) {
   if(env.ZIKRA_ADULT_ACCOUNTS_ENABLED!=='true'||env.FIREBASE_AUTH_EMULATOR_HOST
       ||env.NODE_TLS_REJECT_UNAUTHORIZED==='0')throw Error('account_runtime_unavailable');
   const subjectKey=env.ZIKRA_ACCOUNT_SUBJECT_KEY;
   if(!/^[a-f0-9]{64}$/.test(subjectKey??''))throw Error('account_runtime_unavailable');
-  let credential;
-  try{credential=JSON.parse(env.ZIKRA_AUTH_SERVICE_ACCOUNT_JSON);}catch{throw Error('account_runtime_unavailable');}
-  if(credential?.type!=='service_account'||credential.project_id!=='zikra-79b75'
-      ||!/^zikra-auth-reader(?:-[a-z0-9]+)?@zikra-79b75\.iam\.gserviceaccount\.com$/.test(credential.client_email??'')
-      ||typeof credential.private_key!=='string'||!credential.private_key.startsWith('-----BEGIN PRIVATE KEY-----\n'))
+  const previewProject = env.ZIKRA_PREVIEW_FIREBASE_PROJECT_ID;
+  const isPreview = env.VERCEL === '1' && env.VERCEL_ENV === 'preview';
+  if (isPreview ? !PROJECT_ID.test(previewProject ?? '') || previewProject === PRODUCTION_PROJECT
+    : previewProject !== undefined) throw Error('account_runtime_unavailable');
+  const projectId = isPreview ? previewProject : PRODUCTION_PROJECT;
+  const credential = readServiceAccount(env.ZIKRA_AUTH_SERVICE_ACCOUNT_JSON, projectId, 'zikra-auth-reader');
+  if (!credential)
     throw Error('account_runtime_unavailable');
-  return {subjectKey,credential,projectId:credential.project_id};
+  return {subjectKey,credential,projectId};
 }
 
 export function vercelAccountAddress(env,req) {
@@ -54,12 +72,8 @@ export function createAdultServices({auth,redis,prefix,subjectKey,projectId,trus
 }
 function deletionAdapter(env, projectId) {
   if (env.ZIKRA_ADULT_ACCOUNT_DELETION_ENABLED !== 'true') return undefined;
-  let credential;
-  try { credential = JSON.parse(env.ZIKRA_AUTH_DELETER_SERVICE_ACCOUNT_JSON); } catch { return undefined; }
-  if (credential?.type !== 'service_account' || credential.project_id !== projectId
-      || !/^zikra-auth-deleter(?:-[a-z0-9]+)?@zikra-79b75\.iam\.gserviceaccount\.com$/.test(credential.client_email ?? '')
-      || typeof credential.private_key !== 'string'
-      || !credential.private_key.startsWith('-----BEGIN PRIVATE KEY-----\n')) return undefined;
+  const credential = readServiceAccount(env.ZIKRA_AUTH_DELETER_SERVICE_ACCOUNT_JSON, projectId, 'zikra-auth-deleter');
+  if (!credential) return undefined;
   try {
     const name = 'zikra-adult-account-deleter';
     const app = getApps().find(app => app.name === name)

@@ -7,13 +7,18 @@ berhasil menyimpan status sebelum menguji pemblokiran lokal. Build
 `:app:assembleDebugAndroidTest` dengan `-PzikraHostedTests=true` lulus.
 Sertifikat APK instrumen cocok dengan sertifikat kandidat. Paket privat
 `.local/releases/Zikra-v1.9.66-hosted-instrumentation.apk` memiliki SHA-256
-`2a2e7c31acbef7b0eeed38d4016ea52a538a18986cd826ccc6d1960b061f0386`.
+`2f63d8f4c5266a56bdaf3bbd3ab6a28d827819a281604da6ec4ab5aa5345b83b`.
 Kandidat release tetap cocok dengan manifest internal.
 
 Pemeriksaan proyek `zikra-ai` menemukan proteksi `all_except_custom_domains`
-aktif dan nol variabel Preview, termasuk variabel Redis, pembaca Firebase dan
-penghapus Firebase. Instrumen sudah siap dibawa ke emulator. Pengujian
-hosted belum dijalankan karena konfigurasi Preview dan akun uji belum tersedia.
+aktif. Proyek Firebase `zikra-account-staging` dengan paket Spark, login email,
+dan klien Android telah dibuat. Secret pembaca serta penghapus dipasang khusus
+di Preview. Satu akun terverifikasi sintetis sudah tersedia. Izin sementara
+`firebaseauth.users.create` dicabut setelah akun dibuat. API IAM memverifikasi
+pembaca memiliki `firebaseauth.users.get` dan penghapus memiliki
+`firebaseauth.users.delete`, tanpa izin pembuatan pada keduanya. Sebanyak
+178 tes backend lulus tanpa skip. Uji hosted masih menunggu Redis terpisah
+dan deployment.
 
 ## Uji Redis hosted untuk kandidat 1.9.66
 
@@ -100,7 +105,10 @@ HTTP di staging, jadi tes ini tidak mencakup layar UI pengelolaan akun.
    Pasang APK kandidat dan APK instrumen dengan sertifikat yang sama. Paket
    instrumen `com.zikra.app.test` menargetkan `com.zikra.app`.
 3. Siapkan JSON privat berisi `preview` (URL unik deployment), `previewAccess`
-   (akses Automation Protection milik operator), `email`, `password`, dan `uid`.
+   (akses Automation Protection milik operator), `email`, `password`, `uid`,
+   serta `firebase` yang berisi `projectId`, `applicationId`, dan `apiKey`
+   dari aplikasi Android di proyek Firebase staging. Instrumen memilih project
+   tersebut di emulator. APK kandidat tetap memakai konfigurasi produksinya.
    Simpan di luar Git. Transfer hanya ke emulator uji, ke
    `/data/local/tmp/zikra-signed-self-service-staging.json`, dengan mode `600`
    untuk shell. Jangan kirim melalui argumen instrumentation atau log.
