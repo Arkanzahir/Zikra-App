@@ -7,14 +7,14 @@
 | Bagian | Keadaan yang terbukti |
 |---|---|
 | HP pengguna | APK signed 1.9.63-internal/code90 terpasang. Pilihan Adzan penuh kembali muncul tanpa impor dan dialog memberi petunjuk ganti ke MP3 sendiri. Hash, ID, direktori data dan waktu pemasangan awal cocok. Rekaman lama dan perbaikan rute earphone tetap ada. |
-| Kandidat signed terbaru | 1.9.65/code92 standar, 41.995.490 byte, Auth 18+ aktif dan Hapus Akun nonaktif. Audit signer dan pemindaian rahasia lulus. Update signed 1.9.64 → 1.9.65 di emulator API 36 mempertahankan waktu pemasangan awal dan empat nilai preferensi baca sintetis. Kandidat dan manifest tetap HOLD. |
-| Source Android | 1.9.65/code92 dengan pemulihan Murottal yang macet dan penguatan blokir akun saat penyimpanan gagal. Akses akun pada release memakai opsi eksplisit dan konfigurasi klien Firebase produksi. |
+| Kandidat signed terbaru | 1.9.66/code93 standar, 41.995.490 byte, Auth 18+ aktif dan Hapus Akun nonaktif. Audit signer dan pemindaian rahasia lulus. Update signed 1.9.65 → 1.9.66 di emulator API 36 mempertahankan waktu pemasangan awal dan empat nilai preferensi baca sintetis. Kandidat dan manifest tetap HOLD. |
+| Source Android | 1.9.66/code93 dengan pemulihan ayat Murottal yang macet, batas cache audio sorotan kata enam hari, dan penguatan blokir akun saat penyimpanan gagal. Akses akun pada release memakai opsi eksplisit dan konfigurasi klien Firebase produksi. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
 | Layanan akun18+ | Endpoint aktif di produksi dengan akun tetap opsional. Pendaftaran sintetis dan penolakan email belum terverifikasi lulus. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
-| Website | Preview Vercel terlindungi sudah READY, video52detik lengkap bersuara; tombolAPKdisabled |
+| Website | Preview Vercel dengan video lengkap dan Preview terpisah tanpa promo keduanya terlindungi. Unduhan APK ditutup. |
 | Publikasi | Tidak ada APK/voice/promo umum yang dibuka. A–D/E/F/G tidak selesai seluruhnya |
 
-Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginVercel pemilik). Proyek `zikra-web` terpisah dari `zikra-ai`, plan Hobby diverifikasi. [Bukti hosting](../../website/validation/2026-11-16-hosting/README.md). User memilih **preview terlindungi dengan video lengkap dahulu**, bukan web publik tanpa suara. Jangan membuat tautan bypass atau menonaktifkan proteksi.
+[Preview dengan video](https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/) dan [Preview tanpa promo untuk meninjau draf privasi dan ketentuan](https://zikra-k1pk6yh46-arkanzahir86-3257s-projects.vercel.app/) memerlukan login Vercel. Proyek `zikra-web` terpisah dari `zikra-ai` dan memakai Hobby. [Bukti hosting awal](../../website/validation/2026-11-16-hosting/README.md).
 
 ## Keputusan pengguna yang masih berlaku
 
@@ -28,7 +28,9 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 
 ## Bukti terbaru
 
-- **Cache sorotan kata dan review situs, 24 November.** Source sesudah kandidat 1.9.65 menghapus cache rekaman sorotan kata setelah enam hari saat aplikasi dapat berjalan. Unduhan offline tetap terpisah. 26 tes JVM audio serta dua tes Android API 36 lulus. Tersedia draf Ketentuan Penggunaan dan review lokal tanpa promo. Tiga halaman lulus pemeriksaan Edge pada tiga lebar layar. Belum APK signed baru atau deploy. [Bukti](../../android/validation/word-audio-cache-2026-11-24/README.md).
+- **Kandidat signed 1.9.66, 24 November.** Lulus audit paket dan signer, 248 tes JVM release, update signed API 36, dua uji native Murottal, dan unduhan HTTPS lokal. Preview website tanpa promo berstatus READY dan tiga halaman memerlukan login. [Bukti](../../android/validation/signed-beta-1.9.66/README.md).
+
+- **Cache sorotan kata dan review situs, 24 November.** Cache rekaman sorotan kata dibersihkan setelah enam hari saat aplikasi dapat berjalan. Unduhan offline tetap terpisah. Sebanyak 26 tes JVM audio dan dua tes Android API 36 lulus. Draf Ketentuan Penggunaan dan tiga halaman review lokal tanpa promo lulus pemeriksaan Edge pada tiga lebar layar. [Bukti](../../android/validation/word-audio-cache-2026-11-24/README.md).
 
 - **Kandidat signed 1.9.65, 24 November.** Audit paket dan sertifikat lulus. Sebanyak 246 tes JVM release lulus tanpa skip dan lint 0 error/913 warning. Emulator API 36 lulus update dari kandidat signed 1.9.64, preservasi preferensi baca, uji Putar pada ayat yang macet, dan tombol Berikutnya. HEAD/GET HTTPS lokal cocok hash. HP, Preview akun, cadangan pemulihan, dan unduhan publik tetap terbuka. [Bukti](../../android/validation/signed-beta-1.9.65/README.md).
 

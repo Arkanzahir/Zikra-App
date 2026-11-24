@@ -19,14 +19,30 @@ public final class SignedQuranUpgradeTest extends InstrumentationTestCase {
   }
 
   public void testSeedReaderBeforeSignedUpgrade() throws Exception {
-    SharedPreferences reader = readerPreferences(91);
+    seedReader(91);
+  }
+
+  public void testSeedReaderOnVersion92() throws Exception {
+    seedReader(92);
+  }
+
+  private void seedReader(int versionCode) throws Exception {
+    SharedPreferences reader = readerPreferences(versionCode);
     assertFalse("Root the migration test in a fresh AVD", reader.contains("last_verse_key"));
     assertTrue(reader.edit().putInt("last_chapter", 1).putInt("last_ayah", 2)
         .putString("last_verse_key", "1:2").putBoolean("reader_word_sync", true).commit());
   }
 
   public void testReaderDataSurvivesSignedUpgrade() throws Exception {
-    SharedPreferences reader = readerPreferences(92);
+    verifyReader(92);
+  }
+
+  public void testReaderDataSurvivesUpgradeToVersion93() throws Exception {
+    verifyReader(93);
+  }
+
+  private void verifyReader(int versionCode) throws Exception {
+    SharedPreferences reader = readerPreferences(versionCode);
     assertEquals(1, reader.getInt("last_chapter", -1));
     assertEquals(2, reader.getInt("last_ayah", -1));
     assertEquals("1:2", reader.getString("last_verse_key", ""));

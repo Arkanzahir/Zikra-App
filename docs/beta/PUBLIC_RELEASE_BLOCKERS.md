@@ -1,21 +1,25 @@
 # Persyaratan aktif rilis publik
 
-24 November 2026. Status **HOLD** untuk kandidat signed 1.9.65/code92. Bukti terbaru tercatat di [status beta](CURRENT_STATUS.md).
+24 November 2026. Status **HOLD** untuk kandidat signed 1.9.66/code93. Bukti terbaru tercatat di [status beta](CURRENT_STATUS.md).
 
 | Persyaratan | Bukti saat ini dan pekerjaan tersisa |
 |---|---|
 | Chat mandiri | APK signed sudah menerima jawaban dengan akun terverifikasi dan token instalasi sementara. [Instrumen staging](../../android/validation/signed-self-service-staging/README.md) sudah dibangun dan cocok signer. CLI Vercel menemukan proyek, tetapi belum ada deployment atau variabel Preview. Deployment yang sebelumnya dipakai untuk uji berlabel Production. Uji hosted tanpa token instalasi masih memerlukan Preview terlindungi, Redis terpisah dan akun sintetis terverifikasi. |
 | Hapus akun | Uji Firebase Auth Emulator lulus. Staging memerlukan akun layanan terpisah dengan izin `firebaseauth.users.delete` dan konfigurasi khusus staging, serta APK dengan fitur hapus akun aktif. |
-| Konten dan privasi | APK hanya membawa dua audio adzan berlisensi. [Audit 1.9.65](CONTENT_LICENSE_TRACE.md) membedakan Murottal unduhan dari cache sorotan kata. Batas usia cache sudah diuji di source sesudah 1.9.65 dan perlu masuk kandidat signed berikutnya. Cakupan izin audio masih terbuka. Draf privasi dan Ketentuan Penggunaan tersedia di review lokal tanpa promo. Hak suara masih harus dibuktikan jika promo dipakai di kanal publik. Persetujuan dokumen, konfigurasi akun, cadangan, dan publikasi tetap terbuka. |
-| Signing dan unduhan | APK signed 1.9.65 lulus audit, unduhan HTTPS lokal, dan update emulator dengan data baca tetap utuh. Cadangan pemulihan kunci di media terpisah dan unduhan dari URL publik final masih perlu diverifikasi. |
+| Konten dan privasi | APK hanya membawa dua audio adzan berlisensi. [Audit kandidat](CONTENT_LICENSE_TRACE.md) membedakan Murottal unduhan dari cache sorotan kata. Versi signed 1.9.66 memuat batas usia cache enam hari. Cakupan izin Murottal masih terbuka. Draf privasi dan Ketentuan Penggunaan siap diperiksa di [Preview tanpa promo](https://zikra-k1pk6yh46-arkanzahir86-3257s-projects.vercel.app/). Persetujuan penerbit masih diperlukan. Hak suara juga perlu bukti jika promo dipakai di kanal publik. |
+| Signing dan unduhan | APK signed 1.9.66 lulus audit, unduhan HTTPS lokal, dan update emulator dengan data baca tetap utuh. Partisi C:, D:, dan E: berada di satu disk fisik. Cadangan pemulihan kunci di media terpisah dan unduhan dari URL publik final masih perlu diverifikasi. |
 | Uji perangkat | Emulator API 36 lulus update dan percobaan ulang ayat yang macet. Kandidat belum dipasang di HP. Uji padanan gejala asli dan data pengguna masih terbuka. |
 
 Pakai akun sintetis untuk tes hapus akun di staging. Konfirmasi sesi lama ditolak, akun tidak dapat login kembali, dan akses chat akun berhenti. Lihat [kontrak aktivasi](../../backend/deploy/SELF_SERVICE_ACCOUNTS.md).
 
 Untuk Preview, integrasi Upstash pada akun ini hanya menawarkan paket berbayar
 untuk resource tambahan. Database yang tersedia terhubung ke proyek produksi.
-Paket sumber Preview lokal memuat 38 berkas terlacak dari allowlist Vercel dan
-tidak memuat kredensial. Belum ada resource atau deployment baru.
+Paket sumber Preview backend lokal memuat 38 berkas terlacak dari allowlist Vercel
+dan tidak memuat kredensial. Belum ada resource atau deployment backend Preview.
+[Aiven for Valkey Free](https://aiven.io/docs/products/valkey/concepts/valkey-free-tier)
+merupakan opsi yang belum diintegrasikan. Backend saat ini memakai REST Upstash.
+Pemakaian Valkey memerlukan sambungan TLS dengan kredensial khusus Preview dan
+uji chat serta hapus akun dengan akun sintetis.
 
 ## Catatan historis 15 November 2026
 

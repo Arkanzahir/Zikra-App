@@ -1,4 +1,4 @@
-> **Preview online16November2026:** https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ — memerlukan loginVercel pemilik. Video lengkap bersuara; unduhanAPK tetapdisabled. [Bukti/deploy](DEPLOYMENT.md). Ini menggantikan status lokal-saja di iterasi sebelumnya; tidak mengubah HOLD aplikasi.
+> Tersedia [Preview dengan video](https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/) dan [Preview tanpa promo dengan draf privasi dan ketentuan](https://zikra-k1pk6yh46-arkanzahir86-3257s-projects.vercel.app/). Keduanya memerlukan login Vercel. Unduhan APK ditutup selama status HOLD.
 
 # Website Zikra — pratinjau lokal
 
@@ -40,4 +40,4 @@ Pemutar HTML native: controls, playsinline, preload none, tanpa autoplay/mute. S
 
 ## Gerbang publikasi
 
-Tombol unduh tetap disabled, tanpa URL APK/auto-redirect. Metadata kandidat signed 1.9.65 mengikuti `docs/beta/internal-artifact.json`. AI18+ masih dijelaskan sebagai rencana. Sebelum membuka unduhan: sahkan paket/signer/migrasi, hak konten/promo, privasi/retensi/usia, uji akhir dan distribusi; cocokkan URL HTTPS, ukuran serta SHA256 dengan paket final. Perubahan website tidak menyelesaikan pekerjaan akun/backend/HP yang masih WIP.
+Tombol unduh tetap nonaktif. Metadata kandidat signed 1.9.66 mengikuti `docs/beta/internal-artifact.json`. AI 18+ masih dijelaskan sebagai rencana. Sebelum membuka unduhan, sahkan paket, signer, migrasi, hak konten dan promo, privasi, retensi, serta batas usia. Jalankan uji akhir dan cocokkan URL HTTPS, ukuran, serta SHA-256 dengan paket final. Lihat [persyaratan rilis](../docs/beta/PUBLIC_RELEASE_BLOCKERS.md).
