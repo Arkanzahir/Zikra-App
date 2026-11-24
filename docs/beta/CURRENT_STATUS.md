@@ -28,6 +28,8 @@
 
 ## Bukti terbaru
 
+- **Uji akun signed tuntas di Preview, 24 November.** Android API 36 lulus chat dengan token akun, pencabutan, penghapusan akun, dan penolakan token serta login lama. Uji memakai Firebase Spark dan Redis terpisah serta jawaban AI sintetis. Akses sementara dicabut setelah pembersihan. Permintaan konfirmasi izin Murottal dikirim ke Islamic Network dan menunggu balasan. [Uji staging](../../android/validation/signed-self-service-staging/README.md).
+
 - **Persiapan staging dan cadangan signing, 24 November.** APK instrumen 1.9.66 dengan skenario hapus akun sintetis lulus build dan verifikasi signer. Vercel Preview masih belum memiliki variabel Redis dan Firebase. Penerbit menyetujui draf privasi dan ketentuan untuk beta gratis. Cadangan PKCS#12 menghasilkan sertifikat rilis yang sama saat diuji dan sudah disimpan di folder Google Drive privat. [Persyaratan tersisa](PUBLIC_RELEASE_BLOCKERS.md).
 
 - **Redis hosted dan review privasi, 24 November.** Kontrak otorisasi chat dan hapus akun lulus pada backend lokal dengan Redis Upstash terpisah, identitas sintetis, dan pembersihan semua kunci uji. Preview situs terbaru READY dan tiga rute meminta login. Uji menyeluruh di backend Preview dengan Firebase nyata masih terbuka. [Bukti](../../android/validation/signed-self-service-staging/README.md).

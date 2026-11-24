@@ -32,10 +32,12 @@ Kanal [kontak Islamic Network](https://islamic.network/contact.html)
 mengarahkan pertanyaan ke Community. Forum memerlukan akun dan
 [pengumuman moderator](https://community.islamic.network/d/360-use-of-ai-on-the-islamic-network-community)
 meminta pengguna tidak mengirim pertanyaan izin yang disusun oleh AI.
-Permintaan untuk Zikra belum dikirim. Pertanyaan yang belum terjawab adalah
-cakupan streaming per ayat dan unduhan privat atas pilihan pengguna untuk
-edisi `ar.alafasy`, `ar.husary`, dan `ar.minshawi` dalam beta gratis
-untuk belajar, serta apakah syarat dari pemegang hak rekaman perlu dipenuhi.
+Pada 24 November, penerbit memakai alamat dukungan Islamic Network yang
+dipublikasikan pada [situs proyek Islamic Network](https://sermons.islamic.network/about.html)
+untuk meminta konfirmasi langsung lewat email. Pertanyaan mencakup streaming
+per ayat dan unduhan privat atas pilihan pengguna untuk `ar.alafasy`,
+`ar.husary`, dan `ar.minshawi` dalam beta gratis untuk belajar, serta syarat
+atribusi atau izin khusus rekaman. Balasan masih ditunggu.
 
 ## Audit awal — 15 November 2026
 

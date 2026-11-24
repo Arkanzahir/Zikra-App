@@ -1,5 +1,27 @@
 # Uji chat mandiri dari APK signed di staging
 
+## Lulus di Vercel Preview, 24 November 2026
+
+APK signed 1.9.66 yang cocok dengan SHA-256 manifest dipasang pada emulator
+Android API 36. Satu skenario native lulus dalam 15,68 detik. Instrumen memakai
+Firebase Spark terpisah dan backend di Vercel Preview `dpl_2oQnEGodLAa6Tp82dXawnSUEmUdy`
+dengan Redis Upstash sementara. Preview memakai jawaban tetap `63` untuk
+menguji jalur akun tanpa memakai kuota model.
+
+- Chat dari klien signed berhasil dengan token akun dan tanpa token instalasi.
+- Pencabutan memblokir request lokal, lalu backend mengembalikan HTTP 403.
+- Endpoint Hapus Akun menghapus akun. Token lama menerima HTTP 401 dan Firebase
+  menolak login ulang. Firebase Admin mengonfirmasi akun sudah hilang.
+- Redis kosong setelah pembersihan. Empat belas variabel sementara dibuang,
+  sesi akses khusus deployment dicabut, dan akses lama serta anonim menerima
+  HTTP 302. Deployment dan variabel produksi tidak berubah.
+
+Percobaan awal berhenti saat DNS emulator gagal. Uji yang lulus memakai tunnel
+TLS di loopback dengan daftar host Vercel dan Firebase yang dibatasi. Validasi
+sertifikat tetap aktif. Emulator, tunnel, dan fixture lokal dibersihkan.
+Instrumen memanggil endpoint penghapusan secara langsung. Tombol Hapus Akun
+pada kandidat standar 1.9.66 masih nonaktif.
+
 ## Instrumen untuk kandidat signed 1.9.66
 
 Instrumen sekarang memeriksa versi 1.9.66 dan memastikan `AccountSession.hold()`
@@ -7,7 +29,7 @@ berhasil menyimpan status sebelum menguji pemblokiran lokal. Build
 `:app:assembleDebugAndroidTest` dengan `-PzikraHostedTests=true` lulus.
 Sertifikat APK instrumen cocok dengan sertifikat kandidat. Paket privat
 `.local/releases/Zikra-v1.9.66-hosted-instrumentation.apk` memiliki SHA-256
-`2f63d8f4c5266a56bdaf3bbd3ab6a28d827819a281604da6ec4ab5aa5345b83b`.
+`945a1060d99bd836a8b5e3fc516303a2137736e8d8e19b25eb77bda8edc68e1a`.
 Kandidat release tetap cocok dengan manifest internal.
 
 Pemeriksaan proyek `zikra-ai` menemukan proteksi `all_except_custom_domains`
@@ -17,8 +39,7 @@ di Preview. Satu akun terverifikasi sintetis sudah tersedia. Izin sementara
 `firebaseauth.users.create` dicabut setelah akun dibuat. API IAM memverifikasi
 pembaca memiliki `firebaseauth.users.get` dan penghapus memiliki
 `firebaseauth.users.delete`, tanpa izin pembuatan pada keduanya. Sebanyak
-178 tes backend lulus tanpa skip. Uji hosted masih menunggu Redis terpisah
-dan deployment.
+178 tes backend lulus tanpa skip.
 
 ## Uji Redis hosted untuk kandidat 1.9.66
 
@@ -93,7 +114,7 @@ berkas terlacak dari allowlist Vercel. Paket tidak memuat env atau kredensial.
 Instrumen memakai `AssistantConnection`, `AccountSession.interceptor()` dan
 `OnlineAssistantClient` dari APK signed. Interceptor khusus instrumen hanya
 meneruskan chat yang sudah divalidasi klien ke preview HTTPS `zikra-ai` dan
-menyertakan kredensial akses preview melalui header resmi Vercel. Produksi tetap
+menyertakan cookie sesi khusus satu deployment. Produksi tetap
 menjadi host dalam APK kandidat. Pendaftaran dan pencabutan dipanggil melalui
 HTTP di staging, jadi tes ini tidak mencakup layar UI pengelolaan akun.
 
@@ -105,7 +126,7 @@ HTTP di staging, jadi tes ini tidak mencakup layar UI pengelolaan akun.
    Pasang APK kandidat dan APK instrumen dengan sertifikat yang sama. Paket
    instrumen `com.zikra.app.test` menargetkan `com.zikra.app`.
 3. Siapkan JSON privat berisi `preview` (URL unik deployment), `previewAccess`
-   (akses Automation Protection milik operator), `email`, `password`, `uid`,
+   (cookie `_vercel_jwt` dari akses sementara khusus deployment), `email`, `password`, `uid`,
    serta `firebase` yang berisi `projectId`, `applicationId`, dan `apiKey`
    dari aplikasi Android di proyek Firebase staging. Instrumen memilih project
    tersebut di emulator. APK kandidat tetap memakai konfigurasi produksinya.

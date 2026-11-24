@@ -4,9 +4,9 @@
 
 | Persyaratan | Bukti saat ini dan pekerjaan tersisa |
 |---|---|
-| Chat mandiri | Backend lokal memberi izin chat tanpa token instalasi melalui Redis Upstash sementara dengan identitas sintetis. Proyek Firebase Spark terpisah, akun sintetis terverifikasi dan Secret Firebase khusus Preview sudah tersedia. Instrumen 1.9.66 dibangun dengan signer kandidat. Redis terpisah dan deployment Preview masih diperlukan. [Bukti staging](../../android/validation/signed-self-service-staging/README.md). |
-| Hapus akun | Integrasi Firebase Auth Emulator dan Redis hosted lulus. Endpoint lokal menghapus akun dan kuota, lalu token lama dan login ulang ditolak. Akun layanan penghapus hanya punya izin `firebaseauth.users.delete` di proyek staging. Uji hosted belum dijalankan. Uji antarmuka juga memerlukan APK dengan fitur hapus akun aktif. |
-| Konten dan privasi | APK membawa dua audio adzan berlisensi dan membatasi cache sorotan kata menjadi enam hari. Penerbit mengonfirmasi sudah membaca dan menyetujui draf privasi dan Ketentuan Penggunaan di [Preview tanpa promo](https://zikra-qmb8trn9u-arkanzahir86-3257s-projects.vercel.app/) untuk beta gratis. Cakupan izin Murottal dan verifikasi persyaratan penyedia masih terbuka. Hak suara perlu bukti jika promo dipakai di kanal publik. [Audit kandidat](CONTENT_LICENSE_TRACE.md). |
+| Chat mandiri | Lulus dari APK signed 1.9.66 di emulator API 36 pada Vercel Preview dengan Firebase Spark dan Redis Upstash terpisah. Klien menerima jawaban sintetis tanpa token instalasi. Pencabutan memblokir request lokal dan backend menolak token yang sama. [Bukti staging](../../android/validation/signed-self-service-staging/README.md). |
+| Hapus akun | Lulus pada endpoint Vercel Preview, Firebase menolak token lama dan login ulang. Akun sintetis dan data Redis uji terverifikasi bersih. Kandidat standar masih menyembunyikan tombol Hapus Akun. Pengaktifan fitur rilis memerlukan verifikasi kandidat yang memasukkan tombol tersebut. |
+| Konten dan privasi | APK membawa dua audio adzan berlisensi dan membatasi cache sorotan kata menjadi enam hari. Penerbit menyetujui draf privasi dan Ketentuan Penggunaan di [Preview tanpa promo](https://zikra-qmb8trn9u-arkanzahir86-3257s-projects.vercel.app/). Permintaan konfirmasi izin tiga qori sudah dikirim ke Islamic Network. Balasan serta verifikasi persyaratan penyedia masih terbuka. Hak suara perlu bukti jika promo dipakai di kanal publik. [Audit kandidat](CONTENT_LICENSE_TRACE.md). |
 | Signing dan unduhan | APK signed 1.9.66 lulus audit, unduhan HTTPS lokal, dan update emulator. Ekspor PKCS#12 diuji dengan menandatangani APK uji dan menghasilkan sertifikat yang sama. Cadangan terenkripsi tersimpan di Google Drive privat. Pembacaan ulang mengonfirmasi berkas dapat diambil dan ukurannya cocok. Unduhan dari URL publik masih perlu diverifikasi. |
 | Uji perangkat | Emulator API 36 lulus update dan percobaan ulang ayat yang macet. Kandidat belum dipasang di HP. Uji padanan gejala asli dan data pengguna masih terbuka. |
 
@@ -17,9 +17,10 @@ untuk resource tambahan. Database yang tersedia terhubung ke proyek produksi.
 Paket sumber Preview backend lokal memuat 38 berkas terlacak dari allowlist Vercel
 dan tidak memuat kredensial. [Upstash sementara](https://upstash.com/docs/redis/overall/getstarted)
 menyediakan REST yang cocok untuk pengujian sintetis dan kedaluwarsa setelah
-72 jam. Uji kontrak lulus dan semua kunci uji telah dihapus. Untuk staging
-yang menyimpan data identitas, gunakan database yang sudah diklaim dan terpisah.
-Backend Preview terlindungi dengan Firebase nyata masih perlu disiapkan.
+72 jam. Uji hosted memakai akun buatan dengan alamat `example.test` dan
+jawaban tetap. Akses deployment dicabut dan Redis kembali kosong.
+Staging yang menyimpan data pengguna memerlukan database yang sudah diklaim
+dan terpisah.
 
 ## Catatan historis 15 November 2026
 

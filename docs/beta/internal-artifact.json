@@ -14,7 +14,7 @@
     "content-and-audio-rights",
     "publisher-and-privacy",
     "combined-runtime-and-device-tests",
-    "staging-account-deletion-and-signed-chat",
+    "release-account-deletion-ui",
     "web-distribution-verification"
   ],
   "artifactKind": "signed-release-hold"

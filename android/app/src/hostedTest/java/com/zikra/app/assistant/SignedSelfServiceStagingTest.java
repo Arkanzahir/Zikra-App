@@ -33,7 +33,7 @@ import org.json.JSONObject;
 @SuppressWarnings("deprecation")
 public final class SignedSelfServiceStagingTest extends InstrumentationTestCase {
   private static final String PRODUCTION_HOST = "zikra-ai.vercel.app";
-  private static final String PREVIEW_HEADER = "x-vercel-protection-bypass";
+  private static final String PREVIEW_HEADER = "Cookie";
   private static final String FIXTURE = "/data/local/tmp/zikra-signed-self-service-staging.json";
   private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
@@ -59,12 +59,13 @@ public final class SignedSelfServiceStagingTest extends InstrumentationTestCase 
     }
     HttpUrl preview = HttpUrl.parse(fixture.getString("preview"));
     assertTrue("Use an exact HTTPS Zikra preview deployment", preview != null && preview.isHttps()
-        && preview.host().matches("zikra-ai-[a-z0-9]+-arkanzahir86-3257s-projects\\.vercel\\.app")
+        && preview.host().matches("zikra(?:-ai)?-[a-z0-9]+-arkanzahir86-3257s-projects\\.vercel\\.app")
         && preview.port() == 443
         && preview.username().isEmpty() && preview.password().isEmpty()
         && "/".equals(preview.encodedPath()) && preview.query() == null && preview.fragment() == null);
     String previewSecret = fixture.optString("previewAccess");
-    assertTrue("Missing preview access", !previewSecret.isEmpty());
+    assertTrue("Expected a deployment-scoped Vercel session",
+        previewSecret.matches("_vercel_jwt=[A-Za-z0-9._~-]{32,4096}"));
     assertFalse("Fixture must contain no installation token", fixture.has("installation"));
     String email = fixture.getString("email");
     String password = fixture.getString("password");
