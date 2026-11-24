@@ -32,6 +32,23 @@ public final class AccountScreenNativeTest extends InstrumentationTestCase {
     try { if (page != null) getInstrumentation().runOnMainSync(page::finish); }
     finally { super.tearDown(); }
   }
+  public void testSignInHasItsOwnRowAboveSecondaryActions() {
+    getInstrumentation().runOnMainSync(() -> {
+      View signIn = page.findViewById(R.id.accountSignIn);
+      View create = page.findViewById(R.id.accountCreate);
+      View reset = page.findViewById(R.id.accountReset);
+      View secondaryRow = (View) create.getParent();
+
+      assertSame(secondaryRow, reset.getParent());
+      assertTrue(secondaryRow.getTop() >= signIn.getBottom());
+      assertTrue(create.getRight() <= reset.getLeft());
+      int minimumTapHeight = Math.round(48 * page.getResources().getDisplayMetrics().density);
+      for (View action : new View[] {signIn, create, reset}) {
+        assertTrue(action.getHeight() >= minimumTapHeight);
+      }
+    });
+  }
+
   public void testInitialScreenRequiresConsentAndDoesNotSaveSecrets() throws Throwable {
     getInstrumentation().runOnMainSync(() -> {
       assertTrue((page.getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_SECURE) != 0);
