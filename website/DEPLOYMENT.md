@@ -1,5 +1,18 @@
 # Deploy website Zikra
 
+## Kanal beta pada 24 November 2026
+
+[Beranda publik](https://zikra-web-roan.vercel.app/) menautkan
+[Privasi](https://zikra-web-roan.vercel.app/privacy.html) dan
+[Ketentuan Penggunaan](https://zikra-web-roan.vercel.app/terms.html). Ketiga URL
+dapat diakses tanpa login. Paket aktif tidak memuat APK atau video promo.
+
+`node website/prepare-public-review.cjs --public-policies` menyiapkan paket
+tersebut di `.local`. Tambahkan `--apk <path ke APK signed>` untuk menyiapkan
+calon distribusi. Perintah memeriksa ukuran dan SHA-256 berdasarkan manifest
+dan menyiapkan tautan serta header unduhan. Paket yang dibuat tidak
+dipublikasikan otomatis. Lihat [status rilis](../docs/beta/PUBLIC_RELEASE_BLOCKERS.md).
+
 ## Keadaan16 November 2026
 
 Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/

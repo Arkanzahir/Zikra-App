@@ -14,6 +14,19 @@
   dan konfirmasi benar HTTP 200. Firebase mengonfirmasi akun hilang,
   login ulang HTTP 400, dan API menolak token lama HTTP 401.
 
+## Uji privat chat mandiri — 24 November 2026
+
+Kandidat `dpl_Grd4kY6ntu19Hyu15ZgPgejV1SSi` memakai konfigurasi produksi
+dengan tambahan `ZIKRA_ADULT_ACCOUNTS_SELF_SERVICE=true` khusus deployment.
+Domain produksi tetap menunjuk ke deployment Hapus Akun yang sudah lulus.
+Pengunjung tanpa token mendapat 401. Akun uji mendapat 403 sebelum deklarasi
+usia, lalu status dan chat tanpa token instalasi mengembalikan 200.
+Pencabutan berhasil dan akses berikutnya ditolak 403. Hapus Akun juga
+berhasil dan token lama ditolak. Chat memakai satu pesan sintetis.
+Percobaan sebelum header Cloudflare ditambahkan mendapat 409. Akunnya
+dihapus langsung dari Firebase, sehingga deklarasi sintetis percobaan itu
+mengikuti masa simpan Redis bawaan.
+
 ## Riwayat 21 November 2026
 
 Endpoint status, deklarasi, perpanjangan, dan pencabutan tersedia di [zikra-ai.vercel.app](https://zikra-ai.vercel.app/health). Konfigurasi produksi Zikra memakai `ZIKRA_ADULT_ACCOUNTS_ENABLED=true` dan `ZIKRA_ADULT_ACCOUNTS_REQUIRED=false`. APK signed 1.9.58 masih kandidat internal dan rilis berstatus **HOLD**.

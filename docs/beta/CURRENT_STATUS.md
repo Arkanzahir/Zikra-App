@@ -10,11 +10,14 @@
 | Kandidat signed terbaru | 1.9.67/code94, 41.995.490 byte, Auth 18+ dan tombol Hapus Akun aktif. Audit signer, pemindaian rahasia, serta uji tombol ke Vercel Preview lulus. Kandidat dan manifest tetap HOLD. |
 | Source Android | 1.9.67/code94 dengan pemulihan ayat Murottal yang macet, batas cache audio sorotan kata enam hari, dan penguatan blokir akun saat penyimpanan gagal. Build kandidat memakai opsi eksplisit untuk akses akun dan penghapusan. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
-| Layanan akun18+ | Endpoint aktif di produksi dengan akun tetap opsional. Hapus Akun aktif dan lulus uji sintetis di domain produksi. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
-| Website | Preview dengan video lengkap tetap terlindungi. Preview uji unduhan tanpa promo menyajikan APK 1.9.67 kepada pemilik yang masuk. Beranda, APK, privasi dan ketentuan menolak akses anonim. |
+| Layanan akun18+ | Hapus Akun aktif dan lulus uji di domain produksi. Kandidat AI dengan login tanpa token instalasi lulus uji privat dan menunggu promosi. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
+| Website | Beranda tanpa promo, Privasi, dan Ketentuan Penggunaan tersedia tanpa login. APK signed 1.9.67 tersedia untuk uji privat. Domain publik belum menyajikan APK. |
 | Publikasi | Tidak ada APK/voice/promo umum yang dibuka. A–D/E/F/G tidak selesai seluruhnya |
 
 [Preview dengan video](https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/) dan [Preview tanpa promo untuk meninjau draf privasi dan ketentuan](https://zikra-qmb8trn9u-arkanzahir86-3257s-projects.vercel.app/) memerlukan login Vercel. Proyek `zikra-web` terpisah dari `zikra-ai` dan memakai Hobby. [Bukti hosting awal](../../website/validation/2026-11-16-hosting/README.md).
+
+[Halaman publik Zikra](https://zikra-web-roan.vercel.app/) menautkan kebijakan
+privasi dan ketentuan yang diperbarui pada 24 November 2026.
 
 ## Keputusan pengguna yang masih berlaku
 

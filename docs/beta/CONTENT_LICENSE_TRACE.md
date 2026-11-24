@@ -17,9 +17,11 @@ Paket persyaratan [privasi Quran Foundation](https://api-docs.quran.com/legal/de
 dan ketentuan pengembang meminta kebijakan privasi serta Ketentuan Penggunaan
 yang dapat dijangkau publik. Draf situs lokal kini menjelaskan kedua jalur
 Murottal, IP dan permintaan bacaan, unduhan privat, dan fungsi hapus.
-Penerbit menyetujui draf tersebut dan [draf Ketentuan Penggunaan](../../website/templates/terms.html)
-di salinan review tanpa promo. Audit izin data sensitif, daftar penyedia,
-dan publikasi masih terbuka. Pemeriksaan
+Penerbit menyetujui draf tersebut di salinan review tanpa promo.
+[Privasi](https://zikra-web-roan.vercel.app/privacy.html) dan
+[Ketentuan Penggunaan](https://zikra-web-roan.vercel.app/terms.html) sudah
+diterbitkan tanpa login. Audit izin data sensitif dan daftar penyedia
+masih terbuka. Pemeriksaan
 24 November mencatat bahwa panduan Quran Foundation meminta persetujuan
 terpisah untuk pemrosesan data keagamaan sensitif, identifikasi penyedia beserta
 tautan privasi, dan komitmen retensi dan laporan insiden. Draf menambahkan
@@ -49,7 +51,9 @@ User APIs Quran Foundation. [Paket privasi Quran Foundation](https://api-docs.qu
 mencantumkan penghapusan cadangan dalam 90 hari. [Firebase Authentication](https://firebase.google.com/support/privacy)
 mencantumkan hingga 180 hari untuk penghapusan data autentikasi dari sistem
 aktif dan cadangan. Cakupan syarat 90 hari terhadap akun Firebase terpisah
-masih perlu dipastikan. Pernyataan retensi mengikuti bukti yang tersedia.
+masih perlu dipastikan. Pada 24 November Zikra menanyakan batas cadangan
+dan persetujuan untuk integrasi Content API kepada dukungan pengembang
+Quran Foundation. Tanggapan belum tercatat.
 
 ## Audit awal — 15 November 2026
 
