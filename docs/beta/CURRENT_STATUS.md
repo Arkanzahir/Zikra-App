@@ -6,7 +6,7 @@
 
 | Bagian | Keadaan yang terbukti |
 |---|---|
-| HP pengguna | APK signed 1.9.63-internal/code90 terpasang. Pilihan Adzan penuh kembali muncul tanpa impor dan dialog memberi petunjuk ganti ke MP3 sendiri. Hash, ID, direktori data dan waktu pemasangan awal cocok. Rekaman lama dan perbaikan rute earphone tetap ada. |
+| HP pengguna | APK signed 1.9.67/code94 terpasang lewat update USB dari 1.9.63-internal/code90. Waktu pemasangan awal, posisi baca, dan pilihan qori cocok. Uji Al-Fatihah ayat 1–2 lulus untuk ketiga qori. |
 | Kandidat signed terbaru | 1.9.67/code94, 41.995.490 byte, Auth 18+ dan tombol Hapus Akun aktif. Audit signer, pemindaian rahasia, serta uji tombol ke Vercel Preview lulus. Kandidat dan manifest tetap HOLD. |
 | Source Android | 1.9.67/code94 dengan pemulihan ayat Murottal yang macet, batas cache audio sorotan kata enam hari, dan penguatan blokir akun saat penyimpanan gagal. Build kandidat memakai opsi eksplisit untuk akses akun dan penghapusan. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
@@ -28,7 +28,7 @@
 
 ## Bukti terbaru
 
-- **Kandidat signed 1.9.67, 24 November.** Tombol Hapus Akun lulus di emulator dengan Firebase Spark dan Vercel Preview. Konfirmasi yang benar menghapus akun sintetis. Sebanyak 248 tes JVM lulus. Audit signer, paket, dan unduhan HTTPS lokal lulus. [Bukti](../../android/validation/signed-beta-1.9.67/README.md).
+- **Kandidat signed 1.9.67, 24 November.** Update USB dan sampel Murottal lulus di HP. Tombol Hapus Akun lulus di emulator dengan Firebase Spark dan Vercel Preview. Konfirmasi yang benar menghapus akun sintetis. Sebanyak 248 tes JVM lulus. Audit signer, paket, dan unduhan HTTPS lokal lulus. [Bukti](../../android/validation/signed-beta-1.9.67/README.md).
 
 - **Uji akun signed tuntas di Preview, 24 November.** Android API 36 lulus chat dengan token akun, pencabutan, penghapusan akun, dan penolakan token serta login lama. Uji memakai Firebase Spark dan Redis terpisah serta jawaban AI sintetis. Akses sementara dicabut setelah pembersihan. Permintaan konfirmasi izin Murottal dikirim ke Islamic Network dan menunggu balasan. [Uji staging](../../android/validation/signed-self-service-staging/README.md).
 
@@ -42,7 +42,7 @@
 
 - **Kandidat signed 1.9.65, 24 November.** Audit paket dan sertifikat lulus. Sebanyak 246 tes JVM release lulus tanpa skip dan lint 0 error/913 warning. Emulator API 36 lulus update dari kandidat signed 1.9.64, preservasi preferensi baca, uji Putar pada ayat yang macet, dan tombol Berikutnya. HEAD/GET HTTPS lokal cocok hash. HP, Preview akun, cadangan pemulihan, dan unduhan publik tetap terbuka. [Bukti](../../android/validation/signed-beta-1.9.65/README.md).
 
-- **Murottal macet, 24 November.** Pemutar kini memberi pesan dan dapat memuat ulang ayat yang sama jika posisi decoder tidak berubah selama 15 detik. Sebanyak 24 tes JVM audio dan dua tes Android API 36 lulus dengan fixture sintetis. Surah, ayat, dan qori kejadian awal belum dikonfirmasi. Belum masuk APK signed yang terpasang. [Bukti dan batas](../../android/validation/murottal-stall-2026-11-24/README.md).
+- **Murottal macet, 24 November.** Pemutar dalam APK signed 1.9.67 memberi pesan dan dapat memuat ulang ayat yang sama jika posisi decoder tidak berubah selama 15 detik. Sebanyak 24 tes JVM audio dan dua tes Android API 36 lulus dengan fixture sintetis. Sampel di HP lulus, dan surah, ayat, serta qori kejadian awal belum dikonfirmasi. [Bukti dan batas](../../android/validation/murottal-stall-2026-11-24/README.md).
 
 - **Regresi akun 24 November.** Sebanyak 177 tes backend lulus tanpa skip dan 10 tes Android API 36 lulus pada build debug dengan Firebase Auth Emulator dan Redis sintetis. Cakupan mencakup chat tanpa token instalasi, timeout dan percobaan ulang, pencabutan, serta penolakan login setelah akun dihapus. Vercel CLI sudah terautentikasi dan `zikra-ai` belum punya deployment atau variabel Preview. Deployment yang dulu disebut staging berlabel Production. Redis kedua tidak tersedia pada paket gratis yang ditawarkan integrasi untuk akun ini. Uji hosted signed dan rilis publik tetap terbuka. [Bukti dan batas](../../android/validation/signed-self-service-staging/README.md).
 

@@ -15,9 +15,26 @@ Pemeriksaan BuildConfig memastikan Auth Emulator nonaktif.
 | Paket dan signer | SHA-256 dan ukuran cocok dengan [manifest](../../../docs/beta/internal-artifact.json). Sertifikat sama dengan 1.9.66. Audit menemukan 0 konfigurasi privat dan 0 kecocokan kredensial yang dipindai. Dua rekaman adzan bawaan cocok dengan hash yang telah tercatat. |
 | Saluran unduhan lokal | HEAD dan GET HTTPS loopback mengembalikan 200. Sertifikat TLS diverifikasi. Ukuran, tipe APK, dan SHA-256 sesuai manifest. |
 
+## Uji HP lewat USB
+
+- APK signed 1.9.67/code94 dipasang sebagai update dari 1.9.63-internal/code90
+  pada HP fisik Android API 36. Kedua APK memakai sertifikat yang sama. Waktu
+  pemasangan awal tetap sama.
+- Posisi baca, penyelarasan kata, dan pilihan qori cocok sebelum update,
+  sesudah update, dan sesudah uji Murottal. Inventaris MP3 offline berisi nol
+  file pada ketiga pemeriksaan, sehingga migrasi file unduhan yang sudah ada
+  belum teruji di HP ini.
+- Al-Fatihah ayat 1–2 diputar untuk Alafasy, Al-Husary, dan Al-Minshawi.
+  Posisi pemutaran maju pada kedua ayat untuk tiap qori tanpa skip manual.
+  Uji lulus dalam 20,867 detik. Ayat dan qori dari laporan awal belum
+  diketahui. Uji membaca posisi pemutar Android, tanpa pemeriksaan bunyi
+  speaker.
+- Paket instrumen dan file pilihan uji sementara dibersihkan. Zikra 1.9.67
+  tetap terpasang. Log lengkap disimpan secara lokal.
+
 Kandidat privat berada di `.local/releases/Zikra-v1.9.67-beta-candidate.apk`.
 Instrumen uji tombol memiliki SHA-256
 `b6c38b018322f8ae150ae07ff77290861d800c0bd91882474034a197d756de97`.
-Produksi belum memiliki flag dan Secret Hapus Akun. Uji HP, aktivasi
-produksi, dan verifikasi URL publik tetap tercatat di
+Produksi belum memiliki flag dan Secret Hapus Akun. Aktivasi produksi
+dan verifikasi URL publik tetap tercatat di
 [persyaratan rilis](../../../docs/beta/PUBLIC_RELEASE_BLOCKERS.md).

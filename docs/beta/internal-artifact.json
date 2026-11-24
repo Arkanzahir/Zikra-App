@@ -9,7 +9,7 @@
   "debugSigningKey": false,
   "distributionApproved": false,
   "downloadUrl": null,
-  "runtimeVerification": "emulator-api36-signed-1.9.66-to-1.9.67-reader-murottal-and-preview-deletion-ui",
+  "runtimeVerification": "emulator-api36-reader-murottal-preview-deletion-ui-and-physical-phone-usb-upgrade-reader-murottal-sample",
   "remainingGates": [
     "content-and-audio-rights",
     "publisher-and-privacy",
