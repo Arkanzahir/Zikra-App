@@ -116,11 +116,21 @@ public final class QuranAudioService extends Service {
       };
   private final Runnable prepareTimeout =
       () -> error("Audio belum termuat. Periksa koneksi atau unduh terlebih dahulu.");
+  private final PlaybackProgress playbackProgress = new PlaybackProgress();
   private final Runnable tick =
       new Runnable() {
         @Override
         public void run() {
           if (prepared && wantPlay && player != null) {
+            try {
+              if (playbackProgress.stalled(SystemClock.uptimeMillis(), player.getCurrentPosition())) {
+                error("Audio ayat " + queue.verse + " macet. Ketuk Putar untuk mencoba ayat ini lagi.");
+                return;
+              }
+            } catch (IllegalStateException decoderError) {
+              error("Audio terhenti. Ketuk Putar untuk memuat ulang.");
+              return;
+            }
             publish(false);
             main.postDelayed(this, 500);
           }
@@ -452,6 +462,7 @@ public final class QuranAudioService extends Service {
     }
     status = "Memutar ayat " + queue.verse;
     session.setActive(true);
+    playbackProgress.reset();
     main.removeCallbacks(tick);
     main.post(tick);
     publish(true);
@@ -492,6 +503,7 @@ public final class QuranAudioService extends Service {
       if (prepared && player != null) {
         seeking = true;
         player.seekTo((int) Math.max(0, Math.min(player.getDuration(), ms)));
+        playbackProgress.reset();
       }
     } catch (IllegalStateException pendingErrorCallback) {
       error("Posisi audio belum dapat diubah. Ketuk Putar untuk memuat ulang.");

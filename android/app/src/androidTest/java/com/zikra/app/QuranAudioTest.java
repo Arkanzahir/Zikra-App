@@ -581,6 +581,33 @@ public final class QuranAudioTest extends InstrumentationTestCase {
         () -> page.findViewById(R.id.quranCatalogAudio).getVisibility() == View.GONE);
   }
 
+  public void testStalledDecoderLetsReaderRetryTheSameAyah() throws Exception {
+    seed(1, 30000);
+    seed(2, 30000);
+    launch(false);
+    main(() -> QuranAudioService.send(
+        context, QuranAudioService.play(1, 1, 7, 2, Recitation.IDS[0], 2, false)));
+    until("Second ayah starts", () -> state().verse == 2 && state().playing && state().position > 0);
+
+    // Simulate a decoder that stops advancing without a service pause or error callback.
+    java.lang.reflect.Field player = QuranAudioService.class.getDeclaredField("player");
+    player.setAccessible(true);
+    main(() -> {
+      try {
+        ((MediaPlayer) player.get(service)).pause();
+      } catch (IllegalAccessException failure) {
+        throw new AssertionError(failure);
+      }
+    });
+    until("Stalled ayah offers retry", () -> state().status.contains("Audio ayat 2 macet"));
+    assertEquals("Stalled ayah stays selected", 2, state().verse);
+    assertFalse(state().requested);
+    assertFalse(state().loading);
+
+    click(R.id.quranAudioPlay);
+    until("Play retries the same ayah", () -> state().verse == 2 && state().playing && state().position > 0);
+  }
+
   public void testFollowAyahResumesAfterTouchAndColorsActiveVerse() throws Exception {
     seed(1, 20000);
     seed(2, 20000);
