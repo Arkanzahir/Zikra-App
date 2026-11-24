@@ -4,7 +4,7 @@
 
 | Persyaratan | Bukti saat ini dan pekerjaan tersisa |
 |---|---|
-| Chat mandiri | APK signed sudah menerima jawaban dengan akun terverifikasi dan token instalasi sementara. Uji APK tanpa token instalasi masih diperlukan pada konfigurasi self-service yang terlindungi. |
+| Chat mandiri | APK signed sudah menerima jawaban dengan akun terverifikasi dan token instalasi sementara. [Instrumen staging](../../android/validation/signed-self-service-staging/README.md) sudah dibangun dan cocok signer. Akses metadata preview mendapat HTTP 403. Uji chat tanpa token instalasi masih memerlukan akses preview dan akun sintetis terverifikasi. |
 | Hapus akun | Uji Firebase Auth Emulator lulus. Staging memerlukan akun layanan terpisah dengan izin `firebaseauth.users.delete` dan konfigurasi khusus staging, serta APK dengan fitur hapus akun aktif. |
 | Konten dan privasi | Cakupan beta menunda dua kitab Gading dan alur wali. Konfirmasi hak suara promo dan sumber lain yang ikut distribusi. Finalkan peninjauan retensi penyedia dan draf privasi 18+. |
 | Signing dan unduhan | APK signed lolos pemeriksaan unduhan HTTPS lokal dan pemasangan ulang emulator. Cadangan pemulihan kunci di media terpisah dan unduhan dari URL publik final masih perlu diverifikasi. |
