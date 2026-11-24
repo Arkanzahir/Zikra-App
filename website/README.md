@@ -40,4 +40,4 @@ Pemutar HTML native: controls, playsinline, preload none, tanpa autoplay/mute. S
 
 ## Gerbang publikasi
 
-Tombol unduh tetap nonaktif. Metadata kandidat signed 1.9.66 mengikuti `docs/beta/internal-artifact.json`. AI 18+ masih dijelaskan sebagai rencana. Sebelum membuka unduhan, sahkan paket, signer, migrasi, hak konten dan promo, privasi, retensi, serta batas usia. Jalankan uji akhir dan cocokkan URL HTTPS, ukuran, serta SHA-256 dengan paket final. Lihat [persyaratan rilis](../docs/beta/PUBLIC_RELEASE_BLOCKERS.md).
+Tombol unduh tetap nonaktif. Metadata kandidat signed 1.9.67 mengikuti `docs/beta/internal-artifact.json`. AI 18+ masih dijelaskan sebagai rencana. Sebelum membuka unduhan, sahkan paket, signer, migrasi, hak konten dan promo, privasi, retensi, serta batas usia. Jalankan uji akhir dan cocokkan URL HTTPS, ukuran, serta SHA-256 dengan paket final. Lihat [persyaratan rilis](../docs/beta/PUBLIC_RELEASE_BLOCKERS.md).

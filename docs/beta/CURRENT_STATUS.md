@@ -7,8 +7,8 @@
 | Bagian | Keadaan yang terbukti |
 |---|---|
 | HP pengguna | APK signed 1.9.63-internal/code90 terpasang. Pilihan Adzan penuh kembali muncul tanpa impor dan dialog memberi petunjuk ganti ke MP3 sendiri. Hash, ID, direktori data dan waktu pemasangan awal cocok. Rekaman lama dan perbaikan rute earphone tetap ada. |
-| Kandidat signed terbaru | 1.9.66/code93 standar, 41.995.490 byte, Auth 18+ aktif dan Hapus Akun nonaktif. Audit signer dan pemindaian rahasia lulus. Update signed 1.9.65 → 1.9.66 di emulator API 36 mempertahankan waktu pemasangan awal dan empat nilai preferensi baca sintetis. Kandidat dan manifest tetap HOLD. |
-| Source Android | 1.9.66/code93 dengan pemulihan ayat Murottal yang macet, batas cache audio sorotan kata enam hari, dan penguatan blokir akun saat penyimpanan gagal. Akses akun pada release memakai opsi eksplisit dan konfigurasi klien Firebase produksi. |
+| Kandidat signed terbaru | 1.9.67/code94, 41.995.490 byte, Auth 18+ dan tombol Hapus Akun aktif. Audit signer, pemindaian rahasia, serta uji tombol ke Vercel Preview lulus. Kandidat dan manifest tetap HOLD. |
+| Source Android | 1.9.67/code94 dengan pemulihan ayat Murottal yang macet, batas cache audio sorotan kata enam hari, dan penguatan blokir akun saat penyimpanan gagal. Build kandidat memakai opsi eksplisit untuk akses akun dan penghapusan. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
 | Layanan akun18+ | Endpoint aktif di produksi dengan akun tetap opsional. Pendaftaran sintetis dan penolakan email belum terverifikasi lulus. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
 | Website | Preview Vercel dengan video lengkap dan Preview terpisah tanpa promo keduanya terlindungi. Unduhan APK ditutup. |
@@ -27,6 +27,8 @@
 - Semua perubahan selesai perlucheckpointGitHub. Jangan menyebut seluruh pekerjaan selesai hanya karena sebuahbuild/test lulus.
 
 ## Bukti terbaru
+
+- **Kandidat signed 1.9.67, 24 November.** Tombol Hapus Akun lulus di emulator dengan Firebase Spark dan Vercel Preview. Konfirmasi yang benar menghapus akun sintetis. Sebanyak 248 tes JVM lulus. Audit signer, paket, dan unduhan HTTPS lokal lulus. [Bukti](../../android/validation/signed-beta-1.9.67/README.md).
 
 - **Uji akun signed tuntas di Preview, 24 November.** Android API 36 lulus chat dengan token akun, pencabutan, penghapusan akun, dan penolakan token serta login lama. Uji memakai Firebase Spark dan Redis terpisah serta jawaban AI sintetis. Akses sementara dicabut setelah pembersihan. Permintaan konfirmasi izin Murottal dikirim ke Islamic Network dan menunggu balasan. [Uji staging](../../android/validation/signed-self-service-staging/README.md).
 

@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
   "releaseStatus": "HOLD",
-  "version": "1.9.66",
-  "versionCode": 93,
+  "version": "1.9.67",
+  "versionCode": 94,
   "bytes": 41995490,
-  "sha256": "c1a86752789cf75c009d87e6851029318d737f5053a653c9388f66878e1654c9",
+  "sha256": "6708d720c9f719baf6421b6291ace44443fd8e522f8800083353c69af0fff1da",
   "signerSha256": "c65c40ddc15dce2d4390496585e28a41bee95c2ca72f47791fed77a50431deeb",
   "debugSigningKey": false,
   "distributionApproved": false,
   "downloadUrl": null,
-  "runtimeVerification": "emulator-api36-signed-upgrade-1.9.65-to-1.9.66-reader-data-and-murottal",
+  "runtimeVerification": "emulator-api36-signed-1.9.66-to-1.9.67-reader-murottal-and-preview-deletion-ui",
   "remainingGates": [
     "content-and-audio-rights",
     "publisher-and-privacy",
     "combined-runtime-and-device-tests",
-    "release-account-deletion-ui",
+    "production-account-deletion-activation",
     "web-distribution-verification"
   ],
   "artifactKind": "signed-release-hold"

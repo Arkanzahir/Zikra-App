@@ -1,14 +1,14 @@
 # Persyaratan aktif rilis publik
 
-24 November 2026. Status **HOLD** untuk kandidat signed 1.9.66/code93. Bukti terbaru tercatat di [status beta](CURRENT_STATUS.md).
+24 November 2026. Status **HOLD** untuk kandidat signed 1.9.67/code94. Bukti terbaru tercatat di [status beta](CURRENT_STATUS.md).
 
 | Persyaratan | Bukti saat ini dan pekerjaan tersisa |
 |---|---|
 | Chat mandiri | Lulus dari APK signed 1.9.66 di emulator API 36 pada Vercel Preview dengan Firebase Spark dan Redis Upstash terpisah. Klien menerima jawaban sintetis tanpa token instalasi. Pencabutan memblokir request lokal dan backend menolak token yang sama. [Bukti staging](../../android/validation/signed-self-service-staging/README.md). |
-| Hapus akun | Lulus pada endpoint Vercel Preview, Firebase menolak token lama dan login ulang. Akun sintetis dan data Redis uji terverifikasi bersih. Kandidat standar masih menyembunyikan tombol Hapus Akun. Pengaktifan fitur rilis memerlukan verifikasi kandidat yang memasukkan tombol tersebut. |
-| Konten dan privasi | APK membawa dua audio adzan berlisensi dan membatasi cache sorotan kata menjadi enam hari. Penerbit menyetujui draf privasi dan Ketentuan Penggunaan di [Preview tanpa promo](https://zikra-qmb8trn9u-arkanzahir86-3257s-projects.vercel.app/). Permintaan konfirmasi izin tiga qori sudah dikirim ke Islamic Network. Balasan serta verifikasi persyaratan penyedia masih terbuka. Hak suara perlu bukti jika promo dipakai di kanal publik. [Audit kandidat](CONTENT_LICENSE_TRACE.md). |
-| Signing dan unduhan | APK signed 1.9.66 lulus audit, unduhan HTTPS lokal, dan update emulator. Ekspor PKCS#12 diuji dengan menandatangani APK uji dan menghasilkan sertifikat yang sama. Cadangan terenkripsi tersimpan di Google Drive privat. Pembacaan ulang mengonfirmasi berkas dapat diambil dan ukurannya cocok. Unduhan dari URL publik masih perlu diverifikasi. |
-| Uji perangkat | Emulator API 36 lulus update dan percobaan ulang ayat yang macet. Kandidat belum dipasang di HP. Uji padanan gejala asli dan data pengguna masih terbuka. |
+| Hapus akun | Endpoint Preview lulus pada 1.9.66. Tombol Hapus Akun lulus pada APK signed 1.9.67 di emulator. Batal dan sandi salah tidak mengirim permintaan. Konfirmasi benar menghapus akun dan login ulang ditolak. Secret penghapus dan flag aktivasi belum dipasang di produksi, sehingga aktivasi masih menjadi bagian dari rollout. |
+| Konten dan privasi | APK membawa dua audio adzan berlisensi dan membatasi cache sorotan kata menjadi enam hari. Penerbit menyetujui draf privasi dan Ketentuan Penggunaan di [Preview tanpa promo](https://zikra-qmb8trn9u-arkanzahir86-3257s-projects.vercel.app/). Pemakaian tiga qori untuk streaming dan unduhan privat beta gratis edukatif mengacu pada ketentuan publik Al Quran Cloud. Verifikasi syarat penyedia lainnya dan publikasi dokumen masih tercatat di [audit konten](CONTENT_LICENSE_TRACE.md). |
+| Signing dan unduhan | APK signed 1.9.67 lulus audit dan unduhan HTTPS lokal. Cadangan PKCS#12 terenkripsi tersimpan di Google Drive privat dan pemulihannya lulus uji signer. Unduhan dari URL publik masih perlu diverifikasi. |
+| Uji perangkat | Emulator API 36 lulus upgrade signed 1.9.66 → 1.9.67, preservasi data baca sintetis, dan dua uji Murottal. Kandidat 1.9.67 belum dipasang di HP. Ayat dan qori yang sempat diam serta preservasi data pengguna masih perlu diuji lewat USB. |
 
 Pakai akun sintetis untuk tes hapus akun di staging. Konfirmasi sesi lama ditolak, akun tidak dapat login kembali, dan akses chat akun berhenti. Lihat [kontrak aktivasi](../../backend/deploy/SELF_SERVICE_ACCOUNTS.md).
 

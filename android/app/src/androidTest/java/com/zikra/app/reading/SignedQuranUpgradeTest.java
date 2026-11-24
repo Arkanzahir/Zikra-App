@@ -26,6 +26,10 @@ public final class SignedQuranUpgradeTest extends InstrumentationTestCase {
     seedReader(92);
   }
 
+  public void testSeedReaderOnVersion93() throws Exception {
+    seedReader(93);
+  }
+
   private void seedReader(int versionCode) throws Exception {
     SharedPreferences reader = readerPreferences(versionCode);
     assertFalse("Root the migration test in a fresh AVD", reader.contains("last_verse_key"));
@@ -39,6 +43,10 @@ public final class SignedQuranUpgradeTest extends InstrumentationTestCase {
 
   public void testReaderDataSurvivesUpgradeToVersion93() throws Exception {
     verifyReader(93);
+  }
+
+  public void testReaderDataSurvivesUpgradeToVersion94() throws Exception {
+    verifyReader(94);
   }
 
   private void verifyReader(int versionCode) throws Exception {
