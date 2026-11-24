@@ -17,6 +17,19 @@ hosted belum dijalankan karena konfigurasi Preview dan akun uji belum tersedia.
 
 ## Uji Redis hosted untuk kandidat 1.9.66
 
+Uji integrasi berikutnya memakai Firebase Auth Emulator resmi, Firebase Admin
+SDK, handler HTTP Zikra, dan Redis Upstash sementara lewat HTTPS. Akses akun
+sebelum verifikasi email ditolak dengan HTTP 401. Setelah verifikasi dan
+deklarasi usia, chat tanpa token instalasi mengembalikan HTTP 200 dan jawaban
+sintetis `63`. Endpoint Hapus Akun mengembalikan HTTP 200, akun hilang dari
+Firebase Auth Emulator, dan penghitung kuota dihapus. Token lama ditolak
+oleh endpoint akun dan chat dengan HTTP 401. Login ulang ditolak oleh
+Firebase Auth Emulator. Redis kembali kosong setelah pembersihan.
+
+Semua identitas uji sintetis. Handler HTTP dijalankan di loopback dengan
+provider jawaban sintetis. APK, Firebase produksi, dan Vercel Preview
+tidak dipakai dalam uji integrasi ini.
+
 Pada 24 November 2026, kontrak akun pada backend lokal lulus terhadap database
 Upstash gratis yang terpisah dan kedaluwarsa otomatis setelah 72 jam. Uji
 menggunakan REST HTTPS, identitas dan handler Firebase sintetis, serta Lua
