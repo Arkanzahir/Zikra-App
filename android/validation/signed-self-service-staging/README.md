@@ -3,9 +3,41 @@
 Kandidat `1.9.64`/code91 tetap HOLD. APK kandidat lokal cocok dengan ukuran dan
 SHA-256 dalam [manifest internal](../../../docs/beta/internal-artifact.json).
 APK instrumen terpisah berhasil dibangun dan sertifikatnya cocok dengan
-kandidat. Permintaan metadata staging `dpl_68Cae68VFhkZHE7jUexdwKDHY8pS` melalui
-sesi CLI Vercel mendapat HTTP 403. Tes hosted masih menunggu akses staging dan
-akun sintetis terverifikasi. Hasil ini belum membuktikan percakapan hosted.
+kandidat. Pada 24 November 2026, Vercel CLI 66.6.0 berhasil membaca proyek dan
+deployment `dpl_68Cae68VFhkZHE7jUexdwKDHY8pS`. Deployment tersebut berlabel
+Production. Daftar deployment dan variabel Preview untuk `zikra-ai` kosong.
+Preview terlindungi, Redis terpisah, dan akun sintetis terverifikasi masih
+diperlukan. Hasil ini belum membuktikan percakapan hosted.
+
+## Regresi lokal 24 November 2026
+
+Source `0e2293c` diuji sebelum perubahan dokumen ini. Semua 177 tes backend
+lulus tanpa skip dengan fixture Redis/Lua. Percobaan pertama di sandbox gagal
+pada akses direktori sementara Windows untuk tes backup. Pengulangan dengan
+akses yang diizinkan lulus lengkap.
+
+Build debug untuk Auth Emulator dan APK instrumentation berhasil dipasang ke
+AVD API 36 baru. Fixture memakai Firebase Auth Emulator dan Redis/Lua sintetis
+di loopback dengan jawaban AI sintetis. Sepuluh tes lulus dalam 27,356 detik.
+
+| Suite | Lulus | Cakupan |
+|---|---:|---|
+| `AdultAccountFlowEmulatorTest` | 5 | Chat tanpa token instalasi, HTML 504 dan percobaan ulang, pencabutan, batas usia serta host token |
+| `AccountAuthEmulatorTest` | 3 | Pendaftaran dan verifikasi, masuk ulang, reset sandi lokal, pembatalan hapus akun dan penolakan login setelah hapus |
+| `AccountScreenNativeTest` | 2 | Persetujuan, validasi input dan penyimpanan sandi |
+
+Dua startup awal belum mencapai readiness HTTP. Run akhir memakai modul Auth
+Emulator Firebase yang dipasang lokal dan probe loopback tanpa proxy. ADB
+offline pulih melalui server uji terpisah. APK terpasang dalam run ini adalah
+build debug. Tidak ada akun, kuota, sumber daya hosting, atau data produksi yang
+diubah. Uji signed ke Preview tetap terbuka.
+
+CLI Vercel Marketplace menampilkan hanya plan berbayar untuk Upstash Redis
+tambahan di akun ini. [Harga dan batas Upstash](https://upstash.com/pricing/redis).
+Paket sumber Preview privat `zikra-ai-preview-source-0e2293c.zip` berisi 38
+berkas terlacak dari allowlist Vercel. Paket tidak memuat env atau kredensial.
+
+## Uji hosted
 
 Instrumen memakai `AssistantConnection`, `AccountSession.interceptor()` dan
 `OnlineAssistantClient` dari APK signed. Interceptor khusus instrumen hanya

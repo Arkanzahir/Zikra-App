@@ -1,6 +1,6 @@
 # Zikra — status aktif untuk sesi berikutnya
 
-**23 November 2026 · HOLD · belum rilis publik.** Promosi besar setelah persyaratan rilis dipenuhi. Repo aktif `E:/Zikra/Zikra-App-main`. Catatan 16 November pada handoff lain adalah riwayat.
+**24 November 2026 · HOLD · belum rilis publik.** Promosi besar setelah persyaratan rilis dipenuhi. Repo aktif `E:/Zikra/Zikra-App-main`. Catatan 16 November pada handoff lain adalah riwayat.
 
 ## Fakta yang jangan dicampur
 
@@ -27,6 +27,8 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 - Semua perubahan selesai perlucheckpointGitHub. Jangan menyebut seluruh pekerjaan selesai hanya karena sebuahbuild/test lulus.
 
 ## Bukti terbaru
+
+- **Regresi akun 24 November.** Sebanyak 177 tes backend lulus tanpa skip dan 10 tes Android API 36 lulus pada build debug dengan Firebase Auth Emulator dan Redis sintetis. Cakupan mencakup chat tanpa token instalasi, timeout dan percobaan ulang, pencabutan, serta penolakan login setelah akun dihapus. Vercel CLI sudah terautentikasi dan `zikra-ai` belum punya deployment atau variabel Preview. Deployment yang dulu disebut staging berlabel Production. Redis kedua tidak tersedia pada paket gratis yang ditawarkan integrasi untuk akun ini. Uji hosted signed dan rilis publik tetap terbuka. [Bukti dan batas](../../android/validation/signed-self-service-staging/README.md).
 
 - **Pencabutan akses saat penyimpanan gagal, 23 November.** Source 1.9.64 kini mempertahankan blokir AI dalam proses ketika commit penanda lokal gagal, termasuk saat pengaktifan ulang. UI menampilkan kegagalan penyimpanan, dan pencabutan/penghapusan tetap mencoba server. Sebanyak 243 tes JVM release termasuk enam fault injection lulus tanpa skip; kompilasi Android instrumentation lulus, lint release 0 error/913 warning. Belum ada APK baru atau pengujian UI fault injection native. Commit yang gagal sebelum proses mati dan sebelum RPC selesai tetap belum menjamin blokir pada proses baru. [Bukti dan batas](../../android/validation/account-hold-2026-11-23/README.md).
 

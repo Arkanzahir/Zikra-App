@@ -1,15 +1,20 @@
 # Persyaratan aktif rilis publik
 
-22 November 2026. Status **HOLD** untuk kandidat signed 1.9.64/code91. Bukti terbaru tercatat di [status beta](CURRENT_STATUS.md).
+24 November 2026. Status **HOLD** untuk kandidat signed 1.9.64/code91. Bukti terbaru tercatat di [status beta](CURRENT_STATUS.md).
 
 | Persyaratan | Bukti saat ini dan pekerjaan tersisa |
 |---|---|
-| Chat mandiri | APK signed sudah menerima jawaban dengan akun terverifikasi dan token instalasi sementara. [Instrumen staging](../../android/validation/signed-self-service-staging/README.md) sudah dibangun dan cocok signer. Akses metadata preview mendapat HTTP 403. Uji chat tanpa token instalasi masih memerlukan akses preview dan akun sintetis terverifikasi. |
+| Chat mandiri | APK signed sudah menerima jawaban dengan akun terverifikasi dan token instalasi sementara. [Instrumen staging](../../android/validation/signed-self-service-staging/README.md) sudah dibangun dan cocok signer. CLI Vercel menemukan proyek, tetapi belum ada deployment atau variabel Preview. Deployment yang sebelumnya dipakai untuk uji berlabel Production. Uji hosted tanpa token instalasi masih memerlukan Preview terlindungi, Redis terpisah dan akun sintetis terverifikasi. |
 | Hapus akun | Uji Firebase Auth Emulator lulus. Staging memerlukan akun layanan terpisah dengan izin `firebaseauth.users.delete` dan konfigurasi khusus staging, serta APK dengan fitur hapus akun aktif. |
 | Konten dan privasi | Cakupan beta menunda dua kitab Gading dan alur wali. Konfirmasi hak suara promo dan sumber lain yang ikut distribusi. Finalkan peninjauan retensi penyedia dan draf privasi 18+. |
 | Signing dan unduhan | APK signed lolos pemeriksaan unduhan HTTPS lokal dan pemasangan ulang emulator. Cadangan pemulihan kunci di media terpisah dan unduhan dari URL publik final masih perlu diverifikasi. |
 
 Pakai akun sintetis untuk tes hapus akun di staging. Konfirmasi sesi lama ditolak, akun tidak dapat login kembali, dan akses chat akun berhenti. Lihat [kontrak aktivasi](../../backend/deploy/SELF_SERVICE_ACCOUNTS.md).
+
+Untuk Preview, integrasi Upstash pada akun ini hanya menawarkan paket berbayar
+untuk resource tambahan. Database yang tersedia terhubung ke proyek produksi.
+Paket sumber Preview lokal memuat 38 berkas terlacak dari allowlist Vercel dan
+tidak memuat kredensial. Belum ada resource atau deployment baru.
 
 ## Catatan historis 15 November 2026
 
