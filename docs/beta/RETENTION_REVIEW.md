@@ -1,3 +1,17 @@
+## Tinjauan dokumen penyedia — 24 November 2026
+
+| Jalur aktif | Bukti penyedia | Batas untuk persetujuan rilis |
+|---|---|---|
+| Firebase Authentication | IP yang tercatat disimpan beberapa minggu. Informasi autentikasi lain disimpan sampai penghapusan dimulai. Setelah itu, Firebase menyebut hingga 180 hari untuk sistem aktif dan cadangan. [Privasi Firebase](https://firebase.google.com/support/privacy) | Uji hapus akun di Preview dan verifikasi sesi lama masih terbuka. |
+| Cloudflare Workers AI | Konten inferensi standar hanya diproses selama diperlukan untuk memberi layanan. [Data usage](https://developers.cloudflare.com/workers-ai/platform/data-usage/) | Ketentuan ini berlaku khusus Workers AI. Retensi metadata dan konfigurasi lain belum dikonfirmasi. |
+| Vercel Hobby | Runtime logs satu jam. Traces pada Hobby dapat disimpan tiga hari. [Runtime logs](https://vercel.com/docs/logs/runtime), [Tracing](https://vercel.com/changelog/vercel-tracing-is-now-generally-available) | Tidak menyimpulkan sampling, akses atau retensi drain dan log lain dari angka paket. |
+| Upstash | [Dokumentasi Redis](https://upstash.com/docs/redis/features/backup) membedakan cadangan langsung dan terjadwal dari data aktif. | TTL aplikasi tidak berlaku otomatis pada cadangan. Status cadangan proyek belum diverifikasi. |
+
+Draf privat pada situs mencantumkan batas ini. Pemeriksaan dokumen vendor tidak
+menutup pemeriksaan konfigurasi akun atau persetujuan privasi. Untuk AI online,
+gunakan aturan akun 18+ yang tercatat di [status aktif](CURRENT_STATUS.md).
+Pembahasan AI remaja di bawah berasal dari cakupan lama.
+
 ## Akses akun dipulihkan — 15 November 2026
 
 Login CLI diperbarui pengguna; metadata proyek/tim kembali200 dan paket Hobby terverifikasi. Ini menggantikan hambatan403 di bawah. Retensi drain/backup/seluruh lapisan masih belum terverifikasi; tidak mengklaim nol log. Laporan aplikasi aktif dengan TTL7hari, diuji sintetis.

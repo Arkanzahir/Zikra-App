@@ -1,13 +1,14 @@
 # Persyaratan aktif rilis publik
 
-24 November 2026. Status **HOLD** untuk kandidat signed 1.9.64/code91. Bukti terbaru tercatat di [status beta](CURRENT_STATUS.md).
+24 November 2026. Status **HOLD** untuk kandidat signed 1.9.65/code92. Bukti terbaru tercatat di [status beta](CURRENT_STATUS.md).
 
 | Persyaratan | Bukti saat ini dan pekerjaan tersisa |
 |---|---|
 | Chat mandiri | APK signed sudah menerima jawaban dengan akun terverifikasi dan token instalasi sementara. [Instrumen staging](../../android/validation/signed-self-service-staging/README.md) sudah dibangun dan cocok signer. CLI Vercel menemukan proyek, tetapi belum ada deployment atau variabel Preview. Deployment yang sebelumnya dipakai untuk uji berlabel Production. Uji hosted tanpa token instalasi masih memerlukan Preview terlindungi, Redis terpisah dan akun sintetis terverifikasi. |
 | Hapus akun | Uji Firebase Auth Emulator lulus. Staging memerlukan akun layanan terpisah dengan izin `firebaseauth.users.delete` dan konfigurasi khusus staging, serta APK dengan fitur hapus akun aktif. |
-| Konten dan privasi | Cakupan beta menunda dua kitab Gading dan alur wali. Konfirmasi hak suara promo dan sumber lain yang ikut distribusi. Finalkan peninjauan retensi penyedia dan draf privasi 18+. |
-| Signing dan unduhan | APK signed lolos pemeriksaan unduhan HTTPS lokal dan pemasangan ulang emulator. Cadangan pemulihan kunci di media terpisah dan unduhan dari URL publik final masih perlu diverifikasi. |
+| Konten dan privasi | Dua audio adzan bawaan cocok dengan kredit CC0 dan CC BY 4.0. Cakupan beta menunda dua kitab Gading dan alur wali. Hak suara promo dan cakupan sumber Murottal/unduhan Quran masih perlu dipastikan. Draf privasi 18+ memuat retensi dari dokumen penyedia. Konfigurasi akun, cadangan, dan persetujuan draf tetap terbuka. |
+| Signing dan unduhan | APK signed 1.9.65 lulus audit, unduhan HTTPS lokal, dan update emulator dengan data baca tetap utuh. Cadangan pemulihan kunci di media terpisah dan unduhan dari URL publik final masih perlu diverifikasi. |
+| Uji perangkat | Emulator API 36 lulus update dan percobaan ulang ayat yang macet. Kandidat belum dipasang di HP. Uji padanan gejala asli dan data pengguna masih terbuka. |
 
 Pakai akun sintetis untuk tes hapus akun di staging. Konfirmasi sesi lama ditolak, akun tidak dapat login kembali, dan akses chat akun berhenti. Lihat [kontrak aktivasi](../../backend/deploy/SELF_SERVICE_ACCOUNTS.md).
 

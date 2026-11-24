@@ -33,4 +33,4 @@ Pemutar HTML native: controls, playsinline, preload none, tanpa autoplay/mute. S
 
 ## Gerbang publikasi
 
-Tombol unduh tetap disabled, tanpa URL APK/auto-redirect. Metadata kandidat signed 1.9.64 mengikuti `docs/beta/internal-artifact.json`. AI18+ masih dijelaskan sebagai rencana. Sebelum membuka unduhan: sahkan paket/signer/migrasi, hak konten/promo, privasi/retensi/usia, uji akhir dan distribusi; cocokkan URL HTTPS, ukuran serta SHA256 dengan paket final. Perubahan website tidak menyelesaikan pekerjaan akun/backend/HP yang masih WIP.
+Tombol unduh tetap disabled, tanpa URL APK/auto-redirect. Metadata kandidat signed 1.9.65 mengikuti `docs/beta/internal-artifact.json`. AI18+ masih dijelaskan sebagai rencana. Sebelum membuka unduhan: sahkan paket/signer/migrasi, hak konten/promo, privasi/retensi/usia, uji akhir dan distribusi; cocokkan URL HTTPS, ukuran serta SHA256 dengan paket final. Perubahan website tidak menyelesaikan pekerjaan akun/backend/HP yang masih WIP.

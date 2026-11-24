@@ -7,8 +7,8 @@
 | Bagian | Keadaan yang terbukti |
 |---|---|
 | HP pengguna | APK signed 1.9.63-internal/code90 terpasang. Pilihan Adzan penuh kembali muncul tanpa impor dan dialog memberi petunjuk ganti ke MP3 sendiri. Hash, ID, direktori data dan waktu pemasangan awal cocok. Rekaman lama dan perbaikan rute earphone tetap ada. |
-| Kandidat signed terbaru | 1.9.64/code91 standar, 41.994.958 byte, Auth 18+ aktif. Audit signer dan pemindaian rahasia lulus. Update signed 1.9.63 → 1.9.64 di emulator API 36 mempertahankan ID aplikasi, direktori data dan waktu pemasangan awal. APK dan manifest HOLD privat. Hapus akun masih nonaktif pada APK ini. |
-| Source Android | 1.9.64/code91 dengan akses akun mandiri pada build akun. Aktivasi pada build release memerlukan opsi eksplisit dan konfigurasi klien Firebase produksi. |
+| Kandidat signed terbaru | 1.9.65/code92 standar, 41.995.490 byte, Auth 18+ aktif dan Hapus Akun nonaktif. Audit signer dan pemindaian rahasia lulus. Update signed 1.9.64 → 1.9.65 di emulator API 36 mempertahankan waktu pemasangan awal dan empat nilai preferensi baca sintetis. Kandidat dan manifest tetap HOLD. |
+| Source Android | 1.9.65/code92 dengan pemulihan Murottal yang macet dan penguatan blokir akun saat penyimpanan gagal. Akses akun pada release memakai opsi eksplisit dan konfigurasi klien Firebase produksi. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
 | Layanan akun18+ | Endpoint aktif di produksi dengan akun tetap opsional. Pendaftaran sintetis dan penolakan email belum terverifikasi lulus. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
 | Website | Preview Vercel terlindungi sudah READY, video52detik lengkap bersuara; tombolAPKdisabled |
@@ -27,6 +27,8 @@ Preview: https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/ (loginV
 - Semua perubahan selesai perlucheckpointGitHub. Jangan menyebut seluruh pekerjaan selesai hanya karena sebuahbuild/test lulus.
 
 ## Bukti terbaru
+
+- **Kandidat signed 1.9.65, 24 November.** Audit paket dan sertifikat lulus. Sebanyak 246 tes JVM release lulus tanpa skip dan lint 0 error/913 warning. Emulator API 36 lulus update dari kandidat signed 1.9.64, preservasi preferensi baca, uji Putar pada ayat yang macet, dan tombol Berikutnya. HEAD/GET HTTPS lokal cocok hash. HP, Preview akun, cadangan pemulihan, dan unduhan publik tetap terbuka. [Bukti](../../android/validation/signed-beta-1.9.65/README.md).
 
 - **Murottal macet, 24 November.** Pemutar kini memberi pesan dan dapat memuat ulang ayat yang sama jika posisi decoder tidak berubah selama 15 detik. Sebanyak 24 tes JVM audio dan dua tes Android API 36 lulus dengan fixture sintetis. Surah, ayat, dan qori kejadian awal belum dikonfirmasi. Belum masuk APK signed yang terpasang. [Bukti dan batas](../../android/validation/murottal-stall-2026-11-24/README.md).
 

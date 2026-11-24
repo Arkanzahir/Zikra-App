@@ -1,3 +1,13 @@
+## Pembaruan 24 November 2026
+
+[Draf situs terkini](../../website/dist/privacy.html) membedakan masa simpan
+catatan lokal dan backend Zikra dari retensi penyedia. Dokumentasi Firebase
+menyebut hingga 180 hari untuk penghapusan informasi autentikasi dari sistem
+aktif dan cadangan setelah proses diinisiasi. Dokumentasi Vercel membedakan
+log runtime Hobby dan trace. Cloudflare menjelaskan pemrosesan konten untuk
+inferensi standar Workers AI. [Bukti dan batas konfigurasi](RETENTION_REVIEW.md).
+Alur Hapus Akun di Preview, cadangan Upstash, dan persetujuan draf tetap terbuka.
+
 ## Pembaruan 21 November 2026
 
 Akses AI online lewat akun pada beta direncanakan untuk usia 18 tahun ke atas. Bagian tentang sasaran 13+ di bawah adalah riwayat. [Draf halaman privasi web](../../website/dist/privacy.html) menjelaskan deklarasi usia, retensi catatan akun, dan penghapusan saat fitur tersedia. Retensi log dan cadangan penyedia serta uji hapus akun di staging tetap terbuka.
