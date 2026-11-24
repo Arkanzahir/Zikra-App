@@ -1,6 +1,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const withoutProviderLinks = require('./privacy-links.cjs');
 
 const source = path.join(__dirname, 'dist');
 const scratch = path.join(__dirname, '..', '.local');
@@ -39,10 +40,11 @@ function addAsset(target) {
 }
 
 for (const [name, html] of pages) {
-  assert(!/<(?:script|audio|video|source|track)\b|\.apk\b|https?:\/\/|\bmedia\/|#video\b|#transkrip\b/i.test(html), name);
+  const localHtml = withoutProviderLinks(name, html);
+  assert(!/<(?:script|audio|video|source|track)\b|\.apk\b|https?:\/\/|\bmedia\/|#video\b|#transkrip\b/i.test(localHtml), name);
   assert(html.includes('name="robots" content="noindex"'));
   const ids = anchorIds(html);
-  for (const [, url] of html.matchAll(/(?:href|src|poster)="([^"]+)"/g)) {
+  for (const [, url] of localHtml.matchAll(/(?:href|src|poster)="([^"]+)"/g)) {
     if (url.startsWith('mailto:') || url === './') continue;
     if (url.startsWith('#')) { assert(ids.has(url.slice(1)), `${name}: ${url}`); continue; }
     if (url.startsWith('./#')) { assert(homeIds.has(url.slice(3)), `${name}: ${url}`); continue; }

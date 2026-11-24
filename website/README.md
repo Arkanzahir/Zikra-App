@@ -1,4 +1,4 @@
-> Tersedia [Preview dengan video](https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/) dan [Preview tanpa promo dengan draf privasi dan ketentuan](https://zikra-k1pk6yh46-arkanzahir86-3257s-projects.vercel.app/). Keduanya memerlukan login Vercel. Unduhan APK ditutup selama status HOLD.
+> Tersedia [Preview dengan video](https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/) dan [Preview tanpa promo dengan draf privasi dan ketentuan](https://zikra-qmb8trn9u-arkanzahir86-3257s-projects.vercel.app/). Keduanya memerlukan login Vercel. Unduhan APK ditutup selama status HOLD.
 
 # Website Zikra — pratinjau lokal
 

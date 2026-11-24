@@ -14,7 +14,7 @@
 | Website | Preview Vercel dengan video lengkap dan Preview terpisah tanpa promo keduanya terlindungi. Unduhan APK ditutup. |
 | Publikasi | Tidak ada APK/voice/promo umum yang dibuka. A–D/E/F/G tidak selesai seluruhnya |
 
-[Preview dengan video](https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/) dan [Preview tanpa promo untuk meninjau draf privasi dan ketentuan](https://zikra-k1pk6yh46-arkanzahir86-3257s-projects.vercel.app/) memerlukan login Vercel. Proyek `zikra-web` terpisah dari `zikra-ai` dan memakai Hobby. [Bukti hosting awal](../../website/validation/2026-11-16-hosting/README.md).
+[Preview dengan video](https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/) dan [Preview tanpa promo untuk meninjau draf privasi dan ketentuan](https://zikra-qmb8trn9u-arkanzahir86-3257s-projects.vercel.app/) memerlukan login Vercel. Proyek `zikra-web` terpisah dari `zikra-ai` dan memakai Hobby. [Bukti hosting awal](../../website/validation/2026-11-16-hosting/README.md).
 
 ## Keputusan pengguna yang masih berlaku
 
@@ -27,6 +27,8 @@
 - Semua perubahan selesai perlucheckpointGitHub. Jangan menyebut seluruh pekerjaan selesai hanya karena sebuahbuild/test lulus.
 
 ## Bukti terbaru
+
+- **Redis hosted dan review privasi, 24 November.** Kontrak otorisasi chat dan hapus akun lulus pada backend lokal dengan Redis Upstash terpisah, identitas sintetis, dan pembersihan semua kunci uji. Preview situs terbaru READY dan tiga rute meminta login. Uji menyeluruh di backend Preview dengan Firebase nyata masih terbuka. [Bukti](../../android/validation/signed-self-service-staging/README.md).
 
 - **Kandidat signed 1.9.66, 24 November.** Lulus audit paket dan signer, 248 tes JVM release, update signed API 36, dua uji native Murottal, dan unduhan HTTPS lokal. Preview website tanpa promo berstatus READY dan tiga halaman memerlukan login. [Bukti](../../android/validation/signed-beta-1.9.66/README.md).
 

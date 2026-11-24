@@ -1,14 +1,17 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
+const withoutProviderLinks = require('./privacy-links.cjs');
 const root = path.join(__dirname, 'dist');
 const sourceOnly = process.argv.includes('--source-only');
 const missingReviewMedia = [];
 for (const name of ['index.html', 'privacy.html']) {
   const html = fs.readFileSync(path.join(root, name), 'utf8');
   assert(html.includes('lang="id"') && html.includes('name="viewport"'), name);
-  for (const [, target] of html.matchAll(/(?:href|src|poster)="([^"]+)"/g)) {
-    if (/^(?:https?:|mailto:|#)/.test(target)) continue;
+  const localHtml = withoutProviderLinks(name, html);
+  assert(!/<script|\.apk|https?:\/\//i.test(localHtml), 'No remote resources, scripts or APK links in HOLD preview');
+  for (const [, target] of localHtml.matchAll(/(?:href|src|poster)="([^"]+)"/g)) {
+    if (/^(?:mailto:|#)/.test(target)) continue;
     const file = target.split(/[?#]/)[0];
     if (!fs.existsSync(path.resolve(root, file)) && sourceOnly && file.startsWith('media/')) {
       missingReviewMedia.push(file);
@@ -20,7 +23,6 @@ for (const name of ['index.html', 'privacy.html']) {
     }
     assert(fs.existsSync(path.resolve(root, file)), `${name}: missing ${file}`);
   }
-  assert(!/<script|\.apk|https?:\/\//i.test(html), 'No remote resources, scripts or APK links in HOLD preview');
 }
 const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const artifact = JSON.parse(fs.readFileSync(path.join(__dirname, '../docs/beta/internal-artifact.json'), 'utf8'));

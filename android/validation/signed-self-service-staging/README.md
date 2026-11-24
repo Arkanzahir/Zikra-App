@@ -1,5 +1,23 @@
 # Uji chat mandiri dari APK signed di staging
 
+## Uji Redis hosted untuk kandidat 1.9.66
+
+Pada 24 November 2026, kontrak akun pada backend lokal lulus terhadap database
+Upstash gratis yang terpisah dan kedaluwarsa otomatis setelah 72 jam. Uji
+menggunakan REST HTTPS, identitas dan handler Firebase sintetis, serta Lua
+aplikasi. Registrasi dan akuisisi izin chat tanpa token instalasi lulus.
+Percobaan penghapusan yang gagal meninggalkan penanda yang memblokir akses
+lama. Percobaan berikutnya berhasil dan otorisasi lama ditolak. Uji juga
+memastikan data milik identitas sintetis lain tidak ikut terhapus.
+
+Pemeriksaan `SCAN` setelah pembersihan mengembalikan nol kunci. Kredensial
+hanya dipakai dalam proses uji. Produksi, data pribadi, dan HP tidak digunakan.
+Pengujian ini memverifikasi Redis hosted dan kontrak backend lokal. Uji
+menyeluruh memakai APK signed 1.9.66, backend Preview Vercel, dan Firebase
+nyata masih terbuka.
+
+## Riwayat instrumen kandidat 1.9.64
+
 Kandidat `1.9.64`/code91 tetap HOLD. APK kandidat lokal cocok dengan ukuran dan
 SHA-256 dalam [manifest internal](../../../docs/beta/internal-artifact.json).
 APK instrumen terpisah berhasil dibangun dan sertifikatnya cocok dengan

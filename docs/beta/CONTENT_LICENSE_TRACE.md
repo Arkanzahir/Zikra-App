@@ -19,8 +19,23 @@ yang dapat dijangkau publik. Draf situs lokal kini menjelaskan kedua jalur
 Murottal, IP dan permintaan bacaan, unduhan privat, dan fungsi hapus. Persetujuan
 draf, audit izin data sensitif serta daftar penyedia masih terbuka. [Draf
 Ketentuan Penggunaan](../../website/templates/terms.html) tersedia di salinan
-review lokal tanpa promo. Persetujuan dan publikasi masih terbuka. Catatan
-15 November di bawah memberi jejak sumber sebelumnya.
+review tanpa promo. Persetujuan dan publikasi masih terbuka. Pemeriksaan
+24 November mencatat bahwa panduan Quran Foundation meminta persetujuan
+terpisah untuk pemrosesan data keagamaan sensitif, identifikasi penyedia beserta
+tautan privasi, dan komitmen retensi dan laporan insiden. Draf menambahkan
+informasi penyedia dan risiko data sensitif. Cakupan persetujuan aplikasi,
+perjanjian pemrosesan, dan kesesuaian retensi cadangan tetap memerlukan
+verifikasi. Jangan menjanjikan penghapusan cadangan dalam 90 hari jika alur
+akun bergantung pada batas Firebase yang lebih panjang.
+
+Kanal [kontak Islamic Network](https://islamic.network/contact.html)
+mengarahkan pertanyaan ke Community. Forum memerlukan akun dan
+[pengumuman moderator](https://community.islamic.network/d/360-use-of-ai-on-the-islamic-network-community)
+meminta pengguna tidak mengirim pertanyaan izin yang disusun oleh AI.
+Permintaan untuk Zikra belum dikirim. Pertanyaan yang belum terjawab adalah
+cakupan streaming per ayat dan unduhan privat atas pilihan pengguna untuk
+edisi `ar.alafasy`, `ar.husary`, dan `ar.minshawi` dalam beta gratis
+untuk belajar, serta apakah syarat dari pemegang hak rekaman perlu dipenuhi.
 
 ## Audit awal — 15 November 2026
 
