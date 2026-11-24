@@ -13,7 +13,6 @@
   "remainingGates": [
     "content-and-audio-rights",
     "publisher-and-privacy",
-    "external-signer-recovery-copy",
     "combined-runtime-and-device-tests",
     "staging-account-deletion-and-signed-chat",
     "web-distribution-verification"
