@@ -28,6 +28,8 @@
 
 ## Bukti terbaru
 
+- **Persiapan staging dan pemulihan signing, 24 November.** APK instrumen 1.9.66 dengan skenario hapus akun sintetis lulus build dan verifikasi signer. Vercel Preview masih belum memiliki variabel Redis dan Firebase. Penerbit menyetujui draf privasi dan ketentuan untuk beta gratis. Simulasi pemulihan lokal serta uji ekspor PKCS#12 menghasilkan sertifikat rilis yang sama. [Persyaratan tersisa](PUBLIC_RELEASE_BLOCKERS.md).
+
 - **Redis hosted dan review privasi, 24 November.** Kontrak otorisasi chat dan hapus akun lulus pada backend lokal dengan Redis Upstash terpisah, identitas sintetis, dan pembersihan semua kunci uji. Preview situs terbaru READY dan tiga rute meminta login. Uji menyeluruh di backend Preview dengan Firebase nyata masih terbuka. [Bukti](../../android/validation/signed-self-service-staging/README.md).
 
 - **Kandidat signed 1.9.66, 24 November.** Lulus audit paket dan signer, 248 tes JVM release, update signed API 36, dua uji native Murottal, dan unduhan HTTPS lokal. Preview website tanpa promo berstatus READY dan tiga halaman memerlukan login. [Bukti](../../android/validation/signed-beta-1.9.66/README.md).

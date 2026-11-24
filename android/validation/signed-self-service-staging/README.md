@@ -7,7 +7,7 @@ berhasil menyimpan status sebelum menguji pemblokiran lokal. Build
 `:app:assembleDebugAndroidTest` dengan `-PzikraHostedTests=true` lulus.
 Sertifikat APK instrumen cocok dengan sertifikat kandidat. Paket privat
 `.local/releases/Zikra-v1.9.66-hosted-instrumentation.apk` memiliki SHA-256
-`e7f3235e5507d21adc4dbbf29b09364f6c47b80799a6ef8bef4c492142fc6d83`.
+`2a2e7c31acbef7b0eeed38d4016ea52a538a18986cd826ccc6d1960b061f0386`.
 Kandidat release tetap cocok dengan manifest internal.
 
 Pemeriksaan proyek `zikra-ai` menemukan proteksi `all_except_custom_domains`
@@ -116,6 +116,16 @@ HTTP di staging, jadi tes ini tidak mencakup layar UI pengelolaan akun.
    preview untuk token yang sama setelah pencabutan server. Catat status tanpa
    konten akun. Hapus JSON dari emulator, hapus akun dan data fixture miliknya,
    lalu lepaskan instrumen atau tutup emulator uji.
+
+Untuk uji penghapusan, siapkan akun baru dengan alamat
+`zikra-staging-<id>@example.test` dan pastikan operator menandai email akun
+sintetis itu sebagai terverifikasi. Atur JSON fixture dengan
+`"allowSyntheticDeletion": true`, dan jalankan
+`SignedSelfServiceStagingTest#testSignedChatAndSyntheticAccountDeletion`
+pada emulator yang bersih. Metode ini menguji chat dan pencabutan, memanggil
+endpoint penghapusan, memeriksa HTTP 401 untuk token lama, lalu memastikan
+Firebase menolak login ulang. Skenario penghapusan memakai endpoint melalui
+instrumen. Antarmuka Hapus Akun memerlukan build dengan fitur itu aktif.
 
 Kompilasi dari `android`, dengan JDK, SDK, dan cache lokal yang tercatat di
 [bukti akun](../adult-accounts-2026-11-15/README.md):

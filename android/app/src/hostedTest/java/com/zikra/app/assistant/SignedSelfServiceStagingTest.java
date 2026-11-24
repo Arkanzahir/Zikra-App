@@ -7,12 +7,14 @@ import android.os.ParcelFileDescriptor;
 import android.test.InstrumentationTestCase;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.zikra.app.account.AccountSession;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -34,6 +36,14 @@ public final class SignedSelfServiceStagingTest extends InstrumentationTestCase 
   private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
   public void testSignedChatWithoutInstallationAndWithdrawal() throws Exception {
+    runAccountScenario(false);
+  }
+
+  public void testSignedChatAndSyntheticAccountDeletion() throws Exception {
+    runAccountScenario(true);
+  }
+
+  private void runAccountScenario(boolean deleteAfterWithdrawal) throws Exception {
     assertTrue("Only an isolated Android emulator can run this fixture", "ranchu".equals(Build.HARDWARE));
     Context target = getInstrumentation().getTargetContext();
     assertEquals("1.9.66", target.getPackageManager().getPackageInfo(target.getPackageName(), 0).versionName);
@@ -47,12 +57,20 @@ public final class SignedSelfServiceStagingTest extends InstrumentationTestCase 
     }
     HttpUrl preview = HttpUrl.parse(fixture.getString("preview"));
     assertTrue("Use an exact HTTPS Zikra preview deployment", preview != null && preview.isHttps()
-        && preview.host().matches("zikra-ai-[a-z0-9-]+\\.vercel\\.app") && preview.port() == 443
+        && preview.host().matches("zikra-ai-[a-z0-9]+-arkanzahir86-3257s-projects\\.vercel\\.app")
+        && preview.port() == 443
         && preview.username().isEmpty() && preview.password().isEmpty()
         && "/".equals(preview.encodedPath()) && preview.query() == null && preview.fragment() == null);
     String previewSecret = fixture.optString("previewAccess");
     assertTrue("Missing preview access", !previewSecret.isEmpty());
     assertFalse("Fixture must contain no installation token", fixture.has("installation"));
+    String email = fixture.getString("email");
+    String password = fixture.getString("password");
+    if (deleteAfterWithdrawal) {
+      assertTrue("Deletion requires explicit opt-in for a disposable synthetic address",
+          Boolean.TRUE.equals(fixture.opt("allowSyntheticDeletion"))
+              && email.matches("zikra-staging-[a-z0-9-]+@example\\.test"));
+    }
 
     SharedPreferences settings = target.getSharedPreferences("zikra_preferences", 0);
     SharedPreferences installation = target.getSharedPreferences("assistant_gateway", 0);
@@ -75,8 +93,7 @@ public final class SignedSelfServiceStagingTest extends InstrumentationTestCase 
     boolean declared = false;
     boolean withdrawn = false;
     try {
-      FirebaseUser user = Tasks.await(auth.signInWithEmailAndPassword(fixture.getString("email"),
-          fixture.getString("password")), 25, TimeUnit.SECONDS).getUser();
+      FirebaseUser user = Tasks.await(auth.signInWithEmailAndPassword(email, password), 25, TimeUnit.SECONDS).getUser();
       assertNotNull("Synthetic Firebase sign-in failed", user);
       assertTrue("Wrong synthetic UID", fixture.getString("uid").equals(user.getUid()));
       assertTrue("Synthetic email must be verified", AccountSession.hasVerifiedUser());
@@ -134,6 +151,24 @@ public final class SignedSelfServiceStagingTest extends InstrumentationTestCase 
         assertEquals("Preview must deny the same token after withdrawal", 403, denied.code());
         assertNotNull(denied.body());
         assertEquals("adult_confirmation_required", new JSONObject(denied.body().string()).optString("error"));
+      }
+      if (deleteAfterWithdrawal) {
+        JSONObject deleted = account(plain, preview, previewSecret, token, "/delete",
+            new JSONObject().put("confirm", true));
+        assertEquals("deleted", deleted.optString("status"));
+        try (Response denied = plain.newCall(serverCheck).execute()) {
+          assertEquals("Preview must reject the deleted account's token", 401, denied.code());
+        }
+        auth.signOut();
+        try {
+          Tasks.await(auth.signInWithEmailAndPassword(email, password), 25, TimeUnit.SECONDS);
+          fail("The deleted synthetic account must not sign in");
+        } catch (ExecutionException denied) {
+          assertTrue(denied.getCause() instanceof FirebaseAuthException);
+          String code = ((FirebaseAuthException) denied.getCause()).getErrorCode();
+          assertTrue("Unexpected Firebase login result: " + code,
+              "ERROR_USER_NOT_FOUND".equals(code) || "ERROR_INVALID_CREDENTIAL".equals(code));
+        }
       }
       assertTrue(installation.getAll().isEmpty());
     } finally {
