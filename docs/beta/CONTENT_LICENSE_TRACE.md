@@ -16,10 +16,10 @@ Rekaman Murottal dan video promo tidak ditanam di APK.
 Paket persyaratan [privasi Quran Foundation](https://api-docs.quran.com/legal/developer-privacy/)
 dan ketentuan pengembang meminta kebijakan privasi serta Ketentuan Penggunaan
 yang dapat dijangkau publik. Draf situs lokal kini menjelaskan kedua jalur
-Murottal, IP dan permintaan bacaan, unduhan privat, dan fungsi hapus. Persetujuan
-draf, audit izin data sensitif serta daftar penyedia masih terbuka. [Draf
-Ketentuan Penggunaan](../../website/templates/terms.html) tersedia di salinan
-review tanpa promo. Persetujuan dan publikasi masih terbuka. Pemeriksaan
+Murottal, IP dan permintaan bacaan, unduhan privat, dan fungsi hapus.
+Penerbit menyetujui draf tersebut dan [draf Ketentuan Penggunaan](../../website/templates/terms.html)
+di salinan review tanpa promo. Audit izin data sensitif, daftar penyedia,
+dan publikasi masih terbuka. Pemeriksaan
 24 November mencatat bahwa panduan Quran Foundation meminta persetujuan
 terpisah untuk pemrosesan data keagamaan sensitif, identifikasi penyedia beserta
 tautan privasi, dan komitmen retensi dan laporan insiden. Draf menambahkan
@@ -37,7 +37,19 @@ dipublikasikan pada [situs proyek Islamic Network](https://sermons.islamic.netwo
 untuk meminta konfirmasi langsung lewat email. Pertanyaan mencakup streaming
 per ayat dan unduhan privat atas pilihan pengguna untuk `ar.alafasy`,
 `ar.husary`, dan `ar.minshawi` dalam beta gratis untuk belajar, serta syarat
-atribusi atau izin khusus rekaman. Balasan khusus belum tercatat.
+atribusi atau izin khusus rekaman. Balasan otomatis mengarahkan permintaan
+ke [kanal bantuan Islamic Network](https://community.islamic.network/tickets).
+Dasar persiapan penggunaan pribadi dan edukatif tetap ketentuan publik
+Al Quran Cloud.
+
+Pemeriksaan tambahan pada 24 November membedakan data Quran Foundation
+dari akun aplikasi milik Zikra. Zikra memakai Content APIs dan rekaman publik,
+sedangkan akun Zikra menggunakan Firebase Authentication tanpa Quran ID atau
+User APIs Quran Foundation. [Paket privasi Quran Foundation](https://api-docs.quran.foundation/legal/developer-privacy/)
+mencantumkan penghapusan cadangan dalam 90 hari. [Firebase Authentication](https://firebase.google.com/support/privacy)
+mencantumkan hingga 180 hari untuk penghapusan data autentikasi dari sistem
+aktif dan cadangan. Cakupan syarat 90 hari terhadap akun Firebase terpisah
+masih perlu dipastikan. Pernyataan retensi mengikuti bukti yang tersedia.
 
 ## Audit awal — 15 November 2026
 

@@ -14,7 +14,6 @@
     "content-and-audio-rights",
     "publisher-and-privacy",
     "combined-runtime-and-device-tests",
-    "production-account-deletion-activation",
     "web-distribution-verification"
   ],
   "artifactKind": "signed-release-hold"

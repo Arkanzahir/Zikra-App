@@ -10,8 +10,8 @@
 | Kandidat signed terbaru | 1.9.67/code94, 41.995.490 byte, Auth 18+ dan tombol Hapus Akun aktif. Audit signer, pemindaian rahasia, serta uji tombol ke Vercel Preview lulus. Kandidat dan manifest tetap HOLD. |
 | Source Android | 1.9.67/code94 dengan pemulihan ayat Murottal yang macet, batas cache audio sorotan kata enam hari, dan penguatan blokir akun saat penyimpanan gagal. Build kandidat memakai opsi eksplisit untuk akses akun dan penghapusan. |
 | Backend AI | zikra-ai.vercel.app; providerCloudflare, laporanAI produksi sudah aktif dari sesi terdahulu. Tidak dideploy ulang saat pekerjaan website |
-| Layanan akun18+ | Endpoint aktif di produksi dengan akun tetap opsional. Pendaftaran sintetis dan penolakan email belum terverifikasi lulus. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
-| Website | Preview Vercel dengan video lengkap dan Preview terpisah tanpa promo keduanya terlindungi. Unduhan APK ditutup. |
+| Layanan akun18+ | Endpoint aktif di produksi dengan akun tetap opsional. Hapus Akun aktif dan lulus uji sintetis di domain produksi. [Bukti deploy](ACCOUNT_PRODUCTION_2026-11-21.md). |
+| Website | Preview dengan video lengkap tetap terlindungi. Preview uji unduhan tanpa promo menyajikan APK 1.9.67 kepada pemilik yang masuk. Beranda, APK, privasi dan ketentuan menolak akses anonim. |
 | Publikasi | Tidak ada APK/voice/promo umum yang dibuka. A–D/E/F/G tidak selesai seluruhnya |
 
 [Preview dengan video](https://zikra-jyr79p4ka-arkanzahir86-3257s-projects.vercel.app/) dan [Preview tanpa promo untuk meninjau draf privasi dan ketentuan](https://zikra-qmb8trn9u-arkanzahir86-3257s-projects.vercel.app/) memerlukan login Vercel. Proyek `zikra-web` terpisah dari `zikra-ai` dan memakai Hobby. [Bukti hosting awal](../../website/validation/2026-11-16-hosting/README.md).
@@ -28,9 +28,9 @@
 
 ## Bukti terbaru
 
-- **Kandidat signed 1.9.67, 24 November.** Update USB dan sampel Murottal lulus di HP. Tombol Hapus Akun lulus di emulator dengan Firebase Spark dan Vercel Preview. Konfirmasi yang benar menghapus akun sintetis. Sebanyak 248 tes JVM lulus. Audit signer, paket, dan unduhan HTTPS lokal lulus. [Bukti](../../android/validation/signed-beta-1.9.67/README.md).
+- **Kandidat signed 1.9.67, 24 November.** Update USB dan sampel Murottal lulus di HP. Tombol Hapus Akun lulus di emulator dengan Firebase Spark dan Vercel Preview. Endpoint produksi menghapus akun uji dan menolak login ulang. Sebanyak 248 tes JVM lulus. Unduhan terautentikasi dari Preview cocok dengan APK yang diaudit. [Bukti](../../android/validation/signed-beta-1.9.67/README.md).
 
-- **Uji akun signed tuntas di Preview, 24 November.** Android API 36 lulus chat dengan token akun, pencabutan, penghapusan akun, dan penolakan token serta login lama. Uji memakai Firebase Spark dan Redis terpisah serta jawaban AI sintetis. Akses sementara dicabut setelah pembersihan. Permintaan konfirmasi izin Murottal dikirim ke Islamic Network dan menunggu balasan. [Uji staging](../../android/validation/signed-self-service-staging/README.md).
+- **Uji akun signed tuntas di Preview, 24 November.** Android API 36 lulus chat dengan token akun, pencabutan, penghapusan akun, dan penolakan token serta login lama. Uji memakai Firebase Spark dan Redis terpisah serta jawaban AI sintetis. Akses sementara dicabut setelah pembersihan. Islamic Network mengarahkan permintaan konfirmasi izin Murottal ke kanal bantuan. [Uji staging](../../android/validation/signed-self-service-staging/README.md).
 
 - **Persiapan staging dan cadangan signing, 24 November.** APK instrumen 1.9.66 dengan skenario hapus akun sintetis lulus build dan verifikasi signer. Vercel Preview masih belum memiliki variabel Redis dan Firebase. Penerbit menyetujui draf privasi dan ketentuan untuk beta gratis. Cadangan PKCS#12 menghasilkan sertifikat rilis yang sama saat diuji dan sudah disimpan di folder Google Drive privat. [Persyaratan tersisa](PUBLIC_RELEASE_BLOCKERS.md).
 

@@ -1,5 +1,21 @@
 # Endpoint akun 18+ di produksi — 21 November 2026
 
+## Hapus Akun aktif — 24 November 2026
+
+- Akun layanan produksi terpisah mendapat peran kustom dengan satu izin
+  `firebaseauth.users.delete`. Pembaca Firebase tetap terpisah. Kunci penghapus
+  disimpan sebagai Secret khusus produksi dan flag penghapusan diaktifkan.
+- Deployment `dpl_wmpdgrUgNqhwEA8A2mDbjZwkh3pY` diuji sebelum dipromosikan dan
+  diuji ulang di domain produksi. Deployment sebelumnya
+  `dpl_AUeeUQF2r8JZxvjkmj3J8bYs1zTo` tercatat untuk rollback.
+- Kedua uji memakai akun berbeda beralamat `example.test`, tanpa email
+  verifikasi atau permintaan inferensi. Health dan login awal HTTP 200.
+  Permintaan hapus tanpa token HTTP 401, konfirmasi salah HTTP 400,
+  dan konfirmasi benar HTTP 200. Firebase mengonfirmasi akun hilang,
+  login ulang HTTP 400, dan API menolak token lama HTTP 401.
+
+## Riwayat 21 November 2026
+
 Endpoint status, deklarasi, perpanjangan, dan pencabutan tersedia di [zikra-ai.vercel.app](https://zikra-ai.vercel.app/health). Konfigurasi produksi Zikra memakai `ZIKRA_ADULT_ACCOUNTS_ENABLED=true` dan `ZIKRA_ADULT_ACCOUNTS_REQUIRED=false`. APK signed 1.9.58 masih kandidat internal dan rilis berstatus **HOLD**.
 
 ## Deploy dan pemulihan

@@ -35,6 +35,13 @@ Pemeriksaan BuildConfig memastikan Auth Emulator nonaktif.
 Kandidat privat berada di `.local/releases/Zikra-v1.9.67-beta-candidate.apk`.
 Instrumen uji tombol memiliki SHA-256
 `b6c38b018322f8ae150ae07ff77290861d800c0bd91882474034a197d756de97`.
-Produksi belum memiliki flag dan Secret Hapus Akun. Aktivasi produksi
-dan verifikasi URL publik tetap tercatat di
+Hapus Akun aktif di produksi dan lulus uji sintetis.
+[Bukti aktivasi](../../../docs/beta/ACCOUNT_PRODUCTION_2026-11-21.md).
+
+[Preview unduhan tanpa promo](https://zikra-6arwys2fa-arkanzahir86-3257s-projects.vercel.app/)
+membutuhkan login Vercel. HEAD dan GET terautentikasi mengembalikan HTTP 200.
+Tipe APK, ukuran 41.995.490 byte, dan SHA-256 sesuai manifest. Izin otomatis
+sementara dicabut. Setelah pencabutan, beranda, privasi, ketentuan dan APK
+mengembalikan HTTP 302 ke login untuk pengunjung anonim. Aktivasi situs
+dan verifikasi unduhan anonim tercatat di
 [persyaratan rilis](../../../docs/beta/PUBLIC_RELEASE_BLOCKERS.md).
